@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.excludeTags = excludeTags
 
             self.query = query
-        }
-
-        public func duplicate() -> StoreFilter {
-            let dict = self.dictionary!
-            let copy = StoreFilter(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

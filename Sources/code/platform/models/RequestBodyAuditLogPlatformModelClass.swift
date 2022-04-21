@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.logMeta = logMeta
 
             self.logPayload = logPayload
-        }
-
-        public func duplicate() -> RequestBodyAuditLog {
-            let dict = self.dictionary!
-            let copy = RequestBodyAuditLog(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

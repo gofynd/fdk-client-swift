@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.restBaseUrl = restBaseUrl
 
             self.functionName = functionName
-        }
-
-        public func duplicate() -> OAuthConfig {
-            let dict = self.dictionary!
-            let copy = OAuthConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

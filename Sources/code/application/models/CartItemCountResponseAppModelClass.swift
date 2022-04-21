@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(userCartItemsCount: Int? = nil) {
             self.userCartItemsCount = userCartItemsCount
-        }
-
-        public func duplicate() -> CartItemCountResponse {
-            let dict = self.dictionary!
-            let copy = CartItemCountResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

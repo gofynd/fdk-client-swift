@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.deliveryPromise = deliveryPromise
 
             self.isValid = isValid
-        }
-
-        public func duplicate() -> OpenApiCartServiceabilityResponse {
-            let dict = self.dictionary!
-            let copy = OpenApiCartServiceabilityResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

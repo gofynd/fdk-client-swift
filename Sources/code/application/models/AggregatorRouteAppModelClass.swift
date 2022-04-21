@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.paymentFlow = paymentFlow
 
             self.apiLink = apiLink
-        }
-
-        public func duplicate() -> AggregatorRoute {
-            let dict = self.dictionary!
-            let copy = AggregatorRoute(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

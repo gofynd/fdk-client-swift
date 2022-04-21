@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.requestId = requestId
 
             self.meta = meta
-        }
-
-        public func duplicate() -> APIError {
-            let dict = self.dictionary!
-            let copy = APIError(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

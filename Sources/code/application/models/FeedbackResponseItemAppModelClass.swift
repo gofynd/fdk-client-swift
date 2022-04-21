@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.key = key
 
             self.value = value
-        }
-
-        public func duplicate() -> FeedbackResponseItem {
-            let dict = self.dictionary!
-            let copy = FeedbackResponseItem(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

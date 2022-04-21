@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(appId: String? = nil) {
             self.appId = appId
-        }
-
-        public func duplicate() -> Facebook {
-            let dict = self.dictionary!
-            let copy = Facebook(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

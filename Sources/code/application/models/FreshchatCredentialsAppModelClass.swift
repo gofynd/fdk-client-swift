@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.appKey = appKey
 
             self.webToken = webToken
-        }
-
-        public func duplicate() -> FreshchatCredentials {
-            let dict = self.dictionary!
-            let copy = FreshchatCredentials(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

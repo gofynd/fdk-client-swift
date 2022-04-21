@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(order: OrderSchema) {
             self.order = order
-        }
-
-        public func duplicate() -> OrderById {
-            let dict = self.dictionary!
-            let copy = OrderById(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.currentShipmentStatus = currentShipmentStatus
 
             self.colorCode = colorCode
-        }
-
-        public func duplicate() -> PlatformShipmentDetailsStatus {
-            let dict = self.dictionary!
-            let copy = PlatformShipmentDetailsStatus(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

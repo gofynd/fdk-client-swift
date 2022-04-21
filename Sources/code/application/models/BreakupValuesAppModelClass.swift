@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.value = value
 
             self.name = name
-        }
-
-        public func duplicate() -> BreakupValues {
-            let dict = self.dictionary!
-            let copy = BreakupValues(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

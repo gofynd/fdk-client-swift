@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.phoneNumber = phoneNumber
 
             self.phoneCountryCode = phoneCountryCode
-        }
-
-        public func duplicate() -> Phone {
-            let dict = self.dictionary!
-            let copy = Phone(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

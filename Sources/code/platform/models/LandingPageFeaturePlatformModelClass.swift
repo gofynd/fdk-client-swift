@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.showDomainTextbox = showDomainTextbox
 
             self.showRegisterBtn = showRegisterBtn
-        }
-
-        public func duplicate() -> LandingPageFeature {
-            let dict = self.dictionary!
-            let copy = LandingPageFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

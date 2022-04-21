@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.recordsCount = recordsCount
 
             self.application = application
-        }
-
-        public func duplicate() -> CampaignReq {
-            let dict = self.dictionary!
-            let copy = CampaignReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

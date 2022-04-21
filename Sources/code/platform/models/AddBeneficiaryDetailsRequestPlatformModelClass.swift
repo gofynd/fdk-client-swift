@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.requestId = requestId
 
             self.orderId = orderId
-        }
-
-        public func duplicate() -> AddBeneficiaryDetailsRequest {
-            let dict = self.dictionary!
-            let copy = AddBeneficiaryDetailsRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

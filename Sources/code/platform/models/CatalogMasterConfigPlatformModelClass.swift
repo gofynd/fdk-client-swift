@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(sourceSlug: String? = nil) {
             self.sourceSlug = sourceSlug
-        }
-
-        public func duplicate() -> CatalogMasterConfig {
-            let dict = self.dictionary!
-            let copy = CatalogMasterConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

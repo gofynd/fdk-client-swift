@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.refId = refId
 
             self.refType = refType
-        }
-
-        public func duplicate() -> AddMediaListRequest {
-            let dict = self.dictionary!
-            let copy = AddMediaListRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

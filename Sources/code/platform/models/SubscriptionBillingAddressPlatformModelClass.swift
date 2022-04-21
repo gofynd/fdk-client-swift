@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.line2 = line2
 
             self.postalCode = postalCode
-        }
-
-        public func duplicate() -> SubscriptionBillingAddress {
-            let dict = self.dictionary!
-            let copy = SubscriptionBillingAddress(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

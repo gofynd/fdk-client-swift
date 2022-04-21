@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.web = web
 
             self.forceWeb = forceWeb
-        }
-
-        public func duplicate() -> Redirects {
-            let dict = self.dictionary!
-            let copy = Redirects(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

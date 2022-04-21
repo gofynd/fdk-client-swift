@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.subType = subType
 
             self.content = content
-        }
-
-        public func duplicate() -> HandpickedTagSchema {
-            let dict = self.dictionary!
-            let copy = HandpickedTagSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

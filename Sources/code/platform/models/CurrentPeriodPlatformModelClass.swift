@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.startDate = startDate
 
             self.endDate = endDate
-        }
-
-        public func duplicate() -> CurrentPeriod {
-            let dict = self.dictionary!
-            let copy = CurrentPeriod(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

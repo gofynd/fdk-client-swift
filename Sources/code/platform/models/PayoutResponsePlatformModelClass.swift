@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.payouts = payouts
 
             self.users = users
-        }
-
-        public func duplicate() -> PayoutResponse {
-            let dict = self.dictionary!
-            let copy = PayoutResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

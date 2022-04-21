@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.success = success
 
             self.errors = errors
-        }
-
-        public func duplicate() -> OpenApiErrorResponse {
-            let dict = self.dictionary!
-            let copy = OpenApiErrorResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

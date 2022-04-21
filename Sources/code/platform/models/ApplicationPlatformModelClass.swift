@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -160,12 +160,6 @@ public extension PlatformClient {
             self.mobileLogo = mobileLogo
 
             self.domain = domain
-        }
-
-        public func duplicate() -> Application {
-            let dict = self.dictionary!
-            let copy = Application(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.aspectRatio = aspectRatio
 
             self.url = url
-        }
-
-        public func duplicate() -> ShipmentTrackResponseBagListItemsProductImage {
-            let dict = self.dictionary!
-            let copy = ShipmentTrackResponseBagListItemsProductImage(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

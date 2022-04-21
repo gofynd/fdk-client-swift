@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -63,12 +63,6 @@ public extension ApplicationClient {
             self.successMessage = successMessage
 
             self.pollForAssignment = pollForAssignment
-        }
-
-        public func duplicate() -> EditCustomFormPayload {
-            let dict = self.dictionary!
-            let copy = EditCustomFormPayload(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

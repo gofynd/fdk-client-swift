@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(ean: String? = nil) {
             self.ean = ean
-        }
-
-        public func duplicate() -> Identifiers {
-            let dict = self.dictionary!
-            let copy = Identifiers(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

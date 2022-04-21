@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.value = value
 
             self.display = display
-        }
-
-        public func duplicate() -> DisplayBreakup {
-            let dict = self.dictionary!
-            let copy = DisplayBreakup(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

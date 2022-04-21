@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.productSuite = productSuite
 
             self.subscriptionId = subscriptionId
-        }
-
-        public func duplicate() -> CancelSubscriptionReq {
-            let dict = self.dictionary!
-            let copy = CancelSubscriptionReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

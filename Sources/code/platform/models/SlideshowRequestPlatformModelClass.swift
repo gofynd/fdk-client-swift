@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.media = media
 
             self.active = active
-        }
-
-        public func duplicate() -> SlideshowRequest {
-            let dict = self.dictionary!
-            let copy = SlideshowRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

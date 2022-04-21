@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(verifyEmailLink: Bool? = nil) {
             self.verifyEmailLink = verifyEmailLink
-        }
-
-        public func duplicate() -> SendEmailVerifyLinkSuccess {
-            let dict = self.dictionary!
-            let copy = SendEmailVerifyLinkSuccess(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

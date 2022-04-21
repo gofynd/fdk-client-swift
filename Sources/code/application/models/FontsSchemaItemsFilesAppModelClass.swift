@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.italic = italic
 
             self.bold = bold
-        }
-
-        public func duplicate() -> FontsSchemaItemsFiles {
-            let dict = self.dictionary!
-            let copy = FontsSchemaItemsFiles(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

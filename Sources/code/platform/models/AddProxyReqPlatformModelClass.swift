@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.attachedPath = attachedPath
 
             self.proxyUrl = proxyUrl
-        }
-
-        public func duplicate() -> AddProxyReq {
-            let dict = self.dictionary!
-            let copy = AddProxyReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.bankName = bankName
 
             self.branchName = branchName
-        }
-
-        public func duplicate() -> IfscCodeResponse {
-            let dict = self.dictionary!
-            let copy = IfscCodeResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

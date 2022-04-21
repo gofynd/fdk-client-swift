@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.postOrderReassignment = postOrderReassignment
 
             self.rules = rules
-        }
-
-        public func duplicate() -> InventoryArticleAssignment {
-            let dict = self.dictionary!
-            let copy = InventoryArticleAssignment(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

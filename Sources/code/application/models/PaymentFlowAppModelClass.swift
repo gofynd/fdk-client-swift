@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -75,12 +75,6 @@ public extension ApplicationClient {
             self.stripe = stripe
 
             self.simpl = simpl
-        }
-
-        public func duplicate() -> PaymentFlow {
-            let dict = self.dictionary!
-            let copy = PaymentFlow(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

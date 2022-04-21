@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(verifyMobileLink: Bool? = nil) {
             self.verifyMobileLink = verifyMobileLink
-        }
-
-        public func duplicate() -> SendMobileVerifyLinkSuccess {
-            let dict = self.dictionary!
-            let copy = SendMobileVerifyLinkSuccess(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

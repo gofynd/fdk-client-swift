@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -124,12 +124,6 @@ public extension PlatformClient {
             self.projectionQuery = projectionQuery
 
             self.enrichFromMaster = enrichFromMaster
-        }
-
-        public func duplicate() -> PropBeanDTO {
-            let dict = self.dictionary!
-            let copy = PropBeanDTO(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

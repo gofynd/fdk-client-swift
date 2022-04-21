@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.params = params
 
             self.query = query
-        }
-
-        public func duplicate() -> LaunchPage {
-            let dict = self.dictionary!
-            let copy = LaunchPage(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

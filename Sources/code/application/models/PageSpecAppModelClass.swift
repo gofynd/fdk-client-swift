@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(specifications: [PageSpecItem]? = nil) {
             self.specifications = specifications
-        }
-
-        public func duplicate() -> PageSpec {
-            let dict = self.dictionary!
-            let copy = PageSpec(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

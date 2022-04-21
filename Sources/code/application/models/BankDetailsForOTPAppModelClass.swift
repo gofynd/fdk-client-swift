@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -39,12 +39,6 @@ public extension ApplicationClient {
             self.accountNo = accountNo
 
             self.branchName = branchName
-        }
-
-        public func duplicate() -> BankDetailsForOTP {
-            let dict = self.dictionary!
-            let copy = BankDetailsForOTP(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

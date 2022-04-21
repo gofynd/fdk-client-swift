@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.page = page
 
             self.sort = sort
-        }
-
-        public func duplicate() -> GetReviewResponse {
-            let dict = self.dictionary!
-            let copy = GetReviewResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

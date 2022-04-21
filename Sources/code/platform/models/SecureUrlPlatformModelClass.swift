@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(secureUrl: String? = nil) {
             self.secureUrl = secureUrl
-        }
-
-        public func duplicate() -> SecureUrl {
-            let dict = self.dictionary!
-            let copy = SecureUrl(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

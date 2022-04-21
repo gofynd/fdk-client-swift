@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(status: String? = nil) {
             self.status = status
-        }
-
-        public func duplicate() -> ResetPasswordSuccess {
-            let dict = self.dictionary!
-            let copy = ResetPasswordSuccess(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

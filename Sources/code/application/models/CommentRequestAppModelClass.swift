@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.entityId = entityId
 
             self.entityType = entityType
-        }
-
-        public func duplicate() -> CommentRequest {
-            let dict = self.dictionary!
-            let copy = CommentRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.offers = offers
 
             self.seller = seller
-        }
-
-        public func duplicate() -> BulkPriceOffer {
-            let dict = self.dictionary!
-            let copy = BulkPriceOffer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

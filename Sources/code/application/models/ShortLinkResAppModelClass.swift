@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -129,12 +129,6 @@ public extension ApplicationClient {
             self.socialMediaTags = socialMediaTags
 
             self.count = count
-        }
-
-        public func duplicate() -> ShortLinkRes {
-            let dict = self.dictionary!
-            let copy = ShortLinkRes(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

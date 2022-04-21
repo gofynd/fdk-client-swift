@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.optedInventory = optedInventory
 
             self.optOutInventory = optOutInventory
-        }
-
-        public func duplicate() -> OptedApplicationResponse {
-            let dict = self.dictionary!
-            let copy = OptedApplicationResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

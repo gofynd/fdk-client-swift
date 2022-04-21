@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.date = date
 
             self.logs = logs
-        }
-
-        public func duplicate() -> LogDocs {
-            let dict = self.dictionary!
-            let copy = LogDocs(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

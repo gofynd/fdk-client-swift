@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -87,12 +87,6 @@ public extension ApplicationClient {
             self.type = type
 
             self.url = url
-        }
-
-        public func duplicate() -> FeedbackMedia {
-            let dict = self.dictionary!
-            let copy = FeedbackMedia(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

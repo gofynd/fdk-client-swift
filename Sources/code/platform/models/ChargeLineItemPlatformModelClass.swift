@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.isTest = isTest
 
             self.metadata = metadata
-        }
-
-        public func duplicate() -> ChargeLineItem {
-            let dict = self.dictionary!
-            let copy = ChargeLineItem(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

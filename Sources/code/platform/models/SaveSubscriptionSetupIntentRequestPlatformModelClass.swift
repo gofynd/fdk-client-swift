@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(uniqueExternalId: String) {
             self.uniqueExternalId = uniqueExternalId
-        }
-
-        public func duplicate() -> SaveSubscriptionSetupIntentRequest {
-            let dict = self.dictionary!
-            let copy = SaveSubscriptionSetupIntentRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

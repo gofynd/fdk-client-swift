@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.unwindField = unwindField
 
             self.defaultHeaders = defaultHeaders
-        }
-
-        public func duplicate() -> DocMappingConfig {
-            let dict = self.dictionary!
-            let copy = DocMappingConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

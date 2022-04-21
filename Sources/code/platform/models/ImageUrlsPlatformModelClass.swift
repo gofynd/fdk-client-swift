@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.portrait = portrait
 
             self.landscape = landscape
-        }
-
-        public func duplicate() -> ImageUrls {
-            let dict = self.dictionary!
-            let copy = ImageUrls(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

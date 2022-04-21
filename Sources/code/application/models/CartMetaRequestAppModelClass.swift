@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.checkoutMode = checkoutMode
 
             self.comment = comment
-        }
-
-        public func duplicate() -> CartMetaRequest {
-            let dict = self.dictionary!
-            let copy = CartMetaRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

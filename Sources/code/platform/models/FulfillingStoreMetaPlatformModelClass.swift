@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.stage = stage
 
             self.timing = timing
-        }
-
-        public func duplicate() -> FulfillingStoreMeta {
-            let dict = self.dictionary!
-            let copy = FulfillingStoreMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.taxIdentifiers = taxIdentifiers
 
             self.deleteQuantityThreshold = deleteQuantityThreshold
-        }
-
-        public func duplicate() -> CompanyConfig {
-            let dict = self.dictionary!
-            let copy = CompanyConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

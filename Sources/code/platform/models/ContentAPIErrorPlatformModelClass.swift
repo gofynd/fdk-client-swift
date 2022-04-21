@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.stackTrace = stackTrace
 
             self.meta = meta
-        }
-
-        public func duplicate() -> ContentAPIError {
-            let dict = self.dictionary!
-            let copy = ContentAPIError(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

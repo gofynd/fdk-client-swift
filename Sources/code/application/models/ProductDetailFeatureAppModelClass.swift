@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.updateProductMeta = updateProductMeta
 
             self.requestProduct = requestProduct
-        }
-
-        public func duplicate() -> ProductDetailFeature {
-            let dict = self.dictionary!
-            let copy = ProductDetailFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

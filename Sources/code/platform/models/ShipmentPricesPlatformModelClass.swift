@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -130,12 +130,6 @@ public extension PlatformClient {
             self.cashback = cashback
 
             self.valueOfGood = valueOfGood
-        }
-
-        public func duplicate() -> ShipmentPrices {
-            let dict = self.dictionary!
-            let copy = ShipmentPrices(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

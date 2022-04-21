@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.brandName = brandName
 
             self.countryOfOrigin = countryOfOrigin
-        }
-
-        public func duplicate() -> BagItemAttributes {
-            let dict = self.dictionary!
-            let copy = BagItemAttributes(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

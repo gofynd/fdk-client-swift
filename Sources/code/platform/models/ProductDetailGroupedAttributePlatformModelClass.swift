@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.details = details
 
             self.title = title
-        }
-
-        public func duplicate() -> ProductDetailGroupedAttribute {
-            let dict = self.dictionary!
-            let copy = ProductDetailGroupedAttribute(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

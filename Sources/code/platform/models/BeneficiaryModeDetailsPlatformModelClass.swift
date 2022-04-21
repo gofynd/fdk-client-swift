@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.wallet = wallet
 
             self.bankName = bankName
-        }
-
-        public func duplicate() -> BeneficiaryModeDetails {
-            let dict = self.dictionary!
-            let copy = BeneficiaryModeDetails(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

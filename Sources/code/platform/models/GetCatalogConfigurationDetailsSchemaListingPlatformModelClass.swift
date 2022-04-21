@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.filter = filter
 
             self.sort = sort
-        }
-
-        public func duplicate() -> GetCatalogConfigurationDetailsSchemaListing {
-            let dict = self.dictionary!
-            let copy = GetCatalogConfigurationDetailsSchemaListing(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

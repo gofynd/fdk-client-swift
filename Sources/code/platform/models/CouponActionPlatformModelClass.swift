@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.actionDate = actionDate
 
             self.txnMode = txnMode
-        }
-
-        public func duplicate() -> CouponAction {
-            let dict = self.dictionary!
-            let copy = CouponAction(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

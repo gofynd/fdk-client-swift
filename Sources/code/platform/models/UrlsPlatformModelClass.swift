@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.signedUrl = signedUrl
 
             self.expiry = expiry
-        }
-
-        public func duplicate() -> Urls {
-            let dict = self.dictionary!
-            let copy = Urls(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

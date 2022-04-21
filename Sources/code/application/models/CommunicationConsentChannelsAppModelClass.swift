@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.sms = sms
 
             self.whatsapp = whatsapp
-        }
-
-        public func duplicate() -> CommunicationConsentChannels {
-            let dict = self.dictionary!
-            let copy = CommunicationConsentChannels(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

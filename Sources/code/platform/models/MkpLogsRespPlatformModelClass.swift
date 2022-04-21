@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.count = count
 
             self.status = status
-        }
-
-        public func duplicate() -> MkpLogsResp {
-            let dict = self.dictionary!
-            let copy = MkpLogsResp(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

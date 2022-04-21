@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.type = type
 
             self.category = category
-        }
-
-        public func duplicate() -> GlobalSchemaProps {
-            let dict = self.dictionary!
-            let copy = GlobalSchemaProps(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

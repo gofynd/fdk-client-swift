@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.message = message
 
             self.orderId = orderId
-        }
-
-        public func duplicate() -> PaymentConfirmationResponse {
-            let dict = self.dictionary!
-            let copy = PaymentConfirmationResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

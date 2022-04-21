@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -63,12 +63,6 @@ public extension ApplicationClient {
             self.iconUrl = iconUrl
 
             self.customJson = customJson
-        }
-
-        public func duplicate() -> FAQCategorySchema {
-            let dict = self.dictionary!
-            let copy = FAQCategorySchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.min = min
 
             self.max = max
-        }
-
-        public func duplicate() -> PriceRange {
-            let dict = self.dictionary!
-            let copy = PriceRange(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

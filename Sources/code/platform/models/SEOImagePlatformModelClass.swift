@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(url: String? = nil) {
             self.url = url
-        }
-
-        public func duplicate() -> SEOImage {
-            let dict = self.dictionary!
-            let copy = SEOImage(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.variant = variant
 
             self.similar = similar
-        }
-
-        public func duplicate() -> ConfigurationProduct {
-            let dict = self.dictionary!
-            let copy = ConfigurationProduct(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

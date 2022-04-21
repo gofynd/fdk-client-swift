@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(uniqueName: String) {
             self.uniqueName = uniqueName
-        }
-
-        public func duplicate() -> CreateVideoRoomResponse {
-            let dict = self.dictionary!
-            let copy = CreateVideoRoomResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

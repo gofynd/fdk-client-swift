@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.available = available
 
             self.preferred = preferred
-        }
-
-        public func duplicate() -> InvoiceDetailsPaymentMethodsDataNetworks {
-            let dict = self.dictionary!
-            let copy = InvoiceDetailsPaymentMethodsDataNetworks(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.display = display
 
             self.color = color
-        }
-
-        public func duplicate() -> Priority {
-            let dict = self.dictionary!
-            let copy = Priority(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

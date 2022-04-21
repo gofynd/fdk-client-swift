@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.localDir = localDir
 
             self.archiveConfig = archiveConfig
-        }
-
-        public func duplicate() -> GoogleSpreadSheetConfig {
-            let dict = self.dictionary!
-            let copy = GoogleSpreadSheetConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

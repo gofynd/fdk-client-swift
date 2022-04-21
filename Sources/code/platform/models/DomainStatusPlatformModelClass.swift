@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.display = display
 
             self.status = status
-        }
-
-        public func duplicate() -> DomainStatus {
-            let dict = self.dictionary!
-            let copy = DomainStatus(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

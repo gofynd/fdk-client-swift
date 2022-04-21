@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.payload = payload
 
             self.meta = meta
-        }
-
-        public func duplicate() -> EngineRequest {
-            let dict = self.dictionary!
-            let copy = EngineRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

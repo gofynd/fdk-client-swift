@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.attributeConfig = attributeConfig
 
             self.allowSingle = allowSingle
-        }
-
-        public func duplicate() -> ConfigurationListingFilter {
-            let dict = self.dictionary!
-            let copy = ConfigurationListingFilter(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

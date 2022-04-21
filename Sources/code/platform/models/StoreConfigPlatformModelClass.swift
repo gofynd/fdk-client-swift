@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.processConfig = processConfig
 
             self.properties = properties
-        }
-
-        public func duplicate() -> StoreConfig {
-            let dict = self.dictionary!
-            let copy = StoreConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

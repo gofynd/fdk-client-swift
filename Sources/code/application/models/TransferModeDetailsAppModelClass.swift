@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.displayName = displayName
 
             self.items = items
-        }
-
-        public func duplicate() -> TransferModeDetails {
-            let dict = self.dictionary!
-            let copy = TransferModeDetails(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

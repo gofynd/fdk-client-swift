@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.enabled = enabled
 
             self.displayText = displayText
-        }
-
-        public func duplicate() -> DetailedPlanComponents {
-            let dict = self.dictionary!
-            let copy = DetailedPlanComponents(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

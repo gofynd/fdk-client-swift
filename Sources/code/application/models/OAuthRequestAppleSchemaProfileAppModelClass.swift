@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.fullName = fullName
 
             self.firstName = firstName
-        }
-
-        public func duplicate() -> OAuthRequestAppleSchemaProfile {
-            let dict = self.dictionary!
-            let copy = OAuthRequestAppleSchemaProfile(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

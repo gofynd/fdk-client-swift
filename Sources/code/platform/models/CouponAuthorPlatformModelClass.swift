@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.createdBy = createdBy
 
             self.modifiedBy = modifiedBy
-        }
-
-        public func duplicate() -> CouponAuthor {
-            let dict = self.dictionary!
-            let copy = CouponAuthor(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

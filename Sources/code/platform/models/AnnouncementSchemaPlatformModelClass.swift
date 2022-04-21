@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.announcement = announcement
 
             self.schedule = schedule
-        }
-
-        public func duplicate() -> AnnouncementSchema {
-            let dict = self.dictionary!
-            let copy = AnnouncementSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.expiry = expiry
 
             self.url = url
-        }
-
-        public func duplicate() -> Upload {
-            let dict = self.dictionary!
-            let copy = Upload(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.hsnCode = hsnCode
 
             self.countryOfOrigin = countryOfOrigin
-        }
-
-        public func duplicate() -> HSNData {
-            let dict = self.dictionary!
-            let copy = HSNData(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

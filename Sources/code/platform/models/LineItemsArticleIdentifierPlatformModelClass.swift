@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(skuCode: String? = nil) {
             self.skuCode = skuCode
-        }
-
-        public func duplicate() -> LineItemsArticleIdentifier {
-            let dict = self.dictionary!
-            let copy = LineItemsArticleIdentifier(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

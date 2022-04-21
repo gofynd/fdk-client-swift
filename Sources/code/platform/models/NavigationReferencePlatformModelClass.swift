@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.sortOrder = sortOrder
 
             self.subNavigation = subNavigation
-        }
-
-        public func duplicate() -> NavigationReference {
-            let dict = self.dictionary!
-            let copy = NavigationReference(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

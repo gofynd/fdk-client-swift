@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.amountToCollect = amountToCollect
 
             self.rtoAddress = rtoAddress
-        }
-
-        public func duplicate() -> ShipmentInvoice {
-            let dict = self.dictionary!
-            let copy = ShipmentInvoice(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

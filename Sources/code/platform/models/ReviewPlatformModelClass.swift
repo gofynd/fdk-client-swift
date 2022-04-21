@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.videoMeta = videoMeta
 
             self.voteAllowed = voteAllowed
-        }
-
-        public func duplicate() -> Review {
-            let dict = self.dictionary!
-            let copy = Review(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -141,12 +141,6 @@ public extension ApplicationClient {
             self.visibility = visibility
 
             self.archived = archived
-        }
-
-        public func duplicate() -> PageSchema {
-            let dict = self.dictionary!
-            let copy = PageSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

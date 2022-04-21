@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.totalSuppressedCount = totalSuppressedCount
 
             self.totalJobRuns = totalJobRuns
-        }
-
-        public func duplicate() -> JobMetricsDto {
-            let dict = self.dictionary!
-            let copy = JobMetricsDto(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.effective = effective
 
             self.transfer = transfer
-        }
-
-        public func duplicate() -> ArticlePrice {
-            let dict = self.dictionary!
-            let copy = ArticlePrice(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

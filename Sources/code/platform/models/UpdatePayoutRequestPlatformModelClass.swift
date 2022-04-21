@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.uniqueExternalId = uniqueExternalId
 
             self.isActive = isActive
-        }
-
-        public func duplicate() -> UpdatePayoutRequest {
-            let dict = self.dictionary!
-            let copy = UpdatePayoutRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.props = props
 
             self.id = id
-        }
-
-        public func duplicate() -> AvailablePageSchema {
-            let dict = self.dictionary!
-            let copy = AvailablePageSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

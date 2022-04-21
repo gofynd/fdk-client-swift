@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -82,12 +82,6 @@ public extension PlatformClient {
             self.generatedFrom = generatedFrom
 
             self.threeDSecureUsage = threeDSecureUsage
-        }
-
-        public func duplicate() -> InvoiceDetailsPaymentMethodsData {
-            let dict = self.dictionary!
-            let copy = InvoiceDetailsPaymentMethodsData(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

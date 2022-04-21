@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.code = code
 
             self.description = description
-        }
-
-        public func duplicate() -> NotFoundResourceError {
-            let dict = self.dictionary!
-            let copy = NotFoundResourceError(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.currentStatus = currentStatus
 
             self.orderId = orderId
-        }
-
-        public func duplicate() -> MultiTenderPaymentMeta {
-            let dict = self.dictionary!
-            let copy = MultiTenderPaymentMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

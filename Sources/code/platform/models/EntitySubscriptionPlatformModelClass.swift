@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.metadata = metadata
 
             self.lineItems = lineItems
-        }
-
-        public func duplicate() -> EntitySubscription {
-            let dict = self.dictionary!
-            let copy = EntitySubscription(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

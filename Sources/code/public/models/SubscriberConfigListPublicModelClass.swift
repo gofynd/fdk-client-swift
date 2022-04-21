@@ -1,40 +1,34 @@
-import Foundation
+
 
 import Foundation
-public extension PlatformClient {
+public extension PublicClient {
     /*
-         Model: InventoryDelete
-         Used By: Catalog
+         Model: SubscriberConfigList
+         Used By: Webhook
      */
 
-    class InventoryDelete: Codable {
-        public var success: Bool?
+    class SubscriberConfigList: Codable {
+        public var items: [SubscriberResponse]?
 
-        public var data: InventoryDeleteData?
+        public var page: Page?
 
         public enum CodingKeys: String, CodingKey {
-            case success
+            case items
 
-            case data
+            case page
         }
 
-        public init(data: InventoryDeleteData? = nil, success: Bool? = nil) {
-            self.success = success
+        public init(items: [SubscriberResponse]? = nil, page: Page? = nil) {
+            self.items = items
 
-            self.data = data
-        }
-
-        public func duplicate() -> InventoryDelete {
-            let dict = self.dictionary!
-            let copy = InventoryDelete(dictionary: dict)!
-            return copy
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                items = try container.decode([SubscriberResponse].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                data = try container.decode(InventoryDeleteData.self, forKey: .data)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }

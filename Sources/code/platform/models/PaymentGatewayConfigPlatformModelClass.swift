@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.configType = configType
 
             self.isActive = isActive
-        }
-
-        public func duplicate() -> PaymentGatewayConfig {
-            let dict = self.dictionary!
-            let copy = PaymentGatewayConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

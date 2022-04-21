@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -160,12 +160,6 @@ public extension PlatformClient {
             self.paymentMethod = paymentMethod
 
             self.invoiceItems = invoiceItems
-        }
-
-        public func duplicate() -> InvoicesData {
-            let dict = self.dictionary!
-            let copy = InvoicesData(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

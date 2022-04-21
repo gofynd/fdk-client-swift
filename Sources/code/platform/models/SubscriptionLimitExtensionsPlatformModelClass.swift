@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.enabled = enabled
 
             self.limit = limit
-        }
-
-        public func duplicate() -> SubscriptionLimitExtensions {
-            let dict = self.dictionary!
-            let copy = SubscriptionLimitExtensions(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

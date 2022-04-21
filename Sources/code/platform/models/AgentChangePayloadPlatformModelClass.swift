@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(agentId: String) {
             self.agentId = agentId
-        }
-
-        public func duplicate() -> AgentChangePayload {
-            let dict = self.dictionary!
-            let copy = AgentChangePayload(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.tags = tags
 
             self.type = type
-        }
-
-        public func duplicate() -> CollectionListingFilter {
-            let dict = self.dictionary!
-            let copy = CollectionListingFilter(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

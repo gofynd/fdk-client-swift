@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.fromName = fromName
 
             self.fromEmail = fromEmail
-        }
-
-        public func duplicate() -> CampignEmailProvider {
-            let dict = self.dictionary!
-            let copy = CampignEmailProvider(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

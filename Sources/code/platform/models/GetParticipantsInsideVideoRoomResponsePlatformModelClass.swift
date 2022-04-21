@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(participants: [Participant]) {
             self.participants = participants
-        }
-
-        public func duplicate() -> GetParticipantsInsideVideoRoomResponse {
-            let dict = self.dictionary!
-            let copy = GetParticipantsInsideVideoRoomResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

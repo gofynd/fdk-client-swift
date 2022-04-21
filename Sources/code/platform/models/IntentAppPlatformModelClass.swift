@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.code = code
 
             self.displayName = displayName
-        }
-
-        public func duplicate() -> IntentApp {
-            let dict = self.dictionary!
-            let copy = IntentApp(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

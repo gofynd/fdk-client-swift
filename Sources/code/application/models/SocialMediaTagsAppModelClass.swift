@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.description = description
 
             self.image = image
-        }
-
-        public func duplicate() -> SocialMediaTags {
-            let dict = self.dictionary!
-            let copy = SocialMediaTags(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

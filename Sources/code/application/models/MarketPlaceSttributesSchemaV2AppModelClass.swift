@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.details = details
 
             self.title = title
-        }
-
-        public func duplicate() -> MarketPlaceSttributesSchemaV2 {
-            let dict = self.dictionary!
-            let copy = MarketPlaceSttributesSchemaV2(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

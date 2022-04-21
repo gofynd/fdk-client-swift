@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -7,33 +7,27 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class DepartmentCategoryTree: Codable {
-        public var department: String?
-
         public var items: [CategoryItems]?
 
-        public enum CodingKeys: String, CodingKey {
-            case department
+        public var department: String?
 
+        public enum CodingKeys: String, CodingKey {
             case items
+
+            case department
         }
 
         public init(department: String? = nil, items: [CategoryItems]? = nil) {
-            self.department = department
-
             self.items = items
-        }
 
-        public func duplicate() -> DepartmentCategoryTree {
-            let dict = self.dictionary!
-            let copy = DepartmentCategoryTree(dictionary: dict)!
-            return copy
+            self.department = department
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                department = try container.decode(String.self, forKey: .department)
+                items = try container.decode([CategoryItems].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                items = try container.decode([CategoryItems].self, forKey: .items)
+                department = try container.decode(String.self, forKey: .department)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(department, forKey: .department)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(department, forKey: .department)
         }
     }
 }

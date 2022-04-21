@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.credentials = credentials
 
             self.enabled = enabled
-        }
-
-        public func duplicate() -> Firebase {
-            let dict = self.dictionary!
-            let copy = Firebase(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

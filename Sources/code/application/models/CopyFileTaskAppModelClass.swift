@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -75,12 +75,6 @@ public extension ApplicationClient {
             self.finishedOn = finishedOn
 
             self.processedOn = processedOn
-        }
-
-        public func duplicate() -> CopyFileTask {
-            let dict = self.dictionary!
-            let copy = CopyFileTask(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

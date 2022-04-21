@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.template = template
 
             self.provider = provider
-        }
-
-        public func duplicate() -> PayloadEmailStructure {
-            let dict = self.dictionary!
-            let copy = PayloadEmailStructure(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

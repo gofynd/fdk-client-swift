@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -75,12 +75,6 @@ public extension ApplicationClient {
             self.comment = comment
 
             self.branchName = branchName
-        }
-
-        public func duplicate() -> BeneficiaryModeDetails {
-            let dict = self.dictionary!
-            let copy = BeneficiaryModeDetails(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

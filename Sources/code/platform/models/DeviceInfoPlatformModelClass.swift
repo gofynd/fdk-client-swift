@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.userAgent = userAgent
 
             self.extraMeta = extraMeta
-        }
-
-        public func duplicate() -> DeviceInfo {
-            let dict = self.dictionary!
-            let copy = DeviceInfo(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

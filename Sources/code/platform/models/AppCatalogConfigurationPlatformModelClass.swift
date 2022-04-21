@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -10,9 +10,9 @@ public extension PlatformClient {
     class AppCatalogConfiguration: Codable {
         public var listing: ConfigurationListing?
 
-        public var id: String?
-
         public var appId: String
+
+        public var id: String?
 
         public var configId: String?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case listing
 
-            case id
-
             case appId = "app_id"
+
+            case id
 
             case configId = "config_id"
 
@@ -37,21 +37,15 @@ public extension PlatformClient {
         public init(appId: String, configId: String? = nil, configType: String, id: String? = nil, listing: ConfigurationListing? = nil, product: ConfigurationProduct? = nil) {
             self.listing = listing
 
-            self.id = id
-
             self.appId = appId
+
+            self.id = id
 
             self.configId = configId
 
             self.configType = configType
 
             self.product = product
-        }
-
-        public func duplicate() -> AppCatalogConfiguration {
-            let dict = self.dictionary!
-            let copy = AppCatalogConfiguration(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,6 +59,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            appId = try container.decode(String.self, forKey: .appId)
+
             do {
                 id = try container.decode(String.self, forKey: .id)
 
@@ -72,8 +68,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            appId = try container.decode(String.self, forKey: .appId)
 
             do {
                 configId = try container.decode(String.self, forKey: .configId)
@@ -99,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(listing, forKey: .listing)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(appId, forKey: .appId)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(configId, forKey: .configId)
 

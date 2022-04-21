@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.user = user
 
             self.verifyEmailLink = verifyEmailLink
-        }
-
-        public func duplicate() -> VerifyEmailOTPSuccess {
-            let dict = self.dictionary!
-            let copy = VerifyEmailOTPSuccess(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

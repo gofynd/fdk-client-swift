@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.enabled = enabled
 
             self.type = type
-        }
-
-        public func duplicate() -> DeploymentStoreSelectionFeature {
-            let dict = self.dictionary!
-            let copy = DeploymentStoreSelectionFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

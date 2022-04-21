@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.imported = imported
 
             self.processed = processed
-        }
-
-        public func duplicate() -> Stats {
-            let dict = self.dictionary!
-            let copy = Stats(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

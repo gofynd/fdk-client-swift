@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.onSameStore = onSameStore
 
             self.storeUid = storeUid
-        }
-
-        public func duplicate() -> ProductReturnConfigSerializer {
-            let dict = self.dictionary!
-            let copy = ProductReturnConfigSerializer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

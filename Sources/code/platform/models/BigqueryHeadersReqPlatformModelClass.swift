@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.query = query
 
             self.type = type
-        }
-
-        public func duplicate() -> BigqueryHeadersReq {
-            let dict = self.dictionary!
-            let copy = BigqueryHeadersReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.ar = ar
 
             self.enUs = enUs
-        }
-
-        public func duplicate() -> LocaleLanguage {
-            let dict = self.dictionary!
-            let copy = LocaleLanguage(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

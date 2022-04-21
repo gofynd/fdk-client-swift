@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.modeOfPayment = modeOfPayment
 
             self.source = source
-        }
-
-        public func duplicate() -> InventoryPaymentConfig {
-            let dict = self.dictionary!
-            let copy = InventoryPaymentConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

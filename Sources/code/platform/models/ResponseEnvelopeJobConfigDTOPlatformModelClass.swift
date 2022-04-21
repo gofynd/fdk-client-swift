@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.traceId = traceId
 
             self.page = page
-        }
-
-        public func duplicate() -> ResponseEnvelopeJobConfigDTO {
-            let dict = self.dictionary!
-            let copy = ResponseEnvelopeJobConfigDTO(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

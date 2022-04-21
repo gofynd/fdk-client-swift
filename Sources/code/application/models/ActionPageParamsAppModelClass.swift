@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(slug: [String]? = nil) {
             self.slug = slug
-        }
-
-        public func duplicate() -> ActionPageParams {
-            let dict = self.dictionary!
-            let copy = ActionPageParams(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

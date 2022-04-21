@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -75,12 +75,6 @@ public extension ApplicationClient {
             self.identifier = identifier
 
             self.journey = journey
-        }
-
-        public func duplicate() -> GetTatProductResponse {
-            let dict = self.dictionary!
-            let copy = GetTatProductResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.name = name
 
             self.file = file
-        }
-
-        public func duplicate() -> Light {
-            let dict = self.dictionary!
-            let copy = Light(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

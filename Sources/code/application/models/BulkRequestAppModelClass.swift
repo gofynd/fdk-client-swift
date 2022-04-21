@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.destination = destination
 
             self.configuration = configuration
-        }
-
-        public func duplicate() -> BulkRequest {
-            let dict = self.dictionary!
-            let copy = BulkRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

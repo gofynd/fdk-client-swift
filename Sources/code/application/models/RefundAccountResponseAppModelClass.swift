@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.isVerifiedFlag = isVerifiedFlag
 
             self.message = message
-        }
-
-        public func duplicate() -> RefundAccountResponse {
-            let dict = self.dictionary!
-            let copy = RefundAccountResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

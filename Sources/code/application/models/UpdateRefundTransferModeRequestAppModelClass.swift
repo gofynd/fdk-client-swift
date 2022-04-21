@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.transferMode = transferMode
 
             self.enable = enable
-        }
-
-        public func duplicate() -> UpdateRefundTransferModeRequest {
-            let dict = self.dictionary!
-            let copy = UpdateRefundTransferModeRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

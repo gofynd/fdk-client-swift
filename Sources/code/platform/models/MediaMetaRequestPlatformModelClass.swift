@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.maxCount = maxCount
 
             self.size = size
-        }
-
-        public func duplicate() -> MediaMetaRequest {
-            let dict = self.dictionary!
-            let copy = MediaMetaRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

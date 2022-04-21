@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.params = params
 
             self.query = query
-        }
-
-        public func duplicate() -> PageSpecItem {
-            let dict = self.dictionary!
-            let copy = PageSpecItem(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

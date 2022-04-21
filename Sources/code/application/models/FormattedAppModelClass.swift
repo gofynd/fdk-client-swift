@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.min = min
 
             self.max = max
-        }
-
-        public func duplicate() -> Formatted {
-            let dict = self.dictionary!
-            let copy = Formatted(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

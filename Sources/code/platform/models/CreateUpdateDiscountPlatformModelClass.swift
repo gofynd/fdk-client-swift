@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -88,12 +88,6 @@ public extension PlatformClient {
             self.storeIds = storeIds
 
             self.validity = validity
-        }
-
-        public func duplicate() -> CreateUpdateDiscount {
-            let dict = self.dictionary!
-            let copy = CreateUpdateDiscount(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

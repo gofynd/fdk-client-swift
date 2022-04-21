@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -69,12 +69,6 @@ public extension ApplicationClient {
             self.stripe = stripe
 
             self.simpl = simpl
-        }
-
-        public func duplicate() -> AggregatorsConfigDetailResponse {
-            let dict = self.dictionary!
-            let copy = AggregatorsConfigDetailResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

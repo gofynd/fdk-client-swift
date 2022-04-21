@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.icon = icon
 
             self.link = link
-        }
-
-        public func duplicate() -> PinterestLink {
-            let dict = self.dictionary!
-            let copy = PinterestLink(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

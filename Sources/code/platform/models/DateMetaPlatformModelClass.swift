@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.createdOn = createdOn
 
             self.modifiedOn = modifiedOn
-        }
-
-        public func duplicate() -> DateMeta {
-            let dict = self.dictionary!
-            let copy = DateMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

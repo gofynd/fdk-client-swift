@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.createdOn = createdOn
 
             self.logo = logo
-        }
-
-        public func duplicate() -> PlatformShipmentDetailsBrand {
-            let dict = self.dictionary!
-            let copy = PlatformShipmentDetailsBrand(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

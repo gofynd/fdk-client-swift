@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -39,12 +39,6 @@ public extension ApplicationClient {
             self.token = token
 
             self.version = version
-        }
-
-        public func duplicate() -> ApplicationVersionRequest {
-            let dict = self.dictionary!
-            let copy = ApplicationVersionRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

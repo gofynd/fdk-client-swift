@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -136,12 +136,6 @@ public extension PlatformClient {
             self.adminGraphqlApiId = adminGraphqlApiId
 
             self.defaultAddress = defaultAddress
-        }
-
-        public func duplicate() -> Customer {
-            let dict = self.dictionary!
-            let copy = Customer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(similars: ProductSimilarItem? = nil) {
             self.similars = similars
-        }
-
-        public func duplicate() -> SimilarProductByTypeResponse {
-            let dict = self.dictionary!
-            let copy = SimilarProductByTypeResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

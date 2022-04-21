@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -7,39 +7,33 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductSortOn: Codable {
-        public var value: String?
-
         public var name: String?
+
+        public var value: String?
 
         public var isSelected: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case value
-
             case name
+
+            case value
 
             case isSelected = "is_selected"
         }
 
         public init(isSelected: Bool? = nil, name: String? = nil, value: String? = nil) {
-            self.value = value
-
             self.name = name
 
-            self.isSelected = isSelected
-        }
+            self.value = value
 
-        public func duplicate() -> ProductSortOn {
-            let dict = self.dictionary!
-            let copy = ProductSortOn(dictionary: dict)!
-            return copy
+            self.isSelected = isSelected
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -66,9 +60,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(isSelected, forKey: .isSelected)
         }

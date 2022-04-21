@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.code = code
 
             self.success = success
-        }
-
-        public func duplicate() -> NotFoundResourceError {
-            let dict = self.dictionary!
-            let copy = NotFoundResourceError(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

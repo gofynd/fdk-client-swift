@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.archiveConfig = archiveConfig
 
             self.readAllFiles = readAllFiles
-        }
-
-        public func duplicate() -> LocalFileConfig {
-            let dict = self.dictionary!
-            let copy = LocalFileConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

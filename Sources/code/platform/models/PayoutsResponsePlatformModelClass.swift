@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.isActive = isActive
 
             self.payoutsAggregators = payoutsAggregators
-        }
-
-        public func duplicate() -> PayoutsResponse {
-            let dict = self.dictionary!
-            let copy = PayoutsResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

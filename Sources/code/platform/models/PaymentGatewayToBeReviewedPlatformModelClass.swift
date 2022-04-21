@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.aggregator = aggregator
 
             self.success = success
-        }
-
-        public func duplicate() -> PaymentGatewayToBeReviewed {
-            let dict = self.dictionary!
-            let copy = PaymentGatewayToBeReviewed(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

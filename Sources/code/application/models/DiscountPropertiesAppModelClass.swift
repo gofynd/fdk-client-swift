@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -39,12 +39,6 @@ public extension ApplicationClient {
             self.displayPercent = displayPercent
 
             self.percent = percent
-        }
-
-        public func duplicate() -> DiscountProperties {
-            let dict = self.dictionary!
-            let copy = DiscountProperties(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

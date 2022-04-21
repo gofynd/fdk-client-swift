@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.longitude = longitude
 
             self.latitude = latitude
-        }
-
-        public func duplicate() -> GeoLocation {
-            let dict = self.dictionary!
-            let copy = GeoLocation(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

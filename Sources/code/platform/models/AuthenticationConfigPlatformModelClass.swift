@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.required = required
 
             self.provider = provider
-        }
-
-        public func duplicate() -> AuthenticationConfig {
-            let dict = self.dictionary!
-            let copy = AuthenticationConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

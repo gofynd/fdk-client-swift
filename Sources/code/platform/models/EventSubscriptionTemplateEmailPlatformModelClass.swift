@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.subscribed = subscribed
 
             self.template = template
-        }
-
-        public func duplicate() -> EventSubscriptionTemplateEmail {
-            let dict = self.dictionary!
-            let copy = EventSubscriptionTemplateEmail(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

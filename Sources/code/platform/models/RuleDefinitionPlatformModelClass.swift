@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.type = type
 
             self.scope = scope
-        }
-
-        public func duplicate() -> RuleDefinition {
-            let dict = self.dictionary!
-            let copy = RuleDefinition(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

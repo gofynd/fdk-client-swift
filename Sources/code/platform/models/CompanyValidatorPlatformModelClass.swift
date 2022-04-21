@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.jsonSchema = jsonSchema
 
             self.browserScript = browserScript
-        }
-
-        public func duplicate() -> CompanyValidator {
-            let dict = self.dictionary!
-            let copy = CompanyValidator(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

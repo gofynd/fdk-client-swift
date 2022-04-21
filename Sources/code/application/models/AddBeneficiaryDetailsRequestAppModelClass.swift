@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -51,12 +51,6 @@ public extension ApplicationClient {
             self.orderId = orderId
 
             self.transferMode = transferMode
-        }
-
-        public func duplicate() -> AddBeneficiaryDetailsRequest {
-            let dict = self.dictionary!
-            let copy = AddBeneficiaryDetailsRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

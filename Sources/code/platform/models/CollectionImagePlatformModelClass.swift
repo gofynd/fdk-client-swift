@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.aspectRatio = aspectRatio
 
             self.url = url
-        }
-
-        public func duplicate() -> CollectionImage {
-            let dict = self.dictionary!
-            let copy = CollectionImage(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

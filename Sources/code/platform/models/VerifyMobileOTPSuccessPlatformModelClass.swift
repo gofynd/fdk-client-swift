@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.user = user
 
             self.verifyMobileLink = verifyMobileLink
-        }
-
-        public func duplicate() -> VerifyMobileOTPSuccess {
-            let dict = self.dictionary!
-            let copy = VerifyMobileOTPSuccess(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

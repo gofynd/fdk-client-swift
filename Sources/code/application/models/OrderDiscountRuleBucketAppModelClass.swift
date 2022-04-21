@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -39,12 +39,6 @@ public extension ApplicationClient {
             self.value = value
 
             self.valueType = valueType
-        }
-
-        public func duplicate() -> OrderDiscountRuleBucket {
-            let dict = self.dictionary!
-            let copy = OrderDiscountRuleBucket(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

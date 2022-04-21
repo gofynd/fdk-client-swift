@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -106,12 +106,6 @@ public extension PlatformClient {
             self.escapeChar = escapeChar
 
             self.defaultHeaders = defaultHeaders
-        }
-
-        public func duplicate() -> FileConfig {
-            let dict = self.dictionary!
-            let copy = FileConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

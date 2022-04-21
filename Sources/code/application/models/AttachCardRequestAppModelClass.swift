@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.nameOnCard = nameOnCard
 
             self.refresh = refresh
-        }
-
-        public func duplicate() -> AttachCardRequest {
-            let dict = self.dictionary!
-            let copy = AttachCardRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

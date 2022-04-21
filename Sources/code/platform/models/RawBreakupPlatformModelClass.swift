@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -82,12 +82,6 @@ public extension PlatformClient {
             self.coupon = coupon
 
             self.gstCharges = gstCharges
-        }
-
-        public func duplicate() -> RawBreakup {
-            let dict = self.dictionary!
-            let copy = RawBreakup(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

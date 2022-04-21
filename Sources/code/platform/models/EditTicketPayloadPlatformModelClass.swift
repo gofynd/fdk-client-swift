@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.assignedTo = assignedTo
 
             self.tags = tags
-        }
-
-        public func duplicate() -> EditTicketPayload {
-            let dict = self.dictionary!
-            let copy = EditTicketPayload(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -9,30 +9,24 @@ public extension ApplicationClient {
     class SellerV2: Codable {
         public var name: String?
 
-        public var uid: Int?
-
         public var count: Int?
+
+        public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case uid
-
             case count
+
+            case uid
         }
 
         public init(count: Int? = nil, name: String? = nil, uid: Int? = nil) {
             self.name = name
 
-            self.uid = uid
-
             self.count = count
-        }
 
-        public func duplicate() -> SellerV2 {
-            let dict = self.dictionary!
-            let copy = SellerV2(dictionary: dict)!
-            return copy
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                count = try container.decode(Int.self, forKey: .count)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                count = try container.decode(Int.self, forKey: .count)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,9 +62,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(count, forKey: .count)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

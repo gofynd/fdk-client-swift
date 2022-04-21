@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -8,33 +8,27 @@ public extension PlatformClient {
      */
 
     class ProductPublish: Codable {
-        public var isSet: Bool?
-
         public var productOnlineDate: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case isSet = "is_set"
+        public var isSet: Bool?
 
+        public enum CodingKeys: String, CodingKey {
             case productOnlineDate = "product_online_date"
+
+            case isSet = "is_set"
         }
 
         public init(isSet: Bool? = nil, productOnlineDate: String? = nil) {
-            self.isSet = isSet
-
             self.productOnlineDate = productOnlineDate
-        }
 
-        public func duplicate() -> ProductPublish {
-            let dict = self.dictionary!
-            let copy = ProductPublish(dictionary: dict)!
-            return copy
+            self.isSet = isSet
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isSet = try container.decode(Bool.self, forKey: .isSet)
+                productOnlineDate = try container.decode(String.self, forKey: .productOnlineDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                productOnlineDate = try container.decode(String.self, forKey: .productOnlineDate)
+                isSet = try container.decode(Bool.self, forKey: .isSet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
-
             try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
+
+            try? container.encodeIfPresent(isSet, forKey: .isSet)
         }
     }
 }

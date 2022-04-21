@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.company = company
 
             self.optType = optType
-        }
-
-        public func duplicate() -> OtherSellerApplication {
-            let dict = self.dictionary!
-            let copy = OtherSellerApplication(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

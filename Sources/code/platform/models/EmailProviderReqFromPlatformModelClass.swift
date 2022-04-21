@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.email = email
 
             self.isDefault = isDefault
-        }
-
-        public func duplicate() -> EmailProviderReqFrom {
-            let dict = self.dictionary!
-            let copy = EmailProviderReqFrom(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

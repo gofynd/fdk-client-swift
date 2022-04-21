@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.phone = phone
 
             self.registerToken = registerToken
-        }
-
-        public func duplicate() -> FormRegisterRequestSchema {
-            let dict = self.dictionary!
-            let copy = FormRegisterRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

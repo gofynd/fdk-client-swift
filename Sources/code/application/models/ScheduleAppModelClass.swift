@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.end = end
 
             self.start = start
-        }
-
-        public func duplicate() -> Schedule {
-            let dict = self.dictionary!
-            let copy = Schedule(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

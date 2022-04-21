@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.countryCode = countryCode
 
             self.phoneNumber = phoneNumber
-        }
-
-        public func duplicate() -> CommunicationConsentChannelsWhatsapp {
-            let dict = self.dictionary!
-            let copy = CommunicationConsentChannelsWhatsapp(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

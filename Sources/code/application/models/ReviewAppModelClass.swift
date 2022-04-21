@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -39,12 +39,6 @@ public extension ApplicationClient {
             self.mediaMeta = mediaMeta
 
             self.title = title
-        }
-
-        public func duplicate() -> Review {
-            let dict = self.dictionary!
-            let copy = Review(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.planId = planId
 
             self.paymentMethod = paymentMethod
-        }
-
-        public func duplicate() -> SubscriptionActivateReq {
-            let dict = self.dictionary!
-            let copy = SubscriptionActivateReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

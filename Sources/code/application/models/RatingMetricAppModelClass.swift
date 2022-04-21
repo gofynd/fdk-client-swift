@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -39,12 +39,6 @@ public extension ApplicationClient {
             self.slug = slug
 
             self.type = type
-        }
-
-        public func duplicate() -> RatingMetric {
-            let dict = self.dictionary!
-            let copy = RatingMetric(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

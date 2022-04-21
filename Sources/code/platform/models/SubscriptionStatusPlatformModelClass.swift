@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.isEnabled = isEnabled
 
             self.subscription = subscription
-        }
-
-        public func duplicate() -> SubscriptionStatus {
-            let dict = self.dictionary!
-            let copy = SubscriptionStatus(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

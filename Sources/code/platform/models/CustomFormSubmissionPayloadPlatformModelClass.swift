@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.response = response
 
             self.attachments = attachments
-        }
-
-        public func duplicate() -> CustomFormSubmissionPayload {
-            let dict = self.dictionary!
-            let copy = CustomFormSubmissionPayload(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

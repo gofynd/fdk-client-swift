@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.short = short
 
             self.hash = hash
-        }
-
-        public func duplicate() -> UrlInfo {
-            let dict = self.dictionary!
-            let copy = UrlInfo(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(message: String? = nil) {
             self.message = message
-        }
-
-        public func duplicate() -> AuthenticationApiErrorSchema {
-            let dict = self.dictionary!
-            let copy = AuthenticationApiErrorSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

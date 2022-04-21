@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -100,12 +100,6 @@ public extension PlatformClient {
             self.resendTimer = resendTimer
 
             self.resendToken = resendToken
-        }
-
-        public func duplicate() -> ProfileEditSuccess {
-            let dict = self.dictionary!
-            let copy = ProfileEditSuccess(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

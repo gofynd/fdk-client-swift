@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -105,12 +105,6 @@ public extension ApplicationClient {
             self.pollingUrl = pollingUrl
 
             self.razorpayPaymentId = razorpayPaymentId
-        }
-
-        public func duplicate() -> PaymentInitializationResponse {
-            let dict = self.dictionary!
-            let copy = PaymentInitializationResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

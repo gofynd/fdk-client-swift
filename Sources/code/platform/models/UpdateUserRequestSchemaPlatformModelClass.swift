@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.gender = gender
 
             self.meta = meta
-        }
-
-        public func duplicate() -> UpdateUserRequestSchema {
-            let dict = self.dictionary!
-            let copy = UpdateUserRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

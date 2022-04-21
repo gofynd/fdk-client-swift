@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.aggregatorName = aggregatorName
 
             self.displayName = displayName
-        }
-
-        public func duplicate() -> RootPaymentMode {
-            let dict = self.dictionary!
-            let copy = RootPaymentMode(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -112,12 +112,6 @@ public extension PlatformClient {
             self.country = country
 
             self.zip = zip
-        }
-
-        public func duplicate() -> DefaultAddress {
-            let dict = self.dictionary!
-            let copy = DefaultAddress(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

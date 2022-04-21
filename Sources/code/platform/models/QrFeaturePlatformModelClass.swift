@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.products = products
 
             self.collections = collections
-        }
-
-        public func duplicate() -> QrFeature {
-            let dict = self.dictionary!
-            let copy = QrFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

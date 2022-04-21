@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(shipmentIds: [String]) {
             self.shipmentIds = shipmentIds
-        }
-
-        public func duplicate() -> CanBreakRequestBody {
-            let dict = self.dictionary!
-            let copy = CanBreakRequestBody(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

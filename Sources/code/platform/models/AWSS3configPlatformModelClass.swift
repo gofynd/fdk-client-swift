@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -88,12 +88,6 @@ public extension PlatformClient {
             self.fileRegex = fileRegex
 
             self.archiveConfig = archiveConfig
-        }
-
-        public func duplicate() -> AWSS3config {
-            let dict = self.dictionary!
-            let copy = AWSS3config(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

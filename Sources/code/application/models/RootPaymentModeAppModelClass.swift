@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -51,12 +51,6 @@ public extension ApplicationClient {
             self.displayName = displayName
 
             self.anonymousEnable = anonymousEnable
-        }
-
-        public func duplicate() -> RootPaymentMode {
-            let dict = self.dictionary!
-            let copy = RootPaymentMode(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

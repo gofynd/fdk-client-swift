@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.brands = brands
 
             self.searchText = searchText
-        }
-
-        public func duplicate() -> StoreByBrandsRequest {
-            let dict = self.dictionary!
-            let copy = StoreByBrandsRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

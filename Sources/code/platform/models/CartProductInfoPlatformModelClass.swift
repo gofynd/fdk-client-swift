@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -94,12 +94,6 @@ public extension PlatformClient {
             self.article = article
 
             self.pricePerUnit = pricePerUnit
-        }
-
-        public func duplicate() -> CartProductInfo {
-            let dict = self.dictionary!
-            let copy = CartProductInfo(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

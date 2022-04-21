@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -69,12 +69,6 @@ public extension ApplicationClient {
             self.maxDiscountValue = maxDiscountValue
 
             self.minimumCartValue = minimumCartValue
-        }
-
-        public func duplicate() -> Coupon {
-            let dict = self.dictionary!
-            let copy = Coupon(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

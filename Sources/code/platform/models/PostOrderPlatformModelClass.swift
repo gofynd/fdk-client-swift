@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.cancellationAllowed = cancellationAllowed
 
             self.returnAllowed = returnAllowed
-        }
-
-        public func duplicate() -> PostOrder {
-            let dict = self.dictionary!
-            let copy = PostOrder(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

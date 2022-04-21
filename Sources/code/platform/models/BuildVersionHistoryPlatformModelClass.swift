@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.versions = versions
 
             self.latestAvailableVersionName = latestAvailableVersionName
-        }
-
-        public func duplicate() -> BuildVersionHistory {
-            let dict = self.dictionary!
-            let copy = BuildVersionHistory(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {
