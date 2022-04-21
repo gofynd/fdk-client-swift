@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var merchantCustomerRefId: String
 
-        public var statusMessage: String
-
         public var balance: BalanceDetails?
+
+        public var statusMessage: String
 
         public enum CodingKeys: String, CodingKey {
             case status
 
             case merchantCustomerRefId = "merchant_customer_ref_id"
 
-            case statusMessage = "status_message"
-
             case balance
+
+            case statusMessage = "status_message"
         }
 
         public init(balance: BalanceDetails? = nil, merchantCustomerRefId: String, status: String, statusMessage: String) {
@@ -30,15 +30,9 @@ public extension ApplicationClient {
 
             self.merchantCustomerRefId = merchantCustomerRefId
 
-            self.statusMessage = statusMessage
-
             self.balance = balance
-        }
 
-        public func duplicate() -> CreditSummary {
-            let dict = self.dictionary!
-            let copy = CreditSummary(dictionary: dict)!
-            return copy
+            self.statusMessage = statusMessage
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,8 +42,6 @@ public extension ApplicationClient {
 
             merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
 
-            statusMessage = try container.decode(String.self, forKey: .statusMessage)
-
             do {
                 balance = try container.decode(BalanceDetails.self, forKey: .balance)
 
@@ -57,6 +49,8 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            statusMessage = try container.decode(String.self, forKey: .statusMessage)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,9 +60,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(merchantCustomerRefId, forKey: .merchantCustomerRefId)
 
-            try? container.encodeIfPresent(statusMessage, forKey: .statusMessage)
-
             try? container.encodeIfPresent(balance, forKey: .balance)
+
+            try? container.encodeIfPresent(statusMessage, forKey: .statusMessage)
         }
     }
 }

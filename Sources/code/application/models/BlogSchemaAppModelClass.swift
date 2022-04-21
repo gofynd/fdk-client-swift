@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -99,12 +99,6 @@ public extension ApplicationClient {
             self.title = title
 
             self.dateMeta = dateMeta
-        }
-
-        public func duplicate() -> BlogSchema {
-            let dict = self.dictionary!
-            let copy = BlogSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

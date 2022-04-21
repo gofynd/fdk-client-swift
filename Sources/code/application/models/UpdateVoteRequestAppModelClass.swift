@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -39,12 +39,6 @@ public extension ApplicationClient {
             self.refId = refId
 
             self.refType = refType
-        }
-
-        public func duplicate() -> UpdateVoteRequest {
-            let dict = self.dictionary!
-            let copy = UpdateVoteRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

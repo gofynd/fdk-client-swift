@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case current
         }
 
-        public init(current: String?, hasNext: Bool?, hasPrevious: Bool?, itemTotal: Int?, size: Int?) {
+        public init(current: String? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil) {
             self.size = size
 
             self.itemTotal = itemTotal
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.hasNext = hasNext
 
             self.current = current
-        }
-
-        public func duplicate() -> PageResponse {
-            let dict = self.dictionary!
-            let copy = PageResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

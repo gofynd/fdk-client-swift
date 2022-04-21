@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             case childDetails = "child_details"
         }
 
-        public init(childDetails: [String: Any]?, code: String?, espModified: Bool?, identifiers: ArticleIdentifiers?, isSet: Bool?, returnConfig: BagArticleReturnConfig?, sellerIdentifier: String?, set: Set?, size: String?, uid: String?, id: String?) {
+        public init(childDetails: [String: Any]? = nil, code: String? = nil, espModified: Bool? = nil, identifiers: ArticleIdentifiers? = nil, isSet: Bool? = nil, returnConfig: BagArticleReturnConfig? = nil, sellerIdentifier: String? = nil, set: Set? = nil, size: String? = nil, uid: String? = nil, id: String? = nil) {
             self.identifiers = identifiers
 
             self.espModified = espModified
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.uid = uid
 
             self.childDetails = childDetails
-        }
-
-        public func duplicate() -> BagArticle {
-            let dict = self.dictionary!
-            let copy = BagArticle(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

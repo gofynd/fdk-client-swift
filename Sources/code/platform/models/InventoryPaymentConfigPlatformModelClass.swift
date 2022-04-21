@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case source
         }
 
-        public init(modeOfPayment: String?, source: String?) {
+        public init(modeOfPayment: String? = nil, source: String? = nil) {
             self.modeOfPayment = modeOfPayment
 
             self.source = source
-        }
-
-        public func duplicate() -> InventoryPaymentConfig {
-            let dict = self.dictionary!
-            let copy = InventoryPaymentConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

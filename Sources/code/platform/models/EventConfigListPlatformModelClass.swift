@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [EventConfig]?, page: Page?) {
+        public init(items: [EventConfig]? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page
-        }
-
-        public func duplicate() -> EventConfigList {
-            let dict = self.dictionary!
-            let copy = EventConfigList(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

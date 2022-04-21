@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case success
         }
 
-        public init(data: SlideshowSchema?, success: Bool?) {
+        public init(data: SlideshowSchema? = nil, success: Bool? = nil) {
             self.data = data
 
             self.success = success
-        }
-
-        public func duplicate() -> Slideshow {
-            let dict = self.dictionary!
-            let copy = Slideshow(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

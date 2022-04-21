@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case type
         }
 
-        public init(maxCount: Int?, size: Int?, type: String?) {
+        public init(maxCount: Int? = nil, size: Int? = nil, type: String? = nil) {
             self.maxCount = maxCount
 
             self.size = size
 
             self.type = type
-        }
-
-        public func duplicate() -> MediaMeta {
-            let dict = self.dictionary!
-            let copy = MediaMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

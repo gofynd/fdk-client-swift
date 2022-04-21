@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case charges
         }
 
-        public init(charges: Double?, threshold: Double?) {
+        public init(charges: Double? = nil, threshold: Double? = nil) {
             self.threshold = threshold
 
             self.charges = charges
-        }
-
-        public func duplicate() -> Charges {
-            let dict = self.dictionary!
-            let copy = Charges(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

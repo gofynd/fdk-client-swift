@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.channelType = channelType
 
             self.channelId = channelId
-        }
-
-        public func duplicate() -> GetZoneDataViewChannels {
-            let dict = self.dictionary!
-            let copy = GetZoneDataViewChannels(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

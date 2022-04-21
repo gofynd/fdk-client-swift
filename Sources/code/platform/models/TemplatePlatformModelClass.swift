@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             case tags
         }
 
-        public init(dateMeta: DateMeta?, entity: Entity?, id: String?, name: String?, rating: Rating?, review: Review?, state: FeedbackState?, tags: [TagMeta]?) {
+        public init(dateMeta: DateMeta? = nil, entity: Entity? = nil, id: String? = nil, name: String? = nil, rating: Rating? = nil, review: Review? = nil, state: FeedbackState? = nil, tags: [TagMeta]? = nil) {
             self.dateMeta = dateMeta
 
             self.entity = entity
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.state = state
 
             self.tags = tags
-        }
-
-        public func duplicate() -> Template {
-            let dict = self.dictionary!
-            let copy = Template(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

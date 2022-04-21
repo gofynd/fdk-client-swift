@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case meta
         }
 
-        public init(email: String?, firstName: String?, gender: String?, lastName: String?, meta: [String: Any]?, phoneNumber: String, username: String) {
+        public init(email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumber: String, username: String) {
             self.phoneNumber = phoneNumber
 
             self.email = email
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.username = username
 
             self.meta = meta
-        }
-
-        public func duplicate() -> CreateUserRequestSchema {
-            let dict = self.dictionary!
-            let copy = CreateUserRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

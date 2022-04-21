@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case id
         }
 
-        public init(id: String?, type: String?) {
+        public init(id: String? = nil, type: String? = nil) {
             self.type = type
 
             self.id = id
-        }
-
-        public func duplicate() -> DataLoaderSourceSchema {
-            let dict = self.dictionary!
-            let copy = DataLoaderSourceSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

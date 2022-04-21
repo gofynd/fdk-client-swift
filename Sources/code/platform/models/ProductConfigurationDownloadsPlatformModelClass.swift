@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: [[String: Any]]?, multivalue: Bool?) {
+        public init(data: [[String: Any]]? = nil, multivalue: Bool? = nil) {
             self.multivalue = multivalue
 
             self.data = data
-        }
-
-        public func duplicate() -> ProductConfigurationDownloads {
-            let dict = self.dictionary!
-            let copy = ProductConfigurationDownloads(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

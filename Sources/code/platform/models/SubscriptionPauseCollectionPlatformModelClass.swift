@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case resumeAt = "resume_at"
         }
 
-        public init(behavior: String?, resumeAt: String?) {
+        public init(behavior: String? = nil, resumeAt: String? = nil) {
             self.behavior = behavior
 
             self.resumeAt = resumeAt
-        }
-
-        public func duplicate() -> SubscriptionPauseCollection {
-            let dict = self.dictionary!
-            let copy = SubscriptionPauseCollection(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

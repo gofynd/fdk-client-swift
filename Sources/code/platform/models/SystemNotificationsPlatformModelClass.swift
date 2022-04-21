@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [SystemNotification]?, lastReadAnchor: Int?, page: Page?) {
+        public init(items: [SystemNotification]? = nil, lastReadAnchor: Int? = nil, page: Page? = nil) {
             self.items = items
 
             self.lastReadAnchor = lastReadAnchor
 
             self.page = page
-        }
-
-        public func duplicate() -> SystemNotifications {
-            let dict = self.dictionary!
-            let copy = SystemNotifications(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

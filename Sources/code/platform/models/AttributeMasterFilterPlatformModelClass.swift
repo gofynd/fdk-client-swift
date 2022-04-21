@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case dependsOn = "depends_on"
         }
 
-        public init(dependsOn: [String]?, indexing: Bool, priority: Int?) {
+        public init(dependsOn: [String]? = nil, indexing: Bool, priority: Int? = nil) {
             self.priority = priority
 
             self.indexing = indexing
 
             self.dependsOn = dependsOn
-        }
-
-        public func duplicate() -> AttributeMasterFilter {
-            let dict = self.dictionary!
-            let copy = AttributeMasterFilter(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

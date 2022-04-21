@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case buttonSecondaryColor = "button_secondary_color"
         }
 
-        public init(accentColor: String?, bgColor: String?, buttonSecondaryColor: String?, linkColor: String?, primaryColor: String?, secondaryColor: String?) {
+        public init(accentColor: String? = nil, bgColor: String? = nil, buttonSecondaryColor: String? = nil, linkColor: String? = nil, primaryColor: String? = nil, secondaryColor: String? = nil) {
             self.bgColor = bgColor
 
             self.primaryColor = primaryColor
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.linkColor = linkColor
 
             self.buttonSecondaryColor = buttonSecondaryColor
-        }
-
-        public func duplicate() -> Colors {
-            let dict = self.dictionary!
-            let copy = Colors(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

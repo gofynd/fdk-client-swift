@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.countryCode = countryCode
 
             self.mobile = mobile
-        }
-
-        public func duplicate() -> WalletOtpRequest {
-            let dict = self.dictionary!
-            let copy = WalletOtpRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case deploymentMeta = "deployment_meta"
         }
 
-        public init(deploymentMeta: DeploymentMeta?) {
+        public init(deploymentMeta: DeploymentMeta? = nil) {
             self.deploymentMeta = deploymentMeta
-        }
-
-        public func duplicate() -> OrderingStoreConfig {
-            let dict = self.dictionary!
-            let copy = OrderingStoreConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

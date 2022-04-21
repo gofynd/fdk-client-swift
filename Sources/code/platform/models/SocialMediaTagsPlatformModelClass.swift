@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case image
         }
 
-        public init(description: String?, image: String?, title: String?) {
+        public init(description: String? = nil, image: String? = nil, title: String? = nil) {
             self.title = title
 
             self.description = description
 
             self.image = image
-        }
-
-        public func duplicate() -> SocialMediaTags {
-            let dict = self.dictionary!
-            let copy = SocialMediaTags(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

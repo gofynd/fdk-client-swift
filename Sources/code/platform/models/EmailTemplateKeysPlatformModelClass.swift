@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case bcc
         }
 
-        public init(bcc: String?, cc: String?, to: String?) {
+        public init(bcc: String? = nil, cc: String? = nil, to: String? = nil) {
             self.to = to
 
             self.cc = cc
 
             self.bcc = bcc
-        }
-
-        public func duplicate() -> EmailTemplateKeys {
-            let dict = self.dictionary!
-            let copy = EmailTemplateKeys(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

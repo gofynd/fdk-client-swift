@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.pieces = pieces
 
             self.size = size
-        }
-
-        public func duplicate() -> SetSize {
-            let dict = self.dictionary!
-            let copy = SetSize(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

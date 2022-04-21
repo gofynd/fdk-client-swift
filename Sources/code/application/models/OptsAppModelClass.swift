@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.timestamp = timestamp
 
             self.delay = delay
-        }
-
-        public func duplicate() -> Opts {
-            let dict = self.dictionary!
-            let copy = Opts(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

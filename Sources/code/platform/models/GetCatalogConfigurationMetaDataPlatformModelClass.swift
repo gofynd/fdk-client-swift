@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case product
         }
 
-        public init(listing: MetaDataListingResponse?, product: GetCatalogConfigurationDetailsProduct?) {
+        public init(listing: MetaDataListingResponse? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
             self.listing = listing
 
             self.product = product
-        }
-
-        public func duplicate() -> GetCatalogConfigurationMetaData {
-            let dict = self.dictionary!
-            let copy = GetCatalogConfigurationMetaData(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

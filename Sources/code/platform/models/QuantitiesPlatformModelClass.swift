@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case damaged
         }
 
-        public init(damaged: Damaged?, notAvailable: NotAvailable?, orderCommitted: OrderCommitted?, sellable: Sellable?) {
+        public init(damaged: Damaged? = nil, notAvailable: NotAvailable? = nil, orderCommitted: OrderCommitted? = nil, sellable: Sellable? = nil) {
             self.notAvailable = notAvailable
 
             self.sellable = sellable
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.orderCommitted = orderCommitted
 
             self.damaged = damaged
-        }
-
-        public func duplicate() -> Quantities {
-            let dict = self.dictionary!
-            let copy = Quantities(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

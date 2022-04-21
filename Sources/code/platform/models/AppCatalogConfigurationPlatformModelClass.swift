@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case appId = "app_id"
         }
 
-        public init(appId: String, configId: String?, configType: String, id: String?, listing: ConfigurationListing?, product: ConfigurationProduct?) {
+        public init(appId: String, configId: String? = nil, configType: String, id: String? = nil, listing: ConfigurationListing? = nil, product: ConfigurationProduct? = nil) {
             self.product = product
 
             self.id = id
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.configId = configId
 
             self.appId = appId
-        }
-
-        public func duplicate() -> AppCatalogConfiguration {
-            let dict = self.dictionary!
-            let copy = AppCatalogConfiguration(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

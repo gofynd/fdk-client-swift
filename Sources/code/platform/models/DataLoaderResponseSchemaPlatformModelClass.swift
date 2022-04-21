@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -50,7 +50,7 @@ public extension PlatformClient {
             case source = "__source"
         }
 
-        public init(application: String?, company: String?, content: String?, name: String?, operationId: String?, service: String?, type: String?, url: String?, id: String?, source: DataLoaderSourceSchema?) {
+        public init(application: String? = nil, company: String? = nil, content: String? = nil, name: String? = nil, operationId: String? = nil, service: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: DataLoaderSourceSchema? = nil) {
             self.application = application
 
             self.company = company
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.content = content
 
             self.source = source
-        }
-
-        public func duplicate() -> DataLoaderResponseSchema {
-            let dict = self.dictionary!
-            let copy = DataLoaderResponseSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -78,7 +78,7 @@ public extension PlatformClient {
             case appId = "app_id"
         }
 
-        public init(allowFacets: Bool?, allowSort: Bool?, appId: String?, badge: [String: Any]?, banners: ImageUrls?, cron: [String: Any]?, description: String?, isActive: Bool?, logo: Media1?, meta: [String: Any]?, name: String?, query: [String: Any]?, slug: String?, tag: [String]?, type: String?, visibleFacetsKeys: [String]?, schedule: [String: Any]?) {
+        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, logo: Media1? = nil, meta: [String: Any]? = nil, name: String? = nil, query: [String: Any]? = nil, slug: String? = nil, tag: [String]? = nil, type: String? = nil, visibleFacetsKeys: [String]? = nil, schedule: [String: Any]? = nil) {
             self.banners = banners
 
             self.type = type
@@ -112,12 +112,6 @@ public extension PlatformClient {
             self.slug = slug
 
             self.appId = appId
-        }
-
-        public func duplicate() -> CollectionDetailResponse {
-            let dict = self.dictionary!
-            let copy = CollectionDetailResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

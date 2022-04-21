@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: [DepartmentCategoryTree]?, departments: [DepartmentIdentifier]?) {
+        public init(data: [DepartmentCategoryTree]? = nil, departments: [DepartmentIdentifier]? = nil) {
             self.departments = departments
 
             self.data = data
-        }
-
-        public func duplicate() -> CategoryListingResponse {
-            let dict = self.dictionary!
-            let copy = CategoryListingResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

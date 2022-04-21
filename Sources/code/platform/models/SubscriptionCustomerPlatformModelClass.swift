@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -50,7 +50,7 @@ public extension PlatformClient {
             case data
         }
 
-        public init(billingAddress: SubscriptionBillingAddress?, createdAt: String?, data: [String: Any]?, email: String?, modifiedAt: String?, name: String?, phone: Phone?, type: String?, uniqueId: String?, id: String?) {
+        public init(billingAddress: SubscriptionBillingAddress? = nil, createdAt: String? = nil, data: [String: Any]? = nil, email: String? = nil, modifiedAt: String? = nil, name: String? = nil, phone: Phone? = nil, type: String? = nil, uniqueId: String? = nil, id: String? = nil) {
             self.phone = phone
 
             self.billingAddress = billingAddress
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.modifiedAt = modifiedAt
 
             self.data = data
-        }
-
-        public func duplicate() -> SubscriptionCustomer {
-            let dict = self.dictionary!
-            let copy = SubscriptionCustomer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

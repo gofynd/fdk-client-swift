@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             case articleAssignment = "article_assignment"
         }
 
-        public init(articleAssignment: InventoryArticleAssignment?, brand: InventoryBrandRule?, franchiseEnabled: Bool?, image: [String]?, onlyVerifiedProducts: Bool?, outOfStock: Bool?, payment: InventoryPaymentConfig?, store: InventoryStoreRule?) {
+        public init(articleAssignment: InventoryArticleAssignment? = nil, brand: InventoryBrandRule? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, payment: InventoryPaymentConfig? = nil, store: InventoryStoreRule? = nil) {
             self.brand = brand
 
             self.store = store
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.payment = payment
 
             self.articleAssignment = articleAssignment
-        }
-
-        public func duplicate() -> AppInventory {
-            let dict = self.dictionary!
-            let copy = AppInventory(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

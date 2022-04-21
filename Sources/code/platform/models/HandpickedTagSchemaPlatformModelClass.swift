@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case content
         }
 
-        public init(attributes: [String: Any]?, content: String?, name: String?, position: String?, subType: String?, type: String?, url: String?) {
+        public init(attributes: [String: Any]? = nil, content: String? = nil, name: String? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil) {
             self.position = position
 
             self.attributes = attributes
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.subType = subType
 
             self.content = content
-        }
-
-        public func duplicate() -> HandpickedTagSchema {
-            let dict = self.dictionary!
-            let copy = HandpickedTagSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

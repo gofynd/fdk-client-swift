@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             case type
         }
 
-        public init(cloudId: String?, cloudName: String?, cloudProvider: String?, entityId: String?, entityType: String?, mediaUrl: String?, refId: String?, refType: String?, tags: [String]?, thumbnailUrl: String?, type: String?) {
+        public init(cloudId: String? = nil, cloudName: String? = nil, cloudProvider: String? = nil, entityId: String? = nil, entityType: String? = nil, mediaUrl: String? = nil, refId: String? = nil, refType: String? = nil, tags: [String]? = nil, thumbnailUrl: String? = nil, type: String? = nil) {
             self.cloudId = cloudId
 
             self.cloudName = cloudName
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.thumbnailUrl = thumbnailUrl
 
             self.type = type
-        }
-
-        public func duplicate() -> AddMediaRequest {
-            let dict = self.dictionary!
-            let copy = AddMediaRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

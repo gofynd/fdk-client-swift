@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case publish
         }
 
-        public init(publish: Bool?) {
+        public init(publish: Bool? = nil) {
             self.publish = publish
-        }
-
-        public func duplicate() -> PagePublishRequest {
-            let dict = self.dictionary!
-            let copy = PagePublishRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

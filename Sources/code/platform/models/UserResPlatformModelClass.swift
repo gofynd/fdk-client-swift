@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case user
         }
 
-        public init(points: Points?, user: RewardUser?) {
+        public init(points: Points? = nil, user: RewardUser? = nil) {
             self.points = points
 
             self.user = user
-        }
-
-        public func duplicate() -> UserRes {
-            let dict = self.dictionary!
-            let copy = UserRes(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

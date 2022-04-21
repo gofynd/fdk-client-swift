@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case sms
         }
 
-        public init(email: StatsProcessedEmail?, sms: StatsProcessedSms?) {
+        public init(email: StatsProcessedEmail? = nil, sms: StatsProcessedSms? = nil) {
             self.email = email
 
             self.sms = sms
-        }
-
-        public func duplicate() -> StatsProcessed {
-            let dict = self.dictionary!
-            let copy = StatsProcessed(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

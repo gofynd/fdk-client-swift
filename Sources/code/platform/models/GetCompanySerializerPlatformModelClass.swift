@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -62,7 +62,7 @@ public extension PlatformClient {
             case name
         }
 
-        public init(addresses: [GetAddressSerializer]?, businessType: String?, companyType: String?, createdBy: UserSerializer2?, createdOn: String?, modifiedBy: UserSerializer2?, modifiedOn: String?, name: String?, rejectReason: String?, stage: String?, uid: Int?, verifiedBy: UserSerializer2?, verifiedOn: String?) {
+        public init(addresses: [GetAddressSerializer]? = nil, businessType: String? = nil, companyType: String? = nil, createdBy: UserSerializer2? = nil, createdOn: String? = nil, modifiedBy: UserSerializer2? = nil, modifiedOn: String? = nil, name: String? = nil, rejectReason: String? = nil, stage: String? = nil, uid: Int? = nil, verifiedBy: UserSerializer2? = nil, verifiedOn: String? = nil) {
             self.businessType = businessType
 
             self.modifiedBy = modifiedBy
@@ -88,12 +88,6 @@ public extension PlatformClient {
             self.rejectReason = rejectReason
 
             self.name = name
-        }
-
-        public func duplicate() -> GetCompanySerializer {
-            let dict = self.dictionary!
-            let copy = GetCompanySerializer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

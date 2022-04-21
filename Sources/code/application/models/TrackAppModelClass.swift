@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -57,12 +57,6 @@ public extension ApplicationClient {
             self.updatedTime = updatedTime
 
             self.accountName = accountName
-        }
-
-        public func duplicate() -> Track {
-            let dict = self.dictionary!
-            let copy = Track(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

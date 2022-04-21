@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case courier
         }
 
-        public init(courier: String?, trackingNo: String?) {
+        public init(courier: String? = nil, trackingNo: String? = nil) {
             self.trackingNo = trackingNo
 
             self.courier = courier
-        }
-
-        public func duplicate() -> ShipmentTrackResponseBagListItemDpDetails {
-            let dict = self.dictionary!
-            let copy = ShipmentTrackResponseBagListItemDpDetails(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case type
         }
 
-        public init(display: String?, type: TicketAssetTypeEnum, value: String) {
+        public init(display: String? = nil, type: TicketAssetTypeEnum, value: String) {
             self.display = display
 
             self.value = value
 
             self.type = type
-        }
-
-        public func duplicate() -> TicketAsset {
-            let dict = self.dictionary!
-            let copy = TicketAsset(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

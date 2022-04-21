@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case available
         }
 
-        public init(available: Double?) {
+        public init(available: Double? = nil) {
             self.available = available
-        }
-
-        public func duplicate() -> Points {
-            let dict = self.dictionary!
-            let copy = Points(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

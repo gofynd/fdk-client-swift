@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case softLimit = "soft_limit"
         }
 
-        public init(enabled: Bool?, hardLimit: Int?, softLimit: Int?) {
+        public init(enabled: Bool? = nil, hardLimit: Int? = nil, softLimit: Int? = nil) {
             self.enabled = enabled
 
             self.hardLimit = hardLimit
 
             self.softLimit = softLimit
-        }
-
-        public func duplicate() -> SubscriptionLimitApplication {
-            let dict = self.dictionary!
-            let copy = SubscriptionLimitApplication(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

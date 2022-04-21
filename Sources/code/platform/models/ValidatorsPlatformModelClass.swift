@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case order
         }
 
-        public init(company: CompanyValidator?, inventory: InventoryValidator?, order: OrderValidator?, store: StoreValidator?) {
+        public init(company: CompanyValidator? = nil, inventory: InventoryValidator? = nil, order: OrderValidator? = nil, store: StoreValidator? = nil) {
             self.company = company
 
             self.store = store
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.inventory = inventory
 
             self.order = order
-        }
-
-        public func duplicate() -> Validators {
-            let dict = self.dictionary!
-            let copy = Validators(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

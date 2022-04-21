@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(pages: [AvailablePageSchema]? = nil) {
             self.pages = pages
-        }
-
-        public func duplicate() -> Preset {
-            let dict = self.dictionary!
-            let copy = Preset(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case cookie
         }
 
-        public init(cookie: [String: Any]?, domain: String?, httpOnly: Bool?, maxAge: Double?, secure: Bool?) {
+        public init(cookie: [String: Any]? = nil, domain: String? = nil, httpOnly: Bool? = nil, maxAge: Double? = nil, secure: Bool? = nil) {
             self.domain = domain
 
             self.maxAge = maxAge
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.httpOnly = httpOnly
 
             self.cookie = cookie
-        }
-
-        public func duplicate() -> CreateUserSessionResponseSchema {
-            let dict = self.dictionary!
-            let copy = CreateUserSessionResponseSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

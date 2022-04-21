@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             case createdAt = "created_at"
         }
 
-        public init(createdAt: String?, createdBy: [String: Any]?, createdOn: CreatedOn?, ticketId: String, type: String, updatedAt: String?, value: [String: Any], id: String) {
+        public init(createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, ticketId: String, type: String, updatedAt: String? = nil, value: [String: Any], id: String) {
             self.type = type
 
             self.value = value
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.updatedAt = updatedAt
 
             self.createdAt = createdAt
-        }
-
-        public func duplicate() -> TicketHistory {
-            let dict = self.dictionary!
-            let copy = TicketHistory(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.title = title
 
             self.link = link
-        }
-
-        public func duplicate() -> Links {
-            let dict = self.dictionary!
-            let copy = Links(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

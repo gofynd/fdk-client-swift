@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.ar = ar
 
             self.enUs = enUs
-        }
-
-        public func duplicate() -> LocaleLanguage {
-            let dict = self.dictionary!
-            let copy = LocaleLanguage(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

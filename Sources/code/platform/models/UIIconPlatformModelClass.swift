@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case selected
         }
 
-        public init(active: String?, inactive: String?, selected: [String]?) {
+        public init(active: String? = nil, inactive: String? = nil, selected: [String]? = nil) {
             self.active = active
 
             self.inactive = inactive
 
             self.selected = selected
-        }
-
-        public func duplicate() -> UIIcon {
-            let dict = self.dictionary!
-            let copy = UIIcon(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

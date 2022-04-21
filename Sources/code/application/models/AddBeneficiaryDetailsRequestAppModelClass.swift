@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,11 +15,11 @@ public extension ApplicationClient {
 
         public var orderId: String
 
-        public var details: BeneficiaryModeDetails
-
         public var requestId: String?
 
         public var shipmentId: String
+
+        public var details: BeneficiaryModeDetails
 
         public enum CodingKeys: String, CodingKey {
             case otp
@@ -30,11 +30,11 @@ public extension ApplicationClient {
 
             case orderId = "order_id"
 
-            case details
-
             case requestId = "request_id"
 
             case shipmentId = "shipment_id"
+
+            case details
         }
 
         public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String? = nil, requestId: String? = nil, shipmentId: String, transferMode: String) {
@@ -46,17 +46,11 @@ public extension ApplicationClient {
 
             self.orderId = orderId
 
-            self.details = details
-
             self.requestId = requestId
 
             self.shipmentId = shipmentId
-        }
 
-        public func duplicate() -> AddBeneficiaryDetailsRequest {
-            let dict = self.dictionary!
-            let copy = AddBeneficiaryDetailsRequest(dictionary: dict)!
-            return copy
+            self.details = details
         }
 
         required public init(from decoder: Decoder) throws {
@@ -76,8 +70,6 @@ public extension ApplicationClient {
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
-            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
-
             do {
                 requestId = try container.decode(String.self, forKey: .requestId)
 
@@ -87,6 +79,8 @@ public extension ApplicationClient {
             } catch {}
 
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -100,11 +94,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encodeIfPresent(details, forKey: .details)
-
             try? container.encodeIfPresent(requestId, forKey: .requestId)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(details, forKey: .details)
         }
     }
 }

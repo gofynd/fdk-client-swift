@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.zones = zones
 
             self.serviceabilityType = serviceabilityType
-        }
-
-        public func duplicate() -> GetPincodeZonesResponse {
-            let dict = self.dictionary!
-            let copy = GetPincodeZonesResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

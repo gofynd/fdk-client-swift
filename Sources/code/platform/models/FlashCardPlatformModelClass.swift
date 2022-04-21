@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case backgroundColor = "background_color"
         }
 
-        public init(backgroundColor: String?, text: String?, textColor: String?) {
+        public init(backgroundColor: String? = nil, text: String? = nil, textColor: String? = nil) {
             self.text = text
 
             self.textColor = textColor
 
             self.backgroundColor = backgroundColor
-        }
-
-        public func duplicate() -> FlashCard {
-            let dict = self.dictionary!
-            let copy = FlashCard(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

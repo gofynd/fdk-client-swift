@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,7 +46,7 @@ public extension PlatformClient {
             case whatsapp
         }
 
-        public init(email: String?, facebook: String?, fallback: String?, message: String?, messenger: String?, sms: String?, text: String?, twitter: String?, whatsapp: String?) {
+        public init(email: String? = nil, facebook: String? = nil, fallback: String? = nil, message: String? = nil, messenger: String? = nil, sms: String? = nil, text: String? = nil, twitter: String? = nil, whatsapp: String? = nil) {
             self.email = email
 
             self.facebook = facebook
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.twitter = twitter
 
             self.whatsapp = whatsapp
-        }
-
-        public func duplicate() -> ShareMessages {
-            let dict = self.dictionary!
-            let copy = ShareMessages(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             case companyStore = "company_store"
         }
 
-        public init(brand: InventoryBrand?, category: InventoryCategory?, companyStore: [[String: Any]]?, discount: InventoryDiscount?, excludeCategory: [[String: Any]]?, franchiseEnabled: Bool?, image: [String]?, onlyVerifiedProducts: Bool?, outOfStock: Bool?, price: InventoryPrice?, store: InventoryStore?) {
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
             self.brand = brand
 
             self.store = store
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.image = image
 
             self.companyStore = companyStore
-        }
-
-        public func duplicate() -> AppInventoryConfig {
-            let dict = self.dictionary!
-            let copy = AppInventoryConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

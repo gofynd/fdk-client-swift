@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [ShortLinkRes]?, page: Page?) {
+        public init(items: [ShortLinkRes]? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page
-        }
-
-        public func duplicate() -> ShortLinkList {
-            let dict = self.dictionary!
-            let copy = ShortLinkList(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

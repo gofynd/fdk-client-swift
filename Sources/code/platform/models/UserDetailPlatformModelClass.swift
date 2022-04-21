@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case fullName = "full_name"
         }
 
-        public init(fullName: String?, username: String?, userId: String?) {
+        public init(fullName: String? = nil, username: String? = nil, userId: String? = nil) {
             self.username = username
 
             self.userId = userId
 
             self.fullName = fullName
-        }
-
-        public func duplicate() -> UserDetail {
-            let dict = self.dictionary!
-            let copy = UserDetail(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case params
         }
 
-        public init(contentType: String, fileName: String, params: [String: Any]?, size: Int, tags: [String]?) {
+        public init(contentType: String, fileName: String, params: [String: Any]? = nil, size: Int, tags: [String]? = nil) {
             self.fileName = fileName
 
             self.contentType = contentType
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.tags = tags
 
             self.params = params
-        }
-
-        public func duplicate() -> StartRequest {
-            let dict = self.dictionary!
-            let copy = StartRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.refreshRate = refreshRate
 
             self.refreshPages = refreshPages
-        }
-
-        public func duplicate() -> AnnouncementsResponseSchema {
-            let dict = self.dictionary!
-            let copy = AnnouncementsResponseSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

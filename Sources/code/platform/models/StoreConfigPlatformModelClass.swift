@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case properties
         }
 
-        public init(jobCode: String?, processConfig: ProcessConfig?, properties: [String: String]?, storeid: String?, storeAlias: String?, storeFileName: String?, storeFileRegex: String?) {
+        public init(jobCode: String? = nil, processConfig: ProcessConfig? = nil, properties: [String: String]? = nil, storeid: String? = nil, storeAlias: String? = nil, storeFileName: String? = nil, storeFileRegex: String? = nil) {
             self.jobCode = jobCode
 
             self.storeid = storeid
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.processConfig = processConfig
 
             self.properties = properties
-        }
-
-        public func duplicate() -> StoreConfig {
-            let dict = self.dictionary!
-            let copy = StoreConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case location
         }
 
-        public init(application: String?, deviceInfo: [String: Any]?, entity: EntityObject?, location: [String: Any]?, modifier: [String: Any]?) {
+        public init(application: String? = nil, deviceInfo: [String: Any]? = nil, entity: EntityObject? = nil, location: [String: Any]? = nil, modifier: [String: Any]? = nil) {
             self.modifier = modifier
 
             self.application = application
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.deviceInfo = deviceInfo
 
             self.location = location
-        }
-
-        public func duplicate() -> LogMetaObj {
-            let dict = self.dictionary!
-            let copy = LogMetaObj(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

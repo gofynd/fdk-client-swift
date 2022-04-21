@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(urls: [Urls]) {
             self.urls = urls
-        }
-
-        public func duplicate() -> SignUrlResponse {
-            let dict = self.dictionary!
-            let copy = SignUrlResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

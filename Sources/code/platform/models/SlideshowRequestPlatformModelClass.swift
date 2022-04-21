@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case active
         }
 
-        public init(active: Bool?, configuration: ConfigurationSchema?, media: SlideshowMedia?, platform: String?, slug: String?) {
+        public init(active: Bool? = nil, configuration: ConfigurationSchema? = nil, media: SlideshowMedia? = nil, platform: String? = nil, slug: String? = nil) {
             self.slug = slug
 
             self.platform = platform
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.media = media
 
             self.active = active
-        }
-
-        public func duplicate() -> SlideshowRequest {
-            let dict = self.dictionary!
-            let copy = SlideshowRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case contact
         }
 
-        public init(contact: String?, username: String?, userId: String?) {
+        public init(contact: String? = nil, username: String? = nil, userId: String? = nil) {
             self.username = username
 
             self.userId = userId
 
             self.contact = contact
-        }
-
-        public func duplicate() -> UserSerializer2 {
-            let dict = self.dictionary!
-            let copy = UserSerializer2(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

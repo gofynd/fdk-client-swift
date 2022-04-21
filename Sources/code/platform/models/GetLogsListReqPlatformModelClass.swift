@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case endDate = "end_date"
         }
 
-        public init(companyId: String?, endDate: String?, marketplaceName: String?, startDate: String?) {
+        public init(companyId: String? = nil, endDate: String? = nil, marketplaceName: String? = nil, startDate: String? = nil) {
             self.marketplaceName = marketplaceName
 
             self.startDate = startDate
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.companyId = companyId
 
             self.endDate = endDate
-        }
-
-        public func duplicate() -> GetLogsListReq {
-            let dict = self.dictionary!
-            let copy = GetLogsListReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

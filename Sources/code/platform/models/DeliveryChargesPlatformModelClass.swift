@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case charges
         }
 
-        public init(charges: Charges?, enabled: Bool?) {
+        public init(charges: Charges? = nil, enabled: Bool? = nil) {
             self.enabled = enabled
 
             self.charges = charges
-        }
-
-        public func duplicate() -> DeliveryCharges {
-            let dict = self.dictionary!
-            let copy = DeliveryCharges(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

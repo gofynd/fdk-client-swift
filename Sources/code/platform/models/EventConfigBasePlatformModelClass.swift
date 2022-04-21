@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case version
         }
 
-        public init(eventCategory: String?, eventName: String?, eventType: String?, version: String?) {
+        public init(eventCategory: String? = nil, eventName: String? = nil, eventType: String? = nil, version: String? = nil) {
             self.eventName = eventName
 
             self.eventType = eventType
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.eventCategory = eventCategory
 
             self.version = version
-        }
-
-        public func duplicate() -> EventConfigBase {
-            let dict = self.dictionary!
-            let copy = EventConfigBase(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

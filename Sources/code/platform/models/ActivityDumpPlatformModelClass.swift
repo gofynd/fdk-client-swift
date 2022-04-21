@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case type
         }
 
-        public init(activity: Activity?, createdBy: CreatedBy?, dateMeta: DateMeta?, id: String?, type: String?) {
+        public init(activity: Activity? = nil, createdBy: CreatedBy? = nil, dateMeta: DateMeta? = nil, id: String? = nil, type: String? = nil) {
             self.activity = activity
 
             self.createdBy = createdBy
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.id = id
 
             self.type = type
-        }
-
-        public func duplicate() -> ActivityDump {
-            let dict = self.dictionary!
-            let copy = ActivityDump(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case secret
         }
 
-        public init(secret: String?, type: String?) {
+        public init(secret: String? = nil, type: String? = nil) {
             self.type = type
 
             self.secret = secret
-        }
-
-        public func duplicate() -> AuthMeta {
-            let dict = self.dictionary!
-            let copy = AuthMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

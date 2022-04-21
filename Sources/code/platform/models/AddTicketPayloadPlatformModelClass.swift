@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case content
         }
 
-        public init(category: String, content: TicketContent, createdBy: [String: Any]?, priority: PriorityEnum?, status: String?) {
+        public init(category: String, content: TicketContent, createdBy: [String: Any]? = nil, priority: PriorityEnum? = nil, status: String? = nil) {
             self.createdBy = createdBy
 
             self.status = status
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.category = category
 
             self.content = content
-        }
-
-        public func duplicate() -> AddTicketPayload {
-            let dict = self.dictionary!
-            let copy = AddTicketPayload(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

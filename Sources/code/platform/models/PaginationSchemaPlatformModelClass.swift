@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case current
         }
 
-        public init(current: Int?, hasNext: Bool?, itemTotal: Int?, size: Int?, type: String?) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
             self.size = size
 
             self.itemTotal = itemTotal
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.type = type
 
             self.current = current
-        }
-
-        public func duplicate() -> PaginationSchema {
-            let dict = self.dictionary!
-            let copy = PaginationSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

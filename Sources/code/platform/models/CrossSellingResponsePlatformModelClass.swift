@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case data
         }
 
-        public init(brandDistribution: CatalogInsightBrand?, data: CrossSellingData?) {
+        public init(brandDistribution: CatalogInsightBrand? = nil, data: CrossSellingData? = nil) {
             self.brandDistribution = brandDistribution
 
             self.data = data
-        }
-
-        public func duplicate() -> CrossSellingResponse {
-            let dict = self.dictionary!
-            let copy = CrossSellingResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

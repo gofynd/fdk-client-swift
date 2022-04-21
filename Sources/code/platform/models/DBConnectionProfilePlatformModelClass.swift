@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case inventory
         }
 
-        public init(inventory: String?) {
+        public init(inventory: String? = nil) {
             self.inventory = inventory
-        }
-
-        public func duplicate() -> DBConnectionProfile {
-            let dict = self.dictionary!
-            let copy = DBConnectionProfile(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

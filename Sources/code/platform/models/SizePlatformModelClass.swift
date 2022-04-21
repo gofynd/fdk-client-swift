@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case quantity
         }
 
-        public init(display: String?, isAvailable: Bool?, quantity: Int?, value: String?) {
+        public init(display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, value: String? = nil) {
             self.isAvailable = isAvailable
 
             self.value = value
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.display = display
 
             self.quantity = quantity
-        }
-
-        public func duplicate() -> Size {
-            let dict = self.dictionary!
-            let copy = Size(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

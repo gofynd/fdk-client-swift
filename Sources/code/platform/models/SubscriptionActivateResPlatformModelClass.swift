@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: Subscription?, success: Bool?) {
+        public init(data: Subscription? = nil, success: Bool? = nil) {
             self.success = success
 
             self.data = data
-        }
-
-        public func duplicate() -> SubscriptionActivateRes {
-            let dict = self.dictionary!
-            let copy = SubscriptionActivateRes(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

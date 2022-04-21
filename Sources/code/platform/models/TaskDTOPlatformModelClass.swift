@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case groupList = "group_list"
         }
 
-        public init(groupList: [GenericDTO]?, type: Int?) {
+        public init(groupList: [GenericDTO]? = nil, type: Int? = nil) {
             self.type = type
 
             self.groupList = groupList
-        }
-
-        public func duplicate() -> TaskDTO {
-            let dict = self.dictionary!
-            let copy = TaskDTO(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

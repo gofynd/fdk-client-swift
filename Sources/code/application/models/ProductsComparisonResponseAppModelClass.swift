@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -7,33 +7,27 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductsComparisonResponse: Codable {
-        public var items: [ProductDetail]?
-
         public var attributesMetadata: [AttributeMetadata]?
 
-        public enum CodingKeys: String, CodingKey {
-            case items
+        public var items: [ProductDetail]?
 
+        public enum CodingKeys: String, CodingKey {
             case attributesMetadata = "attributes_metadata"
+
+            case items
         }
 
         public init(attributesMetadata: [AttributeMetadata]? = nil, items: [ProductDetail]? = nil) {
-            self.items = items
-
             self.attributesMetadata = attributesMetadata
-        }
 
-        public func duplicate() -> ProductsComparisonResponse {
-            let dict = self.dictionary!
-            let copy = ProductsComparisonResponse(dictionary: dict)!
-            return copy
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([ProductDetail].self, forKey: .items)
+                attributesMetadata = try container.decode([AttributeMetadata].self, forKey: .attributesMetadata)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                attributesMetadata = try container.decode([AttributeMetadata].self, forKey: .attributesMetadata)
+                items = try container.decode([ProductDetail].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(attributesMetadata, forKey: .attributesMetadata)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

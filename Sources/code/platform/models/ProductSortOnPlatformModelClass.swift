@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case isSelected = "is_selected"
         }
 
-        public init(isSelected: Bool?, name: String?, value: String?) {
+        public init(isSelected: Bool? = nil, name: String? = nil, value: String? = nil) {
             self.name = name
 
             self.value = value
 
             self.isSelected = isSelected
-        }
-
-        public func duplicate() -> ProductSortOn {
-            let dict = self.dictionary!
-            let copy = ProductSortOn(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

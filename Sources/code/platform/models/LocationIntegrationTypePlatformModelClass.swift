@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case inventory
         }
 
-        public init(inventory: String?, order: String?) {
+        public init(inventory: String? = nil, order: String? = nil) {
             self.order = order
 
             self.inventory = inventory
-        }
-
-        public func duplicate() -> LocationIntegrationType {
-            let dict = self.dictionary!
-            let copy = LocationIntegrationType(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

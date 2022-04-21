@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case domain
         }
 
-        public init(app: App?, configuration: AppInventory?, domain: AppDomain?) {
+        public init(app: App? = nil, configuration: AppInventory? = nil, domain: AppDomain? = nil) {
             self.app = app
 
             self.configuration = configuration
 
             self.domain = domain
-        }
-
-        public func duplicate() -> CreateApplicationRequest {
-            let dict = self.dictionary!
-            let copy = CreateApplicationRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -138,7 +138,7 @@ public extension PlatformClient {
             case dates
         }
 
-        public init(autoTriggerDpAssignment: Bool?, bags: BagsDetails?, brand: PlatformShipmentDetailsBrand?, breakupValues: ShipmentBreakupValues?, canBreak: [String: Any]?, comment: String?, company: Company?, coupon: [String: Any]?, creditNoteId: String?, dates: ShipmentDates?, dpDetails: DpDetails?, fulfillingStore: PlatformFulfillingStore?, gst: ShipmentGst?, id: String?, invoice: ShipmentInvoice?, isFyndCoupon: Bool?, isNotFyndSource: Bool?, lockStatus: Bool?, orderingChannel: String?, orderSource: String?, orderType: String?, packagingType: String?, payments: Payments?, paymentMethods: [String: Any]?, pod: [String: Any]?, prices: ShipmentPrices?, priority: Double?, priorityText: String?, promise: Promise?, status: PlatformShipmentDetailsStatus?, totalShipmentBags: Int?, trackingDetails: ShipmentTrackingDetails?) {
+        public init(autoTriggerDpAssignment: Bool? = nil, bags: BagsDetails? = nil, brand: PlatformShipmentDetailsBrand? = nil, breakupValues: ShipmentBreakupValues? = nil, canBreak: [String: Any]? = nil, comment: String? = nil, company: Company? = nil, coupon: [String: Any]? = nil, creditNoteId: String? = nil, dates: ShipmentDates? = nil, dpDetails: DpDetails? = nil, fulfillingStore: PlatformFulfillingStore? = nil, gst: ShipmentGst? = nil, id: String? = nil, invoice: ShipmentInvoice? = nil, isFyndCoupon: Bool? = nil, isNotFyndSource: Bool? = nil, lockStatus: Bool? = nil, orderingChannel: String? = nil, orderSource: String? = nil, orderType: String? = nil, packagingType: String? = nil, payments: Payments? = nil, paymentMethods: [String: Any]? = nil, pod: [String: Any]? = nil, prices: ShipmentPrices? = nil, priority: Double? = nil, priorityText: String? = nil, promise: Promise? = nil, status: PlatformShipmentDetailsStatus? = nil, totalShipmentBags: Int? = nil, trackingDetails: ShipmentTrackingDetails? = nil) {
             self.status = status
 
             self.bags = bags
@@ -202,12 +202,6 @@ public extension PlatformClient {
             self.packagingType = packagingType
 
             self.dates = dates
-        }
-
-        public func duplicate() -> PlatformShipmentDetails {
-            let dict = self.dictionary!
-            let copy = PlatformShipmentDetails(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

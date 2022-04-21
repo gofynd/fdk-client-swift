@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             case companyId = "company_id"
         }
 
-        public init(companyId: Int?, displayName: String?, modifiedOn: String?, name: String?, storeCode: String?, storeType: String?, uid: Int?, id: String?) {
+        public init(companyId: Int? = nil, displayName: String? = nil, modifiedOn: String? = nil, name: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil, id: String? = nil) {
             self.id = id
 
             self.modifiedOn = modifiedOn
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.storeCode = storeCode
 
             self.companyId = companyId
-        }
-
-        public func duplicate() -> AppInventoryStores {
-            let dict = self.dictionary!
-            let copy = AppInventoryStores(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

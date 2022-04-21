@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.link = link
 
             self.svg = svg
-        }
-
-        public func duplicate() -> QRCodeResp {
-            let dict = self.dictionary!
-            let copy = QRCodeResp(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

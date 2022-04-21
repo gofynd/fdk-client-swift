@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case collections
         }
 
-        public init(application: Bool?, collections: Bool?, products: Bool?) {
+        public init(application: Bool? = nil, collections: Bool? = nil, products: Bool? = nil) {
             self.application = application
 
             self.products = products
 
             self.collections = collections
-        }
-
-        public func duplicate() -> QrFeature {
-            let dict = self.dictionary!
-            let copy = QrFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

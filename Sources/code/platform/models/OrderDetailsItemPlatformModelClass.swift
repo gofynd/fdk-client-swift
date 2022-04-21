@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -62,7 +62,7 @@ public extension PlatformClient {
             case paymentMethods = "payment_methods"
         }
 
-        public init(application: PlatformApplication?, breakupValues: PlatformBreakupValues?, channel: Channel?, createdAt: String?, deliveryAddress: PlatformDeliveryAddress?, fyndstoreEmp: [String: Any]?, id: String?, orderingStore: [String: Any]?, payments: ItemsPayments?, paymentMethods: [String: Any]?, shipments: PlatformShipmentDetails?, totalShipmentsInOrder: Int?, user: PlatformOrderUserInfo?) {
+        public init(application: PlatformApplication? = nil, breakupValues: PlatformBreakupValues? = nil, channel: Channel? = nil, createdAt: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, fyndstoreEmp: [String: Any]? = nil, id: String? = nil, orderingStore: [String: Any]? = nil, payments: ItemsPayments? = nil, paymentMethods: [String: Any]? = nil, shipments: PlatformShipmentDetails? = nil, totalShipmentsInOrder: Int? = nil, user: PlatformOrderUserInfo? = nil) {
             self.user = user
 
             self.deliveryAddress = deliveryAddress
@@ -88,12 +88,6 @@ public extension PlatformClient {
             self.payments = payments
 
             self.paymentMethods = paymentMethods
-        }
-
-        public func duplicate() -> OrderDetailsItem {
-            let dict = self.dictionary!
-            let copy = OrderDetailsItem(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

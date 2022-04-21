@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case tablet
         }
 
-        public init(desktop: Bool?, mobile: Bool?, tablet: Bool?) {
+        public init(desktop: Bool? = nil, mobile: Bool? = nil, tablet: Bool? = nil) {
             self.mobile = mobile
 
             self.desktop = desktop
 
             self.tablet = tablet
-        }
-
-        public func duplicate() -> AvailablePageScreenPredicate {
-            let dict = self.dictionary!
-            let copy = AvailablePageScreenPredicate(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

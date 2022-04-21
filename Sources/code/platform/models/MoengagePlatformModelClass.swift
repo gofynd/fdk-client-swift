@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case enabled
         }
 
-        public init(credentials: MoengageCredentials?, enabled: Bool?) {
+        public init(credentials: MoengageCredentials? = nil, enabled: Bool? = nil) {
             self.credentials = credentials
 
             self.enabled = enabled
-        }
-
-        public func duplicate() -> Moengage {
-            let dict = self.dictionary!
-            let copy = Moengage(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

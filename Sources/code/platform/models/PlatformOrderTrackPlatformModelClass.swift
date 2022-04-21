@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case resendToken = "resend_token"
         }
 
-        public init(countryCode: String, message: String, mobile: String, requestId: String, resendTimer: Int, resendToken: String?, success: Bool) {
+        public init(countryCode: String, message: String, mobile: String, requestId: String, resendTimer: Int, resendToken: String? = nil, success: Bool) {
             self.success = success
 
             self.requestId = requestId
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.resendTimer = resendTimer
 
             self.resendToken = resendToken
-        }
-
-        public func duplicate() -> PlatformOrderTrack {
-            let dict = self.dictionary!
-            let copy = PlatformOrderTrack(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

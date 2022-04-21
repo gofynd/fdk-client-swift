@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case end
         }
 
-        public init(end: String?, start: String?) {
+        public init(end: String? = nil, start: String? = nil) {
             self.start = start
 
             self.end = end
-        }
-
-        public func duplicate() -> InvoicesDataPeriod {
-            let dict = self.dictionary!
-            let copy = InvoicesDataPeriod(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case storeIds = "store_ids"
         }
 
-        public init(brandIds: [Int]?, enabled: Bool?, optLevel: String, storeIds: [Int]?) {
+        public init(brandIds: [Int]? = nil, enabled: Bool? = nil, optLevel: String, storeIds: [Int]? = nil) {
             self.optLevel = optLevel
 
             self.enabled = enabled
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.brandIds = brandIds
 
             self.storeIds = storeIds
-        }
-
-        public func duplicate() -> OptInPostRequest {
-            let dict = self.dictionary!
-            let copy = OptInPostRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

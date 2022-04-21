@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case headers
         }
 
-        public init(headers: [BigqueryHeadersResHeaders]?) {
+        public init(headers: [BigqueryHeadersResHeaders]? = nil) {
             self.headers = headers
-        }
-
-        public func duplicate() -> BigqueryHeadersRes {
-            let dict = self.dictionary!
-            let copy = BigqueryHeadersRes(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

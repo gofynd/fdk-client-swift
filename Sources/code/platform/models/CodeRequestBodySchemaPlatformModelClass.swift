@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case code
         }
 
-        public init(code: String?) {
+        public init(code: String? = nil) {
             self.code = code
-        }
-
-        public func duplicate() -> CodeRequestBodySchema {
-            let dict = self.dictionary!
-            let copy = CodeRequestBodySchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

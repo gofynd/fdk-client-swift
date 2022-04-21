@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -57,12 +57,6 @@ public extension ApplicationClient {
             self.fyndRewards = fyndRewards
 
             self.googleMap = googleMap
-        }
-
-        public func duplicate() -> Tokens {
-            let dict = self.dictionary!
-            let copy = Tokens(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

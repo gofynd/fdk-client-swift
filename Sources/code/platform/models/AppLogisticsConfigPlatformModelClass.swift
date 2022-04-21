@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case dpAssignment = "dp_assignment"
         }
 
-        public init(dpAssignment: Bool?, logisticsBySeller: Bool?, sameDayDelivery: Bool?, serviceabilityCheck: Bool?) {
+        public init(dpAssignment: Bool? = nil, logisticsBySeller: Bool? = nil, sameDayDelivery: Bool? = nil, serviceabilityCheck: Bool? = nil) {
             self.logisticsBySeller = logisticsBySeller
 
             self.serviceabilityCheck = serviceabilityCheck
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.sameDayDelivery = sameDayDelivery
 
             self.dpAssignment = dpAssignment
-        }
-
-        public func duplicate() -> AppLogisticsConfig {
-            let dict = self.dictionary!
-            let copy = AppLogisticsConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

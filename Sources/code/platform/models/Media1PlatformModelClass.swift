@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case url
         }
 
-        public init(meta: [String: Any]?, type: String?, url: String) {
+        public init(meta: [String: Any]? = nil, type: String? = nil, url: String) {
             self.type = type
 
             self.meta = meta
 
             self.url = url
-        }
-
-        public func duplicate() -> Media1 {
-            let dict = self.dictionary!
-            let copy = Media1(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

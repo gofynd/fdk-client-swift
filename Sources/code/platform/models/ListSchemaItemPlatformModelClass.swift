@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case name
         }
 
-        public init(globalConfig: [String: Any]?, name: String?, page: [ConfigPage]?) {
+        public init(globalConfig: [String: Any]? = nil, name: String? = nil, page: [ConfigPage]? = nil) {
             self.globalConfig = globalConfig
 
             self.page = page
 
             self.name = name
-        }
-
-        public func duplicate() -> ListSchemaItem {
-            let dict = self.dictionary!
-            let copy = ListSchemaItem(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

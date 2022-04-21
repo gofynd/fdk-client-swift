@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -66,7 +66,7 @@ public extension PlatformClient {
             case url
         }
 
-        public init(active: Bool?, applicationId: String?, bannerImage: Asset?, createdAt: String?, name: String?, rule: [String: Any]?, share: ShareMessages?, subText: String?, text: String?, type: String?, updatedAt: String?, updatedBy: String?, url: String?, schedule: Schedule?) {
+        public init(active: Bool? = nil, applicationId: String? = nil, bannerImage: Asset? = nil, createdAt: String? = nil, name: String? = nil, rule: [String: Any]? = nil, share: ShareMessages? = nil, subText: String? = nil, text: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil, url: String? = nil, schedule: Schedule? = nil) {
             self.schedule = schedule
 
             self.active = active
@@ -94,12 +94,6 @@ public extension PlatformClient {
             self.updatedBy = updatedBy
 
             self.url = url
-        }
-
-        public func duplicate() -> Offer {
-            let dict = self.dictionary!
-            let copy = Offer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

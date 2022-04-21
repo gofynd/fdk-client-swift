@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case isSet = "is_set"
         }
 
-        public init(isSet: Bool?, maximum: Int?, minimum: Int?) {
+        public init(isSet: Bool? = nil, maximum: Int? = nil, minimum: Int? = nil) {
             self.minimum = minimum
 
             self.maximum = maximum
 
             self.isSet = isSet
-        }
-
-        public func duplicate() -> OrderQuantity {
-            let dict = self.dictionary!
-            let copy = OrderQuantity(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

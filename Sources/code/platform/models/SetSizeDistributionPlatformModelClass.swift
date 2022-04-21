@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case sizes
         }
 
-        public init(sizes: Sizes?) {
+        public init(sizes: Sizes? = nil) {
             self.sizes = sizes
-        }
-
-        public func duplicate() -> SetSizeDistribution {
-            let dict = self.dictionary!
-            let copy = SetSizeDistribution(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

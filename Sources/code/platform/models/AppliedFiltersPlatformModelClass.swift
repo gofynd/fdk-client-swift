@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case toDate = "to_date"
         }
 
-        public init(deploymentStores: [String]?, dp: [Int]?, fromDate: String?, stage: String?, stores: [String]?, toDate: String?) {
+        public init(deploymentStores: [String]? = nil, dp: [Int]? = nil, fromDate: String? = nil, stage: String? = nil, stores: [String]? = nil, toDate: String? = nil) {
             self.stage = stage
 
             self.stores = stores
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.fromDate = fromDate
 
             self.toDate = toDate
-        }
-
-        public func duplicate() -> AppliedFilters {
-            let dict = self.dictionary!
-            let copy = AppliedFilters(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

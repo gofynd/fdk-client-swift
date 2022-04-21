@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case articleIdentifier = "article_identifier"
         }
 
-        public init(articleIdentifier: String?) {
+        public init(articleIdentifier: String? = nil) {
             self.articleIdentifier = articleIdentifier
-        }
-
-        public func duplicate() -> OtherEntityData {
-            let dict = self.dictionary!
-            let copy = OtherEntityData(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

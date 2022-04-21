@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -190,7 +190,7 @@ public extension PlatformClient {
             case financialStatus = "financial_status"
         }
 
-        public init(adminGraphqlApiId: String?, appId: Int?, billingAddress: BillingAddress?, buyerAcceptsMarketing: Bool?, confirmed: Bool?, contactEmail: String?, createdAt: String?, currency: String?, customer: Customer?, email: String?, financialStatus: String?, gateway: String?, id: Int?, lineItems: LineItems?, name: String?, note: String?, number: Int?, orderNumber: Int?, orderStatusUrl: String?, paymentGatewayNames: [[String: Any]]?, presentmentCurrency: String?, processedAt: String?, processingMethod: String?, shippingAddress: OrderShippingAddress?, sourceName: String?, subtotalPrice: String?, subtotalPriceSet: SubtotalPriceSet?, tags: String?, taxesIncluded: Bool?, test: Bool?, token: String?, totalDiscounts: String?, totalDiscountsSet: TotalDiscountsSet?, totalLineItemsPrice: String?, totalLineItemsPriceSet: TotalLineItemsPriceSet?, totalPrice: String?, totalPriceSet: TotalPriceSet?, totalPriceUsd: String?, totalShippingPriceSet: TotalShippingPriceSet?, totalTax: String?, totalTaxSet: TotalTaxSet?, totalTipReceived: String?, totalWeight: Int?, updatedAt: String?, userId: Int?) {
+        public init(adminGraphqlApiId: String? = nil, appId: Int? = nil, billingAddress: BillingAddress? = nil, buyerAcceptsMarketing: Bool? = nil, confirmed: Bool? = nil, contactEmail: String? = nil, createdAt: String? = nil, currency: String? = nil, customer: Customer? = nil, email: String? = nil, financialStatus: String? = nil, gateway: String? = nil, id: Int? = nil, lineItems: LineItems? = nil, name: String? = nil, note: String? = nil, number: Int? = nil, orderNumber: Int? = nil, orderStatusUrl: String? = nil, paymentGatewayNames: [[String: Any]]? = nil, presentmentCurrency: String? = nil, processedAt: String? = nil, processingMethod: String? = nil, shippingAddress: OrderShippingAddress? = nil, sourceName: String? = nil, subtotalPrice: String? = nil, subtotalPriceSet: SubtotalPriceSet? = nil, tags: String? = nil, taxesIncluded: Bool? = nil, test: Bool? = nil, token: String? = nil, totalDiscounts: String? = nil, totalDiscountsSet: TotalDiscountsSet? = nil, totalLineItemsPrice: String? = nil, totalLineItemsPriceSet: TotalLineItemsPriceSet? = nil, totalPrice: String? = nil, totalPriceSet: TotalPriceSet? = nil, totalPriceUsd: String? = nil, totalShippingPriceSet: TotalShippingPriceSet? = nil, totalTax: String? = nil, totalTaxSet: TotalTaxSet? = nil, totalTipReceived: String? = nil, totalWeight: Int? = nil, updatedAt: String? = nil, userId: Int? = nil) {
             self.orderStatusUrl = orderStatusUrl
 
             self.adminGraphqlApiId = adminGraphqlApiId
@@ -280,12 +280,6 @@ public extension PlatformClient {
             self.taxesIncluded = taxesIncluded
 
             self.financialStatus = financialStatus
-        }
-
-        public func duplicate() -> MarketplaceOrder {
-            let dict = self.dictionary!
-            let copy = MarketplaceOrder(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

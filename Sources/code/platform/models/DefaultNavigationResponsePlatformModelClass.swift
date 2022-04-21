@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case items
         }
 
-        public init(items: [NavigationSchema]?) {
+        public init(items: [NavigationSchema]? = nil) {
             self.items = items
-        }
-
-        public func duplicate() -> DefaultNavigationResponse {
-            let dict = self.dictionary!
-            let copy = DefaultNavigationResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case country
         }
 
-        public init(country: String?, countryCode: String?) {
+        public init(country: String? = nil, countryCode: String? = nil) {
             self.countryCode = countryCode
 
             self.country = country
-        }
-
-        public func duplicate() -> BusinessCountryInfo {
-            let dict = self.dictionary!
-            let copy = BusinessCountryInfo(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(storePriority: StorePriorityRule? = nil) {
             self.storePriority = storePriority
-        }
-
-        public func duplicate() -> ArticleAssignmentRule {
-            let dict = self.dictionary!
-            let copy = ArticleAssignmentRule(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

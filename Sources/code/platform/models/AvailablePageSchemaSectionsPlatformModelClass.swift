@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case predicate
         }
 
-        public init(blocks: [[String: Any]]?, label: String?, name: String?, predicate: AvailablePagePredicate?, preset: [String: Any]?, props: [String: Any]?) {
+        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil) {
             self.name = name
 
             self.label = label
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.preset = preset
 
             self.predicate = predicate
-        }
-
-        public func duplicate() -> AvailablePageSchemaSections {
-            let dict = self.dictionary!
-            let copy = AvailablePageSchemaSections(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

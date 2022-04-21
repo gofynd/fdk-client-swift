@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case value
         }
 
-        public init(type: String?, value: String?) {
+        public init(type: String? = nil, value: String? = nil) {
             self.type = type
 
             self.value = value
-        }
-
-        public func duplicate() -> SystemNotificationUser {
-            let dict = self.dictionary!
-            let copy = SystemNotificationUser(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

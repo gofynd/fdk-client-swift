@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case code
         }
 
-        public init(code: String?, name: String?) {
+        public init(code: String? = nil, name: String? = nil) {
             self.name = name
 
             self.code = code
-        }
-
-        public func duplicate() -> LocationDefaultLanguage {
-            let dict = self.dictionary!
-            let copy = LocationDefaultLanguage(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,7 +58,7 @@ public extension PlatformClient {
             case slug
         }
 
-        public init(departments: [String]?, description: String?, details: AttributeMasterDetails?, enabledForEndConsumer: Bool?, filters: AttributeMasterFilter?, id: String?, isNested: Bool?, logo: String?, meta: AttributeMasterMeta?, name: String?, schema: AttributeMaster?, slug: String?) {
+        public init(departments: [String]? = nil, description: String? = nil, details: AttributeMasterDetails? = nil, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter? = nil, id: String? = nil, isNested: Bool? = nil, logo: String? = nil, meta: AttributeMasterMeta? = nil, name: String? = nil, schema: AttributeMaster? = nil, slug: String? = nil) {
             self.isNested = isNested
 
             self.details = details
@@ -82,12 +82,6 @@ public extension PlatformClient {
             self.description = description
 
             self.slug = slug
-        }
-
-        public func duplicate() -> GenderDetail {
-            let dict = self.dictionary!
-            let copy = GenderDetail(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

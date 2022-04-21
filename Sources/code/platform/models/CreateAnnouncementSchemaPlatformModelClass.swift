@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: AdminAnnouncementSchema?, message: String?) {
+        public init(data: AdminAnnouncementSchema? = nil, message: String? = nil) {
             self.message = message
 
             self.data = data
-        }
-
-        public func duplicate() -> CreateAnnouncementSchema {
-            let dict = self.dictionary!
-            let copy = CreateAnnouncementSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

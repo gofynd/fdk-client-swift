@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -90,7 +90,7 @@ public extension PlatformClient {
             case count
         }
 
-        public init(active: Bool?, application: String?, appRedirect: Bool?, attribution: Attribution?, campaign: CampaignShortLink?, count: Int?, createdAt: String?, createdBy: String?, enableTracking: Bool?, expireAt: String?, fallback: String?, meta: [String: Any]?, personalized: Bool?, redirects: Redirects?, socialMediaTags: SocialMediaTags?, title: String?, updatedAt: String?, url: UrlInfo?, userId: String?, id: String?) {
+        public init(active: Bool? = nil, application: String? = nil, appRedirect: Bool? = nil, attribution: Attribution? = nil, campaign: CampaignShortLink? = nil, count: Int? = nil, createdAt: String? = nil, createdBy: String? = nil, enableTracking: Bool? = nil, expireAt: String? = nil, fallback: String? = nil, meta: [String: Any]? = nil, personalized: Bool? = nil, redirects: Redirects? = nil, socialMediaTags: SocialMediaTags? = nil, title: String? = nil, updatedAt: String? = nil, url: UrlInfo? = nil, userId: String? = nil, id: String? = nil) {
             self.title = title
 
             self.url = url
@@ -130,12 +130,6 @@ public extension PlatformClient {
             self.socialMediaTags = socialMediaTags
 
             self.count = count
-        }
-
-        public func duplicate() -> ShortLinkRes {
-            let dict = self.dictionary!
-            let copy = ShortLinkRes(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

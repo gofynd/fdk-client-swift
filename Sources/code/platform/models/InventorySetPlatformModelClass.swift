@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case quantity
         }
 
-        public init(quantity: Int?, sizeDistribution: SizeDistribution) {
+        public init(quantity: Int? = nil, sizeDistribution: SizeDistribution) {
             self.sizeDistribution = sizeDistribution
 
             self.quantity = quantity
-        }
-
-        public func duplicate() -> InventorySet {
-            let dict = self.dictionary!
-            let copy = InventorySet(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case kind
         }
 
-        public init(items: FontsSchemaItems?, kind: String?) {
+        public init(items: FontsSchemaItems? = nil, kind: String? = nil) {
             self.items = items
 
             self.kind = kind
-        }
-
-        public func duplicate() -> FontsSchema {
-            let dict = self.dictionary!
-            let copy = FontsSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

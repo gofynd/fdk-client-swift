@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case desc
         }
 
-        public init(auth: ApplicationAuth?, channelType: String?, companyId: String?, desc: String?, name: String?) {
+        public init(auth: ApplicationAuth? = nil, channelType: String? = nil, companyId: String? = nil, desc: String? = nil, name: String? = nil) {
             self.companyId = companyId
 
             self.channelType = channelType
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.name = name
 
             self.desc = desc
-        }
-
-        public func duplicate() -> App {
-            let dict = self.dictionary!
-            let copy = App(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -50,7 +50,7 @@ public extension PlatformClient {
             case functionName = "function_name"
         }
 
-        public init(consumerKey: String?, consumerSecret: String?, functionName: String?, interval: Int?, limit: Int?, pages: Int?, restBaseUrl: String?, restUrl: String?, token: String?, tokenSecret: String?) {
+        public init(consumerKey: String? = nil, consumerSecret: String? = nil, functionName: String? = nil, interval: Int? = nil, limit: Int? = nil, pages: Int? = nil, restBaseUrl: String? = nil, restUrl: String? = nil, token: String? = nil, tokenSecret: String? = nil) {
             self.limit = limit
 
             self.pages = pages
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.restBaseUrl = restBaseUrl
 
             self.functionName = functionName
-        }
-
-        public func duplicate() -> OAuthConfig {
-            let dict = self.dictionary!
-            let copy = OAuthConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

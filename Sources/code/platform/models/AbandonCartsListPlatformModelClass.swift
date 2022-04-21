@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case page
         }
 
-        public init(cartTotal: String?, items: [AbandonCartsDetail]?, page: Page?) {
+        public init(cartTotal: String? = nil, items: [AbandonCartsDetail]? = nil, page: Page? = nil) {
             self.items = items
 
             self.cartTotal = cartTotal
 
             self.page = page
-        }
-
-        public func duplicate() -> AbandonCartsList {
-            let dict = self.dictionary!
-            let copy = AbandonCartsList(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -12,34 +12,28 @@ public extension PlatformClient {
 
         public var message: String
 
-        public var data: [String: Any]?
-
         public var success: Bool
+
+        public var data: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case isVerifiedFlag = "is_verified_flag"
 
             case message
 
-            case data
-
             case success
+
+            case data
         }
 
-        public init(data: [String: Any]?, isVerifiedFlag: Bool?, message: String, success: Bool) {
+        public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
             self.isVerifiedFlag = isVerifiedFlag
 
             self.message = message
 
-            self.data = data
-
             self.success = success
-        }
 
-        public func duplicate() -> RefundAccountResponse {
-            let dict = self.dictionary!
-            let copy = RefundAccountResponse(dictionary: dict)!
-            return copy
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,6 +49,8 @@ public extension PlatformClient {
 
             message = try container.decode(String.self, forKey: .message)
 
+            success = try container.decode(Bool.self, forKey: .success)
+
             do {
                 data = try container.decode([String: Any].self, forKey: .data)
 
@@ -62,8 +58,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -73,9 +67,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

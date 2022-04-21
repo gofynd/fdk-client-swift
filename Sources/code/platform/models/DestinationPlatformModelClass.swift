@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case basepath
         }
 
-        public init(basepath: String?, namespace: String, rewrite: String) {
+        public init(basepath: String? = nil, namespace: String, rewrite: String) {
             self.namespace = namespace
 
             self.rewrite = rewrite
 
             self.basepath = basepath
-        }
-
-        public func duplicate() -> Destination {
-            let dict = self.dictionary!
-            let copy = Destination(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

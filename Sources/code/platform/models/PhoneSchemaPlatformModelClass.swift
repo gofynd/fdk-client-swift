@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case phone
         }
 
-        public init(active: Bool?, phone: [PhoneProperties]?) {
+        public init(active: Bool? = nil, phone: [PhoneProperties]? = nil) {
             self.active = active
 
             self.phone = phone
-        }
-
-        public func duplicate() -> PhoneSchema {
-            let dict = self.dictionary!
-            let copy = PhoneSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

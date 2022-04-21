@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case title
         }
 
-        public init(slug: String?, title: String?) {
+        public init(slug: String? = nil, title: String? = nil) {
             self.slug = slug
 
             self.title = title
-        }
-
-        public func duplicate() -> CategoryRequestSchema {
-            let dict = self.dictionary!
-            let copy = CategoryRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

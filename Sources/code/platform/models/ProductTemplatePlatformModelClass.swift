@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -74,7 +74,7 @@ public extension PlatformClient {
             case slug
         }
 
-        public init(attributes: [String]?, categories: [String]?, createdBy: [String: Any]?, createdOn: String?, departments: [String]?, description: String?, isActive: Bool?, isArchived: Bool?, isExpirable: Bool, isPhysical: Bool, logo: String?, modifiedBy: [String: Any]?, modifiedOn: String?, name: String?, slug: String, tag: String?) {
+        public init(attributes: [String]? = nil, categories: [String]? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, departments: [String]? = nil, description: String? = nil, isActive: Bool? = nil, isArchived: Bool? = nil, isExpirable: Bool, isPhysical: Bool, logo: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, slug: String, tag: String? = nil) {
             self.modifiedBy = modifiedBy
 
             self.attributes = attributes
@@ -106,12 +106,6 @@ public extension PlatformClient {
             self.description = description
 
             self.slug = slug
-        }
-
-        public func duplicate() -> ProductTemplate {
-            let dict = self.dictionary!
-            let copy = ProductTemplate(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

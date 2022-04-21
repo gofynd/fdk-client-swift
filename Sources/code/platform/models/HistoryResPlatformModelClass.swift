@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case points
         }
 
-        public init(items: [HistoryPretty]?, page: Page?, points: Double?) {
+        public init(items: [HistoryPretty]? = nil, page: Page? = nil, points: Double? = nil) {
             self.items = items
 
             self.page = page
 
             self.points = points
-        }
-
-        public func duplicate() -> HistoryRes {
-            let dict = self.dictionary!
-            let copy = HistoryRes(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

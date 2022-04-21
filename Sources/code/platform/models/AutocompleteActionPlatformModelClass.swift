@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case type
         }
 
-        public init(page: AutocompletePageAction?, type: String?) {
+        public init(page: AutocompletePageAction? = nil, type: String? = nil) {
             self.page = page
 
             self.type = type
-        }
-
-        public func duplicate() -> AutocompleteAction {
-            let dict = self.dictionary!
-            let copy = AutocompleteAction(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

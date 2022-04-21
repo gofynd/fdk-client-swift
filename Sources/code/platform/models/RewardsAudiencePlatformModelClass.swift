@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case id
         }
 
-        public init(headerUserId: String?, id: String?) {
+        public init(headerUserId: String? = nil, id: String? = nil) {
             self.headerUserId = headerUserId
 
             self.id = id
-        }
-
-        public func duplicate() -> RewardsAudience {
-            let dict = self.dictionary!
-            let copy = RewardsAudience(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

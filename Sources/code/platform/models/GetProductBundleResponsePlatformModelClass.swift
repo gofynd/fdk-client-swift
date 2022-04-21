@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -50,7 +50,7 @@ public extension PlatformClient {
             case slug
         }
 
-        public init(choice: String?, companyId: Int?, isActive: Bool?, logo: String?, meta: [String: Any]?, name: String?, pageVisibility: [String]?, products: [GetProducts]?, sameStoreAssignment: Bool?, slug: String?) {
+        public init(choice: String? = nil, companyId: Int? = nil, isActive: Bool? = nil, logo: String? = nil, meta: [String: Any]? = nil, name: String? = nil, pageVisibility: [String]? = nil, products: [GetProducts]? = nil, sameStoreAssignment: Bool? = nil, slug: String? = nil) {
             self.products = products
 
             self.sameStoreAssignment = sameStoreAssignment
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.meta = meta
 
             self.slug = slug
-        }
-
-        public func duplicate() -> GetProductBundleResponse {
-            let dict = self.dictionary!
-            let copy = GetProductBundleResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

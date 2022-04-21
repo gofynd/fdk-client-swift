@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case writeKey = "write_key"
         }
 
-        public init(writeKey: String?) {
+        public init(writeKey: String? = nil) {
             self.writeKey = writeKey
-        }
-
-        public func duplicate() -> SegmentCredentials {
-            let dict = self.dictionary!
-            let copy = SegmentCredentials(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

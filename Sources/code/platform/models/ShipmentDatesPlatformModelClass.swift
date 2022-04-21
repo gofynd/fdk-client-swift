@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case dueDate = "due_date"
         }
 
-        public init(dueDate: String?) {
+        public init(dueDate: String? = nil) {
             self.dueDate = dueDate
-        }
-
-        public func duplicate() -> ShipmentDates {
-            let dict = self.dictionary!
-            let copy = ShipmentDates(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

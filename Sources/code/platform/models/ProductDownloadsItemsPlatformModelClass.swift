@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -50,7 +50,7 @@ public extension PlatformClient {
             case triggerOn = "trigger_on"
         }
 
-        public init(completedOn: String?, createdBy: VerifiedBy?, data: ProductDownloadItemsData?, id: String?, sellerId: Double?, status: String?, taskId: String?, templateTags: [String: Any]?, triggerOn: String?, url: String?) {
+        public init(completedOn: String? = nil, createdBy: VerifiedBy? = nil, data: ProductDownloadItemsData? = nil, id: String? = nil, sellerId: Double? = nil, status: String? = nil, taskId: String? = nil, templateTags: [String: Any]? = nil, triggerOn: String? = nil, url: String? = nil) {
             self.status = status
 
             self.url = url
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.sellerId = sellerId
 
             self.triggerOn = triggerOn
-        }
-
-        public func duplicate() -> ProductDownloadsItems {
-            let dict = self.dictionary!
-            let copy = ProductDownloadsItems(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

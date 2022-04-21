@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -78,7 +78,7 @@ public extension PlatformClient {
             case cancelled
         }
 
-        public init(cancelled: Int?, cancelledRecords: [String]?, companyId: Int?, createdBy: UserCommon?, createdOn: String?, failed: Int?, failedRecords: [String]?, filePath: String?, id: String?, isActive: Bool?, modifiedBy: UserCommon?, modifiedOn: String?, retry: Int?, stage: String?, succeed: Int?, total: Int?, trackingUrl: String?) {
+        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: UserCommon? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [String]? = nil, filePath: String? = nil, id: String? = nil, isActive: Bool? = nil, modifiedBy: UserCommon? = nil, modifiedOn: String? = nil, retry: Int? = nil, stage: String? = nil, succeed: Int? = nil, total: Int? = nil, trackingUrl: String? = nil) {
             self.modifiedBy = modifiedBy
 
             self.retry = retry
@@ -112,12 +112,6 @@ public extension PlatformClient {
             self.trackingUrl = trackingUrl
 
             self.cancelled = cancelled
-        }
-
-        public func duplicate() -> Items {
-            let dict = self.dictionary!
-            let copy = Items(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

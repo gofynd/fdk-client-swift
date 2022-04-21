@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case taskConfigGroupIds = "task_config_group_ids"
         }
 
-        public init(taskConfigs: [TaskConfig]?, taskConfigGroupIds: [Int]?, taskConfigIds: [Int]?) {
+        public init(taskConfigs: [TaskConfig]? = nil, taskConfigGroupIds: [Int]? = nil, taskConfigIds: [Int]? = nil) {
             self.taskConfigs = taskConfigs
 
             self.taskConfigIds = taskConfigIds
 
             self.taskConfigGroupIds = taskConfigGroupIds
-        }
-
-        public func duplicate() -> TaskStepConfig {
-            let dict = self.dictionary!
-            let copy = TaskStepConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

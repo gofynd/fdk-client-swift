@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -8,32 +8,24 @@ public extension PlatformClient {
      */
 
     class OpenApiCartServiceabilityRequest: Codable {
-        public var shippingAddress: ShippingAddress
-
         public var cartItems: CartItem?
 
+        public var shippingAddress: ShippingAddress
+
         public enum CodingKeys: String, CodingKey {
-            case shippingAddress = "shipping_address"
-
             case cartItems = "cart_items"
+
+            case shippingAddress = "shipping_address"
         }
 
-        public init(cartItems: CartItem?, shippingAddress: ShippingAddress) {
-            self.shippingAddress = shippingAddress
-
+        public init(cartItems: CartItem? = nil, shippingAddress: ShippingAddress) {
             self.cartItems = cartItems
-        }
 
-        public func duplicate() -> OpenApiCartServiceabilityRequest {
-            let dict = self.dictionary!
-            let copy = OpenApiCartServiceabilityRequest(dictionary: dict)!
-            return copy
+            self.shippingAddress = shippingAddress
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            shippingAddress = try container.decode(ShippingAddress.self, forKey: .shippingAddress)
 
             do {
                 cartItems = try container.decode(CartItem.self, forKey: .cartItems)
@@ -42,14 +34,16 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            shippingAddress = try container.decode(ShippingAddress.self, forKey: .shippingAddress)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shippingAddress, forKey: .shippingAddress)
-
             try? container.encodeIfPresent(cartItems, forKey: .cartItems)
+
+            try? container.encodeIfPresent(shippingAddress, forKey: .shippingAddress)
         }
     }
 }

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(uniqueName: String) {
             self.uniqueName = uniqueName
-        }
-
-        public func duplicate() -> CreateVideoRoomResponse {
-            let dict = self.dictionary!
-            let copy = CreateVideoRoomResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case max
         }
 
-        public init(max: Double?, min: Double?) {
+        public init(max: Double? = nil, min: Double? = nil) {
             self.min = min
 
             self.max = max
-        }
-
-        public func duplicate() -> InventoryDiscount {
-            let dict = self.dictionary!
-            let copy = InventoryDiscount(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

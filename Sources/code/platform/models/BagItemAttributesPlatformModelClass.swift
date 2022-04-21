@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case countryOfOrigin = "country_of_origin"
         }
 
-        public init(brandName: String?, countryOfOrigin: String?, itemCode: String?) {
+        public init(brandName: String? = nil, countryOfOrigin: String? = nil, itemCode: String? = nil) {
             self.itemCode = itemCode
 
             self.brandName = brandName
 
             self.countryOfOrigin = countryOfOrigin
-        }
-
-        public func duplicate() -> BagItemAttributes {
-            let dict = self.dictionary!
-            let copy = BagItemAttributes(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

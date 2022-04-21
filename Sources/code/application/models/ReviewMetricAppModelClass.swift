@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -63,12 +63,6 @@ public extension ApplicationClient {
             self.ratingMetric = ratingMetric
 
             self.reviewCount = reviewCount
-        }
-
-        public func duplicate() -> ReviewMetric {
-            let dict = self.dictionary!
-            let copy = ReviewMetric(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

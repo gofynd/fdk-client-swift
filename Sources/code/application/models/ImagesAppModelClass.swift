@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.ios = ios
 
             self.thumbnail = thumbnail
-        }
-
-        public func duplicate() -> Images {
-            let dict = self.dictionary!
-            let copy = Images(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case currencyCode = "currency_code"
         }
 
-        public init(currencyCode: String?, currencySymbol: String?, max: Double?, min: Double?) {
+        public init(currencyCode: String? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
             self.max = max
 
             self.min = min
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.currencySymbol = currencySymbol
 
             self.currencyCode = currencyCode
-        }
-
-        public func duplicate() -> Price1 {
-            let dict = self.dictionary!
-            let copy = Price1(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

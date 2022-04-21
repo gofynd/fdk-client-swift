@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.status = status
 
             self.message = message
-        }
-
-        public func duplicate() -> LinkStatus {
-            let dict = self.dictionary!
-            let copy = LinkStatus(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

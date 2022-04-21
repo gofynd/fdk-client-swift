@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case feedbackForm = "feedback_form"
         }
 
-        public init(display: String, feedbackForm: TicketFeedbackForm?, form: CustomForm?, key: String, subCategories: [TicketSubCategory]?) {
+        public init(display: String, feedbackForm: TicketFeedbackForm? = nil, form: CustomForm? = nil, key: String, subCategories: [TicketSubCategory]? = nil) {
             self.key = key
 
             self.display = display
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.subCategories = subCategories
 
             self.feedbackForm = feedbackForm
-        }
-
-        public func duplicate() -> TicketCategory {
-            let dict = self.dictionary!
-            let copy = TicketCategory(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

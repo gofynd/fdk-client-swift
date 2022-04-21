@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case intervalCount = "interval_count"
         }
 
-        public init(interval: String?, intervalCount: Int?) {
+        public init(interval: String? = nil, intervalCount: Int? = nil) {
             self.interval = interval
 
             self.intervalCount = intervalCount
-        }
-
-        public func duplicate() -> InvoiceItemsPlanRecurring {
-            let dict = self.dictionary!
-            let copy = InvoiceItemsPlanRecurring(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case config
         }
 
-        public init(config: [ConfigurationProductVariantConfig]?) {
+        public init(config: [ConfigurationProductVariantConfig]? = nil) {
             self.config = config
-        }
-
-        public func duplicate() -> ConfigurationProductVariant {
-            let dict = self.dictionary!
-            let copy = ConfigurationProductVariant(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case uniqueDeviceId = "unique_device_id"
         }
 
-        public init(action: String?, bundleIdentifier: String?, pushToken: String?, uniqueDeviceId: String?) {
+        public init(action: String? = nil, bundleIdentifier: String? = nil, pushToken: String? = nil, uniqueDeviceId: String? = nil) {
             self.action = action
 
             self.bundleIdentifier = bundleIdentifier
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.pushToken = pushToken
 
             self.uniqueDeviceId = uniqueDeviceId
-        }
-
-        public func duplicate() -> PushtokenReq {
-            let dict = self.dictionary!
-            let copy = PushtokenReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

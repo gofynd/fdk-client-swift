@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case variants
         }
 
-        public init(family: String?, variants: Variants?) {
+        public init(family: String? = nil, variants: Variants? = nil) {
             self.family = family
 
             self.variants = variants
-        }
-
-        public func duplicate() -> Font {
-            let dict = self.dictionary!
-            let copy = Font(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

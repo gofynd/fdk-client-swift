@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             case countryCode = "country_code"
         }
 
-        public init(countryCode: String?, message: String?, mobile: String?, registerToken: String?, requestId: String?, resendTimer: Int?, resendToken: String?, success: Bool?) {
+        public init(countryCode: String? = nil, message: String? = nil, mobile: String? = nil, registerToken: String? = nil, requestId: String? = nil, resendTimer: Int? = nil, resendToken: String? = nil, success: Bool? = nil) {
             self.resendTimer = resendTimer
 
             self.resendToken = resendToken
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.mobile = mobile
 
             self.countryCode = countryCode
-        }
-
-        public func duplicate() -> OtpSuccess {
-            let dict = self.dictionary!
-            let copy = OtpSuccess(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

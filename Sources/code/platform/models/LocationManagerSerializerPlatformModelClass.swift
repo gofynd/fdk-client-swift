@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case email
         }
 
-        public init(email: String?, mobileNo: SellerPhoneNumber, name: String?) {
+        public init(email: String? = nil, mobileNo: SellerPhoneNumber, name: String? = nil) {
             self.name = name
 
             self.mobileNo = mobileNo
 
             self.email = email
-        }
-
-        public func duplicate() -> LocationManagerSerializer {
-            let dict = self.dictionary!
-            let copy = LocationManagerSerializer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

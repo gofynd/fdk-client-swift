@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case secureUrl = "secure_url"
         }
 
-        public init(aspectRatio: String?, aspectRatioF: Double?, secureUrl: String?, url: String?) {
+        public init(aspectRatio: String? = nil, aspectRatioF: Double? = nil, secureUrl: String? = nil, url: String? = nil) {
             self.aspectRatioF = aspectRatioF
 
             self.url = url
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.aspectRatio = aspectRatio
 
             self.secureUrl = secureUrl
-        }
-
-        public func duplicate() -> Image {
-            let dict = self.dictionary!
-            let copy = Image(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

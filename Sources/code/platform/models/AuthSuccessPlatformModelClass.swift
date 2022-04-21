@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case user
         }
 
-        public init(registerToken: String?, user: UserSchema?, userExists: Bool?) {
+        public init(registerToken: String? = nil, user: UserSchema? = nil, userExists: Bool? = nil) {
             self.registerToken = registerToken
 
             self.userExists = userExists
 
             self.user = user
-        }
-
-        public func duplicate() -> AuthSuccess {
-            let dict = self.dictionary!
-            let copy = AuthSuccess(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

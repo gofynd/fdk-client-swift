@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case list
         }
 
-        public init(current: String?, globalSchema: GlobalSchema?, list: [ListSchemaItem]?, preset: Preset?) {
+        public init(current: String? = nil, globalSchema: GlobalSchema? = nil, list: [ListSchemaItem]? = nil, preset: Preset? = nil) {
             self.preset = preset
 
             self.globalSchema = globalSchema
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.current = current
 
             self.list = list
-        }
-
-        public func duplicate() -> Config {
-            let dict = self.dictionary!
-            let copy = Config(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

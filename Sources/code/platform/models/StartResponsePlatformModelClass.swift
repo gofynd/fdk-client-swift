@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -50,7 +50,7 @@ public extension PlatformClient {
             case tags
         }
 
-        public init(cdn: CDN, contentType: String, fileName: String, filePath: String, method: String, namespace: String, operation: String, size: Int, tags: [String]?, upload: Upload) {
+        public init(cdn: CDN, contentType: String, fileName: String, filePath: String, method: String, namespace: String, operation: String, size: Int, tags: [String]? = nil, upload: Upload) {
             self.fileName = fileName
 
             self.filePath = filePath
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.cdn = cdn
 
             self.tags = tags
-        }
-
-        public func duplicate() -> StartResponse {
-            let dict = self.dictionary!
-            let copy = StartResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

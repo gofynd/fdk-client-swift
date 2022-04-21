@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -74,7 +74,7 @@ public extension PlatformClient {
             case template
         }
 
-        public init(cancelled: Int?, cancelledRecords: [String]?, companyId: Int?, createdBy: UserDetail?, createdOn: String?, failed: Int?, failedRecords: [String]?, filePath: String?, isActive: Bool?, modifiedBy: UserDetail?, modifiedOn: String?, stage: String?, succeed: Int?, template: ProductTemplate?, templateTag: String?, total: Int?) {
+        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: UserDetail? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [String]? = nil, filePath: String? = nil, isActive: Bool? = nil, modifiedBy: UserDetail? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, template: ProductTemplate? = nil, templateTag: String? = nil, total: Int? = nil) {
             self.modifiedBy = modifiedBy
 
             self.stage = stage
@@ -106,12 +106,6 @@ public extension PlatformClient {
             self.cancelled = cancelled
 
             self.template = template
-        }
-
-        public func duplicate() -> ProductBulkRequest {
-            let dict = self.dictionary!
-            let copy = ProductBulkRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case similar
         }
 
-        public init(compare: [String: Any]?, detail: [String: Any]?, similar: [String: Any]?, variant: [String: Any]?) {
+        public init(compare: [String: Any]? = nil, detail: [String: Any]? = nil, similar: [String: Any]? = nil, variant: [String: Any]? = nil) {
             self.detail = detail
 
             self.variant = variant
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.compare = compare
 
             self.similar = similar
-        }
-
-        public func duplicate() -> GetCatalogConfigurationDetailsProduct {
-            let dict = self.dictionary!
-            let copy = GetCatalogConfigurationDetailsProduct(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

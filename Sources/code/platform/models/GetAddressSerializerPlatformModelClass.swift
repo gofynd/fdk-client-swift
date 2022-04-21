@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             case longitude
         }
 
-        public init(address1: String?, address2: String?, addressType: String?, city: String?, country: String?, countryCode: String?, landmark: String?, latitude: Double?, longitude: Double?, pincode: Int?, state: String?) {
+        public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, pincode: Int? = nil, state: String? = nil) {
             self.address1 = address1
 
             self.country = country
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.landmark = landmark
 
             self.longitude = longitude
-        }
-
-        public func duplicate() -> GetAddressSerializer {
-            let dict = self.dictionary!
-            let copy = GetAddressSerializer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

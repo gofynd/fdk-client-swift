@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -39,12 +39,6 @@ public extension ApplicationClient {
             self.name = name
 
             self.pincode = pincode
-        }
-
-        public func duplicate() -> Location {
-            let dict = self.dictionary!
-            let copy = Location(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

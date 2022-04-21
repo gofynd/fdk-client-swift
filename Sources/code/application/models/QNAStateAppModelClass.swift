@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -45,12 +45,6 @@ public extension ApplicationClient {
             self.reply = reply
 
             self.vote = vote
-        }
-
-        public func duplicate() -> QNAState {
-            let dict = self.dictionary!
-            let copy = QNAState(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

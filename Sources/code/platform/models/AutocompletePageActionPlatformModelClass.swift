@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case url
         }
 
-        public init(params: [String: Any]?, query: [String: Any]?, type: String?, url: String?) {
+        public init(params: [String: Any]? = nil, query: [String: Any]? = nil, type: String? = nil, url: String? = nil) {
             self.type = type
 
             self.params = params
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.query = query
 
             self.url = url
-        }
-
-        public func duplicate() -> AutocompletePageAction {
-            let dict = self.dictionary!
-            let copy = AutocompletePageAction(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

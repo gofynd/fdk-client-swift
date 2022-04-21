@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case message
         }
 
-        public init(message: String?, success: Bool?) {
+        public init(message: String? = nil, success: Bool? = nil) {
             self.success = success
 
             self.message = message
-        }
-
-        public func duplicate() -> EmailTemplateDeleteSuccessRes {
-            let dict = self.dictionary!
-            let copy = EmailTemplateDeleteSuccessRes(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

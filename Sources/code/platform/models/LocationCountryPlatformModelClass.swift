@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -62,7 +62,7 @@ public extension PlatformClient {
             case defaultLanguage = "default_language"
         }
 
-        public init(capital: String?, currency: String?, defaultCurrency: LocationDefaultCurrency?, defaultLanguage: LocationDefaultLanguage?, iso2: String?, iso3: String?, name: String?, parent: String?, phoneCode: String?, type: String?, uid: Int?, id: String?, v: Int?) {
+        public init(capital: String? = nil, currency: String? = nil, defaultCurrency: LocationDefaultCurrency? = nil, defaultLanguage: LocationDefaultLanguage? = nil, iso2: String? = nil, iso3: String? = nil, name: String? = nil, parent: String? = nil, phoneCode: String? = nil, type: String? = nil, uid: Int? = nil, id: String? = nil, v: Int? = nil) {
             self.capital = capital
 
             self.currency = currency
@@ -88,12 +88,6 @@ public extension PlatformClient {
             self.defaultCurrency = defaultCurrency
 
             self.defaultLanguage = defaultLanguage
-        }
-
-        public func duplicate() -> LocationCountry {
-            let dict = self.dictionary!
-            let copy = LocationCountry(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

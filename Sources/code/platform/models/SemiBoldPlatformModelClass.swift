@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case file
         }
 
-        public init(file: String?, name: String?) {
+        public init(file: String? = nil, name: String? = nil) {
             self.name = name
 
             self.file = file
-        }
-
-        public func duplicate() -> SemiBold {
-            let dict = self.dictionary!
-            let copy = SemiBold(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [NavigationSchema]?, page: Page?) {
+        public init(items: [NavigationSchema]? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page
-        }
-
-        public func duplicate() -> NavigationGetResponse {
-            let dict = self.dictionary!
-            let copy = NavigationGetResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

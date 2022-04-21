@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case attachments
         }
 
-        public init(attachments: [TicketAsset]?, description: String?, title: String) {
+        public init(attachments: [TicketAsset]? = nil, description: String? = nil, title: String) {
             self.title = title
 
             self.description = description
 
             self.attachments = attachments
-        }
-
-        public func duplicate() -> TicketContent {
-            let dict = self.dictionary!
-            let copy = TicketContent(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case buyAgain = "buy_again"
         }
 
-        public init(buyAgain: Bool?) {
+        public init(buyAgain: Bool? = nil) {
             self.buyAgain = buyAgain
-        }
-
-        public func duplicate() -> OrderFeature {
-            let dict = self.dictionary!
-            let copy = OrderFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

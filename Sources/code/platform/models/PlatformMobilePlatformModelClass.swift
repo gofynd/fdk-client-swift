@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case level
         }
 
-        public init(isRequired: Bool?, level: String?) {
+        public init(isRequired: Bool? = nil, level: String? = nil) {
             self.isRequired = isRequired
 
             self.level = level
-        }
-
-        public func duplicate() -> PlatformMobile {
-            let dict = self.dictionary!
-            let copy = PlatformMobile(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: [String: Any]?, message: String?) {
+        public init(data: [String: Any]? = nil, message: String? = nil) {
             self.message = message
 
             self.data = data
-        }
-
-        public func duplicate() -> RemoveProxyResponse {
-            let dict = self.dictionary!
-            let copy = RemoveProxyResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

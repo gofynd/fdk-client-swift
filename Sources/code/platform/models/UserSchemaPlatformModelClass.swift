@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -82,7 +82,7 @@ public extension PlatformClient {
             case updatedAt = "updated_at"
         }
 
-        public init(accountType: String?, active: Bool?, applicationId: String?, createdAt: String?, debug: Debug?, dob: String?, emails: [Email]?, firstName: String?, gender: String?, hasOldPasswordHash: Bool?, lastName: String?, meta: [String: Any]?, phoneNumbers: [PhoneNumber]?, profilePicUrl: String?, updatedAt: String?, username: String?, userId: String?, id: String?) {
+        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, debug: Debug? = nil, dob: String? = nil, emails: [Email]? = nil, firstName: String? = nil, gender: String? = nil, hasOldPasswordHash: Bool? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
             self.applicationId = applicationId
 
             self.userId = userId
@@ -118,12 +118,6 @@ public extension PlatformClient {
             self.createdAt = createdAt
 
             self.updatedAt = updatedAt
-        }
-
-        public func duplicate() -> UserSchema {
-            let dict = self.dictionary!
-            let copy = UserSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

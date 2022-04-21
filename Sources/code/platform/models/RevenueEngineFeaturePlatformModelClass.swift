@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case enabled
         }
 
-        public init(enabled: Bool?) {
+        public init(enabled: Bool? = nil) {
             self.enabled = enabled
-        }
-
-        public func duplicate() -> RevenueEngineFeature {
-            let dict = self.dictionary!
-            let copy = RevenueEngineFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

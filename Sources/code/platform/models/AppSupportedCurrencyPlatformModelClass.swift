@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case updatedAt = "updated_at"
         }
 
-        public init(application: String?, createdAt: String?, defaultCurrency: DefaultCurrency?, supportedCurrency: [String]?, updatedAt: String?, id: String?) {
+        public init(application: String? = nil, createdAt: String? = nil, defaultCurrency: DefaultCurrency? = nil, supportedCurrency: [String]? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.id = id
 
             self.supportedCurrency = supportedCurrency
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.createdAt = createdAt
 
             self.updatedAt = updatedAt
-        }
-
-        public func duplicate() -> AppSupportedCurrency {
-            let dict = self.dictionary!
-            let copy = AppSupportedCurrency(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

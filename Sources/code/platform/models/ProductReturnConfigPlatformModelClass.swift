@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case onSameStore = "on_same_store"
         }
 
-        public init(onSameStore: Bool?) {
+        public init(onSameStore: Bool? = nil) {
             self.onSameStore = onSameStore
-        }
-
-        public func duplicate() -> ProductReturnConfig {
-            let dict = self.dictionary!
-            let copy = ProductReturnConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

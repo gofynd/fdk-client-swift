@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case tags
         }
 
-        public init(tags: [String]?) {
+        public init(tags: [String]? = nil) {
             self.tags = tags
-        }
-
-        public func duplicate() -> RemoveHandpickedSchema {
-            let dict = self.dictionary!
-            let copy = RemoveHandpickedSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

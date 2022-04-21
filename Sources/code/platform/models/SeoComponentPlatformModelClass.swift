@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case seo
         }
 
-        public init(seo: SeoSchema?) {
+        public init(seo: SeoSchema? = nil) {
             self.seo = seo
-        }
-
-        public func duplicate() -> SeoComponent {
-            let dict = self.dictionary!
-            let copy = SeoComponent(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

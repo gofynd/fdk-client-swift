@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case paymentMethod = "payment_method"
         }
 
-        public init(paymentMethod: String?, planId: String?, productSuite: String?, type: String?, uniqueId: String?) {
+        public init(paymentMethod: String? = nil, planId: String? = nil, productSuite: String? = nil, type: String? = nil, uniqueId: String? = nil) {
             self.uniqueId = uniqueId
 
             self.type = type
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.planId = planId
 
             self.paymentMethod = paymentMethod
-        }
-
-        public func duplicate() -> SubscriptionActivateReq {
-            let dict = self.dictionary!
-            let copy = SubscriptionActivateReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

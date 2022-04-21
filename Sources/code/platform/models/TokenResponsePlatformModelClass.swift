@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(application: String?, createdAt: String?, tokens: Tokens?, updatedAt: String?, id: String?, v: Int?) {
+        public init(application: String? = nil, createdAt: String? = nil, tokens: Tokens? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.tokens = tokens
 
             self.id = id
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.updatedAt = updatedAt
 
             self.v = v
-        }
-
-        public func duplicate() -> TokenResponse {
-            let dict = self.dictionary!
-            let copy = TokenResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

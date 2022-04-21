@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case name
         }
 
-        public init(isPrimary: Bool?, isShortlink: Bool?, name: String?, verified: Bool?, id: String?) {
+        public init(isPrimary: Bool? = nil, isShortlink: Bool? = nil, name: String? = nil, verified: Bool? = nil, id: String? = nil) {
             self.verified = verified
 
             self.isPrimary = isPrimary
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.id = id
 
             self.name = name
-        }
-
-        public func duplicate() -> Domain {
-            let dict = self.dictionary!
-            let copy = Domain(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

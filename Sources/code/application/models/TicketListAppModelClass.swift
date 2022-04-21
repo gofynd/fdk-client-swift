@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.filters = filters
 
             self.page = page
-        }
-
-        public func duplicate() -> TicketList {
-            let dict = self.dictionary!
-            let copy = TicketList(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

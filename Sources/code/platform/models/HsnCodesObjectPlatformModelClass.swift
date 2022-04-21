@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             case tax2
         }
 
-        public init(companyId: Int?, hs2Code: String?, hsnCode: String?, id: String?, modifiedOn: String?, tax1: Double?, tax2: Double?, taxOnEsp: Bool?, taxOnMrp: Bool?, threshold1: Double?, threshold2: Double?) {
+        public init(companyId: Int? = nil, hs2Code: String? = nil, hsnCode: String? = nil, id: String? = nil, modifiedOn: String? = nil, tax1: Double? = nil, tax2: Double? = nil, taxOnEsp: Bool? = nil, taxOnMrp: Bool? = nil, threshold1: Double? = nil, threshold2: Double? = nil) {
             self.taxOnEsp = taxOnEsp
 
             self.tax1 = tax1
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.taxOnMrp = taxOnMrp
 
             self.tax2 = tax2
-        }
-
-        public func duplicate() -> HsnCodesObject {
-            let dict = self.dictionary!
-            let copy = HsnCodesObject(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

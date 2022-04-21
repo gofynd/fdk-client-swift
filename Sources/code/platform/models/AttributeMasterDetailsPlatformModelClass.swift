@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(displayType: String) {
             self.displayType = displayType
-        }
-
-        public func duplicate() -> AttributeMasterDetails {
-            let dict = self.dictionary!
-            let copy = AttributeMasterDetails(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

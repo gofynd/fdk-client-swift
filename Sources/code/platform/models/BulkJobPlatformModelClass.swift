@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -78,7 +78,7 @@ public extension PlatformClient {
             case cancelled
         }
 
-        public init(cancelled: Int?, cancelledRecords: [[String: Any]]?, companyId: Int, createdBy: UserInfo1?, createdOn: String, customTemplateTag: String?, failed: Int?, failedRecords: [[String: Any]]?, filePath: String?, isActive: Bool?, modifiedBy: UserInfo1?, modifiedOn: String?, stage: String?, succeed: Int?, templateTag: String?, total: Int, trackingUrl: String?) {
+        public init(cancelled: Int? = nil, cancelledRecords: [[String: Any]]? = nil, companyId: Int, createdBy: UserInfo1? = nil, createdOn: String, customTemplateTag: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, isActive: Bool? = nil, modifiedBy: UserInfo1? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, templateTag: String? = nil, total: Int, trackingUrl: String? = nil) {
             self.modifiedBy = modifiedBy
 
             self.customTemplateTag = customTemplateTag
@@ -112,12 +112,6 @@ public extension PlatformClient {
             self.trackingUrl = trackingUrl
 
             self.cancelled = cancelled
-        }
-
-        public func duplicate() -> BulkJob {
-            let dict = self.dictionary!
-            let copy = BulkJob(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

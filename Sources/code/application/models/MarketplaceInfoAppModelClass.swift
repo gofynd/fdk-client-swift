@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -9,38 +9,30 @@ public extension ApplicationClient {
     class MarketplaceInfo: Codable {
         public var membershipId: String
 
-        public var name: String
-
         public var dateOfJoining: String?
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case membershipId = "membership_id"
 
-            case name
-
             case dateOfJoining = "date_of_joining"
+
+            case name
         }
 
         public init(dateOfJoining: String? = nil, membershipId: String, name: String) {
             self.membershipId = membershipId
 
-            self.name = name
-
             self.dateOfJoining = dateOfJoining
-        }
 
-        public func duplicate() -> MarketplaceInfo {
-            let dict = self.dictionary!
-            let copy = MarketplaceInfo(dictionary: dict)!
-            return copy
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             membershipId = try container.decode(String.self, forKey: .membershipId)
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 dateOfJoining = try container.decode(String.self, forKey: .dateOfJoining)
@@ -49,6 +41,8 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -56,9 +50,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(membershipId, forKey: .membershipId)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encode(dateOfJoining, forKey: .dateOfJoining)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

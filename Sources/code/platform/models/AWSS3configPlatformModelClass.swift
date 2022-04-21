@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -62,7 +62,7 @@ public extension PlatformClient {
             case archiveConfig = "archive_config"
         }
 
-        public init(accessKey: String?, archive: Bool?, archiveConfig: ArchiveConfig?, archivePath: String?, bucket: String?, delete: Bool?, dir: String?, fileRegex: String?, localFilePath: String?, region: String?, secretKey: String?, unzip: Bool?, zipFormat: String?) {
+        public init(accessKey: String? = nil, archive: Bool? = nil, archiveConfig: ArchiveConfig? = nil, archivePath: String? = nil, bucket: String? = nil, delete: Bool? = nil, dir: String? = nil, fileRegex: String? = nil, localFilePath: String? = nil, region: String? = nil, secretKey: String? = nil, unzip: Bool? = nil, zipFormat: String? = nil) {
             self.bucket = bucket
 
             self.region = region
@@ -88,12 +88,6 @@ public extension PlatformClient {
             self.fileRegex = fileRegex
 
             self.archiveConfig = archiveConfig
-        }
-
-        public func duplicate() -> AWSS3config {
-            let dict = self.dictionary!
-            let copy = AWSS3config(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

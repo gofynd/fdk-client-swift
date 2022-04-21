@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case filters
         }
 
-        public init(filters: [ProductFilters]?, items: [ProductListingDetail]?, page: Page, sortOn: [ProductSortOn]?) {
+        public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
             self.page = page
 
             self.sortOn = sortOn
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.items = items
 
             self.filters = filters
-        }
-
-        public func duplicate() -> ApplicationProductListingResponse {
-            let dict = self.dictionary!
-            let copy = ApplicationProductListingResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

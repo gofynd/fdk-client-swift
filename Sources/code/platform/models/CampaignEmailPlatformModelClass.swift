@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case provider
         }
 
-        public init(provider: CampignEmailProvider?, template: CampaignEmailTemplate?) {
+        public init(provider: CampignEmailProvider? = nil, template: CampaignEmailTemplate? = nil) {
             self.template = template
 
             self.provider = provider
-        }
-
-        public func duplicate() -> CampaignEmail {
-            let dict = self.dictionary!
-            let copy = CampaignEmail(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

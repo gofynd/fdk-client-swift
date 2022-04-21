@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case identifierValue = "identifier_value"
         }
 
-        public init(companyId: String?, endDate: String?, identifier: String?, identifierValue: String?, marketplaceName: String?, startDate: String?) {
+        public init(companyId: String? = nil, endDate: String? = nil, identifier: String? = nil, identifierValue: String? = nil, marketplaceName: String? = nil, startDate: String? = nil) {
             self.marketplaceName = marketplaceName
 
             self.startDate = startDate
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.identifier = identifier
 
             self.identifierValue = identifierValue
-        }
-
-        public func duplicate() -> SearchLogReq {
-            let dict = self.dictionary!
-            let copy = SearchLogReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case items
         }
 
-        public init(items: CouponAdd?, page: Page?) {
+        public init(items: CouponAdd? = nil, page: Page? = nil) {
             self.page = page
 
             self.items = items
-        }
-
-        public func duplicate() -> CouponsResponse {
-            let dict = self.dictionary!
-            let copy = CouponsResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case entityDetails = "entity_details"
         }
 
-        public init(action: String?, entityDetails: [String: Any]?, id: String?, type: String?) {
+        public init(action: String? = nil, entityDetails: [String: Any]? = nil, id: String? = nil, type: String? = nil) {
             self.id = id
 
             self.type = type
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.action = action
 
             self.entityDetails = entityDetails
-        }
-
-        public func duplicate() -> EntityObj {
-            let dict = self.dictionary!
-            let copy = EntityObj(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

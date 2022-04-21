@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case storePriority = "store_priority"
         }
 
-        public init(storePriority: StorePriority?) {
+        public init(storePriority: StorePriority? = nil) {
             self.storePriority = storePriority
-        }
-
-        public func duplicate() -> ArticleAssignmentRules {
-            let dict = self.dictionary!
-            let copy = ArticleAssignmentRules(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

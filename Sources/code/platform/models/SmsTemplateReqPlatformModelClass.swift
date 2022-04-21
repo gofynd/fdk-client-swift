@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case priority
         }
 
-        public init(attachments: [[String: Any]]?, description: String?, message: SmsTemplateMessage?, name: String?, priority: String?, templateVariables: [String: Any]?) {
+        public init(attachments: [[String: Any]]? = nil, description: String? = nil, message: SmsTemplateMessage? = nil, name: String? = nil, priority: String? = nil, templateVariables: [String: Any]? = nil) {
             self.name = name
 
             self.description = description
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.attachments = attachments
 
             self.priority = priority
-        }
-
-        public func duplicate() -> SmsTemplateReq {
-            let dict = self.dictionary!
-            let copy = SmsTemplateReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case isCustomOrder = "is_custom_order"
         }
 
-        public init(isCustomOrder: Bool?, manufacturingTime: Int?, manufacturingTimeUnit: String?) {
+        public init(isCustomOrder: Bool? = nil, manufacturingTime: Int? = nil, manufacturingTimeUnit: String? = nil) {
             self.manufacturingTime = manufacturingTime
 
             self.manufacturingTimeUnit = manufacturingTimeUnit
 
             self.isCustomOrder = isCustomOrder
-        }
-
-        public func duplicate() -> CustomOrder {
-            let dict = self.dictionary!
-            let copy = CustomOrder(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

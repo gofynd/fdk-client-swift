@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -102,7 +102,7 @@ public extension PlatformClient {
             case colors
         }
 
-        public init(application: String?, applied: Bool?, archived: Bool?, assets: AssetsSchema?, availableSections: [availableSectionSchema]?, colors: Colors?, config: Config?, constants: [String: Any]?, createdAt: String?, customized: Bool?, font: Font?, information: Information?, parentTheme: String?, parentThemeVersion: String?, published: Bool?, settings: [String: Any]?, src: Src?, styles: [String: Any]?, tags: [String]?, updatedAt: String?, version: String?, id: String?, v: Int?) {
+        public init(application: String? = nil, applied: Bool? = nil, archived: Bool? = nil, assets: AssetsSchema? = nil, availableSections: [availableSectionSchema]? = nil, colors: Colors? = nil, config: Config? = nil, constants: [String: Any]? = nil, createdAt: String? = nil, customized: Bool? = nil, font: Font? = nil, information: Information? = nil, parentTheme: String? = nil, parentThemeVersion: String? = nil, published: Bool? = nil, settings: [String: Any]? = nil, src: Src? = nil, styles: [String: Any]? = nil, tags: [String]? = nil, updatedAt: String? = nil, version: String? = nil, id: String? = nil, v: Int? = nil) {
             self.application = application
 
             self.applied = applied
@@ -148,12 +148,6 @@ public extension PlatformClient {
             self.v = v
 
             self.colors = colors
-        }
-
-        public func duplicate() -> ThemesSchema {
-            let dict = self.dictionary!
-            let copy = ThemesSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

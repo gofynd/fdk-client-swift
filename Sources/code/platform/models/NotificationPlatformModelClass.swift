@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case clickAction = "click_action"
         }
 
-        public init(body: String?, clickAction: String?, deeplink: String?, icon: String?, subtitle: String?, title: String?) {
+        public init(body: String? = nil, clickAction: String? = nil, deeplink: String? = nil, icon: String? = nil, subtitle: String? = nil, title: String? = nil) {
             self.title = title
 
             self.body = body
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.deeplink = deeplink
 
             self.clickAction = clickAction
-        }
-
-        public func duplicate() -> Notification {
-            let dict = self.dictionary!
-            let copy = Notification(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

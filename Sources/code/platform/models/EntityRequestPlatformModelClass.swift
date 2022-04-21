@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case entityType = "entity_type"
         }
 
-        public init(entityId: String?, entityType: String?) {
+        public init(entityId: String? = nil, entityType: String? = nil) {
             self.entityId = entityId
 
             self.entityType = entityType
-        }
-
-        public func duplicate() -> EntityRequest {
-            let dict = self.dictionary!
-            let copy = EntityRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

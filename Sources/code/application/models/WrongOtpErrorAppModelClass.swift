@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -9,30 +9,24 @@ public extension ApplicationClient {
     class WrongOtpError: Codable {
         public var success: String
 
-        public var isVerifiedFlag: Bool
-
         public var description: String
+
+        public var isVerifiedFlag: Bool
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case isVerifiedFlag = "is_verified_flag"
-
             case description
+
+            case isVerifiedFlag = "is_verified_flag"
         }
 
         public init(description: String, isVerifiedFlag: Bool, success: String) {
             self.success = success
 
-            self.isVerifiedFlag = isVerifiedFlag
-
             self.description = description
-        }
 
-        public func duplicate() -> WrongOtpError {
-            let dict = self.dictionary!
-            let copy = WrongOtpError(dictionary: dict)!
-            return copy
+            self.isVerifiedFlag = isVerifiedFlag
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,9 +34,9 @@ public extension ApplicationClient {
 
             success = try container.decode(String.self, forKey: .success)
 
-            isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
-
             description = try container.decode(String.self, forKey: .description)
+
+            isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -50,9 +44,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
-
             try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
         }
     }
 }

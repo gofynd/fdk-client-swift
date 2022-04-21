@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case isCurrent = "is_current"
         }
 
-        public init(isCurrent: Bool?, isPassed: Bool?, status: String?, time: String?) {
+        public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String? = nil, time: String? = nil) {
             self.status = status
 
             self.time = time
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.isPassed = isPassed
 
             self.isCurrent = isCurrent
-        }
-
-        public func duplicate() -> ShipmentTrackingDetails {
-            let dict = self.dictionary!
-            let copy = ShipmentTrackingDetails(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

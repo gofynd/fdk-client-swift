@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(tags: [String]? = nil) {
             self.tags = tags
-        }
-
-        public func duplicate() -> RemoveHandpickedSchema {
-            let dict = self.dictionary!
-            let copy = RemoveHandpickedSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,7 +46,7 @@ public extension PlatformClient {
             case source = "__source"
         }
 
-        public init(attributes: [String: Any]?, content: String?, name: String?, position: String?, subType: String?, type: String?, url: String?, id: String?, source: TagSourceSchema?) {
+        public init(attributes: [String: Any]? = nil, content: String? = nil, name: String? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: TagSourceSchema? = nil) {
             self.name = name
 
             self.url = url
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.content = content
 
             self.source = source
-        }
-
-        public func duplicate() -> TagSchema {
-            let dict = self.dictionary!
-            let copy = TagSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

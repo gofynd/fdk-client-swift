@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case forceWeb = "force_web"
         }
 
-        public init(android: RedirectDevice?, forceWeb: Bool?, ios: RedirectDevice?, web: WebRedirect?) {
+        public init(android: RedirectDevice? = nil, forceWeb: Bool? = nil, ios: RedirectDevice? = nil, web: WebRedirect? = nil) {
             self.ios = ios
 
             self.android = android
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.web = web
 
             self.forceWeb = forceWeb
-        }
-
-        public func duplicate() -> Redirects {
-            let dict = self.dictionary!
-            let copy = Redirects(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

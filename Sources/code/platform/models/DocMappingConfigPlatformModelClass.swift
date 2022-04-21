@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case defaultHeaders = "default_headers"
         }
 
-        public init(defaultHeaders: DefaultHeadersDTO?, junkDataThresholdCount: Int?, properties: [String: Any]?, propBeanConfigs: [PropBeanConfig]?, unwindField: String?) {
+        public init(defaultHeaders: DefaultHeadersDTO? = nil, junkDataThresholdCount: Int? = nil, properties: [String: Any]? = nil, propBeanConfigs: [PropBeanConfig]? = nil, unwindField: String? = nil) {
             self.properties = properties
 
             self.junkDataThresholdCount = junkDataThresholdCount
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.unwindField = unwindField
 
             self.defaultHeaders = defaultHeaders
-        }
-
-        public func duplicate() -> DocMappingConfig {
-            let dict = self.dictionary!
-            let copy = DocMappingConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

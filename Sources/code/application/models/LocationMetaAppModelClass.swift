@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.demand = demand
 
             self.supply = supply
-        }
-
-        public func duplicate() -> LocationMeta {
-            let dict = self.dictionary!
-            let copy = LocationMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

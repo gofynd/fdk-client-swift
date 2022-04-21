@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(items: [Currency]? = nil) {
             self.items = items
-        }
-
-        public func duplicate() -> CurrenciesResponse {
-            let dict = self.dictionary!
-            let copy = CurrenciesResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

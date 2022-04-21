@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case isSet = "is_set"
         }
 
-        public init(isSet: Bool?, productOnlineDate: String?) {
+        public init(isSet: Bool? = nil, productOnlineDate: String? = nil) {
             self.productOnlineDate = productOnlineDate
 
             self.isSet = isSet
-        }
-
-        public func duplicate() -> ProductPublish {
-            let dict = self.dictionary!
-            let copy = ProductPublish(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

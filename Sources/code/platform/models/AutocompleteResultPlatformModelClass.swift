@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case action
         }
 
-        public init(action: AutocompleteAction?, display: String?, logo: Media?, customJson: [String: Any]?) {
+        public init(action: AutocompleteAction? = nil, display: String? = nil, logo: Media? = nil, customJson: [String: Any]? = nil) {
             self.logo = logo
 
             self.display = display
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.customJson = customJson
 
             self.action = action
-        }
-
-        public func duplicate() -> AutocompleteResult {
-            let dict = self.dictionary!
-            let copy = AutocompleteResult(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

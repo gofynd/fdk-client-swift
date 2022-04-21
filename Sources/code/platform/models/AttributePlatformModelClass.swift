@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case tags
         }
 
-        public init(dateMeta: DateMeta?, description: String?, id: String?, name: String?, slug: String?, tags: [TagMeta]?) {
+        public init(dateMeta: DateMeta? = nil, description: String? = nil, id: String? = nil, name: String? = nil, slug: String? = nil, tags: [TagMeta]? = nil) {
             self.dateMeta = dateMeta
 
             self.description = description
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.slug = slug
 
             self.tags = tags
-        }
-
-        public func duplicate() -> Attribute {
-            let dict = self.dictionary!
-            let copy = Attribute(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

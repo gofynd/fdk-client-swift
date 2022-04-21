@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case companyType = "company_type"
         }
 
-        public init(companyType: String?, name: String?, uid: Int?) {
+        public init(companyType: String? = nil, name: String? = nil, uid: Int? = nil) {
             self.uid = uid
 
             self.name = name
 
             self.companyType = companyType
-        }
-
-        public func duplicate() -> AppInventoryCompanies {
-            let dict = self.dictionary!
-            let copy = AppInventoryCompanies(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

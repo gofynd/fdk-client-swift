@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case logo
         }
 
-        public init(brandName: String?, createdOn: String?, creditNoteAllowed: Bool?, id: Int?, isVirtualInvoice: Bool?, logo: String?, modifiedOn: String?) {
+        public init(brandName: String? = nil, createdOn: String? = nil, creditNoteAllowed: Bool? = nil, id: Int? = nil, isVirtualInvoice: Bool? = nil, logo: String? = nil, modifiedOn: String? = nil) {
             self.creditNoteAllowed = creditNoteAllowed
 
             self.brandName = brandName
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.createdOn = createdOn
 
             self.logo = logo
-        }
-
-        public func duplicate() -> PlatformShipmentDetailsBrand {
-            let dict = self.dictionary!
-            let copy = PlatformShipmentDetailsBrand(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

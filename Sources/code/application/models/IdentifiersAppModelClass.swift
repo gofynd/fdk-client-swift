@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.ean = ean
 
             self.skuCode = skuCode
-        }
-
-        public func duplicate() -> Identifiers {
-            let dict = self.dictionary!
-            let copy = Identifiers(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

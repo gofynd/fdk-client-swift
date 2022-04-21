@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -69,12 +69,6 @@ public extension ApplicationClient {
             self.archived = archived
 
             self.customJson = customJson
-        }
-
-        public func duplicate() -> SlideshowSchema {
-            let dict = self.dictionary!
-            let copy = SlideshowSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case pages
         }
 
-        public init(pages: [AvailablePageSchema]?) {
+        public init(pages: [AvailablePageSchema]? = nil) {
             self.pages = pages
-        }
-
-        public func duplicate() -> Preset {
-            let dict = self.dictionary!
-            let copy = Preset(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

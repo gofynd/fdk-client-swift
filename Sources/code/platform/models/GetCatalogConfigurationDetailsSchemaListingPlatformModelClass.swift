@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case filter
         }
 
-        public init(filter: [String: Any]?, sort: [String: Any]?) {
+        public init(filter: [String: Any]? = nil, sort: [String: Any]? = nil) {
             self.sort = sort
 
             self.filter = filter
-        }
-
-        public func duplicate() -> GetCatalogConfigurationDetailsSchemaListing {
-            let dict = self.dictionary!
-            let copy = GetCatalogConfigurationDetailsSchemaListing(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

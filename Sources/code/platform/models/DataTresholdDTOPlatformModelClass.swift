@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case periodTypeList = "period_type_list"
         }
 
-        public init(minPrice: Double?, periodThreshold: Int?, periodThresholdType: String?, periodTypeList: [GenericDTO]?, safeStock: Int?) {
+        public init(minPrice: Double? = nil, periodThreshold: Int? = nil, periodThresholdType: String? = nil, periodTypeList: [GenericDTO]? = nil, safeStock: Int? = nil) {
             self.minPrice = minPrice
 
             self.safeStock = safeStock
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.periodThresholdType = periodThresholdType
 
             self.periodTypeList = periodTypeList
-        }
-
-        public func duplicate() -> DataTresholdDTO {
-            let dict = self.dictionary!
-            let copy = DataTresholdDTO(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

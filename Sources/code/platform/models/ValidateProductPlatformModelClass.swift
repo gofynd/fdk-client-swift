@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case valid
         }
 
-        public init(valid: Bool?) {
+        public init(valid: Bool? = nil) {
             self.valid = valid
-        }
-
-        public func duplicate() -> ValidateProduct {
-            let dict = self.dictionary!
-            let copy = ValidateProduct(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

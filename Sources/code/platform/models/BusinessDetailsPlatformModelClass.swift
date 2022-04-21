@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case website
         }
 
-        public init(website: Website?) {
+        public init(website: Website? = nil) {
             self.website = website
-        }
-
-        public func duplicate() -> BusinessDetails {
-            let dict = self.dictionary!
-            let copy = BusinessDetails(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

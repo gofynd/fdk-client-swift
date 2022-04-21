@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -39,12 +39,6 @@ public extension ApplicationClient {
             self.uniqueDeviceId = uniqueDeviceId
 
             self.type = type
-        }
-
-        public func duplicate() -> PushtokenReq {
-            let dict = self.dictionary!
-            let copy = PushtokenReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

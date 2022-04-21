@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case fyndDefault = "fynd_default"
         }
 
-        public init(fyndDefault: Bool?) {
+        public init(fyndDefault: Bool? = nil) {
             self.fyndDefault = fyndDefault
-        }
-
-        public func duplicate() -> MetaSchema {
-            let dict = self.dictionary!
-            let copy = MetaSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

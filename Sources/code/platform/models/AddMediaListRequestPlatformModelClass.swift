@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case refType = "ref_type"
         }
 
-        public init(entityId: String?, entityType: String?, mediaList: [AddMediaRequest]?, refId: String?, refType: String?) {
+        public init(entityId: String? = nil, entityType: String? = nil, mediaList: [AddMediaRequest]? = nil, refId: String? = nil, refType: String? = nil) {
             self.entityId = entityId
 
             self.entityType = entityType
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.refId = refId
 
             self.refType = refType
-        }
-
-        public func duplicate() -> AddMediaListRequest {
-            let dict = self.dictionary!
-            let copy = AddMediaListRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

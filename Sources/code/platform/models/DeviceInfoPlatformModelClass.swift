@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case extraMeta = "extra_meta"
         }
 
-        public init(extraMeta: [String: Any]?, userAgent: String?) {
+        public init(extraMeta: [String: Any]? = nil, userAgent: String? = nil) {
             self.userAgent = userAgent
 
             self.extraMeta = extraMeta
-        }
-
-        public func duplicate() -> DeviceInfo {
-            let dict = self.dictionary!
-            let copy = DeviceInfo(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

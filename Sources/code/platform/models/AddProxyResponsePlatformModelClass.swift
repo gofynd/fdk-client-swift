@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             case modifiedAt = "modified_at"
         }
 
-        public init(applicationId: String?, attachedPath: String?, companyId: String?, createdAt: String?, extensionId: String?, modifiedAt: String?, proxyUrl: String?, id: String?) {
+        public init(applicationId: String? = nil, attachedPath: String? = nil, companyId: String? = nil, createdAt: String? = nil, extensionId: String? = nil, modifiedAt: String? = nil, proxyUrl: String? = nil, id: String? = nil) {
             self.id = id
 
             self.attachedPath = attachedPath
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.createdAt = createdAt
 
             self.modifiedAt = modifiedAt
-        }
-
-        public func duplicate() -> AddProxyResponse {
-            let dict = self.dictionary!
-            let copy = AddProxyResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

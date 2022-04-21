@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(variants: [ProductVariantResponse]? = nil) {
             self.variants = variants
-        }
-
-        public func duplicate() -> ProductVariantsResponse {
-            let dict = self.dictionary!
-            let copy = ProductVariantsResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

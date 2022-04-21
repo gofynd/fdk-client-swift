@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(stages: [StageItem]) {
             self.stages = stages
-        }
-
-        public func duplicate() -> OrderLanesCount {
-            let dict = self.dictionary!
-            let copy = OrderLanesCount(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

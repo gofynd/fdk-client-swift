@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case otherEntity = "other_entity"
         }
 
-        public init(otherEntity: OtherEntity?, otherIntegration: IntegrationOptIn?, otherOpted: Bool?) {
+        public init(otherEntity: OtherEntity? = nil, otherIntegration: IntegrationOptIn? = nil, otherOpted: Bool? = nil) {
             self.otherOpted = otherOpted
 
             self.otherIntegration = otherIntegration
 
             self.otherEntity = otherEntity
-        }
-
-        public func duplicate() -> OptedStoreIntegration {
-            let dict = self.dictionary!
-            let copy = OptedStoreIntegration(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

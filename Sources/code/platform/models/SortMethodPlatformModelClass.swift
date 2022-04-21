@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case type
         }
 
-        public init(name: String?, selected: Bool?, type: String?) {
+        public init(name: String? = nil, selected: Bool? = nil, type: String? = nil) {
             self.name = name
 
             self.selected = selected
 
             self.type = type
-        }
-
-        public func duplicate() -> SortMethod {
-            let dict = self.dictionary!
-            let copy = SortMethod(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

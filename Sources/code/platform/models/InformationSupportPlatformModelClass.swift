@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case timing
         }
 
-        public init(email: [String]?, phone: [String]?, timing: String?) {
+        public init(email: [String]? = nil, phone: [String]? = nil, timing: String? = nil) {
             self.phone = phone
 
             self.email = email
 
             self.timing = timing
-        }
-
-        public func duplicate() -> InformationSupport {
-            let dict = self.dictionary!
-            let copy = InformationSupport(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case brands
         }
 
-        public init(brands: [[String: Any]]?, criteria: String?) {
+        public init(brands: [[String: Any]]? = nil, criteria: String? = nil) {
             self.criteria = criteria
 
             self.brands = brands
-        }
-
-        public func duplicate() -> InventoryBrand {
-            let dict = self.dictionary!
-            let copy = InventoryBrand(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

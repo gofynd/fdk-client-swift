@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case authenticated
         }
 
-        public init(authenticated: Bool?) {
+        public init(authenticated: Bool? = nil) {
             self.authenticated = authenticated
-        }
-
-        public func duplicate() -> UnauthenticatedSchema {
-            let dict = self.dictionary!
-            let copy = UnauthenticatedSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case limit
         }
 
-        public init(bulk: Bool?, limit: Int?) {
+        public init(bulk: Bool? = nil, limit: Int? = nil) {
             self.bulk = bulk
 
             self.limit = limit
-        }
-
-        public func duplicate() -> SubscriptionLimitProducts {
-            let dict = self.dictionary!
-            let copy = SubscriptionLimitProducts(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

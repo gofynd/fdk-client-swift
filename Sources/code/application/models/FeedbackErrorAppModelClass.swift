@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -57,12 +57,6 @@ public extension ApplicationClient {
             self.stackTrace = stackTrace
 
             self.status = status
-        }
-
-        public func duplicate() -> FeedbackError {
-            let dict = self.dictionary!
-            let copy = FeedbackError(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

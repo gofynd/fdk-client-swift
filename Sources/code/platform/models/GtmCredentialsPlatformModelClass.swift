@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case apiKey = "api_key"
         }
 
-        public init(apiKey: String?) {
+        public init(apiKey: String? = nil) {
             self.apiKey = apiKey
-        }
-
-        public func duplicate() -> GtmCredentials {
-            let dict = self.dictionary!
-            let copy = GtmCredentials(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

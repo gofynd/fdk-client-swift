@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case items
         }
 
-        public init(items: [HsnCodesObject]?, page: PageResponse?) {
+        public init(items: [HsnCodesObject]? = nil, page: PageResponse? = nil) {
             self.page = page
 
             self.items = items
-        }
-
-        public func duplicate() -> HsnCodesListingResponse {
-            let dict = self.dictionary!
-            let copy = HsnCodesListingResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.logo = logo
 
             self.landscape = landscape
-        }
-
-        public func duplicate() -> Media2 {
-            let dict = self.dictionary!
-            let copy = Media2(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

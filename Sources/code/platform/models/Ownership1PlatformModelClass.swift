@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.payableCategory = payableCategory
 
             self.payableBy = payableBy
-        }
-
-        public func duplicate() -> Ownership1 {
-            let dict = self.dictionary!
-            let copy = Ownership1(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

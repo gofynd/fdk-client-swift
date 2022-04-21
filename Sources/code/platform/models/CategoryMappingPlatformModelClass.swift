@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case ajio
         }
 
-        public init(ajio: CategoryMappingValues?, facebook: CategoryMappingValues?, google: CategoryMappingValues?) {
+        public init(ajio: CategoryMappingValues? = nil, facebook: CategoryMappingValues? = nil, google: CategoryMappingValues? = nil) {
             self.google = google
 
             self.facebook = facebook
 
             self.ajio = ajio
-        }
-
-        public func duplicate() -> CategoryMapping {
-            let dict = self.dictionary!
-            let copy = CategoryMapping(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

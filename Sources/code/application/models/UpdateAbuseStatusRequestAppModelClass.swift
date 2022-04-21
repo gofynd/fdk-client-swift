@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -51,12 +51,6 @@ public extension ApplicationClient {
             self.entityType = entityType
 
             self.id = id
-        }
-
-        public func duplicate() -> UpdateAbuseStatusRequest {
-            let dict = self.dictionary!
-            let copy = UpdateAbuseStatusRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

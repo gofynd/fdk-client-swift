@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case items
         }
 
-        public init(items: [String]?) {
+        public init(items: [String]? = nil) {
             self.items = items
-        }
-
-        public func duplicate() -> SessionListResponseSchema {
-            let dict = self.dictionary!
-            let copy = SessionListResponseSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

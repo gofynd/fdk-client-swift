@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,7 +46,7 @@ public extension PlatformClient {
             case customJson = "_custom_json"
         }
 
-        public init(application: String?, children: [String]?, description: String?, iconUrl: String?, index: Int?, slug: String?, title: String?, customJson: [String: Any]?, id: String?) {
+        public init(application: String? = nil, children: [String]? = nil, description: String? = nil, iconUrl: String? = nil, index: Int? = nil, slug: String? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
             self.index = index
 
             self.title = title
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.iconUrl = iconUrl
 
             self.customJson = customJson
-        }
-
-        public func duplicate() -> CategorySchema {
-            let dict = self.dictionary!
-            let copy = CategorySchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

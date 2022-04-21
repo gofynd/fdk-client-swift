@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -78,7 +78,7 @@ public extension PlatformClient {
             case readAllFiles = "read_all_files"
         }
 
-        public init(archiveConfig: ArchiveConfig?, fileRegex: String?, host: String?, interval: Int?, localDir: String?, password: String?, passwordProtected: Bool?, port: Int?, privateKeyPath: String?, readAllFiles: Bool?, remoteDir: String?, retries: Int?, strictHostKeyChecking: Bool?, unzip: Bool?, username: String?, zipFileRegex: String?, zipFormat: String?) {
+        public init(archiveConfig: ArchiveConfig? = nil, fileRegex: String? = nil, host: String? = nil, interval: Int? = nil, localDir: String? = nil, password: String? = nil, passwordProtected: Bool? = nil, port: Int? = nil, privateKeyPath: String? = nil, readAllFiles: Bool? = nil, remoteDir: String? = nil, retries: Int? = nil, strictHostKeyChecking: Bool? = nil, unzip: Bool? = nil, username: String? = nil, zipFileRegex: String? = nil, zipFormat: String? = nil) {
             self.host = host
 
             self.port = port
@@ -112,12 +112,6 @@ public extension PlatformClient {
             self.archiveConfig = archiveConfig
 
             self.readAllFiles = readAllFiles
-        }
-
-        public func duplicate() -> SFTPConfig {
-            let dict = self.dictionary!
-            let copy = SFTPConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

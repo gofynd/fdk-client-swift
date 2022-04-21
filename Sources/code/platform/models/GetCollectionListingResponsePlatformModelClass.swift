@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case filters
         }
 
-        public init(filters: CollectionListingFilter?, items: [GetCollectionDetailNest]?, page: Page?) {
+        public init(filters: CollectionListingFilter? = nil, items: [GetCollectionDetailNest]? = nil, page: Page? = nil) {
             self.page = page
 
             self.items = items
 
             self.filters = filters
-        }
-
-        public func duplicate() -> GetCollectionListingResponse {
-            let dict = self.dictionary!
-            let copy = GetCollectionListingResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

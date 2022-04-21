@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case min
         }
 
-        public init(max: Int?, min: Int?) {
+        public init(max: Int? = nil, min: Int? = nil) {
             self.max = max
 
             self.min = min
-        }
-
-        public func duplicate() -> AttributeSchemaRange {
-            let dict = self.dictionary!
-            let copy = AttributeSchemaRange(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

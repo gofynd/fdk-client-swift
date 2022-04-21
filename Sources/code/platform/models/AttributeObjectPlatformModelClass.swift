@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case value
         }
 
-        public init(description: String?, name: String, slug: String?, title: String?, type: String, value: Double) {
+        public init(description: String? = nil, name: String, slug: String? = nil, title: String? = nil, type: String, value: Double) {
             self.description = description
 
             self.name = name
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.type = type
 
             self.value = value
-        }
-
-        public func duplicate() -> AttributeObject {
-            let dict = self.dictionary!
-            let copy = AttributeObject(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

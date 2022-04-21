@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case isSelected = "is_selected"
         }
 
-        public init(display: String?, isSelected: Bool?, name: String?) {
+        public init(display: String? = nil, isSelected: Bool? = nil, name: String? = nil) {
             self.name = name
 
             self.display = display
 
             self.isSelected = isSelected
-        }
-
-        public func duplicate() -> CollectionListingFilterType {
-            let dict = self.dictionary!
-            let copy = CollectionListingFilterType(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

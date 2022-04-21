@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case count
         }
 
-        public init(count: Int?, outOfStockCount: Int?, sellableCount: Int?) {
+        public init(count: Int? = nil, outOfStockCount: Int? = nil, sellableCount: Int? = nil) {
             self.outOfStockCount = outOfStockCount
 
             self.sellableCount = sellableCount
 
             self.count = count
-        }
-
-        public func duplicate() -> CatalogInsightItem {
-            let dict = self.dictionary!
-            let copy = CatalogInsightItem(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

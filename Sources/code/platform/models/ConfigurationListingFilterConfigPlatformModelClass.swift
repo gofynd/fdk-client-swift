@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case priority
         }
 
-        public init(isActive: Bool, key: String, logo: String?, name: String?, priority: Int, type: String, valueConfig: ConfigurationListingFilterValue?) {
+        public init(isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int, type: String, valueConfig: ConfigurationListingFilterValue? = nil) {
             self.type = type
 
             self.key = key
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.name = name
 
             self.priority = priority
-        }
-
-        public func duplicate() -> ConfigurationListingFilterConfig {
-            let dict = self.dictionary!
-            let copy = ConfigurationListingFilterConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

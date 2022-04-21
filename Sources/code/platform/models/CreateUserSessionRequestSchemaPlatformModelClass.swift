@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case userId = "user_id"
         }
 
-        public init(domain: String?, maxAge: Double?, userId: String?) {
+        public init(domain: String? = nil, maxAge: Double? = nil, userId: String? = nil) {
             self.domain = domain
 
             self.maxAge = maxAge
 
             self.userId = userId
-        }
-
-        public func duplicate() -> CreateUserSessionRequestSchema {
-            let dict = self.dictionary!
-            let copy = CreateUserSessionRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

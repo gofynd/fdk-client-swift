@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case route
         }
 
-        public init(route: AvailablePageRoutePredicate?, screen: AvailablePageScreenPredicate?, user: AvailablePageUserPredicate?) {
+        public init(route: AvailablePageRoutePredicate? = nil, screen: AvailablePageScreenPredicate? = nil, user: AvailablePageUserPredicate? = nil) {
             self.screen = screen
 
             self.user = user
 
             self.route = route
-        }
-
-        public func duplicate() -> AvailablePagePredicate {
-            let dict = self.dictionary!
-            let copy = AvailablePagePredicate(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

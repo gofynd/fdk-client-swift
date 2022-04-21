@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case confirmUrl = "confirm_url"
         }
 
-        public init(confirmUrl: String?, subscription: EntitySubscription?) {
+        public init(confirmUrl: String? = nil, subscription: EntitySubscription? = nil) {
             self.subscription = subscription
 
             self.confirmUrl = confirmUrl
-        }
-
-        public func duplicate() -> CreateSubscriptionResponse {
-            let dict = self.dictionary!
-            let copy = CreateSubscriptionResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

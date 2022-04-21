@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case filters
         }
 
-        public init(filters: [String: Any]?, key: String?, title: String?, type: String?, url: String?) {
+        public init(filters: [String: Any]? = nil, key: String? = nil, title: String? = nil, type: String? = nil, url: String? = nil) {
             self.key = key
 
             self.url = url
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.type = type
 
             self.filters = filters
-        }
-
-        public func duplicate() -> StatsGroupComponent {
-            let dict = self.dictionary!
-            let copy = StatsGroupComponent(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

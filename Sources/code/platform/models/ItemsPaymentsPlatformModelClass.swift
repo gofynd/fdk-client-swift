@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,7 +46,7 @@ public extension PlatformClient {
             case source
         }
 
-        public init(displayName: String?, displayPriority: Int?, id: Int?, isActive: Bool?, logo: String?, mode: String?, paymentIdentifier: String?, source: String?, sourceNickname: String?) {
+        public init(displayName: String? = nil, displayPriority: Int? = nil, id: Int? = nil, isActive: Bool? = nil, logo: String? = nil, mode: String? = nil, paymentIdentifier: String? = nil, source: String? = nil, sourceNickname: String? = nil) {
             self.displayPriority = displayPriority
 
             self.id = id
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.mode = mode
 
             self.source = source
-        }
-
-        public func duplicate() -> ItemsPayments {
-            let dict = self.dictionary!
-            let copy = ItemsPayments(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

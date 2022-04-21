@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case currency
         }
 
-        public init(currency: String?, isAvailable: Bool, name: String, price: Double?, unsupported: Bool?) {
+        public init(currency: String? = nil, isAvailable: Bool, name: String, price: Double? = nil, unsupported: Bool? = nil) {
             self.name = name
 
             self.unsupported = unsupported
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.price = price
 
             self.currency = currency
-        }
-
-        public func duplicate() -> DomainSuggestion {
-            let dict = self.dictionary!
-            let copy = DomainSuggestion(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

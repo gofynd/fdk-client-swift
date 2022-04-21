@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case max
         }
 
-        public init(max: Int?) {
+        public init(max: Int? = nil) {
             self.max = max
-        }
-
-        public func duplicate() -> PaymentAllowValue {
-            let dict = self.dictionary!
-            let copy = PaymentAllowValue(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

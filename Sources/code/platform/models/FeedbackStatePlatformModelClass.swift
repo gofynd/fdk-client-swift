@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case review
         }
 
-        public init(active: Bool?, archive: Bool?, media: String?, qna: Bool?, rating: Bool?, review: Bool?) {
+        public init(active: Bool? = nil, archive: Bool? = nil, media: String? = nil, qna: Bool? = nil, rating: Bool? = nil, review: Bool? = nil) {
             self.active = active
 
             self.archive = archive
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.rating = rating
 
             self.review = review
-        }
-
-        public func duplicate() -> FeedbackState {
-            let dict = self.dictionary!
-            let copy = FeedbackState(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

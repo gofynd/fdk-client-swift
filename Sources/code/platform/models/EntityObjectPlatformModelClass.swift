@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case action
         }
 
-        public init(action: String?, id: String?, type: String?) {
+        public init(action: String? = nil, id: String? = nil, type: String? = nil) {
             self.id = id
 
             self.type = type
 
             self.action = action
-        }
-
-        public func duplicate() -> EntityObject {
-            let dict = self.dictionary!
-            let copy = EntityObject(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

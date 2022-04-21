@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(visibility: Bool? = nil) {
             self.visibility = visibility
-        }
-
-        public func duplicate() -> CommunicationOptinDialogFeature {
-            let dict = self.dictionary!
-            let copy = CommunicationOptinDialogFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

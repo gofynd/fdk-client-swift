@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case apiKey = "api_key"
         }
 
-        public init(apiKey: String?, applicationId: String?) {
+        public init(apiKey: String? = nil, applicationId: String? = nil) {
             self.applicationId = applicationId
 
             self.apiKey = apiKey
-        }
-
-        public func duplicate() -> Android {
-            let dict = self.dictionary!
-            let copy = Android(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

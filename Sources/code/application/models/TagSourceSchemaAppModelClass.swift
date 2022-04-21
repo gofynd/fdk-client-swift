@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.type = type
 
             self.id = id
-        }
-
-        public func duplicate() -> TagSourceSchema {
-            let dict = self.dictionary!
-            let copy = TagSourceSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

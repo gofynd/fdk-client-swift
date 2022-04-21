@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case modifiedOn = "modified_on"
         }
 
-        public init(addedOnStore: String?, createdOn: String?, inventoryUpdatedOn: String?, modifiedOn: String?) {
+        public init(addedOnStore: String? = nil, createdOn: String? = nil, inventoryUpdatedOn: String? = nil, modifiedOn: String? = nil) {
             self.addedOnStore = addedOnStore
 
             self.inventoryUpdatedOn = inventoryUpdatedOn
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.createdOn = createdOn
 
             self.modifiedOn = modifiedOn
-        }
-
-        public func duplicate() -> FailOrderDateMeta {
-            let dict = self.dictionary!
-            let copy = FailOrderDateMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

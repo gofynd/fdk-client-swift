@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case secureUrl = "secure_url"
         }
 
-        public init(secureUrl: String?) {
+        public init(secureUrl: String? = nil) {
             self.secureUrl = secureUrl
-        }
-
-        public func duplicate() -> FeatureImage {
-            let dict = self.dictionary!
-            let copy = FeatureImage(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

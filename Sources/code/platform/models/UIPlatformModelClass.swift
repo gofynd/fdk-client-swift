@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case type
         }
 
-        public init(feedbackQuestion: [String]?, icon: UIIcon?, text: [String]?, type: String?) {
+        public init(feedbackQuestion: [String]? = nil, icon: UIIcon? = nil, text: [String]? = nil, type: String? = nil) {
             self.feedbackQuestion = feedbackQuestion
 
             self.icon = icon
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.text = text
 
             self.type = type
-        }
-
-        public func duplicate() -> UI {
-            let dict = self.dictionary!
-            let copy = UI(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -102,7 +102,7 @@ public extension PlatformClient {
             case properties
         }
 
-        public init(archiveConfig: ArchiveConfig?, attachmentMandate: Bool?, attachmentRegex: String?, bodyContentRegex: String?, contentType: String?, downloadableLink: Bool?, filterBasedOnRecepients: Bool?, filterFilesAfterExtraction: Bool?, folderNameHierarchies: [String]?, host: String?, localDir: String?, password: String?, passwordProtected: Bool?, pcol: String?, properties: [String: String]?, readAllUnreadMails: Bool?, readFromContent: Bool?, recepient: String?, senderAddress: String?, subjectLineRegex: String?, unzip: Bool?, username: String?, zipFormat: String?) {
+        public init(archiveConfig: ArchiveConfig? = nil, attachmentMandate: Bool? = nil, attachmentRegex: String? = nil, bodyContentRegex: String? = nil, contentType: String? = nil, downloadableLink: Bool? = nil, filterBasedOnRecepients: Bool? = nil, filterFilesAfterExtraction: Bool? = nil, folderNameHierarchies: [String]? = nil, host: String? = nil, localDir: String? = nil, password: String? = nil, passwordProtected: Bool? = nil, pcol: String? = nil, properties: [String: String]? = nil, readAllUnreadMails: Bool? = nil, readFromContent: Bool? = nil, recepient: String? = nil, senderAddress: String? = nil, subjectLineRegex: String? = nil, unzip: Bool? = nil, username: String? = nil, zipFormat: String? = nil) {
             self.recepient = recepient
 
             self.host = host
@@ -148,12 +148,6 @@ public extension PlatformClient {
             self.downloadableLink = downloadableLink
 
             self.properties = properties
-        }
-
-        public func duplicate() -> EmailConfig {
-            let dict = self.dictionary!
-            let copy = EmailConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

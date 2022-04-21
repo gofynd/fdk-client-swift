@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.displayName = displayName
 
             self.uid = uid
-        }
-
-        public func duplicate() -> LogisticParents {
-            let dict = self.dictionary!
-            let copy = LogisticParents(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

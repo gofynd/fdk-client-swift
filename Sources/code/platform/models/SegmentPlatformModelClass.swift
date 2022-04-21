@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case enabled
         }
 
-        public init(credentials: SegmentCredentials?, enabled: Bool?) {
+        public init(credentials: SegmentCredentials? = nil, enabled: Bool? = nil) {
             self.credentials = credentials
 
             self.enabled = enabled
-        }
-
-        public func duplicate() -> Segment {
-            let dict = self.dictionary!
-            let copy = Segment(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case updatedAt = "updated_at"
         }
 
-        public init(count: Int?, updatedAt: String?) {
+        public init(count: Int? = nil, updatedAt: String? = nil) {
             self.count = count
 
             self.updatedAt = updatedAt
-        }
-
-        public func duplicate() -> NotAvailable {
-            let dict = self.dictionary!
-            let copy = NotAvailable(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

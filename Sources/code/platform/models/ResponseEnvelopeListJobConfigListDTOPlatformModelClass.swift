@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(error: String?, exception: String?, httpStatus: String?, items: [JobConfigListDTO]?, message: String?, page: Page?, payload: [JobConfigListDTO]?, status: Int?, timestamp: String?, totalTimeTakenInMillis: Int?, traceId: String?) {
+        public init(error: String? = nil, exception: String? = nil, httpStatus: String? = nil, items: [JobConfigListDTO]? = nil, message: String? = nil, page: Page? = nil, payload: [JobConfigListDTO]? = nil, status: Int? = nil, timestamp: String? = nil, totalTimeTakenInMillis: Int? = nil, traceId: String? = nil) {
             self.timestamp = timestamp
 
             self.status = status
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.traceId = traceId
 
             self.page = page
-        }
-
-        public func duplicate() -> ResponseEnvelopeListJobConfigListDTO {
-            let dict = self.dictionary!
-            let copy = ResponseEnvelopeListJobConfigListDTO(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

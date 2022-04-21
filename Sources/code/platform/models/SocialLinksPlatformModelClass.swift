@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,7 +46,7 @@ public extension PlatformClient {
             case blogLink = "blog_link"
         }
 
-        public init(blogLink: BlogLink?, facebook: FacebookLink?, googlePlus: GooglePlusLink?, instagram: InstagramLink?, linkedIn: LinkedInLink?, pinterest: PinterestLink?, twitter: TwitterLink?, vimeo: VimeoLink?, youtube: YoutubeLink?) {
+        public init(blogLink: BlogLink? = nil, facebook: FacebookLink? = nil, googlePlus: GooglePlusLink? = nil, instagram: InstagramLink? = nil, linkedIn: LinkedInLink? = nil, pinterest: PinterestLink? = nil, twitter: TwitterLink? = nil, vimeo: VimeoLink? = nil, youtube: YoutubeLink? = nil) {
             self.facebook = facebook
 
             self.instagram = instagram
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.vimeo = vimeo
 
             self.blogLink = blogLink
-        }
-
-        public func duplicate() -> SocialLinks {
-            let dict = self.dictionary!
-            let copy = SocialLinks(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

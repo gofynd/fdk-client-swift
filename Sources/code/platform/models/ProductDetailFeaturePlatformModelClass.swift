@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case requestProduct = "request_product"
         }
 
-        public init(requestProduct: Bool?, sellerSelection: Bool?, similar: [String]?, updateProductMeta: Bool?) {
+        public init(requestProduct: Bool? = nil, sellerSelection: Bool? = nil, similar: [String]? = nil, updateProductMeta: Bool? = nil) {
             self.similar = similar
 
             self.sellerSelection = sellerSelection
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.updateProductMeta = updateProductMeta
 
             self.requestProduct = requestProduct
-        }
-
-        public func duplicate() -> ProductDetailFeature {
-            let dict = self.dictionary!
-            let copy = ProductDetailFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

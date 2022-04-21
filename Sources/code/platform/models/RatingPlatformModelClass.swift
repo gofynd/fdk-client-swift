@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case ui
         }
 
-        public init(attributes: [Attribute]?, attributesSlugs: [String]?, ui: UI?) {
+        public init(attributes: [Attribute]? = nil, attributesSlugs: [String]? = nil, ui: UI? = nil) {
             self.attributes = attributes
 
             self.attributesSlugs = attributesSlugs
 
             self.ui = ui
-        }
-
-        public func duplicate() -> Rating {
-            let dict = self.dictionary!
-            let copy = Rating(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case start
         }
 
-        public init(end: Double?, start: Double?) {
+        public init(end: Double? = nil, start: Double? = nil) {
             self.end = end
 
             self.start = start
-        }
-
-        public func duplicate() -> ConfigurationBucketPoints {
-            let dict = self.dictionary!
-            let copy = ConfigurationBucketPoints(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

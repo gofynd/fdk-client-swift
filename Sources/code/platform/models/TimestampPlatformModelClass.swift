@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case max
         }
 
-        public init(max: String?, min: String?) {
+        public init(max: String? = nil, min: String? = nil) {
             self.min = min
 
             self.max = max
-        }
-
-        public func duplicate() -> Timestamp {
-            let dict = self.dictionary!
-            let copy = Timestamp(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

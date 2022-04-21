@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case uid
         }
 
-        public init(message: String?, uid: Int?) {
+        public init(message: String? = nil, uid: Int? = nil) {
             self.message = message
 
             self.uid = uid
-        }
-
-        public func duplicate() -> CategoryCreateResponse {
-            let dict = self.dictionary!
-            let copy = CategoryCreateResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

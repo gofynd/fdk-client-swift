@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.exactUrl = exactUrl
 
             self.query = query
-        }
-
-        public func duplicate() -> AvailablePageRoutePredicate {
-            let dict = self.dictionary!
-            let copy = AvailablePageRoutePredicate(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

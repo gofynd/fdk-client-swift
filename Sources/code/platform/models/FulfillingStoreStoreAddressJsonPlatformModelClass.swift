@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -82,7 +82,7 @@ public extension PlatformClient {
             case addressCategory = "address_category"
         }
 
-        public init(address1: String?, address2: String?, addressCategory: String?, addressType: String?, area: String?, city: String?, contactPerson: String?, country: String?, createdAt: String?, email: String?, landmark: String?, latitude: Double?, longitude: Double?, phone: String?, pincode: String?, state: String?, updatedAt: String?, version: String?) {
+        public init(address1: String? = nil, address2: String? = nil, addressCategory: String? = nil, addressType: String? = nil, area: String? = nil, city: String? = nil, contactPerson: String? = nil, country: String? = nil, createdAt: String? = nil, email: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, updatedAt: String? = nil, version: String? = nil) {
             self.address2 = address2
 
             self.area = area
@@ -118,12 +118,6 @@ public extension PlatformClient {
             self.updatedAt = updatedAt
 
             self.addressCategory = addressCategory
-        }
-
-        public func duplicate() -> FulfillingStoreStoreAddressJson {
-            let dict = self.dictionary!
-            let copy = FulfillingStoreStoreAddressJson(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

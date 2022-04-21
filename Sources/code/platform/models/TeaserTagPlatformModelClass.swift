@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case url
         }
 
-        public init(tag: String?, url: String?) {
+        public init(tag: String? = nil, url: String? = nil) {
             self.tag = tag
 
             self.url = url
-        }
-
-        public func duplicate() -> TeaserTag {
-            let dict = self.dictionary!
-            let copy = TeaserTag(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

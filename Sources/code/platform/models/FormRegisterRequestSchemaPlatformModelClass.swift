@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case registerToken = "register_token"
         }
 
-        public init(email: String?, firstName: String?, gender: String?, lastName: String?, password: String?, phone: FormRegisterRequestSchemaPhone?, registerToken: String?) {
+        public init(email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, password: String? = nil, phone: FormRegisterRequestSchemaPhone? = nil, registerToken: String? = nil) {
             self.firstName = firstName
 
             self.lastName = lastName
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.phone = phone
 
             self.registerToken = registerToken
-        }
-
-        public func duplicate() -> FormRegisterRequestSchema {
-            let dict = self.dictionary!
-            let copy = FormRegisterRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

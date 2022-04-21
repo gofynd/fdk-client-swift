@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case tags
         }
 
-        public init(id: String?, name: String?, tags: [TagMeta]?) {
+        public init(id: String? = nil, name: String? = nil, tags: [TagMeta]? = nil) {
             self.id = id
 
             self.name = name
 
             self.tags = tags
-        }
-
-        public func duplicate() -> CreatedBy {
-            let dict = self.dictionary!
-            let copy = CreatedBy(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

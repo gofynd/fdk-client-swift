@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case weekday
         }
 
-        public init(closing: LocationTimingSerializer?, open: Bool, opening: LocationTimingSerializer?, weekday: String) {
+        public init(closing: LocationTimingSerializer? = nil, open: Bool, opening: LocationTimingSerializer? = nil, weekday: String) {
             self.closing = closing
 
             self.opening = opening
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.open = open
 
             self.weekday = weekday
-        }
-
-        public func duplicate() -> LocationDayWiseSerializer {
-            let dict = self.dictionary!
-            let copy = LocationDayWiseSerializer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

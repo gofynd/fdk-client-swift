@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case identifier
         }
 
-        public init(identifier: String?) {
+        public init(identifier: String? = nil) {
             self.identifier = identifier
-        }
-
-        public func duplicate() -> CartProductIdentifer {
-            let dict = self.dictionary!
-            let copy = CartProductIdentifer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

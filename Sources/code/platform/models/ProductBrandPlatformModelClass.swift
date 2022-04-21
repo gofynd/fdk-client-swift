@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case action
         }
 
-        public init(action: Action?, logo: Media1?, name: String?, uid: Int?) {
+        public init(action: Action? = nil, logo: Media1? = nil, name: String? = nil, uid: Int? = nil) {
             self.name = name
 
             self.logo = logo
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.uid = uid
 
             self.action = action
-        }
-
-        public func duplicate() -> ProductBrand {
-            let dict = self.dictionary!
-            let copy = ProductBrand(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

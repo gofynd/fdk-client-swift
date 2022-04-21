@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case revenueEngineCoupon = "revenue_engine_coupon"
         }
 
-        public init(googleMap: Bool?, gstInput: Bool?, placingForCustomer: Bool?, revenueEngineCoupon: Bool?, staffSelection: Bool?) {
+        public init(googleMap: Bool? = nil, gstInput: Bool? = nil, placingForCustomer: Bool? = nil, revenueEngineCoupon: Bool? = nil, staffSelection: Bool? = nil) {
             self.gstInput = gstInput
 
             self.staffSelection = staffSelection
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.googleMap = googleMap
 
             self.revenueEngineCoupon = revenueEngineCoupon
-        }
-
-        public func duplicate() -> CartFeature {
-            let dict = self.dictionary!
-            let copy = CartFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

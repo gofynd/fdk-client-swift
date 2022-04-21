@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -51,12 +51,6 @@ public extension ApplicationClient {
             self.country = country
 
             self.addressType = addressType
-        }
-
-        public func duplicate() -> CompanyAboutAddress {
-            let dict = self.dictionary!
-            let copy = CompanyAboutAddress(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

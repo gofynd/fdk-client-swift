@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -66,7 +66,7 @@ public extension PlatformClient {
             case id = "_id"
         }
 
-        public init(applicationId: String, createdOn: CreatedOn?, description: String?, headerImage: String?, inputs: [[String: Any]], loginRequired: Bool, pollForAssignment: PollForAssignment?, priority: Priority, shouldNotify: Bool, slug: String, submitButton: SubmitButton?, successMessage: String?, title: String, id: String) {
+        public init(applicationId: String, createdOn: CreatedOn? = nil, description: String? = nil, headerImage: String? = nil, inputs: [[String: Any]], loginRequired: Bool, pollForAssignment: PollForAssignment? = nil, priority: Priority, shouldNotify: Bool, slug: String, submitButton: SubmitButton? = nil, successMessage: String? = nil, title: String, id: String) {
             self.applicationId = applicationId
 
             self.slug = slug
@@ -94,12 +94,6 @@ public extension PlatformClient {
             self.pollForAssignment = pollForAssignment
 
             self.id = id
-        }
-
-        public func duplicate() -> CustomForm {
-            let dict = self.dictionary!
-            let copy = CustomForm(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

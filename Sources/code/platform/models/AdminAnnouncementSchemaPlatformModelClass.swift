@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             case schedule = "_schedule"
         }
 
-        public init(announcement: String?, app: String?, author: AnnouncementAuthorSchema?, createdAt: String?, editorMeta: EditorMeta?, modifiedAt: String?, pages: [AnnouncementPageSchema]?, platforms: [String]?, title: String?, id: String?, schedule: ScheduleSchema?) {
+        public init(announcement: String? = nil, app: String? = nil, author: AnnouncementAuthorSchema? = nil, createdAt: String? = nil, editorMeta: EditorMeta? = nil, modifiedAt: String? = nil, pages: [AnnouncementPageSchema]? = nil, platforms: [String]? = nil, title: String? = nil, id: String? = nil, schedule: ScheduleSchema? = nil) {
             self.id = id
 
             self.platforms = platforms
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.modifiedAt = modifiedAt
 
             self.schedule = schedule
-        }
-
-        public func duplicate() -> AdminAnnouncementSchema {
-            let dict = self.dictionary!
-            let copy = AdminAnnouncementSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

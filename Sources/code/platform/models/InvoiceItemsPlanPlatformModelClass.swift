@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -86,7 +86,7 @@ public extension PlatformClient {
             case modifiedAt = "modified_at"
         }
 
-        public init(addons: [String]?, amount: Int?, country: String?, createdAt: String?, currency: String?, description: String?, isActive: Bool?, isTrialPlan: Bool?, isVisible: Bool?, modifiedAt: String?, name: String?, planGroup: String?, productSuiteId: String?, recurring: InvoiceItemsPlanRecurring?, tags: [String]?, tagLines: [String]?, trialPeriod: Int?, type: String?, id: String?) {
+        public init(addons: [String]? = nil, amount: Int? = nil, country: String? = nil, createdAt: String? = nil, currency: String? = nil, description: String? = nil, isActive: Bool? = nil, isTrialPlan: Bool? = nil, isVisible: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, planGroup: String? = nil, productSuiteId: String? = nil, recurring: InvoiceItemsPlanRecurring? = nil, tags: [String]? = nil, tagLines: [String]? = nil, trialPeriod: Int? = nil, type: String? = nil, id: String? = nil) {
             self.recurring = recurring
 
             self.isTrialPlan = isTrialPlan
@@ -124,12 +124,6 @@ public extension PlatformClient {
             self.createdAt = createdAt
 
             self.modifiedAt = modifiedAt
-        }
-
-        public func duplicate() -> InvoiceItemsPlan {
-            let dict = self.dictionary!
-            let copy = InvoiceItemsPlan(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

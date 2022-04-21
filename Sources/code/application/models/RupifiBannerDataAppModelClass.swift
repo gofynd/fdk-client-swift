@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.status = status
 
             self.kycUrl = kycUrl
-        }
-
-        public func duplicate() -> RupifiBannerData {
-            let dict = self.dictionary!
-            let copy = RupifiBannerData(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

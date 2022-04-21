@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case amount
         }
 
-        public init(amount: Double?) {
+        public init(amount: Double? = nil) {
             self.amount = amount
-        }
-
-        public func duplicate() -> RewardsRule {
-            let dict = self.dictionary!
-            let copy = RewardsRule(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

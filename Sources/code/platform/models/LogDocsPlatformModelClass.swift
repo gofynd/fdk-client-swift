@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -50,7 +50,7 @@ public extension PlatformClient {
             case logs
         }
 
-        public init(application: String?, company: String?, date: String?, deviceInfo: DeviceInfo?, entity: EntityObj?, location: Location?, logs: [String: Any]?, modifier: Modifier?, sessions: String?, id: String?) {
+        public init(application: String? = nil, company: String? = nil, date: String? = nil, deviceInfo: DeviceInfo? = nil, entity: EntityObj? = nil, location: Location? = nil, logs: [String: Any]? = nil, modifier: Modifier? = nil, sessions: String? = nil, id: String? = nil) {
             self.entity = entity
 
             self.modifier = modifier
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.date = date
 
             self.logs = logs
-        }
-
-        public func duplicate() -> LogDocs {
-            let dict = self.dictionary!
-            let copy = LogDocs(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

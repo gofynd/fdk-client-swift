@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case password
         }
 
-        public init(enabled: Bool?, password: String?, username: String?) {
+        public init(enabled: Bool? = nil, password: String? = nil, username: String? = nil) {
             self.username = username
 
             self.enabled = enabled
 
             self.password = password
-        }
-
-        public func duplicate() -> InvoiceCredSerializer {
-            let dict = self.dictionary!
-            let copy = InvoiceCredSerializer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

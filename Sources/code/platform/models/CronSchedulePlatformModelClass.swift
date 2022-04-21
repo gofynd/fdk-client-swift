@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case duration
         }
 
-        public init(cron: String?, duration: Double?, end: String?, start: String?) {
+        public init(cron: String? = nil, duration: Double? = nil, end: String? = nil, start: String? = nil) {
             self.cron = cron
 
             self.start = start
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.end = end
 
             self.duration = duration
-        }
-
-        public func duplicate() -> CronSchedule {
-            let dict = self.dictionary!
-            let copy = CronSchedule(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

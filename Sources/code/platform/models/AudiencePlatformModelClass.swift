@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -66,7 +66,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(application: String?, createdAt: String?, description: String?, fileUrl: String?, headers: [String]?, isActive: Bool?, name: String?, recordsCount: Int?, slug: String?, tags: [String]?, type: String?, updatedAt: String?, id: String?, v: Int?) {
+        public init(application: String? = nil, createdAt: String? = nil, description: String? = nil, fileUrl: String? = nil, headers: [String]? = nil, isActive: Bool? = nil, name: String? = nil, recordsCount: Int? = nil, slug: String? = nil, tags: [String]? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.description = description
 
             self.tags = tags
@@ -94,12 +94,6 @@ public extension PlatformClient {
             self.slug = slug
 
             self.v = v
-        }
-
-        public func duplicate() -> Audience {
-            let dict = self.dictionary!
-            let copy = Audience(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

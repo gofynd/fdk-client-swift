@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -50,7 +50,7 @@ public extension PlatformClient {
             case id = "_id"
         }
 
-        public init(path: String?, props: [[String: Any]]?, sections: [AvailablePageSchemaSections]?, sectionsMeta: [AvailablePageSectionMetaAttributes]?, seo: AvailablePageSeo?, text: String?, theme: String?, type: String?, value: String?, id: String?) {
+        public init(path: String? = nil, props: [[String: Any]]? = nil, sections: [AvailablePageSchemaSections]? = nil, sectionsMeta: [AvailablePageSectionMetaAttributes]? = nil, seo: AvailablePageSeo? = nil, text: String? = nil, theme: String? = nil, type: String? = nil, value: String? = nil, id: String? = nil) {
             self.value = value
 
             self.text = text
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.props = props
 
             self.id = id
-        }
-
-        public func duplicate() -> AvailablePageSchema {
-            let dict = self.dictionary!
-            let copy = AvailablePageSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case hour
         }
 
-        public init(hour: Int?, minute: Int?) {
+        public init(hour: Int? = nil, minute: Int? = nil) {
             self.minute = minute
 
             self.hour = hour
-        }
-
-        public func duplicate() -> Opening {
-            let dict = self.dictionary!
-            let copy = Opening(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

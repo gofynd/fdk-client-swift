@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case apiKey = "api_key"
         }
 
-        public init(android: Android?, apiKey: String?, applicationId: String?, gcmSenderId: String?, ios: Ios?, projectId: String?) {
+        public init(android: Android? = nil, apiKey: String? = nil, applicationId: String? = nil, gcmSenderId: String? = nil, ios: Ios? = nil, projectId: String? = nil) {
             self.ios = ios
 
             self.android = android
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.applicationId = applicationId
 
             self.apiKey = apiKey
-        }
-
-        public func duplicate() -> Credentials {
-            let dict = self.dictionary!
-            let copy = Credentials(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

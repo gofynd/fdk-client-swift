@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case groups
         }
 
-        public init(groups: [StatGroup]?) {
+        public init(groups: [StatGroup]? = nil) {
             self.groups = groups
-        }
-
-        public func duplicate() -> StatsGroups {
-            let dict = self.dictionary!
-            let copy = StatsGroups(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

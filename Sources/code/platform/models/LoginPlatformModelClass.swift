@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case otp
         }
 
-        public init(otp: Bool?, password: Bool?) {
+        public init(otp: Bool? = nil, password: Bool? = nil) {
             self.password = password
 
             self.otp = otp
-        }
-
-        public func duplicate() -> Login {
-            let dict = self.dictionary!
-            let copy = Login(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

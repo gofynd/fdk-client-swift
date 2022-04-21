@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case enabled
         }
 
-        public init(credentials: FreshchatCredentials?, enabled: Bool?) {
+        public init(credentials: FreshchatCredentials? = nil, enabled: Bool? = nil) {
             self.credentials = credentials
 
             self.enabled = enabled
-        }
-
-        public func duplicate() -> Freshchat {
-            let dict = self.dictionary!
-            let copy = Freshchat(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

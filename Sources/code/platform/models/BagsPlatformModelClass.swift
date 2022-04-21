@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case id
         }
 
-        public init(id: Int?, item: BagItem?) {
+        public init(id: Int? = nil, item: BagItem? = nil) {
             self.item = item
 
             self.id = id
-        }
-
-        public func duplicate() -> Bags {
-            let dict = self.dictionary!
-            let copy = Bags(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

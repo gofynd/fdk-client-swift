@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -16,12 +16,6 @@ public extension PlatformClient {
 
         public init(data: GetZoneDataViewItems) {
             self.data = data
-        }
-
-        public func duplicate() -> GetSingleZoneDataViewResponse {
-            let dict = self.dictionary!
-            let copy = GetSingleZoneDataViewResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

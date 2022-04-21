@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case primary
         }
 
-        public init(gtinType: String, gtinValue: String, primary: Bool?) {
+        public init(gtinType: String, gtinValue: String, primary: Bool? = nil) {
             self.gtinValue = gtinValue
 
             self.gtinType = gtinType
 
             self.primary = primary
-        }
-
-        public func duplicate() -> GTIN {
-            let dict = self.dictionary!
-            let copy = GTIN(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

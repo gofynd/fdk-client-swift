@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case link
         }
 
-        public init(icon: String?, link: String?, title: String?) {
+        public init(icon: String? = nil, link: String? = nil, title: String? = nil) {
             self.title = title
 
             self.icon = icon
 
             self.link = link
-        }
-
-        public func duplicate() -> YoutubeLink {
-            let dict = self.dictionary!
-            let copy = YoutubeLink(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

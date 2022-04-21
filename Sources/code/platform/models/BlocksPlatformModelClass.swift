@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case props
         }
 
-        public init(name: String?, props: [BlocksProps]?, type: String?) {
+        public init(name: String? = nil, props: [BlocksProps]? = nil, type: String? = nil) {
             self.type = type
 
             self.name = name
 
             self.props = props
-        }
-
-        public func duplicate() -> Blocks {
-            let dict = self.dictionary!
-            let copy = Blocks(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

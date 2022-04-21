@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case isDefault = "is_default"
         }
 
-        public init(height: Int?, isDefault: Bool?, length: Int?, unit: String?, width: Int?) {
+        public init(height: Int? = nil, isDefault: Bool? = nil, length: Int? = nil, unit: String? = nil, width: Int? = nil) {
             self.height = height
 
             self.width = width
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.length = length
 
             self.isDefault = isDefault
-        }
-
-        public func duplicate() -> Dimension {
-            let dict = self.dictionary!
-            let copy = Dimension(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

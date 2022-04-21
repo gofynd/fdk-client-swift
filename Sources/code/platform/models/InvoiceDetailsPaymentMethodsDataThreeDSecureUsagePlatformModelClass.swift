@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case supported
         }
 
-        public init(supported: Bool?) {
+        public init(supported: Bool? = nil) {
             self.supported = supported
-        }
-
-        public func duplicate() -> InvoiceDetailsPaymentMethodsDataThreeDSecureUsage {
-            let dict = self.dictionary!
-            let copy = InvoiceDetailsPaymentMethodsDataThreeDSecureUsage(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

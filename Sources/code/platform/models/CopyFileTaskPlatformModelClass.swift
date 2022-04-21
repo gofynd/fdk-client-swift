@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             case processedOn = "processed_on"
         }
 
-        public init(attemptsMade: Int, data: BulkRequest, delay: Int, finishedOn: Int, id: String, name: String, opts: Opts, processedOn: Int, progress: Int, stacktrace: [String]?, timestamp: Int) {
+        public init(attemptsMade: Int, data: BulkRequest, delay: Int, finishedOn: Int, id: String, name: String, opts: Opts, processedOn: Int, progress: Int, stacktrace: [String]? = nil, timestamp: Int) {
             self.id = id
 
             self.name = name
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.finishedOn = finishedOn
 
             self.processedOn = processedOn
-        }
-
-        public func duplicate() -> CopyFileTask {
-            let dict = self.dictionary!
-            let copy = CopyFileTask(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

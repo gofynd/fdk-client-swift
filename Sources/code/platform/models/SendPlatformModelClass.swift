@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case processed
         }
 
-        public init(processed: Bool?, raw: Bool?) {
+        public init(processed: Bool? = nil, raw: Bool? = nil) {
             self.raw = raw
 
             self.processed = processed
-        }
-
-        public func duplicate() -> Send {
-            let dict = self.dictionary!
-            let copy = Send(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

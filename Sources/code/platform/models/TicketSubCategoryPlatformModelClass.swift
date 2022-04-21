@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.key = key
 
             self.display = display
-        }
-
-        public func duplicate() -> TicketSubCategory {
-            let dict = self.dictionary!
-            let copy = TicketSubCategory(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

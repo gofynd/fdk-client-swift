@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case firstName = "first_name"
         }
 
-        public init(email: String?, firstName: String?, fullName: String?, id: String?, image: String?, lastName: String?) {
+        public init(email: String? = nil, firstName: String? = nil, fullName: String? = nil, id: String? = nil, image: String? = nil, lastName: String? = nil) {
             self.lastName = lastName
 
             self.image = image
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.fullName = fullName
 
             self.firstName = firstName
-        }
-
-        public func duplicate() -> OAuthRequestSchemaProfile {
-            let dict = self.dictionary!
-            let copy = OAuthRequestSchemaProfile(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

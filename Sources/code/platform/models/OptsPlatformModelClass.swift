@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case delay
         }
 
-        public init(attempts: Int?, delay: Int?, timestamp: Int?) {
+        public init(attempts: Int? = nil, delay: Int? = nil, timestamp: Int? = nil) {
             self.attempts = attempts
 
             self.timestamp = timestamp
 
             self.delay = delay
-        }
-
-        public func duplicate() -> Opts {
-            let dict = self.dictionary!
-            let copy = Opts(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

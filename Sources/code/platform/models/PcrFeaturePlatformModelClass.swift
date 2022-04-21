@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case staffSelection = "staff_selection"
         }
 
-        public init(staffSelection: Bool?) {
+        public init(staffSelection: Bool? = nil) {
             self.staffSelection = staffSelection
-        }
-
-        public func duplicate() -> PcrFeature {
-            let dict = self.dictionary!
-            let copy = PcrFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

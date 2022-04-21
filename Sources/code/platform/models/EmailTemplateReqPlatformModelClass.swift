@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -62,7 +62,7 @@ public extension PlatformClient {
             case priority
         }
 
-        public init(attachments: [[String: Any]]?, description: String?, headers: [EmailTemplateHeaders]?, html: TemplateAndType?, keys: EmailTemplateKeys?, name: String?, priority: String?, replyTo: String?, staticBcc: [String]?, staticCc: [String]?, staticTo: [String]?, subject: TemplateAndType?, text: TemplateAndType?) {
+        public init(attachments: [[String: Any]]? = nil, description: String? = nil, headers: [EmailTemplateHeaders]? = nil, html: TemplateAndType? = nil, keys: EmailTemplateKeys? = nil, name: String? = nil, priority: String? = nil, replyTo: String? = nil, staticBcc: [String]? = nil, staticCc: [String]? = nil, staticTo: [String]? = nil, subject: TemplateAndType? = nil, text: TemplateAndType? = nil) {
             self.name = name
 
             self.description = description
@@ -88,12 +88,6 @@ public extension PlatformClient {
             self.attachments = attachments
 
             self.priority = priority
-        }
-
-        public func duplicate() -> EmailTemplateReq {
-            let dict = self.dictionary!
-            let copy = EmailTemplateReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

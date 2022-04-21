@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case page
         }
 
-        public init(page: String?, settings: [String: Any]?) {
+        public init(page: String? = nil, settings: [String: Any]? = nil) {
             self.settings = settings
 
             self.page = page
-        }
-
-        public func duplicate() -> ConfigPage {
-            let dict = self.dictionary!
-            let copy = ConfigPage(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -10,48 +10,42 @@ public extension PlatformClient {
     class DisplayMeta: Codable {
         public var auto: DisplayMetaDict?
 
-        public var remove: DisplayMetaDict?
+        public var description: String?
 
-        public var subtitle: String?
+        public var remove: DisplayMetaDict?
 
         public var title: String?
 
-        public var description: String?
+        public var subtitle: String?
 
         public var apply: DisplayMetaDict?
 
         public enum CodingKeys: String, CodingKey {
             case auto
 
-            case remove
+            case description
 
-            case subtitle
+            case remove
 
             case title
 
-            case description
+            case subtitle
 
             case apply
         }
 
-        public init(apply: DisplayMetaDict?, auto: DisplayMetaDict?, description: String?, remove: DisplayMetaDict?, subtitle: String?, title: String?) {
+        public init(apply: DisplayMetaDict? = nil, auto: DisplayMetaDict? = nil, description: String? = nil, remove: DisplayMetaDict? = nil, subtitle: String? = nil, title: String? = nil) {
             self.auto = auto
-
-            self.remove = remove
-
-            self.subtitle = subtitle
-
-            self.title = title
 
             self.description = description
 
-            self.apply = apply
-        }
+            self.remove = remove
 
-        public func duplicate() -> DisplayMeta {
-            let dict = self.dictionary!
-            let copy = DisplayMeta(dictionary: dict)!
-            return copy
+            self.title = title
+
+            self.subtitle = subtitle
+
+            self.apply = apply
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,6 +53,14 @@ public extension PlatformClient {
 
             do {
                 auto = try container.decode(DisplayMetaDict.self, forKey: .auto)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,14 +76,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                subtitle = try container.decode(String.self, forKey: .subtitle)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -90,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                subtitle = try container.decode(String.self, forKey: .subtitle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,13 +105,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(auto, forKey: .auto)
 
-            try? container.encodeIfPresent(remove, forKey: .remove)
+            try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+            try? container.encodeIfPresent(remove, forKey: .remove)
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
             try? container.encodeIfPresent(apply, forKey: .apply)
         }

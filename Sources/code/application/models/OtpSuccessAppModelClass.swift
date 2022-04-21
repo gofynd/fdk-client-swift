@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -57,12 +57,6 @@ public extension ApplicationClient {
             self.mobile = mobile
 
             self.countryCode = countryCode
-        }
-
-        public func duplicate() -> OtpSuccess {
-            let dict = self.dictionary!
-            let copy = OtpSuccess(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

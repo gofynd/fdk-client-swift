@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.size = size
 
             self.type = type
-        }
-
-        public func duplicate() -> ReviewMediaMeta {
-            let dict = self.dictionary!
-            let copy = ReviewMediaMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

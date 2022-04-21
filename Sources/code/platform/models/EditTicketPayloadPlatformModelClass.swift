@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             case tags
         }
 
-        public init(assignedTo: AgentChangePayload?, category: String?, content: TicketContent?, priority: PriorityEnum?, source: String?, status: String?, subCategory: String?, tags: [String]?) {
+        public init(assignedTo: AgentChangePayload? = nil, category: String? = nil, content: TicketContent? = nil, priority: PriorityEnum? = nil, source: String? = nil, status: String? = nil, subCategory: String? = nil, tags: [String]? = nil) {
             self.content = content
 
             self.category = category
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.assignedTo = assignedTo
 
             self.tags = tags
-        }
-
-        public func duplicate() -> EditTicketPayload {
-            let dict = self.dictionary!
-            let copy = EditTicketPayload(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

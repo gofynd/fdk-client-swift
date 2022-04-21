@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.shipmentIds = shipmentIds
 
             self.expectedStatus = expectedStatus
-        }
-
-        public func duplicate() -> UpdateProcessShipmenstRequestBody {
-            let dict = self.dictionary!
-            let copy = UpdateProcessShipmenstRequestBody(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

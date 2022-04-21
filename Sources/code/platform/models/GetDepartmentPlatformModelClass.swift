@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             case slug
         }
 
-        public init(createdBy: UserSerializer?, createdOn: String?, isActive: Bool?, itemType: String?, logo: String?, modifiedBy: UserSerializer?, modifiedOn: String?, name: String?, pageNo: Int?, pageSize: Int?, priorityOrder: Int?, search: String?, slug: String?, synonyms: [String]?, uid: Int?) {
+        public init(createdBy: UserSerializer? = nil, createdOn: String? = nil, isActive: Bool? = nil, itemType: String? = nil, logo: String? = nil, modifiedBy: UserSerializer? = nil, modifiedOn: String? = nil, name: String? = nil, pageNo: Int? = nil, pageSize: Int? = nil, priorityOrder: Int? = nil, search: String? = nil, slug: String? = nil, synonyms: [String]? = nil, uid: Int? = nil) {
             self.priorityOrder = priorityOrder
 
             self.modifiedBy = modifiedBy
@@ -100,12 +100,6 @@ public extension PlatformClient {
             self.search = search
 
             self.slug = slug
-        }
-
-        public func duplicate() -> GetDepartment {
-            let dict = self.dictionary!
-            let copy = GetDepartment(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case redirectTo = "redirect_to"
         }
 
-        public init(redirectFrom: String?, redirectTo: String?) {
+        public init(redirectFrom: String? = nil, redirectTo: String? = nil) {
             self.redirectFrom = redirectFrom
 
             self.redirectTo = redirectTo
-        }
-
-        public func duplicate() -> RedirectionSchema {
-            let dict = self.dictionary!
-            let copy = RedirectionSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

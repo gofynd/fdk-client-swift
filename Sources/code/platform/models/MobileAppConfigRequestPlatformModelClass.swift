@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case isActive = "is_active"
         }
 
-        public init(appName: String?, isActive: Bool?, landingImage: LandingImage?, splashImage: SplashImage?) {
+        public init(appName: String? = nil, isActive: Bool? = nil, landingImage: LandingImage? = nil, splashImage: SplashImage? = nil) {
             self.appName = appName
 
             self.landingImage = landingImage
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.splashImage = splashImage
 
             self.isActive = isActive
-        }
-
-        public func duplicate() -> MobileAppConfigRequest {
-            let dict = self.dictionary!
-            let copy = MobileAppConfigRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

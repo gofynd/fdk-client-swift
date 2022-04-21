@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.token = token
 
             self.shareUrl = shareUrl
-        }
-
-        public func duplicate() -> GetShareCartLinkResponse {
-            let dict = self.dictionary!
-            let copy = GetShareCartLinkResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

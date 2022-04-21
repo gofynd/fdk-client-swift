@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case sku
         }
 
-        public init(sku: String?) {
+        public init(sku: String? = nil) {
             self.sku = sku
-        }
-
-        public func duplicate() -> TatacliqLuxury {
-            let dict = self.dictionary!
-            let copy = TatacliqLuxury(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

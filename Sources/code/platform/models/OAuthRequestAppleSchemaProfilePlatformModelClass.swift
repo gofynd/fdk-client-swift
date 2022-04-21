@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case firstName = "first_name"
         }
 
-        public init(firstName: String?, fullName: String?, lastName: String?) {
+        public init(firstName: String? = nil, fullName: String? = nil, lastName: String? = nil) {
             self.lastName = lastName
 
             self.fullName = fullName
 
             self.firstName = firstName
-        }
-
-        public func duplicate() -> OAuthRequestAppleSchemaProfile {
-            let dict = self.dictionary!
-            let copy = OAuthRequestAppleSchemaProfile(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

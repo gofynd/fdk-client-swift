@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case slug
         }
 
-        public init(action: Action?, banners: ImageUrls?, childs: [Child]?, name: String?, slug: String?, uid: Int?) {
+        public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [Child]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
             self.banners = banners
 
             self.uid = uid
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.name = name
 
             self.slug = slug
-        }
-
-        public func duplicate() -> CategoryItems {
-            let dict = self.dictionary!
-            let copy = CategoryItems(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

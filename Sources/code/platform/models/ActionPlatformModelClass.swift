@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case type
         }
 
-        public init(page: ActionPage?, popup: ActionPage?, type: String?) {
+        public init(page: ActionPage? = nil, popup: ActionPage? = nil, type: String? = nil) {
             self.page = page
 
             self.popup = popup
 
             self.type = type
-        }
-
-        public func duplicate() -> Action {
-            let dict = self.dictionary!
-            let copy = Action(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

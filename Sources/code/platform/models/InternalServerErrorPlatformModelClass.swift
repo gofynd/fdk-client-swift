@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case code
         }
 
-        public init(code: String?, message: String?) {
+        public init(code: String? = nil, message: String? = nil) {
             self.message = message
 
             self.code = code
-        }
-
-        public func duplicate() -> InternalServerError {
-            let dict = self.dictionary!
-            let copy = InternalServerError(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

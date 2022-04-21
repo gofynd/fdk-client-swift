@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [UserSchema]?, page: PaginationSchema?) {
+        public init(items: [UserSchema]? = nil, page: PaginationSchema? = nil) {
             self.items = items
 
             self.page = page
-        }
-
-        public func duplicate() -> CustomerListResponseSchema {
-            let dict = self.dictionary!
-            let copy = CustomerListResponseSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

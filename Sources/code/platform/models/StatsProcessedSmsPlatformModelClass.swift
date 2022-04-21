@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case suppressed
         }
 
-        public init(failed: Int?, success: Int?, suppressed: Int?) {
+        public init(failed: Int? = nil, success: Int? = nil, suppressed: Int? = nil) {
             self.success = success
 
             self.failed = failed
 
             self.suppressed = suppressed
-        }
-
-        public func duplicate() -> StatsProcessedSms {
-            let dict = self.dictionary!
-            let copy = StatsProcessedSms(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

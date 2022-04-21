@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case returnUrl = "return_url"
         }
 
-        public init(isTest: Bool?, lineItems: [ChargeLineItem], name: String, returnUrl: String, trialDays: Int?) {
+        public init(isTest: Bool? = nil, lineItems: [ChargeLineItem], name: String, returnUrl: String, trialDays: Int? = nil) {
             self.name = name
 
             self.trialDays = trialDays
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.isTest = isTest
 
             self.returnUrl = returnUrl
-        }
-
-        public func duplicate() -> CreateSubscriptionCharge {
-            let dict = self.dictionary!
-            let copy = CreateSubscriptionCharge(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

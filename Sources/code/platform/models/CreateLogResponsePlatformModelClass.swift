@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case internalMessage = "internal_message"
         }
 
-        public init(internalMessage: String?, message: String?) {
+        public init(internalMessage: String? = nil, message: String? = nil) {
             self.message = message
 
             self.internalMessage = internalMessage
-        }
-
-        public func duplicate() -> CreateLogResponse {
-            let dict = self.dictionary!
-            let copy = CreateLogResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

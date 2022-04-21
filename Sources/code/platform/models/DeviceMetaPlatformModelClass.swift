@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case platform
         }
 
-        public init(appVersion: String?, platform: String?) {
+        public init(appVersion: String? = nil, platform: String? = nil) {
             self.appVersion = appVersion
 
             self.platform = platform
-        }
-
-        public func duplicate() -> DeviceMeta {
-            let dict = self.dictionary!
-            let copy = DeviceMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

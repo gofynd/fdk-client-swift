@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case createdDate = "created_date"
         }
 
-        public init(createdDate: String?, eventId: Int?, id: Int?, subscriberId: Int?) {
+        public init(createdDate: String? = nil, eventId: Int? = nil, id: Int? = nil, subscriberId: Int? = nil) {
             self.id = id
 
             self.subscriberId = subscriberId
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.eventId = eventId
 
             self.createdDate = createdDate
-        }
-
-        public func duplicate() -> SubscriberEvent {
-            let dict = self.dictionary!
-            let copy = SubscriberEvent(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

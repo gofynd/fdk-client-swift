@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             case message
         }
 
-        public init(errorType: String?, filename: [String]?, jobCode: String?, jobId: Int?, message: String?, processedOn: String?, status: String?, totalAddedCount: Int?, totalInitialCount: Int?, totalSuppressedCount: Int?, totalUpdatedCount: Int?) {
+        public init(errorType: String? = nil, filename: [String]? = nil, jobCode: String? = nil, jobId: Int? = nil, message: String? = nil, processedOn: String? = nil, status: String? = nil, totalAddedCount: Int? = nil, totalInitialCount: Int? = nil, totalSuppressedCount: Int? = nil, totalUpdatedCount: Int? = nil) {
             self.totalAddedCount = totalAddedCount
 
             self.totalUpdatedCount = totalUpdatedCount
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.errorType = errorType
 
             self.message = message
-        }
-
-        public func duplicate() -> JobHistoryDto {
-            let dict = self.dictionary!
-            let copy = JobHistoryDto(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

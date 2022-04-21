@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -62,7 +62,7 @@ public extension PlatformClient {
             case title
         }
 
-        public init(application: String?, author: Author?, content: [[String: Any]]?, featureImage: Asset?, orientation: String?, published: Bool?, readingTime: String?, seo: SEO?, slug: String?, tags: [String]?, title: String?, customJson: [String: Any]?, schedule: CronSchedule?) {
+        public init(application: String? = nil, author: Author? = nil, content: [[String: Any]]? = nil, featureImage: Asset? = nil, orientation: String? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, schedule: CronSchedule? = nil) {
             self.schedule = schedule
 
             self.application = application
@@ -88,12 +88,6 @@ public extension PlatformClient {
             self.seo = seo
 
             self.title = title
-        }
-
-        public func duplicate() -> PageRequest {
-            let dict = self.dictionary!
-            let copy = PageRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

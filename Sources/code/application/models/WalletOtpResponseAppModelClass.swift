@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.requestId = requestId
 
             self.isVerifiedFlag = isVerifiedFlag
-        }
-
-        public func duplicate() -> WalletOtpResponse {
-            let dict = self.dictionary!
-            let copy = WalletOtpResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

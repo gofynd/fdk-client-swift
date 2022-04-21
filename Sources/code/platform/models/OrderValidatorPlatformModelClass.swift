@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case browserScript = "browser_script"
         }
 
-        public init(browserScript: String?, jsonSchema: [JsonSchema]?) {
+        public init(browserScript: String? = nil, jsonSchema: [JsonSchema]? = nil) {
             self.jsonSchema = jsonSchema
 
             self.browserScript = browserScript
-        }
-
-        public func duplicate() -> OrderValidator {
-            let dict = self.dictionary!
-            let copy = OrderValidator(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

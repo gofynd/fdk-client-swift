@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,7 +46,7 @@ public extension PlatformClient {
             case eventId = "event_id"
         }
 
-        public init(association: Association?, authMeta: AuthMeta?, customHeaders: [String: Any]?, emailId: String?, eventId: [Int]?, id: Int?, name: String?, status: SubscriberStatus?, webhookUrl: String?) {
+        public init(association: Association? = nil, authMeta: AuthMeta? = nil, customHeaders: [String: Any]? = nil, emailId: String? = nil, eventId: [Int]? = nil, id: Int? = nil, name: String? = nil, status: SubscriberStatus? = nil, webhookUrl: String? = nil) {
             self.id = id
 
             self.name = name
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.authMeta = authMeta
 
             self.eventId = eventId
-        }
-
-        public func duplicate() -> SubscriberConfig {
-            let dict = self.dictionary!
-            let copy = SubscriberConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

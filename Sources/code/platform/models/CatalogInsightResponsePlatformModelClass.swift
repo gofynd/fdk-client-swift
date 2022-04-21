@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case brandDistribution = "brand_distribution"
         }
 
-        public init(brandDistribution: CatalogInsightBrand?, item: CatalogInsightItem?) {
+        public init(brandDistribution: CatalogInsightBrand? = nil, item: CatalogInsightItem? = nil) {
             self.item = item
 
             self.brandDistribution = brandDistribution
-        }
-
-        public func duplicate() -> CatalogInsightResponse {
-            let dict = self.dictionary!
-            let copy = CatalogInsightResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

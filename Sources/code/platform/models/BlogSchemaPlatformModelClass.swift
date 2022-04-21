@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             case dateMeta = "date_meta"
         }
 
-        public init(application: String?, archived: Bool?, author: Author?, content: [ResourceContent]?, dateMeta: DateMeta?, featureImage: Asset?, published: Bool?, readingTime: String?, seo: SEO?, slug: String?, tags: [String]?, title: String?, customJson: [String: Any]?, id: String?, schedule: CronSchedule?) {
+        public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: CronSchedule? = nil) {
             self.id = id
 
             self.customJson = customJson
@@ -100,12 +100,6 @@ public extension PlatformClient {
             self.title = title
 
             self.dateMeta = dateMeta
-        }
-
-        public func duplicate() -> BlogSchema {
-            let dict = self.dictionary!
-            let copy = BlogSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

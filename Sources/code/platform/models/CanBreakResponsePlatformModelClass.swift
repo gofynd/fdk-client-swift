@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.status = status
 
             self.validActions = validActions
-        }
-
-        public func duplicate() -> CanBreakResponse {
-            let dict = self.dictionary!
-            let copy = CanBreakResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

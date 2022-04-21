@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -50,7 +50,7 @@ public extension PlatformClient {
             case navigation
         }
 
-        public init(application: String?, createdBy: CreatedBySchema?, dateMeta: DateMeta?, name: String?, navigation: NavigationReference?, orientation: String?, platform: String?, position: String?, slug: String?, id: String?) {
+        public init(application: String? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, name: String? = nil, navigation: NavigationReference? = nil, orientation: String? = nil, platform: String? = nil, position: String? = nil, slug: String? = nil, id: String? = nil) {
             self.name = name
 
             self.slug = slug
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.platform = platform
 
             self.navigation = navigation
-        }
-
-        public func duplicate() -> Navigation {
-            let dict = self.dictionary!
-            let copy = Navigation(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

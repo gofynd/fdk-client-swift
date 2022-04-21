@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -51,12 +51,6 @@ public extension ApplicationClient {
             self.force = force
 
             self.captchaCode = captchaCode
-        }
-
-        public func duplicate() -> SendMobileOtpRequestSchema {
-            let dict = self.dictionary!
-            let copy = SendMobileOtpRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -66,7 +66,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(app: String?, cart: CartFeature?, common: CommonFeature?, createdAt: String?, homePage: HomePageFeature?, landingPage: LandingPageFeature?, order: OrderFeature?, pcr: PcrFeature?, productDetail: ProductDetailFeature?, qr: QrFeature?, registrationPage: RegistrationPageFeature?, updatedAt: String?, id: String?, v: Int?) {
+        public init(app: String? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.productDetail = productDetail
 
             self.landingPage = landingPage
@@ -94,12 +94,6 @@ public extension PlatformClient {
             self.updatedAt = updatedAt
 
             self.v = v
-        }
-
-        public func duplicate() -> AppFeature {
-            let dict = self.dictionary!
-            let copy = AppFeature(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

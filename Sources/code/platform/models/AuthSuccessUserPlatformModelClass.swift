@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case emails
         }
 
-        public init(active: Bool?, debug: AuthSuccessUserDebug?, emails: AuthSuccessUserEmails?, firstName: String?, lastName: String?) {
+        public init(active: Bool? = nil, debug: AuthSuccessUserDebug? = nil, emails: AuthSuccessUserEmails? = nil, firstName: String? = nil, lastName: String? = nil) {
             self.firstName = firstName
 
             self.lastName = lastName
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.active = active
 
             self.emails = emails
-        }
-
-        public func duplicate() -> AuthSuccessUser {
-            let dict = self.dictionary!
-            let copy = AuthSuccessUser(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case domain
         }
 
-        public init(domain: DomainAdd?) {
+        public init(domain: DomainAdd? = nil) {
             self.domain = domain
-        }
-
-        public func duplicate() -> DomainAddRequest {
-            let dict = self.dictionary!
-            let copy = DomainAddRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

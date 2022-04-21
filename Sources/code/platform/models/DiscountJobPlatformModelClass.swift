@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -82,7 +82,7 @@ public extension PlatformClient {
             case meta
         }
 
-        public init(appIds: [String]?, brandIds: [Int]?, companyId: Int, createdBy: UserDetails, createdOn: String, discountLevel: String?, discountType: String?, filePath: String?, isActive: Bool, jobType: String?, meta: [String: Any]?, modifiedBy: UserDetails, modifiedOn: String, name: String, storeIds: [Int]?, validity: ValidityObject, value: Int?, id: String) {
+        public init(appIds: [String]? = nil, brandIds: [Int]? = nil, companyId: Int, createdBy: UserDetails, createdOn: String, discountLevel: String? = nil, discountType: String? = nil, filePath: String? = nil, isActive: Bool, jobType: String? = nil, meta: [String: Any]? = nil, modifiedBy: UserDetails, modifiedOn: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil, id: String) {
             self.id = id
 
             self.name = name
@@ -118,12 +118,6 @@ public extension PlatformClient {
             self.modifiedBy = modifiedBy
 
             self.meta = meta
-        }
-
-        public func duplicate() -> DiscountJob {
-            let dict = self.dictionary!
-            let copy = DiscountJob(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

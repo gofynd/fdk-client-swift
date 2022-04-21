@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case timestamp
         }
 
-        public init(timestamp: Timestamp?) {
+        public init(timestamp: Timestamp? = nil) {
             self.timestamp = timestamp
-        }
-
-        public func duplicate() -> Promise {
-            let dict = self.dictionary!
-            let copy = Promise(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

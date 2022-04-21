@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case closing
         }
 
-        public init(closing: Closing?, open: Bool?, opening: Opening?, weekday: String?) {
+        public init(closing: Closing? = nil, open: Bool? = nil, opening: Opening? = nil, weekday: String? = nil) {
             self.opening = opening
 
             self.weekday = weekday
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.open = open
 
             self.closing = closing
-        }
-
-        public func duplicate() -> Timing {
-            let dict = self.dictionary!
-            let copy = Timing(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

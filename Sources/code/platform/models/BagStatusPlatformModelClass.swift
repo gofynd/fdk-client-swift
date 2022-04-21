@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case bagStateMapper = "bag_state_mapper"
         }
 
-        public init(bagStateMapper: BagStatusBagStateMapper?, stateType: String?, status: String?, updatedAt: String?) {
+        public init(bagStateMapper: BagStatusBagStateMapper? = nil, stateType: String? = nil, status: String? = nil, updatedAt: String? = nil) {
             self.status = status
 
             self.stateType = stateType
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.updatedAt = updatedAt
 
             self.bagStateMapper = bagStateMapper
-        }
-
-        public func duplicate() -> BagStatus {
-            let dict = self.dictionary!
-            let copy = BagStatus(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.pdp = pdp
 
             self.couponList = couponList
-        }
-
-        public func duplicate() -> Visibility {
-            let dict = self.dictionary!
-            let copy = Visibility(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

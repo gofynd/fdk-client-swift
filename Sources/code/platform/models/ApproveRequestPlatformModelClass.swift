@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case reason
         }
 
-        public init(approve: Bool?, entityType: String?, id: String, reason: String?) {
+        public init(approve: Bool? = nil, entityType: String? = nil, id: String, reason: String? = nil) {
             self.approve = approve
 
             self.entityType = entityType
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.id = id
 
             self.reason = reason
-        }
-
-        public func duplicate() -> ApproveRequest {
-            let dict = self.dictionary!
-            let copy = ApproveRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

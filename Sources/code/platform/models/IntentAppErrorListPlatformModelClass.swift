@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -8,33 +8,27 @@ public extension PlatformClient {
      */
 
     class IntentAppErrorList: Codable {
-        public var packageName: String?
-
         public var code: String?
 
+        public var packageName: String?
+
         public enum CodingKeys: String, CodingKey {
-            case packageName = "package_name"
-
             case code
+
+            case packageName = "package_name"
         }
 
-        public init(code: String?, packageName: String?) {
-            self.packageName = packageName
-
+        public init(code: String? = nil, packageName: String? = nil) {
             self.code = code
-        }
 
-        public func duplicate() -> IntentAppErrorList {
-            let dict = self.dictionary!
-            let copy = IntentAppErrorList(dictionary: dict)!
-            return copy
+            self.packageName = packageName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                packageName = try container.decode(String.self, forKey: .packageName)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                packageName = try container.decode(String.self, forKey: .packageName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(packageName, forKey: .packageName)
-
             try? container.encode(code, forKey: .code)
+
+            try? container.encode(packageName, forKey: .packageName)
         }
     }
 }

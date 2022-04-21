@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case jobId = "job_id"
         }
 
-        public init(jobId: String?) {
+        public init(jobId: String? = nil) {
             self.jobId = jobId
-        }
-
-        public func duplicate() -> TriggerJobRequest {
-            let dict = self.dictionary!
-            let copy = TriggerJobRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

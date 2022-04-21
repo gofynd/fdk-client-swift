@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -62,7 +62,7 @@ public extension PlatformClient {
             case tag
         }
 
-        public init(active: Bool?, brandId: Int?, companyId: Int?, createdBy: [String: Any]?, createdOn: String?, guide: [String: Any]?, id: String?, modifiedBy: [String: Any]?, modifiedOn: String?, name: String?, subtitle: String?, tag: String?, title: String?) {
+        public init(active: Bool? = nil, brandId: Int? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, guide: [String: Any]? = nil, id: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, subtitle: String? = nil, tag: String? = nil, title: String? = nil) {
             self.modifiedBy = modifiedBy
 
             self.brandId = brandId
@@ -88,12 +88,6 @@ public extension PlatformClient {
             self.active = active
 
             self.tag = tag
-        }
-
-        public func duplicate() -> SizeGuideResponse {
-            let dict = self.dictionary!
-            let copy = SizeGuideResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

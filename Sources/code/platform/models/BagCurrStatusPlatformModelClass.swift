@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case canBeCancelled = "can_be_cancelled"
         }
 
-        public init(canBeCancelled: Bool?, enableTracking: Bool?, isActive: Bool?, isCustomerReturnAllowed: Bool?, isReturnable: Bool?) {
+        public init(canBeCancelled: Bool? = nil, enableTracking: Bool? = nil, isActive: Bool? = nil, isCustomerReturnAllowed: Bool? = nil, isReturnable: Bool? = nil) {
             self.enableTracking = enableTracking
 
             self.isCustomerReturnAllowed = isCustomerReturnAllowed
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.isReturnable = isReturnable
 
             self.canBeCancelled = canBeCancelled
-        }
-
-        public func duplicate() -> BagCurrStatus {
-            let dict = self.dictionary!
-            let copy = BagCurrStatus(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

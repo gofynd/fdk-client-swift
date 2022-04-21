@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [SystemEmailTemplate]?, page: Page?) {
+        public init(items: [SystemEmailTemplate]? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page
-        }
-
-        public func duplicate() -> SystemEmailTemplates {
-            let dict = self.dictionary!
-            let copy = SystemEmailTemplates(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

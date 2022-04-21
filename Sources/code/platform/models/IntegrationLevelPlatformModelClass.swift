@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -62,7 +62,7 @@ public extension PlatformClient {
             case data
         }
 
-        public init(createdAt: String?, data: [String: Any]?, integration: String?, lastPatch: [LastPatch]?, level: String?, meta: [IntegrationMeta]?, opted: Bool?, permissions: [[String: Any]]?, token: String?, uid: Int?, updatedAt: String?, id: String?, v: Int?) {
+        public init(createdAt: String? = nil, data: [String: Any]? = nil, integration: String? = nil, lastPatch: [LastPatch]? = nil, level: String? = nil, meta: [IntegrationMeta]? = nil, opted: Bool? = nil, permissions: [[String: Any]]? = nil, token: String? = nil, uid: Int? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.opted = opted
 
             self.permissions = permissions
@@ -88,12 +88,6 @@ public extension PlatformClient {
             self.v = v
 
             self.data = data
-        }
-
-        public func duplicate() -> IntegrationLevel {
-            let dict = self.dictionary!
-            let copy = IntegrationLevel(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

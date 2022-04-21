@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case multi
         }
 
-        public init(allowedValues: [String]?, format: String?, mandatory: Bool?, multi: Bool?, range: AttributeSchemaRange?, type: String) {
+        public init(allowedValues: [String]? = nil, format: String? = nil, mandatory: Bool? = nil, multi: Bool? = nil, range: AttributeSchemaRange? = nil, type: String) {
             self.type = type
 
             self.allowedValues = allowedValues
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.format = format
 
             self.multi = multi
-        }
-
-        public func duplicate() -> AttributeMaster {
-            let dict = self.dictionary!
-            let copy = AttributeMaster(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

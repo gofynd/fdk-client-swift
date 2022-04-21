@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case publicKey = "public_key"
         }
 
-        public init(publicKey: String?) {
+        public init(publicKey: String? = nil) {
             self.publicKey = publicKey
-        }
-
-        public func duplicate() -> FyndRewardsCredentials {
-            let dict = self.dictionary!
-            let copy = FyndRewardsCredentials(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

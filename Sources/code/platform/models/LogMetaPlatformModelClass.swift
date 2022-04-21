@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case topic
         }
 
-        public init(identifier: String?, key: String?, offset: String?, partition: String?, topic: String?, type: String?) {
+        public init(identifier: String? = nil, key: String? = nil, offset: String? = nil, partition: String? = nil, topic: String? = nil, type: String? = nil) {
             self.type = type
 
             self.identifier = identifier
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.partition = partition
 
             self.topic = topic
-        }
-
-        public func duplicate() -> LogMeta {
-            let dict = self.dictionary!
-            let copy = LogMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

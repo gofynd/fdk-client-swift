@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             case isTrialPlan = "is_trial_plan"
         }
 
-        public init(application: SubscriptionLimitApplication?, extensions: SubscriptionLimitExtensions?, integrations: SubscriptionLimitIntegrations?, isTrialPlan: Bool?, marketplace: SubscriptionLimitMarketplace?, otherPlatform: SubscriptionLimitOtherPlatform?, products: SubscriptionLimitProducts?, team: SubscriptionLimitTeam?) {
+        public init(application: SubscriptionLimitApplication? = nil, extensions: SubscriptionLimitExtensions? = nil, integrations: SubscriptionLimitIntegrations? = nil, isTrialPlan: Bool? = nil, marketplace: SubscriptionLimitMarketplace? = nil, otherPlatform: SubscriptionLimitOtherPlatform? = nil, products: SubscriptionLimitProducts? = nil, team: SubscriptionLimitTeam? = nil) {
             self.application = application
 
             self.marketplace = marketplace
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.integrations = integrations
 
             self.isTrialPlan = isTrialPlan
-        }
-
-        public func duplicate() -> SubscriptionLimit {
-            let dict = self.dictionary!
-            let copy = SubscriptionLimit(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

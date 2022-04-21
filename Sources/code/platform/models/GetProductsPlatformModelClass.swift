@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -46,7 +46,7 @@ public extension PlatformClient {
             case autoSelect = "auto_select"
         }
 
-        public init(allowRemove: Bool?, autoAddToCart: Bool?, autoSelect: Bool?, maxQuantity: Int?, minQuantity: Int?, price: Price?, productDetails: LimitedProductData?, productUid: Int?, sizes: [Size]?) {
+        public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: Price? = nil, productDetails: LimitedProductData? = nil, productUid: Int? = nil, sizes: [Size]? = nil) {
             self.autoAddToCart = autoAddToCart
 
             self.maxQuantity = maxQuantity
@@ -64,12 +64,6 @@ public extension PlatformClient {
             self.productUid = productUid
 
             self.autoSelect = autoSelect
-        }
-
-        public func duplicate() -> GetProducts {
-            let dict = self.dictionary!
-            let copy = GetProducts(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

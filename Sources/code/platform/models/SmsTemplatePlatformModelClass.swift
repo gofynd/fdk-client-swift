@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -66,7 +66,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(createdAt: String?, description: String?, isInternal: Bool?, isSystem: Bool?, message: SmsTemplateMessage?, name: String?, priority: String?, published: Bool?, slug: String?, tags: [[String: Any]]?, templateVariables: [String: Any]?, updatedAt: String?, id: String?, v: Int?) {
+        public init(createdAt: String? = nil, description: String? = nil, isInternal: Bool? = nil, isSystem: Bool? = nil, message: SmsTemplateMessage? = nil, name: String? = nil, priority: String? = nil, published: Bool? = nil, slug: String? = nil, tags: [[String: Any]]? = nil, templateVariables: [String: Any]? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.isSystem = isSystem
 
             self.isInternal = isInternal
@@ -94,12 +94,6 @@ public extension PlatformClient {
             self.updatedAt = updatedAt
 
             self.v = v
-        }
-
-        public func duplicate() -> SmsTemplate {
-            let dict = self.dictionary!
-            let copy = SmsTemplate(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

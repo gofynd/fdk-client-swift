@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case modifiedOn = "modified_on"
         }
 
-        public init(createdBy: String?, createdOn: String?, modifiedBy: String?, modifiedOn: String?) {
+        public init(createdBy: String? = nil, createdOn: String? = nil, modifiedBy: String? = nil, modifiedOn: String? = nil) {
             self.createdBy = createdBy
 
             self.modifiedBy = modifiedBy
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.createdOn = createdOn
 
             self.modifiedOn = modifiedOn
-        }
-
-        public func duplicate() -> Audit {
-            let dict = self.dictionary!
-            let copy = Audit(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

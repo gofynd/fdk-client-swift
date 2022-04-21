@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -94,7 +94,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(attachments: [[String: Any]]?, createdAt: String?, description: String?, fromName: String?, headers: [[String: Any]]?, html: TemplateAndType?, isInternal: Bool?, isSystem: Bool?, name: String?, priority: String?, published: Bool?, slug: String?, staticBcc: [[String: Any]]?, staticCc: [[String: Any]]?, staticTo: [[String: Any]]?, subject: TemplateAndType?, tags: [[String: Any]]?, text: TemplateAndType?, updatedAt: String?, id: String?, v: Int?) {
+        public init(attachments: [[String: Any]]? = nil, createdAt: String? = nil, description: String? = nil, fromName: String? = nil, headers: [[String: Any]]? = nil, html: TemplateAndType? = nil, isInternal: Bool? = nil, isSystem: Bool? = nil, name: String? = nil, priority: String? = nil, published: Bool? = nil, slug: String? = nil, staticBcc: [[String: Any]]? = nil, staticCc: [[String: Any]]? = nil, staticTo: [[String: Any]]? = nil, subject: TemplateAndType? = nil, tags: [[String: Any]]? = nil, text: TemplateAndType? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.isSystem = isSystem
 
             self.isInternal = isInternal
@@ -136,12 +136,6 @@ public extension PlatformClient {
             self.updatedAt = updatedAt
 
             self.v = v
-        }
-
-        public func duplicate() -> EmailTemplate {
-            let dict = self.dictionary!
-            let copy = EmailTemplate(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

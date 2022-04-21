@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,7 +58,7 @@ public extension PlatformClient {
             case modifiedOn = "modified_on"
         }
 
-        public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, modifiedOn: String, namespace: String, operation: String?, success: Bool, tags: [String], upload: Upload, id: String) {
+        public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, modifiedOn: String, namespace: String, operation: String? = nil, success: Bool, tags: [String], upload: Upload, id: String) {
             self.success = success
 
             self.tags = tags
@@ -82,12 +82,6 @@ public extension PlatformClient {
             self.createdOn = createdOn
 
             self.modifiedOn = modifiedOn
-        }
-
-        public func duplicate() -> DbRecord {
-            let dict = self.dictionary!
-            let copy = DbRecord(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

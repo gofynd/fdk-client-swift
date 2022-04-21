@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case attributes
         }
 
-        public init(attributes: [String: Any]?) {
+        public init(attributes: [String: Any]? = nil) {
             self.attributes = attributes
-        }
-
-        public func duplicate() -> AvailablePageSectionMetaAttributes {
-            let dict = self.dictionary!
-            let copy = AvailablePageSectionMetaAttributes(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

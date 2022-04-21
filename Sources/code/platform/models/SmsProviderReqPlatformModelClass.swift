@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case provider
         }
 
-        public init(authkey: String?, description: String?, name: String?, provider: String?, sender: String?, type: String?, username: String?) {
+        public init(authkey: String? = nil, description: String? = nil, name: String? = nil, provider: String? = nil, sender: String? = nil, type: String? = nil, username: String? = nil) {
             self.name = name
 
             self.description = description
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.type = type
 
             self.provider = provider
-        }
-
-        public func duplicate() -> SmsProviderReq {
-            let dict = self.dictionary!
-            let copy = SmsProviderReq(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

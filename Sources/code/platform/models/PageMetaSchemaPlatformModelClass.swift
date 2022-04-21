@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case applicationId = "application_id"
         }
 
-        public init(applicationId: String?, customPages: [PageSchema]?, systemPages: [NavigationSchema]?) {
+        public init(applicationId: String? = nil, customPages: [PageSchema]? = nil, systemPages: [NavigationSchema]? = nil) {
             self.systemPages = systemPages
 
             self.customPages = customPages
 
             self.applicationId = applicationId
-        }
-
-        public func duplicate() -> PageMetaSchema {
-            let dict = self.dictionary!
-            let copy = PageMetaSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: [MetaDataListingSortMetaResponse]?) {
+        public init(data: [MetaDataListingSortMetaResponse]? = nil) {
             self.data = data
-        }
-
-        public func duplicate() -> MetaDataListingSortResponse {
-            let dict = self.dictionary!
-            let copy = MetaDataListingSortResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

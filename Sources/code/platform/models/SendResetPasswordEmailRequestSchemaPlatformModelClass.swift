@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case captchaCode = "captcha_code"
         }
 
-        public init(captchaCode: String?, email: String?) {
+        public init(captchaCode: String? = nil, email: String? = nil) {
             self.email = email
 
             self.captchaCode = captchaCode
-        }
-
-        public func duplicate() -> SendResetPasswordEmailRequestSchema {
-            let dict = self.dictionary!
-            let copy = SendResetPasswordEmailRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

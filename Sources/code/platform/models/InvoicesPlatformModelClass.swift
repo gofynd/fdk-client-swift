@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case total
         }
 
-        public init(data: [InvoicesData]?, end: Int?, limit: Int?, page: Int?, start: Int?, total: Int?) {
+        public init(data: [InvoicesData]? = nil, end: Int? = nil, limit: Int? = nil, page: Int? = nil, start: Int? = nil, total: Int? = nil) {
             self.data = data
 
             self.start = start
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.page = page
 
             self.total = total
-        }
-
-        public func duplicate() -> Invoices {
-            let dict = self.dictionary!
-            let copy = Invoices(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

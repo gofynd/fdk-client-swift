@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case thumbnail
         }
 
-        public init(android: [String]?, desktop: [String]?, ios: [String]?, thumbnail: [String]?) {
+        public init(android: [String]? = nil, desktop: [String]? = nil, ios: [String]? = nil, thumbnail: [String]? = nil) {
             self.desktop = desktop
 
             self.android = android
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.ios = ios
 
             self.thumbnail = thumbnail
-        }
-
-        public func duplicate() -> Images {
-            let dict = self.dictionary!
-            let copy = Images(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

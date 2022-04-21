@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case basepath
         }
 
-        public init(basepath: String?, enabled: Bool?) {
+        public init(basepath: String? = nil, enabled: Bool? = nil) {
             self.enabled = enabled
 
             self.basepath = basepath
-        }
-
-        public func duplicate() -> ApplicationWebsite {
-            let dict = self.dictionary!
-            let copy = ApplicationWebsite(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

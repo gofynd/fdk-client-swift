@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case name
         }
 
-        public init(catalogId: Int?, name: String) {
+        public init(catalogId: Int? = nil, name: String) {
             self.catalogId = catalogId
 
             self.name = name
-        }
-
-        public func duplicate() -> CategoryMappingValues {
-            let dict = self.dictionary!
-            let copy = CategoryMappingValues(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,7 +58,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(apiKey: String?, application: String?, createdAt: String?, description: String?, fromAddress: [EmailProviderReqFrom]?, name: String?, provider: String?, slug: String?, type: String?, updatedAt: String?, id: String?, v: Int?) {
+        public init(apiKey: String? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, fromAddress: [EmailProviderReqFrom]? = nil, name: String? = nil, provider: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.type = type
 
             self.provider = provider
@@ -82,12 +82,6 @@ public extension PlatformClient {
             self.slug = slug
 
             self.v = v
-        }
-
-        public func duplicate() -> EmailProvider {
-            let dict = self.dictionary!
-            let copy = EmailProvider(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

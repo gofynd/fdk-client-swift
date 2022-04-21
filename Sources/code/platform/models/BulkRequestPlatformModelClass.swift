@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case configuration
         }
 
-        public init(configuration: ReqConfiguration?, destination: Destination, urls: [String]) {
+        public init(configuration: ReqConfiguration? = nil, destination: Destination, urls: [String]) {
             self.urls = urls
 
             self.destination = destination
 
             self.configuration = configuration
-        }
-
-        public func duplicate() -> BulkRequest {
-            let dict = self.dictionary!
-            let copy = BulkRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

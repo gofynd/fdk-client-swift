@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             case resendToken = "resend_token"
         }
 
-        public init(countryCode: String?, email: String?, message: String?, mobile: String?, registerToken: String?, requestId: String?, resendEmailToken: String?, resendTimer: Int?, resendToken: String?, success: Bool?, user: UserSchema?, userExists: Bool?, verifyEmailLink: Bool?, verifyEmailOtp: Bool?, verifyMobileOtp: Bool?) {
+        public init(countryCode: String? = nil, email: String? = nil, message: String? = nil, mobile: String? = nil, registerToken: String? = nil, requestId: String? = nil, resendEmailToken: String? = nil, resendTimer: Int? = nil, resendToken: String? = nil, success: Bool? = nil, user: UserSchema? = nil, userExists: Bool? = nil, verifyEmailLink: Bool? = nil, verifyEmailOtp: Bool? = nil, verifyMobileOtp: Bool? = nil) {
             self.user = user
 
             self.registerToken = registerToken
@@ -100,12 +100,6 @@ public extension PlatformClient {
             self.resendTimer = resendTimer
 
             self.resendToken = resendToken
-        }
-
-        public func duplicate() -> ProfileEditSuccess {
-            let dict = self.dictionary!
-            let copy = ProfileEditSuccess(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

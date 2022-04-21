@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case data
         }
 
-        public init(companyId: Int, companyName: String, data: JobConfig?, integration: String) {
+        public init(companyId: Int, companyName: String, data: JobConfig? = nil, integration: String) {
             self.integration = integration
 
             self.companyName = companyName
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.companyId = companyId
 
             self.data = data
-        }
-
-        public func duplicate() -> JobConfigRawDTO {
-            let dict = self.dictionary!
-            let copy = JobConfigRawDTO(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

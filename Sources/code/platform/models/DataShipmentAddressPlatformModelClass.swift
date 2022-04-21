@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,7 +58,7 @@ public extension PlatformClient {
             case name
         }
 
-        public init(address: String?, addressCategory: String?, addressType: String?, area: String?, city: String?, country: String?, email: String?, landmark: String?, name: String?, phone: String?, pincode: String?, state: String?) {
+        public init(address: String? = nil, addressCategory: String? = nil, addressType: String? = nil, area: String? = nil, city: String? = nil, country: String? = nil, email: String? = nil, landmark: String? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil) {
             self.city = city
 
             self.country = country
@@ -82,12 +82,6 @@ public extension PlatformClient {
             self.email = email
 
             self.name = name
-        }
-
-        public func duplicate() -> DataShipmentAddress {
-            let dict = self.dictionary!
-            let copy = DataShipmentAddress(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

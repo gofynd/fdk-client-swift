@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case timestamp
         }
 
-        public init(timestamp: String?, value: String?, id: String?) {
+        public init(timestamp: String? = nil, value: String? = nil, id: String? = nil) {
             self.id = id
 
             self.value = value
 
             self.timestamp = timestamp
-        }
-
-        public func duplicate() -> InvoiceDetailsStatusTrail {
-            let dict = self.dictionary!
-            let copy = InvoiceDetailsStatusTrail(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

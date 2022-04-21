@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case google
         }
 
-        public init(accountKit: Accountkit?, facebook: Facebook?, google: Google?) {
+        public init(accountKit: Accountkit? = nil, facebook: Facebook? = nil, google: Google? = nil) {
             self.facebook = facebook
 
             self.accountKit = accountKit
 
             self.google = google
-        }
-
-        public func duplicate() -> SocialTokens {
-            let dict = self.dictionary!
-            let copy = SocialTokens(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

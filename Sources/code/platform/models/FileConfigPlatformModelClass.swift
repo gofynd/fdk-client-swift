@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -74,7 +74,7 @@ public extension PlatformClient {
             case defaultHeaders = "default_headers"
         }
 
-        public init(charset: String?, dataStartIndex: Int?, defaultHeaders: DefaultHeadersDTO?, delimiter: String?, escapeChar: String?, fileHasHeader: Bool?, fileType: String?, headerArray: [String]?, headerIndex: Int?, junkDataThresholdCount: Int?, lineValidityCheck: Bool?, properties: [String: Any]?, propBeanConfigs: [PropBeanConfig]?, quoteChar: String?, readAllSheets: Bool?, sheetNames: [String]?) {
+        public init(charset: String? = nil, dataStartIndex: Int? = nil, defaultHeaders: DefaultHeadersDTO? = nil, delimiter: String? = nil, escapeChar: String? = nil, fileHasHeader: Bool? = nil, fileType: String? = nil, headerArray: [String]? = nil, headerIndex: Int? = nil, junkDataThresholdCount: Int? = nil, lineValidityCheck: Bool? = nil, properties: [String: Any]? = nil, propBeanConfigs: [PropBeanConfig]? = nil, quoteChar: String? = nil, readAllSheets: Bool? = nil, sheetNames: [String]? = nil) {
             self.delimiter = delimiter
 
             self.charset = charset
@@ -106,12 +106,6 @@ public extension PlatformClient {
             self.escapeChar = escapeChar
 
             self.defaultHeaders = defaultHeaders
-        }
-
-        public func duplicate() -> FileConfig {
-            let dict = self.dictionary!
-            let copy = FileConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

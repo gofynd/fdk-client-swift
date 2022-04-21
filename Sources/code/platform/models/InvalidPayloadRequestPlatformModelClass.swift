@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case message
         }
 
-        public init(message: String?) {
+        public init(message: String? = nil) {
             self.message = message
-        }
-
-        public func duplicate() -> InvalidPayloadRequest {
-            let dict = self.dictionary!
-            let copy = InvalidPayloadRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

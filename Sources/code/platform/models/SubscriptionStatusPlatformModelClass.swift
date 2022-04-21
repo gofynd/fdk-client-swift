@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case subscription
         }
 
-        public init(isEnabled: Bool?, subscription: Subscription?) {
+        public init(isEnabled: Bool? = nil, subscription: Subscription? = nil) {
             self.isEnabled = isEnabled
 
             self.subscription = subscription
-        }
-
-        public func duplicate() -> SubscriptionStatus {
-            let dict = self.dictionary!
-            let copy = SubscriptionStatus(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

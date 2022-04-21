@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case result
         }
 
-        public init(appId: String?, result: [String: Any]?, uid: String?, words: [String]?, customJson: [String: Any]?) {
+        public init(appId: String? = nil, result: [String: Any]? = nil, uid: String? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
             self.uid = uid
 
             self.customJson = customJson
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.appId = appId
 
             self.result = result
-        }
-
-        public func duplicate() -> GetSearchWordsData {
-            let dict = self.dictionary!
-            let copy = GetSearchWordsData(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

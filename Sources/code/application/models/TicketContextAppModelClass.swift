@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.applicationId = applicationId
 
             self.companyId = companyId
-        }
-
-        public func duplicate() -> TicketContext {
-            let dict = self.dictionary!
-            let copy = TicketContext(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

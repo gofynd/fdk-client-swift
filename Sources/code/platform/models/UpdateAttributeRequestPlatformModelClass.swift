@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case slug
         }
 
-        public init(description: String?, name: String, slug: String?) {
+        public init(description: String? = nil, name: String, slug: String? = nil) {
             self.description = description
 
             self.name = name
 
             self.slug = slug
-        }
-
-        public func duplicate() -> UpdateAttributeRequest {
-            let dict = self.dictionary!
-            let copy = UpdateAttributeRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -39,12 +39,6 @@ public extension ApplicationClient {
             self.id = id
 
             self.tags = tags
-        }
-
-        public func duplicate() -> UpdateQNARequest {
-            let dict = self.dictionary!
-            let copy = UpdateQNARequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: AppInventoryStores?, page: Page?) {
+        public init(items: AppInventoryStores? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page
-        }
-
-        public func duplicate() -> StoresResponse {
-            let dict = self.dictionary!
-            let copy = StoresResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

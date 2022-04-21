@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case upgrade
         }
 
-        public init(appliedTheme: String?, parentTheme: String?, upgrade: Bool?) {
+        public init(appliedTheme: String? = nil, parentTheme: String? = nil, upgrade: Bool? = nil) {
             self.parentTheme = parentTheme
 
             self.appliedTheme = appliedTheme
 
             self.upgrade = upgrade
-        }
-
-        public func duplicate() -> UpgradableThemeSchema {
-            let dict = self.dictionary!
-            let copy = UpgradableThemeSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.primary = primary
 
             self.active = active
-        }
-
-        public func duplicate() -> AuthSuccessUserEmails {
-            let dict = self.dictionary!
-            let copy = AuthSuccessUserEmails(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

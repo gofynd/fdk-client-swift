@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case priority
         }
 
-        public init(isActive: Bool, key: String, logo: String?, priority: Int, size: ProductSize?, subtitle: String?, title: String?) {
+        public init(isActive: Bool, key: String, logo: String? = nil, priority: Int, size: ProductSize? = nil, subtitle: String? = nil, title: String? = nil) {
             self.key = key
 
             self.size = size
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.isActive = isActive
 
             self.priority = priority
-        }
-
-        public func duplicate() -> ConfigurationProductConfig {
-            let dict = self.dictionary!
-            let copy = ConfigurationProductConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

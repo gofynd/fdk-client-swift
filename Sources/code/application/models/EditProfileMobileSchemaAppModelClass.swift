@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.phone = phone
 
             self.countryCode = countryCode
-        }
-
-        public func duplicate() -> EditProfileMobileSchema {
-            let dict = self.dictionary!
-            let copy = EditProfileMobileSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

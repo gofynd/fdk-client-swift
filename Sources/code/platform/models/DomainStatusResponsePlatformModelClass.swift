@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case status
         }
 
-        public init(connected: Bool?, status: [DomainStatus]?) {
+        public init(connected: Bool? = nil, status: [DomainStatus]? = nil) {
             self.connected = connected
 
             self.status = status
-        }
-
-        public func duplicate() -> DomainStatusResponse {
-            let dict = self.dictionary!
-            let copy = DomainStatusResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             case status
         }
 
-        public init(attempt: Int?, createdOn: String?, id: Int?, processedOn: String?, responseCode: String?, responseMessage: String?, status: Bool?, subscriberId: String?) {
+        public init(attempt: Int? = nil, createdOn: String? = nil, id: Int? = nil, processedOn: String? = nil, responseCode: String? = nil, responseMessage: String? = nil, status: Bool? = nil, subscriberId: String? = nil) {
             self.id = id
 
             self.subscriberId = subscriberId
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.processedOn = processedOn
 
             self.status = status
-        }
-
-        public func duplicate() -> EventProcessedStatus {
-            let dict = self.dictionary!
-            let copy = EventProcessedStatus(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

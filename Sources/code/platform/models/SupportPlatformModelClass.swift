@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case contact
         }
 
-        public init(application: String?, configType: String?, contact: ContactSchema?, created: Bool?, createdAt: String?, updatedAt: String?, id: String?) {
+        public init(application: String? = nil, configType: String? = nil, contact: ContactSchema? = nil, created: Bool? = nil, createdAt: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.created = created
 
             self.id = id
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.updatedAt = updatedAt
 
             self.contact = contact
-        }
-
-        public func duplicate() -> Support {
-            let dict = self.dictionary!
-            let copy = Support(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

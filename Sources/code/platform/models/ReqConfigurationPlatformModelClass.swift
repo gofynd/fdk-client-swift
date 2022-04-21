@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case concurrency
         }
 
-        public init(concurrency: Int?) {
+        public init(concurrency: Int? = nil) {
             self.concurrency = concurrency
-        }
-
-        public func duplicate() -> ReqConfiguration {
-            let dict = self.dictionary!
-            let copy = ReqConfiguration(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

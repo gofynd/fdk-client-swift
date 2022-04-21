@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -50,7 +50,7 @@ public extension PlatformClient {
             case subNavigation = "sub_navigation"
         }
 
-        public init(acl: [String]?, action: Action?, active: Bool?, display: String?, image: String?, sortOrder: Int?, subNavigation: [NavigationReference]?, tags: [String]?, type: String?, localeLanguage: LocaleLanguage?) {
+        public init(acl: [String]? = nil, action: Action? = nil, active: Bool? = nil, display: String? = nil, image: String? = nil, sortOrder: Int? = nil, subNavigation: [NavigationReference]? = nil, tags: [String]? = nil, type: String? = nil, localeLanguage: LocaleLanguage? = nil) {
             self.acl = acl
 
             self.tags = tags
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.sortOrder = sortOrder
 
             self.subNavigation = subNavigation
-        }
-
-        public func duplicate() -> NavigationReference {
-            let dict = self.dictionary!
-            let copy = NavigationReference(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

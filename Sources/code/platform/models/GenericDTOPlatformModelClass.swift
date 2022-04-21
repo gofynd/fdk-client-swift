@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case value
         }
 
-        public init(text: String?, value: [String: Any]?) {
+        public init(text: String? = nil, value: [String: Any]? = nil) {
             self.text = text
 
             self.value = value
-        }
-
-        public func duplicate() -> GenericDTO {
-            let dict = self.dictionary!
-            let copy = GenericDTO(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

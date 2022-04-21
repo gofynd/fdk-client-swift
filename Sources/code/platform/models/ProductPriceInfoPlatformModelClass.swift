@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case base
         }
 
-        public init(base: ProductPrice?, converted: ProductPrice?) {
+        public init(base: ProductPrice? = nil, converted: ProductPrice? = nil) {
             self.converted = converted
 
             self.base = base
-        }
-
-        public func duplicate() -> ProductPriceInfo {
-            let dict = self.dictionary!
-            let copy = ProductPriceInfo(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

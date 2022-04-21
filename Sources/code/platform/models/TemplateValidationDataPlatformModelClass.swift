@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case templateValidation = "template_validation"
         }
 
-        public init(globalValidation: GlobalValidation?, templateValidation: [String: Any]?) {
+        public init(globalValidation: GlobalValidation? = nil, templateValidation: [String: Any]? = nil) {
             self.globalValidation = globalValidation
 
             self.templateValidation = templateValidation
-        }
-
-        public func duplicate() -> TemplateValidationData {
-            let dict = self.dictionary!
-            let copy = TemplateValidationData(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

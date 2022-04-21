@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case rules
         }
 
-        public init(criteria: String?, rules: AppStoreRules?, stores: [[String: Any]]?) {
+        public init(criteria: String? = nil, rules: AppStoreRules? = nil, stores: [[String: Any]]? = nil) {
             self.criteria = criteria
 
             self.stores = stores
 
             self.rules = rules
-        }
-
-        public func duplicate() -> InventoryStore {
-            let dict = self.dictionary!
-            let copy = InventoryStore(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

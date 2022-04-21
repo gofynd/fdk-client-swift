@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -50,7 +50,7 @@ public extension PlatformClient {
             case customJson = "_custom_json"
         }
 
-        public init(active: Bool?, application: String?, archived: Bool?, configuration: ConfigurationSchema?, dateMeta: DateMeta?, media: [SlideshowMedia]?, platform: String?, slug: String?, customJson: [String: Any]?, id: String?) {
+        public init(active: Bool? = nil, application: String? = nil, archived: Bool? = nil, configuration: ConfigurationSchema? = nil, dateMeta: DateMeta? = nil, media: [SlideshowMedia]? = nil, platform: String? = nil, slug: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
             self.id = id
 
             self.slug = slug
@@ -70,12 +70,6 @@ public extension PlatformClient {
             self.archived = archived
 
             self.customJson = customJson
-        }
-
-        public func duplicate() -> SlideshowSchema {
-            let dict = self.dictionary!
-            let copy = SlideshowSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

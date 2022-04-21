@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             case createdAt = "created_at"
         }
 
-        public init(application: String?, createdAt: String?, data: [String: Any]?, email: LogEmail?, expireAt: String?, meta: LogMeta?, pushnotification: LogPushnotification?, service: String?, status: String?, step: String?, id: String?) {
+        public init(application: String? = nil, createdAt: String? = nil, data: [String: Any]? = nil, email: LogEmail? = nil, expireAt: String? = nil, meta: LogMeta? = nil, pushnotification: LogPushnotification? = nil, service: String? = nil, status: String? = nil, step: String? = nil, id: String? = nil) {
             self.email = email
 
             self.pushnotification = pushnotification
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.expireAt = expireAt
 
             self.createdAt = createdAt
-        }
-
-        public func duplicate() -> Log {
-            let dict = self.dictionary!
-            let copy = Log(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

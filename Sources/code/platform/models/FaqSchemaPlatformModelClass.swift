@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case answer
         }
 
-        public init(answer: String?, application: String?, question: String?, slug: String?, id: String?) {
+        public init(answer: String? = nil, application: String? = nil, question: String? = nil, slug: String? = nil, id: String? = nil) {
             self.slug = slug
 
             self.application = application
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.question = question
 
             self.answer = answer
-        }
-
-        public func duplicate() -> FaqSchema {
-            let dict = self.dictionary!
-            let copy = FaqSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case portrait
         }
 
-        public init(landscape: String?, portrait: String?) {
+        public init(landscape: String? = nil, portrait: String? = nil) {
             self.landscape = landscape
 
             self.portrait = portrait
-        }
-
-        public func duplicate() -> BrandBannerSerializer {
-            let dict = self.dictionary!
-            let copy = BrandBannerSerializer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

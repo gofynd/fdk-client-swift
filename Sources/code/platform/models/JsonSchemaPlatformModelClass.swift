@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case tooltip
         }
 
-        public init(display: String?, key: String?, tooltip: String?, type: String?) {
+        public init(display: String? = nil, key: String? = nil, tooltip: String? = nil, type: String? = nil) {
             self.display = display
 
             self.key = key
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.type = type
 
             self.tooltip = tooltip
-        }
-
-        public func duplicate() -> JsonSchema {
-            let dict = self.dictionary!
-            let copy = JsonSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

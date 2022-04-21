@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.status = status
 
             self.signupUrl = signupUrl
-        }
-
-        public func duplicate() -> RedirectURL {
-            let dict = self.dictionary!
-            let copy = RedirectURL(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

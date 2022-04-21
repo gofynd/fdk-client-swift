@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case enabled
         }
 
-        public init(credentials: SafetynetCredentials?, enabled: Bool?) {
+        public init(credentials: SafetynetCredentials? = nil, enabled: Bool? = nil) {
             self.credentials = credentials
 
             self.enabled = enabled
-        }
-
-        public func duplicate() -> Safetynet {
-            let dict = self.dictionary!
-            let copy = Safetynet(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

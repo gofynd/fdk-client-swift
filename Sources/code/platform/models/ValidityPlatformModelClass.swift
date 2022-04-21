@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case priority
         }
 
-        public init(priority: Int?) {
+        public init(priority: Int? = nil) {
             self.priority = priority
-        }
-
-        public func duplicate() -> Validity {
-            let dict = self.dictionary!
-            let copy = Validity(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

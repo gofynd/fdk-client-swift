@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case isDefault = "is_default"
         }
 
-        public init(data: InvoiceDetailsPaymentMethodsData?, id: Int?, isDefault: Bool?, pgPaymentMethodId: String?, type: String?) {
+        public init(data: InvoiceDetailsPaymentMethodsData? = nil, id: Int? = nil, isDefault: Bool? = nil, pgPaymentMethodId: String? = nil, type: String? = nil) {
             self.id = id
 
             self.type = type
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.data = data
 
             self.isDefault = isDefault
-        }
-
-        public func duplicate() -> InvoiceDetailsPaymentMethods {
-            let dict = self.dictionary!
-            let copy = InvoiceDetailsPaymentMethods(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case deleteQuantityThreshold = "delete_quantity_threshold"
         }
 
-        public init(companyId: Int?, deleteQuantityThreshold: Int?, excludeSteps: [Int]?, hiddenClosetKeys: [String]?, openTags: [String: Any]?, taxIdentifiers: [String]?) {
+        public init(companyId: Int? = nil, deleteQuantityThreshold: Int? = nil, excludeSteps: [Int]? = nil, hiddenClosetKeys: [String]? = nil, openTags: [String: Any]? = nil, taxIdentifiers: [String]? = nil) {
             self.companyId = companyId
 
             self.excludeSteps = excludeSteps
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.taxIdentifiers = taxIdentifiers
 
             self.deleteQuantityThreshold = deleteQuantityThreshold
-        }
-
-        public func duplicate() -> CompanyConfig {
-            let dict = self.dictionary!
-            let copy = CompanyConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

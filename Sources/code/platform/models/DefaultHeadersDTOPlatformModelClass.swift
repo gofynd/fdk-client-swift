@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case quantity
         }
 
-        public init(intfArticleId: PropBeanDTO?, priceEffective: PropBeanDTO?, quantity: PropBeanDTO?, store: PropBeanDTO?) {
+        public init(intfArticleId: PropBeanDTO? = nil, priceEffective: PropBeanDTO? = nil, quantity: PropBeanDTO? = nil, store: PropBeanDTO? = nil) {
             self.store = store
 
             self.intfArticleId = intfArticleId
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.priceEffective = priceEffective
 
             self.quantity = quantity
-        }
-
-        public func duplicate() -> DefaultHeadersDTO {
-            let dict = self.dictionary!
-            let copy = DefaultHeadersDTO(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

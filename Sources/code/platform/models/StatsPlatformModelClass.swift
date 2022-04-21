@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case processed
         }
 
-        public init(imported: [String: Any]?, processed: [String: Any]?, id: String?) {
+        public init(imported: [String: Any]? = nil, processed: [String: Any]? = nil, id: String? = nil) {
             self.id = id
 
             self.imported = imported
 
             self.processed = processed
-        }
-
-        public func duplicate() -> Stats {
-            let dict = self.dictionary!
-            let copy = Stats(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

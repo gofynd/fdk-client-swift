@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case status
         }
 
-        public init(eventName: String?, eventTraceId: String?, eventType: String?, id: Int?, messageId: String?, status: Bool?, version: String?) {
+        public init(eventName: String? = nil, eventTraceId: String? = nil, eventType: String? = nil, id: Int? = nil, messageId: String? = nil, status: Bool? = nil, version: String? = nil) {
             self.id = id
 
             self.eventTraceId = eventTraceId
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.version = version
 
             self.status = status
-        }
-
-        public func duplicate() -> EventPayload {
-            let dict = self.dictionary!
-            let copy = EventPayload(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

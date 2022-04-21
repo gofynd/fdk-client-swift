@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case value
         }
 
-        public init(legalName: String?, type: String, url: String?, value: String, verified: Bool?) {
+        public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
             self.type = type
 
             self.verified = verified
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.legalName = legalName
 
             self.value = value
-        }
-
-        public func duplicate() -> Document {
-            let dict = self.dictionary!
-            let copy = Document(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

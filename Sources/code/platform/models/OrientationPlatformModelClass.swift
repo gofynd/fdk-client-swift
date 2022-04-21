@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case landscape
         }
 
-        public init(landscape: [String]?, portrait: [String]?) {
+        public init(landscape: [String]? = nil, portrait: [String]? = nil) {
             self.portrait = portrait
 
             self.landscape = landscape
-        }
-
-        public func duplicate() -> Orientation {
-            let dict = self.dictionary!
-            let copy = Orientation(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             case expiredAt = "expired_at"
         }
 
-        public init(applicationId: String?, bundleIdentifier: String?, createdAt: String?, expiredAt: String?, platform: String?, pushToken: String?, type: String?, uniqueDeviceId: String?, updatedAt: String?, userId: String?, id: String?) {
+        public init(applicationId: String? = nil, bundleIdentifier: String? = nil, createdAt: String? = nil, expiredAt: String? = nil, platform: String? = nil, pushToken: String? = nil, type: String? = nil, uniqueDeviceId: String? = nil, updatedAt: String? = nil, userId: String? = nil, id: String? = nil) {
             self.id = id
 
             self.bundleIdentifier = bundleIdentifier
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.updatedAt = updatedAt
 
             self.expiredAt = expiredAt
-        }
-
-        public func duplicate() -> PushtokenRes {
-            let dict = self.dictionary!
-            let copy = PushtokenRes(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

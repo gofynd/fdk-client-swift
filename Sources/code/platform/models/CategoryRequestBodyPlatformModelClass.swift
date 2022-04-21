@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             case level
         }
 
-        public init(departments: [Int], hierarchy: [Hierarchy]?, isActive: Bool, level: Int, marketplaces: CategoryMapping?, media: Media2?, name: String, priority: Int?, slug: String?, synonyms: [String]?, tryouts: [String]?) {
+        public init(departments: [Int], hierarchy: [Hierarchy]? = nil, isActive: Bool, level: Int, marketplaces: CategoryMapping? = nil, media: Media2? = nil, name: String, priority: Int? = nil, slug: String? = nil, synonyms: [String]? = nil, tryouts: [String]? = nil) {
             self.hierarchy = hierarchy
 
             self.departments = departments
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.slug = slug
 
             self.level = level
-        }
-
-        public func duplicate() -> CategoryRequestBody {
-            let dict = self.dictionary!
-            let copy = CategoryRequestBody(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

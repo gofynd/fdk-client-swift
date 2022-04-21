@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -15,12 +15,6 @@ public extension ApplicationClient {
 
         public init(errors: [String]? = nil) {
             self.errors = errors
-        }
-
-        public func duplicate() -> CartMetaMissingResponse {
-            let dict = self.dictionary!
-            let copy = CartMetaMissingResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

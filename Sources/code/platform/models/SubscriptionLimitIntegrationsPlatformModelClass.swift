@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case limit
         }
 
-        public init(enabled: Bool?, limit: Int?) {
+        public init(enabled: Bool? = nil, limit: Int? = nil) {
             self.enabled = enabled
 
             self.limit = limit
-        }
-
-        public func duplicate() -> SubscriptionLimitIntegrations {
-            let dict = self.dictionary!
-            let copy = SubscriptionLimitIntegrations(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

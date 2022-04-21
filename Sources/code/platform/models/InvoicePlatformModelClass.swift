@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case invoiceItems = "invoice_items"
         }
 
-        public init(invoice: InvoiceDetails?, invoiceItems: [InvoiceItems]?) {
+        public init(invoice: InvoiceDetails? = nil, invoiceItems: [InvoiceItems]? = nil) {
             self.invoice = invoice
 
             self.invoiceItems = invoiceItems
-        }
-
-        public func duplicate() -> Invoice {
-            let dict = self.dictionary!
-            let copy = Invoice(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

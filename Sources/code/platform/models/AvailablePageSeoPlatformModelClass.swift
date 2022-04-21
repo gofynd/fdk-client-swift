@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case id = "_id"
         }
 
-        public init(description: String?, title: String?, id: String?) {
+        public init(description: String? = nil, title: String? = nil, id: String? = nil) {
             self.title = title
 
             self.description = description
 
             self.id = id
-        }
-
-        public func duplicate() -> AvailablePageSeo {
-            let dict = self.dictionary!
-            let copy = AvailablePageSeo(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

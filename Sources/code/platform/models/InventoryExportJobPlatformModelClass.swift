@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case triggerOn = "trigger_on"
         }
 
-        public init(completedOn: String?, requestParams: [String: Any]?, sellerId: Int, status: String?, taskId: String, triggerOn: String?, url: String?) {
+        public init(completedOn: String? = nil, requestParams: [String: Any]? = nil, sellerId: Int, status: String? = nil, taskId: String, triggerOn: String? = nil, url: String? = nil) {
             self.status = status
 
             self.requestParams = requestParams
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.sellerId = sellerId
 
             self.triggerOn = triggerOn
-        }
-
-        public func duplicate() -> InventoryExportJob {
-            let dict = self.dictionary!
-            let copy = InventoryExportJob(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

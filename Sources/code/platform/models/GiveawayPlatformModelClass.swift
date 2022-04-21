@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -58,7 +58,7 @@ public extension PlatformClient {
             case updatedAt = "updated_at"
         }
 
-        public init(active: Bool?, applicationId: String?, audience: RewardsAudience?, bannerImage: Asset?, createdAt: String?, description: String?, name: String?, rule: RewardsRule?, title: String?, updatedAt: String?, id: String?, schedule: Schedule?) {
+        public init(active: Bool? = nil, applicationId: String? = nil, audience: RewardsAudience? = nil, bannerImage: Asset? = nil, createdAt: String? = nil, description: String? = nil, name: String? = nil, rule: RewardsRule? = nil, title: String? = nil, updatedAt: String? = nil, id: String? = nil, schedule: Schedule? = nil) {
             self.id = id
 
             self.schedule = schedule
@@ -82,12 +82,6 @@ public extension PlatformClient {
             self.title = title
 
             self.updatedAt = updatedAt
-        }
-
-        public func duplicate() -> Giveaway {
-            let dict = self.dictionary!
-            let copy = Giveaway(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

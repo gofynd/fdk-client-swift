@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case value
         }
 
-        public init(op: String?, path: String?, value: String?) {
+        public init(op: String? = nil, path: String? = nil, value: String? = nil) {
             self.op = op
 
             self.path = path
 
             self.value = value
-        }
-
-        public func duplicate() -> LastPatch {
-            let dict = self.dictionary!
-            let copy = LastPatch(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

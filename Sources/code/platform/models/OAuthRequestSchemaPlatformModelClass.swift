@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case profile
         }
 
-        public init(isSignedIn: Bool?, oauth2: OAuthRequestSchemaOauth2?, profile: OAuthRequestSchemaProfile?) {
+        public init(isSignedIn: Bool? = nil, oauth2: OAuthRequestSchemaOauth2? = nil, profile: OAuthRequestSchemaProfile? = nil) {
             self.isSignedIn = isSignedIn
 
             self.oauth2 = oauth2
 
             self.profile = profile
-        }
-
-        public func duplicate() -> OAuthRequestSchema {
-            let dict = self.dictionary!
-            let copy = OAuthRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

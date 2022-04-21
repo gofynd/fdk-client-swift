@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.session = session
 
             self.redirectUrl = redirectUrl
-        }
-
-        public func duplicate() -> OnboardSummary {
-            let dict = self.dictionary!
-            let copy = OnboardSummary(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

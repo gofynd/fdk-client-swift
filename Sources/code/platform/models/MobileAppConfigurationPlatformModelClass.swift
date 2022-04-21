@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             case packageName = "package_name"
         }
 
-        public init(application: String?, appName: String?, createdAt: String?, isActive: Bool?, landingImage: LandingImage?, packageName: String?, platformType: String?, splashImage: SplashImage?, updatedAt: String?, id: String?, v: Int?) {
+        public init(application: String? = nil, appName: String? = nil, createdAt: String? = nil, isActive: Bool? = nil, landingImage: LandingImage? = nil, packageName: String? = nil, platformType: String? = nil, splashImage: SplashImage? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.isActive = isActive
 
             self.id = id
@@ -76,12 +76,6 @@ public extension PlatformClient {
             self.v = v
 
             self.packageName = packageName
-        }
-
-        public func duplicate() -> MobileAppConfiguration {
-            let dict = self.dictionary!
-            let copy = MobileAppConfiguration(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.shipmentId = shipmentId
 
             self.presignedUrl = presignedUrl
-        }
-
-        public func duplicate() -> ResponseGetInvoiceShipment {
-            let dict = self.dictionary!
-            let copy = ResponseGetInvoiceShipment(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

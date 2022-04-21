@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case anonymous
         }
 
-        public init(anonymous: Bool?, authenticated: Bool?) {
+        public init(anonymous: Bool? = nil, authenticated: Bool? = nil) {
             self.authenticated = authenticated
 
             self.anonymous = anonymous
-        }
-
-        public func duplicate() -> AvailablePageUserPredicate {
-            let dict = self.dictionary!
-            let copy = AvailablePageUserPredicate(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

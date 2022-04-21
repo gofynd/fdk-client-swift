@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case application
         }
 
-        public init(application: String?, data: [[String: Any]]?, email: PayloadEmailStructure?, sms: PayloadSmsStructure?) {
+        public init(application: String? = nil, data: [[String: Any]]? = nil, email: PayloadEmailStructure? = nil, sms: PayloadSmsStructure? = nil) {
             self.data = data
 
             self.email = email
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.sms = sms
 
             self.application = application
-        }
-
-        public func duplicate() -> PayloadStructure {
-            let dict = self.dictionary!
-            let copy = PayloadStructure(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

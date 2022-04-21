@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -9,30 +9,24 @@ public extension ApplicationClient {
     class ValidateCustomerResponse: Codable {
         public var success: Bool
 
-        public var message: String
-
         public var data: [String: Any]
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case message
-
             case data
+
+            case message
         }
 
         public init(data: [String: Any], message: String, success: Bool) {
             self.success = success
 
-            self.message = message
-
             self.data = data
-        }
 
-        public func duplicate() -> ValidateCustomerResponse {
-            let dict = self.dictionary!
-            let copy = ValidateCustomerResponse(dictionary: dict)!
-            return copy
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,9 +34,9 @@ public extension ApplicationClient {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            message = try container.decode(String.self, forKey: .message)
-
             data = try container.decode([String: Any].self, forKey: .data)
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -50,9 +44,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

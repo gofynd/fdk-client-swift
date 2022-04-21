@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -7,111 +7,105 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class CartDetailResponse: Codable {
-        public var restrictCheckout: Bool?
+        public var deliveryChargeInfo: String?
 
         public var isValid: Bool?
 
-        public var currency: CartCurrency?
-
-        public var deliveryChargeInfo: String?
+        public var gstin: String?
 
         public var deliveryPromise: ShipmentPromise?
 
-        public var paymentSelectionLock: PaymentSelectionLock?
-
-        public var checkoutMode: String?
-
-        public var comment: String?
-
-        public var couponText: String?
-
-        public var message: String?
+        public var restrictCheckout: Bool?
 
         public var id: String?
 
-        public var gstin: String?
+        public var message: String?
 
-        public var breakupValues: CartBreakup?
+        public var paymentSelectionLock: PaymentSelectionLock?
 
-        public var lastModified: String?
+        public var comment: String?
+
+        public var currency: CartCurrency?
 
         public var items: [CartProductInfo]?
 
+        public var breakupValues: CartBreakup?
+
+        public var couponText: String?
+
+        public var lastModified: String?
+
+        public var checkoutMode: String?
+
         public enum CodingKeys: String, CodingKey {
-            case restrictCheckout = "restrict_checkout"
+            case deliveryChargeInfo = "delivery_charge_info"
 
             case isValid = "is_valid"
 
-            case currency
-
-            case deliveryChargeInfo = "delivery_charge_info"
+            case gstin
 
             case deliveryPromise = "delivery_promise"
 
-            case paymentSelectionLock = "payment_selection_lock"
-
-            case checkoutMode = "checkout_mode"
-
-            case comment
-
-            case couponText = "coupon_text"
-
-            case message
+            case restrictCheckout = "restrict_checkout"
 
             case id
 
-            case gstin
+            case message
+
+            case paymentSelectionLock = "payment_selection_lock"
+
+            case comment
+
+            case currency
+
+            case items
 
             case breakupValues = "breakup_values"
 
+            case couponText = "coupon_text"
+
             case lastModified = "last_modified"
 
-            case items
+            case checkoutMode = "checkout_mode"
         }
 
         public init(breakupValues: CartBreakup? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil) {
-            self.restrictCheckout = restrictCheckout
+            self.deliveryChargeInfo = deliveryChargeInfo
 
             self.isValid = isValid
 
-            self.currency = currency
-
-            self.deliveryChargeInfo = deliveryChargeInfo
+            self.gstin = gstin
 
             self.deliveryPromise = deliveryPromise
 
-            self.paymentSelectionLock = paymentSelectionLock
-
-            self.checkoutMode = checkoutMode
-
-            self.comment = comment
-
-            self.couponText = couponText
-
-            self.message = message
+            self.restrictCheckout = restrictCheckout
 
             self.id = id
 
-            self.gstin = gstin
+            self.message = message
+
+            self.paymentSelectionLock = paymentSelectionLock
+
+            self.comment = comment
+
+            self.currency = currency
+
+            self.items = items
 
             self.breakupValues = breakupValues
 
+            self.couponText = couponText
+
             self.lastModified = lastModified
 
-            self.items = items
-        }
-
-        public func duplicate() -> CartDetailResponse {
-            let dict = self.dictionary!
-            let copy = CartDetailResponse(dictionary: dict)!
-            return copy
+            self.checkoutMode = checkoutMode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                restrictCheckout = try container.decode(Bool.self, forKey: .restrictCheckout)
+                deliveryChargeInfo = try container.decode(String.self, forKey: .deliveryChargeInfo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -127,15 +121,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currency = try container.decode(CartCurrency.self, forKey: .currency)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                deliveryChargeInfo = try container.decode(String.self, forKey: .deliveryChargeInfo)
+                gstin = try container.decode(String.self, forKey: .gstin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -151,39 +137,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                paymentSelectionLock = try container.decode(PaymentSelectionLock.self, forKey: .paymentSelectionLock)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                comment = try container.decode(String.self, forKey: .comment)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                couponText = try container.decode(String.self, forKey: .couponText)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                message = try container.decode(String.self, forKey: .message)
+                restrictCheckout = try container.decode(Bool.self, forKey: .restrictCheckout)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -199,7 +153,39 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                gstin = try container.decode(String.self, forKey: .gstin)
+                message = try container.decode(String.self, forKey: .message)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                paymentSelectionLock = try container.decode(PaymentSelectionLock.self, forKey: .paymentSelectionLock)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                comment = try container.decode(String.self, forKey: .comment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                currency = try container.decode(CartCurrency.self, forKey: .currency)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                items = try container.decode([CartProductInfo].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -215,6 +201,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                couponText = try container.decode(String.self, forKey: .couponText)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 lastModified = try container.decode(String.self, forKey: .lastModified)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -223,7 +217,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                items = try container.decode([CartProductInfo].self, forKey: .items)
+                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -234,35 +228,35 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(restrictCheckout, forKey: .restrictCheckout)
+            try? container.encodeIfPresent(deliveryChargeInfo, forKey: .deliveryChargeInfo)
 
             try? container.encodeIfPresent(isValid, forKey: .isValid)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
-
-            try? container.encodeIfPresent(deliveryChargeInfo, forKey: .deliveryChargeInfo)
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
 
             try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
 
-            try? container.encodeIfPresent(paymentSelectionLock, forKey: .paymentSelectionLock)
-
-            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
-
-            try? container.encodeIfPresent(comment, forKey: .comment)
-
-            try? container.encodeIfPresent(couponText, forKey: .couponText)
-
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(restrictCheckout, forKey: .restrictCheckout)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
+            try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(paymentSelectionLock, forKey: .paymentSelectionLock)
+
+            try? container.encodeIfPresent(comment, forKey: .comment)
+
+            try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
 
+            try? container.encodeIfPresent(couponText, forKey: .couponText)
+
             try? container.encodeIfPresent(lastModified, forKey: .lastModified)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
         }
     }
 }

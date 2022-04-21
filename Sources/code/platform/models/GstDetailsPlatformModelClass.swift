@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case isDefaultHsnCode = "is_default_hsn_code"
         }
 
-        public init(brandCalculatedAmount: Double?, gstFee: String?, gstTag: String?, gstTaxPercentage: Double?, hsnCode: String?, isDefaultHsnCode: Bool?, valueOfGood: Double?) {
+        public init(brandCalculatedAmount: Double? = nil, gstFee: String? = nil, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, isDefaultHsnCode: Bool? = nil, valueOfGood: Double? = nil) {
             self.brandCalculatedAmount = brandCalculatedAmount
 
             self.gstFee = gstFee
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.gstTaxPercentage = gstTaxPercentage
 
             self.isDefaultHsnCode = isDefaultHsnCode
-        }
-
-        public func duplicate() -> GstDetails {
-            let dict = self.dictionary!
-            let copy = GstDetails(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case sort
         }
 
-        public init(facets: [ReviewFacet]?, items: [[String: Any]]?, page: Page?, sort: [SortMethod]?) {
+        public init(facets: [ReviewFacet]? = nil, items: [[String: Any]]? = nil, page: Page? = nil, sort: [SortMethod]? = nil) {
             self.facets = facets
 
             self.items = items
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.page = page
 
             self.sort = sort
-        }
-
-        public func duplicate() -> GetReviewResponse {
-            let dict = self.dictionary!
-            let copy = GetReviewResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

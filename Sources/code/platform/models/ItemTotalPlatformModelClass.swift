@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case all
         }
 
-        public init(all: Int?, new: Int?, processing: Int?, returns: Int?) {
+        public init(all: Int? = nil, new: Int? = nil, processing: Int? = nil, returns: Int? = nil) {
             self.new = new
 
             self.processing = processing
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.returns = returns
 
             self.all = all
-        }
-
-        public func duplicate() -> ItemTotal {
-            let dict = self.dictionary!
-            let copy = ItemTotal(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

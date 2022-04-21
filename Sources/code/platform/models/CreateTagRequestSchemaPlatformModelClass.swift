@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case tags
         }
 
-        public init(tags: [CreateTagSchema]?) {
+        public init(tags: [CreateTagSchema]? = nil) {
             self.tags = tags
-        }
-
-        public func duplicate() -> CreateTagRequestSchema {
-            let dict = self.dictionary!
-            let copy = CreateTagRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

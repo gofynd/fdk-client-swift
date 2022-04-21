@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case type
         }
 
-        public init(link: String?, type: String?) {
+        public init(link: String? = nil, type: String? = nil) {
             self.link = link
 
             self.type = type
-        }
-
-        public func duplicate() -> WebRedirect {
-            let dict = self.dictionary!
-            let copy = WebRedirect(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

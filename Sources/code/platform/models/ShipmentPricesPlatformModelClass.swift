@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -90,7 +90,7 @@ public extension PlatformClient {
             case valueOfGood = "value_of_good"
         }
 
-        public init(addedToFyndCash: Bool?, amountPaid: Double?, amountPaidRoundoff: Double?, brandCalculatedAmount: Double?, cashback: Double?, cashbackApplied: Double?, codCharges: Double?, couponEffectiveDiscount: Double?, couponValue: Double?, deliveryCharge: Double?, discount: Double?, fyndCredits: Double?, gstTaxPercentage: Double?, priceEffective: Double?, priceMarked: Double?, promotionEffectiveDiscount: Double?, refundAmount: Double?, refundCredit: Double?, transferPrice: Double?, valueOfGood: Double?) {
+        public init(addedToFyndCash: Bool? = nil, amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, gstTaxPercentage: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
             self.refundAmount = refundAmount
 
             self.cashbackApplied = cashbackApplied
@@ -130,12 +130,6 @@ public extension PlatformClient {
             self.cashback = cashback
 
             self.valueOfGood = valueOfGood
-        }
-
-        public func duplicate() -> ShipmentPrices {
-            let dict = self.dictionary!
-            let copy = ShipmentPrices(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

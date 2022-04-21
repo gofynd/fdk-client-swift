@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case debit
         }
 
-        public init(credit: Credit?, debit: Debit?) {
+        public init(credit: Credit? = nil, debit: Debit? = nil) {
             self.credit = credit
 
             self.debit = debit
-        }
-
-        public func duplicate() -> RewardPointsConfig {
-            let dict = self.dictionary!
-            let copy = RewardPointsConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

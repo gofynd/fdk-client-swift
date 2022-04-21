@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case units
         }
 
-        public init(display: String?, filterTypes: [String]?, key: String?, units: [[String: Any]]?) {
+        public init(display: String? = nil, filterTypes: [String]? = nil, key: String? = nil, units: [[String: Any]]? = nil) {
             self.key = key
 
             self.display = display
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.filterTypes = filterTypes
 
             self.units = units
-        }
-
-        public func duplicate() -> MetaDataListingFilterMetaResponse {
-            let dict = self.dictionary!
-            let copy = MetaDataListingFilterMetaResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

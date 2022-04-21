@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -28,12 +28,6 @@ public extension PlatformClient {
             self.unit = unit
 
             self.returnable = returnable
-        }
-
-        public func duplicate() -> ReturnConfig {
-            let dict = self.dictionary!
-            let copy = ReturnConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

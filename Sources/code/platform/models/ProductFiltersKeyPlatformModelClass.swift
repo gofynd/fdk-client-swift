@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case display
         }
 
-        public init(display: String, kind: String?, logo: String?, name: String) {
+        public init(display: String, kind: String? = nil, logo: String? = nil, name: String) {
             self.name = name
 
             self.logo = logo
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.kind = kind
 
             self.display = display
-        }
-
-        public func duplicate() -> ProductFiltersKey {
-            let dict = self.dictionary!
-            let copy = ProductFiltersKey(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

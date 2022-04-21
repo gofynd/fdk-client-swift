@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case description
         }
 
-        public init(description: String?, features: [String]?, images: Images?, name: String?) {
+        public init(description: String? = nil, features: [String]? = nil, images: Images? = nil, name: String? = nil) {
             self.images = images
 
             self.features = features
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.name = name
 
             self.description = description
-        }
-
-        public func duplicate() -> Information {
-            let dict = self.dictionary!
-            let copy = Information(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

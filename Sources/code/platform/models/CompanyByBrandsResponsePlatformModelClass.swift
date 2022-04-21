@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [BrandCompanyInfo]?, page: Page?) {
+        public init(items: [BrandCompanyInfo]? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page
-        }
-
-        public func duplicate() -> CompanyByBrandsResponse {
-            let dict = self.dictionary!
-            let copy = CompanyByBrandsResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case verified
         }
 
-        public init(legalName: String?, type: String?, value: String?, verified: Bool?) {
+        public init(legalName: String? = nil, type: String? = nil, value: String? = nil, verified: Bool? = nil) {
             self.legalName = legalName
 
             self.type = type
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.value = value
 
             self.verified = verified
-        }
-
-        public func duplicate() -> Gst {
-            let dict = self.dictionary!
-            let copy = Gst(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

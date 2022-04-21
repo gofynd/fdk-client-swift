@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case coordinates
         }
 
-        public init(coordinates: [Double]?, type: String?) {
+        public init(coordinates: [Double]? = nil, type: String? = nil) {
             self.type = type
 
             self.coordinates = coordinates
-        }
-
-        public func duplicate() -> StoreLatLong {
-            let dict = self.dictionary!
-            let copy = StoreLatLong(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             case review
         }
 
-        public init(active: Bool, enableMediaType: String?, enableQna: Bool?, enableRating: Bool, enableReview: Bool, entity: EntityRequest, rating: RatingRequest, review: ReviewRequest) {
+        public init(active: Bool, enableMediaType: String? = nil, enableQna: Bool? = nil, enableRating: Bool, enableReview: Bool, entity: EntityRequest, rating: RatingRequest, review: ReviewRequest) {
             self.active = active
 
             self.enableMediaType = enableMediaType
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.rating = rating
 
             self.review = review
-        }
-
-        public func duplicate() -> TemplateRequest {
-            let dict = self.dictionary!
-            let copy = TemplateRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

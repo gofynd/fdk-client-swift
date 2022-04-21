@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             case googleMap = "google_map"
         }
 
-        public init(firebase: Firebase?, freshchat: Freshchat?, fyndRewards: FyndRewards?, googleMap: GoogleMap?, gtm: Gtm?, moengage: Moengage?, safetynet: Safetynet?, segment: Segment?) {
+        public init(firebase: Firebase? = nil, freshchat: Freshchat? = nil, fyndRewards: FyndRewards? = nil, googleMap: GoogleMap? = nil, gtm: Gtm? = nil, moengage: Moengage? = nil, safetynet: Safetynet? = nil, segment: Segment? = nil) {
             self.firebase = firebase
 
             self.moengage = moengage
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.fyndRewards = fyndRewards
 
             self.googleMap = googleMap
-        }
-
-        public func duplicate() -> Tokens {
-            let dict = self.dictionary!
-            let copy = Tokens(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

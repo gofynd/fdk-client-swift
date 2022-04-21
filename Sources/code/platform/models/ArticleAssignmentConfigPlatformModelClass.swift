@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case postOrderReassignment = "post_order_reassignment"
         }
 
-        public init(postOrderReassignment: Bool?, rules: ArticleAssignmentRules?) {
+        public init(postOrderReassignment: Bool? = nil, rules: ArticleAssignmentRules? = nil) {
             self.rules = rules
 
             self.postOrderReassignment = postOrderReassignment
-        }
-
-        public func duplicate() -> ArticleAssignmentConfig {
-            let dict = self.dictionary!
-            let copy = ArticleAssignmentConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

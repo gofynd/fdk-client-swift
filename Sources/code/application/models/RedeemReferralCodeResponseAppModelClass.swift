@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -39,12 +39,6 @@ public extension ApplicationClient {
             self.referrerId = referrerId
 
             self.referrerInfo = referrerInfo
-        }
-
-        public func duplicate() -> RedeemReferralCodeResponse {
-            let dict = self.dictionary!
-            let copy = RedeemReferralCodeResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

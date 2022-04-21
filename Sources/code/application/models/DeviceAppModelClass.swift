@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -27,12 +27,6 @@ public extension ApplicationClient {
             self.model = model
 
             self.os = os
-        }
-
-        public func duplicate() -> Device {
-            let dict = self.dictionary!
-            let copy = Device(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

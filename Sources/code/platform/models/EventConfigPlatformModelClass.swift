@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             case createdOn = "created_on"
         }
 
-        public init(createdOn: String?, description: String?, displayName: String?, eventCategory: String?, eventName: String?, eventType: String?, id: Int?, version: String?) {
+        public init(createdOn: String? = nil, description: String? = nil, displayName: String? = nil, eventCategory: String? = nil, eventName: String? = nil, eventType: String? = nil, id: Int? = nil, version: String? = nil) {
             self.id = id
 
             self.eventName = eventName
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.description = description
 
             self.createdOn = createdOn
-        }
-
-        public func duplicate() -> EventConfig {
-            let dict = self.dictionary!
-            let copy = EventConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

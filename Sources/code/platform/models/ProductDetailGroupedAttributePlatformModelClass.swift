@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case title
         }
 
-        public init(details: [ProductDetailAttribute]?, title: String?) {
+        public init(details: [ProductDetailAttribute]? = nil, title: String? = nil) {
             self.details = details
 
             self.title = title
-        }
-
-        public func duplicate() -> ProductDetailGroupedAttribute {
-            let dict = self.dictionary!
-            let copy = ProductDetailGroupedAttribute(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

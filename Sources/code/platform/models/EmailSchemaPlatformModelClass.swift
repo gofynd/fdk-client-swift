@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case email
         }
 
-        public init(active: Bool?, email: [EmailProperties]?) {
+        public init(active: Bool? = nil, email: [EmailProperties]? = nil) {
             self.active = active
 
             self.email = email
-        }
-
-        public func duplicate() -> EmailSchema {
-            let dict = self.dictionary!
-            let copy = EmailSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

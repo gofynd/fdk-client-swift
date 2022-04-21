@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case verifyMobileLink = "verify_mobile_link"
         }
 
-        public init(verifyMobileLink: Bool?) {
+        public init(verifyMobileLink: Bool? = nil) {
             self.verifyMobileLink = verifyMobileLink
-        }
-
-        public func duplicate() -> SendMobileVerifyLinkSuccess {
-            let dict = self.dictionary!
-            let copy = SendMobileVerifyLinkSuccess(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

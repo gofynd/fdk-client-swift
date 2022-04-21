@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -110,7 +110,7 @@ public extension PlatformClient {
             case invoiceItems = "invoice_items"
         }
 
-        public init(attemp: Int?, autoAdvance: Bool?, client: InvoicesDataClient?, collectionMethod: String?, createdAt: String?, currency: String?, currentStatus: String?, hashIdentifier: String?, invoiceItems: [InvoiceItems]?, invoiceUrl: String?, modifiedAt: String?, nextActionTime: String?, number: String?, paid: Bool?, paymentMethod: InvoicesDataPaymentMethod?, period: InvoicesDataPeriod?, pgData: [String: Any]?, receiptNumber: String?, statementDescriptor: String?, statusTrail: [InvoiceDetailsStatusTrail]?, subscriberId: String?, subscription: String?, subtotal: Double?, total: Double?, id: String?) {
+        public init(attemp: Int? = nil, autoAdvance: Bool? = nil, client: InvoicesDataClient? = nil, collectionMethod: String? = nil, createdAt: String? = nil, currency: String? = nil, currentStatus: String? = nil, hashIdentifier: String? = nil, invoiceItems: [InvoiceItems]? = nil, invoiceUrl: String? = nil, modifiedAt: String? = nil, nextActionTime: String? = nil, number: String? = nil, paid: Bool? = nil, paymentMethod: InvoicesDataPaymentMethod? = nil, period: InvoicesDataPeriod? = nil, pgData: [String: Any]? = nil, receiptNumber: String? = nil, statementDescriptor: String? = nil, statusTrail: [InvoiceDetailsStatusTrail]? = nil, subscriberId: String? = nil, subscription: String? = nil, subtotal: Double? = nil, total: Double? = nil, id: String? = nil) {
             self.id = id
 
             self.client = client
@@ -160,12 +160,6 @@ public extension PlatformClient {
             self.paymentMethod = paymentMethod
 
             self.invoiceItems = invoiceItems
-        }
-
-        public func duplicate() -> InvoicesData {
-            let dict = self.dictionary!
-            let copy = InvoicesData(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

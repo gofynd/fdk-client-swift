@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case companyId = "company_id"
         }
 
-        public init(batchId: String, companyId: Int, sizes: [Size1], user: [String: Any]?) {
+        public init(batchId: String, companyId: Int, sizes: [Size1], user: [String: Any]? = nil) {
             self.batchId = batchId
 
             self.sizes = sizes
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.user = user
 
             self.companyId = companyId
-        }
-
-        public func duplicate() -> InventoryBulkRequest {
-            let dict = self.dictionary!
-            let copy = InventoryBulkRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

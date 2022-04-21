@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case rtoAddress = "rto_address"
         }
 
-        public init(amountToCollect: Double?, invoiceUrl: String?, labelUrl: String?, paymentMode: String?, paymentType: String?, rtoAddress: RtoAddress?, updatedDate: String?) {
+        public init(amountToCollect: Double? = nil, invoiceUrl: String? = nil, labelUrl: String? = nil, paymentMode: String? = nil, paymentType: String? = nil, rtoAddress: RtoAddress? = nil, updatedDate: String? = nil) {
             self.paymentType = paymentType
 
             self.updatedDate = updatedDate
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.amountToCollect = amountToCollect
 
             self.rtoAddress = rtoAddress
-        }
-
-        public func duplicate() -> ShipmentInvoice {
-            let dict = self.dictionary!
-            let copy = ShipmentInvoice(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

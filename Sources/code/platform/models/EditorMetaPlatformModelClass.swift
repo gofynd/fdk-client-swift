@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case content
         }
 
-        public init(backgroundColor: String?, content: String?, contentType: String?, foregroundColor: String?) {
+        public init(backgroundColor: String? = nil, content: String? = nil, contentType: String? = nil, foregroundColor: String? = nil) {
             self.foregroundColor = foregroundColor
 
             self.backgroundColor = backgroundColor
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.contentType = contentType
 
             self.content = content
-        }
-
-        public func duplicate() -> EditorMeta {
-            let dict = self.dictionary!
-            let copy = EditorMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

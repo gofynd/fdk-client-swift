@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case returnable
         }
 
-        public init(returnable: Bool?, time: Int?, unit: String?) {
+        public init(returnable: Bool? = nil, time: Int? = nil, unit: String? = nil) {
             self.time = time
 
             self.unit = unit
 
             self.returnable = returnable
-        }
-
-        public func duplicate() -> BagArticleReturnConfig {
-            let dict = self.dictionary!
-            let copy = BagArticleReturnConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

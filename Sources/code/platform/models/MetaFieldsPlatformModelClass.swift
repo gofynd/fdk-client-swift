@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.value = value
 
             self.key = key
-        }
-
-        public func duplicate() -> MetaFields {
-            let dict = self.dictionary!
-            let copy = MetaFields(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

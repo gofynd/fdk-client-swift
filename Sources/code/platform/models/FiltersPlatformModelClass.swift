@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case stages
         }
 
-        public init(stage: Stage?, stages: Stages?) {
+        public init(stage: Stage? = nil, stages: Stages? = nil) {
             self.stage = stage
 
             self.stages = stages
-        }
-
-        public func duplicate() -> Filters {
-            let dict = self.dictionary!
-            let copy = Filters(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

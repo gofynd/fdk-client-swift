@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case service
         }
 
-        public init(service: String?) {
+        public init(service: String? = nil) {
             self.service = service
-        }
-
-        public func duplicate() -> ArticleMeta {
-            let dict = self.dictionary!
-            let copy = ArticleMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case autoApply = "auto_apply"
         }
 
-        public init(autoApply: Bool?, enabled: Bool?) {
+        public init(autoApply: Bool? = nil, enabled: Bool? = nil) {
             self.enabled = enabled
 
             self.autoApply = autoApply
-        }
-
-        public func duplicate() -> LoyaltyPointsConfig {
-            let dict = self.dictionary!
-            let copy = LoyaltyPointsConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

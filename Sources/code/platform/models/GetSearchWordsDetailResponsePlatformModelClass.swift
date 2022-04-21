@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case items
         }
 
-        public init(items: GetSearchWordsData?, page: Page?) {
+        public init(items: GetSearchWordsData? = nil, page: Page? = nil) {
             self.page = page
 
             self.items = items
-        }
-
-        public func duplicate() -> GetSearchWordsDetailResponse {
-            let dict = self.dictionary!
-            let copy = GetSearchWordsDetailResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

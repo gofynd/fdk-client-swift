@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case previous
         }
 
-        public init(next: String?, previous: String?) {
+        public init(next: String? = nil, previous: String? = nil) {
             self.next = next
 
             self.previous = previous
-        }
-
-        public func duplicate() -> PlatformOrderDetailsPage {
-            let dict = self.dictionary!
-            let copy = PlatformOrderDetailsPage(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

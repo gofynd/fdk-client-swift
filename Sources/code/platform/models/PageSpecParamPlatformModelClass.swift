@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case required
         }
 
-        public init(key: String?, required: Bool?) {
+        public init(key: String? = nil, required: Bool? = nil) {
             self.key = key
 
             self.required = required
-        }
-
-        public func duplicate() -> PageSpecParam {
-            let dict = self.dictionary!
-            let copy = PageSpecParam(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

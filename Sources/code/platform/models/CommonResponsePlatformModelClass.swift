@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case success
         }
 
-        public init(success: String?) {
+        public init(success: String? = nil) {
             self.success = success
-        }
-
-        public func duplicate() -> CommonResponse {
-            let dict = self.dictionary!
-            let copy = CommonResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

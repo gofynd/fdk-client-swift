@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -98,7 +98,7 @@ public extension PlatformClient {
             case archived
         }
 
-        public init(application: String?, archived: Bool?, componentIds: [String]?, content: [[String: Any]]?, contentPath: String?, createdBy: CreatedBySchema?, dateMeta: DateMeta?, description: String?, featureImage: Asset?, orientation: String?, pageMeta: [[String: Any]]?, platform: String?, published: Bool?, seo: SEO?, slug: String?, tags: [String]?, title: String?, type: String?, visibility: [String: Any]?, customJson: [String: Any]?, id: String?, schedule: ScheduleSchema?) {
+        public init(application: String? = nil, archived: Bool? = nil, componentIds: [String]? = nil, content: [[String: Any]]? = nil, contentPath: String? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, description: String? = nil, featureImage: Asset? = nil, orientation: String? = nil, pageMeta: [[String: Any]]? = nil, platform: String? = nil, published: Bool? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, type: String? = nil, visibility: [String: Any]? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: ScheduleSchema? = nil) {
             self.id = id
 
             self.application = application
@@ -142,12 +142,6 @@ public extension PlatformClient {
             self.visibility = visibility
 
             self.archived = archived
-        }
-
-        public func duplicate() -> PageSchema {
-            let dict = self.dictionary!
-            let copy = PageSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

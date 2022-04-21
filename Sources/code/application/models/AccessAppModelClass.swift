@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -33,12 +33,6 @@ public extension ApplicationClient {
             self.comment = comment
 
             self.rnr = rnr
-        }
-
-        public func duplicate() -> Access {
-            let dict = self.dictionary!
-            let copy = Access(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

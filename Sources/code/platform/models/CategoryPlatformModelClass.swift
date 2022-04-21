@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -78,7 +78,7 @@ public extension PlatformClient {
             case level
         }
 
-        public init(createdBy: [String: Any]?, createdOn: String?, departments: [Int], hierarchy: [Hierarchy]?, isActive: Bool, level: Int, marketplaces: CategoryMapping?, media: Media2?, modifiedBy: [String: Any]?, modifiedOn: String?, name: String, priority: Int?, slug: String?, synonyms: [String]?, tryouts: [String]?, uid: Int?, id: String?) {
+        public init(createdBy: [String: Any]? = nil, createdOn: String? = nil, departments: [Int], hierarchy: [Hierarchy]? = nil, isActive: Bool, level: Int, marketplaces: CategoryMapping? = nil, media: Media2? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, priority: Int? = nil, slug: String? = nil, synonyms: [String]? = nil, tryouts: [String]? = nil, uid: Int? = nil, id: String? = nil) {
             self.modifiedBy = modifiedBy
 
             self.uid = uid
@@ -112,12 +112,6 @@ public extension PlatformClient {
             self.slug = slug
 
             self.level = level
-        }
-
-        public func duplicate() -> Category {
-            let dict = self.dictionary!
-            let copy = Category(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

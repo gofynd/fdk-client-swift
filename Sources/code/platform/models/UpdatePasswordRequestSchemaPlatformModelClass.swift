@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case newPassword = "new_password"
         }
 
-        public init(newPassword: String?, oldPassword: String?) {
+        public init(newPassword: String? = nil, oldPassword: String? = nil) {
             self.oldPassword = oldPassword
 
             self.newPassword = newPassword
-        }
-
-        public func duplicate() -> UpdatePasswordRequestSchema {
-            let dict = self.dictionary!
-            let copy = UpdatePasswordRequestSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

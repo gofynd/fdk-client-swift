@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case unit
         }
 
-        public init(headers: [String: Any]?, unit: String?, values: [[String: Any]]?) {
+        public init(headers: [String: Any]? = nil, unit: String? = nil, values: [[String: Any]]? = nil) {
             self.headers = headers
 
             self.values = values
 
             self.unit = unit
-        }
-
-        public func duplicate() -> Meta {
-            let dict = self.dictionary!
-            let copy = Meta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

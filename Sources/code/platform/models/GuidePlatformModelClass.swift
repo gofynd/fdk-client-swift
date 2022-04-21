@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case meta
         }
 
-        public init(meta: Meta?) {
+        public init(meta: Meta? = nil) {
             self.meta = meta
-        }
-
-        public func duplicate() -> Guide {
-            let dict = self.dictionary!
-            let copy = Guide(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

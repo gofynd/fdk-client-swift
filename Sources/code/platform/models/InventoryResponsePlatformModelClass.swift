@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -62,7 +62,7 @@ public extension PlatformClient {
             case priceEffective = "price_effective"
         }
 
-        public init(currency: String?, identifiers: [String: Any]?, inventoryUpdatedOn: String?, itemId: Int?, price: Int?, priceEffective: Int?, priceTransfer: Int?, quantity: Int?, sellableQuantity: Int?, sellerIdentifier: Int?, size: String?, store: [String: Any]?, uid: String?) {
+        public init(currency: String? = nil, identifiers: [String: Any]? = nil, inventoryUpdatedOn: String? = nil, itemId: Int? = nil, price: Int? = nil, priceEffective: Int? = nil, priceTransfer: Int? = nil, quantity: Int? = nil, sellableQuantity: Int? = nil, sellerIdentifier: Int? = nil, size: String? = nil, store: [String: Any]? = nil, uid: String? = nil) {
             self.size = size
 
             self.sellerIdentifier = sellerIdentifier
@@ -88,12 +88,6 @@ public extension PlatformClient {
             self.priceTransfer = priceTransfer
 
             self.priceEffective = priceEffective
-        }
-
-        public func duplicate() -> InventoryResponse {
-            let dict = self.dictionary!
-            let copy = InventoryResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

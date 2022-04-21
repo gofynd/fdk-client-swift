@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case app
         }
 
-        public init(allStores: Bool?, app: String?, deployedStores: [Int]?, enabled: Bool?, type: String?, id: String?) {
+        public init(allStores: Bool? = nil, app: String? = nil, deployedStores: [Int]? = nil, enabled: Bool? = nil, type: String? = nil, id: String? = nil) {
             self.deployedStores = deployedStores
 
             self.allStores = allStores
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.id = id
 
             self.app = app
-        }
-
-        public func duplicate() -> DeploymentMeta {
-            let dict = self.dictionary!
-            let copy = DeploymentMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

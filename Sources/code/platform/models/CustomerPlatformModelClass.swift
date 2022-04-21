@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -94,7 +94,7 @@ public extension PlatformClient {
             case defaultAddress = "default_address"
         }
 
-        public init(acceptsMarketing: Bool?, acceptsMarketingUpdatedAt: String?, adminGraphqlApiId: String?, createdAt: String?, currency: String?, defaultAddress: DefaultAddress?, email: String?, firstName: String?, id: Int?, lastName: String?, lastOrderId: Int?, lastOrderName: String?, note: String?, ordersCount: Int?, phone: String?, state: String?, tags: String?, taxExempt: Bool?, totalSpent: String?, updatedAt: String?, verifiedEmail: Bool?) {
+        public init(acceptsMarketing: Bool? = nil, acceptsMarketingUpdatedAt: String? = nil, adminGraphqlApiId: String? = nil, createdAt: String? = nil, currency: String? = nil, defaultAddress: DefaultAddress? = nil, email: String? = nil, firstName: String? = nil, id: Int? = nil, lastName: String? = nil, lastOrderId: Int? = nil, lastOrderName: String? = nil, note: String? = nil, ordersCount: Int? = nil, phone: String? = nil, state: String? = nil, tags: String? = nil, taxExempt: Bool? = nil, totalSpent: String? = nil, updatedAt: String? = nil, verifiedEmail: Bool? = nil) {
             self.createdAt = createdAt
 
             self.id = id
@@ -136,12 +136,6 @@ public extension PlatformClient {
             self.adminGraphqlApiId = adminGraphqlApiId
 
             self.defaultAddress = defaultAddress
-        }
-
-        public func duplicate() -> Customer {
-            let dict = self.dictionary!
-            let copy = Customer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

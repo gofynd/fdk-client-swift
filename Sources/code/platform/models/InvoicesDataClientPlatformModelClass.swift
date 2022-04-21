@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case addressLines = "address_lines"
         }
 
-        public init(addressLines: [String]?, email: String?, name: String?, phone: String?) {
+        public init(addressLines: [String]? = nil, email: String? = nil, name: String? = nil, phone: String? = nil) {
             self.name = name
 
             self.email = email
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.phone = phone
 
             self.addressLines = addressLines
-        }
-
-        public func duplicate() -> InvoicesDataClient {
-            let dict = self.dictionary!
-            let copy = InvoicesDataClient(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

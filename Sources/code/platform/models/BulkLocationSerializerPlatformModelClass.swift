@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: [LocationSerializer]?) {
+        public init(data: [LocationSerializer]? = nil) {
             self.data = data
-        }
-
-        public func duplicate() -> BulkLocationSerializer {
-            let dict = self.dictionary!
-            let copy = BulkLocationSerializer(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

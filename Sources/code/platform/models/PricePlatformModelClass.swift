@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case minEffective = "min_effective"
         }
 
-        public init(currency: String?, maxEffective: Double?, maxMarked: Double?, minEffective: Double?, minMarked: Double?) {
+        public init(currency: String? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
             self.minMarked = minMarked
 
             self.maxEffective = maxEffective
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.maxMarked = maxMarked
 
             self.minEffective = minEffective
-        }
-
-        public func duplicate() -> Price {
-            let dict = self.dictionary!
-            let copy = Price(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case charging
         }
 
-        public init(charging: Bool?, generation: Bool?) {
+        public init(charging: Bool? = nil, generation: Bool? = nil) {
             self.generation = generation
 
             self.charging = charging
-        }
-
-        public func duplicate() -> SubscriptionInvoiceSettings {
-            let dict = self.dictionary!
-            let copy = SubscriptionInvoiceSettings(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

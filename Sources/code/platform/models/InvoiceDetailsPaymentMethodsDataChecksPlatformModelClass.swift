@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case addressPostalCodeCheck = "address_postal_code_check"
         }
 
-        public init(addressLine1Check: String?, addressPostalCodeCheck: String?, cvcCheck: String?) {
+        public init(addressLine1Check: String? = nil, addressPostalCodeCheck: String? = nil, cvcCheck: String? = nil) {
             self.cvcCheck = cvcCheck
 
             self.addressLine1Check = addressLine1Check
 
             self.addressPostalCodeCheck = addressPostalCodeCheck
-        }
-
-        public func duplicate() -> InvoiceDetailsPaymentMethodsDataChecks {
-            let dict = self.dictionary!
-            let copy = InvoiceDetailsPaymentMethodsDataChecks(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

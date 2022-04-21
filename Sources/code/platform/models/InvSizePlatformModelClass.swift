@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -78,7 +78,7 @@ public extension PlatformClient {
             case storeCode = "store_code"
         }
 
-        public init(currency: String, expirationDate: String?, identifiers: [GTIN], isSet: Bool?, itemDimensionsUnitOfMeasure: String?, itemHeight: Double?, itemLength: Double?, itemWeight: Double?, itemWeightUnitOfMeasure: String?, itemWidth: Double?, price: Double, priceEffective: Double, priceTransfer: Double?, quantity: Int, set: InventorySet?, size: String, storeCode: String) {
+        public init(currency: String, expirationDate: String? = nil, identifiers: [GTIN], isSet: Bool? = nil, itemDimensionsUnitOfMeasure: String? = nil, itemHeight: Double? = nil, itemLength: Double? = nil, itemWeight: Double? = nil, itemWeightUnitOfMeasure: String? = nil, itemWidth: Double? = nil, price: Double, priceEffective: Double, priceTransfer: Double? = nil, quantity: Int, set: InventorySet? = nil, size: String, storeCode: String) {
             self.itemLength = itemLength
 
             self.itemWeightUnitOfMeasure = itemWeightUnitOfMeasure
@@ -112,12 +112,6 @@ public extension PlatformClient {
             self.priceEffective = priceEffective
 
             self.storeCode = storeCode
-        }
-
-        public func duplicate() -> InvSize {
-            let dict = self.dictionary!
-            let copy = InvSize(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

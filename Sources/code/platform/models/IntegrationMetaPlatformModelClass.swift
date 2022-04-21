@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case value
         }
 
-        public init(isPublic: Bool?, name: String?, value: String?, id: String?) {
+        public init(isPublic: Bool? = nil, name: String? = nil, value: String? = nil, id: String? = nil) {
             self.isPublic = isPublic
 
             self.id = id
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.name = name
 
             self.value = value
-        }
-
-        public func duplicate() -> IntegrationMeta {
-            let dict = self.dictionary!
-            let copy = IntegrationMeta(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case params
         }
 
-        public init(params: [String: Any]?) {
+        public init(params: [String: Any]? = nil) {
             self.params = params
-        }
-
-        public func duplicate() -> DBParamConfig {
-            let dict = self.dictionary!
-            let copy = DBParamConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

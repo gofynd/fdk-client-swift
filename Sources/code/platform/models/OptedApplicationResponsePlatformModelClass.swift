@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case optOutInventory = "opt_out_inventory"
         }
 
-        public init(company: OptedCompany?, description: String?, domain: String?, name: String?, optedInventory: OptedInventory?, optOutInventory: OptOutInventory?, id: String?) {
+        public init(company: OptedCompany? = nil, description: String? = nil, domain: String? = nil, name: String? = nil, optedInventory: OptedInventory? = nil, optOutInventory: OptOutInventory? = nil, id: String? = nil) {
             self.name = name
 
             self.description = description
@@ -52,12 +52,6 @@ public extension PlatformClient {
             self.optedInventory = optedInventory
 
             self.optOutInventory = optOutInventory
-        }
-
-        public func duplicate() -> OptedApplicationResponse {
-            let dict = self.dictionary!
-            let copy = OptedApplicationResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

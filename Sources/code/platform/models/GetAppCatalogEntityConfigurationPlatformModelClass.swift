@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case isDefault = "is_default"
         }
 
-        public init(data: EntityConfiguration?, isDefault: Bool?) {
+        public init(data: EntityConfiguration? = nil, isDefault: Bool? = nil) {
             self.data = data
 
             self.isDefault = isDefault
-        }
-
-        public func duplicate() -> GetAppCatalogEntityConfiguration {
-            let dict = self.dictionary!
-            let copy = GetAppCatalogEntityConfiguration(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

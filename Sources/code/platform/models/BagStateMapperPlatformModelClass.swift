@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case appDisplayName = "app_display_name"
         }
 
-        public init(appDisplayName: String?, appStateName: String?, displayName: String?, isActive: Bool?, name: String?) {
+        public init(appDisplayName: String? = nil, appStateName: String? = nil, displayName: String? = nil, isActive: Bool? = nil, name: String? = nil) {
             self.appStateName = appStateName
 
             self.isActive = isActive
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.name = name
 
             self.appDisplayName = appDisplayName
-        }
-
-        public func duplicate() -> BagStateMapper {
-            let dict = self.dictionary!
-            let copy = BagStateMapper(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

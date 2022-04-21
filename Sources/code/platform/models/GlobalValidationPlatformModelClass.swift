@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case description
         }
 
-        public init(definitions: [String: Any]?, description: String?, properties: Properties?, required: [String]?, title: String?, type: String?) {
+        public init(definitions: [String: Any]? = nil, description: String? = nil, properties: Properties? = nil, required: [String]? = nil, title: String? = nil, type: String? = nil) {
             self.type = type
 
             self.required = required
@@ -46,12 +46,6 @@ public extension PlatformClient {
             self.properties = properties
 
             self.description = description
-        }
-
-        public func duplicate() -> GlobalValidation {
-            let dict = self.dictionary!
-            let copy = GlobalValidation(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

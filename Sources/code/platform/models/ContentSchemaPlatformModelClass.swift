@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case value
         }
 
-        public init(type: String?, value: [String: Any]?) {
+        public init(type: String? = nil, value: [String: Any]? = nil) {
             self.type = type
 
             self.value = value
-        }
-
-        public func duplicate() -> ContentSchema {
-            let dict = self.dictionary!
-            let copy = ContentSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case timestamp
         }
 
-        public init(action: String?, jobType: String?, timestamp: String?, trace: String?) {
+        public init(action: String? = nil, jobType: String? = nil, timestamp: String? = nil, trace: String? = nil) {
             self.jobType = jobType
 
             self.action = action
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.trace = trace
 
             self.timestamp = timestamp
-        }
-
-        public func duplicate() -> MetaStructure {
-            let dict = self.dictionary!
-            let copy = MetaStructure(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             case returnWithinDays = "return_within_days"
         }
 
-        public init(agreementStartDate: String?, businessType: String?, companyName: String?, companyType: String?, createdOn: String?, exchangeAllowed: Bool?, exchangeWithinDays: Int?, fyndAFitAvailable: Bool?, id: Int?, meta: String?, modifiedOn: String?, panNo: String?, paymentProcesingCharge: Int?, returnAllowed: Bool?, returnWithinDays: Int?) {
+        public init(agreementStartDate: String? = nil, businessType: String? = nil, companyName: String? = nil, companyType: String? = nil, createdOn: String? = nil, exchangeAllowed: Bool? = nil, exchangeWithinDays: Int? = nil, fyndAFitAvailable: Bool? = nil, id: Int? = nil, meta: String? = nil, modifiedOn: String? = nil, panNo: String? = nil, paymentProcesingCharge: Int? = nil, returnAllowed: Bool? = nil, returnWithinDays: Int? = nil) {
             self.id = id
 
             self.companyType = companyType
@@ -100,12 +100,6 @@ public extension PlatformClient {
             self.modifiedOn = modifiedOn
 
             self.returnWithinDays = returnWithinDays
-        }
-
-        public func duplicate() -> Company {
-            let dict = self.dictionary!
-            let copy = Company(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

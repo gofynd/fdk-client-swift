@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -66,7 +66,7 @@ public extension PlatformClient {
             case title
         }
 
-        public init(active: Bool?, application: String?, approve: Bool?, archive: Bool?, attributesRating: [AttributeObject]?, description: String?, deviceMeta: DeviceMeta?, entityId: String?, entityType: String?, mediaResource: [MediaMeta]?, rating: Double?, reviewId: String?, templateId: String?, title: String?) {
+        public init(active: Bool? = nil, application: String? = nil, approve: Bool? = nil, archive: Bool? = nil, attributesRating: [AttributeObject]? = nil, description: String? = nil, deviceMeta: DeviceMeta? = nil, entityId: String? = nil, entityType: String? = nil, mediaResource: [MediaMeta]? = nil, rating: Double? = nil, reviewId: String? = nil, templateId: String? = nil, title: String? = nil) {
             self.active = active
 
             self.application = application
@@ -94,12 +94,6 @@ public extension PlatformClient {
             self.templateId = templateId
 
             self.title = title
-        }
-
-        public func duplicate() -> UpdateReviewRequest {
-            let dict = self.dictionary!
-            let copy = UpdateReviewRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case status
         }
 
-        public init(status: Int?) {
+        public init(status: Int? = nil) {
             self.status = status
-        }
-
-        public func duplicate() -> TriggerJobResponse {
-            let dict = self.dictionary!
-            let copy = TriggerJobResponse(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

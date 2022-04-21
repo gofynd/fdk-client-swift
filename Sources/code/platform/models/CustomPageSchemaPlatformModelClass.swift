@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -66,7 +66,7 @@ public extension PlatformClient {
             case schedule = "_schedule"
         }
 
-        public init(application: String?, content: [[String: Any]]?, createdBy: CreatedBySchema?, dateMeta: DateMeta?, description: String?, orientation: String?, platform: String?, published: Bool?, slug: String?, tags: [String]?, title: String?, type: String?, id: String?, schedule: ScheduleSchema?) {
+        public init(application: String? = nil, content: [[String: Any]]? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, description: String? = nil, orientation: String? = nil, platform: String? = nil, published: Bool? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, type: String? = nil, id: String? = nil, schedule: ScheduleSchema? = nil) {
             self.id = id
 
             self.platform = platform
@@ -94,12 +94,6 @@ public extension PlatformClient {
             self.dateMeta = dateMeta
 
             self.schedule = schedule
-        }
-
-        public func duplicate() -> CustomPageSchema {
-            let dict = self.dictionary!
-            let copy = CustomPageSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

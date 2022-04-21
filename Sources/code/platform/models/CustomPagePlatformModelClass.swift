@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: CustomPageSchema?) {
+        public init(data: CustomPageSchema? = nil) {
             self.data = data
-        }
-
-        public func duplicate() -> CustomPage {
-            let dict = self.dictionary!
-            let copy = CustomPage(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

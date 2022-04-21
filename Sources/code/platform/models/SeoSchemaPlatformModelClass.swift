@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             case updatedAt = "updated_at"
         }
 
-        public init(app: String?, createdAt: String?, customMetaTags: [CustomMetaTag]?, details: Detail?, robotsTxt: String?, sitemapEnabled: Bool?, updatedAt: String?, id: String?) {
+        public init(app: String? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.app = app
 
             self.id = id
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.createdAt = createdAt
 
             self.updatedAt = updatedAt
-        }
-
-        public func duplicate() -> SeoSchema {
-            let dict = self.dictionary!
-            let copy = SeoSchema(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

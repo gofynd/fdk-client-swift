@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -126,7 +126,7 @@ public extension PlatformClient {
             case alias
         }
 
-        public init(aggregatorTypes: [String]?, alias: String?, audit: Audit?, catalogMasterConfig: CatalogMasterConfig?, companyConfig: [CompanyConfig]?, companyIds: [Int]?, cronExpression: String?, dbConnectionProfile: DBConnectionProfile?, deleteQuantityThreshold: Int?, dependentJobCodes: [String]?, disable: Bool?, immediateFirstRun: Bool?, integrationType: String?, jobCode: String?, minPrice: Double?, openTags: [String: Any]?, params: [String: Any]?, periodThreshold: Int?, periodThresholdType: String?, priority: String?, processConfig: ProcessConfig?, properties: [String: String]?, storeConfig: [StoreConfig]?, storeFilter: StoreFilter?, syncDelay: Int?, taskType: String?, taxIdentifiers: [String]?, version: Int?, id: Int?) {
+        public init(aggregatorTypes: [String]? = nil, alias: String? = nil, audit: Audit? = nil, catalogMasterConfig: CatalogMasterConfig? = nil, companyConfig: [CompanyConfig]? = nil, companyIds: [Int]? = nil, cronExpression: String? = nil, dbConnectionProfile: DBConnectionProfile? = nil, deleteQuantityThreshold: Int? = nil, dependentJobCodes: [String]? = nil, disable: Bool? = nil, immediateFirstRun: Bool? = nil, integrationType: String? = nil, jobCode: String? = nil, minPrice: Double? = nil, openTags: [String: Any]? = nil, params: [String: Any]? = nil, periodThreshold: Int? = nil, periodThresholdType: String? = nil, priority: String? = nil, processConfig: ProcessConfig? = nil, properties: [String: String]? = nil, storeConfig: [StoreConfig]? = nil, storeFilter: StoreFilter? = nil, syncDelay: Int? = nil, taskType: String? = nil, taxIdentifiers: [String]? = nil, version: Int? = nil, id: Int? = nil) {
             self.id = id
 
             self.jobCode = jobCode
@@ -184,12 +184,6 @@ public extension PlatformClient {
             self.version = version
 
             self.alias = alias
-        }
-
-        public func duplicate() -> JobConfig {
-            let dict = self.dictionary!
-            let copy = JobConfig(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

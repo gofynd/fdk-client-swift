@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,12 +22,6 @@ public extension PlatformClient {
             self.pageNo = pageNo
 
             self.pageSize = pageSize
-        }
-
-        public func duplicate() -> CollectionItemRequest {
-            let dict = self.dictionary!
-            let copy = CollectionItemRequest(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

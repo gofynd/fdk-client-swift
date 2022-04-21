@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case bucketPoints = "bucket_points"
         }
 
-        public init(bucketPoints: [ConfigurationBucketPoints]?, condition: String?, map: [String: Any]?, sort: String?, value: String?) {
+        public init(bucketPoints: [ConfigurationBucketPoints]? = nil, condition: String? = nil, map: [String: Any]? = nil, sort: String? = nil, value: String? = nil) {
             self.condition = condition
 
             self.map = map
@@ -40,12 +40,6 @@ public extension PlatformClient {
             self.value = value
 
             self.bucketPoints = bucketPoints
-        }
-
-        public func duplicate() -> ConfigurationListingFilterValue {
-            let dict = self.dictionary!
-            let copy = ConfigurationListingFilterValue(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

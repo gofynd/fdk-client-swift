@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case endDate = "end_date"
         }
 
-        public init(endDate: String?, startDate: String?) {
+        public init(endDate: String? = nil, startDate: String? = nil) {
             self.startDate = startDate
 
             self.endDate = endDate
-        }
-
-        public func duplicate() -> SubscriptionTrialPeriod {
-            let dict = self.dictionary!
-            let copy = SubscriptionTrialPeriod(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

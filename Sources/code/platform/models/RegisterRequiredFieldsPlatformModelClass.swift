@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case mobile
         }
 
-        public init(email: RegisterRequiredFieldsEmail?, mobile: RegisterRequiredFieldsMobile?) {
+        public init(email: RegisterRequiredFieldsEmail? = nil, mobile: RegisterRequiredFieldsMobile? = nil) {
             self.email = email
 
             self.mobile = mobile
-        }
-
-        public func duplicate() -> RegisterRequiredFields {
-            let dict = self.dictionary!
-            let copy = RegisterRequiredFields(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

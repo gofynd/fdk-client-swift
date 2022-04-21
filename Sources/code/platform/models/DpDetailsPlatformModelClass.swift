@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case gstTag = "gst_tag"
         }
 
-        public init(gstTag: String?) {
+        public init(gstTag: String? = nil) {
             self.gstTag = gstTag
-        }
-
-        public func duplicate() -> DpDetails {
-            let dict = self.dictionary!
-            let copy = DpDetails(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

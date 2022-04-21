@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -10,48 +10,42 @@ public extension PlatformClient {
     class PayoutRequest: Codable {
         public var users: [String: Any]
 
-        public var isActive: Bool
+        public var uniqueExternalId: String
 
         public var bankDetails: PayoutBankDetails
 
-        public var transferType: String
-
         public var aggregator: String
 
-        public var uniqueExternalId: String
+        public var isActive: Bool
+
+        public var transferType: String
 
         public enum CodingKeys: String, CodingKey {
             case users
 
-            case isActive = "is_active"
+            case uniqueExternalId = "unique_external_id"
 
             case bankDetails = "bank_details"
 
-            case transferType = "transfer_type"
-
             case aggregator
 
-            case uniqueExternalId = "unique_external_id"
+            case isActive = "is_active"
+
+            case transferType = "transfer_type"
         }
 
         public init(aggregator: String, bankDetails: PayoutBankDetails, isActive: Bool, transferType: String, uniqueExternalId: String, users: [String: Any]) {
             self.users = users
 
-            self.isActive = isActive
+            self.uniqueExternalId = uniqueExternalId
 
             self.bankDetails = bankDetails
 
-            self.transferType = transferType
-
             self.aggregator = aggregator
 
-            self.uniqueExternalId = uniqueExternalId
-        }
+            self.isActive = isActive
 
-        public func duplicate() -> PayoutRequest {
-            let dict = self.dictionary!
-            let copy = PayoutRequest(dictionary: dict)!
-            return copy
+            self.transferType = transferType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,15 +53,15 @@ public extension PlatformClient {
 
             users = try container.decode([String: Any].self, forKey: .users)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
+            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
 
             bankDetails = try container.decode(PayoutBankDetails.self, forKey: .bankDetails)
 
-            transferType = try container.decode(String.self, forKey: .transferType)
-
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
-            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            transferType = try container.decode(String.self, forKey: .transferType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -75,15 +69,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(users, forKey: .users)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
 
             try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
 
-            try? container.encodeIfPresent(transferType, forKey: .transferType)
-
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(transferType, forKey: .transferType)
         }
     }
 }

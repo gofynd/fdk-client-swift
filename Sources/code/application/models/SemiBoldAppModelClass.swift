@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension ApplicationClient {
@@ -21,12 +21,6 @@ public extension ApplicationClient {
             self.name = name
 
             self.file = file
-        }
-
-        public func duplicate() -> SemiBold {
-            let dict = self.dictionary!
-            let copy = SemiBold(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

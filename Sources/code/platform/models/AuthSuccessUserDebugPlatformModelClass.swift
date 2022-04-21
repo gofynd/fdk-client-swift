@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -14,14 +14,8 @@ public extension PlatformClient {
             case platform
         }
 
-        public init(platform: String?) {
+        public init(platform: String? = nil) {
             self.platform = platform
-        }
-
-        public func duplicate() -> AuthSuccessUserDebug {
-            let dict = self.dictionary!
-            let copy = AuthSuccessUserDebug(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

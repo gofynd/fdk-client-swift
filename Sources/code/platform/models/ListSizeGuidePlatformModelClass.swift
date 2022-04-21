@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case items
         }
 
-        public init(items: [[String: Any]]?, page: [String: Any]?) {
+        public init(items: [[String: Any]]? = nil, page: [String: Any]? = nil) {
             self.page = page
 
             self.items = items
-        }
-
-        public func duplicate() -> ListSizeGuide {
-            let dict = self.dictionary!
-            let copy = ListSizeGuide(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

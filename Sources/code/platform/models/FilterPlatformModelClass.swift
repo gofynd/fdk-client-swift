@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case assignees
         }
 
-        public init(assignees: [[String: Any]], categories: [TicketCategory]?, priorities: [Priority], statuses: [Status]) {
+        public init(assignees: [[String: Any]], categories: [TicketCategory]? = nil, priorities: [Priority], statuses: [Status]) {
             self.priorities = priorities
 
             self.categories = categories
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.statuses = statuses
 
             self.assignees = assignees
-        }
-
-        public func duplicate() -> Filter {
-            let dict = self.dictionary!
-            let copy = Filter(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

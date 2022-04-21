@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -18,16 +18,10 @@ public extension PlatformClient {
             case createdBy = "created_by"
         }
 
-        public init(createdBy: String?, modifiedBy: String?) {
+        public init(createdBy: String? = nil, modifiedBy: String? = nil) {
             self.modifiedBy = modifiedBy
 
             self.createdBy = createdBy
-        }
-
-        public func duplicate() -> CouponAuthor {
-            let dict = self.dictionary!
-            let copy = CouponAuthor(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

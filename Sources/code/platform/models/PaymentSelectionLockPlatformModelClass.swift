@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -22,18 +22,12 @@ public extension PlatformClient {
             case paymentIdentifier = "payment_identifier"
         }
 
-        public init(defaultOptions: String?, enabled: Bool?, paymentIdentifier: String?) {
+        public init(defaultOptions: String? = nil, enabled: Bool? = nil, paymentIdentifier: String? = nil) {
             self.enabled = enabled
 
             self.defaultOptions = defaultOptions
 
             self.paymentIdentifier = paymentIdentifier
-        }
-
-        public func duplicate() -> PaymentSelectionLock {
-            let dict = self.dictionary!
-            let copy = PaymentSelectionLock(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

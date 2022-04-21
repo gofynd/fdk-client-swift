@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case criteria
         }
 
-        public init(applicationId: [String]?, companyId: Int?, criteria: String?, extensionId: String?) {
+        public init(applicationId: [String]? = nil, companyId: Int? = nil, criteria: String? = nil, extensionId: String? = nil) {
             self.companyId = companyId
 
             self.applicationId = applicationId
@@ -34,12 +34,6 @@ public extension PlatformClient {
             self.extensionId = extensionId
 
             self.criteria = criteria
-        }
-
-        public func duplicate() -> Association {
-            let dict = self.dictionary!
-            let copy = Association(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {

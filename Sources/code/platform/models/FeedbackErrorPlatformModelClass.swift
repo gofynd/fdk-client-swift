@@ -1,4 +1,4 @@
-import Foundation
+
 
 import Foundation
 public extension PlatformClient {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             case status
         }
 
-        public init(code: [String: Any]?, exception: String?, info: String?, message: String?, meta: [String: Any]?, requestId: String?, stackTrace: String?, status: Int?) {
+        public init(code: [String: Any]? = nil, exception: String? = nil, info: String? = nil, message: String? = nil, meta: [String: Any]? = nil, requestId: String? = nil, stackTrace: String? = nil, status: Int? = nil) {
             self.code = code
 
             self.exception = exception
@@ -58,12 +58,6 @@ public extension PlatformClient {
             self.stackTrace = stackTrace
 
             self.status = status
-        }
-
-        public func duplicate() -> FeedbackError {
-            let dict = self.dictionary!
-            let copy = FeedbackError(dictionary: dict)!
-            return copy
         }
 
         required public init(from decoder: Decoder) throws {
