@@ -9,36 +9,36 @@ public extension ApplicationClient {
     class PromotionOffer: Codable {
         public var description: String?
 
-        public var id: String?
+        public var promotionGroup: String?
 
         public var offerText: String?
 
         public var validTill: String?
 
-        public var promotionGroup: String?
+        public var id: String?
 
         public enum CodingKeys: String, CodingKey {
             case description
 
-            case id
+            case promotionGroup = "promotion_group"
 
             case offerText = "offer_text"
 
             case validTill = "valid_till"
 
-            case promotionGroup = "promotion_group"
+            case id
         }
 
         public init(description: String? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
             self.description = description
 
-            self.id = id
+            self.promotionGroup = promotionGroup
 
             self.offerText = offerText
 
             self.validTill = validTill
 
-            self.promotionGroup = promotionGroup
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 
             try? container.encodeIfPresent(validTill, forKey: .validTill)
 
-            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }
