@@ -10,30 +10,30 @@ public extension PlatformClient {
     class InventoryRequestSchemaV2: Codable {
         public var payload: [InventoryPayload]?
 
-        public var companyId: Int
-
         public var meta: [String: Any]?
 
         public var itemId: Int
 
+        public var companyId: Int
+
         public enum CodingKeys: String, CodingKey {
             case payload
-
-            case companyId = "company_id"
 
             case meta
 
             case itemId = "item_id"
+
+            case companyId = "company_id"
         }
 
         public init(companyId: Int, itemId: Int, meta: [String: Any]? = nil, payload: [InventoryPayload]? = nil) {
             self.payload = payload
 
-            self.companyId = companyId
-
             self.meta = meta
 
             self.itemId = itemId
+
+            self.companyId = companyId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,8 +47,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            companyId = try container.decode(Int.self, forKey: .companyId)
-
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
 
@@ -58,6 +56,8 @@ public extension PlatformClient {
             } catch {}
 
             itemId = try container.decode(Int.self, forKey: .itemId)
+
+            companyId = try container.decode(Int.self, forKey: .companyId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -65,11 +65,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(payload, forKey: .payload)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
     }
 }

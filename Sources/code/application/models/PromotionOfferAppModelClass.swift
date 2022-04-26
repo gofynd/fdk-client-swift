@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var promotionGroup: String?
 
-        public var offerText: String?
-
         public var validTill: String?
 
         public var id: String?
+
+        public var offerText: String?
 
         public enum CodingKeys: String, CodingKey {
             case description
 
             case promotionGroup = "promotion_group"
 
-            case offerText = "offer_text"
-
             case validTill = "valid_till"
 
             case id
+
+            case offerText = "offer_text"
         }
 
         public init(description: String? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.promotionGroup = promotionGroup
 
-            self.offerText = offerText
-
             self.validTill = validTill
 
             self.id = id
+
+            self.offerText = offerText
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,14 +61,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                offerText = try container.decode(String.self, forKey: .offerText)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 validTill = try container.decode(String.self, forKey: .validTill)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -83,6 +75,14 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                offerText = try container.decode(String.self, forKey: .offerText)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -92,11 +92,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
 
-            try? container.encodeIfPresent(offerText, forKey: .offerText)
-
             try? container.encodeIfPresent(validTill, forKey: .validTill)
 
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(offerText, forKey: .offerText)
         }
     }
 }

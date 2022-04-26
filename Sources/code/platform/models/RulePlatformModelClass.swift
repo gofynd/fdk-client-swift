@@ -10,9 +10,9 @@ public extension PlatformClient {
     class Rule: Codable {
         public var min: Double?
 
-        public var max: Double?
-
         public var key: Double?
+
+        public var max: Double?
 
         public var value: Double?
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case min
 
-            case max
-
             case key
+
+            case max
 
             case value
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(discountQty: Double? = nil, key: Double? = nil, max: Double? = nil, min: Double? = nil, value: Double? = nil) {
             self.min = min
 
-            self.max = max
-
             self.key = key
+
+            self.max = max
 
             self.value = value
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                max = try container.decode(Double.self, forKey: .max)
+                key = try container.decode(Double.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                key = try container.decode(Double.self, forKey: .key)
+                max = try container.decode(Double.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(min, forKey: .min)
 
-            try? container.encodeIfPresent(max, forKey: .max)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(max, forKey: .max)
 
             try? container.encodeIfPresent(value, forKey: .value)
 

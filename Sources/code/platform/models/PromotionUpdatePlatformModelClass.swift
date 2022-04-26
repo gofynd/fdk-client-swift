@@ -10,132 +10,132 @@ public extension PlatformClient {
     class PromotionUpdate: Codable {
         public var dateMeta: PromotionDateMeta?
 
-        public var buyRules: [String: ItemCriteria]
-
-        public var promoGroup: String
-
-        public var customJson: [String: Any]?
-
-        public var restrictions: Restrictions1?
-
-        public var mode: String
-
-        public var applyAllDiscount: Bool?
-
-        public var postOrderAction: PromotionAction?
-
-        public var visiblility: Visibility?
-
-        public var ownership: Ownership1
-
-        public var displayMeta: DisplayMeta1
-
-        public var applyExclusive: String?
-
-        public var currency: String?
-
-        public var schedule: PromotionSchedule?
-
         public var promotionType: String
-
-        public var code: String?
-
-        public var stackable: Bool?
 
         public var author: PromotionAuthor?
 
-        public var applyPriority: Int?
+        public var currency: String?
 
         public var applicationId: String
 
+        public var stackable: Bool?
+
+        public var applyExclusive: String?
+
+        public var visiblility: Visibility?
+
+        public var mode: String
+
+        public var code: String?
+
+        public var applyPriority: Int?
+
+        public var customJson: [String: Any]?
+
+        public var postOrderAction: PromotionAction?
+
+        public var applyAllDiscount: Bool?
+
+        public var displayMeta: DisplayMeta1
+
+        public var ownership: Ownership1
+
+        public var restrictions: Restrictions1?
+
+        public var promoGroup: String
+
         public var discountRules: [DiscountRule]
+
+        public var buyRules: [String: ItemCriteria]
+
+        public var schedule: PromotionSchedule?
 
         public enum CodingKeys: String, CodingKey {
             case dateMeta = "date_meta"
 
-            case buyRules = "buy_rules"
-
-            case promoGroup = "promo_group"
-
-            case customJson = "_custom_json"
-
-            case restrictions
-
-            case mode
-
-            case applyAllDiscount = "apply_all_discount"
-
-            case postOrderAction = "post_order_action"
-
-            case visiblility
-
-            case ownership
-
-            case displayMeta = "display_meta"
-
-            case applyExclusive = "apply_exclusive"
-
-            case currency
-
-            case schedule = "_schedule"
-
             case promotionType = "promotion_type"
-
-            case code
-
-            case stackable
 
             case author
 
-            case applyPriority = "apply_priority"
+            case currency
 
             case applicationId = "application_id"
 
+            case stackable
+
+            case applyExclusive = "apply_exclusive"
+
+            case visiblility
+
+            case mode
+
+            case code
+
+            case applyPriority = "apply_priority"
+
+            case customJson = "_custom_json"
+
+            case postOrderAction = "post_order_action"
+
+            case applyAllDiscount = "apply_all_discount"
+
+            case displayMeta = "display_meta"
+
+            case ownership
+
+            case restrictions
+
+            case promoGroup = "promo_group"
+
             case discountRules = "discount_rules"
+
+            case buyRules = "buy_rules"
+
+            case schedule = "_schedule"
         }
 
         public init(applicationId: String, applyAllDiscount: Bool? = nil, applyExclusive: String? = nil, applyPriority: Int? = nil, author: PromotionAuthor? = nil, buyRules: [String: ItemCriteria], code: String? = nil, currency: String? = nil, dateMeta: PromotionDateMeta? = nil, discountRules: [DiscountRule], displayMeta: DisplayMeta1, mode: String, ownership: Ownership1, postOrderAction: PromotionAction? = nil, promotionType: String, promoGroup: String, restrictions: Restrictions1? = nil, stackable: Bool? = nil, visiblility: Visibility? = nil, customJson: [String: Any]? = nil, schedule: PromotionSchedule? = nil) {
             self.dateMeta = dateMeta
 
-            self.buyRules = buyRules
-
-            self.promoGroup = promoGroup
-
-            self.customJson = customJson
-
-            self.restrictions = restrictions
-
-            self.mode = mode
-
-            self.applyAllDiscount = applyAllDiscount
-
-            self.postOrderAction = postOrderAction
-
-            self.visiblility = visiblility
-
-            self.ownership = ownership
-
-            self.displayMeta = displayMeta
-
-            self.applyExclusive = applyExclusive
-
-            self.currency = currency
-
-            self.schedule = schedule
-
             self.promotionType = promotionType
-
-            self.code = code
-
-            self.stackable = stackable
 
             self.author = author
 
-            self.applyPriority = applyPriority
+            self.currency = currency
 
             self.applicationId = applicationId
 
+            self.stackable = stackable
+
+            self.applyExclusive = applyExclusive
+
+            self.visiblility = visiblility
+
+            self.mode = mode
+
+            self.code = code
+
+            self.applyPriority = applyPriority
+
+            self.customJson = customJson
+
+            self.postOrderAction = postOrderAction
+
+            self.applyAllDiscount = applyAllDiscount
+
+            self.displayMeta = displayMeta
+
+            self.ownership = ownership
+
+            self.restrictions = restrictions
+
+            self.promoGroup = promoGroup
+
             self.discountRules = discountRules
+
+            self.buyRules = buyRules
+
+            self.schedule = schedule
         }
 
         required public init(from decoder: Decoder) throws {
@@ -149,12 +149,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            buyRules = try container.decode([String: ItemCriteria].self, forKey: .buyRules)
-
-            promoGroup = try container.decode(String.self, forKey: .promoGroup)
+            promotionType = try container.decode(String.self, forKey: .promotionType)
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                author = try container.decode(PromotionAuthor.self, forKey: .author)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -162,7 +160,33 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                restrictions = try container.decode(Restrictions1.self, forKey: .restrictions)
+                currency = try container.decode(String.self, forKey: .currency)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            applicationId = try container.decode(String.self, forKey: .applicationId)
+
+            do {
+                stackable = try container.decode(Bool.self, forKey: .stackable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                applyExclusive = try container.decode(String.self, forKey: .applyExclusive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                visiblility = try container.decode(Visibility.self, forKey: .visiblility)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +196,23 @@ public extension PlatformClient {
             mode = try container.decode(String.self, forKey: .mode)
 
             do {
-                applyAllDiscount = try container.decode(Bool.self, forKey: .applyAllDiscount)
+                code = try container.decode(String.self, forKey: .code)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                applyPriority = try container.decode(Int.self, forKey: .applyPriority)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -188,32 +228,30 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                visiblility = try container.decode(Visibility.self, forKey: .visiblility)
+                applyAllDiscount = try container.decode(Bool.self, forKey: .applyAllDiscount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            ownership = try container.decode(Ownership1.self, forKey: .ownership)
 
             displayMeta = try container.decode(DisplayMeta1.self, forKey: .displayMeta)
 
+            ownership = try container.decode(Ownership1.self, forKey: .ownership)
+
             do {
-                applyExclusive = try container.decode(String.self, forKey: .applyExclusive)
+                restrictions = try container.decode(Restrictions1.self, forKey: .restrictions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                currency = try container.decode(String.self, forKey: .currency)
+            promoGroup = try container.decode(String.self, forKey: .promoGroup)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            discountRules = try container.decode([DiscountRule].self, forKey: .discountRules)
+
+            buyRules = try container.decode([String: ItemCriteria].self, forKey: .buyRules)
 
             do {
                 schedule = try container.decode(PromotionSchedule.self, forKey: .schedule)
@@ -222,44 +260,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            promotionType = try container.decode(String.self, forKey: .promotionType)
-
-            do {
-                code = try container.decode(String.self, forKey: .code)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                stackable = try container.decode(Bool.self, forKey: .stackable)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                author = try container.decode(PromotionAuthor.self, forKey: .author)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                applyPriority = try container.decode(Int.self, forKey: .applyPriority)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            applicationId = try container.decode(String.self, forKey: .applicationId)
-
-            discountRules = try container.decode([DiscountRule].self, forKey: .discountRules)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -267,45 +267,45 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
 
-            try? container.encodeIfPresent(buyRules, forKey: .buyRules)
-
-            try? container.encodeIfPresent(promoGroup, forKey: .promoGroup)
-
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(restrictions, forKey: .restrictions)
-
-            try? container.encodeIfPresent(mode, forKey: .mode)
-
-            try? container.encodeIfPresent(applyAllDiscount, forKey: .applyAllDiscount)
-
-            try? container.encodeIfPresent(postOrderAction, forKey: .postOrderAction)
-
-            try? container.encodeIfPresent(visiblility, forKey: .visiblility)
-
-            try? container.encodeIfPresent(ownership, forKey: .ownership)
-
-            try? container.encodeIfPresent(displayMeta, forKey: .displayMeta)
-
-            try? container.encode(applyExclusive, forKey: .applyExclusive)
-
-            try? container.encodeIfPresent(currency, forKey: .currency)
-
-            try? container.encodeIfPresent(schedule, forKey: .schedule)
-
             try? container.encodeIfPresent(promotionType, forKey: .promotionType)
-
-            try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(stackable, forKey: .stackable)
 
             try? container.encodeIfPresent(author, forKey: .author)
 
-            try? container.encodeIfPresent(applyPriority, forKey: .applyPriority)
+            try? container.encodeIfPresent(currency, forKey: .currency)
 
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
 
+            try? container.encodeIfPresent(stackable, forKey: .stackable)
+
+            try? container.encode(applyExclusive, forKey: .applyExclusive)
+
+            try? container.encodeIfPresent(visiblility, forKey: .visiblility)
+
+            try? container.encodeIfPresent(mode, forKey: .mode)
+
+            try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(applyPriority, forKey: .applyPriority)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(postOrderAction, forKey: .postOrderAction)
+
+            try? container.encodeIfPresent(applyAllDiscount, forKey: .applyAllDiscount)
+
+            try? container.encodeIfPresent(displayMeta, forKey: .displayMeta)
+
+            try? container.encodeIfPresent(ownership, forKey: .ownership)
+
+            try? container.encodeIfPresent(restrictions, forKey: .restrictions)
+
+            try? container.encodeIfPresent(promoGroup, forKey: .promoGroup)
+
             try? container.encodeIfPresent(discountRules, forKey: .discountRules)
+
+            try? container.encodeIfPresent(buyRules, forKey: .buyRules)
+
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
         }
     }
 }
