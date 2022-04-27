@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var url: String?
 
-        public var type: String
-
         public var verified: Bool?
+
+        public var type: String
 
         public var value: String
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case url
 
-            case type
-
             case verified
+
+            case type
 
             case value
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.url = url
 
-            self.type = type
-
             self.verified = verified
+
+            self.type = type
 
             self.value = value
         }
@@ -61,8 +61,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            type = try container.decode(String.self, forKey: .type)
-
             do {
                 verified = try container.decode(Bool.self, forKey: .verified)
 
@@ -70,6 +68,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            type = try container.decode(String.self, forKey: .type)
 
             value = try container.decode(String.self, forKey: .value)
         }
@@ -81,9 +81,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(verified, forKey: .verified)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(value, forKey: .value)
         }

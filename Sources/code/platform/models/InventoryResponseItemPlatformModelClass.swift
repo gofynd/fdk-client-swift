@@ -3,32 +3,32 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: SuccessResponse1
+         Model: InventoryResponseItem
          Used By: Catalog
      */
 
-    class SuccessResponse1: Codable {
-        public var uid: Int?
+    class InventoryResponseItem: Codable {
+        public var reason: InventoryFailedReason?
 
-        public var success: Bool?
+        public var data: InventoryPayload?
 
         public enum CodingKeys: String, CodingKey {
-            case uid
+            case reason
 
-            case success
+            case data
         }
 
-        public init(success: Bool? = nil, uid: Int? = nil) {
-            self.uid = uid
+        public init(data: InventoryPayload? = nil, reason: InventoryFailedReason? = nil) {
+            self.reason = reason
 
-            self.success = success
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                reason = try container.decode(InventoryFailedReason.self, forKey: .reason)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                data = try container.decode(InventoryPayload.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(reason, forKey: .reason)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

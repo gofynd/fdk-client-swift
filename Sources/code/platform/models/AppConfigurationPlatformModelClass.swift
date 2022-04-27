@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class AppConfiguration: Codable {
-        public var appId: String
-
         public var listing: ConfigurationListing?
+
+        public var appId: String
 
         public var product: ConfigurationProduct?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var configId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case appId = "app_id"
-
             case listing
+
+            case appId = "app_id"
 
             case product
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(appId: String, configId: String? = nil, configType: String, listing: ConfigurationListing? = nil, product: ConfigurationProduct? = nil) {
-            self.appId = appId
-
             self.listing = listing
+
+            self.appId = appId
 
             self.product = product
 
@@ -45,8 +45,6 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            appId = try container.decode(String.self, forKey: .appId)
-
             do {
                 listing = try container.decode(ConfigurationListing.self, forKey: .listing)
 
@@ -54,6 +52,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            appId = try container.decode(String.self, forKey: .appId)
 
             do {
                 product = try container.decode(ConfigurationProduct.self, forKey: .product)
@@ -77,9 +77,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
             try? container.encodeIfPresent(listing, forKey: .listing)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(product, forKey: .product)
 
