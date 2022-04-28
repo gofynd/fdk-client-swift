@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var source: [String: Any]?
 
-        public var user: [String: Any]?
-
         public var meta: [String: Any]?
+
+        public var user: [String: Any]?
 
         public var createdOn: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case source
 
-            case user
-
             case meta
+
+            case user
 
             case createdOn = "created_on"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.source = source
 
-            self.user = user
-
             self.meta = meta
+
+            self.user = user
 
             self.createdOn = createdOn
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                user = try container.decode([String: Any].self, forKey: .user)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                user = try container.decode([String: Any].self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(source, forKey: .source)
 
-            try? container.encodeIfPresent(user, forKey: .user)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
         }

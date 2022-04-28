@@ -7,56 +7,60 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class ChargeCustomerResponse: Codable {
-        public var success: Bool
-
-        public var deliveryAddressId: String?
-
-        public var orderId: String
+        public var status: String
 
         public var aggregator: String
 
-        public var status: String
+        public var message: String
+
+        public var deliveryAddressId: String?
 
         public var cartId: String?
 
-        public var message: String
+        public var orderId: String
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case success
-
-            case deliveryAddressId = "delivery_address_id"
-
-            case orderId = "order_id"
+            case status
 
             case aggregator
 
-            case status
+            case message
+
+            case deliveryAddressId = "delivery_address_id"
 
             case cartId = "cart_id"
 
-            case message
+            case orderId = "order_id"
+
+            case success
         }
 
         public init(aggregator: String, cartId: String? = nil, deliveryAddressId: String? = nil, message: String, orderId: String, status: String, success: Bool) {
-            self.success = success
-
-            self.deliveryAddressId = deliveryAddressId
-
-            self.orderId = orderId
+            self.status = status
 
             self.aggregator = aggregator
 
-            self.status = status
+            self.message = message
+
+            self.deliveryAddressId = deliveryAddressId
 
             self.cartId = cartId
 
-            self.message = message
+            self.orderId = orderId
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            success = try container.decode(Bool.self, forKey: .success)
+            status = try container.decode(String.self, forKey: .status)
+
+            aggregator = try container.decode(String.self, forKey: .aggregator)
+
+            message = try container.decode(String.self, forKey: .message)
 
             do {
                 deliveryAddressId = try container.decode(String.self, forKey: .deliveryAddressId)
@@ -66,12 +70,6 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            orderId = try container.decode(String.self, forKey: .orderId)
-
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
-            status = try container.decode(String.self, forKey: .status)
-
             do {
                 cartId = try container.decode(String.self, forKey: .cartId)
 
@@ -80,25 +78,27 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            message = try container.decode(String.self, forKey: .message)
+            orderId = try container.decode(String.self, forKey: .orderId)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
-            try? container.encode(deliveryAddressId, forKey: .deliveryAddressId)
-
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encode(deliveryAddressId, forKey: .deliveryAddressId)
 
             try? container.encode(cartId, forKey: .cartId)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

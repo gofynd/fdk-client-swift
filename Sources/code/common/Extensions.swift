@@ -71,7 +71,11 @@ extension Decodable {
 
 public extension Data {
     var dictionary: [String: Any]? {
-        try? JSONSerialization.jsonObject(with: self, options: []) as? [String: Any]
+        do {
+            return try JSONSerialization.jsonObject(with: self, options: []) as? [String: Any]
+        } catch {
+            return nil
+        }
     }
 }
 

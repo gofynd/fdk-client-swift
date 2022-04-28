@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var description: String?
 
-        public var offerText: String?
-
         public var validTill: String?
+
+        public var offerText: String?
 
         public enum CodingKeys: String, CodingKey {
             case promotionGroup = "promotion_group"
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case description
 
-            case offerText = "offer_text"
-
             case validTill = "valid_till"
+
+            case offerText = "offer_text"
         }
 
         public init(description: String? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient {
 
             self.description = description
 
-            self.offerText = offerText
-
             self.validTill = validTill
+
+            self.offerText = offerText
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                offerText = try container.decode(String.self, forKey: .offerText)
+                validTill = try container.decode(String.self, forKey: .validTill)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                validTill = try container.decode(String.self, forKey: .validTill)
+                offerText = try container.decode(String.self, forKey: .offerText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(offerText, forKey: .offerText)
-
             try? container.encodeIfPresent(validTill, forKey: .validTill)
+
+            try? container.encodeIfPresent(offerText, forKey: .offerText)
         }
     }
 }
