@@ -9,66 +9,66 @@ public extension ApplicationClient {
     class GetGroupedProducts: Codable {
         public var slug: String?
 
-        public var companyId: Int?
-
-        public var pageVisibility: [String]?
+        public var name: String?
 
         public var products: [Products]?
 
-        public var choice: String?
-
         public var active: Bool?
+
+        public var companyId: Int?
 
         public var logo: String?
 
+        public var pageVisibility: [String]?
+
         public var meta: [String: Any]?
 
-        public var sameStoreAssignment: Bool?
+        public var choice: String?
 
-        public var name: String?
+        public var sameStoreAssignment: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case slug
 
-            case companyId = "company_id"
-
-            case pageVisibility = "page_visibility"
+            case name
 
             case products
 
-            case choice
-
             case active
+
+            case companyId = "company_id"
 
             case logo
 
+            case pageVisibility = "page_visibility"
+
             case meta
 
-            case sameStoreAssignment = "same_store_assignment"
+            case choice
 
-            case name
+            case sameStoreAssignment = "same_store_assignment"
         }
 
         public init(active: Bool? = nil, choice: String? = nil, companyId: Int? = nil, logo: String? = nil, meta: [String: Any]? = nil, name: String? = nil, pageVisibility: [String]? = nil, products: [Products]? = nil, sameStoreAssignment: Bool? = nil, slug: String? = nil) {
             self.slug = slug
 
-            self.companyId = companyId
-
-            self.pageVisibility = pageVisibility
+            self.name = name
 
             self.products = products
 
-            self.choice = choice
-
             self.active = active
+
+            self.companyId = companyId
 
             self.logo = logo
 
+            self.pageVisibility = pageVisibility
+
             self.meta = meta
 
-            self.sameStoreAssignment = sameStoreAssignment
+            self.choice = choice
 
-            self.name = name
+            self.sameStoreAssignment = sameStoreAssignment
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,15 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,7 +99,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                choice = try container.decode(String.self, forKey: .choice)
+                active = try container.decode(Bool.self, forKey: .active)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -115,7 +107,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                active = try container.decode(Bool.self, forKey: .active)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,7 +123,23 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                choice = try container.decode(String.self, forKey: .choice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -145,14 +153,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -160,23 +160,23 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(products, forKey: .products)
 
-            try? container.encodeIfPresent(choice, forKey: .choice)
-
             try? container.encodeIfPresent(active, forKey: .active)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
+            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
+
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(sameStoreAssignment, forKey: .sameStoreAssignment)
+            try? container.encodeIfPresent(choice, forKey: .choice)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(sameStoreAssignment, forKey: .sameStoreAssignment)
         }
     }
 }
