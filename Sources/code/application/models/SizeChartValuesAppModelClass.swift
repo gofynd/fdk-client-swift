@@ -7,11 +7,11 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class SizeChartValues: Codable {
-        public var col4: String?
-
         public var col5: String?
 
         public var col6: String?
+
+        public var col4: String?
 
         public var col2: String?
 
@@ -20,11 +20,11 @@ public extension ApplicationClient {
         public var col3: String?
 
         public enum CodingKeys: String, CodingKey {
-            case col4 = "col_4"
-
             case col5 = "col_5"
 
             case col6 = "col_6"
+
+            case col4 = "col_4"
 
             case col2 = "col_2"
 
@@ -34,11 +34,11 @@ public extension ApplicationClient {
         }
 
         public init(col1: String? = nil, col2: String? = nil, col3: String? = nil, col4: String? = nil, col5: String? = nil, col6: String? = nil) {
-            self.col4 = col4
-
             self.col5 = col5
 
             self.col6 = col6
+
+            self.col4 = col4
 
             self.col2 = col2
 
@@ -51,14 +51,6 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                col4 = try container.decode(String.self, forKey: .col4)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 col5 = try container.decode(String.self, forKey: .col5)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -68,6 +60,14 @@ public extension ApplicationClient {
 
             do {
                 col6 = try container.decode(String.self, forKey: .col6)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                col4 = try container.decode(String.self, forKey: .col4)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,11 +102,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(col4, forKey: .col4)
-
             try? container.encodeIfPresent(col5, forKey: .col5)
 
             try? container.encodeIfPresent(col6, forKey: .col6)
+
+            try? container.encodeIfPresent(col4, forKey: .col4)
 
             try? container.encodeIfPresent(col2, forKey: .col2)
 

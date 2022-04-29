@@ -1,7 +1,7 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension PublicClient {
     /*
          Model: EmailJobMetrics
          Used By: Inventory

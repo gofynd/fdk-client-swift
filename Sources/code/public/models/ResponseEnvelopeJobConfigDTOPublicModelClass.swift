@@ -1,13 +1,13 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension PublicClient {
     /*
-         Model: ResponseEnvelopeEmailJobMetrics
+         Model: ResponseEnvelopeJobConfigDTO
          Used By: Inventory
      */
 
-    class ResponseEnvelopeEmailJobMetrics: Codable {
+    class ResponseEnvelopeJobConfigDTO: Codable {
         public var timestamp: String?
 
         public var status: Int?
@@ -22,9 +22,9 @@ public extension PlatformClient {
 
         public var httpStatus: String?
 
-        public var items: EmailJobMetrics?
+        public var items: JobConfigDTO?
 
-        public var payload: EmailJobMetrics?
+        public var payload: JobConfigDTO?
 
         public var traceId: String?
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(error: String? = nil, exception: String? = nil, httpStatus: String? = nil, items: EmailJobMetrics? = nil, message: String? = nil, page: Page? = nil, payload: EmailJobMetrics? = nil, status: Int? = nil, timestamp: String? = nil, totalTimeTakenInMillis: Int? = nil, traceId: String? = nil) {
+        public init(error: String? = nil, exception: String? = nil, httpStatus: String? = nil, items: JobConfigDTO? = nil, message: String? = nil, page: Page? = nil, payload: JobConfigDTO? = nil, status: Int? = nil, timestamp: String? = nil, totalTimeTakenInMillis: Int? = nil, traceId: String? = nil) {
             self.timestamp = timestamp
 
             self.status = status
@@ -138,7 +138,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                items = try container.decode(EmailJobMetrics.self, forKey: .items)
+                items = try container.decode(JobConfigDTO.self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,7 +146,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                payload = try container.decode(EmailJobMetrics.self, forKey: .payload)
+                payload = try container.decode(JobConfigDTO.self, forKey: .payload)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
