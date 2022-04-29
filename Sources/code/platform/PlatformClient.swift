@@ -33,6 +33,8 @@ public class PlatformClient {
 
     public let webhook: Webhook
 
+    public let serviceability: Serviceability
+
     public let auditTrail: AuditTrail
 
     public init(config: PlatformConfig) {
@@ -65,6 +67,8 @@ public class PlatformClient {
         discount = Discount(config: config)
 
         webhook = Webhook(config: config)
+
+        serviceability = Serviceability(config: config)
 
         auditTrail = AuditTrail(config: config)
     }
@@ -110,6 +114,8 @@ public class PlatformClient {
 
         public let partner: Partner
 
+        public let serviceability: Serviceability
+
         public init(applicationId: String, config: PlatformConfig) {
             self.config = config
             self.companyId = config.companyId
@@ -146,6 +152,8 @@ public class PlatformClient {
             analytics = Analytics(config: config, applicationId: applicationId)
 
             partner = Partner(config: config, applicationId: applicationId)
+
+            serviceability = Serviceability(config: config, applicationId: applicationId)
         }
 
         public class Lead {
@@ -9734,6 +9742,81 @@ public class PlatformClient {
 
             /**
              *
+             * Summary: Get zonewise application products
+             * Description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. If successful, returns a Product resource in the response body specified in `ApplicationProductListingResponseDatabasePowered`
+             **/
+            public func getAppZoneProducts(
+                brandIds: [Int]?,
+                categoryIds: [Int]?,
+                departmentIds: [Int]?,
+                tags: [String]?,
+                pageNo: Int?,
+                pageSize: Int?,
+                q: String?,
+
+                onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = brandIds {
+                    xQuery["brand_ids"] = value
+                }
+
+                if let value = categoryIds {
+                    xQuery["category_ids"] = value
+                }
+
+                if let value = departmentIds {
+                    xQuery["department_ids"] = value
+                }
+
+                if let value = tags {
+                    xQuery["tags"] = value
+                }
+
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+
+                if let value = q {
+                    xQuery["q"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/zone-raw-products/",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(ProductListingResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
              * Summary: Get list of locations
              * Description: This API allows to view all the locations asscoiated to a application.
              **/
@@ -13171,6 +13254,93 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(RemoveProxyResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+        }
+
+        public class Serviceability {
+            var config: PlatformConfig
+            var companyId: String
+            var applicationId: String
+
+            init(config: PlatformConfig, applicationId: String) {
+                self.config = config
+                self.companyId = config.companyId
+                self.applicationId = applicationId
+            }
+
+            /**
+             *
+             * Summary: Zone configuration of application.
+             * Description: This API returns serviceability config of the application.
+             **/
+            public func getApplicationServiceability(
+                onResponse: @escaping (_ response: ApplicationServiceabilityConfigResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/logistics-internal/v1.0/company/\(companyId)/application/\(applicationId)/serviceability",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(ApplicationServiceabilityConfigResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: GET zone from the Pincode.
+             * Description: This API returns zone from the Pincode View.
+             **/
+            public func getZoneFromPincode(
+                body: GetZoneFromPincodeViewRequest,
+                onResponse: @escaping (_ response: GetZoneFromPincodeViewResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/logistics-internal/v1.0/company/\(companyId)/application/\(applicationId)/zones",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(GetZoneFromPincodeViewResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {

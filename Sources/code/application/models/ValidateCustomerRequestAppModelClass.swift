@@ -7,66 +7,66 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class ValidateCustomerRequest: Codable {
-        public var aggregator: String
-
-        public var merchantParams: [String: Any]
+        public var phoneNumber: String
 
         public var payload: String
 
-        public var phoneNumber: String
+        public var aggregator: String
 
         public var transactionAmountInPaise: Int
 
-        public enum CodingKeys: String, CodingKey {
-            case aggregator
+        public var merchantParams: [String: Any]
 
-            case merchantParams = "merchant_params"
+        public enum CodingKeys: String, CodingKey {
+            case phoneNumber = "phone_number"
 
             case payload
 
-            case phoneNumber = "phone_number"
+            case aggregator
 
             case transactionAmountInPaise = "transaction_amount_in_paise"
+
+            case merchantParams = "merchant_params"
         }
 
         public init(aggregator: String, merchantParams: [String: Any], payload: String, phoneNumber: String, transactionAmountInPaise: Int) {
-            self.aggregator = aggregator
-
-            self.merchantParams = merchantParams
+            self.phoneNumber = phoneNumber
 
             self.payload = payload
 
-            self.phoneNumber = phoneNumber
+            self.aggregator = aggregator
 
             self.transactionAmountInPaise = transactionAmountInPaise
+
+            self.merchantParams = merchantParams
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
-            merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
+            phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
 
             payload = try container.decode(String.self, forKey: .payload)
 
-            phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
+
+            merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
-            try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
+            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
             try? container.encode(payload, forKey: .payload)
 
-            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
+
+            try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
         }
     }
 }

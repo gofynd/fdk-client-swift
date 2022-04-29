@@ -90,7 +90,7 @@ public extension ApplicationClient {
          * Description: Use this API to login or register using Facebook credentials.
          **/
         public func loginWithFacebook(
-            platform: String?,
+            platform: String? = nil,
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -137,7 +137,7 @@ public extension ApplicationClient {
          * Description: Use this API to login or register using Google Account credentials.
          **/
         public func loginWithGoogle(
-            platform: String?,
+            platform: String? = nil,
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -184,7 +184,7 @@ public extension ApplicationClient {
          * Description: Use this API to login or register in Android app using Google Account credentials.
          **/
         public func loginWithGoogleAndroid(
-            platform: String?,
+            platform: String? = nil,
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -231,7 +231,7 @@ public extension ApplicationClient {
          * Description: Use this API to login or register in iOS app using Google Account credentials.
          **/
         public func loginWithGoogleIOS(
-            platform: String?,
+            platform: String? = nil,
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -278,7 +278,7 @@ public extension ApplicationClient {
          * Description: Use this API to login or register in iOS app using Apple Account credentials.
          **/
         public func loginWithAppleIOS(
-            platform: String?,
+            platform: String? = nil,
             body: OAuthRequestAppleSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -325,7 +325,7 @@ public extension ApplicationClient {
          * Description: Use this API to login or register with a One-time Password (OTP) sent via Email or SMS.
          **/
         public func loginWithOTP(
-            platform: String?,
+            platform: String? = nil,
             body: SendOtpRequestSchema,
             onResponse: @escaping (_ response: SendOtpResponse?, _ error: FDKError?) -> Void
         ) {
@@ -412,7 +412,7 @@ public extension ApplicationClient {
          * Description: Use this API to reset a password using the link sent on email.
          **/
         public func sendResetPasswordEmail(
-            platform: String?,
+            platform: String? = nil,
             body: SendResetPasswordEmailRequestSchema,
             onResponse: @escaping (_ response: ResetPasswordSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -579,7 +579,7 @@ public extension ApplicationClient {
          * Description: Use this API to perform user registration by sending form data in the request body.
          **/
         public func registerWithForm(
-            platform: String?,
+            platform: String? = nil,
             body: FormRegisterRequestSchema,
             onResponse: @escaping (_ response: RegisterFormSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -824,7 +824,7 @@ public extension ApplicationClient {
          * Description: Use this API to send an OTP to a mobile number.
          **/
         public func sendOTPOnMobile(
-            platform: String?,
+            platform: String? = nil,
             body: SendMobileOtpRequestSchema,
             onResponse: @escaping (_ response: OtpSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -871,7 +871,7 @@ public extension ApplicationClient {
          * Description: Use this API to verify the OTP received on a mobile number.
          **/
         public func verifyMobileOTP(
-            platform: String?,
+            platform: String? = nil,
             body: VerifyOtpRequestSchema,
             onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -918,7 +918,7 @@ public extension ApplicationClient {
          * Description: Use this API to send an OTP to an email ID.
          **/
         public func sendOTPOnEmail(
-            platform: String?,
+            platform: String? = nil,
             body: SendEmailOtpRequestSchema,
             onResponse: @escaping (_ response: EmailOtpSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -965,7 +965,7 @@ public extension ApplicationClient {
          * Description: Use this API to verify the OTP received on an email ID.
          **/
         public func verifyEmailOTP(
-            platform: String?,
+            platform: String? = nil,
             body: VerifyEmailOtpRequestSchema,
             onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -1090,7 +1090,7 @@ public extension ApplicationClient {
          * Description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
          **/
         public func getPlatformConfig(
-            name: String?,
+            name: String? = nil,
 
             onResponse: @escaping (_ response: PlatformSchema?, _ error: FDKError?) -> Void
         ) {
@@ -1137,7 +1137,7 @@ public extension ApplicationClient {
          * Description: Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture.
          **/
         public func updateProfile(
-            platform: String?,
+            platform: String? = nil,
             body: EditProfileRequestSchema,
             onResponse: @escaping (_ response: ProfileEditSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -1184,7 +1184,7 @@ public extension ApplicationClient {
          * Description: Use this API to add a new mobile number to a profile.
          **/
         public func addMobileNumber(
-            platform: String?,
+            platform: String? = nil,
             body: EditMobileRequestSchema,
             onResponse: @escaping (_ response: VerifyMobileOTPSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -1231,7 +1231,7 @@ public extension ApplicationClient {
          * Description: Use this API to delete a mobile number from a profile.
          **/
         public func deleteMobileNumber(
-            platform: String?,
+            platform: String? = nil,
             active: Bool,
             primary: Bool,
             verified: Bool,
@@ -1333,7 +1333,7 @@ public extension ApplicationClient {
          * Description: Use this API to send a verification link to a mobile number
          **/
         public func sendVerificationLinkToMobile(
-            platform: String?,
+            platform: String? = nil,
             body: SendVerificationLinkMobileRequestSchema,
             onResponse: @escaping (_ response: SendMobileVerifyLinkSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -1380,7 +1380,7 @@ public extension ApplicationClient {
          * Description: Use this API to add a new email address to a profile
          **/
         public func addEmail(
-            platform: String?,
+            platform: String? = nil,
             body: EditEmailRequestSchema,
             onResponse: @escaping (_ response: VerifyEmailOTPSuccess?, _ error: FDKError?) -> Void
         ) {
@@ -1427,7 +1427,7 @@ public extension ApplicationClient {
          * Description: Use this API to delete an email address from a profile
          **/
         public func deleteEmail(
-            platform: String?,
+            platform: String? = nil,
             active: Bool,
             primary: Bool,
             verified: Bool,
@@ -1526,7 +1526,7 @@ public extension ApplicationClient {
          * Description: Use this API to send verification link to an email address.
          **/
         public func sendVerificationLinkToEmail(
-            platform: String?,
+            platform: String? = nil,
             body: EditEmailRequestSchema,
             onResponse: @escaping (_ response: SendEmailVerifyLinkSuccess?, _ error: FDKError?) -> Void
         ) {

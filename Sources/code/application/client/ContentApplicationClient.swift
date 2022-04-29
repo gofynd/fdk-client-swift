@@ -102,7 +102,7 @@ public extension ApplicationClient {
          **/
         public func getBlog(
             slug: String,
-            rootId: String?,
+            rootId: String? = nil,
 
             onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
         ) {
@@ -151,8 +151,8 @@ public extension ApplicationClient {
          * Description: Use this API to get all the blogs.
          **/
         public func getBlogs(
-            pageNo: Int?,
-            pageSize: Int?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: BlogGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -203,7 +203,7 @@ public extension ApplicationClient {
          * Description: fetch the next page by calling .next(...) function
          **/
         public func getBlogsPaginator(
-            pageSize: Int?
+            pageSize: Int? = nil
 
         ) -> Paginator<BlogGetResponse> {
             let pageSize = pageSize ?? 20
@@ -555,8 +555,8 @@ public extension ApplicationClient {
          * Description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
          **/
         public func getNavigations(
-            pageNo: Int?,
-            pageSize: Int?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: NavigationGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -607,7 +607,7 @@ public extension ApplicationClient {
          * Description: fetch the next page by calling .next(...) function
          **/
         public func getNavigationsPaginator(
-            pageSize: Int?
+            pageSize: Int? = nil
 
         ) -> Paginator<NavigationGetResponse> {
             let pageSize = pageSize ?? 20
@@ -674,8 +674,8 @@ public extension ApplicationClient {
          * Description: Use this API to get a list of slideshows along with their details.
          **/
         public func getSlideshows(
-            pageNo: Int?,
-            pageSize: Int?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: SlideshowGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -726,7 +726,7 @@ public extension ApplicationClient {
          * Description: fetch the next page by calling .next(...) function
          **/
         public func getSlideshowsPaginator(
-            pageSize: Int?
+            pageSize: Int? = nil
 
         ) -> Paginator<SlideshowGetResponse> {
             let pageSize = pageSize ?? 20
@@ -876,7 +876,7 @@ public extension ApplicationClient {
          **/
         public func getPage(
             slug: String,
-            rootId: String?,
+            rootId: String? = nil,
 
             onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
         ) {
@@ -925,8 +925,8 @@ public extension ApplicationClient {
          * Description: Use this API to get a list of pages.
          **/
         public func getPages(
-            pageNo: Int?,
-            pageSize: Int?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: PageGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -977,7 +977,7 @@ public extension ApplicationClient {
          * Description: fetch the next page by calling .next(...) function
          **/
         public func getPagesPaginator(
-            pageSize: Int?
+            pageSize: Int? = nil
 
         ) -> Paginator<PageGetResponse> {
             let pageSize = pageSize ?? 20
