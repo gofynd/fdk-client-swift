@@ -6,6 +6,7 @@
 
 ## Inventory Methods
 
+* [getConfigByCompany](#getconfigbycompany)
 * [getJobsByCompany](#getjobsbycompany)
 * [updateJob](#updatejob)
 * [createJob](#createjob)
@@ -20,6 +21,56 @@
 
 
 ## Methods with example and description
+
+
+#### getConfigByCompany
+Get Slingshot Configuration Of  A Company
+
+
+
+
+```swift
+client.inventory.getConfigByCompany() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+REST Endpoint that returns all configuration detail of a company
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeListSlingshotConfigurationDetail](#ResponseEnvelopeListSlingshotConfigurationDetail)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 #### getJobsByCompany
@@ -579,6 +630,123 @@ Successful operation
 
  
  
+ #### [GCompany](#GCompany)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | integration | String? |  yes  |  |
+ | level | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | opted | Bool? |  yes  |  |
+ | permissions | [String]? |  yes  |  |
+ | token | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | stores | [[GStore](#GStore)]? |  yes  |  |
+ | gstores | [[GStore](#GStore)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GStore](#GStore)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | integration | String? |  yes  |  |
+ | level | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | opted | Bool? |  yes  |  |
+ | permissions | [String]? |  yes  |  |
+ | token | String? |  yes  |  |
+ | code | String? |  yes  |  |
+ | name | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Integration](#Integration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | meta | [[Metum](#Metum)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Metum](#Metum)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | value | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String |  no  |  |
+ | size | Int? |  yes  |  |
+ | current | Int? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | itemTotal | Int? |  yes  |  |
+ | nextId | String? |  yes  |  |
+ | hasPrevious | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeListSlingshotConfigurationDetail](#ResponseEnvelopeListSlingshotConfigurationDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | String? |  yes  |  |
+ | status | Int? |  yes  |  |
+ | error | String? |  yes  |  |
+ | exception | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | totalTimeTakenInMillis | Int? |  yes  |  |
+ | httpStatus | String? |  yes  |  |
+ | items | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)]? |  yes  |  |
+ | payload | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)]? |  yes  |  |
+ | traceId | String? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | integration | [Integration](#Integration)? |  yes  |  |
+ | companies | [[GCompany](#GCompany)]? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [DataTresholdDTO](#DataTresholdDTO)
 
  | Properties | Type | Nullable | Description |
@@ -630,23 +798,6 @@ Successful operation
  | ---------- | ---- | -------- | ----------- |
  | type | Int? |  yes  |  |
  | groupList | [[GenericDTO](#GenericDTO)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | String |  no  |  |
- | size | Int? |  yes  |  |
- | current | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
- | itemTotal | Int? |  yes  |  |
- | nextId | String? |  yes  |  |
- | hasPrevious | Bool? |  yes  |  |
 
 ---
 

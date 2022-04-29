@@ -8,167 +8,111 @@ public extension PlatformClient {
      */
 
     class ProductBulkRequest: Codable {
-        public var filePath: String?
-
-        public var cancelled: Int?
-
-        public var template: ProductTemplate?
-
-        public var total: Int?
-
-        public var isActive: Bool?
-
-        public var companyId: Int?
-
-        public var modifiedOn: String?
-
-        public var failedRecords: [String]?
+        public var stage: String?
 
         public var createdBy: UserDetail?
 
-        public var stage: String?
+        public var templateTag: String?
+
+        public var filePath: String?
+
+        public var template: ProductTemplate?
+
+        public var failedRecords: [String]?
+
+        public var cancelled: Int?
 
         public var failed: Int?
 
         public var createdOn: String?
 
+        public var total: Int?
+
         public var succeed: Int?
-
-        public var templateTag: String?
-
-        public var cancelledRecords: [String]?
 
         public var modifiedBy: UserDetail?
 
+        public var cancelledRecords: [String]?
+
+        public var modifiedOn: String?
+
+        public var companyId: Int?
+
+        public var isActive: Bool?
+
         public enum CodingKeys: String, CodingKey {
-            case filePath = "file_path"
-
-            case cancelled
-
-            case template
-
-            case total
-
-            case isActive = "is_active"
-
-            case companyId = "company_id"
-
-            case modifiedOn = "modified_on"
-
-            case failedRecords = "failed_records"
+            case stage
 
             case createdBy = "created_by"
 
-            case stage
+            case templateTag = "template_tag"
+
+            case filePath = "file_path"
+
+            case template
+
+            case failedRecords = "failed_records"
+
+            case cancelled
 
             case failed
 
             case createdOn = "created_on"
 
+            case total
+
             case succeed
 
-            case templateTag = "template_tag"
+            case modifiedBy = "modified_by"
 
             case cancelledRecords = "cancelled_records"
 
-            case modifiedBy = "modified_by"
+            case modifiedOn = "modified_on"
+
+            case companyId = "company_id"
+
+            case isActive = "is_active"
         }
 
         public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: UserDetail? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [String]? = nil, filePath: String? = nil, isActive: Bool? = nil, modifiedBy: UserDetail? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, template: ProductTemplate? = nil, templateTag: String? = nil, total: Int? = nil) {
-            self.filePath = filePath
-
-            self.cancelled = cancelled
-
-            self.template = template
-
-            self.total = total
-
-            self.isActive = isActive
-
-            self.companyId = companyId
-
-            self.modifiedOn = modifiedOn
-
-            self.failedRecords = failedRecords
+            self.stage = stage
 
             self.createdBy = createdBy
 
-            self.stage = stage
+            self.templateTag = templateTag
+
+            self.filePath = filePath
+
+            self.template = template
+
+            self.failedRecords = failedRecords
+
+            self.cancelled = cancelled
 
             self.failed = failed
 
             self.createdOn = createdOn
 
+            self.total = total
+
             self.succeed = succeed
 
-            self.templateTag = templateTag
+            self.modifiedBy = modifiedBy
 
             self.cancelledRecords = cancelledRecords
 
-            self.modifiedBy = modifiedBy
+            self.modifiedOn = modifiedOn
+
+            self.companyId = companyId
+
+            self.isActive = isActive
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                filePath = try container.decode(String.self, forKey: .filePath)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cancelled = try container.decode(Int.self, forKey: .cancelled)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                template = try container.decode(ProductTemplate.self, forKey: .template)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                total = try container.decode(Int.self, forKey: .total)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                failedRecords = try container.decode([String].self, forKey: .failedRecords)
+                stage = try container.decode(String.self, forKey: .stage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -184,7 +128,39 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                stage = try container.decode(String.self, forKey: .stage)
+                templateTag = try container.decode(String.self, forKey: .templateTag)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                filePath = try container.decode(String.self, forKey: .filePath)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                template = try container.decode(ProductTemplate.self, forKey: .template)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                failedRecords = try container.decode([String].self, forKey: .failedRecords)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                cancelled = try container.decode(Int.self, forKey: .cancelled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -208,6 +184,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                total = try container.decode(Int.self, forKey: .total)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 succeed = try container.decode(Int.self, forKey: .succeed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -216,7 +200,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                templateTag = try container.decode(String.self, forKey: .templateTag)
+                modifiedBy = try container.decode(UserDetail.self, forKey: .modifiedBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -232,7 +216,23 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                modifiedBy = try container.decode(UserDetail.self, forKey: .modifiedBy)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyId = try container.decode(Int.self, forKey: .companyId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -243,37 +243,37 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(filePath, forKey: .filePath)
-
-            try? container.encodeIfPresent(cancelled, forKey: .cancelled)
-
-            try? container.encodeIfPresent(template, forKey: .template)
-
-            try? container.encodeIfPresent(total, forKey: .total)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(failedRecords, forKey: .failedRecords)
+            try? container.encodeIfPresent(stage, forKey: .stage)
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
-            try? container.encodeIfPresent(stage, forKey: .stage)
+            try? container.encodeIfPresent(templateTag, forKey: .templateTag)
+
+            try? container.encodeIfPresent(filePath, forKey: .filePath)
+
+            try? container.encodeIfPresent(template, forKey: .template)
+
+            try? container.encodeIfPresent(failedRecords, forKey: .failedRecords)
+
+            try? container.encodeIfPresent(cancelled, forKey: .cancelled)
 
             try? container.encodeIfPresent(failed, forKey: .failed)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
+            try? container.encodeIfPresent(total, forKey: .total)
+
             try? container.encodeIfPresent(succeed, forKey: .succeed)
 
-            try? container.encodeIfPresent(templateTag, forKey: .templateTag)
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
 
             try? container.encodeIfPresent(cancelledRecords, forKey: .cancelledRecords)
 
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
     }
 }
