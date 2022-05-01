@@ -11,30 +11,30 @@ public extension ApplicationClient {
 
         public var childs: [SecondLevelChild]?
 
-        public var banners: ImageUrls?
+        public var customJson: [String: Any]?
 
         public var slug: String?
 
         public var uid: Int?
 
-        public var action: ProductListingAction?
+        public var banners: ImageUrls?
 
-        public var customJson: [String: Any]?
+        public var action: ProductListingAction?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
             case childs
 
-            case banners
+            case customJson = "_custom_json"
 
             case slug
 
             case uid
 
-            case action
+            case banners
 
-            case customJson = "_custom_json"
+            case action
         }
 
         public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [SecondLevelChild]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
@@ -42,15 +42,15 @@ public extension ApplicationClient {
 
             self.childs = childs
 
-            self.banners = banners
+            self.customJson = customJson
 
             self.slug = slug
 
             self.uid = uid
 
-            self.action = action
+            self.banners = banners
 
-            self.customJson = customJson
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                banners = try container.decode(ImageUrls.self, forKey: .banners)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                banners = try container.decode(ImageUrls.self, forKey: .banners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,15 +120,15 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 
-            try? container.encodeIfPresent(banners, forKey: .banners)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }

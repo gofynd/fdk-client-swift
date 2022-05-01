@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class AutocompleteItem: Codable {
         public var action: ProductListingAction?
 
-        public var type: String?
+        public var display: String?
 
         public var logo: Media?
 
-        public var display: String?
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case action
 
-            case type
+            case display
 
             case logo
 
-            case display
+            case type
         }
 
         public init(action: ProductListingAction? = nil, display: String? = nil, logo: Media? = nil, type: String? = nil) {
             self.action = action
 
-            self.type = type
+            self.display = display
 
             self.logo = logo
 
-            self.display = display
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
