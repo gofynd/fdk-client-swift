@@ -7,7 +7,7 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class PageCoupon: Codable {
-        public var hasPrevious: Bool?
+        public var current: Int?
 
         public var total: Int?
 
@@ -15,10 +15,10 @@ public extension ApplicationClient {
 
         public var hasNext: Bool?
 
-        public var current: Int?
+        public var hasPrevious: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case hasPrevious = "has_previous"
+            case current
 
             case total
 
@@ -26,11 +26,11 @@ public extension ApplicationClient {
 
             case hasNext = "has_next"
 
-            case current
+            case hasPrevious = "has_previous"
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, total: Int? = nil, totalItemCount: Int? = nil) {
-            self.hasPrevious = hasPrevious
+            self.current = current
 
             self.total = total
 
@@ -38,14 +38,14 @@ public extension ApplicationClient {
 
             self.hasNext = hasNext
 
-            self.current = current
+            self.hasPrevious = hasPrevious
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+                current = try container.decode(Int.self, forKey: .current)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                current = try container.decode(Int.self, forKey: .current)
+                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +88,7 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+            try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(total, forKey: .total)
 
@@ -96,7 +96,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
-            try? container.encodeIfPresent(current, forKey: .current)
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
         }
     }
 }

@@ -158,9 +158,9 @@ public extension ApplicationClient {
         public func getAbuseReports(
             entityId: String,
             entityType: String,
-            id: String?,
-            pageId: String?,
-            pageSize: Int?,
+            id: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: ReportAbuseGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -221,8 +221,8 @@ public extension ApplicationClient {
         public func getAbuseReportsPaginator(
             entityId: String,
             entityType: String,
-            id: String?,
-            pageSize: Int?
+            id: String? = nil,
+            pageSize: Int? = nil
 
         ) -> Paginator<ReportAbuseGetResponse> {
             let pageSize = pageSize ?? 20
@@ -253,8 +253,8 @@ public extension ApplicationClient {
          * Description: Use this API to retrieve a list of all attribute data, e.g. quality, material, product fitting, packaging, etc.
          **/
         public func getAttributes(
-            pageNo: Int?,
-            pageSize: Int?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: AttributeResponse?, _ error: FDKError?) -> Void
         ) {
@@ -305,7 +305,7 @@ public extension ApplicationClient {
          * Description: fetch the next page by calling .next(...) function
          **/
         public func getAttributesPaginator(
-            pageSize: Int?
+            pageSize: Int? = nil
 
         ) -> Paginator<AttributeResponse> {
             let pageSize = pageSize ?? 20
@@ -540,11 +540,11 @@ public extension ApplicationClient {
          **/
         public func getComments(
             entityType: String,
-            id: String?,
-            entityId: String?,
-            userId: String?,
-            pageId: String?,
-            pageSize: Int?,
+            id: String? = nil,
+            entityId: String? = nil,
+            userId: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: CommentGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -610,10 +610,10 @@ public extension ApplicationClient {
          **/
         public func getCommentsPaginator(
             entityType: String,
-            id: String?,
-            entityId: String?,
-            userId: String?,
-            pageSize: Int?
+            id: String? = nil,
+            entityId: String? = nil,
+            userId: String? = nil,
+            pageSize: Int? = nil
 
         ) -> Paginator<CommentGetResponse> {
             let pageSize = pageSize ?? 20
@@ -818,10 +818,10 @@ public extension ApplicationClient {
         public func getMedias(
             entityType: String,
             entityId: String,
-            id: String?,
-            type: String?,
-            pageId: String?,
-            pageSize: Int?,
+            id: String? = nil,
+            type: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: MediaGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -886,9 +886,9 @@ public extension ApplicationClient {
         public func getMediasPaginator(
             entityType: String,
             entityId: String,
-            id: String?,
-            type: String?,
-            pageSize: Int?
+            id: String? = nil,
+            type: String? = nil,
+            pageSize: Int? = nil
 
         ) -> Paginator<MediaGetResponse> {
             let pageSize = pageSize ?? 20
@@ -922,9 +922,9 @@ public extension ApplicationClient {
         public func getReviewSummaries(
             entityType: String,
             entityId: String,
-            id: String?,
-            pageId: String?,
-            pageSize: Int?,
+            id: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: ReviewMetricGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -985,8 +985,8 @@ public extension ApplicationClient {
         public func getReviewSummariesPaginator(
             entityType: String,
             entityId: String,
-            id: String?,
-            pageSize: Int?
+            id: String? = nil,
+            pageSize: Int? = nil
 
         ) -> Paginator<ReviewMetricGetResponse> {
             let pageSize = pageSize ?? 20
@@ -1099,17 +1099,17 @@ public extension ApplicationClient {
         public func getReviews(
             entityType: String,
             entityId: String,
-            id: String?,
-            userId: String?,
-            media: String?,
-            rating: [Double]?,
-            attributeRating: [String]?,
-            facets: Bool?,
-            sort: String?,
-            active: Bool?,
-            approve: Bool?,
-            pageId: String?,
-            pageSize: Int?,
+            id: String? = nil,
+            userId: String? = nil,
+            media: String? = nil,
+            rating: [Double]? = nil,
+            attributeRating: [String]? = nil,
+            facets: Bool? = nil,
+            sort: String? = nil,
+            active: Bool? = nil,
+            approve: Bool? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: ReviewGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1202,16 +1202,16 @@ public extension ApplicationClient {
         public func getReviewsPaginator(
             entityType: String,
             entityId: String,
-            id: String?,
-            userId: String?,
-            media: String?,
-            rating: [Double]?,
-            attributeRating: [String]?,
-            facets: Bool?,
-            sort: String?,
-            active: Bool?,
-            approve: Bool?,
-            pageSize: Int?
+            id: String? = nil,
+            userId: String? = nil,
+            media: String? = nil,
+            rating: [Double]? = nil,
+            attributeRating: [String]? = nil,
+            facets: Bool? = nil,
+            sort: String? = nil,
+            active: Bool? = nil,
+            approve: Bool? = nil,
+            pageSize: Int? = nil
 
         ) -> Paginator<ReviewGetResponse> {
             let pageSize = pageSize ?? 20
@@ -1250,9 +1250,9 @@ public extension ApplicationClient {
          * Description: Use this API to retrieve the details of the following feedback template. order, delivered, application, seller, order, placed, product
          **/
         public func getTemplates(
-            templateId: String?,
-            entityId: String?,
-            entityType: String?,
+            templateId: String? = nil,
+            entityId: String? = nil,
+            entityType: String? = nil,
 
             onResponse: @escaping (_ response: TemplateGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1389,11 +1389,11 @@ public extension ApplicationClient {
         public func getQuestionAndAnswers(
             entityType: String,
             entityId: String,
-            id: String?,
-            userId: String?,
-            showAnswer: Bool?,
-            pageId: String?,
-            pageSize: Int?,
+            id: String? = nil,
+            userId: String? = nil,
+            showAnswer: Bool? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: QNAGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1462,10 +1462,10 @@ public extension ApplicationClient {
         public func getQuestionAndAnswersPaginator(
             entityType: String,
             entityId: String,
-            id: String?,
-            userId: String?,
-            showAnswer: Bool?,
-            pageSize: Int?
+            id: String? = nil,
+            userId: String? = nil,
+            showAnswer: Bool? = nil,
+            pageSize: Int? = nil
 
         ) -> Paginator<QNAGetResponse> {
             let pageSize = pageSize ?? 20
@@ -1498,10 +1498,10 @@ public extension ApplicationClient {
          * Description: Use this API to retrieve a list of votes of a current logged in user. Votes can be filtered using `ref_type`, i.e. review | comment.
          **/
         public func getVotes(
-            id: String?,
-            refType: String?,
-            pageNo: Int?,
-            pageSize: Int?,
+            id: String? = nil,
+            refType: String? = nil,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: VoteResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1560,9 +1560,9 @@ public extension ApplicationClient {
          * Description: fetch the next page by calling .next(...) function
          **/
         public func getVotesPaginator(
-            id: String?,
-            refType: String?,
-            pageSize: Int?
+            id: String? = nil,
+            refType: String? = nil,
+            pageSize: Int? = nil
 
         ) -> Paginator<VoteResponse> {
             let pageSize = pageSize ?? 20
