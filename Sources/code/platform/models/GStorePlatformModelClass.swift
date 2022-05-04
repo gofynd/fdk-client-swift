@@ -26,6 +26,8 @@ public extension PlatformClient {
 
         public var name: String?
 
+        public var data: StoreData?
+
         public enum CodingKeys: String, CodingKey {
             case id = "_id"
 
@@ -44,9 +46,11 @@ public extension PlatformClient {
             case code
 
             case name
+
+            case data
         }
 
-        public init(code: String? = nil, integration: String? = nil, level: String? = nil, name: String? = nil, opted: Bool? = nil, permissions: [String]? = nil, token: String? = nil, uid: Int? = nil, id: String? = nil) {
+        public init(code: String? = nil, data: StoreData? = nil, integration: String? = nil, level: String? = nil, name: String? = nil, opted: Bool? = nil, permissions: [String]? = nil, token: String? = nil, uid: Int? = nil, id: String? = nil) {
             self.id = id
 
             self.integration = integration
@@ -64,6 +68,8 @@ public extension PlatformClient {
             self.code = code
 
             self.name = name
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -140,6 +146,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                data = try container.decode(StoreData.self, forKey: .data)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -162,6 +176,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
