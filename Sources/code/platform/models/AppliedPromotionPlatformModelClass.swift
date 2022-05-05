@@ -8,26 +8,26 @@ public extension PlatformClient {
      */
 
     class AppliedPromotion: Codable {
-        public var mrpPromotion: Bool?
-
-        public var promotionType: String?
+        public var articleQuantity: Int?
 
         public var amount: Double?
 
-        public var articleQuantity: Int?
+        public var promotionType: String?
+
+        public var mrpPromotion: Bool?
 
         public var offerText: String?
 
         public var promoId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case mrpPromotion = "mrp_promotion"
-
-            case promotionType = "promotion_type"
+            case articleQuantity = "article_quantity"
 
             case amount
 
-            case articleQuantity = "article_quantity"
+            case promotionType = "promotion_type"
+
+            case mrpPromotion = "mrp_promotion"
 
             case offerText = "offer_text"
 
@@ -35,13 +35,13 @@ public extension PlatformClient {
         }
 
         public init(amount: Double? = nil, articleQuantity: Int? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
-            self.mrpPromotion = mrpPromotion
-
-            self.promotionType = promotionType
+            self.articleQuantity = articleQuantity
 
             self.amount = amount
 
-            self.articleQuantity = articleQuantity
+            self.promotionType = promotionType
+
+            self.mrpPromotion = mrpPromotion
 
             self.offerText = offerText
 
@@ -52,15 +52,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                mrpPromotion = try container.decode(Bool.self, forKey: .mrpPromotion)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                promotionType = try container.decode(String.self, forKey: .promotionType)
+                articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +68,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
+                promotionType = try container.decode(String.self, forKey: .promotionType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                mrpPromotion = try container.decode(Bool.self, forKey: .mrpPromotion)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,13 +103,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
-
-            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
+            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
+            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
+
+            try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 

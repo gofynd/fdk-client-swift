@@ -212,9 +212,9 @@ public extension ApplicationClient {
          * Description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
          **/
         public func getOrderingStores(
-            pageNo: Int? = nil,
-            pageSize: Int? = nil,
-            q: String? = nil,
+            pageNo: Int?,
+            pageSize: Int?,
+            q: String?,
 
             onResponse: @escaping (_ response: OrderingStores?, _ error: FDKError?) -> Void
         ) {
@@ -269,8 +269,8 @@ public extension ApplicationClient {
          * Description: fetch the next page by calling .next(...) function
          **/
         public func getOrderingStoresPaginator(
-            pageSize: Int? = nil,
-            q: String? = nil
+            pageSize: Int?,
+            q: String?
 
         ) -> Paginator<OrderingStores> {
             let pageSize = pageSize ?? 20
@@ -659,11 +659,11 @@ public extension ApplicationClient {
          * Description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
          **/
         public func getAppStaffList(
-            pageNo: Int? = nil,
-            pageSize: Int? = nil,
-            orderIncent: Bool? = nil,
-            orderingStore: Int? = nil,
-            user: String? = nil,
+            pageNo: Int?,
+            pageSize: Int?,
+            orderIncent: Bool?,
+            orderingStore: Int?,
+            user: String?,
 
             onResponse: @escaping (_ response: AppStaffListResponse?, _ error: FDKError?) -> Void
         ) {
@@ -726,10 +726,10 @@ public extension ApplicationClient {
          * Description: fetch the next page by calling .next(...) function
          **/
         public func getAppStaffListPaginator(
-            pageSize: Int? = nil,
-            orderIncent: Bool? = nil,
-            orderingStore: Int? = nil,
-            user: String? = nil
+            pageSize: Int?,
+            orderIncent: Bool?,
+            orderingStore: Int?,
+            user: String?
 
         ) -> Paginator<AppStaffListResponse> {
             let pageSize = pageSize ?? 20
@@ -760,9 +760,9 @@ public extension ApplicationClient {
          * Description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
          **/
         public func getAppStaffs(
-            orderIncent: Bool? = nil,
-            orderingStore: Int? = nil,
-            user: String? = nil,
+            orderIncent: Bool?,
+            orderingStore: Int?,
+            user: String?,
 
             onResponse: @escaping (_ response: AppStaffResponse?, _ error: FDKError?) -> Void
         ) {
