@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class CompanyTax: Codable {
-        public var enable: Bool
-
         public var rate: Double
+
+        public var enable: Bool
 
         public var effectiveDate: String
 
         public enum CodingKeys: String, CodingKey {
-            case enable
-
             case rate
+
+            case enable
 
             case effectiveDate = "effective_date"
         }
 
         public init(effectiveDate: String, enable: Bool, rate: Double) {
-            self.enable = enable
-
             self.rate = rate
+
+            self.enable = enable
 
             self.effectiveDate = effectiveDate
         }
@@ -33,9 +33,9 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            enable = try container.decode(Bool.self, forKey: .enable)
-
             rate = try container.decode(Double.self, forKey: .rate)
+
+            enable = try container.decode(Bool.self, forKey: .enable)
 
             effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
         }
@@ -43,9 +43,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(enable, forKey: .enable)
-
             try? container.encodeIfPresent(rate, forKey: .rate)
+
+            try? container.encodeIfPresent(enable, forKey: .enable)
 
             try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
         }

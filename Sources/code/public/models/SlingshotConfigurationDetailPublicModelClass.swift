@@ -8,7 +8,7 @@ public extension PublicClient {
      */
 
     class SlingshotConfigurationDetail: Codable {
-        public var integration: Integration?
+        public var integration: SlingshotIntegration?
 
         public var companies: [GCompany]?
 
@@ -18,7 +18,7 @@ public extension PublicClient {
             case companies
         }
 
-        public init(companies: [GCompany]? = nil, integration: Integration? = nil) {
+        public init(companies: [GCompany]? = nil, integration: SlingshotIntegration? = nil) {
             self.integration = integration
 
             self.companies = companies
@@ -28,7 +28,7 @@ public extension PublicClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                integration = try container.decode(Integration.self, forKey: .integration)
+                integration = try container.decode(SlingshotIntegration.self, forKey: .integration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

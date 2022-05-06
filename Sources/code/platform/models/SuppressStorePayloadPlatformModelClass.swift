@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class SuppressStorePayload: Codable {
-        public var payload: [SuppressStorePayload]?
+        public var payload: [SuppressStoreModel]?
 
         public var meta: KafkaMetaModel?
 
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case meta
         }
 
-        public init(meta: KafkaMetaModel? = nil, payload: [SuppressStorePayload]? = nil) {
+        public init(meta: KafkaMetaModel? = nil, payload: [SuppressStoreModel]? = nil) {
             self.payload = payload
 
             self.meta = meta
@@ -28,7 +28,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                payload = try container.decode([SuppressStorePayload].self, forKey: .payload)
+                payload = try container.decode([SuppressStoreModel].self, forKey: .payload)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -3,50 +3,50 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: GetAutocompleteWordsData
-         Used By: Catalog
+         Model: SlingshotIntegration
+         Used By: Inventory
      */
 
-    class GetAutocompleteWordsData: Codable {
-        public var results: [[String: Any]]?
+    class SlingshotIntegration: Codable {
+        public var id: String?
 
-        public var customJson: [String: Any]?
+        public var description: String?
 
-        public var uid: String?
+        public var name: String?
 
-        public var words: [String]?
+        public var slug: String?
 
-        public var appId: String?
+        public var meta: [Metum]?
 
         public enum CodingKeys: String, CodingKey {
-            case results
+            case id = "_id"
 
-            case customJson = "_custom_json"
+            case description
 
-            case uid
+            case name
 
-            case words
+            case slug
 
-            case appId = "app_id"
+            case meta
         }
 
-        public init(appId: String? = nil, results: [[String: Any]]? = nil, uid: String? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
-            self.results = results
+        public init(description: String? = nil, meta: [Metum]? = nil, name: String? = nil, slug: String? = nil, id: String? = nil) {
+            self.id = id
 
-            self.customJson = customJson
+            self.description = description
 
-            self.uid = uid
+            self.name = name
 
-            self.words = words
+            self.slug = slug
 
-            self.appId = appId
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                results = try container.decode([[String: Any]].self, forKey: .results)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                words = try container.decode([String].self, forKey: .words)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                appId = try container.decode(String.self, forKey: .appId)
+                meta = try container.decode([Metum].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,15 +89,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(results, forKey: .results)
+            try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(words, forKey: .words)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

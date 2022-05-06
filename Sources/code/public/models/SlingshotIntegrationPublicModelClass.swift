@@ -3,11 +3,11 @@
 import Foundation
 public extension PublicClient {
     /*
-         Model: Integration
+         Model: SlingshotIntegration
          Used By: Inventory
      */
 
-    class Integration: Codable {
+    class SlingshotIntegration: Codable {
         public var id: String?
 
         public var description: String?
