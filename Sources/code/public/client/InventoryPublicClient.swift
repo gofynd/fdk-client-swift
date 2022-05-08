@@ -60,7 +60,7 @@ public extension PublicClient {
             userName: String,
             password: String,
 
-            onResponse: @escaping (_ response: ResponseEnvelopeObject?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ResponseEnvelopeApikeyModel?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -84,7 +84,7 @@ public extension PublicClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(ResponseEnvelopeObject.self, from: data)
+                        let response = Utility.decode(ResponseEnvelopeApikeyModel.self, from: data)
 
                         onResponse(response, nil)
                     } else {

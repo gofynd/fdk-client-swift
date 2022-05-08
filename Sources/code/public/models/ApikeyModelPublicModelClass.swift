@@ -1,34 +1,34 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension PublicClient {
     /*
-         Model: HSNCodesResponse
-         Used By: Catalog
+         Model: ApikeyModel
+         Used By: Inventory
      */
 
-    class HSNCodesResponse: Codable {
-        public var message: String?
+    class ApikeyModel: Codable {
+        public var sessionId: String?
 
-        public var data: HSNData?
+        public var errorMessage: String?
 
         public enum CodingKeys: String, CodingKey {
-            case message
+            case sessionId = "session_id"
 
-            case data
+            case errorMessage = "error_message"
         }
 
-        public init(data: HSNData? = nil, message: String? = nil) {
-            self.message = message
+        public init(errorMessage: String? = nil, sessionId: String? = nil) {
+            self.sessionId = sessionId
 
-            self.data = data
+            self.errorMessage = errorMessage
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                sessionId = try container.decode(String.self, forKey: .sessionId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                data = try container.decode(HSNData.self, forKey: .data)
+                errorMessage = try container.decode(String.self, forKey: .errorMessage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(sessionId, forKey: .sessionId)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(errorMessage, forKey: .errorMessage)
         }
     }
 }

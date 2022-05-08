@@ -10,30 +10,30 @@ public extension PlatformClient {
     class OptinCompanyDetail: Codable {
         public var businessType: String?
 
-        public var companyType: String?
+        public var name: String?
 
         public var uid: Int?
 
-        public var name: String?
+        public var companyType: String?
 
         public enum CodingKeys: String, CodingKey {
             case businessType = "business_type"
 
-            case companyType = "company_type"
+            case name
 
             case uid
 
-            case name
+            case companyType = "company_type"
         }
 
         public init(businessType: String? = nil, companyType: String? = nil, name: String? = nil, uid: Int? = nil) {
             self.businessType = businessType
 
-            self.companyType = companyType
+            self.name = name
 
             self.uid = uid
 
-            self.name = name
+            self.companyType = companyType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                companyType = try container.decode(String.self, forKey: .companyType)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                companyType = try container.decode(String.self, forKey: .companyType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,11 +77,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(businessType, forKey: .businessType)
 
-            try? container.encodeIfPresent(companyType, forKey: .companyType)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(companyType, forKey: .companyType)
         }
     }
 }
