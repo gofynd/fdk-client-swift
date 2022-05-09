@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: ApplicationBrandJson
-         Used By: CompanyProfile
+         Used By: Catalog
      */
 
     class ApplicationBrandJson: Codable {

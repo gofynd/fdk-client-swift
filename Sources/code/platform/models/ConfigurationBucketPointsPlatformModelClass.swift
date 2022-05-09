@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ConfigurationBucketPoints: Codable {
         public var start: Double?
 
-        public var display: String?
-
         public var end: Double?
+
+        public var display: String?
 
         public enum CodingKeys: String, CodingKey {
             case start
 
-            case display
-
             case end
+
+            case display
         }
 
         public init(display: String? = nil, end: Double? = nil, start: Double? = nil) {
             self.start = start
 
-            self.display = display
-
             self.end = end
+
+            self.display = display
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                end = try container.decode(Double.self, forKey: .end)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                end = try container.decode(Double.self, forKey: .end)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(start, forKey: .start)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(end, forKey: .end)
+
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 }

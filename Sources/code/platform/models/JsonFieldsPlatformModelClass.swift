@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: JsonFields
-         Used By: CompanyProfile
+         Used By: Catalog
      */
 
     class JsonFields: Codable {
