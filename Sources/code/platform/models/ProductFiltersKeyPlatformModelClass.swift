@@ -10,18 +10,18 @@ public extension PlatformClient {
     class ProductFiltersKey: Codable {
         public var name: String
 
-        public var kind: String?
-
         public var display: String
+
+        public var kind: String?
 
         public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case kind
-
             case display
+
+            case kind
 
             case logo
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String) {
             self.name = name
 
-            self.kind = kind
-
             self.display = display
+
+            self.kind = kind
 
             self.logo = logo
         }
@@ -41,6 +41,8 @@ public extension PlatformClient {
 
             name = try container.decode(String.self, forKey: .name)
 
+            display = try container.decode(String.self, forKey: .display)
+
             do {
                 kind = try container.decode(String.self, forKey: .kind)
 
@@ -48,8 +50,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            display = try container.decode(String.self, forKey: .display)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -65,9 +65,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(kind, forKey: .kind)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(kind, forKey: .kind)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }
