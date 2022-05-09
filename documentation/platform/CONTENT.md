@@ -7442,6 +7442,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | announcement | String? |  yes  |  |
+ | pageType | String? |  yes  |  |
  | schedule | [ScheduleStartSchema](#ScheduleStartSchema)? |  yes  |  |
 
 ---

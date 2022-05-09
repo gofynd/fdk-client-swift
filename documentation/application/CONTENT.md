@@ -2011,6 +2011,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | announcement | String? |  yes  |  |
+ | pageType | String? |  yes  |  |
  | schedule | [ScheduleStartSchema](#ScheduleStartSchema)? |  yes  |  |
 
 ---
