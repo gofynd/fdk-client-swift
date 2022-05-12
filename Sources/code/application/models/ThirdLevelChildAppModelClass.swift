@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var action: ProductListingAction?
 
-        public var customJson: [String: Any]?
-
         public var childs: [[String: Any]]?
+
+        public var customJson: [String: Any]?
 
         public var name: String?
 
@@ -26,9 +26,9 @@ public extension ApplicationClient {
 
             case action
 
-            case customJson = "_custom_json"
-
             case childs
+
+            case customJson = "_custom_json"
 
             case name
 
@@ -42,9 +42,9 @@ public extension ApplicationClient {
 
             self.action = action
 
-            self.customJson = customJson
-
             self.childs = childs
+
+            self.customJson = customJson
 
             self.name = name
 
@@ -73,7 +73,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                childs = try container.decode([[String: Any]].self, forKey: .childs)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                childs = try container.decode([[String: Any]].self, forKey: .childs)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,9 +120,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
             try? container.encodeIfPresent(childs, forKey: .childs)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(name, forKey: .name)
 

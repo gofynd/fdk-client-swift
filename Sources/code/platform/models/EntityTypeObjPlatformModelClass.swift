@@ -1,33 +1,34 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: ProductsComparisonResponse
-         Used By: Catalog
+         Model: EntityTypeObj
+         Used By: AuditTrail
      */
-    class ProductsComparisonResponse: Codable {
-        public var items: [ProductDetail]?
 
-        public var attributesMetadata: [AttributeMetadata]?
+    class EntityTypeObj: Codable {
+        public var entityValue: String?
+
+        public var displayName: String?
 
         public enum CodingKeys: String, CodingKey {
-            case items
+            case entityValue = "entity_value"
 
-            case attributesMetadata = "attributes_metadata"
+            case displayName = "display_name"
         }
 
-        public init(attributesMetadata: [AttributeMetadata]? = nil, items: [ProductDetail]? = nil) {
-            self.items = items
+        public init(displayName: String? = nil, entityValue: String? = nil) {
+            self.entityValue = entityValue
 
-            self.attributesMetadata = attributesMetadata
+            self.displayName = displayName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([ProductDetail].self, forKey: .items)
+                entityValue = try container.decode(String.self, forKey: .entityValue)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +36,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                attributesMetadata = try container.decode([AttributeMetadata].self, forKey: .attributesMetadata)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +47,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(entityValue, forKey: .entityValue)
 
-            try? container.encodeIfPresent(attributesMetadata, forKey: .attributesMetadata)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
         }
     }
 }
