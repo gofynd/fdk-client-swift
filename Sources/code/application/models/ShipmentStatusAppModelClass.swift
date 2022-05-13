@@ -9,16 +9,22 @@ public extension ApplicationClient {
     class ShipmentStatus: Codable {
         public var title: String?
 
+        public var value: String?
+
         public var hexCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case title
 
+            case value
+
             case hexCode = "hex_code"
         }
 
-        public init(hexCode: String? = nil, title: String? = nil) {
+        public init(hexCode: String? = nil, title: String? = nil, value: String? = nil) {
             self.title = title
+
+            self.value = value
 
             self.hexCode = hexCode
         }
@@ -28,6 +34,14 @@ public extension ApplicationClient {
 
             do {
                 title = try container.decode(String.self, forKey: .title)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,6 +61,8 @@ public extension ApplicationClient {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(hexCode, forKey: .hexCode)
         }

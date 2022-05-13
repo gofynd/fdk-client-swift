@@ -38,9 +38,13 @@ public extension PlatformClient {
 
         public var availableSections: [availableSectionSchema]?
 
+        public var constants: [String: Any]?
+
         public var styles: [String: Any]?
 
         public var config: Config?
+
+        public var settings: [String: Any]?
 
         public var font: Font?
 
@@ -81,9 +85,13 @@ public extension PlatformClient {
 
             case availableSections = "available_sections"
 
+            case constants
+
             case styles
 
             case config
+
+            case settings
 
             case font
 
@@ -94,7 +102,7 @@ public extension PlatformClient {
             case colors
         }
 
-        public init(application: String? = nil, applied: Bool? = nil, archived: Bool? = nil, assets: AssetsSchema? = nil, availableSections: [availableSectionSchema]? = nil, colors: Colors? = nil, config: Config? = nil, createdAt: String? = nil, customized: Bool? = nil, font: Font? = nil, information: Information? = nil, parentTheme: String? = nil, parentThemeVersion: String? = nil, published: Bool? = nil, src: Src? = nil, styles: [String: Any]? = nil, tags: [String]? = nil, updatedAt: String? = nil, version: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, applied: Bool? = nil, archived: Bool? = nil, assets: AssetsSchema? = nil, availableSections: [availableSectionSchema]? = nil, colors: Colors? = nil, config: Config? = nil, constants: [String: Any]? = nil, createdAt: String? = nil, customized: Bool? = nil, font: Font? = nil, information: Information? = nil, parentTheme: String? = nil, parentThemeVersion: String? = nil, published: Bool? = nil, settings: [String: Any]? = nil, src: Src? = nil, styles: [String: Any]? = nil, tags: [String]? = nil, updatedAt: String? = nil, version: String? = nil, id: String? = nil, v: Int? = nil) {
             self.application = application
 
             self.applied = applied
@@ -125,9 +133,13 @@ public extension PlatformClient {
 
             self.availableSections = availableSections
 
+            self.constants = constants
+
             self.styles = styles
 
             self.config = config
+
+            self.settings = settings
 
             self.font = font
 
@@ -262,6 +274,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                constants = try container.decode([String: Any].self, forKey: .constants)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 styles = try container.decode([String: Any].self, forKey: .styles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -271,6 +291,14 @@ public extension PlatformClient {
 
             do {
                 config = try container.decode(Config.self, forKey: .config)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                settings = try container.decode([String: Any].self, forKey: .settings)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -343,9 +371,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(availableSections, forKey: .availableSections)
 
+            try? container.encodeIfPresent(constants, forKey: .constants)
+
             try? container.encodeIfPresent(styles, forKey: .styles)
 
             try? container.encodeIfPresent(config, forKey: .config)
+
+            try? container.encodeIfPresent(settings, forKey: .settings)
 
             try? container.encodeIfPresent(font, forKey: .font)
 

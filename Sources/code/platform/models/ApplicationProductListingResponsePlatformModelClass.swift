@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var filters: [ProductFilters]?
 
-        public var items: [ProductListingDetail]?
-
         public var sortOn: [ProductSortOn]?
+
+        public var items: [ProductListingDetail]?
 
         public enum CodingKeys: String, CodingKey {
             case page
 
             case filters
 
-            case items
-
             case sortOn = "sort_on"
+
+            case items
         }
 
         public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.filters = filters
 
-            self.items = items
-
             self.sortOn = sortOn
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                items = try container.decode([ProductListingDetail].self, forKey: .items)
+                sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,7 +58,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
+                items = try container.decode([ProductListingDetail].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,9 +73,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }
