@@ -200,8 +200,8 @@ public extension ApplicationClient {
          * Description: Use this API to get a list of points transactions. The list of points history is paginated.
          **/
         public func getUserPointsHistory(
-            pageId: String?,
-            pageSize: Int?,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: PointsHistoryResponse?, _ error: FDKError?) -> Void
         ) {
@@ -252,7 +252,7 @@ public extension ApplicationClient {
          * Description: fetch the next page by calling .next(...) function
          **/
         public func getUserPointsHistoryPaginator(
-            pageSize: Int?
+            pageSize: Int? = nil
 
         ) -> Paginator<PointsHistoryResponse> {
             let pageSize = pageSize ?? 20
