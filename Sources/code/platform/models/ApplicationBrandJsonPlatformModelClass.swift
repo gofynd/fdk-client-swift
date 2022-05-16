@@ -8,20 +8,20 @@ public extension PlatformClient {
      */
 
     class ApplicationBrandJson: Codable {
-        public var customJson: [JsonFields]
+        public var customJson: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case customJson = "_custom_json"
         }
 
-        public init(customJson: [JsonFields]) {
+        public init(customJson: [String: Any]) {
             self.customJson = customJson
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            customJson = try container.decode([JsonFields].self, forKey: .customJson)
+            customJson = try container.decode([String: Any].self, forKey: .customJson)
         }
 
         public func encode(to encoder: Encoder) throws {

@@ -1118,6 +1118,7 @@ Success, the code is valid and returns a SignedUrl
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | showPromise | Bool? |  yes  |  |
  | min | String? |  yes  |  |
  | max | String? |  yes  |  |
 
