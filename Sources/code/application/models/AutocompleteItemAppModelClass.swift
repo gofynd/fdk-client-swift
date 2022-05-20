@@ -7,30 +7,30 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class AutocompleteItem: Codable {
-        public var type: String?
+        public var display: String?
 
         public var action: ProductListingAction?
 
-        public var display: String?
+        public var type: String?
 
         public var logo: Media?
 
         public enum CodingKeys: String, CodingKey {
-            case type
+            case display
 
             case action
 
-            case display
+            case type
 
             case logo
         }
 
         public init(action: ProductListingAction? = nil, display: String? = nil, logo: Media? = nil, type: String? = nil) {
-            self.type = type
+            self.display = display
 
             self.action = action
 
-            self.display = display
+            self.type = type
 
             self.logo = logo
         }
@@ -39,7 +39,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,11 +74,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }

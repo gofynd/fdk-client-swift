@@ -7,6 +7,7 @@
 ## Logistic Methods
 Handles Platform websites OMS
 * [getTatProduct](#gettatproduct)
+* [getPincodeZones](#getpincodezones)
 * [getPincodeCity](#getpincodecity)
 
 
@@ -43,6 +44,60 @@ Use this API to know the delivery turnaround time (TAT) by entering the product 
 
 
 [GetTatProductResponse](#GetTatProductResponse)
+
+Success. Check the example shown below or refer `GetTatProductResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPincodeZones
+Get Pincode Zones
+
+
+
+
+```swift
+logistic.getPincodeZones(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | GetPincodeZonesReqBody | yes | Request body |
+
+
+Get to know the zones of a specefic pincode
+
+*Returned Response:*
+
+
+
+
+[GetPincodeZonesResponse](#GetPincodeZonesResponse)
 
 Success. Check the example shown below or refer `GetTatProductResponse` for more details.
 
@@ -192,6 +247,30 @@ Success. Returns a JSON object containing the city name, state and country ident
  | type | String? |  yes  |  |
  | value | String? |  yes  |  |
  | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetPincodeZonesReqBody](#GetPincodeZonesReqBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | String |  no  |  |
+ | pincode | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetPincodeZonesResponse](#GetPincodeZonesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | zones | [[String: Any]] |  no  |  |
+ | serviceabilityType | String |  no  |  |
 
 ---
 

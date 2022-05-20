@@ -11,16 +11,22 @@ public extension ApplicationClient {
 
         public var forceTransition: Bool
 
+        public var task: Bool?
+
         public enum CodingKeys: String, CodingKey {
             case statuses
 
             case forceTransition = "force_transition"
+
+            case task
         }
 
-        public init(forceTransition: Bool, statuses: [StatusesBody]) {
+        public init(forceTransition: Bool, statuses: [StatusesBody], task: Bool? = nil) {
             self.statuses = statuses
 
             self.forceTransition = forceTransition
+
+            self.task = task
         }
 
         required public init(from decoder: Decoder) throws {
@@ -29,6 +35,14 @@ public extension ApplicationClient {
             statuses = try container.decode([StatusesBody].self, forKey: .statuses)
 
             forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
+
+            do {
+                task = try container.decode(Bool.self, forKey: .task)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -37,6 +51,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(statuses, forKey: .statuses)
 
             try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
+
+            try? container.encodeIfPresent(task, forKey: .task)
         }
     }
 }
