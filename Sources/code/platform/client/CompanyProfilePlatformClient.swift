@@ -54,7 +54,7 @@ public extension PlatformClient {
          **/
         public func updateCompany(
             body: UpdateCompany,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponseProfile?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
@@ -72,7 +72,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(SuccessResponseProfile.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -169,7 +169,7 @@ public extension PlatformClient {
         public func editBrand(
             brandId: String,
             body: CreateUpdateBrandRequestSerializer,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponseProfile?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
@@ -187,7 +187,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(SuccessResponseProfile.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -207,7 +207,7 @@ public extension PlatformClient {
          **/
         public func createBrand(
             body: CreateUpdateBrandRequestSerializer,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponseProfile?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
@@ -225,7 +225,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(SuccessResponseProfile.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -330,7 +330,7 @@ public extension PlatformClient {
          **/
         public func createCompanyBrandMapping(
             body: CompanyBrandPostRequestSerializer,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponseProfile?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
@@ -348,7 +348,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(SuccessResponseProfile.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -467,7 +467,7 @@ public extension PlatformClient {
          **/
         public func createLocation(
             body: LocationSerializer,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponseProfile?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
@@ -485,7 +485,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(SuccessResponseProfile.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -545,7 +545,7 @@ public extension PlatformClient {
         public func updateLocation(
             locationId: String,
             body: LocationSerializer,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponseProfile?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
@@ -563,7 +563,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(SuccessResponseProfile.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -583,7 +583,7 @@ public extension PlatformClient {
          **/
         public func createLocationBulk(
             body: BulkLocationSerializer,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponseProfile?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
@@ -601,7 +601,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(SuccessResponseProfile.self, from: data)
 
                         onResponse(response, nil)
                     } else {

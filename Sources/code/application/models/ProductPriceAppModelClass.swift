@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var currencyCode: String?
 
-        public var selling: Double?
-
         public var currencySymbol: String?
+
+        public var selling: Double?
 
         public var effective: Double?
 
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case currencyCode = "currency_code"
 
-            case selling
-
             case currencySymbol = "currency_symbol"
+
+            case selling
 
             case effective
 
@@ -38,9 +38,9 @@ public extension ApplicationClient {
 
             self.currencyCode = currencyCode
 
-            self.selling = selling
-
             self.currencySymbol = currencySymbol
+
+            self.selling = selling
 
             self.effective = effective
 
@@ -67,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                selling = try container.decode(Double.self, forKey: .selling)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+                selling = try container.decode(Double.self, forKey: .selling)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,9 +106,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
-            try? container.encodeIfPresent(selling, forKey: .selling)
-
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+
+            try? container.encodeIfPresent(selling, forKey: .selling)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
