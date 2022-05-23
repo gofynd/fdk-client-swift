@@ -3,32 +3,32 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ContactDetails
+         Model: SuccessResponseProfile
          Used By: CompanyProfile
      */
 
-    class ContactDetails: Codable {
-        public var phone: [SellerPhoneNumber]?
+    class SuccessResponseProfile: Codable {
+        public var uid: Int?
 
-        public var emails: [String]?
+        public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case phone
+            case uid
 
-            case emails
+            case success
         }
 
-        public init(emails: [String]? = nil, phone: [SellerPhoneNumber]? = nil) {
-            self.phone = phone
+        public init(success: Bool? = nil, uid: Int? = nil) {
+            self.uid = uid
 
-            self.emails = emails
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                phone = try container.decode([SellerPhoneNumber].self, forKey: .phone)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                emails = try container.decode([String].self, forKey: .emails)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(phone, forKey: .phone)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(emails, forKey: .emails)
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
