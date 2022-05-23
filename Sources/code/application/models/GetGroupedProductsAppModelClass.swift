@@ -7,75 +7,75 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class GetGroupedProducts: Codable {
-        public var choice: String?
+        public var slug: String?
 
-        public var active: Bool?
+        public var pageVisibility: [String]?
 
         public var products: [Products]?
 
         public var logo: String?
 
-        public var sameStoreAssignment: Bool?
-
         public var companyId: Int?
+
+        public var choice: String?
 
         public var meta: [String: Any]?
 
         public var name: String?
 
-        public var pageVisibility: [String]?
+        public var sameStoreAssignment: Bool?
 
-        public var slug: String?
+        public var active: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case choice
+            case slug
 
-            case active
+            case pageVisibility = "page_visibility"
 
             case products
 
             case logo
 
-            case sameStoreAssignment = "same_store_assignment"
-
             case companyId = "company_id"
+
+            case choice
 
             case meta
 
             case name
 
-            case pageVisibility = "page_visibility"
+            case sameStoreAssignment = "same_store_assignment"
 
-            case slug
+            case active
         }
 
         public init(active: Bool? = nil, choice: String? = nil, companyId: Int? = nil, logo: String? = nil, meta: [String: Any]? = nil, name: String? = nil, pageVisibility: [String]? = nil, products: [Products]? = nil, sameStoreAssignment: Bool? = nil, slug: String? = nil) {
-            self.choice = choice
+            self.slug = slug
 
-            self.active = active
+            self.pageVisibility = pageVisibility
 
             self.products = products
 
             self.logo = logo
 
-            self.sameStoreAssignment = sameStoreAssignment
-
             self.companyId = companyId
+
+            self.choice = choice
 
             self.meta = meta
 
             self.name = name
 
-            self.pageVisibility = pageVisibility
+            self.sameStoreAssignment = sameStoreAssignment
 
-            self.slug = slug
+            self.active = active
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                choice = try container.decode(String.self, forKey: .choice)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                active = try container.decode(Bool.self, forKey: .active)
+                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,7 +107,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sameStoreAssignment = try container.decode(Bool.self, forKey: .sameStoreAssignment)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -115,7 +115,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                choice = try container.decode(String.self, forKey: .choice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,7 +139,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
+                sameStoreAssignment = try container.decode(Bool.self, forKey: .sameStoreAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,7 +147,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                active = try container.decode(Bool.self, forKey: .active)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,25 +158,25 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(choice, forKey: .choice)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(active, forKey: .active)
+            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
 
             try? container.encodeIfPresent(products, forKey: .products)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(sameStoreAssignment, forKey: .sameStoreAssignment)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(choice, forKey: .choice)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
+            try? container.encodeIfPresent(sameStoreAssignment, forKey: .sameStoreAssignment)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(active, forKey: .active)
         }
     }
 }

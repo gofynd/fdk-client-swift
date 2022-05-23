@@ -10,18 +10,18 @@ public extension PlatformClient {
     class AutocompleteResult: Codable {
         public var action: AutocompleteAction?
 
-        public var logo: Media?
-
         public var customJson: [String: Any]?
+
+        public var logo: Media?
 
         public var display: String?
 
         public enum CodingKeys: String, CodingKey {
             case action
 
-            case logo
-
             case customJson = "_custom_json"
+
+            case logo
 
             case display
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(action: AutocompleteAction? = nil, display: String? = nil, logo: Media? = nil, customJson: [String: Any]? = nil) {
             self.action = action
 
-            self.logo = logo
-
             self.customJson = customJson
+
+            self.logo = logo
 
             self.display = display
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(display, forKey: .display)
         }
