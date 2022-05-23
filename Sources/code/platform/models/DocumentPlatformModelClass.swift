@@ -10,22 +10,22 @@ public extension PlatformClient {
     class Document: Codable {
         public var verified: Bool?
 
+        public var type: String
+
         public var url: String?
 
         public var value: String
-
-        public var type: String
 
         public var legalName: String?
 
         public enum CodingKeys: String, CodingKey {
             case verified
 
+            case type
+
             case url
 
             case value
-
-            case type
 
             case legalName = "legal_name"
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
             self.verified = verified
 
+            self.type = type
+
             self.url = url
 
             self.value = value
-
-            self.type = type
 
             self.legalName = legalName
         }
@@ -53,6 +53,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            type = try container.decode(String.self, forKey: .type)
+
             do {
                 url = try container.decode(String.self, forKey: .url)
 
@@ -62,8 +64,6 @@ public extension PlatformClient {
             } catch {}
 
             value = try container.decode(String.self, forKey: .value)
-
-            type = try container.decode(String.self, forKey: .type)
 
             do {
                 legalName = try container.decode(String.self, forKey: .legalName)
@@ -79,11 +79,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(verified, forKey: .verified)
 
+            try? container.encodeIfPresent(type, forKey: .type)
+
             try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(value, forKey: .value)
-
-            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
         }
