@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var name: String?
 
-        public var childs: [ThirdLevelChild]?
-
-        public var uid: Int?
-
         public var banners: ImageUrls?
 
+        public var childs: [ThirdLevelChild]?
+
         public var action: Action?
+
+        public var uid: Int?
 
         public var slug: String?
 
@@ -27,13 +27,13 @@ public extension PlatformClient {
 
             case name
 
-            case childs
-
-            case uid
-
             case banners
 
+            case childs
+
             case action
+
+            case uid
 
             case slug
         }
@@ -43,13 +43,13 @@ public extension PlatformClient {
 
             self.name = name
 
-            self.childs = childs
-
-            self.uid = uid
-
             self.banners = banners
 
+            self.childs = childs
+
             self.action = action
+
+            self.uid = uid
 
             self.slug = slug
         }
@@ -74,22 +74,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                childs = try container.decode([ThirdLevelChild].self, forKey: .childs)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 banners = try container.decode(ImageUrls.self, forKey: .banners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -98,7 +82,23 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                childs = try container.decode([ThirdLevelChild].self, forKey: .childs)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 action = try container.decode(Action.self, forKey: .action)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,13 +121,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(childs, forKey: .childs)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(banners, forKey: .banners)
 
+            try? container.encodeIfPresent(childs, forKey: .childs)
+
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
         }
