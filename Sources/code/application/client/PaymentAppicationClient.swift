@@ -35,6 +35,8 @@ public extension ApplicationClient {
 
             ulrs["getEpaylaterBannerDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/epaylater/banner")
 
+            ulrs["resendOrCancelPayment"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/resend_or_cancel")
+
             ulrs["getActiveRefundTransferModes"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/transfer-mode")
 
             ulrs["enableOrDisableRefundTransferMode"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/transfer-mode")
@@ -679,6 +681,46 @@ public extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(EpaylaterBannerResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: API to resend and cancel a payment link which was already generated.
+         * Description: Use this API to perform resend or cancel a payment link based on request payload.
+         **/
+        public func resendOrCancelPayment(
+            body: ResendOrCancelPaymentRequest,
+            onResponse: @escaping (_ response: ResendOrCancelPaymentResponse?, _ error: FDKError?) -> Void
+        ) {
+            let fullUrl = relativeUrls["resendOrCancelPayment"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResendOrCancelPaymentResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1420,6 +1462,7 @@ public extension ApplicationClient {
          **/
         public func redirectToAggregator(
             source: String?,
+            aggregator: String?,
 
             onResponse: @escaping (_ response: RedirectToAggregatorResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1427,6 +1470,10 @@ public extension ApplicationClient {
 
             if let value = source {
                 xQuery["source"] = value
+            }
+
+            if let value = aggregator {
+                xQuery["aggregator"] = value
             }
 
             let fullUrl = relativeUrls["redirectToAggregator"] ?? ""

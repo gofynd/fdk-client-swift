@@ -9,7 +9,7 @@ public extension ApplicationClient {
     class CustomerOnboardingResponse: Codable {
         public var success: Bool
 
-        public var data: [OnboardSummary]
+        public var data: OnboardSummary
 
         public enum CodingKeys: String, CodingKey {
             case success
@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case data
         }
 
-        public init(data: [OnboardSummary], success: Bool) {
+        public init(data: OnboardSummary, success: Bool) {
             self.success = success
 
             self.data = data
@@ -28,7 +28,7 @@ public extension ApplicationClient {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            data = try container.decode([OnboardSummary].self, forKey: .data)
+            data = try container.decode(OnboardSummary.self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {

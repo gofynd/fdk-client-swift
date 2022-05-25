@@ -9,7 +9,7 @@ public extension ApplicationClient {
     class CheckCreditResponse: Codable {
         public var success: Bool
 
-        public var data: [CreditDetail]
+        public var data: CreditDetail
 
         public enum CodingKeys: String, CodingKey {
             case success
@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case data
         }
 
-        public init(data: [CreditDetail], success: Bool) {
+        public init(data: CreditDetail, success: Bool) {
             self.success = success
 
             self.data = data
@@ -28,7 +28,7 @@ public extension ApplicationClient {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            data = try container.decode([CreditDetail].self, forKey: .data)
+            data = try container.decode(CreditDetail.self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {

@@ -9,7 +9,7 @@ public extension ApplicationClient {
     class RedirectToAggregatorResponse: Codable {
         public var success: Bool
 
-        public var data: [RedirectURL]
+        public var data: RedirectURL
 
         public enum CodingKeys: String, CodingKey {
             case success
@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case data
         }
 
-        public init(data: [RedirectURL], success: Bool) {
+        public init(data: RedirectURL, success: Bool) {
             self.success = success
 
             self.data = data
@@ -28,7 +28,7 @@ public extension ApplicationClient {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            data = try container.decode([RedirectURL].self, forKey: .data)
+            data = try container.decode(RedirectURL.self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {

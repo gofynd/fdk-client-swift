@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var storeDocuments: DocumentsObj?
 
-        public var companyDocuments: DocumentsObj?
-
         public var uid: Int?
+
+        public var companyDocuments: DocumentsObj?
 
         public var product: DocumentsObj?
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case storeDocuments = "store_documents"
 
-            case companyDocuments = "company_documents"
-
             case uid
+
+            case companyDocuments = "company_documents"
 
             case product
 
@@ -43,9 +43,9 @@ public extension PlatformClient {
 
             self.storeDocuments = storeDocuments
 
-            self.companyDocuments = companyDocuments
-
             self.uid = uid
+
+            self.companyDocuments = companyDocuments
 
             self.product = product
 
@@ -74,7 +74,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                companyDocuments = try container.decode(DocumentsObj.self, forKey: .companyDocuments)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,7 +82,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                companyDocuments = try container.decode(DocumentsObj.self, forKey: .companyDocuments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,9 +121,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeDocuments, forKey: .storeDocuments)
 
-            try? container.encodeIfPresent(companyDocuments, forKey: .companyDocuments)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(companyDocuments, forKey: .companyDocuments)
 
             try? container.encodeIfPresent(product, forKey: .product)
 

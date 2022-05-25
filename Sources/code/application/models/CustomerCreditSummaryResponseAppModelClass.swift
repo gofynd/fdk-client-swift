@@ -9,7 +9,7 @@ public extension ApplicationClient {
     class CustomerCreditSummaryResponse: Codable {
         public var success: Bool
 
-        public var data: [CreditSummary]?
+        public var data: CreditSummary?
 
         public enum CodingKeys: String, CodingKey {
             case success
@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case data
         }
 
-        public init(data: [CreditSummary]? = nil, success: Bool) {
+        public init(data: CreditSummary? = nil, success: Bool) {
             self.success = success
 
             self.data = data
@@ -29,7 +29,7 @@ public extension ApplicationClient {
             success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                data = try container.decode([CreditSummary].self, forKey: .data)
+                data = try container.decode(CreditSummary.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

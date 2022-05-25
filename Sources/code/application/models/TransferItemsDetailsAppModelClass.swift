@@ -9,22 +9,22 @@ public extension ApplicationClient {
     class TransferItemsDetails: Codable {
         public var logoLarge: String
 
-        public var id: Int
+        public var name: String
 
         public var logoSmall: String
 
-        public var name: String
+        public var id: Int
 
         public var displayName: String?
 
         public enum CodingKeys: String, CodingKey {
             case logoLarge = "logo_large"
 
-            case id
+            case name
 
             case logoSmall = "logo_small"
 
-            case name
+            case id
 
             case displayName = "display_name"
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient {
         public init(displayName: String? = nil, id: Int, logoLarge: String, logoSmall: String, name: String) {
             self.logoLarge = logoLarge
 
-            self.id = id
+            self.name = name
 
             self.logoSmall = logoSmall
 
-            self.name = name
+            self.id = id
 
             self.displayName = displayName
         }
@@ -46,11 +46,11 @@ public extension ApplicationClient {
 
             logoLarge = try container.decode(String.self, forKey: .logoLarge)
 
-            id = try container.decode(Int.self, forKey: .id)
+            name = try container.decode(String.self, forKey: .name)
 
             logoSmall = try container.decode(String.self, forKey: .logoSmall)
 
-            name = try container.decode(String.self, forKey: .name)
+            id = try container.decode(Int.self, forKey: .id)
 
             do {
                 displayName = try container.decode(String.self, forKey: .displayName)
@@ -66,11 +66,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
         }
