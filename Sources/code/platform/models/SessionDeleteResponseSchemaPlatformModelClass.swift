@@ -3,40 +3,26 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: InventoryResponsePaginated
-         Used By: Catalog
+         Model: SessionDeleteResponseSchema
+         Used By: User
      */
 
-    class InventoryResponsePaginated: Codable {
-        public var items: [InventoryResponse]?
-
-        public var page: Page?
+    class SessionDeleteResponseSchema: Codable {
+        public var items: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case items
-
-            case page
         }
 
-        public init(items: [InventoryResponse]? = nil, page: Page? = nil) {
+        public init(items: [String]? = nil) {
             self.items = items
-
-            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([InventoryResponse].self, forKey: .items)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                page = try container.decode(Page.self, forKey: .page)
+                items = try container.decode([String].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,8 +34,6 @@ public extension PlatformClient {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }

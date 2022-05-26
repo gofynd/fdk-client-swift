@@ -9,18 +9,12 @@ public extension ApplicationClient {
     class Css: Codable {
         public var link: String?
 
-        public var links: [String]?
-
         public enum CodingKeys: String, CodingKey {
             case link
-
-            case links
         }
 
-        public init(link: String? = nil, links: [String]? = nil) {
+        public init(link: String? = nil) {
             self.link = link
-
-            self.links = links
         }
 
         required public init(from decoder: Decoder) throws {
@@ -33,22 +27,12 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                links = try container.decode([String].self, forKey: .links)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(link, forKey: .link)
-
-            try? container.encodeIfPresent(links, forKey: .links)
         }
     }
 }

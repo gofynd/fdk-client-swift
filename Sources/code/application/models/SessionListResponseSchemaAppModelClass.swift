@@ -1,20 +1,19 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension ApplicationClient {
     /*
-         Model: EntityTypesResponse
-         Used By: AuditTrail
+         Model: SessionListResponseSchema
+         Used By: User
      */
-
-    class EntityTypesResponse: Codable {
-        public var items: [EntityTypeObj]?
+    class SessionListResponseSchema: Codable {
+        public var items: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case items
         }
 
-        public init(items: [EntityTypeObj]? = nil) {
+        public init(items: [String]? = nil) {
             self.items = items
         }
 
@@ -22,7 +21,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([EntityTypeObj].self, forKey: .items)
+                items = try container.decode([String].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
