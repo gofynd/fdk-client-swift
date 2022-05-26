@@ -16,8 +16,6 @@ public extension PlatformClient {
 
         public var contentType: String
 
-        public var method: String
-
         public var namespace: String
 
         public var operation: String
@@ -28,7 +26,7 @@ public extension PlatformClient {
 
         public var cdn: CDN
 
-        public var success: String
+        public var success: Bool
 
         public var tags: [String]?
 
@@ -44,8 +42,6 @@ public extension PlatformClient {
             case filePath = "file_path"
 
             case contentType = "content_type"
-
-            case method
 
             case namespace
 
@@ -66,7 +62,7 @@ public extension PlatformClient {
             case modifiedOn = "modified_on"
         }
 
-        public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, method: String, modifiedOn: String, namespace: String, operation: String, size: Int, success: String, tags: [String]? = nil, upload: Upload, id: String) {
+        public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, modifiedOn: String, namespace: String, operation: String, size: Int, success: Bool, tags: [String]? = nil, upload: Upload, id: String) {
             self.id = id
 
             self.fileName = fileName
@@ -74,8 +70,6 @@ public extension PlatformClient {
             self.filePath = filePath
 
             self.contentType = contentType
-
-            self.method = method
 
             self.namespace = namespace
 
@@ -107,8 +101,6 @@ public extension PlatformClient {
 
             contentType = try container.decode(String.self, forKey: .contentType)
 
-            method = try container.decode(String.self, forKey: .method)
-
             namespace = try container.decode(String.self, forKey: .namespace)
 
             operation = try container.decode(String.self, forKey: .operation)
@@ -119,7 +111,7 @@ public extension PlatformClient {
 
             cdn = try container.decode(CDN.self, forKey: .cdn)
 
-            success = try container.decode(String.self, forKey: .success)
+            success = try container.decode(Bool.self, forKey: .success)
 
             do {
                 tags = try container.decode([String].self, forKey: .tags)
@@ -144,8 +136,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(filePath, forKey: .filePath)
 
             try? container.encodeIfPresent(contentType, forKey: .contentType)
-
-            try? container.encodeIfPresent(method, forKey: .method)
 
             try? container.encodeIfPresent(namespace, forKey: .namespace)
 
