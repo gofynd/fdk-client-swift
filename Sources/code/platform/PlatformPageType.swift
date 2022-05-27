@@ -115,7 +115,7 @@ public extension PlatformClient {
             case .contactUs:
                 return "/contact-us/"
             case .external:
-                return "/external/:url"
+                return "/external/"
             case .faq:
                 return "/faq/:category"
             case .freshchat:

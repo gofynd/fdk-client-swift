@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: SuccessResponseProfile
+         Model: ProfileSuccessResponse
          Used By: CompanyProfile
      */
 
-    class SuccessResponseProfile: Codable {
+    class ProfileSuccessResponse: Codable {
         public var success: Bool?
 
         public var uid: Int?

@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class ConfigurationListingSortConfig: Codable {
-        public var name: String?
-
         public var key: String
+
+        public var name: String?
 
         public var logo: String?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var isActive: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
             case key
+
+            case name
 
             case logo
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
-            self.name = name
-
             self.key = key
+
+            self.name = name
 
             self.logo = logo
 
@@ -45,6 +45,8 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            key = try container.decode(String.self, forKey: .key)
+
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -52,8 +54,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            key = try container.decode(String.self, forKey: .key)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -71,9 +71,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
