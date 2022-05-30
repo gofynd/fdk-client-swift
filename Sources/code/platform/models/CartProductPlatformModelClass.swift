@@ -8,34 +8,34 @@ public extension PlatformClient {
      */
 
     class CartProduct: Codable {
+        public var slug: String?
+
+        public var categories: [CategoryInfo]?
+
+        public var brand: BaseInfo?
+
         public var type: String?
 
         public var name: String?
 
         public var action: ProductAction?
 
-        public var brand: BaseInfo?
-
-        public var categories: [CategoryInfo]?
-
-        public var slug: String?
-
         public var images: [ProductImage]?
 
         public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
+            case slug
+
+            case categories
+
+            case brand
+
             case type
 
             case name
 
             case action
-
-            case brand
-
-            case categories
-
-            case slug
 
             case images
 
@@ -43,17 +43,17 @@ public extension PlatformClient {
         }
 
         public init(action: ProductAction? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, images: [ProductImage]? = nil, name: String? = nil, slug: String? = nil, type: String? = nil, uid: Int? = nil) {
+            self.slug = slug
+
+            self.categories = categories
+
+            self.brand = brand
+
             self.type = type
 
             self.name = name
 
             self.action = action
-
-            self.brand = brand
-
-            self.categories = categories
-
-            self.slug = slug
 
             self.images = images
 
@@ -62,6 +62,30 @@ public extension PlatformClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                categories = try container.decode([CategoryInfo].self, forKey: .categories)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brand = try container.decode(BaseInfo.self, forKey: .brand)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 type = try container.decode(String.self, forKey: .type)
@@ -88,30 +112,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                brand = try container.decode(BaseInfo.self, forKey: .brand)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                categories = try container.decode([CategoryInfo].self, forKey: .categories)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 images = try container.decode([ProductImage].self, forKey: .images)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -131,17 +131,17 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(categories, forKey: .categories)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
+
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(brand, forKey: .brand)
-
-            try? container.encodeIfPresent(categories, forKey: .categories)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(images, forKey: .images)
 
