@@ -2082,7 +2082,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | primary | Bool? |  yes  |  |
  | verified | Bool? |  yes  |  |
  | phone | String? |  yes  |  |
- | countryCode | Int? |  yes  |  |
+ | countryCode | String? |  yes  |  |
 
 ---
 

@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class MultiTenderPaymentMethod: Codable {
-        public var mode: String
-
         public var name: String?
+
+        public var mode: String
 
         public var amount: Double
 
         public var meta: MultiTenderPaymentMeta?
 
         public enum CodingKeys: String, CodingKey {
-            case mode
-
             case name
+
+            case mode
 
             case amount
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
-            self.mode = mode
-
             self.name = name
+
+            self.mode = mode
 
             self.amount = amount
 
@@ -39,8 +39,6 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            mode = try container.decode(String.self, forKey: .mode)
-
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -48,6 +46,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            mode = try container.decode(String.self, forKey: .mode)
 
             amount = try container.decode(Double.self, forKey: .amount)
 
@@ -63,9 +63,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(mode, forKey: .mode)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 

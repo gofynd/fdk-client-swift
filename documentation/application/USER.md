@@ -3985,7 +3985,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | primary | Bool? |  yes  |  |
  | verified | Bool? |  yes  |  |
  | phone | String? |  yes  |  |
- | countryCode | Int? |  yes  |  |
+ | countryCode | String? |  yes  |  |
 
 ---
 

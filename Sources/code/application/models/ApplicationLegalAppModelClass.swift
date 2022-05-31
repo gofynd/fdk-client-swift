@@ -15,6 +15,8 @@ public extension ApplicationClient {
 
         public var shipping: String?
 
+        public var returns: String?
+
         public var faq: [ApplicationLegalFAQ]?
 
         public var id: String?
@@ -32,6 +34,8 @@ public extension ApplicationClient {
 
             case shipping
 
+            case returns
+
             case faq
 
             case id = "_id"
@@ -41,7 +45,7 @@ public extension ApplicationClient {
             case createdAt = "created_at"
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, faq: [ApplicationLegalFAQ]? = nil, policy: String? = nil, shipping: String? = nil, tnc: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, faq: [ApplicationLegalFAQ]? = nil, policy: String? = nil, returns: String? = nil, shipping: String? = nil, tnc: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.application = application
 
             self.tnc = tnc
@@ -49,6 +53,8 @@ public extension ApplicationClient {
             self.policy = policy
 
             self.shipping = shipping
+
+            self.returns = returns
 
             self.faq = faq
 
@@ -88,6 +94,14 @@ public extension ApplicationClient {
 
             do {
                 shipping = try container.decode(String.self, forKey: .shipping)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                returns = try container.decode(String.self, forKey: .returns)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -137,6 +151,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(policy, forKey: .policy)
 
             try? container.encodeIfPresent(shipping, forKey: .shipping)
+
+            try? container.encodeIfPresent(returns, forKey: .returns)
 
             try? container.encodeIfPresent(faq, forKey: .faq)
 
