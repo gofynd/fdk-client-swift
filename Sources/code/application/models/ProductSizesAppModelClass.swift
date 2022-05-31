@@ -7,56 +7,48 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductSizes: Codable {
-        public var discount: String?
-
         public var sellable: Bool?
 
-        public var sizes: [ProductSize]?
+        public var discount: String?
 
-        public var sizeChart: SizeChart?
+        public var sizes: [ProductSize]?
 
         public var stores: ProductSizeStores?
 
         public var price: ProductListingPrice?
 
-        public enum CodingKeys: String, CodingKey {
-            case discount
+        public var sizeChart: SizeChart?
 
+        public enum CodingKeys: String, CodingKey {
             case sellable
 
-            case sizes
+            case discount
 
-            case sizeChart = "size_chart"
+            case sizes
 
             case stores
 
             case price
+
+            case sizeChart = "size_chart"
         }
 
         public init(discount: String? = nil, price: ProductListingPrice? = nil, sellable: Bool? = nil, sizes: [ProductSize]? = nil, sizeChart: SizeChart? = nil, stores: ProductSizeStores? = nil) {
-            self.discount = discount
-
             self.sellable = sellable
 
-            self.sizes = sizes
+            self.discount = discount
 
-            self.sizeChart = sizeChart
+            self.sizes = sizes
 
             self.stores = stores
 
             self.price = price
+
+            self.sizeChart = sizeChart
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                discount = try container.decode(String.self, forKey: .discount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 sellable = try container.decode(Bool.self, forKey: .sellable)
@@ -67,7 +59,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sizes = try container.decode([ProductSize].self, forKey: .sizes)
+                discount = try container.decode(String.self, forKey: .discount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sizeChart = try container.decode(SizeChart.self, forKey: .sizeChart)
+                sizes = try container.decode([ProductSize].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,22 +89,30 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                sizeChart = try container.decode(SizeChart.self, forKey: .sizeChart)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(discount, forKey: .discount)
-
             try? container.encodeIfPresent(sellable, forKey: .sellable)
 
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
+            try? container.encodeIfPresent(discount, forKey: .discount)
 
-            try? container.encodeIfPresent(sizeChart, forKey: .sizeChart)
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
 
             try? container.encodeIfPresent(stores, forKey: .stores)
 
             try? container.encodeIfPresent(price, forKey: .price)
+
+            try? container.encodeIfPresent(sizeChart, forKey: .sizeChart)
         }
     }
 }

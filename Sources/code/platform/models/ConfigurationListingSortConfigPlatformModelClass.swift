@@ -10,9 +10,9 @@ public extension PlatformClient {
     class ConfigurationListingSortConfig: Codable {
         public var name: String?
 
-        public var logo: String?
-
         public var key: String
+
+        public var logo: String?
 
         public var priority: Int
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case logo
-
             case key
+
+            case logo
 
             case priority
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
             self.name = name
 
-            self.logo = logo
-
             self.key = key
+
+            self.logo = logo
 
             self.priority = priority
 
@@ -53,6 +53,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            key = try container.decode(String.self, forKey: .key)
+
             do {
                 logo = try container.decode(String.self, forKey: .logo)
 
@@ -60,8 +62,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            key = try container.decode(String.self, forKey: .key)
 
             priority = try container.decode(Int.self, forKey: .priority)
 
@@ -73,9 +73,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 

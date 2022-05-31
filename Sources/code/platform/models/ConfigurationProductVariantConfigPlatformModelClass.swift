@@ -10,13 +10,13 @@ public extension PlatformClient {
     class ConfigurationProductVariantConfig: Codable {
         public var name: String
 
+        public var key: String
+
         public var displayType: String
 
         public var logo: String?
 
         public var size: ProductSize
-
-        public var key: String
 
         public var priority: Int
 
@@ -25,13 +25,13 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case name
 
+            case key
+
             case displayType = "display_type"
 
             case logo
 
             case size
-
-            case key
 
             case priority
 
@@ -41,13 +41,13 @@ public extension PlatformClient {
         public init(displayType: String, isActive: Bool, key: String, logo: String? = nil, name: String, priority: Int, size: ProductSize) {
             self.name = name
 
+            self.key = key
+
             self.displayType = displayType
 
             self.logo = logo
 
             self.size = size
-
-            self.key = key
 
             self.priority = priority
 
@@ -58,6 +58,8 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             name = try container.decode(String.self, forKey: .name)
+
+            key = try container.decode(String.self, forKey: .key)
 
             displayType = try container.decode(String.self, forKey: .displayType)
 
@@ -71,8 +73,6 @@ public extension PlatformClient {
 
             size = try container.decode(ProductSize.self, forKey: .size)
 
-            key = try container.decode(String.self, forKey: .key)
-
             priority = try container.decode(Int.self, forKey: .priority)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -83,13 +83,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
+            try? container.encodeIfPresent(key, forKey: .key)
+
             try? container.encodeIfPresent(displayType, forKey: .displayType)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
