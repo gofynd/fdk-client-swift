@@ -3,48 +3,40 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ZoneMappingType
-         Used By: Serviceability
+         Model: HsnCodesListingResponseSchemaV2
+         Used By: Catalog
      */
 
-    class ZoneMappingType: Codable {
-        public var state: [String]?
+    class HsnCodesListingResponseSchemaV2: Codable {
+        public var page: PageResponse?
 
-        public var country: String
-
-        public var pincode: [String]?
+        public var items: [HSNDataInsertV2]?
 
         public enum CodingKeys: String, CodingKey {
-            case state
+            case page
 
-            case country
-
-            case pincode
+            case items
         }
 
-        public init(country: String, pincode: [String]? = nil, state: [String]? = nil) {
-            self.state = state
+        public init(items: [HSNDataInsertV2]? = nil, page: PageResponse? = nil) {
+            self.page = page
 
-            self.country = country
-
-            self.pincode = pincode
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                state = try container.decode([String].self, forKey: .state)
+                page = try container.decode(PageResponse.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            country = try container.decode(String.self, forKey: .country)
-
             do {
-                pincode = try container.decode([String].self, forKey: .pincode)
+                items = try container.decode([HSNDataInsertV2].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,11 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }
