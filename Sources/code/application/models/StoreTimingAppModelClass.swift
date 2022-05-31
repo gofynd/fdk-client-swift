@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class StoreTiming: Codable {
         public var closing: Time?
 
-        public var opening: Time?
-
         public var weekday: String?
+
+        public var opening: Time?
 
         public var open: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case closing
 
-            case opening
-
             case weekday
+
+            case opening
 
             case open
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(closing: Time? = nil, open: Bool? = nil, opening: Time? = nil, weekday: String? = nil) {
             self.closing = closing
 
-            self.opening = opening
-
             self.weekday = weekday
+
+            self.opening = opening
 
             self.open = open
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                opening = try container.decode(Time.self, forKey: .opening)
+                weekday = try container.decode(String.self, forKey: .weekday)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                weekday = try container.decode(String.self, forKey: .weekday)
+                opening = try container.decode(Time.self, forKey: .opening)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(closing, forKey: .closing)
 
-            try? container.encodeIfPresent(opening, forKey: .opening)
-
             try? container.encodeIfPresent(weekday, forKey: .weekday)
+
+            try? container.encodeIfPresent(opening, forKey: .opening)
 
             try? container.encodeIfPresent(open, forKey: .open)
         }

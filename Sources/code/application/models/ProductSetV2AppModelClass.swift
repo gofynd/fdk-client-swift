@@ -7,27 +7,27 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductSetV2: Codable {
-        public var sizeDistribution: ProductSetDistributionV2?
-
         public var quantity: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case sizeDistribution = "size_distribution"
+        public var sizeDistribution: ProductSetDistributionV2?
 
+        public enum CodingKeys: String, CodingKey {
             case quantity
+
+            case sizeDistribution = "size_distribution"
         }
 
         public init(quantity: Int? = nil, sizeDistribution: ProductSetDistributionV2? = nil) {
-            self.sizeDistribution = sizeDistribution
-
             self.quantity = quantity
+
+            self.sizeDistribution = sizeDistribution
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                sizeDistribution = try container.decode(ProductSetDistributionV2.self, forKey: .sizeDistribution)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                sizeDistribution = try container.decode(ProductSetDistributionV2.self, forKey: .sizeDistribution)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sizeDistribution, forKey: .sizeDistribution)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(sizeDistribution, forKey: .sizeDistribution)
         }
     }
 }
