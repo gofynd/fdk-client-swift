@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class ProductBrand: Codable {
         public var uid: Int?
 
-        public var name: String?
-
         public var action: ProductListingAction?
+
+        public var name: String?
 
         public var logo: Media?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
-            case name
-
             case action
+
+            case name
 
             case logo
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(action: ProductListingAction? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
             self.uid = uid
 
-            self.name = name
-
             self.action = action
+
+            self.name = name
 
             self.logo = logo
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }

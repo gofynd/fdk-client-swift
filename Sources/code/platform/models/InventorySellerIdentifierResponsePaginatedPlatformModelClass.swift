@@ -3,14 +3,14 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ProductListingResponse
+         Model: InventorySellerIdentifierResponsePaginated
          Used By: Catalog
      */
 
-    class ProductListingResponse: Codable {
+    class InventorySellerIdentifierResponsePaginated: Codable {
         public var page: Page?
 
-        public var items: [Product]?
+        public var items: [InventorySellerResponse]?
 
         public enum CodingKeys: String, CodingKey {
             case page
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case items
         }
 
-        public init(items: [Product]? = nil, page: Page? = nil) {
+        public init(items: [InventorySellerResponse]? = nil, page: Page? = nil) {
             self.page = page
 
             self.items = items
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                items = try container.decode([Product].self, forKey: .items)
+                items = try container.decode([InventorySellerResponse].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
