@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: UserPhoneNumber
-         Used By: Configuration
+         Used By: User
      */
 
     class UserPhoneNumber: Codable {
@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var verified: Bool?
 
-        public var countryCode: Int?
-
         public var phone: String?
+
+        public var countryCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case active
@@ -25,21 +25,21 @@ public extension PlatformClient {
 
             case verified
 
-            case countryCode = "country_code"
-
             case phone
+
+            case countryCode = "country_code"
         }
 
-        public init(active: Bool? = nil, countryCode: Int? = nil, phone: String? = nil, primary: Bool? = nil, verified: Bool? = nil) {
+        public init(active: Bool? = nil, countryCode: String? = nil, phone: String? = nil, primary: Bool? = nil, verified: Bool? = nil) {
             self.active = active
 
             self.primary = primary
 
             self.verified = verified
 
-            self.countryCode = countryCode
-
             self.phone = phone
+
+            self.countryCode = countryCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                countryCode = try container.decode(Int.self, forKey: .countryCode)
+                phone = try container.decode(String.self, forKey: .phone)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                phone = try container.decode(String.self, forKey: .phone)
+                countryCode = try container.decode(String.self, forKey: .countryCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,9 +95,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(verified, forKey: .verified)
 
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-
             try? container.encodeIfPresent(phone, forKey: .phone)
+
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
         }
     }
 }

@@ -2055,8 +2055,8 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | firstName | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
  | lastName | String? |  yes  |  |
- | phoneNumbers | [[PhoneNumber](#PhoneNumber)]? |  yes  |  |
- | emails | [[Email](#Email)]? |  yes  |  |
+ | phoneNumbers | [[UserPhoneNumber](#UserPhoneNumber)]? |  yes  |  |
+ | emails | [[UserEmail](#UserEmail)]? |  yes  |  |
  | gender | String? |  yes  |  |
  | dob | String? |  yes  |  |
  | active | Bool? |  yes  |  |
@@ -2074,7 +2074,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
  
  
- #### [PhoneNumber](#PhoneNumber)
+ #### [UserPhoneNumber](#UserPhoneNumber)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -2089,7 +2089,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
  
  
- #### [Email](#Email)
+ #### [UserEmail](#UserEmail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

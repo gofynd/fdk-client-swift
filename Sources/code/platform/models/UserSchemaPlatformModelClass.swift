@@ -18,9 +18,9 @@ public extension PlatformClient {
 
         public var lastName: String?
 
-        public var phoneNumbers: [PhoneNumber]?
+        public var phoneNumbers: [UserPhoneNumber]?
 
-        public var emails: [Email]?
+        public var emails: [UserEmail]?
 
         public var gender: String?
 
@@ -82,7 +82,7 @@ public extension PlatformClient {
             case updatedAt = "updated_at"
         }
 
-        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, debug: Debug? = nil, dob: String? = nil, emails: [Email]? = nil, firstName: String? = nil, gender: String? = nil, hasOldPasswordHash: Bool? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
+        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, debug: Debug? = nil, dob: String? = nil, emails: [UserEmail]? = nil, firstName: String? = nil, gender: String? = nil, hasOldPasswordHash: Bool? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [UserPhoneNumber]? = nil, profilePicUrl: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
             self.applicationId = applicationId
 
             self.userId = userId
@@ -164,7 +164,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                phoneNumbers = try container.decode([PhoneNumber].self, forKey: .phoneNumbers)
+                phoneNumbers = try container.decode([UserPhoneNumber].self, forKey: .phoneNumbers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                emails = try container.decode([Email].self, forKey: .emails)
+                emails = try container.decode([UserEmail].self, forKey: .emails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
