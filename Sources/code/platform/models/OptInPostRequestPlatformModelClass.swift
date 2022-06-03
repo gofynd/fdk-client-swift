@@ -10,18 +10,18 @@ public extension PlatformClient {
     class OptInPostRequest: Codable {
         public var enabled: Bool?
 
-        public var optLevel: String
-
         public var brandIds: [Int]?
+
+        public var optLevel: String
 
         public var storeIds: [Int]?
 
         public enum CodingKeys: String, CodingKey {
             case enabled
 
-            case optLevel = "opt_level"
-
             case brandIds = "brand_ids"
+
+            case optLevel = "opt_level"
 
             case storeIds = "store_ids"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(brandIds: [Int]? = nil, enabled: Bool? = nil, optLevel: String, storeIds: [Int]? = nil) {
             self.enabled = enabled
 
-            self.optLevel = optLevel
-
             self.brandIds = brandIds
+
+            self.optLevel = optLevel
 
             self.storeIds = storeIds
         }
@@ -47,8 +47,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            optLevel = try container.decode(String.self, forKey: .optLevel)
-
             do {
                 brandIds = try container.decode([Int].self, forKey: .brandIds)
 
@@ -56,6 +54,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            optLevel = try container.decode(String.self, forKey: .optLevel)
 
             do {
                 storeIds = try container.decode([Int].self, forKey: .storeIds)
@@ -71,9 +71,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(enabled, forKey: .enabled)
 
-            try? container.encodeIfPresent(optLevel, forKey: .optLevel)
-
             try? container.encodeIfPresent(brandIds, forKey: .brandIds)
+
+            try? container.encodeIfPresent(optLevel, forKey: .optLevel)
 
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
         }

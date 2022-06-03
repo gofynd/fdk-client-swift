@@ -3958,8 +3958,8 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | firstName | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
  | lastName | String? |  yes  |  |
- | phoneNumbers | [[UserPhoneNumber](#UserPhoneNumber)]? |  yes  |  |
- | emails | [[UserEmail](#UserEmail)]? |  yes  |  |
+ | phoneNumbers | [[PhoneNumber](#PhoneNumber)]? |  yes  |  |
+ | emails | [[Email](#Email)]? |  yes  |  |
  | gender | String? |  yes  |  |
  | dob | String? |  yes  |  |
  | active | Bool? |  yes  |  |
@@ -3977,7 +3977,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
- #### [UserPhoneNumber](#UserPhoneNumber)
+ #### [PhoneNumber](#PhoneNumber)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -3992,7 +3992,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
- #### [UserEmail](#UserEmail)
+ #### [Email](#Email)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

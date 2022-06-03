@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ZoneResponse: Codable {
         public var success: Bool
 
-        public var statusCode: Int
-
         public var zoneId: String
+
+        public var statusCode: Int
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case statusCode = "status_code"
-
             case zoneId = "zone_id"
+
+            case statusCode = "status_code"
         }
 
         public init(statusCode: Int, success: Bool, zoneId: String) {
             self.success = success
 
-            self.statusCode = statusCode
-
             self.zoneId = zoneId
+
+            self.statusCode = statusCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            statusCode = try container.decode(Int.self, forKey: .statusCode)
-
             zoneId = try container.decode(String.self, forKey: .zoneId)
+
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
-
             try? container.encodeIfPresent(zoneId, forKey: .zoneId)
+
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
         }
     }
 }
