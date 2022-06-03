@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class AutocompleteItem: Codable {
         public var action: ProductListingAction?
 
-        public var display: String?
-
         public var logo: Media?
+
+        public var display: String?
 
         public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case action
 
-            case display
-
             case logo
+
+            case display
 
             case type
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(action: ProductListingAction? = nil, display: String? = nil, logo: Media? = nil, type: String? = nil) {
             self.action = action
 
-            self.display = display
-
             self.logo = logo
+
+            self.display = display
 
             self.type = type
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(type, forKey: .type)
         }
