@@ -8,6 +8,8 @@ public extension PlatformClient {
      */
 
     class ConfigurationListingSortConfig: Codable {
+        public var priority: Int
+
         public var name: String?
 
         public var logo: String?
@@ -16,9 +18,9 @@ public extension PlatformClient {
 
         public var key: String
 
-        public var priority: Int
-
         public enum CodingKeys: String, CodingKey {
+            case priority
+
             case name
 
             case logo
@@ -26,11 +28,11 @@ public extension PlatformClient {
             case isActive = "is_active"
 
             case key
-
-            case priority
         }
 
         public init(isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
+            self.priority = priority
+
             self.name = name
 
             self.logo = logo
@@ -38,12 +40,12 @@ public extension PlatformClient {
             self.isActive = isActive
 
             self.key = key
-
-            self.priority = priority
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            priority = try container.decode(Int.self, forKey: .priority)
 
             do {
                 name = try container.decode(String.self, forKey: .name)
@@ -64,12 +66,12 @@ public extension PlatformClient {
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
             key = try container.decode(String.self, forKey: .key)
-
-            priority = try container.decode(Int.self, forKey: .priority)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
@@ -78,8 +80,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(key, forKey: .key)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
         }
     }
 }

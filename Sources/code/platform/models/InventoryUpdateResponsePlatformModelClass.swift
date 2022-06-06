@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: InventoryUpdateReponse
+         Model: InventoryUpdateResponse
          Used By: Catalog
      */
 
-    class InventoryUpdateReponse: Codable {
+    class InventoryUpdateResponse: Codable {
         public var items: [InventoryResponseItem]?
 
         public var message: String

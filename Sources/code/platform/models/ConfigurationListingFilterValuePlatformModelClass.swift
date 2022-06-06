@@ -8,22 +8,22 @@ public extension PlatformClient {
      */
 
     class ConfigurationListingFilterValue: Codable {
-        public var sort: String?
+        public var map: [String: Any]?
 
         public var bucketPoints: [ConfigurationBucketPoints]?
 
-        public var map: [String: Any]?
+        public var sort: String?
 
         public var condition: String?
 
         public var value: String?
 
         public enum CodingKeys: String, CodingKey {
-            case sort
+            case map
 
             case bucketPoints = "bucket_points"
 
-            case map
+            case sort
 
             case condition
 
@@ -31,11 +31,11 @@ public extension PlatformClient {
         }
 
         public init(bucketPoints: [ConfigurationBucketPoints]? = nil, condition: String? = nil, map: [String: Any]? = nil, sort: String? = nil, value: String? = nil) {
-            self.sort = sort
+            self.map = map
 
             self.bucketPoints = bucketPoints
 
-            self.map = map
+            self.sort = sort
 
             self.condition = condition
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                sort = try container.decode(String.self, forKey: .sort)
+                map = try container.decode([String: Any].self, forKey: .map)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                map = try container.decode([String: Any].self, forKey: .map)
+                sort = try container.decode(String.self, forKey: .sort)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,11 +89,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sort, forKey: .sort)
+            try? container.encodeIfPresent(map, forKey: .map)
 
             try? container.encodeIfPresent(bucketPoints, forKey: .bucketPoints)
 
-            try? container.encodeIfPresent(map, forKey: .map)
+            try? container.encodeIfPresent(sort, forKey: .sort)
 
             try? container.encodeIfPresent(condition, forKey: .condition)
 
