@@ -10,22 +10,22 @@ public extension PlatformClient {
     class CreateAutocompleteKeyword: Codable {
         public var appId: String?
 
-        public var results: [AutocompleteResult]?
+        public var isActive: Bool?
 
         public var customJson: [String: Any]?
 
-        public var isActive: Bool?
+        public var results: [AutocompleteResult]?
 
         public var words: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case appId = "app_id"
 
-            case results
+            case isActive = "is_active"
 
             case customJson = "_custom_json"
 
-            case isActive = "is_active"
+            case results
 
             case words
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(appId: String? = nil, isActive: Bool? = nil, results: [AutocompleteResult]? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
             self.appId = appId
 
-            self.results = results
+            self.isActive = isActive
 
             self.customJson = customJson
 
-            self.isActive = isActive
+            self.results = results
 
             self.words = words
         }
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                results = try container.decode([AutocompleteResult].self, forKey: .results)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                results = try container.decode([AutocompleteResult].self, forKey: .results)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,11 +91,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(results, forKey: .results)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(results, forKey: .results)
 
             try? container.encodeIfPresent(words, forKey: .words)
         }
