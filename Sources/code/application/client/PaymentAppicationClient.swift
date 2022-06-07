@@ -1155,14 +1155,14 @@ public extension ApplicationClient {
          * Description: Use this API to get a payment link
          **/
         public func getPaymentLink(
-            id: String?,
+            paymentLinkId: String?,
 
             onResponse: @escaping (_ response: GetPaymentLinkResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
-            if let value = id {
-                xQuery["id"] = value
+            if let value = paymentLinkId {
+                xQuery["payment_link_id"] = value
             }
 
             let fullUrl = relativeUrls["getPaymentLink"] ?? ""
@@ -1322,13 +1322,18 @@ public extension ApplicationClient {
          * Description: Use this API to get all valid payment options for doing a payment through payment link
          **/
         public func getPaymentModeRoutesPaymentLink(
-            id: String,
+            paymentLinkId: String,
+            refresh: Bool?,
 
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
-            xQuery["id"] = id
+            xQuery["payment_link_id"] = paymentLinkId
+
+            if let value = refresh {
+                xQuery["refresh"] = value
+            }
 
             let fullUrl = relativeUrls["getPaymentModeRoutesPaymentLink"] ?? ""
 
@@ -1367,14 +1372,14 @@ public extension ApplicationClient {
          * Description: Use this API to poll if payment through payment was successful or not
          **/
         public func pollingPaymentLink(
-            id: String?,
+            paymentLinkId: String?,
 
             onResponse: @escaping (_ response: PollingPaymentLinkResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
-            if let value = id {
-                xQuery["id"] = value
+            if let value = paymentLinkId {
+                xQuery["payment_link_id"] = value
             }
 
             let fullUrl = relativeUrls["pollingPaymentLink"] ?? ""

@@ -10,48 +10,48 @@ public extension PlatformClient {
     class MetricsSerializer: Codable {
         public var storeDocuments: DocumentsObj?
 
+        public var product: DocumentsObj?
+
         public var brand: DocumentsObj?
-
-        public var companyDocuments: DocumentsObj?
-
-        public var stage: String?
 
         public var store: DocumentsObj?
 
+        public var stage: String?
+
         public var uid: Int?
 
-        public var product: DocumentsObj?
+        public var companyDocuments: DocumentsObj?
 
         public enum CodingKeys: String, CodingKey {
             case storeDocuments = "store_documents"
 
+            case product
+
             case brand
-
-            case companyDocuments = "company_documents"
-
-            case stage
 
             case store
 
+            case stage
+
             case uid
 
-            case product
+            case companyDocuments = "company_documents"
         }
 
         public init(brand: DocumentsObj? = nil, companyDocuments: DocumentsObj? = nil, product: DocumentsObj? = nil, stage: String? = nil, store: DocumentsObj? = nil, storeDocuments: DocumentsObj? = nil, uid: Int? = nil) {
             self.storeDocuments = storeDocuments
 
+            self.product = product
+
             self.brand = brand
-
-            self.companyDocuments = companyDocuments
-
-            self.stage = stage
 
             self.store = store
 
+            self.stage = stage
+
             self.uid = uid
 
-            self.product = product
+            self.companyDocuments = companyDocuments
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,6 +59,14 @@ public extension PlatformClient {
 
             do {
                 storeDocuments = try container.decode(DocumentsObj.self, forKey: .storeDocuments)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                product = try container.decode(DocumentsObj.self, forKey: .product)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,7 +82,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                companyDocuments = try container.decode(DocumentsObj.self, forKey: .companyDocuments)
+                store = try container.decode(DocumentsObj.self, forKey: .store)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,14 +98,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                store = try container.decode(DocumentsObj.self, forKey: .store)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -106,7 +106,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                product = try container.decode(DocumentsObj.self, forKey: .product)
+                companyDocuments = try container.decode(DocumentsObj.self, forKey: .companyDocuments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,17 +119,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeDocuments, forKey: .storeDocuments)
 
+            try? container.encodeIfPresent(product, forKey: .product)
+
             try? container.encodeIfPresent(brand, forKey: .brand)
-
-            try? container.encodeIfPresent(companyDocuments, forKey: .companyDocuments)
-
-            try? container.encodeIfPresent(stage, forKey: .stage)
 
             try? container.encodeIfPresent(store, forKey: .store)
 
+            try? container.encodeIfPresent(stage, forKey: .stage)
+
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(product, forKey: .product)
+            try? container.encodeIfPresent(companyDocuments, forKey: .companyDocuments)
         }
     }
 }

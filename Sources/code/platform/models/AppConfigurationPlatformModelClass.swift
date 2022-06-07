@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var product: ConfigurationProduct?
 
-        public var appId: String
-
         public var configId: String?
+
+        public var appId: String
 
         public var configType: String
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case product
 
-            case appId = "app_id"
-
             case configId = "config_id"
+
+            case appId = "app_id"
 
             case configType = "config_type"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.product = product
 
-            self.appId = appId
-
             self.configId = configId
+
+            self.appId = appId
 
             self.configType = configType
         }
@@ -61,8 +61,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            appId = try container.decode(String.self, forKey: .appId)
-
             do {
                 configId = try container.decode(String.self, forKey: .configId)
 
@@ -70,6 +68,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            appId = try container.decode(String.self, forKey: .appId)
 
             configType = try container.decode(String.self, forKey: .configType)
         }
@@ -81,9 +81,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(product, forKey: .product)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
             try? container.encodeIfPresent(configId, forKey: .configId)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(configType, forKey: .configType)
         }
