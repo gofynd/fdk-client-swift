@@ -8,72 +8,72 @@ public extension PlatformClient {
      */
 
     class StoreDetail: Codable {
-        public var name: String?
-
-        public var displayName: String?
+        public var modifiedOn: String?
 
         public var documents: [[String: Any]]?
 
         public var storeType: String?
 
-        public var uid: Int?
+        public var storeCode: String?
+
+        public var displayName: String?
+
+        public var timing: [String: Any]?
 
         public var createdOn: String?
 
-        public var modifiedOn: String?
+        public var name: String?
 
-        public var storeCode: String?
+        public var uid: Int?
 
         public var additionalContacts: [[String: Any]]?
-
-        public var timing: [String: Any]?
 
         public var companyId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
-            case displayName = "display_name"
+            case modifiedOn = "modified_on"
 
             case documents
 
             case storeType = "store_type"
 
-            case uid
+            case storeCode = "store_code"
+
+            case displayName = "display_name"
+
+            case timing
 
             case createdOn = "created_on"
 
-            case modifiedOn = "modified_on"
+            case name
 
-            case storeCode = "store_code"
+            case uid
 
             case additionalContacts = "additional_contacts"
-
-            case timing
 
             case companyId = "company_id"
         }
 
         public init(additionalContacts: [[String: Any]]? = nil, companyId: Int? = nil, createdOn: String? = nil, displayName: String? = nil, documents: [[String: Any]]? = nil, modifiedOn: String? = nil, name: String? = nil, storeCode: String? = nil, storeType: String? = nil, timing: [String: Any]? = nil, uid: Int? = nil) {
-            self.name = name
-
-            self.displayName = displayName
+            self.modifiedOn = modifiedOn
 
             self.documents = documents
 
             self.storeType = storeType
 
-            self.uid = uid
+            self.storeCode = storeCode
+
+            self.displayName = displayName
+
+            self.timing = timing
 
             self.createdOn = createdOn
 
-            self.modifiedOn = modifiedOn
+            self.name = name
 
-            self.storeCode = storeCode
+            self.uid = uid
 
             self.additionalContacts = additionalContacts
-
-            self.timing = timing
 
             self.companyId = companyId
         }
@@ -82,15 +82,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -114,7 +106,23 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                storeCode = try container.decode(String.self, forKey: .storeCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                displayName = try container.decode(String.self, forKey: .displayName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                timing = try container.decode([String: Any].self, forKey: .timing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,7 +138,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -138,7 +146,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                storeCode = try container.decode(String.self, forKey: .storeCode)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,14 +155,6 @@ public extension PlatformClient {
 
             do {
                 additionalContacts = try container.decode([[String: Any]].self, forKey: .additionalContacts)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                timing = try container.decode([String: Any].self, forKey: .timing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -173,25 +173,25 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(documents, forKey: .documents)
 
             try? container.encodeIfPresent(storeType, forKey: .storeType)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(timing, forKey: .timing)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(additionalContacts, forKey: .additionalContacts)
-
-            try? container.encodeIfPresent(timing, forKey: .timing)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
