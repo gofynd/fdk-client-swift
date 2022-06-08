@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var slug: String?
 
-        public var logo: String?
-
         public var priorityOrder: Int?
+
+        public var logo: String?
 
         public var name: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case slug
 
-            case logo
-
             case priorityOrder = "priority_order"
+
+            case logo
 
             case name
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.slug = slug
 
-            self.logo = logo
-
             self.priorityOrder = priorityOrder
+
+            self.logo = logo
 
             self.name = name
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

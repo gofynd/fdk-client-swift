@@ -10,11 +10,11 @@ public extension PlatformClient {
     class InventoryPayload: Codable {
         public var storeId: Int
 
-        public var totalQuantity: Int
+        public var expirationDate: String?
 
         public var sellerIdentifier: String
 
-        public var expirationDate: String?
+        public var totalQuantity: Int
 
         public var priceMarked: Double
 
@@ -23,11 +23,11 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case storeId = "store_id"
 
-            case totalQuantity = "total_quantity"
+            case expirationDate = "expiration_date"
 
             case sellerIdentifier = "seller_identifier"
 
-            case expirationDate = "expiration_date"
+            case totalQuantity = "total_quantity"
 
             case priceMarked = "price_marked"
 
@@ -37,11 +37,11 @@ public extension PlatformClient {
         public init(expirationDate: String? = nil, priceEffective: Double, priceMarked: Double, sellerIdentifier: String, storeId: Int, totalQuantity: Int) {
             self.storeId = storeId
 
-            self.totalQuantity = totalQuantity
+            self.expirationDate = expirationDate
 
             self.sellerIdentifier = sellerIdentifier
 
-            self.expirationDate = expirationDate
+            self.totalQuantity = totalQuantity
 
             self.priceMarked = priceMarked
 
@@ -53,10 +53,6 @@ public extension PlatformClient {
 
             storeId = try container.decode(Int.self, forKey: .storeId)
 
-            totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
-
-            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
-
             do {
                 expirationDate = try container.decode(String.self, forKey: .expirationDate)
 
@@ -64,6 +60,10 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+
+            totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
 
             priceMarked = try container.decode(Double.self, forKey: .priceMarked)
 
@@ -75,11 +75,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
-            try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
+            try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
-            try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
+            try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
 
             try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
 
