@@ -69,6 +69,8 @@ public extension ApplicationClient {
 
             ulrs["pollingPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/polling-payment-link/")
 
+            ulrs["createOrderHandlerPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/create-order/link/")
+
             ulrs["customerCreditSummary"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/credit-summary/")
 
             ulrs["redirectToAggregator"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/redirect-to-aggregator/")
@@ -1323,17 +1325,12 @@ public extension ApplicationClient {
          **/
         public func getPaymentModeRoutesPaymentLink(
             paymentLinkId: String,
-            refresh: Bool?,
 
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
             xQuery["payment_link_id"] = paymentLinkId
-
-            if let value = refresh {
-                xQuery["refresh"] = value
-            }
 
             let fullUrl = relativeUrls["getPaymentModeRoutesPaymentLink"] ?? ""
 
@@ -1401,6 +1398,46 @@ public extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(PollingPaymentLinkResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Create Order user
+         * Description: Use this API to create a order and payment on aggregator side
+         **/
+        public func createOrderHandlerPaymentLink(
+            body: CreateOrderUserRequest,
+            onResponse: @escaping (_ response: CreateOrderUserResponse?, _ error: FDKError?) -> Void
+        ) {
+            let fullUrl = relativeUrls["createOrderHandlerPaymentLink"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CreateOrderUserResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
