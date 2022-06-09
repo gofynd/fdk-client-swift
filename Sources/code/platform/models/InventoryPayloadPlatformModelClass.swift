@@ -14,11 +14,11 @@ public extension PlatformClient {
 
         public var storeId: Int
 
-        public var totalQuantity: Int
+        public var priceMarked: Double
 
         public var priceEffective: Double
 
-        public var priceMarked: Double
+        public var totalQuantity: Int
 
         public enum CodingKeys: String, CodingKey {
             case sellerIdentifier = "seller_identifier"
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case storeId = "store_id"
 
-            case totalQuantity = "total_quantity"
+            case priceMarked = "price_marked"
 
             case priceEffective = "price_effective"
 
-            case priceMarked = "price_marked"
+            case totalQuantity = "total_quantity"
         }
 
         public init(expirationDate: String? = nil, priceEffective: Double, priceMarked: Double, sellerIdentifier: String, storeId: Int, totalQuantity: Int) {
@@ -41,11 +41,11 @@ public extension PlatformClient {
 
             self.storeId = storeId
 
-            self.totalQuantity = totalQuantity
+            self.priceMarked = priceMarked
 
             self.priceEffective = priceEffective
 
-            self.priceMarked = priceMarked
+            self.totalQuantity = totalQuantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,11 +63,11 @@ public extension PlatformClient {
 
             storeId = try container.decode(Int.self, forKey: .storeId)
 
-            totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
+            priceMarked = try container.decode(Double.self, forKey: .priceMarked)
 
             priceEffective = try container.decode(Double.self, forKey: .priceEffective)
 
-            priceMarked = try container.decode(Double.self, forKey: .priceMarked)
+            totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -79,11 +79,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
-            try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
+            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
 
             try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
 
-            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+            try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
         }
     }
 }
