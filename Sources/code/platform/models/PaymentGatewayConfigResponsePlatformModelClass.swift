@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var aggregators: [[String: Any]]?
 
-        public var created: Bool
-
         public var appId: String
+
+        public var created: Bool
 
         public var excludedFields: [String]
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case aggregators
 
-            case created
-
             case appId = "app_id"
+
+            case created
 
             case excludedFields = "excluded_fields"
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             self.aggregators = aggregators
 
-            self.created = created
-
             self.appId = appId
+
+            self.created = created
 
             self.excludedFields = excludedFields
         }
@@ -63,9 +63,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            created = try container.decode(Bool.self, forKey: .created)
-
             appId = try container.decode(String.self, forKey: .appId)
+
+            created = try container.decode(Bool.self, forKey: .created)
 
             excludedFields = try container.decode([String].self, forKey: .excludedFields)
         }
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(aggregators, forKey: .aggregators)
 
-            try? container.encodeIfPresent(created, forKey: .created)
-
             try? container.encodeIfPresent(appId, forKey: .appId)
+
+            try? container.encodeIfPresent(created, forKey: .created)
 
             try? container.encodeIfPresent(excludedFields, forKey: .excludedFields)
         }

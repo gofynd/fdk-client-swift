@@ -10,30 +10,30 @@ public extension PlatformClient {
     class UserInfo: Codable {
         public var uid: String?
 
-        public var username: String?
-
         public var email: String?
 
         public var userId: String?
 
+        public var username: String?
+
         public enum CodingKeys: String, CodingKey {
             case uid
-
-            case username
 
             case email
 
             case userId = "user_id"
+
+            case username
         }
 
         public init(email: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil) {
             self.uid = uid
 
-            self.username = username
-
             self.email = email
 
             self.userId = userId
+
+            self.username = username
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,14 +41,6 @@ public extension PlatformClient {
 
             do {
                 uid = try container.decode(String.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                username = try container.decode(String.self, forKey: .username)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,6 +62,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                username = try container.decode(String.self, forKey: .username)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -77,11 +77,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(username, forKey: .username)
-
             try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
+
+            try? container.encodeIfPresent(username, forKey: .username)
         }
     }
 }
