@@ -4,7 +4,7 @@ import Foundation
 public extension ApplicationClient {
     /*
          Model: PhoneNumber
-         Used By: User
+         Used By: Lead
      */
     class PhoneNumber: Codable {
         public var active: Bool?
