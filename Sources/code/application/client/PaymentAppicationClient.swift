@@ -1245,7 +1245,7 @@ public extension ApplicationClient {
          **/
         public func resendPaymentLink(
             body: CancelOrResendPaymentLinkRequest,
-            onResponse: @escaping (_ response: CancelOrResendPaymentLinkResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ResendPaymentLinkResponse?, _ error: FDKError?) -> Void
         ) {
             let fullUrl = relativeUrls["resendPaymentLink"] ?? ""
 
@@ -1265,7 +1265,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CancelOrResendPaymentLinkResponse.self, from: data)
+                        let response = Utility.decode(ResendPaymentLinkResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1285,7 +1285,7 @@ public extension ApplicationClient {
          **/
         public func cancelPaymentLink(
             body: CancelOrResendPaymentLinkRequest,
-            onResponse: @escaping (_ response: CancelOrResendPaymentLinkResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CancelPaymentLinkResponse?, _ error: FDKError?) -> Void
         ) {
             let fullUrl = relativeUrls["cancelPaymentLink"] ?? ""
 
@@ -1305,7 +1305,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CancelOrResendPaymentLinkResponse.self, from: data)
+                        let response = Utility.decode(CancelPaymentLinkResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

@@ -7,66 +7,128 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class PollingPaymentLinkResponse: Codable {
-        public var status: String
+        public var httpStatus: Int?
 
-        public var aggregatorName: String
+        public var aggregatorName: String?
 
-        public var redirectUrl: String
+        public var message: String?
 
-        public var success: Bool
+        public var success: Bool?
 
-        public var httpStatus: Int
+        public var statusCode: Int?
+
+        public var redirectUrl: String?
+
+        public var status: String?
 
         public enum CodingKeys: String, CodingKey {
-            case status
+            case httpStatus = "http_status"
 
             case aggregatorName = "aggregator_name"
 
-            case redirectUrl = "redirect_url"
+            case message
 
             case success
 
-            case httpStatus = "http_status"
+            case statusCode = "status_code"
+
+            case redirectUrl = "redirect_url"
+
+            case status
         }
 
-        public init(aggregatorName: String, httpStatus: Int, redirectUrl: String, status: String, success: Bool) {
-            self.status = status
+        public init(aggregatorName: String? = nil, httpStatus: Int? = nil, message: String? = nil, redirectUrl: String? = nil, status: String? = nil, statusCode: Int? = nil, success: Bool? = nil) {
+            self.httpStatus = httpStatus
 
             self.aggregatorName = aggregatorName
 
-            self.redirectUrl = redirectUrl
+            self.message = message
 
             self.success = success
 
-            self.httpStatus = httpStatus
+            self.statusCode = statusCode
+
+            self.redirectUrl = redirectUrl
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            status = try container.decode(String.self, forKey: .status)
+            do {
+                httpStatus = try container.decode(Int.self, forKey: .httpStatus)
 
-            aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
+            do {
+                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
 
-            success = try container.decode(Bool.self, forKey: .success)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            httpStatus = try container.decode(Int.self, forKey: .httpStatus)
+            do {
+                message = try container.decode(String.self, forKey: .message)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                success = try container.decode(Bool.self, forKey: .success)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                statusCode = try container.decode(Int.self, forKey: .statusCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                status = try container.decode(String.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(httpStatus, forKey: .httpStatus)
 
-            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+            try? container.encode(aggregatorName, forKey: .aggregatorName)
 
-            try? container.encodeIfPresent(redirectUrl, forKey: .redirectUrl)
+            try? container.encode(message, forKey: .message)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encode(success, forKey: .success)
 
-            try? container.encodeIfPresent(httpStatus, forKey: .httpStatus)
+            try? container.encode(statusCode, forKey: .statusCode)
+
+            try? container.encode(redirectUrl, forKey: .redirectUrl)
+
+            try? container.encode(status, forKey: .status)
         }
     }
 }

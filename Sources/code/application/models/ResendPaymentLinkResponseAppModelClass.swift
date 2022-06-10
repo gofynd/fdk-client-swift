@@ -3,32 +3,32 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: ValidateCustomerResponse
+         Model: ResendPaymentLinkResponse
          Used By: Payment
      */
-    class ValidateCustomerResponse: Codable {
-        public var error: [String: Any]?
+    class ResendPaymentLinkResponse: Codable {
+        public var statusCode: Int
 
-        public var data: [String: Any]?
+        public var pollingTimeout: Int?
 
         public var message: String
 
         public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case error
+            case statusCode = "status_code"
 
-            case data
+            case pollingTimeout = "polling_timeout"
 
             case message
 
             case success
         }
 
-        public init(data: [String: Any]? = nil, error: [String: Any]? = nil, message: String, success: Bool) {
-            self.error = error
+        public init(message: String, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
+            self.statusCode = statusCode
 
-            self.data = data
+            self.pollingTimeout = pollingTimeout
 
             self.message = message
 
@@ -38,16 +38,10 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                error = try container.decode([String: Any].self, forKey: .error)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
 
             do {
-                data = try container.decode([String: Any].self, forKey: .data)
+                pollingTimeout = try container.decode(Int.self, forKey: .pollingTimeout)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +56,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(error, forKey: .error)
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
-            try? container.encode(data, forKey: .data)
+            try? container.encode(pollingTimeout, forKey: .pollingTimeout)
 
             try? container.encodeIfPresent(message, forKey: .message)
 

@@ -10,24 +10,24 @@ public extension PlatformClient {
     class CollectionItemRequest: Codable {
         public var query: [String: Any]?
 
-        public var type: String?
-
         public var item: [ItemQueryForUserCollection]?
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case query
 
-            case type
-
             case item
+
+            case type
         }
 
         public init(item: [ItemQueryForUserCollection]? = nil, query: [String: Any]? = nil, type: String? = nil) {
             self.query = query
 
-            self.type = type
-
             self.item = item
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                item = try container.decode([ItemQueryForUserCollection].self, forKey: .item)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                item = try container.decode([ItemQueryForUserCollection].self, forKey: .item)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(query, forKey: .query)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(item, forKey: .item)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
