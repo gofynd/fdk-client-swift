@@ -261,7 +261,7 @@ Success
  | fileName | String |  no  |  |
  | filePath | String |  no  |  |
  | contentType | String |  no  |  |
- | method | String |  no  |  |
+ | method | String? |  yes  |  |
  | namespace | String |  no  |  |
  | operation | String |  no  |  |
  | size | Int |  no  |  |

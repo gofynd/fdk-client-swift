@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var condition: String?
 
-        public var value: String?
-
         public var map: [String: Any]?
 
         public var bucketPoints: [ConfigurationBucketPoints]?
+
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
             case sort
 
             case condition
 
-            case value
-
             case map
 
             case bucketPoints = "bucket_points"
+
+            case value
         }
 
         public init(bucketPoints: [ConfigurationBucketPoints]? = nil, condition: String? = nil, map: [String: Any]? = nil, sort: String? = nil, value: String? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.condition = condition
 
-            self.value = value
-
             self.map = map
 
             self.bucketPoints = bucketPoints
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,14 +62,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 map = try container.decode([String: Any].self, forKey: .map)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -84,6 +76,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -93,11 +93,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(condition, forKey: .condition)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(map, forKey: .map)
 
             try? container.encodeIfPresent(bucketPoints, forKey: .bucketPoints)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
