@@ -7,24 +7,24 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class StoreManagerSerializer: Codable {
-        public var name: String?
-
         public var mobileNo: SellerPhoneNumber?
+
+        public var name: String?
 
         public var email: String?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
             case mobileNo = "mobile_no"
+
+            case name
 
             case email
         }
 
         public init(email: String? = nil, mobileNo: SellerPhoneNumber? = nil, name: String? = nil) {
-            self.name = name
-
             self.mobileNo = mobileNo
+
+            self.name = name
 
             self.email = email
         }
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                mobileNo = try container.decode(SellerPhoneNumber.self, forKey: .mobileNo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                mobileNo = try container.decode(SellerPhoneNumber.self, forKey: .mobileNo)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,9 +60,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(mobileNo, forKey: .mobileNo)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(email, forKey: .email)
         }
