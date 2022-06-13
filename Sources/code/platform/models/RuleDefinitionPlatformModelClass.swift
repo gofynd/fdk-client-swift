@@ -14,15 +14,15 @@ public extension PlatformClient {
 
         public var valueType: String
 
-        public var isExact: Bool?
-
         public var autoApply: Bool?
 
-        public var calculateOn: String
+        public var type: String
 
         public var applicableOn: String
 
-        public var type: String
+        public var calculateOn: String
+
+        public var isExact: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case scope
@@ -31,15 +31,15 @@ public extension PlatformClient {
 
             case valueType = "value_type"
 
-            case isExact = "is_exact"
-
             case autoApply = "auto_apply"
 
-            case calculateOn = "calculate_on"
+            case type
 
             case applicableOn = "applicable_on"
 
-            case type
+            case calculateOn = "calculate_on"
+
+            case isExact = "is_exact"
         }
 
         public init(applicableOn: String, autoApply: Bool? = nil, calculateOn: String, currencyCode: String? = nil, isExact: Bool? = nil, scope: [String]? = nil, type: String, valueType: String) {
@@ -49,15 +49,15 @@ public extension PlatformClient {
 
             self.valueType = valueType
 
-            self.isExact = isExact
-
             self.autoApply = autoApply
 
-            self.calculateOn = calculateOn
+            self.type = type
 
             self.applicableOn = applicableOn
 
-            self.type = type
+            self.calculateOn = calculateOn
+
+            self.isExact = isExact
         }
 
         required public init(from decoder: Decoder) throws {
@@ -82,14 +82,6 @@ public extension PlatformClient {
             valueType = try container.decode(String.self, forKey: .valueType)
 
             do {
-                isExact = try container.decode(Bool.self, forKey: .isExact)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 autoApply = try container.decode(Bool.self, forKey: .autoApply)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -97,11 +89,19 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            calculateOn = try container.decode(String.self, forKey: .calculateOn)
+            type = try container.decode(String.self, forKey: .type)
 
             applicableOn = try container.decode(String.self, forKey: .applicableOn)
 
-            type = try container.decode(String.self, forKey: .type)
+            calculateOn = try container.decode(String.self, forKey: .calculateOn)
+
+            do {
+                isExact = try container.decode(Bool.self, forKey: .isExact)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -113,15 +113,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(valueType, forKey: .valueType)
 
-            try? container.encodeIfPresent(isExact, forKey: .isExact)
-
             try? container.encodeIfPresent(autoApply, forKey: .autoApply)
 
-            try? container.encodeIfPresent(calculateOn, forKey: .calculateOn)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(applicableOn, forKey: .applicableOn)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(calculateOn, forKey: .calculateOn)
+
+            try? container.encodeIfPresent(isExact, forKey: .isExact)
         }
     }
 }

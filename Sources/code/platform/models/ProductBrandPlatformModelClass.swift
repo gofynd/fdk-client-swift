@@ -8,39 +8,39 @@ public extension PlatformClient {
      */
 
     class ProductBrand: Codable {
-        public var logo: Media1?
-
         public var name: String?
-
-        public var uid: Int?
 
         public var action: Action?
 
-        public enum CodingKeys: String, CodingKey {
-            case logo
+        public var uid: Int?
 
+        public var logo: Media1?
+
+        public enum CodingKeys: String, CodingKey {
             case name
+
+            case action
 
             case uid
 
-            case action
+            case logo
         }
 
         public init(action: Action? = nil, logo: Media1? = nil, name: String? = nil, uid: Int? = nil) {
-            self.logo = logo
-
             self.name = name
+
+            self.action = action
 
             self.uid = uid
 
-            self.action = action
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                logo = try container.decode(Media1.self, forKey: .logo)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
+                logo = try container.decode(Media1.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,13 +75,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }

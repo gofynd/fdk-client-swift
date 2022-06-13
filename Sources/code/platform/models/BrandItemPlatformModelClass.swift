@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var uid: Int?
 
+        public var departments: [String]?
+
         public var slug: String?
 
         public var banners: ImageUrls?
 
         public var name: String?
-
-        public var departments: [String]?
 
         public var action: Action?
 
@@ -29,13 +29,13 @@ public extension PlatformClient {
 
             case uid
 
+            case departments
+
             case slug
 
             case banners
 
             case name
-
-            case departments
 
             case action
 
@@ -47,13 +47,13 @@ public extension PlatformClient {
 
             self.uid = uid
 
+            self.departments = departments
+
             self.slug = slug
 
             self.banners = banners
 
             self.name = name
-
-            self.departments = departments
 
             self.action = action
 
@@ -73,6 +73,14 @@ public extension PlatformClient {
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                departments = try container.decode([String].self, forKey: .departments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,14 +112,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                departments = try container.decode([String].self, forKey: .departments)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -135,13 +135,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
+            try? container.encodeIfPresent(departments, forKey: .departments)
+
             try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(departments, forKey: .departments)
 
             try? container.encodeIfPresent(action, forKey: .action)
 
