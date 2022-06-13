@@ -8,22 +8,22 @@ public extension PlatformClient {
      */
 
     class ConfigurationListingSortConfig: Codable {
+        public var key: String
+
         public var name: String?
 
         public var priority: Int
-
-        public var key: String
 
         public var isActive: Bool
 
         public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
+            case key
+
             case name
 
             case priority
-
-            case key
 
             case isActive = "is_active"
 
@@ -31,11 +31,11 @@ public extension PlatformClient {
         }
 
         public init(isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
+            self.key = key
+
             self.name = name
 
             self.priority = priority
-
-            self.key = key
 
             self.isActive = isActive
 
@@ -44,6 +44,8 @@ public extension PlatformClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            key = try container.decode(String.self, forKey: .key)
 
             do {
                 name = try container.decode(String.self, forKey: .name)
@@ -54,8 +56,6 @@ public extension PlatformClient {
             } catch {}
 
             priority = try container.decode(Int.self, forKey: .priority)
-
-            key = try container.decode(String.self, forKey: .key)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
@@ -71,11 +71,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(key, forKey: .key)
+
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
-
-            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
