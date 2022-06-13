@@ -3,26 +3,40 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: CommonResponse
-         Used By: Catalog
+         Model: ProfileSuccessResponse
+         Used By: CompanyProfile
      */
 
-    class CommonResponse: Codable {
-        public var success: String?
+    class ProfileSuccessResponse: Codable {
+        public var success: Bool?
+
+        public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
             case success
+
+            case uid
         }
 
-        public init(success: String? = nil) {
+        public init(success: Bool? = nil, uid: Int? = nil) {
             self.success = success
+
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                success = try container.decode(String.self, forKey: .success)
+                success = try container.decode(Bool.self, forKey: .success)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -34,6 +48,8 @@ public extension PlatformClient {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

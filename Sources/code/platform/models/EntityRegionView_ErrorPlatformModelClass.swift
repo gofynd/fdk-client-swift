@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class EntityRegionView_Error: Codable {
-        public var type: String?
-
         public var value: String?
+
+        public var type: String?
 
         public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case type
-
             case value
+
+            case type
 
             case message
         }
 
         public init(message: String? = nil, type: String? = nil, value: String? = nil) {
-            self.type = type
-
             self.value = value
+
+            self.type = type
 
             self.message = message
         }
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,9 +61,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(message, forKey: .message)
         }

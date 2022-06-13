@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: PhoneNumber
-         Used By: User
+         Used By: Lead
      */
 
     class PhoneNumber: Codable {
@@ -16,7 +16,7 @@ public extension PlatformClient {
 
         public var phone: String?
 
-        public var countryCode: String?
+        public var countryCode: Int?
 
         public enum CodingKeys: String, CodingKey {
             case active
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case countryCode = "country_code"
         }
 
-        public init(active: Bool? = nil, countryCode: String? = nil, phone: String? = nil, primary: Bool? = nil, verified: Bool? = nil) {
+        public init(active: Bool? = nil, countryCode: Int? = nil, phone: String? = nil, primary: Bool? = nil, verified: Bool? = nil) {
             self.active = active
 
             self.primary = primary
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                countryCode = try container.decode(String.self, forKey: .countryCode)
+                countryCode = try container.decode(Int.self, forKey: .countryCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
