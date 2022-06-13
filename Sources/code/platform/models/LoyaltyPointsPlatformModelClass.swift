@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var applicable: Double?
 
-        public var total: Double?
-
         public var description: String?
+
+        public var total: Double?
 
         public enum CodingKeys: String, CodingKey {
             case isApplied = "is_applied"
 
             case applicable
 
-            case total
-
             case description
+
+            case total
         }
 
         public init(applicable: Double? = nil, description: String? = nil, isApplied: Bool? = nil, total: Double? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.applicable = applicable
 
-            self.total = total
-
             self.description = description
+
+            self.total = total
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                total = try container.decode(Double.self, forKey: .total)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                total = try container.decode(Double.self, forKey: .total)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(applicable, forKey: .applicable)
 
-            try? container.encodeIfPresent(total, forKey: .total)
-
             try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(total, forKey: .total)
         }
     }
 }
