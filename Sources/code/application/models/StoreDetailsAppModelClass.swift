@@ -7,7 +7,7 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class StoreDetails: Codable {
-        public var timing: [StoreTiming]?
+        public var name: String?
 
         public var manager: StoreManagerSerializer?
 
@@ -21,12 +21,12 @@ public extension ApplicationClient {
 
         public var departments: [StoreDepartments]?
 
-        public var name: String?
+        public var timing: [StoreTiming]?
 
         public var company: CompanyStore?
 
         public enum CodingKeys: String, CodingKey {
-            case timing
+            case name
 
             case manager
 
@@ -40,13 +40,13 @@ public extension ApplicationClient {
 
             case departments
 
-            case name
+            case timing
 
             case company
         }
 
         public init(address: StoreAddressSerializer? = nil, company: CompanyStore? = nil, contactNumbers: [SellerPhoneNumber]? = nil, departments: [StoreDepartments]? = nil, manager: StoreManagerSerializer? = nil, name: String? = nil, timing: [StoreTiming]? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
-            self.timing = timing
+            self.name = name
 
             self.manager = manager
 
@@ -60,7 +60,7 @@ public extension ApplicationClient {
 
             self.departments = departments
 
-            self.name = name
+            self.timing = timing
 
             self.company = company
         }
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                timing = try container.decode([StoreTiming].self, forKey: .timing)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,7 +125,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                timing = try container.decode([StoreTiming].self, forKey: .timing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -144,7 +144,7 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(timing, forKey: .timing)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(manager, forKey: .manager)
 
@@ -158,7 +158,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(departments, forKey: .departments)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(timing, forKey: .timing)
 
             try? container.encodeIfPresent(company, forKey: .company)
         }

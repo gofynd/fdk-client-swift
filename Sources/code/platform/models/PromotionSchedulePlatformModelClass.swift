@@ -8,8 +8,6 @@ public extension PlatformClient {
      */
 
     class PromotionSchedule: Codable {
-        public var start: String
-
         public var cron: String?
 
         public var duration: Int?
@@ -18,11 +16,11 @@ public extension PlatformClient {
 
         public var end: String?
 
+        public var start: String
+
         public var published: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case start
-
             case cron
 
             case duration
@@ -31,12 +29,12 @@ public extension PlatformClient {
 
             case end
 
+            case start
+
             case published
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, published: Bool, start: String) {
-            self.start = start
-
             self.cron = cron
 
             self.duration = duration
@@ -45,13 +43,13 @@ public extension PlatformClient {
 
             self.end = end
 
+            self.start = start
+
             self.published = published
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            start = try container.decode(String.self, forKey: .start)
 
             do {
                 cron = try container.decode(String.self, forKey: .cron)
@@ -85,13 +83,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            start = try container.decode(String.self, forKey: .start)
+
             published = try container.decode(Bool.self, forKey: .published)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encode(cron, forKey: .cron)
 
@@ -100,6 +98,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
 
             try? container.encode(end, forKey: .end)
+
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encodeIfPresent(published, forKey: .published)
         }

@@ -10,24 +10,24 @@ public extension PlatformClient {
     class UpdatePayoutRequest: Codable {
         public var isActive: Bool
 
-        public var uniqueExternalId: String
-
         public var isDefault: Bool
+
+        public var uniqueExternalId: String
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case uniqueExternalId = "unique_external_id"
-
             case isDefault = "is_default"
+
+            case uniqueExternalId = "unique_external_id"
         }
 
         public init(isActive: Bool, isDefault: Bool, uniqueExternalId: String) {
             self.isActive = isActive
 
-            self.uniqueExternalId = uniqueExternalId
-
             self.isDefault = isDefault
+
+            self.uniqueExternalId = uniqueExternalId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
-
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
+            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
-
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
         }
     }
 }
