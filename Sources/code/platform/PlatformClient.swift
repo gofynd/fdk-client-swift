@@ -33,9 +33,9 @@ public class PlatformClient {
 
     public let webhook: Webhook
 
-    public let auditTrail: AuditTrail
-
     public let serviceability: Serviceability
+
+    public let auditTrail: AuditTrail
 
     public init(config: PlatformConfig) {
         self.config = config
@@ -68,9 +68,9 @@ public class PlatformClient {
 
         webhook = Webhook(config: config)
 
-        auditTrail = AuditTrail(config: config)
-
         serviceability = Serviceability(config: config)
+
+        auditTrail = AuditTrail(config: config)
     }
 
     public func applicationClient(id: String) -> ApplicationClient {

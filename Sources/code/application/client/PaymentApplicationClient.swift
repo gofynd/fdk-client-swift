@@ -80,8 +80,8 @@ public extension ApplicationClient {
          * Description: Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
          **/
         public func getAggregatorsConfig(
-            xApiToken: String?,
-            refresh: Bool?,
+            xApiToken: String? = nil,
+            refresh: Bool? = nil,
 
             onResponse: @escaping (_ response: AggregatorsConfigDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -174,7 +174,7 @@ public extension ApplicationClient {
          * Description: Use this API to retrieve an active payment aggregator along with the Customer ID. This is applicable for cards payments only.
          **/
         public func getActiveCardAggregator(
-            refresh: Bool?,
+            refresh: Bool? = nil,
 
             onResponse: @escaping (_ response: ActiveCardPaymentGatewayResponse?, _ error: FDKError?) -> Void
         ) {
@@ -221,7 +221,7 @@ public extension ApplicationClient {
          * Description: Use this API to retrieve a list of cards stored by user from an active payment gateway.
          **/
         public func getActiveUserCards(
-            forceRefresh: Bool?,
+            forceRefresh: Bool? = nil,
 
             onResponse: @escaping (_ response: ListCardsResponse?, _ error: FDKError?) -> Void
         ) {
@@ -472,9 +472,9 @@ public extension ApplicationClient {
             cartId: String,
             pincode: String,
             checkoutMode: String,
-            refresh: Bool?,
-            cardReference: String?,
-            userDetails: String?,
+            refresh: Bool? = nil,
+            cardReference: String? = nil,
+            userDetails: String? = nil,
 
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
@@ -541,10 +541,10 @@ public extension ApplicationClient {
             cartId: String,
             pincode: String,
             checkoutMode: String,
-            refresh: Bool?,
-            cardReference: String?,
+            refresh: Bool? = nil,
+            cardReference: String? = nil,
             orderType: String,
-            userDetails: String?,
+            userDetails: String? = nil,
 
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
@@ -851,7 +851,7 @@ public extension ApplicationClient {
          * Description: Use this API to check whether the 11-digit IFSC code is valid and to fetch the bank details for refund.
          **/
         public func verifyIfscCode(
-            ifscCode: String?,
+            ifscCode: String? = nil,
 
             onResponse: @escaping (_ response: IfscCodeResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1143,7 +1143,7 @@ public extension ApplicationClient {
          * Description: Use this API to fetch the customer credit summary.
          **/
         public func customerCreditSummary(
-            aggregator: String?,
+            aggregator: String? = nil,
 
             onResponse: @escaping (_ response: CustomerCreditSummaryResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1190,8 +1190,8 @@ public extension ApplicationClient {
          * Description: Use this API to get the redirect url to redirect the user to aggregator's page
          **/
         public func redirectToAggregator(
-            source: String?,
-            aggregator: String?,
+            source: String? = nil,
+            aggregator: String? = nil,
 
             onResponse: @escaping (_ response: RedirectToAggregatorResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1242,7 +1242,7 @@ public extension ApplicationClient {
          * Description: Use this API to fetch the customer credit summary.
          **/
         public func checkCredit(
-            aggregator: String?,
+            aggregator: String? = nil,
 
             onResponse: @escaping (_ response: CheckCreditResponse?, _ error: FDKError?) -> Void
         ) {

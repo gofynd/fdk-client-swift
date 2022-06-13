@@ -1,7 +1,7 @@
 import Foundation
 
 public extension ApplicationClient {
-    class PosCart {
+    class Feedback {
         var config: ApplicationConfig
         var relativeUrls = [String: String]()
 
@@ -9,59 +9,57 @@ public extension ApplicationClient {
             self.config = config
             var ulrs = [String: String]()
 
-            ulrs["getCart"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/detail")
+            ulrs["createAbuseReport"] = config.domain.appendAsPath("/service/application/feedback/v1.0/abuse/")
 
-            ulrs["getCartLastModified"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/detail")
+            ulrs["updateAbuseReport"] = config.domain.appendAsPath("/service/application/feedback/v1.0/abuse/")
 
-            ulrs["addItems"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/detail")
+            ulrs["getAbuseReports"] = config.domain.appendAsPath("/service/application/feedback/v1.0/abuse/entity/{entity_type}/entity-id/{entity_id}")
 
-            ulrs["updateCart"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/detail")
+            ulrs["getAttributes"] = config.domain.appendAsPath("/service/application/feedback/v1.0/attributes/")
 
-            ulrs["getItemCount"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/basic")
+            ulrs["createAttribute"] = config.domain.appendAsPath("/service/application/feedback/v1.0/attributes/")
 
-            ulrs["getCoupons"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/coupon")
+            ulrs["getAttribute"] = config.domain.appendAsPath("/service/application/feedback/v1.0/attributes/{slug}")
 
-            ulrs["applyCoupon"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/coupon")
+            ulrs["updateAttribute"] = config.domain.appendAsPath("/service/application/feedback/v1.0/attributes/{slug}")
 
-            ulrs["removeCoupon"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/coupon")
+            ulrs["createComment"] = config.domain.appendAsPath("/service/application/feedback/v1.0/comment/")
 
-            ulrs["getBulkDiscountOffers"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/bulk-price")
+            ulrs["updateComment"] = config.domain.appendAsPath("/service/application/feedback/v1.0/comment/")
 
-            ulrs["applyRewardPoints"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/redeem/points/")
+            ulrs["getComments"] = config.domain.appendAsPath("/service/application/feedback/v1.0/comment/entity/{entity_type}")
 
-            ulrs["getAddresses"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/address")
+            ulrs["checkEligibility"] = config.domain.appendAsPath("/service/application/feedback/v1.0/config/entity/{entity_type}/entity-id/{entity_id}")
 
-            ulrs["addAddress"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/address")
+            ulrs["deleteMedia"] = config.domain.appendAsPath("/service/application/feedback/v1.0/media/")
 
-            ulrs["getAddressById"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/address/{id}")
+            ulrs["createMedia"] = config.domain.appendAsPath("/service/application/feedback/v1.0/media/")
 
-            ulrs["updateAddress"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/address/{id}")
+            ulrs["updateMedia"] = config.domain.appendAsPath("/service/application/feedback/v1.0/media/")
 
-            ulrs["removeAddress"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/address/{id}")
+            ulrs["getMedias"] = config.domain.appendAsPath("/service/application/feedback/v1.0/media/entity/{entity_type}/entity-id/{entity_id}")
 
-            ulrs["selectAddress"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/select-address")
+            ulrs["getReviewSummaries"] = config.domain.appendAsPath("/service/application/feedback/v1.0/rating/summary/entity/{entity_type}/entity-id/{entity_id}")
 
-            ulrs["selectPaymentMode"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/payment")
+            ulrs["createReview"] = config.domain.appendAsPath("/service/application/feedback/v1.0/review/")
 
-            ulrs["validateCouponForPayment"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/payment/validate/")
+            ulrs["updateReview"] = config.domain.appendAsPath("/service/application/feedback/v1.0/review/")
 
-            ulrs["getShipments"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/shipment")
+            ulrs["getReviews"] = config.domain.appendAsPath("/service/application/feedback/v1.0/review/entity/{entity_type}/entity-id/{entity_id}")
 
-            ulrs["updateShipments"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/shipment")
+            ulrs["getTemplates"] = config.domain.appendAsPath("/service/application/feedback/v1.0/template/")
 
-            ulrs["checkoutCart"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/checkout")
+            ulrs["createQuestion"] = config.domain.appendAsPath("/service/application/feedback/v1.0/template/qna/")
 
-            ulrs["updateCartMeta"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/meta")
+            ulrs["updateQuestion"] = config.domain.appendAsPath("/service/application/feedback/v1.0/template/qna/")
 
-            ulrs["getAvailableDeliveryModes"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/available-delivery-mode")
+            ulrs["getQuestionAndAnswers"] = config.domain.appendAsPath("/service/application/feedback/v1.0/template/qna/entity/{entity_type}/entity-id/{entity_id}")
 
-            ulrs["getStoreAddressByUid"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/store-address")
+            ulrs["getVotes"] = config.domain.appendAsPath("/service/application/feedback/v1.0/vote/")
 
-            ulrs["getCartShareLink"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/share-cart")
+            ulrs["createVote"] = config.domain.appendAsPath("/service/application/feedback/v1.0/vote/")
 
-            ulrs["getCartSharedItems"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/share-cart/{token}")
-
-            ulrs["updateCartWithSharedItems"] = config.domain.appendAsPath("/service/application/pos/cart/v1.0/share-cart/{token}/{action}")
+            ulrs["updateVote"] = config.domain.appendAsPath("/service/application/feedback/v1.0/vote/")
 
             self.relativeUrls = ulrs
         }
@@ -74,151 +72,20 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Fetch all items added to the cart
-         * Description: Use this API to get details of all the items added to a cart.
+         * Summary: Post a new abuse request
+         * Description: Use this API to report a specific entity (question/review/comment) for abuse.
          **/
-        public func getCart(
-            id: String?,
-            i: Bool?,
-            b: Bool?,
-            assignCardId: Int?,
-            areaCode: String?,
-
-            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
+        public func createAbuseReport(
+            body: ReportAbuseRequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = id {
-                xQuery["id"] = value
-            }
-
-            if let value = i {
-                xQuery["i"] = value
-            }
-
-            if let value = b {
-                xQuery["b"] = value
-            }
-
-            if let value = assignCardId {
-                xQuery["assign_card_id"] = value
-            }
-
-            if let value = areaCode {
-                xQuery["area_code"] = value
-            }
-
-            let fullUrl = relativeUrls["getCart"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CartDetailResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Fetch last-modified timestamp
-         * Description: Use this API to fetch Last-Modified timestamp in header metadata.
-         **/
-        public func getCartLastModified(
-            id: String?,
-
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = id {
-                xQuery["id"] = value
-            }
-
-            let fullUrl = relativeUrls["getCartLastModified"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "head",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = data.dictionary
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Add items to cart
-         * Description: Use this API to add items to the cart.
-         **/
-        public func addItems(
-            i: Bool?,
-            b: Bool?,
-            areaCode: String?,
-            body: AddCartRequest,
-            onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = i {
-                xQuery["i"] = value
-            }
-
-            if let value = b {
-                xQuery["b"] = value
-            }
-
-            if let value = areaCode {
-                xQuery["area_code"] = value
-            }
-
-            let fullUrl = relativeUrls["addItems"] ?? ""
+            let fullUrl = relativeUrls["createAbuseReport"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders: [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -230,7 +97,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(AddCartDetailResponse.self, from: data)
+                        let response = Utility.decode(InsertResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -245,42 +112,20 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Update items in the cart
-         * Description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+         * Summary: Update abuse details
+         * Description: Use this API to update the abuse details, i.e. status and description.
          **/
-        public func updateCart(
-            id: String?,
-            i: Bool?,
-            b: Bool?,
-            areaCode: String?,
-            body: UpdateCartRequest,
-            onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
+        public func updateAbuseReport(
+            body: UpdateAbuseStatusRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = id {
-                xQuery["id"] = value
-            }
-
-            if let value = i {
-                xQuery["i"] = value
-            }
-
-            if let value = b {
-                xQuery["b"] = value
-            }
-
-            if let value = areaCode {
-                xQuery["area_code"] = value
-            }
-
-            let fullUrl = relativeUrls["updateCart"] ?? ""
+            let fullUrl = relativeUrls["updateAbuseReport"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders: [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -292,7 +137,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(UpdateCartDetailResponse.self, from: data)
+                        let response = Utility.decode(UpdateResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -307,13 +152,17 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Count items in the cart
-         * Description: Use this API to get the total number of items present in cart.
+         * Summary: Get a list of abuse data
+         * Description: Use this API to retrieve a list of abuse data from entity type and entity ID.
          **/
-        public func getItemCount(
-            id: String?,
+        public func getAbuseReports(
+            entityId: String,
+            entityType: String,
+            id: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
 
-            onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ReportAbuseGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -321,7 +170,19 @@ public extension ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["getItemCount"] ?? ""
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+
+            var fullUrl = relativeUrls["getAbuseReports"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_id" + "}", with: "\(entityId)")
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_type" + "}", with: "\(entityType)")
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -339,7 +200,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CartItemCountResponse.self, from: data)
+                        let response = Utility.decode(ReportAbuseGetResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -354,21 +215,60 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Fetch Coupon
-         * Description: Use this API to get a list of available coupons along with their details.
+         * Summary: get paginator for getAbuseReports
+         * Description: fetch the next page by calling .next(...) function
          **/
-        public func getCoupons(
-            id: String?,
+        public func getAbuseReportsPaginator(
+            entityId: String,
+            entityType: String,
+            id: String? = nil,
+            pageSize: Int? = nil
 
-            onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
+        ) -> Paginator<ReportAbuseGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ReportAbuseGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getAbuseReports(
+                    entityId: entityId,
+                    entityType: entityType,
+                    id: id,
+                    pageId: paginator.pageId,
+
+                    pageSize: paginator.pageSize
+
+                ) { response, error in
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+
+        /**
+         *
+         * Summary: Get a list of attribute data
+         * Description: Use this API to retrieve a list of all attribute data, e.g. quality, material, product fitting, packaging, etc.
+         **/
+        public func getAttributes(
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
+
+            onResponse: @escaping (_ response: AttributeResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
-            if let value = id {
-                xQuery["id"] = value
+            if let value = pageNo {
+                xQuery["page_no"] = value
             }
 
-            let fullUrl = relativeUrls["getCoupons"] ?? ""
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+
+            let fullUrl = relativeUrls["getAttributes"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -386,7 +286,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(GetCouponResponse.self, from: data)
+                        let response = Utility.decode(AttributeResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -401,42 +301,48 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Apply Coupon
-         * Description: Use this API to apply coupons on items in the cart.
+         * Summary: get paginator for getAttributes
+         * Description: fetch the next page by calling .next(...) function
          **/
-        public func applyCoupon(
-            i: Bool?,
-            b: Bool?,
-            p: Bool?,
-            id: String?,
-            body: ApplyCouponRequest,
-            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
+        public func getAttributesPaginator(
+            pageSize: Int? = nil
+
+        ) -> Paginator<AttributeResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<AttributeResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getAttributes(
+                    pageNo: paginator.pageNo,
+
+                    pageSize: paginator.pageSize
+
+                ) { response, error in
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+
+        /**
+         *
+         * Summary: Add a new attribute request
+         * Description: Use this API to add a new attribute (e.g. product quality/material/value for money) with its name, slug and description.
+         **/
+        public func createAttribute(
+            body: SaveAttributeRequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = i {
-                xQuery["i"] = value
-            }
-
-            if let value = b {
-                xQuery["b"] = value
-            }
-
-            if let value = p {
-                xQuery["p"] = value
-            }
-
-            if let value = id {
-                xQuery["id"] = value
-            }
-
-            let fullUrl = relativeUrls["applyCoupon"] ?? ""
+            let fullUrl = relativeUrls["createAttribute"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders: [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -448,7 +354,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CartDetailResponse.self, from: data)
+                        let response = Utility.decode(InsertResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -463,13 +369,184 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Remove Coupon Applied
-         * Description: Remove Coupon applied on the cart by passing uid in request body.
+         * Summary: Get data of a single attribute
+         * Description: Use this API to retrieve a single attribute data from a given slug.
          **/
-        public func removeCoupon(
-            id: String?,
+        public func getAttribute(
+            slug: String,
 
-            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: Attribute?, _ error: FDKError?) -> Void
+        ) {
+            var fullUrl = relativeUrls["getAttribute"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(Attribute.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Update details of an attribute
+         * Description: Use this API update the attribute's name and description.
+         **/
+        public func updateAttribute(
+            slug: String,
+            body: UpdateAttributeRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+            var fullUrl = relativeUrls["updateAttribute"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(UpdateResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Post a new comment
+         * Description: Use this API to add a new comment for a specific entity.
+         **/
+        public func createComment(
+            body: CommentRequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
+        ) {
+            let fullUrl = relativeUrls["createComment"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(InsertResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Update the status of a comment
+         * Description: Use this API to update the comment status (active or approve) along with new comment if any.
+         **/
+        public func updateComment(
+            body: UpdateCommentRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+            let fullUrl = relativeUrls["updateComment"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(UpdateResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Get a list of comments
+         * Description: Use this API to retrieve a list of comments for a specific entity type, e.g. products.
+         **/
+        public func getComments(
+            entityType: String,
+            id: String? = nil,
+            entityId: String? = nil,
+            userId: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
+
+            onResponse: @escaping (_ response: CommentGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -477,7 +554,152 @@ public extension ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["removeCoupon"] ?? ""
+            if let value = entityId {
+                xQuery["entity_id"] = value
+            }
+
+            if let value = userId {
+                xQuery["user_id"] = value
+            }
+
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+
+            var fullUrl = relativeUrls["getComments"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_type" + "}", with: "\(entityType)")
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CommentGetResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: get paginator for getComments
+         * Description: fetch the next page by calling .next(...) function
+         **/
+        public func getCommentsPaginator(
+            entityType: String,
+            id: String? = nil,
+            entityId: String? = nil,
+            userId: String? = nil,
+            pageSize: Int? = nil
+
+        ) -> Paginator<CommentGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<CommentGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getComments(
+                    entityType: entityType,
+                    id: id,
+                    entityId: entityId,
+                    userId: userId,
+                    pageId: paginator.pageId,
+
+                    pageSize: paginator.pageSize
+
+                ) { response, error in
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+
+        /**
+         *
+         * Summary: Checks eligibility to rate and review, and shows the cloud media configuration
+         * Description: Use this API to check whether an entity is eligible to be rated and reviewed. Moreover, it shows the cloud media configuration too.
+         **/
+        public func checkEligibility(
+            entityType: String,
+            entityId: String,
+
+            onResponse: @escaping (_ response: CheckEligibilityResponse?, _ error: FDKError?) -> Void
+        ) {
+            var fullUrl = relativeUrls["checkEligibility"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_type" + "}", with: "\(entityType)")
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_id" + "}", with: "\(entityId)")
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CheckEligibilityResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Delete Media
+         * Description: Use this API to delete media for an entity ID.
+         **/
+        public func deleteMedia(
+            ids: [String],
+
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:]
+
+            xQuery["ids"] = ids
+
+            let fullUrl = relativeUrls["deleteMedia"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -495,7 +717,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CartDetailResponse.self, from: data)
+                        let response = Utility.decode(UpdateResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -510,200 +732,14 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Get discount offers based on quantity
-         * Description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
+         * Summary: Add Media
+         * Description: Use this API to add media to an entity, e.g. review.
          **/
-        public func getBulkDiscountOffers(
-            itemId: Int?,
-            articleId: String?,
-            uid: Int?,
-            slug: String?,
-
-            onResponse: @escaping (_ response: BulkPriceResponse?, _ error: FDKError?) -> Void
+        public func createMedia(
+            body: AddMediaListRequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = itemId {
-                xQuery["item_id"] = value
-            }
-
-            if let value = articleId {
-                xQuery["article_id"] = value
-            }
-
-            if let value = uid {
-                xQuery["uid"] = value
-            }
-
-            if let value = slug {
-                xQuery["slug"] = value
-            }
-
-            let fullUrl = relativeUrls["getBulkDiscountOffers"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(BulkPriceResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Apply reward points at cart
-         * Description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
-         **/
-        public func applyRewardPoints(
-            id: String?,
-            i: Bool?,
-            b: Bool?,
-            body: RewardPointRequest,
-            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = id {
-                xQuery["id"] = value
-            }
-
-            if let value = i {
-                xQuery["i"] = value
-            }
-
-            if let value = b {
-                xQuery["b"] = value
-            }
-
-            let fullUrl = relativeUrls["applyRewardPoints"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CartDetailResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Fetch address
-         * Description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
-         **/
-        public func getAddresses(
-            cartId: String?,
-            mobileNo: String?,
-            checkoutMode: String?,
-            tags: String?,
-            isDefault: Bool?,
-
-            onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = cartId {
-                xQuery["cart_id"] = value
-            }
-
-            if let value = mobileNo {
-                xQuery["mobile_no"] = value
-            }
-
-            if let value = checkoutMode {
-                xQuery["checkout_mode"] = value
-            }
-
-            if let value = tags {
-                xQuery["tags"] = value
-            }
-
-            if let value = isDefault {
-                xQuery["is_default"] = value
-            }
-
-            let fullUrl = relativeUrls["getAddresses"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(GetAddressesResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Add address to an account
-         * Description: Use this API to add an address to an account.
-         **/
-        public func addAddress(
-            body: Address,
-            onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
-        ) {
-            let fullUrl = relativeUrls["addAddress"] ?? ""
+            let fullUrl = relativeUrls["createMedia"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -721,7 +757,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SaveAddressResponse.self, from: data)
+                        let response = Utility.decode(InsertResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -736,87 +772,14 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Fetch a single address by its ID
-         * Description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+         * Summary: Update Media
+         * Description: Use this API to update media (archive/approve) for an entity.
          **/
-        public func getAddressById(
-            id: String,
-            cartId: String?,
-            mobileNo: String?,
-            checkoutMode: String?,
-            tags: String?,
-            isDefault: Bool?,
-
-            onResponse: @escaping (_ response: Address?, _ error: FDKError?) -> Void
+        public func updateMedia(
+            body: UpdateMediaListRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = cartId {
-                xQuery["cart_id"] = value
-            }
-
-            if let value = mobileNo {
-                xQuery["mobile_no"] = value
-            }
-
-            if let value = checkoutMode {
-                xQuery["checkout_mode"] = value
-            }
-
-            if let value = tags {
-                xQuery["tags"] = value
-            }
-
-            if let value = isDefault {
-                xQuery["is_default"] = value
-            }
-
-            var fullUrl = relativeUrls["getAddressById"] ?? ""
-
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(Address.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Update address added to an account
-         * Description: <p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
-         **/
-        public func updateAddress(
-            id: String,
-            body: Address,
-            onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
-        ) {
-            var fullUrl = relativeUrls["updateAddress"] ?? ""
-
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            let fullUrl = relativeUrls["updateMedia"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -834,7 +797,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(UpdateAddressResponse.self, from: data)
+                        let response = Utility.decode(UpdateResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -849,23 +812,48 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Remove address associated with an account
-         * Description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
+         * Summary: Get Media
+         * Description: Use this API to retrieve all media from an entity.
          **/
-        public func removeAddress(
-            id: String,
+        public func getMedias(
+            entityType: String,
+            entityId: String,
+            id: String? = nil,
+            type: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
 
-            onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: MediaGetResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["removeAddress"] ?? ""
+            var xQuery: [String: Any] = [:]
 
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            if let value = id {
+                xQuery["id"] = value
+            }
+
+            if let value = type {
+                xQuery["type"] = value
+            }
+
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+
+            var fullUrl = relativeUrls["getMedias"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_type" + "}", with: "\(entityType)")
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_id" + "}", with: "\(entityId)")
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "get",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders: [],
                 body: nil,
                 responseType: "application/json",
@@ -877,7 +865,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(DeleteAddressResponse.self, from: data)
+                        let response = Utility.decode(MediaGetResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -892,37 +880,153 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Select an address from available addresses
-         * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
+         * Summary: get paginator for getMedias
+         * Description: fetch the next page by calling .next(...) function
          **/
-        public func selectAddress(
-            cartId: String?,
-            i: Bool?,
-            b: Bool?,
-            body: SelectCartAddressRequest,
-            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
+        public func getMediasPaginator(
+            entityType: String,
+            entityId: String,
+            id: String? = nil,
+            type: String? = nil,
+            pageSize: Int? = nil
+
+        ) -> Paginator<MediaGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<MediaGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getMedias(
+                    entityType: entityType,
+                    entityId: entityId,
+                    id: id,
+                    type: type,
+                    pageId: paginator.pageId,
+
+                    pageSize: paginator.pageSize
+
+                ) { response, error in
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+
+        /**
+         *
+         * Summary: Get a review summary
+         * Description: Review summary gives ratings and attribute metrics of a review per entity. Use this API to retrieve the following response data: review count, rating average. 'review metrics'/'attribute rating metrics' which contains name, type, average and count.
+         **/
+        public func getReviewSummaries(
+            entityType: String,
+            entityId: String,
+            id: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
+
+            onResponse: @escaping (_ response: ReviewMetricGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
-            if let value = cartId {
-                xQuery["cart_id"] = value
+            if let value = id {
+                xQuery["id"] = value
             }
 
-            if let value = i {
-                xQuery["i"] = value
+            if let value = pageId {
+                xQuery["page_id"] = value
             }
 
-            if let value = b {
-                xQuery["b"] = value
+            if let value = pageSize {
+                xQuery["page_size"] = value
             }
 
-            let fullUrl = relativeUrls["selectAddress"] ?? ""
+            var fullUrl = relativeUrls["getReviewSummaries"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_type" + "}", with: "\(entityType)")
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_id" + "}", with: "\(entityId)")
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ReviewMetricGetResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: get paginator for getReviewSummaries
+         * Description: fetch the next page by calling .next(...) function
+         **/
+        public func getReviewSummariesPaginator(
+            entityType: String,
+            entityId: String,
+            id: String? = nil,
+            pageSize: Int? = nil
+
+        ) -> Paginator<ReviewMetricGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ReviewMetricGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getReviewSummaries(
+                    entityType: entityType,
+                    entityId: entityId,
+                    id: id,
+                    pageId: paginator.pageId,
+
+                    pageSize: paginator.pageSize
+
+                ) { response, error in
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+
+        /**
+         *
+         * Summary: Add customer reviews
+         * Description: Use this API to add customer reviews for a specific entity along with the following data: attributes rating, entity rating, title, description, media resources and template ID.
+         **/
+        public func createReview(
+            body: UpdateReviewRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+            let fullUrl = relativeUrls["createReview"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders: [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -934,7 +1038,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CartDetailResponse.self, from: data)
+                        let response = Utility.decode(UpdateResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -949,27 +1053,20 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Update cart payment
-         * Description: Use this API to update cart payment.
+         * Summary: Update customer reviews
+         * Description: Use this API to update customer reviews for a specific entity along with following data: attributes rating, entity rating, title, description, media resources and template ID.
          **/
-        public func selectPaymentMode(
-            id: String?,
-            body: UpdateCartPaymentRequest,
-            onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
+        public func updateReview(
+            body: UpdateReviewRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = id {
-                xQuery["id"] = value
-            }
-
-            let fullUrl = relativeUrls["selectPaymentMode"] ?? ""
+            let fullUrl = relativeUrls["updateReview"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders: [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -981,7 +1078,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CartDetailResponse.self, from: data)
+                        let response = Utility.decode(UpdateResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -996,18 +1093,25 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Verify the coupon eligibility against the payment mode
-         * Description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
+         * Summary: Get list of customer reviews
+         * Description: Use this API to retrieve a list of customer reviews based on entity and filters provided.
          **/
-        public func validateCouponForPayment(
-            id: String?,
-            addressId: String?,
-            paymentMode: String?,
-            paymentIdentifier: String?,
-            aggregatorName: String?,
-            merchantCode: String?,
+        public func getReviews(
+            entityType: String,
+            entityId: String,
+            id: String? = nil,
+            userId: String? = nil,
+            media: String? = nil,
+            rating: [Double]? = nil,
+            attributeRating: [String]? = nil,
+            facets: Bool? = nil,
+            sort: String? = nil,
+            active: Bool? = nil,
+            approve: Bool? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
 
-            onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ReviewGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -1015,27 +1119,51 @@ public extension ApplicationClient {
                 xQuery["id"] = value
             }
 
-            if let value = addressId {
-                xQuery["address_id"] = value
+            if let value = userId {
+                xQuery["user_id"] = value
             }
 
-            if let value = paymentMode {
-                xQuery["payment_mode"] = value
+            if let value = media {
+                xQuery["media"] = value
             }
 
-            if let value = paymentIdentifier {
-                xQuery["payment_identifier"] = value
+            if let value = rating {
+                xQuery["rating"] = value
             }
 
-            if let value = aggregatorName {
-                xQuery["aggregator_name"] = value
+            if let value = attributeRating {
+                xQuery["attribute_rating"] = value
             }
 
-            if let value = merchantCode {
-                xQuery["merchant_code"] = value
+            if let value = facets {
+                xQuery["facets"] = value
             }
 
-            let fullUrl = relativeUrls["validateCouponForPayment"] ?? ""
+            if let value = sort {
+                xQuery["sort"] = value
+            }
+
+            if let value = active {
+                xQuery["active"] = value
+            }
+
+            if let value = approve {
+                xQuery["approve"] = value
+            }
+
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+
+            var fullUrl = relativeUrls["getReviews"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_type" + "}", with: "\(entityType)")
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_id" + "}", with: "\(entityId)")
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -1053,7 +1181,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(PaymentCouponValidate.self, from: data)
+                        let response = Utility.decode(ReviewGetResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1068,51 +1196,81 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Get delivery date and options before checkout
-         * Description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
+         * Summary: get paginator for getReviews
+         * Description: fetch the next page by calling .next(...) function
          **/
-        public func getShipments(
-            pickAtStoreUid: Int?,
-            orderingStoreId: Int?,
-            p: Bool?,
-            id: String?,
-            addressId: String?,
-            areaCode: String?,
-            orderType: String?,
+        public func getReviewsPaginator(
+            entityType: String,
+            entityId: String,
+            id: String? = nil,
+            userId: String? = nil,
+            media: String? = nil,
+            rating: [Double]? = nil,
+            attributeRating: [String]? = nil,
+            facets: Bool? = nil,
+            sort: String? = nil,
+            active: Bool? = nil,
+            approve: Bool? = nil,
+            pageSize: Int? = nil
 
-            onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
+        ) -> Paginator<ReviewGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ReviewGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getReviews(
+                    entityType: entityType,
+                    entityId: entityId,
+                    id: id,
+                    userId: userId,
+                    media: media,
+                    rating: rating,
+                    attributeRating: attributeRating,
+                    facets: facets,
+                    sort: sort,
+                    active: active,
+                    approve: approve,
+                    pageId: paginator.pageId,
+
+                    pageSize: paginator.pageSize
+
+                ) { response, error in
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+
+        /**
+         *
+         * Summary: Get the feedback templates for a product or l3
+         * Description: Use this API to retrieve the details of the following feedback template. order, delivered, application, seller, order, placed, product
+         **/
+        public func getTemplates(
+            templateId: String? = nil,
+            entityId: String? = nil,
+            entityType: String? = nil,
+
+            onResponse: @escaping (_ response: TemplateGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
-            if let value = pickAtStoreUid {
-                xQuery["pick_at_store_uid"] = value
+            if let value = templateId {
+                xQuery["template_id"] = value
             }
 
-            if let value = orderingStoreId {
-                xQuery["ordering_store_id"] = value
+            if let value = entityId {
+                xQuery["entity_id"] = value
             }
 
-            if let value = p {
-                xQuery["p"] = value
+            if let value = entityType {
+                xQuery["entity_type"] = value
             }
 
-            if let value = id {
-                xQuery["id"] = value
-            }
-
-            if let value = addressId {
-                xQuery["address_id"] = value
-            }
-
-            if let value = areaCode {
-                xQuery["area_code"] = value
-            }
-
-            if let value = orderType {
-                xQuery["order_type"] = value
-            }
-
-            let fullUrl = relativeUrls["getShipments"] ?? ""
+            let fullUrl = relativeUrls["getTemplates"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -1130,7 +1288,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CartShipmentsResponse.self, from: data)
+                        let response = Utility.decode(TemplateGetResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1145,47 +1303,60 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Update shipment delivery type and quantity before checkout
-         * Description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
+         * Summary: Create a new question
+         * Description: Use this API to create a new question with following data- tags, text, type, choices for MCQ type questions, maximum length of answer.
          **/
-        public func updateShipments(
-            i: Bool?,
-            p: Bool?,
-            id: String?,
-            addressId: String?,
-            orderType: String?,
-            body: UpdateCartShipmentRequest,
-            onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
+        public func createQuestion(
+            body: CreateQNARequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            let fullUrl = relativeUrls["createQuestion"] ?? ""
 
-            if let value = i {
-                xQuery["i"] = value
-            }
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(InsertResponse.self, from: data)
 
-            if let value = p {
-                xQuery["p"] = value
-            }
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
 
-            if let value = id {
-                xQuery["id"] = value
-            }
-
-            if let value = addressId {
-                xQuery["address_id"] = value
-            }
-
-            if let value = orderType {
-                xQuery["order_type"] = value
-            }
-
-            let fullUrl = relativeUrls["updateShipments"] ?? ""
+        /**
+         *
+         * Summary: Update a question
+         * Description: Use this API to update the status of a question, its tags and its choices.
+         **/
+        public func updateQuestion(
+            body: UpdateQNARequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+            let fullUrl = relativeUrls["updateQuestion"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders: [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -1197,7 +1368,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CartShipmentsResponse.self, from: data)
+                        let response = Utility.decode(UpdateResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1212,13 +1383,19 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Checkout all items in the cart
-         * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
+         * Summary: Get a list of QnA
+         * Description: Use this API to retrieve a list of questions and answers for a given entity.
          **/
-        public func checkoutCart(
-            id: String?,
-            body: CartPosCheckoutDetailRequest,
-            onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
+        public func getQuestionAndAnswers(
+            entityType: String,
+            entityId: String,
+            id: String? = nil,
+            userId: String? = nil,
+            showAnswer: Bool? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
+
+            onResponse: @escaping (_ response: QNAGetResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -1226,13 +1403,205 @@ public extension ApplicationClient {
                 xQuery["id"] = value
             }
 
-            let fullUrl = relativeUrls["checkoutCart"] ?? ""
+            if let value = userId {
+                xQuery["user_id"] = value
+            }
+
+            if let value = showAnswer {
+                xQuery["show_answer"] = value
+            }
+
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+
+            var fullUrl = relativeUrls["getQuestionAndAnswers"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_type" + "}", with: "\(entityType)")
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "entity_id" + "}", with: "\(entityId)")
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(QNAGetResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: get paginator for getQuestionAndAnswers
+         * Description: fetch the next page by calling .next(...) function
+         **/
+        public func getQuestionAndAnswersPaginator(
+            entityType: String,
+            entityId: String,
+            id: String? = nil,
+            userId: String? = nil,
+            showAnswer: Bool? = nil,
+            pageSize: Int? = nil
+
+        ) -> Paginator<QNAGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<QNAGetResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getQuestionAndAnswers(
+                    entityType: entityType,
+                    entityId: entityId,
+                    id: id,
+                    userId: userId,
+                    showAnswer: showAnswer,
+                    pageId: paginator.pageId,
+
+                    pageSize: paginator.pageSize
+
+                ) { response, error in
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+
+        /**
+         *
+         * Summary: Get a list of votes
+         * Description: Use this API to retrieve a list of votes of a current logged in user. Votes can be filtered using `ref_type`, i.e. review | comment.
+         **/
+        public func getVotes(
+            id: String? = nil,
+            refType: String? = nil,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
+
+            onResponse: @escaping (_ response: VoteResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = id {
+                xQuery["id"] = value
+            }
+
+            if let value = refType {
+                xQuery["ref_type"] = value
+            }
+
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+
+            let fullUrl = relativeUrls["getVotes"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(VoteResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: get paginator for getVotes
+         * Description: fetch the next page by calling .next(...) function
+         **/
+        public func getVotesPaginator(
+            id: String? = nil,
+            refType: String? = nil,
+            pageSize: Int? = nil
+
+        ) -> Paginator<VoteResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<VoteResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getVotes(
+                    id: id,
+                    refType: refType,
+                    pageNo: paginator.pageNo,
+
+                    pageSize: paginator.pageSize
+
+                ) { response, error in
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+
+        /**
+         *
+         * Summary: Create a new vote
+         * Description: Use this API to create a new vote, where the action could be an upvote or a downvote. This is useful when you want to give a vote (say upvote) to a review (ref_type) of a product (entity_type).
+         **/
+        public func createVote(
+            body: VoteRequest,
+            onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
+        ) {
+            let fullUrl = relativeUrls["createVote"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders: [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -1244,7 +1613,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CartCheckoutResponse.self, from: data)
+                        let response = Utility.decode(InsertResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1259,161 +1628,19 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Update the cart meta
-         * Description: Use this API to update cart meta like checkout_mode and gstin.
+         * Summary: Update a vote
+         * Description: Use this API to update a vote with a new action, i.e. either an upvote or a downvote.
          **/
-        public func updateCartMeta(
-            id: String?,
-            body: CartMetaRequest,
-            onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
+        public func updateVote(
+            body: UpdateVoteRequest,
+            onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = id {
-                xQuery["id"] = value
-            }
-
-            let fullUrl = relativeUrls["updateCartMeta"] ?? ""
+            let fullUrl = relativeUrls["updateVote"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
                 method: "put",
                 url: fullUrl,
-                query: xQuery,
-                extraHeaders: [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CartMetaResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Get available delivery modes for cart
-         * Description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API.
-         **/
-        public func getAvailableDeliveryModes(
-            areaCode: String,
-            id: String?,
-
-            onResponse: @escaping (_ response: CartDeliveryModesResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            xQuery["area_code"] = areaCode
-
-            if let value = id {
-                xQuery["id"] = value
-            }
-
-            let fullUrl = relativeUrls["getAvailableDeliveryModes"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CartDeliveryModesResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Get list of stores for give uids
-         * Description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API.
-         **/
-        public func getStoreAddressByUid(
-            storeUid: Int,
-
-            onResponse: @escaping (_ response: StoreDetailsResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            xQuery["store_uid"] = storeUid
-
-            let fullUrl = relativeUrls["getStoreAddressByUid"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(StoreDetailsResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Generate token for sharing the cart
-         * Description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
-         **/
-        public func getCartShareLink(
-            body: GetShareCartLinkRequest,
-            onResponse: @escaping (_ response: GetShareCartLinkResponse?, _ error: FDKError?) -> Void
-        ) {
-            let fullUrl = relativeUrls["getCartShareLink"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: fullUrl,
                 query: nil,
                 extraHeaders: [],
                 body: body.dictionary,
@@ -1426,96 +1653,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(GetShareCartLinkResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Get details of a shared cart
-         * Description: Use this API to get the shared cart details as per the token generated using the share-cart API.
-         **/
-        public func getCartSharedItems(
-            token: String,
-
-            onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
-        ) {
-            var fullUrl = relativeUrls["getCartSharedItems"] ?? ""
-
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "token" + "}", with: "\(token)")
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "get",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(SharedCartResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Merge or replace existing cart
-         * Description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
-         **/
-        public func updateCartWithSharedItems(
-            token: String,
-            action: String,
-
-            onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
-        ) {
-            var fullUrl = relativeUrls["updateCartWithSharedItems"] ?? ""
-
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "token" + "}", with: "\(token)")
-
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "action" + "}", with: "\(action)")
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(SharedCartResponse.self, from: data)
+                        let response = Utility.decode(UpdateResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
