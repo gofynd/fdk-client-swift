@@ -7,24 +7,24 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductListingActionPage: Codable {
-        public var query: [String: Any]?
-
         public var params: [String: Any]?
+
+        public var query: [String: Any]?
 
         public var type: String?
 
         public enum CodingKeys: String, CodingKey {
-            case query
-
             case params
+
+            case query
 
             case type
         }
 
         public init(params: [String: Any]? = nil, query: [String: Any]? = nil, type: String? = nil) {
-            self.query = query
-
             self.params = params
+
+            self.query = query
 
             self.type = type
         }
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                query = try container.decode([String: Any].self, forKey: .query)
+                params = try container.decode([String: Any].self, forKey: .params)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                params = try container.decode([String: Any].self, forKey: .params)
+                query = try container.decode([String: Any].self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,9 +60,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(query, forKey: .query)
-
             try? container.encodeIfPresent(params, forKey: .params)
+
+            try? container.encodeIfPresent(query, forKey: .query)
 
             try? container.encodeIfPresent(type, forKey: .type)
         }
