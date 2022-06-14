@@ -3,40 +3,42 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ItemQueryForUserCollection
+         Model: ArticleQuery
          Used By: Catalog
      */
 
-    class ItemQueryForUserCollection: Codable {
-        public var itemId: Int?
+    class ArticleQuery: Codable {
+        public var itemId: Int
 
-        public var action: String?
+        public var size: String
+
+        public var ignoredStores: [Int]?
 
         public enum CodingKeys: String, CodingKey {
             case itemId = "item_id"
 
-            case action
+            case size
+
+            case ignoredStores = "ignored_stores"
         }
 
-        public init(action: String? = nil, itemId: Int? = nil) {
+        public init(ignoredStores: [Int]? = nil, itemId: Int, size: String) {
             self.itemId = itemId
 
-            self.action = action
+            self.size = size
+
+            self.ignoredStores = ignoredStores
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
+            itemId = try container.decode(Int.self, forKey: .itemId)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            size = try container.decode(String.self, forKey: .size)
 
             do {
-                action = try container.decode(String.self, forKey: .action)
+                ignoredStores = try container.decode([Int].self, forKey: .ignoredStores)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +51,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(ignoredStores, forKey: .ignoredStores)
         }
     }
 }
