@@ -7,57 +7,57 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class PollingPaymentLinkResponse: Codable {
-        public var aggregatorName: String?
+        public var status: String?
 
         public var success: Bool?
 
-        public var redirectUrl: String?
+        public var httpStatus: Int?
 
         public var message: String?
 
-        public var status: String?
+        public var aggregatorName: String?
 
         public var statusCode: Int?
 
-        public var httpStatus: Int?
+        public var redirectUrl: String?
 
         public enum CodingKeys: String, CodingKey {
-            case aggregatorName = "aggregator_name"
+            case status
 
             case success
 
-            case redirectUrl = "redirect_url"
+            case httpStatus = "http_status"
 
             case message
 
-            case status
+            case aggregatorName = "aggregator_name"
 
             case statusCode = "status_code"
 
-            case httpStatus = "http_status"
+            case redirectUrl = "redirect_url"
         }
 
         public init(aggregatorName: String? = nil, httpStatus: Int? = nil, message: String? = nil, redirectUrl: String? = nil, status: String? = nil, statusCode: Int? = nil, success: Bool? = nil) {
-            self.aggregatorName = aggregatorName
+            self.status = status
 
             self.success = success
 
-            self.redirectUrl = redirectUrl
+            self.httpStatus = httpStatus
 
             self.message = message
 
-            self.status = status
+            self.aggregatorName = aggregatorName
 
             self.statusCode = statusCode
 
-            self.httpStatus = httpStatus
+            self.redirectUrl = redirectUrl
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,7 +73,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
+                httpStatus = try container.decode(Int.self, forKey: .httpStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                httpStatus = try container.decode(Int.self, forKey: .httpStatus)
+                redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,19 +116,19 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(aggregatorName, forKey: .aggregatorName)
+            try? container.encode(status, forKey: .status)
 
             try? container.encode(success, forKey: .success)
 
-            try? container.encode(redirectUrl, forKey: .redirectUrl)
+            try? container.encode(httpStatus, forKey: .httpStatus)
 
             try? container.encode(message, forKey: .message)
 
-            try? container.encode(status, forKey: .status)
+            try? container.encode(aggregatorName, forKey: .aggregatorName)
 
             try? container.encode(statusCode, forKey: .statusCode)
 
-            try? container.encode(httpStatus, forKey: .httpStatus)
+            try? container.encode(redirectUrl, forKey: .redirectUrl)
         }
     }
 }
