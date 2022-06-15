@@ -8,91 +8,75 @@ public extension PlatformClient {
      */
 
     class CollectionQuery: Codable {
-        public var price: CollectionPrice?
-
-        public var discount: CollectionPrice?
-
-        public var departments: [String]?
+        public var genders: [String]?
 
         public var sortOn: String?
 
         public var imageNature: [String]?
 
-        public var categories: [Int]?
+        public var discount: CollectionPrice?
 
-        public var brands: [Int]?
-
-        public var genders: [String]?
-
-        public var storeIds: [Int]?
+        public var departments: [String]?
 
         public var sizes: [String]?
 
+        public var storeIds: [Int]?
+
+        public var price: CollectionPrice?
+
+        public var brands: [Int]?
+
+        public var categories: [Int]?
+
         public enum CodingKeys: String, CodingKey {
-            case price
-
-            case discount
-
-            case departments
+            case genders
 
             case sortOn = "sort_on"
 
             case imageNature = "image_nature"
 
-            case categories
+            case discount
 
-            case brands
+            case departments
 
-            case genders
+            case sizes
 
             case storeIds = "store_ids"
 
-            case sizes
+            case price
+
+            case brands
+
+            case categories
         }
 
         public init(brands: [Int]? = nil, categories: [Int]? = nil, departments: [String]? = nil, discount: CollectionPrice? = nil, genders: [String]? = nil, imageNature: [String]? = nil, price: CollectionPrice? = nil, sizes: [String]? = nil, sortOn: String? = nil, storeIds: [Int]? = nil) {
-            self.price = price
-
-            self.discount = discount
-
-            self.departments = departments
+            self.genders = genders
 
             self.sortOn = sortOn
 
             self.imageNature = imageNature
 
-            self.categories = categories
+            self.discount = discount
 
-            self.brands = brands
+            self.departments = departments
 
-            self.genders = genders
+            self.sizes = sizes
 
             self.storeIds = storeIds
 
-            self.sizes = sizes
+            self.price = price
+
+            self.brands = brands
+
+            self.categories = categories
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                price = try container.decode(CollectionPrice.self, forKey: .price)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                discount = try container.decode(CollectionPrice.self, forKey: .discount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                departments = try container.decode([String].self, forKey: .departments)
+                genders = try container.decode([String].self, forKey: .genders)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +100,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                categories = try container.decode([Int].self, forKey: .categories)
+                discount = try container.decode(CollectionPrice.self, forKey: .discount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,7 +108,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                brands = try container.decode([Int].self, forKey: .brands)
+                departments = try container.decode([String].self, forKey: .departments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,7 +116,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                genders = try container.decode([String].self, forKey: .genders)
+                sizes = try container.decode([String].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,7 +132,23 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                sizes = try container.decode([String].self, forKey: .sizes)
+                price = try container.decode(CollectionPrice.self, forKey: .price)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brands = try container.decode([Int].self, forKey: .brands)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                categories = try container.decode([Int].self, forKey: .categories)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,25 +159,25 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(price, forKey: .price)
-
-            try? container.encodeIfPresent(discount, forKey: .discount)
-
-            try? container.encodeIfPresent(departments, forKey: .departments)
+            try? container.encodeIfPresent(genders, forKey: .genders)
 
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
 
             try? container.encodeIfPresent(imageNature, forKey: .imageNature)
 
-            try? container.encodeIfPresent(categories, forKey: .categories)
+            try? container.encodeIfPresent(discount, forKey: .discount)
 
-            try? container.encodeIfPresent(brands, forKey: .brands)
+            try? container.encodeIfPresent(departments, forKey: .departments)
 
-            try? container.encodeIfPresent(genders, forKey: .genders)
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
 
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
+            try? container.encodeIfPresent(price, forKey: .price)
+
+            try? container.encodeIfPresent(brands, forKey: .brands)
+
+            try? container.encodeIfPresent(categories, forKey: .categories)
         }
     }
 }
