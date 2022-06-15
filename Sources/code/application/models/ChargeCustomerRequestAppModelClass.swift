@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var orderId: String
 
-        public var transactionToken: String?
+        public var verified: Bool?
 
         public var amount: Int
 
-        public var verified: Bool?
+        public var transactionToken: String?
 
         public enum CodingKeys: String, CodingKey {
             case aggregator
 
             case orderId = "order_id"
 
-            case transactionToken = "transaction_token"
+            case verified
 
             case amount
 
-            case verified
+            case transactionToken = "transaction_token"
         }
 
         public init(aggregator: String, amount: Int, orderId: String, transactionToken: String? = nil, verified: Bool? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.orderId = orderId
 
-            self.transactionToken = transactionToken
+            self.verified = verified
 
             self.amount = amount
 
-            self.verified = verified
+            self.transactionToken = transactionToken
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             orderId = try container.decode(String.self, forKey: .orderId)
 
             do {
-                transactionToken = try container.decode(String.self, forKey: .transactionToken)
+                verified = try container.decode(Bool.self, forKey: .verified)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -59,7 +59,7 @@ public extension ApplicationClient {
             amount = try container.decode(Int.self, forKey: .amount)
 
             do {
-                verified = try container.decode(Bool.self, forKey: .verified)
+                transactionToken = try container.decode(String.self, forKey: .transactionToken)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,11 +74,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encode(transactionToken, forKey: .transactionToken)
+            try? container.encode(verified, forKey: .verified)
 
             try? container.encode(amount, forKey: .amount)
 
-            try? container.encode(verified, forKey: .verified)
+            try? container.encode(transactionToken, forKey: .transactionToken)
         }
     }
 }
