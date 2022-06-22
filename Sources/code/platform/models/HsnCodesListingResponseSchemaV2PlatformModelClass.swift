@@ -3,32 +3,32 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: CategoryCreateResponse
+         Model: HsnCodesListingResponseSchemaV2
          Used By: Catalog
      */
 
-    class CategoryCreateResponse: Codable {
-        public var uid: Int?
+    class HsnCodesListingResponseSchemaV2: Codable {
+        public var page: PageResponse?
 
-        public var message: String?
+        public var items: [HSNDataInsertV2]?
 
         public enum CodingKeys: String, CodingKey {
-            case uid
+            case page
 
-            case message
+            case items
         }
 
-        public init(message: String? = nil, uid: Int? = nil) {
-            self.uid = uid
+        public init(items: [HSNDataInsertV2]? = nil, page: PageResponse? = nil) {
+            self.page = page
 
-            self.message = message
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                page = try container.decode(PageResponse.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                items = try container.decode([HSNDataInsertV2].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }
