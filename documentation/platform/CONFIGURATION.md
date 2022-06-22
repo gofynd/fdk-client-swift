@@ -41,7 +41,6 @@ Application configuration apis
 * [getIntegrationById](#getintegrationbyid)
 * [getAvailableOptIns](#getavailableoptins)
 * [getSelectedOptIns](#getselectedoptins)
-* [getIntegrationLevelConfig](#getintegrationlevelconfig)
 * [getIntegrationByLevelId](#getintegrationbylevelid)
 * [updateLevelUidIntegration](#updateleveluidintegration)
 * [getLevelActiveIntegrations](#getlevelactiveintegrations)
@@ -3800,85 +3799,6 @@ Success
     "item_total": 24,
     "has_next": false
   }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getIntegrationLevelConfig
-Get integration level config
-
-
-
-
-```swift
-client.configuration.getIntegrationLevelConfig(id: id, level: level, opted: opted, checkPermission: checkPermission) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| id | String | yes | Integration id |   
-| level | String | yes | Integration level |   
-| opted | Bool? | no | Filter on opted stores |   
-| checkPermission | Bool? | no | Filter on if permissions are present |  
-
-
-
-Get integration/integration-opt-in level config
-
-*Returned Response:*
-
-
-
-
-[IntegrationConfigResponse](#IntegrationConfigResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "opted": false,
-      "permissions": [],
-      "last_patch": [],
-      "_id": "5ec377f2848a0073feacb31b",
-      "integration": "5ec376ce848a005189acb312",
-      "level": "store",
-      "uid": 1,
-      "meta": [],
-      "token": "1RuGX0Fyp",
-      "created_at": "2020-05-19T06:08:50.199Z",
-      "modified_at": "2020-08-17T07:54:01.809Z",
-      "__v": 14,
-      "data": {
-        "location_id": "09876",
-        "ip_address": "1.2.3.4"
-      }
-    }
-  ]
 }
 ```
 </details>
