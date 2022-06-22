@@ -1187,16 +1187,23 @@ public extension ApplicationClient {
          * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
          **/
         public func checkoutCart(
+            buyNow: Bool?,
             body: CartCheckoutDetailRequest,
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+
             let fullUrl = relativeUrls["checkoutCart"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders: [],
                 body: body.dictionary,
                 responseType: "application/json",
