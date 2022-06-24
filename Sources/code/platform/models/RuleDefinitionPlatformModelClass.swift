@@ -8,34 +8,34 @@ public extension PlatformClient {
      */
 
     class RuleDefinition: Codable {
-        public var calculateOn: String
-
         public var scope: [String]?
-
-        public var applicableOn: String
 
         public var currencyCode: String?
 
-        public var autoApply: Bool?
-
         public var valueType: String
+
+        public var calculateOn: String
+
+        public var applicableOn: String
+
+        public var autoApply: Bool?
 
         public var type: String
 
         public var isExact: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case calculateOn = "calculate_on"
-
             case scope
-
-            case applicableOn = "applicable_on"
 
             case currencyCode = "currency_code"
 
-            case autoApply = "auto_apply"
-
             case valueType = "value_type"
+
+            case calculateOn = "calculate_on"
+
+            case applicableOn = "applicable_on"
+
+            case autoApply = "auto_apply"
 
             case type
 
@@ -43,17 +43,17 @@ public extension PlatformClient {
         }
 
         public init(applicableOn: String, autoApply: Bool? = nil, calculateOn: String, currencyCode: String? = nil, isExact: Bool? = nil, scope: [String]? = nil, type: String, valueType: String) {
-            self.calculateOn = calculateOn
-
             self.scope = scope
-
-            self.applicableOn = applicableOn
 
             self.currencyCode = currencyCode
 
-            self.autoApply = autoApply
-
             self.valueType = valueType
+
+            self.calculateOn = calculateOn
+
+            self.applicableOn = applicableOn
+
+            self.autoApply = autoApply
 
             self.type = type
 
@@ -63,8 +63,6 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            calculateOn = try container.decode(String.self, forKey: .calculateOn)
-
             do {
                 scope = try container.decode([String].self, forKey: .scope)
 
@@ -72,8 +70,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            applicableOn = try container.decode(String.self, forKey: .applicableOn)
 
             do {
                 currencyCode = try container.decode(String.self, forKey: .currencyCode)
@@ -83,6 +79,12 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            valueType = try container.decode(String.self, forKey: .valueType)
+
+            calculateOn = try container.decode(String.self, forKey: .calculateOn)
+
+            applicableOn = try container.decode(String.self, forKey: .applicableOn)
+
             do {
                 autoApply = try container.decode(Bool.self, forKey: .autoApply)
 
@@ -90,8 +92,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            valueType = try container.decode(String.self, forKey: .valueType)
 
             type = try container.decode(String.self, forKey: .type)
 
@@ -107,17 +107,17 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(calculateOn, forKey: .calculateOn)
-
             try? container.encodeIfPresent(scope, forKey: .scope)
-
-            try? container.encodeIfPresent(applicableOn, forKey: .applicableOn)
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
-            try? container.encodeIfPresent(autoApply, forKey: .autoApply)
-
             try? container.encodeIfPresent(valueType, forKey: .valueType)
+
+            try? container.encodeIfPresent(calculateOn, forKey: .calculateOn)
+
+            try? container.encodeIfPresent(applicableOn, forKey: .applicableOn)
+
+            try? container.encodeIfPresent(autoApply, forKey: .autoApply)
 
             try? container.encodeIfPresent(type, forKey: .type)
 

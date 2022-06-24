@@ -12,26 +12,26 @@ public extension PlatformClient {
 
         public var priceMarked: Double
 
-        public var sellerIdentifier: String
-
         public var expirationDate: String?
 
         public var totalQuantity: Int
 
         public var priceEffective: Double
 
+        public var sellerIdentifier: String
+
         public enum CodingKeys: String, CodingKey {
             case storeId = "store_id"
 
             case priceMarked = "price_marked"
-
-            case sellerIdentifier = "seller_identifier"
 
             case expirationDate = "expiration_date"
 
             case totalQuantity = "total_quantity"
 
             case priceEffective = "price_effective"
+
+            case sellerIdentifier = "seller_identifier"
         }
 
         public init(expirationDate: String? = nil, priceEffective: Double, priceMarked: Double, sellerIdentifier: String, storeId: Int, totalQuantity: Int) {
@@ -39,13 +39,13 @@ public extension PlatformClient {
 
             self.priceMarked = priceMarked
 
-            self.sellerIdentifier = sellerIdentifier
-
             self.expirationDate = expirationDate
 
             self.totalQuantity = totalQuantity
 
             self.priceEffective = priceEffective
+
+            self.sellerIdentifier = sellerIdentifier
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,8 +54,6 @@ public extension PlatformClient {
             storeId = try container.decode(Int.self, forKey: .storeId)
 
             priceMarked = try container.decode(Double.self, forKey: .priceMarked)
-
-            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
 
             do {
                 expirationDate = try container.decode(String.self, forKey: .expirationDate)
@@ -68,6 +66,8 @@ public extension PlatformClient {
             totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
 
             priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+
+            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -77,13 +77,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
 
-            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
-
             try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
 
             try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
 
             try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
         }
     }
 }

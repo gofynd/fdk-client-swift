@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var subtitle: String?
 
-        public var isActive: Bool
+        public var title: String?
 
         public var logo: String?
 
-        public var title: String?
+        public var isActive: Bool
 
         public var priority: Int
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case subtitle
 
-            case isActive = "is_active"
+            case title
 
             case logo
 
-            case title
+            case isActive = "is_active"
 
             case priority
 
@@ -43,11 +43,11 @@ public extension PlatformClient {
 
             self.subtitle = subtitle
 
-            self.isActive = isActive
+            self.title = title
 
             self.logo = logo
 
-            self.title = title
+            self.isActive = isActive
 
             self.priority = priority
 
@@ -73,7 +73,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
+            do {
+                title = try container.decode(String.self, forKey: .title)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -83,13 +89,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                title = try container.decode(String.self, forKey: .title)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             priority = try container.decode(Int.self, forKey: .priority)
 
@@ -103,11 +103,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
