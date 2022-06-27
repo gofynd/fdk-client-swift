@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var sortOn: [ProductSortOn]?
 
+        public var operators: [String: Any]?
+
         public var filters: [ProductFilters]?
 
         public var items: [ProductListingDetail]?
-
-        public var operators: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case page
 
             case sortOn = "sort_on"
 
+            case operators
+
             case filters
 
             case items
-
-            case operators
         }
 
         public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, operators: [String: Any]? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.sortOn = sortOn
 
+            self.operators = operators
+
             self.filters = filters
 
             self.items = items
-
-            self.operators = operators
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,6 +49,14 @@ public extension PlatformClient {
 
             do {
                 sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                operators = try container.decode([String: Any].self, forKey: .operators)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,14 +78,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                operators = try container.decode([String: Any].self, forKey: .operators)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -87,11 +87,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
 
+            try? container.encodeIfPresent(operators, forKey: .operators)
+
             try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encodeIfPresent(operators, forKey: .operators)
         }
     }
 }

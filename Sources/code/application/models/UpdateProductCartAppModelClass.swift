@@ -7,6 +7,10 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class UpdateProductCart: Codable {
+        public var identifiers: CartProductIdentifer
+
+        public var extraMeta: [String: Any]?
+
         public var parentItemIdentifiers: [String: Any]?
 
         public var itemSize: String?
@@ -15,15 +19,15 @@ public extension ApplicationClient {
 
         public var articleId: String?
 
-        public var extraMeta: [String: Any]?
+        public var itemIndex: Int?
 
         public var itemId: Int?
 
-        public var identifiers: CartProductIdentifer
-
-        public var itemIndex: Int?
-
         public enum CodingKeys: String, CodingKey {
+            case identifiers
+
+            case extraMeta = "extra_meta"
+
             case parentItemIdentifiers = "parent_item_identifiers"
 
             case itemSize = "item_size"
@@ -32,16 +36,16 @@ public extension ApplicationClient {
 
             case articleId = "article_id"
 
-            case extraMeta = "extra_meta"
+            case itemIndex = "item_index"
 
             case itemId = "item_id"
-
-            case identifiers
-
-            case itemIndex = "item_index"
         }
 
         public init(articleId: String? = nil, extraMeta: [String: Any]? = nil, identifiers: CartProductIdentifer, itemId: Int? = nil, itemIndex: Int? = nil, itemSize: String? = nil, parentItemIdentifiers: [String: Any]? = nil, quantity: Int? = nil) {
+            self.identifiers = identifiers
+
+            self.extraMeta = extraMeta
+
             self.parentItemIdentifiers = parentItemIdentifiers
 
             self.itemSize = itemSize
@@ -50,17 +54,23 @@ public extension ApplicationClient {
 
             self.articleId = articleId
 
-            self.extraMeta = extraMeta
+            self.itemIndex = itemIndex
 
             self.itemId = itemId
-
-            self.identifiers = identifiers
-
-            self.itemIndex = itemIndex
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            identifiers = try container.decode(CartProductIdentifer.self, forKey: .identifiers)
+
+            do {
+                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 parentItemIdentifiers = try container.decode([String: Any].self, forKey: .parentItemIdentifiers)
@@ -95,7 +105,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
+                itemIndex = try container.decode(Int.self, forKey: .itemIndex)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,20 +119,14 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            identifiers = try container.decode(CartProductIdentifer.self, forKey: .identifiers)
-
-            do {
-                itemIndex = try container.decode(Int.self, forKey: .itemIndex)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+
+            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
 
             try? container.encode(parentItemIdentifiers, forKey: .parentItemIdentifiers)
 
@@ -132,13 +136,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(articleId, forKey: .articleId)
 
-            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
+            try? container.encodeIfPresent(itemIndex, forKey: .itemIndex)
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
-
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
-
-            try? container.encodeIfPresent(itemIndex, forKey: .itemIndex)
         }
     }
 }

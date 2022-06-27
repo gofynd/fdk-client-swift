@@ -29,6 +29,7 @@ Handles communication between Administrator <-> Staff and Staff <-> Users
 * [getVideoParticipants](#getvideoparticipants)
 * [openVideoRoom](#openvideoroom)
 * [closeVideoRoom](#closevideoroom)
+* [getGeneralConfig](#getgeneralconfig)
 
 
 
@@ -3851,6 +3852,66 @@ Success
 ---
 
 
+#### getGeneralConfig
+Get general support configuration.
+
+
+
+
+```swift
+client.lead.getGeneralConfig() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Get general support configuration.
+
+*Returned Response:*
+
+
+
+
+[CloseVideoRoomResponse](#CloseVideoRoomResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -4370,6 +4431,35 @@ Success
  | createdOn | [CreatedOn](#CreatedOn)? |  yes  | Gives details of when the form was created |
  | pollForAssignment | [PollForAssignment](#PollForAssignment)? |  yes  | Details of how polling should be done for support |
  | id | String |  no  | Unique identifier for the form |
+
+---
+
+
+ 
+ 
+ #### [CommunicationDetails](#CommunicationDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | String? |  yes  | Value for the communication method |
+ | description | String? |  yes  | Short description for the communication method |
+ | enabled | Bool? |  yes  | Denotes if this communication method has to be shown |
+
+---
+
+
+ 
+ 
+ #### [SupportGeneralConfig](#SupportGeneralConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | supportEmail | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support e-mail details |
+ | supportPhone | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support Phone number details |
+ | supportFaq | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support FAQ details |
+ | showCommunicationInfo | Bool? |  yes  | Denotes if support communication info should be shown |
+ | showSupportDris | Bool? |  yes  | Denotes if support DRIS info should be shown |
+ | integration | [String: Any]? |  yes  | Contains integrations basic information |
 
 ---
 
