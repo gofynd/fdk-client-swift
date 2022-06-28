@@ -7,51 +7,51 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class ProductPrice: Codable {
-        public var currencyCode: String?
-
         public var marked: Double?
+
+        public var currencySymbol: String?
 
         public var effective: Double?
 
         public var addOn: Double?
 
-        public var currencySymbol: String?
-
         public var selling: Double?
 
-        public enum CodingKeys: String, CodingKey {
-            case currencyCode = "currency_code"
+        public var currencyCode: String?
 
+        public enum CodingKeys: String, CodingKey {
             case marked
+
+            case currencySymbol = "currency_symbol"
 
             case effective
 
             case addOn = "add_on"
 
-            case currencySymbol = "currency_symbol"
-
             case selling
+
+            case currencyCode = "currency_code"
         }
 
         public init(addOn: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Double? = nil, marked: Double? = nil, selling: Double? = nil) {
-            self.currencyCode = currencyCode
-
             self.marked = marked
+
+            self.currencySymbol = currencySymbol
 
             self.effective = effective
 
             self.addOn = addOn
 
-            self.currencySymbol = currencySymbol
-
             self.selling = selling
+
+            self.currencyCode = currencyCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                marked = try container.decode(Double.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -59,7 +59,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                marked = try container.decode(Double.self, forKey: .marked)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+                selling = try container.decode(Double.self, forKey: .selling)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                selling = try container.decode(Double.self, forKey: .selling)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,17 +102,17 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-
             try? container.encodeIfPresent(marked, forKey: .marked)
+
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(addOn, forKey: .addOn)
 
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
-
             try? container.encodeIfPresent(selling, forKey: .selling)
+
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
         }
     }
 }

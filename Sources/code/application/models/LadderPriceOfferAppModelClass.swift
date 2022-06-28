@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var offerText: String?
 
-        public var promotionGroup: String?
-
         public var validTill: String?
+
+        public var promotionGroup: String?
 
         public var offerPrices: [LadderOfferItem]?
 
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case offerText = "offer_text"
 
-            case promotionGroup = "promotion_group"
-
             case validTill = "valid_till"
+
+            case promotionGroup = "promotion_group"
 
             case offerPrices = "offer_prices"
 
@@ -38,9 +38,9 @@ public extension ApplicationClient {
 
             self.offerText = offerText
 
-            self.promotionGroup = promotionGroup
-
             self.validTill = validTill
+
+            self.promotionGroup = promotionGroup
 
             self.offerPrices = offerPrices
 
@@ -67,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
+                validTill = try container.decode(String.self, forKey: .validTill)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                validTill = try container.decode(String.self, forKey: .validTill)
+                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,9 +106,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 
-            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
-
             try? container.encodeIfPresent(validTill, forKey: .validTill)
+
+            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
 
             try? container.encodeIfPresent(offerPrices, forKey: .offerPrices)
 

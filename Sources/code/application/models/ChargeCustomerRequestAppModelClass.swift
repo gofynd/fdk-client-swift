@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var verified: Bool?
 
-        public var aggregator: String
-
         public var transactionToken: String?
+
+        public var aggregator: String
 
         public enum CodingKeys: String, CodingKey {
             case amount
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case verified
 
-            case aggregator
-
             case transactionToken = "transaction_token"
+
+            case aggregator
         }
 
         public init(aggregator: String, amount: Int, orderId: String, transactionToken: String? = nil, verified: Bool? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient {
 
             self.verified = verified
 
-            self.aggregator = aggregator
-
             self.transactionToken = transactionToken
+
+            self.aggregator = aggregator
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,8 +56,6 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
             do {
                 transactionToken = try container.decode(String.self, forKey: .transactionToken)
 
@@ -65,6 +63,8 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            aggregator = try container.decode(String.self, forKey: .aggregator)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encode(verified, forKey: .verified)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
             try? container.encode(transactionToken, forKey: .transactionToken)
+
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
         }
     }
 }

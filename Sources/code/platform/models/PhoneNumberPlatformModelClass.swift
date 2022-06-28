@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: PhoneNumber
-         Used By: Lead
+         Used By: User
      */
 
     class PhoneNumber: Codable {

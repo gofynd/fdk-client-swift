@@ -10,11 +10,11 @@ public extension PlatformClient {
     class Restrictions1: Codable {
         public var userId: [String]?
 
-        public var uses: UsesRestriction1
+        public var anonymousUsers: Bool?
 
         public var platforms: [String]?
 
-        public var anonymousUsers: Bool?
+        public var uses: UsesRestriction1
 
         public var userGroups: [Int]?
 
@@ -22,18 +22,18 @@ public extension PlatformClient {
 
         public var userRegistered: UserRegistered?
 
-        public var postOrder: PostOrder1?
-
         public var orderQuantity: Int?
+
+        public var postOrder: PostOrder1?
 
         public enum CodingKeys: String, CodingKey {
             case userId = "user_id"
 
-            case uses
+            case anonymousUsers = "anonymous_users"
 
             case platforms
 
-            case anonymousUsers = "anonymous_users"
+            case uses
 
             case userGroups = "user_groups"
 
@@ -41,19 +41,19 @@ public extension PlatformClient {
 
             case userRegistered = "user_registered"
 
-            case postOrder = "post_order"
-
             case orderQuantity = "order_quantity"
+
+            case postOrder = "post_order"
         }
 
         public init(anonymousUsers: Bool? = nil, orderQuantity: Int? = nil, payments: [PromotionPaymentModes]? = nil, platforms: [String]? = nil, postOrder: PostOrder1? = nil, userGroups: [Int]? = nil, userId: [String]? = nil, userRegistered: UserRegistered? = nil, uses: UsesRestriction1) {
             self.userId = userId
 
-            self.uses = uses
+            self.anonymousUsers = anonymousUsers
 
             self.platforms = platforms
 
-            self.anonymousUsers = anonymousUsers
+            self.uses = uses
 
             self.userGroups = userGroups
 
@@ -61,9 +61,9 @@ public extension PlatformClient {
 
             self.userRegistered = userRegistered
 
-            self.postOrder = postOrder
-
             self.orderQuantity = orderQuantity
+
+            self.postOrder = postOrder
         }
 
         required public init(from decoder: Decoder) throws {
@@ -77,7 +77,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            uses = try container.decode(UsesRestriction1.self, forKey: .uses)
+            do {
+                anonymousUsers = try container.decode(Bool.self, forKey: .anonymousUsers)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 platforms = try container.decode([String].self, forKey: .platforms)
@@ -87,13 +93,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                anonymousUsers = try container.decode(Bool.self, forKey: .anonymousUsers)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            uses = try container.decode(UsesRestriction1.self, forKey: .uses)
 
             do {
                 userGroups = try container.decode([Int].self, forKey: .userGroups)
@@ -120,7 +120,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                postOrder = try container.decode(PostOrder1.self, forKey: .postOrder)
+                orderQuantity = try container.decode(Int.self, forKey: .orderQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -128,7 +128,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                orderQuantity = try container.decode(Int.self, forKey: .orderQuantity)
+                postOrder = try container.decode(PostOrder1.self, forKey: .postOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,11 +141,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(uses, forKey: .uses)
+            try? container.encodeIfPresent(anonymousUsers, forKey: .anonymousUsers)
 
             try? container.encodeIfPresent(platforms, forKey: .platforms)
 
-            try? container.encodeIfPresent(anonymousUsers, forKey: .anonymousUsers)
+            try? container.encodeIfPresent(uses, forKey: .uses)
 
             try? container.encodeIfPresent(userGroups, forKey: .userGroups)
 
@@ -153,9 +153,9 @@ public extension PlatformClient {
 
             try? container.encode(userRegistered, forKey: .userRegistered)
 
-            try? container.encodeIfPresent(postOrder, forKey: .postOrder)
-
             try? container.encodeIfPresent(orderQuantity, forKey: .orderQuantity)
+
+            try? container.encodeIfPresent(postOrder, forKey: .postOrder)
         }
     }
 }

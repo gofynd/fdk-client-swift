@@ -3,32 +3,32 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: InventoryDelete
+         Model: InventorySellerIdentifierResponsePaginated
          Used By: Catalog
      */
 
-    class InventoryDelete: Codable {
-        public var success: Bool?
+    class InventorySellerIdentifierResponsePaginated: Codable {
+        public var page: Page?
 
-        public var data: InventoryDeleteData?
+        public var items: [InventorySellerResponse]?
 
         public enum CodingKeys: String, CodingKey {
-            case success
+            case page
 
-            case data
+            case items
         }
 
-        public init(data: InventoryDeleteData? = nil, success: Bool? = nil) {
-            self.success = success
+        public init(items: [InventorySellerResponse]? = nil, page: Page? = nil) {
+            self.page = page
 
-            self.data = data
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                data = try container.decode(InventoryDeleteData.self, forKey: .data)
+                items = try container.decode([InventorySellerResponse].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

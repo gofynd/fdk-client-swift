@@ -3217,6 +3217,12 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | verifyMobileOtp | Bool? |  yes  |  |
  | email | String? |  yes  |  |
  | requestId | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
+ | mobile | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
+ | resendTimer | Int? |  yes  |  |
+ | resendToken | String? |  yes  |  |
 
 ---
 
