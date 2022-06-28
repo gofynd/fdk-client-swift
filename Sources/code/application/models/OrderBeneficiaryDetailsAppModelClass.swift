@@ -7,120 +7,120 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class OrderBeneficiaryDetails: Codable {
-        public var id: Int
+        public var transferMode: String
 
         public var address: String
 
-        public var modifiedOn: String
-
-        public var transferMode: String
-
-        public var bankName: String
-
-        public var beneficiaryId: String
-
-        public var delightsUserName: String?
-
-        public var subtitle: String
-
-        public var branchName: Bool?
-
-        public var accountHolder: String
-
         public var mobile: Bool?
 
-        public var displayName: String
+        public var id: Int
 
         public var comment: Bool?
 
-        public var title: String
-
         public var ifscCode: String
 
-        public var isActive: Bool
+        public var beneficiaryId: String
+
+        public var title: String
+
+        public var bankName: String
+
+        public var subtitle: String
+
+        public var modifiedOn: String
+
+        public var createdOn: String
+
+        public var displayName: String
 
         public var accountNo: String
 
-        public var createdOn: String
+        public var isActive: Bool
+
+        public var branchName: Bool?
+
+        public var delightsUserName: String?
+
+        public var accountHolder: String
 
         public var email: String
 
         public enum CodingKeys: String, CodingKey {
-            case id
+            case transferMode = "transfer_mode"
 
             case address
 
-            case modifiedOn = "modified_on"
-
-            case transferMode = "transfer_mode"
-
-            case bankName = "bank_name"
-
-            case beneficiaryId = "beneficiary_id"
-
-            case delightsUserName = "delights_user_name"
-
-            case subtitle
-
-            case branchName = "branch_name"
-
-            case accountHolder = "account_holder"
-
             case mobile
 
-            case displayName = "display_name"
+            case id
 
             case comment
 
-            case title
-
             case ifscCode = "ifsc_code"
 
-            case isActive = "is_active"
+            case beneficiaryId = "beneficiary_id"
+
+            case title
+
+            case bankName = "bank_name"
+
+            case subtitle
+
+            case modifiedOn = "modified_on"
+
+            case createdOn = "created_on"
+
+            case displayName = "display_name"
 
             case accountNo = "account_no"
 
-            case createdOn = "created_on"
+            case isActive = "is_active"
+
+            case branchName = "branch_name"
+
+            case delightsUserName = "delights_user_name"
+
+            case accountHolder = "account_holder"
 
             case email
         }
 
         public init(accountHolder: String, accountNo: String, address: String, bankName: String, beneficiaryId: String, branchName: Bool? = nil, comment: Bool? = nil, createdOn: String, delightsUserName: String? = nil, displayName: String, email: String, id: Int, ifscCode: String, isActive: Bool, mobile: Bool? = nil, modifiedOn: String, subtitle: String, title: String, transferMode: String) {
-            self.id = id
+            self.transferMode = transferMode
 
             self.address = address
 
-            self.modifiedOn = modifiedOn
-
-            self.transferMode = transferMode
-
-            self.bankName = bankName
-
-            self.beneficiaryId = beneficiaryId
-
-            self.delightsUserName = delightsUserName
-
-            self.subtitle = subtitle
-
-            self.branchName = branchName
-
-            self.accountHolder = accountHolder
-
             self.mobile = mobile
 
-            self.displayName = displayName
+            self.id = id
 
             self.comment = comment
 
-            self.title = title
-
             self.ifscCode = ifscCode
 
-            self.isActive = isActive
+            self.beneficiaryId = beneficiaryId
+
+            self.title = title
+
+            self.bankName = bankName
+
+            self.subtitle = subtitle
+
+            self.modifiedOn = modifiedOn
+
+            self.createdOn = createdOn
+
+            self.displayName = displayName
 
             self.accountNo = accountNo
 
-            self.createdOn = createdOn
+            self.isActive = isActive
+
+            self.branchName = branchName
+
+            self.delightsUserName = delightsUserName
+
+            self.accountHolder = accountHolder
 
             self.email = email
         }
@@ -128,37 +128,9 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            id = try container.decode(Int.self, forKey: .id)
-
-            address = try container.decode(String.self, forKey: .address)
-
-            modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-
             transferMode = try container.decode(String.self, forKey: .transferMode)
 
-            bankName = try container.decode(String.self, forKey: .bankName)
-
-            beneficiaryId = try container.decode(String.self, forKey: .beneficiaryId)
-
-            do {
-                delightsUserName = try container.decode(String.self, forKey: .delightsUserName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            subtitle = try container.decode(String.self, forKey: .subtitle)
-
-            do {
-                branchName = try container.decode(Bool.self, forKey: .branchName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            accountHolder = try container.decode(String.self, forKey: .accountHolder)
+            address = try container.decode(String.self, forKey: .address)
 
             do {
                 mobile = try container.decode(Bool.self, forKey: .mobile)
@@ -168,7 +140,7 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            displayName = try container.decode(String.self, forKey: .displayName)
+            id = try container.decode(Int.self, forKey: .id)
 
             do {
                 comment = try container.decode(Bool.self, forKey: .comment)
@@ -178,15 +150,43 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            title = try container.decode(String.self, forKey: .title)
-
             ifscCode = try container.decode(String.self, forKey: .ifscCode)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
+            beneficiaryId = try container.decode(String.self, forKey: .beneficiaryId)
+
+            title = try container.decode(String.self, forKey: .title)
+
+            bankName = try container.decode(String.self, forKey: .bankName)
+
+            subtitle = try container.decode(String.self, forKey: .subtitle)
+
+            modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+
+            createdOn = try container.decode(String.self, forKey: .createdOn)
+
+            displayName = try container.decode(String.self, forKey: .displayName)
 
             accountNo = try container.decode(String.self, forKey: .accountNo)
 
-            createdOn = try container.decode(String.self, forKey: .createdOn)
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            do {
+                branchName = try container.decode(Bool.self, forKey: .branchName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                delightsUserName = try container.decode(String.self, forKey: .delightsUserName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            accountHolder = try container.decode(String.self, forKey: .accountHolder)
 
             email = try container.decode(String.self, forKey: .email)
         }
@@ -194,41 +194,41 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(transferMode, forKey: .transferMode)
 
             try? container.encodeIfPresent(address, forKey: .address)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(transferMode, forKey: .transferMode)
-
-            try? container.encodeIfPresent(bankName, forKey: .bankName)
-
-            try? container.encodeIfPresent(beneficiaryId, forKey: .beneficiaryId)
-
-            try? container.encode(delightsUserName, forKey: .delightsUserName)
-
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
-
-            try? container.encodeIfPresent(branchName, forKey: .branchName)
-
-            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
-
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(comment, forKey: .comment)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(beneficiaryId, forKey: .beneficiaryId)
+
+            try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encodeIfPresent(bankName, forKey: .bankName)
+
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(accountNo, forKey: .accountNo)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(branchName, forKey: .branchName)
+
+            try? container.encode(delightsUserName, forKey: .delightsUserName)
+
+            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
 
             try? container.encodeIfPresent(email, forKey: .email)
         }

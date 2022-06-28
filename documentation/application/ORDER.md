@@ -1184,6 +1184,7 @@ Success, the code is valid and returns a SignedUrl
  | canReturn | Bool? |  yes  |  |
  | canBreak | [String: Any]? |  yes  |  |
  | showDownloadInvoice | Bool? |  yes  |  |
+ | showTrackLink | Bool? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | needHelpUrl | String? |  yes  |  |
  | shipmentId | String? |  yes  |  |

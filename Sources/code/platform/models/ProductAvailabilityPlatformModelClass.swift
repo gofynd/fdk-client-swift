@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var sizes: [String]?
 
-        public var isValid: Bool?
-
         public var otherStoreQuantity: Int?
+
+        public var isValid: Bool?
 
         public var deliverable: Bool?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case sizes
 
-            case isValid = "is_valid"
-
             case otherStoreQuantity = "other_store_quantity"
+
+            case isValid = "is_valid"
 
             case deliverable
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.sizes = sizes
 
-            self.isValid = isValid
-
             self.otherStoreQuantity = otherStoreQuantity
+
+            self.isValid = isValid
 
             self.deliverable = deliverable
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isValid = try container.decode(Bool.self, forKey: .isValid)
+                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
+                isValid = try container.decode(Bool.self, forKey: .isValid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
 
-            try? container.encodeIfPresent(isValid, forKey: .isValid)
-
             try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
+
+            try? container.encodeIfPresent(isValid, forKey: .isValid)
 
             try? container.encodeIfPresent(deliverable, forKey: .deliverable)
         }
