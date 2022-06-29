@@ -1,34 +1,34 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension PublicClient {
     /*
-         Model: HsnCodesListingResponseSchemaV2
-         Used By: Catalog
+         Model: SlingshotConfigurationDetail
+         Used By: Inventory
      */
 
-    class HsnCodesListingResponseSchemaV2: Codable {
-        public var items: [HSNDataInsertV2]?
+    class SlingshotConfigurationDetail: Codable {
+        public var integration: SlingshotIntegration?
 
-        public var page: PageResponse?
+        public var companies: [GCompany]?
 
         public enum CodingKeys: String, CodingKey {
-            case items
+            case integration
 
-            case page
+            case companies
         }
 
-        public init(items: [HSNDataInsertV2]? = nil, page: PageResponse? = nil) {
-            self.items = items
+        public init(companies: [GCompany]? = nil, integration: SlingshotIntegration? = nil) {
+            self.integration = integration
 
-            self.page = page
+            self.companies = companies
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([HSNDataInsertV2].self, forKey: .items)
+                integration = try container.decode(SlingshotIntegration.self, forKey: .integration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                page = try container.decode(PageResponse.self, forKey: .page)
+                companies = try container.decode([GCompany].self, forKey: .companies)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(integration, forKey: .integration)
 
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(companies, forKey: .companies)
         }
     }
 }

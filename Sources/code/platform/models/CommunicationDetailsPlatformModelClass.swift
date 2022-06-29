@@ -3,38 +3,38 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: CompanyTaxesSerializer1
-         Used By: CompanyProfile
+         Model: CommunicationDetails
+         Used By: Lead
      */
 
-    class CompanyTaxesSerializer1: Codable {
-        public var enable: Bool?
+    class CommunicationDetails: Codable {
+        public var value: String?
 
-        public var rate: Double?
+        public var description: String?
 
-        public var effectiveDate: String?
+        public var enabled: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case enable
+            case value
 
-            case rate
+            case description
 
-            case effectiveDate = "effective_date"
+            case enabled
         }
 
-        public init(effectiveDate: String? = nil, enable: Bool? = nil, rate: Double? = nil) {
-            self.enable = enable
+        public init(description: String? = nil, enabled: Bool? = nil, value: String? = nil) {
+            self.value = value
 
-            self.rate = rate
+            self.description = description
 
-            self.effectiveDate = effectiveDate
+            self.enabled = enabled
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                enable = try container.decode(Bool.self, forKey: .enable)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                rate = try container.decode(Double.self, forKey: .rate)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
+                enabled = try container.decode(Bool.self, forKey: .enabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,11 +61,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(enable, forKey: .enable)
+            try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(rate, forKey: .rate)
+            try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
         }
     }
 }

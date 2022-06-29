@@ -8,114 +8,142 @@ public extension PlatformClient {
      */
 
     class Category: Codable {
+        public var level: Int
+
+        public var gatedCategoryTypes: GatedCategoryTypes?
+
         public var slug: String?
 
-        public var departments: [Int]
+        public var hierarchy: [Hierarchy]?
+
+        public var isGatedCategory: Bool?
+
+        public var modifiedBy: [String: Any]?
+
+        public var tryouts: [String]?
 
         public var uid: Int?
 
-        public var modifiedOn: String?
+        public var priority: Int?
+
+        public var name: String
+
+        public var createdOn: String?
 
         public var createdBy: [String: Any]?
 
         public var isActive: Bool
 
-        public var media: Media2?
+        public var departments: [Int]
 
-        public var id: String?
-
-        public var name: String
-
-        public var hierarchy: [Hierarchy]?
-
-        public var level: Int
-
-        public var priority: Int?
+        public var modifiedOn: String?
 
         public var synonyms: [String]?
 
-        public var createdOn: String?
-
-        public var modifiedBy: [String: Any]?
+        public var media: Media2?
 
         public var marketplaces: CategoryMapping?
 
-        public var tryouts: [String]?
+        public var isGstExempt: Bool?
+
+        public var id: String?
 
         public enum CodingKeys: String, CodingKey {
+            case level
+
+            case gatedCategoryTypes = "gated_category_types"
+
             case slug
 
-            case departments
+            case hierarchy
+
+            case isGatedCategory = "is_gated_category"
+
+            case modifiedBy = "modified_by"
+
+            case tryouts
 
             case uid
 
-            case modifiedOn = "modified_on"
+            case priority
+
+            case name
+
+            case createdOn = "created_on"
 
             case createdBy = "created_by"
 
             case isActive = "is_active"
 
-            case media
+            case departments
 
-            case id = "_id"
-
-            case name
-
-            case hierarchy
-
-            case level
-
-            case priority
+            case modifiedOn = "modified_on"
 
             case synonyms
 
-            case createdOn = "created_on"
-
-            case modifiedBy = "modified_by"
+            case media
 
             case marketplaces
 
-            case tryouts
+            case isGstExempt = "is_gst_exempt"
+
+            case id = "_id"
         }
 
-        public init(createdBy: [String: Any]? = nil, createdOn: String? = nil, departments: [Int], hierarchy: [Hierarchy]? = nil, isActive: Bool, level: Int, marketplaces: CategoryMapping? = nil, media: Media2? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, priority: Int? = nil, slug: String? = nil, synonyms: [String]? = nil, tryouts: [String]? = nil, uid: Int? = nil, id: String? = nil) {
+        public init(createdBy: [String: Any]? = nil, createdOn: String? = nil, departments: [Int], gatedCategoryTypes: GatedCategoryTypes? = nil, hierarchy: [Hierarchy]? = nil, isActive: Bool, isGatedCategory: Bool? = nil, isGstExempt: Bool? = nil, level: Int, marketplaces: CategoryMapping? = nil, media: Media2? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, priority: Int? = nil, slug: String? = nil, synonyms: [String]? = nil, tryouts: [String]? = nil, uid: Int? = nil, id: String? = nil) {
+            self.level = level
+
+            self.gatedCategoryTypes = gatedCategoryTypes
+
             self.slug = slug
 
-            self.departments = departments
+            self.hierarchy = hierarchy
+
+            self.isGatedCategory = isGatedCategory
+
+            self.modifiedBy = modifiedBy
+
+            self.tryouts = tryouts
 
             self.uid = uid
 
-            self.modifiedOn = modifiedOn
+            self.priority = priority
+
+            self.name = name
+
+            self.createdOn = createdOn
 
             self.createdBy = createdBy
 
             self.isActive = isActive
 
-            self.media = media
+            self.departments = departments
 
-            self.id = id
-
-            self.name = name
-
-            self.hierarchy = hierarchy
-
-            self.level = level
-
-            self.priority = priority
+            self.modifiedOn = modifiedOn
 
             self.synonyms = synonyms
 
-            self.createdOn = createdOn
-
-            self.modifiedBy = modifiedBy
+            self.media = media
 
             self.marketplaces = marketplaces
 
-            self.tryouts = tryouts
+            self.isGstExempt = isGstExempt
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            level = try container.decode(Int.self, forKey: .level)
+
+            do {
+                gatedCategoryTypes = try container.decode(GatedCategoryTypes.self, forKey: .gatedCategoryTypes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 slug = try container.decode(String.self, forKey: .slug)
@@ -125,7 +153,37 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            departments = try container.decode([Int].self, forKey: .departments)
+            do {
+                hierarchy = try container.decode([Hierarchy].self, forKey: .hierarchy)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isGatedCategory = try container.decode(Bool.self, forKey: .isGatedCategory)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                tryouts = try container.decode([String].self, forKey: .tryouts)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
@@ -136,7 +194,17 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                priority = try container.decode(Int.self, forKey: .priority)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
+
+            do {
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,36 +221,10 @@ public extension PlatformClient {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            do {
-                media = try container.decode(Media2.self, forKey: .media)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            departments = try container.decode([Int].self, forKey: .departments)
 
             do {
-                id = try container.decode(String.self, forKey: .id)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            name = try container.decode(String.self, forKey: .name)
-
-            do {
-                hierarchy = try container.decode([Hierarchy].self, forKey: .hierarchy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            level = try container.decode(Int.self, forKey: .level)
-
-            do {
-                priority = try container.decode(Int.self, forKey: .priority)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -198,15 +240,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
+                media = try container.decode(Media2.self, forKey: .media)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -222,7 +256,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                tryouts = try container.decode([String].self, forKey: .tryouts)
+                isGstExempt = try container.decode(Bool.self, forKey: .isGstExempt)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -233,39 +275,45 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(level, forKey: .level)
+
+            try? container.encodeIfPresent(gatedCategoryTypes, forKey: .gatedCategoryTypes)
+
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(departments, forKey: .departments)
+            try? container.encodeIfPresent(hierarchy, forKey: .hierarchy)
+
+            try? container.encodeIfPresent(isGatedCategory, forKey: .isGatedCategory)
+
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+
+            try? container.encodeIfPresent(tryouts, forKey: .tryouts)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(media, forKey: .media)
+            try? container.encodeIfPresent(departments, forKey: .departments)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(hierarchy, forKey: .hierarchy)
-
-            try? container.encodeIfPresent(level, forKey: .level)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(synonyms, forKey: .synonyms)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            try? container.encodeIfPresent(media, forKey: .media)
 
             try? container.encodeIfPresent(marketplaces, forKey: .marketplaces)
 
-            try? container.encodeIfPresent(tryouts, forKey: .tryouts)
+            try? container.encodeIfPresent(isGstExempt, forKey: .isGstExempt)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

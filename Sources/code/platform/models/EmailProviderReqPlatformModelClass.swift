@@ -18,7 +18,7 @@ public extension PlatformClient {
 
         public var provider: String?
 
-        public var fromAddress: [EmailProviderReqFrom]?
+        public var from: [EmailProviderReqFrom]?
 
         public enum CodingKeys: String, CodingKey {
             case name
@@ -31,10 +31,10 @@ public extension PlatformClient {
 
             case provider
 
-            case fromAddress = "from_address"
+            case from
         }
 
-        public init(apiKey: String? = nil, description: String? = nil, fromAddress: [EmailProviderReqFrom]? = nil, name: String? = nil, provider: String? = nil, type: String? = nil) {
+        public init(apiKey: String? = nil, description: String? = nil, from: [EmailProviderReqFrom]? = nil, name: String? = nil, provider: String? = nil, type: String? = nil) {
             self.name = name
 
             self.description = description
@@ -45,7 +45,7 @@ public extension PlatformClient {
 
             self.provider = provider
 
-            self.fromAddress = fromAddress
+            self.from = from
         }
 
         required public init(from decoder: Decoder) throws {
@@ -92,7 +92,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                fromAddress = try container.decode([EmailProviderReqFrom].self, forKey: .fromAddress)
+                from = try container.decode([EmailProviderReqFrom].self, forKey: .from)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -113,7 +113,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(provider, forKey: .provider)
 
-            try? container.encodeIfPresent(fromAddress, forKey: .fromAddress)
+            try? container.encodeIfPresent(from, forKey: .from)
         }
     }
 }

@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var verified: Bool?
 
-        public var amount: Int
-
         public var transactionToken: String?
 
         public var orderId: String
+
+        public var amount: Int
 
         public enum CodingKeys: String, CodingKey {
             case aggregator
 
             case verified
 
-            case amount
-
             case transactionToken = "transaction_token"
 
             case orderId = "order_id"
+
+            case amount
         }
 
         public init(aggregator: String, amount: Int, orderId: String, transactionToken: String? = nil, verified: Bool? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.verified = verified
 
-            self.amount = amount
-
             self.transactionToken = transactionToken
 
             self.orderId = orderId
+
+            self.amount = amount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,8 +54,6 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            amount = try container.decode(Int.self, forKey: .amount)
-
             do {
                 transactionToken = try container.decode(String.self, forKey: .transactionToken)
 
@@ -65,6 +63,8 @@ public extension ApplicationClient {
             } catch {}
 
             orderId = try container.decode(String.self, forKey: .orderId)
+
+            amount = try container.decode(Int.self, forKey: .amount)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -74,11 +74,11 @@ public extension ApplicationClient {
 
             try? container.encode(verified, forKey: .verified)
 
-            try? container.encode(amount, forKey: .amount)
-
             try? container.encode(transactionToken, forKey: .transactionToken)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encode(amount, forKey: .amount)
         }
     }
 }

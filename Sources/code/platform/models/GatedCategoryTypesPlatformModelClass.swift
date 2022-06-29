@@ -3,31 +3,31 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: DefaultKeyRequest
+         Model: GatedCategoryTypes
          Used By: Catalog
      */
 
-    class DefaultKeyRequest: Codable {
-        public var defaultKey: String
+    class GatedCategoryTypes: Codable {
+        public var food: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case defaultKey = "default_key"
+            case food
         }
 
-        public init(defaultKey: String) {
-            self.defaultKey = defaultKey
+        public init(food: Bool) {
+            self.food = food
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            defaultKey = try container.decode(String.self, forKey: .defaultKey)
+            food = try container.decode(Bool.self, forKey: .food)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(defaultKey, forKey: .defaultKey)
+            try? container.encodeIfPresent(food, forKey: .food)
         }
     }
 }

@@ -14,6 +14,8 @@ public extension PlatformClient {
 
         public var keys: EmailTemplateKeys?
 
+        public var from: String?
+
         public var staticTo: [String]?
 
         public var staticCc: [String]?
@@ -41,6 +43,8 @@ public extension PlatformClient {
 
             case keys
 
+            case from
+
             case staticTo = "static_to"
 
             case staticCc = "static_cc"
@@ -62,12 +66,14 @@ public extension PlatformClient {
             case priority
         }
 
-        public init(attachments: [[String: Any]]? = nil, description: String? = nil, headers: [EmailTemplateHeaders]? = nil, html: TemplateAndType? = nil, keys: EmailTemplateKeys? = nil, name: String? = nil, priority: String? = nil, replyTo: String? = nil, staticBcc: [String]? = nil, staticCc: [String]? = nil, staticTo: [String]? = nil, subject: TemplateAndType? = nil, text: TemplateAndType? = nil) {
+        public init(attachments: [[String: Any]]? = nil, description: String? = nil, from: String? = nil, headers: [EmailTemplateHeaders]? = nil, html: TemplateAndType? = nil, keys: EmailTemplateKeys? = nil, name: String? = nil, priority: String? = nil, replyTo: String? = nil, staticBcc: [String]? = nil, staticCc: [String]? = nil, staticTo: [String]? = nil, subject: TemplateAndType? = nil, text: TemplateAndType? = nil) {
             self.name = name
 
             self.description = description
 
             self.keys = keys
+
+            self.from = from
 
             self.staticTo = staticTo
 
@@ -111,6 +117,14 @@ public extension PlatformClient {
 
             do {
                 keys = try container.decode(EmailTemplateKeys.self, forKey: .keys)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                from = try container.decode(String.self, forKey: .from)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -206,6 +220,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(keys, forKey: .keys)
+
+            try? container.encodeIfPresent(from, forKey: .from)
 
             try? container.encodeIfPresent(staticTo, forKey: .staticTo)
 

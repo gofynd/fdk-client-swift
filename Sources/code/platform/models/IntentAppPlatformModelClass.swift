@@ -10,18 +10,18 @@ public extension PlatformClient {
     class IntentApp: Codable {
         public var logos: PaymentModeLogo?
 
-        public var code: String?
-
         public var packageName: String?
+
+        public var code: String?
 
         public var displayName: String?
 
         public enum CodingKeys: String, CodingKey {
             case logos
 
-            case code
-
             case packageName = "package_name"
+
+            case code
 
             case displayName = "display_name"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(code: String? = nil, displayName: String? = nil, logos: PaymentModeLogo? = nil, packageName: String? = nil) {
             self.logos = logos
 
-            self.code = code
-
             self.packageName = packageName
+
+            self.code = code
 
             self.displayName = displayName
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                packageName = try container.decode(String.self, forKey: .packageName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                packageName = try container.decode(String.self, forKey: .packageName)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encode(logos, forKey: .logos)
 
-            try? container.encode(code, forKey: .code)
-
             try? container.encode(packageName, forKey: .packageName)
+
+            try? container.encode(code, forKey: .code)
 
             try? container.encode(displayName, forKey: .displayName)
         }
