@@ -76,11 +76,11 @@ public extension ApplicationClient {
          * Description: Use this API to get details of all the items added to a cart.
          **/
         public func getCart(
-            id: String?,
-            i: Bool?,
-            b: Bool?,
-            assignCardId: Int?,
-            areaCode: String?,
+            id: String? = nil,
+            i: Bool? = nil,
+            b: Bool? = nil,
+            assignCardId: Int? = nil,
+            areaCode: String? = nil,
 
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -143,7 +143,7 @@ public extension ApplicationClient {
          * Description: Use this API to fetch Last-Modified timestamp in header metadata.
          **/
         public func getCartLastModified(
-            id: String?,
+            id: String? = nil,
 
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
@@ -190,9 +190,9 @@ public extension ApplicationClient {
          * Description: Use this API to add items to the cart.
          **/
         public func addItems(
-            i: Bool?,
-            b: Bool?,
-            areaCode: String?,
+            i: Bool? = nil,
+            b: Bool? = nil,
+            areaCode: String? = nil,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -247,10 +247,10 @@ public extension ApplicationClient {
          * Description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
          **/
         public func updateCart(
-            id: String?,
-            i: Bool?,
-            b: Bool?,
-            areaCode: String?,
+            id: String? = nil,
+            i: Bool? = nil,
+            b: Bool? = nil,
+            areaCode: String? = nil,
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -309,7 +309,7 @@ public extension ApplicationClient {
          * Description: Use this API to get the total number of items present in cart.
          **/
         public func getItemCount(
-            id: String?,
+            id: String? = nil,
 
             onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
         ) {
@@ -356,7 +356,7 @@ public extension ApplicationClient {
          * Description: Use this API to get a list of available coupons along with their details.
          **/
         public func getCoupons(
-            id: String?,
+            id: String? = nil,
 
             onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
         ) {
@@ -403,10 +403,10 @@ public extension ApplicationClient {
          * Description: Use this API to apply coupons on items in the cart.
          **/
         public func applyCoupon(
-            i: Bool?,
-            b: Bool?,
-            p: Bool?,
-            id: String?,
+            i: Bool? = nil,
+            b: Bool? = nil,
+            p: Bool? = nil,
+            id: String? = nil,
             body: ApplyCouponRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -465,7 +465,7 @@ public extension ApplicationClient {
          * Description: Remove Coupon applied on the cart by passing uid in request body.
          **/
         public func removeCoupon(
-            id: String?,
+            id: String? = nil,
 
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -512,10 +512,10 @@ public extension ApplicationClient {
          * Description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
          **/
         public func getBulkDiscountOffers(
-            itemId: Int?,
-            articleId: String?,
-            uid: Int?,
-            slug: String?,
+            itemId: Int? = nil,
+            articleId: String? = nil,
+            uid: Int? = nil,
+            slug: String? = nil,
 
             onResponse: @escaping (_ response: BulkPriceResponse?, _ error: FDKError?) -> Void
         ) {
@@ -574,9 +574,9 @@ public extension ApplicationClient {
          * Description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
          **/
         public func applyRewardPoints(
-            id: String?,
-            i: Bool?,
-            b: Bool?,
+            id: String? = nil,
+            i: Bool? = nil,
+            b: Bool? = nil,
             body: RewardPointRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -631,11 +631,11 @@ public extension ApplicationClient {
          * Description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
          **/
         public func getAddresses(
-            cartId: String?,
-            mobileNo: String?,
-            checkoutMode: String?,
-            tags: String?,
-            isDefault: Bool?,
+            cartId: String? = nil,
+            mobileNo: String? = nil,
+            checkoutMode: String? = nil,
+            tags: String? = nil,
+            isDefault: Bool? = nil,
 
             onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
         ) {
@@ -739,11 +739,11 @@ public extension ApplicationClient {
          **/
         public func getAddressById(
             id: String,
-            cartId: String?,
-            mobileNo: String?,
-            checkoutMode: String?,
-            tags: String?,
-            isDefault: Bool?,
+            cartId: String? = nil,
+            mobileNo: String? = nil,
+            checkoutMode: String? = nil,
+            tags: String? = nil,
+            isDefault: Bool? = nil,
 
             onResponse: @escaping (_ response: Address?, _ error: FDKError?) -> Void
         ) {
@@ -894,9 +894,9 @@ public extension ApplicationClient {
          * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
          **/
         public func selectAddress(
-            cartId: String?,
-            i: Bool?,
-            b: Bool?,
+            cartId: String? = nil,
+            i: Bool? = nil,
+            b: Bool? = nil,
             body: SelectCartAddressRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -951,7 +951,7 @@ public extension ApplicationClient {
          * Description: Use this API to update cart payment.
          **/
         public func selectPaymentMode(
-            id: String?,
+            id: String? = nil,
             body: UpdateCartPaymentRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -998,12 +998,12 @@ public extension ApplicationClient {
          * Description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
          **/
         public func validateCouponForPayment(
-            id: String?,
-            addressId: String?,
-            paymentMode: String?,
-            paymentIdentifier: String?,
-            aggregatorName: String?,
-            merchantCode: String?,
+            id: String? = nil,
+            addressId: String? = nil,
+            paymentMode: String? = nil,
+            paymentIdentifier: String? = nil,
+            aggregatorName: String? = nil,
+            merchantCode: String? = nil,
 
             onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
@@ -1070,10 +1070,10 @@ public extension ApplicationClient {
          * Description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
          **/
         public func getShipments(
-            p: Bool?,
-            id: String?,
-            addressId: String?,
-            areaCode: String?,
+            p: Bool? = nil,
+            id: String? = nil,
+            addressId: String? = nil,
+            areaCode: String? = nil,
 
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1172,7 +1172,7 @@ public extension ApplicationClient {
          * Description: Use this API to update cart meta like checkout_mode and gstin.
          **/
         public func updateCartMeta(
-            id: String?,
+            id: String? = nil,
             body: CartMetaRequest,
             onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1348,9 +1348,9 @@ public extension ApplicationClient {
          * Description: Use this API to get top 5 offers available for current product
          **/
         public func getPromotionOffers(
-            slug: String?,
-            pageSize: Int?,
-            promotionGroup: String?,
+            slug: String? = nil,
+            pageSize: Int? = nil,
+            promotionGroup: String? = nil,
 
             onResponse: @escaping (_ response: PromotionOffersResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1406,9 +1406,9 @@ public extension ApplicationClient {
          **/
         public func getLadderOffers(
             slug: String,
-            storeId: String?,
-            promotionId: String?,
-            pageSize: Int?,
+            storeId: String? = nil,
+            promotionId: String? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: LadderPriceOffers?, _ error: FDKError?) -> Void
         ) {
