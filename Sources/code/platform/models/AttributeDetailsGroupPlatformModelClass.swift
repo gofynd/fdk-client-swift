@@ -10,54 +10,54 @@ public extension PlatformClient {
     class AttributeDetailsGroup: Codable {
         public var name: String
 
-        public var isActive: Bool
+        public var priority: Int
 
-        public var slug: String?
+        public var key: String?
 
         public var displayType: String
 
         public var logo: String?
 
+        public var isActive: Bool
+
+        public var slug: String?
+
         public var unit: String?
-
-        public var priority: Int
-
-        public var key: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case isActive = "is_active"
+            case priority
 
-            case slug
+            case key
 
             case displayType = "display_type"
 
             case logo
 
+            case isActive = "is_active"
+
+            case slug
+
             case unit
-
-            case priority
-
-            case key
         }
 
         public init(displayType: String, isActive: Bool, key: String? = nil, logo: String? = nil, name: String, priority: Int, slug: String? = nil, unit: String? = nil) {
             self.name = name
 
-            self.isActive = isActive
+            self.priority = priority
 
-            self.slug = slug
+            self.key = key
 
             self.displayType = displayType
 
             self.logo = logo
 
+            self.isActive = isActive
+
+            self.slug = slug
+
             self.unit = unit
-
-            self.priority = priority
-
-            self.key = key
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,10 +65,10 @@ public extension PlatformClient {
 
             name = try container.decode(String.self, forKey: .name)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
+            priority = try container.decode(Int.self, forKey: .priority)
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,18 +85,18 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            priority = try container.decode(Int.self, forKey: .priority)
-
             do {
-                key = try container.decode(String.self, forKey: .key)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,19 +109,19 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
             try? container.encodeIfPresent(unit, forKey: .unit)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
-
-            try? container.encodeIfPresent(key, forKey: .key)
         }
     }
 }

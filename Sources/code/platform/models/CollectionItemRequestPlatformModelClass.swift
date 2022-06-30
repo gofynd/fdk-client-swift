@@ -12,16 +12,22 @@ public extension PlatformClient {
 
         public var item: [ItemQueryForUserCollection]?
 
+        public var query: [CollectionQuery]?
+
         public enum CodingKeys: String, CodingKey {
             case type
 
             case item
+
+            case query
         }
 
-        public init(item: [ItemQueryForUserCollection]? = nil, type: String? = nil) {
+        public init(item: [ItemQueryForUserCollection]? = nil, query: [CollectionQuery]? = nil, type: String? = nil) {
             self.type = type
 
             self.item = item
+
+            self.query = query
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,6 +48,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                query = try container.decode([CollectionQuery].self, forKey: .query)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -50,6 +64,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(item, forKey: .item)
+
+            try? container.encodeIfPresent(query, forKey: .query)
         }
     }
 }
