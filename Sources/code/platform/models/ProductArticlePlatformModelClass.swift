@@ -8,15 +8,13 @@ public extension PlatformClient {
      */
 
     class ProductArticle: Codable {
-        public var price: ArticlePriceInfo?
-
-        public var size: String?
-
         public var store: BaseInfo?
 
-        public var parentItemIdentifiers: [String: Any]?
+        public var quantity: Int?
 
         public var seller: BaseInfo?
+
+        public var parentItemIdentifiers: [String: Any]?
 
         public var productGroupTags: [String]?
 
@@ -24,20 +22,20 @@ public extension PlatformClient {
 
         public var type: String?
 
-        public var quantity: Int?
+        public var size: String?
+
+        public var price: ArticlePriceInfo?
 
         public var uid: String?
 
         public enum CodingKeys: String, CodingKey {
-            case price
-
-            case size
-
             case store
 
-            case parentItemIdentifiers = "parent_item_identifiers"
+            case quantity
 
             case seller
+
+            case parentItemIdentifiers = "parent_item_identifiers"
 
             case productGroupTags = "product_group_tags"
 
@@ -45,21 +43,21 @@ public extension PlatformClient {
 
             case type
 
-            case quantity
+            case size
+
+            case price
 
             case uid
         }
 
         public init(extraMeta: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, size: String? = nil, store: BaseInfo? = nil, type: String? = nil, uid: String? = nil) {
-            self.price = price
-
-            self.size = size
-
             self.store = store
 
-            self.parentItemIdentifiers = parentItemIdentifiers
+            self.quantity = quantity
 
             self.seller = seller
+
+            self.parentItemIdentifiers = parentItemIdentifiers
 
             self.productGroupTags = productGroupTags
 
@@ -67,29 +65,15 @@ public extension PlatformClient {
 
             self.type = type
 
-            self.quantity = quantity
+            self.size = size
+
+            self.price = price
 
             self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                price = try container.decode(ArticlePriceInfo.self, forKey: .price)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                size = try container.decode(String.self, forKey: .size)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 store = try container.decode(BaseInfo.self, forKey: .store)
@@ -100,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                parentItemIdentifiers = try container.decode([String: Any].self, forKey: .parentItemIdentifiers)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,6 +93,14 @@ public extension PlatformClient {
 
             do {
                 seller = try container.decode(BaseInfo.self, forKey: .seller)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                parentItemIdentifiers = try container.decode([String: Any].self, forKey: .parentItemIdentifiers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,7 +132,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                size = try container.decode(String.self, forKey: .size)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                price = try container.decode(ArticlePriceInfo.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,15 +159,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(price, forKey: .price)
-
-            try? container.encodeIfPresent(size, forKey: .size)
-
             try? container.encodeIfPresent(store, forKey: .store)
 
-            try? container.encodeIfPresent(parentItemIdentifiers, forKey: .parentItemIdentifiers)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(seller, forKey: .seller)
+
+            try? container.encodeIfPresent(parentItemIdentifiers, forKey: .parentItemIdentifiers)
 
             try? container.encodeIfPresent(productGroupTags, forKey: .productGroupTags)
 
@@ -175,7 +173,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(price, forKey: .price)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }
