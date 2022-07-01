@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class StrategyWiseListingSchemaV2: Codable {
         public var tat: Int?
 
-        public var pincode: Int?
-
         public var quantity: Int?
+
+        public var pincode: Int?
 
         public var distance: Int?
 
         public enum CodingKeys: String, CodingKey {
             case tat
 
-            case pincode
-
             case quantity
+
+            case pincode
 
             case distance
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(distance: Int? = nil, pincode: Int? = nil, quantity: Int? = nil, tat: Int? = nil) {
             self.tat = tat
 
-            self.pincode = pincode
-
             self.quantity = quantity
+
+            self.pincode = pincode
 
             self.distance = distance
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                pincode = try container.decode(Int.self, forKey: .pincode)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                pincode = try container.decode(Int.self, forKey: .pincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(tat, forKey: .tat)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(distance, forKey: .distance)
         }
