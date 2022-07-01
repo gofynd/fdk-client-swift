@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var filterTypes: [String]?
 
-        public var display: String?
-
         public var key: String?
+
+        public var display: String?
 
         public enum CodingKeys: String, CodingKey {
             case units
 
             case filterTypes = "filter_types"
 
-            case display
-
             case key
+
+            case display
         }
 
         public init(display: String? = nil, filterTypes: [String]? = nil, key: String? = nil, units: [[String: Any]]? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.filterTypes = filterTypes
 
-            self.display = display
-
             self.key = key
+
+            self.display = display
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(filterTypes, forKey: .filterTypes)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 }

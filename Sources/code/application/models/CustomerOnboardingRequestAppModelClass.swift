@@ -9,7 +9,7 @@ public extension ApplicationClient {
     class CustomerOnboardingRequest: Codable {
         public var mcc: String?
 
-        public var aggregator: String
+        public var source: String
 
         public var marketplaceInfo: MarketplaceInfo?
 
@@ -19,12 +19,12 @@ public extension ApplicationClient {
 
         public var personalInfo: UserPersonalInfoInDetails
 
-        public var source: String
+        public var aggregator: String
 
         public enum CodingKeys: String, CodingKey {
             case mcc
 
-            case aggregator
+            case source
 
             case marketplaceInfo = "marketplace_info"
 
@@ -34,13 +34,13 @@ public extension ApplicationClient {
 
             case personalInfo = "personal_info"
 
-            case source
+            case aggregator
         }
 
         public init(aggregator: String, businessInfo: BusinessDetails? = nil, device: DeviceDetails? = nil, marketplaceInfo: MarketplaceInfo? = nil, mcc: String? = nil, personalInfo: UserPersonalInfoInDetails, source: String) {
             self.mcc = mcc
 
-            self.aggregator = aggregator
+            self.source = source
 
             self.marketplaceInfo = marketplaceInfo
 
@@ -50,7 +50,7 @@ public extension ApplicationClient {
 
             self.personalInfo = personalInfo
 
-            self.source = source
+            self.aggregator = aggregator
         }
 
         required public init(from decoder: Decoder) throws {
@@ -64,7 +64,7 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
+            source = try container.decode(String.self, forKey: .source)
 
             do {
                 marketplaceInfo = try container.decode(MarketplaceInfo.self, forKey: .marketplaceInfo)
@@ -92,7 +92,7 @@ public extension ApplicationClient {
 
             personalInfo = try container.decode(UserPersonalInfoInDetails.self, forKey: .personalInfo)
 
-            source = try container.decode(String.self, forKey: .source)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -100,7 +100,7 @@ public extension ApplicationClient {
 
             try? container.encode(mcc, forKey: .mcc)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(source, forKey: .source)
 
             try? container.encodeIfPresent(marketplaceInfo, forKey: .marketplaceInfo)
 
@@ -110,7 +110,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(personalInfo, forKey: .personalInfo)
 
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
         }
     }
 }
