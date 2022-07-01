@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var listing: ConfigurationListing?
 
-        public var product: ConfigurationProduct?
-
         public var appId: String
 
         public var configId: String?
+
+        public var product: ConfigurationProduct?
 
         public enum CodingKeys: String, CodingKey {
             case configType = "config_type"
 
             case listing
 
-            case product
-
             case appId = "app_id"
 
             case configId = "config_id"
+
+            case product
         }
 
         public init(appId: String, configId: String? = nil, configType: String, listing: ConfigurationListing? = nil, product: ConfigurationProduct? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.listing = listing
 
-            self.product = product
-
             self.appId = appId
 
             self.configId = configId
+
+            self.product = product
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,18 +55,18 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            appId = try container.decode(String.self, forKey: .appId)
+
             do {
-                product = try container.decode(ConfigurationProduct.self, forKey: .product)
+                configId = try container.decode(String.self, forKey: .configId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            appId = try container.decode(String.self, forKey: .appId)
-
             do {
-                configId = try container.decode(String.self, forKey: .configId)
+                product = try container.decode(ConfigurationProduct.self, forKey: .product)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,11 +81,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(listing, forKey: .listing)
 
-            try? container.encodeIfPresent(product, forKey: .product)
-
             try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(configId, forKey: .configId)
+
+            try? container.encodeIfPresent(product, forKey: .product)
         }
     }
 }

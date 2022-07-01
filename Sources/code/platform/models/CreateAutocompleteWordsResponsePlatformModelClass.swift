@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var appId: String?
 
-        public var results: [[String: Any]]?
-
         public var customJson: [String: Any]?
+
+        public var results: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case words
 
             case appId = "app_id"
 
-            case results
-
             case customJson = "_custom_json"
+
+            case results
         }
 
         public init(appId: String? = nil, results: [[String: Any]]? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.appId = appId
 
-            self.results = results
-
             self.customJson = customJson
+
+            self.results = results
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                results = try container.decode([[String: Any]].self, forKey: .results)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                results = try container.decode([[String: Any]].self, forKey: .results)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(results, forKey: .results)
-
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(results, forKey: .results)
         }
     }
 }
