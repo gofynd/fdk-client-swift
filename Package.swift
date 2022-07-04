@@ -21,5 +21,10 @@ let package = Package(
             dependencies: ["Alamofire", "CryptoSwift"],
             path: "Sources"
         ),
+        .testTarget(
+            name: "Tests",
+            dependencies: ["FDKClient"],
+            path: "Tests"
+        ),
     ]
 )

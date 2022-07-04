@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var closing: LocationTimingSerializer?
 
-        public var opening: LocationTimingSerializer?
-
         public var open: Bool
+
+        public var opening: LocationTimingSerializer?
 
         public enum CodingKeys: String, CodingKey {
             case weekday
 
             case closing
 
-            case opening
-
             case open
+
+            case opening
         }
 
         public init(closing: LocationTimingSerializer? = nil, open: Bool, opening: LocationTimingSerializer? = nil, weekday: String) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.closing = closing
 
-            self.opening = opening
-
             self.open = open
+
+            self.opening = opening
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,6 +49,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            open = try container.decode(Bool.self, forKey: .open)
+
             do {
                 opening = try container.decode(LocationTimingSerializer.self, forKey: .opening)
 
@@ -56,8 +58,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            open = try container.decode(Bool.self, forKey: .open)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -67,9 +67,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(closing, forKey: .closing)
 
-            try? container.encodeIfPresent(opening, forKey: .opening)
-
             try? container.encodeIfPresent(open, forKey: .open)
+
+            try? container.encodeIfPresent(opening, forKey: .opening)
         }
     }
 }

@@ -10,30 +10,30 @@ public extension PlatformClient {
     class OptInPostRequest: Codable {
         public var optLevel: String
 
-        public var brandIds: [Int]?
+        public var enabled: Bool?
 
         public var storeIds: [Int]?
 
-        public var enabled: Bool?
+        public var brandIds: [Int]?
 
         public enum CodingKeys: String, CodingKey {
             case optLevel = "opt_level"
 
-            case brandIds = "brand_ids"
+            case enabled
 
             case storeIds = "store_ids"
 
-            case enabled
+            case brandIds = "brand_ids"
         }
 
         public init(brandIds: [Int]? = nil, enabled: Bool? = nil, optLevel: String, storeIds: [Int]? = nil) {
             self.optLevel = optLevel
 
-            self.brandIds = brandIds
+            self.enabled = enabled
 
             self.storeIds = storeIds
 
-            self.enabled = enabled
+            self.brandIds = brandIds
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             optLevel = try container.decode(String.self, forKey: .optLevel)
 
             do {
-                brandIds = try container.decode([Int].self, forKey: .brandIds)
+                enabled = try container.decode(Bool.self, forKey: .enabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,7 +58,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                enabled = try container.decode(Bool.self, forKey: .enabled)
+                brandIds = try container.decode([Int].self, forKey: .brandIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,11 +71,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(optLevel, forKey: .optLevel)
 
-            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
         }
     }
 }

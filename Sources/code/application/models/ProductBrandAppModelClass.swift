@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class ProductBrand: Codable {
         public var logo: Media?
 
+        public var action: ProductListingAction?
+
         public var uid: Int?
 
         public var name: String?
 
-        public var action: ProductListingAction?
-
         public enum CodingKeys: String, CodingKey {
             case logo
+
+            case action
 
             case uid
 
             case name
-
-            case action
         }
 
         public init(action: ProductListingAction? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
             self.logo = logo
 
+            self.action = action
+
             self.uid = uid
 
             self.name = name
-
-            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,6 +40,14 @@ public extension ApplicationClient {
 
             do {
                 logo = try container.decode(Media.self, forKey: .logo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,14 +69,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
+            try? container.encodeIfPresent(action, forKey: .action)
+
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }

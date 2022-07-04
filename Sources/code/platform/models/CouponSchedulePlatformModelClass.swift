@@ -10,22 +10,22 @@ public extension PlatformClient {
     class CouponSchedule: Codable {
         public var nextSchedule: [[String: Any]]?
 
-        public var cron: String?
-
         public var end: String?
 
         public var duration: Int?
+
+        public var cron: String?
 
         public var start: String?
 
         public enum CodingKeys: String, CodingKey {
             case nextSchedule = "next_schedule"
 
-            case cron
-
             case end
 
             case duration
+
+            case cron
 
             case start
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, start: String? = nil) {
             self.nextSchedule = nextSchedule
 
-            self.cron = cron
-
             self.end = end
 
             self.duration = duration
+
+            self.cron = cron
 
             self.start = start
         }
@@ -47,14 +47,6 @@ public extension PlatformClient {
 
             do {
                 nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cron = try container.decode(String.self, forKey: .cron)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,6 +70,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                cron = try container.decode(String.self, forKey: .cron)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 start = try container.decode(String.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -91,11 +91,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
 
-            try? container.encode(cron, forKey: .cron)
-
             try? container.encode(end, forKey: .end)
 
             try? container.encode(duration, forKey: .duration)
+
+            try? container.encode(cron, forKey: .cron)
 
             try? container.encodeIfPresent(start, forKey: .start)
         }

@@ -11,9 +11,11 @@ public extension ApplicationClient {
 
         public var offerText: String?
 
+        public var promotionGroup: String?
+
         public var validTill: String?
 
-        public var promotionGroup: String?
+        public var calculateOn: String?
 
         public var offerPrices: [LadderOfferItem]?
 
@@ -24,23 +26,27 @@ public extension ApplicationClient {
 
             case offerText = "offer_text"
 
+            case promotionGroup = "promotion_group"
+
             case validTill = "valid_till"
 
-            case promotionGroup = "promotion_group"
+            case calculateOn = "calculate_on"
 
             case offerPrices = "offer_prices"
 
             case id
         }
 
-        public init(description: String? = nil, id: String? = nil, offerPrices: [LadderOfferItem]? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
+        public init(calculateOn: String? = nil, description: String? = nil, id: String? = nil, offerPrices: [LadderOfferItem]? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
             self.description = description
 
             self.offerText = offerText
 
+            self.promotionGroup = promotionGroup
+
             self.validTill = validTill
 
-            self.promotionGroup = promotionGroup
+            self.calculateOn = calculateOn
 
             self.offerPrices = offerPrices
 
@@ -67,6 +73,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 validTill = try container.decode(String.self, forKey: .validTill)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -75,7 +89,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
+                calculateOn = try container.decode(String.self, forKey: .calculateOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,9 +120,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 
+            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
+
             try? container.encodeIfPresent(validTill, forKey: .validTill)
 
-            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
+            try? container.encodeIfPresent(calculateOn, forKey: .calculateOn)
 
             try? container.encodeIfPresent(offerPrices, forKey: .offerPrices)
 
