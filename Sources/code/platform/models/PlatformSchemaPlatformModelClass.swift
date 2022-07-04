@@ -50,6 +50,8 @@ public extension PlatformClient {
 
         public var desktopImage: String?
 
+        public var deleteAccountDay: Int?
+
         public var deleteAccountReasons: [DeleteAccountReasons]?
 
         public enum CodingKeys: String, CodingKey {
@@ -95,10 +97,12 @@ public extension PlatformClient {
 
             case desktopImage = "desktop_image"
 
+            case deleteAccountDay = "delete_account_day"
+
             case deleteAccountReasons = "delete_account_reasons"
         }
 
-        public init(active: Bool? = nil, createdAt: String? = nil, deleteAccountReasons: [DeleteAccountReasons]? = nil, desktopImage: String? = nil, display: String? = nil, flashCard: FlashCard? = nil, forgotPassword: Bool? = nil, login: Login? = nil, lookAndFeel: LookAndFeel? = nil, meta: MetaSchema? = nil, mobileImage: String? = nil, name: String? = nil, register: Bool? = nil, registerRequiredFields: RegisterRequiredFields? = nil, requiredFields: RequiredFields? = nil, skipCaptcha: Bool? = nil, skipLogin: Bool? = nil, social: Social? = nil, socialTokens: SocialTokens? = nil, subtext: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(active: Bool? = nil, createdAt: String? = nil, deleteAccountDay: Int? = nil, deleteAccountReasons: [DeleteAccountReasons]? = nil, desktopImage: String? = nil, display: String? = nil, flashCard: FlashCard? = nil, forgotPassword: Bool? = nil, login: Login? = nil, lookAndFeel: LookAndFeel? = nil, meta: MetaSchema? = nil, mobileImage: String? = nil, name: String? = nil, register: Bool? = nil, registerRequiredFields: RegisterRequiredFields? = nil, requiredFields: RequiredFields? = nil, skipCaptcha: Bool? = nil, skipLogin: Bool? = nil, social: Social? = nil, socialTokens: SocialTokens? = nil, subtext: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.display = display
 
             self.lookAndFeel = lookAndFeel
@@ -140,6 +144,8 @@ public extension PlatformClient {
             self.mobileImage = mobileImage
 
             self.desktopImage = desktopImage
+
+            self.deleteAccountDay = deleteAccountDay
 
             self.deleteAccountReasons = deleteAccountReasons
         }
@@ -316,6 +322,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                deleteAccountDay = try container.decode(Int.self, forKey: .deleteAccountDay)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 deleteAccountReasons = try container.decode([DeleteAccountReasons].self, forKey: .deleteAccountReasons)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -368,6 +382,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(mobileImage, forKey: .mobileImage)
 
             try? container.encodeIfPresent(desktopImage, forKey: .desktopImage)
+
+            try? container.encodeIfPresent(deleteAccountDay, forKey: .deleteAccountDay)
 
             try? container.encodeIfPresent(deleteAccountReasons, forKey: .deleteAccountReasons)
         }
