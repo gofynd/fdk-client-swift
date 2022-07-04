@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class AttributeDetail: Codable {
         public var display: String?
 
-        public var logo: String?
-
         public var key: String?
+
+        public var logo: String?
 
         public var description: String?
 
         public enum CodingKeys: String, CodingKey {
             case display
 
-            case logo
-
             case key
+
+            case logo
 
             case description
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(description: String? = nil, display: String? = nil, key: String? = nil, logo: String? = nil) {
             self.display = display
 
-            self.logo = logo
-
             self.key = key
+
+            self.logo = logo
 
             self.description = description
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(description, forKey: .description)
         }

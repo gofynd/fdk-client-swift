@@ -8,11 +8,9 @@ public extension PlatformClient {
      */
 
     class ProductArticle: Codable {
-        public var type: String?
+        public var quantity: Int?
 
-        public var price: ArticlePriceInfo?
-
-        public var size: String?
+        public var store: BaseInfo?
 
         public var seller: BaseInfo?
 
@@ -20,16 +18,16 @@ public extension PlatformClient {
 
         public var extraMeta: [String: Any]?
 
-        public var quantity: Int?
+        public var price: ArticlePriceInfo?
 
-        public var store: BaseInfo?
+        public var size: String?
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
-            case type
+            case quantity
 
-            case price
-
-            case size
+            case store
 
             case seller
 
@@ -37,17 +35,17 @@ public extension PlatformClient {
 
             case extraMeta = "extra_meta"
 
-            case quantity
+            case price
 
-            case store
+            case size
+
+            case type
         }
 
         public init(extraMeta: [String: Any]? = nil, price: ArticlePriceInfo? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, size: String? = nil, store: BaseInfo? = nil, type: String? = nil, uid: String? = nil) {
-            self.type = type
+            self.quantity = quantity
 
-            self.price = price
-
-            self.size = size
+            self.store = store
 
             self.seller = seller
 
@@ -55,16 +53,18 @@ public extension PlatformClient {
 
             self.extraMeta = extraMeta
 
-            self.quantity = quantity
+            self.price = price
 
-            self.store = store
+            self.size = size
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,15 +72,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                price = try container.decode(ArticlePriceInfo.self, forKey: .price)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                size = try container.decode(String.self, forKey: .size)
+                store = try container.decode(BaseInfo.self, forKey: .store)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +104,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                price = try container.decode(ArticlePriceInfo.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +112,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                store = try container.decode(BaseInfo.self, forKey: .store)
+                size = try container.decode(String.self, forKey: .size)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +131,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(price, forKey: .price)
-
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(store, forKey: .store)
 
             try? container.encodeIfPresent(seller, forKey: .seller)
 
@@ -143,9 +141,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(price, forKey: .price)
 
-            try? container.encodeIfPresent(store, forKey: .store)
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

@@ -14,7 +14,7 @@ public extension PlatformClient {
 
         public var contentType: String
 
-        public var method: String
+        public var method: String?
 
         public var namespace: String
 
@@ -50,7 +50,7 @@ public extension PlatformClient {
             case tags
         }
 
-        public init(cdn: CDN, contentType: String, fileName: String, filePath: String, method: String, namespace: String, operation: String, size: Int, tags: [String]? = nil, upload: Upload) {
+        public init(cdn: CDN, contentType: String, fileName: String, filePath: String, method: String? = nil, namespace: String, operation: String, size: Int, tags: [String]? = nil, upload: Upload) {
             self.fileName = fileName
 
             self.filePath = filePath
@@ -81,7 +81,13 @@ public extension PlatformClient {
 
             contentType = try container.decode(String.self, forKey: .contentType)
 
-            method = try container.decode(String.self, forKey: .method)
+            do {
+                method = try container.decode(String.self, forKey: .method)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             namespace = try container.decode(String.self, forKey: .namespace)
 
