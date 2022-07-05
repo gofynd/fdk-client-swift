@@ -28,8 +28,8 @@ public extension ApplicationClient {
          * Description: Provide application name or domain url
          **/
         public func searchApplication(
-            authorization: String? = nil,
-            query: String? = nil,
+            authorization: String?,
+            query: String?,
 
             onResponse: @escaping (_ response: ApplicationResponse?, _ error: FDKError?) -> Void
         ) {
@@ -82,8 +82,8 @@ public extension ApplicationClient {
          * Description:
          **/
         public func getLocations(
-            locationType: String? = nil,
-            id: String? = nil,
+            locationType: String?,
+            id: String?,
 
             onResponse: @escaping (_ response: Locations?, _ error: FDKError?) -> Void
         ) {

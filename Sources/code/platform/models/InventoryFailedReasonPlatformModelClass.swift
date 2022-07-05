@@ -8,24 +8,26 @@ public extension PlatformClient {
      */
 
     class InventoryFailedReason: Codable {
-        public var errors: String?
-
         public var message: String
 
-        public enum CodingKeys: String, CodingKey {
-            case errors
+        public var errors: String?
 
+        public enum CodingKeys: String, CodingKey {
             case message
+
+            case errors
         }
 
         public init(errors: String? = nil, message: String) {
-            self.errors = errors
-
             self.message = message
+
+            self.errors = errors
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            message = try container.decode(String.self, forKey: .message)
 
             do {
                 errors = try container.decode(String.self, forKey: .errors)
@@ -34,16 +36,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(errors, forKey: .errors)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(errors, forKey: .errors)
         }
     }
 }

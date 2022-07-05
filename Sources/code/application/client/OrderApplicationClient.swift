@@ -46,11 +46,11 @@ public extension ApplicationClient {
          * Description: Use this API to retrieve all the orders.
          **/
         public func getOrders(
-            pageNo: Int? = nil,
-            pageSize: Int? = nil,
-            fromDate: String? = nil,
-            toDate: String? = nil,
-            status: Int? = nil,
+            pageNo: Int?,
+            pageSize: Int?,
+            fromDate: String?,
+            toDate: String?,
+            status: Int?,
 
             onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
         ) {

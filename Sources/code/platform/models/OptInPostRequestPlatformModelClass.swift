@@ -8,38 +8,36 @@ public extension PlatformClient {
      */
 
     class OptInPostRequest: Codable {
-        public var optLevel: String
-
         public var enabled: Bool?
 
         public var brandIds: [Int]?
 
+        public var optLevel: String
+
         public var storeIds: [Int]?
 
         public enum CodingKeys: String, CodingKey {
-            case optLevel = "opt_level"
-
             case enabled
 
             case brandIds = "brand_ids"
+
+            case optLevel = "opt_level"
 
             case storeIds = "store_ids"
         }
 
         public init(brandIds: [Int]? = nil, enabled: Bool? = nil, optLevel: String, storeIds: [Int]? = nil) {
-            self.optLevel = optLevel
-
             self.enabled = enabled
 
             self.brandIds = brandIds
+
+            self.optLevel = optLevel
 
             self.storeIds = storeIds
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            optLevel = try container.decode(String.self, forKey: .optLevel)
 
             do {
                 enabled = try container.decode(Bool.self, forKey: .enabled)
@@ -57,6 +55,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            optLevel = try container.decode(String.self, forKey: .optLevel)
+
             do {
                 storeIds = try container.decode([Int].self, forKey: .storeIds)
 
@@ -69,11 +69,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(optLevel, forKey: .optLevel)
-
             try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(brandIds, forKey: .brandIds)
+
+            try? container.encodeIfPresent(optLevel, forKey: .optLevel)
 
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
         }

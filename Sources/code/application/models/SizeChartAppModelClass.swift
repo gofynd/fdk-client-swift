@@ -9,13 +9,13 @@ public extension ApplicationClient {
     class SizeChart: Codable {
         public var unit: String?
 
-        public var sizeTip: String?
+        public var title: String?
 
         public var description: String?
 
         public var sizes: [SizeChartValues]?
 
-        public var title: String?
+        public var sizeTip: String?
 
         public var image: String?
 
@@ -24,13 +24,13 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case unit
 
-            case sizeTip = "size_tip"
+            case title
 
             case description
 
             case sizes
 
-            case title
+            case sizeTip = "size_tip"
 
             case image
 
@@ -40,13 +40,13 @@ public extension ApplicationClient {
         public init(description: String? = nil, headers: ColumnHeaders? = nil, image: String? = nil, sizes: [SizeChartValues]? = nil, sizeTip: String? = nil, title: String? = nil, unit: String? = nil) {
             self.unit = unit
 
-            self.sizeTip = sizeTip
+            self.title = title
 
             self.description = description
 
             self.sizes = sizes
 
-            self.title = title
+            self.sizeTip = sizeTip
 
             self.image = image
 
@@ -65,7 +65,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sizeTip = try container.decode(String.self, forKey: .sizeTip)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                sizeTip = try container.decode(String.self, forKey: .sizeTip)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,13 +118,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(sizeTip, forKey: .sizeTip)
+            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(sizeTip, forKey: .sizeTip)
 
             try? container.encodeIfPresent(image, forKey: .image)
 

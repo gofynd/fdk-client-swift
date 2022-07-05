@@ -7,15 +7,15 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class UpdateProductCart: Codable {
-        public var extraMeta: [String: Any]?
+        public var itemId: Int?
 
         public var articleId: String?
 
-        public var itemId: Int?
-
-        public var quantity: Int?
+        public var extraMeta: [String: Any]?
 
         public var itemIndex: Int?
+
+        public var quantity: Int?
 
         public var itemSize: String?
 
@@ -24,15 +24,15 @@ public extension ApplicationClient {
         public var parentItemIdentifiers: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case extraMeta = "extra_meta"
+            case itemId = "item_id"
 
             case articleId = "article_id"
 
-            case itemId = "item_id"
-
-            case quantity
+            case extraMeta = "extra_meta"
 
             case itemIndex = "item_index"
+
+            case quantity
 
             case itemSize = "item_size"
 
@@ -42,15 +42,15 @@ public extension ApplicationClient {
         }
 
         public init(articleId: String? = nil, extraMeta: [String: Any]? = nil, identifiers: CartProductIdentifer, itemId: Int? = nil, itemIndex: Int? = nil, itemSize: String? = nil, parentItemIdentifiers: [String: Any]? = nil, quantity: Int? = nil) {
-            self.extraMeta = extraMeta
+            self.itemId = itemId
 
             self.articleId = articleId
 
-            self.itemId = itemId
-
-            self.quantity = quantity
+            self.extraMeta = extraMeta
 
             self.itemIndex = itemIndex
+
+            self.quantity = quantity
 
             self.itemSize = itemSize
 
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,15 +79,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,6 +88,14 @@ public extension ApplicationClient {
 
             do {
                 itemIndex = try container.decode(Int.self, forKey: .itemIndex)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,15 +124,15 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
             try? container.encodeIfPresent(articleId, forKey: .articleId)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
 
             try? container.encodeIfPresent(itemIndex, forKey: .itemIndex)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(itemSize, forKey: .itemSize)
 
