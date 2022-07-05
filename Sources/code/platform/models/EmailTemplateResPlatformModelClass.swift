@@ -32,8 +32,6 @@ public extension PlatformClient {
 
         public var keys: EmailTemplateKeys?
 
-        public var from: String?
-
         public var replyTo: String?
 
         public var headers: [EmailTemplateHeaders]?
@@ -79,8 +77,6 @@ public extension PlatformClient {
 
             case keys
 
-            case from
-
             case replyTo = "reply_to"
 
             case headers
@@ -102,7 +98,7 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(attachments: [[String: Any]]? = nil, createdAt: String? = nil, description: String? = nil, from: String? = nil, headers: [EmailTemplateHeaders]? = nil, html: TemplateAndType? = nil, isInternal: Bool? = nil, isSystem: Bool? = nil, keys: EmailTemplateKeys? = nil, name: String? = nil, priority: String? = nil, published: Bool? = nil, replyTo: String? = nil, slug: String? = nil, staticBcc: [String]? = nil, staticCc: [String]? = nil, staticTo: [String]? = nil, subject: TemplateAndType? = nil, tags: [[String: Any]]? = nil, text: TemplateAndType? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(attachments: [[String: Any]]? = nil, createdAt: String? = nil, description: String? = nil, headers: [EmailTemplateHeaders]? = nil, html: TemplateAndType? = nil, isInternal: Bool? = nil, isSystem: Bool? = nil, keys: EmailTemplateKeys? = nil, name: String? = nil, priority: String? = nil, published: Bool? = nil, replyTo: String? = nil, slug: String? = nil, staticBcc: [String]? = nil, staticCc: [String]? = nil, staticTo: [String]? = nil, subject: TemplateAndType? = nil, tags: [[String: Any]]? = nil, text: TemplateAndType? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.isSystem = isSystem
 
             self.isInternal = isInternal
@@ -126,8 +122,6 @@ public extension PlatformClient {
             self.name = name
 
             self.keys = keys
-
-            self.from = from
 
             self.replyTo = replyTo
 
@@ -250,14 +244,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                from = try container.decode(String.self, forKey: .from)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 replyTo = try container.decode(String.self, forKey: .replyTo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -364,8 +350,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(keys, forKey: .keys)
-
-            try? container.encodeIfPresent(from, forKey: .from)
 
             try? container.encodeIfPresent(replyTo, forKey: .replyTo)
 

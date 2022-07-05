@@ -12,7 +12,7 @@ public extension PlatformClient {
 
         public var provider: String?
 
-        public var from: [EmailProviderReqFrom]?
+        public var fromAddress: [EmailProviderReqFrom]?
 
         public var id: String?
 
@@ -37,7 +37,7 @@ public extension PlatformClient {
 
             case provider
 
-            case from
+            case fromAddress = "from_address"
 
             case id = "_id"
 
@@ -58,12 +58,12 @@ public extension PlatformClient {
             case v = "__v"
         }
 
-        public init(apiKey: String? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, from: [EmailProviderReqFrom]? = nil, name: String? = nil, provider: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(apiKey: String? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, fromAddress: [EmailProviderReqFrom]? = nil, name: String? = nil, provider: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.type = type
 
             self.provider = provider
 
-            self.from = from
+            self.fromAddress = fromAddress
 
             self.id = id
 
@@ -104,7 +104,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                from = try container.decode([EmailProviderReqFrom].self, forKey: .from)
+                fromAddress = try container.decode([EmailProviderReqFrom].self, forKey: .fromAddress)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,7 +191,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(provider, forKey: .provider)
 
-            try? container.encodeIfPresent(from, forKey: .from)
+            try? container.encodeIfPresent(fromAddress, forKey: .fromAddress)
 
             try? container.encodeIfPresent(id, forKey: .id)
 

@@ -10,24 +10,24 @@ public extension PlatformClient {
     class PaymentConfirmationResponse: Codable {
         public var success: Bool
 
-        public var message: String
-
         public var orderId: String
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case message
-
             case orderId = "order_id"
+
+            case message
         }
 
         public init(message: String, orderId: String, success: Bool) {
             self.success = success
 
-            self.message = message
-
             self.orderId = orderId
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            message = try container.decode(String.self, forKey: .message)
-
             orderId = try container.decode(String.self, forKey: .orderId)
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
