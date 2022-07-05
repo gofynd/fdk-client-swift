@@ -8,11 +8,11 @@ public extension PlatformClient {
      */
 
     class BulkResponse: Codable {
-        public var modifiedBy: UserInfo1?
+        public var createdBy: UserInfo1?
 
         public var createdOn: String
 
-        public var createdBy: UserInfo1?
+        public var modifiedBy: UserInfo1?
 
         public var isActive: Bool?
 
@@ -21,11 +21,11 @@ public extension PlatformClient {
         public var modifiedOn: String?
 
         public enum CodingKeys: String, CodingKey {
-            case modifiedBy = "modified_by"
+            case createdBy = "created_by"
 
             case createdOn = "created_on"
 
-            case createdBy = "created_by"
+            case modifiedBy = "modified_by"
 
             case isActive = "is_active"
 
@@ -35,11 +35,11 @@ public extension PlatformClient {
         }
 
         public init(batchId: String, createdBy: UserInfo1? = nil, createdOn: String, isActive: Bool? = nil, modifiedBy: UserInfo1? = nil, modifiedOn: String? = nil) {
-            self.modifiedBy = modifiedBy
+            self.createdBy = createdBy
 
             self.createdOn = createdOn
 
-            self.createdBy = createdBy
+            self.modifiedBy = modifiedBy
 
             self.isActive = isActive
 
@@ -52,7 +52,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                modifiedBy = try container.decode(UserInfo1.self, forKey: .modifiedBy)
+                createdBy = try container.decode(UserInfo1.self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             createdOn = try container.decode(String.self, forKey: .createdOn)
 
             do {
-                createdBy = try container.decode(UserInfo1.self, forKey: .createdBy)
+                modifiedBy = try container.decode(UserInfo1.self, forKey: .modifiedBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,11 +91,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(modifiedBy, forKey: .modifiedBy)
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            try? container.encode(modifiedBy, forKey: .modifiedBy)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
