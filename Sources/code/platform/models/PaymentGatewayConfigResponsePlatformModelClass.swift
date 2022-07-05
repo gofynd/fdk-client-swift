@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var excludedFields: [String]
 
-        public var displayFields: [String]
-
         public var created: Bool
 
         public var aggregators: [[String: Any]]?
+
+        public var displayFields: [String]
 
         public var appId: String
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case excludedFields = "excluded_fields"
 
-            case displayFields = "display_fields"
-
             case created
 
             case aggregators
+
+            case displayFields = "display_fields"
 
             case appId = "app_id"
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.excludedFields = excludedFields
 
-            self.displayFields = displayFields
-
             self.created = created
 
             self.aggregators = aggregators
+
+            self.displayFields = displayFields
 
             self.appId = appId
         }
@@ -55,8 +55,6 @@ public extension PlatformClient {
 
             excludedFields = try container.decode([String].self, forKey: .excludedFields)
 
-            displayFields = try container.decode([String].self, forKey: .displayFields)
-
             created = try container.decode(Bool.self, forKey: .created)
 
             do {
@@ -66,6 +64,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            displayFields = try container.decode([String].self, forKey: .displayFields)
 
             appId = try container.decode(String.self, forKey: .appId)
         }
@@ -77,11 +77,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(excludedFields, forKey: .excludedFields)
 
-            try? container.encodeIfPresent(displayFields, forKey: .displayFields)
-
             try? container.encodeIfPresent(created, forKey: .created)
 
             try? container.encodeIfPresent(aggregators, forKey: .aggregators)
+
+            try? container.encodeIfPresent(displayFields, forKey: .displayFields)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
         }
