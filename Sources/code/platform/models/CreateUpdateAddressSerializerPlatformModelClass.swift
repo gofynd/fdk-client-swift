@@ -10,72 +10,72 @@ public extension PlatformClient {
     class CreateUpdateAddressSerializer: Codable {
         public var state: String
 
-        public var longitude: Double
+        public var addressType: String
 
         public var latitude: Double
 
-        public var address2: String?
-
-        public var city: String
-
-        public var addressType: String
+        public var countryCode: String?
 
         public var country: String
 
-        public var countryCode: String?
+        public var landmark: String?
+
+        public var city: String
+
+        public var address1: String
+
+        public var longitude: Double
 
         public var pincode: Int
 
-        public var landmark: String?
-
-        public var address1: String
+        public var address2: String?
 
         public enum CodingKeys: String, CodingKey {
             case state
 
-            case longitude
+            case addressType = "address_type"
 
             case latitude
 
-            case address2
-
-            case city
-
-            case addressType = "address_type"
+            case countryCode = "country_code"
 
             case country
 
-            case countryCode = "country_code"
+            case landmark
+
+            case city
+
+            case address1
+
+            case longitude
 
             case pincode
 
-            case landmark
-
-            case address1
+            case address2
         }
 
         public init(address1: String, address2: String? = nil, addressType: String, city: String, country: String, countryCode: String? = nil, landmark: String? = nil, latitude: Double, longitude: Double, pincode: Int, state: String) {
             self.state = state
 
-            self.longitude = longitude
+            self.addressType = addressType
 
             self.latitude = latitude
 
-            self.address2 = address2
-
-            self.city = city
-
-            self.addressType = addressType
+            self.countryCode = countryCode
 
             self.country = country
 
-            self.countryCode = countryCode
+            self.landmark = landmark
+
+            self.city = city
+
+            self.address1 = address1
+
+            self.longitude = longitude
 
             self.pincode = pincode
 
-            self.landmark = landmark
-
-            self.address1 = address1
+            self.address2 = address2
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,23 +83,9 @@ public extension PlatformClient {
 
             state = try container.decode(String.self, forKey: .state)
 
-            longitude = try container.decode(Double.self, forKey: .longitude)
-
-            latitude = try container.decode(Double.self, forKey: .latitude)
-
-            do {
-                address2 = try container.decode(String.self, forKey: .address2)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            city = try container.decode(String.self, forKey: .city)
-
             addressType = try container.decode(String.self, forKey: .addressType)
 
-            country = try container.decode(String.self, forKey: .country)
+            latitude = try container.decode(Double.self, forKey: .latitude)
 
             do {
                 countryCode = try container.decode(String.self, forKey: .countryCode)
@@ -109,7 +95,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            pincode = try container.decode(Int.self, forKey: .pincode)
+            country = try container.decode(String.self, forKey: .country)
 
             do {
                 landmark = try container.decode(String.self, forKey: .landmark)
@@ -119,7 +105,21 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            city = try container.decode(String.self, forKey: .city)
+
             address1 = try container.decode(String.self, forKey: .address1)
+
+            longitude = try container.decode(Double.self, forKey: .longitude)
+
+            pincode = try container.decode(Int.self, forKey: .pincode)
+
+            do {
+                address2 = try container.decode(String.self, forKey: .address2)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -127,25 +127,25 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(state, forKey: .state)
 
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
 
             try? container.encodeIfPresent(latitude, forKey: .latitude)
 
-            try? container.encodeIfPresent(address2, forKey: .address2)
-
-            try? container.encodeIfPresent(city, forKey: .city)
-
-            try? container.encodeIfPresent(addressType, forKey: .addressType)
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
             try? container.encodeIfPresent(country, forKey: .country)
 
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(address1, forKey: .address1)
+
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(landmark, forKey: .landmark)
-
-            try? container.encodeIfPresent(address1, forKey: .address1)
+            try? container.encodeIfPresent(address2, forKey: .address2)
         }
     }
 }

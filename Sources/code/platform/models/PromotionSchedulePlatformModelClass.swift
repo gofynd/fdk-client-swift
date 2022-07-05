@@ -8,48 +8,50 @@ public extension PlatformClient {
      */
 
     class PromotionSchedule: Codable {
+        public var published: Bool
+
         public var cron: String?
 
         public var duration: Int?
 
         public var end: String?
 
-        public var published: Bool
+        public var start: String
 
         public var nextSchedule: [[String: Any]]?
 
-        public var start: String
-
         public enum CodingKeys: String, CodingKey {
+            case published
+
             case cron
 
             case duration
 
             case end
 
-            case published
+            case start
 
             case nextSchedule = "next_schedule"
-
-            case start
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, published: Bool, start: String) {
+            self.published = published
+
             self.cron = cron
 
             self.duration = duration
 
             self.end = end
 
-            self.published = published
+            self.start = start
 
             self.nextSchedule = nextSchedule
-
-            self.start = start
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            published = try container.decode(Bool.self, forKey: .published)
 
             do {
                 cron = try container.decode(String.self, forKey: .cron)
@@ -75,7 +77,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            published = try container.decode(Bool.self, forKey: .published)
+            start = try container.decode(String.self, forKey: .start)
 
             do {
                 nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
@@ -84,12 +86,12 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            start = try container.decode(String.self, forKey: .start)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(published, forKey: .published)
 
             try? container.encode(cron, forKey: .cron)
 
@@ -97,11 +99,9 @@ public extension PlatformClient {
 
             try? container.encode(end, forKey: .end)
 
-            try? container.encodeIfPresent(published, forKey: .published)
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
-
-            try? container.encodeIfPresent(start, forKey: .start)
         }
     }
 }

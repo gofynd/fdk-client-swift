@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var value: Double?
 
-        public var isApplied: Bool?
-
         public var type: String?
+
+        public var isApplied: Bool?
 
         public var uid: String?
 
@@ -26,9 +26,9 @@ public extension ApplicationClient {
 
             case value
 
-            case isApplied = "is_applied"
-
             case type
+
+            case isApplied = "is_applied"
 
             case uid
         }
@@ -40,9 +40,9 @@ public extension ApplicationClient {
 
             self.value = value
 
-            self.isApplied = isApplied
-
             self.type = type
+
+            self.isApplied = isApplied
 
             self.uid = uid
         }
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isApplied = try container.decode(Bool.self, forKey: .isApplied)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                isApplied = try container.decode(Bool.self, forKey: .isApplied)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }
