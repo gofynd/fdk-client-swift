@@ -71,7 +71,11 @@ extension Decodable {
 
 public extension Data {
     var dictionary: [String: Any]? {
-        try? JSONSerialization.jsonObject(with: self, options: []) as? [String: Any]
+        do {
+            return try JSONSerialization.jsonObject(with: self, options: []) as? [String: Any]
+        } catch {
+            return nil
+        }
     }
 }
 
@@ -152,6 +156,15 @@ extension Encodable {
         let encoder = JSONEncoder()
         guard let data = try? encoder.encode(self) else { return nil }
         return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
+    }
+}
+
+public extension Encodable {
+    /// Returns a new deep clone copy of parent object
+    func duplicate() -> Self where Self: Decodable {
+        let dict = self.dictionary!
+        let copy = Self.self.init(dictionary: dict)!
+        return copy
     }
 }
 

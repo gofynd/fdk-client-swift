@@ -3251,7 +3251,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | collection | collection | Symbolic link for Collection: /collection/:slug |
  | collections | collections | Symbolic link for Collections: /collections/ |
  | contactUs | contact-us | Symbolic link for Contact Us: /contact-us/ |
- | externalLink | external | Symbolic link for External Link: /external/:url |
+ | externalLink | external | Symbolic link for External Link: /external/ |
  | faq | faq | Symbolic link for FAQ: /faq/:category |
  | freshchat | freshchat | Symbolic link for Chat by Freshchat: /freshchat |
  | home | home | Symbolic link for Home: / |
@@ -3281,6 +3281,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | cartDelivery | cart-delivery | Symbolic link for Cart Delivery: /cart/delivery |
  | cartPayment | cart-payment | Symbolic link for Cart Payment Information: /cart/payment-info |
  | cartReview | cart-review | Symbolic link for Cart Order Review: /cart/order-review |
+ | login | login | Symbolic link for Login: /auth/login |
 
 ---
 

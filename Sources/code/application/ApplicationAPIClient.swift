@@ -12,7 +12,7 @@ class ApplicationAPIClient {
         var headers = [
             (key: "Authorization", value: "Bearer " + "\(config.applicationId):\(config.applicationToken)".asBase64)
         ]
-        headers.append((key: "x-fp-sdk-version", value: "0.1.17"))
+        headers.append((key: "x-fp-sdk-version", value: "0.1.21"))
         headers.append(contentsOf: extraHeaders)
         headers.append(contentsOf: config.extraHeaders)
         if let userAgent = config.userAgent {
@@ -23,6 +23,9 @@ class ApplicationAPIClient {
         }
         if let currency = config.currency {
             headers.append((key: "x-currency-code", value: currency))
+        }
+        if let locationDetails = config.locationDetails.dictionary?.minifiedJson {
+            headers.append((key: "x-location-detail", value: locationDetails))
         }
         AlmofireHelper.request(url,
                                query: query,
