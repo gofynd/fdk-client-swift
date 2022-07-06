@@ -8,6 +8,8 @@ public extension PlatformClient {
      */
 
     class RestrictedCategoryResponseSerializer: Codable {
+        public var storeType: String
+
         public var restrictedCategories: [RestrictedCategoryResponseInfoSerializer]
 
         public var name: String
@@ -16,9 +18,9 @@ public extension PlatformClient {
 
         public var code: String
 
-        public var storeType: String
-
         public enum CodingKeys: String, CodingKey {
+            case storeType = "store_type"
+
             case restrictedCategories = "restricted_categories"
 
             case name
@@ -26,11 +28,11 @@ public extension PlatformClient {
             case uid
 
             case code
-
-            case storeType = "store_type"
         }
 
         public init(code: String, name: String, restrictedCategories: [RestrictedCategoryResponseInfoSerializer], storeType: String, uid: Int) {
+            self.storeType = storeType
+
             self.restrictedCategories = restrictedCategories
 
             self.name = name
@@ -38,12 +40,12 @@ public extension PlatformClient {
             self.uid = uid
 
             self.code = code
-
-            self.storeType = storeType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            storeType = try container.decode(String.self, forKey: .storeType)
 
             restrictedCategories = try container.decode([RestrictedCategoryResponseInfoSerializer].self, forKey: .restrictedCategories)
 
@@ -52,12 +54,12 @@ public extension PlatformClient {
             uid = try container.decode(Int.self, forKey: .uid)
 
             code = try container.decode(String.self, forKey: .code)
-
-            storeType = try container.decode(String.self, forKey: .storeType)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(storeType, forKey: .storeType)
 
             try? container.encodeIfPresent(restrictedCategories, forKey: .restrictedCategories)
 
@@ -66,8 +68,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(storeType, forKey: .storeType)
         }
     }
 }

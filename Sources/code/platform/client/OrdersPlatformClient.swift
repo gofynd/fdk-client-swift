@@ -15,7 +15,7 @@ public extension PlatformClient {
          * Summary:
          * Description:
          **/
-        public func getOrderShipmentDetails(
+        public func getShipmentDetails(
             shipmentId: String,
 
             onResponse: @escaping (_ response: ShipmentDetailsResponse?, _ error: FDKError?) -> Void
@@ -54,7 +54,7 @@ public extension PlatformClient {
          * Summary:
          * Description:
          **/
-        public func getShipmentDetails(
+        public func getOrderShipmentDetails(
             orderId: String,
 
             onResponse: @escaping (_ response: ShipmentDetailsResponse?, _ error: FDKError?) -> Void

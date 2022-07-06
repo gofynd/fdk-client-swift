@@ -6,22 +6,22 @@
 
 ## Orders Methods
 Handles all platform order and shipment api(s)
-* [getOrderShipmentDetails](#getordershipmentdetails)
 * [getShipmentDetails](#getshipmentdetails)
+* [getOrderShipmentDetails](#getordershipmentdetails)
 
 
 
 ## Methods with example and description
 
 
-#### getOrderShipmentDetails
+#### getShipmentDetails
 
 
 
 
 
 ```swift
-client.orders.getOrderShipmentDetails(shipmentId: shipmentId) { (response, error) in
+client.orders.getShipmentDetails(shipmentId: shipmentId) { (response, error) in
     // Use response
 }
 ```
@@ -69,14 +69,14 @@ We are processing the report!
 ---
 
 
-#### getShipmentDetails
+#### getOrderShipmentDetails
 
 
 
 
 
 ```swift
-client.orders.getShipmentDetails(orderId: orderId) { (response, error) in
+client.orders.getOrderShipmentDetails(orderId: orderId) { (response, error) in
     // Use response
 }
 ```
@@ -129,7 +129,7 @@ We are processing the report!
 
  
  
- #### [OrderDetails](#OrderDetails)
+ #### [OrderDetailsData](#OrderDetailsData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -144,50 +144,17 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | String |  no  |  |
  | storeName | String |  no  |  |
- | city | String |  no  |  |
- | phone | String |  no  |  |
- | contactPerson | String |  no  |  |
+ | country | String |  no  |  |
  | code | String |  no  |  |
+ | address | String |  no  |  |
+ | city | String |  no  |  |
  | id | String |  no  |  |
  | state | String |  no  |  |
+ | pincode | String |  no  |  |
  | fulfillmentChannel | String |  no  |  |
- | country | String |  no  |  |
- | pincode | String |  no  |  |
-
----
-
-
- 
- 
- #### [UserDetails](#UserDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String |  no  |  |
- | city | String |  no  |  |
- | address | String |  no  |  |
+ | contactPerson | String |  no  |  |
  | phone | String |  no  |  |
- | state | String |  no  |  |
- | email | String |  no  |  |
- | country | String |  no  |  |
- | pincode | String |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentPrices](#ShipmentPrices)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brandCalculatedAmount | Int? |  yes  |  |
- | taxCollectedAtSource | Int? |  yes  |  |
- | gstinCode | String? |  yes  |  |
- | valueOfGood | Int? |  yes  |  |
- | gstFee | Int? |  yes  |  |
 
 ---
 
@@ -198,14 +165,47 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
+ | country | String? |  yes  |  |
  | awbNo | String? |  yes  |  |
+ | name | String? |  yes  |  |
  | gstTag | String? |  yes  |  |
+ | ewayBillId | String? |  yes  |  |
+ | id | String? |  yes  |  |
  | pincode | String? |  yes  |  |
  | trackUrl | String? |  yes  |  |
- | id | String? |  yes  |  |
- | country | String? |  yes  |  |
- | ewayBillId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserDetailsData](#UserDetailsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | String |  no  |  |
+ | address | String |  no  |  |
+ | phone | String |  no  |  |
+ | name | String |  no  |  |
+ | email | String |  no  |  |
+ | state | String |  no  |  |
+ | pincode | String |  no  |  |
+ | city | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentPricesData](#ShipmentPricesData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | valueOfGood | Int? |  yes  |  |
+ | brandCalculatedAmount | Int? |  yes  |  |
+ | gstinCode | String? |  yes  |  |
+ | gstFee | Int? |  yes  |  |
+ | taxCollectedAtSource | Int? |  yes  |  |
 
 ---
 
@@ -216,19 +216,19 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order | [OrderDetails](#OrderDetails)? |  yes  |  |
- | paymentMode | String |  no  |  |
- | bagStatusHistory | [String]? |  yes  |  |
- | deliverySlot | [String: Any] |  no  |  |
- | shipmentQuantity | Int |  no  |  |
+ | order | [OrderDetailsData](#OrderDetailsData)? |  yes  |  |
  | fulfillingStore | [FulfillingStore](#FulfillingStore)? |  yes  |  |
- | shipmentId | String |  no  |  |
- | deliveryDetails | [UserDetails](#UserDetails)? |  yes  |  |
- | shipmentPrices | [ShipmentPrices](#ShipmentPrices)? |  yes  |  |
- | billingDetails | [UserDetails](#UserDetails)? |  yes  |  |
- | journeyType | String |  no  |  |
- | dpDetails | [DPDetails](#DPDetails)? |  yes  |  |
  | bags | [String: Any] |  no  |  |
+ | journeyType | String |  no  |  |
+ | paymentMode | String |  no  |  |
+ | dpDetails | [DPDetails](#DPDetails)? |  yes  |  |
+ | deliverySlot | [String: Any] |  no  |  |
+ | billingDetails | [UserDetailsData](#UserDetailsData)? |  yes  |  |
+ | shipmentPrices | [ShipmentPricesData](#ShipmentPricesData)? |  yes  |  |
+ | shipmentQuantity | Int |  no  |  |
+ | bagStatusHistory | [String]? |  yes  |  |
+ | shipmentId | String |  no  |  |
+ | deliveryDetails | [UserDetailsData](#UserDetailsData)? |  yes  |  |
 
 ---
 
@@ -239,8 +239,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | [[Shipment](#Shipment)]? |  yes  |  |
  | success | Bool |  no  |  |
+ | shipments | [[Shipment](#Shipment)]? |  yes  |  |
 
 ---
 
@@ -251,8 +251,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason | String? |  yes  |  |
  | success | Bool? |  yes  |  |
+ | reason | String? |  yes  |  |
 
 ---
 
