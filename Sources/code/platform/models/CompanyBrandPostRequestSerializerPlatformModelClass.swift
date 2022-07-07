@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var documents: [CompanyBrandDocumentsSerializer]?
 
-        public var uid: Int?
-
         public var documentRequired: Bool?
+
+        public var uid: Int?
 
         public var company: Int
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case documents
 
-            case uid
-
             case documentRequired = "document_required"
+
+            case uid
 
             case company
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.documents = documents
 
-            self.uid = uid
-
             self.documentRequired = documentRequired
+
+            self.uid = uid
 
             self.company = company
         }
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                documentRequired = try container.decode(Bool.self, forKey: .documentRequired)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                documentRequired = try container.decode(Bool.self, forKey: .documentRequired)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,9 +81,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(documents, forKey: .documents)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(documentRequired, forKey: .documentRequired)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(company, forKey: .company)
         }

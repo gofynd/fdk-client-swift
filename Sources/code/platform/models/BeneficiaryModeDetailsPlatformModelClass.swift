@@ -8,78 +8,80 @@ public extension PlatformClient {
      */
 
     class BeneficiaryModeDetails: Codable {
-        public var vpa: String?
-
-        public var bankName: String
-
-        public var email: String
-
-        public var wallet: String?
-
-        public var mobile: String
-
         public var accountNo: String
 
-        public var accountHolder: String
+        public var vpa: String?
 
         public var ifscCode: String
 
+        public var mobile: String
+
         public var branchName: String
 
-        public var comment: String?
+        public var wallet: String?
+
+        public var email: String
 
         public var address: String?
 
+        public var comment: String?
+
+        public var bankName: String
+
+        public var accountHolder: String
+
         public enum CodingKeys: String, CodingKey {
-            case vpa
-
-            case bankName = "bank_name"
-
-            case email
-
-            case wallet
-
-            case mobile
-
             case accountNo = "account_no"
 
-            case accountHolder = "account_holder"
+            case vpa
 
             case ifscCode = "ifsc_code"
 
+            case mobile
+
             case branchName = "branch_name"
+
+            case wallet
+
+            case email
+
+            case address
 
             case comment
 
-            case address
+            case bankName = "bank_name"
+
+            case accountHolder = "account_holder"
         }
 
         public init(accountHolder: String, accountNo: String, address: String? = nil, bankName: String, branchName: String, comment: String? = nil, email: String, ifscCode: String, mobile: String, vpa: String? = nil, wallet: String? = nil) {
-            self.vpa = vpa
-
-            self.bankName = bankName
-
-            self.email = email
-
-            self.wallet = wallet
-
-            self.mobile = mobile
-
             self.accountNo = accountNo
 
-            self.accountHolder = accountHolder
+            self.vpa = vpa
 
             self.ifscCode = ifscCode
 
+            self.mobile = mobile
+
             self.branchName = branchName
+
+            self.wallet = wallet
+
+            self.email = email
+
+            self.address = address
 
             self.comment = comment
 
-            self.address = address
+            self.bankName = bankName
+
+            self.accountHolder = accountHolder
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            accountNo = try container.decode(String.self, forKey: .accountNo)
 
             do {
                 vpa = try container.decode(String.self, forKey: .vpa)
@@ -89,9 +91,11 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            bankName = try container.decode(String.self, forKey: .bankName)
+            ifscCode = try container.decode(String.self, forKey: .ifscCode)
 
-            email = try container.decode(String.self, forKey: .email)
+            mobile = try container.decode(String.self, forKey: .mobile)
+
+            branchName = try container.decode(String.self, forKey: .branchName)
 
             do {
                 wallet = try container.decode(String.self, forKey: .wallet)
@@ -101,15 +105,15 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            mobile = try container.decode(String.self, forKey: .mobile)
+            email = try container.decode(String.self, forKey: .email)
 
-            accountNo = try container.decode(String.self, forKey: .accountNo)
+            do {
+                address = try container.decode(String.self, forKey: .address)
 
-            accountHolder = try container.decode(String.self, forKey: .accountHolder)
-
-            ifscCode = try container.decode(String.self, forKey: .ifscCode)
-
-            branchName = try container.decode(String.self, forKey: .branchName)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 comment = try container.decode(String.self, forKey: .comment)
@@ -119,39 +123,35 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                address = try container.decode(String.self, forKey: .address)
+            bankName = try container.decode(String.self, forKey: .bankName)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            accountHolder = try container.decode(String.self, forKey: .accountHolder)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(vpa, forKey: .vpa)
-
-            try? container.encodeIfPresent(bankName, forKey: .bankName)
-
-            try? container.encodeIfPresent(email, forKey: .email)
-
-            try? container.encode(wallet, forKey: .wallet)
-
-            try? container.encodeIfPresent(mobile, forKey: .mobile)
-
             try? container.encodeIfPresent(accountNo, forKey: .accountNo)
 
-            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+            try? container.encode(vpa, forKey: .vpa)
 
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
 
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
+
             try? container.encodeIfPresent(branchName, forKey: .branchName)
+
+            try? container.encode(wallet, forKey: .wallet)
+
+            try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encodeIfPresent(address, forKey: .address)
 
             try? container.encodeIfPresent(comment, forKey: .comment)
 
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encodeIfPresent(bankName, forKey: .bankName)
+
+            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
         }
     }
 }
