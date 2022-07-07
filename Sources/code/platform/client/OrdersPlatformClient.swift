@@ -23,7 +23,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/shipmentsDetails/\(shipmentId)",
+                url: "/service/platform/orders/v1.0/company/\(companyId)/shipmentDetails/\(shipmentId)",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -78,7 +78,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/store/lane-config/",
+                url: "/service/platform/orders/v1.0/company/\(companyId)/lane-config/",
                 query: xQuery,
                 body: nil,
                 headers: [],

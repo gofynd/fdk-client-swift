@@ -8,27 +8,27 @@ public extension PlatformClient {
      */
 
     class QuantityBase: Codable {
+        public var updatedAt: String?
+
         public var count: Int?
 
-        public var updatedAt: Int?
-
         public enum CodingKeys: String, CodingKey {
-            case count
-
             case updatedAt = "updated_at"
+
+            case count
         }
 
-        public init(count: Int? = nil, updatedAt: Int? = nil) {
-            self.count = count
-
+        public init(count: Int? = nil, updatedAt: String? = nil) {
             self.updatedAt = updatedAt
+
+            self.count = count
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                count = try container.decode(Int.self, forKey: .count)
+                updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                updatedAt = try container.decode(Int.self, forKey: .updatedAt)
+                count = try container.decode(Int.self, forKey: .count)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(count, forKey: .count)
-
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(count, forKey: .count)
         }
     }
 }
