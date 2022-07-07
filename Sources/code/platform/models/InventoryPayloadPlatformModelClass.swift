@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var storeId: Int
 
-        public var sellerIdentifier: String
-
         public var expirationDate: String?
+
+        public var sellerIdentifier: String
 
         public var totalQuantity: Int?
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case storeId = "store_id"
 
-            case sellerIdentifier = "seller_identifier"
-
             case expirationDate = "expiration_date"
+
+            case sellerIdentifier = "seller_identifier"
 
             case totalQuantity = "total_quantity"
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             self.storeId = storeId
 
-            self.sellerIdentifier = sellerIdentifier
-
             self.expirationDate = expirationDate
+
+            self.sellerIdentifier = sellerIdentifier
 
             self.totalQuantity = totalQuantity
         }
@@ -69,8 +69,6 @@ public extension PlatformClient {
 
             storeId = try container.decode(Int.self, forKey: .storeId)
 
-            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
-
             do {
                 expirationDate = try container.decode(String.self, forKey: .expirationDate)
 
@@ -78,6 +76,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
 
             do {
                 totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
@@ -97,9 +97,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
-            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
-
             try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
+
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
             try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
         }

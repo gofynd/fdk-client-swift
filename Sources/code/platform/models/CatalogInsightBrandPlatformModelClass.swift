@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var articleFreshness: Int?
 
+        public var name: String?
+
         public var availableArticles: Int?
 
         public var availableSizes: Int?
-
-        public var name: String?
 
         public var totalArticles: Int?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case articleFreshness = "article_freshness"
 
+            case name
+
             case availableArticles = "available_articles"
 
             case availableSizes = "available_sizes"
-
-            case name
 
             case totalArticles = "total_articles"
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.articleFreshness = articleFreshness
 
+            self.name = name
+
             self.availableArticles = availableArticles
 
             self.availableSizes = availableSizes
-
-            self.name = name
 
             self.totalArticles = totalArticles
         }
@@ -68,6 +68,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 availableArticles = try container.decode(Int.self, forKey: .availableArticles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -77,14 +85,6 @@ public extension PlatformClient {
 
             do {
                 availableSizes = try container.decode(Int.self, forKey: .availableSizes)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,11 +107,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(articleFreshness, forKey: .articleFreshness)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(availableArticles, forKey: .availableArticles)
 
             try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
-
-            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(totalArticles, forKey: .totalArticles)
         }

@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var appId: String
 
-        public var storeIds: [Int]?
-
         public var companyId: Int?
+
+        public var storeIds: [Int]?
 
         public var channelIdentifier: String?
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case appId = "app_id"
 
-            case storeIds = "store_ids"
-
             case companyId = "company_id"
+
+            case storeIds = "store_ids"
 
             case channelIdentifier = "channel_identifier"
 
@@ -43,9 +43,9 @@ public extension PlatformClient {
 
             self.appId = appId
 
-            self.storeIds = storeIds
-
             self.companyId = companyId
+
+            self.storeIds = storeIds
 
             self.channelIdentifier = channelIdentifier
 
@@ -62,7 +62,7 @@ public extension PlatformClient {
             appId = try container.decode(String.self, forKey: .appId)
 
             do {
-                storeIds = try container.decode([Int].self, forKey: .storeIds)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                storeIds = try container.decode([Int].self, forKey: .storeIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,9 +103,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
             try? container.encodeIfPresent(channelIdentifier, forKey: .channelIdentifier)
 

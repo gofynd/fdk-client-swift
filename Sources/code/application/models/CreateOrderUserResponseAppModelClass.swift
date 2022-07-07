@@ -11,30 +11,30 @@ public extension ApplicationClient {
 
         public var paymentConfirmUrl: String?
 
-        public var orderId: String?
-
         public var message: String
+
+        public var orderId: String?
 
         public var statusCode: Int
 
-        public var data: CreateOrderUserData?
-
         public var callbackUrl: String?
+
+        public var data: CreateOrderUserData?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
             case paymentConfirmUrl = "payment_confirm_url"
 
-            case orderId = "order_id"
-
             case message
+
+            case orderId = "order_id"
 
             case statusCode = "status_code"
 
-            case data
-
             case callbackUrl = "callback_url"
+
+            case data
         }
 
         public init(callbackUrl: String? = nil, data: CreateOrderUserData? = nil, message: String, orderId: String? = nil, paymentConfirmUrl: String? = nil, statusCode: Int, success: Bool) {
@@ -42,15 +42,15 @@ public extension ApplicationClient {
 
             self.paymentConfirmUrl = paymentConfirmUrl
 
-            self.orderId = orderId
-
             self.message = message
+
+            self.orderId = orderId
 
             self.statusCode = statusCode
 
-            self.data = data
-
             self.callbackUrl = callbackUrl
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -66,6 +66,8 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            message = try container.decode(String.self, forKey: .message)
+
             do {
                 orderId = try container.decode(String.self, forKey: .orderId)
 
@@ -74,12 +76,10 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            message = try container.decode(String.self, forKey: .message)
-
             statusCode = try container.decode(Int.self, forKey: .statusCode)
 
             do {
-                data = try container.decode(CreateOrderUserData.self, forKey: .data)
+                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -87,7 +87,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+                data = try container.decode(CreateOrderUserData.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,15 +102,15 @@ public extension ApplicationClient {
 
             try? container.encode(paymentConfirmUrl, forKey: .paymentConfirmUrl)
 
-            try? container.encode(orderId, forKey: .orderId)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encode(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encode(callbackUrl, forKey: .callbackUrl)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
