@@ -8,36 +8,36 @@ public extension PlatformClient {
      */
 
     class ShipmentPricesData: Codable {
-        public var gstFee: Int?
+        public var taxCollectedAtSource: Int?
 
         public var brandCalculatedAmount: Int?
 
-        public var valueOfGood: Int?
+        public var gstFee: Int?
 
-        public var taxCollectedAtSource: Int?
+        public var valueOfGood: Int?
 
         public var gstinCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case gstFee = "gst_fee"
+            case taxCollectedAtSource = "tax_collected_at_source"
 
             case brandCalculatedAmount = "brand_calculated_amount"
 
-            case valueOfGood = "value_of_good"
+            case gstFee = "gst_fee"
 
-            case taxCollectedAtSource = "tax_collected_at_source"
+            case valueOfGood = "value_of_good"
 
             case gstinCode = "gstin_code"
         }
 
         public init(brandCalculatedAmount: Int? = nil, gstinCode: String? = nil, gstFee: Int? = nil, taxCollectedAtSource: Int? = nil, valueOfGood: Int? = nil) {
-            self.gstFee = gstFee
+            self.taxCollectedAtSource = taxCollectedAtSource
 
             self.brandCalculatedAmount = brandCalculatedAmount
 
-            self.valueOfGood = valueOfGood
+            self.gstFee = gstFee
 
-            self.taxCollectedAtSource = taxCollectedAtSource
+            self.valueOfGood = valueOfGood
 
             self.gstinCode = gstinCode
         }
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                gstFee = try container.decode(Int.self, forKey: .gstFee)
+                taxCollectedAtSource = try container.decode(Int.self, forKey: .taxCollectedAtSource)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                valueOfGood = try container.decode(Int.self, forKey: .valueOfGood)
+                gstFee = try container.decode(Int.self, forKey: .gstFee)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                taxCollectedAtSource = try container.decode(Int.self, forKey: .taxCollectedAtSource)
+                valueOfGood = try container.decode(Int.self, forKey: .valueOfGood)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,13 +89,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(gstFee, forKey: .gstFee)
+            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
 
             try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
 
-            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
+            try? container.encodeIfPresent(gstFee, forKey: .gstFee)
 
-            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
+            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
 
             try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
         }
