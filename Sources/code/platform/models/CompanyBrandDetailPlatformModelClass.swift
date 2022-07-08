@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class CompanyBrandDetail: Codable {
-        public var brandId: Int?
-
         public var companyId: Int?
+
+        public var brandId: Int?
 
         public var brandName: String?
 
         public var totalArticle: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case brandId = "brand_id"
-
             case companyId = "company_id"
+
+            case brandId = "brand_id"
 
             case brandName = "brand_name"
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(brandId: Int? = nil, brandName: String? = nil, companyId: Int? = nil, totalArticle: Int? = nil) {
-            self.brandId = brandId
-
             self.companyId = companyId
+
+            self.brandId = brandId
 
             self.brandName = brandName
 
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                brandId = try container.decode(Int.self, forKey: .brandId)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                brandId = try container.decode(Int.self, forKey: .brandId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,9 +75,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(brandId, forKey: .brandId)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
 

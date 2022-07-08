@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class ProductVariantResponse: Codable {
         public var displayType: String?
 
-        public var items: [ProductVariantItemResponse]?
+        public var key: String?
 
         public var header: String?
 
-        public var key: String?
+        public var items: [ProductVariantItemResponse]?
 
         public enum CodingKeys: String, CodingKey {
             case displayType = "display_type"
 
-            case items
+            case key
 
             case header
 
-            case key
+            case items
         }
 
         public init(displayType: String? = nil, header: String? = nil, items: [ProductVariantItemResponse]? = nil, key: String? = nil) {
             self.displayType = displayType
 
-            self.items = items
+            self.key = key
 
             self.header = header
 
-            self.key = key
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(header, forKey: .header)
 
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

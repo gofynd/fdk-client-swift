@@ -10,18 +10,18 @@ public extension PlatformClient {
     class OpenapiCartDetailsResponse: Codable {
         public var isValid: Bool?
 
-        public var message: String?
-
         public var breakupValues: CartBreakup?
+
+        public var message: String?
 
         public var items: [CartProductInfo]?
 
         public enum CodingKeys: String, CodingKey {
             case isValid = "is_valid"
 
-            case message
-
             case breakupValues = "breakup_values"
+
+            case message
 
             case items
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(breakupValues: CartBreakup? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, message: String? = nil) {
             self.isValid = isValid
 
-            self.message = message
-
             self.breakupValues = breakupValues
+
+            self.message = message
 
             self.items = items
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                breakupValues = try container.decode(CartBreakup.self, forKey: .breakupValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                breakupValues = try container.decode(CartBreakup.self, forKey: .breakupValues)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isValid, forKey: .isValid)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(items, forKey: .items)
         }

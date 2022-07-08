@@ -552,14 +552,21 @@ public extension PlatformClient {
             id: String,
             level: String,
             uid: Int,
+            permission: String?,
 
             onResponse: @escaping (_ response: OptedStoreIntegration?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = permission {
+                xQuery["permission"] = value
+            }
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/check/configuration/\(id)/\(level)/\(uid)",
-                query: nil,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 responseType: "application/json",

@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var logo: String?
 
-        public var display: String
-
         public var name: String
+
+        public var display: String
 
         public var kind: String?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case logo
 
-            case display
-
             case name
+
+            case display
 
             case kind
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.logo = logo
 
-            self.display = display
-
             self.name = name
+
+            self.display = display
 
             self.kind = kind
         }
@@ -61,9 +61,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            display = try container.decode(String.self, forKey: .display)
-
             name = try container.decode(String.self, forKey: .name)
+
+            display = try container.decode(String.self, forKey: .display)
 
             do {
                 kind = try container.decode(String.self, forKey: .kind)
@@ -81,9 +81,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(kind, forKey: .kind)
         }

@@ -12,7 +12,7 @@ public extension PlatformClient {
 
         public var companyId: Int
 
-        public var sizes: [Size1]
+        public var sizes: [InventoryJobPayload]
 
         public var batchId: String
 
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case batchId = "batch_id"
         }
 
-        public init(batchId: String, companyId: Int, sizes: [Size1], user: [String: Any]? = nil) {
+        public init(batchId: String, companyId: Int, sizes: [InventoryJobPayload], user: [String: Any]? = nil) {
             self.user = user
 
             self.companyId = companyId
@@ -49,7 +49,7 @@ public extension PlatformClient {
 
             companyId = try container.decode(Int.self, forKey: .companyId)
 
-            sizes = try container.decode([Size1].self, forKey: .sizes)
+            sizes = try container.decode([InventoryJobPayload].self, forKey: .sizes)
 
             batchId = try container.decode(String.self, forKey: .batchId)
         }
