@@ -8,54 +8,50 @@ public extension PlatformClient {
      */
 
     class SubLane: Codable {
-        public var index: Int
-
-        public var displayName: String
-
-        public var totalShipments: Int
+        public var text: String
 
         public var currentState: [String]?
 
+        public var value: String
+
         public var nextState: [String]?
 
-        public var name: String
+        public var index: Int
+
+        public var totalShipments: Int
 
         public enum CodingKeys: String, CodingKey {
-            case index
-
-            case displayName = "display_name"
-
-            case totalShipments = "total_shipments"
+            case text
 
             case currentState = "current_state"
 
+            case value
+
             case nextState = "next_state"
 
-            case name
+            case index
+
+            case totalShipments = "total_shipments"
         }
 
-        public init(currentState: [String]? = nil, displayName: String, index: Int, name: String, nextState: [String]? = nil, totalShipments: Int) {
-            self.index = index
-
-            self.displayName = displayName
-
-            self.totalShipments = totalShipments
+        public init(currentState: [String]? = nil, index: Int, nextState: [String]? = nil, text: String, totalShipments: Int, value: String) {
+            self.text = text
 
             self.currentState = currentState
 
+            self.value = value
+
             self.nextState = nextState
 
-            self.name = name
+            self.index = index
+
+            self.totalShipments = totalShipments
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            index = try container.decode(Int.self, forKey: .index)
-
-            displayName = try container.decode(String.self, forKey: .displayName)
-
-            totalShipments = try container.decode(Int.self, forKey: .totalShipments)
+            text = try container.decode(String.self, forKey: .text)
 
             do {
                 currentState = try container.decode([String].self, forKey: .currentState)
@@ -65,6 +61,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            value = try container.decode(String.self, forKey: .value)
+
             do {
                 nextState = try container.decode([String].self, forKey: .nextState)
 
@@ -73,23 +71,25 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
+            index = try container.decode(Int.self, forKey: .index)
+
+            totalShipments = try container.decode(Int.self, forKey: .totalShipments)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(index, forKey: .index)
-
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-
-            try? container.encodeIfPresent(totalShipments, forKey: .totalShipments)
+            try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(currentState, forKey: .currentState)
 
+            try? container.encodeIfPresent(value, forKey: .value)
+
             try? container.encodeIfPresent(nextState, forKey: .nextState)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(index, forKey: .index)
+
+            try? container.encodeIfPresent(totalShipments, forKey: .totalShipments)
         }
     }
 }

@@ -8,26 +8,32 @@ public extension PlatformClient {
      */
 
     class SuperLane: Codable {
-        public var displayName: String
+        public var text: String
 
         public var options: [SubLane]?
 
+        public var value: String
+
         public enum CodingKeys: String, CodingKey {
-            case displayName = "display_name"
+            case text
 
             case options
+
+            case value
         }
 
-        public init(displayName: String, options: [SubLane]? = nil) {
-            self.displayName = displayName
+        public init(options: [SubLane]? = nil, text: String, value: String) {
+            self.text = text
 
             self.options = options
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            displayName = try container.decode(String.self, forKey: .displayName)
+            text = try container.decode(String.self, forKey: .text)
 
             do {
                 options = try container.decode([SubLane].self, forKey: .options)
@@ -36,14 +42,18 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            value = try container.decode(String.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(options, forKey: .options)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }

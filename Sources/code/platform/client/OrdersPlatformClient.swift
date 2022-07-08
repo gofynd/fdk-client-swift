@@ -168,6 +168,8 @@ public extension PlatformClient {
             stores: String?,
             salesChannel: String?,
             requestByExt: String?,
+            pageNo: Int?,
+            pageSize: Int?,
             isPrioritySort: Bool?,
 
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
@@ -212,6 +214,14 @@ public extension PlatformClient {
 
             if let value = requestByExt {
                 xQuery["request_by_ext"] = value
+            }
+
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+
+            if let value = pageSize {
+                xQuery["page_size"] = value
             }
 
             if let value = isPrioritySort {
@@ -314,6 +324,8 @@ public extension PlatformClient {
             dpIds: String?,
             stores: String?,
             salesChannel: String?,
+            pageNo: Int?,
+            pageSize: Int?,
             isPrioritySort: Bool?,
 
             onResponse: @escaping (_ response: OrderListingResponse?, _ error: FDKError?) -> Void
@@ -350,6 +362,14 @@ public extension PlatformClient {
 
             if let value = salesChannel {
                 xQuery["sales_channel"] = value
+            }
+
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+
+            if let value = pageSize {
+                xQuery["page_size"] = value
             }
 
             if let value = isPrioritySort {
