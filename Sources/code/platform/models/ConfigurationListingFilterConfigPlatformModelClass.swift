@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var isActive: Bool
 
-        public var valueConfig: ConfigurationListingFilterValue?
-
-        public var type: String
-
         public var logo: String?
 
         public var priority: Int
+
+        public var type: String
+
+        public var valueConfig: ConfigurationListingFilterValue?
 
         public var key: String
 
@@ -27,13 +27,13 @@ public extension PlatformClient {
 
             case isActive = "is_active"
 
-            case valueConfig = "value_config"
-
-            case type
-
             case logo
 
             case priority
+
+            case type
+
+            case valueConfig = "value_config"
 
             case key
         }
@@ -43,13 +43,13 @@ public extension PlatformClient {
 
             self.isActive = isActive
 
-            self.valueConfig = valueConfig
-
-            self.type = type
-
             self.logo = logo
 
             self.priority = priority
+
+            self.type = type
+
+            self.valueConfig = valueConfig
 
             self.key = key
         }
@@ -68,16 +68,6 @@ public extension PlatformClient {
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
             do {
-                valueConfig = try container.decode(ConfigurationListingFilterValue.self, forKey: .valueConfig)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            type = try container.decode(String.self, forKey: .type)
-
-            do {
                 logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -86,6 +76,16 @@ public extension PlatformClient {
             } catch {}
 
             priority = try container.decode(Int.self, forKey: .priority)
+
+            type = try container.decode(String.self, forKey: .type)
+
+            do {
+                valueConfig = try container.decode(ConfigurationListingFilterValue.self, forKey: .valueConfig)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             key = try container.decode(String.self, forKey: .key)
         }
@@ -97,13 +97,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(valueConfig, forKey: .valueConfig)
-
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(valueConfig, forKey: .valueConfig)
 
             try? container.encodeIfPresent(key, forKey: .key)
         }

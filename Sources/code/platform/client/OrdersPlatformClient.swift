@@ -170,6 +170,7 @@ public extension PlatformClient {
             requestByExt: String?,
             pageNo: Int?,
             pageSize: Int?,
+            customerId: String?,
             isPrioritySort: Bool?,
 
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
@@ -222,6 +223,10 @@ public extension PlatformClient {
 
             if let value = pageSize {
                 xQuery["page_size"] = value
+            }
+
+            if let value = customerId {
+                xQuery["customer_id"] = value
             }
 
             if let value = isPrioritySort {
@@ -393,6 +398,49 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(OrderListingResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary:
+         * Description:
+         **/
+        public func getfilters(
+            view: String,
+
+            onResponse: @escaping (_ response: FiltersResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:]
+
+            xQuery["view"] = view
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/orders/v1.0/company/\(companyId)/filter-listing",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(FiltersResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
