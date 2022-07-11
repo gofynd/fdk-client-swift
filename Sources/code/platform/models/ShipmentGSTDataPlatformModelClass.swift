@@ -10,9 +10,9 @@ public extension PlatformClient {
     class ShipmentGSTData: Codable {
         public var gstinCode: String?
 
-        public var taxCollectedAtSource: Int?
-
         public var gstFee: Int?
+
+        public var taxCollectedAtSource: Int?
 
         public var valueOfGood: Int?
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case gstinCode = "gstin_code"
 
-            case taxCollectedAtSource = "tax_collected_at_source"
-
             case gstFee = "gst_fee"
+
+            case taxCollectedAtSource = "tax_collected_at_source"
 
             case valueOfGood = "value_of_good"
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(brandCalculatedAmount: Int? = nil, gstinCode: String? = nil, gstFee: Int? = nil, taxCollectedAtSource: Int? = nil, valueOfGood: Int? = nil) {
             self.gstinCode = gstinCode
 
-            self.taxCollectedAtSource = taxCollectedAtSource
-
             self.gstFee = gstFee
+
+            self.taxCollectedAtSource = taxCollectedAtSource
 
             self.valueOfGood = valueOfGood
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                taxCollectedAtSource = try container.decode(Int.self, forKey: .taxCollectedAtSource)
+                gstFee = try container.decode(Int.self, forKey: .gstFee)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                gstFee = try container.decode(Int.self, forKey: .gstFee)
+                taxCollectedAtSource = try container.decode(Int.self, forKey: .taxCollectedAtSource)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
 
-            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
-
             try? container.encodeIfPresent(gstFee, forKey: .gstFee)
+
+            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
 
             try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
 

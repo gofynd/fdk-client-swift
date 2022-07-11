@@ -8,13 +8,13 @@ public extension PlatformClient {
      */
 
     class InventoryResponse: Codable {
-        public var identifiers: [String: Any]?
+        public var inventoryUpdatedOn: String?
 
-        public var price: Int?
-
-        public var itemId: Int?
+        public var currency: String?
 
         public var quantity: Int?
+
+        public var uid: String?
 
         public var sellerIdentifier: String?
 
@@ -22,26 +22,26 @@ public extension PlatformClient {
 
         public var sellableQuantity: Int?
 
-        public var priceTransfer: Int?
-
-        public var currency: String?
-
         public var size: String?
 
         public var store: [String: Any]?
 
-        public var inventoryUpdatedOn: String?
+        public var itemId: Int?
 
-        public var uid: String?
+        public var priceTransfer: Int?
+
+        public var price: Int?
+
+        public var identifiers: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case identifiers
+            case inventoryUpdatedOn = "inventory_updated_on"
 
-            case price
-
-            case itemId = "item_id"
+            case currency
 
             case quantity
+
+            case uid
 
             case sellerIdentifier = "seller_identifier"
 
@@ -49,27 +49,27 @@ public extension PlatformClient {
 
             case sellableQuantity = "sellable_quantity"
 
-            case priceTransfer = "price_transfer"
-
-            case currency
-
             case size
 
             case store
 
-            case inventoryUpdatedOn = "inventory_updated_on"
+            case itemId = "item_id"
 
-            case uid
+            case priceTransfer = "price_transfer"
+
+            case price
+
+            case identifiers
         }
 
         public init(currency: String? = nil, identifiers: [String: Any]? = nil, inventoryUpdatedOn: String? = nil, itemId: Int? = nil, price: Int? = nil, priceEffective: Int? = nil, priceTransfer: Int? = nil, quantity: Int? = nil, sellableQuantity: Int? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: [String: Any]? = nil, uid: String? = nil) {
-            self.identifiers = identifiers
+            self.inventoryUpdatedOn = inventoryUpdatedOn
 
-            self.price = price
-
-            self.itemId = itemId
+            self.currency = currency
 
             self.quantity = quantity
+
+            self.uid = uid
 
             self.sellerIdentifier = sellerIdentifier
 
@@ -77,24 +77,24 @@ public extension PlatformClient {
 
             self.sellableQuantity = sellableQuantity
 
-            self.priceTransfer = priceTransfer
-
-            self.currency = currency
-
             self.size = size
 
             self.store = store
 
-            self.inventoryUpdatedOn = inventoryUpdatedOn
+            self.itemId = itemId
 
-            self.uid = uid
+            self.priceTransfer = priceTransfer
+
+            self.price = price
+
+            self.identifiers = identifiers
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                identifiers = try container.decode([String: Any].self, forKey: .identifiers)
+                inventoryUpdatedOn = try container.decode(String.self, forKey: .inventoryUpdatedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,15 +102,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                price = try container.decode(Int.self, forKey: .price)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,6 +111,14 @@ public extension PlatformClient {
 
             do {
                 quantity = try container.decode(Int.self, forKey: .quantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,22 +150,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                priceTransfer = try container.decode(Int.self, forKey: .priceTransfer)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currency = try container.decode(String.self, forKey: .currency)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 size = try container.decode(String.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -182,7 +166,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                inventoryUpdatedOn = try container.decode(String.self, forKey: .inventoryUpdatedOn)
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -190,7 +174,23 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                priceTransfer = try container.decode(Int.self, forKey: .priceTransfer)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                price = try container.decode(Int.self, forKey: .price)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                identifiers = try container.decode([String: Any].self, forKey: .identifiers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -201,13 +201,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+            try? container.encodeIfPresent(inventoryUpdatedOn, forKey: .inventoryUpdatedOn)
 
-            try? container.encodeIfPresent(price, forKey: .price)
-
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(currency, forKey: .currency)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
@@ -215,17 +215,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(sellableQuantity, forKey: .sellableQuantity)
 
-            try? container.encodeIfPresent(priceTransfer, forKey: .priceTransfer)
-
-            try? container.encodeIfPresent(currency, forKey: .currency)
-
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(store, forKey: .store)
 
-            try? container.encodeIfPresent(inventoryUpdatedOn, forKey: .inventoryUpdatedOn)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(priceTransfer, forKey: .priceTransfer)
+
+            try? container.encodeIfPresent(price, forKey: .price)
+
+            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
         }
     }
 }

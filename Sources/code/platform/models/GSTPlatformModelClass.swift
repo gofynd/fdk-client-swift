@@ -10,9 +10,9 @@ public extension PlatformClient {
     class GST: Codable {
         public var gstinCode: String
 
-        public var taxCollectedAtSource: Double
-
         public var gstFee: Double
+
+        public var taxCollectedAtSource: Double
 
         public var valueOfGood: Double
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case gstinCode = "gstin_code"
 
-            case taxCollectedAtSource = "tax_collected_at_source"
-
             case gstFee = "gst_fee"
+
+            case taxCollectedAtSource = "tax_collected_at_source"
 
             case valueOfGood = "value_of_good"
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(brandCalculatedAmount: Double, gstinCode: String, gstFee: Double, taxCollectedAtSource: Double, valueOfGood: Double) {
             self.gstinCode = gstinCode
 
-            self.taxCollectedAtSource = taxCollectedAtSource
-
             self.gstFee = gstFee
+
+            self.taxCollectedAtSource = taxCollectedAtSource
 
             self.valueOfGood = valueOfGood
 
@@ -47,9 +47,9 @@ public extension PlatformClient {
 
             gstinCode = try container.decode(String.self, forKey: .gstinCode)
 
-            taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
-
             gstFee = try container.decode(Double.self, forKey: .gstFee)
+
+            taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
 
             valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
 
@@ -61,9 +61,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
 
-            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
-
             try? container.encodeIfPresent(gstFee, forKey: .gstFee)
+
+            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
 
             try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
 
