@@ -11,6 +11,8 @@ public extension ApplicationClient {
 
         public var mode: String?
 
+        public var mop: String?
+
         public var status: String?
 
         public enum CodingKeys: String, CodingKey {
@@ -18,13 +20,17 @@ public extension ApplicationClient {
 
             case mode
 
+            case mop
+
             case status
         }
 
-        public init(logo: String? = nil, mode: String? = nil, status: String? = nil) {
+        public init(logo: String? = nil, mode: String? = nil, mop: String? = nil, status: String? = nil) {
             self.logo = logo
 
             self.mode = mode
+
+            self.mop = mop
 
             self.status = status
         }
@@ -49,6 +55,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                mop = try container.decode(String.self, forKey: .mop)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -63,6 +77,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(mode, forKey: .mode)
+
+            try? container.encodeIfPresent(mop, forKey: .mop)
 
             try? container.encodeIfPresent(status, forKey: .status)
         }

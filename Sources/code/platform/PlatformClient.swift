@@ -37,6 +37,8 @@ public class PlatformClient {
 
     public let orders: Orders
 
+    public let orderManage: OrderManage
+
     public init(config: PlatformConfig) {
         self.config = config
 
@@ -71,6 +73,8 @@ public class PlatformClient {
         auditTrail = AuditTrail(config: config)
 
         orders = Orders(config: config)
+
+        orderManage = OrderManage(config: config)
     }
 
     public func applicationClient(id: String) -> ApplicationClient {
@@ -7851,6 +7855,61 @@ public class PlatformClient {
                 self.config = config
                 self.companyId = config.companyId
                 self.applicationId = applicationId
+            }
+
+            /**
+             *
+             * Summary: Get Order Details for company based on Company Id and Order Id
+             * Description: Get Orders
+             **/
+            public func getOrderDetails(
+                orderId: String?,
+                next: String?,
+                previous: String?,
+
+                onResponse: @escaping (_ response: OrderDetails?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = orderId {
+                    xQuery["order_id"] = value
+                }
+
+                if let value = next {
+                    xQuery["next"] = value
+                }
+
+                if let value = previous {
+                    xQuery["previous"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/details",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(OrderDetails.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
             }
 
             /**

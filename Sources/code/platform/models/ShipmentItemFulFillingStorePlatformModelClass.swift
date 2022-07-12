@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: FulFillingStore
+         Model: ShipmentItemFulFillingStore
          Used By: Orders
      */
 
-    class FulFillingStore: Codable {
+    class ShipmentItemFulFillingStore: Codable {
         public var id: String
 
         public var code: String

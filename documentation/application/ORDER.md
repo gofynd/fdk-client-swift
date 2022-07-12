@@ -904,6 +904,8 @@ Success, the code is valid and returns a SignedUrl
  | currentStatus | [CurrentStatus](#CurrentStatus)? |  yes  |  |
  | id | Int? |  yes  |  |
  | financialBreakup | [[FinancialBreakup](#FinancialBreakup)]? |  yes  |  |
+ | canCancel | Bool? |  yes  |  |
+ | canReturn | Bool? |  yes  |  |
 
 ---
 
@@ -1107,6 +1109,7 @@ Success, the code is valid and returns a SignedUrl
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | showPromise | Bool? |  yes  |  |
  | timestamp | [Timestamp](#Timestamp)? |  yes  |  |
 
 ---
@@ -1118,7 +1121,6 @@ Success, the code is valid and returns a SignedUrl
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | showPromise | Bool? |  yes  |  |
  | min | String? |  yes  |  |
  | max | String? |  yes  |  |
 
@@ -1183,6 +1185,10 @@ Success, the code is valid and returns a SignedUrl
  | beneficiaryDetails | Bool? |  yes  |  |
  | canReturn | Bool? |  yes  |  |
  | canBreak | [String: Any]? |  yes  |  |
+ | deliveryDate | String? |  yes  |  |
+ | returnableDate | String? |  yes  |  |
+ | showDownloadInvoice | Bool? |  yes  |  |
+ | showTrackLink | Bool? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | needHelpUrl | String? |  yes  |  |
  | shipmentId | String? |  yes  |  |
@@ -1226,6 +1232,7 @@ Success, the code is valid and returns a SignedUrl
  | ---------- | ---- | -------- | ----------- |
  | logo | String? |  yes  |  |
  | mode | String? |  yes  |  |
+ | mop | String? |  yes  |  |
  | status | String? |  yes  |  |
 
 ---

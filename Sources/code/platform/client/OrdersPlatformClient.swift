@@ -18,7 +18,7 @@ public extension PlatformClient {
         public func getShipmentDetails(
             shipmentId: String,
 
-            onResponse: @escaping (_ response: ShipmentDetailsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentInfoResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
@@ -36,7 +36,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(ShipmentDetailsResponse.self, from: data)
+                        let response = Utility.decode(ShipmentInfoResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
