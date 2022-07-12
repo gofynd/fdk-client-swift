@@ -578,14 +578,11 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
   "value": {
     "user": {
       "debug": {
-        "source": "grimlock",
+        "source": "deadlock",
         "platform": "000000000000000000000001"
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -599,7 +596,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -623,8 +620,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
         }
       ],
       "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z",
-      "uid": "61"
+      "updated_at": "2021-02-04T10:10:44.981Z"
     }
   }
 }
@@ -748,14 +744,11 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
   "value": {
     "user": {
       "debug": {
-        "source": "grimlock",
+        "source": "deadlock",
         "platform": "000000000000000000000001"
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -769,7 +762,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -793,8 +786,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
         }
       ],
       "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z",
-      "uid": "61"
+      "updated_at": "2021-02-04T10:10:44.981Z"
     }
   }
 }
@@ -917,14 +909,11 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
   "value": {
     "user": {
       "debug": {
-        "source": "grimlock",
+        "source": "deadlock",
         "platform": "000000000000000000000001"
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -938,7 +927,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -962,8 +951,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
         }
       ],
       "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z",
-      "uid": "61"
+      "updated_at": "2021-02-04T10:10:44.981Z"
     }
   }
 }
@@ -1429,14 +1417,11 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
     "verify_mobile_link": true,
     "user": {
       "debug": {
-        "source": "grimlock",
+        "source": "deadlock",
         "platform": "000000000000000000000001"
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -1474,8 +1459,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
         }
       ],
       "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z",
-      "uid": "61"
+      "updated_at": "2021-02-04T10:10:44.981Z"
     }
   }
 }
@@ -1601,14 +1585,11 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
     "verify_mobile_link": true,
     "user": {
       "debug": {
-        "source": "grimlock",
+        "source": "deadlock",
         "platform": "000000000000000000000001"
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -1646,8 +1627,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
         }
       ],
       "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z",
-      "uid": "61"
+      "updated_at": "2021-02-04T10:10:44.981Z"
     }
   }
 }
@@ -1710,14 +1690,11 @@ Success. Returns a JSON object with user details. Refer `UserObjectSchema` for m
   "value": {
     "user": {
       "debug": {
-        "source": "grimlock",
+        "source": "deadlock",
         "platform": "000000000000000000000001"
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -1731,7 +1708,7 @@ Success. Returns a JSON object with user details. Refer `UserObjectSchema` for m
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -1755,8 +1732,7 @@ Success. Returns a JSON object with user details. Refer `UserObjectSchema` for m
         }
       ],
       "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z",
-      "uid": "61"
+      "updated_at": "2021-02-04T10:10:44.981Z"
     }
   }
 }
@@ -1999,14 +1975,11 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
   "value": {
     "user": {
       "debug": {
-        "source": "grimlock",
+        "source": "deadlock",
         "platform": "000000000000000000000001"
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2020,7 +1993,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -2044,8 +2017,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
         }
       ],
       "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z",
-      "uid": "61"
+      "updated_at": "2021-02-04T10:10:44.981Z"
     }
   }
 }
@@ -2114,14 +2086,11 @@ Success. Check the example shown below or refer `VerifyMobileOTPSuccess` for mor
     "verify_mobile_link": true,
     "user": {
       "debug": {
-        "source": "grimlock",
+        "source": "deadlock",
         "platform": "000000000000000000000001"
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2159,8 +2128,7 @@ Success. Check the example shown below or refer `VerifyMobileOTPSuccess` for mor
         }
       ],
       "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z",
-      "uid": "61"
+      "updated_at": "2021-02-04T10:10:44.981Z"
     }
   }
 }
@@ -2233,14 +2201,11 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
   "value": {
     "user": {
       "debug": {
-        "source": "grimlock",
+        "source": "deadlock",
         "platform": "000000000000000000000001"
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2254,7 +2219,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -2278,8 +2243,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
         }
       ],
       "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z",
-      "uid": "61"
+      "updated_at": "2021-02-04T10:10:44.981Z"
     }
   }
 }
@@ -2346,14 +2310,11 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
   "value": {
     "user": {
       "debug": {
-        "source": "grimlock",
+        "source": "deadlock",
         "platform": "000000000000000000000001"
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2367,7 +2328,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -2391,8 +2352,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
         }
       ],
       "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z",
-      "uid": "61"
+      "updated_at": "2021-02-04T10:10:44.981Z"
     }
   }
 }
@@ -2461,14 +2421,11 @@ Success. Check the example shown below or refer `SendMobileVerifyLinkSuccess` fo
     "verify_mobile_link": true,
     "user": {
       "debug": {
-        "source": "grimlock",
+        "source": "deadlock",
         "platform": "000000000000000000000001"
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2506,8 +2463,7 @@ Success. Check the example shown below or refer `SendMobileVerifyLinkSuccess` fo
         }
       ],
       "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z",
-      "uid": "61"
+      "updated_at": "2021-02-04T10:10:44.981Z"
     }
   }
 }
@@ -2576,14 +2532,11 @@ Success. Returns a JSON object with user details. Refer `VerifyEmailOTPSuccess` 
     "verify_email_link": true,
     "user": {
       "debug": {
-        "source": "grimlock",
+        "source": "deadlock",
         "platform": "000000000000000000000001"
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2621,8 +2574,7 @@ Success. Returns a JSON object with user details. Refer `VerifyEmailOTPSuccess` 
         }
       ],
       "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z",
-      "uid": "61"
+      "updated_at": "2021-02-04T10:10:44.981Z"
     }
   }
 }
@@ -2694,14 +2646,11 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
   "value": {
     "user": {
       "debug": {
-        "source": "grimlock",
+        "source": "deadlock",
         "platform": "000000000000000000000001"
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2715,7 +2664,7 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -2739,8 +2688,7 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
         }
       ],
       "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z",
-      "uid": "61"
+      "updated_at": "2021-02-04T10:10:44.981Z"
     }
   }
 }
@@ -2807,14 +2755,11 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
   "value": {
     "user": {
       "debug": {
-        "source": "grimlock",
+        "source": "deadlock",
         "platform": "000000000000000000000001"
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2828,7 +2773,7 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -2852,8 +2797,7 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
         }
       ],
       "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z",
-      "uid": "61"
+      "updated_at": "2021-02-04T10:10:44.981Z"
     }
   }
 }
@@ -2930,6 +2874,30 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
 
 ### Schemas
+
+ 
+ 
+ #### [BlockUserRequestSchema](#BlockUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | Bool? |  yes  |  |
+ | userId | [String]? |  yes  |  |
+ | reason | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ArchiveUserRequestSchema](#ArchiveUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | userId | String? |  yes  |  |
+
+---
+
 
  
  
@@ -3241,8 +3209,8 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | user | [UserSchema](#UserSchema)? |  yes  |  |
- | resendEmailToken | String? |  yes  |  |
  | registerToken | String? |  yes  |  |
+ | resendEmailToken | String? |  yes  |  |
  | userExists | Bool? |  yes  |  |
  | verifyEmailLink | Bool? |  yes  |  |
  | verifyEmailOtp | Bool? |  yes  |  |
@@ -3348,6 +3316,28 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | logout | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BlockUserSuccess](#BlockUserSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ArchiveUserSuccess](#ArchiveUserSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -3472,6 +3462,28 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | hasNext | Bool? |  yes  |  |
  | type | String? |  yes  |  |
  | current | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SessionListResponseSchema](#SessionListResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [String]? |  yes  |  |
 
 ---
 
@@ -3929,6 +3941,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | firstName | String? |  yes  |  |
  | lastName | String? |  yes  |  |
  | gender | String? |  yes  |  |
+ | externalId | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
 
 ---
@@ -3940,6 +3953,8 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | applicationId | String? |  yes  |  |
+ | userId | String? |  yes  |  |
  | firstName | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
  | lastName | String? |  yes  |  |
@@ -3951,7 +3966,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | profilePicUrl | String? |  yes  |  |
  | username | String? |  yes  |  |
  | accountType | String? |  yes  |  |
- | uid | String? |  yes  |  |
  | debug | [Debug](#Debug)? |  yes  |  |
  | hasOldPasswordHash | Bool? |  yes  |  |
  | id | String? |  yes  |  |
@@ -3971,7 +3985,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | primary | Bool? |  yes  |  |
  | verified | Bool? |  yes  |  |
  | phone | String? |  yes  |  |
- | countryCode | Int? |  yes  |  |
+ | countryCode | String? |  yes  |  |
 
 ---
 

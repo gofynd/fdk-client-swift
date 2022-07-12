@@ -2466,6 +2466,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | url | String? |  yes  |  |
  | content | String? |  yes  |  |
  | source | [DataLoaderSourceSchema](#DataLoaderSourceSchema)? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
