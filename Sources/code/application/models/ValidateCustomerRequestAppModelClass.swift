@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class ValidateCustomerRequest: Codable {
         public var payload: String
 
-        public var aggregator: String
-
         public var transactionAmountInPaise: Int
+
+        public var aggregator: String
 
         public var merchantParams: [String: Any]
 
@@ -20,9 +20,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case payload
 
-            case aggregator
-
             case transactionAmountInPaise = "transaction_amount_in_paise"
+
+            case aggregator
 
             case merchantParams = "merchant_params"
 
@@ -32,9 +32,9 @@ public extension ApplicationClient {
         public init(aggregator: String, merchantParams: [String: Any], payload: String, phoneNumber: String, transactionAmountInPaise: Int) {
             self.payload = payload
 
-            self.aggregator = aggregator
-
             self.transactionAmountInPaise = transactionAmountInPaise
+
+            self.aggregator = aggregator
 
             self.merchantParams = merchantParams
 
@@ -46,9 +46,9 @@ public extension ApplicationClient {
 
             payload = try container.decode(String.self, forKey: .payload)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
             transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
+
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
 
@@ -60,9 +60,9 @@ public extension ApplicationClient {
 
             try? container.encode(payload, forKey: .payload)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
             try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
+
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
 
