@@ -896,6 +896,9 @@ Success. Returns a JSON object containing the all the platform configurations. R
     }
   ],
   "delete_account_day": 7,
+  "delete_account_consent": {
+    "consent_text": ""
+  },
   "_id": "5e04a5e5220bc15839ad9bc0",
   "created_at": "2019-12-26T12:21:57.878Z",
   "updated_at": "2020-08-13T14:31:09.878Z",
@@ -1023,6 +1026,9 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
     }
   ],
   "delete_account_day": 7,
+  "delete_account_consent": {
+    "consent_text": ""
+  },
   "_id": "5e04a5e5220bc15839ad9bc0",
   "created_at": "2019-12-26T12:21:57.878Z",
   "updated_at": "2020-08-13T14:31:09.878Z",
