@@ -1965,6 +1965,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | desktopImage | String? |  yes  |  |
  | deleteAccountDay | Int? |  yes  |  |
  | deleteAccountReasons | [[DeleteAccountReasons](#DeleteAccountReasons)]? |  yes  |  |
+ | deleteAccountConsent | [String: Any]? |  yes  |  |
 
 ---
 
@@ -2125,6 +2126,17 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | reasonText | String? |  yes  |  |
  | reasonId | String? |  yes  |  |
  | showTextArea | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DeleteAccountConsent](#DeleteAccountConsent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | consentText | String? |  yes  |  |
 
 ---
 

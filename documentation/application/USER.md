@@ -3857,6 +3857,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | desktopImage | String? |  yes  |  |
  | deleteAccountDay | Int? |  yes  |  |
  | deleteAccountReasons | [[DeleteAccountReasons](#DeleteAccountReasons)]? |  yes  |  |
+ | deleteAccountConsent | [String: Any]? |  yes  |  |
 
 ---
 
@@ -4017,6 +4018,17 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | reasonText | String? |  yes  |  |
  | reasonId | String? |  yes  |  |
  | showTextArea | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DeleteAccountConsent](#DeleteAccountConsent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | consentText | String? |  yes  |  |
 
 ---
 

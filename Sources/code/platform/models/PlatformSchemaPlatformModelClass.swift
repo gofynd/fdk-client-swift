@@ -54,6 +54,8 @@ public extension PlatformClient {
 
         public var deleteAccountReasons: [DeleteAccountReasons]?
 
+        public var deleteAccountConsent: [String: Any]?
+
         public enum CodingKeys: String, CodingKey {
             case display
 
@@ -100,9 +102,11 @@ public extension PlatformClient {
             case deleteAccountDay = "delete_account_day"
 
             case deleteAccountReasons = "delete_account_reasons"
+
+            case deleteAccountConsent = "delete_account_consent"
         }
 
-        public init(active: Bool? = nil, createdAt: String? = nil, deleteAccountDay: Int? = nil, deleteAccountReasons: [DeleteAccountReasons]? = nil, desktopImage: String? = nil, display: String? = nil, flashCard: FlashCard? = nil, forgotPassword: Bool? = nil, login: Login? = nil, lookAndFeel: LookAndFeel? = nil, meta: MetaSchema? = nil, mobileImage: String? = nil, name: String? = nil, register: Bool? = nil, registerRequiredFields: RegisterRequiredFields? = nil, requiredFields: RequiredFields? = nil, skipCaptcha: Bool? = nil, skipLogin: Bool? = nil, social: Social? = nil, socialTokens: SocialTokens? = nil, subtext: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(active: Bool? = nil, createdAt: String? = nil, deleteAccountConsent: [String: Any]? = nil, deleteAccountDay: Int? = nil, deleteAccountReasons: [DeleteAccountReasons]? = nil, desktopImage: String? = nil, display: String? = nil, flashCard: FlashCard? = nil, forgotPassword: Bool? = nil, login: Login? = nil, lookAndFeel: LookAndFeel? = nil, meta: MetaSchema? = nil, mobileImage: String? = nil, name: String? = nil, register: Bool? = nil, registerRequiredFields: RegisterRequiredFields? = nil, requiredFields: RequiredFields? = nil, skipCaptcha: Bool? = nil, skipLogin: Bool? = nil, social: Social? = nil, socialTokens: SocialTokens? = nil, subtext: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.display = display
 
             self.lookAndFeel = lookAndFeel
@@ -148,6 +152,8 @@ public extension PlatformClient {
             self.deleteAccountDay = deleteAccountDay
 
             self.deleteAccountReasons = deleteAccountReasons
+
+            self.deleteAccountConsent = deleteAccountConsent
         }
 
         required public init(from decoder: Decoder) throws {
@@ -336,6 +342,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                deleteAccountConsent = try container.decode([String: Any].self, forKey: .deleteAccountConsent)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -386,6 +400,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(deleteAccountDay, forKey: .deleteAccountDay)
 
             try? container.encodeIfPresent(deleteAccountReasons, forKey: .deleteAccountReasons)
+
+            try? container.encodeIfPresent(deleteAccountConsent, forKey: .deleteAccountConsent)
         }
     }
 }
