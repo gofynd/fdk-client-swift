@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var aggregator: String
 
-        public var merchantParams: [String: Any]
-
         public var phoneNumber: String
+
+        public var merchantParams: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case transactionAmountInPaise = "transaction_amount_in_paise"
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case aggregator
 
-            case merchantParams = "merchant_params"
-
             case phoneNumber = "phone_number"
+
+            case merchantParams = "merchant_params"
         }
 
         public init(aggregator: String, merchantParams: [String: Any], payload: String, phoneNumber: String, transactionAmountInPaise: Int) {
@@ -36,9 +36,9 @@ public extension ApplicationClient {
 
             self.aggregator = aggregator
 
-            self.merchantParams = merchantParams
-
             self.phoneNumber = phoneNumber
+
+            self.merchantParams = merchantParams
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,9 +50,9 @@ public extension ApplicationClient {
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
-            merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
-
             phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+
+            merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -64,9 +64,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
-
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+
+            try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
         }
     }
 }
