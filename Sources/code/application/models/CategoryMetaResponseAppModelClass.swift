@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var logo: Media?
 
-        public var banners: ImageUrls?
-
         public var name: String?
+
+        public var banners: ImageUrls?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
             case logo
 
-            case banners
-
             case name
+
+            case banners
         }
 
         public init(banners: ImageUrls? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.logo = logo
 
-            self.banners = banners
-
             self.name = name
+
+            self.banners = banners
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                banners = try container.decode(ImageUrls.self, forKey: .banners)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                banners = try container.decode(ImageUrls.self, forKey: .banners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(banners, forKey: .banners)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(banners, forKey: .banners)
         }
     }
 }
