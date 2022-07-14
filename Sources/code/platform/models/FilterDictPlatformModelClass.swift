@@ -1,26 +1,33 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: MetaFields
-         Used By: Catalog
+         Model: FilterDict
+         Used By: Orders
      */
-    class MetaFields: Codable {
+
+    class FilterDict: Codable {
         public var value: String
 
-        public var key: String
+        public var text: String
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case key
+            case text
+
+            case name
         }
 
-        public init(key: String, value: String) {
+        public init(name: String, text: String, value: String) {
             self.value = value
 
-            self.key = key
+            self.text = text
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -28,7 +35,9 @@ public extension ApplicationClient {
 
             value = try container.decode(String.self, forKey: .value)
 
-            key = try container.decode(String.self, forKey: .key)
+            text = try container.decode(String.self, forKey: .text)
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -36,7 +45,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(text, forKey: .text)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

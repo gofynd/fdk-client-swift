@@ -10,30 +10,30 @@ public extension PlatformClient {
     class OrderDataSet: Codable {
         public var userInfo: UserDataSet?
 
-        public var shipments: [ShipmentDataSet]?
-
         public var orderId: String
 
         public var orderCreatedTime: String
 
+        public var shipments: [ShipmentDataSet]?
+
         public enum CodingKeys: String, CodingKey {
             case userInfo = "user_info"
-
-            case shipments
 
             case orderId = "order_id"
 
             case orderCreatedTime = "order_created_time"
+
+            case shipments
         }
 
         public init(orderCreatedTime: String, orderId: String, shipments: [ShipmentDataSet]? = nil, userInfo: UserDataSet? = nil) {
             self.userInfo = userInfo
 
-            self.shipments = shipments
-
             self.orderId = orderId
 
             self.orderCreatedTime = orderCreatedTime
+
+            self.shipments = shipments
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,6 +47,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            orderId = try container.decode(String.self, forKey: .orderId)
+
+            orderCreatedTime = try container.decode(String.self, forKey: .orderCreatedTime)
+
             do {
                 shipments = try container.decode([ShipmentDataSet].self, forKey: .shipments)
 
@@ -54,10 +58,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            orderId = try container.decode(String.self, forKey: .orderId)
-
-            orderCreatedTime = try container.decode(String.self, forKey: .orderCreatedTime)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -65,11 +65,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(userInfo, forKey: .userInfo)
 
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
-
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(orderCreatedTime, forKey: .orderCreatedTime)
+
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
         }
     }
 }

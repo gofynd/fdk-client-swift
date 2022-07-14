@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class Statuses: Codable {
-        public var status: String
-
         public var excludeBagsNextState: String
+
+        public var status: String
 
         public var shipments: ShipmentDetail?
 
         public enum CodingKeys: String, CodingKey {
-            case status
-
             case excludeBagsNextState = "exclude_bags_next_state"
+
+            case status
 
             case shipments
         }
 
         public init(excludeBagsNextState: String, shipments: ShipmentDetail? = nil, status: String) {
-            self.status = status
-
             self.excludeBagsNextState = excludeBagsNextState
+
+            self.status = status
 
             self.shipments = shipments
         }
@@ -33,9 +33,9 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            status = try container.decode(String.self, forKey: .status)
-
             excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
+
+            status = try container.decode(String.self, forKey: .status)
 
             do {
                 shipments = try container.decode(ShipmentDetail.self, forKey: .shipments)
@@ -49,9 +49,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
         }

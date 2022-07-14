@@ -15,9 +15,9 @@ public extension ApplicationClient {
 
         public var col3: String?
 
-        public var col1: String?
-
         public var col2: String?
+
+        public var col1: String?
 
         public enum CodingKeys: String, CodingKey {
             case col6 = "col_6"
@@ -28,9 +28,9 @@ public extension ApplicationClient {
 
             case col3 = "col_3"
 
-            case col1 = "col_1"
-
             case col2 = "col_2"
+
+            case col1 = "col_1"
         }
 
         public init(col1: String? = nil, col2: String? = nil, col3: String? = nil, col4: String? = nil, col5: String? = nil, col6: String? = nil) {
@@ -42,9 +42,9 @@ public extension ApplicationClient {
 
             self.col3 = col3
 
-            self.col1 = col1
-
             self.col2 = col2
+
+            self.col1 = col1
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                col1 = try container.decode(String.self, forKey: .col1)
+                col2 = try container.decode(String.self, forKey: .col2)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                col2 = try container.decode(String.self, forKey: .col2)
+                col1 = try container.decode(String.self, forKey: .col1)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,9 +110,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(col3, forKey: .col3)
 
-            try? container.encodeIfPresent(col1, forKey: .col1)
-
             try? container.encodeIfPresent(col2, forKey: .col2)
+
+            try? container.encodeIfPresent(col1, forKey: .col1)
         }
     }
 }
