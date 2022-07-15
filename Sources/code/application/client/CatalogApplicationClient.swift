@@ -51,9 +51,9 @@ public extension ApplicationClient {
 
             ulrs["getFollowedListing"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/")
 
-            ulrs["followById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/")
-
             ulrs["unfollowById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/")
+
+            ulrs["followById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/")
 
             ulrs["getFollowerCountById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/")
 
@@ -130,7 +130,7 @@ public extension ApplicationClient {
          **/
         public func getProductSizesBySlug(
             slug: String,
-            storeId: Int?,
+            storeId: Int? = nil,
 
             onResponse: @escaping (_ response: ProductSizes?, _ error: FDKError?) -> Void
         ) {
@@ -399,11 +399,11 @@ public extension ApplicationClient {
          * Description: Retrieve the available stock of the products. Use this API to retrieve stock of multiple products (up to 50) at a time.
          **/
         public func getProductStockByIds(
-            itemId: String?,
-            alu: String?,
-            skuCode: String?,
-            ean: String?,
-            upc: String?,
+            itemId: String? = nil,
+            alu: String? = nil,
+            skuCode: String? = nil,
+            ean: String? = nil,
+            upc: String? = nil,
 
             onResponse: @escaping (_ response: ProductStockStatusResponse?, _ error: FDKError?) -> Void
         ) {
@@ -467,8 +467,8 @@ public extension ApplicationClient {
          **/
         public func getProductStockForTimeByIds(
             timestamp: String,
-            pageSize: Int?,
-            pageId: String?,
+            pageSize: Int? = nil,
+            pageId: String? = nil,
 
             onResponse: @escaping (_ response: ProductStockPolling?, _ error: FDKError?) -> Void
         ) {
@@ -522,7 +522,7 @@ public extension ApplicationClient {
          **/
         public func getProductStockForTimeByIdsPaginator(
             timestamp: String,
-            pageSize: Int?
+            pageSize: Int? = nil
 
         ) -> Paginator<ProductStockPolling> {
             let pageSize = pageSize ?? 20
@@ -551,14 +551,14 @@ public extension ApplicationClient {
          * Description: Use this API to list all the products. You may choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection.
          **/
         public func getProducts(
-            q: String?,
-            f: String?,
-            filters: Bool?,
-            sortOn: String?,
-            pageId: String?,
-            pageSize: Int?,
-            pageNo: Int?,
-            pageType: String?,
+            q: String? = nil,
+            f: String? = nil,
+            filters: Bool? = nil,
+            sortOn: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
+            pageNo: Int? = nil,
+            pageType: String? = nil,
 
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -633,11 +633,11 @@ public extension ApplicationClient {
          * Description: fetch the next page by calling .next(...) function
          **/
         public func getProductsPaginator(
-            q: String?,
-            f: String?,
-            filters: Bool?,
-            sortOn: String?,
-            pageSize: Int?
+            q: String? = nil,
+            f: String? = nil,
+            filters: Bool? = nil,
+            sortOn: String? = nil,
+            pageSize: Int? = nil
 
         ) -> Paginator<ProductListingResponse> {
             let pageSize = pageSize ?? 20
@@ -673,9 +673,9 @@ public extension ApplicationClient {
          * Description: A brand is the name under which a product is sold. Use this API to list all the brands. You can also filter the brands by department.
          **/
         public func getBrands(
-            department: String?,
-            pageNo: Int?,
-            pageSize: Int?,
+            department: String? = nil,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -730,8 +730,8 @@ public extension ApplicationClient {
          * Description: fetch the next page by calling .next(...) function
          **/
         public func getBrandsPaginator(
-            department: String?,
-            pageSize: Int?
+            department: String? = nil,
+            pageSize: Int? = nil
 
         ) -> Paginator<BrandListingResponse> {
             let pageSize = pageSize ?? 20
@@ -803,7 +803,7 @@ public extension ApplicationClient {
          * Description: Use this API to list all the categories. You can also filter the categories by department.
          **/
         public func getCategories(
-            department: String?,
+            department: String? = nil,
 
             onResponse: @escaping (_ response: CategoryListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -893,9 +893,9 @@ public extension ApplicationClient {
          * Description: List all the products associated with a brand, collection or category in a random order.
          **/
         public func getHomeProducts(
-            sortOn: String?,
-            pageId: String?,
-            pageSize: Int?,
+            sortOn: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: HomeListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -950,8 +950,8 @@ public extension ApplicationClient {
          * Description: fetch the next page by calling .next(...) function
          **/
         public func getHomeProductsPaginator(
-            sortOn: String?,
-            pageSize: Int?
+            sortOn: String? = nil,
+            pageSize: Int? = nil
 
         ) -> Paginator<HomeListingResponse> {
             let pageSize = pageSize ?? 20
@@ -1064,9 +1064,9 @@ public extension ApplicationClient {
          * Description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
          **/
         public func getCollections(
-            pageNo: Int?,
-            pageSize: Int?,
-            tag: [String]?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
+            tag: [String]? = nil,
 
             onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1121,8 +1121,8 @@ public extension ApplicationClient {
          * Description: fetch the next page by calling .next(...) function
          **/
         public func getCollectionsPaginator(
-            pageSize: Int?,
-            tag: [String]?
+            pageSize: Int? = nil,
+            tag: [String]? = nil
 
         ) -> Paginator<GetCollectionListingResponse> {
             let pageSize = pageSize ?? 20
@@ -1152,11 +1152,11 @@ public extension ApplicationClient {
          **/
         public func getCollectionItemsBySlug(
             slug: String,
-            f: String?,
-            filters: Bool?,
-            sortOn: String?,
-            pageId: String?,
-            pageSize: Int?,
+            f: String? = nil,
+            filters: Bool? = nil,
+            sortOn: String? = nil,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1222,10 +1222,10 @@ public extension ApplicationClient {
          **/
         public func getCollectionItemsBySlugPaginator(
             slug: String,
-            f: String?,
-            filters: Bool?,
-            sortOn: String?,
-            pageSize: Int?
+            f: String? = nil,
+            filters: Bool? = nil,
+            sortOn: String? = nil,
+            pageSize: Int? = nil
 
         ) -> Paginator<ProductListingResponse> {
             let pageSize = pageSize ?? 20
@@ -1301,8 +1301,8 @@ public extension ApplicationClient {
          **/
         public func getFollowedListing(
             collectionType: String,
-            pageId: String?,
-            pageSize: Int?,
+            pageId: String? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: GetFollowListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1356,7 +1356,7 @@ public extension ApplicationClient {
          **/
         public func getFollowedListingPaginator(
             collectionType: String,
-            pageSize: Int?
+            pageSize: Int? = nil
 
         ) -> Paginator<GetFollowListingResponse> {
             let pageSize = pageSize ?? 20
@@ -1381,16 +1381,16 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Follow an entity (product/brand/collection)
-         * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+         * Summary: Unfollow an entity (product/brand/collection)
+         * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
          **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
 
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["followById"] ?? ""
+            var fullUrl = relativeUrls["unfollowById"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
 
@@ -1398,7 +1398,7 @@ public extension ApplicationClient {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: fullUrl,
                 query: nil,
                 extraHeaders: [],
@@ -1427,16 +1427,16 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Unfollow an entity (product/brand/collection)
-         * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+         * Summary: Follow an entity (product/brand/collection)
+         * Description: Follow a particular entity such as product, brand, collection specified by its ID.
          **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
 
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["unfollowById"] ?? ""
+            var fullUrl = relativeUrls["followById"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
 
@@ -1444,7 +1444,7 @@ public extension ApplicationClient {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: fullUrl,
                 query: nil,
                 extraHeaders: [],
@@ -1523,7 +1523,7 @@ public extension ApplicationClient {
          * Description: You can get the IDs of all the followed Products, Brands and Collections. Pass collection_type as query parameter to fetch specific Ids
          **/
         public func getFollowIds(
-            collectionType: String?,
+            collectionType: String? = nil,
 
             onResponse: @escaping (_ response: FollowIdsResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1570,13 +1570,13 @@ public extension ApplicationClient {
          * Description: Use this API to get a list of stores in a specific application.
          **/
         public func getStores(
-            pageNo: Int?,
-            pageSize: Int?,
-            q: String?,
-            city: String?,
-            range: Int?,
-            latitude: Double?,
-            longitude: Double?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
+            q: String? = nil,
+            city: String? = nil,
+            range: Int? = nil,
+            latitude: Double? = nil,
+            longitude: Double? = nil,
 
             onResponse: @escaping (_ response: StoreListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1647,12 +1647,12 @@ public extension ApplicationClient {
          * Description: fetch the next page by calling .next(...) function
          **/
         public func getStoresPaginator(
-            pageSize: Int?,
-            q: String?,
-            city: String?,
-            range: Int?,
-            latitude: Double?,
-            longitude: Double?
+            pageSize: Int? = nil,
+            q: String? = nil,
+            city: String? = nil,
+            range: Int? = nil,
+            latitude: Double? = nil,
+            longitude: Double? = nil
 
         ) -> Paginator<StoreListingResponse> {
             let pageSize = pageSize ?? 20
@@ -1685,13 +1685,13 @@ public extension ApplicationClient {
          * Description: Use this API to get a list of stores in a specific application.
          **/
         public func getInStockLocations(
-            pageNo: Int?,
-            pageSize: Int?,
-            q: String?,
-            city: String?,
-            range: Int?,
-            latitude: Double?,
-            longitude: Double?,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
+            q: String? = nil,
+            city: String? = nil,
+            range: Int? = nil,
+            latitude: Double? = nil,
+            longitude: Double? = nil,
 
             onResponse: @escaping (_ response: ApplicationStoreListing?, _ error: FDKError?) -> Void
         ) {
@@ -1762,12 +1762,12 @@ public extension ApplicationClient {
          * Description: fetch the next page by calling .next(...) function
          **/
         public func getInStockLocationsPaginator(
-            pageSize: Int?,
-            q: String?,
-            city: String?,
-            range: Int?,
-            latitude: Double?,
-            longitude: Double?
+            pageSize: Int? = nil,
+            q: String? = nil,
+            city: String? = nil,
+            range: Int? = nil,
+            latitude: Double? = nil,
+            longitude: Double? = nil
 
         ) -> Paginator<ApplicationStoreListing> {
             let pageSize = pageSize ?? 20
@@ -1843,8 +1843,8 @@ public extension ApplicationClient {
          * Description: Use this API to retrieve products bundles to the one specified by its slug.
          **/
         public func getProductBundlesBySlug(
-            slug: String?,
-            id: String?,
+            slug: String? = nil,
+            id: String? = nil,
 
             onResponse: @escaping (_ response: ProductBundle?, _ error: FDKError?) -> Void
         ) {
@@ -1897,8 +1897,8 @@ public extension ApplicationClient {
         public func getProductPriceBySlug(
             slug: String,
             size: String,
-            storeId: Int?,
-            pincode: String?,
+            storeId: Int? = nil,
+            pincode: String? = nil,
 
             onResponse: @escaping (_ response: ProductSizePriceResponseV2?, _ error: FDKError?) -> Void
         ) {
@@ -1955,10 +1955,10 @@ public extension ApplicationClient {
         public func getProductSellersBySlug(
             slug: String,
             size: String,
-            pincode: String?,
-            strategy: String?,
-            pageNo: Int?,
-            pageSize: Int?,
+            pincode: String? = nil,
+            strategy: String? = nil,
+            pageNo: Int? = nil,
+            pageSize: Int? = nil,
 
             onResponse: @escaping (_ response: ProductSizeSellersResponseV2?, _ error: FDKError?) -> Void
         ) {
@@ -2023,9 +2023,9 @@ public extension ApplicationClient {
         public func getProductSellersBySlugPaginator(
             slug: String,
             size: String,
-            pincode: String?,
-            strategy: String?,
-            pageSize: Int?
+            pincode: String? = nil,
+            strategy: String? = nil,
+            pageSize: Int? = nil
 
         ) -> Paginator<ProductSizeSellersResponseV2> {
             let pageSize = pageSize ?? 20

@@ -904,6 +904,8 @@ Success, the code is valid and returns a SignedUrl
  | currentStatus | [CurrentStatus](#CurrentStatus)? |  yes  |  |
  | id | Int? |  yes  |  |
  | financialBreakup | [[FinancialBreakup](#FinancialBreakup)]? |  yes  |  |
+ | canCancel | Bool? |  yes  |  |
+ | canReturn | Bool? |  yes  |  |
 
 ---
 
@@ -1183,6 +1185,8 @@ Success, the code is valid and returns a SignedUrl
  | beneficiaryDetails | Bool? |  yes  |  |
  | canReturn | Bool? |  yes  |  |
  | canBreak | [String: Any]? |  yes  |  |
+ | deliveryDate | String? |  yes  |  |
+ | returnableDate | String? |  yes  |  |
  | showDownloadInvoice | Bool? |  yes  |  |
  | showTrackLink | Bool? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |

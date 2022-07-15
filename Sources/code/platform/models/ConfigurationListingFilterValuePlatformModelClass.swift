@@ -10,9 +10,9 @@ public extension PlatformClient {
     class ConfigurationListingFilterValue: Codable {
         public var condition: String?
 
-        public var sort: String?
-
         public var value: String?
+
+        public var sort: String?
 
         public var bucketPoints: [ConfigurationBucketPoints]?
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case condition
 
-            case sort
-
             case value
+
+            case sort
 
             case bucketPoints = "bucket_points"
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(bucketPoints: [ConfigurationBucketPoints]? = nil, condition: String? = nil, map: [String: Any]? = nil, sort: String? = nil, value: String? = nil) {
             self.condition = condition
 
-            self.sort = sort
-
             self.value = value
+
+            self.sort = sort
 
             self.bucketPoints = bucketPoints
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                sort = try container.decode(String.self, forKey: .sort)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                sort = try container.decode(String.self, forKey: .sort)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(condition, forKey: .condition)
 
-            try? container.encodeIfPresent(sort, forKey: .sort)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(sort, forKey: .sort)
 
             try? container.encodeIfPresent(bucketPoints, forKey: .bucketPoints)
 

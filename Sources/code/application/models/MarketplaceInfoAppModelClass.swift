@@ -7,32 +7,30 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class MarketplaceInfo: Codable {
-        public var membershipId: String
-
         public var dateOfJoining: String?
 
         public var name: String
 
-        public enum CodingKeys: String, CodingKey {
-            case membershipId = "membership_id"
+        public var membershipId: String
 
+        public enum CodingKeys: String, CodingKey {
             case dateOfJoining = "date_of_joining"
 
             case name
+
+            case membershipId = "membership_id"
         }
 
         public init(dateOfJoining: String? = nil, membershipId: String, name: String) {
-            self.membershipId = membershipId
-
             self.dateOfJoining = dateOfJoining
 
             self.name = name
+
+            self.membershipId = membershipId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            membershipId = try container.decode(String.self, forKey: .membershipId)
 
             do {
                 dateOfJoining = try container.decode(String.self, forKey: .dateOfJoining)
@@ -43,16 +41,18 @@ public extension ApplicationClient {
             } catch {}
 
             name = try container.decode(String.self, forKey: .name)
+
+            membershipId = try container.decode(String.self, forKey: .membershipId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(membershipId, forKey: .membershipId)
-
             try? container.encode(dateOfJoining, forKey: .dateOfJoining)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(membershipId, forKey: .membershipId)
         }
     }
 }
