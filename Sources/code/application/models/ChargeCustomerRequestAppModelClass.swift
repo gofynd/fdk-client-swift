@@ -7,49 +7,49 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class ChargeCustomerRequest: Codable {
-        public var aggregator: String
-
         public var amount: Int
 
-        public var verified: Bool?
-
-        public var orderId: String
+        public var aggregator: String
 
         public var transactionToken: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case aggregator
+        public var orderId: String
 
+        public var verified: Bool?
+
+        public enum CodingKeys: String, CodingKey {
             case amount
 
-            case verified
+            case aggregator
+
+            case transactionToken = "transaction_token"
 
             case orderId = "order_id"
 
-            case transactionToken = "transaction_token"
+            case verified
         }
 
         public init(aggregator: String, amount: Int, orderId: String, transactionToken: String? = nil, verified: Bool? = nil) {
-            self.aggregator = aggregator
-
             self.amount = amount
 
-            self.verified = verified
+            self.aggregator = aggregator
+
+            self.transactionToken = transactionToken
 
             self.orderId = orderId
 
-            self.transactionToken = transactionToken
+            self.verified = verified
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
             amount = try container.decode(Int.self, forKey: .amount)
 
+            aggregator = try container.decode(String.self, forKey: .aggregator)
+
             do {
-                verified = try container.decode(Bool.self, forKey: .verified)
+                transactionToken = try container.decode(String.self, forKey: .transactionToken)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -59,7 +59,7 @@ public extension ApplicationClient {
             orderId = try container.decode(String.self, forKey: .orderId)
 
             do {
-                transactionToken = try container.decode(String.self, forKey: .transactionToken)
+                verified = try container.decode(Bool.self, forKey: .verified)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,15 +70,15 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
             try? container.encode(amount, forKey: .amount)
 
-            try? container.encode(verified, forKey: .verified)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encode(transactionToken, forKey: .transactionToken)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encode(transactionToken, forKey: .transactionToken)
+            try? container.encode(verified, forKey: .verified)
         }
     }
 }

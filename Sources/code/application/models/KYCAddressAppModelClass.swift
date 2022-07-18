@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var addressline1: String
 
-        public var pincode: String
-
         public var city: String
+
+        public var pincode: String
 
         public var addressline2: String?
 
@@ -28,9 +28,9 @@ public extension ApplicationClient {
 
             case addressline1
 
-            case pincode
-
             case city
+
+            case pincode
 
             case addressline2
 
@@ -44,9 +44,9 @@ public extension ApplicationClient {
 
             self.addressline1 = addressline1
 
-            self.pincode = pincode
-
             self.city = city
+
+            self.pincode = pincode
 
             self.addressline2 = addressline2
 
@@ -68,9 +68,9 @@ public extension ApplicationClient {
 
             addressline1 = try container.decode(String.self, forKey: .addressline1)
 
-            pincode = try container.decode(String.self, forKey: .pincode)
-
             city = try container.decode(String.self, forKey: .city)
+
+            pincode = try container.decode(String.self, forKey: .pincode)
 
             do {
                 addressline2 = try container.decode(String.self, forKey: .addressline2)
@@ -98,9 +98,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(addressline1, forKey: .addressline1)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
             try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encode(addressline2, forKey: .addressline2)
 

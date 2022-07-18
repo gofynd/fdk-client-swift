@@ -11,17 +11,17 @@ public extension ApplicationClient {
 
         public var productUid: Int?
 
-        public var productDetails: ProductDetails?
-
         public var maxQuantity: Int?
+
+        public var autoAddToCart: Bool?
 
         public var price: Price1?
 
         public var sizes: [Size]?
 
-        public var allowRemove: Bool?
+        public var productDetails: ProductDetails?
 
-        public var autoAddToCart: Bool?
+        public var allowRemove: Bool?
 
         public var autoSelect: Bool?
 
@@ -30,17 +30,17 @@ public extension ApplicationClient {
 
             case productUid = "product_uid"
 
-            case productDetails = "product_details"
-
             case maxQuantity = "max_quantity"
+
+            case autoAddToCart = "auto_add_to_cart"
 
             case price
 
             case sizes
 
-            case allowRemove = "allow_remove"
+            case productDetails = "product_details"
 
-            case autoAddToCart = "auto_add_to_cart"
+            case allowRemove = "allow_remove"
 
             case autoSelect = "auto_select"
         }
@@ -50,17 +50,17 @@ public extension ApplicationClient {
 
             self.productUid = productUid
 
-            self.productDetails = productDetails
-
             self.maxQuantity = maxQuantity
+
+            self.autoAddToCart = autoAddToCart
 
             self.price = price
 
             self.sizes = sizes
 
-            self.allowRemove = allowRemove
+            self.productDetails = productDetails
 
-            self.autoAddToCart = autoAddToCart
+            self.allowRemove = allowRemove
 
             self.autoSelect = autoSelect
         }
@@ -85,7 +85,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                productDetails = try container.decode(ProductDetails.self, forKey: .productDetails)
+                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
+                autoAddToCart = try container.decode(Bool.self, forKey: .autoAddToCart)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,7 +117,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
+                productDetails = try container.decode(ProductDetails.self, forKey: .productDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,7 +125,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                autoAddToCart = try container.decode(Bool.self, forKey: .autoAddToCart)
+                allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,17 +148,17 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(productUid, forKey: .productUid)
 
-            try? container.encodeIfPresent(productDetails, forKey: .productDetails)
-
             try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
+
+            try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
 
             try? container.encodeIfPresent(price, forKey: .price)
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
 
-            try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
+            try? container.encodeIfPresent(productDetails, forKey: .productDetails)
 
-            try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
+            try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
 
             try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
         }

@@ -17,14 +17,26 @@ public extension PlatformClient {
          **/
         public func getShipmentDetails(
             shipmentId: String,
+            orderingCompanyId: String?,
+            requestByExt: String?,
 
             onResponse: @escaping (_ response: ShipmentInfoResponse?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = orderingCompanyId {
+                xQuery["ordering_company_id"] = value
+            }
+
+            if let value = requestByExt {
+                xQuery["request_by_ext"] = value
+            }
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/orders/v1.0/company/\(companyId)/shipmentDetails/\(shipmentId)",
-                query: nil,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
