@@ -3,32 +3,32 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ArticleAssignment1
+         Model: ItemQueryForUserCollection
          Used By: Catalog
      */
 
-    class ArticleAssignment1: Codable {
-        public var strategy: String?
+    class ItemQueryForUserCollection: Codable {
+        public var action: String?
 
-        public var level: String?
+        public var itemId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case strategy
+            case action
 
-            case level
+            case itemId = "item_id"
         }
 
-        public init(level: String? = nil, strategy: String? = nil) {
-            self.strategy = strategy
+        public init(action: String? = nil, itemId: Int? = nil) {
+            self.action = action
 
-            self.level = level
+            self.itemId = itemId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                strategy = try container.decode(String.self, forKey: .strategy)
+                action = try container.decode(String.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                level = try container.decode(String.self, forKey: .level)
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(strategy, forKey: .strategy)
+            try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(level, forKey: .level)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
         }
     }
 }
