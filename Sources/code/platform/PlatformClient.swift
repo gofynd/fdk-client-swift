@@ -35,10 +35,6 @@ public class PlatformClient {
 
     public let auditTrail: AuditTrail
 
-    public let orders: Orders
-
-    public let orderManage: OrderManage
-
     public init(config: PlatformConfig) {
         self.config = config
 
@@ -71,10 +67,6 @@ public class PlatformClient {
         webhook = Webhook(config: config)
 
         auditTrail = AuditTrail(config: config)
-
-        orders = Orders(config: config)
-
-        orderManage = OrderManage(config: config)
     }
 
     public func applicationClient(id: String) -> ApplicationClient {

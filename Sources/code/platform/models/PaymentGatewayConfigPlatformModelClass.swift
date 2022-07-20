@@ -8,22 +8,22 @@ public extension PlatformClient {
      */
 
     class PaymentGatewayConfig: Codable {
-        public var configType: String
+        public var secret: String
 
         public var merchantSalt: String
 
-        public var secret: String
+        public var configType: String
 
         public var key: String
 
         public var isActive: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case configType = "config_type"
+            case secret
 
             case merchantSalt = "merchant_salt"
 
-            case secret
+            case configType = "config_type"
 
             case key
 
@@ -31,11 +31,11 @@ public extension PlatformClient {
         }
 
         public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
-            self.configType = configType
+            self.secret = secret
 
             self.merchantSalt = merchantSalt
 
-            self.secret = secret
+            self.configType = configType
 
             self.key = key
 
@@ -45,11 +45,11 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            configType = try container.decode(String.self, forKey: .configType)
+            secret = try container.decode(String.self, forKey: .secret)
 
             merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
 
-            secret = try container.decode(String.self, forKey: .secret)
+            configType = try container.decode(String.self, forKey: .configType)
 
             key = try container.decode(String.self, forKey: .key)
 
@@ -65,11 +65,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(configType, forKey: .configType)
+            try? container.encodeIfPresent(secret, forKey: .secret)
 
             try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
 
-            try? container.encodeIfPresent(secret, forKey: .secret)
+            try? container.encodeIfPresent(configType, forKey: .configType)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
