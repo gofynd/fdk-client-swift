@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class StoreDepartments: Codable {
         public var uid: Int?
 
-        public var slug: String?
-
         public var logo: String?
+
+        public var slug: String?
 
         public var priorityOrder: Int?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case uid
 
-            case slug
-
             case logo
+
+            case slug
 
             case priorityOrder = "priority_order"
 
@@ -32,9 +32,9 @@ public extension ApplicationClient {
         public init(logo: String? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, uid: Int? = nil) {
             self.uid = uid
 
-            self.slug = slug
-
             self.logo = logo
+
+            self.slug = slug
 
             self.priorityOrder = priorityOrder
 
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
 

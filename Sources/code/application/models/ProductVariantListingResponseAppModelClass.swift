@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var items: [ProductVariantItemResponse]?
 
-        public var key: String?
-
         public var header: String?
+
+        public var key: String?
 
         public var displayType: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case items
 
-            case key
-
             case header
+
+            case key
 
             case displayType = "display_type"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.items = items
 
-            self.key = key
-
             self.header = header
+
+            self.key = key
 
             self.displayType = displayType
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                header = try container.decode(String.self, forKey: .header)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                header = try container.decode(String.self, forKey: .header)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(header, forKey: .header)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
         }
