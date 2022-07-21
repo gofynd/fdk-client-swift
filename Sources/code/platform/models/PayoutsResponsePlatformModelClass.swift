@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var isDefault: Bool
 
-        public var uniqueTransferNo: [String: Any]
-
-        public var isActive: Bool
-
         public var customers: [String: Any]
 
+        public var uniqueTransferNo: [String: Any]
+
         public var payoutsAggregators: [[String: Any]]
+
+        public var isActive: Bool
 
         public var moreAttributes: [String: Any]
 
@@ -27,13 +27,13 @@ public extension PlatformClient {
 
             case isDefault = "is_default"
 
-            case uniqueTransferNo = "unique_transfer_no"
-
-            case isActive = "is_active"
-
             case customers
 
+            case uniqueTransferNo = "unique_transfer_no"
+
             case payoutsAggregators = "payouts_aggregators"
+
+            case isActive = "is_active"
 
             case moreAttributes = "more_attributes"
         }
@@ -43,13 +43,13 @@ public extension PlatformClient {
 
             self.isDefault = isDefault
 
-            self.uniqueTransferNo = uniqueTransferNo
-
-            self.isActive = isActive
-
             self.customers = customers
 
+            self.uniqueTransferNo = uniqueTransferNo
+
             self.payoutsAggregators = payoutsAggregators
+
+            self.isActive = isActive
 
             self.moreAttributes = moreAttributes
         }
@@ -61,13 +61,13 @@ public extension PlatformClient {
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
-            uniqueTransferNo = try container.decode([String: Any].self, forKey: .uniqueTransferNo)
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
             customers = try container.decode([String: Any].self, forKey: .customers)
 
+            uniqueTransferNo = try container.decode([String: Any].self, forKey: .uniqueTransferNo)
+
             payoutsAggregators = try container.decode([[String: Any]].self, forKey: .payoutsAggregators)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             moreAttributes = try container.decode([String: Any].self, forKey: .moreAttributes)
         }
@@ -79,13 +79,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(uniqueTransferNo, forKey: .uniqueTransferNo)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(customers, forKey: .customers)
 
+            try? container.encodeIfPresent(uniqueTransferNo, forKey: .uniqueTransferNo)
+
             try? container.encodeIfPresent(payoutsAggregators, forKey: .payoutsAggregators)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(moreAttributes, forKey: .moreAttributes)
         }

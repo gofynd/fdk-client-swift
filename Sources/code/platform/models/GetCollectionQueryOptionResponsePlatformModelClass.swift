@@ -8,23 +8,17 @@ public extension PlatformClient {
      */
 
     class GetCollectionQueryOptionResponse: Codable {
-        public var operators: [String: Any]
-
         public var sortOn: [ProductSortOn]?
 
         public var filters: [ProductFilters]?
 
         public enum CodingKeys: String, CodingKey {
-            case operators
-
             case sortOn = "sort_on"
 
             case filters
         }
 
-        public init(filters: [ProductFilters]? = nil, operators: [String: Any], sortOn: [ProductSortOn]? = nil) {
-            self.operators = operators
-
+        public init(filters: [ProductFilters]? = nil, sortOn: [ProductSortOn]? = nil) {
             self.sortOn = sortOn
 
             self.filters = filters
@@ -32,8 +26,6 @@ public extension PlatformClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            operators = try container.decode([String: Any].self, forKey: .operators)
 
             do {
                 sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
@@ -54,8 +46,6 @@ public extension PlatformClient {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(operators, forKey: .operators)
 
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
 
