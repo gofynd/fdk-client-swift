@@ -22,6 +22,7 @@ Authentication Service
 * [verifyMobile](#verifymobile)
 * [hasPassword](#haspassword)
 * [updatePassword](#updatepassword)
+* [archiveUser](#archiveuser)
 * [logout](#logout)
 * [sendOTPOnMobile](#sendotponmobile)
 * [verifyMobileOTP](#verifymobileotp)
@@ -596,7 +597,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": "91"
+          "country_code": 91
         }
       ],
       "emails": [
@@ -762,7 +763,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": "91"
+          "country_code": 91
         }
       ],
       "emails": [
@@ -927,7 +928,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": "91"
+          "country_code": 91
         }
       ],
       "emails": [
@@ -1240,6 +1241,62 @@ Success. Returns a success message. Refer `VerifyEmailSuccess` for more details.
 ```json
 {
   "message": "success"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### archiveUser
+verify otp and archive user
+
+
+
+
+```swift
+user.archiveUser(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | ArchiveApplicationUserRequestSchema | yes | Request body |
+
+
+verify otp and archive user
+
+*Returned Response:*
+
+
+
+
+[ArchiveUserSuccess](#ArchiveUserSuccess)
+
+Success. Returns a success message. Refer `ArchiveUserSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
 }
 ```
 </details>
@@ -1708,7 +1765,7 @@ Success. Returns a JSON object with user details. Refer `UserObjectSchema` for m
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": "91"
+          "country_code": 91
         }
       ],
       "emails": [
@@ -1908,6 +1965,17 @@ Success. Returns a JSON object containing the all the platform configurations. R
       "appId": "548529975557631"
     }
   },
+  "delete_account_reasons": [
+    {
+      "reason_text": "test",
+      "reason_id": "123",
+      "show_text_area": true
+    }
+  ],
+  "delete_account_day": 7,
+  "delete_account_consent": {
+    "consent_text": ""
+  },
   "_id": "5e04a5e5220bc15839ad9bc0",
   "created_at": "2019-12-26T12:21:57.878Z",
   "updated_at": "2020-08-13T14:31:09.878Z",
@@ -1993,7 +2061,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": "91"
+          "country_code": 91
         }
       ],
       "emails": [
@@ -2219,7 +2287,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": "91"
+          "country_code": 91
         }
       ],
       "emails": [
@@ -2328,7 +2396,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": "91"
+          "country_code": 91
         }
       ],
       "emails": [
@@ -2664,7 +2732,7 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": "91"
+          "country_code": 91
         }
       ],
       "emails": [
@@ -2773,7 +2841,7 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": "91"
+          "country_code": 91
         }
       ],
       "emails": [
@@ -2895,6 +2963,34 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | userId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ArchiveApplicationUserRequestSchema](#ArchiveApplicationUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | userId | String? |  yes  |  |
+ | reason | String? |  yes  |  |
+ | reasonId | String? |  yes  |  |
+ | requestId | String? |  yes  |  |
+ | otp | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UnArchiveUserRequestSchema](#UnArchiveUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | userId | String? |  yes  |  |
+ | reason | String? |  yes  |  |
+ | reasonId | String? |  yes  |  |
 
 ---
 
@@ -3344,6 +3440,17 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
+ #### [UnArchiveUserSuccess](#UnArchiveUserSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [OtpSuccess](#OtpSuccess)
 
  | Properties | Type | Nullable | Description |
@@ -3748,6 +3855,9 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | register | Bool? |  yes  |  |
  | mobileImage | String? |  yes  |  |
  | desktopImage | String? |  yes  |  |
+ | deleteAccountDay | Int? |  yes  |  |
+ | deleteAccountReasons | [[DeleteAccountReasons](#DeleteAccountReasons)]? |  yes  |  |
+ | deleteAccountConsent | [String: Any]? |  yes  |  |
 
 ---
 
@@ -3901,6 +4011,30 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
+ #### [DeleteAccountReasons](#DeleteAccountReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reasonText | String? |  yes  |  |
+ | reasonId | String? |  yes  |  |
+ | showTextArea | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DeleteAccountConsent](#DeleteAccountConsent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | consentText | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [Facebook](#Facebook)
 
  | Properties | Type | Nullable | Description |
@@ -3985,7 +4119,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | primary | Bool? |  yes  |  |
  | verified | Bool? |  yes  |  |
  | phone | String? |  yes  |  |
- | countryCode | String? |  yes  |  |
+ | countryCode | Int? |  yes  |  |
 
 ---
 
