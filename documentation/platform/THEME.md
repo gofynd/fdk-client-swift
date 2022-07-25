@@ -29,6 +29,7 @@ Responsible for themes
 * [unpublishTheme](#unpublishtheme)
 * [archiveTheme](#archivetheme)
 * [unarchiveTheme](#unarchivetheme)
+* [getThemeLastModified](#getthemelastmodified)
 
 
 
@@ -35032,6 +35033,42 @@ Success. Refer `ThemesSchema` for more details.
 ---
 
 
+#### getThemeLastModified
+Fetch last modified timestamp
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").theme.getThemeLastModified(themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| themeId | String | yes | ID allotted to the theme. |  
+
+
+
+Use this API to fetch Last-Modified timestamp in header metadata.
+
+*Returned Response:*
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -35388,6 +35425,7 @@ Success. Refer `ThemesSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | link | String? |  yes  |  |
+ | links | [String]? |  yes  |  |
 
 ---
 
@@ -35410,6 +35448,7 @@ Success. Refer `ThemesSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | link | String? |  yes  |  |
+ | links | [String]? |  yes  |  |
 
 ---
 

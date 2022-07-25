@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var results: [AutocompleteResult]?
 
+        public var customJson: [String: Any]?
+
         public var isActive: Bool?
 
         public var words: [String]?
-
-        public var customJson: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case appId = "app_id"
 
             case results
 
+            case customJson = "_custom_json"
+
             case isActive = "is_active"
 
             case words
-
-            case customJson = "_custom_json"
         }
 
         public init(appId: String? = nil, isActive: Bool? = nil, results: [AutocompleteResult]? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.results = results
 
+            self.customJson = customJson
+
             self.isActive = isActive
 
             self.words = words
-
-            self.customJson = customJson
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,6 +62,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,14 +84,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -93,11 +93,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(results, forKey: .results)
 
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(words, forKey: .words)
-
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
         }
     }
 }
