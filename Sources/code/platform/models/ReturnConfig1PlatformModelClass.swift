@@ -1,39 +1,40 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: Media
+         Model: ReturnConfig1
          Used By: Catalog
      */
-    class Media: Codable {
-        public var url: String?
 
-        public var type: String?
+    class ReturnConfig1: Codable {
+        public var returnable: Bool?
 
-        public var meta: Meta?
+        public var time: Int?
+
+        public var unit: String?
 
         public enum CodingKeys: String, CodingKey {
-            case url
+            case returnable
 
-            case type
+            case time
 
-            case meta
+            case unit
         }
 
-        public init(meta: Meta? = nil, type: String? = nil, url: String? = nil) {
-            self.url = url
+        public init(returnable: Bool? = nil, time: Int? = nil, unit: String? = nil) {
+            self.returnable = returnable
 
-            self.type = type
+            self.time = time
 
-            self.meta = meta
+            self.unit = unit
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                returnable = try container.decode(Bool.self, forKey: .returnable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +42,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                time = try container.decode(Int.self, forKey: .time)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +50,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                meta = try container.decode(Meta.self, forKey: .meta)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +61,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(returnable, forKey: .returnable)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(time, forKey: .time)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(unit, forKey: .unit)
         }
     }
 }
