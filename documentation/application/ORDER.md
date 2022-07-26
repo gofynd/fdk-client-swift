@@ -923,6 +923,7 @@ Success, the code is valid and returns a SignedUrl
  | image | [String]? |  yes  |  |
  | code | String? |  yes  |  |
  | id | Double? |  yes  |  |
+ | sellerIdentifier | String? |  yes  |  |
 
 ---
 

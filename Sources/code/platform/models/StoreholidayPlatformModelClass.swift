@@ -10,42 +10,42 @@ public extension PlatformClient {
     class Storeholiday: Codable {
         public var type: String
 
-        public var startDate: String
-
-        public var endDate: String
-
-        public var year: Int
-
         public var slug: String
 
         public var name: String
 
+        public var year: Int
+
+        public var endDate: String
+
+        public var startDate: String
+
         public enum CodingKeys: String, CodingKey {
             case type
-
-            case startDate = "start_date"
-
-            case endDate = "end_date"
-
-            case year
 
             case slug
 
             case name
+
+            case year
+
+            case endDate = "end_date"
+
+            case startDate = "start_date"
         }
 
         public init(endDate: String, name: String, slug: String, startDate: String, type: String, year: Int) {
             self.type = type
 
-            self.startDate = startDate
-
-            self.endDate = endDate
-
-            self.year = year
-
             self.slug = slug
 
             self.name = name
+
+            self.year = year
+
+            self.endDate = endDate
+
+            self.startDate = startDate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,15 +53,15 @@ public extension PlatformClient {
 
             type = try container.decode(String.self, forKey: .type)
 
-            startDate = try container.decode(String.self, forKey: .startDate)
-
-            endDate = try container.decode(String.self, forKey: .endDate)
-
-            year = try container.decode(Int.self, forKey: .year)
-
             slug = try container.decode(String.self, forKey: .slug)
 
             name = try container.decode(String.self, forKey: .name)
+
+            year = try container.decode(Int.self, forKey: .year)
+
+            endDate = try container.decode(String.self, forKey: .endDate)
+
+            startDate = try container.decode(String.self, forKey: .startDate)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -69,15 +69,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(startDate, forKey: .startDate)
-
-            try? container.encodeIfPresent(endDate, forKey: .endDate)
-
-            try? container.encodeIfPresent(year, forKey: .year)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(year, forKey: .year)
+
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
+
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
         }
     }
 }
