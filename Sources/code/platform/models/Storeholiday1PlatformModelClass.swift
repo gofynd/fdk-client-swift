@@ -10,26 +10,26 @@ public extension PlatformClient {
     class Storeholiday1: Codable {
         public var type: String
 
-        public var slug: String
+        public var endDate: String
 
         public var name: String
 
-        public var year: Int
+        public var slug: String
 
-        public var endDate: String
+        public var year: Int
 
         public var startDate: String
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case slug
+            case endDate = "end_date"
 
             case name
 
-            case year
+            case slug
 
-            case endDate = "end_date"
+            case year
 
             case startDate = "start_date"
         }
@@ -37,13 +37,13 @@ public extension PlatformClient {
         public init(endDate: String, name: String, slug: String, startDate: String, type: String, year: Int) {
             self.type = type
 
-            self.slug = slug
+            self.endDate = endDate
 
             self.name = name
 
-            self.year = year
+            self.slug = slug
 
-            self.endDate = endDate
+            self.year = year
 
             self.startDate = startDate
         }
@@ -53,13 +53,13 @@ public extension PlatformClient {
 
             type = try container.decode(String.self, forKey: .type)
 
-            slug = try container.decode(String.self, forKey: .slug)
+            endDate = try container.decode(String.self, forKey: .endDate)
 
             name = try container.decode(String.self, forKey: .name)
 
-            year = try container.decode(Int.self, forKey: .year)
+            slug = try container.decode(String.self, forKey: .slug)
 
-            endDate = try container.decode(String.self, forKey: .endDate)
+            year = try container.decode(Int.self, forKey: .year)
 
             startDate = try container.decode(String.self, forKey: .startDate)
         }
@@ -69,13 +69,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(year, forKey: .year)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(endDate, forKey: .endDate)
+            try? container.encodeIfPresent(year, forKey: .year)
 
             try? container.encodeIfPresent(startDate, forKey: .startDate)
         }

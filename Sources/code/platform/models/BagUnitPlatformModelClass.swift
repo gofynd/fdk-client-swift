@@ -8,13 +8,7 @@ public extension PlatformClient {
      */
 
     class BagUnit: Codable {
-        public var shipmentId: String
-
         public var totalShipmentBags: Int
-
-        public var bagId: Int
-
-        public var prices: Prices?
 
         public var gst: GST?
 
@@ -26,14 +20,14 @@ public extension PlatformClient {
 
         public var item: Item?
 
+        public var shipmentId: String
+
+        public var bagId: Int
+
+        public var prices: Prices?
+
         public enum CodingKeys: String, CodingKey {
-            case shipmentId = "shipment_id"
-
             case totalShipmentBags = "total_shipment_bags"
-
-            case bagId = "bag_id"
-
-            case prices
 
             case gst
 
@@ -44,16 +38,16 @@ public extension PlatformClient {
             case itemQuantity = "item_quantity"
 
             case item
+
+            case shipmentId = "shipment_id"
+
+            case bagId = "bag_id"
+
+            case prices
         }
 
         public init(bagId: Int, gst: GST? = nil, item: Item? = nil, itemQuantity: Int, orderingChannel: String, prices: Prices? = nil, shipmentId: String, status: [String: Any], totalShipmentBags: Int) {
-            self.shipmentId = shipmentId
-
             self.totalShipmentBags = totalShipmentBags
-
-            self.bagId = bagId
-
-            self.prices = prices
 
             self.gst = gst
 
@@ -64,24 +58,18 @@ public extension PlatformClient {
             self.itemQuantity = itemQuantity
 
             self.item = item
+
+            self.shipmentId = shipmentId
+
+            self.bagId = bagId
+
+            self.prices = prices
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
             totalShipmentBags = try container.decode(Int.self, forKey: .totalShipmentBags)
-
-            bagId = try container.decode(Int.self, forKey: .bagId)
-
-            do {
-                prices = try container.decode(Prices.self, forKey: .prices)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 gst = try container.decode(GST.self, forKey: .gst)
@@ -104,18 +92,24 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            bagId = try container.decode(Int.self, forKey: .bagId)
+
+            do {
+                prices = try container.decode(Prices.self, forKey: .prices)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
             try? container.encodeIfPresent(totalShipmentBags, forKey: .totalShipmentBags)
-
-            try? container.encodeIfPresent(bagId, forKey: .bagId)
-
-            try? container.encodeIfPresent(prices, forKey: .prices)
 
             try? container.encodeIfPresent(gst, forKey: .gst)
 
@@ -126,6 +120,12 @@ public extension PlatformClient {
             try? container.encodeIfPresent(itemQuantity, forKey: .itemQuantity)
 
             try? container.encodeIfPresent(item, forKey: .item)
+
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(bagId, forKey: .bagId)
+
+            try? container.encodeIfPresent(prices, forKey: .prices)
         }
     }
 }

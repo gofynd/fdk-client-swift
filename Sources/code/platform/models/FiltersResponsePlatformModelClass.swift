@@ -8,27 +8,27 @@ public extension PlatformClient {
      */
 
     class FiltersResponse: Codable {
-        public var deliveryPartners: [Filters]?
-
         public var channels: [Filters]?
 
-        public enum CodingKeys: String, CodingKey {
-            case deliveryPartners = "delivery_partners"
+        public var deliveryPartners: [Filters]?
 
+        public enum CodingKeys: String, CodingKey {
             case channels
+
+            case deliveryPartners = "delivery_partners"
         }
 
         public init(channels: [Filters]? = nil, deliveryPartners: [Filters]? = nil) {
-            self.deliveryPartners = deliveryPartners
-
             self.channels = channels
+
+            self.deliveryPartners = deliveryPartners
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                deliveryPartners = try container.decode([Filters].self, forKey: .deliveryPartners)
+                channels = try container.decode([Filters].self, forKey: .channels)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                channels = try container.decode([Filters].self, forKey: .channels)
+                deliveryPartners = try container.decode([Filters].self, forKey: .deliveryPartners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(deliveryPartners, forKey: .deliveryPartners)
-
             try? container.encodeIfPresent(channels, forKey: .channels)
+
+            try? container.encodeIfPresent(deliveryPartners, forKey: .deliveryPartners)
         }
     }
 }
