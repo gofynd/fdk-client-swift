@@ -22,7 +22,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/invoice/v1.0/api/company/\(companyId)/generate-bulk-package-label",
+                url: "/service/platform/invoice/v1.0/company/\(companyId)/generate-bulk-package-label",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -60,7 +60,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/invoice/v1.0/api/company/\(companyId)/generate-bulk-box-label",
+                url: "/service/platform/invoice/v1.0/company/\(companyId)/generate-bulk-box-label",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -97,7 +97,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/invoice/v1.0/api/company/\(companyId)/get-label-list",
+                url: "/service/platform/invoice/v1.0/company/\(companyId)/get-label-list",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -134,7 +134,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/invoice/v1.0/api/company/\(companyId)/get-label-presigned-url",
+                url: "/service/platform/invoice/v1.0/company/\(companyId)/get-label-presigned-url",
                 query: nil,
                 body: nil,
                 headers: [],

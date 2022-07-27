@@ -8,6 +8,8 @@ public extension PlatformClient {
      */
 
     class CompanyBrandPostRequestSerializer: Codable {
+        public var documents: [CompanyBrandDocumentsSerializer]?
+
         public var company: Int
 
         public var documentRequired: Bool?
@@ -16,9 +18,9 @@ public extension PlatformClient {
 
         public var uid: Int?
 
-        public var documents: [CompanyBrandDocumentsSerializer]?
-
         public enum CodingKeys: String, CodingKey {
+            case documents
+
             case company
 
             case documentRequired = "document_required"
@@ -26,11 +28,11 @@ public extension PlatformClient {
             case brands
 
             case uid
-
-            case documents
         }
 
         public init(brands: [Int], company: Int, documents: [CompanyBrandDocumentsSerializer]? = nil, documentRequired: Bool? = nil, uid: Int? = nil) {
+            self.documents = documents
+
             self.company = company
 
             self.documentRequired = documentRequired
@@ -38,12 +40,18 @@ public extension PlatformClient {
             self.brands = brands
 
             self.uid = uid
-
-            self.documents = documents
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                documents = try container.decode([CompanyBrandDocumentsSerializer].self, forKey: .documents)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             company = try container.decode(Int.self, forKey: .company)
 
@@ -64,18 +72,12 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                documents = try container.decode([CompanyBrandDocumentsSerializer].self, forKey: .documents)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(documents, forKey: .documents)
 
             try? container.encodeIfPresent(company, forKey: .company)
 
@@ -84,8 +86,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(brands, forKey: .brands)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(documents, forKey: .documents)
         }
     }
 }
