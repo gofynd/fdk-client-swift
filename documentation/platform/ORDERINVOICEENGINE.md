@@ -131,13 +131,18 @@ Get Staus of Label generations
 
 
 ```swift
-client.orderinvoiceengine.getLabelStatus() { (response, error) in
+client.orderinvoiceengine.getLabelStatus(uid: uid) { (response, error) in
     // Use response
 }
 ```
 
 
 
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| uid | String | yes | UID given at time of generate request |  
 
 
 
@@ -181,13 +186,18 @@ Get Presigned URL to download labels
 
 
 ```swift
-client.orderinvoiceengine.getLabelPresignedURL() { (response, error) in
+client.orderinvoiceengine.getLabelPresignedURL(uid: uid) { (response, error) in
     // Use response
 }
 ```
 
 
 
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| uid | String | yes | UID given at time of generate request |  
 
 
 

@@ -92,13 +92,19 @@ public extension PlatformClient {
          * Description: Use this API to fetch status of PDF generation of Labels
          **/
         public func getLabelStatus(
+            uid: String,
+
             onResponse: @escaping (_ response: StatusSuccessResponse?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            xQuery["uid"] = uid
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/invoice/v1.0/company/\(companyId)/get-label-list",
-                query: nil,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
@@ -129,13 +135,19 @@ public extension PlatformClient {
          * Description: Use this API to generate Presigned URLs for downloading labels
          **/
         public func getLabelPresignedURL(
+            uid: String,
+
             onResponse: @escaping (_ response: SignedSuccessResponse?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            xQuery["uid"] = uid
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/invoice/v1.0/company/\(companyId)/get-label-presigned-url",
-                query: nil,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 responseType: "application/json",

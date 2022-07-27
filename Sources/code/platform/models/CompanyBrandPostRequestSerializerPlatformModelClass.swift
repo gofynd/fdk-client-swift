@@ -10,22 +10,22 @@ public extension PlatformClient {
     class CompanyBrandPostRequestSerializer: Codable {
         public var documents: [CompanyBrandDocumentsSerializer]?
 
-        public var company: Int
+        public var brands: [Int]
 
         public var documentRequired: Bool?
 
-        public var brands: [Int]
+        public var company: Int
 
         public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
             case documents
 
-            case company
+            case brands
 
             case documentRequired = "document_required"
 
-            case brands
+            case company
 
             case uid
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(brands: [Int], company: Int, documents: [CompanyBrandDocumentsSerializer]? = nil, documentRequired: Bool? = nil, uid: Int? = nil) {
             self.documents = documents
 
-            self.company = company
+            self.brands = brands
 
             self.documentRequired = documentRequired
 
-            self.brands = brands
+            self.company = company
 
             self.uid = uid
         }
@@ -53,7 +53,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            company = try container.decode(Int.self, forKey: .company)
+            brands = try container.decode([Int].self, forKey: .brands)
 
             do {
                 documentRequired = try container.decode(Bool.self, forKey: .documentRequired)
@@ -63,7 +63,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            brands = try container.decode([Int].self, forKey: .brands)
+            company = try container.decode(Int.self, forKey: .company)
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
@@ -79,11 +79,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(documents, forKey: .documents)
 
-            try? container.encodeIfPresent(company, forKey: .company)
+            try? container.encodeIfPresent(brands, forKey: .brands)
 
             try? container.encodeIfPresent(documentRequired, forKey: .documentRequired)
 
-            try? container.encodeIfPresent(brands, forKey: .brands)
+            try? container.encodeIfPresent(company, forKey: .company)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }
