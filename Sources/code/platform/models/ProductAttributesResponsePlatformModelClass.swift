@@ -3,31 +3,31 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ApplicationBrandJson
+         Model: ProductAttributesResponse
          Used By: Catalog
      */
 
-    class ApplicationBrandJson: Codable {
-        public var customJson: [String: Any]
+    class ProductAttributesResponse: Codable {
+        public var items: [AttributeMasterSerializer]
 
         public enum CodingKeys: String, CodingKey {
-            case customJson = "_custom_json"
+            case items
         }
 
-        public init(customJson: [String: Any]) {
-            self.customJson = customJson
+        public init(items: [AttributeMasterSerializer]) {
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            customJson = try container.decode([String: Any].self, forKey: .customJson)
+            items = try container.decode([AttributeMasterSerializer].self, forKey: .items)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

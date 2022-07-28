@@ -10,36 +10,36 @@ public extension PlatformClient {
     class GetSearchWordsData: Codable {
         public var appId: String?
 
-        public var result: [String: Any]?
+        public var words: [String]?
 
         public var customJson: [String: Any]?
 
         public var uid: String?
 
-        public var words: [String]?
+        public var result: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case appId = "app_id"
 
-            case result
+            case words
 
             case customJson = "_custom_json"
 
             case uid
 
-            case words
+            case result
         }
 
         public init(appId: String? = nil, result: [String: Any]? = nil, uid: String? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
             self.appId = appId
 
-            self.result = result
+            self.words = words
 
             self.customJson = customJson
 
             self.uid = uid
 
-            self.words = words
+            self.result = result
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                result = try container.decode([String: Any].self, forKey: .result)
+                words = try container.decode([String].self, forKey: .words)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                words = try container.decode([String].self, forKey: .words)
+                result = try container.decode([String: Any].self, forKey: .result)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,13 +91,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(result, forKey: .result)
+            try? container.encodeIfPresent(words, forKey: .words)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(words, forKey: .words)
+            try? container.encodeIfPresent(result, forKey: .result)
         }
     }
 }
