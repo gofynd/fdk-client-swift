@@ -8,17 +8,17 @@ public extension PlatformClient {
      */
 
     class GenerateBulkBoxLabel: Codable {
-        public var stockTransferId: String?
+        public var stockTransferId: String
 
-        public var labelType: String?
+        public var labelType: String
 
-        public var uid: String?
+        public var uid: String
 
-        public var sellerName: String?
+        public var sellerName: String
 
-        public var templateId: Double?
+        public var templateId: Double
 
-        public var boxDetails: [BoxDetails]?
+        public var boxDetails: [BoxDetails]
 
         public enum CodingKeys: String, CodingKey {
             case stockTransferId = "stock_transfer_id"
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case boxDetails = "box_details"
         }
 
-        public init(boxDetails: [BoxDetails]? = nil, labelType: String? = nil, sellerName: String? = nil, stockTransferId: String? = nil, templateId: Double? = nil, uid: String? = nil) {
+        public init(boxDetails: [BoxDetails], labelType: String, sellerName: String, stockTransferId: String, templateId: Double, uid: String) {
             self.stockTransferId = stockTransferId
 
             self.labelType = labelType
@@ -51,53 +51,17 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                stockTransferId = try container.decode(String.self, forKey: .stockTransferId)
+            stockTransferId = try container.decode(String.self, forKey: .stockTransferId)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            labelType = try container.decode(String.self, forKey: .labelType)
 
-            do {
-                labelType = try container.decode(String.self, forKey: .labelType)
+            uid = try container.decode(String.self, forKey: .uid)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            sellerName = try container.decode(String.self, forKey: .sellerName)
 
-            do {
-                uid = try container.decode(String.self, forKey: .uid)
+            templateId = try container.decode(Double.self, forKey: .templateId)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                sellerName = try container.decode(String.self, forKey: .sellerName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                templateId = try container.decode(Double.self, forKey: .templateId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                boxDetails = try container.decode([BoxDetails].self, forKey: .boxDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            boxDetails = try container.decode([BoxDetails].self, forKey: .boxDetails)
         }
 
         public func encode(to encoder: Encoder) throws {

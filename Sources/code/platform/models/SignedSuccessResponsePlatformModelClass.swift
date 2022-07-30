@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class SignedSuccessResponse: Codable {
-        public var uid: Bool?
+        public var uid: String?
 
         public var url: String?
 
@@ -22,7 +22,7 @@ public extension PlatformClient {
             case expiresIn = "expires_in"
         }
 
-        public init(expiresIn: Double? = nil, uid: Bool? = nil, url: String? = nil) {
+        public init(expiresIn: Double? = nil, uid: String? = nil, url: String? = nil) {
             self.uid = uid
 
             self.url = url
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Bool.self, forKey: .uid)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

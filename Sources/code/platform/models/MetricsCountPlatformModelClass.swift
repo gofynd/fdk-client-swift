@@ -8,42 +8,46 @@ public extension PlatformClient {
      */
 
     class MetricsCount: Codable {
+        public var cancelled: Int
+
+        public var pendingRtd: Int
+
         public var returned: Int
 
         public var pendingAcceptance: [PendingAcceptance]?
 
         public var pendingPickup: Int
 
-        public var cancelled: Int
-
-        public var pendingRtd: Int
-
         public enum CodingKeys: String, CodingKey {
+            case cancelled
+
+            case pendingRtd = "pending_rtd"
+
             case returned
 
             case pendingAcceptance = "pending_acceptance"
 
             case pendingPickup = "pending_pickup"
-
-            case cancelled
-
-            case pendingRtd = "pending_rtd"
         }
 
         public init(cancelled: Int, pendingAcceptance: [PendingAcceptance]? = nil, pendingPickup: Int, pendingRtd: Int, returned: Int) {
+            self.cancelled = cancelled
+
+            self.pendingRtd = pendingRtd
+
             self.returned = returned
 
             self.pendingAcceptance = pendingAcceptance
 
             self.pendingPickup = pendingPickup
-
-            self.cancelled = cancelled
-
-            self.pendingRtd = pendingRtd
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            cancelled = try container.decode(Int.self, forKey: .cancelled)
+
+            pendingRtd = try container.decode(Int.self, forKey: .pendingRtd)
 
             returned = try container.decode(Int.self, forKey: .returned)
 
@@ -56,24 +60,20 @@ public extension PlatformClient {
             } catch {}
 
             pendingPickup = try container.decode(Int.self, forKey: .pendingPickup)
-
-            cancelled = try container.decode(Int.self, forKey: .cancelled)
-
-            pendingRtd = try container.decode(Int.self, forKey: .pendingRtd)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(cancelled, forKey: .cancelled)
+
+            try? container.encodeIfPresent(pendingRtd, forKey: .pendingRtd)
 
             try? container.encodeIfPresent(returned, forKey: .returned)
 
             try? container.encodeIfPresent(pendingAcceptance, forKey: .pendingAcceptance)
 
             try? container.encodeIfPresent(pendingPickup, forKey: .pendingPickup)
-
-            try? container.encodeIfPresent(cancelled, forKey: .cancelled)
-
-            try? container.encodeIfPresent(pendingRtd, forKey: .pendingRtd)
         }
     }
 }

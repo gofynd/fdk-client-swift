@@ -9,36 +9,36 @@ public extension ApplicationClient {
     class ChargeCustomerRequest: Codable {
         public var transactionToken: String?
 
+        public var orderId: String
+
         public var amount: Int
 
         public var aggregator: String
 
         public var verified: Bool?
 
-        public var orderId: String
-
         public enum CodingKeys: String, CodingKey {
             case transactionToken = "transaction_token"
+
+            case orderId = "order_id"
 
             case amount
 
             case aggregator
 
             case verified
-
-            case orderId = "order_id"
         }
 
         public init(aggregator: String, amount: Int, orderId: String, transactionToken: String? = nil, verified: Bool? = nil) {
             self.transactionToken = transactionToken
+
+            self.orderId = orderId
 
             self.amount = amount
 
             self.aggregator = aggregator
 
             self.verified = verified
-
-            self.orderId = orderId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -52,6 +52,8 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            orderId = try container.decode(String.self, forKey: .orderId)
+
             amount = try container.decode(Int.self, forKey: .amount)
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
@@ -63,8 +65,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            orderId = try container.decode(String.self, forKey: .orderId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -72,13 +72,13 @@ public extension ApplicationClient {
 
             try? container.encode(transactionToken, forKey: .transactionToken)
 
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
+
             try? container.encode(amount, forKey: .amount)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encode(verified, forKey: .verified)
-
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
         }
     }
 }

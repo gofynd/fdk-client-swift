@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class PendingAcceptance: Codable {
-        public var total: Int
-
         public var cod: Int
+
+        public var total: Int
 
         public var prepaid: Int
 
         public enum CodingKeys: String, CodingKey {
-            case total
-
             case cod
+
+            case total
 
             case prepaid
         }
 
         public init(cod: Int, prepaid: Int, total: Int) {
-            self.total = total
-
             self.cod = cod
+
+            self.total = total
 
             self.prepaid = prepaid
         }
@@ -33,9 +33,9 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            total = try container.decode(Int.self, forKey: .total)
-
             cod = try container.decode(Int.self, forKey: .cod)
+
+            total = try container.decode(Int.self, forKey: .total)
 
             prepaid = try container.decode(Int.self, forKey: .prepaid)
         }
@@ -43,9 +43,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(total, forKey: .total)
-
             try? container.encodeIfPresent(cod, forKey: .cod)
+
+            try? container.encodeIfPresent(total, forKey: .total)
 
             try? container.encodeIfPresent(prepaid, forKey: .prepaid)
         }

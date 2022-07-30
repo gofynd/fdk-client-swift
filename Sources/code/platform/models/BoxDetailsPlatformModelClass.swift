@@ -8,15 +8,15 @@ public extension PlatformClient {
      */
 
     class BoxDetails: Codable {
-        public var boxId: String?
+        public var boxId: String
 
-        public var totalQuantity: String?
+        public var totalQuantity: String
 
-        public var packageCount: String?
+        public var packageCount: String
 
-        public var dimension: String?
+        public var dimension: String
 
-        public var weight: String?
+        public var weight: String
 
         public enum CodingKeys: String, CodingKey {
             case boxId = "box_id"
@@ -30,7 +30,7 @@ public extension PlatformClient {
             case weight
         }
 
-        public init(boxId: String? = nil, dimension: String? = nil, packageCount: String? = nil, totalQuantity: String? = nil, weight: String? = nil) {
+        public init(boxId: String, dimension: String, packageCount: String, totalQuantity: String, weight: String) {
             self.boxId = boxId
 
             self.totalQuantity = totalQuantity
@@ -45,45 +45,15 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                boxId = try container.decode(String.self, forKey: .boxId)
+            boxId = try container.decode(String.self, forKey: .boxId)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            totalQuantity = try container.decode(String.self, forKey: .totalQuantity)
 
-            do {
-                totalQuantity = try container.decode(String.self, forKey: .totalQuantity)
+            packageCount = try container.decode(String.self, forKey: .packageCount)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            dimension = try container.decode(String.self, forKey: .dimension)
 
-            do {
-                packageCount = try container.decode(String.self, forKey: .packageCount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dimension = try container.decode(String.self, forKey: .dimension)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                weight = try container.decode(String.self, forKey: .weight)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            weight = try container.decode(String.self, forKey: .weight)
         }
 
         public func encode(to encoder: Encoder) throws {

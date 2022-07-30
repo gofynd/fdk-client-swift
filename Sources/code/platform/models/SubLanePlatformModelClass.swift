@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var text: String
 
-        public var value: String
-
         public var totalShipments: Int
+
+        public var value: String
 
         public var index: Int
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case text
 
-            case value
-
             case totalShipments = "total_shipments"
+
+            case value
 
             case index
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             self.text = text
 
-            self.value = value
-
             self.totalShipments = totalShipments
+
+            self.value = value
 
             self.index = index
         }
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             text = try container.decode(String.self, forKey: .text)
 
-            value = try container.decode(String.self, forKey: .value)
-
             totalShipments = try container.decode(Int.self, forKey: .totalShipments)
+
+            value = try container.decode(String.self, forKey: .value)
 
             index = try container.decode(Int.self, forKey: .index)
         }
@@ -85,9 +85,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(totalShipments, forKey: .totalShipments)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(index, forKey: .index)
         }

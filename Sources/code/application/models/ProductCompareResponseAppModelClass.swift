@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class ProductCompareResponse: Codable {
         public var items: [ProductDetail]?
 
-        public var subtitle: String?
-
         public var title: String?
+
+        public var subtitle: String?
 
         public var attributesMetadata: [AttributeMetadata]?
 
         public enum CodingKeys: String, CodingKey {
             case items
 
-            case subtitle
-
             case title
+
+            case subtitle
 
             case attributesMetadata = "attributes_metadata"
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(attributesMetadata: [AttributeMetadata]? = nil, items: [ProductDetail]? = nil, subtitle: String? = nil, title: String? = nil) {
             self.items = items
 
-            self.subtitle = subtitle
-
             self.title = title
+
+            self.subtitle = subtitle
 
             self.attributesMetadata = attributesMetadata
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                subtitle = try container.decode(String.self, forKey: .subtitle)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                subtitle = try container.decode(String.self, forKey: .subtitle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
-
             try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
             try? container.encodeIfPresent(attributesMetadata, forKey: .attributesMetadata)
         }
