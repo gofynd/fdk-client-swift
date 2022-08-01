@@ -8,7 +8,9 @@ public extension PlatformClient {
      */
 
     class InventoryPayload: Codable {
-        public var priceEffective: Double?
+        public var totalQuantity: Int?
+
+        public var expirationDate: String?
 
         public var priceMarked: Double?
 
@@ -16,12 +18,12 @@ public extension PlatformClient {
 
         public var sellerIdentifier: String
 
-        public var totalQuantity: Int?
-
-        public var expirationDate: String?
+        public var priceEffective: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case priceEffective = "price_effective"
+            case totalQuantity = "total_quantity"
+
+            case expirationDate = "expiration_date"
 
             case priceMarked = "price_marked"
 
@@ -29,13 +31,13 @@ public extension PlatformClient {
 
             case sellerIdentifier = "seller_identifier"
 
-            case totalQuantity = "total_quantity"
-
-            case expirationDate = "expiration_date"
+            case priceEffective = "price_effective"
         }
 
         public init(expirationDate: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeId: Int, totalQuantity: Int? = nil) {
-            self.priceEffective = priceEffective
+            self.totalQuantity = totalQuantity
+
+            self.expirationDate = expirationDate
 
             self.priceMarked = priceMarked
 
@@ -43,16 +45,22 @@ public extension PlatformClient {
 
             self.sellerIdentifier = sellerIdentifier
 
-            self.totalQuantity = totalQuantity
-
-            self.expirationDate = expirationDate
+            self.priceEffective = priceEffective
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+                totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                expirationDate = try container.decode(String.self, forKey: .expirationDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,15 +80,7 @@ public extension PlatformClient {
             sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
 
             do {
-                totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                expirationDate = try container.decode(String.self, forKey: .expirationDate)
+                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+            try? container.encode(totalQuantity, forKey: .totalQuantity)
+
+            try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
 
             try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
 
@@ -99,9 +101,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
-            try? container.encode(totalQuantity, forKey: .totalQuantity)
-
-            try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
         }
     }
 }
