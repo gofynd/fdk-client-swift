@@ -200,9 +200,16 @@ public extension ApplicationClient {
          **/
         public func getShipmentReasons(
             shipmentId: String,
+            bagId: Int?,
 
             onResponse: @escaping (_ response: ShipmentReasons?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = bagId {
+                xQuery["bag_id"] = value
+            }
+
             var fullUrl = relativeUrls["getShipmentReasons"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
@@ -211,7 +218,7 @@ public extension ApplicationClient {
                 config: config,
                 method: "get",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders: [],
                 body: nil,
                 responseType: "application/json",

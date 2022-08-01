@@ -199,7 +199,7 @@ Get reasons behind full or partial cancellation of a shipment
 
 
 ```swift
-order.getShipmentReasons(shipmentId: shipmentId) { (response, error) in
+order.getShipmentReasons(shipmentId: shipmentId, bagId: bagId) { (response, error) in
     // Use response
 }
 ```
@@ -210,7 +210,8 @@ order.getShipmentReasons(shipmentId: shipmentId) { (response, error) in
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| shipmentId | String | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+| shipmentId | String | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
+| bagId | Int? | no | Bag Id of a specefic bags which will help to categorize the reasons |  
 
 
 

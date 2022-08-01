@@ -171,8 +171,8 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | Int? |  yes  |  |
  | identifier | String? |  yes  |  |
+ | quantity | Int? |  yes  |  |
 
 ---
 
@@ -183,10 +183,10 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | storeInvoiceId | String? |  yes  |  |
- | dataUpdate | [String: Any]? |  yes  |  |
- | products | [[ProductDetail](#ProductDetail)]? |  yes  |  |
  | reason | [Int]? |  yes  |  |
+ | storeInvoiceId | String? |  yes  |  |
+ | products | [[ProductDetail](#ProductDetail)]? |  yes  |  |
+ | dataUpdate | [String: Any]? |  yes  |  |
 
 ---
 
@@ -209,8 +209,8 @@ It shows the journey of the shipment!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | status | String |  no  |  |
- | excludeBagsNextState | String |  no  |  |
  | shipments | [ShipmentDetail](#ShipmentDetail)? |  yes  |  |
+ | excludeBagsNextState | String |  no  |  |
 
 ---
 
@@ -221,9 +221,9 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | forceTransition | Bool? |  yes  |  |
- | task | Bool? |  yes  |  |
  | statuses | [Statuses](#Statuses)? |  yes  |  |
+ | task | Bool? |  yes  |  |
+ | forceTransition | Bool? |  yes  |  |
 
 ---
 
@@ -258,14 +258,14 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | l1Detail | String? |  yes  |  |
+ | user | String |  no  |  |
  | type | String |  no  |  |
- | ticketUrl | String? |  yes  |  |
+ | l2Detail | String? |  yes  |  |
  | l3Detail | String? |  yes  |  |
  | ticketId | String? |  yes  |  |
+ | ticketUrl | String? |  yes  |  |
+ | l1Detail | String? |  yes  |  |
  | message | String |  no  |  |
- | l2Detail | String? |  yes  |  |
- | user | String |  no  |  |
  | createdat | String |  no  |  |
 
 ---

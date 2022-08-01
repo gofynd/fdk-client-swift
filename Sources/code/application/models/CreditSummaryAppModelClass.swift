@@ -7,40 +7,36 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class CreditSummary: Codable {
-        public var statusMessage: String
-
-        public var merchantCustomerRefId: String
-
         public var balance: BalanceDetails?
 
         public var status: String
 
+        public var statusMessage: String
+
+        public var merchantCustomerRefId: String
+
         public enum CodingKeys: String, CodingKey {
-            case statusMessage = "status_message"
-
-            case merchantCustomerRefId = "merchant_customer_ref_id"
-
             case balance
 
             case status
+
+            case statusMessage = "status_message"
+
+            case merchantCustomerRefId = "merchant_customer_ref_id"
         }
 
         public init(balance: BalanceDetails? = nil, merchantCustomerRefId: String, status: String, statusMessage: String) {
-            self.statusMessage = statusMessage
-
-            self.merchantCustomerRefId = merchantCustomerRefId
-
             self.balance = balance
 
             self.status = status
+
+            self.statusMessage = statusMessage
+
+            self.merchantCustomerRefId = merchantCustomerRefId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            statusMessage = try container.decode(String.self, forKey: .statusMessage)
-
-            merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
 
             do {
                 balance = try container.decode(BalanceDetails.self, forKey: .balance)
@@ -51,18 +47,22 @@ public extension ApplicationClient {
             } catch {}
 
             status = try container.decode(String.self, forKey: .status)
+
+            statusMessage = try container.decode(String.self, forKey: .statusMessage)
+
+            merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(statusMessage, forKey: .statusMessage)
-
-            try? container.encodeIfPresent(merchantCustomerRefId, forKey: .merchantCustomerRefId)
-
             try? container.encodeIfPresent(balance, forKey: .balance)
 
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(statusMessage, forKey: .statusMessage)
+
+            try? container.encodeIfPresent(merchantCustomerRefId, forKey: .merchantCustomerRefId)
         }
     }
 }
