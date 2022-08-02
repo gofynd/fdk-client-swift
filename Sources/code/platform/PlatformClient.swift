@@ -8185,45 +8185,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get a Search Keywords Details
-             * Description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
-             **/
-            public func getSearchKeywords(
-                id: String,
-
-                onResponse: @escaping (_ response: GetSearchWordsDetailResponse?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(GetSearchWordsDetailResponse.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
              * Summary: Update Search Keyword
              * Description: Update Search Keyword by its id. On successful request, returns the updated collection
              **/
@@ -8249,6 +8210,45 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(GetSearchWordsData.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Get a Search Keywords Details
+             * Description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+             **/
+            public func getSearchKeywords(
+                id: String,
+
+                onResponse: @escaping (_ response: GetSearchWordsDetailResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(GetSearchWordsDetailResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -8377,20 +8377,20 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get a Autocomplete Keywords Details
-             * Description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+             * Summary: Create & Update Autocomplete Keyword
+             * Description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
              **/
-            public func getAutocompleteKeywordDetail(
+            public func updateAutocompleteKeyword(
                 id: String,
-
+                body: CreateAutocompleteKeyword,
                 onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "get",
+                    method: "put",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
                     query: nil,
-                    body: nil,
+                    body: body.dictionary,
                     headers: [],
                     responseType: "application/json",
                     onResponse: { responseData, error, responseCode in
@@ -8416,20 +8416,20 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Create & Update Autocomplete Keyword
-             * Description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+             * Summary: Get a Autocomplete Keywords Details
+             * Description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
              **/
-            public func updateAutocompleteKeyword(
+            public func getAutocompleteKeywordDetail(
                 id: String,
-                body: CreateAutocompleteKeyword,
+
                 onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "put",
+                    method: "get",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
                     query: nil,
-                    body: body.dictionary,
+                    body: nil,
                     headers: [],
                     responseType: "application/json",
                     onResponse: { responseData, error, responseCode in
@@ -8575,7 +8575,7 @@ public class PlatformClient {
             public func updateAppProduct(
                 itemId: String,
                 body: ApplicationItemMeta,
-                onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
@@ -8593,7 +8593,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(SuccessResponse.self, from: data)
+                            let response = Utility.decode(SuccessResponse1.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -9355,6 +9355,7 @@ public class PlatformClient {
              **/
             public func getAllCollections(
                 q: String?,
+                scheduleStatus: String?,
                 type: String?,
                 tags: [String]?,
                 isActive: Bool?,
@@ -9367,6 +9368,10 @@ public class PlatformClient {
 
                 if let value = q {
                     xQuery["q"] = value
+                }
+
+                if let value = scheduleStatus {
+                    xQuery["schedule_status"] = value
                 }
 
                 if let value = type {
@@ -9926,6 +9931,7 @@ public class PlatformClient {
             public func getAppicationProducts(
                 q: String?,
                 f: String?,
+                c: String?,
                 filters: Bool?,
                 sortOn: String?,
                 pageId: String?,
@@ -9944,6 +9950,10 @@ public class PlatformClient {
 
                 if let value = f {
                     xQuery["f"] = value
+                }
+
+                if let value = c {
+                    xQuery["c"] = value
                 }
 
                 if let value = filters {
@@ -10011,6 +10021,7 @@ public class PlatformClient {
             public func getAppicationProductsPaginator(
                 q: String?,
                 f: String?,
+                c: String?,
                 filters: Bool?,
                 sortOn: String?,
                 pageSize: Int?,
@@ -10023,6 +10034,7 @@ public class PlatformClient {
                     self.getAppicationProducts(
                         q: q,
                         f: f,
+                        c: c,
                         filters: filters,
                         sortOn: sortOn,
                         pageId: paginator.pageId,
@@ -10263,6 +10275,293 @@ public class PlatformClient {
                     }
                 }
                 return paginator
+            }
+
+            /**
+             *
+             * Summary: List all the brands for the application
+             * Description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
+             **/
+            public func getApplicationBrandListing(
+                pageNo: Int?,
+                pageSize: Int?,
+                q: String?,
+
+                onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+
+                if let value = q {
+                    xQuery["q"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/brand",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(BrandListingResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: get paginator for getApplicationBrandListing
+             * Description: fetch the next page by calling .next(...) function
+             **/
+            public func getApplicationBrandListingPaginator(
+                pageSize: Int?,
+                q: String?
+
+            ) -> Paginator<BrandListingResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<BrandListingResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getApplicationBrandListing(
+                        pageNo: paginator.pageNo,
+
+                        pageSize: paginator.pageSize,
+
+                        q: q
+                    ) { response, error in
+                        if let response = response {
+                            paginator.hasNext = response.page.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+
+            /**
+             *
+             * Summary: Update a single custom json.
+             * Description: This API helps to update data associated to a item custom meta.
+             **/
+            public func updateAppBrand(
+                brandUid: String,
+                body: ApplicationBrandJson,
+                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "patch",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/brand/\(brandUid)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SuccessResponse1.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: List all the brands for the application
+             * Description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
+             **/
+            public func getApplicationCategoryListing(
+                pageNo: Int?,
+                pageSize: Int?,
+                q: String?,
+
+                onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+
+                if let value = q {
+                    xQuery["q"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/category",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(BrandListingResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: get paginator for getApplicationCategoryListing
+             * Description: fetch the next page by calling .next(...) function
+             **/
+            public func getApplicationCategoryListingPaginator(
+                pageSize: Int?,
+                q: String?
+
+            ) -> Paginator<BrandListingResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<BrandListingResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getApplicationCategoryListing(
+                        pageNo: paginator.pageNo,
+
+                        pageSize: paginator.pageSize,
+
+                        q: q
+                    ) { response, error in
+                        if let response = response {
+                            paginator.hasNext = response.page.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+
+            /**
+             *
+             * Summary: Update a single custom json.
+             * Description: This API helps to update data associated to a item custom meta.
+             **/
+            public func updateAppCategory(
+                categoryUid: String,
+                body: ApplicationCategoryJson,
+                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "patch",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/category/\(categoryUid)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SuccessResponse1.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Update a single custom json.
+             * Description: This API helps to update data associated to a item custom meta.
+             **/
+            public func updateAppLocation(
+                storeUid: String,
+                body: ApplicationStoreJson,
+                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "patch",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/store/\(storeUid)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SuccessResponse1.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
             }
         }
 
@@ -12762,6 +13061,98 @@ public class PlatformClient {
                     }
                 }
                 return paginator
+            }
+
+            /**
+             *
+             * Summary: Add items to abandoned cart
+             * Description: Use this API to add items to the abandoned cart.
+             **/
+            public func addItems(
+                cartId: String,
+                b: Bool?,
+                body: AddCartRequest,
+                onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = b {
+                    xQuery["b"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/abandoned/carts/\(cartId)",
+                    query: xQuery,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(AddCartDetailResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Update items in the abandoned cart
+             * Description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+             **/
+            public func updateCart(
+                cartId: String,
+                b: Bool?,
+                body: UpdateCartRequest,
+                onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = b {
+                    xQuery["b"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/abandoned/carts/\(cartId)",
+                    query: xQuery,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(UpdateCartDetailResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
             }
         }
 

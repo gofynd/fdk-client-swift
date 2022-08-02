@@ -9,22 +9,22 @@ public extension ApplicationClient {
     class ValidateCustomerRequest: Codable {
         public var phoneNumber: String
 
+        public var payload: String
+
         public var aggregator: String
 
         public var transactionAmountInPaise: Int
-
-        public var payload: String
 
         public var merchantParams: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case phoneNumber = "phone_number"
 
+            case payload
+
             case aggregator
 
             case transactionAmountInPaise = "transaction_amount_in_paise"
-
-            case payload
 
             case merchantParams = "merchant_params"
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient {
         public init(aggregator: String, merchantParams: [String: Any], payload: String, phoneNumber: String, transactionAmountInPaise: Int) {
             self.phoneNumber = phoneNumber
 
+            self.payload = payload
+
             self.aggregator = aggregator
 
             self.transactionAmountInPaise = transactionAmountInPaise
-
-            self.payload = payload
 
             self.merchantParams = merchantParams
         }
@@ -46,11 +46,11 @@ public extension ApplicationClient {
 
             phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
 
+            payload = try container.decode(String.self, forKey: .payload)
+
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
             transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
-
-            payload = try container.decode(String.self, forKey: .payload)
 
             merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
         }
@@ -60,11 +60,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
+            try? container.encode(payload, forKey: .payload)
+
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
-
-            try? container.encode(payload, forKey: .payload)
 
             try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
         }

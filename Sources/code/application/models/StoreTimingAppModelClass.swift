@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class StoreTiming: Codable {
         public var open: Bool?
 
-        public var closing: Time?
-
         public var weekday: String?
+
+        public var closing: Time?
 
         public var opening: Time?
 
         public enum CodingKeys: String, CodingKey {
             case open
 
-            case closing
-
             case weekday
+
+            case closing
 
             case opening
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(closing: Time? = nil, open: Bool? = nil, opening: Time? = nil, weekday: String? = nil) {
             self.open = open
 
-            self.closing = closing
-
             self.weekday = weekday
+
+            self.closing = closing
 
             self.opening = opening
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                closing = try container.decode(Time.self, forKey: .closing)
+                weekday = try container.decode(String.self, forKey: .weekday)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                weekday = try container.decode(String.self, forKey: .weekday)
+                closing = try container.decode(Time.self, forKey: .closing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(open, forKey: .open)
 
-            try? container.encodeIfPresent(closing, forKey: .closing)
-
             try? container.encodeIfPresent(weekday, forKey: .weekday)
+
+            try? container.encodeIfPresent(closing, forKey: .closing)
 
             try? container.encodeIfPresent(opening, forKey: .opening)
         }

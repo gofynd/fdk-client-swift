@@ -10,7 +10,7 @@ class PublicAPIClient {
                         onResponse: @escaping OnResponse)
     {
         var headers = [
-            (key: "x-fp-sdk-version", value: "0.1.24")
+            (key: "x-fp-sdk-version", value: "0.1.25")
         ]
         headers.append(contentsOf: extraHeaders)
         headers.append(contentsOf: config.extraHeaders)

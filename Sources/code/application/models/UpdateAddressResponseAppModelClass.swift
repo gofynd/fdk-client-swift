@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class UpdateAddressResponse: Codable {
         public var isDefaultAddress: Bool?
 
-        public var success: Bool?
-
         public var isUpdated: Bool?
+
+        public var success: Bool?
 
         public var id: String?
 
         public enum CodingKeys: String, CodingKey {
             case isDefaultAddress = "is_default_address"
 
-            case success
-
             case isUpdated = "is_updated"
+
+            case success
 
             case id
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(id: String? = nil, isDefaultAddress: Bool? = nil, isUpdated: Bool? = nil, success: Bool? = nil) {
             self.isDefaultAddress = isDefaultAddress
 
-            self.success = success
-
             self.isUpdated = isUpdated
+
+            self.success = success
 
             self.id = id
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                isUpdated = try container.decode(Bool.self, forKey: .isUpdated)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isUpdated = try container.decode(Bool.self, forKey: .isUpdated)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(isDefaultAddress, forKey: .isDefaultAddress)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(isUpdated, forKey: .isUpdated)
+
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(id, forKey: .id)
         }
