@@ -10,36 +10,36 @@ public extension PlatformClient {
     class PTErrorResponse: Codable {
         public var code: String?
 
-        public var meta: [String: Any]?
+        public var errors: [String: Any]?
 
         public var message: String?
 
         public var status: Int?
 
-        public var errors: [String: Any]?
+        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case code
 
-            case meta
+            case errors
 
             case message
 
             case status
 
-            case errors
+            case meta
         }
 
         public init(code: String? = nil, errors: [String: Any]? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
             self.code = code
 
-            self.meta = meta
+            self.errors = errors
 
             self.message = message
 
             self.status = status
 
-            self.errors = errors
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                errors = try container.decode([String: Any].self, forKey: .errors)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                errors = try container.decode([String: Any].self, forKey: .errors)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,13 +91,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(errors, forKey: .errors)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(errors, forKey: .errors)
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

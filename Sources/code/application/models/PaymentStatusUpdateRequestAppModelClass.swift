@@ -7,126 +7,126 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class PaymentStatusUpdateRequest: Codable {
-        public var aggregator: String
-
-        public var amount: Int
-
         public var vpa: String
-
-        public var email: String
-
-        public var method: String
-
-        public var contact: String
-
-        public var currency: String
-
-        public var customerId: String
-
-        public var merchantOrderId: String
-
-        public var status: String
 
         public var orderId: String
 
+        public var method: String
+
+        public var amount: Int
+
+        public var currency: String
+
+        public var aggregator: String
+
+        public var contact: String
+
+        public var email: String
+
+        public var merchantOrderId: String
+
+        public var customerId: String
+
+        public var status: String
+
         public enum CodingKeys: String, CodingKey {
-            case aggregator
-
-            case amount
-
             case vpa
 
-            case email
+            case orderId = "order_id"
 
             case method
 
-            case contact
+            case amount
 
             case currency
 
-            case customerId = "customer_id"
+            case aggregator
+
+            case contact
+
+            case email
 
             case merchantOrderId = "merchant_order_id"
 
-            case status
+            case customerId = "customer_id"
 
-            case orderId = "order_id"
+            case status
         }
 
         public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, email: String, merchantOrderId: String, method: String, orderId: String, status: String, vpa: String) {
-            self.aggregator = aggregator
-
-            self.amount = amount
-
             self.vpa = vpa
 
-            self.email = email
+            self.orderId = orderId
 
             self.method = method
 
-            self.contact = contact
+            self.amount = amount
 
             self.currency = currency
 
-            self.customerId = customerId
+            self.aggregator = aggregator
+
+            self.contact = contact
+
+            self.email = email
 
             self.merchantOrderId = merchantOrderId
 
-            self.status = status
+            self.customerId = customerId
 
-            self.orderId = orderId
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
-            amount = try container.decode(Int.self, forKey: .amount)
-
             vpa = try container.decode(String.self, forKey: .vpa)
 
-            email = try container.decode(String.self, forKey: .email)
+            orderId = try container.decode(String.self, forKey: .orderId)
 
             method = try container.decode(String.self, forKey: .method)
 
-            contact = try container.decode(String.self, forKey: .contact)
+            amount = try container.decode(Int.self, forKey: .amount)
 
             currency = try container.decode(String.self, forKey: .currency)
 
-            customerId = try container.decode(String.self, forKey: .customerId)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
+
+            contact = try container.decode(String.self, forKey: .contact)
+
+            email = try container.decode(String.self, forKey: .email)
 
             merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
 
-            status = try container.decode(String.self, forKey: .status)
+            customerId = try container.decode(String.self, forKey: .customerId)
 
-            orderId = try container.decode(String.self, forKey: .orderId)
+            status = try container.decode(String.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
-            try? container.encode(amount, forKey: .amount)
-
             try? container.encodeIfPresent(vpa, forKey: .vpa)
 
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(method, forKey: .method)
 
-            try? container.encodeIfPresent(contact, forKey: .contact)
+            try? container.encode(amount, forKey: .amount)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(customerId, forKey: .customerId)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encodeIfPresent(contact, forKey: .contact)
+
+            try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(customerId, forKey: .customerId)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

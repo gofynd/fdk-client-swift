@@ -8,42 +8,42 @@ public extension PlatformClient {
      */
 
     class InventoryJobPayload: Codable {
-        public var expirationDate: String?
+        public var storeCode: String
 
         public var priceMarked: Double?
-
-        public var storeCode: String
 
         public var priceEffective: Double?
 
         public var sellerIdentifier: String
 
+        public var expirationDate: String?
+
         public var totalQuantity: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case expirationDate = "expiration_date"
+            case storeCode = "store_code"
 
             case priceMarked = "price_marked"
-
-            case storeCode = "store_code"
 
             case priceEffective = "price_effective"
 
             case sellerIdentifier = "seller_identifier"
 
+            case expirationDate = "expiration_date"
+
             case totalQuantity = "total_quantity"
         }
 
         public init(expirationDate: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeCode: String, totalQuantity: Int? = nil) {
-            self.expirationDate = expirationDate
+            self.storeCode = storeCode
 
             self.priceMarked = priceMarked
-
-            self.storeCode = storeCode
 
             self.priceEffective = priceEffective
 
             self.sellerIdentifier = sellerIdentifier
+
+            self.expirationDate = expirationDate
 
             self.totalQuantity = totalQuantity
         }
@@ -51,13 +51,7 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                expirationDate = try container.decode(String.self, forKey: .expirationDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            storeCode = try container.decode(String.self, forKey: .storeCode)
 
             do {
                 priceMarked = try container.decode(Double.self, forKey: .priceMarked)
@@ -66,8 +60,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            storeCode = try container.decode(String.self, forKey: .storeCode)
 
             do {
                 priceEffective = try container.decode(Double.self, forKey: .priceEffective)
@@ -78,6 +70,14 @@ public extension PlatformClient {
             } catch {}
 
             sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+
+            do {
+                expirationDate = try container.decode(String.self, forKey: .expirationDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
@@ -91,15 +91,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
 
             try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
-
-            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
 
             try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+
+            try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
 
             try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
         }

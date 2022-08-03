@@ -453,13 +453,26 @@ public extension PlatformClient {
          * Description:
          **/
         public func getMetricCount(
+            fromDate: String?,
+            toDate: String?,
+
             onResponse: @escaping (_ response: MetricCountResponse?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
+
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/orders/v1.0/company/\(companyId)/shipment/metrics-count",
-                query: nil,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
