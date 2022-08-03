@@ -10,42 +10,42 @@ public extension PlatformClient {
     class RestrictedCategoryResponseSerializer: Codable {
         public var fulfilmentType: String?
 
+        public var code: String
+
         public var uid: Int
+
+        public var restrictedCategories: [RestrictedCategoryResponseInfoSerializer]
 
         public var storeType: String
 
-        public var code: String
-
         public var name: String
-
-        public var restrictedCategories: [RestrictedCategoryResponseInfoSerializer]
 
         public enum CodingKeys: String, CodingKey {
             case fulfilmentType = "fulfilment_type"
 
+            case code
+
             case uid
+
+            case restrictedCategories = "restricted_categories"
 
             case storeType = "store_type"
 
-            case code
-
             case name
-
-            case restrictedCategories = "restricted_categories"
         }
 
         public init(code: String, fulfilmentType: String? = nil, name: String, restrictedCategories: [RestrictedCategoryResponseInfoSerializer], storeType: String, uid: Int) {
             self.fulfilmentType = fulfilmentType
 
+            self.code = code
+
             self.uid = uid
+
+            self.restrictedCategories = restrictedCategories
 
             self.storeType = storeType
 
-            self.code = code
-
             self.name = name
-
-            self.restrictedCategories = restrictedCategories
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,15 +59,15 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            code = try container.decode(String.self, forKey: .code)
+
             uid = try container.decode(Int.self, forKey: .uid)
+
+            restrictedCategories = try container.decode([RestrictedCategoryResponseInfoSerializer].self, forKey: .restrictedCategories)
 
             storeType = try container.decode(String.self, forKey: .storeType)
 
-            code = try container.decode(String.self, forKey: .code)
-
             name = try container.decode(String.self, forKey: .name)
-
-            restrictedCategories = try container.decode([RestrictedCategoryResponseInfoSerializer].self, forKey: .restrictedCategories)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -75,15 +75,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(fulfilmentType, forKey: .fulfilmentType)
 
+            try? container.encodeIfPresent(code, forKey: .code)
+
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(restrictedCategories, forKey: .restrictedCategories)
 
             try? container.encodeIfPresent(storeType, forKey: .storeType)
 
-            try? container.encodeIfPresent(code, forKey: .code)
-
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(restrictedCategories, forKey: .restrictedCategories)
         }
     }
 }

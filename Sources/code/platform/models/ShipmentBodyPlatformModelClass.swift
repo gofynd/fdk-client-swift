@@ -8,44 +8,36 @@ public extension PlatformClient {
      */
 
     class ShipmentBody: Codable {
-        public var storeInvoiceId: String?
-
         public var reason: [Int]?
 
         public var dataUpdate: [String: Any]?
 
         public var products: [ProductDetail]?
 
-        public enum CodingKeys: String, CodingKey {
-            case storeInvoiceId = "store_invoice_id"
+        public var storeInvoiceId: String?
 
+        public enum CodingKeys: String, CodingKey {
             case reason
 
             case dataUpdate = "data_update"
 
             case products
+
+            case storeInvoiceId = "store_invoice_id"
         }
 
         public init(dataUpdate: [String: Any]? = nil, products: [ProductDetail]? = nil, reason: [Int]? = nil, storeInvoiceId: String? = nil) {
-            self.storeInvoiceId = storeInvoiceId
-
             self.reason = reason
 
             self.dataUpdate = dataUpdate
 
             self.products = products
+
+            self.storeInvoiceId = storeInvoiceId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 reason = try container.decode([Int].self, forKey: .reason)
@@ -70,18 +62,26 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
 
             try? container.encodeIfPresent(reason, forKey: .reason)
 
             try? container.encodeIfPresent(dataUpdate, forKey: .dataUpdate)
 
             try? container.encodeIfPresent(products, forKey: .products)
+
+            try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
         }
     }
 }

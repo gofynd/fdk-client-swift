@@ -10,22 +10,22 @@ public extension PlatformClient {
     class ConfigurationListingSortConfig: Codable {
         public var logo: String?
 
-        public var name: String?
-
         public var key: String
 
         public var isActive: Bool
+
+        public var name: String?
 
         public var priority: Int
 
         public enum CodingKeys: String, CodingKey {
             case logo
 
-            case name
-
             case key
 
             case isActive = "is_active"
+
+            case name
 
             case priority
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
             self.logo = logo
 
-            self.name = name
-
             self.key = key
 
             self.isActive = isActive
+
+            self.name = name
 
             self.priority = priority
         }
@@ -53,6 +53,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            key = try container.decode(String.self, forKey: .key)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -60,10 +64,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            key = try container.decode(String.self, forKey: .key)
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             priority = try container.decode(Int.self, forKey: .priority)
         }
@@ -73,11 +73,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
         }

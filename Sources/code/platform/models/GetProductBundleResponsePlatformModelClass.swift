@@ -14,13 +14,13 @@ public extension PlatformClient {
 
         public var sameStoreAssignment: Bool?
 
-        public var companyId: Int?
-
         public var logo: String?
 
-        public var pageVisibility: [String]?
-
         public var choice: String?
+
+        public var companyId: Int?
+
+        public var pageVisibility: [String]?
 
         public var name: String?
 
@@ -35,13 +35,13 @@ public extension PlatformClient {
 
             case sameStoreAssignment = "same_store_assignment"
 
-            case companyId = "company_id"
-
             case logo
 
-            case pageVisibility = "page_visibility"
-
             case choice
+
+            case companyId = "company_id"
+
+            case pageVisibility = "page_visibility"
 
             case name
 
@@ -57,13 +57,13 @@ public extension PlatformClient {
 
             self.sameStoreAssignment = sameStoreAssignment
 
-            self.companyId = companyId
-
             self.logo = logo
 
-            self.pageVisibility = pageVisibility
-
             self.choice = choice
+
+            self.companyId = companyId
+
+            self.pageVisibility = pageVisibility
 
             self.name = name
 
@@ -100,14 +100,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -116,7 +108,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
+                choice = try container.decode(String.self, forKey: .choice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,7 +116,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                choice = try container.decode(String.self, forKey: .choice)
+                companyId = try container.decode(Int.self, forKey: .companyId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,13 +165,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(sameStoreAssignment, forKey: .sameStoreAssignment)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
-
             try? container.encodeIfPresent(choice, forKey: .choice)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
 
             try? container.encodeIfPresent(name, forKey: .name)
 

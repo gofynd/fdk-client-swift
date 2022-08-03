@@ -171,8 +171,8 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | String? |  yes  |  |
  | quantity | Int? |  yes  |  |
+ | identifier | String? |  yes  |  |
 
 ---
 
@@ -183,10 +183,10 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | storeInvoiceId | String? |  yes  |  |
  | reason | [Int]? |  yes  |  |
  | dataUpdate | [String: Any]? |  yes  |  |
  | products | [[ProductDetail](#ProductDetail)]? |  yes  |  |
+ | storeInvoiceId | String? |  yes  |  |
 
 ---
 
@@ -221,9 +221,9 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | task | Bool? |  yes  |  |
  | statuses | [Statuses](#Statuses)? |  yes  |  |
  | forceTransition | Bool? |  yes  |  |
- | task | Bool? |  yes  |  |
 
 ---
 
@@ -234,8 +234,8 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
  | message | [String]? |  yes  |  |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -246,8 +246,8 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
  | message | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -258,15 +258,15 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | createdat | String |  no  |  |
  | type | String |  no  |  |
- | l3Detail | String? |  yes  |  |
- | ticketUrl | String? |  yes  |  |
- | user | String |  no  |  |
+ | ticketId | String? |  yes  |  |
  | l2Detail | String? |  yes  |  |
  | message | String |  no  |  |
+ | ticketUrl | String? |  yes  |  |
  | l1Detail | String? |  yes  |  |
- | ticketId | String? |  yes  |  |
+ | l3Detail | String? |  yes  |  |
+ | createdat | String |  no  |  |
+ | user | String |  no  |  |
 
 ---
 
