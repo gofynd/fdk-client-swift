@@ -3,25 +3,31 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: FilterInfoOption
+         Model: FilterDict
          Used By: Orders
      */
 
-    class FilterInfoOption: Codable {
+    class FilterDict: Codable {
         public var text: String
 
-        public var value: String?
+        public var value: String
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case text
 
             case value
+
+            case name
         }
 
-        public init(text: String, value: String? = nil) {
+        public init(name: String, text: String, value: String) {
             self.text = text
 
             self.value = value
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -29,13 +35,9 @@ public extension PlatformClient {
 
             text = try container.decode(String.self, forKey: .text)
 
-            do {
-                value = try container.decode(String.self, forKey: .value)
+            value = try container.decode(String.self, forKey: .value)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -44,6 +46,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

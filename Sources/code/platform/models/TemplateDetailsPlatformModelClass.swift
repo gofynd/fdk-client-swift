@@ -8,107 +8,101 @@ public extension PlatformClient {
      */
 
     class TemplateDetails: Codable {
-        public var attributeSchemaOverride: [AttributeSchemaOverride]?
-
-        public var attributes: [String]?
-
-        public var logo: String?
-
-        public var tag: String?
-
-        public var departments: [String]?
-
-        public var isArchived: Bool?
-
-        public var isPhysical: Bool
-
-        public var id: String?
-
-        public var description: String?
+        public var slug: String
 
         public var name: String?
 
-        public var slug: String
+        public var logo: String?
+
+        public var departments: [String]?
+
+        public var id: String?
+
+        public var isArchived: Bool?
+
+        public var tag: String?
+
+        public var attributeSchemaOverride: [AttributeSchemaOverride]?
 
         public var isActive: Bool?
 
-        public var categories: [String]?
-
         public var isExpirable: Bool
 
+        public var categories: [String]?
+
+        public var description: String?
+
+        public var isPhysical: Bool
+
+        public var attributes: [String]?
+
         public enum CodingKeys: String, CodingKey {
-            case attributeSchemaOverride = "attribute_schema_override"
-
-            case attributes
-
-            case logo
-
-            case tag
-
-            case departments
-
-            case isArchived = "is_archived"
-
-            case isPhysical = "is_physical"
-
-            case id
-
-            case description
+            case slug
 
             case name
 
-            case slug
+            case logo
+
+            case departments
+
+            case id
+
+            case isArchived = "is_archived"
+
+            case tag
+
+            case attributeSchemaOverride = "attribute_schema_override"
 
             case isActive = "is_active"
 
+            case isExpirable = "is_expirable"
+
             case categories
 
-            case isExpirable = "is_expirable"
+            case description
+
+            case isPhysical = "is_physical"
+
+            case attributes
         }
 
         public init(attributes: [String]? = nil, attributeSchemaOverride: [AttributeSchemaOverride]? = nil, categories: [String]? = nil, departments: [String]? = nil, description: String? = nil, id: String? = nil, isActive: Bool? = nil, isArchived: Bool? = nil, isExpirable: Bool, isPhysical: Bool, logo: String? = nil, name: String? = nil, slug: String, tag: String? = nil) {
-            self.attributeSchemaOverride = attributeSchemaOverride
-
-            self.attributes = attributes
-
-            self.logo = logo
-
-            self.tag = tag
-
-            self.departments = departments
-
-            self.isArchived = isArchived
-
-            self.isPhysical = isPhysical
-
-            self.id = id
-
-            self.description = description
+            self.slug = slug
 
             self.name = name
 
-            self.slug = slug
+            self.logo = logo
+
+            self.departments = departments
+
+            self.id = id
+
+            self.isArchived = isArchived
+
+            self.tag = tag
+
+            self.attributeSchemaOverride = attributeSchemaOverride
 
             self.isActive = isActive
 
+            self.isExpirable = isExpirable
+
             self.categories = categories
 
-            self.isExpirable = isExpirable
+            self.description = description
+
+            self.isPhysical = isPhysical
+
+            self.attributes = attributes
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                attributeSchemaOverride = try container.decode([AttributeSchemaOverride].self, forKey: .attributeSchemaOverride)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            slug = try container.decode(String.self, forKey: .slug)
 
             do {
-                attributes = try container.decode([String].self, forKey: .attributes)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,7 +118,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                tag = try container.decode(String.self, forKey: .tag)
+                departments = try container.decode([String].self, forKey: .departments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,7 +126,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                departments = try container.decode([String].self, forKey: .departments)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,10 +141,34 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isPhysical = try container.decode(Bool.self, forKey: .isPhysical)
+            do {
+                tag = try container.decode(String.self, forKey: .tag)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                attributeSchemaOverride = try container.decode([AttributeSchemaOverride].self, forKey: .attributeSchemaOverride)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            isExpirable = try container.decode(Bool.self, forKey: .isExpirable)
+
+            do {
+                categories = try container.decode([String].self, forKey: .categories)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,65 +183,47 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            isPhysical = try container.decode(Bool.self, forKey: .isPhysical)
+
             do {
-                name = try container.decode(String.self, forKey: .name)
+                attributes = try container.decode([String].self, forKey: .attributes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            slug = try container.decode(String.self, forKey: .slug)
-
-            do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                categories = try container.decode([String].self, forKey: .categories)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            isExpirable = try container.decode(Bool.self, forKey: .isExpirable)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(attributeSchemaOverride, forKey: .attributeSchemaOverride)
-
-            try? container.encode(attributes, forKey: .attributes)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(tag, forKey: .tag)
-
-            try? container.encode(departments, forKey: .departments)
-
-            try? container.encodeIfPresent(isArchived, forKey: .isArchived)
-
-            try? container.encodeIfPresent(isPhysical, forKey: .isPhysical)
-
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encode(departments, forKey: .departments)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(isArchived, forKey: .isArchived)
+
+            try? container.encodeIfPresent(tag, forKey: .tag)
+
+            try? container.encodeIfPresent(attributeSchemaOverride, forKey: .attributeSchemaOverride)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
+            try? container.encodeIfPresent(isExpirable, forKey: .isExpirable)
+
             try? container.encode(categories, forKey: .categories)
 
-            try? container.encodeIfPresent(isExpirable, forKey: .isExpirable)
+            try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(isPhysical, forKey: .isPhysical)
+
+            try? container.encode(attributes, forKey: .attributes)
         }
     }
 }

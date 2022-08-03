@@ -10,7 +10,7 @@ public extension PlatformClient {
     class SellerAddress: Codable {
         public var name: String
 
-        public var address1: String
+        public var address: String
 
         public var city: String
 
@@ -23,7 +23,7 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case address1
+            case address
 
             case city
 
@@ -34,10 +34,10 @@ public extension PlatformClient {
             case pincode
         }
 
-        public init(address1: String, city: String, country: String, name: String, pincode: String, state: String) {
+        public init(address: String, city: String, country: String, name: String, pincode: String, state: String) {
             self.name = name
 
-            self.address1 = address1
+            self.address = address
 
             self.city = city
 
@@ -53,7 +53,7 @@ public extension PlatformClient {
 
             name = try container.decode(String.self, forKey: .name)
 
-            address1 = try container.decode(String.self, forKey: .address1)
+            address = try container.decode(String.self, forKey: .address)
 
             city = try container.decode(String.self, forKey: .city)
 
@@ -69,7 +69,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(address1, forKey: .address1)
+            try? container.encodeIfPresent(address, forKey: .address)
 
             try? container.encodeIfPresent(city, forKey: .city)
 
