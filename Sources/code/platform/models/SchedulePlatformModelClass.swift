@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var duration: Int?
 
-        public var cron: String?
-
         public var start: String?
+
+        public var cron: String?
 
         public enum CodingKeys: String, CodingKey {
             case end
 
             case duration
 
-            case cron
-
             case start
+
+            case cron
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, start: String? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.duration = duration
 
-            self.cron = cron
-
             self.start = start
+
+            self.cron = cron
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                cron = try container.decode(String.self, forKey: .cron)
+                start = try container.decode(String.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                start = try container.decode(String.self, forKey: .start)
+                cron = try container.decode(String.self, forKey: .cron)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encode(duration, forKey: .duration)
 
-            try? container.encode(cron, forKey: .cron)
-
             try? container.encodeIfPresent(start, forKey: .start)
+
+            try? container.encode(cron, forKey: .cron)
         }
     }
 }

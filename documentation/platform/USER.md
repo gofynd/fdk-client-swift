@@ -888,6 +888,7 @@ Success. Returns a JSON object containing the all the platform configurations. R
       "appId": "token_123"
     }
   },
+  "support_email": "test@gmail.com",
   "delete_account_reasons": [
     {
       "reason_text": "test",
@@ -1018,6 +1019,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
       "appId": "token_123"
     }
   },
+  "support_email": "test@gmail.com",
   "delete_account_reasons": [
     {
       "reason_text": "test",
@@ -1963,6 +1965,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | register | Bool? |  yes  |  |
  | mobileImage | String? |  yes  |  |
  | desktopImage | String? |  yes  |  |
+ | supportEmail | String? |  yes  |  |
  | deleteAccountDay | Int? |  yes  |  |
  | deleteAccountReasons | [[DeleteAccountReasons](#DeleteAccountReasons)]? |  yes  |  |
  | deleteAccountConsent | [String: Any]? |  yes  |  |

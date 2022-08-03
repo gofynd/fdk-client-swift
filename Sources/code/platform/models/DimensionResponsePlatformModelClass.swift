@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var width: Double
 
-        public var length: Double
-
         public var isDefault: Bool
+
+        public var length: Double
 
         public var unit: String
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case width
 
-            case length
-
             case isDefault = "is_default"
+
+            case length
 
             case unit
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.width = width
 
-            self.length = length
-
             self.isDefault = isDefault
+
+            self.length = length
 
             self.unit = unit
         }
@@ -49,9 +49,9 @@ public extension PlatformClient {
 
             width = try container.decode(Double.self, forKey: .width)
 
-            length = try container.decode(Double.self, forKey: .length)
-
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
+            length = try container.decode(Double.self, forKey: .length)
 
             unit = try container.decode(String.self, forKey: .unit)
         }
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(width, forKey: .width)
 
-            try? container.encodeIfPresent(length, forKey: .length)
-
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(length, forKey: .length)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
         }

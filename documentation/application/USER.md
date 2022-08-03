@@ -1965,6 +1965,7 @@ Success. Returns a JSON object containing the all the platform configurations. R
       "appId": "548529975557631"
     }
   },
+  "support_email": "test@gmail.com",
   "delete_account_reasons": [
     {
       "reason_text": "test",
@@ -3855,6 +3856,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | register | Bool? |  yes  |  |
  | mobileImage | String? |  yes  |  |
  | desktopImage | String? |  yes  |  |
+ | supportEmail | String? |  yes  |  |
  | deleteAccountDay | Int? |  yes  |  |
  | deleteAccountReasons | [[DeleteAccountReasons](#DeleteAccountReasons)]? |  yes  |  |
  | deleteAccountConsent | [String: Any]? |  yes  |  |
