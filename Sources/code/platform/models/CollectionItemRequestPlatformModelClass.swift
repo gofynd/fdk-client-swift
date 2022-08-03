@@ -8,51 +8,33 @@ public extension PlatformClient {
      */
 
     class CollectionItemRequest: Codable {
-        public var q: String?
+        public var type: String?
 
-        public var pageNo: Int?
+        public var item: [ItemQueryForUserCollection]?
 
-        public var pageSize: Int?
-
-        public var sort: String?
-
-        public var department: String?
-
-        public var variant: String?
+        public var query: [CollectionQuery]?
 
         public enum CodingKeys: String, CodingKey {
-            case q
+            case type
 
-            case pageNo = "page_no"
+            case item
 
-            case pageSize = "page_size"
-
-            case sort
-
-            case department
-
-            case variant
+            case query
         }
 
-        public init(department: String? = nil, pageNo: Int? = nil, pageSize: Int? = nil, q: String? = nil, sort: String? = nil, variant: String? = nil) {
-            self.q = q
+        public init(item: [ItemQueryForUserCollection]? = nil, query: [CollectionQuery]? = nil, type: String? = nil) {
+            self.type = type
 
-            self.pageNo = pageNo
+            self.item = item
 
-            self.pageSize = pageSize
-
-            self.sort = sort
-
-            self.department = department
-
-            self.variant = variant
+            self.query = query
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                q = try container.decode(String.self, forKey: .q)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                pageNo = try container.decode(Int.self, forKey: .pageNo)
+                item = try container.decode([ItemQueryForUserCollection].self, forKey: .item)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,31 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                pageSize = try container.decode(Int.self, forKey: .pageSize)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                sort = try container.decode(String.self, forKey: .sort)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                department = try container.decode(String.self, forKey: .department)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                variant = try container.decode(String.self, forKey: .variant)
+                query = try container.decode([CollectionQuery].self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,17 +61,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(q, forKey: .q)
+            try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(pageNo, forKey: .pageNo)
+            try? container.encodeIfPresent(item, forKey: .item)
 
-            try? container.encodeIfPresent(pageSize, forKey: .pageSize)
-
-            try? container.encodeIfPresent(sort, forKey: .sort)
-
-            try? container.encodeIfPresent(department, forKey: .department)
-
-            try? container.encodeIfPresent(variant, forKey: .variant)
+            try? container.encodeIfPresent(query, forKey: .query)
         }
     }
 }

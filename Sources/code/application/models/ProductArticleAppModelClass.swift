@@ -9,15 +9,15 @@ public extension ApplicationClient {
     class ProductArticle: Codable {
         public var type: String?
 
-        public var store: BaseInfo?
+        public var quantity: Int?
 
         public var uid: String?
 
         public var seller: BaseInfo?
 
-        public var quantity: Int?
-
         public var extraMeta: [String: Any]?
+
+        public var store: BaseInfo?
 
         public var size: String?
 
@@ -26,15 +26,15 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case store
+            case quantity
 
             case uid
 
             case seller
 
-            case quantity
-
             case extraMeta = "extra_meta"
+
+            case store
 
             case size
 
@@ -44,15 +44,15 @@ public extension ApplicationClient {
         public init(extraMeta: [String: Any]? = nil, price: ArticlePriceInfo? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, size: String? = nil, store: BaseInfo? = nil, type: String? = nil, uid: String? = nil) {
             self.type = type
 
-            self.store = store
+            self.quantity = quantity
 
             self.uid = uid
 
             self.seller = seller
 
-            self.quantity = quantity
-
             self.extraMeta = extraMeta
+
+            self.store = store
 
             self.size = size
 
@@ -71,7 +71,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                store = try container.decode(BaseInfo.self, forKey: .store)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,7 +95,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,7 +103,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
+                store = try container.decode(BaseInfo.self, forKey: .store)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,15 +132,15 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(store, forKey: .store)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(seller, forKey: .seller)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
             try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
+
+            try? container.encodeIfPresent(store, forKey: .store)
 
             try? container.encodeIfPresent(size, forKey: .size)
 

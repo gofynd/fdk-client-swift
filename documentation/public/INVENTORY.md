@@ -6,6 +6,8 @@
 
 ## Inventory Methods
 
+* [getConfigByApiKey](#getconfigbyapikey)
+* [getApiKey](#getapikey)
 * [getJobByCode](#getjobbycode)
 * [getJobConfigByIntegrationType](#getjobconfigbyintegrationtype)
 * [getJobCodesMetrics](#getjobcodesmetrics)
@@ -14,6 +16,117 @@
 
 
 ## Methods with example and description
+
+
+#### getConfigByApiKey
+Get Slingshot Configuration Of  A Company using API key
+
+
+
+
+```swift
+inventory.getConfigByApiKey(apikey: apikey) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| apikey | String | yes | Api key |  
+
+
+
+REST Endpoint that returns all configuration detail of a company
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeSlingshotConfigurationDetail](#ResponseEnvelopeSlingshotConfigurationDetail)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getApiKey
+Get apikey  for  Company  to call other Slingshot Configuration APIs 
+
+
+
+
+```swift
+inventory.getApiKey(userName: userName, password: password) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| userName | String | yes | Integration id |   
+| password | String | yes | company/store token |  
+
+
+
+REST Endpoint that returns apikey by username by password
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeApikeyModel](#ResponseEnvelopeApikeyModel)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 #### getJobByCode
@@ -242,6 +355,168 @@ JobCode Metrics entry Created Successfully
 
  
  
+ #### [GCompany](#GCompany)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | integration | String? |  yes  |  |
+ | level | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | opted | Bool? |  yes  |  |
+ | permissions | [String]? |  yes  |  |
+ | token | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | stores | [[GStore](#GStore)]? |  yes  |  |
+ | gstores | [[GStore](#GStore)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GStore](#GStore)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | integration | String? |  yes  |  |
+ | level | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | opted | Bool? |  yes  |  |
+ | permissions | [String]? |  yes  |  |
+ | token | String? |  yes  |  |
+ | code | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | data | [StoreData](#StoreData)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Metum](#Metum)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | value | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String |  no  |  |
+ | size | Int? |  yes  |  |
+ | current | Int? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | itemTotal | Int? |  yes  |  |
+ | nextId | String? |  yes  |  |
+ | hasPrevious | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeSlingshotConfigurationDetail](#ResponseEnvelopeSlingshotConfigurationDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | String? |  yes  |  |
+ | status | Int? |  yes  |  |
+ | error | String? |  yes  |  |
+ | exception | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | totalTimeTakenInMillis | Int? |  yes  |  |
+ | httpStatus | String? |  yes  |  |
+ | items | [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)? |  yes  |  |
+ | payload | [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)? |  yes  |  |
+ | traceId | String? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | integration | [SlingshotIntegration](#SlingshotIntegration)? |  yes  |  |
+ | companies | [[GCompany](#GCompany)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SlingshotIntegration](#SlingshotIntegration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | meta | [[Metum](#Metum)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreData](#StoreData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | locationId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ApikeyModel](#ApikeyModel)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sessionId | String? |  yes  |  |
+ | errorMessage | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeApikeyModel](#ResponseEnvelopeApikeyModel)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | String? |  yes  |  |
+ | status | Int? |  yes  |  |
+ | error | String? |  yes  |  |
+ | exception | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | totalTimeTakenInMillis | Int? |  yes  |  |
+ | httpStatus | String? |  yes  |  |
+ | items | [ApikeyModel](#ApikeyModel)? |  yes  |  |
+ | payload | [ApikeyModel](#ApikeyModel)? |  yes  |  |
+ | traceId | String? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [DataTresholdDTO](#DataTresholdDTO)
 
  | Properties | Type | Nullable | Description |
@@ -281,23 +556,6 @@ JobCode Metrics entry Created Successfully
  | thresholdDetails | [DataTresholdDTO](#DataTresholdDTO)? |  yes  |  |
  | jobCode | String? |  yes  |  |
  | alias | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | String |  no  |  |
- | size | Int? |  yes  |  |
- | current | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
- | itemTotal | Int? |  yes  |  |
- | nextId | String? |  yes  |  |
- | hasPrevious | Bool? |  yes  |  |
 
 ---
 
