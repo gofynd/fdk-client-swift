@@ -4,7 +4,7 @@ import Foundation
 public extension PublicClient {
     /*
          Model: ResponseEnvelopeObject
-         Used By: Configuration
+         Used By: Inventory
      */
 
     class ResponseEnvelopeObject: Codable {

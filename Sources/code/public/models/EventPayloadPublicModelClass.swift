@@ -4,7 +4,7 @@ import Foundation
 public extension PublicClient {
     /*
          Model: EventPayload
-         Used By: Configuration
+         Used By: Webhook
      */
 
     class EventPayload: Codable {

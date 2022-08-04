@@ -4,7 +4,7 @@ import Foundation
 public extension PublicClient {
     /*
          Model: GenericDTO
-         Used By: Configuration
+         Used By: Inventory
      */
 
     class GenericDTO: Codable {

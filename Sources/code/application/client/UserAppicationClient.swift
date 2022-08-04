@@ -41,8 +41,6 @@ public extension ApplicationClient {
 
             ulrs["updatePassword"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/password")
 
-            ulrs["archiveUser"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/archive")
-
             ulrs["logout"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/logout")
 
             ulrs["sendOTPOnMobile"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/otp/mobile/send")
@@ -769,46 +767,6 @@ public extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(VerifyEmailSuccess.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: verify otp and archive user
-         * Description: verify otp and archive user
-         **/
-        public func archiveUser(
-            body: ArchiveApplicationUserRequestSchema,
-            onResponse: @escaping (_ response: ArchiveUserSuccess?, _ error: FDKError?) -> Void
-        ) {
-            let fullUrl = relativeUrls["archiveUser"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ArchiveUserSuccess.self, from: data)
 
                         onResponse(response, nil)
                     } else {

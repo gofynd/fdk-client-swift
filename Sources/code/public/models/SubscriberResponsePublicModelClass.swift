@@ -4,7 +4,7 @@ import Foundation
 public extension PublicClient {
     /*
          Model: SubscriberResponse
-         Used By: Configuration
+         Used By: Webhook
      */
 
     class SubscriberResponse: Codable {

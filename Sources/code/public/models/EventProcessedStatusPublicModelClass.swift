@@ -4,7 +4,7 @@ import Foundation
 public extension PublicClient {
     /*
          Model: EventProcessedStatus
-         Used By: Configuration
+         Used By: Webhook
      */
 
     class EventProcessedStatus: Codable {

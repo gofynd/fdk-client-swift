@@ -4,7 +4,7 @@ import Foundation
 public extension PublicClient {
     /*
          Model: AuthMeta
-         Used By: Configuration
+         Used By: Webhook
      */
 
     class AuthMeta: Codable {
