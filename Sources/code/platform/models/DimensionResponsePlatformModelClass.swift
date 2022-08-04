@@ -10,36 +10,36 @@ public extension PlatformClient {
     class DimensionResponse: Codable {
         public var width: Double
 
-        public var height: Double
-
-        public var length: Double
+        public var unit: String
 
         public var isDefault: Bool
 
-        public var unit: String
+        public var length: Double
+
+        public var height: Double
 
         public enum CodingKeys: String, CodingKey {
             case width
 
-            case height
-
-            case length
+            case unit
 
             case isDefault = "is_default"
 
-            case unit
+            case length
+
+            case height
         }
 
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
             self.width = width
 
-            self.height = height
-
-            self.length = length
+            self.unit = unit
 
             self.isDefault = isDefault
 
-            self.unit = unit
+            self.length = length
+
+            self.height = height
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,13 +47,13 @@ public extension PlatformClient {
 
             width = try container.decode(Double.self, forKey: .width)
 
-            height = try container.decode(Double.self, forKey: .height)
-
-            length = try container.decode(Double.self, forKey: .length)
+            unit = try container.decode(String.self, forKey: .unit)
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
-            unit = try container.decode(String.self, forKey: .unit)
+            length = try container.decode(Double.self, forKey: .length)
+
+            height = try container.decode(Double.self, forKey: .height)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -61,13 +61,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(width, forKey: .width)
 
-            try? container.encodeIfPresent(height, forKey: .height)
-
-            try? container.encodeIfPresent(length, forKey: .length)
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encodeIfPresent(length, forKey: .length)
+
+            try? container.encodeIfPresent(height, forKey: .height)
         }
     }
 }

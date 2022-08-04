@@ -8,50 +8,48 @@ public extension PlatformClient {
      */
 
     class RestrictedCategoryResponseSerializer: Codable {
-        public var uid: Int
-
         public var name: String
 
         public var fulfilmentType: String?
 
         public var storeType: String
 
-        public var restrictedCategories: [RestrictedCategoryResponseInfoSerializer]
+        public var uid: Int
 
         public var code: String
 
-        public enum CodingKeys: String, CodingKey {
-            case uid
+        public var restrictedCategories: [RestrictedCategoryResponseInfoSerializer]
 
+        public enum CodingKeys: String, CodingKey {
             case name
 
             case fulfilmentType = "fulfilment_type"
 
             case storeType = "store_type"
 
-            case restrictedCategories = "restricted_categories"
+            case uid
 
             case code
+
+            case restrictedCategories = "restricted_categories"
         }
 
         public init(code: String, fulfilmentType: String? = nil, name: String, restrictedCategories: [RestrictedCategoryResponseInfoSerializer], storeType: String, uid: Int) {
-            self.uid = uid
-
             self.name = name
 
             self.fulfilmentType = fulfilmentType
 
             self.storeType = storeType
 
-            self.restrictedCategories = restrictedCategories
+            self.uid = uid
 
             self.code = code
+
+            self.restrictedCategories = restrictedCategories
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            uid = try container.decode(Int.self, forKey: .uid)
 
             name = try container.decode(String.self, forKey: .name)
 
@@ -65,15 +63,15 @@ public extension PlatformClient {
 
             storeType = try container.decode(String.self, forKey: .storeType)
 
-            restrictedCategories = try container.decode([RestrictedCategoryResponseInfoSerializer].self, forKey: .restrictedCategories)
+            uid = try container.decode(Int.self, forKey: .uid)
 
             code = try container.decode(String.self, forKey: .code)
+
+            restrictedCategories = try container.decode([RestrictedCategoryResponseInfoSerializer].self, forKey: .restrictedCategories)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
@@ -81,9 +79,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeType, forKey: .storeType)
 
-            try? container.encodeIfPresent(restrictedCategories, forKey: .restrictedCategories)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(restrictedCategories, forKey: .restrictedCategories)
         }
     }
 }

@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class OptInPostRequest: Codable {
-        public var brandIds: [Int]?
-
         public var enabled: Bool?
+
+        public var brandIds: [Int]?
 
         public var optLevel: String
 
         public var storeIds: [Int]?
 
         public enum CodingKeys: String, CodingKey {
-            case brandIds = "brand_ids"
-
             case enabled
+
+            case brandIds = "brand_ids"
 
             case optLevel = "opt_level"
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(brandIds: [Int]? = nil, enabled: Bool? = nil, optLevel: String, storeIds: [Int]? = nil) {
-            self.brandIds = brandIds
-
             self.enabled = enabled
+
+            self.brandIds = brandIds
 
             self.optLevel = optLevel
 
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                brandIds = try container.decode([Int].self, forKey: .brandIds)
+                enabled = try container.decode(Bool.self, forKey: .enabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                enabled = try container.decode(Bool.self, forKey: .enabled)
+                brandIds = try container.decode([Int].self, forKey: .brandIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,9 +69,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
-
             try? container.encodeIfPresent(enabled, forKey: .enabled)
+
+            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
 
             try? container.encodeIfPresent(optLevel, forKey: .optLevel)
 
