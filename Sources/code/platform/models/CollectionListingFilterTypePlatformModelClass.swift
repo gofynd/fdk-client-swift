@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class CollectionListingFilterType: Codable {
-        public var isSelected: Bool?
-
         public var display: String?
+
+        public var isSelected: Bool?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case isSelected = "is_selected"
-
             case display
+
+            case isSelected = "is_selected"
 
             case name
         }
 
         public init(display: String? = nil, isSelected: Bool? = nil, name: String? = nil) {
-            self.isSelected = isSelected
-
             self.display = display
+
+            self.isSelected = isSelected
 
             self.name = name
         }
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                isSelected = try container.decode(Bool.self, forKey: .isSelected)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,9 +61,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

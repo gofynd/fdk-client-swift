@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: SellerAddress
+         Model: ShippingToAddress
          Used By: OrderInvoiceEngine
      */
 
-    class SellerAddress: Codable {
+    class ShippingToAddress: Codable {
         public var address: String
 
         public var city: String

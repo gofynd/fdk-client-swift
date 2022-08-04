@@ -20,9 +20,11 @@ public extension PlatformClient {
 
         public var shippingTo: String
 
+        public var sellerName: String
+
         public var gstinNumber: String
 
-        public var shippingAddress: ShippingAddress
+        public var shippingAddress: ShippingToAddress
 
         public var sellerAddress: SellerAddress
 
@@ -39,6 +41,8 @@ public extension PlatformClient {
 
             case shippingTo = "shipping_to"
 
+            case sellerName = "seller_name"
+
             case gstinNumber = "gstin_number"
 
             case shippingAddress = "shipping_address"
@@ -46,7 +50,7 @@ public extension PlatformClient {
             case sellerAddress = "seller_address"
         }
 
-        public init(appointmentNo: String, gstinNumber: String, itemQty: String, noOfBoxes: String, sellerAddress: SellerAddress, shipmentNo: String, shippingAddress: ShippingAddress, shippingTo: String, totalSku: String) {
+        public init(appointmentNo: String, gstinNumber: String, itemQty: String, noOfBoxes: String, sellerAddress: SellerAddress, sellerName: String, shipmentNo: String, shippingAddress: ShippingToAddress, shippingTo: String, totalSku: String) {
             self.shipmentNo = shipmentNo
 
             self.appointmentNo = appointmentNo
@@ -58,6 +62,8 @@ public extension PlatformClient {
             self.noOfBoxes = noOfBoxes
 
             self.shippingTo = shippingTo
+
+            self.sellerName = sellerName
 
             self.gstinNumber = gstinNumber
 
@@ -81,9 +87,11 @@ public extension PlatformClient {
 
             shippingTo = try container.decode(String.self, forKey: .shippingTo)
 
+            sellerName = try container.decode(String.self, forKey: .sellerName)
+
             gstinNumber = try container.decode(String.self, forKey: .gstinNumber)
 
-            shippingAddress = try container.decode(ShippingAddress.self, forKey: .shippingAddress)
+            shippingAddress = try container.decode(ShippingToAddress.self, forKey: .shippingAddress)
 
             sellerAddress = try container.decode(SellerAddress.self, forKey: .sellerAddress)
         }
@@ -102,6 +110,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(noOfBoxes, forKey: .noOfBoxes)
 
             try? container.encodeIfPresent(shippingTo, forKey: .shippingTo)
+
+            try? container.encodeIfPresent(sellerName, forKey: .sellerName)
 
             try? container.encodeIfPresent(gstinNumber, forKey: .gstinNumber)
 
