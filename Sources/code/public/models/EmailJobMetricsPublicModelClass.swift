@@ -4,7 +4,7 @@ import Foundation
 public extension PublicClient {
     /*
          Model: EmailJobMetrics
-         Used By: Inventory
+         Used By: Configuration
      */
 
     class EmailJobMetrics: Codable {

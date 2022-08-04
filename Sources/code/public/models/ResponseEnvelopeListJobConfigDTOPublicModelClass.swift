@@ -4,7 +4,7 @@ import Foundation
 public extension PublicClient {
     /*
          Model: ResponseEnvelopeListJobConfigDTO
-         Used By: Inventory
+         Used By: Configuration
      */
 
     class ResponseEnvelopeListJobConfigDTO: Codable {

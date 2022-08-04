@@ -4,7 +4,7 @@ import Foundation
 public extension PublicClient {
     /*
          Model: TaskDTO
-         Used By: Inventory
+         Used By: Configuration
      */
 
     class TaskDTO: Codable {

@@ -4,7 +4,7 @@ import Foundation
 public extension PublicClient {
     /*
          Model: Association
-         Used By: Webhook
+         Used By: Configuration
      */
 
     class Association: Codable {

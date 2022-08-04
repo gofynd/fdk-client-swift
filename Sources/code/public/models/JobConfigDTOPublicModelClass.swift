@@ -4,7 +4,7 @@ import Foundation
 public extension PublicClient {
     /*
          Model: JobConfigDTO
-         Used By: Inventory
+         Used By: Configuration
      */
 
     class JobConfigDTO: Codable {

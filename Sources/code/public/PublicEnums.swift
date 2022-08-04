@@ -3,7 +3,7 @@ import Foundation
 public extension PublicClient {
     /*
          Enum: SubscriberStatus
-         Used By: Webhook
+         Used By: Configuration
      */
     enum SubscriberStatus: String, Codable {
         case active

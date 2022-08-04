@@ -4,7 +4,7 @@ import Foundation
 public extension PublicClient {
     /*
          Model: DataTresholdDTO
-         Used By: Inventory
+         Used By: Configuration
      */
 
     class DataTresholdDTO: Codable {

@@ -4,7 +4,7 @@ import Foundation
 public extension PublicClient {
     /*
          Model: ResponseEnvelopeEmailJobMetrics
-         Used By: Inventory
+         Used By: Configuration
      */
 
     class ResponseEnvelopeEmailJobMetrics: Codable {

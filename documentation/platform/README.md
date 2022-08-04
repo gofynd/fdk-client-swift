@@ -5,6 +5,7 @@
 
 * [Common](COMMON.md) - Application configuration apis 
 * [Lead](LEAD.md) - Handles communication between Administrator <-> Staff and Staff <-> Users 
+* [Feedback](FEEDBACK.md) - User Reviews and Rating System 
 * [Theme](THEME.md) - Responsible for themes 
 * [User](USER.md) - Authentication Service 
 * [Content](CONTENT.md) - Content System 
@@ -12,8 +13,6 @@
 * [Communication](COMMUNICATION.md) - Manages email, sms, push notifications sent to users 
 * [Payment](PAYMENT.md) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](ORDER.md) - Handles Platform websites OMS 
-* [Catalog](CATALOG.md) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
-* [CompanyProfile](COMPANYPROFILE.md) -  
 * [FileStorage](FILESTORAGE.md) - File Storage 
 * [Share](SHARE.md) - Short link and QR Code 
 * [Inventory](INVENTORY.md) -  
