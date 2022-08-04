@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class State: Codable {
-        public var isPublic: Bool?
-
         public var isArchived: Bool?
+
+        public var isPublic: Bool?
 
         public var isDisplay: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case isPublic = "is_public"
-
             case isArchived = "is_archived"
+
+            case isPublic = "is_public"
 
             case isDisplay = "is_display"
         }
 
         public init(isArchived: Bool? = nil, isDisplay: Bool? = nil, isPublic: Bool? = nil) {
-            self.isPublic = isPublic
-
             self.isArchived = isArchived
+
+            self.isPublic = isPublic
 
             self.isDisplay = isDisplay
         }
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isPublic = try container.decode(Bool.self, forKey: .isPublic)
+                isArchived = try container.decode(Bool.self, forKey: .isArchived)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isArchived = try container.decode(Bool.self, forKey: .isArchived)
+                isPublic = try container.decode(Bool.self, forKey: .isPublic)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,9 +61,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isPublic, forKey: .isPublic)
-
             try? container.encodeIfPresent(isArchived, forKey: .isArchived)
+
+            try? container.encodeIfPresent(isPublic, forKey: .isPublic)
 
             try? container.encodeIfPresent(isDisplay, forKey: .isDisplay)
         }

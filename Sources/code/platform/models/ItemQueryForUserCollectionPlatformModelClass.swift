@@ -10,16 +10,22 @@ public extension PlatformClient {
     class ItemQueryForUserCollection: Codable {
         public var itemId: Int?
 
+        public var priority: Int?
+
         public var action: String?
 
         public enum CodingKeys: String, CodingKey {
             case itemId = "item_id"
 
+            case priority
+
             case action
         }
 
-        public init(action: String? = nil, itemId: Int? = nil) {
+        public init(action: String? = nil, itemId: Int? = nil, priority: Int? = nil) {
             self.itemId = itemId
+
+            self.priority = priority
 
             self.action = action
         }
@@ -29,6 +35,14 @@ public extension PlatformClient {
 
             do {
                 itemId = try container.decode(Int.self, forKey: .itemId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                priority = try container.decode(Int.self, forKey: .priority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,6 +62,8 @@ public extension PlatformClient {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
+
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(action, forKey: .action)
         }
