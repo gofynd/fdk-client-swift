@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class QuantityBase: Codable {
-        public var updatedAt: Int?
+        public var updatedAt: String?
 
         public var count: Int?
 
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case count
         }
 
-        public init(count: Int? = nil, updatedAt: Int? = nil) {
+        public init(count: Int? = nil, updatedAt: String? = nil) {
             self.updatedAt = updatedAt
 
             self.count = count
@@ -28,7 +28,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                updatedAt = try container.decode(Int.self, forKey: .updatedAt)
+                updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

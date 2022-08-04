@@ -11,30 +11,30 @@ public extension ApplicationClient {
 
         public var deviceModel: String?
 
-        public var os: String?
-
-        public var deviceMake: String?
-
-        public var osVersion: String?
-
         public var identifierType: String?
 
         public var identificationNumber: String?
+
+        public var deviceMake: String?
+
+        public var os: String?
+
+        public var osVersion: String?
 
         public enum CodingKeys: String, CodingKey {
             case deviceType = "device_type"
 
             case deviceModel = "device_model"
 
-            case os
-
-            case deviceMake = "device_make"
-
-            case osVersion = "os_version"
-
             case identifierType = "identifier_type"
 
             case identificationNumber = "identification_number"
+
+            case deviceMake = "device_make"
+
+            case os
+
+            case osVersion = "os_version"
         }
 
         public init(deviceMake: String? = nil, deviceModel: String? = nil, deviceType: String? = nil, identificationNumber: String? = nil, identifierType: String? = nil, os: String? = nil, osVersion: String? = nil) {
@@ -42,15 +42,15 @@ public extension ApplicationClient {
 
             self.deviceModel = deviceModel
 
-            self.os = os
-
-            self.deviceMake = deviceMake
-
-            self.osVersion = osVersion
-
             self.identifierType = identifierType
 
             self.identificationNumber = identificationNumber
+
+            self.deviceMake = deviceMake
+
+            self.os = os
+
+            self.osVersion = osVersion
         }
 
         required public init(from decoder: Decoder) throws {
@@ -73,7 +73,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                os = try container.decode(String.self, forKey: .os)
+                identifierType = try container.decode(String.self, forKey: .identifierType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                identificationNumber = try container.decode(String.self, forKey: .identificationNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,23 +97,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                os = try container.decode(String.self, forKey: .os)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 osVersion = try container.decode(String.self, forKey: .osVersion)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                identifierType = try container.decode(String.self, forKey: .identifierType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                identificationNumber = try container.decode(String.self, forKey: .identificationNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,15 +120,15 @@ public extension ApplicationClient {
 
             try? container.encode(deviceModel, forKey: .deviceModel)
 
-            try? container.encode(os, forKey: .os)
-
-            try? container.encode(deviceMake, forKey: .deviceMake)
-
-            try? container.encode(osVersion, forKey: .osVersion)
-
             try? container.encode(identifierType, forKey: .identifierType)
 
             try? container.encode(identificationNumber, forKey: .identificationNumber)
+
+            try? container.encode(deviceMake, forKey: .deviceMake)
+
+            try? container.encode(os, forKey: .os)
+
+            try? container.encode(osVersion, forKey: .osVersion)
         }
     }
 }
