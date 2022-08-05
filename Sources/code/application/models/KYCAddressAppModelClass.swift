@@ -9,6 +9,8 @@ public extension ApplicationClient {
     class KYCAddress: Codable {
         public var landMark: String?
 
+        public var addressline1: String
+
         public var state: String
 
         public var addressline2: String?
@@ -17,12 +19,12 @@ public extension ApplicationClient {
 
         public var city: String
 
-        public var addressline1: String
-
         public var pincode: String
 
         public enum CodingKeys: String, CodingKey {
             case landMark = "land_mark"
+
+            case addressline1
 
             case state
 
@@ -32,13 +34,13 @@ public extension ApplicationClient {
 
             case city
 
-            case addressline1
-
             case pincode
         }
 
         public init(addressline1: String, addressline2: String? = nil, city: String, landMark: String? = nil, ownershipType: String? = nil, pincode: String, state: String) {
             self.landMark = landMark
+
+            self.addressline1 = addressline1
 
             self.state = state
 
@@ -47,8 +49,6 @@ public extension ApplicationClient {
             self.ownershipType = ownershipType
 
             self.city = city
-
-            self.addressline1 = addressline1
 
             self.pincode = pincode
         }
@@ -63,6 +63,8 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            addressline1 = try container.decode(String.self, forKey: .addressline1)
 
             state = try container.decode(String.self, forKey: .state)
 
@@ -84,8 +86,6 @@ public extension ApplicationClient {
 
             city = try container.decode(String.self, forKey: .city)
 
-            addressline1 = try container.decode(String.self, forKey: .addressline1)
-
             pincode = try container.decode(String.self, forKey: .pincode)
         }
 
@@ -94,6 +94,8 @@ public extension ApplicationClient {
 
             try? container.encode(landMark, forKey: .landMark)
 
+            try? container.encodeIfPresent(addressline1, forKey: .addressline1)
+
             try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encode(addressline2, forKey: .addressline2)
@@ -101,8 +103,6 @@ public extension ApplicationClient {
             try? container.encode(ownershipType, forKey: .ownershipType)
 
             try? container.encodeIfPresent(city, forKey: .city)
-
-            try? container.encodeIfPresent(addressline1, forKey: .addressline1)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
         }

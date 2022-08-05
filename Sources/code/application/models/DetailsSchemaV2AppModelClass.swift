@@ -7,7 +7,7 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class DetailsSchemaV2: Codable {
-        public var value: [String: Any]?
+        public var value: String?
 
         public var key: String?
 
@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case type
         }
 
-        public init(key: String? = nil, type: String? = nil, value: [String: Any]? = nil) {
+        public init(key: String? = nil, type: String? = nil, value: String? = nil) {
             self.value = value
 
             self.key = key
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode([String: Any].self, forKey: .value)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
