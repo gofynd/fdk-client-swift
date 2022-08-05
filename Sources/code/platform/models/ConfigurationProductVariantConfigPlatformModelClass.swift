@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class ConfigurationProductVariantConfig: Codable {
-        public var displayType: String
-
         public var priority: Int
+
+        public var name: String
 
         public var logo: String?
 
@@ -20,12 +20,12 @@ public extension PlatformClient {
 
         public var size: ProductSize
 
-        public var name: String
+        public var displayType: String
 
         public enum CodingKeys: String, CodingKey {
-            case displayType = "display_type"
-
             case priority
+
+            case name
 
             case logo
 
@@ -35,13 +35,13 @@ public extension PlatformClient {
 
             case size
 
-            case name
+            case displayType = "display_type"
         }
 
         public init(displayType: String, isActive: Bool, key: String, logo: String? = nil, name: String, priority: Int, size: ProductSize) {
-            self.displayType = displayType
-
             self.priority = priority
+
+            self.name = name
 
             self.logo = logo
 
@@ -51,15 +51,15 @@ public extension PlatformClient {
 
             self.size = size
 
-            self.name = name
+            self.displayType = displayType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            displayType = try container.decode(String.self, forKey: .displayType)
-
             priority = try container.decode(Int.self, forKey: .priority)
+
+            name = try container.decode(String.self, forKey: .name)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -75,15 +75,15 @@ public extension PlatformClient {
 
             size = try container.decode(ProductSize.self, forKey: .size)
 
-            name = try container.decode(String.self, forKey: .name)
+            displayType = try container.decode(String.self, forKey: .displayType)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(displayType, forKey: .displayType)
-
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
@@ -93,7 +93,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(displayType, forKey: .displayType)
         }
     }
 }
