@@ -10,21 +10,21 @@ public extension PlatformClient {
     class BeneficiaryModeDetails: Codable {
         public var comment: String?
 
-        public var address: String?
+        public var email: String
+
+        public var bankName: String
+
+        public var mobile: String
 
         public var ifscCode: String
+
+        public var address: String?
+
+        public var accountNo: String
 
         public var accountHolder: String
 
         public var wallet: String?
-
-        public var bankName: String
-
-        public var email: String
-
-        public var mobile: String
-
-        public var accountNo: String
 
         public var branchName: String
 
@@ -33,21 +33,21 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case comment
 
-            case address
+            case email
+
+            case bankName = "bank_name"
+
+            case mobile
 
             case ifscCode = "ifsc_code"
+
+            case address
+
+            case accountNo = "account_no"
 
             case accountHolder = "account_holder"
 
             case wallet
-
-            case bankName = "bank_name"
-
-            case email
-
-            case mobile
-
-            case accountNo = "account_no"
 
             case branchName = "branch_name"
 
@@ -57,21 +57,21 @@ public extension PlatformClient {
         public init(accountHolder: String, accountNo: String, address: String? = nil, bankName: String, branchName: String, comment: String? = nil, email: String, ifscCode: String, mobile: String, vpa: String? = nil, wallet: String? = nil) {
             self.comment = comment
 
-            self.address = address
+            self.email = email
+
+            self.bankName = bankName
+
+            self.mobile = mobile
 
             self.ifscCode = ifscCode
+
+            self.address = address
+
+            self.accountNo = accountNo
 
             self.accountHolder = accountHolder
 
             self.wallet = wallet
-
-            self.bankName = bankName
-
-            self.email = email
-
-            self.mobile = mobile
-
-            self.accountNo = accountNo
 
             self.branchName = branchName
 
@@ -89,6 +89,14 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            email = try container.decode(String.self, forKey: .email)
+
+            bankName = try container.decode(String.self, forKey: .bankName)
+
+            mobile = try container.decode(String.self, forKey: .mobile)
+
+            ifscCode = try container.decode(String.self, forKey: .ifscCode)
+
             do {
                 address = try container.decode(String.self, forKey: .address)
 
@@ -97,7 +105,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            ifscCode = try container.decode(String.self, forKey: .ifscCode)
+            accountNo = try container.decode(String.self, forKey: .accountNo)
 
             accountHolder = try container.decode(String.self, forKey: .accountHolder)
 
@@ -108,14 +116,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            bankName = try container.decode(String.self, forKey: .bankName)
-
-            email = try container.decode(String.self, forKey: .email)
-
-            mobile = try container.decode(String.self, forKey: .mobile)
-
-            accountNo = try container.decode(String.self, forKey: .accountNo)
 
             branchName = try container.decode(String.self, forKey: .branchName)
 
@@ -133,21 +133,21 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(comment, forKey: .comment)
 
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encodeIfPresent(bankName, forKey: .bankName)
+
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
 
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
+
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
 
             try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
 
             try? container.encode(wallet, forKey: .wallet)
-
-            try? container.encodeIfPresent(bankName, forKey: .bankName)
-
-            try? container.encodeIfPresent(email, forKey: .email)
-
-            try? container.encodeIfPresent(mobile, forKey: .mobile)
-
-            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
 
             try? container.encodeIfPresent(branchName, forKey: .branchName)
 
