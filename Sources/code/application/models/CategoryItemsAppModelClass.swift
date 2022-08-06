@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class CategoryItems: Codable {
         public var slug: String?
 
-        public var childs: [Child]?
-
         public var action: ProductListingAction?
+
+        public var childs: [Child]?
 
         public var uid: Int?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case slug
 
-            case childs
-
             case action
+
+            case childs
 
             case uid
 
@@ -36,9 +36,9 @@ public extension ApplicationClient {
         public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [Child]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
             self.slug = slug
 
-            self.childs = childs
-
             self.action = action
+
+            self.childs = childs
 
             self.uid = uid
 
@@ -59,7 +59,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                childs = try container.decode([Child].self, forKey: .childs)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                childs = try container.decode([Child].self, forKey: .childs)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,9 +104,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(childs, forKey: .childs)
-
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(childs, forKey: .childs)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 

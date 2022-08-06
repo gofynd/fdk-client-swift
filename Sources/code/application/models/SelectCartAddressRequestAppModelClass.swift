@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class SelectCartAddressRequest: Codable {
         public var id: String?
 
-        public var billingAddressId: String?
-
         public var cartId: String?
+
+        public var billingAddressId: String?
 
         public enum CodingKeys: String, CodingKey {
             case id
 
-            case billingAddressId = "billing_address_id"
-
             case cartId = "cart_id"
+
+            case billingAddressId = "billing_address_id"
         }
 
         public init(billingAddressId: String? = nil, cartId: String? = nil, id: String? = nil) {
             self.id = id
 
-            self.billingAddressId = billingAddressId
-
             self.cartId = cartId
+
+            self.billingAddressId = billingAddressId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
+                cartId = try container.decode(String.self, forKey: .cartId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                cartId = try container.decode(String.self, forKey: .cartId)
+                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
-
             try? container.encodeIfPresent(cartId, forKey: .cartId)
+
+            try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
         }
     }
 }

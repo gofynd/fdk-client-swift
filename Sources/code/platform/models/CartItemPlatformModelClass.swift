@@ -10,30 +10,32 @@ public extension PlatformClient {
     class CartItem: Codable {
         public var size: String
 
-        public var quantity: Int?
-
         public var productId: String
+
+        public var quantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case size
 
-            case quantity
-
             case productId = "product_id"
+
+            case quantity
         }
 
         public init(productId: String, quantity: Int? = nil, size: String) {
             self.size = size
 
-            self.quantity = quantity
-
             self.productId = productId
+
+            self.quantity = quantity
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             size = try container.decode(String.self, forKey: .size)
+
+            productId = try container.decode(String.self, forKey: .productId)
 
             do {
                 quantity = try container.decode(Int.self, forKey: .quantity)
@@ -42,8 +44,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            productId = try container.decode(String.self, forKey: .productId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -51,9 +51,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
             try? container.encodeIfPresent(productId, forKey: .productId)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 }
