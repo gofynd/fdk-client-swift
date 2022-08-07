@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var customJson: [String: Any]?
 
+        public var slug: String?
+
         public var banners: ImageUrls?
 
         public var childs: [ThirdLevelChild]?
 
         public var action: Action?
-
-        public var slug: String?
 
         public var name: String?
 
@@ -27,13 +27,13 @@ public extension PlatformClient {
 
             case customJson = "_custom_json"
 
+            case slug
+
             case banners
 
             case childs
 
             case action
-
-            case slug
 
             case name
         }
@@ -43,13 +43,13 @@ public extension PlatformClient {
 
             self.customJson = customJson
 
+            self.slug = slug
+
             self.banners = banners
 
             self.childs = childs
 
             self.action = action
-
-            self.slug = slug
 
             self.name = name
         }
@@ -67,6 +67,14 @@ public extension PlatformClient {
 
             do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,14 +106,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -121,13 +121,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
             try? container.encodeIfPresent(banners, forKey: .banners)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 
             try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

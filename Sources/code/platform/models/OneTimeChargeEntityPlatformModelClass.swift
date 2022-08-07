@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: OneTimeEntitySubscription
+         Model: OneTimeChargeEntity
          Used By: Billing
      */
 
-    class OneTimeEntitySubscription: Codable {
+    class OneTimeChargeEntity: Codable {
         public var id: String?
 
         public var name: String?

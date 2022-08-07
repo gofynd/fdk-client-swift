@@ -12,28 +12,34 @@ public extension PlatformClient {
 
         public var logo: String?
 
-        public var name: String
+        public var operators: [String]?
 
         public var display: String
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case kind
 
             case logo
 
-            case name
+            case operators
 
             case display
+
+            case name
         }
 
-        public init(display: String, kind: String? = nil, logo: String? = nil, name: String) {
+        public init(display: String, kind: String? = nil, logo: String? = nil, name: String, operators: [String]? = nil) {
             self.kind = kind
 
             self.logo = logo
 
-            self.name = name
+            self.operators = operators
 
             self.display = display
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,9 +61,17 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
+            do {
+                operators = try container.decode([String].self, forKey: .operators)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             display = try container.decode(String.self, forKey: .display)
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -67,9 +81,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(operators, forKey: .operators)
 
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class CreateOneTimeChargeResponse: Codable {
-        public var subscription: OneTimeEntitySubscription?
+        public var subscription: OneTimeChargeEntity?
 
         public var confirmUrl: String?
 
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case confirmUrl = "confirm_url"
         }
 
-        public init(confirmUrl: String? = nil, subscription: OneTimeEntitySubscription? = nil) {
+        public init(confirmUrl: String? = nil, subscription: OneTimeChargeEntity? = nil) {
             self.subscription = subscription
 
             self.confirmUrl = confirmUrl
@@ -28,7 +28,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                subscription = try container.decode(OneTimeEntitySubscription.self, forKey: .subscription)
+                subscription = try container.decode(OneTimeChargeEntity.self, forKey: .subscription)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

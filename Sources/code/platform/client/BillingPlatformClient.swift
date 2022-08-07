@@ -180,15 +180,15 @@ public extension PlatformClient {
          * Summary: Create one time subscription charge
          * Description: Register one time subscription charge for a seller of your extension.
          **/
-        public func createOneTimeSubscriptionCharge(
+        public func createOneTimeCharge(
             extensionId: String,
-            body: CreateOneTimeSubscriptionCharge,
-            onResponse: @escaping (_ response: CreateSubscriptionResponse?, _ error: FDKError?) -> Void
+            body: CreateOneTimeCharge,
+            onResponse: @escaping (_ response: CreateOneTimeChargeResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/billing/v1.0/company/\(companyId)/extension/\(extensionId)/one_time",
+                url: "/service/platform/billing/v1.0/company/\(companyId)/extension/\(extensionId)/one_time_charge",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -201,7 +201,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CreateSubscriptionResponse.self, from: data)
+                        let response = Utility.decode(CreateOneTimeChargeResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
