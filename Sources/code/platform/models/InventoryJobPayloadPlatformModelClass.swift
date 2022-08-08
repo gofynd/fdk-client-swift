@@ -10,21 +10,21 @@ public extension PlatformClient {
     class InventoryJobPayload: Codable {
         public var quantity: Int?
 
-        public var priceEffective: Double?
+        public var storeCode: String
 
         public var sellerIdentifier: String
-
-        public var itemDimensionsUnitOfMeasure: String?
 
         public var price: Double?
 
         public var priceMarked: Double?
 
-        public var totalQuantity: Int?
-
         public var expirationDate: String?
 
-        public var storeCode: String
+        public var itemDimensionsUnitOfMeasure: String?
+
+        public var totalQuantity: Int?
+
+        public var priceEffective: Double?
 
         public var currency: String?
 
@@ -33,21 +33,21 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case quantity
 
-            case priceEffective = "price_effective"
+            case storeCode = "store_code"
 
             case sellerIdentifier = "seller_identifier"
-
-            case itemDimensionsUnitOfMeasure = "item_dimensions_unit_of_measure"
 
             case price
 
             case priceMarked = "price_marked"
 
-            case totalQuantity = "total_quantity"
-
             case expirationDate = "expiration_date"
 
-            case storeCode = "store_code"
+            case itemDimensionsUnitOfMeasure = "item_dimensions_unit_of_measure"
+
+            case totalQuantity = "total_quantity"
+
+            case priceEffective = "price_effective"
 
             case currency
 
@@ -57,21 +57,21 @@ public extension PlatformClient {
         public init(currency: String? = nil, expirationDate: String? = nil, itemDimensionsUnitOfMeasure: String? = nil, itemWeightUnitOfMeasure: String? = nil, price: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, quantity: Int? = nil, sellerIdentifier: String, storeCode: String, totalQuantity: Int? = nil) {
             self.quantity = quantity
 
-            self.priceEffective = priceEffective
+            self.storeCode = storeCode
 
             self.sellerIdentifier = sellerIdentifier
-
-            self.itemDimensionsUnitOfMeasure = itemDimensionsUnitOfMeasure
 
             self.price = price
 
             self.priceMarked = priceMarked
 
-            self.totalQuantity = totalQuantity
-
             self.expirationDate = expirationDate
 
-            self.storeCode = storeCode
+            self.itemDimensionsUnitOfMeasure = itemDimensionsUnitOfMeasure
+
+            self.totalQuantity = totalQuantity
+
+            self.priceEffective = priceEffective
 
             self.currency = currency
 
@@ -89,23 +89,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            storeCode = try container.decode(String.self, forKey: .storeCode)
 
             sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
-
-            do {
-                itemDimensionsUnitOfMeasure = try container.decode(String.self, forKey: .itemDimensionsUnitOfMeasure)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 price = try container.decode(Double.self, forKey: .price)
@@ -124,6 +110,22 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                expirationDate = try container.decode(String.self, forKey: .expirationDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemDimensionsUnitOfMeasure = try container.decode(String.self, forKey: .itemDimensionsUnitOfMeasure)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -132,14 +134,12 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                expirationDate = try container.decode(String.self, forKey: .expirationDate)
+                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            storeCode = try container.decode(String.self, forKey: .storeCode)
 
             do {
                 currency = try container.decode(String.self, forKey: .currency)
@@ -163,21 +163,21 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
-
-            try? container.encodeIfPresent(itemDimensionsUnitOfMeasure, forKey: .itemDimensionsUnitOfMeasure)
 
             try? container.encodeIfPresent(price, forKey: .price)
 
             try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
 
-            try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
-
             try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
 
-            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+            try? container.encodeIfPresent(itemDimensionsUnitOfMeasure, forKey: .itemDimensionsUnitOfMeasure)
+
+            try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
+
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
