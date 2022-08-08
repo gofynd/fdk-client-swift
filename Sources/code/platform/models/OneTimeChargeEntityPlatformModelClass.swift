@@ -14,15 +14,27 @@ public extension PlatformClient {
 
         public var status: String?
 
-        public var companyId: Int?
-
         public var activatedOn: String?
 
         public var cancelledOn: String?
 
         public var metadata: [String: Any]?
 
-        public var lineItems: [OneTimeCharge]?
+        public var returnUrl: String?
+
+        public var isTest: Bool?
+
+        public var pricingType: String?
+
+        public var subscriberId: String?
+
+        public var entityType: String?
+
+        public var entityId: String?
+
+        public var meta: [String: Any]?
+
+        public var price: EntityChargePrice?
 
         public enum CodingKeys: String, CodingKey {
             case id = "_id"
@@ -31,25 +43,35 @@ public extension PlatformClient {
 
             case status
 
-            case companyId = "company_id"
-
             case activatedOn = "activated_on"
 
             case cancelledOn = "cancelled_on"
 
             case metadata
 
-            case lineItems = "line_items"
+            case returnUrl = "return_url"
+
+            case isTest = "is_test"
+
+            case pricingType = "pricing_type"
+
+            case subscriberId = "subscriber_id"
+
+            case entityType = "entity_type"
+
+            case entityId = "entity_id"
+
+            case meta
+
+            case price
         }
 
-        public init(activatedOn: String? = nil, cancelledOn: String? = nil, companyId: Int? = nil, lineItems: [OneTimeCharge]? = nil, metadata: [String: Any]? = nil, name: String? = nil, status: String? = nil, id: String? = nil) {
+        public init(activatedOn: String? = nil, cancelledOn: String? = nil, entityId: String? = nil, entityType: String? = nil, isTest: Bool? = nil, meta: [String: Any]? = nil, metadata: [String: Any]? = nil, name: String? = nil, price: EntityChargePrice? = nil, pricingType: String? = nil, returnUrl: String? = nil, status: String? = nil, subscriberId: String? = nil, id: String? = nil) {
             self.id = id
 
             self.name = name
 
             self.status = status
-
-            self.companyId = companyId
 
             self.activatedOn = activatedOn
 
@@ -57,7 +79,21 @@ public extension PlatformClient {
 
             self.metadata = metadata
 
-            self.lineItems = lineItems
+            self.returnUrl = returnUrl
+
+            self.isTest = isTest
+
+            self.pricingType = pricingType
+
+            self.subscriberId = subscriberId
+
+            self.entityType = entityType
+
+            self.entityId = entityId
+
+            self.meta = meta
+
+            self.price = price
         }
 
         required public init(from decoder: Decoder) throws {
@@ -81,14 +117,6 @@ public extension PlatformClient {
 
             do {
                 status = try container.decode(String.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +148,63 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                lineItems = try container.decode([OneTimeCharge].self, forKey: .lineItems)
+                returnUrl = try container.decode(String.self, forKey: .returnUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isTest = try container.decode(Bool.self, forKey: .isTest)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                pricingType = try container.decode(String.self, forKey: .pricingType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                subscriberId = try container.decode(String.self, forKey: .subscriberId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                entityType = try container.decode(String.self, forKey: .entityType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                entityId = try container.decode(String.self, forKey: .entityId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                price = try container.decode(EntityChargePrice.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -137,15 +221,27 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
             try? container.encodeIfPresent(activatedOn, forKey: .activatedOn)
 
             try? container.encodeIfPresent(cancelledOn, forKey: .cancelledOn)
 
             try? container.encodeIfPresent(metadata, forKey: .metadata)
 
-            try? container.encodeIfPresent(lineItems, forKey: .lineItems)
+            try? container.encodeIfPresent(returnUrl, forKey: .returnUrl)
+
+            try? container.encodeIfPresent(isTest, forKey: .isTest)
+
+            try? container.encodeIfPresent(pricingType, forKey: .pricingType)
+
+            try? container.encodeIfPresent(subscriberId, forKey: .subscriberId)
+
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
+
+            try? container.encodeIfPresent(entityId, forKey: .entityId)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(price, forKey: .price)
         }
     }
 }
