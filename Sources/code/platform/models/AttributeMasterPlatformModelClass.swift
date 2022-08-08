@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var multi: Bool?
 
-        public var format: String?
+        public var type: String
 
         public var range: AttributeSchemaRange?
 
-        public var type: String
+        public var format: String?
 
         public var mandatory: Bool?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case multi
 
-            case format
+            case type
 
             case range
 
-            case type
+            case format
 
             case mandatory
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.multi = multi
 
-            self.format = format
+            self.type = type
 
             self.range = range
 
-            self.type = type
+            self.format = format
 
             self.mandatory = mandatory
         }
@@ -67,13 +67,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                format = try container.decode(String.self, forKey: .format)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            type = try container.decode(String.self, forKey: .type)
 
             do {
                 range = try container.decode(AttributeSchemaRange.self, forKey: .range)
@@ -83,7 +77,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            type = try container.decode(String.self, forKey: .type)
+            do {
+                format = try container.decode(String.self, forKey: .format)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 mandatory = try container.decode(Bool.self, forKey: .mandatory)
@@ -101,11 +101,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(multi, forKey: .multi)
 
-            try? container.encodeIfPresent(format, forKey: .format)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(range, forKey: .range)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(format, forKey: .format)
 
             try? container.encodeIfPresent(mandatory, forKey: .mandatory)
         }
