@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var logoSmall: String
 
-        public var id: Int
-
         public var name: String
+
+        public var id: Int
 
         public enum CodingKeys: String, CodingKey {
             case logoLarge = "logo_large"
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case logoSmall = "logo_small"
 
-            case id
-
             case name
+
+            case id
         }
 
         public init(displayName: String? = nil, id: Int, logoLarge: String, logoSmall: String, name: String) {
@@ -36,9 +36,9 @@ public extension ApplicationClient {
 
             self.logoSmall = logoSmall
 
-            self.id = id
-
             self.name = name
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,9 +56,9 @@ public extension ApplicationClient {
 
             logoSmall = try container.decode(String.self, forKey: .logoSmall)
 
-            id = try container.decode(Int.self, forKey: .id)
-
             name = try container.decode(String.self, forKey: .name)
+
+            id = try container.decode(Int.self, forKey: .id)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -70,9 +70,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var merchantParams: [String: Any]
 
-        public var transactionAmountInPaise: Int
-
         public var phoneNumber: String
+
+        public var transactionAmountInPaise: Int
 
         public var aggregator: String
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case merchantParams = "merchant_params"
 
-            case transactionAmountInPaise = "transaction_amount_in_paise"
-
             case phoneNumber = "phone_number"
+
+            case transactionAmountInPaise = "transaction_amount_in_paise"
 
             case aggregator
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.merchantParams = merchantParams
 
-            self.transactionAmountInPaise = transactionAmountInPaise
-
             self.phoneNumber = phoneNumber
+
+            self.transactionAmountInPaise = transactionAmountInPaise
 
             self.aggregator = aggregator
         }
@@ -48,9 +48,9 @@ public extension ApplicationClient {
 
             merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
 
-            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
-
             phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+
+            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
         }
@@ -62,9 +62,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
 
-            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
-
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+
+            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
         }

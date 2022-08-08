@@ -3,38 +3,38 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: TaxIdentifier
+         Model: InventoryDeleteData
          Used By: Catalog
      */
 
-    class TaxIdentifier: Codable {
-        public var reportingHsn: String?
+    class InventoryDeleteData: Codable {
+        public var itemId: Int?
 
-        public var hsnCodeId: String?
+        public var size: String?
 
-        public var hsnCode: String?
+        public var locationId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case reportingHsn = "reporting_hsn"
+            case itemId = "item_id"
 
-            case hsnCodeId = "hsn_code_id"
+            case size
 
-            case hsnCode = "hsn_code"
+            case locationId = "location_id"
         }
 
-        public init(hsnCode: String? = nil, hsnCodeId: String? = nil, reportingHsn: String? = nil) {
-            self.reportingHsn = reportingHsn
+        public init(itemId: Int? = nil, locationId: Int? = nil, size: String? = nil) {
+            self.itemId = itemId
 
-            self.hsnCodeId = hsnCodeId
+            self.size = size
 
-            self.hsnCode = hsnCode
+            self.locationId = locationId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                reportingHsn = try container.decode(String.self, forKey: .reportingHsn)
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                hsnCodeId = try container.decode(String.self, forKey: .hsnCodeId)
+                size = try container.decode(String.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                hsnCode = try container.decode(String.self, forKey: .hsnCode)
+                locationId = try container.decode(Int.self, forKey: .locationId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,11 +61,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(reportingHsn, forKey: .reportingHsn)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(hsnCodeId, forKey: .hsnCodeId)
+            try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
+            try? container.encodeIfPresent(locationId, forKey: .locationId)
         }
     }
 }

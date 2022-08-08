@@ -10,18 +10,18 @@ public extension PlatformClient {
     class DiscountRule: Codable {
         public var offer: DiscountOffer
 
-        public var buyCondition: String
-
         public var discountType: String
+
+        public var buyCondition: String
 
         public var itemCriteria: ItemCriteria
 
         public enum CodingKeys: String, CodingKey {
             case offer
 
-            case buyCondition = "buy_condition"
-
             case discountType = "discount_type"
+
+            case buyCondition = "buy_condition"
 
             case itemCriteria = "item_criteria"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(buyCondition: String, discountType: String, itemCriteria: ItemCriteria, offer: DiscountOffer) {
             self.offer = offer
 
-            self.buyCondition = buyCondition
-
             self.discountType = discountType
+
+            self.buyCondition = buyCondition
 
             self.itemCriteria = itemCriteria
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             offer = try container.decode(DiscountOffer.self, forKey: .offer)
 
-            buyCondition = try container.decode(String.self, forKey: .buyCondition)
-
             discountType = try container.decode(String.self, forKey: .discountType)
+
+            buyCondition = try container.decode(String.self, forKey: .buyCondition)
 
             itemCriteria = try container.decode(ItemCriteria.self, forKey: .itemCriteria)
         }
@@ -53,9 +53,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(offer, forKey: .offer)
 
-            try? container.encodeIfPresent(buyCondition, forKey: .buyCondition)
-
             try? container.encodeIfPresent(discountType, forKey: .discountType)
+
+            try? container.encodeIfPresent(buyCondition, forKey: .buyCondition)
 
             try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
         }

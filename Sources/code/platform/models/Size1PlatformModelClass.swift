@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: InvSize
+         Model: Size1
          Used By: Catalog
      */
 
-    class InvSize: Codable {
+    class Size1: Codable {
         public var itemLength: Double?
 
         public var itemWeight: Double?
@@ -22,13 +22,15 @@ public extension PlatformClient {
 
         public var itemWeightUnitOfMeasure: String?
 
-        public var identifiers: [GTIN]
+        public var identifiers: [[String: Any]]?
 
         public var itemDimensionsUnitOfMeasure: String?
 
         public var currency: String
 
-        public var size: String
+        public var sellerIdentifier: String
+
+        public var size: String?
 
         public var expirationDate: String?
 
@@ -63,6 +65,8 @@ public extension PlatformClient {
 
             case currency
 
+            case sellerIdentifier = "seller_identifier"
+
             case size
 
             case expirationDate = "expiration_date"
@@ -78,7 +82,7 @@ public extension PlatformClient {
             case isSet = "is_set"
         }
 
-        public init(currency: String, expirationDate: String? = nil, identifiers: [GTIN], isSet: Bool? = nil, itemDimensionsUnitOfMeasure: String? = nil, itemHeight: Double? = nil, itemLength: Double? = nil, itemWeight: Double? = nil, itemWeightUnitOfMeasure: String? = nil, itemWidth: Double? = nil, price: Double, priceEffective: Double, priceTransfer: Double? = nil, quantity: Int, set: InventorySet? = nil, size: String, storeCode: String) {
+        public init(currency: String, expirationDate: String? = nil, identifiers: [[String: Any]]? = nil, isSet: Bool? = nil, itemDimensionsUnitOfMeasure: String? = nil, itemHeight: Double? = nil, itemLength: Double? = nil, itemWeight: Double? = nil, itemWeightUnitOfMeasure: String? = nil, itemWidth: Double? = nil, price: Double, priceEffective: Double, priceTransfer: Double? = nil, quantity: Int, sellerIdentifier: String, set: InventorySet? = nil, size: String? = nil, storeCode: String) {
             self.itemLength = itemLength
 
             self.itemWeight = itemWeight
@@ -98,6 +102,8 @@ public extension PlatformClient {
             self.itemDimensionsUnitOfMeasure = itemDimensionsUnitOfMeasure
 
             self.currency = currency
+
+            self.sellerIdentifier = sellerIdentifier
 
             self.size = size
 
@@ -161,7 +167,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            identifiers = try container.decode([GTIN].self, forKey: .identifiers)
+            do {
+                identifiers = try container.decode([[String: Any]].self, forKey: .identifiers)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 itemDimensionsUnitOfMeasure = try container.decode(String.self, forKey: .itemDimensionsUnitOfMeasure)
@@ -173,7 +185,15 @@ public extension PlatformClient {
 
             currency = try container.decode(String.self, forKey: .currency)
 
-            size = try container.decode(String.self, forKey: .size)
+            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+
+            do {
+                size = try container.decode(String.self, forKey: .size)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 expirationDate = try container.decode(String.self, forKey: .expirationDate)
@@ -229,13 +249,15 @@ public extension PlatformClient {
 
             try? container.encode(itemWeightUnitOfMeasure, forKey: .itemWeightUnitOfMeasure)
 
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+            try? container.encode(identifiers, forKey: .identifiers)
 
             try? container.encode(itemDimensionsUnitOfMeasure, forKey: .itemDimensionsUnitOfMeasure)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+
+            try? container.encode(size, forKey: .size)
 
             try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
 

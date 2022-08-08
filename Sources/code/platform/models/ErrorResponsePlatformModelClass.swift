@@ -10,18 +10,18 @@ public extension PlatformClient {
     class ErrorResponse: Codable {
         public var meta: [String: Any]?
 
-        public var status: Int?
-
         public var code: String?
+
+        public var status: Int?
 
         public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case meta
 
-            case status
-
             case code
+
+            case status
 
             case message
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(code: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
             self.meta = meta
 
-            self.status = status
-
             self.code = code
+
+            self.status = status
 
             self.message = message
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(message, forKey: .message)
         }
