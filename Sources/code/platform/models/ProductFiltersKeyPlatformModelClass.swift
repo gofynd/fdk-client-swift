@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var display: String
 
-        public var name: String
-
         public var logo: String?
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case kind
 
             case display
 
-            case name
-
             case logo
+
+            case name
         }
 
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.display = display
 
-            self.name = name
-
             self.logo = logo
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,8 +49,6 @@ public extension PlatformClient {
 
             display = try container.decode(String.self, forKey: .display)
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
                 logo = try container.decode(String.self, forKey: .logo)
 
@@ -58,6 +56,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -67,9 +67,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

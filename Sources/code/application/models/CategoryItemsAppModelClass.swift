@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class CategoryItems: Codable {
         public var action: ProductListingAction?
 
-        public var banners: ImageUrls?
-
         public var childs: [Child]?
+
+        public var banners: ImageUrls?
 
         public var uid: Int?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case action
 
-            case banners
-
             case childs
+
+            case banners
 
             case uid
 
@@ -36,9 +36,9 @@ public extension ApplicationClient {
         public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [Child]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
             self.action = action
 
-            self.banners = banners
-
             self.childs = childs
+
+            self.banners = banners
 
             self.uid = uid
 
@@ -59,7 +59,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                banners = try container.decode(ImageUrls.self, forKey: .banners)
+                childs = try container.decode([Child].self, forKey: .childs)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                childs = try container.decode([Child].self, forKey: .childs)
+                banners = try container.decode(ImageUrls.self, forKey: .banners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,9 +104,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(banners, forKey: .banners)
-
             try? container.encodeIfPresent(childs, forKey: .childs)
+
+            try? container.encodeIfPresent(banners, forKey: .banners)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 

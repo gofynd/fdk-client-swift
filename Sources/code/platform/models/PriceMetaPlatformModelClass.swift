@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var marked: Double
 
-        public var transfer: Double
-
         public var tpNotes: [String: Any]?
+
+        public var transfer: Double
 
         public var effective: Double
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case marked
 
-            case transfer
-
             case tpNotes = "tp_notes"
+
+            case transfer
 
             case effective
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.marked = marked
 
-            self.transfer = transfer
-
             self.tpNotes = tpNotes
+
+            self.transfer = transfer
 
             self.effective = effective
         }
@@ -49,8 +49,6 @@ public extension PlatformClient {
 
             marked = try container.decode(Double.self, forKey: .marked)
 
-            transfer = try container.decode(Double.self, forKey: .transfer)
-
             do {
                 tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
 
@@ -58,6 +56,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            transfer = try container.decode(Double.self, forKey: .transfer)
 
             effective = try container.decode(Double.self, forKey: .effective)
         }
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 
-            try? container.encodeIfPresent(transfer, forKey: .transfer)
-
             try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
+
+            try? container.encodeIfPresent(transfer, forKey: .transfer)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
         }

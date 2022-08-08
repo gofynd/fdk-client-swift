@@ -8,13 +8,13 @@ public extension PlatformClient {
      */
 
     class AddBeneficiaryDetailsRequest: Codable {
-        public var otp: String?
-
-        public var transferMode: String
-
         public var requestId: String?
 
         public var shipmentId: String
+
+        public var otp: String?
+
+        public var transferMode: String
 
         public var details: BeneficiaryModeDetails
 
@@ -23,13 +23,13 @@ public extension PlatformClient {
         public var delights: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case otp
-
-            case transferMode = "transfer_mode"
-
             case requestId = "request_id"
 
             case shipmentId = "shipment_id"
+
+            case otp
+
+            case transferMode = "transfer_mode"
 
             case details
 
@@ -39,13 +39,13 @@ public extension PlatformClient {
         }
 
         public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String? = nil, requestId: String? = nil, shipmentId: String, transferMode: String) {
-            self.otp = otp
-
-            self.transferMode = transferMode
-
             self.requestId = requestId
 
             self.shipmentId = shipmentId
+
+            self.otp = otp
+
+            self.transferMode = transferMode
 
             self.details = details
 
@@ -58,16 +58,6 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                otp = try container.decode(String.self, forKey: .otp)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            transferMode = try container.decode(String.self, forKey: .transferMode)
-
-            do {
                 requestId = try container.decode(String.self, forKey: .requestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,6 +66,16 @@ public extension PlatformClient {
             } catch {}
 
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            do {
+                otp = try container.decode(String.self, forKey: .otp)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            transferMode = try container.decode(String.self, forKey: .transferMode)
 
             details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
 
@@ -87,13 +87,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(otp, forKey: .otp)
-
-            try? container.encodeIfPresent(transferMode, forKey: .transferMode)
-
             try? container.encodeIfPresent(requestId, forKey: .requestId)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(otp, forKey: .otp)
+
+            try? container.encodeIfPresent(transferMode, forKey: .transferMode)
 
             try? container.encodeIfPresent(details, forKey: .details)
 

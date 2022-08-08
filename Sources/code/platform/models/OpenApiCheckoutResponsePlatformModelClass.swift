@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var message: String?
 
-        public var success: Bool?
-
         public var orderRefId: String?
+
+        public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case orderId = "order_id"
 
             case message
 
-            case success
-
             case orderRefId = "order_ref_id"
+
+            case success
         }
 
         public init(message: String? = nil, orderId: String, orderRefId: String? = nil, success: Bool? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.message = message
 
-            self.success = success
-
             self.orderRefId = orderRefId
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                orderRefId = try container.decode(String.self, forKey: .orderRefId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,7 +58,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                orderRefId = try container.decode(String.self, forKey: .orderRefId)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,9 +73,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(orderRefId, forKey: .orderRefId)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
