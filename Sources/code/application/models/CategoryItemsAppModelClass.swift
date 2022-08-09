@@ -9,26 +9,26 @@ public extension ApplicationClient {
     class CategoryItems: Codable {
         public var name: String?
 
-        public var banners: ImageUrls?
-
-        public var action: ProductListingAction?
+        public var childs: [Child]?
 
         public var slug: String?
 
-        public var childs: [Child]?
+        public var action: ProductListingAction?
+
+        public var banners: ImageUrls?
 
         public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case banners
-
-            case action
+            case childs
 
             case slug
 
-            case childs
+            case action
+
+            case banners
 
             case uid
         }
@@ -36,13 +36,13 @@ public extension ApplicationClient {
         public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [Child]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
             self.name = name
 
-            self.banners = banners
-
-            self.action = action
+            self.childs = childs
 
             self.slug = slug
 
-            self.childs = childs
+            self.action = action
+
+            self.banners = banners
 
             self.uid = uid
         }
@@ -59,15 +59,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                banners = try container.decode(ImageUrls.self, forKey: .banners)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                childs = try container.decode([Child].self, forKey: .childs)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +75,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                childs = try container.decode([Child].self, forKey: .childs)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                banners = try container.decode(ImageUrls.self, forKey: .banners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,13 +104,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(banners, forKey: .banners)
-
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(childs, forKey: .childs)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(childs, forKey: .childs)
+            try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(banners, forKey: .banners)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }
