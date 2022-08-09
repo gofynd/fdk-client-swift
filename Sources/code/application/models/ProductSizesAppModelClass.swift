@@ -11,11 +11,11 @@ public extension ApplicationClient {
 
         public var stores: ProductSizeStores?
 
-        public var sellable: Bool?
+        public var sizes: [ProductSize]?
 
         public var sizeChart: SizeChart?
 
-        public var sizes: [ProductSize]?
+        public var sellable: Bool?
 
         public var discount: String?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient {
 
             case stores
 
-            case sellable
+            case sizes
 
             case sizeChart = "size_chart"
 
-            case sizes
+            case sellable
 
             case discount
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient {
 
             self.stores = stores
 
-            self.sellable = sellable
+            self.sizes = sizes
 
             self.sizeChart = sizeChart
 
-            self.sizes = sizes
+            self.sellable = sellable
 
             self.discount = discount
         }
@@ -67,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sellable = try container.decode(Bool.self, forKey: .sellable)
+                sizes = try container.decode([ProductSize].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sizes = try container.decode([ProductSize].self, forKey: .sizes)
+                sellable = try container.decode(Bool.self, forKey: .sellable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(stores, forKey: .stores)
 
-            try? container.encodeIfPresent(sellable, forKey: .sellable)
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
 
             try? container.encodeIfPresent(sizeChart, forKey: .sizeChart)
 
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
+            try? container.encodeIfPresent(sellable, forKey: .sellable)
 
             try? container.encodeIfPresent(discount, forKey: .discount)
         }
