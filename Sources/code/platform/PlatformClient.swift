@@ -7944,7 +7944,7 @@ public class PlatformClient {
              * Summary: Get Order Details for company based on Company Id and Order Id
              * Description: Get Orders
              **/
-            public func getOrderDetails(
+            public func getOrderDetails1(
                 orderId: String?,
                 next: String?,
                 previous: String?,
