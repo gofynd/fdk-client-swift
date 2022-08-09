@@ -8,38 +8,38 @@ public extension PlatformClient {
      */
 
     class CompanyBrandPostRequestSerializer: Codable {
-        public var brands: [Int]
+        public var company: Int
 
         public var uid: Int?
 
         public var documents: [CompanyBrandDocumentsSerializer]?
 
-        public var company: Int
+        public var brands: [Int]
 
         public enum CodingKeys: String, CodingKey {
-            case brands
+            case company
 
             case uid
 
             case documents
 
-            case company
+            case brands
         }
 
         public init(brands: [Int], company: Int, documents: [CompanyBrandDocumentsSerializer]? = nil, uid: Int? = nil) {
-            self.brands = brands
+            self.company = company
 
             self.uid = uid
 
             self.documents = documents
 
-            self.company = company
+            self.brands = brands
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            brands = try container.decode([Int].self, forKey: .brands)
+            company = try container.decode(Int.self, forKey: .company)
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
@@ -57,19 +57,19 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            company = try container.decode(Int.self, forKey: .company)
+            brands = try container.decode([Int].self, forKey: .brands)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(brands, forKey: .brands)
+            try? container.encodeIfPresent(company, forKey: .company)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(documents, forKey: .documents)
 
-            try? container.encodeIfPresent(company, forKey: .company)
+            try? container.encodeIfPresent(brands, forKey: .brands)
         }
     }
 }

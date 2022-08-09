@@ -16,7 +16,7 @@ public extension PlatformClient {
 
         public var parameters: BadRequestResponseGenerateBulkItemParameters?
 
-        public var errorMessage: String?
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case keyword
@@ -27,10 +27,10 @@ public extension PlatformClient {
 
             case parameters
 
-            case errorMessage = "error_message"
+            case message
         }
 
-        public init(dataPath: String? = nil, errorMessage: String? = nil, keyword: String? = nil, parameters: BadRequestResponseGenerateBulkItemParameters? = nil, schemaPath: String? = nil) {
+        public init(dataPath: String? = nil, keyword: String? = nil, message: String? = nil, parameters: BadRequestResponseGenerateBulkItemParameters? = nil, schemaPath: String? = nil) {
             self.keyword = keyword
 
             self.dataPath = dataPath
@@ -39,7 +39,7 @@ public extension PlatformClient {
 
             self.parameters = parameters
 
-            self.errorMessage = errorMessage
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                errorMessage = try container.decode(String.self, forKey: .errorMessage)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(parameters, forKey: .parameters)
 
-            try? container.encodeIfPresent(errorMessage, forKey: .errorMessage)
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
