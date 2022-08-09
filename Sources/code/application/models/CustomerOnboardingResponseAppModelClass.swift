@@ -7,36 +7,36 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class CustomerOnboardingResponse: Codable {
-        public var success: Bool
-
         public var data: OnboardSummary
 
-        public enum CodingKeys: String, CodingKey {
-            case success
+        public var success: Bool
 
+        public enum CodingKeys: String, CodingKey {
             case data
+
+            case success
         }
 
         public init(data: OnboardSummary, success: Bool) {
-            self.success = success
-
             self.data = data
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             data = try container.decode(OnboardSummary.self, forKey: .data)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
