@@ -1,33 +1,34 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: ReviewRating
-         Used By: Feedback
+         Model: ItemQueryForUserCollection
+         Used By: Catalog
      */
-    class ReviewRating: Codable {
-        public var attributes: [AttributeObject]?
 
-        public var value: Double?
+    class ItemQueryForUserCollection: Codable {
+        public var itemId: Int?
+
+        public var action: String?
 
         public enum CodingKeys: String, CodingKey {
-            case attributes
+            case itemId = "item_id"
 
-            case value
+            case action
         }
 
-        public init(attributes: [AttributeObject]? = nil, value: Double? = nil) {
-            self.attributes = attributes
+        public init(action: String? = nil, itemId: Int? = nil) {
+            self.itemId = itemId
 
-            self.value = value
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                attributes = try container.decode([AttributeObject].self, forKey: .attributes)
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +36,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                action = try container.decode(String.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +47,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }

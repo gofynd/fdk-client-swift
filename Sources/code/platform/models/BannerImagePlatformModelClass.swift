@@ -10,16 +10,22 @@ public extension PlatformClient {
     class BannerImage: Codable {
         public var aspectRatio: String?
 
+        public var type: String?
+
         public var url: String?
 
         public enum CodingKeys: String, CodingKey {
             case aspectRatio = "aspect_ratio"
 
+            case type
+
             case url
         }
 
-        public init(aspectRatio: String? = nil, url: String? = nil) {
+        public init(aspectRatio: String? = nil, type: String? = nil, url: String? = nil) {
             self.aspectRatio = aspectRatio
+
+            self.type = type
 
             self.url = url
         }
@@ -29,6 +35,14 @@ public extension PlatformClient {
 
             do {
                 aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,6 +62,8 @@ public extension PlatformClient {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(url, forKey: .url)
         }
