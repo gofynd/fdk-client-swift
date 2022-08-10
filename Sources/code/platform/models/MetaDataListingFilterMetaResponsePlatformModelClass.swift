@@ -10,18 +10,18 @@ public extension PlatformClient {
     class MetaDataListingFilterMetaResponse: Codable {
         public var display: String?
 
-        public var key: String?
-
         public var filterTypes: [String]?
+
+        public var key: String?
 
         public var units: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case display
 
-            case key
-
             case filterTypes = "filter_types"
+
+            case key
 
             case units
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(display: String? = nil, filterTypes: [String]? = nil, key: String? = nil, units: [[String: Any]]? = nil) {
             self.display = display
 
-            self.key = key
-
             self.filterTypes = filterTypes
+
+            self.key = key
 
             self.units = units
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                filterTypes = try container.decode([String].self, forKey: .filterTypes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                filterTypes = try container.decode([String].self, forKey: .filterTypes)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(filterTypes, forKey: .filterTypes)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(units, forKey: .units)
         }

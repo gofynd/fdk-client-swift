@@ -16,9 +16,9 @@ public extension PlatformClient {
 
         public var size: ProductSize?
 
-        public var subtitle: String?
-
         public var title: String?
+
+        public var subtitle: String?
 
         public var logo: String?
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             case size
 
-            case subtitle
-
             case title
+
+            case subtitle
 
             case logo
         }
@@ -47,9 +47,9 @@ public extension PlatformClient {
 
             self.size = size
 
-            self.subtitle = subtitle
-
             self.title = title
+
+            self.subtitle = subtitle
 
             self.logo = logo
         }
@@ -72,7 +72,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                subtitle = try container.decode(String.self, forKey: .subtitle)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,7 +80,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                subtitle = try container.decode(String.self, forKey: .subtitle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,9 +107,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
-
             try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }

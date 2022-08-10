@@ -10,13 +10,13 @@ public extension PlatformClient {
     class ConfigurationProductVariantConfig: Codable {
         public var displayType: String
 
-        public var name: String
-
         public var isActive: Bool
 
         public var key: String
 
         public var priority: Int
+
+        public var name: String
 
         public var size: ProductSize
 
@@ -25,13 +25,13 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case displayType = "display_type"
 
-            case name
-
             case isActive = "is_active"
 
             case key
 
             case priority
+
+            case name
 
             case size
 
@@ -41,13 +41,13 @@ public extension PlatformClient {
         public init(displayType: String, isActive: Bool, key: String, logo: String? = nil, name: String, priority: Int, size: ProductSize) {
             self.displayType = displayType
 
-            self.name = name
-
             self.isActive = isActive
 
             self.key = key
 
             self.priority = priority
+
+            self.name = name
 
             self.size = size
 
@@ -59,13 +59,13 @@ public extension PlatformClient {
 
             displayType = try container.decode(String.self, forKey: .displayType)
 
-            name = try container.decode(String.self, forKey: .name)
-
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
             key = try container.decode(String.self, forKey: .key)
 
             priority = try container.decode(Int.self, forKey: .priority)
+
+            name = try container.decode(String.self, forKey: .name)
 
             size = try container.decode(ProductSize.self, forKey: .size)
 
@@ -83,13 +83,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(size, forKey: .size)
 

@@ -3,37 +3,37 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: SelectCartAddressRequest
-         Used By: Cart
+         Model: SendResetPasswordMobileRequestSchema
+         Used By: User
      */
-    class SelectCartAddressRequest: Codable {
-        public var cartId: String?
+    class SendResetPasswordMobileRequestSchema: Codable {
+        public var countryCode: String?
 
-        public var id: String?
+        public var mobile: String?
 
-        public var billingAddressId: String?
+        public var captchaCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case cartId = "cart_id"
+            case countryCode = "country_code"
 
-            case id
+            case mobile
 
-            case billingAddressId = "billing_address_id"
+            case captchaCode = "captcha_code"
         }
 
-        public init(billingAddressId: String? = nil, cartId: String? = nil, id: String? = nil) {
-            self.cartId = cartId
+        public init(captchaCode: String? = nil, countryCode: String? = nil, mobile: String? = nil) {
+            self.countryCode = countryCode
 
-            self.id = id
+            self.mobile = mobile
 
-            self.billingAddressId = billingAddressId
+            self.captchaCode = captchaCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                cartId = try container.decode(String.self, forKey: .cartId)
+                countryCode = try container.decode(String.self, forKey: .countryCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                mobile = try container.decode(String.self, forKey: .mobile)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
+                captchaCode = try container.decode(String.self, forKey: .captchaCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(cartId, forKey: .cartId)
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
+            try? container.encodeIfPresent(captchaCode, forKey: .captchaCode)
         }
     }
 }
