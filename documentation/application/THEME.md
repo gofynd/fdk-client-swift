@@ -5532,6 +5532,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | link | String? |  yes  |  |
+ | links | [String]? |  yes  |  |
 
 ---
 
@@ -5554,6 +5555,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | link | String? |  yes  |  |
+ | links | [String]? |  yes  |  |
 
 ---
 
