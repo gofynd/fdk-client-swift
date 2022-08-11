@@ -218,6 +218,7 @@ public extension PlatformClient {
             toDate: String?,
             isPrioritySort: Bool?,
             lockStatus: Bool?,
+            userId: String?,
             q: String?,
             stage: String?,
             salesChannels: String?,
@@ -255,6 +256,10 @@ public extension PlatformClient {
 
             if let value = lockStatus {
                 xQuery["lock_status"] = value
+            }
+
+            if let value = userId {
+                xQuery["user_id"] = value
             }
 
             if let value = q {
