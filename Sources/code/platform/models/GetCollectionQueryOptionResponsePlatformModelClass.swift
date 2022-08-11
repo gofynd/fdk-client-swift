@@ -10,22 +10,16 @@ public extension PlatformClient {
     class GetCollectionQueryOptionResponse: Codable {
         public var filters: [ProductFilters]?
 
-        public var operators: [String: String]
-
         public var sortOn: [ProductSortOn]?
 
         public enum CodingKeys: String, CodingKey {
             case filters
 
-            case operators
-
             case sortOn = "sort_on"
         }
 
-        public init(filters: [ProductFilters]? = nil, operators: [String: String], sortOn: [ProductSortOn]? = nil) {
+        public init(filters: [ProductFilters]? = nil, sortOn: [ProductSortOn]? = nil) {
             self.filters = filters
-
-            self.operators = operators
 
             self.sortOn = sortOn
         }
@@ -41,8 +35,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            operators = try container.decode([String: String].self, forKey: .operators)
-
             do {
                 sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
 
@@ -56,8 +48,6 @@ public extension PlatformClient {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
-
-            try? container.encodeIfPresent(operators, forKey: .operators)
 
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
         }

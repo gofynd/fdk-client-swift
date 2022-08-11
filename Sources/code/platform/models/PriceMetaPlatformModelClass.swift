@@ -10,40 +10,34 @@ public extension PlatformClient {
     class PriceMeta: Codable {
         public var transfer: Double
 
-        public var marked: Double
-
         public var effective: Double
 
-        public var updatedAt: String?
-
         public var currency: String
+
+        public var marked: Double
 
         public var tpNotes: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case transfer
 
-            case marked
-
             case effective
 
-            case updatedAt = "updated_at"
-
             case currency
+
+            case marked
 
             case tpNotes = "tp_notes"
         }
 
-        public init(currency: String, effective: Double, marked: Double, tpNotes: [String: Any]? = nil, transfer: Double, updatedAt: String? = nil) {
+        public init(currency: String, effective: Double, marked: Double, tpNotes: [String: Any]? = nil, transfer: Double) {
             self.transfer = transfer
-
-            self.marked = marked
 
             self.effective = effective
 
-            self.updatedAt = updatedAt
-
             self.currency = currency
+
+            self.marked = marked
 
             self.tpNotes = tpNotes
         }
@@ -53,19 +47,11 @@ public extension PlatformClient {
 
             transfer = try container.decode(Double.self, forKey: .transfer)
 
-            marked = try container.decode(Double.self, forKey: .marked)
-
             effective = try container.decode(Double.self, forKey: .effective)
 
-            do {
-                updatedAt = try container.decode(String.self, forKey: .updatedAt)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             currency = try container.decode(String.self, forKey: .currency)
+
+            marked = try container.decode(Double.self, forKey: .marked)
 
             do {
                 tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
@@ -81,13 +67,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(transfer, forKey: .transfer)
 
-            try? container.encodeIfPresent(marked, forKey: .marked)
-
             try? container.encodeIfPresent(effective, forKey: .effective)
 
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
         }
