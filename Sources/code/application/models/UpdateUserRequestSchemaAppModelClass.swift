@@ -13,6 +13,8 @@ public extension ApplicationClient {
 
         public var gender: String?
 
+        public var externalId: String?
+
         public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
@@ -22,15 +24,19 @@ public extension ApplicationClient {
 
             case gender
 
+            case externalId = "external_id"
+
             case meta
         }
 
-        public init(firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil) {
+        public init(externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil) {
             self.firstName = firstName
 
             self.lastName = lastName
 
             self.gender = gender
+
+            self.externalId = externalId
 
             self.meta = meta
         }
@@ -63,6 +69,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                externalId = try container.decode(String.self, forKey: .externalId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -79,6 +93,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
             try? container.encodeIfPresent(gender, forKey: .gender)
+
+            try? container.encodeIfPresent(externalId, forKey: .externalId)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
         }

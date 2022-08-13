@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var branchName: String
 
-        public var ifscCode: String
+        public var accountHolder: String
 
         public var bankName: String
 
-        public var accountHolder: String
+        public var ifscCode: String
 
         public enum CodingKeys: String, CodingKey {
             case accountNo = "account_no"
 
             case branchName = "branch_name"
 
-            case ifscCode = "ifsc_code"
+            case accountHolder = "account_holder"
 
             case bankName = "bank_name"
 
-            case accountHolder = "account_holder"
+            case ifscCode = "ifsc_code"
         }
 
         public init(accountHolder: String, accountNo: String, bankName: String, branchName: String, ifscCode: String) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.branchName = branchName
 
-            self.ifscCode = ifscCode
+            self.accountHolder = accountHolder
 
             self.bankName = bankName
 
-            self.accountHolder = accountHolder
+            self.ifscCode = ifscCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,11 +48,11 @@ public extension ApplicationClient {
 
             branchName = try container.decode(String.self, forKey: .branchName)
 
-            ifscCode = try container.decode(String.self, forKey: .ifscCode)
+            accountHolder = try container.decode(String.self, forKey: .accountHolder)
 
             bankName = try container.decode(String.self, forKey: .bankName)
 
-            accountHolder = try container.decode(String.self, forKey: .accountHolder)
+            ifscCode = try container.decode(String.self, forKey: .ifscCode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,11 +62,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(branchName, forKey: .branchName)
 
-            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
+            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
 
             try? container.encodeIfPresent(bankName, forKey: .bankName)
 
-            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
         }
     }
 }

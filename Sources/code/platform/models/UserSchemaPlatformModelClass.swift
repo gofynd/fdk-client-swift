@@ -8,6 +8,10 @@ public extension PlatformClient {
      */
 
     class UserSchema: Codable {
+        public var applicationId: String?
+
+        public var userId: String?
+
         public var firstName: String?
 
         public var meta: [String: Any]?
@@ -30,8 +34,6 @@ public extension PlatformClient {
 
         public var accountType: String?
 
-        public var uid: String?
-
         public var debug: Debug?
 
         public var hasOldPasswordHash: Bool?
@@ -43,6 +45,10 @@ public extension PlatformClient {
         public var updatedAt: String?
 
         public enum CodingKeys: String, CodingKey {
+            case applicationId = "application_id"
+
+            case userId = "user_id"
+
             case firstName = "first_name"
 
             case meta
@@ -65,8 +71,6 @@ public extension PlatformClient {
 
             case accountType = "account_type"
 
-            case uid
-
             case debug
 
             case hasOldPasswordHash = "has_old_password_hash"
@@ -78,7 +82,11 @@ public extension PlatformClient {
             case updatedAt = "updated_at"
         }
 
-        public init(accountType: String? = nil, active: Bool? = nil, createdAt: String? = nil, debug: Debug? = nil, dob: String? = nil, emails: [Email]? = nil, firstName: String? = nil, gender: String? = nil, hasOldPasswordHash: Bool? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, uid: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil) {
+        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, debug: Debug? = nil, dob: String? = nil, emails: [Email]? = nil, firstName: String? = nil, gender: String? = nil, hasOldPasswordHash: Bool? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
+            self.applicationId = applicationId
+
+            self.userId = userId
+
             self.firstName = firstName
 
             self.meta = meta
@@ -101,8 +109,6 @@ public extension PlatformClient {
 
             self.accountType = accountType
 
-            self.uid = uid
-
             self.debug = debug
 
             self.hasOldPasswordHash = hasOldPasswordHash
@@ -116,6 +122,22 @@ public extension PlatformClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                applicationId = try container.decode(String.self, forKey: .applicationId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                userId = try container.decode(String.self, forKey: .userId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 firstName = try container.decode(String.self, forKey: .firstName)
@@ -206,14 +228,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 debug = try container.decode(Debug.self, forKey: .debug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -257,6 +271,10 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
+
             try? container.encodeIfPresent(firstName, forKey: .firstName)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
@@ -278,8 +296,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(username, forKey: .username)
 
             try? container.encodeIfPresent(accountType, forKey: .accountType)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(debug, forKey: .debug)
 
