@@ -8,75 +8,75 @@ public extension PlatformClient {
      */
 
     class ProductDownloadsItems: Codable {
-        public var status: String?
+        public var taskId: String?
 
         public var data: ProductDownloadItemsData?
 
-        public var completedOn: String?
-
-        public var id: String?
+        public var templateTags: [String: Any]?
 
         public var createdBy: VerifiedBy?
 
         public var triggerOn: String?
 
-        public var taskId: String?
+        public var completedOn: String?
 
         public var sellerId: Double?
 
         public var url: String?
 
-        public var templateTags: [String: Any]?
+        public var status: String?
+
+        public var id: String?
 
         public enum CodingKeys: String, CodingKey {
-            case status
+            case taskId = "task_id"
 
             case data
 
-            case completedOn = "completed_on"
-
-            case id
+            case templateTags = "template_tags"
 
             case createdBy = "created_by"
 
             case triggerOn = "trigger_on"
 
-            case taskId = "task_id"
+            case completedOn = "completed_on"
 
             case sellerId = "seller_id"
 
             case url
 
-            case templateTags = "template_tags"
+            case status
+
+            case id
         }
 
         public init(completedOn: String? = nil, createdBy: VerifiedBy? = nil, data: ProductDownloadItemsData? = nil, id: String? = nil, sellerId: Double? = nil, status: String? = nil, taskId: String? = nil, templateTags: [String: Any]? = nil, triggerOn: String? = nil, url: String? = nil) {
-            self.status = status
+            self.taskId = taskId
 
             self.data = data
 
-            self.completedOn = completedOn
-
-            self.id = id
+            self.templateTags = templateTags
 
             self.createdBy = createdBy
 
             self.triggerOn = triggerOn
 
-            self.taskId = taskId
+            self.completedOn = completedOn
 
             self.sellerId = sellerId
 
             self.url = url
 
-            self.templateTags = templateTags
+            self.status = status
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                taskId = try container.decode(String.self, forKey: .taskId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,15 +92,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                completedOn = try container.decode(String.self, forKey: .completedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                id = try container.decode(String.self, forKey: .id)
+                templateTags = try container.decode([String: Any].self, forKey: .templateTags)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,7 +116,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                taskId = try container.decode(String.self, forKey: .taskId)
+                completedOn = try container.decode(String.self, forKey: .completedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,7 +140,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                templateTags = try container.decode([String: Any].self, forKey: .templateTags)
+                status = try container.decode(String.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,25 +159,25 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(taskId, forKey: .taskId)
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(completedOn, forKey: .completedOn)
-
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(templateTags, forKey: .templateTags)
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
 
-            try? container.encodeIfPresent(taskId, forKey: .taskId)
+            try? container.encodeIfPresent(completedOn, forKey: .completedOn)
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(templateTags, forKey: .templateTags)
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }
