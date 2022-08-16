@@ -13,7 +13,7 @@
 * [Communication](COMMUNICATION.md) - Manages email, sms, push notifications sent to users 
 * [Payment](PAYMENT.md) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](ORDER.md) - Handles Platform websites OMS 
-* [Catalog](CATALOG.md) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
+* [Catalog](CATALOG.md) - Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [CompanyProfile](COMPANYPROFILE.md) -  
 * [FileStorage](FILESTORAGE.md) - File Storage 
 * [Share](SHARE.md) - Short link and QR Code 
@@ -26,3 +26,4 @@
 * [Partner](PARTNER.md) - Partner configuration apis 
 * [Webhook](WEBHOOK.md) - Webhook dispatcher with retry and one event to many subscriber vice versa 
 * [AuditTrail](AUDITTRAIL.md) -  
+* [Serviceability](SERVICEABILITY.md) - Logistics Configuration API's allows you to configure zone, application logistics and many more useful features.  
