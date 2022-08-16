@@ -10,22 +10,22 @@ public extension PlatformClient {
     class Document: Codable {
         public var value: String
 
+        public var type: String
+
         public var verified: Bool?
 
         public var legalName: String?
-
-        public var type: String
 
         public var url: String?
 
         public enum CodingKeys: String, CodingKey {
             case value
 
+            case type
+
             case verified
 
             case legalName = "legal_name"
-
-            case type
 
             case url
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
             self.value = value
 
+            self.type = type
+
             self.verified = verified
 
             self.legalName = legalName
-
-            self.type = type
 
             self.url = url
         }
@@ -46,6 +46,8 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             value = try container.decode(String.self, forKey: .value)
+
+            type = try container.decode(String.self, forKey: .type)
 
             do {
                 verified = try container.decode(Bool.self, forKey: .verified)
@@ -63,8 +65,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            type = try container.decode(String.self, forKey: .type)
-
             do {
                 url = try container.decode(String.self, forKey: .url)
 
@@ -79,11 +79,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
+            try? container.encodeIfPresent(type, forKey: .type)
+
             try? container.encodeIfPresent(verified, forKey: .verified)
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
-
-            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(url, forKey: .url)
         }
