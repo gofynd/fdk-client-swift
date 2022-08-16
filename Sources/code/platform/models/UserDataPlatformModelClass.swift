@@ -3,48 +3,40 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ZoneMappingType
-         Used By: Serviceability
+         Model: UserData
+         Used By: Order
      */
 
-    class ZoneMappingType: Codable {
-        public var state: [String]?
+    class UserData: Codable {
+        public var billingUser: OrderUser?
 
-        public var country: String
-
-        public var pincode: [String]?
+        public var shippingUser: OrderUser?
 
         public enum CodingKeys: String, CodingKey {
-            case state
+            case billingUser = "billing_user"
 
-            case country
-
-            case pincode
+            case shippingUser = "shipping_user"
         }
 
-        public init(country: String, pincode: [String]? = nil, state: [String]? = nil) {
-            self.state = state
+        public init(billingUser: OrderUser? = nil, shippingUser: OrderUser? = nil) {
+            self.billingUser = billingUser
 
-            self.country = country
-
-            self.pincode = pincode
+            self.shippingUser = shippingUser
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                state = try container.decode([String].self, forKey: .state)
+                billingUser = try container.decode(OrderUser.self, forKey: .billingUser)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            country = try container.decode(String.self, forKey: .country)
-
             do {
-                pincode = try container.decode([String].self, forKey: .pincode)
+                shippingUser = try container.decode(OrderUser.self, forKey: .shippingUser)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,11 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encodeIfPresent(billingUser, forKey: .billingUser)
 
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(shippingUser, forKey: .shippingUser)
         }
     }
 }

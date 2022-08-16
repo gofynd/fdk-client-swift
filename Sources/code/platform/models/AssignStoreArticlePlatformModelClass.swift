@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var query: ArticleQuery?
 
-        public var quantity: Int?
-
         public var articleAssignment: ArticleAssignment?
+
+        public var quantity: Int?
 
         public var meta: [String: Any]?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case query
 
-            case quantity
-
             case articleAssignment = "article_assignment"
+
+            case quantity
 
             case meta
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.query = query
 
-            self.quantity = quantity
-
             self.articleAssignment = articleAssignment
+
+            self.quantity = quantity
 
             self.meta = meta
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                articleAssignment = try container.decode(ArticleAssignment.self, forKey: .articleAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                articleAssignment = try container.decode(ArticleAssignment.self, forKey: .articleAssignment)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(query, forKey: .query)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
         }
