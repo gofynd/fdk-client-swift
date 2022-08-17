@@ -10,18 +10,18 @@ public extension PlatformClient {
     class BulkProductRequest: Codable {
         public var companyId: Int
 
-        public var templateTag: String
-
         public var data: [[String: Any]]
+
+        public var templateTag: String
 
         public var batchId: String
 
         public enum CodingKeys: String, CodingKey {
             case companyId = "company_id"
 
-            case templateTag = "template_tag"
-
             case data
+
+            case templateTag = "template_tag"
 
             case batchId = "batch_id"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(batchId: String, companyId: Int, data: [[String: Any]], templateTag: String) {
             self.companyId = companyId
 
-            self.templateTag = templateTag
-
             self.data = data
+
+            self.templateTag = templateTag
 
             self.batchId = batchId
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             companyId = try container.decode(Int.self, forKey: .companyId)
 
-            templateTag = try container.decode(String.self, forKey: .templateTag)
-
             data = try container.decode([[String: Any]].self, forKey: .data)
+
+            templateTag = try container.decode(String.self, forKey: .templateTag)
 
             batchId = try container.decode(String.self, forKey: .batchId)
         }
@@ -53,9 +53,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(templateTag, forKey: .templateTag)
-
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(templateTag, forKey: .templateTag)
 
             try? container.encodeIfPresent(batchId, forKey: .batchId)
         }
