@@ -10,24 +10,24 @@ public extension PlatformClient {
     class OrderPriority: Codable {
         public var fulfilmentPriorityText: String?
 
-        public var fulfilmentPriority: Int?
-
         public var affiliatePriorityCode: String?
+
+        public var fulfilmentPriority: Int?
 
         public enum CodingKeys: String, CodingKey {
             case fulfilmentPriorityText = "fulfilment_priority_text"
 
-            case fulfilmentPriority = "fulfilment_priority"
-
             case affiliatePriorityCode = "affiliate_priority_code"
+
+            case fulfilmentPriority = "fulfilment_priority"
         }
 
         public init(affiliatePriorityCode: String? = nil, fulfilmentPriority: Int? = nil, fulfilmentPriorityText: String? = nil) {
             self.fulfilmentPriorityText = fulfilmentPriorityText
 
-            self.fulfilmentPriority = fulfilmentPriority
-
             self.affiliatePriorityCode = affiliatePriorityCode
+
+            self.fulfilmentPriority = fulfilmentPriority
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                fulfilmentPriority = try container.decode(Int.self, forKey: .fulfilmentPriority)
+                affiliatePriorityCode = try container.decode(String.self, forKey: .affiliatePriorityCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                affiliatePriorityCode = try container.decode(String.self, forKey: .affiliatePriorityCode)
+                fulfilmentPriority = try container.decode(Int.self, forKey: .fulfilmentPriority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(fulfilmentPriorityText, forKey: .fulfilmentPriorityText)
 
-            try? container.encodeIfPresent(fulfilmentPriority, forKey: .fulfilmentPriority)
-
             try? container.encodeIfPresent(affiliatePriorityCode, forKey: .affiliatePriorityCode)
+
+            try? container.encodeIfPresent(fulfilmentPriority, forKey: .fulfilmentPriority)
         }
     }
 }

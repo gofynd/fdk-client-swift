@@ -12,15 +12,15 @@ public extension PlatformClient {
 
         public var toPincode: String
 
-        public var locationDetails: LocationDetails?
-
-        public var identifier: String
-
-        public var source: String
+        public var journey: String
 
         public var paymentMode: String
 
-        public var journey: String
+        public var source: String
+
+        public var identifier: String
+
+        public var locationDetails: LocationDetails?
 
         public var shipment: [ShipmentDetails]
 
@@ -29,15 +29,15 @@ public extension PlatformClient {
 
             case toPincode = "to_pincode"
 
-            case locationDetails = "location_details"
-
-            case identifier
-
-            case source
+            case journey
 
             case paymentMode = "payment_mode"
 
-            case journey
+            case source
+
+            case identifier
+
+            case locationDetails = "location_details"
 
             case shipment
         }
@@ -47,15 +47,15 @@ public extension PlatformClient {
 
             self.toPincode = toPincode
 
-            self.locationDetails = locationDetails
-
-            self.identifier = identifier
-
-            self.source = source
+            self.journey = journey
 
             self.paymentMode = paymentMode
 
-            self.journey = journey
+            self.source = source
+
+            self.identifier = identifier
+
+            self.locationDetails = locationDetails
 
             self.shipment = shipment
         }
@@ -67,6 +67,14 @@ public extension PlatformClient {
 
             toPincode = try container.decode(String.self, forKey: .toPincode)
 
+            journey = try container.decode(String.self, forKey: .journey)
+
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            source = try container.decode(String.self, forKey: .source)
+
+            identifier = try container.decode(String.self, forKey: .identifier)
+
             do {
                 locationDetails = try container.decode(LocationDetails.self, forKey: .locationDetails)
 
@@ -74,14 +82,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            identifier = try container.decode(String.self, forKey: .identifier)
-
-            source = try container.decode(String.self, forKey: .source)
-
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            journey = try container.decode(String.self, forKey: .journey)
 
             shipment = try container.decode([ShipmentDetails].self, forKey: .shipment)
         }
@@ -93,15 +93,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
-            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
-
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
-
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encodeIfPresent(journey, forKey: .journey)
 
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
-            try? container.encodeIfPresent(journey, forKey: .journey)
+            try? container.encodeIfPresent(source, forKey: .source)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
 
             try? container.encodeIfPresent(shipment, forKey: .shipment)
         }

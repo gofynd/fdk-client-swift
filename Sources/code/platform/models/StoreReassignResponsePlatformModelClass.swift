@@ -3,32 +3,32 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: GetAppCatalogConfiguration
-         Used By: Catalog
+         Model: StoreReassignResponse
+         Used By: Order
      */
 
-    class GetAppCatalogConfiguration: Codable {
-        public var data: AppCatalogConfiguration?
+    class StoreReassignResponse: Codable {
+        public var success: Bool?
 
-        public var isDefault: Bool?
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case data
+            case success
 
-            case isDefault = "is_default"
+            case message
         }
 
-        public init(data: AppCatalogConfiguration? = nil, isDefault: Bool? = nil) {
-            self.data = data
+        public init(message: String? = nil, success: Bool? = nil) {
+            self.success = success
 
-            self.isDefault = isDefault
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode(AppCatalogConfiguration.self, forKey: .data)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

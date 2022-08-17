@@ -8,233 +8,235 @@ public extension PlatformClient {
      */
 
     class InventorySellerResponse: Codable {
-        public var brand: BrandMeta
-
-        public var isActive: Bool?
-
-        public var fyndArticleCode: String
-
-        public var price: PriceMeta
-
-        public var expirationDate: String?
-
-        public var returnConfig: ReturnConfig1?
-
-        public var quantities: Quantities?
-
-        public var set: InventorySet?
-
-        public var customJson: [String: Any]?
-
-        public var fyndMeta: [String: Any]?
-
-        public var itemId: Int
-
-        public var store: StoreMeta
-
-        public var company: CompanyMeta
-
-        public var weight: WeightResponse
-
-        public var meta: [String: Any]?
-
         public var trackInventory: Bool?
-
-        public var stage: String?
-
-        public var totalQuantity: Int
-
-        public var sellerIdentifier: String
 
         public var trader: [Trader1]?
 
-        public var isSet: Bool?
+        public var modifiedBy: UserSerializer?
 
-        public var identifier: [String: Any]
+        public var returnConfig: ReturnConfig1?
+
+        public var set: InventorySet?
+
+        public var fyndMeta: [String: Any]?
+
+        public var customJson: [String: Any]?
 
         public var dimension: DimensionResponse
 
-        public var countryOfOrigin: String
-
-        public var createdBy: UserSerializer?
-
-        public var size: String
-
-        public var fyndItemCode: String
-
-        public var manufacturer: ManufacturerResponse
-
-        public var rawMeta: [String: Any]?
-
-        public var modifiedBy: UserSerializer?
-
-        public var uid: String
+        public var expirationDate: String?
 
         public var addedOnStore: String?
 
+        public var isSet: Bool?
+
+        public var stage: String?
+
+        public var meta: [String: Any]?
+
+        public var identifier: [String: Any]
+
+        public var createdBy: UserSerializer?
+
+        public var store: StoreMeta
+
+        public var weight: WeightResponse
+
+        public var isActive: Bool?
+
+        public var itemId: Int
+
+        public var company: CompanyMeta
+
+        public var size: String
+
+        public var manufacturer: ManufacturerResponse
+
+        public var quantities: Quantities?
+
+        public var rawMeta: [String: Any]?
+
+        public var price: PriceMeta
+
+        public var fyndItemCode: String
+
+        public var fyndArticleCode: String
+
+        public var sellerIdentifier: String
+
         public var fragile: Bool
+
+        public var brand: BrandMeta
+
+        public var uid: String
 
         public var taxIdentifier: [String: Any]?
 
+        public var countryOfOrigin: String
+
+        public var totalQuantity: Int
+
         public enum CodingKeys: String, CodingKey {
-            case brand
-
-            case isActive = "is_active"
-
-            case fyndArticleCode = "fynd_article_code"
-
-            case price
-
-            case expirationDate = "expiration_date"
-
-            case returnConfig = "return_config"
-
-            case quantities
-
-            case set
-
-            case customJson = "_custom_json"
-
-            case fyndMeta = "fynd_meta"
-
-            case itemId = "item_id"
-
-            case store
-
-            case company
-
-            case weight
-
-            case meta
-
             case trackInventory = "track_inventory"
-
-            case stage
-
-            case totalQuantity = "total_quantity"
-
-            case sellerIdentifier = "seller_identifier"
 
             case trader
 
-            case isSet = "is_set"
+            case modifiedBy = "modified_by"
 
-            case identifier
+            case returnConfig = "return_config"
+
+            case set
+
+            case fyndMeta = "fynd_meta"
+
+            case customJson = "_custom_json"
 
             case dimension
 
-            case countryOfOrigin = "country_of_origin"
-
-            case createdBy = "created_by"
-
-            case size
-
-            case fyndItemCode = "fynd_item_code"
-
-            case manufacturer
-
-            case rawMeta = "raw_meta"
-
-            case modifiedBy = "modified_by"
-
-            case uid
+            case expirationDate = "expiration_date"
 
             case addedOnStore = "added_on_store"
 
+            case isSet = "is_set"
+
+            case stage
+
+            case meta
+
+            case identifier
+
+            case createdBy = "created_by"
+
+            case store
+
+            case weight
+
+            case isActive = "is_active"
+
+            case itemId = "item_id"
+
+            case company
+
+            case size
+
+            case manufacturer
+
+            case quantities
+
+            case rawMeta = "raw_meta"
+
+            case price
+
+            case fyndItemCode = "fynd_item_code"
+
+            case fyndArticleCode = "fynd_article_code"
+
+            case sellerIdentifier = "seller_identifier"
+
             case fragile
 
+            case brand
+
+            case uid
+
             case taxIdentifier = "tax_identifier"
+
+            case countryOfOrigin = "country_of_origin"
+
+            case totalQuantity = "total_quantity"
         }
 
         public init(addedOnStore: String? = nil, brand: BrandMeta, company: CompanyMeta, countryOfOrigin: String, createdBy: UserSerializer? = nil, dimension: DimensionResponse, expirationDate: String? = nil, fragile: Bool, fyndArticleCode: String, fyndItemCode: String, fyndMeta: [String: Any]? = nil, identifier: [String: Any], isActive: Bool? = nil, isSet: Bool? = nil, itemId: Int, manufacturer: ManufacturerResponse, meta: [String: Any]? = nil, modifiedBy: UserSerializer? = nil, price: PriceMeta, quantities: Quantities? = nil, rawMeta: [String: Any]? = nil, returnConfig: ReturnConfig1? = nil, sellerIdentifier: String, set: InventorySet? = nil, size: String, stage: String? = nil, store: StoreMeta, taxIdentifier: [String: Any]? = nil, totalQuantity: Int, trackInventory: Bool? = nil, trader: [Trader1]? = nil, uid: String, weight: WeightResponse, customJson: [String: Any]? = nil) {
-            self.brand = brand
-
-            self.isActive = isActive
-
-            self.fyndArticleCode = fyndArticleCode
-
-            self.price = price
-
-            self.expirationDate = expirationDate
-
-            self.returnConfig = returnConfig
-
-            self.quantities = quantities
-
-            self.set = set
-
-            self.customJson = customJson
-
-            self.fyndMeta = fyndMeta
-
-            self.itemId = itemId
-
-            self.store = store
-
-            self.company = company
-
-            self.weight = weight
-
-            self.meta = meta
-
             self.trackInventory = trackInventory
-
-            self.stage = stage
-
-            self.totalQuantity = totalQuantity
-
-            self.sellerIdentifier = sellerIdentifier
 
             self.trader = trader
 
-            self.isSet = isSet
+            self.modifiedBy = modifiedBy
 
-            self.identifier = identifier
+            self.returnConfig = returnConfig
+
+            self.set = set
+
+            self.fyndMeta = fyndMeta
+
+            self.customJson = customJson
 
             self.dimension = dimension
 
-            self.countryOfOrigin = countryOfOrigin
-
-            self.createdBy = createdBy
-
-            self.size = size
-
-            self.fyndItemCode = fyndItemCode
-
-            self.manufacturer = manufacturer
-
-            self.rawMeta = rawMeta
-
-            self.modifiedBy = modifiedBy
-
-            self.uid = uid
+            self.expirationDate = expirationDate
 
             self.addedOnStore = addedOnStore
 
+            self.isSet = isSet
+
+            self.stage = stage
+
+            self.meta = meta
+
+            self.identifier = identifier
+
+            self.createdBy = createdBy
+
+            self.store = store
+
+            self.weight = weight
+
+            self.isActive = isActive
+
+            self.itemId = itemId
+
+            self.company = company
+
+            self.size = size
+
+            self.manufacturer = manufacturer
+
+            self.quantities = quantities
+
+            self.rawMeta = rawMeta
+
+            self.price = price
+
+            self.fyndItemCode = fyndItemCode
+
+            self.fyndArticleCode = fyndArticleCode
+
+            self.sellerIdentifier = sellerIdentifier
+
             self.fragile = fragile
 
+            self.brand = brand
+
+            self.uid = uid
+
             self.taxIdentifier = taxIdentifier
+
+            self.countryOfOrigin = countryOfOrigin
+
+            self.totalQuantity = totalQuantity
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            brand = try container.decode(BrandMeta.self, forKey: .brand)
-
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                trackInventory = try container.decode(Bool.self, forKey: .trackInventory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            fyndArticleCode = try container.decode(String.self, forKey: .fyndArticleCode)
+            do {
+                trader = try container.decode([Trader1].self, forKey: .trader)
 
-            price = try container.decode(PriceMeta.self, forKey: .price)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
-                expirationDate = try container.decode(String.self, forKey: .expirationDate)
+                modifiedBy = try container.decode(UserSerializer.self, forKey: .modifiedBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -250,23 +252,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                quantities = try container.decode(Quantities.self, forKey: .quantities)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 set = try container.decode(InventorySet.self, forKey: .set)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -281,16 +267,18 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            itemId = try container.decode(Int.self, forKey: .itemId)
+            do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
-            store = try container.decode(StoreMeta.self, forKey: .store)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            company = try container.decode(CompanyMeta.self, forKey: .company)
-
-            weight = try container.decode(WeightResponse.self, forKey: .weight)
+            dimension = try container.decode(DimensionResponse.self, forKey: .dimension)
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                expirationDate = try container.decode(String.self, forKey: .expirationDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -298,27 +286,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                trackInventory = try container.decode(Bool.self, forKey: .trackInventory)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                stage = try container.decode(String.self, forKey: .stage)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
-
-            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
-
-            do {
-                trader = try container.decode([Trader1].self, forKey: .trader)
+                addedOnStore = try container.decode(String.self, forKey: .addedOnStore)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -333,11 +301,23 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            do {
+                stage = try container.decode(String.self, forKey: .stage)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             identifier = try container.decode([String: Any].self, forKey: .identifier)
-
-            dimension = try container.decode(DimensionResponse.self, forKey: .dimension)
-
-            countryOfOrigin = try container.decode(String.self, forKey: .countryOfOrigin)
 
             do {
                 createdBy = try container.decode(UserSerializer.self, forKey: .createdBy)
@@ -347,11 +327,33 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            store = try container.decode(StoreMeta.self, forKey: .store)
+
+            weight = try container.decode(WeightResponse.self, forKey: .weight)
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            itemId = try container.decode(Int.self, forKey: .itemId)
+
+            company = try container.decode(CompanyMeta.self, forKey: .company)
+
             size = try container.decode(String.self, forKey: .size)
 
-            fyndItemCode = try container.decode(String.self, forKey: .fyndItemCode)
-
             manufacturer = try container.decode(ManufacturerResponse.self, forKey: .manufacturer)
+
+            do {
+                quantities = try container.decode(Quantities.self, forKey: .quantities)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 rawMeta = try container.decode([String: Any].self, forKey: .rawMeta)
@@ -361,25 +363,19 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                modifiedBy = try container.decode(UserSerializer.self, forKey: .modifiedBy)
+            price = try container.decode(PriceMeta.self, forKey: .price)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            fyndItemCode = try container.decode(String.self, forKey: .fyndItemCode)
 
-            uid = try container.decode(String.self, forKey: .uid)
+            fyndArticleCode = try container.decode(String.self, forKey: .fyndArticleCode)
 
-            do {
-                addedOnStore = try container.decode(String.self, forKey: .addedOnStore)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
 
             fragile = try container.decode(Bool.self, forKey: .fragile)
+
+            brand = try container.decode(BrandMeta.self, forKey: .brand)
+
+            uid = try container.decode(String.self, forKey: .uid)
 
             do {
                 taxIdentifier = try container.decode([String: Any].self, forKey: .taxIdentifier)
@@ -388,78 +384,82 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            countryOfOrigin = try container.decode(String.self, forKey: .countryOfOrigin)
+
+            totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(fyndArticleCode, forKey: .fyndArticleCode)
-
-            try? container.encodeIfPresent(price, forKey: .price)
-
-            try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
-
-            try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
-
-            try? container.encodeIfPresent(quantities, forKey: .quantities)
-
-            try? container.encodeIfPresent(set, forKey: .set)
-
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(fyndMeta, forKey: .fyndMeta)
-
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-
-            try? container.encodeIfPresent(store, forKey: .store)
-
-            try? container.encodeIfPresent(company, forKey: .company)
-
-            try? container.encodeIfPresent(weight, forKey: .weight)
-
-            try? container.encode(meta, forKey: .meta)
-
             try? container.encodeIfPresent(trackInventory, forKey: .trackInventory)
-
-            try? container.encodeIfPresent(stage, forKey: .stage)
-
-            try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
-
-            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
             try? container.encode(trader, forKey: .trader)
 
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
+            try? container.encode(modifiedBy, forKey: .modifiedBy)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
+
+            try? container.encodeIfPresent(set, forKey: .set)
+
+            try? container.encodeIfPresent(fyndMeta, forKey: .fyndMeta)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(dimension, forKey: .dimension)
 
-            try? container.encodeIfPresent(countryOfOrigin, forKey: .countryOfOrigin)
-
-            try? container.encode(createdBy, forKey: .createdBy)
-
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(fyndItemCode, forKey: .fyndItemCode)
-
-            try? container.encodeIfPresent(manufacturer, forKey: .manufacturer)
-
-            try? container.encodeIfPresent(rawMeta, forKey: .rawMeta)
-
-            try? container.encode(modifiedBy, forKey: .modifiedBy)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
 
             try? container.encodeIfPresent(addedOnStore, forKey: .addedOnStore)
 
+            try? container.encodeIfPresent(isSet, forKey: .isSet)
+
+            try? container.encodeIfPresent(stage, forKey: .stage)
+
+            try? container.encode(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encode(createdBy, forKey: .createdBy)
+
+            try? container.encodeIfPresent(store, forKey: .store)
+
+            try? container.encodeIfPresent(weight, forKey: .weight)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
+
+            try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(manufacturer, forKey: .manufacturer)
+
+            try? container.encodeIfPresent(quantities, forKey: .quantities)
+
+            try? container.encodeIfPresent(rawMeta, forKey: .rawMeta)
+
+            try? container.encodeIfPresent(price, forKey: .price)
+
+            try? container.encodeIfPresent(fyndItemCode, forKey: .fyndItemCode)
+
+            try? container.encodeIfPresent(fyndArticleCode, forKey: .fyndArticleCode)
+
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+
             try? container.encodeIfPresent(fragile, forKey: .fragile)
 
+            try? container.encodeIfPresent(brand, forKey: .brand)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
             try? container.encodeIfPresent(taxIdentifier, forKey: .taxIdentifier)
+
+            try? container.encodeIfPresent(countryOfOrigin, forKey: .countryOfOrigin)
+
+            try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
         }
     }
 }

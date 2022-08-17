@@ -10,42 +10,42 @@ public extension PlatformClient {
     class OrderConfig: Codable {
         public var articleLookup: String?
 
-        public var bagEndState: String?
-
-        public var storeLookup: String?
+        public var affiliateStoreIdMapping: [AffiliateStoreIdMapping]
 
         public var affiliate: Affiliate
 
         public var createUser: Bool?
 
-        public var affiliateStoreIdMapping: [AffiliateStoreIdMapping]
+        public var storeLookup: String?
+
+        public var bagEndState: String?
 
         public enum CodingKeys: String, CodingKey {
             case articleLookup = "article_lookup"
 
-            case bagEndState = "bag_end_state"
-
-            case storeLookup = "store_lookup"
+            case affiliateStoreIdMapping = "affiliate_store_id_mapping"
 
             case affiliate
 
             case createUser = "create_user"
 
-            case affiliateStoreIdMapping = "affiliate_store_id_mapping"
+            case storeLookup = "store_lookup"
+
+            case bagEndState = "bag_end_state"
         }
 
         public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, createUser: Bool? = nil, storeLookup: String? = nil) {
             self.articleLookup = articleLookup
 
-            self.bagEndState = bagEndState
-
-            self.storeLookup = storeLookup
+            self.affiliateStoreIdMapping = affiliateStoreIdMapping
 
             self.affiliate = affiliate
 
             self.createUser = createUser
 
-            self.affiliateStoreIdMapping = affiliateStoreIdMapping
+            self.storeLookup = storeLookup
+
+            self.bagEndState = bagEndState
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,8 +59,12 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
+
+            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
+
             do {
-                bagEndState = try container.decode(String.self, forKey: .bagEndState)
+                createUser = try container.decode(Bool.self, forKey: .createUser)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,17 +79,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
-
             do {
-                createUser = try container.decode(Bool.self, forKey: .createUser)
+                bagEndState = try container.decode(String.self, forKey: .bagEndState)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -93,15 +93,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(articleLookup, forKey: .articleLookup)
 
-            try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
-
-            try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
+            try? container.encodeIfPresent(affiliateStoreIdMapping, forKey: .affiliateStoreIdMapping)
 
             try? container.encodeIfPresent(affiliate, forKey: .affiliate)
 
             try? container.encodeIfPresent(createUser, forKey: .createUser)
 
-            try? container.encodeIfPresent(affiliateStoreIdMapping, forKey: .affiliateStoreIdMapping)
+            try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
+
+            try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
         }
     }
 }
