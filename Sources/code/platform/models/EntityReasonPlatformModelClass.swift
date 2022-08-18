@@ -3,26 +3,26 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: UnArchiveUserSuccess
-         Used By: User
+         Model: EntityReason
+         Used By: Order
      */
 
-    class UnArchiveUserSuccess: Codable {
-        public var success: Bool?
+    class EntityReason: Codable {
+        public var bagIds: ReasonsPerEntity?
 
         public enum CodingKeys: String, CodingKey {
-            case success
+            case bagIds = "bag_ids"
         }
 
-        public init(success: Bool? = nil) {
-            self.success = success
+        public init(bagIds: ReasonsPerEntity? = nil) {
+            self.bagIds = bagIds
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                bagIds = try container.decode(ReasonsPerEntity.self, forKey: .bagIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -33,7 +33,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(bagIds, forKey: .bagIds)
         }
     }
 }

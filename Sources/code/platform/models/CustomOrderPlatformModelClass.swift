@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class CustomOrder: Codable {
-        public var manufacturingTimeUnit: String?
-
         public var isCustomOrder: Bool?
+
+        public var manufacturingTimeUnit: String?
 
         public var manufacturingTime: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case manufacturingTimeUnit = "manufacturing_time_unit"
-
             case isCustomOrder = "is_custom_order"
+
+            case manufacturingTimeUnit = "manufacturing_time_unit"
 
             case manufacturingTime = "manufacturing_time"
         }
 
         public init(isCustomOrder: Bool? = nil, manufacturingTime: Int? = nil, manufacturingTimeUnit: String? = nil) {
-            self.manufacturingTimeUnit = manufacturingTimeUnit
-
             self.isCustomOrder = isCustomOrder
+
+            self.manufacturingTimeUnit = manufacturingTimeUnit
 
             self.manufacturingTime = manufacturingTime
         }
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                manufacturingTimeUnit = try container.decode(String.self, forKey: .manufacturingTimeUnit)
+                isCustomOrder = try container.decode(Bool.self, forKey: .isCustomOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isCustomOrder = try container.decode(Bool.self, forKey: .isCustomOrder)
+                manufacturingTimeUnit = try container.decode(String.self, forKey: .manufacturingTimeUnit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,9 +61,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
-
             try? container.encodeIfPresent(isCustomOrder, forKey: .isCustomOrder)
+
+            try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
 
             try? container.encodeIfPresent(manufacturingTime, forKey: .manufacturingTime)
         }

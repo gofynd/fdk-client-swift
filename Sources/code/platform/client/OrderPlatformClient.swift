@@ -793,7 +793,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/order/v1.0/company/\(companyId)/create-order",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/create-order",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -822,6 +822,44 @@ public extension PlatformClient {
         /**
          *
          * Summary:
+         * Description:
+         **/
+        public func updateShipmentStatus(
+            body: UpdateShipmentStatusPayload,
+            onResponse: @escaping (_ response: UpdateShipmentStatusResponse1?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/update-shipment-status",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(UpdateShipmentStatusResponse1.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary:
          * Description: Invalidate shipment Cache
          **/
         public func invalidateShipmentCache(
@@ -831,7 +869,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
-                url: "/service/platform/order/v1.0/company/\(companyId)/update-cache",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/update-cache",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -869,7 +907,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/order/v1.0/company/\(companyId)/store/reassign-internal",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/store/reassign-internal",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -883,6 +921,44 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(StoreReassignResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary:
+         * Description: update shipment lock
+         **/
+        public func updateShipmentLock(
+            body: UpdateShipmentLockPayload,
+            onResponse: @escaping (_ response: UpdateShipmentLockResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/entity/lock-manager",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(UpdateShipmentLockResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
