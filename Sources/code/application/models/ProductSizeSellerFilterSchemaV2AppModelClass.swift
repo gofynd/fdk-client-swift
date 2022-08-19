@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class ProductSizeSellerFilterSchemaV2: Codable {
         public var name: String?
 
-        public var value: String?
-
         public var isSelected: Bool?
+
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case value
-
             case isSelected = "is_selected"
+
+            case value
         }
 
         public init(isSelected: Bool? = nil, name: String? = nil, value: String? = nil) {
             self.name = name
 
-            self.value = value
-
             self.isSelected = isSelected
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                isSelected = try container.decode(Bool.self, forKey: .isSelected)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(isSelected, forKey: .isSelected)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
