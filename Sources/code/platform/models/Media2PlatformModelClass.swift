@@ -10,24 +10,24 @@ public extension PlatformClient {
     class Media2: Codable {
         public var portrait: String
 
-        public var landscape: String
-
         public var logo: String
+
+        public var landscape: String
 
         public enum CodingKeys: String, CodingKey {
             case portrait
 
-            case landscape
-
             case logo
+
+            case landscape
         }
 
         public init(landscape: String, logo: String, portrait: String) {
             self.portrait = portrait
 
-            self.landscape = landscape
-
             self.logo = logo
+
+            self.landscape = landscape
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             portrait = try container.decode(String.self, forKey: .portrait)
 
-            landscape = try container.decode(String.self, forKey: .landscape)
-
             logo = try container.decode(String.self, forKey: .logo)
+
+            landscape = try container.decode(String.self, forKey: .landscape)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(portrait, forKey: .portrait)
 
-            try? container.encodeIfPresent(landscape, forKey: .landscape)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(landscape, forKey: .landscape)
         }
     }
 }
