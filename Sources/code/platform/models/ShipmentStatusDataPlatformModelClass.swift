@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var bagList: [Int]?
 
-        public var shipmentId: String?
-
         public var id: Int?
+
+        public var shipmentId: String?
 
         public var createdAt: String?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case bagList = "bag_list"
 
-            case shipmentId = "shipment_id"
-
             case id
+
+            case shipmentId = "shipment_id"
 
             case createdAt = "created_at"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.bagList = bagList
 
-            self.shipmentId = shipmentId
-
             self.id = id
+
+            self.shipmentId = shipmentId
 
             self.createdAt = createdAt
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(bagList, forKey: .bagList)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encode(createdAt, forKey: .createdAt)
         }

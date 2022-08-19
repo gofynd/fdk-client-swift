@@ -10,26 +10,26 @@ public extension PlatformClient {
     class Shipment1: Codable {
         public var totalItems: String
 
-        public var shipmentStatus: String
-
-        public var prices: ShipmentPricesDataSet?
-
         public var orderId: String
 
         public var shipmentId: String
+
+        public var prices: ShipmentPricesDataSet?
+
+        public var shipmentStatus: String
 
         public var rtdDone: String
 
         public enum CodingKeys: String, CodingKey {
             case totalItems = "total_items"
 
-            case shipmentStatus = "shipment_status"
-
-            case prices
-
             case orderId = "order_id"
 
             case shipmentId = "shipment_id"
+
+            case prices
+
+            case shipmentStatus = "shipment_status"
 
             case rtdDone = "rtd_done"
         }
@@ -37,13 +37,13 @@ public extension PlatformClient {
         public init(orderId: String, prices: ShipmentPricesDataSet? = nil, rtdDone: String, shipmentId: String, shipmentStatus: String, totalItems: String) {
             self.totalItems = totalItems
 
-            self.shipmentStatus = shipmentStatus
-
-            self.prices = prices
-
             self.orderId = orderId
 
             self.shipmentId = shipmentId
+
+            self.prices = prices
+
+            self.shipmentStatus = shipmentStatus
 
             self.rtdDone = rtdDone
         }
@@ -53,7 +53,9 @@ public extension PlatformClient {
 
             totalItems = try container.decode(String.self, forKey: .totalItems)
 
-            shipmentStatus = try container.decode(String.self, forKey: .shipmentStatus)
+            orderId = try container.decode(String.self, forKey: .orderId)
+
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             do {
                 prices = try container.decode(ShipmentPricesDataSet.self, forKey: .prices)
@@ -63,9 +65,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            orderId = try container.decode(String.self, forKey: .orderId)
-
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
+            shipmentStatus = try container.decode(String.self, forKey: .shipmentStatus)
 
             rtdDone = try container.decode(String.self, forKey: .rtdDone)
         }
@@ -75,13 +75,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(totalItems, forKey: .totalItems)
 
-            try? container.encodeIfPresent(shipmentStatus, forKey: .shipmentStatus)
-
-            try? container.encodeIfPresent(prices, forKey: .prices)
-
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(prices, forKey: .prices)
+
+            try? container.encodeIfPresent(shipmentStatus, forKey: .shipmentStatus)
 
             try? container.encodeIfPresent(rtdDone, forKey: .rtdDone)
         }

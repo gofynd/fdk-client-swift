@@ -10,24 +10,24 @@ public extension PlatformClient {
     class PlatformShipmentStatusInternal: Codable {
         public var statuses: Statuses?
 
-        public var forceTransition: Bool?
-
         public var task: Bool?
+
+        public var forceTransition: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case statuses
 
-            case forceTransition = "force_transition"
-
             case task
+
+            case forceTransition = "force_transition"
         }
 
         public init(forceTransition: Bool? = nil, statuses: Statuses? = nil, task: Bool? = nil) {
             self.statuses = statuses
 
-            self.forceTransition = forceTransition
-
             self.task = task
+
+            self.forceTransition = forceTransition
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
+                task = try container.decode(Bool.self, forKey: .task)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                task = try container.decode(Bool.self, forKey: .task)
+                forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(statuses, forKey: .statuses)
 
-            try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
-
             try? container.encodeIfPresent(task, forKey: .task)
+
+            try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
         }
     }
 }
