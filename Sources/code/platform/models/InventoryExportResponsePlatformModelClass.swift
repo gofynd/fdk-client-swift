@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var sellerId: Int
 
-        public var status: String?
-
         public var requestParams: [String: Any]?
+
+        public var status: String?
 
         public var triggerOn: String?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case sellerId = "seller_id"
 
-            case status
-
             case requestParams = "request_params"
+
+            case status
 
             case triggerOn = "trigger_on"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.sellerId = sellerId
 
-            self.status = status
-
             self.requestParams = requestParams
+
+            self.status = status
 
             self.triggerOn = triggerOn
         }
@@ -50,7 +50,7 @@ public extension PlatformClient {
             sellerId = try container.decode(Int.self, forKey: .sellerId)
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                requestParams = try container.decode([String: Any].self, forKey: .requestParams)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,7 +58,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                requestParams = try container.decode([String: Any].self, forKey: .requestParams)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,9 +81,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(requestParams, forKey: .requestParams)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
         }
