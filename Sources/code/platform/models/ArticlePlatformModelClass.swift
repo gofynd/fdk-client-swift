@@ -8,108 +8,84 @@ public extension PlatformClient {
      */
 
     class Article: Codable {
-        public var uid: String
-
-        public var size: String
-
-        public var code: String?
+        public var espModified: [String: Any]?
 
         public var id: String
 
-        public var rawMeta: [String: Any]?
-
-        public var identifiers: [String: Any]
-
-        public var espModified: [String: Any]?
+        public var code: String?
 
         public var sellerIdentifier: String
 
-        public var aSet: [String: Any]?
-
         public var returnConfig: [String: Any]?
 
+        public var uid: String
+
         public var isSet: [String: Any]?
+
+        public var size: String
+
+        public var aSet: [String: Any]?
+
+        public var identifiers: [String: Any]
+
+        public var rawMeta: [String: Any]?
 
         public var childDetails: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case uid
-
-            case size
-
-            case code
+            case espModified = "esp_modified"
 
             case id = "_id"
 
-            case rawMeta = "raw_meta"
-
-            case identifiers
-
-            case espModified = "esp_modified"
+            case code
 
             case sellerIdentifier = "seller_identifier"
 
-            case aSet = "a_set"
-
             case returnConfig = "return_config"
 
+            case uid
+
             case isSet = "is_set"
+
+            case size
+
+            case aSet = "a_set"
+
+            case identifiers
+
+            case rawMeta = "raw_meta"
 
             case childDetails = "child_details"
         }
 
         public init(aSet: [String: Any]? = nil, childDetails: [String: Any]? = nil, code: String? = nil, espModified: [String: Any]? = nil, identifiers: [String: Any], isSet: [String: Any]? = nil, rawMeta: [String: Any]? = nil, returnConfig: [String: Any]? = nil, sellerIdentifier: String, size: String, uid: String, id: String) {
-            self.uid = uid
-
-            self.size = size
-
-            self.code = code
+            self.espModified = espModified
 
             self.id = id
 
-            self.rawMeta = rawMeta
-
-            self.identifiers = identifiers
-
-            self.espModified = espModified
+            self.code = code
 
             self.sellerIdentifier = sellerIdentifier
 
-            self.aSet = aSet
-
             self.returnConfig = returnConfig
 
+            self.uid = uid
+
             self.isSet = isSet
+
+            self.size = size
+
+            self.aSet = aSet
+
+            self.identifiers = identifiers
+
+            self.rawMeta = rawMeta
 
             self.childDetails = childDetails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            uid = try container.decode(String.self, forKey: .uid)
-
-            size = try container.decode(String.self, forKey: .size)
-
-            do {
-                code = try container.decode(String.self, forKey: .code)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            id = try container.decode(String.self, forKey: .id)
-
-            do {
-                rawMeta = try container.decode([String: Any].self, forKey: .rawMeta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            identifiers = try container.decode([String: Any].self, forKey: .identifiers)
 
             do {
                 espModified = try container.decode([String: Any].self, forKey: .espModified)
@@ -119,15 +95,17 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+            id = try container.decode(String.self, forKey: .id)
 
             do {
-                aSet = try container.decode([String: Any].self, forKey: .aSet)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
 
             do {
                 returnConfig = try container.decode([String: Any].self, forKey: .returnConfig)
@@ -137,8 +115,30 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            uid = try container.decode(String.self, forKey: .uid)
+
             do {
                 isSet = try container.decode([String: Any].self, forKey: .isSet)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            size = try container.decode(String.self, forKey: .size)
+
+            do {
+                aSet = try container.decode([String: Any].self, forKey: .aSet)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            identifiers = try container.decode([String: Any].self, forKey: .identifiers)
+
+            do {
+                rawMeta = try container.decode([String: Any].self, forKey: .rawMeta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -157,27 +157,27 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encode(code, forKey: .code)
+            try? container.encode(espModified, forKey: .espModified)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encode(rawMeta, forKey: .rawMeta)
-
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
-
-            try? container.encode(espModified, forKey: .espModified)
+            try? container.encode(code, forKey: .code)
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
-            try? container.encode(aSet, forKey: .aSet)
-
             try? container.encode(returnConfig, forKey: .returnConfig)
 
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
             try? container.encodeIfPresent(isSet, forKey: .isSet)
+
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encode(aSet, forKey: .aSet)
+
+            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+
+            try? container.encode(rawMeta, forKey: .rawMeta)
 
             try? container.encode(childDetails, forKey: .childDetails)
         }

@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class GetCatalogConfigurationDetailsProduct: Codable {
-        public var compare: [String: Any]?
-
         public var similar: [String: Any]?
+
+        public var compare: [String: Any]?
 
         public var detail: [String: Any]?
 
         public var variant: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case compare
-
             case similar
+
+            case compare
 
             case detail
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(compare: [String: Any]? = nil, detail: [String: Any]? = nil, similar: [String: Any]? = nil, variant: [String: Any]? = nil) {
-            self.compare = compare
-
             self.similar = similar
+
+            self.compare = compare
 
             self.detail = detail
 
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                compare = try container.decode([String: Any].self, forKey: .compare)
+                similar = try container.decode([String: Any].self, forKey: .similar)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                similar = try container.decode([String: Any].self, forKey: .similar)
+                compare = try container.decode([String: Any].self, forKey: .compare)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,9 +75,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(compare, forKey: .compare)
-
             try? container.encodeIfPresent(similar, forKey: .similar)
+
+            try? container.encodeIfPresent(compare, forKey: .compare)
 
             try? container.encodeIfPresent(detail, forKey: .detail)
 

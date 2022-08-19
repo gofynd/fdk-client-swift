@@ -8,27 +8,27 @@ public extension PlatformClient {
      */
 
     class OrderTaxDetails: Codable {
-        public var b2BGstinNumber: String?
-
         public var gstin: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case b2BGstinNumber = "b2b_gstin_number"
+        public var b2BGstinNumber: String?
 
+        public enum CodingKeys: String, CodingKey {
             case gstin
+
+            case b2BGstinNumber = "b2b_gstin_number"
         }
 
         public init(b2BGstinNumber: String? = nil, gstin: String? = nil) {
-            self.b2BGstinNumber = b2BGstinNumber
-
             self.gstin = gstin
+
+            self.b2BGstinNumber = b2BGstinNumber
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                b2BGstinNumber = try container.decode(String.self, forKey: .b2BGstinNumber)
+                gstin = try container.decode(String.self, forKey: .gstin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                gstin = try container.decode(String.self, forKey: .gstin)
+                b2BGstinNumber = try container.decode(String.self, forKey: .b2BGstinNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(b2BGstinNumber, forKey: .b2BGstinNumber)
-
             try? container.encode(gstin, forKey: .gstin)
+
+            try? container.encode(b2BGstinNumber, forKey: .b2BGstinNumber)
         }
     }
 }

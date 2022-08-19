@@ -8,157 +8,155 @@ public extension PlatformClient {
      */
 
     class ShipmentDetails1: Codable {
-        public var meta: ShipmentMeta
+        public var deliveryAddressJson: DeliveryAddress
 
-        public var lockStatus: String
+        public var storeInvoiceId: String?
 
-        public var creditNoteId: String?
-
-        public var deliveryAwbNumber: String?
-
-        public var sId: String
-
-        public var affiliateId: String
+        public var parentType: String?
 
         public var tags: [String]?
 
-        public var packagingType: String
-
-        public var parentId: String?
-
-        public var sdType: String
-
-        public var ewayBillId: String?
-
-        public var deliveryAddressJson: DeliveryAddress
-
-        public var affiliateShipmentId: String
-
-        public var billingAddressJson: BillingAddress1
-
-        public var createdAt: Int
-
         public var fyndOrderId: String
 
-        public var pdfLinks: PDFLinks
-
-        public var fulfilmentPriority: Int
+        public var creditNoteId: String?
 
         public var isActive: Bool
 
         public var handOverContactJson: ShipmentHandOverCustomerContact
 
-        public var parentType: String?
+        public var createdAt: Int
+
+        public var meta: ShipmentMeta
+
+        public var billingAddressJson: BillingAddress1
+
+        public var lockStatus: String
+
+        public var affiliateShipmentId: String
+
+        public var deliveryAwbNumber: String?
+
+        public var ewayBillId: String?
+
+        public var packagingType: String
+
+        public var fulfilmentPriority: Int
+
+        public var pdfLinks: PDFLinks
+
+        public var affiliateId: String
+
+        public var parentId: String?
 
         public var previousShipmentId: String?
 
-        public var storeInvoiceId: String?
+        public var sdType: String
+
+        public var sId: String
 
         public enum CodingKeys: String, CodingKey {
-            case meta
+            case deliveryAddressJson = "delivery_address_json"
 
-            case lockStatus = "lock_status"
+            case storeInvoiceId = "store_invoice_id"
 
-            case creditNoteId = "credit_note_id"
-
-            case deliveryAwbNumber = "delivery_awb_number"
-
-            case sId = "s_id"
-
-            case affiliateId = "affiliate_id"
+            case parentType = "parent_type"
 
             case tags
 
-            case packagingType = "packaging_type"
-
-            case parentId = "parent_id"
-
-            case sdType = "sd_type"
-
-            case ewayBillId = "eway_bill_id"
-
-            case deliveryAddressJson = "delivery_address_json"
-
-            case affiliateShipmentId = "affiliate_shipment_id"
-
-            case billingAddressJson = "billing_address_json"
-
-            case createdAt = "created_at"
-
             case fyndOrderId = "fynd_order_id"
 
-            case pdfLinks = "pdf_links"
-
-            case fulfilmentPriority = "fulfilment_priority"
+            case creditNoteId = "credit_note_id"
 
             case isActive = "is_active"
 
             case handOverContactJson = "hand_over_contact_json"
 
-            case parentType = "parent_type"
+            case createdAt = "created_at"
+
+            case meta
+
+            case billingAddressJson = "billing_address_json"
+
+            case lockStatus = "lock_status"
+
+            case affiliateShipmentId = "affiliate_shipment_id"
+
+            case deliveryAwbNumber = "delivery_awb_number"
+
+            case ewayBillId = "eway_bill_id"
+
+            case packagingType = "packaging_type"
+
+            case fulfilmentPriority = "fulfilment_priority"
+
+            case pdfLinks = "pdf_links"
+
+            case affiliateId = "affiliate_id"
+
+            case parentId = "parent_id"
 
             case previousShipmentId = "previous_shipment_id"
 
-            case storeInvoiceId = "store_invoice_id"
+            case sdType = "sd_type"
+
+            case sId = "s_id"
         }
 
         public init(affiliateId: String, affiliateShipmentId: String, billingAddressJson: BillingAddress1, createdAt: Int, creditNoteId: String? = nil, deliveryAddressJson: DeliveryAddress, deliveryAwbNumber: String? = nil, ewayBillId: String? = nil, fulfilmentPriority: Int, fyndOrderId: String, handOverContactJson: ShipmentHandOverCustomerContact, isActive: Bool, lockStatus: String, meta: ShipmentMeta, packagingType: String, parentId: String? = nil, parentType: String? = nil, pdfLinks: PDFLinks, previousShipmentId: String? = nil, sdType: String, storeInvoiceId: String? = nil, sId: String, tags: [String]? = nil) {
-            self.meta = meta
+            self.deliveryAddressJson = deliveryAddressJson
 
-            self.lockStatus = lockStatus
+            self.storeInvoiceId = storeInvoiceId
 
-            self.creditNoteId = creditNoteId
-
-            self.deliveryAwbNumber = deliveryAwbNumber
-
-            self.sId = sId
-
-            self.affiliateId = affiliateId
+            self.parentType = parentType
 
             self.tags = tags
 
-            self.packagingType = packagingType
-
-            self.parentId = parentId
-
-            self.sdType = sdType
-
-            self.ewayBillId = ewayBillId
-
-            self.deliveryAddressJson = deliveryAddressJson
-
-            self.affiliateShipmentId = affiliateShipmentId
-
-            self.billingAddressJson = billingAddressJson
-
-            self.createdAt = createdAt
-
             self.fyndOrderId = fyndOrderId
 
-            self.pdfLinks = pdfLinks
-
-            self.fulfilmentPriority = fulfilmentPriority
+            self.creditNoteId = creditNoteId
 
             self.isActive = isActive
 
             self.handOverContactJson = handOverContactJson
 
-            self.parentType = parentType
+            self.createdAt = createdAt
+
+            self.meta = meta
+
+            self.billingAddressJson = billingAddressJson
+
+            self.lockStatus = lockStatus
+
+            self.affiliateShipmentId = affiliateShipmentId
+
+            self.deliveryAwbNumber = deliveryAwbNumber
+
+            self.ewayBillId = ewayBillId
+
+            self.packagingType = packagingType
+
+            self.fulfilmentPriority = fulfilmentPriority
+
+            self.pdfLinks = pdfLinks
+
+            self.affiliateId = affiliateId
+
+            self.parentId = parentId
 
             self.previousShipmentId = previousShipmentId
 
-            self.storeInvoiceId = storeInvoiceId
+            self.sdType = sdType
+
+            self.sId = sId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            meta = try container.decode(ShipmentMeta.self, forKey: .meta)
-
-            lockStatus = try container.decode(String.self, forKey: .lockStatus)
+            deliveryAddressJson = try container.decode(DeliveryAddress.self, forKey: .deliveryAddressJson)
 
             do {
-                creditNoteId = try container.decode(String.self, forKey: .creditNoteId)
+                storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -166,16 +164,12 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                deliveryAwbNumber = try container.decode(String.self, forKey: .deliveryAwbNumber)
+                parentType = try container.decode(String.self, forKey: .parentType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            sId = try container.decode(String.self, forKey: .sId)
-
-            affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
             do {
                 tags = try container.decode([String].self, forKey: .tags)
@@ -185,17 +179,37 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            packagingType = try container.decode(String.self, forKey: .packagingType)
+            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
 
             do {
-                parentId = try container.decode(String.self, forKey: .parentId)
+                creditNoteId = try container.decode(String.self, forKey: .creditNoteId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            sdType = try container.decode(String.self, forKey: .sdType)
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            handOverContactJson = try container.decode(ShipmentHandOverCustomerContact.self, forKey: .handOverContactJson)
+
+            createdAt = try container.decode(Int.self, forKey: .createdAt)
+
+            meta = try container.decode(ShipmentMeta.self, forKey: .meta)
+
+            billingAddressJson = try container.decode(BillingAddress1.self, forKey: .billingAddressJson)
+
+            lockStatus = try container.decode(String.self, forKey: .lockStatus)
+
+            affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
+
+            do {
+                deliveryAwbNumber = try container.decode(String.self, forKey: .deliveryAwbNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 ewayBillId = try container.decode(String.self, forKey: .ewayBillId)
@@ -205,26 +219,16 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            deliveryAddressJson = try container.decode(DeliveryAddress.self, forKey: .deliveryAddressJson)
-
-            affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
-
-            billingAddressJson = try container.decode(BillingAddress1.self, forKey: .billingAddressJson)
-
-            createdAt = try container.decode(Int.self, forKey: .createdAt)
-
-            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
-
-            pdfLinks = try container.decode(PDFLinks.self, forKey: .pdfLinks)
+            packagingType = try container.decode(String.self, forKey: .packagingType)
 
             fulfilmentPriority = try container.decode(Int.self, forKey: .fulfilmentPriority)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
+            pdfLinks = try container.decode(PDFLinks.self, forKey: .pdfLinks)
 
-            handOverContactJson = try container.decode(ShipmentHandOverCustomerContact.self, forKey: .handOverContactJson)
+            affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
             do {
-                parentType = try container.decode(String.self, forKey: .parentType)
+                parentId = try container.decode(String.self, forKey: .parentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -239,63 +243,59 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
+            sdType = try container.decode(String.self, forKey: .sdType)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            sId = try container.decode(String.self, forKey: .sId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(deliveryAddressJson, forKey: .deliveryAddressJson)
 
-            try? container.encode(lockStatus, forKey: .lockStatus)
+            try? container.encode(storeInvoiceId, forKey: .storeInvoiceId)
 
-            try? container.encode(creditNoteId, forKey: .creditNoteId)
-
-            try? container.encode(deliveryAwbNumber, forKey: .deliveryAwbNumber)
-
-            try? container.encodeIfPresent(sId, forKey: .sId)
-
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+            try? container.encode(parentType, forKey: .parentType)
 
             try? container.encodeIfPresent(tags, forKey: .tags)
 
-            try? container.encodeIfPresent(packagingType, forKey: .packagingType)
-
-            try? container.encode(parentId, forKey: .parentId)
-
-            try? container.encodeIfPresent(sdType, forKey: .sdType)
-
-            try? container.encode(ewayBillId, forKey: .ewayBillId)
-
-            try? container.encodeIfPresent(deliveryAddressJson, forKey: .deliveryAddressJson)
-
-            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
-
-            try? container.encodeIfPresent(billingAddressJson, forKey: .billingAddressJson)
-
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
 
-            try? container.encodeIfPresent(pdfLinks, forKey: .pdfLinks)
-
-            try? container.encodeIfPresent(fulfilmentPriority, forKey: .fulfilmentPriority)
+            try? container.encode(creditNoteId, forKey: .creditNoteId)
 
             try? container.encode(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(handOverContactJson, forKey: .handOverContactJson)
 
-            try? container.encode(parentType, forKey: .parentType)
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(billingAddressJson, forKey: .billingAddressJson)
+
+            try? container.encode(lockStatus, forKey: .lockStatus)
+
+            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
+
+            try? container.encode(deliveryAwbNumber, forKey: .deliveryAwbNumber)
+
+            try? container.encode(ewayBillId, forKey: .ewayBillId)
+
+            try? container.encodeIfPresent(packagingType, forKey: .packagingType)
+
+            try? container.encodeIfPresent(fulfilmentPriority, forKey: .fulfilmentPriority)
+
+            try? container.encodeIfPresent(pdfLinks, forKey: .pdfLinks)
+
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+
+            try? container.encode(parentId, forKey: .parentId)
 
             try? container.encode(previousShipmentId, forKey: .previousShipmentId)
 
-            try? container.encode(storeInvoiceId, forKey: .storeInvoiceId)
+            try? container.encodeIfPresent(sdType, forKey: .sdType)
+
+            try? container.encodeIfPresent(sId, forKey: .sId)
         }
     }
 }

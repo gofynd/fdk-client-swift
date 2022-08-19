@@ -12,8 +12,6 @@ public extension PlatformClient {
 
         public var shipmentId: String
 
-        public var status: String
-
         public var bagList: [String]
 
         public var ssId: Int
@@ -22,12 +20,12 @@ public extension PlatformClient {
 
         public var statusCreatedAt: String?
 
+        public var status: String
+
         public enum CodingKeys: String, CodingKey {
             case createdAt = "created_at"
 
             case shipmentId = "shipment_id"
-
-            case status
 
             case bagList = "bag_list"
 
@@ -36,14 +34,14 @@ public extension PlatformClient {
             case currentShipmentStatus = "current_shipment_status"
 
             case statusCreatedAt = "status_created_at"
+
+            case status
         }
 
         public init(bagList: [String], createdAt: String, currentShipmentStatus: String? = nil, shipmentId: String, ssId: Int, status: String, statusCreatedAt: String? = nil) {
             self.createdAt = createdAt
 
             self.shipmentId = shipmentId
-
-            self.status = status
 
             self.bagList = bagList
 
@@ -52,6 +50,8 @@ public extension PlatformClient {
             self.currentShipmentStatus = currentShipmentStatus
 
             self.statusCreatedAt = statusCreatedAt
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -60,8 +60,6 @@ public extension PlatformClient {
             createdAt = try container.decode(String.self, forKey: .createdAt)
 
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
-            status = try container.decode(String.self, forKey: .status)
 
             bagList = try container.decode([String].self, forKey: .bagList)
 
@@ -82,6 +80,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            status = try container.decode(String.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -91,8 +91,6 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(bagList, forKey: .bagList)
 
             try? container.encodeIfPresent(ssId, forKey: .ssId)
@@ -100,6 +98,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(currentShipmentStatus, forKey: .currentShipmentStatus)
 
             try? container.encodeIfPresent(statusCreatedAt, forKey: .statusCreatedAt)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

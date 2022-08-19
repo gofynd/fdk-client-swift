@@ -1094,7 +1094,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/order/v1.0/company/\(companyId)/order-details",
+                url: "/service/platform/orders/v1.0/company/\(companyId)/order-details",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -1150,7 +1150,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/order/v1.0/company/\(companyId)/shipment-details-by-affiliate-bag-id",
+                url: "/service/platform/orders/v1.0/company/\(companyId)/shipment-details-by-affiliate-bag-id",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -1196,7 +1196,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/order/v1.0/company/\(companyId)/shipment-details-by-affiliate-shipment-id",
+                url: "/service/platform/orders/v1.0/company/\(companyId)/shipment-details-by-affiliate-shipment-id",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -1252,7 +1252,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/order/v1.0/company/\(companyId)/shipment-details-by-affiliate-order-id",
+                url: "/service/platform/orders/v1.0/company/\(companyId)/shipment-details-by-affiliate-order-id",
                 query: xQuery,
                 body: nil,
                 headers: [],
