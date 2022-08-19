@@ -10,30 +10,30 @@ public extension PlatformClient {
     class UpdateShipmentStatusPayload: Codable {
         public var lockAfterTransition: Bool?
 
-        public var unlockBeforeTransition: Bool?
+        public var entities: EntitiesDetail
 
         public var processInBackground: Bool?
 
-        public var entities: EntitiesDetail
+        public var unlockBeforeTransition: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case lockAfterTransition = "lock_after_transition"
 
-            case unlockBeforeTransition = "unlock_before_transition"
+            case entities
 
             case processInBackground = "process_in_background"
 
-            case entities
+            case unlockBeforeTransition = "unlock_before_transition"
         }
 
         public init(entities: EntitiesDetail, lockAfterTransition: Bool? = nil, processInBackground: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
             self.lockAfterTransition = lockAfterTransition
 
-            self.unlockBeforeTransition = unlockBeforeTransition
+            self.entities = entities
 
             self.processInBackground = processInBackground
 
-            self.entities = entities
+            self.unlockBeforeTransition = unlockBeforeTransition
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,13 +47,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            entities = try container.decode(EntitiesDetail.self, forKey: .entities)
 
             do {
                 processInBackground = try container.decode(Bool.self, forKey: .processInBackground)
@@ -63,7 +57,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            entities = try container.decode(EntitiesDetail.self, forKey: .entities)
+            do {
+                unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -71,11 +71,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
 
-            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
+            try? container.encodeIfPresent(entities, forKey: .entities)
 
             try? container.encodeIfPresent(processInBackground, forKey: .processInBackground)
 
-            try? container.encodeIfPresent(entities, forKey: .entities)
+            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
         }
     }
 }
