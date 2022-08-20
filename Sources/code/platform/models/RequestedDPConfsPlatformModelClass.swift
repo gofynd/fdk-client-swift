@@ -8,42 +8,44 @@ public extension PlatformClient {
      */
 
     class RequestedDPConfs: Codable {
+        public var rdpcId: Int
+
         public var awbType: String
 
         public var excludeDps: [Int]?
 
-        public var rdpcId: Int
+        public var isDpAssignedManually: Bool
 
         public var ewbn: [String: Any]?
 
-        public var isDpAssignedManually: Bool
-
         public enum CodingKeys: String, CodingKey {
+            case rdpcId = "rdpc_id"
+
             case awbType = "awb_type"
 
             case excludeDps = "exclude_dps"
 
-            case rdpcId = "rdpc_id"
+            case isDpAssignedManually = "is_dp_assigned_manually"
 
             case ewbn
-
-            case isDpAssignedManually = "is_dp_assigned_manually"
         }
 
         public init(awbType: String, ewbn: [String: Any]? = nil, excludeDps: [Int]? = nil, isDpAssignedManually: Bool, rdpcId: Int) {
+            self.rdpcId = rdpcId
+
             self.awbType = awbType
 
             self.excludeDps = excludeDps
 
-            self.rdpcId = rdpcId
+            self.isDpAssignedManually = isDpAssignedManually
 
             self.ewbn = ewbn
-
-            self.isDpAssignedManually = isDpAssignedManually
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            rdpcId = try container.decode(Int.self, forKey: .rdpcId)
 
             awbType = try container.decode(String.self, forKey: .awbType)
 
@@ -55,7 +57,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            rdpcId = try container.decode(Int.self, forKey: .rdpcId)
+            isDpAssignedManually = try container.decode(Bool.self, forKey: .isDpAssignedManually)
 
             do {
                 ewbn = try container.decode([String: Any].self, forKey: .ewbn)
@@ -64,22 +66,20 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            isDpAssignedManually = try container.decode(Bool.self, forKey: .isDpAssignedManually)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(rdpcId, forKey: .rdpcId)
+
             try? container.encodeIfPresent(awbType, forKey: .awbType)
 
             try? container.encodeIfPresent(excludeDps, forKey: .excludeDps)
 
-            try? container.encodeIfPresent(rdpcId, forKey: .rdpcId)
+            try? container.encodeIfPresent(isDpAssignedManually, forKey: .isDpAssignedManually)
 
             try? container.encode(ewbn, forKey: .ewbn)
-
-            try? container.encodeIfPresent(isDpAssignedManually, forKey: .isDpAssignedManually)
         }
     }
 }

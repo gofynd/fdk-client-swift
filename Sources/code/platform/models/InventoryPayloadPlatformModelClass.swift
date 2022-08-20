@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var priceEffective: Double?
 
-        public var totalQuantity: Int?
-
         public var sellerIdentifier: String
+
+        public var totalQuantity: Int?
 
         public var priceMarked: Double?
 
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case priceEffective = "price_effective"
 
-            case totalQuantity = "total_quantity"
-
             case sellerIdentifier = "seller_identifier"
+
+            case totalQuantity = "total_quantity"
 
             case priceMarked = "price_marked"
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
 
             self.priceEffective = priceEffective
 
-            self.totalQuantity = totalQuantity
-
             self.sellerIdentifier = sellerIdentifier
+
+            self.totalQuantity = totalQuantity
 
             self.priceMarked = priceMarked
 
@@ -61,6 +61,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+
             do {
                 totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
 
@@ -68,8 +70,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
 
             do {
                 priceMarked = try container.decode(Double.self, forKey: .priceMarked)
@@ -95,9 +95,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
 
-            try? container.encode(totalQuantity, forKey: .totalQuantity)
-
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+
+            try? container.encode(totalQuantity, forKey: .totalQuantity)
 
             try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
 

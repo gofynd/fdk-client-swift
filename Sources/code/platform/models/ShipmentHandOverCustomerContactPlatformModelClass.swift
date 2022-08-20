@@ -8,48 +8,52 @@ public extension PlatformClient {
      */
 
     class ShipmentHandOverCustomerContact: Codable {
-        public var phone: String?
+        public var contactPerson: String
 
         public var createdAt: String
 
+        public var phone: String?
+
         public var email: String?
-
-        public var contactPerson: String
-
-        public var version: String
 
         public var updatedAt: String
 
+        public var version: String
+
         public enum CodingKeys: String, CodingKey {
-            case phone
+            case contactPerson = "contact_person"
 
             case createdAt = "created_at"
 
+            case phone
+
             case email
 
-            case contactPerson = "contact_person"
+            case updatedAt = "updated_at"
 
             case version
-
-            case updatedAt = "updated_at"
         }
 
         public init(contactPerson: String, createdAt: String, email: String? = nil, phone: String? = nil, updatedAt: String, version: String) {
-            self.phone = phone
+            self.contactPerson = contactPerson
 
             self.createdAt = createdAt
 
+            self.phone = phone
+
             self.email = email
 
-            self.contactPerson = contactPerson
+            self.updatedAt = updatedAt
 
             self.version = version
-
-            self.updatedAt = updatedAt
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            contactPerson = try container.decode(String.self, forKey: .contactPerson)
+
+            createdAt = try container.decode(String.self, forKey: .createdAt)
 
             do {
                 phone = try container.decode(String.self, forKey: .phone)
@@ -59,8 +63,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            createdAt = try container.decode(String.self, forKey: .createdAt)
-
             do {
                 email = try container.decode(String.self, forKey: .email)
 
@@ -69,27 +71,25 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            contactPerson = try container.decode(String.self, forKey: .contactPerson)
+            updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
             version = try container.decode(String.self, forKey: .version)
-
-            updatedAt = try container.decode(String.self, forKey: .updatedAt)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(phone, forKey: .phone)
+            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
 
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
+            try? container.encodeIfPresent(phone, forKey: .phone)
+
             try? container.encodeIfPresent(email, forKey: .email)
 
-            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
             try? container.encodeIfPresent(version, forKey: .version)
-
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
         }
     }
 }

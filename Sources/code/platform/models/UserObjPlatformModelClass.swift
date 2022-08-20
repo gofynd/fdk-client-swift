@@ -8,70 +8,72 @@ public extension PlatformClient {
      */
 
     class UserObj: Codable {
-        public var firstName: String
+        public var isAnonymousUser: Bool
 
-        public var mongoUserId: String
+        public var gender: String
+
+        public var userOid: String
 
         public var uId: Int
 
         public var email: String?
 
-        public var lastName: String
-
-        public var userOid: String
+        public var firstName: String
 
         public var mobile: String
 
-        public var gender: String
+        public var lastName: String
 
-        public var isAnonymousUser: Bool
+        public var mongoUserId: String
 
         public enum CodingKeys: String, CodingKey {
-            case firstName = "first_name"
+            case isAnonymousUser = "is_anonymous_user"
 
-            case mongoUserId = "mongo_user_id"
+            case gender
+
+            case userOid = "user_oid"
 
             case uId = "u_id"
 
             case email
 
-            case lastName = "last_name"
-
-            case userOid = "user_oid"
+            case firstName = "first_name"
 
             case mobile
 
-            case gender
+            case lastName = "last_name"
 
-            case isAnonymousUser = "is_anonymous_user"
+            case mongoUserId = "mongo_user_id"
         }
 
         public init(email: String? = nil, firstName: String, gender: String, isAnonymousUser: Bool, lastName: String, mobile: String, mongoUserId: String, userOid: String, uId: Int) {
-            self.firstName = firstName
+            self.isAnonymousUser = isAnonymousUser
 
-            self.mongoUserId = mongoUserId
+            self.gender = gender
+
+            self.userOid = userOid
 
             self.uId = uId
 
             self.email = email
 
-            self.lastName = lastName
-
-            self.userOid = userOid
+            self.firstName = firstName
 
             self.mobile = mobile
 
-            self.gender = gender
+            self.lastName = lastName
 
-            self.isAnonymousUser = isAnonymousUser
+            self.mongoUserId = mongoUserId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            firstName = try container.decode(String.self, forKey: .firstName)
+            isAnonymousUser = try container.decode(Bool.self, forKey: .isAnonymousUser)
 
-            mongoUserId = try container.decode(String.self, forKey: .mongoUserId)
+            gender = try container.decode(String.self, forKey: .gender)
+
+            userOid = try container.decode(String.self, forKey: .userOid)
 
             uId = try container.decode(Int.self, forKey: .uId)
 
@@ -83,37 +85,35 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            lastName = try container.decode(String.self, forKey: .lastName)
-
-            userOid = try container.decode(String.self, forKey: .userOid)
+            firstName = try container.decode(String.self, forKey: .firstName)
 
             mobile = try container.decode(String.self, forKey: .mobile)
 
-            gender = try container.decode(String.self, forKey: .gender)
+            lastName = try container.decode(String.self, forKey: .lastName)
 
-            isAnonymousUser = try container.decode(Bool.self, forKey: .isAnonymousUser)
+            mongoUserId = try container.decode(String.self, forKey: .mongoUserId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
+            try? container.encodeIfPresent(isAnonymousUser, forKey: .isAnonymousUser)
 
-            try? container.encode(mongoUserId, forKey: .mongoUserId)
+            try? container.encode(gender, forKey: .gender)
+
+            try? container.encode(userOid, forKey: .userOid)
 
             try? container.encodeIfPresent(uId, forKey: .uId)
 
             try? container.encode(email, forKey: .email)
 
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
-
-            try? container.encode(userOid, forKey: .userOid)
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encode(gender, forKey: .gender)
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
 
-            try? container.encodeIfPresent(isAnonymousUser, forKey: .isAnonymousUser)
+            try? container.encode(mongoUserId, forKey: .mongoUserId)
         }
     }
 }

@@ -10,6 +10,8 @@ public extension PlatformClient {
     class ShipmentStatusCommon: Codable {
         public var createdAt: String
 
+        public var status: String
+
         public var shipmentId: String
 
         public var bagList: [String]
@@ -20,10 +22,10 @@ public extension PlatformClient {
 
         public var statusCreatedAt: String?
 
-        public var status: String
-
         public enum CodingKeys: String, CodingKey {
             case createdAt = "created_at"
+
+            case status
 
             case shipmentId = "shipment_id"
 
@@ -34,12 +36,12 @@ public extension PlatformClient {
             case currentShipmentStatus = "current_shipment_status"
 
             case statusCreatedAt = "status_created_at"
-
-            case status
         }
 
         public init(bagList: [String], createdAt: String, currentShipmentStatus: String? = nil, shipmentId: String, ssId: Int, status: String, statusCreatedAt: String? = nil) {
             self.createdAt = createdAt
+
+            self.status = status
 
             self.shipmentId = shipmentId
 
@@ -50,14 +52,14 @@ public extension PlatformClient {
             self.currentShipmentStatus = currentShipmentStatus
 
             self.statusCreatedAt = statusCreatedAt
-
-            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             createdAt = try container.decode(String.self, forKey: .createdAt)
+
+            status = try container.decode(String.self, forKey: .status)
 
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
@@ -80,14 +82,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            status = try container.decode(String.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encode(createdAt, forKey: .createdAt)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
@@ -98,8 +100,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(currentShipmentStatus, forKey: .currentShipmentStatus)
 
             try? container.encodeIfPresent(statusCreatedAt, forKey: .statusCreatedAt)
-
-            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

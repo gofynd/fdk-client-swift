@@ -8,40 +8,38 @@ public extension PlatformClient {
      */
 
     class ShipmentInvoice1: Codable {
+        public var storeInvoiceId: String
+
+        public var updatedDate: Int?
+
         public var labelUrl: String
 
         public var invoiceUrl: String
 
-        public var updatedDate: Int?
-
-        public var storeInvoiceId: String
-
         public enum CodingKeys: String, CodingKey {
-            case labelUrl = "label_url"
-
-            case invoiceUrl = "invoice_url"
+            case storeInvoiceId = "store_invoice_id"
 
             case updatedDate = "updated_date"
 
-            case storeInvoiceId = "store_invoice_id"
+            case labelUrl = "label_url"
+
+            case invoiceUrl = "invoice_url"
         }
 
         public init(invoiceUrl: String, labelUrl: String, storeInvoiceId: String, updatedDate: Int? = nil) {
-            self.labelUrl = labelUrl
-
-            self.invoiceUrl = invoiceUrl
+            self.storeInvoiceId = storeInvoiceId
 
             self.updatedDate = updatedDate
 
-            self.storeInvoiceId = storeInvoiceId
+            self.labelUrl = labelUrl
+
+            self.invoiceUrl = invoiceUrl
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            labelUrl = try container.decode(String.self, forKey: .labelUrl)
-
-            invoiceUrl = try container.decode(String.self, forKey: .invoiceUrl)
+            storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
 
             do {
                 updatedDate = try container.decode(Int.self, forKey: .updatedDate)
@@ -51,19 +49,21 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
+            labelUrl = try container.decode(String.self, forKey: .labelUrl)
+
+            invoiceUrl = try container.decode(String.self, forKey: .invoiceUrl)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
-
-            try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
+            try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
 
             try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
 
-            try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
+            try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
+
+            try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
         }
     }
 }

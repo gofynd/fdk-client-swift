@@ -8,205 +8,141 @@ public extension PlatformClient {
      */
 
     class Company1: Codable {
-        public var cst: String?
-
-        public var companyType: String?
-
-        public var tanNo: String?
-
-        public var createdOn: Int?
-
-        public var returnWithinDays: Int?
-
-        public var gstNumber: String?
-
-        public var meta: CompanyMeta?
-
-        public var cId: Int?
-
-        public var exchangeAllowed: Bool?
+        public var commission: Double?
 
         public var companyName: String?
 
-        public var vatNo: String?
+        public var createdOn: Int?
 
-        public var exchangeWithinDays: Int?
+        public var companyType: String?
 
-        public var agreementStartDate: Int?
-
-        public var returnAllowed: Bool?
-
-        public var modifiedOn: Int?
-
-        public var commission: Double?
-
-        public var panNo: String?
-
-        public var businessType: String?
+        public var cId: Int?
 
         public var fyndAFitAvailable: Bool
 
         public var paymentProcesingCharge: Double?
 
+        public var cst: String?
+
+        public var businessType: String?
+
+        public var modifiedOn: Int?
+
         public var paymentType: String?
 
+        public var exchangeWithinDays: Int?
+
+        public var gstNumber: String?
+
+        public var vatNo: String?
+
+        public var tanNo: String?
+
+        public var agreementStartDate: Int?
+
+        public var exchangeAllowed: Bool?
+
+        public var meta: CompanyMeta?
+
+        public var panNo: String?
+
+        public var returnWithinDays: Int?
+
+        public var returnAllowed: Bool?
+
         public enum CodingKeys: String, CodingKey {
-            case cst
-
-            case companyType = "company_type"
-
-            case tanNo = "tan_no"
-
-            case createdOn = "created_on"
-
-            case returnWithinDays = "return_within_days"
-
-            case gstNumber = "gst_number"
-
-            case meta
-
-            case cId = "c_id"
-
-            case exchangeAllowed = "exchange_allowed"
+            case commission
 
             case companyName = "company_name"
 
-            case vatNo = "vat_no"
+            case createdOn = "created_on"
 
-            case exchangeWithinDays = "exchange_within_days"
+            case companyType = "company_type"
 
-            case agreementStartDate = "agreement_start_date"
-
-            case returnAllowed = "return_allowed"
-
-            case modifiedOn = "modified_on"
-
-            case commission
-
-            case panNo = "pan_no"
-
-            case businessType = "business_type"
+            case cId = "c_id"
 
             case fyndAFitAvailable = "fynd_a_fit_available"
 
             case paymentProcesingCharge = "payment_procesing_charge"
 
+            case cst
+
+            case businessType = "business_type"
+
+            case modifiedOn = "modified_on"
+
             case paymentType = "payment_type"
+
+            case exchangeWithinDays = "exchange_within_days"
+
+            case gstNumber = "gst_number"
+
+            case vatNo = "vat_no"
+
+            case tanNo = "tan_no"
+
+            case agreementStartDate = "agreement_start_date"
+
+            case exchangeAllowed = "exchange_allowed"
+
+            case meta
+
+            case panNo = "pan_no"
+
+            case returnWithinDays = "return_within_days"
+
+            case returnAllowed = "return_allowed"
         }
 
         public init(agreementStartDate: Int? = nil, businessType: String? = nil, commission: Double? = nil, companyName: String? = nil, companyType: String? = nil, createdOn: Int? = nil, cst: String? = nil, cId: Int? = nil, exchangeAllowed: Bool? = nil, exchangeWithinDays: Int? = nil, fyndAFitAvailable: Bool, gstNumber: String? = nil, meta: CompanyMeta? = nil, modifiedOn: Int? = nil, panNo: String? = nil, paymentProcesingCharge: Double? = nil, paymentType: String? = nil, returnAllowed: Bool? = nil, returnWithinDays: Int? = nil, tanNo: String? = nil, vatNo: String? = nil) {
-            self.cst = cst
-
-            self.companyType = companyType
-
-            self.tanNo = tanNo
-
-            self.createdOn = createdOn
-
-            self.returnWithinDays = returnWithinDays
-
-            self.gstNumber = gstNumber
-
-            self.meta = meta
-
-            self.cId = cId
-
-            self.exchangeAllowed = exchangeAllowed
+            self.commission = commission
 
             self.companyName = companyName
 
-            self.vatNo = vatNo
+            self.createdOn = createdOn
 
-            self.exchangeWithinDays = exchangeWithinDays
+            self.companyType = companyType
 
-            self.agreementStartDate = agreementStartDate
-
-            self.returnAllowed = returnAllowed
-
-            self.modifiedOn = modifiedOn
-
-            self.commission = commission
-
-            self.panNo = panNo
-
-            self.businessType = businessType
+            self.cId = cId
 
             self.fyndAFitAvailable = fyndAFitAvailable
 
             self.paymentProcesingCharge = paymentProcesingCharge
 
+            self.cst = cst
+
+            self.businessType = businessType
+
+            self.modifiedOn = modifiedOn
+
             self.paymentType = paymentType
+
+            self.exchangeWithinDays = exchangeWithinDays
+
+            self.gstNumber = gstNumber
+
+            self.vatNo = vatNo
+
+            self.tanNo = tanNo
+
+            self.agreementStartDate = agreementStartDate
+
+            self.exchangeAllowed = exchangeAllowed
+
+            self.meta = meta
+
+            self.panNo = panNo
+
+            self.returnWithinDays = returnWithinDays
+
+            self.returnAllowed = returnAllowed
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                cst = try container.decode(String.self, forKey: .cst)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyType = try container.decode(String.self, forKey: .companyType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                tanNo = try container.decode(String.self, forKey: .tanNo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                createdOn = try container.decode(Int.self, forKey: .createdOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                returnWithinDays = try container.decode(Int.self, forKey: .returnWithinDays)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                gstNumber = try container.decode(String.self, forKey: .gstNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode(CompanyMeta.self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cId = try container.decode(Int.self, forKey: .cId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                exchangeAllowed = try container.decode(Bool.self, forKey: .exchangeAllowed)
+                commission = try container.decode(Double.self, forKey: .commission)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -222,7 +158,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                vatNo = try container.decode(String.self, forKey: .vatNo)
+                createdOn = try container.decode(Int.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -230,7 +166,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                exchangeWithinDays = try container.decode(Int.self, forKey: .exchangeWithinDays)
+                companyType = try container.decode(String.self, forKey: .companyType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -238,47 +174,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                agreementStartDate = try container.decode(Int.self, forKey: .agreementStartDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                returnAllowed = try container.decode(Bool.self, forKey: .returnAllowed)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                modifiedOn = try container.decode(Int.self, forKey: .modifiedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                commission = try container.decode(Double.self, forKey: .commission)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                panNo = try container.decode(String.self, forKey: .panNo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                businessType = try container.decode(String.self, forKey: .businessType)
+                cId = try container.decode(Int.self, forKey: .cId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -296,7 +192,111 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                cst = try container.decode(String.self, forKey: .cst)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                businessType = try container.decode(String.self, forKey: .businessType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                modifiedOn = try container.decode(Int.self, forKey: .modifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 paymentType = try container.decode(String.self, forKey: .paymentType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                exchangeWithinDays = try container.decode(Int.self, forKey: .exchangeWithinDays)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                gstNumber = try container.decode(String.self, forKey: .gstNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                vatNo = try container.decode(String.self, forKey: .vatNo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                tanNo = try container.decode(String.self, forKey: .tanNo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                agreementStartDate = try container.decode(Int.self, forKey: .agreementStartDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                exchangeAllowed = try container.decode(Bool.self, forKey: .exchangeAllowed)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode(CompanyMeta.self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                panNo = try container.decode(String.self, forKey: .panNo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                returnWithinDays = try container.decode(Int.self, forKey: .returnWithinDays)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                returnAllowed = try container.decode(Bool.self, forKey: .returnAllowed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -307,47 +307,47 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(cst, forKey: .cst)
-
-            try? container.encodeIfPresent(companyType, forKey: .companyType)
-
-            try? container.encode(tanNo, forKey: .tanNo)
-
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
-            try? container.encodeIfPresent(returnWithinDays, forKey: .returnWithinDays)
-
-            try? container.encodeIfPresent(gstNumber, forKey: .gstNumber)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(cId, forKey: .cId)
-
-            try? container.encodeIfPresent(exchangeAllowed, forKey: .exchangeAllowed)
+            try? container.encodeIfPresent(commission, forKey: .commission)
 
             try? container.encodeIfPresent(companyName, forKey: .companyName)
 
-            try? container.encode(vatNo, forKey: .vatNo)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encode(exchangeWithinDays, forKey: .exchangeWithinDays)
+            try? container.encodeIfPresent(companyType, forKey: .companyType)
 
-            try? container.encodeIfPresent(agreementStartDate, forKey: .agreementStartDate)
-
-            try? container.encodeIfPresent(returnAllowed, forKey: .returnAllowed)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(commission, forKey: .commission)
-
-            try? container.encodeIfPresent(panNo, forKey: .panNo)
-
-            try? container.encodeIfPresent(businessType, forKey: .businessType)
+            try? container.encodeIfPresent(cId, forKey: .cId)
 
             try? container.encodeIfPresent(fyndAFitAvailable, forKey: .fyndAFitAvailable)
 
             try? container.encodeIfPresent(paymentProcesingCharge, forKey: .paymentProcesingCharge)
 
+            try? container.encode(cst, forKey: .cst)
+
+            try? container.encodeIfPresent(businessType, forKey: .businessType)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
             try? container.encodeIfPresent(paymentType, forKey: .paymentType)
+
+            try? container.encode(exchangeWithinDays, forKey: .exchangeWithinDays)
+
+            try? container.encodeIfPresent(gstNumber, forKey: .gstNumber)
+
+            try? container.encode(vatNo, forKey: .vatNo)
+
+            try? container.encode(tanNo, forKey: .tanNo)
+
+            try? container.encodeIfPresent(agreementStartDate, forKey: .agreementStartDate)
+
+            try? container.encodeIfPresent(exchangeAllowed, forKey: .exchangeAllowed)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(panNo, forKey: .panNo)
+
+            try? container.encodeIfPresent(returnWithinDays, forKey: .returnWithinDays)
+
+            try? container.encodeIfPresent(returnAllowed, forKey: .returnAllowed)
         }
     }
 }

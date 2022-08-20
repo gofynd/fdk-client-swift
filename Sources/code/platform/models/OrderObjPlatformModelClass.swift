@@ -8,204 +8,204 @@ public extension PlatformClient {
      */
 
     class OrderObj: Codable {
-        public var promotionEffectiveDiscount: Double
-
-        public var fyndOrderId: String
-
-        public var source: String
-
-        public var modeOfPayment: String
-
-        public var headers: [String: Any]
-
-        public var orderingChannelLogo: String
-
-        public var meta: OrderMeta
-
-        public var discount: Double
-
-        public var collectBy: String
-
-        public var couponValue: Double
-
-        public var mongoCartId: [String: Any]
-
-        public var oId: Int
-
-        public var paymentModeId: Int
-
-        public var totalOrderValue: Double
-
-        public var cashbackApplied: Double
-
-        public var cashbackValue: Double
-
-        public var currency: String
-
-        public var orderValue: Double
-
         public var refundBy: String
-
-        public var taxDetails: OrderTaxDetails?
-
-        public var userId: Int
-
-        public var fyndCredits: Double
-
-        public var codCharges: Int
-
-        public var deliveryCharges: Double
-
-        public var affiliateId: String
-
-        public var affiliateOrderDate: String
-
-        public var paymentMethods: [String: Any]
 
         public var rawUserAgent: String
 
-        public var transactionId: String?
+        public var codCharges: Int
+
+        public var affiliateId: String
+
+        public var modeOfPayment: String
+
+        public var source: String
+
+        public var userId: Int
+
+        public var totalOrderValue: Double
+
+        public var createdTime: Int
+
+        public var cashbackApplied: Double
+
+        public var mongoCartId: [String: Any]
+
+        public var paymentModeId: Int
+
+        public var affiliateOrderDate: String
+
+        public var orderingChannelLogo: String
+
+        public var orderValue: Double
+
+        public var paymentMethods: [String: Any]
+
+        public var discount: Double
+
+        public var promotionEffectiveDiscount: Double
+
+        public var collectBy: String
+
+        public var deliveryCharges: Double
+
+        public var meta: OrderMeta
+
+        public var oId: Int
+
+        public var currency: String
+
+        public var taxDetails: OrderTaxDetails?
+
+        public var headers: [String: Any]
 
         public var affiliateOrderId: String
 
+        public var transactionId: String?
+
         public var orderingChannel: String
 
-        public var createdTime: Int
+        public var cashbackValue: Double
+
+        public var fyndCredits: Double
+
+        public var couponValue: Double
+
+        public var fyndOrderId: String
 
         public var prices: OrderPrices
 
         public enum CodingKeys: String, CodingKey {
-            case promotionEffectiveDiscount = "promotion_effective_discount"
-
-            case fyndOrderId = "fynd_order_id"
-
-            case source
-
-            case modeOfPayment = "mode_of_payment"
-
-            case headers
-
-            case orderingChannelLogo = "ordering_channel_logo"
-
-            case meta
-
-            case discount
-
-            case collectBy = "collect_by"
-
-            case couponValue = "coupon_value"
-
-            case mongoCartId = "mongo_cart_id"
-
-            case oId = "o_id"
-
-            case paymentModeId = "payment_mode_id"
-
-            case totalOrderValue = "total_order_value"
-
-            case cashbackApplied = "cashback_applied"
-
-            case cashbackValue = "cashback_value"
-
-            case currency
-
-            case orderValue = "order_value"
-
             case refundBy = "refund_by"
-
-            case taxDetails = "tax_details"
-
-            case userId = "user_id"
-
-            case fyndCredits = "fynd_credits"
-
-            case codCharges = "cod_charges"
-
-            case deliveryCharges = "delivery_charges"
-
-            case affiliateId = "affiliate_id"
-
-            case affiliateOrderDate = "affiliate_order_date"
-
-            case paymentMethods = "payment_methods"
 
             case rawUserAgent = "raw_user_agent"
 
-            case transactionId = "transaction_id"
+            case codCharges = "cod_charges"
+
+            case affiliateId = "affiliate_id"
+
+            case modeOfPayment = "mode_of_payment"
+
+            case source
+
+            case userId = "user_id"
+
+            case totalOrderValue = "total_order_value"
+
+            case createdTime = "created_time"
+
+            case cashbackApplied = "cashback_applied"
+
+            case mongoCartId = "mongo_cart_id"
+
+            case paymentModeId = "payment_mode_id"
+
+            case affiliateOrderDate = "affiliate_order_date"
+
+            case orderingChannelLogo = "ordering_channel_logo"
+
+            case orderValue = "order_value"
+
+            case paymentMethods = "payment_methods"
+
+            case discount
+
+            case promotionEffectiveDiscount = "promotion_effective_discount"
+
+            case collectBy = "collect_by"
+
+            case deliveryCharges = "delivery_charges"
+
+            case meta
+
+            case oId = "o_id"
+
+            case currency
+
+            case taxDetails = "tax_details"
+
+            case headers
 
             case affiliateOrderId = "affiliate_order_id"
 
+            case transactionId = "transaction_id"
+
             case orderingChannel = "ordering_channel"
 
-            case createdTime = "created_time"
+            case cashbackValue = "cashback_value"
+
+            case fyndCredits = "fynd_credits"
+
+            case couponValue = "coupon_value"
+
+            case fyndOrderId = "fynd_order_id"
 
             case prices
         }
 
         public init(affiliateId: String, affiliateOrderDate: String, affiliateOrderId: String, cashbackApplied: Double, cashbackValue: Double, codCharges: Int, collectBy: String, couponValue: Double, createdTime: Int, currency: String, deliveryCharges: Double, discount: Double, fyndCredits: Double, fyndOrderId: String, headers: [String: Any], meta: OrderMeta, modeOfPayment: String, mongoCartId: [String: Any], orderingChannel: String, orderingChannelLogo: String, orderValue: Double, oId: Int, paymentMethods: [String: Any], paymentModeId: Int, prices: OrderPrices, promotionEffectiveDiscount: Double, rawUserAgent: String, refundBy: String, source: String, taxDetails: OrderTaxDetails? = nil, totalOrderValue: Double, transactionId: String? = nil, userId: Int) {
-            self.promotionEffectiveDiscount = promotionEffectiveDiscount
-
-            self.fyndOrderId = fyndOrderId
-
-            self.source = source
-
-            self.modeOfPayment = modeOfPayment
-
-            self.headers = headers
-
-            self.orderingChannelLogo = orderingChannelLogo
-
-            self.meta = meta
-
-            self.discount = discount
-
-            self.collectBy = collectBy
-
-            self.couponValue = couponValue
-
-            self.mongoCartId = mongoCartId
-
-            self.oId = oId
-
-            self.paymentModeId = paymentModeId
-
-            self.totalOrderValue = totalOrderValue
-
-            self.cashbackApplied = cashbackApplied
-
-            self.cashbackValue = cashbackValue
-
-            self.currency = currency
-
-            self.orderValue = orderValue
-
             self.refundBy = refundBy
-
-            self.taxDetails = taxDetails
-
-            self.userId = userId
-
-            self.fyndCredits = fyndCredits
-
-            self.codCharges = codCharges
-
-            self.deliveryCharges = deliveryCharges
-
-            self.affiliateId = affiliateId
-
-            self.affiliateOrderDate = affiliateOrderDate
-
-            self.paymentMethods = paymentMethods
 
             self.rawUserAgent = rawUserAgent
 
-            self.transactionId = transactionId
+            self.codCharges = codCharges
+
+            self.affiliateId = affiliateId
+
+            self.modeOfPayment = modeOfPayment
+
+            self.source = source
+
+            self.userId = userId
+
+            self.totalOrderValue = totalOrderValue
+
+            self.createdTime = createdTime
+
+            self.cashbackApplied = cashbackApplied
+
+            self.mongoCartId = mongoCartId
+
+            self.paymentModeId = paymentModeId
+
+            self.affiliateOrderDate = affiliateOrderDate
+
+            self.orderingChannelLogo = orderingChannelLogo
+
+            self.orderValue = orderValue
+
+            self.paymentMethods = paymentMethods
+
+            self.discount = discount
+
+            self.promotionEffectiveDiscount = promotionEffectiveDiscount
+
+            self.collectBy = collectBy
+
+            self.deliveryCharges = deliveryCharges
+
+            self.meta = meta
+
+            self.oId = oId
+
+            self.currency = currency
+
+            self.taxDetails = taxDetails
+
+            self.headers = headers
 
             self.affiliateOrderId = affiliateOrderId
 
+            self.transactionId = transactionId
+
             self.orderingChannel = orderingChannel
 
-            self.createdTime = createdTime
+            self.cashbackValue = cashbackValue
+
+            self.fyndCredits = fyndCredits
+
+            self.couponValue = couponValue
+
+            self.fyndOrderId = fyndOrderId
 
             self.prices = prices
         }
@@ -213,43 +213,51 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            promotionEffectiveDiscount = try container.decode(Double.self, forKey: .promotionEffectiveDiscount)
+            refundBy = try container.decode(String.self, forKey: .refundBy)
 
-            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+            rawUserAgent = try container.decode(String.self, forKey: .rawUserAgent)
 
-            source = try container.decode(String.self, forKey: .source)
+            codCharges = try container.decode(Int.self, forKey: .codCharges)
+
+            affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
             modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
 
-            headers = try container.decode([String: Any].self, forKey: .headers)
+            source = try container.decode(String.self, forKey: .source)
 
-            orderingChannelLogo = try container.decode(String.self, forKey: .orderingChannelLogo)
-
-            meta = try container.decode(OrderMeta.self, forKey: .meta)
-
-            discount = try container.decode(Double.self, forKey: .discount)
-
-            collectBy = try container.decode(String.self, forKey: .collectBy)
-
-            couponValue = try container.decode(Double.self, forKey: .couponValue)
-
-            mongoCartId = try container.decode([String: Any].self, forKey: .mongoCartId)
-
-            oId = try container.decode(Int.self, forKey: .oId)
-
-            paymentModeId = try container.decode(Int.self, forKey: .paymentModeId)
+            userId = try container.decode(Int.self, forKey: .userId)
 
             totalOrderValue = try container.decode(Double.self, forKey: .totalOrderValue)
 
+            createdTime = try container.decode(Int.self, forKey: .createdTime)
+
             cashbackApplied = try container.decode(Double.self, forKey: .cashbackApplied)
 
-            cashbackValue = try container.decode(Double.self, forKey: .cashbackValue)
+            mongoCartId = try container.decode([String: Any].self, forKey: .mongoCartId)
 
-            currency = try container.decode(String.self, forKey: .currency)
+            paymentModeId = try container.decode(Int.self, forKey: .paymentModeId)
+
+            affiliateOrderDate = try container.decode(String.self, forKey: .affiliateOrderDate)
+
+            orderingChannelLogo = try container.decode(String.self, forKey: .orderingChannelLogo)
 
             orderValue = try container.decode(Double.self, forKey: .orderValue)
 
-            refundBy = try container.decode(String.self, forKey: .refundBy)
+            paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
+
+            discount = try container.decode(Double.self, forKey: .discount)
+
+            promotionEffectiveDiscount = try container.decode(Double.self, forKey: .promotionEffectiveDiscount)
+
+            collectBy = try container.decode(String.self, forKey: .collectBy)
+
+            deliveryCharges = try container.decode(Double.self, forKey: .deliveryCharges)
+
+            meta = try container.decode(OrderMeta.self, forKey: .meta)
+
+            oId = try container.decode(Int.self, forKey: .oId)
+
+            currency = try container.decode(String.self, forKey: .currency)
 
             do {
                 taxDetails = try container.decode(OrderTaxDetails.self, forKey: .taxDetails)
@@ -259,21 +267,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            userId = try container.decode(Int.self, forKey: .userId)
+            headers = try container.decode([String: Any].self, forKey: .headers)
 
-            fyndCredits = try container.decode(Double.self, forKey: .fyndCredits)
-
-            codCharges = try container.decode(Int.self, forKey: .codCharges)
-
-            deliveryCharges = try container.decode(Double.self, forKey: .deliveryCharges)
-
-            affiliateId = try container.decode(String.self, forKey: .affiliateId)
-
-            affiliateOrderDate = try container.decode(String.self, forKey: .affiliateOrderDate)
-
-            paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
-
-            rawUserAgent = try container.decode(String.self, forKey: .rawUserAgent)
+            affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
 
             do {
                 transactionId = try container.decode(String.self, forKey: .transactionId)
@@ -283,11 +279,15 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
-
             orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
 
-            createdTime = try container.decode(Int.self, forKey: .createdTime)
+            cashbackValue = try container.decode(Double.self, forKey: .cashbackValue)
+
+            fyndCredits = try container.decode(Double.self, forKey: .fyndCredits)
+
+            couponValue = try container.decode(Double.self, forKey: .couponValue)
+
+            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
 
             prices = try container.decode(OrderPrices.self, forKey: .prices)
         }
@@ -295,69 +295,69 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(promotionEffectiveDiscount, forKey: .promotionEffectiveDiscount)
-
-            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
-
-            try? container.encodeIfPresent(source, forKey: .source)
-
-            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
-
-            try? container.encodeIfPresent(headers, forKey: .headers)
-
-            try? container.encodeIfPresent(orderingChannelLogo, forKey: .orderingChannelLogo)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(discount, forKey: .discount)
-
-            try? container.encodeIfPresent(collectBy, forKey: .collectBy)
-
-            try? container.encode(couponValue, forKey: .couponValue)
-
-            try? container.encodeIfPresent(mongoCartId, forKey: .mongoCartId)
-
-            try? container.encodeIfPresent(oId, forKey: .oId)
-
-            try? container.encodeIfPresent(paymentModeId, forKey: .paymentModeId)
-
-            try? container.encodeIfPresent(totalOrderValue, forKey: .totalOrderValue)
-
-            try? container.encodeIfPresent(cashbackApplied, forKey: .cashbackApplied)
-
-            try? container.encodeIfPresent(cashbackValue, forKey: .cashbackValue)
-
-            try? container.encodeIfPresent(currency, forKey: .currency)
-
-            try? container.encodeIfPresent(orderValue, forKey: .orderValue)
-
             try? container.encodeIfPresent(refundBy, forKey: .refundBy)
-
-            try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
-
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
-            try? container.encodeIfPresent(fyndCredits, forKey: .fyndCredits)
-
-            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
-
-            try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
-
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-
-            try? container.encodeIfPresent(affiliateOrderDate, forKey: .affiliateOrderDate)
-
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
 
             try? container.encodeIfPresent(rawUserAgent, forKey: .rawUserAgent)
 
-            try? container.encode(transactionId, forKey: .transactionId)
+            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
+
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+
+            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
+
+            try? container.encodeIfPresent(source, forKey: .source)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
+
+            try? container.encodeIfPresent(totalOrderValue, forKey: .totalOrderValue)
+
+            try? container.encodeIfPresent(createdTime, forKey: .createdTime)
+
+            try? container.encodeIfPresent(cashbackApplied, forKey: .cashbackApplied)
+
+            try? container.encodeIfPresent(mongoCartId, forKey: .mongoCartId)
+
+            try? container.encodeIfPresent(paymentModeId, forKey: .paymentModeId)
+
+            try? container.encodeIfPresent(affiliateOrderDate, forKey: .affiliateOrderDate)
+
+            try? container.encodeIfPresent(orderingChannelLogo, forKey: .orderingChannelLogo)
+
+            try? container.encodeIfPresent(orderValue, forKey: .orderValue)
+
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+
+            try? container.encodeIfPresent(discount, forKey: .discount)
+
+            try? container.encodeIfPresent(promotionEffectiveDiscount, forKey: .promotionEffectiveDiscount)
+
+            try? container.encodeIfPresent(collectBy, forKey: .collectBy)
+
+            try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(oId, forKey: .oId)
+
+            try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
+
+            try? container.encodeIfPresent(headers, forKey: .headers)
 
             try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
 
+            try? container.encode(transactionId, forKey: .transactionId)
+
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
 
-            try? container.encodeIfPresent(createdTime, forKey: .createdTime)
+            try? container.encodeIfPresent(cashbackValue, forKey: .cashbackValue)
+
+            try? container.encodeIfPresent(fyndCredits, forKey: .fyndCredits)
+
+            try? container.encode(couponValue, forKey: .couponValue)
+
+            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
 
             try? container.encodeIfPresent(prices, forKey: .prices)
         }

@@ -10,18 +10,18 @@ public extension PlatformClient {
     class InvalidateShipmentCacheNestedResponse: Codable {
         public var status: Int?
 
-        public var message: String?
-
         public var error: String?
+
+        public var message: String?
 
         public var shipmentId: String?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case message
-
             case error
+
+            case message
 
             case shipmentId = "shipment_id"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(error: String? = nil, message: String? = nil, shipmentId: String? = nil, status: Int? = nil) {
             self.status = status
 
-            self.message = message
-
             self.error = error
+
+            self.message = message
 
             self.shipmentId = shipmentId
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                error = try container.decode(String.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                error = try container.decode(String.self, forKey: .error)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
         }

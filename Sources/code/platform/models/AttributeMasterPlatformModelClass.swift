@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var mandatory: Bool?
 
-        public var type: String
-
         public var allowedValues: [String]?
+
+        public var type: String
 
         public var multi: Bool?
 
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case mandatory
 
-            case type
-
             case allowedValues = "allowed_values"
+
+            case type
 
             case multi
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
 
             self.mandatory = mandatory
 
-            self.type = type
-
             self.allowedValues = allowedValues
+
+            self.type = type
 
             self.multi = multi
 
@@ -67,8 +67,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            type = try container.decode(String.self, forKey: .type)
-
             do {
                 allowedValues = try container.decode([String].self, forKey: .allowedValues)
 
@@ -76,6 +74,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            type = try container.decode(String.self, forKey: .type)
 
             do {
                 multi = try container.decode(Bool.self, forKey: .multi)
@@ -101,9 +101,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(mandatory, forKey: .mandatory)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(allowedValues, forKey: .allowedValues)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(multi, forKey: .multi)
 
