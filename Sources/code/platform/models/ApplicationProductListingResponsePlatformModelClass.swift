@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var page: Page
 
-        public var filters: [ProductFilters]?
-
         public var operators: [String: Any]?
+
+        public var filters: [ProductFilters]?
 
         public var sortOn: [ProductSortOn]?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case page
 
-            case filters
-
             case operators
+
+            case filters
 
             case sortOn = "sort_on"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.page = page
 
-            self.filters = filters
-
             self.operators = operators
+
+            self.filters = filters
 
             self.sortOn = sortOn
         }
@@ -56,7 +56,7 @@ public extension PlatformClient {
             page = try container.decode(Page.self, forKey: .page)
 
             do {
-                filters = try container.decode([ProductFilters].self, forKey: .filters)
+                operators = try container.decode([String: Any].self, forKey: .operators)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                operators = try container.decode([String: Any].self, forKey: .operators)
+                filters = try container.decode([ProductFilters].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -87,9 +87,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
-
             try? container.encodeIfPresent(operators, forKey: .operators)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
         }

@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class AttributeDetail: Codable {
         public var description: String?
 
-        public var display: String?
-
         public var logo: String?
+
+        public var display: String?
 
         public var key: String?
 
         public enum CodingKeys: String, CodingKey {
             case description
 
-            case display
-
             case logo
+
+            case display
 
             case key
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(description: String? = nil, display: String? = nil, key: String? = nil, logo: String? = nil) {
             self.description = description
 
-            self.display = display
-
             self.logo = logo
+
+            self.display = display
 
             self.key = key
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(key, forKey: .key)
         }

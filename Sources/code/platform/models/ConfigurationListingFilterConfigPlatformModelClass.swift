@@ -8,62 +8,80 @@ public extension PlatformClient {
      */
 
     class ConfigurationListingFilterConfig: Codable {
+        public var name: String?
+
         public var type: String
+
+        public var logo: String?
+
+        public var priority: Int
 
         public var displayName: String?
 
-        public var name: String?
+        public var isActive: Bool
 
         public var key: String
 
         public var valueConfig: ConfigurationListingFilterValue?
 
-        public var logo: String?
-
-        public var isActive: Bool
-
-        public var priority: Int
-
         public enum CodingKeys: String, CodingKey {
+            case name
+
             case type
+
+            case logo
+
+            case priority
 
             case displayName = "display_name"
 
-            case name
+            case isActive = "is_active"
 
             case key
 
             case valueConfig = "value_config"
-
-            case logo
-
-            case isActive = "is_active"
-
-            case priority
         }
 
         public init(displayName: String? = nil, isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int, type: String, valueConfig: ConfigurationListingFilterValue? = nil) {
+            self.name = name
+
             self.type = type
+
+            self.logo = logo
+
+            self.priority = priority
 
             self.displayName = displayName
 
-            self.name = name
+            self.isActive = isActive
 
             self.key = key
 
             self.valueConfig = valueConfig
-
-            self.logo = logo
-
-            self.isActive = isActive
-
-            self.priority = priority
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             type = try container.decode(String.self, forKey: .type)
+
+            do {
+                logo = try container.decode(String.self, forKey: .logo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            priority = try container.decode(Int.self, forKey: .priority)
 
             do {
                 displayName = try container.decode(String.self, forKey: .displayName)
@@ -73,13 +91,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             key = try container.decode(String.self, forKey: .key)
 
@@ -90,38 +102,26 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                logo = try container.decode(String.self, forKey: .logo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            priority = try container.decode(Int.self, forKey: .priority)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(valueConfig, forKey: .valueConfig)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
         }
     }
 }
