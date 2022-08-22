@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class GetProducts: Codable {
-        public var sizes: [Size]?
+        public var autoSelect: Bool?
 
         public var productUid: Int?
 
@@ -16,18 +16,18 @@ public extension PlatformClient {
 
         public var autoAddToCart: Bool?
 
+        public var sizes: [Size]?
+
+        public var minQuantity: Int?
+
         public var productDetails: LimitedProductData?
 
         public var price: Price?
 
         public var maxQuantity: Int?
 
-        public var minQuantity: Int?
-
-        public var autoSelect: Bool?
-
         public enum CodingKeys: String, CodingKey {
-            case sizes
+            case autoSelect = "auto_select"
 
             case productUid = "product_uid"
 
@@ -35,19 +35,19 @@ public extension PlatformClient {
 
             case autoAddToCart = "auto_add_to_cart"
 
+            case sizes
+
+            case minQuantity = "min_quantity"
+
             case productDetails = "product_details"
 
             case price
 
             case maxQuantity = "max_quantity"
-
-            case minQuantity = "min_quantity"
-
-            case autoSelect = "auto_select"
         }
 
         public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: Price? = nil, productDetails: LimitedProductData? = nil, productUid: Int? = nil, sizes: [Size]? = nil) {
-            self.sizes = sizes
+            self.autoSelect = autoSelect
 
             self.productUid = productUid
 
@@ -55,22 +55,22 @@ public extension PlatformClient {
 
             self.autoAddToCart = autoAddToCart
 
+            self.sizes = sizes
+
+            self.minQuantity = minQuantity
+
             self.productDetails = productDetails
 
             self.price = price
 
             self.maxQuantity = maxQuantity
-
-            self.minQuantity = minQuantity
-
-            self.autoSelect = autoSelect
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                sizes = try container.decode([Size].self, forKey: .sizes)
+                autoSelect = try container.decode(Bool.self, forKey: .autoSelect)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,6 +102,22 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                sizes = try container.decode([Size].self, forKey: .sizes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                minQuantity = try container.decode(Int.self, forKey: .minQuantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 productDetails = try container.decode(LimitedProductData.self, forKey: .productDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -124,28 +140,12 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                minQuantity = try container.decode(Int.self, forKey: .minQuantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                autoSelect = try container.decode(Bool.self, forKey: .autoSelect)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
+            try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
 
             try? container.encodeIfPresent(productUid, forKey: .productUid)
 
@@ -153,15 +153,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
 
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
+
+            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
+
             try? container.encodeIfPresent(productDetails, forKey: .productDetails)
 
             try? container.encodeIfPresent(price, forKey: .price)
 
             try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
-
-            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
-
-            try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
         }
     }
 }

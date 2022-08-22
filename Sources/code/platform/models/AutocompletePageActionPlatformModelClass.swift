@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class AutocompletePageAction: Codable {
-        public var url: String?
-
         public var query: [String: Any]?
+
+        public var url: String?
 
         public var params: [String: Any]?
 
         public var type: String?
 
         public enum CodingKeys: String, CodingKey {
-            case url
-
             case query
+
+            case url
 
             case params
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(params: [String: Any]? = nil, query: [String: Any]? = nil, type: String? = nil, url: String? = nil) {
-            self.url = url
-
             self.query = query
+
+            self.url = url
 
             self.params = params
 
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                query = try container.decode([String: Any].self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                query = try container.decode([String: Any].self, forKey: .query)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,9 +75,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(query, forKey: .query)
+
+            try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(params, forKey: .params)
 
