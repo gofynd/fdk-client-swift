@@ -8,13 +8,13 @@ public extension PlatformClient {
      */
 
     class ConfigurationProductVariantConfig: Codable {
-        public var name: String
-
-        public var logo: String?
-
         public var size: ProductSize
 
+        public var name: String
+
         public var priority: Int
+
+        public var logo: String?
 
         public var isActive: Bool
 
@@ -23,13 +23,13 @@ public extension PlatformClient {
         public var displayType: String
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
-            case logo
-
             case size
 
+            case name
+
             case priority
+
+            case logo
 
             case isActive = "is_active"
 
@@ -39,13 +39,13 @@ public extension PlatformClient {
         }
 
         public init(displayType: String, isActive: Bool, key: String, logo: String? = nil, name: String, priority: Int, size: ProductSize) {
-            self.name = name
-
-            self.logo = logo
-
             self.size = size
 
+            self.name = name
+
             self.priority = priority
+
+            self.logo = logo
 
             self.isActive = isActive
 
@@ -57,7 +57,11 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            size = try container.decode(ProductSize.self, forKey: .size)
+
             name = try container.decode(String.self, forKey: .name)
+
+            priority = try container.decode(Int.self, forKey: .priority)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -66,10 +70,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            size = try container.decode(ProductSize.self, forKey: .size)
-
-            priority = try container.decode(Int.self, forKey: .priority)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
@@ -81,13 +81,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(size, forKey: .size)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
