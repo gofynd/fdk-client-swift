@@ -12,9 +12,9 @@ jobs:
     steps:
 
       - uses: actions/checkout@v2
-
-      - name: Create XCFramework
-        uses: unsignedapps/swift-create-xcframework@v2
+      
+      - name: swift-create-xcframework
+        uses: unsignedapps/swift-create-xcframework@v2.3.0
 
       # Create a release
       # Upload those artifacts to the release
