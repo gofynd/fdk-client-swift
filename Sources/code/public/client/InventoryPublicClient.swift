@@ -10,7 +10,7 @@ public extension PublicClient {
 
         /**
          *
-         * Summary: Get Slingshot Configuration Of  A Company
+         * Summary: Get Slingshot Configuration Of  A Company using API key
          * Description: REST Endpoint that returns all configuration detail of a company
          **/
         public func getConfigByApiKey(
@@ -53,7 +53,7 @@ public extension PublicClient {
 
         /**
          *
-         * Summary: Get Slingshot Configuration Of  A Company
+         * Summary: Get apikey  for  Company  to call other Slingshot Configuration APIs
          * Description: REST Endpoint that returns apikey by username by password
          **/
         public func getApiKey(

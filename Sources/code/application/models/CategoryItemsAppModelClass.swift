@@ -11,26 +11,26 @@ public extension ApplicationClient {
 
         public var banners: ImageUrls?
 
-        public var slug: String?
-
-        public var name: String?
+        public var action: ProductListingAction?
 
         public var uid: Int?
 
-        public var action: ProductListingAction?
+        public var name: String?
+
+        public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
             case childs
 
             case banners
 
-            case slug
-
-            case name
+            case action
 
             case uid
 
-            case action
+            case name
+
+            case slug
         }
 
         public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [Child]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
@@ -38,13 +38,13 @@ public extension ApplicationClient {
 
             self.banners = banners
 
-            self.slug = slug
-
-            self.name = name
+            self.action = action
 
             self.uid = uid
 
-            self.action = action
+            self.name = name
+
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,15 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +83,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,13 +106,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }

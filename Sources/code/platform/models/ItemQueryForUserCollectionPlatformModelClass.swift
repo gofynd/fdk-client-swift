@@ -3,29 +3,23 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ArticleQuery
+         Model: ItemQueryForUserCollection
          Used By: Catalog
      */
 
-    class ArticleQuery: Codable {
-        public var ignoredStores: [Int]?
+    class ItemQueryForUserCollection: Codable {
+        public var action: String?
 
-        public var size: String
-
-        public var itemId: Int
+        public var itemId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case ignoredStores = "ignored_stores"
-
-            case size
+            case action
 
             case itemId = "item_id"
         }
 
-        public init(ignoredStores: [Int]? = nil, itemId: Int, size: String) {
-            self.ignoredStores = ignoredStores
-
-            self.size = size
+        public init(action: String? = nil, itemId: Int? = nil) {
+            self.action = action
 
             self.itemId = itemId
         }
@@ -34,24 +28,26 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                ignoredStores = try container.decode([Int].self, forKey: .ignoredStores)
+                action = try container.decode(String.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            size = try container.decode(String.self, forKey: .size)
+            do {
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
-            itemId = try container.decode(Int.self, forKey: .itemId)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(ignoredStores, forKey: .ignoredStores)
-
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
         }

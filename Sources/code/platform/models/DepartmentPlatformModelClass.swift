@@ -10,36 +10,36 @@ public extension PlatformClient {
     class Department: Codable {
         public var name: String?
 
-        public var logo: Media?
+        public var priorityOrder: Int?
 
         public var uid: Int?
 
-        public var slug: String?
+        public var logo: Media?
 
-        public var priorityOrder: Int?
+        public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case logo
+            case priorityOrder = "priority_order"
 
             case uid
 
-            case slug
+            case logo
 
-            case priorityOrder = "priority_order"
+            case slug
         }
 
         public init(logo: Media? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, uid: Int? = nil) {
             self.name = name
 
-            self.logo = logo
+            self.priorityOrder = priorityOrder
 
             self.uid = uid
 
-            self.slug = slug
+            self.logo = logo
 
-            self.priorityOrder = priorityOrder
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,13 +91,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }

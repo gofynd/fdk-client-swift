@@ -9,22 +9,22 @@ public extension ApplicationClient {
     class ProductVariantListingResponse: Codable {
         public var items: [ProductVariantItemResponse]?
 
-        public var displayType: String?
+        public var key: String?
 
         public var total: Int?
 
-        public var key: String?
+        public var displayType: String?
 
         public var header: String?
 
         public enum CodingKeys: String, CodingKey {
             case items
 
-            case displayType = "display_type"
+            case key
 
             case total
 
-            case key
+            case displayType = "display_type"
 
             case header
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient {
         public init(displayType: String? = nil, header: String? = nil, items: [ProductVariantItemResponse]? = nil, key: String? = nil, total: Int? = nil) {
             self.items = items
 
-            self.displayType = displayType
+            self.key = key
 
             self.total = total
 
-            self.key = key
+            self.displayType = displayType
 
             self.header = header
         }
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                displayType = try container.decode(String.self, forKey: .displayType)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                displayType = try container.decode(String.self, forKey: .displayType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(displayType, forKey: .displayType)
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(total, forKey: .total)
 
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(displayType, forKey: .displayType)
 
             try? container.encodeIfPresent(header, forKey: .header)
         }
