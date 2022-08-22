@@ -8,6 +8,8 @@ public extension PlatformClient {
      */
 
     class InventoryExportResponse: Codable {
+        public var sellerId: Int
+
         public var taskId: String
 
         public var status: String?
@@ -16,9 +18,9 @@ public extension PlatformClient {
 
         public var triggerOn: String?
 
-        public var sellerId: Int
-
         public enum CodingKeys: String, CodingKey {
+            case sellerId = "seller_id"
+
             case taskId = "task_id"
 
             case status
@@ -26,11 +28,11 @@ public extension PlatformClient {
             case requestParams = "request_params"
 
             case triggerOn = "trigger_on"
-
-            case sellerId = "seller_id"
         }
 
         public init(requestParams: [String: Any]? = nil, sellerId: Int, status: String? = nil, taskId: String, triggerOn: String? = nil) {
+            self.sellerId = sellerId
+
             self.taskId = taskId
 
             self.status = status
@@ -38,12 +40,12 @@ public extension PlatformClient {
             self.requestParams = requestParams
 
             self.triggerOn = triggerOn
-
-            self.sellerId = sellerId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            sellerId = try container.decode(Int.self, forKey: .sellerId)
 
             taskId = try container.decode(String.self, forKey: .taskId)
 
@@ -70,12 +72,12 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            sellerId = try container.decode(Int.self, forKey: .sellerId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
             try? container.encodeIfPresent(taskId, forKey: .taskId)
 
@@ -84,8 +86,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(requestParams, forKey: .requestParams)
 
             try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
-
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
         }
     }
 }

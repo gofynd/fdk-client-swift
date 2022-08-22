@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class CartBreakup: Codable {
-        public var coupon: CouponBreakup?
-
         public var raw: RawBreakup?
+
+        public var coupon: CouponBreakup?
 
         public var loyaltyPoints: LoyaltyPoints?
 
         public var display: [DisplayBreakup]?
 
         public enum CodingKeys: String, CodingKey {
-            case coupon
-
             case raw
+
+            case coupon
 
             case loyaltyPoints = "loyalty_points"
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(coupon: CouponBreakup? = nil, display: [DisplayBreakup]? = nil, loyaltyPoints: LoyaltyPoints? = nil, raw: RawBreakup? = nil) {
-            self.coupon = coupon
-
             self.raw = raw
+
+            self.coupon = coupon
 
             self.loyaltyPoints = loyaltyPoints
 
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                coupon = try container.decode(CouponBreakup.self, forKey: .coupon)
+                raw = try container.decode(RawBreakup.self, forKey: .raw)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                raw = try container.decode(RawBreakup.self, forKey: .raw)
+                coupon = try container.decode(CouponBreakup.self, forKey: .coupon)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,9 +75,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
-
             try? container.encodeIfPresent(raw, forKey: .raw)
+
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
 
             try? container.encodeIfPresent(loyaltyPoints, forKey: .loyaltyPoints)
 
