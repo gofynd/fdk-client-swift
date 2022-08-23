@@ -3,39 +3,35 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ErrorResponse1
-         Used By: Order
+         Model: CommonError
+         Used By: Content
      */
 
-    class ErrorResponse1: Codable {
-        public var error: String
-
-        public var message: String
+    class CommonError: Codable {
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case error
-
             case message
         }
 
-        public init(error: String, message: String) {
-            self.error = error
-
+        public init(message: String? = nil) {
             self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            error = try container.decode(String.self, forKey: .error)
+            do {
+                message = try container.decode(String.self, forKey: .message)
 
-            message = try container.decode(String.self, forKey: .message)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(message, forKey: .message)
         }

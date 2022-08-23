@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var nextStatus: String?
 
-        public var dataUpdates: DataUpdate?
-
         public var reasons: EntityReason?
+
+        public var dataUpdates: DataUpdate?
 
         public enum CodingKeys: String, CodingKey {
             case bagIds = "bag_ids"
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case nextStatus = "next_status"
 
-            case dataUpdates = "data_updates"
-
             case reasons
+
+            case dataUpdates = "data_updates"
         }
 
         public init(bagIds: [String], dataUpdates: DataUpdate? = nil, entityIds: [String]? = nil, nextStatus: String? = nil, reasons: EntityReason? = nil) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.nextStatus = nextStatus
 
-            self.dataUpdates = dataUpdates
-
             self.reasons = reasons
+
+            self.dataUpdates = dataUpdates
         }
 
         required public init(from decoder: Decoder) throws {
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                dataUpdates = try container.decode(DataUpdate.self, forKey: .dataUpdates)
+                reasons = try container.decode(EntityReason.self, forKey: .reasons)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,7 +72,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                reasons = try container.decode(EntityReason.self, forKey: .reasons)
+                dataUpdates = try container.decode(DataUpdate.self, forKey: .dataUpdates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(nextStatus, forKey: .nextStatus)
 
-            try? container.encodeIfPresent(dataUpdates, forKey: .dataUpdates)
-
             try? container.encodeIfPresent(reasons, forKey: .reasons)
+
+            try? container.encodeIfPresent(dataUpdates, forKey: .dataUpdates)
         }
     }
 }

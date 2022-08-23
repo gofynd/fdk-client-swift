@@ -1,40 +1,39 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension ApplicationClient {
     /*
-         Model: EInvoicePortalDetails
-         Used By: Order
+         Model: UnArchiveUserRequestSchema
+         Used By: User
      */
+    class UnArchiveUserRequestSchema: Codable {
+        public var userId: String?
 
-    class EInvoicePortalDetails: Codable {
-        public var password: String?
+        public var reason: String?
 
-        public var user: String?
-
-        public var username: String?
+        public var reasonId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case password
+            case userId = "user_id"
 
-            case user
+            case reason
 
-            case username
+            case reasonId = "reason_id"
         }
 
-        public init(password: String? = nil, user: String? = nil, username: String? = nil) {
-            self.password = password
+        public init(reason: String? = nil, reasonId: String? = nil, userId: String? = nil) {
+            self.userId = userId
 
-            self.user = user
+            self.reason = reason
 
-            self.username = username
+            self.reasonId = reasonId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                password = try container.decode(String.self, forKey: .password)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +41,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                user = try container.decode(String.self, forKey: .user)
+                reason = try container.decode(String.self, forKey: .reason)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +49,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                username = try container.decode(String.self, forKey: .username)
+                reasonId = try container.decode(String.self, forKey: .reasonId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,11 +60,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(password, forKey: .password)
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(user, forKey: .user)
+            try? container.encodeIfPresent(reason, forKey: .reason)
 
-            try? container.encodeIfPresent(username, forKey: .username)
+            try? container.encodeIfPresent(reasonId, forKey: .reasonId)
         }
     }
 }

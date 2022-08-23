@@ -44,7 +44,6 @@ public extension ApplicationClient {
         case cartPayment = "cart-payment"
         case cartReview = "cart-review"
         case login
-        case register
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -177,8 +176,6 @@ public extension ApplicationClient {
                 return "/cart/order-review"
             case .login:
                 return "/auth/login"
-            case .register:
-                return "/auth/register"
             }
         }
 
@@ -270,8 +267,6 @@ public extension ApplicationClient {
                 return "Cart Order Review"
             case .login:
                 return "Login"
-            case .register:
-                return "Register"
             }
         }
 
@@ -363,8 +358,6 @@ public extension ApplicationClient {
                 return []
             case .login:
                 return []
-            case .register:
-                return []
             }
         }
 
@@ -455,8 +448,6 @@ public extension ApplicationClient {
             case .cartReview:
                 return []
             case .login:
-                return []
-            case .register:
                 return []
             }
         }

@@ -7,7 +7,7 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class TransferItemsDetails: Codable {
-        public var logoLarge: String
+        public var name: String
 
         public var id: Int
 
@@ -15,10 +15,10 @@ public extension ApplicationClient {
 
         public var logoSmall: String
 
-        public var name: String
+        public var logoLarge: String
 
         public enum CodingKeys: String, CodingKey {
-            case logoLarge = "logo_large"
+            case name
 
             case id
 
@@ -26,11 +26,11 @@ public extension ApplicationClient {
 
             case logoSmall = "logo_small"
 
-            case name
+            case logoLarge = "logo_large"
         }
 
         public init(displayName: String? = nil, id: Int, logoLarge: String, logoSmall: String, name: String) {
-            self.logoLarge = logoLarge
+            self.name = name
 
             self.id = id
 
@@ -38,13 +38,13 @@ public extension ApplicationClient {
 
             self.logoSmall = logoSmall
 
-            self.name = name
+            self.logoLarge = logoLarge
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            logoLarge = try container.decode(String.self, forKey: .logoLarge)
+            name = try container.decode(String.self, forKey: .name)
 
             id = try container.decode(Int.self, forKey: .id)
 
@@ -58,13 +58,13 @@ public extension ApplicationClient {
 
             logoSmall = try container.decode(String.self, forKey: .logoSmall)
 
-            name = try container.decode(String.self, forKey: .name)
+            logoLarge = try container.decode(String.self, forKey: .logoLarge)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
@@ -72,7 +72,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
         }
     }
 }
