@@ -10,24 +10,24 @@ public extension PlatformClient {
     class RestrictedCategoryListResponseSerializer: Codable {
         public var items: [RestrictedCategoryResponseSerializer]?
 
-        public var declarationTemplate: [String: Any]?
-
         public var page: Page?
+
+        public var declarationTemplate: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case items
 
-            case declarationTemplate = "declaration_template"
-
             case page
+
+            case declarationTemplate = "declaration_template"
         }
 
         public init(declarationTemplate: [String: Any]? = nil, items: [RestrictedCategoryResponseSerializer]? = nil, page: Page? = nil) {
             self.items = items
 
-            self.declarationTemplate = declarationTemplate
-
             self.page = page
+
+            self.declarationTemplate = declarationTemplate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                declarationTemplate = try container.decode([String: Any].self, forKey: .declarationTemplate)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                page = try container.decode(Page.self, forKey: .page)
+                declarationTemplate = try container.decode([String: Any].self, forKey: .declarationTemplate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(declarationTemplate, forKey: .declarationTemplate)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(declarationTemplate, forKey: .declarationTemplate)
         }
     }
 }

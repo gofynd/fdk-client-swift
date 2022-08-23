@@ -10,18 +10,18 @@ public extension PlatformClient {
     class UserDataSet: Codable {
         public var gender: String?
 
-        public var email: String?
-
         public var name: String
+
+        public var email: String?
 
         public var mobile: Int
 
         public enum CodingKeys: String, CodingKey {
             case gender
 
-            case email
-
             case name
+
+            case email
 
             case mobile
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(email: String? = nil, gender: String? = nil, mobile: Int, name: String) {
             self.gender = gender
 
-            self.email = email
-
             self.name = name
+
+            self.email = email
 
             self.mobile = mobile
         }
@@ -47,6 +47,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            name = try container.decode(String.self, forKey: .name)
+
             do {
                 email = try container.decode(String.self, forKey: .email)
 
@@ -54,8 +56,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            name = try container.decode(String.self, forKey: .name)
 
             mobile = try container.decode(Int.self, forKey: .mobile)
         }
@@ -65,9 +65,9 @@ public extension PlatformClient {
 
             try? container.encode(gender, forKey: .gender)
 
-            try? container.encodeIfPresent(email, forKey: .email)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
         }
