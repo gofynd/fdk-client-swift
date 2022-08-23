@@ -7,18 +7,18 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class CompanyStore: Codable {
-        public var businessType: String?
-
         public var name: String?
+
+        public var businessType: String?
 
         public var uid: Int?
 
         public var companyType: String?
 
         public enum CodingKeys: String, CodingKey {
-            case businessType = "business_type"
-
             case name
+
+            case businessType = "business_type"
 
             case uid
 
@@ -26,9 +26,9 @@ public extension ApplicationClient {
         }
 
         public init(businessType: String? = nil, companyType: String? = nil, name: String? = nil, uid: Int? = nil) {
-            self.businessType = businessType
-
             self.name = name
+
+            self.businessType = businessType
 
             self.uid = uid
 
@@ -39,7 +39,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                businessType = try container.decode(String.self, forKey: .businessType)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                businessType = try container.decode(String.self, forKey: .businessType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(businessType, forKey: .businessType)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(businessType, forKey: .businessType)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
