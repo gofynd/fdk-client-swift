@@ -1697,7 +1697,7 @@ public class PlatformClient {
              * Description: Use this API to retrieve a list of customers who have registered in the application.
              **/
             public func getCustomers(
-                q: [String: Any]?,
+                q: String?,
                 pageSize: Int?,
                 pageNo: Int?,
 
@@ -1752,7 +1752,7 @@ public class PlatformClient {
              * Description: Use this API to retrieve an existing user from a list.
              **/
             public func searchUsers(
-                q: String?,
+                q: [String: Any]?,
 
                 onResponse: @escaping (_ response: UserSearchResponseSchema?, _ error: FDKError?) -> Void
             ) {

@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var transactionAmountInPaise: Int
 
+        public var payload: String
+
         public var aggregator: String
 
         public var merchantParams: [String: Any]
-
-        public var payload: String
 
         public enum CodingKeys: String, CodingKey {
             case phoneNumber = "phone_number"
 
             case transactionAmountInPaise = "transaction_amount_in_paise"
 
+            case payload
+
             case aggregator
 
             case merchantParams = "merchant_params"
-
-            case payload
         }
 
         public init(aggregator: String, merchantParams: [String: Any], payload: String, phoneNumber: String, transactionAmountInPaise: Int) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.transactionAmountInPaise = transactionAmountInPaise
 
+            self.payload = payload
+
             self.aggregator = aggregator
 
             self.merchantParams = merchantParams
-
-            self.payload = payload
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,11 +48,11 @@ public extension ApplicationClient {
 
             transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
 
+            payload = try container.decode(String.self, forKey: .payload)
+
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
             merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
-
-            payload = try container.decode(String.self, forKey: .payload)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,11 +62,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
 
+            try? container.encode(payload, forKey: .payload)
+
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
-
-            try? container.encode(payload, forKey: .payload)
         }
     }
 }

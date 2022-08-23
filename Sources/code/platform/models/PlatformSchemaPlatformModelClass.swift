@@ -50,8 +50,6 @@ public extension PlatformClient {
 
         public var desktopImage: String?
 
-        public var supportEmail: String?
-
         public var deleteAccountDay: Int?
 
         public var deleteAccountReasons: [DeleteAccountReasons]?
@@ -101,8 +99,6 @@ public extension PlatformClient {
 
             case desktopImage = "desktop_image"
 
-            case supportEmail = "support_email"
-
             case deleteAccountDay = "delete_account_day"
 
             case deleteAccountReasons = "delete_account_reasons"
@@ -110,7 +106,7 @@ public extension PlatformClient {
             case deleteAccountConsent = "delete_account_consent"
         }
 
-        public init(active: Bool? = nil, createdAt: String? = nil, deleteAccountConsent: [String: Any]? = nil, deleteAccountDay: Int? = nil, deleteAccountReasons: [DeleteAccountReasons]? = nil, desktopImage: String? = nil, display: String? = nil, flashCard: FlashCard? = nil, forgotPassword: Bool? = nil, login: Login? = nil, lookAndFeel: LookAndFeel? = nil, meta: MetaSchema? = nil, mobileImage: String? = nil, name: String? = nil, register: Bool? = nil, registerRequiredFields: RegisterRequiredFields? = nil, requiredFields: RequiredFields? = nil, skipCaptcha: Bool? = nil, skipLogin: Bool? = nil, social: Social? = nil, socialTokens: SocialTokens? = nil, subtext: String? = nil, supportEmail: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(active: Bool? = nil, createdAt: String? = nil, deleteAccountConsent: [String: Any]? = nil, deleteAccountDay: Int? = nil, deleteAccountReasons: [DeleteAccountReasons]? = nil, desktopImage: String? = nil, display: String? = nil, flashCard: FlashCard? = nil, forgotPassword: Bool? = nil, login: Login? = nil, lookAndFeel: LookAndFeel? = nil, meta: MetaSchema? = nil, mobileImage: String? = nil, name: String? = nil, register: Bool? = nil, registerRequiredFields: RegisterRequiredFields? = nil, requiredFields: RequiredFields? = nil, skipCaptcha: Bool? = nil, skipLogin: Bool? = nil, social: Social? = nil, socialTokens: SocialTokens? = nil, subtext: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.display = display
 
             self.lookAndFeel = lookAndFeel
@@ -152,8 +148,6 @@ public extension PlatformClient {
             self.mobileImage = mobileImage
 
             self.desktopImage = desktopImage
-
-            self.supportEmail = supportEmail
 
             self.deleteAccountDay = deleteAccountDay
 
@@ -334,14 +328,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                supportEmail = try container.decode(String.self, forKey: .supportEmail)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 deleteAccountDay = try container.decode(Int.self, forKey: .deleteAccountDay)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -410,8 +396,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(mobileImage, forKey: .mobileImage)
 
             try? container.encodeIfPresent(desktopImage, forKey: .desktopImage)
-
-            try? container.encodeIfPresent(supportEmail, forKey: .supportEmail)
 
             try? container.encodeIfPresent(deleteAccountDay, forKey: .deleteAccountDay)
 
