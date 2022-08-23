@@ -3,7 +3,7 @@ name: Create Release
 # Create XCFramework when a version is tagged
 on:
   push:
-    tags:
+    branches: [ "rushangfynd-patch-1" ]
 
 jobs:
   create_release:
