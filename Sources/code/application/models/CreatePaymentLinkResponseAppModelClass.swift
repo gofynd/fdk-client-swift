@@ -11,26 +11,26 @@ public extension ApplicationClient {
 
         public var success: Bool
 
-        public var pollingTimeout: Int?
-
-        public var message: String
-
         public var paymentLinkId: String?
 
         public var statusCode: Int
+
+        public var pollingTimeout: Int?
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case paymentLinkUrl = "payment_link_url"
 
             case success
 
-            case pollingTimeout = "polling_timeout"
-
-            case message
-
             case paymentLinkId = "payment_link_id"
 
             case statusCode = "status_code"
+
+            case pollingTimeout = "polling_timeout"
+
+            case message
         }
 
         public init(message: String, paymentLinkId: String? = nil, paymentLinkUrl: String? = nil, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
@@ -38,13 +38,13 @@ public extension ApplicationClient {
 
             self.success = success
 
-            self.pollingTimeout = pollingTimeout
-
-            self.message = message
-
             self.paymentLinkId = paymentLinkId
 
             self.statusCode = statusCode
+
+            self.pollingTimeout = pollingTimeout
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,16 +61,6 @@ public extension ApplicationClient {
             success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                pollingTimeout = try container.decode(Int.self, forKey: .pollingTimeout)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            message = try container.decode(String.self, forKey: .message)
-
-            do {
                 paymentLinkId = try container.decode(String.self, forKey: .paymentLinkId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -79,6 +69,16 @@ public extension ApplicationClient {
             } catch {}
 
             statusCode = try container.decode(Int.self, forKey: .statusCode)
+
+            do {
+                pollingTimeout = try container.decode(Int.self, forKey: .pollingTimeout)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -88,13 +88,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encode(pollingTimeout, forKey: .pollingTimeout)
-
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encode(paymentLinkId, forKey: .paymentLinkId)
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+
+            try? container.encode(pollingTimeout, forKey: .pollingTimeout)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

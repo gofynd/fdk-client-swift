@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var device: DeviceDetails?
 
-        public var source: String
-
         public var aggregator: String
+
+        public var source: String
 
         public var personalInfo: UserPersonalInfoInDetails
 
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case device
 
-            case source
-
             case aggregator
+
+            case source
 
             case personalInfo = "personal_info"
 
@@ -38,9 +38,9 @@ public extension ApplicationClient {
 
             self.device = device
 
-            self.source = source
-
             self.aggregator = aggregator
+
+            self.source = source
 
             self.personalInfo = personalInfo
 
@@ -66,9 +66,9 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            source = try container.decode(String.self, forKey: .source)
-
             aggregator = try container.decode(String.self, forKey: .aggregator)
+
+            source = try container.decode(String.self, forKey: .source)
 
             personalInfo = try container.decode(UserPersonalInfoInDetails.self, forKey: .personalInfo)
 
@@ -88,9 +88,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(device, forKey: .device)
 
-            try? container.encodeIfPresent(source, forKey: .source)
-
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encodeIfPresent(source, forKey: .source)
 
             try? container.encodeIfPresent(personalInfo, forKey: .personalInfo)
 
