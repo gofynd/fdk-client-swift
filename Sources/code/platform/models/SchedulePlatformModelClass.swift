@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class Schedule: Codable {
-        public var cron: String?
-
         public var duration: Int?
+
+        public var cron: String?
 
         public var nextSchedule: [NextSchedule]?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var end: String?
 
         public enum CodingKeys: String, CodingKey {
-            case cron
-
             case duration
+
+            case cron
 
             case nextSchedule = "next_schedule"
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
-            self.cron = cron
-
             self.duration = duration
+
+            self.cron = cron
 
             self.nextSchedule = nextSchedule
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                cron = try container.decode(String.self, forKey: .cron)
+                duration = try container.decode(Int.self, forKey: .duration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                duration = try container.decode(Int.self, forKey: .duration)
+                cron = try container.decode(String.self, forKey: .cron)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(cron, forKey: .cron)
-
             try? container.encode(duration, forKey: .duration)
+
+            try? container.encode(cron, forKey: .cron)
 
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
 

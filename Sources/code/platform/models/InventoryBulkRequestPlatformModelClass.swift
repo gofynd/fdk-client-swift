@@ -10,36 +10,38 @@ public extension PlatformClient {
     class InventoryBulkRequest: Codable {
         public var batchId: String
 
+        public var sizes: [InventoryJobPayload]
+
         public var user: [String: Any]?
 
         public var companyId: Int
 
-        public var sizes: [InventoryJobPayload]
-
         public enum CodingKeys: String, CodingKey {
             case batchId = "batch_id"
+
+            case sizes
 
             case user
 
             case companyId = "company_id"
-
-            case sizes
         }
 
         public init(batchId: String, companyId: Int, sizes: [InventoryJobPayload], user: [String: Any]? = nil) {
             self.batchId = batchId
 
+            self.sizes = sizes
+
             self.user = user
 
             self.companyId = companyId
-
-            self.sizes = sizes
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             batchId = try container.decode(String.self, forKey: .batchId)
+
+            sizes = try container.decode([InventoryJobPayload].self, forKey: .sizes)
 
             do {
                 user = try container.decode([String: Any].self, forKey: .user)
@@ -50,8 +52,6 @@ public extension PlatformClient {
             } catch {}
 
             companyId = try container.decode(Int.self, forKey: .companyId)
-
-            sizes = try container.decode([InventoryJobPayload].self, forKey: .sizes)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -59,11 +59,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
+
             try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
         }
     }
 }

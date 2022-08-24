@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var storeIds: [Int]?
 
-        public var optLevel: String
-
         public var platform: String?
+
+        public var optLevel: String
 
         public var companyId: Int?
 
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case storeIds = "store_ids"
 
-            case optLevel = "opt_level"
-
             case platform
+
+            case optLevel = "opt_level"
 
             case companyId = "company_id"
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
 
             self.storeIds = storeIds
 
-            self.optLevel = optLevel
-
             self.platform = platform
+
+            self.optLevel = optLevel
 
             self.companyId = companyId
 
@@ -67,8 +67,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            optLevel = try container.decode(String.self, forKey: .optLevel)
-
             do {
                 platform = try container.decode(String.self, forKey: .platform)
 
@@ -76,6 +74,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            optLevel = try container.decode(String.self, forKey: .optLevel)
 
             do {
                 companyId = try container.decode(Int.self, forKey: .companyId)
@@ -101,9 +101,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
-            try? container.encodeIfPresent(optLevel, forKey: .optLevel)
-
             try? container.encodeIfPresent(platform, forKey: .platform)
+
+            try? container.encodeIfPresent(optLevel, forKey: .optLevel)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
