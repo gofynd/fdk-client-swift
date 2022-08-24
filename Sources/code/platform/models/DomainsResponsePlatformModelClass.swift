@@ -23,7 +23,7 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case domains
 
-            case id
+            case id = "_id"
 
             case name
 
@@ -34,7 +34,7 @@ public extension PlatformClient {
             case isShortlink = "is_shortlink"
         }
 
-        public init(domains: [Domain]? = nil, id: String? = nil, isPrimary: Bool? = nil, isShortlink: Bool? = nil, name: String? = nil, verified: Bool? = nil) {
+        public init(domains: [Domain]? = nil, isPrimary: Bool? = nil, isShortlink: Bool? = nil, name: String? = nil, verified: Bool? = nil, id: String? = nil) {
             self.domains = domains
 
             self.id = id
