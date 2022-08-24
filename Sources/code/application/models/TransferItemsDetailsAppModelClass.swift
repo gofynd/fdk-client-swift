@@ -9,22 +9,22 @@ public extension ApplicationClient {
     class TransferItemsDetails: Codable {
         public var displayName: String?
 
-        public var name: String
-
         public var logoLarge: String
 
         public var logoSmall: String
+
+        public var name: String
 
         public var id: Int
 
         public enum CodingKeys: String, CodingKey {
             case displayName = "display_name"
 
-            case name
-
             case logoLarge = "logo_large"
 
             case logoSmall = "logo_small"
+
+            case name
 
             case id
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient {
         public init(displayName: String? = nil, id: Int, logoLarge: String, logoSmall: String, name: String) {
             self.displayName = displayName
 
-            self.name = name
-
             self.logoLarge = logoLarge
 
             self.logoSmall = logoSmall
+
+            self.name = name
 
             self.id = id
         }
@@ -52,11 +52,11 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
             logoLarge = try container.decode(String.self, forKey: .logoLarge)
 
             logoSmall = try container.decode(String.self, forKey: .logoSmall)
+
+            name = try container.decode(String.self, forKey: .name)
 
             id = try container.decode(Int.self, forKey: .id)
         }
@@ -66,11 +66,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
 
             try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(id, forKey: .id)
         }
