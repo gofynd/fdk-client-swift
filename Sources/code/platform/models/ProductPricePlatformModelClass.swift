@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var marked: Double?
 
-        public var selling: Double?
-
         public var addOn: Double?
+
+        public var selling: Double?
 
         public var effective: Double?
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case marked
 
-            case selling
-
             case addOn = "add_on"
+
+            case selling
 
             case effective
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             self.marked = marked
 
-            self.selling = selling
-
             self.addOn = addOn
+
+            self.selling = selling
 
             self.effective = effective
         }
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                selling = try container.decode(Double.self, forKey: .selling)
+                addOn = try container.decode(Double.self, forKey: .addOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                addOn = try container.decode(Double.self, forKey: .addOn)
+                selling = try container.decode(Double.self, forKey: .selling)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,9 +109,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 
-            try? container.encodeIfPresent(selling, forKey: .selling)
-
             try? container.encodeIfPresent(addOn, forKey: .addOn)
+
+            try? container.encodeIfPresent(selling, forKey: .selling)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
         }
