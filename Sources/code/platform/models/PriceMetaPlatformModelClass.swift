@@ -16,9 +16,9 @@ public extension PlatformClient {
 
         public var effective: Double
 
-        public var marked: Double
-
         public var updatedAt: String?
+
+        public var marked: Double
 
         public enum CodingKeys: String, CodingKey {
             case transfer
@@ -29,9 +29,9 @@ public extension PlatformClient {
 
             case effective
 
-            case marked
-
             case updatedAt = "updated_at"
+
+            case marked
         }
 
         public init(currency: String, effective: Double, marked: Double, tpNotes: [String: Any]? = nil, transfer: Double, updatedAt: String? = nil) {
@@ -43,9 +43,9 @@ public extension PlatformClient {
 
             self.effective = effective
 
-            self.marked = marked
-
             self.updatedAt = updatedAt
+
+            self.marked = marked
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,8 +65,6 @@ public extension PlatformClient {
 
             effective = try container.decode(Double.self, forKey: .effective)
 
-            marked = try container.decode(Double.self, forKey: .marked)
-
             do {
                 updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
@@ -74,6 +72,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            marked = try container.decode(Double.self, forKey: .marked)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
-            try? container.encodeIfPresent(marked, forKey: .marked)
-
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(marked, forKey: .marked)
         }
     }
 }
