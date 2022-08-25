@@ -10,15 +10,15 @@ public extension PlatformClient {
     class AttributeDetailsGroup: Codable {
         public var slug: String?
 
-        public var unit: String?
-
-        public var logo: String?
+        public var isActive: Bool
 
         public var key: String?
 
-        public var isActive: Bool
+        public var logo: String?
 
         public var name: String
+
+        public var unit: String?
 
         public var priority: Int
 
@@ -27,15 +27,15 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case slug
 
-            case unit
-
-            case logo
+            case isActive = "is_active"
 
             case key
 
-            case isActive = "is_active"
+            case logo
 
             case name
+
+            case unit
 
             case priority
 
@@ -45,15 +45,15 @@ public extension PlatformClient {
         public init(displayType: String, isActive: Bool, key: String? = nil, logo: String? = nil, name: String, priority: Int, slug: String? = nil, unit: String? = nil) {
             self.slug = slug
 
-            self.unit = unit
-
-            self.logo = logo
+            self.isActive = isActive
 
             self.key = key
 
-            self.isActive = isActive
+            self.logo = logo
 
             self.name = name
+
+            self.unit = unit
 
             self.priority = priority
 
@@ -71,8 +71,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -87,17 +89,15 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            name = try container.decode(String.self, forKey: .name)
+
             do {
-                key = try container.decode(String.self, forKey: .key)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            name = try container.decode(String.self, forKey: .name)
 
             priority = try container.decode(Int.self, forKey: .priority)
 
@@ -109,15 +109,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 

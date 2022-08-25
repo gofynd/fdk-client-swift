@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var requestParams: [String: Any]?
 
-        public var taskId: String
-
         public var sellerId: Int
+
+        public var taskId: String
 
         public var status: String?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case requestParams = "request_params"
 
-            case taskId = "task_id"
-
             case sellerId = "seller_id"
+
+            case taskId = "task_id"
 
             case status
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.requestParams = requestParams
 
-            self.taskId = taskId
-
             self.sellerId = sellerId
+
+            self.taskId = taskId
 
             self.status = status
         }
@@ -61,9 +61,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            taskId = try container.decode(String.self, forKey: .taskId)
-
             sellerId = try container.decode(Int.self, forKey: .sellerId)
+
+            taskId = try container.decode(String.self, forKey: .taskId)
 
             do {
                 status = try container.decode(String.self, forKey: .status)
@@ -81,9 +81,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(requestParams, forKey: .requestParams)
 
-            try? container.encodeIfPresent(taskId, forKey: .taskId)
-
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
+            try? container.encodeIfPresent(taskId, forKey: .taskId)
 
             try? container.encodeIfPresent(status, forKey: .status)
         }
