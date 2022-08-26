@@ -10,9 +10,9 @@ public extension PlatformClient {
     class ProfileEditSuccess: Codable {
         public var user: UserSchema?
 
-        public var resendEmailToken: String?
-
         public var registerToken: String?
+
+        public var resendEmailToken: String?
 
         public var userExists: Bool?
 
@@ -41,9 +41,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case user
 
-            case resendEmailToken = "resend_email_token"
-
             case registerToken = "register_token"
+
+            case resendEmailToken = "resend_email_token"
 
             case userExists = "user_exists"
 
@@ -73,9 +73,9 @@ public extension PlatformClient {
         public init(countryCode: String? = nil, email: String? = nil, message: String? = nil, mobile: String? = nil, registerToken: String? = nil, requestId: String? = nil, resendEmailToken: String? = nil, resendTimer: Int? = nil, resendToken: String? = nil, success: Bool? = nil, user: UserSchema? = nil, userExists: Bool? = nil, verifyEmailLink: Bool? = nil, verifyEmailOtp: Bool? = nil, verifyMobileOtp: Bool? = nil) {
             self.user = user
 
-            self.resendEmailToken = resendEmailToken
-
             self.registerToken = registerToken
+
+            self.resendEmailToken = resendEmailToken
 
             self.userExists = userExists
 
@@ -114,7 +114,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                resendEmailToken = try container.decode(String.self, forKey: .resendEmailToken)
+                registerToken = try container.decode(String.self, forKey: .registerToken)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,7 +122,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                registerToken = try container.decode(String.self, forKey: .registerToken)
+                resendEmailToken = try container.decode(String.self, forKey: .resendEmailToken)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -231,9 +231,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(resendEmailToken, forKey: .resendEmailToken)
-
             try? container.encodeIfPresent(registerToken, forKey: .registerToken)
+
+            try? container.encodeIfPresent(resendEmailToken, forKey: .resendEmailToken)
 
             try? container.encodeIfPresent(userExists, forKey: .userExists)
 

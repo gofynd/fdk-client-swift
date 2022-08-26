@@ -314,7 +314,7 @@ Get Orders for company based on Company Id
 
 
 ```swift
-client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, isPrioritySort: isPrioritySort, lockStatus: lockStatus, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, deploymentStores: deploymentStores, status: status, dp: dp, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, isPrioritySort: isPrioritySort, lockStatus: lockStatus, userId: userId, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, deploymentStores: deploymentStores, status: status, dp: dp, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -331,6 +331,7 @@ client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: 
 | toDate | String? | no | To Date |   
 | isPrioritySort | Bool? | no | Sorting Order |   
 | lockStatus | Bool? | no | Hide Lock Status |   
+| userId | String? | no | User Id |   
 | q | String? | no | Keyword for Search |   
 | stage | String? | no | Specefic Order Stage |   
 | salesChannels | String? | no | Selected Sales Channel |   
@@ -1123,7 +1124,7 @@ Get Orders for company based on Company Id
 
 
 ```swift
-client.application("<APPLICATION_ID>").order.getOrdersByApplicationId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, dp: dp, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+client.application("<APPLICATION_ID>").order.getOrdersByApplicationId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, dp: dp, userId: userId, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -1145,6 +1146,7 @@ client.application("<APPLICATION_ID>").order.getOrdersByApplicationId(pageNo: pa
 | stores | String? | no | Selected Stores |   
 | status | String? | no | Status of order |   
 | dp | String? | no | Delivery Partners |   
+| userId | String? | no | User Id |   
 | shortenUrls | Bool? | no | Shorten URL option |   
 | filterType | String? | no | Filters |  
 
