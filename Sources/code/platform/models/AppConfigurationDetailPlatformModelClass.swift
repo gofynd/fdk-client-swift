@@ -8,11 +8,11 @@ public extension PlatformClient {
      */
 
     class AppConfigurationDetail: Codable {
+        public var logo: String?
+
+        public var attributes: [AttributeDetailsGroup]?
+
         public var isActive: Bool
-
-        public var isDefault: Bool
-
-        public var slug: String
 
         public var appId: String
 
@@ -20,18 +20,18 @@ public extension PlatformClient {
 
         public var name: String?
 
+        public var isDefault: Bool
+
+        public var slug: String
+
         public var templateSlugs: [String]?
 
-        public var logo: String?
-
-        public var attributes: [AttributeDetailsGroup]?
-
         public enum CodingKeys: String, CodingKey {
+            case logo
+
+            case attributes
+
             case isActive = "is_active"
-
-            case isDefault = "is_default"
-
-            case slug
 
             case appId = "app_id"
 
@@ -39,19 +39,19 @@ public extension PlatformClient {
 
             case name
 
+            case isDefault = "is_default"
+
+            case slug
+
             case templateSlugs = "template_slugs"
-
-            case logo
-
-            case attributes
         }
 
         public init(appId: String, attributes: [AttributeDetailsGroup]? = nil, isActive: Bool, isDefault: Bool, logo: String? = nil, name: String? = nil, priority: Int, slug: String, templateSlugs: [String]? = nil) {
+            self.logo = logo
+
+            self.attributes = attributes
+
             self.isActive = isActive
-
-            self.isDefault = isDefault
-
-            self.slug = slug
 
             self.appId = appId
 
@@ -59,41 +59,15 @@ public extension PlatformClient {
 
             self.name = name
 
+            self.isDefault = isDefault
+
+            self.slug = slug
+
             self.templateSlugs = templateSlugs
-
-            self.logo = logo
-
-            self.attributes = attributes
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            isDefault = try container.decode(Bool.self, forKey: .isDefault)
-
-            slug = try container.decode(String.self, forKey: .slug)
-
-            appId = try container.decode(String.self, forKey: .appId)
-
-            priority = try container.decode(Int.self, forKey: .priority)
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                templateSlugs = try container.decode([String].self, forKey: .templateSlugs)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -110,16 +84,42 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            appId = try container.decode(String.self, forKey: .appId)
+
+            priority = try container.decode(Int.self, forKey: .priority)
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
+            slug = try container.decode(String.self, forKey: .slug)
+
+            do {
+                templateSlugs = try container.decode([String].self, forKey: .templateSlugs)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
+
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
@@ -127,11 +127,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
             try? container.encodeIfPresent(templateSlugs, forKey: .templateSlugs)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
         }
     }
 }
