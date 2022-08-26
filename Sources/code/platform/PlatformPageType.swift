@@ -44,6 +44,7 @@ public extension PlatformClient {
         case cartPayment = "cart-payment"
         case cartReview = "cart-review"
         case login
+        case register
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -176,6 +177,8 @@ public extension PlatformClient {
                 return "/cart/order-review"
             case .login:
                 return "/auth/login"
+            case .register:
+                return "/auth/register"
             }
         }
 
@@ -267,6 +270,8 @@ public extension PlatformClient {
                 return "Cart Order Review"
             case .login:
                 return "Login"
+            case .register:
+                return "Register"
             }
         }
 
@@ -358,6 +363,8 @@ public extension PlatformClient {
                 return []
             case .login:
                 return []
+            case .register:
+                return []
             }
         }
 
@@ -448,6 +455,8 @@ public extension PlatformClient {
             case .cartReview:
                 return []
             case .login:
+                return []
+            case .register:
                 return []
             }
         }
