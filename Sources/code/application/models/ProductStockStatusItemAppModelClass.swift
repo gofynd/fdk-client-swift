@@ -9,60 +9,60 @@ public extension ApplicationClient {
     class ProductStockStatusItem: Codable {
         public var uid: String?
 
-        public var price: ProductStockPrice?
+        public var company: CompanyDetail?
+
+        public var size: String?
 
         public var identifier: [String: Any]?
 
         public var seller: Seller?
 
-        public var size: String?
-
-        public var company: CompanyDetail?
+        public var store: StoreDetail?
 
         public var itemId: Int?
 
         public var quantity: Int?
 
-        public var store: StoreDetail?
+        public var price: ProductStockPrice?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
-            case price
+            case company
+
+            case size
 
             case identifier
 
             case seller
 
-            case size
-
-            case company
+            case store
 
             case itemId = "item_id"
 
             case quantity
 
-            case store
+            case price
         }
 
         public init(company: CompanyDetail? = nil, identifier: [String: Any]? = nil, itemId: Int? = nil, price: ProductStockPrice? = nil, quantity: Int? = nil, seller: Seller? = nil, size: String? = nil, store: StoreDetail? = nil, uid: String? = nil) {
             self.uid = uid
 
-            self.price = price
+            self.company = company
+
+            self.size = size
 
             self.identifier = identifier
 
             self.seller = seller
 
-            self.size = size
-
-            self.company = company
+            self.store = store
 
             self.itemId = itemId
 
             self.quantity = quantity
 
-            self.store = store
+            self.price = price
         }
 
         required public init(from decoder: Decoder) throws {
@@ -77,7 +77,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                price = try container.decode(ProductStockPrice.self, forKey: .price)
+                company = try container.decode(CompanyDetail.self, forKey: .company)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                size = try container.decode(String.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,15 +109,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                size = try container.decode(String.self, forKey: .size)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                company = try container.decode(CompanyDetail.self, forKey: .company)
+                store = try container.decode(StoreDetail.self, forKey: .store)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,7 +133,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                store = try container.decode(StoreDetail.self, forKey: .store)
+                price = try container.decode(ProductStockPrice.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,21 +146,21 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(price, forKey: .price)
+            try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(seller, forKey: .seller)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(company, forKey: .company)
+            try? container.encodeIfPresent(store, forKey: .store)
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(store, forKey: .store)
+            try? container.encodeIfPresent(price, forKey: .price)
         }
     }
 }

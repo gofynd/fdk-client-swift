@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class CompareObject: Codable {
-        public var greaterThanEquals: Double?
+        public var lessThan: Double?
 
         public var equals: Double?
 
@@ -16,10 +16,10 @@ public extension PlatformClient {
 
         public var greaterThan: Double?
 
-        public var lessThan: Double?
+        public var greaterThanEquals: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case greaterThanEquals = "greater_than_equals"
+            case lessThan = "less_than"
 
             case equals
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case greaterThan = "greater_than"
 
-            case lessThan = "less_than"
+            case greaterThanEquals = "greater_than_equals"
         }
 
         public init(equals: Double? = nil, greaterThan: Double? = nil, greaterThanEquals: Double? = nil, lessThan: Double? = nil, lessThanEquals: Double? = nil) {
-            self.greaterThanEquals = greaterThanEquals
+            self.lessThan = lessThan
 
             self.equals = equals
 
@@ -39,14 +39,14 @@ public extension PlatformClient {
 
             self.greaterThan = greaterThan
 
-            self.lessThan = lessThan
+            self.greaterThanEquals = greaterThanEquals
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                greaterThanEquals = try container.decode(Double.self, forKey: .greaterThanEquals)
+                lessThan = try container.decode(Double.self, forKey: .lessThan)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                lessThan = try container.decode(Double.self, forKey: .lessThan)
+                greaterThanEquals = try container.decode(Double.self, forKey: .greaterThanEquals)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(greaterThanEquals, forKey: .greaterThanEquals)
+            try? container.encodeIfPresent(lessThan, forKey: .lessThan)
 
             try? container.encodeIfPresent(equals, forKey: .equals)
 
@@ -97,7 +97,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(greaterThan, forKey: .greaterThan)
 
-            try? container.encodeIfPresent(lessThan, forKey: .lessThan)
+            try? container.encodeIfPresent(greaterThanEquals, forKey: .greaterThanEquals)
         }
     }
 }
