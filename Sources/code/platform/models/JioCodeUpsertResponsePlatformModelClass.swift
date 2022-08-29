@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class JioCodeUpsertResponse: Codable {
-        public var error: [NestedErrorSchemaDataSet]?
-
         public var data: [[String: Any]]?
+
+        public var error: [NestedErrorSchemaDataSet]?
 
         public var success: Bool?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var identifier: String?
 
         public enum CodingKeys: String, CodingKey {
-            case error
-
             case data
+
+            case error
 
             case success
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(data: [[String: Any]]? = nil, error: [NestedErrorSchemaDataSet]? = nil, identifier: String? = nil, success: Bool? = nil, traceId: String? = nil) {
-            self.error = error
-
             self.data = data
+
+            self.error = error
 
             self.success = success
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                error = try container.decode([NestedErrorSchemaDataSet].self, forKey: .error)
+                data = try container.decode([[String: Any]].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                data = try container.decode([[String: Any]].self, forKey: .data)
+                error = try container.decode([NestedErrorSchemaDataSet].self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(success, forKey: .success)
 

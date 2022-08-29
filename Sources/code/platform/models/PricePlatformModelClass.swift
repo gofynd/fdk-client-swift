@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var minMarked: Double?
 
-        public var maxMarked: Double?
+        public var minEffective: Double?
 
         public var maxEffective: Double?
 
-        public var minEffective: Double?
+        public var maxMarked: Double?
 
         public enum CodingKeys: String, CodingKey {
             case currency
 
             case minMarked = "min_marked"
 
-            case maxMarked = "max_marked"
+            case minEffective = "min_effective"
 
             case maxEffective = "max_effective"
 
-            case minEffective = "min_effective"
+            case maxMarked = "max_marked"
         }
 
         public init(currency: String? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.minMarked = minMarked
 
-            self.maxMarked = maxMarked
+            self.minEffective = minEffective
 
             self.maxEffective = maxEffective
 
-            self.minEffective = minEffective
+            self.maxMarked = maxMarked
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                maxMarked = try container.decode(Double.self, forKey: .maxMarked)
+                minEffective = try container.decode(Double.self, forKey: .minEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                minEffective = try container.decode(Double.self, forKey: .minEffective)
+                maxMarked = try container.decode(Double.self, forKey: .maxMarked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,11 +93,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(minMarked, forKey: .minMarked)
 
-            try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
+            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
 
             try? container.encodeIfPresent(maxEffective, forKey: .maxEffective)
 
-            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
+            try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
         }
     }
 }
