@@ -12,9 +12,8 @@ Handles Platform websites OMS
 * [checkRefund](#checkrefund)
 * [shipmentBagsCanBreak](#shipmentbagscanbreak)
 * [getOrdersByCompanyId](#getordersbycompanyid)
-* [getOrderLanesCountByCompanyId](#getorderlanescountbycompanyid)
 * [getOrderDetails](#getorderdetails)
-* [getOrderDetails](#getorderdetails)
+* [getApplicationOrderDetails](#getapplicationorderdetails)
 * [getPicklistOrdersByCompanyId](#getpicklistordersbycompanyid)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [trackOrder](#trackorder)
@@ -26,9 +25,6 @@ Handles Platform websites OMS
 * [getShipmentAddress](#getshipmentaddress)
 * [updateShipmentAddress](#updateshipmentaddress)
 * [getOrdersByApplicationId](#getordersbyapplicationid)
-* [getPing](#getping)
-* [voiceCallback](#voicecallback)
-* [voiceClickToCall](#voiceclicktocall)
 
 
 
@@ -378,72 +374,6 @@ Success
 ---
 
 
-#### getOrderLanesCountByCompanyId
-Get Order Lanes Count for company based on Company Id
-
-
-
-
-```swift
-client.order.getOrderLanesCountByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| pageNo | String? | no | Current page number |   
-| pageSize | String? | no | Page limit |   
-| fromDate | String? | no | From Date |   
-| toDate | String? | no | To Date |   
-| q | String? | no | Keyword for Search |   
-| stage | String? | no | Specefic Order Stage |   
-| salesChannels | String? | no | Selected Sales Channel |   
-| orderId | String? | no | Order Id |   
-| stores | String? | no | Selected Stores |   
-| status | String? | no | Status of order |   
-| shortenUrls | Bool? | no | Shorten URL option |   
-| filterType | String? | no | Filters |  
-
-
-
-Get Orders Seperate Lane Count
-
-*Returned Response:*
-
-
-
-
-[OrderLanesCount](#OrderLanesCount)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getOrderDetails
 Get Order Details for company based on Company Id and Order Id
 
@@ -501,14 +431,14 @@ Success
 ---
 
 
-#### getOrderDetails
+#### getApplicationOrderDetails
 Get Order Details for company based on Company Id and Order Id
 
 
 
 
 ```swift
-client.application("<APPLICATION_ID>").order.getOrderDetails(orderId: orderId, next: next, previous: previous) { (response, error) in
+client.application("<APPLICATION_ID>").order.getApplicationOrderDetails(orderId: orderId, next: next, previous: previous) { (response, error) in
     // Use response
 }
 ```
@@ -1160,162 +1090,6 @@ Get Orders at Application Level
 
 
 [OrderListing](#OrderListing)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getPing
-Get Ping
-
-
-
-
-```swift
-client.order.getPing() { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-
-Get Ping
-
-*Returned Response:*
-
-
-
-
-[GetPingResponse](#GetPingResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### voiceCallback
-Get Voice Callback
-
-
-
-
-```swift
-client.order.voiceCallback() { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-
-Voice Callback
-
-*Returned Response:*
-
-
-
-
-[GetVoiceCallbackResponse](#GetVoiceCallbackResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### voiceClickToCall
-Get Voice Click to Call
-
-
-
-
-```swift
-client.order.voiceClickToCall(caller: caller, receiver: receiver) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| caller | String | yes | Caller contact number |   
-| receiver | String | yes | Receiver contact number |  
-
-
-
-Voice Click to Call
-
-*Returned Response:*
-
-
-
-
-[GetClickToCallResponse](#GetClickToCallResponse)
 
 Success
 

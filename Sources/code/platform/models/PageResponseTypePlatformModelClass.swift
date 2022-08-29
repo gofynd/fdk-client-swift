@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var totalCount: Int
 
-        public var current: Int
-
         public var next: Int
+
+        public var current: Int
 
         public enum CodingKeys: String, CodingKey {
             case hasNext = "has_next"
 
             case totalCount = "total_count"
 
-            case current
-
             case next
+
+            case current
         }
 
         public init(current: Int, hasNext: Bool, next: Int, totalCount: Int) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.totalCount = totalCount
 
-            self.current = current
-
             self.next = next
+
+            self.current = current
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,9 +43,9 @@ public extension PlatformClient {
 
             totalCount = try container.decode(Int.self, forKey: .totalCount)
 
-            current = try container.decode(Int.self, forKey: .current)
-
             next = try container.decode(Int.self, forKey: .next)
+
+            current = try container.decode(Int.self, forKey: .current)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -55,9 +55,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(totalCount, forKey: .totalCount)
 
-            try? container.encodeIfPresent(current, forKey: .current)
-
             try? container.encodeIfPresent(next, forKey: .next)
+
+            try? container.encodeIfPresent(current, forKey: .current)
         }
     }
 }

@@ -10,30 +10,30 @@ public extension PlatformClient {
     class UserDataSet: Codable {
         public var gender: String?
 
-        public var name: String
-
         public var email: String?
 
         public var mobile: Int
 
+        public var name: String
+
         public enum CodingKeys: String, CodingKey {
             case gender
-
-            case name
 
             case email
 
             case mobile
+
+            case name
         }
 
         public init(email: String? = nil, gender: String? = nil, mobile: Int, name: String) {
             self.gender = gender
 
-            self.name = name
-
             self.email = email
 
             self.mobile = mobile
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,8 +47,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
                 email = try container.decode(String.self, forKey: .email)
 
@@ -58,6 +56,8 @@ public extension PlatformClient {
             } catch {}
 
             mobile = try container.decode(Int.self, forKey: .mobile)
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -65,11 +65,11 @@ public extension PlatformClient {
 
             try? container.encode(gender, forKey: .gender)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

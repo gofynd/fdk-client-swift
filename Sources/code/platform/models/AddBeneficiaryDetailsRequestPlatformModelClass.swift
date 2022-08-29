@@ -8,58 +8,56 @@ public extension PlatformClient {
      */
 
     class AddBeneficiaryDetailsRequest: Codable {
-        public var delights: Bool
-
-        public var transferMode: String
+        public var shipmentId: String
 
         public var requestId: String?
 
-        public var orderId: String
-
         public var otp: String?
-
-        public var shipmentId: String
 
         public var details: BeneficiaryModeDetails
 
-        public enum CodingKeys: String, CodingKey {
-            case delights
+        public var orderId: String
 
-            case transferMode = "transfer_mode"
+        public var transferMode: String
+
+        public var delights: Bool
+
+        public enum CodingKeys: String, CodingKey {
+            case shipmentId = "shipment_id"
 
             case requestId = "request_id"
 
-            case orderId = "order_id"
-
             case otp
 
-            case shipmentId = "shipment_id"
-
             case details
+
+            case orderId = "order_id"
+
+            case transferMode = "transfer_mode"
+
+            case delights
         }
 
         public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String? = nil, requestId: String? = nil, shipmentId: String, transferMode: String) {
-            self.delights = delights
-
-            self.transferMode = transferMode
+            self.shipmentId = shipmentId
 
             self.requestId = requestId
 
-            self.orderId = orderId
-
             self.otp = otp
 
-            self.shipmentId = shipmentId
-
             self.details = details
+
+            self.orderId = orderId
+
+            self.transferMode = transferMode
+
+            self.delights = delights
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            delights = try container.decode(Bool.self, forKey: .delights)
-
-            transferMode = try container.decode(String.self, forKey: .transferMode)
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             do {
                 requestId = try container.decode(String.self, forKey: .requestId)
@@ -69,8 +67,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            orderId = try container.decode(String.self, forKey: .orderId)
-
             do {
                 otp = try container.decode(String.self, forKey: .otp)
 
@@ -79,27 +75,31 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
             details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
+
+            orderId = try container.decode(String.self, forKey: .orderId)
+
+            transferMode = try container.decode(String.self, forKey: .transferMode)
+
+            delights = try container.decode(Bool.self, forKey: .delights)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(delights, forKey: .delights)
-
-            try? container.encodeIfPresent(transferMode, forKey: .transferMode)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(requestId, forKey: .requestId)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
-
             try? container.encodeIfPresent(otp, forKey: .otp)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
             try? container.encodeIfPresent(details, forKey: .details)
+
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(transferMode, forKey: .transferMode)
+
+            try? container.encodeIfPresent(delights, forKey: .delights)
         }
     }
 }

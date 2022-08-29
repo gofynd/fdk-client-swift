@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var logo: String
 
-        public var modifiedOn: Int?
+        public var id: Int
 
         public var company: String
 
-        public var id: Int
+        public var modifiedOn: Int?
 
         public var createdOn: Int
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case logo
 
-            case modifiedOn = "modified_on"
+            case id
 
             case company
 
-            case id
+            case modifiedOn = "modified_on"
 
             case createdOn = "created_on"
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.logo = logo
 
-            self.modifiedOn = modifiedOn
+            self.id = id
 
             self.company = company
 
-            self.id = id
+            self.modifiedOn = modifiedOn
 
             self.createdOn = createdOn
         }
@@ -55,6 +55,10 @@ public extension PlatformClient {
 
             logo = try container.decode(String.self, forKey: .logo)
 
+            id = try container.decode(Int.self, forKey: .id)
+
+            company = try container.decode(String.self, forKey: .company)
+
             do {
                 modifiedOn = try container.decode(Int.self, forKey: .modifiedOn)
 
@@ -62,10 +66,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            company = try container.decode(String.self, forKey: .company)
-
-            id = try container.decode(Int.self, forKey: .id)
 
             createdOn = try container.decode(Int.self, forKey: .createdOn)
         }
@@ -77,11 +77,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(company, forKey: .company)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
         }

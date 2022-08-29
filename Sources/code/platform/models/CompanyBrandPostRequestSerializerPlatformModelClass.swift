@@ -10,18 +10,18 @@ public extension PlatformClient {
     class CompanyBrandPostRequestSerializer: Codable {
         public var documents: [CompanyBrandDocumentsSerializer]?
 
-        public var uid: Int?
-
         public var brands: [Int]
+
+        public var uid: Int?
 
         public var company: Int
 
         public enum CodingKeys: String, CodingKey {
             case documents
 
-            case uid
-
             case brands
+
+            case uid
 
             case company
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(brands: [Int], company: Int, documents: [CompanyBrandDocumentsSerializer]? = nil, uid: Int? = nil) {
             self.documents = documents
 
-            self.uid = uid
-
             self.brands = brands
+
+            self.uid = uid
 
             self.company = company
         }
@@ -47,6 +47,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            brands = try container.decode([Int].self, forKey: .brands)
+
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
 
@@ -54,8 +56,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            brands = try container.decode([Int].self, forKey: .brands)
 
             company = try container.decode(Int.self, forKey: .company)
         }
@@ -65,9 +65,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(documents, forKey: .documents)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(brands, forKey: .brands)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(company, forKey: .company)
         }
