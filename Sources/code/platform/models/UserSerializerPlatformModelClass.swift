@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var userId: String?
 
-        public var id: String?
+        public var uid: String?
 
         public var contact: String?
 
-        public var uid: String?
+        public var id: String?
 
         public enum CodingKeys: String, CodingKey {
             case username
 
             case userId = "user_id"
 
-            case id = "_id"
+            case uid
 
             case contact
 
-            case uid
+            case id = "_id"
         }
 
         public init(contact: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.userId = userId
 
-            self.id = id
+            self.uid = uid
 
             self.contact = contact
 
-            self.uid = uid
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,11 +93,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(contact, forKey: .contact)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

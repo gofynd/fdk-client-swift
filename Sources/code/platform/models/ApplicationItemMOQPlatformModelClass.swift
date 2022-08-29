@@ -3,38 +3,38 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: OpenApiErrorResponse
-         Used By: Cart
+         Model: ApplicationItemMOQ
+         Used By: Catalog
      */
 
-    class OpenApiErrorResponse: Codable {
-        public var errors: [String: Any]?
+    class ApplicationItemMOQ: Codable {
+        public var multiplier: Int?
 
-        public var message: String?
+        public var minQty: Int?
 
-        public var success: Bool?
+        public var maxQty: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case errors
+            case multiplier
 
-            case message
+            case minQty = "min_qty"
 
-            case success
+            case maxQty = "max_qty"
         }
 
-        public init(errors: [String: Any]? = nil, message: String? = nil, success: Bool? = nil) {
-            self.errors = errors
+        public init(maxQty: Int? = nil, minQty: Int? = nil, multiplier: Int? = nil) {
+            self.multiplier = multiplier
 
-            self.message = message
+            self.minQty = minQty
 
-            self.success = success
+            self.maxQty = maxQty
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                errors = try container.decode([String: Any].self, forKey: .errors)
+                multiplier = try container.decode(Int.self, forKey: .multiplier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                minQty = try container.decode(Int.self, forKey: .minQty)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                maxQty = try container.decode(Int.self, forKey: .maxQty)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,11 +61,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(errors, forKey: .errors)
+            try? container.encodeIfPresent(multiplier, forKey: .multiplier)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(minQty, forKey: .minQty)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(maxQty, forKey: .maxQty)
         }
     }
 }
