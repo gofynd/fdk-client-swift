@@ -10,14 +10,6 @@ public extension PlatformClient {
     class CompanyOptIn: Codable {
         public var modifiedBy: [String: Any]?
 
-        public var storeIds: [Int]
-
-        public var brandIds: [Int]
-
-        public var enabled: Bool
-
-        public var modifiedOn: Int
-
         public var platform: String
 
         public var createdOn: Int
@@ -26,18 +18,18 @@ public extension PlatformClient {
 
         public var optLevel: String
 
+        public var modifiedOn: Int
+
+        public var storeIds: [Int]
+
+        public var brandIds: [Int]
+
+        public var enabled: Bool
+
         public var companyId: Int
 
         public enum CodingKeys: String, CodingKey {
             case modifiedBy = "modified_by"
-
-            case storeIds = "store_ids"
-
-            case brandIds = "brand_ids"
-
-            case enabled
-
-            case modifiedOn = "modified_on"
 
             case platform
 
@@ -47,19 +39,19 @@ public extension PlatformClient {
 
             case optLevel = "opt_level"
 
+            case modifiedOn = "modified_on"
+
+            case storeIds = "store_ids"
+
+            case brandIds = "brand_ids"
+
+            case enabled
+
             case companyId = "company_id"
         }
 
         public init(brandIds: [Int], companyId: Int, createdBy: [String: Any]? = nil, createdOn: Int, enabled: Bool, modifiedBy: [String: Any]? = nil, modifiedOn: Int, optLevel: String, platform: String, storeIds: [Int]) {
             self.modifiedBy = modifiedBy
-
-            self.storeIds = storeIds
-
-            self.brandIds = brandIds
-
-            self.enabled = enabled
-
-            self.modifiedOn = modifiedOn
 
             self.platform = platform
 
@@ -68,6 +60,14 @@ public extension PlatformClient {
             self.createdBy = createdBy
 
             self.optLevel = optLevel
+
+            self.modifiedOn = modifiedOn
+
+            self.storeIds = storeIds
+
+            self.brandIds = brandIds
+
+            self.enabled = enabled
 
             self.companyId = companyId
         }
@@ -83,14 +83,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            storeIds = try container.decode([Int].self, forKey: .storeIds)
-
-            brandIds = try container.decode([Int].self, forKey: .brandIds)
-
-            enabled = try container.decode(Bool.self, forKey: .enabled)
-
-            modifiedOn = try container.decode(Int.self, forKey: .modifiedOn)
-
             platform = try container.decode(String.self, forKey: .platform)
 
             createdOn = try container.decode(Int.self, forKey: .createdOn)
@@ -105,6 +97,14 @@ public extension PlatformClient {
 
             optLevel = try container.decode(String.self, forKey: .optLevel)
 
+            modifiedOn = try container.decode(Int.self, forKey: .modifiedOn)
+
+            storeIds = try container.decode([Int].self, forKey: .storeIds)
+
+            brandIds = try container.decode([Int].self, forKey: .brandIds)
+
+            enabled = try container.decode(Bool.self, forKey: .enabled)
+
             companyId = try container.decode(Int.self, forKey: .companyId)
         }
 
@@ -113,14 +113,6 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
 
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
-
-            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
-
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
             try? container.encodeIfPresent(platform, forKey: .platform)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
@@ -128,6 +120,14 @@ public extension PlatformClient {
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(optLevel, forKey: .optLevel)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+
+            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
+
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
         }

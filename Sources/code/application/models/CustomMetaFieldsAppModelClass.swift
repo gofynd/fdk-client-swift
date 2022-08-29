@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: MetaFields
+         Model: CustomMetaFields
          Used By: Catalog
      */
-    class MetaFields: Codable {
+    class CustomMetaFields: Codable {
         public var key: String
 
         public var value: String

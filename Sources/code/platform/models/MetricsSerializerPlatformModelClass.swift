@@ -14,13 +14,13 @@ public extension PlatformClient {
 
         public var store: DocumentsObj?
 
-        public var brand: DocumentsObj?
-
-        public var companyDocuments: DocumentsObj?
-
         public var uid: Int?
 
         public var stage: String?
+
+        public var companyDocuments: DocumentsObj?
+
+        public var brand: DocumentsObj?
 
         public enum CodingKeys: String, CodingKey {
             case storeDocuments = "store_documents"
@@ -29,13 +29,13 @@ public extension PlatformClient {
 
             case store
 
-            case brand
-
-            case companyDocuments = "company_documents"
-
             case uid
 
             case stage
+
+            case companyDocuments = "company_documents"
+
+            case brand
         }
 
         public init(brand: DocumentsObj? = nil, companyDocuments: DocumentsObj? = nil, product: DocumentsObj? = nil, stage: String? = nil, store: DocumentsObj? = nil, storeDocuments: DocumentsObj? = nil, uid: Int? = nil) {
@@ -45,13 +45,13 @@ public extension PlatformClient {
 
             self.store = store
 
-            self.brand = brand
-
-            self.companyDocuments = companyDocuments
-
             self.uid = uid
 
             self.stage = stage
+
+            self.companyDocuments = companyDocuments
+
+            self.brand = brand
         }
 
         required public init(from decoder: Decoder) throws {
@@ -82,7 +82,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                brand = try container.decode(DocumentsObj.self, forKey: .brand)
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                stage = try container.decode(String.self, forKey: .stage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,15 +106,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                stage = try container.decode(String.self, forKey: .stage)
+                brand = try container.decode(DocumentsObj.self, forKey: .brand)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -123,13 +123,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(store, forKey: .store)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
-
-            try? container.encodeIfPresent(companyDocuments, forKey: .companyDocuments)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(stage, forKey: .stage)
+
+            try? container.encodeIfPresent(companyDocuments, forKey: .companyDocuments)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
         }
     }
 }
