@@ -8,6 +8,8 @@ public extension PlatformClient {
      */
 
     class RequestedDPConfs: Codable {
+        public var awbType: String
+
         public var excludeDps: [Int]?
 
         public var isDpAssignedManually: Bool
@@ -16,9 +18,9 @@ public extension PlatformClient {
 
         public var rdpcId: Int
 
-        public var awbType: String
-
         public enum CodingKeys: String, CodingKey {
+            case awbType = "awb_type"
+
             case excludeDps = "exclude_dps"
 
             case isDpAssignedManually = "is_dp_assigned_manually"
@@ -26,11 +28,11 @@ public extension PlatformClient {
             case ewbn
 
             case rdpcId = "rdpc_id"
-
-            case awbType = "awb_type"
         }
 
         public init(awbType: String, ewbn: [String: Any]? = nil, excludeDps: [Int]? = nil, isDpAssignedManually: Bool, rdpcId: Int) {
+            self.awbType = awbType
+
             self.excludeDps = excludeDps
 
             self.isDpAssignedManually = isDpAssignedManually
@@ -38,12 +40,12 @@ public extension PlatformClient {
             self.ewbn = ewbn
 
             self.rdpcId = rdpcId
-
-            self.awbType = awbType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            awbType = try container.decode(String.self, forKey: .awbType)
 
             do {
                 excludeDps = try container.decode([Int].self, forKey: .excludeDps)
@@ -64,12 +66,12 @@ public extension PlatformClient {
             } catch {}
 
             rdpcId = try container.decode(Int.self, forKey: .rdpcId)
-
-            awbType = try container.decode(String.self, forKey: .awbType)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(awbType, forKey: .awbType)
 
             try? container.encodeIfPresent(excludeDps, forKey: .excludeDps)
 
@@ -78,8 +80,6 @@ public extension PlatformClient {
             try? container.encode(ewbn, forKey: .ewbn)
 
             try? container.encodeIfPresent(rdpcId, forKey: .rdpcId)
-
-            try? container.encodeIfPresent(awbType, forKey: .awbType)
         }
     }
 }

@@ -1,51 +1,52 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: Price1
+         Model: BaseUserSerializerWithID
          Used By: Catalog
      */
-    class Price1: Codable {
-        public var minEffective: Double?
 
-        public var currency: String?
+    class BaseUserSerializerWithID: Codable {
+        public var id: String?
 
-        public var maxEffective: Double?
+        public var uid: String?
 
-        public var maxMarked: Double?
+        public var username: String?
 
-        public var minMarked: Double?
+        public var contact: String?
+
+        public var userId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case minEffective = "min_effective"
+            case id = "_id"
 
-            case currency
+            case uid
 
-            case maxEffective = "max_effective"
+            case username
 
-            case maxMarked = "max_marked"
+            case contact
 
-            case minMarked = "min_marked"
+            case userId = "user_id"
         }
 
-        public init(currency: String? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
-            self.minEffective = minEffective
+        public init(contact: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
+            self.id = id
 
-            self.currency = currency
+            self.uid = uid
 
-            self.maxEffective = maxEffective
+            self.username = username
 
-            self.maxMarked = maxMarked
+            self.contact = contact
 
-            self.minMarked = minMarked
+            self.userId = userId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                minEffective = try container.decode(Double.self, forKey: .minEffective)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +54,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +62,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                maxEffective = try container.decode(Double.self, forKey: .maxEffective)
+                username = try container.decode(String.self, forKey: .username)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +70,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                maxMarked = try container.decode(Double.self, forKey: .maxMarked)
+                contact = try container.decode(String.self, forKey: .contact)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +78,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                minMarked = try container.decode(Double.self, forKey: .minMarked)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,15 +89,15 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
+            try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(maxEffective, forKey: .maxEffective)
+            try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
+            try? container.encodeIfPresent(contact, forKey: .contact)
 
-            try? container.encodeIfPresent(minMarked, forKey: .minMarked)
+            try? container.encodeIfPresent(userId, forKey: .userId)
         }
     }
 }

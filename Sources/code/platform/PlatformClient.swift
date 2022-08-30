@@ -12254,8 +12254,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Add new domain to application
-             * Description: Add new domain to application.
+             * Summary: Add new domain to current sales channel.
+             * Description: Add a new domain to current sales channel.
              **/
             public func addDomain(
                 body: DomainAddRequest,
@@ -12292,8 +12292,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Remove attached domain
-             * Description: Remove attached domain.
+             * Summary: Remove attached domain with current sales channel.
+             * Description: Remove attached domain with current sales channel. It will disable user's access to website, shared links and other associated features to this domain.
              **/
             public func removeDomainById(
                 id: String,
@@ -12331,8 +12331,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Change domain type
-             * Description: Change a domain to Primary or Shortlink domain
+             * Summary: Change domain type for the current sales channel
+             * Description: Change a domain to Primary or Shortlink domain for the current sales channel
              **/
             public func changeDomainType(
                 body: UpdateDomainTypeRequest,

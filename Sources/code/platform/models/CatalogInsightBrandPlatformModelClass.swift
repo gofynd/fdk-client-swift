@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var availableSizes: Int?
 
-        public var availableArticles: Int?
-
         public var articleFreshness: Int?
 
         public var totalArticles: Int?
+
+        public var availableArticles: Int?
 
         public var totalSizes: Int?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case availableSizes = "available_sizes"
 
-            case availableArticles = "available_articles"
-
             case articleFreshness = "article_freshness"
 
             case totalArticles = "total_articles"
+
+            case availableArticles = "available_articles"
 
             case totalSizes = "total_sizes"
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.availableSizes = availableSizes
 
-            self.availableArticles = availableArticles
-
             self.articleFreshness = articleFreshness
 
             self.totalArticles = totalArticles
+
+            self.availableArticles = availableArticles
 
             self.totalSizes = totalSizes
         }
@@ -68,14 +68,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                availableArticles = try container.decode(Int.self, forKey: .availableArticles)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 articleFreshness = try container.decode(Int.self, forKey: .articleFreshness)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -85,6 +77,14 @@ public extension PlatformClient {
 
             do {
                 totalArticles = try container.decode(Int.self, forKey: .totalArticles)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                availableArticles = try container.decode(Int.self, forKey: .availableArticles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,11 +107,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
 
-            try? container.encodeIfPresent(availableArticles, forKey: .availableArticles)
-
             try? container.encodeIfPresent(articleFreshness, forKey: .articleFreshness)
 
             try? container.encodeIfPresent(totalArticles, forKey: .totalArticles)
+
+            try? container.encodeIfPresent(availableArticles, forKey: .availableArticles)
 
             try? container.encodeIfPresent(totalSizes, forKey: .totalSizes)
         }

@@ -10,18 +10,18 @@ public extension PlatformClient {
     class UpdateShipmentStatusPayload: Codable {
         public var lockAfterTransition: Bool?
 
-        public var entities: EntitiesDetail
-
         public var processInBackground: Bool?
+
+        public var entities: EntitiesDetail
 
         public var unlockBeforeTransition: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case lockAfterTransition = "lock_after_transition"
 
-            case entities
-
             case processInBackground = "process_in_background"
+
+            case entities
 
             case unlockBeforeTransition = "unlock_before_transition"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(entities: EntitiesDetail, lockAfterTransition: Bool? = nil, processInBackground: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
             self.lockAfterTransition = lockAfterTransition
 
-            self.entities = entities
-
             self.processInBackground = processInBackground
+
+            self.entities = entities
 
             self.unlockBeforeTransition = unlockBeforeTransition
         }
@@ -47,8 +47,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            entities = try container.decode(EntitiesDetail.self, forKey: .entities)
-
             do {
                 processInBackground = try container.decode(Bool.self, forKey: .processInBackground)
 
@@ -56,6 +54,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            entities = try container.decode(EntitiesDetail.self, forKey: .entities)
 
             do {
                 unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
@@ -71,9 +71,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
 
-            try? container.encodeIfPresent(entities, forKey: .entities)
-
             try? container.encodeIfPresent(processInBackground, forKey: .processInBackground)
+
+            try? container.encodeIfPresent(entities, forKey: .entities)
 
             try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
         }

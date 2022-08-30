@@ -10,48 +10,48 @@ public extension PlatformClient {
     class CompanyMeta: Codable {
         public var contactDetails: [String: Any]
 
-        public var documents: Documents1
+        public var notificationEmails: [String]
 
-        public var stage: String
+        public var address: [CompanyAddress]
+
+        public var documents: Documents1
 
         public var businessInfo: String?
 
-        public var notificationEmails: [String]
+        public var stage: String
 
         public var businessDetails: [String: Any]?
-
-        public var address: [CompanyAddress]
 
         public enum CodingKeys: String, CodingKey {
             case contactDetails = "contact_details"
 
-            case documents
+            case notificationEmails = "notification_emails"
 
-            case stage
+            case address
+
+            case documents
 
             case businessInfo = "business_info"
 
-            case notificationEmails = "notification_emails"
+            case stage
 
             case businessDetails = "business_details"
-
-            case address
         }
 
         public init(address: [CompanyAddress], businessDetails: [String: Any]? = nil, businessInfo: String? = nil, contactDetails: [String: Any], documents: Documents1, notificationEmails: [String], stage: String) {
             self.contactDetails = contactDetails
 
-            self.documents = documents
+            self.notificationEmails = notificationEmails
 
-            self.stage = stage
+            self.address = address
+
+            self.documents = documents
 
             self.businessInfo = businessInfo
 
-            self.notificationEmails = notificationEmails
+            self.stage = stage
 
             self.businessDetails = businessDetails
-
-            self.address = address
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,9 +59,11 @@ public extension PlatformClient {
 
             contactDetails = try container.decode([String: Any].self, forKey: .contactDetails)
 
-            documents = try container.decode(Documents1.self, forKey: .documents)
+            notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
-            stage = try container.decode(String.self, forKey: .stage)
+            address = try container.decode([CompanyAddress].self, forKey: .address)
+
+            documents = try container.decode(Documents1.self, forKey: .documents)
 
             do {
                 businessInfo = try container.decode(String.self, forKey: .businessInfo)
@@ -71,7 +73,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
+            stage = try container.decode(String.self, forKey: .stage)
 
             do {
                 businessDetails = try container.decode([String: Any].self, forKey: .businessDetails)
@@ -80,8 +82,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            address = try container.decode([CompanyAddress].self, forKey: .address)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -89,17 +89,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(contactDetails, forKey: .contactDetails)
 
-            try? container.encodeIfPresent(documents, forKey: .documents)
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
-            try? container.encodeIfPresent(stage, forKey: .stage)
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(documents, forKey: .documents)
 
             try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
 
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
+            try? container.encodeIfPresent(stage, forKey: .stage)
 
             try? container.encodeIfPresent(businessDetails, forKey: .businessDetails)
-
-            try? container.encodeIfPresent(address, forKey: .address)
         }
     }
 }

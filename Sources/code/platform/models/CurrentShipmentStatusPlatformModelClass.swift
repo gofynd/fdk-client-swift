@@ -8,86 +8,86 @@ public extension PlatformClient {
      */
 
     class CurrentShipmentStatus: Codable {
-        public var status: String
+        public var statusCreatedAt: String
 
-        public var ssId: Int
+        public var status: String
 
         public var shipmentId: String
 
-        public var statusCreatedAt: String
+        public var ssId: Int
 
         public var currentShipmentStatus: String
 
-        public var bagList: [String]
-
         public var createdAt: Int
 
-        public enum CodingKeys: String, CodingKey {
-            case status
+        public var bagList: [String]
 
-            case ssId = "ss_id"
+        public enum CodingKeys: String, CodingKey {
+            case statusCreatedAt = "status_created_at"
+
+            case status
 
             case shipmentId = "shipment_id"
 
-            case statusCreatedAt = "status_created_at"
+            case ssId = "ss_id"
 
             case currentShipmentStatus = "current_shipment_status"
 
-            case bagList = "bag_list"
-
             case createdAt = "created_at"
+
+            case bagList = "bag_list"
         }
 
         public init(bagList: [String], createdAt: Int, currentShipmentStatus: String, shipmentId: String, ssId: Int, status: String, statusCreatedAt: String) {
-            self.status = status
+            self.statusCreatedAt = statusCreatedAt
 
-            self.ssId = ssId
+            self.status = status
 
             self.shipmentId = shipmentId
 
-            self.statusCreatedAt = statusCreatedAt
+            self.ssId = ssId
 
             self.currentShipmentStatus = currentShipmentStatus
 
-            self.bagList = bagList
-
             self.createdAt = createdAt
+
+            self.bagList = bagList
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            status = try container.decode(String.self, forKey: .status)
+            statusCreatedAt = try container.decode(String.self, forKey: .statusCreatedAt)
 
-            ssId = try container.decode(Int.self, forKey: .ssId)
+            status = try container.decode(String.self, forKey: .status)
 
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
-            statusCreatedAt = try container.decode(String.self, forKey: .statusCreatedAt)
+            ssId = try container.decode(Int.self, forKey: .ssId)
 
             currentShipmentStatus = try container.decode(String.self, forKey: .currentShipmentStatus)
 
-            bagList = try container.decode([String].self, forKey: .bagList)
-
             createdAt = try container.decode(Int.self, forKey: .createdAt)
+
+            bagList = try container.decode([String].self, forKey: .bagList)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(statusCreatedAt, forKey: .statusCreatedAt)
 
-            try? container.encodeIfPresent(ssId, forKey: .ssId)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(statusCreatedAt, forKey: .statusCreatedAt)
+            try? container.encodeIfPresent(ssId, forKey: .ssId)
 
             try? container.encodeIfPresent(currentShipmentStatus, forKey: .currentShipmentStatus)
 
-            try? container.encodeIfPresent(bagList, forKey: .bagList)
-
             try? container.encode(createdAt, forKey: .createdAt)
+
+            try? container.encodeIfPresent(bagList, forKey: .bagList)
         }
     }
 }
