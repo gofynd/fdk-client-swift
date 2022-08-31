@@ -7,69 +7,69 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductVariantItemResponse: Codable {
-        public var medias: [Media]?
+        public var slug: String?
 
         public var isAvailable: Bool?
-
-        public var value: String?
 
         public var uid: Int?
 
         public var action: ProductListingAction?
 
-        public var color: String?
-
-        public var slug: String?
+        public var value: String?
 
         public var colorName: String?
 
+        public var color: String?
+
         public var name: String?
 
+        public var medias: [Media]?
+
         public enum CodingKeys: String, CodingKey {
-            case medias
+            case slug
 
             case isAvailable = "is_available"
-
-            case value
 
             case uid
 
             case action
 
-            case color
-
-            case slug
+            case value
 
             case colorName = "color_name"
 
+            case color
+
             case name
+
+            case medias
         }
 
         public init(action: ProductListingAction? = nil, color: String? = nil, colorName: String? = nil, isAvailable: Bool? = nil, medias: [Media]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, value: String? = nil) {
-            self.medias = medias
+            self.slug = slug
 
             self.isAvailable = isAvailable
-
-            self.value = value
 
             self.uid = uid
 
             self.action = action
 
-            self.color = color
-
-            self.slug = slug
+            self.value = value
 
             self.colorName = colorName
 
+            self.color = color
+
             self.name = name
+
+            self.medias = medias
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                medias = try container.decode([Media].self, forKey: .medias)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,14 +78,6 @@ public extension ApplicationClient {
 
             do {
                 isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,15 +101,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                color = try container.decode(String.self, forKey: .color)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,7 +117,23 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                color = try container.decode(String.self, forKey: .color)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                medias = try container.decode([Media].self, forKey: .medias)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -144,23 +144,23 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(medias, forKey: .medias)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
-
-            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(color, forKey: .color)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(colorName, forKey: .colorName)
 
+            try? container.encodeIfPresent(color, forKey: .color)
+
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(medias, forKey: .medias)
         }
     }
 }

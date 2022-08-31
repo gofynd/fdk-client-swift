@@ -10,7 +10,7 @@ public extension PlatformClient {
     class InventoryFailedReason: Codable {
         public var message: String
 
-        public var errors: [InventoryError]?
+        public var errors: String?
 
         public enum CodingKeys: String, CodingKey {
             case message
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case errors
         }
 
-        public init(errors: [InventoryError]? = nil, message: String) {
+        public init(errors: String? = nil, message: String) {
             self.message = message
 
             self.errors = errors
@@ -30,7 +30,7 @@ public extension PlatformClient {
             message = try container.decode(String.self, forKey: .message)
 
             do {
-                errors = try container.decode([InventoryError].self, forKey: .errors)
+                errors = try container.decode(String.self, forKey: .errors)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

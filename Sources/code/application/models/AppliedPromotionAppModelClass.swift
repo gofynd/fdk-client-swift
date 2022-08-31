@@ -11,26 +11,26 @@ public extension ApplicationClient {
 
         public var articleQuantity: Int?
 
-        public var promoId: String?
-
-        public var amount: Double?
-
         public var offerText: String?
 
         public var mrpPromotion: Bool?
+
+        public var promoId: String?
+
+        public var amount: Double?
 
         public enum CodingKeys: String, CodingKey {
             case promotionType = "promotion_type"
 
             case articleQuantity = "article_quantity"
 
-            case promoId = "promo_id"
-
-            case amount
-
             case offerText = "offer_text"
 
             case mrpPromotion = "mrp_promotion"
+
+            case promoId = "promo_id"
+
+            case amount
         }
 
         public init(amount: Double? = nil, articleQuantity: Int? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
@@ -38,13 +38,13 @@ public extension ApplicationClient {
 
             self.articleQuantity = articleQuantity
 
-            self.promoId = promoId
-
-            self.amount = amount
-
             self.offerText = offerText
 
             self.mrpPromotion = mrpPromotion
+
+            self.promoId = promoId
+
+            self.amount = amount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,22 +67,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                promoId = try container.decode(String.self, forKey: .promoId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                amount = try container.decode(Double.self, forKey: .amount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 offerText = try container.decode(String.self, forKey: .offerText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -97,6 +81,22 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                promoId = try container.decode(String.self, forKey: .promoId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                amount = try container.decode(Double.self, forKey: .amount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -106,13 +106,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
 
-            try? container.encodeIfPresent(promoId, forKey: .promoId)
-
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
+
+            try? container.encodeIfPresent(promoId, forKey: .promoId)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
         }
     }
 }

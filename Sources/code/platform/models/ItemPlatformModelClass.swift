@@ -10,78 +10,78 @@ public extension PlatformClient {
     class Item: Codable {
         public var l1Category: [String]?
 
-        public var size: String
-
-        public var image: [String]?
-
-        public var canReturn: Bool
-
-        public var l3Category: Int
-
-        public var departmentId: Int
-
-        public var l3CategoryName: String
-
-        public var code: String
-
-        public var canCancel: Bool
+        public var id: Int
 
         public var name: String
 
+        public var code: String
+
+        public var l3CategoryName: String
+
+        public var image: [String]?
+
+        public var l3Category: Int
+
         public var color: String?
 
-        public var id: Int
+        public var size: String
+
+        public var departmentId: Int
+
+        public var canReturn: Bool
+
+        public var canCancel: Bool
 
         public enum CodingKeys: String, CodingKey {
             case l1Category = "l1_category"
 
-            case size
-
-            case image
-
-            case canReturn = "can_return"
-
-            case l3Category = "l3_category"
-
-            case departmentId = "department_id"
-
-            case l3CategoryName = "l3_category_name"
-
-            case code
-
-            case canCancel = "can_cancel"
+            case id
 
             case name
 
+            case code
+
+            case l3CategoryName = "l3_category_name"
+
+            case image
+
+            case l3Category = "l3_category"
+
             case color
 
-            case id
+            case size
+
+            case departmentId = "department_id"
+
+            case canReturn = "can_return"
+
+            case canCancel = "can_cancel"
         }
 
         public init(canCancel: Bool, canReturn: Bool, code: String, color: String? = nil, departmentId: Int, id: Int, image: [String]? = nil, l1Category: [String]? = nil, l3Category: Int, l3CategoryName: String, name: String, size: String) {
             self.l1Category = l1Category
 
-            self.size = size
-
-            self.image = image
-
-            self.canReturn = canReturn
-
-            self.l3Category = l3Category
-
-            self.departmentId = departmentId
-
-            self.l3CategoryName = l3CategoryName
-
-            self.code = code
-
-            self.canCancel = canCancel
+            self.id = id
 
             self.name = name
 
+            self.code = code
+
+            self.l3CategoryName = l3CategoryName
+
+            self.image = image
+
+            self.l3Category = l3Category
+
             self.color = color
 
-            self.id = id
+            self.size = size
+
+            self.departmentId = departmentId
+
+            self.canReturn = canReturn
+
+            self.canCancel = canCancel
         }
 
         required public init(from decoder: Decoder) throws {
@@ -95,7 +95,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            size = try container.decode(String.self, forKey: .size)
+            id = try container.decode(Int.self, forKey: .id)
+
+            name = try container.decode(String.self, forKey: .name)
+
+            code = try container.decode(String.self, forKey: .code)
+
+            l3CategoryName = try container.decode(String.self, forKey: .l3CategoryName)
 
             do {
                 image = try container.decode([String].self, forKey: .image)
@@ -105,19 +111,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            canReturn = try container.decode(Bool.self, forKey: .canReturn)
-
             l3Category = try container.decode(Int.self, forKey: .l3Category)
-
-            departmentId = try container.decode(Int.self, forKey: .departmentId)
-
-            l3CategoryName = try container.decode(String.self, forKey: .l3CategoryName)
-
-            code = try container.decode(String.self, forKey: .code)
-
-            canCancel = try container.decode(Bool.self, forKey: .canCancel)
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 color = try container.decode(String.self, forKey: .color)
@@ -127,7 +121,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            id = try container.decode(Int.self, forKey: .id)
+            size = try container.decode(String.self, forKey: .size)
+
+            departmentId = try container.decode(Int.self, forKey: .departmentId)
+
+            canReturn = try container.decode(Bool.self, forKey: .canReturn)
+
+            canCancel = try container.decode(Bool.self, forKey: .canCancel)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -135,27 +135,27 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(l1Category, forKey: .l1Category)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(image, forKey: .image)
-
-            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
-
-            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
-
-            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
-
-            try? container.encodeIfPresent(l3CategoryName, forKey: .l3CategoryName)
-
-            try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
+            try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(l3CategoryName, forKey: .l3CategoryName)
+
+            try? container.encodeIfPresent(image, forKey: .image)
+
+            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
+
             try? container.encode(color, forKey: .color)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
+
+            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
+
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
         }
     }
 }

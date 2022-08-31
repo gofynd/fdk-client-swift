@@ -8,27 +8,27 @@ public extension PlatformClient {
      */
 
     class RestrictedCategoryMetricsResponseSerializer: Codable {
-        public var drug: DocumentObject?
-
         public var food: DocumentObject?
 
-        public enum CodingKeys: String, CodingKey {
-            case drug
+        public var drug: DocumentObject?
 
+        public enum CodingKeys: String, CodingKey {
             case food
+
+            case drug
         }
 
         public init(drug: DocumentObject? = nil, food: DocumentObject? = nil) {
-            self.drug = drug
-
             self.food = food
+
+            self.drug = drug
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                drug = try container.decode(DocumentObject.self, forKey: .drug)
+                food = try container.decode(DocumentObject.self, forKey: .food)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                food = try container.decode(DocumentObject.self, forKey: .food)
+                drug = try container.decode(DocumentObject.self, forKey: .drug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(drug, forKey: .drug)
-
             try? container.encodeIfPresent(food, forKey: .food)
+
+            try? container.encodeIfPresent(drug, forKey: .drug)
         }
     }
 }
