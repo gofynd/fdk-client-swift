@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var value: String
 
-        public var dsType: String
-
         public var url: String?
+
+        public var dsType: String
 
         public enum CodingKeys: String, CodingKey {
             case verified
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case value
 
-            case dsType = "ds_type"
-
             case url
+
+            case dsType = "ds_type"
         }
 
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.value = value
 
-            self.dsType = dsType
-
             self.url = url
+
+            self.dsType = dsType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -51,8 +51,6 @@ public extension PlatformClient {
 
             value = try container.decode(String.self, forKey: .value)
 
-            dsType = try container.decode(String.self, forKey: .dsType)
-
             do {
                 url = try container.decode(String.self, forKey: .url)
 
@@ -60,6 +58,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            dsType = try container.decode(String.self, forKey: .dsType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -71,9 +71,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(dsType, forKey: .dsType)
-
             try? container.encodeIfPresent(url, forKey: .url)
+
+            try? container.encodeIfPresent(dsType, forKey: .dsType)
         }
     }
 }

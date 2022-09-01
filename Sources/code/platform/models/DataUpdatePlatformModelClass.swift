@@ -8,27 +8,27 @@ public extension PlatformClient {
      */
 
     class DataUpdate: Codable {
-        public var recursiveUpdates: RecursiveUpdate?
-
         public var entityIds: DataUpdatePerEntity?
 
-        public enum CodingKeys: String, CodingKey {
-            case recursiveUpdates = "recursive_updates"
+        public var recursiveUpdates: RecursiveUpdate?
 
+        public enum CodingKeys: String, CodingKey {
             case entityIds = "entity_ids"
+
+            case recursiveUpdates = "recursive_updates"
         }
 
         public init(entityIds: DataUpdatePerEntity? = nil, recursiveUpdates: RecursiveUpdate? = nil) {
-            self.recursiveUpdates = recursiveUpdates
-
             self.entityIds = entityIds
+
+            self.recursiveUpdates = recursiveUpdates
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                recursiveUpdates = try container.decode(RecursiveUpdate.self, forKey: .recursiveUpdates)
+                entityIds = try container.decode(DataUpdatePerEntity.self, forKey: .entityIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                entityIds = try container.decode(DataUpdatePerEntity.self, forKey: .entityIds)
+                recursiveUpdates = try container.decode(RecursiveUpdate.self, forKey: .recursiveUpdates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(recursiveUpdates, forKey: .recursiveUpdates)
-
             try? container.encodeIfPresent(entityIds, forKey: .entityIds)
+
+            try? container.encodeIfPresent(recursiveUpdates, forKey: .recursiveUpdates)
         }
     }
 }

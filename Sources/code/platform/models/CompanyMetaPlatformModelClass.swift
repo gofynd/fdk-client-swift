@@ -8,30 +8,30 @@ public extension PlatformClient {
      */
 
     class CompanyMeta: Codable {
-        public var contactDetails: [String: Any]
-
         public var notificationEmails: [String]
 
-        public var address: [CompanyAddress]
+        public var contactDetails: [String: Any]
 
         public var documents: Documents1
 
         public var businessInfo: String?
+
+        public var address: [CompanyAddress]
 
         public var stage: String
 
         public var businessDetails: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case contactDetails = "contact_details"
-
             case notificationEmails = "notification_emails"
 
-            case address
+            case contactDetails = "contact_details"
 
             case documents
 
             case businessInfo = "business_info"
+
+            case address
 
             case stage
 
@@ -39,15 +39,15 @@ public extension PlatformClient {
         }
 
         public init(address: [CompanyAddress], businessDetails: [String: Any]? = nil, businessInfo: String? = nil, contactDetails: [String: Any], documents: Documents1, notificationEmails: [String], stage: String) {
-            self.contactDetails = contactDetails
-
             self.notificationEmails = notificationEmails
 
-            self.address = address
+            self.contactDetails = contactDetails
 
             self.documents = documents
 
             self.businessInfo = businessInfo
+
+            self.address = address
 
             self.stage = stage
 
@@ -57,11 +57,9 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            contactDetails = try container.decode([String: Any].self, forKey: .contactDetails)
-
             notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
-            address = try container.decode([CompanyAddress].self, forKey: .address)
+            contactDetails = try container.decode([String: Any].self, forKey: .contactDetails)
 
             documents = try container.decode(Documents1.self, forKey: .documents)
 
@@ -72,6 +70,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            address = try container.decode([CompanyAddress].self, forKey: .address)
 
             stage = try container.decode(String.self, forKey: .stage)
 
@@ -87,15 +87,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(contactDetails, forKey: .contactDetails)
-
             try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encodeIfPresent(contactDetails, forKey: .contactDetails)
 
             try? container.encodeIfPresent(documents, forKey: .documents)
 
             try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
+
+            try? container.encodeIfPresent(address, forKey: .address)
 
             try? container.encodeIfPresent(stage, forKey: .stage)
 

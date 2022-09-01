@@ -8,122 +8,120 @@ public extension PlatformClient {
      */
 
     class RtoAddress1: Codable {
-        public var contactPerson: String
-
-        public var phone: String
-
-        public var rtoaId: Int
-
-        public var latitude: Double
-
-        public var address2: String?
-
         public var locationType: String
-
-        public var country: String
-
-        public var state: String
 
         public var name: String
 
-        public var address1: String
-
-        public var storeEmail: String
-
         public var pincode: String
 
-        public var storeAddressJson: StoreAddress
-
-        public var longitude: Double
-
-        public var code: String?
-
-        public var city: String
+        public var address2: String?
 
         public var companyId: Int
 
+        public var contactPerson: String
+
+        public var latitude: Double
+
+        public var address1: String
+
+        public var storeAddressJson: StoreAddress
+
+        public var code: String?
+
+        public var longitude: Double
+
+        public var country: String
+
+        public var phone: String
+
+        public var state: String
+
+        public var city: String
+
+        public var storeEmail: String
+
+        public var rtoaId: Int
+
         public enum CodingKeys: String, CodingKey {
-            case contactPerson = "contact_person"
-
-            case phone
-
-            case rtoaId = "rtoa_id"
-
-            case latitude
-
-            case address2
-
             case locationType = "location_type"
-
-            case country
-
-            case state
 
             case name
 
-            case address1
-
-            case storeEmail = "store_email"
-
             case pincode
+
+            case address2
+
+            case companyId = "company_id"
+
+            case contactPerson = "contact_person"
+
+            case latitude
+
+            case address1
 
             case storeAddressJson = "store_address_json"
 
+            case code
+
             case longitude
 
-            case code
+            case country
+
+            case phone
+
+            case state
 
             case city
 
-            case companyId = "company_id"
+            case storeEmail = "store_email"
+
+            case rtoaId = "rtoa_id"
         }
 
         public init(address1: String, address2: String? = nil, city: String, code: String? = nil, companyId: Int, contactPerson: String, country: String, latitude: Double, locationType: String, longitude: Double, name: String, phone: String, pincode: String, rtoaId: Int, state: String, storeAddressJson: StoreAddress, storeEmail: String) {
-            self.contactPerson = contactPerson
-
-            self.phone = phone
-
-            self.rtoaId = rtoaId
-
-            self.latitude = latitude
-
-            self.address2 = address2
-
             self.locationType = locationType
-
-            self.country = country
-
-            self.state = state
 
             self.name = name
 
-            self.address1 = address1
-
-            self.storeEmail = storeEmail
-
             self.pincode = pincode
+
+            self.address2 = address2
+
+            self.companyId = companyId
+
+            self.contactPerson = contactPerson
+
+            self.latitude = latitude
+
+            self.address1 = address1
 
             self.storeAddressJson = storeAddressJson
 
+            self.code = code
+
             self.longitude = longitude
 
-            self.code = code
+            self.country = country
+
+            self.phone = phone
+
+            self.state = state
 
             self.city = city
 
-            self.companyId = companyId
+            self.storeEmail = storeEmail
+
+            self.rtoaId = rtoaId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            contactPerson = try container.decode(String.self, forKey: .contactPerson)
+            locationType = try container.decode(String.self, forKey: .locationType)
 
-            phone = try container.decode(String.self, forKey: .phone)
+            name = try container.decode(String.self, forKey: .name)
 
-            rtoaId = try container.decode(Int.self, forKey: .rtoaId)
-
-            latitude = try container.decode(Double.self, forKey: .latitude)
+            pincode = try container.decode(String.self, forKey: .pincode)
 
             do {
                 address2 = try container.decode(String.self, forKey: .address2)
@@ -133,23 +131,15 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            locationType = try container.decode(String.self, forKey: .locationType)
+            companyId = try container.decode(Int.self, forKey: .companyId)
 
-            country = try container.decode(String.self, forKey: .country)
+            contactPerson = try container.decode(String.self, forKey: .contactPerson)
 
-            state = try container.decode(String.self, forKey: .state)
-
-            name = try container.decode(String.self, forKey: .name)
+            latitude = try container.decode(Double.self, forKey: .latitude)
 
             address1 = try container.decode(String.self, forKey: .address1)
 
-            storeEmail = try container.decode(String.self, forKey: .storeEmail)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
-
             storeAddressJson = try container.decode(StoreAddress.self, forKey: .storeAddressJson)
-
-            longitude = try container.decode(Double.self, forKey: .longitude)
 
             do {
                 code = try container.decode(String.self, forKey: .code)
@@ -159,47 +149,57 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            longitude = try container.decode(Double.self, forKey: .longitude)
+
+            country = try container.decode(String.self, forKey: .country)
+
+            phone = try container.decode(String.self, forKey: .phone)
+
+            state = try container.decode(String.self, forKey: .state)
+
             city = try container.decode(String.self, forKey: .city)
 
-            companyId = try container.decode(Int.self, forKey: .companyId)
+            storeEmail = try container.decode(String.self, forKey: .storeEmail)
+
+            rtoaId = try container.decode(Int.self, forKey: .rtoaId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
-
-            try? container.encodeIfPresent(phone, forKey: .phone)
-
-            try? container.encodeIfPresent(rtoaId, forKey: .rtoaId)
-
-            try? container.encodeIfPresent(latitude, forKey: .latitude)
-
-            try? container.encodeIfPresent(address2, forKey: .address2)
-
             try? container.encodeIfPresent(locationType, forKey: .locationType)
-
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(address1, forKey: .address1)
-
-            try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
-
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(address2, forKey: .address2)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
+
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
+
+            try? container.encodeIfPresent(address1, forKey: .address1)
 
             try? container.encodeIfPresent(storeAddressJson, forKey: .storeAddressJson)
 
+            try? container.encodeIfPresent(code, forKey: .code)
+
             try? container.encodeIfPresent(longitude, forKey: .longitude)
 
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(phone, forKey: .phone)
+
+            try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(city, forKey: .city)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
+
+            try? container.encodeIfPresent(rtoaId, forKey: .rtoaId)
         }
     }
 }

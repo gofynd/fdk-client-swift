@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var affiliateOrderId: String
 
-        public var loyaltyDiscount: Double?
+        public var employeeDiscount: Double?
 
         public var affiliateMeta: AffiliateMeta
 
-        public var employeeDiscount: Double?
+        public var loyaltyDiscount: Double?
 
         public enum CodingKeys: String, CodingKey {
             case affiliateBagId = "affiliate_bag_id"
 
             case affiliateOrderId = "affiliate_order_id"
 
-            case loyaltyDiscount = "loyalty_discount"
+            case employeeDiscount = "employee_discount"
 
             case affiliateMeta = "affiliate_meta"
 
-            case employeeDiscount = "employee_discount"
+            case loyaltyDiscount = "loyalty_discount"
         }
 
         public init(affiliateBagId: String, affiliateMeta: AffiliateMeta, affiliateOrderId: String, employeeDiscount: Double? = nil, loyaltyDiscount: Double? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.affiliateOrderId = affiliateOrderId
 
-            self.loyaltyDiscount = loyaltyDiscount
+            self.employeeDiscount = employeeDiscount
 
             self.affiliateMeta = affiliateMeta
 
-            self.employeeDiscount = employeeDiscount
+            self.loyaltyDiscount = loyaltyDiscount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,7 +50,7 @@ public extension PlatformClient {
             affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
 
             do {
-                loyaltyDiscount = try container.decode(Double.self, forKey: .loyaltyDiscount)
+                employeeDiscount = try container.decode(Double.self, forKey: .employeeDiscount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,7 +60,7 @@ public extension PlatformClient {
             affiliateMeta = try container.decode(AffiliateMeta.self, forKey: .affiliateMeta)
 
             do {
-                employeeDiscount = try container.decode(Double.self, forKey: .employeeDiscount)
+                loyaltyDiscount = try container.decode(Double.self, forKey: .loyaltyDiscount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,11 +75,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
 
-            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
+            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
 
             try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
 
-            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
+            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
         }
     }
 }

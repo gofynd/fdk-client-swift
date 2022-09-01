@@ -10,38 +10,36 @@ public extension PlatformClient {
     class ShipmentInvoice1: Codable {
         public var storeInvoiceId: String
 
-        public var invoiceUrl: String
-
         public var updatedDate: Int?
 
         public var labelUrl: String
 
+        public var invoiceUrl: String
+
         public enum CodingKeys: String, CodingKey {
             case storeInvoiceId = "store_invoice_id"
-
-            case invoiceUrl = "invoice_url"
 
             case updatedDate = "updated_date"
 
             case labelUrl = "label_url"
+
+            case invoiceUrl = "invoice_url"
         }
 
         public init(invoiceUrl: String, labelUrl: String, storeInvoiceId: String, updatedDate: Int? = nil) {
             self.storeInvoiceId = storeInvoiceId
 
-            self.invoiceUrl = invoiceUrl
-
             self.updatedDate = updatedDate
 
             self.labelUrl = labelUrl
+
+            self.invoiceUrl = invoiceUrl
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
-
-            invoiceUrl = try container.decode(String.self, forKey: .invoiceUrl)
 
             do {
                 updatedDate = try container.decode(Int.self, forKey: .updatedDate)
@@ -52,6 +50,8 @@ public extension PlatformClient {
             } catch {}
 
             labelUrl = try container.decode(String.self, forKey: .labelUrl)
+
+            invoiceUrl = try container.decode(String.self, forKey: .invoiceUrl)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -59,11 +59,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
 
-            try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
-
             try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
 
             try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
+
+            try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
         }
     }
 }
