@@ -3422,7 +3422,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | [String: Any] |  no  |  |
+ | shipments | [String: Any]? |  yes  |  |
  | statuses | [[String: Any]]? |  yes  |  |
  | forceTransition | Bool |  no  |  |
  | task | Bool |  no  |  |
