@@ -61,6 +61,8 @@ public extension ApplicationClient {
 
             ulrs["getLadderOffers"] = config.domain.appendAsPath("/service/application/cart/v1.0/available-ladder-prices")
 
+            ulrs["overrideCart"] = config.domain.appendAsPath("/service/application/cart/v1.0/checkout/over-ride")
+
             self.relativeUrls = ulrs
         }
 
@@ -1447,6 +1449,46 @@ public extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(LadderPriceOffers.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Create Fynd order with overriding cart details
+         * Description: Generate Fynd order while overriding cart details sent with provided `cart_items`
+         **/
+        public func overrideCart(
+            body: OverrideCheckoutReq,
+            onResponse: @escaping (_ response: OverrideCheckoutResponse?, _ error: FDKError?) -> Void
+        ) {
+            let fullUrl = relativeUrls["overrideCart"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(OverrideCheckoutResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

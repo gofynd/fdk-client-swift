@@ -11,11 +11,11 @@ public extension ApplicationClient {
 
         public var selling: Double?
 
+        public var marked: Double?
+
         public var addOn: Double?
 
         public var currencyCode: String?
-
-        public var marked: Double?
 
         public var effective: Double?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient {
 
             case selling
 
+            case marked
+
             case addOn = "add_on"
 
             case currencyCode = "currency_code"
-
-            case marked
 
             case effective
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient {
 
             self.selling = selling
 
+            self.marked = marked
+
             self.addOn = addOn
 
             self.currencyCode = currencyCode
-
-            self.marked = marked
 
             self.effective = effective
         }
@@ -67,6 +67,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                marked = try container.decode(Double.self, forKey: .marked)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 addOn = try container.decode(Double.self, forKey: .addOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,14 +84,6 @@ public extension ApplicationClient {
 
             do {
                 currencyCode = try container.decode(String.self, forKey: .currencyCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                marked = try container.decode(Double.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(selling, forKey: .selling)
 
+            try? container.encodeIfPresent(marked, forKey: .marked)
+
             try? container.encodeIfPresent(addOn, forKey: .addOn)
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-
-            try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
         }

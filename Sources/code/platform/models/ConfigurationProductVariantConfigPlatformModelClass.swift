@@ -14,13 +14,13 @@ public extension PlatformClient {
 
         public var displayType: String
 
-        public var isActive: Bool
-
         public var size: ProductSize
 
         public var priority: Int
 
         public var name: String
+
+        public var isActive: Bool
 
         public enum CodingKeys: String, CodingKey {
             case key
@@ -29,13 +29,13 @@ public extension PlatformClient {
 
             case displayType = "display_type"
 
-            case isActive = "is_active"
-
             case size
 
             case priority
 
             case name
+
+            case isActive = "is_active"
         }
 
         public init(displayType: String, isActive: Bool, key: String, logo: String? = nil, name: String, priority: Int, size: ProductSize) {
@@ -45,13 +45,13 @@ public extension PlatformClient {
 
             self.displayType = displayType
 
-            self.isActive = isActive
-
             self.size = size
 
             self.priority = priority
 
             self.name = name
+
+            self.isActive = isActive
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,13 +69,13 @@ public extension PlatformClient {
 
             displayType = try container.decode(String.self, forKey: .displayType)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
             size = try container.decode(ProductSize.self, forKey: .size)
 
             priority = try container.decode(Int.self, forKey: .priority)
 
             name = try container.decode(String.self, forKey: .name)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -87,13 +87,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
     }
 }

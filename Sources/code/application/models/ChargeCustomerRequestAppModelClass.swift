@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class ChargeCustomerRequest: Codable {
         public var aggregator: String
 
-        public var verified: Bool?
-
         public var transactionToken: String?
+
+        public var verified: Bool?
 
         public var amount: Int
 
@@ -20,9 +20,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case aggregator
 
-            case verified
-
             case transactionToken = "transaction_token"
+
+            case verified
 
             case amount
 
@@ -32,9 +32,9 @@ public extension ApplicationClient {
         public init(aggregator: String, amount: Int, orderId: String, transactionToken: String? = nil, verified: Bool? = nil) {
             self.aggregator = aggregator
 
-            self.verified = verified
-
             self.transactionToken = transactionToken
+
+            self.verified = verified
 
             self.amount = amount
 
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
             do {
-                verified = try container.decode(Bool.self, forKey: .verified)
+                transactionToken = try container.decode(String.self, forKey: .transactionToken)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                transactionToken = try container.decode(String.self, forKey: .transactionToken)
+                verified = try container.decode(Bool.self, forKey: .verified)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,9 +72,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encode(verified, forKey: .verified)
-
             try? container.encode(transactionToken, forKey: .transactionToken)
+
+            try? container.encode(verified, forKey: .verified)
 
             try? container.encode(amount, forKey: .amount)
 
