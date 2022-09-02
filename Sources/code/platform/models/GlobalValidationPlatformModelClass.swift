@@ -8,42 +8,42 @@ public extension PlatformClient {
      */
 
     class GlobalValidation: Codable {
-        public var properties: Properties?
+        public var definitions: [String: Any]?
 
         public var type: String?
 
-        public var definitions: [String: Any]?
+        public var title: String?
+
+        public var properties: Properties?
 
         public var required: [String]?
-
-        public var title: String?
 
         public var description: String?
 
         public enum CodingKeys: String, CodingKey {
-            case properties
+            case definitions
 
             case type
 
-            case definitions
+            case title
+
+            case properties
 
             case required
-
-            case title
 
             case description
         }
 
         public init(definitions: [String: Any]? = nil, description: String? = nil, properties: Properties? = nil, required: [String]? = nil, title: String? = nil, type: String? = nil) {
-            self.properties = properties
+            self.definitions = definitions
 
             self.type = type
 
-            self.definitions = definitions
+            self.title = title
+
+            self.properties = properties
 
             self.required = required
-
-            self.title = title
 
             self.description = description
         }
@@ -52,7 +52,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                properties = try container.decode(Properties.self, forKey: .properties)
+                definitions = try container.decode([String: Any].self, forKey: .definitions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                definitions = try container.decode([String: Any].self, forKey: .definitions)
+                title = try container.decode(String.self, forKey: .title)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                properties = try container.decode(Properties.self, forKey: .properties)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,14 +85,6 @@ public extension PlatformClient {
 
             do {
                 required = try container.decode([String].self, forKey: .required)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,15 +103,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(properties, forKey: .properties)
+            try? container.encodeIfPresent(definitions, forKey: .definitions)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(definitions, forKey: .definitions)
+            try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encodeIfPresent(properties, forKey: .properties)
 
             try? container.encodeIfPresent(required, forKey: .required)
-
-            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(description, forKey: .description)
         }
