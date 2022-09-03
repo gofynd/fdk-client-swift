@@ -8,33 +8,33 @@ public extension PlatformClient {
      */
 
     class ApplicationItemMeta: Codable {
-        public var customJson: [String: Any]?
+        public var customMeta: [MetaFields]?
 
         public var moq: ApplicationItemMOQ?
 
-        public var customMeta: [MetaFields]?
+        public var customJson: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case customJson = "_custom_json"
+            case customMeta = "_custom_meta"
 
             case moq
 
-            case customMeta = "_custom_meta"
+            case customJson = "_custom_json"
         }
 
         public init(moq: ApplicationItemMOQ? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
-            self.customJson = customJson
+            self.customMeta = customMeta
 
             self.moq = moq
 
-            self.customMeta = customMeta
+            self.customJson = customJson
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                customMeta = try container.decode([MetaFields].self, forKey: .customMeta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                customMeta = try container.decode([MetaFields].self, forKey: .customMeta)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,11 +61,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
 
             try? container.encodeIfPresent(moq, forKey: .moq)
 
-            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
         }
     }
 }
