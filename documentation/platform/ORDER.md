@@ -3422,10 +3422,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | [String: Any]? |  yes  |  |
- | statuses | [[String: Any]]? |  yes  |  |
+ | shipments | [String: Any] |  no  |  |
+ | statuses | [[ShipmentUpdateObject](#ShipmentUpdateObject)] |  no  |  |
  | forceTransition | Bool |  no  |  |
  | task | Bool |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentUpdateObject](#ShipmentUpdateObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipments | [String: Any]? |  yes  |  |
 
 ---
 

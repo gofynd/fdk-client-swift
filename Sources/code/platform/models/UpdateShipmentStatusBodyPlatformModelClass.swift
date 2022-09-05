@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class UpdateShipmentStatusBody: Codable {
-        public var shipments: [String: Any]?
+        public var shipments: [String: Any]
 
-        public var statuses: [[String: Any]]?
+        public var statuses: [ShipmentUpdateObject]
 
         public var forceTransition: Bool
 
@@ -26,7 +26,7 @@ public extension PlatformClient {
             case task
         }
 
-        public init(forceTransition: Bool, shipments: [String: Any]? = nil, statuses: [[String: Any]]? = nil, task: Bool) {
+        public init(forceTransition: Bool, shipments: [String: Any], statuses: [ShipmentUpdateObject], task: Bool) {
             self.shipments = shipments
 
             self.statuses = statuses
@@ -39,21 +39,9 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                shipments = try container.decode([String: Any].self, forKey: .shipments)
+            shipments = try container.decode([String: Any].self, forKey: .shipments)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                statuses = try container.decode([[String: Any]].self, forKey: .statuses)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            statuses = try container.decode([ShipmentUpdateObject].self, forKey: .statuses)
 
             forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
 
