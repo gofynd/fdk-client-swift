@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var maxOfferQuantity: Int?
 
-        public var discountAmount: Double?
+        public var discountPercentage: Double?
 
         public var maxDiscountAmount: Double?
 
         public var code: String?
 
-        public var discountPercentage: Double?
+        public var discountAmount: Double?
 
         public var discountPrice: Double?
 
@@ -27,13 +27,13 @@ public extension PlatformClient {
 
             case maxOfferQuantity = "max_offer_quantity"
 
-            case discountAmount = "discount_amount"
+            case discountPercentage = "discount_percentage"
 
             case maxDiscountAmount = "max_discount_amount"
 
             case code
 
-            case discountPercentage = "discount_percentage"
+            case discountAmount = "discount_amount"
 
             case discountPrice = "discount_price"
         }
@@ -43,13 +43,13 @@ public extension PlatformClient {
 
             self.maxOfferQuantity = maxOfferQuantity
 
-            self.discountAmount = discountAmount
+            self.discountPercentage = discountPercentage
 
             self.maxDiscountAmount = maxDiscountAmount
 
             self.code = code
 
-            self.discountPercentage = discountPercentage
+            self.discountAmount = discountAmount
 
             self.discountPrice = discountPrice
         }
@@ -74,7 +74,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                discountAmount = try container.decode(Double.self, forKey: .discountAmount)
+                discountPercentage = try container.decode(Double.self, forKey: .discountPercentage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +98,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                discountPercentage = try container.decode(Double.self, forKey: .discountPercentage)
+                discountAmount = try container.decode(Double.self, forKey: .discountAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,13 +121,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(maxOfferQuantity, forKey: .maxOfferQuantity)
 
-            try? container.encodeIfPresent(discountAmount, forKey: .discountAmount)
+            try? container.encodeIfPresent(discountPercentage, forKey: .discountPercentage)
 
             try? container.encodeIfPresent(maxDiscountAmount, forKey: .maxDiscountAmount)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(discountPercentage, forKey: .discountPercentage)
+            try? container.encodeIfPresent(discountAmount, forKey: .discountAmount)
 
             try? container.encodeIfPresent(discountPrice, forKey: .discountPrice)
         }

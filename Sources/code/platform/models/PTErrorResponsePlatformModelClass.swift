@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var code: String?
 
-        public var message: String?
-
         public var status: Int?
+
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case errors
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case code
 
-            case message
-
             case status
+
+            case message
         }
 
         public init(code: String? = nil, errors: [String: Any]? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.code = code
 
-            self.message = message
-
             self.status = status
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,9 +95,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
