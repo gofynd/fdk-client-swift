@@ -9,22 +9,22 @@ public extension ApplicationClient {
     class LadderPrice: Codable {
         public var currencyCode: String?
 
-        public var marked: Int?
+        public var currencySymbol: String?
 
         public var offerPrice: Double?
 
-        public var currencySymbol: String?
+        public var marked: Int?
 
         public var effective: Int?
 
         public enum CodingKeys: String, CodingKey {
             case currencyCode = "currency_code"
 
-            case marked
+            case currencySymbol = "currency_symbol"
 
             case offerPrice = "offer_price"
 
-            case currencySymbol = "currency_symbol"
+            case marked
 
             case effective
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient {
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, effective: Int? = nil, marked: Int? = nil, offerPrice: Double? = nil) {
             self.currencyCode = currencyCode
 
-            self.marked = marked
+            self.currencySymbol = currencySymbol
 
             self.offerPrice = offerPrice
 
-            self.currencySymbol = currencySymbol
+            self.marked = marked
 
             self.effective = effective
         }
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                marked = try container.decode(Int.self, forKey: .marked)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+                marked = try container.decode(Int.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
-            try? container.encodeIfPresent(marked, forKey: .marked)
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
             try? container.encodeIfPresent(offerPrice, forKey: .offerPrice)
 
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+            try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
         }
