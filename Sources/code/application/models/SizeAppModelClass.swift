@@ -9,11 +9,11 @@ public extension ApplicationClient {
     class Size: Codable {
         public var quantity: Int?
 
-        public var value: String?
+        public var value: [String: Any]?
 
         public var isAvailable: Bool?
 
-        public var display: String?
+        public var display: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case quantity
@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case display
         }
 
-        public init(display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, value: String? = nil) {
+        public init(display: [String: Any]? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, value: [String: Any]? = nil) {
             self.quantity = quantity
 
             self.value = value
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                value = try container.decode([String: Any].self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                display = try container.decode([String: Any].self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -8,36 +8,44 @@ public extension PlatformClient {
      */
 
     class OptinCompanyDetail: Codable {
+        public var companyType: String?
+
         public var uid: Int?
 
         public var name: String?
 
         public var businessType: String?
 
-        public var companyType: String?
-
         public enum CodingKeys: String, CodingKey {
+            case companyType = "company_type"
+
             case uid
 
             case name
 
             case businessType = "business_type"
-
-            case companyType = "company_type"
         }
 
         public init(businessType: String? = nil, companyType: String? = nil, name: String? = nil, uid: Int? = nil) {
+            self.companyType = companyType
+
             self.uid = uid
 
             self.name = name
 
             self.businessType = businessType
-
-            self.companyType = companyType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                companyType = try container.decode(String.self, forKey: .companyType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
@@ -62,26 +70,18 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                companyType = try container.decode(String.self, forKey: .companyType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(companyType, forKey: .companyType)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(businessType, forKey: .businessType)
-
-            try? container.encodeIfPresent(companyType, forKey: .companyType)
         }
     }
 }
