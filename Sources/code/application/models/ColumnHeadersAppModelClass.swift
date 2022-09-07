@@ -15,9 +15,9 @@ public extension ApplicationClient {
 
         public var col3: ColumnHeader?
 
-        public var col2: ColumnHeader?
-
         public var col4: ColumnHeader?
+
+        public var col2: ColumnHeader?
 
         public enum CodingKeys: String, CodingKey {
             case col6 = "col_6"
@@ -28,9 +28,9 @@ public extension ApplicationClient {
 
             case col3 = "col_3"
 
-            case col2 = "col_2"
-
             case col4 = "col_4"
+
+            case col2 = "col_2"
         }
 
         public init(col1: ColumnHeader? = nil, col2: ColumnHeader? = nil, col3: ColumnHeader? = nil, col4: ColumnHeader? = nil, col5: ColumnHeader? = nil, col6: ColumnHeader? = nil) {
@@ -42,9 +42,9 @@ public extension ApplicationClient {
 
             self.col3 = col3
 
-            self.col2 = col2
-
             self.col4 = col4
+
+            self.col2 = col2
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                col2 = try container.decode(ColumnHeader.self, forKey: .col2)
+                col4 = try container.decode(ColumnHeader.self, forKey: .col4)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                col4 = try container.decode(ColumnHeader.self, forKey: .col4)
+                col2 = try container.decode(ColumnHeader.self, forKey: .col2)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,9 +110,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(col3, forKey: .col3)
 
-            try? container.encodeIfPresent(col2, forKey: .col2)
-
             try? container.encodeIfPresent(col4, forKey: .col4)
+
+            try? container.encodeIfPresent(col2, forKey: .col2)
         }
     }
 }

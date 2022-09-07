@@ -10,9 +10,9 @@ public extension PlatformClient {
     class InventoryPayload: Codable {
         public var totalQuantity: Int?
 
-        public var priceEffective: Double?
-
         public var storeId: Int
+
+        public var priceEffective: Double?
 
         public var sellerIdentifier: String
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case totalQuantity = "total_quantity"
 
-            case priceEffective = "price_effective"
-
             case storeId = "store_id"
+
+            case priceEffective = "price_effective"
 
             case sellerIdentifier = "seller_identifier"
 
@@ -37,9 +37,9 @@ public extension PlatformClient {
         public init(expirationDate: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeId: Int, totalQuantity: Int? = nil) {
             self.totalQuantity = totalQuantity
 
-            self.priceEffective = priceEffective
-
             self.storeId = storeId
+
+            self.priceEffective = priceEffective
 
             self.sellerIdentifier = sellerIdentifier
 
@@ -59,6 +59,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            storeId = try container.decode(Int.self, forKey: .storeId)
+
             do {
                 priceEffective = try container.decode(Double.self, forKey: .priceEffective)
 
@@ -66,8 +68,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            storeId = try container.decode(Int.self, forKey: .storeId)
 
             sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
 
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encode(totalQuantity, forKey: .totalQuantity)
 
-            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
-
             try? container.encodeIfPresent(storeId, forKey: .storeId)
+
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
