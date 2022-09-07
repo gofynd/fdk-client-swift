@@ -4,7 +4,7 @@ import Foundation
 public extension ApplicationClient {
     /*
          Model: ApefaceApiError
-         Used By: Order
+         Used By: Logistic
      */
     class ApefaceApiError: Codable {
         public var message: String?

@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var batchId: String
 
-        public var companyId: Int
-
         public var data: [[String: Any]]
+
+        public var companyId: Int
 
         public enum CodingKeys: String, CodingKey {
             case templateTag = "template_tag"
 
             case batchId = "batch_id"
 
-            case companyId = "company_id"
-
             case data
+
+            case companyId = "company_id"
         }
 
         public init(batchId: String, companyId: Int, data: [[String: Any]], templateTag: String) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.batchId = batchId
 
-            self.companyId = companyId
-
             self.data = data
+
+            self.companyId = companyId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,9 +43,9 @@ public extension PlatformClient {
 
             batchId = try container.decode(String.self, forKey: .batchId)
 
-            companyId = try container.decode(Int.self, forKey: .companyId)
-
             data = try container.decode([[String: Any]].self, forKey: .data)
+
+            companyId = try container.decode(Int.self, forKey: .companyId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -55,9 +55,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
     }
 }

@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: Timestamp
+         Model: FulfillingCompany
          Used By: Order
      */
-    class Timestamp: Codable {
-        public var min: String?
+    class FulfillingCompany: Codable {
+        public var name: String?
 
-        public var max: String?
+        public var id: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case min
+            case name
 
-            case max
+            case id
         }
 
-        public init(max: String? = nil, min: String? = nil) {
-            self.min = min
+        public init(id: Int? = nil, name: String? = nil) {
+            self.name = name
 
-            self.max = max
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                min = try container.decode(String.self, forKey: .min)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                max = try container.decode(String.self, forKey: .max)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(min, forKey: .min)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

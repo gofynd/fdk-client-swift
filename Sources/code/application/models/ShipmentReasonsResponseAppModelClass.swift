@@ -3,55 +3,55 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: BagsForReorder
+         Model: ShipmentReasonsResponse
          Used By: Order
      */
-    class BagsForReorder: Codable {
-        public var itemId: Int?
+    class ShipmentReasonsResponse: Codable {
+        public var priority: Int?
 
-        public var itemSize: String?
+        public var showTextArea: Bool?
 
-        public var storeId: Int?
+        public var reasonId: Int?
 
-        public var sellerId: Int?
+        public var reasonText: String?
 
-        public var quantity: Int?
+        public var feedbackType: String?
 
-        public var articleAssignment: BagsForReorderArticleAssignment?
+        public var flow: String?
 
         public enum CodingKeys: String, CodingKey {
-            case itemId = "item_id"
+            case priority
 
-            case itemSize = "item_size"
+            case showTextArea = "show_text_area"
 
-            case storeId = "store_id"
+            case reasonId = "reason_id"
 
-            case sellerId = "seller_id"
+            case reasonText = "reason_text"
 
-            case quantity
+            case feedbackType = "feedback_type"
 
-            case articleAssignment = "article_assignment"
+            case flow
         }
 
-        public init(articleAssignment: BagsForReorderArticleAssignment? = nil, itemId: Int? = nil, itemSize: String? = nil, quantity: Int? = nil, sellerId: Int? = nil, storeId: Int? = nil) {
-            self.itemId = itemId
+        public init(feedbackType: String? = nil, flow: String? = nil, priority: Int? = nil, reasonId: Int? = nil, reasonText: String? = nil, showTextArea: Bool? = nil) {
+            self.priority = priority
 
-            self.itemSize = itemSize
+            self.showTextArea = showTextArea
 
-            self.storeId = storeId
+            self.reasonId = reasonId
 
-            self.sellerId = sellerId
+            self.reasonText = reasonText
 
-            self.quantity = quantity
+            self.feedbackType = feedbackType
 
-            self.articleAssignment = articleAssignment
+            self.flow = flow
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
+                priority = try container.decode(Int.self, forKey: .priority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -59,7 +59,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                itemSize = try container.decode(String.self, forKey: .itemSize)
+                showTextArea = try container.decode(Bool.self, forKey: .showTextArea)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                storeId = try container.decode(Int.self, forKey: .storeId)
+                reasonId = try container.decode(Int.self, forKey: .reasonId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sellerId = try container.decode(Int.self, forKey: .sellerId)
+                reasonText = try container.decode(String.self, forKey: .reasonText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                feedbackType = try container.decode(String.self, forKey: .feedbackType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                articleAssignment = try container.decode(BagsForReorderArticleAssignment.self, forKey: .articleAssignment)
+                flow = try container.decode(String.self, forKey: .flow)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,17 +102,17 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(itemSize, forKey: .itemSize)
+            try? container.encodeIfPresent(showTextArea, forKey: .showTextArea)
 
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
+            try? container.encodeIfPresent(reasonId, forKey: .reasonId)
 
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+            try? container.encodeIfPresent(reasonText, forKey: .reasonText)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(feedbackType, forKey: .feedbackType)
 
-            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
+            try? container.encodeIfPresent(flow, forKey: .flow)
         }
     }
 }

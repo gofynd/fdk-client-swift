@@ -10,18 +10,18 @@ public extension PlatformClient {
     class InventoryBulkRequest: Codable {
         public var user: [String: Any]?
 
-        public var sizes: [InventoryJobPayload]
-
         public var batchId: String
+
+        public var sizes: [InventoryJobPayload]
 
         public var companyId: Int
 
         public enum CodingKeys: String, CodingKey {
             case user
 
-            case sizes
-
             case batchId = "batch_id"
+
+            case sizes
 
             case companyId = "company_id"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(batchId: String, companyId: Int, sizes: [InventoryJobPayload], user: [String: Any]? = nil) {
             self.user = user
 
-            self.sizes = sizes
-
             self.batchId = batchId
+
+            self.sizes = sizes
 
             self.companyId = companyId
         }
@@ -47,9 +47,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            sizes = try container.decode([InventoryJobPayload].self, forKey: .sizes)
-
             batchId = try container.decode(String.self, forKey: .batchId)
+
+            sizes = try container.decode([InventoryJobPayload].self, forKey: .sizes)
 
             companyId = try container.decode(Int.self, forKey: .companyId)
         }
@@ -59,9 +59,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
-
             try? container.encodeIfPresent(batchId, forKey: .batchId)
+
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
