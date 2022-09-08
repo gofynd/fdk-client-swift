@@ -8,68 +8,76 @@ public extension PlatformClient {
      */
 
     class ShipmentPayments: Codable {
-        public var spId: Int
-
-        public var sourceNickname: String?
-
-        public var displayName: String
+        public var source: String
 
         public var isActive: Bool
 
-        public var source: String
-
-        public var displayPriority: Int
-
         public var mode: String
 
-        public var paymentIdentifier: String?
+        public var displayName: String
 
         public var logo: String
 
+        public var sourceNickname: String?
+
+        public var paymentIdentifier: String?
+
+        public var displayPriority: Int
+
+        public var spId: Int
+
         public enum CodingKeys: String, CodingKey {
-            case spId = "sp_id"
-
-            case sourceNickname = "source_nickname"
-
-            case displayName = "display_name"
+            case source
 
             case isActive = "is_active"
 
-            case source
-
-            case displayPriority = "display_priority"
-
             case mode
+
+            case displayName = "display_name"
+
+            case logo
+
+            case sourceNickname = "source_nickname"
 
             case paymentIdentifier = "payment_identifier"
 
-            case logo
+            case displayPriority = "display_priority"
+
+            case spId = "sp_id"
         }
 
         public init(displayName: String, displayPriority: Int, isActive: Bool, logo: String, mode: String, paymentIdentifier: String? = nil, source: String, sourceNickname: String? = nil, spId: Int) {
-            self.spId = spId
-
-            self.sourceNickname = sourceNickname
-
-            self.displayName = displayName
+            self.source = source
 
             self.isActive = isActive
 
-            self.source = source
-
-            self.displayPriority = displayPriority
-
             self.mode = mode
+
+            self.displayName = displayName
+
+            self.logo = logo
+
+            self.sourceNickname = sourceNickname
 
             self.paymentIdentifier = paymentIdentifier
 
-            self.logo = logo
+            self.displayPriority = displayPriority
+
+            self.spId = spId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            spId = try container.decode(Int.self, forKey: .spId)
+            source = try container.decode(String.self, forKey: .source)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            mode = try container.decode(String.self, forKey: .mode)
+
+            displayName = try container.decode(String.self, forKey: .displayName)
+
+            logo = try container.decode(String.self, forKey: .logo)
 
             do {
                 sourceNickname = try container.decode(String.self, forKey: .sourceNickname)
@@ -79,16 +87,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            displayName = try container.decode(String.self, forKey: .displayName)
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            source = try container.decode(String.self, forKey: .source)
-
-            displayPriority = try container.decode(Int.self, forKey: .displayPriority)
-
-            mode = try container.decode(String.self, forKey: .mode)
-
             do {
                 paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
 
@@ -97,29 +95,31 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            logo = try container.decode(String.self, forKey: .logo)
+            displayPriority = try container.decode(Int.self, forKey: .displayPriority)
+
+            spId = try container.decode(Int.self, forKey: .spId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(spId, forKey: .spId)
-
-            try? container.encodeIfPresent(sourceNickname, forKey: .sourceNickname)
-
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(source, forKey: .source)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(source, forKey: .source)
-
-            try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
-
             try? container.encodeIfPresent(mode, forKey: .mode)
+
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(sourceNickname, forKey: .sourceNickname)
 
             try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
+
+            try? container.encodeIfPresent(spId, forKey: .spId)
         }
     }
 }

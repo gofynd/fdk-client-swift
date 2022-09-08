@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var data: [String: Any]?
 
-        public var apiLink: String?
-
         public var paymentFlow: String?
+
+        public var apiLink: String?
 
         public enum CodingKeys: String, CodingKey {
             case paymentFlowData = "payment_flow_data"
 
             case data
 
-            case apiLink = "api_link"
-
             case paymentFlow = "payment_flow"
+
+            case apiLink = "api_link"
         }
 
         public init(apiLink: String? = nil, data: [String: Any]? = nil, paymentFlow: String? = nil, paymentFlowData: String? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.data = data
 
-            self.apiLink = apiLink
-
             self.paymentFlow = paymentFlow
+
+            self.apiLink = apiLink
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                apiLink = try container.decode(String.self, forKey: .apiLink)
+                paymentFlow = try container.decode(String.self, forKey: .paymentFlow)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                paymentFlow = try container.decode(String.self, forKey: .paymentFlow)
+                apiLink = try container.decode(String.self, forKey: .apiLink)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient {
 
             try? container.encode(data, forKey: .data)
 
-            try? container.encode(apiLink, forKey: .apiLink)
-
             try? container.encode(paymentFlow, forKey: .paymentFlow)
+
+            try? container.encode(apiLink, forKey: .apiLink)
         }
     }
 }

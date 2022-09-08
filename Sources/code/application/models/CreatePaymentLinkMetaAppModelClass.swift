@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var checkoutMode: String
 
-        public var cartId: String
-
         public var amount: String
+
+        public var cartId: String
 
         public enum CodingKeys: String, CodingKey {
             case assignCardId = "assign_card_id"
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case checkoutMode = "checkout_mode"
 
-            case cartId = "cart_id"
-
             case amount
+
+            case cartId = "cart_id"
         }
 
         public init(amount: String, assignCardId: String? = nil, cartId: String, checkoutMode: String, pincode: String) {
@@ -36,9 +36,9 @@ public extension ApplicationClient {
 
             self.checkoutMode = checkoutMode
 
-            self.cartId = cartId
-
             self.amount = amount
+
+            self.cartId = cartId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,9 +56,9 @@ public extension ApplicationClient {
 
             checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
-            cartId = try container.decode(String.self, forKey: .cartId)
-
             amount = try container.decode(String.self, forKey: .amount)
+
+            cartId = try container.decode(String.self, forKey: .cartId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -70,9 +70,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
-            try? container.encodeIfPresent(cartId, forKey: .cartId)
-
             try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(cartId, forKey: .cartId)
         }
     }
 }

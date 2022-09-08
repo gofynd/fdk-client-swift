@@ -34,12 +34,12 @@ Handles Platform websites OMS
 * [reassignLocation](#reassignlocation)
 * [updateShipmentLock](#updateshipmentlock)
 * [updateShipmentStatus](#updateshipmentstatus)
-* [getShipmentDetailsById](#getshipmentdetailsbyid)
-* [getShipmentsByShipmentIds](#getshipmentsbyshipmentids)
+* [getShipmentById](#getshipmentbyid)
+* [getShipments](#getshipments)
 * [getOrderById](#getorderbyid)
-* [getShipmentByAffiliateBagId](#getshipmentbyaffiliatebagid)
-* [getShipmentByAffiliateShipmentId](#getshipmentbyaffiliateshipmentid)
-* [getShipmentsByAffiliateOrderId](#getshipmentsbyaffiliateorderid)
+* [getOrders](#getorders)
+* [getBags](#getbags)
+* [getBagById](#getbagbyid)
 
 
 
@@ -1620,14 +1620,14 @@ Successfully updated entities !
 ---
 
 
-#### getShipmentDetailsById
+#### getShipmentById
 
 
 
 
 
 ```swift
-client.order.getShipmentDetailsById(shipmentId: shipmentId) { (response, error) in
+client.order.getShipmentById(shipmentId: shipmentId, channelOrderId: channelOrderId, channelShipmentId: channelShipmentId, channelBagId: channelBagId, channelId: channelId) { (response, error) in
     // Use response
 }
 ```
@@ -1638,7 +1638,11 @@ client.order.getShipmentDetailsById(shipmentId: shipmentId) { (response, error) 
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| shipmentId | String | yes |  |  
+| shipmentId | String | yes |  |   
+| channelOrderId | String? | no |  |   
+| channelShipmentId | String? | no |  |   
+| channelBagId | String? | no |  |   
+| channelId | String? | no |  |  
 
 
 
@@ -4388,14 +4392,14 @@ Successfully retrived shipment details!
 ---
 
 
-#### getShipmentsByShipmentIds
+#### getShipments
 
 
 
 
 
 ```swift
-client.order.getShipmentsByShipmentIds(shipmentIds: shipmentIds, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.order.getShipments(bagIds: bagIds, shipmentIds: shipmentIds, orderIds: orderIds, channelBagIds: channelBagIds, channelShipmentIds: channelShipmentIds, channelOrderIds: channelOrderIds, channelId: channelId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -4406,7 +4410,13 @@ client.order.getShipmentsByShipmentIds(shipmentIds: shipmentIds, pageNo: pageNo,
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| shipmentIds | String | yes |  |   
+| bagIds | String? | no |  |   
+| shipmentIds | String? | no |  |   
+| orderIds | String? | no |  |   
+| channelBagIds | String? | no |  |   
+| channelShipmentIds | String? | no |  |   
+| channelOrderIds | String? | no |  |   
+| channelId | String? | no |  |   
 | pageNo | Int? | no |  |   
 | pageSize | Int? | no |  |  
 
@@ -7176,7 +7186,7 @@ Successfully retrived all the given shipments details!
 
 
 ```swift
-client.order.getOrderById(fyndOrderId: fyndOrderId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.order.getOrderById(fyndOrderId: fyndOrderId, channelOrderId: channelOrderId, channelShipmentId: channelShipmentId, channelBagId: channelBagId, channelId: channelId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -7187,7 +7197,11 @@ client.order.getOrderById(fyndOrderId: fyndOrderId, pageNo: pageNo, pageSize: pa
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| fyndOrderId | String | yes |  |   
+| fyndOrderId | String? | no |  |   
+| channelOrderId | String? | no |  |   
+| channelShipmentId | String? | no |  |   
+| channelBagId | String? | no |  |   
+| channelId | String? | no |  |   
 | pageNo | Int? | no |  |   
 | pageSize | Int? | no |  |  
 
@@ -9939,14 +9953,14 @@ Successfully retrieved shipment details!
 ---
 
 
-#### getShipmentByAffiliateBagId
+#### getOrders
 
 
 
 
 
 ```swift
-client.order.getShipmentByAffiliateBagId(affiliateBagId: affiliateBagId, affiliateId: affiliateId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.order.getOrders(bagIds: bagIds, shipmentIds: shipmentIds, orderIds: orderIds, channelBagIds: channelBagIds, channelShipmentIds: channelShipmentIds, channelOrderIds: channelOrderIds, channelId: channelId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -9957,5548 +9971,13 @@ client.order.getShipmentByAffiliateBagId(affiliateBagId: affiliateBagId, affilia
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| affiliateBagId | String | yes |  |   
-| affiliateId | String | yes |  |   
-| pageNo | Int? | no |  |   
-| pageSize | Int? | no |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[ShipmentDetailsByAffiliateBagIdResponse](#ShipmentDetailsByAffiliateBagIdResponse)
-
-Successfully retrieved shipment details!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "shipment_id": "16599806855311914452",
-  "affiliate_details": {
-    "id": "5dd3ce1f1662684aa7019f1e",
-    "affiliate_bag_id": "19207348",
-    "affiliate_order_id": "FY62F14B8501F18E8FD3",
-    "company_affiliate_tag": "OpexTesting",
-    "affiliate_id": "5dd3ce1f1662684aa7019f1e",
-    "affiliate_shipment_id": "16599806855311914452",
-    "shipment_meta": {
-      "dp_id": "7",
-      "weight": 250,
-      "external": {},
-      "formatted": {
-        "max": "Mon, 15 Aug",
-        "min": "Sat, 13 Aug"
-      },
-      "timestamp": {
-        "max": 1660585474,
-        "min": 1660412674
-      },
-      "bag_weight": {
-        "19207348": 250
-      },
-      "debug_info": {
-        "stormbreaker_uuid": "06647bed-59ec-4f36-ad92-3057f991883f"
-      },
-      "dp_options": {
-        "7": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 2,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": 1,
-          "fm_priority": 2,
-          "lm_priority": 2,
-          "payment_mode": "all",
-          "rvp_priority": 1,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "7"
-        },
-        "29": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 4,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": 3,
-          "fm_priority": 4,
-          "lm_priority": 4,
-          "payment_mode": "all",
-          "rvp_priority": 3,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "29"
-        },
-        "36": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 6,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": -1,
-          "fm_priority": 6,
-          "lm_priority": 6,
-          "payment_mode": "all",
-          "rvp_priority": -1,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "36"
-        },
-        "37": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 7,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": -1,
-          "fm_priority": 7,
-          "lm_priority": 7,
-          "payment_mode": "all",
-          "rvp_priority": -1,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "37"
-        }
-      },
-      "order_type": null,
-      "dp_sort_key": "fm_priority",
-      "ewaybill_info": {},
-      "packaging_name": "POLYB_M_1411P5",
-      "assign_dp_from_sb": true,
-      "same_store_available": false,
-      "fulfilment_priority_text": null,
-      "store_invoice_updated_date": "2022-08-08T23:15:20+00:00",
-      "auto_trigger_dp_assignment_ACF": true
-    },
-    "affiliate_meta": {
-      "fynd": {
-        "fulfilment_identifier": "pulse"
-      },
-      "channel_shipment_id": null,
-      "channel_order_id": null,
-      "due_date": null,
-      "is_priority": false,
-      "box_type": null,
-      "coupon_code": null,
-      "size_level_total_qty": 924,
-      "loyalty_discount": 0,
-      "employee_discount": 0
-    },
-    "affiliate_store_id": "10182",
-    "pdf_links": {
-      "label_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a4.pdf",
-      "label_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a6.pdf",
-      "label_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_pos.pdf",
-      "invoice_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a4.pdf",
-      "invoice_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a6.pdf",
-      "label_type": "fynd",
-      "invoice_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_pos.pdf",
-      "invoice_type": "fynd"
-    },
-    "config": {
-      "id": "5dd3ce1f1662684aa7019f1e",
-      "meta": [],
-      "name": "OpexTesting",
-      "owner": "000000000000000000000020",
-      "token": "np0tHm04",
-      "secret": "dTSEQkEE7",
-      "createdAt": null,
-      "updatedAt": null,
-      "description": "Opex testing app",
-      "dp_assignment": true,
-      "app_company_id": 61,
-      "article_assignment": {
-        "level": "multi-companies",
-        "strategy": "optimal"
-      },
-      "force_reassignment": false,
-      "post_order_reassignment": true
-    }
-  },
-  "app_id": "5dd3ce1f1662684aa7019f1e",
-  "article_details": {
-    "status": {
-      "delivery_done": {
-        "5f8a4751d2f36f00014ff8ed": {
-          "uid": "5f8a4751d2f36f00014ff8ed",
-          "_id": "5f8a4751d2f36f00014ff8ed",
-          "is_set": false,
-          "bag_ids": [
-            19207348
-          ],
-          "quantity": 1,
-          "reasons": {
-            "90": [
-              {
-                "slug": "others",
-                "display_name": "Others",
-                "id": 90,
-                "state": "bag_confirmed",
-                "text": "FY62F14B8501F18E8FD3",
-                "bag_id": 19207348
-              }
-            ]
-          }
-        }
-      }
-    }
-  },
-  "bag_status_history": [
-    {
-      "created_at": "2022-08-08T23:14:46+00:00",
-      "delivery_partner_id": null,
-      "bag_id": 19207348,
-      "delivery_awb_number": null,
-      "updated_at": "2022-08-08T23:14:46+00:00",
-      "state_id": 89,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "pending",
-      "shipment_id": "16599806855311914452",
-      "id": 120514809,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 89,
-        "display_name": "Pending",
-        "notify_customer": true,
-        "app_display_name": "Pending",
-        "state_type": "operational",
-        "app_state_name": "pending",
-        "name": "pending",
-        "is_active": true,
-        "app_facing": true,
-        "journey_type": "forward"
-      },
-      "reasons": []
-    },
-    {
-      "created_at": "2022-08-08T23:14:46+00:00",
-      "delivery_partner_id": null,
-      "bag_id": 19207348,
-      "delivery_awb_number": null,
-      "updated_at": "2022-08-08T23:14:46+00:00",
-      "state_id": 1,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "placed",
-      "shipment_id": "16599806855311914452",
-      "id": 120514810,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 1,
-        "display_name": "Placed",
-        "notify_customer": true,
-        "app_display_name": "Processing",
-        "state_type": "operational",
-        "app_state_name": "processing",
-        "name": "placed",
-        "is_active": true,
-        "app_facing": true,
-        "journey_type": "forward"
-      },
-      "reasons": []
-    },
-    {
-      "created_at": "2022-08-08T23:15:14+00:00",
-      "delivery_partner_id": null,
-      "bag_id": 19207348,
-      "delivery_awb_number": null,
-      "updated_at": "2022-08-08T23:15:14+00:00",
-      "state_id": 2,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "bag_confirmed",
-      "shipment_id": "16599806855311914452",
-      "id": 120514842,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 2,
-        "display_name": "Confirmed",
-        "notify_customer": false,
-        "app_display_name": "Confirmed",
-        "state_type": "operational",
-        "app_state_name": "confirmed",
-        "name": "bag_confirmed",
-        "is_active": true,
-        "app_facing": true,
-        "journey_type": "forward"
-      },
-      "reasons": [
-        {
-          "slug": "others",
-          "display_name": "Others",
-          "id": 90,
-          "state": "bag_confirmed",
-          "text": "FY62F14B8501F18E8FD3n"
-        }
-      ]
-    },
-    {
-      "created_at": "2022-08-08T23:15:20+00:00",
-      "delivery_partner_id": null,
-      "bag_id": 19207348,
-      "delivery_awb_number": null,
-      "updated_at": "2022-08-08T23:15:20+00:00",
-      "state_id": 91,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "bag_invoiced",
-      "shipment_id": "16599806855311914452",
-      "id": 120514845,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 91,
-        "display_name": "Bag Invoiced",
-        "notify_customer": false,
-        "app_display_name": "Bag Invoiced",
-        "state_type": "operational",
-        "app_state_name": "bag_invoiced",
-        "name": "bag_invoiced",
-        "is_active": true,
-        "app_facing": false,
-        "journey_type": "forward"
-      },
-      "reasons": []
-    },
-    {
-      "created_at": "2022-08-08T23:15:20+00:00",
-      "delivery_partner_id": null,
-      "bag_id": 19207348,
-      "delivery_awb_number": null,
-      "updated_at": "2022-08-08T23:15:20+00:00",
-      "state_id": 113,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "ready_for_dp_assignment",
-      "shipment_id": "16599806855311914452",
-      "id": 120514846,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 113,
-        "display_name": "Ready For Dp Assignment",
-        "notify_customer": false,
-        "app_display_name": "Ready For Dp Assignment",
-        "state_type": "operational",
-        "app_state_name": "ready_for_dp_assignment",
-        "name": "ready_for_dp_assignment",
-        "is_active": true,
-        "app_facing": false,
-        "journey_type": "forward"
-      },
-      "reasons": []
-    },
-    {
-      "created_at": "2022-08-08T23:15:23+00:00",
-      "delivery_partner_id": 22,
-      "bag_id": 19207348,
-      "delivery_awb_number": "4982512202351",
-      "updated_at": "2022-08-08T23:15:23+00:00",
-      "state_id": 7,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "dp_assigned",
-      "shipment_id": "16599806855311914452",
-      "id": 120514848,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 7,
-        "display_name": "DP Assigned",
-        "notify_customer": false,
-        "app_display_name": "DP Assigned",
-        "state_type": "operational",
-        "app_state_name": "dp_assigned",
-        "name": "dp_assigned",
-        "is_active": true,
-        "app_facing": true,
-        "journey_type": "forward"
-      },
-      "reasons": []
-    },
-    {
-      "created_at": "2022-08-08T23:15:33+00:00",
-      "delivery_partner_id": 22,
-      "bag_id": 19207348,
-      "delivery_awb_number": "4982512202351",
-      "updated_at": "2022-08-08T23:15:33+00:00",
-      "state_id": 8,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "bag_packed",
-      "shipment_id": "16599806855311914452",
-      "id": 120514898,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 8,
-        "display_name": "Bag Packed",
-        "notify_customer": true,
-        "app_display_name": "Bag Packed",
-        "state_type": "operational",
-        "app_state_name": "bag_packed",
-        "name": "bag_packed",
-        "is_active": true,
-        "app_facing": true,
-        "journey_type": "forward"
-      },
-      "reasons": [
-        {
-          "slug": "missed_state_ingestion",
-          "display_name": "Missed state is ingested",
-          "id": 162,
-          "state": "missed_state",
-          "text": "Missed state is ingested"
-        }
-      ]
-    },
-    {
-      "created_at": "2022-08-08T23:15:33+00:00",
-      "delivery_partner_id": 22,
-      "bag_id": 19207348,
-      "delivery_awb_number": "4982512202351",
-      "updated_at": "2022-08-08T23:15:33+00:00",
-      "state_id": 12,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "bag_picked",
-      "shipment_id": "16599806855311914452",
-      "id": 120514899,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 12,
-        "display_name": "In Transit",
-        "notify_customer": false,
-        "app_display_name": "In Transit",
-        "state_type": "operational",
-        "app_state_name": "in_transit",
-        "name": "bag_picked",
-        "is_active": true,
-        "app_facing": true,
-        "journey_type": "forward"
-      },
-      "reasons": [
-        {
-          "slug": "others",
-          "display_name": "Others",
-          "id": 90,
-          "state": "bag_confirmed",
-          "text": "FY62F14B8501F18E8FD3"
-        }
-      ]
-    },
-    {
-      "created_at": "2022-08-08T23:15:45+00:00",
-      "delivery_partner_id": 22,
-      "bag_id": 19207348,
-      "delivery_awb_number": "4982512202351",
-      "updated_at": "2022-08-08T23:15:45+00:00",
-      "state_id": 14,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "delivery_done",
-      "shipment_id": "16599806855311914452",
-      "id": 120514917,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 14,
-        "display_name": "Delivery Done",
-        "notify_customer": true,
-        "app_display_name": "Delivered",
-        "state_type": "operational",
-        "app_state_name": "delivered",
-        "name": "delivery_done",
-        "is_active": true,
-        "app_facing": true,
-        "journey_type": "forward"
-      },
-      "reasons": [
-        {
-          "slug": "others",
-          "display_name": "Others",
-          "id": 90,
-          "state": "bag_confirmed",
-          "text": "FY62F14B8501F18E8FD3"
-        }
-      ]
-    }
-  ],
-  "bags": [
-    {
-      "id": 19207348,
-      "display_name": "Bag",
-      "entity_type": "bag",
-      "type": "single",
-      "status": {
-        "is_returnable": true,
-        "can_be_cancelled": true,
-        "enable_tracking": false,
-        "is_customer_return_allowed": true,
-        "is_active": false
-      },
-      "financial_breakup": [
-        {
-          "price_effective": 10000,
-          "discount": 0,
-          "amount_paid": 10000,
-          "coupon_effective_discount": 0,
-          "delivery_charge": 0,
-          "fynd_credits": 0,
-          "cod_charges": 0,
-          "refund_credit": 0,
-          "cashback": 0,
-          "refund_amount": 10000,
-          "added_to_fynd_cash": false,
-          "cashback_applied": 0,
-          "gst_tax_percentage": 12,
-          "value_of_good": 8928.57,
-          "price_marked": 10000,
-          "transfer_price": 0,
-          "brand_calculated_amount": 10000,
-          "tax_collected_at_source": 0,
-          "tcs_percentage": 0,
-          "promotion_effective_discount": 0,
-          "coupon_value": 0,
-          "amount_paid_roundoff": 10000,
-          "size": "S",
-          "total_units": 1,
-          "hsn_code": "61091000",
-          "identifiers": {
-            "sku_code": "MT-100 WHITE_S"
-          },
-          "item_name": "White Printed T-Shirt",
-          "gst_fee": 1071.43,
-          "gst_tag": "IGST"
-        }
-      ],
-      "bag_id": 19207348,
-      "bag_update_time": 1659980745.2105737,
-      "current_status": {
-        "created_at": "2022-08-08T23:15:45+00:00",
-        "delivery_partner_id": 22,
-        "bag_id": 19207348,
-        "delivery_awb_number": "4982512202351",
-        "updated_at": 1660000545,
-        "state_id": 14,
-        "store_id": 10182,
-        "state_type": "operational",
-        "status": "delivery_done",
-        "shipment_id": "16599806855311914452",
-        "id": 120514917,
-        "kafka_sync": false,
-        "bag_state_mapper": {
-          "id": 14,
-          "display_name": "Delivery Done",
-          "notify_customer": true,
-          "app_display_name": "Delivered",
-          "state_type": "operational",
-          "app_state_name": "delivered",
-          "name": "delivery_done",
-          "is_active": true,
-          "app_facing": true,
-          "journey_type": "forward"
-        }
-      },
-      "bag_status": [
-        {
-          "created_at": "2022-08-08T23:14:46+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000486,
-          "state_id": 89,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "pending",
-          "shipment_id": "16599806855311914452",
-          "id": 120514809,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 89,
-            "display_name": "Pending",
-            "notify_customer": true,
-            "app_display_name": "Pending",
-            "state_type": "operational",
-            "app_state_name": "pending",
-            "name": "pending",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:14:46+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000486,
-          "state_id": 1,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "placed",
-          "shipment_id": "16599806855311914452",
-          "id": 120514810,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 1,
-            "display_name": "Placed",
-            "notify_customer": true,
-            "app_display_name": "Processing",
-            "state_type": "operational",
-            "app_state_name": "processing",
-            "name": "placed",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:14+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000514,
-          "state_id": 2,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_confirmed",
-          "shipment_id": "16599806855311914452",
-          "id": 120514842,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 2,
-            "display_name": "Confirmed",
-            "notify_customer": false,
-            "app_display_name": "Confirmed",
-            "state_type": "operational",
-            "app_state_name": "confirmed",
-            "name": "bag_confirmed",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "others",
-              "display_name": "Others",
-              "id": 90,
-              "state": "bag_confirmed",
-              "text": "FY62F14B8501F18E8FD3n"
-            }
-          ]
-        },
-        {
-          "created_at": "2022-08-08T23:15:20+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000520,
-          "state_id": 91,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_invoiced",
-          "shipment_id": "16599806855311914452",
-          "id": 120514845,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 91,
-            "display_name": "Bag Invoiced",
-            "notify_customer": false,
-            "app_display_name": "Bag Invoiced",
-            "state_type": "operational",
-            "app_state_name": "bag_invoiced",
-            "name": "bag_invoiced",
-            "is_active": true,
-            "app_facing": false,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:20+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000520,
-          "state_id": 113,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "ready_for_dp_assignment",
-          "shipment_id": "16599806855311914452",
-          "id": 120514846,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 113,
-            "display_name": "Ready For Dp Assignment",
-            "notify_customer": false,
-            "app_display_name": "Ready For Dp Assignment",
-            "state_type": "operational",
-            "app_state_name": "ready_for_dp_assignment",
-            "name": "ready_for_dp_assignment",
-            "is_active": true,
-            "app_facing": false,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:23+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000523,
-          "state_id": 7,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "dp_assigned",
-          "shipment_id": "16599806855311914452",
-          "id": 120514848,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 7,
-            "display_name": "DP Assigned",
-            "notify_customer": false,
-            "app_display_name": "DP Assigned",
-            "state_type": "operational",
-            "app_state_name": "dp_assigned",
-            "name": "dp_assigned",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:33+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000533,
-          "state_id": 8,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_packed",
-          "shipment_id": "16599806855311914452",
-          "id": 120514898,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 8,
-            "display_name": "Bag Packed",
-            "notify_customer": true,
-            "app_display_name": "Bag Packed",
-            "state_type": "operational",
-            "app_state_name": "bag_packed",
-            "name": "bag_packed",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "missed_state_ingestion",
-              "display_name": "Missed state is ingested",
-              "id": 162,
-              "state": "missed_state",
-              "text": "Missed state is ingested"
-            }
-          ]
-        },
-        {
-          "created_at": "2022-08-08T23:15:33+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000533,
-          "state_id": 12,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_picked",
-          "shipment_id": "16599806855311914452",
-          "id": 120514899,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 12,
-            "display_name": "In Transit",
-            "notify_customer": false,
-            "app_display_name": "In Transit",
-            "state_type": "operational",
-            "app_state_name": "in_transit",
-            "name": "bag_picked",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "others",
-              "display_name": "Others",
-              "id": 90,
-              "state": "bag_confirmed",
-              "text": "FY62F14B8501F18E8FD3"
-            }
-          ]
-        },
-        {
-          "created_at": "2022-08-08T23:15:45+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000545,
-          "state_id": 14,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "delivery_done",
-          "shipment_id": "16599806855311914452",
-          "id": 120514917,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 14,
-            "display_name": "Delivery Done",
-            "notify_customer": true,
-            "app_display_name": "Delivered",
-            "state_type": "operational",
-            "app_state_name": "delivered",
-            "name": "delivery_done",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "others",
-              "display_name": "Others",
-              "id": 90,
-              "state": "bag_confirmed",
-              "text": "FY62F14B8501F18E8FD3"
-            }
-          ]
-        }
-      ],
-      "item": {
-        "brand": "play clan",
-        "can_return": true,
-        "id": 95944,
-        "webstore_product_url": null,
-        "last_updated_at": 1660000486,
-        "slug_key": "play-clan-white-printed-t-shirt-387",
-        "attributes": {
-          "color": "White",
-          "gender": [
-            "Men"
-          ],
-          "season": "SS16",
-          "pattern": "Printed",
-          "essential": "Yes",
-          "brand_name": "play clan",
-          "net-quantity": "1 U",
-          "marketer-name": "Fynd",
-          "primary_color": "White",
-          "sleeve_length": "Short",
-          "marketer-address": "Fynd",
-          "primary_material": "Others",
-          "primary_color_hex": "FFFFFF"
-        },
-        "meta": {
-          "departments": [
-            21
-          ]
-        },
-        "gender": null,
-        "l3_category": 192,
-        "color": null,
-        "can_cancel": true,
-        "l3_category_name": "T-Shirts",
-        "l1_category": [
-          "Clothing"
-        ],
-        "brand_id": 85,
-        "branch_url": "http://go.fyndi.ng/iSyg/dXGX4QXldy",
-        "l2_category": [
-          "Polos & T-Shirts"
-        ],
-        "name": "White Printed T-Shirt",
-        "code": "MT-100 WHITE",
-        "department_id": 21,
-        "size": "S",
-        "image": [
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/1.jpg",
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/2.jpg",
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/3.jpg",
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/4.jpg"
-        ]
-      },
-      "reasons": [
-        {
-          "slug": "others",
-          "display_name": "Others",
-          "id": 90,
-          "state": "bag_confirmed",
-          "text": "FY62F14B8501F18E8FD3",
-          "bag_id": 19207348
-        }
-      ],
-      "article": {
-        "identifiers": {
-          "sku_code": "MT-100 WHITE_S"
-        },
-        "esp_modified": false,
-        "size": "S",
-        "code": "",
-        "raw_meta": null,
-        "set": {},
-        "is_set": false,
-        "seller_identifier": "MT-100 WHITE_S",
-        "return_config": {
-          "time": 30,
-          "unit": "days",
-          "returnable": true
-        },
-        "_id": "5f8a4751d2f36f00014ff8ed",
-        "uid": "5f8a4751d2f36f00014ff8ed",
-        "child_details": {}
-      },
-      "journey_type": "forward",
-      "current_operational_status": {
-        "created_at": "2022-08-08T23:15:45+00:00",
-        "delivery_partner_id": 22,
-        "bag_id": 19207348,
-        "delivery_awb_number": "4982512202351",
-        "updated_at": "2022-08-08T23:15:45+00:00",
-        "state_id": 14,
-        "store_id": 10182,
-        "state_type": "operational",
-        "status": "delivery_done",
-        "shipment_id": "16599806855311914452",
-        "id": 120514917,
-        "kafka_sync": false,
-        "bag_state_mapper": {
-          "id": 14,
-          "display_name": "Delivery Done",
-          "notify_customer": true,
-          "app_display_name": "Delivered",
-          "state_type": "operational",
-          "app_state_name": "delivered",
-          "name": "delivery_done",
-          "is_active": true,
-          "app_facing": true,
-          "journey_type": "forward"
-        },
-        "reasons": [
-          {
-            "slug": "others",
-            "display_name": "Others",
-            "id": 90,
-            "state": "bag_confirmed",
-            "text": "FY62F14B8501F18E8FD3"
-          }
-        ]
-      },
-      "dates": {
-        "order_created": "2022-08-08T23:14:45+00:00",
-        "delivery_date": "2022-08-08T23:15:45+00:00"
-      },
-      "prices": {
-        "price_effective": 10000,
-        "discount": 0,
-        "amount_paid": 10000,
-        "coupon_effective_discount": 0,
-        "delivery_charge": 0,
-        "fynd_credits": 0,
-        "cod_charges": 0,
-        "refund_credit": 0,
-        "cashback": 0,
-        "refund_amount": 10000,
-        "added_to_fynd_cash": false,
-        "cashback_applied": 0,
-        "gst_tax_percentage": 12,
-        "value_of_good": 8928.57,
-        "price_marked": 10000,
-        "transfer_price": 0,
-        "brand_calculated_amount": 10000,
-        "tax_collected_at_source": 0,
-        "tcs_percentage": 0,
-        "promotion_effective_discount": 0,
-        "coupon_value": 0,
-        "amount_paid_roundoff": 10000
-      },
-      "payment_methods": {
-        "COD": {
-          "amount": 10000
-        }
-      },
-      "gst_details": {
-        "gstin_code": "null",
-        "gst_tag": "IGST",
-        "hsn_code": "61091000",
-        "value_of_good": 8928.57,
-        "gst_tax_percentage": 12,
-        "is_default_hsn_code": false,
-        "brand_calculated_amount": 10000,
-        "tax_collected_at_source": 0,
-        "hsn_code_id": "6277837c5e4c6fdbc8be3e93",
-        "gst_fee": 1071.43,
-        "igst_tax_percentage": 12,
-        "sgst_tax_percentage": 0,
-        "cgst_tax_percentage": 0,
-        "igst_gst_fee": 1071.43,
-        "cgst_gst_fee": "0",
-        "sgst_gst_fee": "0"
-      },
-      "brand": {
-        "credit_note_allowed": false,
-        "id": 85,
-        "script_last_ran": null,
-        "pickup_location": null,
-        "invoice_prefix": "pc",
-        "brand_name": "play clan",
-        "is_virtual_invoice": false,
-        "created_on": 1452571237,
-        "modified_on": 1623871060,
-        "company": 61,
-        "logo": "https://hdn-1.fynd.com/brands/pictures/square-logo/original/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg",
-        "credit_note_expiry_days": null,
-        "start_date": null
-      },
-      "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
-      "affiliate_bag_details": {
-        "affiliate_bag_id": "19207348",
-        "affiliate_order_id": "FY62F14B8501F18E8FD3",
-        "affiliate_meta": {
-          "fynd": {
-            "fulfilment_identifier": "pulse"
-          },
-          "channel_shipment_id": null,
-          "channel_order_id": null,
-          "due_date": null,
-          "is_priority": false,
-          "box_type": null,
-          "coupon_code": null,
-          "size_level_total_qty": 924,
-          "loyalty_discount": 0,
-          "employee_discount": 0
-        },
-        "loyalty_discount": 0,
-        "employee_discount": 0
-      },
-      "meta": {},
-      "applied_promos": []
-    }
-  ],
-  "brand": {
-    "credit_note_allowed": false,
-    "id": 85,
-    "script_last_ran": null,
-    "pickup_location": null,
-    "invoice_prefix": "pc",
-    "brand_name": "play clan",
-    "is_virtual_invoice": false,
-    "created_on": 1452571237,
-    "modified_on": 1623871060,
-    "company": 61,
-    "logo": "https://hdn-1.fynd.com/brands/pictures/square-logo/original/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg",
-    "credit_note_expiry_days": null,
-    "start_date": null
-  },
-  "cart_id": 41262745,
-  "comment": "",
-  "company": {
-    "modified_on": 1656409302,
-    "company_type": "distributor",
-    "id": 61,
-    "commission": 0,
-    "meta": {
-      "stage": "verified",
-      "address": [
-        {
-          "city": "GHORMACH",
-          "state": "BADGHIS",
-          "country": "AFGHANISTAN",
-          "pincode": 401209,
-          "address1": "A/204, SAI VANDAN",
-          "address2": "TULINJ ROAD, NALLASOPARA EAST",
-          "landmark": "Near Utsav Hotel",
-          "latitude": 35.6495457,
-          "longitude": 63.9113296,
-          "address_type": "office",
-          "country_code": "IN"
-        },
-        {
-          "city": "GHORMACH",
-          "state": "BADGHIS",
-          "country": "AFGHANISTAN",
-          "pincode": 401209,
-          "address1": "A/204, SAI VANDAN",
-          "address2": "TULINJ ROAD, NALLASOPARA EAST",
-          "landmark": "Near Utsav Hotel",
-          "latitude": 35.6495457,
-          "longitude": 63.9113296,
-          "address_type": "registered",
-          "country_code": "IN"
-        }
-      ],
-      "documents": {
-        "cin": {
-          "url": "https://fynd-obscuro-media-new.s3-accelerate.amazonaws.com/company/61/self/legal/documents/free/original/ZjGFzuE8_-20_Python_Libraries.pdf?AWSAccessKeyId=AKIAJU7QAWL4LO5KSCYA&Expires=1656409357&Signature=IC%2FgIDdSymHbSKJGT12Zq9zOe4M%3D",
-          "type": "cin",
-          "value": "L21700MH1907PLC000260",
-          "verified": true,
-          "legal_name": "FUCHSIA VINE DESIGNS PRIVATE LIMITED"
-        },
-        "gst": {
-          "type": "gst",
-          "value": "27AALCA0442L1ZM",
-          "verified": true,
-          "legal_name": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED"
-        },
-        "pan": {
-          "url": "https://fynd-obscuro-media-new.s3-accelerate.amazonaws.com/company/61/self/legal/documents/free/original/oURvMfX1p-2de4a88b_ticket.pdf?AWSAccessKeyId=AKIAJU7QAWL4LO5KSCYA&Expires=1656409357&Signature=lG1wi0G6cqtav0i9cOf3dFNBuNY%3D",
-          "type": "pan",
-          "value": "AALCA0442L",
-          "verified": true,
-          "legal_name": ""
-        },
-        "digital_signature": {
-          "url": "https://fynd-obscuro-media-new.s3-accelerate.amazonaws.com/company/61/self/legal/documents/free/original/iigdJTk27-3.png?AWSAccessKeyId=AKIAJU7QAWL4LO5KSCYA&Expires=1656409357&Signature=Nc38H2KxR1ymSZz8jVRQyUCXobs%3D",
-          "type": "digital_signature",
-          "value": "Aayush Jain",
-          "verified": true,
-          "legal_name": "Aayush Jain"
-        }
-      },
-      "business_info": "This is a description area to write about the company.",
-      "contact_details": {
-        "phone": [
-          {
-            "number": "7009853732",
-            "country_code": 91
-          },
-          {
-            "number": "9821012533",
-            "country_code": 91
-          }
-        ],
-        "emails": [
-          "aayushvjain@gofynd.com",
-          "abc@gmail.com",
-          "asmaidris1994@gmail.com"
-        ]
-      },
-      "business_details": {
-        "website": {
-          "url": "https://www.playclan.com"
-        }
-      },
-      "notification_emails": [
-        "pranavverma@gofynd.com",
-        "vermapranav28@gmail.com",
-        "vaishakhshetty@gofynd.com"
-      ]
-    },
-    "exchange_allowed": false,
-    "payment_procesing_charge": 0,
-    "tan_no": "11",
-    "vat_no": null,
-    "exchange_within_days": null,
-    "gst_number": "27AALCA0442L1ZM",
-    "created_on": 1452571141,
-    "company_name": "FUCHSIA VINE DESIGNS PRIVATE LIMITED",
-    "fynd_a_fit_available": false,
-    "return_allowed": true,
-    "return_within_days": 30,
-    "payment_type": "Happay",
-    "business_type": "ltd/pvt ltd",
-    "agreement_start_date": 1503532800,
-    "cst": null,
-    "pan_no": "AALCA0442L"
-  },
-  "coupon": {},
-  "delivery_address": {
-    "area": "Bhagyoday Society",
-    "city": "Palanpur",
-    "email": "",
-    "phone": "7621937989",
-    "state": "Gujarat",
-    "country": "India",
-    "pincode": "385001",
-    "version": "1.0",
-    "address1": "11",
-    "address2": "",
-    "landmark": "mansarovar road",
-    "latitude": 24.1724338,
-    "longitude": 72.434581,
-    "created_at": "2022-08-08T23:14:45+00:00",
-    "updated_at": "2022-08-08T23:14:45+00:00",
-    "address_type": "home",
-    "contact_person": "Rahul",
-    "address_category": "delivery",
-    "name": "Rahul",
-    "address": "11"
-  },
-  "delivery_slot": {
-    "slot": "By 17:00 PM",
-    "upper_bound": "2022-08-15T17:44:34+00:00",
-    "lower_bound": "2022-08-13T17:44:34+00:00",
-    "date": "2022-08-15T17:44:34+00:00",
-    "type": "order_window"
-  },
-  "dp_details": {
-    "id": 22,
-    "name": "fyndr",
-    "awb_no": "4982512202351",
-    "eway_bill_id": null,
-    "track_url": null,
-    "dp_charges": 110,
-    "dp_return_charges": 70,
-    "amount_handling_charges": 15,
-    "gst_tag": "sgst"
-  },
-  "einvoice_info": null,
-  "fallback_user": {
-    "email": "",
-    "mobile": "7621937989"
-  },
-  "fulfilling_store": {
-    "login_username": "TEST_FFSPS_61",
-    "mall_area": null,
-    "updated_at": "2022-05-19T15:46:52+00:00",
-    "packaging_material_count": 0,
-    "id": 10182,
-    "store_address_json": {
-      "area": "",
-      "city": "MUMBAI SUBURBAN",
-      "email": "javedkazi@gofynd.com",
-      "phone": "918286865180",
-      "state": "MAHARASHTRA",
-      "country": "INDIA",
-      "pincode": "400093",
-      "version": "1.0",
-      "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
-      "address2": "",
-      "landmark": "Opposite MIDC police station",
-      "latitude": 19.1174798,
-      "longitude": 72.8691603,
-      "created_at": "2022-05-24 18:35:09",
-      "updated_at": "2022-05-24 18:35:09",
-      "address_type": "store",
-      "contact_person": "Javed",
-      "address_category": "store"
-    },
-    "is_archived": false,
-    "meta": {
-      "stage": "verified",
-      "timing": [
-        {
-          "open": true,
-          "closing": {
-            "hour": 21,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "monday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 21,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "tuesday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 21,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "wednesday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 14,
-            "minute": 12
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "thursday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 21,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "friday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 21,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "saturday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 21,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "sunday"
-        }
-      ],
-      "documents": {},
-      "gst_number": null,
-      "display_name": "Fuschia",
-      "gst_credentials": {
-        "e_invoice": {
-          "enabled": false
-        },
-        "e_waybill": {
-          "enabled": false
-        }
-      },
-      "notification_emails": [
-        "vaishakhshetty@gofynd.com"
-      ],
-      "product_return_config": {
-        "on_same_store": true
-      },
-      "additional_contact_details": {
-        "number": [
-          "91 - 8286865180"
-        ]
-      },
-      "ewaybill_portal_details": null
-    },
-    "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
-    "parent_store_id": null,
-    "alohomora_user_id": 11070,
-    "store_active_from": null,
-    "vat_no": null,
-    "longitude": 72.8292187,
-    "location_type": "mall",
-    "latitude": 19.0551125,
-    "created_at": "2020-01-15T05:30:41+00:00",
-    "fulfillment_channel": "pulse",
-    "brand_id": null,
-    "is_active": false,
-    "name": "Fuschia",
-    "mall_name": null,
-    "company_id": 61,
-    "is_enabled_for_recon": false,
-    "code": "FFSPS",
-    "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
-    "address2": "",
-    "city": "MUMBAI SUBURBAN",
-    "state": "MAHARASHTRA",
-    "country": "INDIA",
-    "pincode": "400093",
-    "store_email": "javedkazi@gofynd.com",
-    "contact_person": "Javed",
-    "phone": "918286865180",
-    "brand_store_tags": [
-      "pulse"
-    ]
-  },
-  "fyndstore_emp": {},
-  "invoice": {
-    "updated_date": 1660000520,
-    "store_invoice_id": "1659980720191361",
-    "invoice_url": "https://fynd-recon-reports-mumbai.s3.amazonaws.com/invoice_labels/16599806855311914452_invoice_a4.pdf",
-    "label_url": "https://fynd-recon-reports-mumbai.s3.amazonaws.com/invoice_labels/16599806855311914452_invoice_pos.pdf"
-  },
-  "is_processing": false,
-  "journey_type": "forward",
-  "lock_status": false,
-  "no_of_bags_order": 1,
-  "operational_status": "delivery_done",
-  "order": {
-    "raw_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
-    "affiliate_order_date": "2022-08-08T23:14:45+00:00",
-    "total_order_value": 10000,
-    "transaction_id": "FY62F14B8501F18E8FD3",
-    "refund_by": "fynd",
-    "headers": {
-      "host": "fplt-gringotts-main-svc.default.svc.cluster.local",
-      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
-      "cookie": "G_ENABLED_IDPS=google; f.session=s%3AHQX0JDLgWOHd8z7NOu-E9mT9yBDaqfPR.6T82v4OlerGY6lfKfATfojYQzDCtSRhEJkIA%2FyH%2Fz%2BM; ordering_store=s%3A15114.6VinzJtp1QRjsKZ52NWvXXPoTuLc38KYLxiLJSMl6CE",
-      "x-application-id": "5dd3ce1f1662684aa7019f1e",
-      "x-application-token": "np0tHm04",
-      "x-currency-code": "INR",
-      "authorization": "04a544ac-7e85-437f-b6d6-0adb694c4045",
-      "accept": "*/*",
-      "accept-encoding": "gzip, deflate",
-      "content-length": "17443",
-      "content-type": "text/plain; charset=utf-8",
-      "x-newrelic-id": "VQcHWVJVDhAHXFFVBAUEUVI=",
-      "x-newrelic-transaction": "PxQPAlJaXgNRVQUDVAgOAlUFFB8EBw8RVU4aWlsMDVQDBAgFUAIKWwAHA0NKQQEDAlBWAQ4AFTs=",
-      "request-source": "Fynd",
-      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
-      "source": "uniket-desktop",
-      "user_agent_version": null,
-      "deprecated": false
-    },
-    "id": 13030531,
-    "cod_charges": 0,
-    "collect_by": "fynd",
-    "tax_details": {
-      "gstin": null
-    },
-    "promotion_effective_discount": 0,
-    "affiliate_order_id": "FY62F14B8501F18E8FD3",
-    "meta": {
-      "files": [],
-      "staff": {},
-      "comment": "",
-      "extra_meta": {},
-      "order_type": "HomeDelivery",
-      "employee_id": null,
-      "payment_type": "fynd",
-      "mongo_cart_id": 41262745,
-      "order_platform": "platform-site",
-      "ordering_store": 15114,
-      "order_child_entities": [
-        "shipment",
-        "bag"
-      ]
-    },
-    "order_value": 10000,
-    "fynd_credits": 0,
-    "mode_of_payment": "FYND",
-    "discount": 0,
-    "payment_methods": {
-      "COD": {
-        "meta": {
-          "logo_url": {
-            "large": "https://hdn-1.fynd.com/payment/cod.png",
-            "small": "https://hdn-1.fynd.com/payment/cod.png"
-          },
-          "payment_id": "FY62F14B8501F18E8FD3",
-          "merchant_code": "",
-          "payment_gateway": "Fynd",
-          "payment_identifier": "11"
-        },
-        "mode": "COD",
-        "name": "COD",
-        "amount": 10000,
-        "refund_by": "fynd",
-        "collect_by": "fynd"
-      }
-    },
-    "fynd_order_id": "FY62F14B8501F18E8FD3",
-    "delivery_charges": 0,
-    "mongo_cart_id": 41262745,
-    "source": "uniket-desktop",
-    "created_time": 1660000485,
-    "payment_mode_id": 2,
-    "currency": "INR",
-    "coupon_value": 0,
-    "cashback_value": 0,
-    "cashback_applied": 0,
-    "ordering_channel": "FYND_STORE",
-    "user_id": 17952150,
-    "affiliate_id": "5dd3ce1f1662684aa7019f1e",
-    "ordering_channel_logo": "https://fynd-static.s3.amazonaws.com/mode_of_payment/fynd_store_logo.png",
-    "prices": {
-      "amount_paid": 10000,
-      "refund_amount": 10000,
-      "price_marked": 10000,
-      "cod_charges": 0,
-      "discount": 0,
-      "cashback_applied": 0,
-      "delivery_charge": 0,
-      "fynd_credits": 0,
-      "cashback": 0,
-      "price_effective": 10000,
-      "refund_credit": 0,
-      "value_of_good": 8928.57,
-      "coupon_value": 0,
-      "tax_collected_at_source": 0,
-      "promotion_effective_discount": 0,
-      "amount_paid_roundoff": 10000
-    }
-  },
-  "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
-  "order_source": "uniket-desktop",
-  "order_type": "forward",
-  "order_value": 10000,
-  "ordering_store": {
-    "login_username": null,
-    "mall_area": null,
-    "updated_at": "2022-04-21T14:44:10+00:00",
-    "packaging_material_count": 0,
-    "id": 15114,
-    "store_address_json": {
-      "area": "",
-      "city": "MUMBAI",
-      "email": "talha1891@gmail.com",
-      "phone": "918104556147",
-      "state": "MAHARASHTRA",
-      "country": "INDIA",
-      "pincode": "421301",
-      "version": "1.0",
-      "address1": "KALYAN, MAHARASHTRA 421301",
-      "address2": "",
-      "landmark": "",
-      "latitude": 73.1290596,
-      "longitude": 19.2527132,
-      "created_at": "2022-05-10 18:50:25",
-      "updated_at": "2022-05-10 18:50:25",
-      "address_type": "store",
-      "contact_person": "talha",
-      "address_category": "store"
-    },
-    "is_archived": false,
-    "meta": {
-      "stage": "verified",
-      "timing": [
-        {
-          "open": true,
-          "closing": {
-            "hour": 22,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "monday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 22,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "tuesday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 22,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "wednesday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 22,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "thursday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 22,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "friday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 22,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "saturday"
-        },
-        {
-          "open": false,
-          "closing": {
-            "hour": 22,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "sunday"
-        }
-      ],
-      "documents": {},
-      "gst_number": null,
-      "display_name": "0Test Loc",
-      "gst_credentials": {
-        "e_invoice": {
-          "enabled": false
-        },
-        "e_waybill": {
-          "enabled": false
-        }
-      },
-      "notification_emails": [
-        "talha1891@gmail.com"
-      ],
-      "product_return_config": {
-        "on_same_store": true
-      },
-      "additional_contact_details": {
-        "number": [
-          "91 - 8104556147"
-        ]
-      },
-      "ewaybill_portal_details": null
-    },
-    "order_integration_id": null,
-    "parent_store_id": null,
-    "alohomora_user_id": null,
-    "store_active_from": null,
-    "vat_no": null,
-    "longitude": null,
-    "location_type": "high_street",
-    "latitude": null,
-    "created_at": "2022-04-21T14:44:10+00:00",
-    "fulfillment_channel": "pulse",
-    "brand_id": null,
-    "is_active": false,
-    "name": "0Test Loc",
-    "mall_name": null,
-    "company_id": 61,
-    "is_enabled_for_recon": false,
-    "code": "0_loc_code",
-    "address1": "KALYAN, MAHARASHTRA 421301",
-    "address2": "",
-    "city": "MUMBAI",
-    "state": "MAHARASHTRA",
-    "country": "INDIA",
-    "pincode": "421301",
-    "store_email": "talha1891@gmail.com",
-    "contact_person": "talha",
-    "phone": "918104556147"
-  },
-  "original_bag_list": [
-    19207348
-  ],
-  "payment_methods": {
-    "COD": {
-      "amount": 10000,
-      "mode": "COD",
-      "name": "COD",
-      "collect_by": "fynd",
-      "refund_by": "fynd",
-      "meta": {
-        "logo_url": {
-          "large": "https://hdn-1.fynd.com/payment/cod.png",
-          "small": "https://hdn-1.fynd.com/payment/cod.png"
-        },
-        "payment_id": "FY62F14B8501F18E8FD3",
-        "merchant_code": "",
-        "payment_gateway": "Fynd",
-        "payment_identifier": "11"
-      }
-    }
-  },
-  "payment_type": "fynd",
-  "payments": {
-    "mode": "COD",
-    "is_active": true,
-    "display_priority": 1,
-    "display_name": "Cash on Delivery",
-    "id": 2,
-    "logo": "https://hdn-1.fynd.com/payment/cod.png",
-    "source": "Cash on Delivery",
-    "payment_identifier": "11",
-    "source_nickname": ""
-  },
-  "prices": {
-    "amount_paid": 10000,
-    "refund_amount": 10000,
-    "price_marked": 10000,
-    "cod_charges": 0,
-    "discount": 0,
-    "cashback_applied": 0,
-    "delivery_charge": 0,
-    "fynd_credits": 0,
-    "cashback": 0,
-    "price_effective": 10000,
-    "refund_credit": 0,
-    "value_of_good": 8928.57,
-    "coupon_value": 0,
-    "tax_collected_at_source": 0,
-    "promotion_effective_discount": 0,
-    "amount_paid_roundoff": 10000
-  },
-  "products": [
-    {
-      "id": 19207348,
-      "display_name": "Bag",
-      "entity_type": "bag",
-      "type": "single",
-      "status": {
-        "is_returnable": true,
-        "can_be_cancelled": true,
-        "enable_tracking": false,
-        "is_customer_return_allowed": true,
-        "is_active": false
-      },
-      "financial_breakup": [
-        {
-          "price_effective": 10000,
-          "discount": 0,
-          "amount_paid": 10000,
-          "coupon_effective_discount": 0,
-          "delivery_charge": 0,
-          "fynd_credits": 0,
-          "cod_charges": 0,
-          "refund_credit": 0,
-          "cashback": 0,
-          "refund_amount": 10000,
-          "added_to_fynd_cash": false,
-          "cashback_applied": 0,
-          "gst_tax_percentage": 12,
-          "value_of_good": 8928.57,
-          "price_marked": 10000,
-          "transfer_price": 0,
-          "brand_calculated_amount": 10000,
-          "tax_collected_at_source": 0,
-          "tcs_percentage": 0,
-          "promotion_effective_discount": 0,
-          "coupon_value": 0,
-          "amount_paid_roundoff": 10000,
-          "size": "S",
-          "total_units": 1,
-          "hsn_code": "61091000",
-          "identifiers": {
-            "sku_code": "MT-100 WHITE_S"
-          },
-          "item_name": "White Printed T-Shirt",
-          "gst_fee": 1071.43,
-          "gst_tag": "IGST"
-        }
-      ],
-      "bag_id": 19207348,
-      "bag_update_time": 1659980745.2105737,
-      "current_status": {
-        "created_at": "2022-08-08T23:15:45+00:00",
-        "delivery_partner_id": 22,
-        "bag_id": 19207348,
-        "delivery_awb_number": "4982512202351",
-        "updated_at": 1660000545,
-        "state_id": 14,
-        "store_id": 10182,
-        "state_type": "operational",
-        "status": "delivery_done",
-        "shipment_id": "16599806855311914452",
-        "id": 120514917,
-        "kafka_sync": false,
-        "bag_state_mapper": {
-          "id": 14,
-          "display_name": "Delivery Done",
-          "notify_customer": true,
-          "app_display_name": "Delivered",
-          "state_type": "operational",
-          "app_state_name": "delivered",
-          "name": "delivery_done",
-          "is_active": true,
-          "app_facing": true,
-          "journey_type": "forward"
-        }
-      },
-      "bag_status": [
-        {
-          "created_at": "2022-08-08T23:14:46+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000486,
-          "state_id": 89,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "pending",
-          "shipment_id": "16599806855311914452",
-          "id": 120514809,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 89,
-            "display_name": "Pending",
-            "notify_customer": true,
-            "app_display_name": "Pending",
-            "state_type": "operational",
-            "app_state_name": "pending",
-            "name": "pending",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:14:46+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000486,
-          "state_id": 1,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "placed",
-          "shipment_id": "16599806855311914452",
-          "id": 120514810,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 1,
-            "display_name": "Placed",
-            "notify_customer": true,
-            "app_display_name": "Processing",
-            "state_type": "operational",
-            "app_state_name": "processing",
-            "name": "placed",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:14+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000514,
-          "state_id": 2,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_confirmed",
-          "shipment_id": "16599806855311914452",
-          "id": 120514842,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 2,
-            "display_name": "Confirmed",
-            "notify_customer": false,
-            "app_display_name": "Confirmed",
-            "state_type": "operational",
-            "app_state_name": "confirmed",
-            "name": "bag_confirmed",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "others",
-              "display_name": "Others",
-              "id": 90,
-              "state": "bag_confirmed",
-              "text": "FY62F14B8501F18E8FD3n"
-            }
-          ]
-        },
-        {
-          "created_at": "2022-08-08T23:15:20+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000520,
-          "state_id": 91,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_invoiced",
-          "shipment_id": "16599806855311914452",
-          "id": 120514845,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 91,
-            "display_name": "Bag Invoiced",
-            "notify_customer": false,
-            "app_display_name": "Bag Invoiced",
-            "state_type": "operational",
-            "app_state_name": "bag_invoiced",
-            "name": "bag_invoiced",
-            "is_active": true,
-            "app_facing": false,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:20+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000520,
-          "state_id": 113,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "ready_for_dp_assignment",
-          "shipment_id": "16599806855311914452",
-          "id": 120514846,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 113,
-            "display_name": "Ready For Dp Assignment",
-            "notify_customer": false,
-            "app_display_name": "Ready For Dp Assignment",
-            "state_type": "operational",
-            "app_state_name": "ready_for_dp_assignment",
-            "name": "ready_for_dp_assignment",
-            "is_active": true,
-            "app_facing": false,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:23+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000523,
-          "state_id": 7,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "dp_assigned",
-          "shipment_id": "16599806855311914452",
-          "id": 120514848,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 7,
-            "display_name": "DP Assigned",
-            "notify_customer": false,
-            "app_display_name": "DP Assigned",
-            "state_type": "operational",
-            "app_state_name": "dp_assigned",
-            "name": "dp_assigned",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:33+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000533,
-          "state_id": 8,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_packed",
-          "shipment_id": "16599806855311914452",
-          "id": 120514898,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 8,
-            "display_name": "Bag Packed",
-            "notify_customer": true,
-            "app_display_name": "Bag Packed",
-            "state_type": "operational",
-            "app_state_name": "bag_packed",
-            "name": "bag_packed",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "missed_state_ingestion",
-              "display_name": "Missed state is ingested",
-              "id": 162,
-              "state": "missed_state",
-              "text": "Missed state is ingested"
-            }
-          ]
-        },
-        {
-          "created_at": "2022-08-08T23:15:33+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000533,
-          "state_id": 12,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_picked",
-          "shipment_id": "16599806855311914452",
-          "id": 120514899,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 12,
-            "display_name": "In Transit",
-            "notify_customer": false,
-            "app_display_name": "In Transit",
-            "state_type": "operational",
-            "app_state_name": "in_transit",
-            "name": "bag_picked",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "others",
-              "display_name": "Others",
-              "id": 90,
-              "state": "bag_confirmed",
-              "text": "FY62F14B8501F18E8FD3"
-            }
-          ]
-        },
-        {
-          "created_at": "2022-08-08T23:15:45+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000545,
-          "state_id": 14,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "delivery_done",
-          "shipment_id": "16599806855311914452",
-          "id": 120514917,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 14,
-            "display_name": "Delivery Done",
-            "notify_customer": true,
-            "app_display_name": "Delivered",
-            "state_type": "operational",
-            "app_state_name": "delivered",
-            "name": "delivery_done",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "others",
-              "display_name": "Others",
-              "id": 90,
-              "state": "bag_confirmed",
-              "text": "FY62F14B8501F18E8FD3"
-            }
-          ]
-        }
-      ],
-      "item": {
-        "brand": "play clan",
-        "can_return": true,
-        "id": 95944,
-        "webstore_product_url": null,
-        "last_updated_at": 1660000486,
-        "slug_key": "play-clan-white-printed-t-shirt-387",
-        "attributes": {
-          "color": "White",
-          "gender": [
-            "Men"
-          ],
-          "season": "SS16",
-          "pattern": "Printed",
-          "essential": "Yes",
-          "brand_name": "play clan",
-          "net-quantity": "1 U",
-          "marketer-name": "Fynd",
-          "primary_color": "White",
-          "sleeve_length": "Short",
-          "marketer-address": "Fynd",
-          "primary_material": "Others",
-          "primary_color_hex": "FFFFFF"
-        },
-        "meta": {
-          "departments": [
-            21
-          ]
-        },
-        "gender": null,
-        "l3_category": 192,
-        "color": null,
-        "can_cancel": true,
-        "l3_category_name": "T-Shirts",
-        "l1_category": [
-          "Clothing"
-        ],
-        "brand_id": 85,
-        "branch_url": "http://go.fyndi.ng/iSyg/dXGX4QXldy",
-        "l2_category": [
-          "Polos & T-Shirts"
-        ],
-        "name": "White Printed T-Shirt",
-        "code": "MT-100 WHITE",
-        "department_id": 21,
-        "size": "S",
-        "image": [
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/1.jpg",
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/2.jpg",
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/3.jpg",
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/4.jpg"
-        ]
-      },
-      "reasons": [
-        {
-          "slug": "others",
-          "display_name": "Others",
-          "id": 90,
-          "state": "bag_confirmed",
-          "text": "FY62F14B8501F18E8FD3",
-          "bag_id": 19207348
-        }
-      ],
-      "article": {
-        "identifiers": {
-          "sku_code": "MT-100 WHITE_S"
-        },
-        "esp_modified": false,
-        "size": "S",
-        "code": "",
-        "raw_meta": null,
-        "set": {},
-        "is_set": false,
-        "seller_identifier": "MT-100 WHITE_S",
-        "return_config": {
-          "time": 30,
-          "unit": "days",
-          "returnable": true
-        },
-        "_id": "5f8a4751d2f36f00014ff8ed",
-        "uid": "5f8a4751d2f36f00014ff8ed",
-        "child_details": {}
-      },
-      "journey_type": "forward",
-      "current_operational_status": {
-        "created_at": "2022-08-08T23:15:45+00:00",
-        "delivery_partner_id": 22,
-        "bag_id": 19207348,
-        "delivery_awb_number": "4982512202351",
-        "updated_at": "2022-08-08T23:15:45+00:00",
-        "state_id": 14,
-        "store_id": 10182,
-        "state_type": "operational",
-        "status": "delivery_done",
-        "shipment_id": "16599806855311914452",
-        "id": 120514917,
-        "kafka_sync": false,
-        "bag_state_mapper": {
-          "id": 14,
-          "display_name": "Delivery Done",
-          "notify_customer": true,
-          "app_display_name": "Delivered",
-          "state_type": "operational",
-          "app_state_name": "delivered",
-          "name": "delivery_done",
-          "is_active": true,
-          "app_facing": true,
-          "journey_type": "forward"
-        },
-        "reasons": [
-          {
-            "slug": "others",
-            "display_name": "Others",
-            "id": 90,
-            "state": "bag_confirmed",
-            "text": "FY62F14B8501F18E8FD3"
-          }
-        ]
-      },
-      "dates": {
-        "order_created": "2022-08-08T23:14:45+00:00",
-        "delivery_date": "2022-08-08T23:15:45+00:00"
-      },
-      "prices": {
-        "price_effective": 10000,
-        "discount": 0,
-        "amount_paid": 10000,
-        "coupon_effective_discount": 0,
-        "delivery_charge": 0,
-        "fynd_credits": 0,
-        "cod_charges": 0,
-        "refund_credit": 0,
-        "cashback": 0,
-        "refund_amount": 10000,
-        "added_to_fynd_cash": false,
-        "cashback_applied": 0,
-        "gst_tax_percentage": 12,
-        "value_of_good": 8928.57,
-        "price_marked": 10000,
-        "transfer_price": 0,
-        "brand_calculated_amount": 10000,
-        "tax_collected_at_source": 0,
-        "tcs_percentage": 0,
-        "promotion_effective_discount": 0,
-        "coupon_value": 0,
-        "amount_paid_roundoff": 10000
-      },
-      "payment_methods": {
-        "COD": {
-          "amount": 10000
-        }
-      },
-      "gst_details": {
-        "gstin_code": "null",
-        "gst_tag": "IGST",
-        "hsn_code": "61091000",
-        "value_of_good": 8928.57,
-        "gst_tax_percentage": 12,
-        "is_default_hsn_code": false,
-        "brand_calculated_amount": 10000,
-        "tax_collected_at_source": 0,
-        "hsn_code_id": "6277837c5e4c6fdbc8be3e93",
-        "gst_fee": 1071.43,
-        "igst_tax_percentage": 12,
-        "sgst_tax_percentage": 0,
-        "cgst_tax_percentage": 0,
-        "igst_gst_fee": 1071.43,
-        "cgst_gst_fee": "0",
-        "sgst_gst_fee": "0"
-      },
-      "brand": {
-        "credit_note_allowed": false,
-        "id": 85,
-        "script_last_ran": null,
-        "pickup_location": null,
-        "invoice_prefix": "pc",
-        "brand_name": "play clan",
-        "is_virtual_invoice": false,
-        "created_on": 1452571237,
-        "modified_on": 1623871060,
-        "company": 61,
-        "logo": "https://hdn-1.fynd.com/brands/pictures/square-logo/original/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg",
-        "credit_note_expiry_days": null,
-        "start_date": null
-      },
-      "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
-      "affiliate_bag_details": {
-        "affiliate_bag_id": "19207348",
-        "affiliate_order_id": "FY62F14B8501F18E8FD3",
-        "affiliate_meta": {
-          "fynd": {
-            "fulfilment_identifier": "pulse"
-          },
-          "channel_shipment_id": null,
-          "channel_order_id": null,
-          "due_date": null,
-          "is_priority": false,
-          "box_type": null,
-          "coupon_code": null,
-          "size_level_total_qty": 924,
-          "loyalty_discount": 0,
-          "employee_discount": 0
-        },
-        "loyalty_discount": 0,
-        "employee_discount": 0
-      },
-      "meta": {},
-      "applied_promos": []
-    }
-  ],
-  "qc_required": null,
-  "requested_dp_conf": {
-    "awb_type": "express",
-    "exclude_dps": [
-      27,
-      29
-    ],
-    "ewbn": null,
-    "id": 22,
-    "is_dp_assigned_manually": true
-  },
-  "restore_coupon": false,
-  "restore_promos": {},
-  "rto_address": {
-    "store_address_json": {
-      "area": "",
-      "city": "MUMBAI SUBURBAN",
-      "email": "javedkazi@gofynd.com",
-      "phone": "918286865180",
-      "state": "MAHARASHTRA",
-      "country": "INDIA",
-      "pincode": "400093",
-      "version": "1.0",
-      "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
-      "address2": "",
-      "landmark": "Opposite MIDC police station",
-      "latitude": 19.1174798,
-      "longitude": 72.8691603,
-      "created_at": "2022-05-24 18:35:09",
-      "updated_at": "2022-05-24 18:35:09",
-      "address_type": "store",
-      "contact_person": "Javed",
-      "address_category": "store"
-    },
-    "name": "Fuschia",
-    "longitude": 72.8292187,
-    "company_id": 61,
-    "location_type": "mall",
-    "latitude": 19.0551125,
-    "id": 10182,
-    "code": "FFSPS",
-    "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
-    "address2": "",
-    "city": "MUMBAI SUBURBAN",
-    "state": "MAHARASHTRA",
-    "country": "INDIA",
-    "pincode": "400093",
-    "store_email": "javedkazi@gofynd.com",
-    "contact_person": "Javed",
-    "phone": "918286865180"
-  },
-  "search_key": {
-    "shipment_id": "914452",
-    "order_id": "8E8FD3"
-  },
-  "shipment": {
-    "type": "shipment",
-    "tags": [
-      "bag"
-    ],
-    "billing_address_json": {
-      "area": "Bhagyoday Society",
-      "city": "Palanpur",
-      "email": "",
-      "phone": "7621937989",
-      "state": "Gujarat",
-      "country": "India",
-      "pincode": "385001",
-      "version": "1.0",
-      "address1": "11",
-      "address2": "",
-      "landmark": "mansarovar road",
-      "latitude": 24.1724338,
-      "longitude": 72.434581,
-      "created_at": "2022-08-08 23:14:45",
-      "updated_at": "2022-08-08 23:14:45",
-      "address_type": "home",
-      "contact_person": "Rahul",
-      "address_category": "billing"
-    },
-    "id": "16599806855311914452",
-    "previous_shipment_id": null,
-    "meta": {
-      "dp_id": "7",
-      "weight": 250,
-      "external": {},
-      "formatted": {
-        "max": "Mon, 15 Aug",
-        "min": "Sat, 13 Aug"
-      },
-      "timestamp": {
-        "max": 1660585474,
-        "min": 1660412674
-      },
-      "bag_weight": {
-        "19207348": 250
-      },
-      "debug_info": {
-        "stormbreaker_uuid": "06647bed-59ec-4f36-ad92-3057f991883f"
-      },
-      "dp_options": {
-        "7": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 2,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": 1,
-          "fm_priority": 2,
-          "lm_priority": 2,
-          "payment_mode": "all",
-          "rvp_priority": 1,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "7"
-        },
-        "29": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 4,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": 3,
-          "fm_priority": 4,
-          "lm_priority": 4,
-          "payment_mode": "all",
-          "rvp_priority": 3,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "29"
-        },
-        "36": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 6,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": -1,
-          "fm_priority": 6,
-          "lm_priority": 6,
-          "payment_mode": "all",
-          "rvp_priority": -1,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "36"
-        },
-        "37": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 7,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": -1,
-          "fm_priority": 7,
-          "lm_priority": 7,
-          "payment_mode": "all",
-          "rvp_priority": -1,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "37"
-        }
-      },
-      "order_type": null,
-      "dp_sort_key": "fm_priority",
-      "ewaybill_info": {},
-      "packaging_name": "POLYB_M_1411P5",
-      "assign_dp_from_sb": true,
-      "same_store_available": false,
-      "fulfilment_priority_text": null,
-      "store_invoice_updated_date": "2022-08-08T23:15:20+00:00",
-      "auto_trigger_dp_assignment_ACF": true
-    },
-    "fynd_order_id": "FY62F14B8501F18E8FD3",
-    "delivery_awb_number": "4982512202351",
-    "lock_status": "",
-    "pdf_links": {
-      "label_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a4.pdf",
-      "label_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a6.pdf",
-      "label_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_pos.pdf",
-      "invoice_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a4.pdf",
-      "invoice_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a6.pdf",
-      "label_type": "fynd",
-      "invoice_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_pos.pdf",
-      "invoice_type": "fynd"
-    },
-    "parent_type": null,
-    "store_invoice_id": "1659980720191361",
-    "delivery_address_json": {
-      "area": "Bhagyoday Society",
-      "city": "Palanpur",
-      "email": "",
-      "phone": "7621937989",
-      "state": "Gujarat",
-      "country": "India",
-      "pincode": "385001",
-      "version": "1.0",
-      "address1": "11",
-      "address2": "",
-      "landmark": "mansarovar road",
-      "latitude": 24.1724338,
-      "longitude": 72.434581,
-      "created_at": "2022-08-08T23:14:45+00:00",
-      "updated_at": "2022-08-08T23:14:45+00:00",
-      "address_type": "home",
-      "contact_person": "Rahul",
-      "address_category": "delivery",
-      "name": "Rahul",
-      "address": "11"
-    },
-    "created_at": 1660000486,
-    "hand_over_contact_json": {
-      "email": "",
-      "phone": "7621937989",
-      "version": "1.0",
-      "created_at": "2022-08-08 23:14:45",
-      "updated_at": "2022-08-08 23:14:45",
-      "contact_person": "Rahul"
-    },
-    "parent_id": "",
-    "is_active": true,
-    "affiliate_id": "5dd3ce1f1662684aa7019f1e",
-    "affiliate_shipment_id": "16599806855311914452",
-    "fulfilment_priority": 10,
-    "credit_note_id": null,
-    "eway_bill_id": null,
-    "packaging_type": "POLYB_M_1411P5"
-  },
-  "shipment_details": {
-    "dp_id": "7",
-    "dp_options": {
-      "7": {
-        "area_code": {
-          "to_pincode": null,
-          "from_pincode": null
-        },
-        "f_priority": 2,
-        "operations": [
-          "inter_city"
-        ],
-        "r_priority": 1,
-        "fm_priority": 2,
-        "lm_priority": 2,
-        "payment_mode": "all",
-        "rvp_priority": 1,
-        "assign_dp_from_sb": true,
-        "external_account_id": null,
-        "internal_account_id": "7"
-      },
-      "29": {
-        "area_code": {
-          "to_pincode": null,
-          "from_pincode": null
-        },
-        "f_priority": 4,
-        "operations": [
-          "inter_city"
-        ],
-        "r_priority": 3,
-        "fm_priority": 4,
-        "lm_priority": 4,
-        "payment_mode": "all",
-        "rvp_priority": 3,
-        "assign_dp_from_sb": true,
-        "external_account_id": null,
-        "internal_account_id": "29"
-      },
-      "36": {
-        "area_code": {
-          "to_pincode": null,
-          "from_pincode": null
-        },
-        "f_priority": 6,
-        "operations": [
-          "inter_city"
-        ],
-        "r_priority": -1,
-        "fm_priority": 6,
-        "lm_priority": 6,
-        "payment_mode": "all",
-        "rvp_priority": -1,
-        "assign_dp_from_sb": true,
-        "external_account_id": null,
-        "internal_account_id": "36"
-      },
-      "37": {
-        "area_code": {
-          "to_pincode": null,
-          "from_pincode": null
-        },
-        "f_priority": 7,
-        "operations": [
-          "inter_city"
-        ],
-        "r_priority": -1,
-        "fm_priority": 7,
-        "lm_priority": 7,
-        "payment_mode": "all",
-        "rvp_priority": -1,
-        "assign_dp_from_sb": true,
-        "external_account_id": null,
-        "internal_account_id": "37"
-      }
-    }
-  },
-  "shipment_gst": {
-    "value_of_good": 8928.57,
-    "gst_fee": 1071.43,
-    "brand_calculated_amount": 10000,
-    "tax_collected_at_source": 0,
-    "gstin_code": "null"
-  },
-  "shipment_quantity": 1,
-  "shipment_status": {
-    "created_at": 1660000545,
-    "shipment_id": "16599806855311914452",
-    "status": "delivery_done",
-    "bag_list": [
-      "19207348"
-    ],
-    "id": 78707677,
-    "current_shipment_status": "delivery_done",
-    "status_created_at": 1660000545
-  },
-  "shipment_status_history": [
-    {
-      "created_at": "2022-08-08T23:14:46+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "pending",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707571
-    },
-    {
-      "created_at": "2022-08-08T23:14:46+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "placed",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707572
-    },
-    {
-      "created_at": "2022-08-08T23:15:12+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "bag_confirmed",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707602
-    },
-    {
-      "created_at": "2022-08-08T23:15:20+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "bag_invoiced",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707605
-    },
-    {
-      "created_at": "2022-08-08T23:15:20+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "ready_for_dp_assignment",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707606
-    },
-    {
-      "created_at": "2022-08-08T23:15:23+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "dp_assigned",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707608
-    },
-    {
-      "created_at": "2022-08-08T23:15:33+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "bag_packed",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707658
-    },
-    {
-      "created_at": "2022-08-08T23:15:33+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "bag_picked",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707659
-    },
-    {
-      "created_at": "2022-08-08T23:15:45+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "delivery_done",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707677,
-      "current_shipment_status": "delivery_done",
-      "status_created_at": "2022-08-08T23:15:45+00:00"
-    }
-  ],
-  "shipment_update_time": 1659980745.2105737,
-  "shipment_value": 10000,
-  "tags": [
-    "bag"
-  ],
-  "total_shipment_bags": 1,
-  "total_shipments_in_order": 1,
-  "transaction_type": "shipment",
-  "user": {
-    "email": "rahulrathod@gofynd.com",
-    "user_oid": "000000000000000014402534",
-    "last_name": "Rathod",
-    "gender": "male",
-    "mongo_user_id": "14402534",
-    "mobile": "7621937989",
-    "first_name": "Rahul",
-    "id": 17952150,
-    "is_anonymous_user": false
-  },
-  "weight": {
-    "value": 250,
-    "unit": "gram"
-  },
-  "id": "62f14b93af6c692530bb0df6"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getShipmentByAffiliateShipmentId
-
-
-
-
-
-```swift
-client.order.getShipmentByAffiliateShipmentId(affiliateShipmentId: affiliateShipmentId, affiliateId: affiliateId) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| affiliateShipmentId | String | yes |  |   
-| affiliateId | String | yes |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[ShipmentDetailsPlatformResponse](#ShipmentDetailsPlatformResponse)
-
-Successfully retrieved shipment details!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "shipment_id": "16599806855311914452",
-  "affiliate_details": {
-    "id": "5dd3ce1f1662684aa7019f1e",
-    "affiliate_bag_id": "19207348",
-    "affiliate_order_id": "FY62F14B8501F18E8FD3",
-    "company_affiliate_tag": "OpexTesting",
-    "affiliate_id": "5dd3ce1f1662684aa7019f1e",
-    "affiliate_shipment_id": "16599806855311914452",
-    "shipment_meta": {
-      "dp_id": "7",
-      "weight": 250,
-      "external": {},
-      "formatted": {
-        "max": "Mon, 15 Aug",
-        "min": "Sat, 13 Aug"
-      },
-      "timestamp": {
-        "max": 1660585474,
-        "min": 1660412674
-      },
-      "bag_weight": {
-        "19207348": 250
-      },
-      "debug_info": {
-        "stormbreaker_uuid": "06647bed-59ec-4f36-ad92-3057f991883f"
-      },
-      "dp_options": {
-        "7": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 2,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": 1,
-          "fm_priority": 2,
-          "lm_priority": 2,
-          "payment_mode": "all",
-          "rvp_priority": 1,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "7"
-        },
-        "29": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 4,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": 3,
-          "fm_priority": 4,
-          "lm_priority": 4,
-          "payment_mode": "all",
-          "rvp_priority": 3,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "29"
-        },
-        "36": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 6,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": -1,
-          "fm_priority": 6,
-          "lm_priority": 6,
-          "payment_mode": "all",
-          "rvp_priority": -1,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "36"
-        },
-        "37": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 7,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": -1,
-          "fm_priority": 7,
-          "lm_priority": 7,
-          "payment_mode": "all",
-          "rvp_priority": -1,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "37"
-        }
-      },
-      "order_type": null,
-      "dp_sort_key": "fm_priority",
-      "ewaybill_info": {},
-      "packaging_name": "POLYB_M_1411P5",
-      "assign_dp_from_sb": true,
-      "same_store_available": false,
-      "fulfilment_priority_text": null,
-      "store_invoice_updated_date": "2022-08-08T23:15:20+00:00",
-      "auto_trigger_dp_assignment_ACF": true
-    },
-    "affiliate_meta": {
-      "fynd": {
-        "fulfilment_identifier": "pulse"
-      },
-      "channel_shipment_id": null,
-      "channel_order_id": null,
-      "due_date": null,
-      "is_priority": false,
-      "box_type": null,
-      "coupon_code": null,
-      "size_level_total_qty": 924,
-      "loyalty_discount": 0,
-      "employee_discount": 0
-    },
-    "affiliate_store_id": "10182",
-    "pdf_links": {
-      "label_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a4.pdf",
-      "label_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a6.pdf",
-      "label_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_pos.pdf",
-      "invoice_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a4.pdf",
-      "invoice_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a6.pdf",
-      "label_type": "fynd",
-      "invoice_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_pos.pdf",
-      "invoice_type": "fynd"
-    },
-    "config": {
-      "id": "5dd3ce1f1662684aa7019f1e",
-      "meta": [],
-      "name": "OpexTesting",
-      "owner": "000000000000000000000020",
-      "token": "np0tHm04",
-      "secret": "dTSEQkEE7",
-      "createdAt": null,
-      "updatedAt": null,
-      "description": "Opex testing app",
-      "dp_assignment": true,
-      "app_company_id": 61,
-      "article_assignment": {
-        "level": "multi-companies",
-        "strategy": "optimal"
-      },
-      "force_reassignment": false,
-      "post_order_reassignment": true
-    }
-  },
-  "app_id": "5dd3ce1f1662684aa7019f1e",
-  "article_details": {
-    "status": {
-      "delivery_done": {
-        "5f8a4751d2f36f00014ff8ed": {
-          "uid": "5f8a4751d2f36f00014ff8ed",
-          "_id": "5f8a4751d2f36f00014ff8ed",
-          "is_set": false,
-          "bag_ids": [
-            19207348
-          ],
-          "quantity": 1,
-          "reasons": {
-            "90": [
-              {
-                "slug": "others",
-                "display_name": "Others",
-                "id": 90,
-                "state": "bag_confirmed",
-                "text": "FY62F14B8501F18E8FD3",
-                "bag_id": 19207348
-              }
-            ]
-          }
-        }
-      }
-    }
-  },
-  "bag_status_history": [
-    {
-      "created_at": "2022-08-08T23:14:46+00:00",
-      "delivery_partner_id": null,
-      "bag_id": 19207348,
-      "delivery_awb_number": null,
-      "updated_at": "2022-08-08T23:14:46+00:00",
-      "state_id": 89,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "pending",
-      "shipment_id": "16599806855311914452",
-      "id": 120514809,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 89,
-        "display_name": "Pending",
-        "notify_customer": true,
-        "app_display_name": "Pending",
-        "state_type": "operational",
-        "app_state_name": "pending",
-        "name": "pending",
-        "is_active": true,
-        "app_facing": true,
-        "journey_type": "forward"
-      },
-      "reasons": []
-    },
-    {
-      "created_at": "2022-08-08T23:14:46+00:00",
-      "delivery_partner_id": null,
-      "bag_id": 19207348,
-      "delivery_awb_number": null,
-      "updated_at": "2022-08-08T23:14:46+00:00",
-      "state_id": 1,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "placed",
-      "shipment_id": "16599806855311914452",
-      "id": 120514810,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 1,
-        "display_name": "Placed",
-        "notify_customer": true,
-        "app_display_name": "Processing",
-        "state_type": "operational",
-        "app_state_name": "processing",
-        "name": "placed",
-        "is_active": true,
-        "app_facing": true,
-        "journey_type": "forward"
-      },
-      "reasons": []
-    },
-    {
-      "created_at": "2022-08-08T23:15:14+00:00",
-      "delivery_partner_id": null,
-      "bag_id": 19207348,
-      "delivery_awb_number": null,
-      "updated_at": "2022-08-08T23:15:14+00:00",
-      "state_id": 2,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "bag_confirmed",
-      "shipment_id": "16599806855311914452",
-      "id": 120514842,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 2,
-        "display_name": "Confirmed",
-        "notify_customer": false,
-        "app_display_name": "Confirmed",
-        "state_type": "operational",
-        "app_state_name": "confirmed",
-        "name": "bag_confirmed",
-        "is_active": true,
-        "app_facing": true,
-        "journey_type": "forward"
-      },
-      "reasons": [
-        {
-          "slug": "others",
-          "display_name": "Others",
-          "id": 90,
-          "state": "bag_confirmed",
-          "text": "FY62F14B8501F18E8FD3n"
-        }
-      ]
-    },
-    {
-      "created_at": "2022-08-08T23:15:20+00:00",
-      "delivery_partner_id": null,
-      "bag_id": 19207348,
-      "delivery_awb_number": null,
-      "updated_at": "2022-08-08T23:15:20+00:00",
-      "state_id": 91,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "bag_invoiced",
-      "shipment_id": "16599806855311914452",
-      "id": 120514845,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 91,
-        "display_name": "Bag Invoiced",
-        "notify_customer": false,
-        "app_display_name": "Bag Invoiced",
-        "state_type": "operational",
-        "app_state_name": "bag_invoiced",
-        "name": "bag_invoiced",
-        "is_active": true,
-        "app_facing": false,
-        "journey_type": "forward"
-      },
-      "reasons": []
-    },
-    {
-      "created_at": "2022-08-08T23:15:20+00:00",
-      "delivery_partner_id": null,
-      "bag_id": 19207348,
-      "delivery_awb_number": null,
-      "updated_at": "2022-08-08T23:15:20+00:00",
-      "state_id": 113,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "ready_for_dp_assignment",
-      "shipment_id": "16599806855311914452",
-      "id": 120514846,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 113,
-        "display_name": "Ready For Dp Assignment",
-        "notify_customer": false,
-        "app_display_name": "Ready For Dp Assignment",
-        "state_type": "operational",
-        "app_state_name": "ready_for_dp_assignment",
-        "name": "ready_for_dp_assignment",
-        "is_active": true,
-        "app_facing": false,
-        "journey_type": "forward"
-      },
-      "reasons": []
-    },
-    {
-      "created_at": "2022-08-08T23:15:23+00:00",
-      "delivery_partner_id": 22,
-      "bag_id": 19207348,
-      "delivery_awb_number": "4982512202351",
-      "updated_at": "2022-08-08T23:15:23+00:00",
-      "state_id": 7,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "dp_assigned",
-      "shipment_id": "16599806855311914452",
-      "id": 120514848,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 7,
-        "display_name": "DP Assigned",
-        "notify_customer": false,
-        "app_display_name": "DP Assigned",
-        "state_type": "operational",
-        "app_state_name": "dp_assigned",
-        "name": "dp_assigned",
-        "is_active": true,
-        "app_facing": true,
-        "journey_type": "forward"
-      },
-      "reasons": []
-    },
-    {
-      "created_at": "2022-08-08T23:15:33+00:00",
-      "delivery_partner_id": 22,
-      "bag_id": 19207348,
-      "delivery_awb_number": "4982512202351",
-      "updated_at": "2022-08-08T23:15:33+00:00",
-      "state_id": 8,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "bag_packed",
-      "shipment_id": "16599806855311914452",
-      "id": 120514898,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 8,
-        "display_name": "Bag Packed",
-        "notify_customer": true,
-        "app_display_name": "Bag Packed",
-        "state_type": "operational",
-        "app_state_name": "bag_packed",
-        "name": "bag_packed",
-        "is_active": true,
-        "app_facing": true,
-        "journey_type": "forward"
-      },
-      "reasons": [
-        {
-          "slug": "missed_state_ingestion",
-          "display_name": "Missed state is ingested",
-          "id": 162,
-          "state": "missed_state",
-          "text": "Missed state is ingested"
-        }
-      ]
-    },
-    {
-      "created_at": "2022-08-08T23:15:33+00:00",
-      "delivery_partner_id": 22,
-      "bag_id": 19207348,
-      "delivery_awb_number": "4982512202351",
-      "updated_at": "2022-08-08T23:15:33+00:00",
-      "state_id": 12,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "bag_picked",
-      "shipment_id": "16599806855311914452",
-      "id": 120514899,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 12,
-        "display_name": "In Transit",
-        "notify_customer": false,
-        "app_display_name": "In Transit",
-        "state_type": "operational",
-        "app_state_name": "in_transit",
-        "name": "bag_picked",
-        "is_active": true,
-        "app_facing": true,
-        "journey_type": "forward"
-      },
-      "reasons": [
-        {
-          "slug": "others",
-          "display_name": "Others",
-          "id": 90,
-          "state": "bag_confirmed",
-          "text": "FY62F14B8501F18E8FD3"
-        }
-      ]
-    },
-    {
-      "created_at": "2022-08-08T23:15:45+00:00",
-      "delivery_partner_id": 22,
-      "bag_id": 19207348,
-      "delivery_awb_number": "4982512202351",
-      "updated_at": "2022-08-08T23:15:45+00:00",
-      "state_id": 14,
-      "store_id": 10182,
-      "state_type": "operational",
-      "status": "delivery_done",
-      "shipment_id": "16599806855311914452",
-      "id": 120514917,
-      "kafka_sync": false,
-      "bag_state_mapper": {
-        "id": 14,
-        "display_name": "Delivery Done",
-        "notify_customer": true,
-        "app_display_name": "Delivered",
-        "state_type": "operational",
-        "app_state_name": "delivered",
-        "name": "delivery_done",
-        "is_active": true,
-        "app_facing": true,
-        "journey_type": "forward"
-      },
-      "reasons": [
-        {
-          "slug": "others",
-          "display_name": "Others",
-          "id": 90,
-          "state": "bag_confirmed",
-          "text": "FY62F14B8501F18E8FD3"
-        }
-      ]
-    }
-  ],
-  "bags": [
-    {
-      "id": 19207348,
-      "display_name": "Bag",
-      "entity_type": "bag",
-      "type": "single",
-      "status": {
-        "is_returnable": true,
-        "can_be_cancelled": true,
-        "enable_tracking": false,
-        "is_customer_return_allowed": true,
-        "is_active": false
-      },
-      "financial_breakup": [
-        {
-          "price_effective": 10000,
-          "discount": 0,
-          "amount_paid": 10000,
-          "coupon_effective_discount": 0,
-          "delivery_charge": 0,
-          "fynd_credits": 0,
-          "cod_charges": 0,
-          "refund_credit": 0,
-          "cashback": 0,
-          "refund_amount": 10000,
-          "added_to_fynd_cash": false,
-          "cashback_applied": 0,
-          "gst_tax_percentage": 12,
-          "value_of_good": 8928.57,
-          "price_marked": 10000,
-          "transfer_price": 0,
-          "brand_calculated_amount": 10000,
-          "tax_collected_at_source": 0,
-          "tcs_percentage": 0,
-          "promotion_effective_discount": 0,
-          "coupon_value": 0,
-          "amount_paid_roundoff": 10000,
-          "size": "S",
-          "total_units": 1,
-          "hsn_code": "61091000",
-          "identifiers": {
-            "sku_code": "MT-100 WHITE_S"
-          },
-          "item_name": "White Printed T-Shirt",
-          "gst_fee": 1071.43,
-          "gst_tag": "IGST"
-        }
-      ],
-      "bag_id": 19207348,
-      "bag_update_time": 1659980745.2105737,
-      "current_status": {
-        "created_at": "2022-08-08T23:15:45+00:00",
-        "delivery_partner_id": 22,
-        "bag_id": 19207348,
-        "delivery_awb_number": "4982512202351",
-        "updated_at": 1660000545,
-        "state_id": 14,
-        "store_id": 10182,
-        "state_type": "operational",
-        "status": "delivery_done",
-        "shipment_id": "16599806855311914452",
-        "id": 120514917,
-        "kafka_sync": false,
-        "bag_state_mapper": {
-          "id": 14,
-          "display_name": "Delivery Done",
-          "notify_customer": true,
-          "app_display_name": "Delivered",
-          "state_type": "operational",
-          "app_state_name": "delivered",
-          "name": "delivery_done",
-          "is_active": true,
-          "app_facing": true,
-          "journey_type": "forward"
-        }
-      },
-      "bag_status": [
-        {
-          "created_at": "2022-08-08T23:14:46+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000486,
-          "state_id": 89,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "pending",
-          "shipment_id": "16599806855311914452",
-          "id": 120514809,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 89,
-            "display_name": "Pending",
-            "notify_customer": true,
-            "app_display_name": "Pending",
-            "state_type": "operational",
-            "app_state_name": "pending",
-            "name": "pending",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:14:46+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000486,
-          "state_id": 1,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "placed",
-          "shipment_id": "16599806855311914452",
-          "id": 120514810,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 1,
-            "display_name": "Placed",
-            "notify_customer": true,
-            "app_display_name": "Processing",
-            "state_type": "operational",
-            "app_state_name": "processing",
-            "name": "placed",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:14+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000514,
-          "state_id": 2,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_confirmed",
-          "shipment_id": "16599806855311914452",
-          "id": 120514842,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 2,
-            "display_name": "Confirmed",
-            "notify_customer": false,
-            "app_display_name": "Confirmed",
-            "state_type": "operational",
-            "app_state_name": "confirmed",
-            "name": "bag_confirmed",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "others",
-              "display_name": "Others",
-              "id": 90,
-              "state": "bag_confirmed",
-              "text": "FY62F14B8501F18E8FD3n"
-            }
-          ]
-        },
-        {
-          "created_at": "2022-08-08T23:15:20+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000520,
-          "state_id": 91,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_invoiced",
-          "shipment_id": "16599806855311914452",
-          "id": 120514845,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 91,
-            "display_name": "Bag Invoiced",
-            "notify_customer": false,
-            "app_display_name": "Bag Invoiced",
-            "state_type": "operational",
-            "app_state_name": "bag_invoiced",
-            "name": "bag_invoiced",
-            "is_active": true,
-            "app_facing": false,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:20+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000520,
-          "state_id": 113,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "ready_for_dp_assignment",
-          "shipment_id": "16599806855311914452",
-          "id": 120514846,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 113,
-            "display_name": "Ready For Dp Assignment",
-            "notify_customer": false,
-            "app_display_name": "Ready For Dp Assignment",
-            "state_type": "operational",
-            "app_state_name": "ready_for_dp_assignment",
-            "name": "ready_for_dp_assignment",
-            "is_active": true,
-            "app_facing": false,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:23+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000523,
-          "state_id": 7,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "dp_assigned",
-          "shipment_id": "16599806855311914452",
-          "id": 120514848,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 7,
-            "display_name": "DP Assigned",
-            "notify_customer": false,
-            "app_display_name": "DP Assigned",
-            "state_type": "operational",
-            "app_state_name": "dp_assigned",
-            "name": "dp_assigned",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:33+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000533,
-          "state_id": 8,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_packed",
-          "shipment_id": "16599806855311914452",
-          "id": 120514898,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 8,
-            "display_name": "Bag Packed",
-            "notify_customer": true,
-            "app_display_name": "Bag Packed",
-            "state_type": "operational",
-            "app_state_name": "bag_packed",
-            "name": "bag_packed",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "missed_state_ingestion",
-              "display_name": "Missed state is ingested",
-              "id": 162,
-              "state": "missed_state",
-              "text": "Missed state is ingested"
-            }
-          ]
-        },
-        {
-          "created_at": "2022-08-08T23:15:33+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000533,
-          "state_id": 12,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_picked",
-          "shipment_id": "16599806855311914452",
-          "id": 120514899,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 12,
-            "display_name": "In Transit",
-            "notify_customer": false,
-            "app_display_name": "In Transit",
-            "state_type": "operational",
-            "app_state_name": "in_transit",
-            "name": "bag_picked",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "others",
-              "display_name": "Others",
-              "id": 90,
-              "state": "bag_confirmed",
-              "text": "FY62F14B8501F18E8FD3"
-            }
-          ]
-        },
-        {
-          "created_at": "2022-08-08T23:15:45+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000545,
-          "state_id": 14,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "delivery_done",
-          "shipment_id": "16599806855311914452",
-          "id": 120514917,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 14,
-            "display_name": "Delivery Done",
-            "notify_customer": true,
-            "app_display_name": "Delivered",
-            "state_type": "operational",
-            "app_state_name": "delivered",
-            "name": "delivery_done",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "others",
-              "display_name": "Others",
-              "id": 90,
-              "state": "bag_confirmed",
-              "text": "FY62F14B8501F18E8FD3"
-            }
-          ]
-        }
-      ],
-      "item": {
-        "brand": "play clan",
-        "can_return": true,
-        "id": 95944,
-        "webstore_product_url": null,
-        "last_updated_at": 1660000486,
-        "slug_key": "play-clan-white-printed-t-shirt-387",
-        "attributes": {
-          "color": "White",
-          "gender": [
-            "Men"
-          ],
-          "season": "SS16",
-          "pattern": "Printed",
-          "essential": "Yes",
-          "brand_name": "play clan",
-          "net-quantity": "1 U",
-          "marketer-name": "Fynd",
-          "primary_color": "White",
-          "sleeve_length": "Short",
-          "marketer-address": "Fynd",
-          "primary_material": "Others",
-          "primary_color_hex": "FFFFFF"
-        },
-        "meta": {
-          "departments": [
-            21
-          ]
-        },
-        "gender": null,
-        "l3_category": 192,
-        "color": null,
-        "can_cancel": true,
-        "l3_category_name": "T-Shirts",
-        "l1_category": [
-          "Clothing"
-        ],
-        "brand_id": 85,
-        "branch_url": "http://go.fyndi.ng/iSyg/dXGX4QXldy",
-        "l2_category": [
-          "Polos & T-Shirts"
-        ],
-        "name": "White Printed T-Shirt",
-        "code": "MT-100 WHITE",
-        "department_id": 21,
-        "size": "S",
-        "image": [
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/1.jpg",
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/2.jpg",
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/3.jpg",
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/4.jpg"
-        ]
-      },
-      "reasons": [
-        {
-          "slug": "others",
-          "display_name": "Others",
-          "id": 90,
-          "state": "bag_confirmed",
-          "text": "FY62F14B8501F18E8FD3",
-          "bag_id": 19207348
-        }
-      ],
-      "article": {
-        "identifiers": {
-          "sku_code": "MT-100 WHITE_S"
-        },
-        "esp_modified": false,
-        "size": "S",
-        "code": "",
-        "raw_meta": null,
-        "set": {},
-        "is_set": false,
-        "seller_identifier": "MT-100 WHITE_S",
-        "return_config": {
-          "time": 30,
-          "unit": "days",
-          "returnable": true
-        },
-        "_id": "5f8a4751d2f36f00014ff8ed",
-        "uid": "5f8a4751d2f36f00014ff8ed",
-        "child_details": {}
-      },
-      "journey_type": "forward",
-      "current_operational_status": {
-        "created_at": "2022-08-08T23:15:45+00:00",
-        "delivery_partner_id": 22,
-        "bag_id": 19207348,
-        "delivery_awb_number": "4982512202351",
-        "updated_at": "2022-08-08T23:15:45+00:00",
-        "state_id": 14,
-        "store_id": 10182,
-        "state_type": "operational",
-        "status": "delivery_done",
-        "shipment_id": "16599806855311914452",
-        "id": 120514917,
-        "kafka_sync": false,
-        "bag_state_mapper": {
-          "id": 14,
-          "display_name": "Delivery Done",
-          "notify_customer": true,
-          "app_display_name": "Delivered",
-          "state_type": "operational",
-          "app_state_name": "delivered",
-          "name": "delivery_done",
-          "is_active": true,
-          "app_facing": true,
-          "journey_type": "forward"
-        },
-        "reasons": [
-          {
-            "slug": "others",
-            "display_name": "Others",
-            "id": 90,
-            "state": "bag_confirmed",
-            "text": "FY62F14B8501F18E8FD3"
-          }
-        ]
-      },
-      "dates": {
-        "order_created": "2022-08-08T23:14:45+00:00",
-        "delivery_date": "2022-08-08T23:15:45+00:00"
-      },
-      "prices": {
-        "price_effective": 10000,
-        "discount": 0,
-        "amount_paid": 10000,
-        "coupon_effective_discount": 0,
-        "delivery_charge": 0,
-        "fynd_credits": 0,
-        "cod_charges": 0,
-        "refund_credit": 0,
-        "cashback": 0,
-        "refund_amount": 10000,
-        "added_to_fynd_cash": false,
-        "cashback_applied": 0,
-        "gst_tax_percentage": 12,
-        "value_of_good": 8928.57,
-        "price_marked": 10000,
-        "transfer_price": 0,
-        "brand_calculated_amount": 10000,
-        "tax_collected_at_source": 0,
-        "tcs_percentage": 0,
-        "promotion_effective_discount": 0,
-        "coupon_value": 0,
-        "amount_paid_roundoff": 10000
-      },
-      "payment_methods": {
-        "COD": {
-          "amount": 10000
-        }
-      },
-      "gst_details": {
-        "gstin_code": "null",
-        "gst_tag": "IGST",
-        "hsn_code": "61091000",
-        "value_of_good": 8928.57,
-        "gst_tax_percentage": 12,
-        "is_default_hsn_code": false,
-        "brand_calculated_amount": 10000,
-        "tax_collected_at_source": 0,
-        "hsn_code_id": "6277837c5e4c6fdbc8be3e93",
-        "gst_fee": 1071.43,
-        "igst_tax_percentage": 12,
-        "sgst_tax_percentage": 0,
-        "cgst_tax_percentage": 0,
-        "igst_gst_fee": 1071.43,
-        "cgst_gst_fee": "0",
-        "sgst_gst_fee": "0"
-      },
-      "brand": {
-        "credit_note_allowed": false,
-        "id": 85,
-        "script_last_ran": null,
-        "pickup_location": null,
-        "invoice_prefix": "pc",
-        "brand_name": "play clan",
-        "is_virtual_invoice": false,
-        "created_on": 1452571237,
-        "modified_on": 1623871060,
-        "company": 61,
-        "logo": "https://hdn-1.fynd.com/brands/pictures/square-logo/original/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg",
-        "credit_note_expiry_days": null,
-        "start_date": null
-      },
-      "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
-      "affiliate_bag_details": {
-        "affiliate_bag_id": "19207348",
-        "affiliate_order_id": "FY62F14B8501F18E8FD3",
-        "affiliate_meta": {
-          "fynd": {
-            "fulfilment_identifier": "pulse"
-          },
-          "channel_shipment_id": null,
-          "channel_order_id": null,
-          "due_date": null,
-          "is_priority": false,
-          "box_type": null,
-          "coupon_code": null,
-          "size_level_total_qty": 924,
-          "loyalty_discount": 0,
-          "employee_discount": 0
-        },
-        "loyalty_discount": 0,
-        "employee_discount": 0
-      },
-      "meta": {},
-      "applied_promos": []
-    }
-  ],
-  "brand": {
-    "credit_note_allowed": false,
-    "id": 85,
-    "script_last_ran": null,
-    "pickup_location": null,
-    "invoice_prefix": "pc",
-    "brand_name": "play clan",
-    "is_virtual_invoice": false,
-    "created_on": 1452571237,
-    "modified_on": 1623871060,
-    "company": 61,
-    "logo": "https://hdn-1.fynd.com/brands/pictures/square-logo/original/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg",
-    "credit_note_expiry_days": null,
-    "start_date": null
-  },
-  "cart_id": 41262745,
-  "comment": "",
-  "company": {
-    "modified_on": 1656409302,
-    "company_type": "distributor",
-    "id": 61,
-    "commission": 0,
-    "meta": {
-      "stage": "verified",
-      "address": [
-        {
-          "city": "GHORMACH",
-          "state": "BADGHIS",
-          "country": "AFGHANISTAN",
-          "pincode": 401209,
-          "address1": "A/204, SAI VANDAN",
-          "address2": "TULINJ ROAD, NALLASOPARA EAST",
-          "landmark": "Near Utsav Hotel",
-          "latitude": 35.6495457,
-          "longitude": 63.9113296,
-          "address_type": "office",
-          "country_code": "IN"
-        },
-        {
-          "city": "GHORMACH",
-          "state": "BADGHIS",
-          "country": "AFGHANISTAN",
-          "pincode": 401209,
-          "address1": "A/204, SAI VANDAN",
-          "address2": "TULINJ ROAD, NALLASOPARA EAST",
-          "landmark": "Near Utsav Hotel",
-          "latitude": 35.6495457,
-          "longitude": 63.9113296,
-          "address_type": "registered",
-          "country_code": "IN"
-        }
-      ],
-      "documents": {
-        "cin": {
-          "url": "https://fynd-obscuro-media-new.s3-accelerate.amazonaws.com/company/61/self/legal/documents/free/original/ZjGFzuE8_-20_Python_Libraries.pdf?AWSAccessKeyId=AKIAJU7QAWL4LO5KSCYA&Expires=1656409357&Signature=IC%2FgIDdSymHbSKJGT12Zq9zOe4M%3D",
-          "type": "cin",
-          "value": "L21700MH1907PLC000260",
-          "verified": true,
-          "legal_name": "FUCHSIA VINE DESIGNS PRIVATE LIMITED"
-        },
-        "gst": {
-          "type": "gst",
-          "value": "27AALCA0442L1ZM",
-          "verified": true,
-          "legal_name": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED"
-        },
-        "pan": {
-          "url": "https://fynd-obscuro-media-new.s3-accelerate.amazonaws.com/company/61/self/legal/documents/free/original/oURvMfX1p-2de4a88b_ticket.pdf?AWSAccessKeyId=AKIAJU7QAWL4LO5KSCYA&Expires=1656409357&Signature=lG1wi0G6cqtav0i9cOf3dFNBuNY%3D",
-          "type": "pan",
-          "value": "AALCA0442L",
-          "verified": true,
-          "legal_name": ""
-        },
-        "digital_signature": {
-          "url": "https://fynd-obscuro-media-new.s3-accelerate.amazonaws.com/company/61/self/legal/documents/free/original/iigdJTk27-3.png?AWSAccessKeyId=AKIAJU7QAWL4LO5KSCYA&Expires=1656409357&Signature=Nc38H2KxR1ymSZz8jVRQyUCXobs%3D",
-          "type": "digital_signature",
-          "value": "Aayush Jain",
-          "verified": true,
-          "legal_name": "Aayush Jain"
-        }
-      },
-      "business_info": "This is a description area to write about the company.",
-      "contact_details": {
-        "phone": [
-          {
-            "number": "7009853732",
-            "country_code": 91
-          },
-          {
-            "number": "9821012533",
-            "country_code": 91
-          }
-        ],
-        "emails": [
-          "aayushvjain@gofynd.com",
-          "abc@gmail.com",
-          "asmaidris1994@gmail.com"
-        ]
-      },
-      "business_details": {
-        "website": {
-          "url": "https://www.playclan.com"
-        }
-      },
-      "notification_emails": [
-        "pranavverma@gofynd.com",
-        "vermapranav28@gmail.com",
-        "vaishakhshetty@gofynd.com"
-      ]
-    },
-    "exchange_allowed": false,
-    "payment_procesing_charge": 0,
-    "tan_no": "11",
-    "vat_no": null,
-    "exchange_within_days": null,
-    "gst_number": "27AALCA0442L1ZM",
-    "created_on": 1452571141,
-    "company_name": "FUCHSIA VINE DESIGNS PRIVATE LIMITED",
-    "fynd_a_fit_available": false,
-    "return_allowed": true,
-    "return_within_days": 30,
-    "payment_type": "Happay",
-    "business_type": "ltd/pvt ltd",
-    "agreement_start_date": 1503532800,
-    "cst": null,
-    "pan_no": "AALCA0442L"
-  },
-  "coupon": {},
-  "delivery_address": {
-    "area": "Bhagyoday Society",
-    "city": "Palanpur",
-    "email": "",
-    "phone": "7621937989",
-    "state": "Gujarat",
-    "country": "India",
-    "pincode": "385001",
-    "version": "1.0",
-    "address1": "11",
-    "address2": "",
-    "landmark": "mansarovar road",
-    "latitude": 24.1724338,
-    "longitude": 72.434581,
-    "created_at": "2022-08-08T23:14:45+00:00",
-    "updated_at": "2022-08-08T23:14:45+00:00",
-    "address_type": "home",
-    "contact_person": "Rahul",
-    "address_category": "delivery",
-    "name": "Rahul",
-    "address": "11"
-  },
-  "delivery_slot": {
-    "slot": "By 17:00 PM",
-    "upper_bound": "2022-08-15T17:44:34+00:00",
-    "lower_bound": "2022-08-13T17:44:34+00:00",
-    "date": "2022-08-15T17:44:34+00:00",
-    "type": "order_window"
-  },
-  "dp_details": {
-    "id": 22,
-    "name": "fyndr",
-    "awb_no": "4982512202351",
-    "eway_bill_id": null,
-    "track_url": null,
-    "dp_charges": 110,
-    "dp_return_charges": 70,
-    "amount_handling_charges": 15,
-    "gst_tag": "sgst"
-  },
-  "einvoice_info": null,
-  "fallback_user": {
-    "email": "",
-    "mobile": "7621937989"
-  },
-  "fulfilling_store": {
-    "login_username": "TEST_FFSPS_61",
-    "mall_area": null,
-    "updated_at": "2022-05-19T15:46:52+00:00",
-    "packaging_material_count": 0,
-    "id": 10182,
-    "store_address_json": {
-      "area": "",
-      "city": "MUMBAI SUBURBAN",
-      "email": "javedkazi@gofynd.com",
-      "phone": "918286865180",
-      "state": "MAHARASHTRA",
-      "country": "INDIA",
-      "pincode": "400093",
-      "version": "1.0",
-      "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
-      "address2": "",
-      "landmark": "Opposite MIDC police station",
-      "latitude": 19.1174798,
-      "longitude": 72.8691603,
-      "created_at": "2022-05-24 18:35:09",
-      "updated_at": "2022-05-24 18:35:09",
-      "address_type": "store",
-      "contact_person": "Javed",
-      "address_category": "store"
-    },
-    "is_archived": false,
-    "meta": {
-      "stage": "verified",
-      "timing": [
-        {
-          "open": true,
-          "closing": {
-            "hour": 21,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "monday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 21,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "tuesday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 21,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "wednesday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 14,
-            "minute": 12
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "thursday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 21,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "friday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 21,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "saturday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 21,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "sunday"
-        }
-      ],
-      "documents": {},
-      "gst_number": null,
-      "display_name": "Fuschia",
-      "gst_credentials": {
-        "e_invoice": {
-          "enabled": false
-        },
-        "e_waybill": {
-          "enabled": false
-        }
-      },
-      "notification_emails": [
-        "vaishakhshetty@gofynd.com"
-      ],
-      "product_return_config": {
-        "on_same_store": true
-      },
-      "additional_contact_details": {
-        "number": [
-          "91 - 8286865180"
-        ]
-      },
-      "ewaybill_portal_details": null
-    },
-    "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
-    "parent_store_id": null,
-    "alohomora_user_id": 11070,
-    "store_active_from": null,
-    "vat_no": null,
-    "longitude": 72.8292187,
-    "location_type": "mall",
-    "latitude": 19.0551125,
-    "created_at": "2020-01-15T05:30:41+00:00",
-    "fulfillment_channel": "pulse",
-    "brand_id": null,
-    "is_active": false,
-    "name": "Fuschia",
-    "mall_name": null,
-    "company_id": 61,
-    "is_enabled_for_recon": false,
-    "code": "FFSPS",
-    "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
-    "address2": "",
-    "city": "MUMBAI SUBURBAN",
-    "state": "MAHARASHTRA",
-    "country": "INDIA",
-    "pincode": "400093",
-    "store_email": "javedkazi@gofynd.com",
-    "contact_person": "Javed",
-    "phone": "918286865180",
-    "brand_store_tags": [
-      "pulse"
-    ]
-  },
-  "fyndstore_emp": {},
-  "invoice": {
-    "updated_date": 1660000520,
-    "store_invoice_id": "1659980720191361",
-    "invoice_url": "https://fynd-recon-reports-mumbai.s3.amazonaws.com/invoice_labels/16599806855311914452_invoice_a4.pdf",
-    "label_url": "https://fynd-recon-reports-mumbai.s3.amazonaws.com/invoice_labels/16599806855311914452_invoice_pos.pdf"
-  },
-  "is_processing": false,
-  "journey_type": "forward",
-  "lock_status": false,
-  "no_of_bags_order": 1,
-  "operational_status": "delivery_done",
-  "order": {
-    "raw_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
-    "affiliate_order_date": "2022-08-08T23:14:45+00:00",
-    "total_order_value": 10000,
-    "transaction_id": "FY62F14B8501F18E8FD3",
-    "refund_by": "fynd",
-    "headers": {
-      "host": "fplt-gringotts-main-svc.default.svc.cluster.local",
-      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
-      "cookie": "G_ENABLED_IDPS=google; f.session=s%3AHQX0JDLgWOHd8z7NOu-E9mT9yBDaqfPR.6T82v4OlerGY6lfKfATfojYQzDCtSRhEJkIA%2FyH%2Fz%2BM; ordering_store=s%3A15114.6VinzJtp1QRjsKZ52NWvXXPoTuLc38KYLxiLJSMl6CE",
-      "x-application-id": "5dd3ce1f1662684aa7019f1e",
-      "x-application-token": "np0tHm04",
-      "x-currency-code": "INR",
-      "authorization": "04a544ac-7e85-437f-b6d6-0adb694c4045",
-      "accept": "*/*",
-      "accept-encoding": "gzip, deflate",
-      "content-length": "17443",
-      "content-type": "text/plain; charset=utf-8",
-      "x-newrelic-id": "VQcHWVJVDhAHXFFVBAUEUVI=",
-      "x-newrelic-transaction": "PxQPAlJaXgNRVQUDVAgOAlUFFB8EBw8RVU4aWlsMDVQDBAgFUAIKWwAHA0NKQQEDAlBWAQ4AFTs=",
-      "request-source": "Fynd",
-      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
-      "source": "uniket-desktop",
-      "user_agent_version": null,
-      "deprecated": false
-    },
-    "id": 13030531,
-    "cod_charges": 0,
-    "collect_by": "fynd",
-    "tax_details": {
-      "gstin": null
-    },
-    "promotion_effective_discount": 0,
-    "affiliate_order_id": "FY62F14B8501F18E8FD3",
-    "meta": {
-      "files": [],
-      "staff": {},
-      "comment": "",
-      "extra_meta": {},
-      "order_type": "HomeDelivery",
-      "employee_id": null,
-      "payment_type": "fynd",
-      "mongo_cart_id": 41262745,
-      "order_platform": "platform-site",
-      "ordering_store": 15114,
-      "order_child_entities": [
-        "shipment",
-        "bag"
-      ]
-    },
-    "order_value": 10000,
-    "fynd_credits": 0,
-    "mode_of_payment": "FYND",
-    "discount": 0,
-    "payment_methods": {
-      "COD": {
-        "meta": {
-          "logo_url": {
-            "large": "https://hdn-1.fynd.com/payment/cod.png",
-            "small": "https://hdn-1.fynd.com/payment/cod.png"
-          },
-          "payment_id": "FY62F14B8501F18E8FD3",
-          "merchant_code": "",
-          "payment_gateway": "Fynd",
-          "payment_identifier": "11"
-        },
-        "mode": "COD",
-        "name": "COD",
-        "amount": 10000,
-        "refund_by": "fynd",
-        "collect_by": "fynd"
-      }
-    },
-    "fynd_order_id": "FY62F14B8501F18E8FD3",
-    "delivery_charges": 0,
-    "mongo_cart_id": 41262745,
-    "source": "uniket-desktop",
-    "created_time": 1660000485,
-    "payment_mode_id": 2,
-    "currency": "INR",
-    "coupon_value": 0,
-    "cashback_value": 0,
-    "cashback_applied": 0,
-    "ordering_channel": "FYND_STORE",
-    "user_id": 17952150,
-    "affiliate_id": "5dd3ce1f1662684aa7019f1e",
-    "ordering_channel_logo": "https://fynd-static.s3.amazonaws.com/mode_of_payment/fynd_store_logo.png",
-    "prices": {
-      "amount_paid": 10000,
-      "refund_amount": 10000,
-      "price_marked": 10000,
-      "cod_charges": 0,
-      "discount": 0,
-      "cashback_applied": 0,
-      "delivery_charge": 0,
-      "fynd_credits": 0,
-      "cashback": 0,
-      "price_effective": 10000,
-      "refund_credit": 0,
-      "value_of_good": 8928.57,
-      "coupon_value": 0,
-      "tax_collected_at_source": 0,
-      "promotion_effective_discount": 0,
-      "amount_paid_roundoff": 10000
-    }
-  },
-  "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
-  "order_source": "uniket-desktop",
-  "order_type": "forward",
-  "order_value": 10000,
-  "ordering_store": {
-    "login_username": null,
-    "mall_area": null,
-    "updated_at": "2022-04-21T14:44:10+00:00",
-    "packaging_material_count": 0,
-    "id": 15114,
-    "store_address_json": {
-      "area": "",
-      "city": "MUMBAI",
-      "email": "talha1891@gmail.com",
-      "phone": "918104556147",
-      "state": "MAHARASHTRA",
-      "country": "INDIA",
-      "pincode": "421301",
-      "version": "1.0",
-      "address1": "KALYAN, MAHARASHTRA 421301",
-      "address2": "",
-      "landmark": "",
-      "latitude": 73.1290596,
-      "longitude": 19.2527132,
-      "created_at": "2022-05-10 18:50:25",
-      "updated_at": "2022-05-10 18:50:25",
-      "address_type": "store",
-      "contact_person": "talha",
-      "address_category": "store"
-    },
-    "is_archived": false,
-    "meta": {
-      "stage": "verified",
-      "timing": [
-        {
-          "open": true,
-          "closing": {
-            "hour": 22,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "monday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 22,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "tuesday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 22,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "wednesday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 22,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "thursday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 22,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "friday"
-        },
-        {
-          "open": true,
-          "closing": {
-            "hour": 22,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "saturday"
-        },
-        {
-          "open": false,
-          "closing": {
-            "hour": 22,
-            "minute": 0
-          },
-          "opening": {
-            "hour": 11,
-            "minute": 0
-          },
-          "weekday": "sunday"
-        }
-      ],
-      "documents": {},
-      "gst_number": null,
-      "display_name": "0Test Loc",
-      "gst_credentials": {
-        "e_invoice": {
-          "enabled": false
-        },
-        "e_waybill": {
-          "enabled": false
-        }
-      },
-      "notification_emails": [
-        "talha1891@gmail.com"
-      ],
-      "product_return_config": {
-        "on_same_store": true
-      },
-      "additional_contact_details": {
-        "number": [
-          "91 - 8104556147"
-        ]
-      },
-      "ewaybill_portal_details": null
-    },
-    "order_integration_id": null,
-    "parent_store_id": null,
-    "alohomora_user_id": null,
-    "store_active_from": null,
-    "vat_no": null,
-    "longitude": null,
-    "location_type": "high_street",
-    "latitude": null,
-    "created_at": "2022-04-21T14:44:10+00:00",
-    "fulfillment_channel": "pulse",
-    "brand_id": null,
-    "is_active": false,
-    "name": "0Test Loc",
-    "mall_name": null,
-    "company_id": 61,
-    "is_enabled_for_recon": false,
-    "code": "0_loc_code",
-    "address1": "KALYAN, MAHARASHTRA 421301",
-    "address2": "",
-    "city": "MUMBAI",
-    "state": "MAHARASHTRA",
-    "country": "INDIA",
-    "pincode": "421301",
-    "store_email": "talha1891@gmail.com",
-    "contact_person": "talha",
-    "phone": "918104556147"
-  },
-  "original_bag_list": [
-    19207348
-  ],
-  "payment_methods": {
-    "COD": {
-      "amount": 10000,
-      "mode": "COD",
-      "name": "COD",
-      "collect_by": "fynd",
-      "refund_by": "fynd",
-      "meta": {
-        "logo_url": {
-          "large": "https://hdn-1.fynd.com/payment/cod.png",
-          "small": "https://hdn-1.fynd.com/payment/cod.png"
-        },
-        "payment_id": "FY62F14B8501F18E8FD3",
-        "merchant_code": "",
-        "payment_gateway": "Fynd",
-        "payment_identifier": "11"
-      }
-    }
-  },
-  "payment_type": "fynd",
-  "payments": {
-    "mode": "COD",
-    "is_active": true,
-    "display_priority": 1,
-    "display_name": "Cash on Delivery",
-    "id": 2,
-    "logo": "https://hdn-1.fynd.com/payment/cod.png",
-    "source": "Cash on Delivery",
-    "payment_identifier": "11",
-    "source_nickname": ""
-  },
-  "prices": {
-    "amount_paid": 10000,
-    "refund_amount": 10000,
-    "price_marked": 10000,
-    "cod_charges": 0,
-    "discount": 0,
-    "cashback_applied": 0,
-    "delivery_charge": 0,
-    "fynd_credits": 0,
-    "cashback": 0,
-    "price_effective": 10000,
-    "refund_credit": 0,
-    "value_of_good": 8928.57,
-    "coupon_value": 0,
-    "tax_collected_at_source": 0,
-    "promotion_effective_discount": 0,
-    "amount_paid_roundoff": 10000
-  },
-  "products": [
-    {
-      "id": 19207348,
-      "display_name": "Bag",
-      "entity_type": "bag",
-      "type": "single",
-      "status": {
-        "is_returnable": true,
-        "can_be_cancelled": true,
-        "enable_tracking": false,
-        "is_customer_return_allowed": true,
-        "is_active": false
-      },
-      "financial_breakup": [
-        {
-          "price_effective": 10000,
-          "discount": 0,
-          "amount_paid": 10000,
-          "coupon_effective_discount": 0,
-          "delivery_charge": 0,
-          "fynd_credits": 0,
-          "cod_charges": 0,
-          "refund_credit": 0,
-          "cashback": 0,
-          "refund_amount": 10000,
-          "added_to_fynd_cash": false,
-          "cashback_applied": 0,
-          "gst_tax_percentage": 12,
-          "value_of_good": 8928.57,
-          "price_marked": 10000,
-          "transfer_price": 0,
-          "brand_calculated_amount": 10000,
-          "tax_collected_at_source": 0,
-          "tcs_percentage": 0,
-          "promotion_effective_discount": 0,
-          "coupon_value": 0,
-          "amount_paid_roundoff": 10000,
-          "size": "S",
-          "total_units": 1,
-          "hsn_code": "61091000",
-          "identifiers": {
-            "sku_code": "MT-100 WHITE_S"
-          },
-          "item_name": "White Printed T-Shirt",
-          "gst_fee": 1071.43,
-          "gst_tag": "IGST"
-        }
-      ],
-      "bag_id": 19207348,
-      "bag_update_time": 1659980745.2105737,
-      "current_status": {
-        "created_at": "2022-08-08T23:15:45+00:00",
-        "delivery_partner_id": 22,
-        "bag_id": 19207348,
-        "delivery_awb_number": "4982512202351",
-        "updated_at": 1660000545,
-        "state_id": 14,
-        "store_id": 10182,
-        "state_type": "operational",
-        "status": "delivery_done",
-        "shipment_id": "16599806855311914452",
-        "id": 120514917,
-        "kafka_sync": false,
-        "bag_state_mapper": {
-          "id": 14,
-          "display_name": "Delivery Done",
-          "notify_customer": true,
-          "app_display_name": "Delivered",
-          "state_type": "operational",
-          "app_state_name": "delivered",
-          "name": "delivery_done",
-          "is_active": true,
-          "app_facing": true,
-          "journey_type": "forward"
-        }
-      },
-      "bag_status": [
-        {
-          "created_at": "2022-08-08T23:14:46+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000486,
-          "state_id": 89,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "pending",
-          "shipment_id": "16599806855311914452",
-          "id": 120514809,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 89,
-            "display_name": "Pending",
-            "notify_customer": true,
-            "app_display_name": "Pending",
-            "state_type": "operational",
-            "app_state_name": "pending",
-            "name": "pending",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:14:46+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000486,
-          "state_id": 1,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "placed",
-          "shipment_id": "16599806855311914452",
-          "id": 120514810,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 1,
-            "display_name": "Placed",
-            "notify_customer": true,
-            "app_display_name": "Processing",
-            "state_type": "operational",
-            "app_state_name": "processing",
-            "name": "placed",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:14+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000514,
-          "state_id": 2,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_confirmed",
-          "shipment_id": "16599806855311914452",
-          "id": 120514842,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 2,
-            "display_name": "Confirmed",
-            "notify_customer": false,
-            "app_display_name": "Confirmed",
-            "state_type": "operational",
-            "app_state_name": "confirmed",
-            "name": "bag_confirmed",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "others",
-              "display_name": "Others",
-              "id": 90,
-              "state": "bag_confirmed",
-              "text": "FY62F14B8501F18E8FD3n"
-            }
-          ]
-        },
-        {
-          "created_at": "2022-08-08T23:15:20+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000520,
-          "state_id": 91,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_invoiced",
-          "shipment_id": "16599806855311914452",
-          "id": 120514845,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 91,
-            "display_name": "Bag Invoiced",
-            "notify_customer": false,
-            "app_display_name": "Bag Invoiced",
-            "state_type": "operational",
-            "app_state_name": "bag_invoiced",
-            "name": "bag_invoiced",
-            "is_active": true,
-            "app_facing": false,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:20+00:00",
-          "delivery_partner_id": null,
-          "bag_id": 19207348,
-          "delivery_awb_number": null,
-          "updated_at": 1660000520,
-          "state_id": 113,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "ready_for_dp_assignment",
-          "shipment_id": "16599806855311914452",
-          "id": 120514846,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 113,
-            "display_name": "Ready For Dp Assignment",
-            "notify_customer": false,
-            "app_display_name": "Ready For Dp Assignment",
-            "state_type": "operational",
-            "app_state_name": "ready_for_dp_assignment",
-            "name": "ready_for_dp_assignment",
-            "is_active": true,
-            "app_facing": false,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:23+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000523,
-          "state_id": 7,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "dp_assigned",
-          "shipment_id": "16599806855311914452",
-          "id": 120514848,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 7,
-            "display_name": "DP Assigned",
-            "notify_customer": false,
-            "app_display_name": "DP Assigned",
-            "state_type": "operational",
-            "app_state_name": "dp_assigned",
-            "name": "dp_assigned",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": []
-        },
-        {
-          "created_at": "2022-08-08T23:15:33+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000533,
-          "state_id": 8,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_packed",
-          "shipment_id": "16599806855311914452",
-          "id": 120514898,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 8,
-            "display_name": "Bag Packed",
-            "notify_customer": true,
-            "app_display_name": "Bag Packed",
-            "state_type": "operational",
-            "app_state_name": "bag_packed",
-            "name": "bag_packed",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "missed_state_ingestion",
-              "display_name": "Missed state is ingested",
-              "id": 162,
-              "state": "missed_state",
-              "text": "Missed state is ingested"
-            }
-          ]
-        },
-        {
-          "created_at": "2022-08-08T23:15:33+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000533,
-          "state_id": 12,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "bag_picked",
-          "shipment_id": "16599806855311914452",
-          "id": 120514899,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 12,
-            "display_name": "In Transit",
-            "notify_customer": false,
-            "app_display_name": "In Transit",
-            "state_type": "operational",
-            "app_state_name": "in_transit",
-            "name": "bag_picked",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "others",
-              "display_name": "Others",
-              "id": 90,
-              "state": "bag_confirmed",
-              "text": "FY62F14B8501F18E8FD3"
-            }
-          ]
-        },
-        {
-          "created_at": "2022-08-08T23:15:45+00:00",
-          "delivery_partner_id": 22,
-          "bag_id": 19207348,
-          "delivery_awb_number": "4982512202351",
-          "updated_at": 1660000545,
-          "state_id": 14,
-          "store_id": 10182,
-          "state_type": "operational",
-          "status": "delivery_done",
-          "shipment_id": "16599806855311914452",
-          "id": 120514917,
-          "kafka_sync": false,
-          "bag_state_mapper": {
-            "id": 14,
-            "display_name": "Delivery Done",
-            "notify_customer": true,
-            "app_display_name": "Delivered",
-            "state_type": "operational",
-            "app_state_name": "delivered",
-            "name": "delivery_done",
-            "is_active": true,
-            "app_facing": true,
-            "journey_type": "forward"
-          },
-          "reasons": [
-            {
-              "slug": "others",
-              "display_name": "Others",
-              "id": 90,
-              "state": "bag_confirmed",
-              "text": "FY62F14B8501F18E8FD3"
-            }
-          ]
-        }
-      ],
-      "item": {
-        "brand": "play clan",
-        "can_return": true,
-        "id": 95944,
-        "webstore_product_url": null,
-        "last_updated_at": 1660000486,
-        "slug_key": "play-clan-white-printed-t-shirt-387",
-        "attributes": {
-          "color": "White",
-          "gender": [
-            "Men"
-          ],
-          "season": "SS16",
-          "pattern": "Printed",
-          "essential": "Yes",
-          "brand_name": "play clan",
-          "net-quantity": "1 U",
-          "marketer-name": "Fynd",
-          "primary_color": "White",
-          "sleeve_length": "Short",
-          "marketer-address": "Fynd",
-          "primary_material": "Others",
-          "primary_color_hex": "FFFFFF"
-        },
-        "meta": {
-          "departments": [
-            21
-          ]
-        },
-        "gender": null,
-        "l3_category": 192,
-        "color": null,
-        "can_cancel": true,
-        "l3_category_name": "T-Shirts",
-        "l1_category": [
-          "Clothing"
-        ],
-        "brand_id": 85,
-        "branch_url": "http://go.fyndi.ng/iSyg/dXGX4QXldy",
-        "l2_category": [
-          "Polos & T-Shirts"
-        ],
-        "name": "White Printed T-Shirt",
-        "code": "MT-100 WHITE",
-        "department_id": 21,
-        "size": "S",
-        "image": [
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/1.jpg",
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/2.jpg",
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/3.jpg",
-          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/4.jpg"
-        ]
-      },
-      "reasons": [
-        {
-          "slug": "others",
-          "display_name": "Others",
-          "id": 90,
-          "state": "bag_confirmed",
-          "text": "FY62F14B8501F18E8FD3",
-          "bag_id": 19207348
-        }
-      ],
-      "article": {
-        "identifiers": {
-          "sku_code": "MT-100 WHITE_S"
-        },
-        "esp_modified": false,
-        "size": "S",
-        "code": "",
-        "raw_meta": null,
-        "set": {},
-        "is_set": false,
-        "seller_identifier": "MT-100 WHITE_S",
-        "return_config": {
-          "time": 30,
-          "unit": "days",
-          "returnable": true
-        },
-        "_id": "5f8a4751d2f36f00014ff8ed",
-        "uid": "5f8a4751d2f36f00014ff8ed",
-        "child_details": {}
-      },
-      "journey_type": "forward",
-      "current_operational_status": {
-        "created_at": "2022-08-08T23:15:45+00:00",
-        "delivery_partner_id": 22,
-        "bag_id": 19207348,
-        "delivery_awb_number": "4982512202351",
-        "updated_at": "2022-08-08T23:15:45+00:00",
-        "state_id": 14,
-        "store_id": 10182,
-        "state_type": "operational",
-        "status": "delivery_done",
-        "shipment_id": "16599806855311914452",
-        "id": 120514917,
-        "kafka_sync": false,
-        "bag_state_mapper": {
-          "id": 14,
-          "display_name": "Delivery Done",
-          "notify_customer": true,
-          "app_display_name": "Delivered",
-          "state_type": "operational",
-          "app_state_name": "delivered",
-          "name": "delivery_done",
-          "is_active": true,
-          "app_facing": true,
-          "journey_type": "forward"
-        },
-        "reasons": [
-          {
-            "slug": "others",
-            "display_name": "Others",
-            "id": 90,
-            "state": "bag_confirmed",
-            "text": "FY62F14B8501F18E8FD3"
-          }
-        ]
-      },
-      "dates": {
-        "order_created": "2022-08-08T23:14:45+00:00",
-        "delivery_date": "2022-08-08T23:15:45+00:00"
-      },
-      "prices": {
-        "price_effective": 10000,
-        "discount": 0,
-        "amount_paid": 10000,
-        "coupon_effective_discount": 0,
-        "delivery_charge": 0,
-        "fynd_credits": 0,
-        "cod_charges": 0,
-        "refund_credit": 0,
-        "cashback": 0,
-        "refund_amount": 10000,
-        "added_to_fynd_cash": false,
-        "cashback_applied": 0,
-        "gst_tax_percentage": 12,
-        "value_of_good": 8928.57,
-        "price_marked": 10000,
-        "transfer_price": 0,
-        "brand_calculated_amount": 10000,
-        "tax_collected_at_source": 0,
-        "tcs_percentage": 0,
-        "promotion_effective_discount": 0,
-        "coupon_value": 0,
-        "amount_paid_roundoff": 10000
-      },
-      "payment_methods": {
-        "COD": {
-          "amount": 10000
-        }
-      },
-      "gst_details": {
-        "gstin_code": "null",
-        "gst_tag": "IGST",
-        "hsn_code": "61091000",
-        "value_of_good": 8928.57,
-        "gst_tax_percentage": 12,
-        "is_default_hsn_code": false,
-        "brand_calculated_amount": 10000,
-        "tax_collected_at_source": 0,
-        "hsn_code_id": "6277837c5e4c6fdbc8be3e93",
-        "gst_fee": 1071.43,
-        "igst_tax_percentage": 12,
-        "sgst_tax_percentage": 0,
-        "cgst_tax_percentage": 0,
-        "igst_gst_fee": 1071.43,
-        "cgst_gst_fee": "0",
-        "sgst_gst_fee": "0"
-      },
-      "brand": {
-        "credit_note_allowed": false,
-        "id": 85,
-        "script_last_ran": null,
-        "pickup_location": null,
-        "invoice_prefix": "pc",
-        "brand_name": "play clan",
-        "is_virtual_invoice": false,
-        "created_on": 1452571237,
-        "modified_on": 1623871060,
-        "company": 61,
-        "logo": "https://hdn-1.fynd.com/brands/pictures/square-logo/original/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg",
-        "credit_note_expiry_days": null,
-        "start_date": null
-      },
-      "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
-      "affiliate_bag_details": {
-        "affiliate_bag_id": "19207348",
-        "affiliate_order_id": "FY62F14B8501F18E8FD3",
-        "affiliate_meta": {
-          "fynd": {
-            "fulfilment_identifier": "pulse"
-          },
-          "channel_shipment_id": null,
-          "channel_order_id": null,
-          "due_date": null,
-          "is_priority": false,
-          "box_type": null,
-          "coupon_code": null,
-          "size_level_total_qty": 924,
-          "loyalty_discount": 0,
-          "employee_discount": 0
-        },
-        "loyalty_discount": 0,
-        "employee_discount": 0
-      },
-      "meta": {},
-      "applied_promos": []
-    }
-  ],
-  "qc_required": null,
-  "requested_dp_conf": {
-    "awb_type": "express",
-    "exclude_dps": [
-      27,
-      29
-    ],
-    "ewbn": null,
-    "id": 22,
-    "is_dp_assigned_manually": true
-  },
-  "restore_coupon": false,
-  "restore_promos": {},
-  "rto_address": {
-    "store_address_json": {
-      "area": "",
-      "city": "MUMBAI SUBURBAN",
-      "email": "javedkazi@gofynd.com",
-      "phone": "918286865180",
-      "state": "MAHARASHTRA",
-      "country": "INDIA",
-      "pincode": "400093",
-      "version": "1.0",
-      "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
-      "address2": "",
-      "landmark": "Opposite MIDC police station",
-      "latitude": 19.1174798,
-      "longitude": 72.8691603,
-      "created_at": "2022-05-24 18:35:09",
-      "updated_at": "2022-05-24 18:35:09",
-      "address_type": "store",
-      "contact_person": "Javed",
-      "address_category": "store"
-    },
-    "name": "Fuschia",
-    "longitude": 72.8292187,
-    "company_id": 61,
-    "location_type": "mall",
-    "latitude": 19.0551125,
-    "id": 10182,
-    "code": "FFSPS",
-    "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
-    "address2": "",
-    "city": "MUMBAI SUBURBAN",
-    "state": "MAHARASHTRA",
-    "country": "INDIA",
-    "pincode": "400093",
-    "store_email": "javedkazi@gofynd.com",
-    "contact_person": "Javed",
-    "phone": "918286865180"
-  },
-  "search_key": {
-    "shipment_id": "914452",
-    "order_id": "8E8FD3"
-  },
-  "shipment": {
-    "type": "shipment",
-    "tags": [
-      "bag"
-    ],
-    "billing_address_json": {
-      "area": "Bhagyoday Society",
-      "city": "Palanpur",
-      "email": "",
-      "phone": "7621937989",
-      "state": "Gujarat",
-      "country": "India",
-      "pincode": "385001",
-      "version": "1.0",
-      "address1": "11",
-      "address2": "",
-      "landmark": "mansarovar road",
-      "latitude": 24.1724338,
-      "longitude": 72.434581,
-      "created_at": "2022-08-08 23:14:45",
-      "updated_at": "2022-08-08 23:14:45",
-      "address_type": "home",
-      "contact_person": "Rahul",
-      "address_category": "billing"
-    },
-    "id": "16599806855311914452",
-    "previous_shipment_id": null,
-    "meta": {
-      "dp_id": "7",
-      "weight": 250,
-      "external": {},
-      "formatted": {
-        "max": "Mon, 15 Aug",
-        "min": "Sat, 13 Aug"
-      },
-      "timestamp": {
-        "max": 1660585474,
-        "min": 1660412674
-      },
-      "bag_weight": {
-        "19207348": 250
-      },
-      "debug_info": {
-        "stormbreaker_uuid": "06647bed-59ec-4f36-ad92-3057f991883f"
-      },
-      "dp_options": {
-        "7": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 2,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": 1,
-          "fm_priority": 2,
-          "lm_priority": 2,
-          "payment_mode": "all",
-          "rvp_priority": 1,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "7"
-        },
-        "29": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 4,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": 3,
-          "fm_priority": 4,
-          "lm_priority": 4,
-          "payment_mode": "all",
-          "rvp_priority": 3,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "29"
-        },
-        "36": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 6,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": -1,
-          "fm_priority": 6,
-          "lm_priority": 6,
-          "payment_mode": "all",
-          "rvp_priority": -1,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "36"
-        },
-        "37": {
-          "area_code": {
-            "to_pincode": null,
-            "from_pincode": null
-          },
-          "f_priority": 7,
-          "operations": [
-            "inter_city"
-          ],
-          "r_priority": -1,
-          "fm_priority": 7,
-          "lm_priority": 7,
-          "payment_mode": "all",
-          "rvp_priority": -1,
-          "assign_dp_from_sb": true,
-          "external_account_id": null,
-          "internal_account_id": "37"
-        }
-      },
-      "order_type": null,
-      "dp_sort_key": "fm_priority",
-      "ewaybill_info": {},
-      "packaging_name": "POLYB_M_1411P5",
-      "assign_dp_from_sb": true,
-      "same_store_available": false,
-      "fulfilment_priority_text": null,
-      "store_invoice_updated_date": "2022-08-08T23:15:20+00:00",
-      "auto_trigger_dp_assignment_ACF": true
-    },
-    "fynd_order_id": "FY62F14B8501F18E8FD3",
-    "delivery_awb_number": "4982512202351",
-    "lock_status": "",
-    "pdf_links": {
-      "label_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a4.pdf",
-      "label_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a6.pdf",
-      "label_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_pos.pdf",
-      "invoice_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a4.pdf",
-      "invoice_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a6.pdf",
-      "label_type": "fynd",
-      "invoice_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_pos.pdf",
-      "invoice_type": "fynd"
-    },
-    "parent_type": null,
-    "store_invoice_id": "1659980720191361",
-    "delivery_address_json": {
-      "area": "Bhagyoday Society",
-      "city": "Palanpur",
-      "email": "",
-      "phone": "7621937989",
-      "state": "Gujarat",
-      "country": "India",
-      "pincode": "385001",
-      "version": "1.0",
-      "address1": "11",
-      "address2": "",
-      "landmark": "mansarovar road",
-      "latitude": 24.1724338,
-      "longitude": 72.434581,
-      "created_at": "2022-08-08T23:14:45+00:00",
-      "updated_at": "2022-08-08T23:14:45+00:00",
-      "address_type": "home",
-      "contact_person": "Rahul",
-      "address_category": "delivery",
-      "name": "Rahul",
-      "address": "11"
-    },
-    "created_at": 1660000486,
-    "hand_over_contact_json": {
-      "email": "",
-      "phone": "7621937989",
-      "version": "1.0",
-      "created_at": "2022-08-08 23:14:45",
-      "updated_at": "2022-08-08 23:14:45",
-      "contact_person": "Rahul"
-    },
-    "parent_id": "",
-    "is_active": true,
-    "affiliate_id": "5dd3ce1f1662684aa7019f1e",
-    "affiliate_shipment_id": "16599806855311914452",
-    "fulfilment_priority": 10,
-    "credit_note_id": null,
-    "eway_bill_id": null,
-    "packaging_type": "POLYB_M_1411P5"
-  },
-  "shipment_details": {
-    "dp_id": "7",
-    "dp_options": {
-      "7": {
-        "area_code": {
-          "to_pincode": null,
-          "from_pincode": null
-        },
-        "f_priority": 2,
-        "operations": [
-          "inter_city"
-        ],
-        "r_priority": 1,
-        "fm_priority": 2,
-        "lm_priority": 2,
-        "payment_mode": "all",
-        "rvp_priority": 1,
-        "assign_dp_from_sb": true,
-        "external_account_id": null,
-        "internal_account_id": "7"
-      },
-      "29": {
-        "area_code": {
-          "to_pincode": null,
-          "from_pincode": null
-        },
-        "f_priority": 4,
-        "operations": [
-          "inter_city"
-        ],
-        "r_priority": 3,
-        "fm_priority": 4,
-        "lm_priority": 4,
-        "payment_mode": "all",
-        "rvp_priority": 3,
-        "assign_dp_from_sb": true,
-        "external_account_id": null,
-        "internal_account_id": "29"
-      },
-      "36": {
-        "area_code": {
-          "to_pincode": null,
-          "from_pincode": null
-        },
-        "f_priority": 6,
-        "operations": [
-          "inter_city"
-        ],
-        "r_priority": -1,
-        "fm_priority": 6,
-        "lm_priority": 6,
-        "payment_mode": "all",
-        "rvp_priority": -1,
-        "assign_dp_from_sb": true,
-        "external_account_id": null,
-        "internal_account_id": "36"
-      },
-      "37": {
-        "area_code": {
-          "to_pincode": null,
-          "from_pincode": null
-        },
-        "f_priority": 7,
-        "operations": [
-          "inter_city"
-        ],
-        "r_priority": -1,
-        "fm_priority": 7,
-        "lm_priority": 7,
-        "payment_mode": "all",
-        "rvp_priority": -1,
-        "assign_dp_from_sb": true,
-        "external_account_id": null,
-        "internal_account_id": "37"
-      }
-    }
-  },
-  "shipment_gst": {
-    "value_of_good": 8928.57,
-    "gst_fee": 1071.43,
-    "brand_calculated_amount": 10000,
-    "tax_collected_at_source": 0,
-    "gstin_code": "null"
-  },
-  "shipment_quantity": 1,
-  "shipment_status": {
-    "created_at": 1660000545,
-    "shipment_id": "16599806855311914452",
-    "status": "delivery_done",
-    "bag_list": [
-      "19207348"
-    ],
-    "id": 78707677,
-    "current_shipment_status": "delivery_done",
-    "status_created_at": 1660000545
-  },
-  "shipment_status_history": [
-    {
-      "created_at": "2022-08-08T23:14:46+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "pending",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707571
-    },
-    {
-      "created_at": "2022-08-08T23:14:46+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "placed",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707572
-    },
-    {
-      "created_at": "2022-08-08T23:15:12+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "bag_confirmed",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707602
-    },
-    {
-      "created_at": "2022-08-08T23:15:20+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "bag_invoiced",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707605
-    },
-    {
-      "created_at": "2022-08-08T23:15:20+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "ready_for_dp_assignment",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707606
-    },
-    {
-      "created_at": "2022-08-08T23:15:23+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "dp_assigned",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707608
-    },
-    {
-      "created_at": "2022-08-08T23:15:33+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "bag_packed",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707658
-    },
-    {
-      "created_at": "2022-08-08T23:15:33+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "bag_picked",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707659
-    },
-    {
-      "created_at": "2022-08-08T23:15:45+00:00",
-      "shipment_id": "16599806855311914452",
-      "status": "delivery_done",
-      "bag_list": [
-        "19207348"
-      ],
-      "id": 78707677,
-      "current_shipment_status": "delivery_done",
-      "status_created_at": "2022-08-08T23:15:45+00:00"
-    }
-  ],
-  "shipment_update_time": 1659980745.2105737,
-  "shipment_value": 10000,
-  "tags": [
-    "bag"
-  ],
-  "total_shipment_bags": 1,
-  "total_shipments_in_order": 1,
-  "transaction_type": "shipment",
-  "user": {
-    "email": "rahulrathod@gofynd.com",
-    "user_oid": "000000000000000014402534",
-    "last_name": "Rathod",
-    "gender": "male",
-    "mongo_user_id": "14402534",
-    "mobile": "7621937989",
-    "first_name": "Rahul",
-    "id": 17952150,
-    "is_anonymous_user": false
-  },
-  "weight": {
-    "value": 250,
-    "unit": "gram"
-  },
-  "id": "62f14b93af6c692530bb0df6"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getShipmentsByAffiliateOrderId
-
-
-
-
-
-```swift
-client.order.getShipmentsByAffiliateOrderId(affiliateId: affiliateId, affiliateOrderId: affiliateOrderId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| affiliateId | String | yes |  |   
-| affiliateOrderId | String | yes |  |   
+| bagIds | String? | no |  |   
+| shipmentIds | String? | no |  |   
+| orderIds | String? | no |  |   
+| channelBagIds | String? | no |  |   
+| channelShipmentIds | String? | no |  |   
+| channelOrderIds | String? | no |  |   
+| channelId | String? | no |  |   
 | pageNo | Int? | no |  |   
 | pageSize | Int? | no |  |  
 
@@ -15513,7 +9992,7 @@ client.order.getShipmentsByAffiliateOrderId(affiliateId: affiliateId, affiliateO
 
 [BulkShipmentDetailsPlatformResponse](#BulkShipmentDetailsPlatformResponse)
 
-Successfully retrieved all the given shipments details!
+Successfully retrived all the given shipments details!
 
 
 
@@ -18261,6 +12740,5563 @@ Successfully retrieved all the given shipments details!
 ---
 
 
+#### getBags
+
+
+
+
+
+```swift
+client.order.getBags(bagIds: bagIds, shipmentIds: shipmentIds, orderIds: orderIds, channelBagIds: channelBagIds, channelShipmentIds: channelShipmentIds, channelOrderIds: channelOrderIds, channelId: channelId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| bagIds | String? | no |  |   
+| shipmentIds | String? | no |  |   
+| orderIds | String? | no |  |   
+| channelBagIds | String? | no |  |   
+| channelShipmentIds | String? | no |  |   
+| channelOrderIds | String? | no |  |   
+| channelId | String? | no |  |   
+| pageNo | Int? | no |  |   
+| pageSize | Int? | no |  |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[GetBagsPlatformResponse](#GetBagsPlatformResponse)
+
+Successfully retrived all the given shipments details!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "shipment_id": "16599806855311914452",
+      "affiliate_details": {
+        "id": "5dd3ce1f1662684aa7019f1e",
+        "affiliate_bag_id": "19207348",
+        "affiliate_order_id": "FY62F14B8501F18E8FD3",
+        "company_affiliate_tag": "OpexTesting",
+        "affiliate_id": "5dd3ce1f1662684aa7019f1e",
+        "affiliate_shipment_id": "16599806855311914452",
+        "shipment_meta": {
+          "dp_id": "7",
+          "weight": 250,
+          "external": {},
+          "formatted": {
+            "max": "Mon, 15 Aug",
+            "min": "Sat, 13 Aug"
+          },
+          "timestamp": {
+            "max": 1660585474,
+            "min": 1660412674
+          },
+          "bag_weight": {
+            "19207348": 250
+          },
+          "debug_info": {
+            "stormbreaker_uuid": "06647bed-59ec-4f36-ad92-3057f991883f"
+          },
+          "dp_options": {
+            "7": {
+              "area_code": {
+                "to_pincode": null,
+                "from_pincode": null
+              },
+              "f_priority": 2,
+              "operations": [
+                "inter_city"
+              ],
+              "r_priority": 1,
+              "fm_priority": 2,
+              "lm_priority": 2,
+              "payment_mode": "all",
+              "rvp_priority": 1,
+              "assign_dp_from_sb": true,
+              "external_account_id": null,
+              "internal_account_id": "7"
+            },
+            "29": {
+              "area_code": {
+                "to_pincode": null,
+                "from_pincode": null
+              },
+              "f_priority": 4,
+              "operations": [
+                "inter_city"
+              ],
+              "r_priority": 3,
+              "fm_priority": 4,
+              "lm_priority": 4,
+              "payment_mode": "all",
+              "rvp_priority": 3,
+              "assign_dp_from_sb": true,
+              "external_account_id": null,
+              "internal_account_id": "29"
+            },
+            "36": {
+              "area_code": {
+                "to_pincode": null,
+                "from_pincode": null
+              },
+              "f_priority": 6,
+              "operations": [
+                "inter_city"
+              ],
+              "r_priority": -1,
+              "fm_priority": 6,
+              "lm_priority": 6,
+              "payment_mode": "all",
+              "rvp_priority": -1,
+              "assign_dp_from_sb": true,
+              "external_account_id": null,
+              "internal_account_id": "36"
+            },
+            "37": {
+              "area_code": {
+                "to_pincode": null,
+                "from_pincode": null
+              },
+              "f_priority": 7,
+              "operations": [
+                "inter_city"
+              ],
+              "r_priority": -1,
+              "fm_priority": 7,
+              "lm_priority": 7,
+              "payment_mode": "all",
+              "rvp_priority": -1,
+              "assign_dp_from_sb": true,
+              "external_account_id": null,
+              "internal_account_id": "37"
+            }
+          },
+          "order_type": null,
+          "dp_sort_key": "fm_priority",
+          "ewaybill_info": {},
+          "packaging_name": "POLYB_M_1411P5",
+          "assign_dp_from_sb": true,
+          "same_store_available": false,
+          "fulfilment_priority_text": null,
+          "store_invoice_updated_date": "2022-08-08T23:15:20+00:00",
+          "auto_trigger_dp_assignment_ACF": true
+        },
+        "affiliate_meta": {
+          "fynd": {
+            "fulfilment_identifier": "pulse"
+          },
+          "channel_shipment_id": null,
+          "channel_order_id": null,
+          "due_date": null,
+          "is_priority": false,
+          "box_type": null,
+          "coupon_code": null,
+          "size_level_total_qty": 924,
+          "loyalty_discount": 0,
+          "employee_discount": 0
+        },
+        "affiliate_store_id": "10182",
+        "pdf_links": {
+          "label_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a4.pdf",
+          "label_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a6.pdf",
+          "label_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_pos.pdf",
+          "invoice_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a4.pdf",
+          "invoice_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a6.pdf",
+          "label_type": "fynd",
+          "invoice_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_pos.pdf",
+          "invoice_type": "fynd"
+        },
+        "config": {
+          "id": "5dd3ce1f1662684aa7019f1e",
+          "meta": [],
+          "name": "OpexTesting",
+          "owner": "000000000000000000000020",
+          "token": "np0tHm04",
+          "secret": "dTSEQkEE7",
+          "createdAt": null,
+          "updatedAt": null,
+          "description": "Opex testing app",
+          "dp_assignment": true,
+          "app_company_id": 61,
+          "article_assignment": {
+            "level": "multi-companies",
+            "strategy": "optimal"
+          },
+          "force_reassignment": false,
+          "post_order_reassignment": true
+        }
+      },
+      "app_id": "5dd3ce1f1662684aa7019f1e",
+      "article_details": {
+        "status": {
+          "delivery_done": {
+            "5f8a4751d2f36f00014ff8ed": {
+              "uid": "5f8a4751d2f36f00014ff8ed",
+              "_id": "5f8a4751d2f36f00014ff8ed",
+              "is_set": false,
+              "bag_ids": [
+                19207348
+              ],
+              "quantity": 1,
+              "reasons": {
+                "90": [
+                  {
+                    "slug": "others",
+                    "display_name": "Others",
+                    "id": 90,
+                    "state": "bag_confirmed",
+                    "text": "FY62F14B8501F18E8FD3",
+                    "bag_id": 19207348
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "bag_status_history": [
+        {
+          "created_at": "2022-08-08T23:14:46+00:00",
+          "delivery_partner_id": null,
+          "bag_id": 19207348,
+          "delivery_awb_number": null,
+          "updated_at": "2022-08-08T23:14:46+00:00",
+          "state_id": 89,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "pending",
+          "shipment_id": "16599806855311914452",
+          "id": 120514809,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 89,
+            "display_name": "Pending",
+            "notify_customer": true,
+            "app_display_name": "Pending",
+            "state_type": "operational",
+            "app_state_name": "pending",
+            "name": "pending",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": []
+        },
+        {
+          "created_at": "2022-08-08T23:14:46+00:00",
+          "delivery_partner_id": null,
+          "bag_id": 19207348,
+          "delivery_awb_number": null,
+          "updated_at": "2022-08-08T23:14:46+00:00",
+          "state_id": 1,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "placed",
+          "shipment_id": "16599806855311914452",
+          "id": 120514810,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 1,
+            "display_name": "Placed",
+            "notify_customer": true,
+            "app_display_name": "Processing",
+            "state_type": "operational",
+            "app_state_name": "processing",
+            "name": "placed",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": []
+        },
+        {
+          "created_at": "2022-08-08T23:15:14+00:00",
+          "delivery_partner_id": null,
+          "bag_id": 19207348,
+          "delivery_awb_number": null,
+          "updated_at": "2022-08-08T23:15:14+00:00",
+          "state_id": 2,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "bag_confirmed",
+          "shipment_id": "16599806855311914452",
+          "id": 120514842,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 2,
+            "display_name": "Confirmed",
+            "notify_customer": false,
+            "app_display_name": "Confirmed",
+            "state_type": "operational",
+            "app_state_name": "confirmed",
+            "name": "bag_confirmed",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": [
+            {
+              "slug": "others",
+              "display_name": "Others",
+              "id": 90,
+              "state": "bag_confirmed",
+              "text": "FY62F14B8501F18E8FD3n"
+            }
+          ]
+        },
+        {
+          "created_at": "2022-08-08T23:15:20+00:00",
+          "delivery_partner_id": null,
+          "bag_id": 19207348,
+          "delivery_awb_number": null,
+          "updated_at": "2022-08-08T23:15:20+00:00",
+          "state_id": 91,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "bag_invoiced",
+          "shipment_id": "16599806855311914452",
+          "id": 120514845,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 91,
+            "display_name": "Bag Invoiced",
+            "notify_customer": false,
+            "app_display_name": "Bag Invoiced",
+            "state_type": "operational",
+            "app_state_name": "bag_invoiced",
+            "name": "bag_invoiced",
+            "is_active": true,
+            "app_facing": false,
+            "journey_type": "forward"
+          },
+          "reasons": []
+        },
+        {
+          "created_at": "2022-08-08T23:15:20+00:00",
+          "delivery_partner_id": null,
+          "bag_id": 19207348,
+          "delivery_awb_number": null,
+          "updated_at": "2022-08-08T23:15:20+00:00",
+          "state_id": 113,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "ready_for_dp_assignment",
+          "shipment_id": "16599806855311914452",
+          "id": 120514846,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 113,
+            "display_name": "Ready For Dp Assignment",
+            "notify_customer": false,
+            "app_display_name": "Ready For Dp Assignment",
+            "state_type": "operational",
+            "app_state_name": "ready_for_dp_assignment",
+            "name": "ready_for_dp_assignment",
+            "is_active": true,
+            "app_facing": false,
+            "journey_type": "forward"
+          },
+          "reasons": []
+        },
+        {
+          "created_at": "2022-08-08T23:15:23+00:00",
+          "delivery_partner_id": 22,
+          "bag_id": 19207348,
+          "delivery_awb_number": "4982512202351",
+          "updated_at": "2022-08-08T23:15:23+00:00",
+          "state_id": 7,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "dp_assigned",
+          "shipment_id": "16599806855311914452",
+          "id": 120514848,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 7,
+            "display_name": "DP Assigned",
+            "notify_customer": false,
+            "app_display_name": "DP Assigned",
+            "state_type": "operational",
+            "app_state_name": "dp_assigned",
+            "name": "dp_assigned",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": []
+        },
+        {
+          "created_at": "2022-08-08T23:15:33+00:00",
+          "delivery_partner_id": 22,
+          "bag_id": 19207348,
+          "delivery_awb_number": "4982512202351",
+          "updated_at": "2022-08-08T23:15:33+00:00",
+          "state_id": 8,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "bag_packed",
+          "shipment_id": "16599806855311914452",
+          "id": 120514898,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 8,
+            "display_name": "Bag Packed",
+            "notify_customer": true,
+            "app_display_name": "Bag Packed",
+            "state_type": "operational",
+            "app_state_name": "bag_packed",
+            "name": "bag_packed",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": [
+            {
+              "slug": "missed_state_ingestion",
+              "display_name": "Missed state is ingested",
+              "id": 162,
+              "state": "missed_state",
+              "text": "Missed state is ingested"
+            }
+          ]
+        },
+        {
+          "created_at": "2022-08-08T23:15:33+00:00",
+          "delivery_partner_id": 22,
+          "bag_id": 19207348,
+          "delivery_awb_number": "4982512202351",
+          "updated_at": "2022-08-08T23:15:33+00:00",
+          "state_id": 12,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "bag_picked",
+          "shipment_id": "16599806855311914452",
+          "id": 120514899,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 12,
+            "display_name": "In Transit",
+            "notify_customer": false,
+            "app_display_name": "In Transit",
+            "state_type": "operational",
+            "app_state_name": "in_transit",
+            "name": "bag_picked",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": [
+            {
+              "slug": "others",
+              "display_name": "Others",
+              "id": 90,
+              "state": "bag_confirmed",
+              "text": "FY62F14B8501F18E8FD3"
+            }
+          ]
+        },
+        {
+          "created_at": "2022-08-08T23:15:45+00:00",
+          "delivery_partner_id": 22,
+          "bag_id": 19207348,
+          "delivery_awb_number": "4982512202351",
+          "updated_at": "2022-08-08T23:15:45+00:00",
+          "state_id": 14,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "delivery_done",
+          "shipment_id": "16599806855311914452",
+          "id": 120514917,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 14,
+            "display_name": "Delivery Done",
+            "notify_customer": true,
+            "app_display_name": "Delivered",
+            "state_type": "operational",
+            "app_state_name": "delivered",
+            "name": "delivery_done",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": [
+            {
+              "slug": "others",
+              "display_name": "Others",
+              "id": 90,
+              "state": "bag_confirmed",
+              "text": "FY62F14B8501F18E8FD3"
+            }
+          ]
+        }
+      ],
+      "bags": [
+        {
+          "id": 19207348,
+          "display_name": "Bag",
+          "entity_type": "bag",
+          "type": "single",
+          "status": {
+            "is_returnable": true,
+            "can_be_cancelled": true,
+            "enable_tracking": false,
+            "is_customer_return_allowed": true,
+            "is_active": false
+          },
+          "financial_breakup": [
+            {
+              "price_effective": 10000,
+              "discount": 0,
+              "amount_paid": 10000,
+              "coupon_effective_discount": 0,
+              "delivery_charge": 0,
+              "fynd_credits": 0,
+              "cod_charges": 0,
+              "refund_credit": 0,
+              "cashback": 0,
+              "refund_amount": 10000,
+              "added_to_fynd_cash": false,
+              "cashback_applied": 0,
+              "gst_tax_percentage": 12,
+              "value_of_good": 8928.57,
+              "price_marked": 10000,
+              "transfer_price": 0,
+              "brand_calculated_amount": 10000,
+              "tax_collected_at_source": 0,
+              "tcs_percentage": 0,
+              "promotion_effective_discount": 0,
+              "coupon_value": 0,
+              "amount_paid_roundoff": 10000,
+              "size": "S",
+              "total_units": 1,
+              "hsn_code": "61091000",
+              "identifiers": {
+                "sku_code": "MT-100 WHITE_S"
+              },
+              "item_name": "White Printed T-Shirt",
+              "gst_fee": 1071.43,
+              "gst_tag": "IGST"
+            }
+          ],
+          "bag_id": 19207348,
+          "bag_update_time": 1659980745.2105737,
+          "current_status": {
+            "created_at": "2022-08-08T23:15:45+00:00",
+            "delivery_partner_id": 22,
+            "bag_id": 19207348,
+            "delivery_awb_number": "4982512202351",
+            "updated_at": 1660000545,
+            "state_id": 14,
+            "store_id": 10182,
+            "state_type": "operational",
+            "status": "delivery_done",
+            "shipment_id": "16599806855311914452",
+            "id": 120514917,
+            "kafka_sync": false,
+            "bag_state_mapper": {
+              "id": 14,
+              "display_name": "Delivery Done",
+              "notify_customer": true,
+              "app_display_name": "Delivered",
+              "state_type": "operational",
+              "app_state_name": "delivered",
+              "name": "delivery_done",
+              "is_active": true,
+              "app_facing": true,
+              "journey_type": "forward"
+            }
+          },
+          "bag_status": [
+            {
+              "created_at": "2022-08-08T23:14:46+00:00",
+              "delivery_partner_id": null,
+              "bag_id": 19207348,
+              "delivery_awb_number": null,
+              "updated_at": 1660000486,
+              "state_id": 89,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "pending",
+              "shipment_id": "16599806855311914452",
+              "id": 120514809,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 89,
+                "display_name": "Pending",
+                "notify_customer": true,
+                "app_display_name": "Pending",
+                "state_type": "operational",
+                "app_state_name": "pending",
+                "name": "pending",
+                "is_active": true,
+                "app_facing": true,
+                "journey_type": "forward"
+              },
+              "reasons": []
+            },
+            {
+              "created_at": "2022-08-08T23:14:46+00:00",
+              "delivery_partner_id": null,
+              "bag_id": 19207348,
+              "delivery_awb_number": null,
+              "updated_at": 1660000486,
+              "state_id": 1,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "placed",
+              "shipment_id": "16599806855311914452",
+              "id": 120514810,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 1,
+                "display_name": "Placed",
+                "notify_customer": true,
+                "app_display_name": "Processing",
+                "state_type": "operational",
+                "app_state_name": "processing",
+                "name": "placed",
+                "is_active": true,
+                "app_facing": true,
+                "journey_type": "forward"
+              },
+              "reasons": []
+            },
+            {
+              "created_at": "2022-08-08T23:15:14+00:00",
+              "delivery_partner_id": null,
+              "bag_id": 19207348,
+              "delivery_awb_number": null,
+              "updated_at": 1660000514,
+              "state_id": 2,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "bag_confirmed",
+              "shipment_id": "16599806855311914452",
+              "id": 120514842,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 2,
+                "display_name": "Confirmed",
+                "notify_customer": false,
+                "app_display_name": "Confirmed",
+                "state_type": "operational",
+                "app_state_name": "confirmed",
+                "name": "bag_confirmed",
+                "is_active": true,
+                "app_facing": true,
+                "journey_type": "forward"
+              },
+              "reasons": [
+                {
+                  "slug": "others",
+                  "display_name": "Others",
+                  "id": 90,
+                  "state": "bag_confirmed",
+                  "text": "FY62F14B8501F18E8FD3n"
+                }
+              ]
+            },
+            {
+              "created_at": "2022-08-08T23:15:20+00:00",
+              "delivery_partner_id": null,
+              "bag_id": 19207348,
+              "delivery_awb_number": null,
+              "updated_at": 1660000520,
+              "state_id": 91,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "bag_invoiced",
+              "shipment_id": "16599806855311914452",
+              "id": 120514845,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 91,
+                "display_name": "Bag Invoiced",
+                "notify_customer": false,
+                "app_display_name": "Bag Invoiced",
+                "state_type": "operational",
+                "app_state_name": "bag_invoiced",
+                "name": "bag_invoiced",
+                "is_active": true,
+                "app_facing": false,
+                "journey_type": "forward"
+              },
+              "reasons": []
+            },
+            {
+              "created_at": "2022-08-08T23:15:20+00:00",
+              "delivery_partner_id": null,
+              "bag_id": 19207348,
+              "delivery_awb_number": null,
+              "updated_at": 1660000520,
+              "state_id": 113,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "ready_for_dp_assignment",
+              "shipment_id": "16599806855311914452",
+              "id": 120514846,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 113,
+                "display_name": "Ready For Dp Assignment",
+                "notify_customer": false,
+                "app_display_name": "Ready For Dp Assignment",
+                "state_type": "operational",
+                "app_state_name": "ready_for_dp_assignment",
+                "name": "ready_for_dp_assignment",
+                "is_active": true,
+                "app_facing": false,
+                "journey_type": "forward"
+              },
+              "reasons": []
+            },
+            {
+              "created_at": "2022-08-08T23:15:23+00:00",
+              "delivery_partner_id": 22,
+              "bag_id": 19207348,
+              "delivery_awb_number": "4982512202351",
+              "updated_at": 1660000523,
+              "state_id": 7,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "dp_assigned",
+              "shipment_id": "16599806855311914452",
+              "id": 120514848,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 7,
+                "display_name": "DP Assigned",
+                "notify_customer": false,
+                "app_display_name": "DP Assigned",
+                "state_type": "operational",
+                "app_state_name": "dp_assigned",
+                "name": "dp_assigned",
+                "is_active": true,
+                "app_facing": true,
+                "journey_type": "forward"
+              },
+              "reasons": []
+            },
+            {
+              "created_at": "2022-08-08T23:15:33+00:00",
+              "delivery_partner_id": 22,
+              "bag_id": 19207348,
+              "delivery_awb_number": "4982512202351",
+              "updated_at": 1660000533,
+              "state_id": 8,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "bag_packed",
+              "shipment_id": "16599806855311914452",
+              "id": 120514898,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 8,
+                "display_name": "Bag Packed",
+                "notify_customer": true,
+                "app_display_name": "Bag Packed",
+                "state_type": "operational",
+                "app_state_name": "bag_packed",
+                "name": "bag_packed",
+                "is_active": true,
+                "app_facing": true,
+                "journey_type": "forward"
+              },
+              "reasons": [
+                {
+                  "slug": "missed_state_ingestion",
+                  "display_name": "Missed state is ingested",
+                  "id": 162,
+                  "state": "missed_state",
+                  "text": "Missed state is ingested"
+                }
+              ]
+            },
+            {
+              "created_at": "2022-08-08T23:15:33+00:00",
+              "delivery_partner_id": 22,
+              "bag_id": 19207348,
+              "delivery_awb_number": "4982512202351",
+              "updated_at": 1660000533,
+              "state_id": 12,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "bag_picked",
+              "shipment_id": "16599806855311914452",
+              "id": 120514899,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 12,
+                "display_name": "In Transit",
+                "notify_customer": false,
+                "app_display_name": "In Transit",
+                "state_type": "operational",
+                "app_state_name": "in_transit",
+                "name": "bag_picked",
+                "is_active": true,
+                "app_facing": true,
+                "journey_type": "forward"
+              },
+              "reasons": [
+                {
+                  "slug": "others",
+                  "display_name": "Others",
+                  "id": 90,
+                  "state": "bag_confirmed",
+                  "text": "FY62F14B8501F18E8FD3"
+                }
+              ]
+            },
+            {
+              "created_at": "2022-08-08T23:15:45+00:00",
+              "delivery_partner_id": 22,
+              "bag_id": 19207348,
+              "delivery_awb_number": "4982512202351",
+              "updated_at": 1660000545,
+              "state_id": 14,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "delivery_done",
+              "shipment_id": "16599806855311914452",
+              "id": 120514917,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 14,
+                "display_name": "Delivery Done",
+                "notify_customer": true,
+                "app_display_name": "Delivered",
+                "state_type": "operational",
+                "app_state_name": "delivered",
+                "name": "delivery_done",
+                "is_active": true,
+                "app_facing": true,
+                "journey_type": "forward"
+              },
+              "reasons": [
+                {
+                  "slug": "others",
+                  "display_name": "Others",
+                  "id": 90,
+                  "state": "bag_confirmed",
+                  "text": "FY62F14B8501F18E8FD3"
+                }
+              ]
+            }
+          ],
+          "item": {
+            "brand": "play clan",
+            "can_return": true,
+            "id": 95944,
+            "webstore_product_url": null,
+            "last_updated_at": 1660000486,
+            "slug_key": "play-clan-white-printed-t-shirt-387",
+            "attributes": {
+              "color": "White",
+              "gender": [
+                "Men"
+              ],
+              "season": "SS16",
+              "pattern": "Printed",
+              "essential": "Yes",
+              "brand_name": "play clan",
+              "net-quantity": "1 U",
+              "marketer-name": "Fynd",
+              "primary_color": "White",
+              "sleeve_length": "Short",
+              "marketer-address": "Fynd",
+              "primary_material": "Others",
+              "primary_color_hex": "FFFFFF"
+            },
+            "meta": {
+              "departments": [
+                21
+              ]
+            },
+            "gender": null,
+            "l3_category": 192,
+            "color": null,
+            "can_cancel": true,
+            "l3_category_name": "T-Shirts",
+            "l1_category": [
+              "Clothing"
+            ],
+            "brand_id": 85,
+            "branch_url": "http://go.fyndi.ng/iSyg/dXGX4QXldy",
+            "l2_category": [
+              "Polos & T-Shirts"
+            ],
+            "name": "White Printed T-Shirt",
+            "code": "MT-100 WHITE",
+            "department_id": 21,
+            "size": "S",
+            "image": [
+              "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/1.jpg",
+              "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/2.jpg",
+              "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/3.jpg",
+              "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/4.jpg"
+            ]
+          },
+          "reasons": [
+            {
+              "slug": "others",
+              "display_name": "Others",
+              "id": 90,
+              "state": "bag_confirmed",
+              "text": "FY62F14B8501F18E8FD3",
+              "bag_id": 19207348
+            }
+          ],
+          "article": {
+            "identifiers": {
+              "sku_code": "MT-100 WHITE_S"
+            },
+            "esp_modified": false,
+            "size": "S",
+            "code": "",
+            "raw_meta": null,
+            "set": {},
+            "is_set": false,
+            "seller_identifier": "MT-100 WHITE_S",
+            "return_config": {
+              "time": 30,
+              "unit": "days",
+              "returnable": true
+            },
+            "_id": "5f8a4751d2f36f00014ff8ed",
+            "uid": "5f8a4751d2f36f00014ff8ed",
+            "child_details": {}
+          },
+          "journey_type": "forward",
+          "current_operational_status": {
+            "created_at": "2022-08-08T23:15:45+00:00",
+            "delivery_partner_id": 22,
+            "bag_id": 19207348,
+            "delivery_awb_number": "4982512202351",
+            "updated_at": "2022-08-08T23:15:45+00:00",
+            "state_id": 14,
+            "store_id": 10182,
+            "state_type": "operational",
+            "status": "delivery_done",
+            "shipment_id": "16599806855311914452",
+            "id": 120514917,
+            "kafka_sync": false,
+            "bag_state_mapper": {
+              "id": 14,
+              "display_name": "Delivery Done",
+              "notify_customer": true,
+              "app_display_name": "Delivered",
+              "state_type": "operational",
+              "app_state_name": "delivered",
+              "name": "delivery_done",
+              "is_active": true,
+              "app_facing": true,
+              "journey_type": "forward"
+            },
+            "reasons": [
+              {
+                "slug": "others",
+                "display_name": "Others",
+                "id": 90,
+                "state": "bag_confirmed",
+                "text": "FY62F14B8501F18E8FD3"
+              }
+            ]
+          },
+          "dates": {
+            "order_created": "2022-08-08T23:14:45+00:00",
+            "delivery_date": "2022-08-08T23:15:45+00:00"
+          },
+          "prices": {
+            "price_effective": 10000,
+            "discount": 0,
+            "amount_paid": 10000,
+            "coupon_effective_discount": 0,
+            "delivery_charge": 0,
+            "fynd_credits": 0,
+            "cod_charges": 0,
+            "refund_credit": 0,
+            "cashback": 0,
+            "refund_amount": 10000,
+            "added_to_fynd_cash": false,
+            "cashback_applied": 0,
+            "gst_tax_percentage": 12,
+            "value_of_good": 8928.57,
+            "price_marked": 10000,
+            "transfer_price": 0,
+            "brand_calculated_amount": 10000,
+            "tax_collected_at_source": 0,
+            "tcs_percentage": 0,
+            "promotion_effective_discount": 0,
+            "coupon_value": 0,
+            "amount_paid_roundoff": 10000
+          },
+          "payment_methods": {
+            "COD": {
+              "amount": 10000
+            }
+          },
+          "gst_details": {
+            "gstin_code": "null",
+            "gst_tag": "IGST",
+            "hsn_code": "61091000",
+            "value_of_good": 8928.57,
+            "gst_tax_percentage": 12,
+            "is_default_hsn_code": false,
+            "brand_calculated_amount": 10000,
+            "tax_collected_at_source": 0,
+            "hsn_code_id": "6277837c5e4c6fdbc8be3e93",
+            "gst_fee": 1071.43,
+            "igst_tax_percentage": 12,
+            "sgst_tax_percentage": 0,
+            "cgst_tax_percentage": 0,
+            "igst_gst_fee": 1071.43,
+            "cgst_gst_fee": "0",
+            "sgst_gst_fee": "0"
+          },
+          "brand": {
+            "credit_note_allowed": false,
+            "id": 85,
+            "script_last_ran": null,
+            "pickup_location": null,
+            "invoice_prefix": "pc",
+            "brand_name": "play clan",
+            "is_virtual_invoice": false,
+            "created_on": 1452571237,
+            "modified_on": 1623871060,
+            "company": 61,
+            "logo": "https://hdn-1.fynd.com/brands/pictures/square-logo/original/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg",
+            "credit_note_expiry_days": null,
+            "start_date": null
+          },
+          "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
+          "affiliate_bag_details": {
+            "affiliate_bag_id": "19207348",
+            "affiliate_order_id": "FY62F14B8501F18E8FD3",
+            "affiliate_meta": {
+              "fynd": {
+                "fulfilment_identifier": "pulse"
+              },
+              "channel_shipment_id": null,
+              "channel_order_id": null,
+              "due_date": null,
+              "is_priority": false,
+              "box_type": null,
+              "coupon_code": null,
+              "size_level_total_qty": 924,
+              "loyalty_discount": 0,
+              "employee_discount": 0
+            },
+            "loyalty_discount": 0,
+            "employee_discount": 0
+          },
+          "meta": {},
+          "applied_promos": []
+        }
+      ],
+      "brand": {
+        "credit_note_allowed": false,
+        "id": 85,
+        "script_last_ran": null,
+        "pickup_location": null,
+        "invoice_prefix": "pc",
+        "brand_name": "play clan",
+        "is_virtual_invoice": false,
+        "created_on": 1452571237,
+        "modified_on": 1623871060,
+        "company": 61,
+        "logo": "https://hdn-1.fynd.com/brands/pictures/square-logo/original/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg",
+        "credit_note_expiry_days": null,
+        "start_date": null
+      },
+      "cart_id": 41262745,
+      "comment": "",
+      "company": {
+        "modified_on": 1656409302,
+        "company_type": "distributor",
+        "id": 61,
+        "commission": 0,
+        "meta": {
+          "stage": "verified",
+          "address": [
+            {
+              "city": "GHORMACH",
+              "state": "BADGHIS",
+              "country": "AFGHANISTAN",
+              "pincode": 401209,
+              "address1": "A/204, SAI VANDAN",
+              "address2": "TULINJ ROAD, NALLASOPARA EAST",
+              "landmark": "Near Utsav Hotel",
+              "latitude": 35.6495457,
+              "longitude": 63.9113296,
+              "address_type": "office",
+              "country_code": "IN"
+            },
+            {
+              "city": "GHORMACH",
+              "state": "BADGHIS",
+              "country": "AFGHANISTAN",
+              "pincode": 401209,
+              "address1": "A/204, SAI VANDAN",
+              "address2": "TULINJ ROAD, NALLASOPARA EAST",
+              "landmark": "Near Utsav Hotel",
+              "latitude": 35.6495457,
+              "longitude": 63.9113296,
+              "address_type": "registered",
+              "country_code": "IN"
+            }
+          ],
+          "documents": {
+            "cin": {
+              "url": "https://fynd-obscuro-media-new.s3-accelerate.amazonaws.com/company/61/self/legal/documents/free/original/ZjGFzuE8_-20_Python_Libraries.pdf?AWSAccessKeyId=AKIAJU7QAWL4LO5KSCYA&Expires=1656409357&Signature=IC%2FgIDdSymHbSKJGT12Zq9zOe4M%3D",
+              "type": "cin",
+              "value": "L21700MH1907PLC000260",
+              "verified": true,
+              "legal_name": "FUCHSIA VINE DESIGNS PRIVATE LIMITED"
+            },
+            "gst": {
+              "type": "gst",
+              "value": "27AALCA0442L1ZM",
+              "verified": true,
+              "legal_name": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED"
+            },
+            "pan": {
+              "url": "https://fynd-obscuro-media-new.s3-accelerate.amazonaws.com/company/61/self/legal/documents/free/original/oURvMfX1p-2de4a88b_ticket.pdf?AWSAccessKeyId=AKIAJU7QAWL4LO5KSCYA&Expires=1656409357&Signature=lG1wi0G6cqtav0i9cOf3dFNBuNY%3D",
+              "type": "pan",
+              "value": "AALCA0442L",
+              "verified": true,
+              "legal_name": ""
+            },
+            "digital_signature": {
+              "url": "https://fynd-obscuro-media-new.s3-accelerate.amazonaws.com/company/61/self/legal/documents/free/original/iigdJTk27-3.png?AWSAccessKeyId=AKIAJU7QAWL4LO5KSCYA&Expires=1656409357&Signature=Nc38H2KxR1ymSZz8jVRQyUCXobs%3D",
+              "type": "digital_signature",
+              "value": "Aayush Jain",
+              "verified": true,
+              "legal_name": "Aayush Jain"
+            }
+          },
+          "business_info": "This is a description area to write about the company.",
+          "contact_details": {
+            "phone": [
+              {
+                "number": "7009853732",
+                "country_code": 91
+              },
+              {
+                "number": "9821012533",
+                "country_code": 91
+              }
+            ],
+            "emails": [
+              "aayushvjain@gofynd.com",
+              "abc@gmail.com",
+              "asmaidris1994@gmail.com"
+            ]
+          },
+          "business_details": {
+            "website": {
+              "url": "https://www.playclan.com"
+            }
+          },
+          "notification_emails": [
+            "pranavverma@gofynd.com",
+            "vermapranav28@gmail.com",
+            "vaishakhshetty@gofynd.com"
+          ]
+        },
+        "exchange_allowed": false,
+        "payment_procesing_charge": 0,
+        "tan_no": "11",
+        "vat_no": null,
+        "exchange_within_days": null,
+        "gst_number": "27AALCA0442L1ZM",
+        "created_on": 1452571141,
+        "company_name": "FUCHSIA VINE DESIGNS PRIVATE LIMITED",
+        "fynd_a_fit_available": false,
+        "return_allowed": true,
+        "return_within_days": 30,
+        "payment_type": "Happay",
+        "business_type": "ltd/pvt ltd",
+        "agreement_start_date": 1503532800,
+        "cst": null,
+        "pan_no": "AALCA0442L"
+      },
+      "coupon": {},
+      "delivery_address": {
+        "area": "Bhagyoday Society",
+        "city": "Palanpur",
+        "email": "",
+        "phone": "7621937989",
+        "state": "Gujarat",
+        "country": "India",
+        "pincode": "385001",
+        "version": "1.0",
+        "address1": "11",
+        "address2": "",
+        "landmark": "mansarovar road",
+        "latitude": 24.1724338,
+        "longitude": 72.434581,
+        "created_at": "2022-08-08T23:14:45+00:00",
+        "updated_at": "2022-08-08T23:14:45+00:00",
+        "address_type": "home",
+        "contact_person": "Rahul",
+        "address_category": "delivery",
+        "name": "Rahul",
+        "address": "11"
+      },
+      "delivery_slot": {
+        "slot": "By 17:00 PM",
+        "upper_bound": "2022-08-15T17:44:34+00:00",
+        "lower_bound": "2022-08-13T17:44:34+00:00",
+        "date": "2022-08-15T17:44:34+00:00",
+        "type": "order_window"
+      },
+      "dp_details": {
+        "id": 22,
+        "name": "fyndr",
+        "awb_no": "4982512202351",
+        "eway_bill_id": null,
+        "track_url": null,
+        "dp_charges": 110,
+        "dp_return_charges": 70,
+        "amount_handling_charges": 15,
+        "gst_tag": "sgst"
+      },
+      "einvoice_info": null,
+      "fallback_user": {
+        "email": "",
+        "mobile": "7621937989"
+      },
+      "fulfilling_store": {
+        "login_username": "TEST_FFSPS_61",
+        "mall_area": null,
+        "updated_at": "2022-05-19T15:46:52+00:00",
+        "packaging_material_count": 0,
+        "id": 10182,
+        "store_address_json": {
+          "area": "",
+          "city": "MUMBAI SUBURBAN",
+          "email": "javedkazi@gofynd.com",
+          "phone": "918286865180",
+          "state": "MAHARASHTRA",
+          "country": "INDIA",
+          "pincode": "400093",
+          "version": "1.0",
+          "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
+          "address2": "",
+          "landmark": "Opposite MIDC police station",
+          "latitude": 19.1174798,
+          "longitude": 72.8691603,
+          "created_at": "2022-05-24 18:35:09",
+          "updated_at": "2022-05-24 18:35:09",
+          "address_type": "store",
+          "contact_person": "Javed",
+          "address_category": "store"
+        },
+        "is_archived": false,
+        "meta": {
+          "stage": "verified",
+          "timing": [
+            {
+              "open": true,
+              "closing": {
+                "hour": 21,
+                "minute": 0
+              },
+              "opening": {
+                "hour": 11,
+                "minute": 0
+              },
+              "weekday": "monday"
+            },
+            {
+              "open": true,
+              "closing": {
+                "hour": 21,
+                "minute": 0
+              },
+              "opening": {
+                "hour": 11,
+                "minute": 0
+              },
+              "weekday": "tuesday"
+            },
+            {
+              "open": true,
+              "closing": {
+                "hour": 21,
+                "minute": 0
+              },
+              "opening": {
+                "hour": 11,
+                "minute": 0
+              },
+              "weekday": "wednesday"
+            },
+            {
+              "open": true,
+              "closing": {
+                "hour": 14,
+                "minute": 12
+              },
+              "opening": {
+                "hour": 11,
+                "minute": 0
+              },
+              "weekday": "thursday"
+            },
+            {
+              "open": true,
+              "closing": {
+                "hour": 21,
+                "minute": 0
+              },
+              "opening": {
+                "hour": 11,
+                "minute": 0
+              },
+              "weekday": "friday"
+            },
+            {
+              "open": true,
+              "closing": {
+                "hour": 21,
+                "minute": 0
+              },
+              "opening": {
+                "hour": 11,
+                "minute": 0
+              },
+              "weekday": "saturday"
+            },
+            {
+              "open": true,
+              "closing": {
+                "hour": 21,
+                "minute": 0
+              },
+              "opening": {
+                "hour": 11,
+                "minute": 0
+              },
+              "weekday": "sunday"
+            }
+          ],
+          "documents": {},
+          "gst_number": null,
+          "display_name": "Fuschia",
+          "gst_credentials": {
+            "e_invoice": {
+              "enabled": false
+            },
+            "e_waybill": {
+              "enabled": false
+            }
+          },
+          "notification_emails": [
+            "vaishakhshetty@gofynd.com"
+          ],
+          "product_return_config": {
+            "on_same_store": true
+          },
+          "additional_contact_details": {
+            "number": [
+              "91 - 8286865180"
+            ]
+          },
+          "ewaybill_portal_details": null
+        },
+        "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
+        "parent_store_id": null,
+        "alohomora_user_id": 11070,
+        "store_active_from": null,
+        "vat_no": null,
+        "longitude": 72.8292187,
+        "location_type": "mall",
+        "latitude": 19.0551125,
+        "created_at": "2020-01-15T05:30:41+00:00",
+        "fulfillment_channel": "pulse",
+        "brand_id": null,
+        "is_active": false,
+        "name": "Fuschia",
+        "mall_name": null,
+        "company_id": 61,
+        "is_enabled_for_recon": false,
+        "code": "FFSPS",
+        "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
+        "address2": "",
+        "city": "MUMBAI SUBURBAN",
+        "state": "MAHARASHTRA",
+        "country": "INDIA",
+        "pincode": "400093",
+        "store_email": "javedkazi@gofynd.com",
+        "contact_person": "Javed",
+        "phone": "918286865180",
+        "brand_store_tags": [
+          "pulse"
+        ]
+      },
+      "fyndstore_emp": {},
+      "invoice": {
+        "updated_date": 1660000520,
+        "store_invoice_id": "1659980720191361",
+        "invoice_url": "https://fynd-recon-reports-mumbai.s3.amazonaws.com/invoice_labels/16599806855311914452_invoice_a4.pdf",
+        "label_url": "https://fynd-recon-reports-mumbai.s3.amazonaws.com/invoice_labels/16599806855311914452_invoice_pos.pdf"
+      },
+      "is_processing": false,
+      "journey_type": "forward",
+      "lock_status": false,
+      "no_of_bags_order": 1,
+      "operational_status": "delivery_done",
+      "order": {
+        "raw_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
+        "affiliate_order_date": "2022-08-08T23:14:45+00:00",
+        "total_order_value": 10000,
+        "transaction_id": "FY62F14B8501F18E8FD3",
+        "refund_by": "fynd",
+        "headers": {
+          "host": "fplt-gringotts-main-svc.default.svc.cluster.local",
+          "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
+          "cookie": "G_ENABLED_IDPS=google; f.session=s%3AHQX0JDLgWOHd8z7NOu-E9mT9yBDaqfPR.6T82v4OlerGY6lfKfATfojYQzDCtSRhEJkIA%2FyH%2Fz%2BM; ordering_store=s%3A15114.6VinzJtp1QRjsKZ52NWvXXPoTuLc38KYLxiLJSMl6CE",
+          "x-application-id": "5dd3ce1f1662684aa7019f1e",
+          "x-application-token": "np0tHm04",
+          "x-currency-code": "INR",
+          "authorization": "04a544ac-7e85-437f-b6d6-0adb694c4045",
+          "accept": "*/*",
+          "accept-encoding": "gzip, deflate",
+          "content-length": "17443",
+          "content-type": "text/plain; charset=utf-8",
+          "x-newrelic-id": "VQcHWVJVDhAHXFFVBAUEUVI=",
+          "x-newrelic-transaction": "PxQPAlJaXgNRVQUDVAgOAlUFFB8EBw8RVU4aWlsMDVQDBAgFUAIKWwAHA0NKQQEDAlBWAQ4AFTs=",
+          "request-source": "Fynd",
+          "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
+          "source": "uniket-desktop",
+          "user_agent_version": null,
+          "deprecated": false
+        },
+        "id": 13030531,
+        "cod_charges": 0,
+        "collect_by": "fynd",
+        "tax_details": {
+          "gstin": null
+        },
+        "promotion_effective_discount": 0,
+        "affiliate_order_id": "FY62F14B8501F18E8FD3",
+        "meta": {
+          "files": [],
+          "staff": {},
+          "comment": "",
+          "extra_meta": {},
+          "order_type": "HomeDelivery",
+          "employee_id": null,
+          "payment_type": "fynd",
+          "mongo_cart_id": 41262745,
+          "order_platform": "platform-site",
+          "ordering_store": 15114,
+          "order_child_entities": [
+            "shipment",
+            "bag"
+          ]
+        },
+        "order_value": 10000,
+        "fynd_credits": 0,
+        "mode_of_payment": "FYND",
+        "discount": 0,
+        "payment_methods": {
+          "COD": {
+            "meta": {
+              "logo_url": {
+                "large": "https://hdn-1.fynd.com/payment/cod.png",
+                "small": "https://hdn-1.fynd.com/payment/cod.png"
+              },
+              "payment_id": "FY62F14B8501F18E8FD3",
+              "merchant_code": "",
+              "payment_gateway": "Fynd",
+              "payment_identifier": "11"
+            },
+            "mode": "COD",
+            "name": "COD",
+            "amount": 10000,
+            "refund_by": "fynd",
+            "collect_by": "fynd"
+          }
+        },
+        "fynd_order_id": "FY62F14B8501F18E8FD3",
+        "delivery_charges": 0,
+        "mongo_cart_id": 41262745,
+        "source": "uniket-desktop",
+        "created_time": 1660000485,
+        "payment_mode_id": 2,
+        "currency": "INR",
+        "coupon_value": 0,
+        "cashback_value": 0,
+        "cashback_applied": 0,
+        "ordering_channel": "FYND_STORE",
+        "user_id": 17952150,
+        "affiliate_id": "5dd3ce1f1662684aa7019f1e",
+        "ordering_channel_logo": "https://fynd-static.s3.amazonaws.com/mode_of_payment/fynd_store_logo.png",
+        "prices": {
+          "amount_paid": 10000,
+          "refund_amount": 10000,
+          "price_marked": 10000,
+          "cod_charges": 0,
+          "discount": 0,
+          "cashback_applied": 0,
+          "delivery_charge": 0,
+          "fynd_credits": 0,
+          "cashback": 0,
+          "price_effective": 10000,
+          "refund_credit": 0,
+          "value_of_good": 8928.57,
+          "coupon_value": 0,
+          "tax_collected_at_source": 0,
+          "promotion_effective_discount": 0,
+          "amount_paid_roundoff": 10000
+        }
+      },
+      "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
+      "order_source": "uniket-desktop",
+      "order_type": "forward",
+      "order_value": 10000,
+      "ordering_store": {
+        "login_username": null,
+        "mall_area": null,
+        "updated_at": "2022-04-21T14:44:10+00:00",
+        "packaging_material_count": 0,
+        "id": 15114,
+        "store_address_json": {
+          "area": "",
+          "city": "MUMBAI",
+          "email": "talha1891@gmail.com",
+          "phone": "918104556147",
+          "state": "MAHARASHTRA",
+          "country": "INDIA",
+          "pincode": "421301",
+          "version": "1.0",
+          "address1": "KALYAN, MAHARASHTRA 421301",
+          "address2": "",
+          "landmark": "",
+          "latitude": 73.1290596,
+          "longitude": 19.2527132,
+          "created_at": "2022-05-10 18:50:25",
+          "updated_at": "2022-05-10 18:50:25",
+          "address_type": "store",
+          "contact_person": "talha",
+          "address_category": "store"
+        },
+        "is_archived": false,
+        "meta": {
+          "stage": "verified",
+          "timing": [
+            {
+              "open": true,
+              "closing": {
+                "hour": 22,
+                "minute": 0
+              },
+              "opening": {
+                "hour": 11,
+                "minute": 0
+              },
+              "weekday": "monday"
+            },
+            {
+              "open": true,
+              "closing": {
+                "hour": 22,
+                "minute": 0
+              },
+              "opening": {
+                "hour": 11,
+                "minute": 0
+              },
+              "weekday": "tuesday"
+            },
+            {
+              "open": true,
+              "closing": {
+                "hour": 22,
+                "minute": 0
+              },
+              "opening": {
+                "hour": 11,
+                "minute": 0
+              },
+              "weekday": "wednesday"
+            },
+            {
+              "open": true,
+              "closing": {
+                "hour": 22,
+                "minute": 0
+              },
+              "opening": {
+                "hour": 11,
+                "minute": 0
+              },
+              "weekday": "thursday"
+            },
+            {
+              "open": true,
+              "closing": {
+                "hour": 22,
+                "minute": 0
+              },
+              "opening": {
+                "hour": 11,
+                "minute": 0
+              },
+              "weekday": "friday"
+            },
+            {
+              "open": true,
+              "closing": {
+                "hour": 22,
+                "minute": 0
+              },
+              "opening": {
+                "hour": 11,
+                "minute": 0
+              },
+              "weekday": "saturday"
+            },
+            {
+              "open": false,
+              "closing": {
+                "hour": 22,
+                "minute": 0
+              },
+              "opening": {
+                "hour": 11,
+                "minute": 0
+              },
+              "weekday": "sunday"
+            }
+          ],
+          "documents": {},
+          "gst_number": null,
+          "display_name": "0Test Loc",
+          "gst_credentials": {
+            "e_invoice": {
+              "enabled": false
+            },
+            "e_waybill": {
+              "enabled": false
+            }
+          },
+          "notification_emails": [
+            "talha1891@gmail.com"
+          ],
+          "product_return_config": {
+            "on_same_store": true
+          },
+          "additional_contact_details": {
+            "number": [
+              "91 - 8104556147"
+            ]
+          },
+          "ewaybill_portal_details": null
+        },
+        "order_integration_id": null,
+        "parent_store_id": null,
+        "alohomora_user_id": null,
+        "store_active_from": null,
+        "vat_no": null,
+        "longitude": null,
+        "location_type": "high_street",
+        "latitude": null,
+        "created_at": "2022-04-21T14:44:10+00:00",
+        "fulfillment_channel": "pulse",
+        "brand_id": null,
+        "is_active": false,
+        "name": "0Test Loc",
+        "mall_name": null,
+        "company_id": 61,
+        "is_enabled_for_recon": false,
+        "code": "0_loc_code",
+        "address1": "KALYAN, MAHARASHTRA 421301",
+        "address2": "",
+        "city": "MUMBAI",
+        "state": "MAHARASHTRA",
+        "country": "INDIA",
+        "pincode": "421301",
+        "store_email": "talha1891@gmail.com",
+        "contact_person": "talha",
+        "phone": "918104556147"
+      },
+      "original_bag_list": [
+        19207348
+      ],
+      "payment_methods": {
+        "COD": {
+          "amount": 10000,
+          "mode": "COD",
+          "name": "COD",
+          "collect_by": "fynd",
+          "refund_by": "fynd",
+          "meta": {
+            "logo_url": {
+              "large": "https://hdn-1.fynd.com/payment/cod.png",
+              "small": "https://hdn-1.fynd.com/payment/cod.png"
+            },
+            "payment_id": "FY62F14B8501F18E8FD3",
+            "merchant_code": "",
+            "payment_gateway": "Fynd",
+            "payment_identifier": "11"
+          }
+        }
+      },
+      "payment_type": "fynd",
+      "payments": {
+        "mode": "COD",
+        "is_active": true,
+        "display_priority": 1,
+        "display_name": "Cash on Delivery",
+        "id": 2,
+        "logo": "https://hdn-1.fynd.com/payment/cod.png",
+        "source": "Cash on Delivery",
+        "payment_identifier": "11",
+        "source_nickname": ""
+      },
+      "prices": {
+        "amount_paid": 10000,
+        "refund_amount": 10000,
+        "price_marked": 10000,
+        "cod_charges": 0,
+        "discount": 0,
+        "cashback_applied": 0,
+        "delivery_charge": 0,
+        "fynd_credits": 0,
+        "cashback": 0,
+        "price_effective": 10000,
+        "refund_credit": 0,
+        "value_of_good": 8928.57,
+        "coupon_value": 0,
+        "tax_collected_at_source": 0,
+        "promotion_effective_discount": 0,
+        "amount_paid_roundoff": 10000
+      },
+      "products": [
+        {
+          "id": 19207348,
+          "display_name": "Bag",
+          "entity_type": "bag",
+          "type": "single",
+          "status": {
+            "is_returnable": true,
+            "can_be_cancelled": true,
+            "enable_tracking": false,
+            "is_customer_return_allowed": true,
+            "is_active": false
+          },
+          "financial_breakup": [
+            {
+              "price_effective": 10000,
+              "discount": 0,
+              "amount_paid": 10000,
+              "coupon_effective_discount": 0,
+              "delivery_charge": 0,
+              "fynd_credits": 0,
+              "cod_charges": 0,
+              "refund_credit": 0,
+              "cashback": 0,
+              "refund_amount": 10000,
+              "added_to_fynd_cash": false,
+              "cashback_applied": 0,
+              "gst_tax_percentage": 12,
+              "value_of_good": 8928.57,
+              "price_marked": 10000,
+              "transfer_price": 0,
+              "brand_calculated_amount": 10000,
+              "tax_collected_at_source": 0,
+              "tcs_percentage": 0,
+              "promotion_effective_discount": 0,
+              "coupon_value": 0,
+              "amount_paid_roundoff": 10000,
+              "size": "S",
+              "total_units": 1,
+              "hsn_code": "61091000",
+              "identifiers": {
+                "sku_code": "MT-100 WHITE_S"
+              },
+              "item_name": "White Printed T-Shirt",
+              "gst_fee": 1071.43,
+              "gst_tag": "IGST"
+            }
+          ],
+          "bag_id": 19207348,
+          "bag_update_time": 1659980745.2105737,
+          "current_status": {
+            "created_at": "2022-08-08T23:15:45+00:00",
+            "delivery_partner_id": 22,
+            "bag_id": 19207348,
+            "delivery_awb_number": "4982512202351",
+            "updated_at": 1660000545,
+            "state_id": 14,
+            "store_id": 10182,
+            "state_type": "operational",
+            "status": "delivery_done",
+            "shipment_id": "16599806855311914452",
+            "id": 120514917,
+            "kafka_sync": false,
+            "bag_state_mapper": {
+              "id": 14,
+              "display_name": "Delivery Done",
+              "notify_customer": true,
+              "app_display_name": "Delivered",
+              "state_type": "operational",
+              "app_state_name": "delivered",
+              "name": "delivery_done",
+              "is_active": true,
+              "app_facing": true,
+              "journey_type": "forward"
+            }
+          },
+          "bag_status": [
+            {
+              "created_at": "2022-08-08T23:14:46+00:00",
+              "delivery_partner_id": null,
+              "bag_id": 19207348,
+              "delivery_awb_number": null,
+              "updated_at": 1660000486,
+              "state_id": 89,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "pending",
+              "shipment_id": "16599806855311914452",
+              "id": 120514809,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 89,
+                "display_name": "Pending",
+                "notify_customer": true,
+                "app_display_name": "Pending",
+                "state_type": "operational",
+                "app_state_name": "pending",
+                "name": "pending",
+                "is_active": true,
+                "app_facing": true,
+                "journey_type": "forward"
+              },
+              "reasons": []
+            },
+            {
+              "created_at": "2022-08-08T23:14:46+00:00",
+              "delivery_partner_id": null,
+              "bag_id": 19207348,
+              "delivery_awb_number": null,
+              "updated_at": 1660000486,
+              "state_id": 1,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "placed",
+              "shipment_id": "16599806855311914452",
+              "id": 120514810,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 1,
+                "display_name": "Placed",
+                "notify_customer": true,
+                "app_display_name": "Processing",
+                "state_type": "operational",
+                "app_state_name": "processing",
+                "name": "placed",
+                "is_active": true,
+                "app_facing": true,
+                "journey_type": "forward"
+              },
+              "reasons": []
+            },
+            {
+              "created_at": "2022-08-08T23:15:14+00:00",
+              "delivery_partner_id": null,
+              "bag_id": 19207348,
+              "delivery_awb_number": null,
+              "updated_at": 1660000514,
+              "state_id": 2,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "bag_confirmed",
+              "shipment_id": "16599806855311914452",
+              "id": 120514842,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 2,
+                "display_name": "Confirmed",
+                "notify_customer": false,
+                "app_display_name": "Confirmed",
+                "state_type": "operational",
+                "app_state_name": "confirmed",
+                "name": "bag_confirmed",
+                "is_active": true,
+                "app_facing": true,
+                "journey_type": "forward"
+              },
+              "reasons": [
+                {
+                  "slug": "others",
+                  "display_name": "Others",
+                  "id": 90,
+                  "state": "bag_confirmed",
+                  "text": "FY62F14B8501F18E8FD3n"
+                }
+              ]
+            },
+            {
+              "created_at": "2022-08-08T23:15:20+00:00",
+              "delivery_partner_id": null,
+              "bag_id": 19207348,
+              "delivery_awb_number": null,
+              "updated_at": 1660000520,
+              "state_id": 91,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "bag_invoiced",
+              "shipment_id": "16599806855311914452",
+              "id": 120514845,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 91,
+                "display_name": "Bag Invoiced",
+                "notify_customer": false,
+                "app_display_name": "Bag Invoiced",
+                "state_type": "operational",
+                "app_state_name": "bag_invoiced",
+                "name": "bag_invoiced",
+                "is_active": true,
+                "app_facing": false,
+                "journey_type": "forward"
+              },
+              "reasons": []
+            },
+            {
+              "created_at": "2022-08-08T23:15:20+00:00",
+              "delivery_partner_id": null,
+              "bag_id": 19207348,
+              "delivery_awb_number": null,
+              "updated_at": 1660000520,
+              "state_id": 113,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "ready_for_dp_assignment",
+              "shipment_id": "16599806855311914452",
+              "id": 120514846,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 113,
+                "display_name": "Ready For Dp Assignment",
+                "notify_customer": false,
+                "app_display_name": "Ready For Dp Assignment",
+                "state_type": "operational",
+                "app_state_name": "ready_for_dp_assignment",
+                "name": "ready_for_dp_assignment",
+                "is_active": true,
+                "app_facing": false,
+                "journey_type": "forward"
+              },
+              "reasons": []
+            },
+            {
+              "created_at": "2022-08-08T23:15:23+00:00",
+              "delivery_partner_id": 22,
+              "bag_id": 19207348,
+              "delivery_awb_number": "4982512202351",
+              "updated_at": 1660000523,
+              "state_id": 7,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "dp_assigned",
+              "shipment_id": "16599806855311914452",
+              "id": 120514848,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 7,
+                "display_name": "DP Assigned",
+                "notify_customer": false,
+                "app_display_name": "DP Assigned",
+                "state_type": "operational",
+                "app_state_name": "dp_assigned",
+                "name": "dp_assigned",
+                "is_active": true,
+                "app_facing": true,
+                "journey_type": "forward"
+              },
+              "reasons": []
+            },
+            {
+              "created_at": "2022-08-08T23:15:33+00:00",
+              "delivery_partner_id": 22,
+              "bag_id": 19207348,
+              "delivery_awb_number": "4982512202351",
+              "updated_at": 1660000533,
+              "state_id": 8,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "bag_packed",
+              "shipment_id": "16599806855311914452",
+              "id": 120514898,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 8,
+                "display_name": "Bag Packed",
+                "notify_customer": true,
+                "app_display_name": "Bag Packed",
+                "state_type": "operational",
+                "app_state_name": "bag_packed",
+                "name": "bag_packed",
+                "is_active": true,
+                "app_facing": true,
+                "journey_type": "forward"
+              },
+              "reasons": [
+                {
+                  "slug": "missed_state_ingestion",
+                  "display_name": "Missed state is ingested",
+                  "id": 162,
+                  "state": "missed_state",
+                  "text": "Missed state is ingested"
+                }
+              ]
+            },
+            {
+              "created_at": "2022-08-08T23:15:33+00:00",
+              "delivery_partner_id": 22,
+              "bag_id": 19207348,
+              "delivery_awb_number": "4982512202351",
+              "updated_at": 1660000533,
+              "state_id": 12,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "bag_picked",
+              "shipment_id": "16599806855311914452",
+              "id": 120514899,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 12,
+                "display_name": "In Transit",
+                "notify_customer": false,
+                "app_display_name": "In Transit",
+                "state_type": "operational",
+                "app_state_name": "in_transit",
+                "name": "bag_picked",
+                "is_active": true,
+                "app_facing": true,
+                "journey_type": "forward"
+              },
+              "reasons": [
+                {
+                  "slug": "others",
+                  "display_name": "Others",
+                  "id": 90,
+                  "state": "bag_confirmed",
+                  "text": "FY62F14B8501F18E8FD3"
+                }
+              ]
+            },
+            {
+              "created_at": "2022-08-08T23:15:45+00:00",
+              "delivery_partner_id": 22,
+              "bag_id": 19207348,
+              "delivery_awb_number": "4982512202351",
+              "updated_at": 1660000545,
+              "state_id": 14,
+              "store_id": 10182,
+              "state_type": "operational",
+              "status": "delivery_done",
+              "shipment_id": "16599806855311914452",
+              "id": 120514917,
+              "kafka_sync": false,
+              "bag_state_mapper": {
+                "id": 14,
+                "display_name": "Delivery Done",
+                "notify_customer": true,
+                "app_display_name": "Delivered",
+                "state_type": "operational",
+                "app_state_name": "delivered",
+                "name": "delivery_done",
+                "is_active": true,
+                "app_facing": true,
+                "journey_type": "forward"
+              },
+              "reasons": [
+                {
+                  "slug": "others",
+                  "display_name": "Others",
+                  "id": 90,
+                  "state": "bag_confirmed",
+                  "text": "FY62F14B8501F18E8FD3"
+                }
+              ]
+            }
+          ],
+          "item": {
+            "brand": "play clan",
+            "can_return": true,
+            "id": 95944,
+            "webstore_product_url": null,
+            "last_updated_at": 1660000486,
+            "slug_key": "play-clan-white-printed-t-shirt-387",
+            "attributes": {
+              "color": "White",
+              "gender": [
+                "Men"
+              ],
+              "season": "SS16",
+              "pattern": "Printed",
+              "essential": "Yes",
+              "brand_name": "play clan",
+              "net-quantity": "1 U",
+              "marketer-name": "Fynd",
+              "primary_color": "White",
+              "sleeve_length": "Short",
+              "marketer-address": "Fynd",
+              "primary_material": "Others",
+              "primary_color_hex": "FFFFFF"
+            },
+            "meta": {
+              "departments": [
+                21
+              ]
+            },
+            "gender": null,
+            "l3_category": 192,
+            "color": null,
+            "can_cancel": true,
+            "l3_category_name": "T-Shirts",
+            "l1_category": [
+              "Clothing"
+            ],
+            "brand_id": 85,
+            "branch_url": "http://go.fyndi.ng/iSyg/dXGX4QXldy",
+            "l2_category": [
+              "Polos & T-Shirts"
+            ],
+            "name": "White Printed T-Shirt",
+            "code": "MT-100 WHITE",
+            "department_id": 21,
+            "size": "S",
+            "image": [
+              "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/1.jpg",
+              "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/2.jpg",
+              "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/3.jpg",
+              "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/4.jpg"
+            ]
+          },
+          "reasons": [
+            {
+              "slug": "others",
+              "display_name": "Others",
+              "id": 90,
+              "state": "bag_confirmed",
+              "text": "FY62F14B8501F18E8FD3",
+              "bag_id": 19207348
+            }
+          ],
+          "article": {
+            "identifiers": {
+              "sku_code": "MT-100 WHITE_S"
+            },
+            "esp_modified": false,
+            "size": "S",
+            "code": "",
+            "raw_meta": null,
+            "set": {},
+            "is_set": false,
+            "seller_identifier": "MT-100 WHITE_S",
+            "return_config": {
+              "time": 30,
+              "unit": "days",
+              "returnable": true
+            },
+            "_id": "5f8a4751d2f36f00014ff8ed",
+            "uid": "5f8a4751d2f36f00014ff8ed",
+            "child_details": {}
+          },
+          "journey_type": "forward",
+          "current_operational_status": {
+            "created_at": "2022-08-08T23:15:45+00:00",
+            "delivery_partner_id": 22,
+            "bag_id": 19207348,
+            "delivery_awb_number": "4982512202351",
+            "updated_at": "2022-08-08T23:15:45+00:00",
+            "state_id": 14,
+            "store_id": 10182,
+            "state_type": "operational",
+            "status": "delivery_done",
+            "shipment_id": "16599806855311914452",
+            "id": 120514917,
+            "kafka_sync": false,
+            "bag_state_mapper": {
+              "id": 14,
+              "display_name": "Delivery Done",
+              "notify_customer": true,
+              "app_display_name": "Delivered",
+              "state_type": "operational",
+              "app_state_name": "delivered",
+              "name": "delivery_done",
+              "is_active": true,
+              "app_facing": true,
+              "journey_type": "forward"
+            },
+            "reasons": [
+              {
+                "slug": "others",
+                "display_name": "Others",
+                "id": 90,
+                "state": "bag_confirmed",
+                "text": "FY62F14B8501F18E8FD3"
+              }
+            ]
+          },
+          "dates": {
+            "order_created": "2022-08-08T23:14:45+00:00",
+            "delivery_date": "2022-08-08T23:15:45+00:00"
+          },
+          "prices": {
+            "price_effective": 10000,
+            "discount": 0,
+            "amount_paid": 10000,
+            "coupon_effective_discount": 0,
+            "delivery_charge": 0,
+            "fynd_credits": 0,
+            "cod_charges": 0,
+            "refund_credit": 0,
+            "cashback": 0,
+            "refund_amount": 10000,
+            "added_to_fynd_cash": false,
+            "cashback_applied": 0,
+            "gst_tax_percentage": 12,
+            "value_of_good": 8928.57,
+            "price_marked": 10000,
+            "transfer_price": 0,
+            "brand_calculated_amount": 10000,
+            "tax_collected_at_source": 0,
+            "tcs_percentage": 0,
+            "promotion_effective_discount": 0,
+            "coupon_value": 0,
+            "amount_paid_roundoff": 10000
+          },
+          "payment_methods": {
+            "COD": {
+              "amount": 10000
+            }
+          },
+          "gst_details": {
+            "gstin_code": "null",
+            "gst_tag": "IGST",
+            "hsn_code": "61091000",
+            "value_of_good": 8928.57,
+            "gst_tax_percentage": 12,
+            "is_default_hsn_code": false,
+            "brand_calculated_amount": 10000,
+            "tax_collected_at_source": 0,
+            "hsn_code_id": "6277837c5e4c6fdbc8be3e93",
+            "gst_fee": 1071.43,
+            "igst_tax_percentage": 12,
+            "sgst_tax_percentage": 0,
+            "cgst_tax_percentage": 0,
+            "igst_gst_fee": 1071.43,
+            "cgst_gst_fee": "0",
+            "sgst_gst_fee": "0"
+          },
+          "brand": {
+            "credit_note_allowed": false,
+            "id": 85,
+            "script_last_ran": null,
+            "pickup_location": null,
+            "invoice_prefix": "pc",
+            "brand_name": "play clan",
+            "is_virtual_invoice": false,
+            "created_on": 1452571237,
+            "modified_on": 1623871060,
+            "company": 61,
+            "logo": "https://hdn-1.fynd.com/brands/pictures/square-logo/original/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg",
+            "credit_note_expiry_days": null,
+            "start_date": null
+          },
+          "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
+          "affiliate_bag_details": {
+            "affiliate_bag_id": "19207348",
+            "affiliate_order_id": "FY62F14B8501F18E8FD3",
+            "affiliate_meta": {
+              "fynd": {
+                "fulfilment_identifier": "pulse"
+              },
+              "channel_shipment_id": null,
+              "channel_order_id": null,
+              "due_date": null,
+              "is_priority": false,
+              "box_type": null,
+              "coupon_code": null,
+              "size_level_total_qty": 924,
+              "loyalty_discount": 0,
+              "employee_discount": 0
+            },
+            "loyalty_discount": 0,
+            "employee_discount": 0
+          },
+          "meta": {},
+          "applied_promos": []
+        }
+      ],
+      "qc_required": null,
+      "requested_dp_conf": {
+        "awb_type": "express",
+        "exclude_dps": [
+          27,
+          29
+        ],
+        "ewbn": null,
+        "id": 22,
+        "is_dp_assigned_manually": true
+      },
+      "restore_coupon": false,
+      "restore_promos": {},
+      "rto_address": {
+        "store_address_json": {
+          "area": "",
+          "city": "MUMBAI SUBURBAN",
+          "email": "javedkazi@gofynd.com",
+          "phone": "918286865180",
+          "state": "MAHARASHTRA",
+          "country": "INDIA",
+          "pincode": "400093",
+          "version": "1.0",
+          "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
+          "address2": "",
+          "landmark": "Opposite MIDC police station",
+          "latitude": 19.1174798,
+          "longitude": 72.8691603,
+          "created_at": "2022-05-24 18:35:09",
+          "updated_at": "2022-05-24 18:35:09",
+          "address_type": "store",
+          "contact_person": "Javed",
+          "address_category": "store"
+        },
+        "name": "Fuschia",
+        "longitude": 72.8292187,
+        "company_id": 61,
+        "location_type": "mall",
+        "latitude": 19.0551125,
+        "id": 10182,
+        "code": "FFSPS",
+        "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
+        "address2": "",
+        "city": "MUMBAI SUBURBAN",
+        "state": "MAHARASHTRA",
+        "country": "INDIA",
+        "pincode": "400093",
+        "store_email": "javedkazi@gofynd.com",
+        "contact_person": "Javed",
+        "phone": "918286865180"
+      },
+      "search_key": {
+        "shipment_id": "914452",
+        "order_id": "8E8FD3"
+      },
+      "shipment": {
+        "type": "shipment",
+        "tags": [
+          "bag"
+        ],
+        "billing_address_json": {
+          "area": "Bhagyoday Society",
+          "city": "Palanpur",
+          "email": "",
+          "phone": "7621937989",
+          "state": "Gujarat",
+          "country": "India",
+          "pincode": "385001",
+          "version": "1.0",
+          "address1": "11",
+          "address2": "",
+          "landmark": "mansarovar road",
+          "latitude": 24.1724338,
+          "longitude": 72.434581,
+          "created_at": "2022-08-08 23:14:45",
+          "updated_at": "2022-08-08 23:14:45",
+          "address_type": "home",
+          "contact_person": "Rahul",
+          "address_category": "billing"
+        },
+        "id": "16599806855311914452",
+        "previous_shipment_id": null,
+        "meta": {
+          "dp_id": "7",
+          "weight": 250,
+          "external": {},
+          "formatted": {
+            "max": "Mon, 15 Aug",
+            "min": "Sat, 13 Aug"
+          },
+          "timestamp": {
+            "max": 1660585474,
+            "min": 1660412674
+          },
+          "bag_weight": {
+            "19207348": 250
+          },
+          "debug_info": {
+            "stormbreaker_uuid": "06647bed-59ec-4f36-ad92-3057f991883f"
+          },
+          "dp_options": {
+            "7": {
+              "area_code": {
+                "to_pincode": null,
+                "from_pincode": null
+              },
+              "f_priority": 2,
+              "operations": [
+                "inter_city"
+              ],
+              "r_priority": 1,
+              "fm_priority": 2,
+              "lm_priority": 2,
+              "payment_mode": "all",
+              "rvp_priority": 1,
+              "assign_dp_from_sb": true,
+              "external_account_id": null,
+              "internal_account_id": "7"
+            },
+            "29": {
+              "area_code": {
+                "to_pincode": null,
+                "from_pincode": null
+              },
+              "f_priority": 4,
+              "operations": [
+                "inter_city"
+              ],
+              "r_priority": 3,
+              "fm_priority": 4,
+              "lm_priority": 4,
+              "payment_mode": "all",
+              "rvp_priority": 3,
+              "assign_dp_from_sb": true,
+              "external_account_id": null,
+              "internal_account_id": "29"
+            },
+            "36": {
+              "area_code": {
+                "to_pincode": null,
+                "from_pincode": null
+              },
+              "f_priority": 6,
+              "operations": [
+                "inter_city"
+              ],
+              "r_priority": -1,
+              "fm_priority": 6,
+              "lm_priority": 6,
+              "payment_mode": "all",
+              "rvp_priority": -1,
+              "assign_dp_from_sb": true,
+              "external_account_id": null,
+              "internal_account_id": "36"
+            },
+            "37": {
+              "area_code": {
+                "to_pincode": null,
+                "from_pincode": null
+              },
+              "f_priority": 7,
+              "operations": [
+                "inter_city"
+              ],
+              "r_priority": -1,
+              "fm_priority": 7,
+              "lm_priority": 7,
+              "payment_mode": "all",
+              "rvp_priority": -1,
+              "assign_dp_from_sb": true,
+              "external_account_id": null,
+              "internal_account_id": "37"
+            }
+          },
+          "order_type": null,
+          "dp_sort_key": "fm_priority",
+          "ewaybill_info": {},
+          "packaging_name": "POLYB_M_1411P5",
+          "assign_dp_from_sb": true,
+          "same_store_available": false,
+          "fulfilment_priority_text": null,
+          "store_invoice_updated_date": "2022-08-08T23:15:20+00:00",
+          "auto_trigger_dp_assignment_ACF": true
+        },
+        "fynd_order_id": "FY62F14B8501F18E8FD3",
+        "delivery_awb_number": "4982512202351",
+        "lock_status": "",
+        "pdf_links": {
+          "label_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a4.pdf",
+          "label_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a6.pdf",
+          "label_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_pos.pdf",
+          "invoice_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a4.pdf",
+          "invoice_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a6.pdf",
+          "label_type": "fynd",
+          "invoice_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_pos.pdf",
+          "invoice_type": "fynd"
+        },
+        "parent_type": null,
+        "store_invoice_id": "1659980720191361",
+        "delivery_address_json": {
+          "area": "Bhagyoday Society",
+          "city": "Palanpur",
+          "email": "",
+          "phone": "7621937989",
+          "state": "Gujarat",
+          "country": "India",
+          "pincode": "385001",
+          "version": "1.0",
+          "address1": "11",
+          "address2": "",
+          "landmark": "mansarovar road",
+          "latitude": 24.1724338,
+          "longitude": 72.434581,
+          "created_at": "2022-08-08T23:14:45+00:00",
+          "updated_at": "2022-08-08T23:14:45+00:00",
+          "address_type": "home",
+          "contact_person": "Rahul",
+          "address_category": "delivery",
+          "name": "Rahul",
+          "address": "11"
+        },
+        "created_at": 1660000486,
+        "hand_over_contact_json": {
+          "email": "",
+          "phone": "7621937989",
+          "version": "1.0",
+          "created_at": "2022-08-08 23:14:45",
+          "updated_at": "2022-08-08 23:14:45",
+          "contact_person": "Rahul"
+        },
+        "parent_id": "",
+        "is_active": true,
+        "affiliate_id": "5dd3ce1f1662684aa7019f1e",
+        "affiliate_shipment_id": "16599806855311914452",
+        "fulfilment_priority": 10,
+        "credit_note_id": null,
+        "eway_bill_id": null,
+        "packaging_type": "POLYB_M_1411P5"
+      },
+      "shipment_details": {
+        "dp_id": "7",
+        "dp_options": {
+          "7": {
+            "area_code": {
+              "to_pincode": null,
+              "from_pincode": null
+            },
+            "f_priority": 2,
+            "operations": [
+              "inter_city"
+            ],
+            "r_priority": 1,
+            "fm_priority": 2,
+            "lm_priority": 2,
+            "payment_mode": "all",
+            "rvp_priority": 1,
+            "assign_dp_from_sb": true,
+            "external_account_id": null,
+            "internal_account_id": "7"
+          },
+          "29": {
+            "area_code": {
+              "to_pincode": null,
+              "from_pincode": null
+            },
+            "f_priority": 4,
+            "operations": [
+              "inter_city"
+            ],
+            "r_priority": 3,
+            "fm_priority": 4,
+            "lm_priority": 4,
+            "payment_mode": "all",
+            "rvp_priority": 3,
+            "assign_dp_from_sb": true,
+            "external_account_id": null,
+            "internal_account_id": "29"
+          },
+          "36": {
+            "area_code": {
+              "to_pincode": null,
+              "from_pincode": null
+            },
+            "f_priority": 6,
+            "operations": [
+              "inter_city"
+            ],
+            "r_priority": -1,
+            "fm_priority": 6,
+            "lm_priority": 6,
+            "payment_mode": "all",
+            "rvp_priority": -1,
+            "assign_dp_from_sb": true,
+            "external_account_id": null,
+            "internal_account_id": "36"
+          },
+          "37": {
+            "area_code": {
+              "to_pincode": null,
+              "from_pincode": null
+            },
+            "f_priority": 7,
+            "operations": [
+              "inter_city"
+            ],
+            "r_priority": -1,
+            "fm_priority": 7,
+            "lm_priority": 7,
+            "payment_mode": "all",
+            "rvp_priority": -1,
+            "assign_dp_from_sb": true,
+            "external_account_id": null,
+            "internal_account_id": "37"
+          }
+        }
+      },
+      "shipment_gst": {
+        "value_of_good": 8928.57,
+        "gst_fee": 1071.43,
+        "brand_calculated_amount": 10000,
+        "tax_collected_at_source": 0,
+        "gstin_code": "null"
+      },
+      "shipment_quantity": 1,
+      "shipment_status": {
+        "created_at": 1660000545,
+        "shipment_id": "16599806855311914452",
+        "status": "delivery_done",
+        "bag_list": [
+          "19207348"
+        ],
+        "id": 78707677,
+        "current_shipment_status": "delivery_done",
+        "status_created_at": 1660000545
+      },
+      "shipment_status_history": [
+        {
+          "created_at": "2022-08-08T23:14:46+00:00",
+          "shipment_id": "16599806855311914452",
+          "status": "pending",
+          "bag_list": [
+            "19207348"
+          ],
+          "id": 78707571
+        },
+        {
+          "created_at": "2022-08-08T23:14:46+00:00",
+          "shipment_id": "16599806855311914452",
+          "status": "placed",
+          "bag_list": [
+            "19207348"
+          ],
+          "id": 78707572
+        },
+        {
+          "created_at": "2022-08-08T23:15:12+00:00",
+          "shipment_id": "16599806855311914452",
+          "status": "bag_confirmed",
+          "bag_list": [
+            "19207348"
+          ],
+          "id": 78707602
+        },
+        {
+          "created_at": "2022-08-08T23:15:20+00:00",
+          "shipment_id": "16599806855311914452",
+          "status": "bag_invoiced",
+          "bag_list": [
+            "19207348"
+          ],
+          "id": 78707605
+        },
+        {
+          "created_at": "2022-08-08T23:15:20+00:00",
+          "shipment_id": "16599806855311914452",
+          "status": "ready_for_dp_assignment",
+          "bag_list": [
+            "19207348"
+          ],
+          "id": 78707606
+        },
+        {
+          "created_at": "2022-08-08T23:15:23+00:00",
+          "shipment_id": "16599806855311914452",
+          "status": "dp_assigned",
+          "bag_list": [
+            "19207348"
+          ],
+          "id": 78707608
+        },
+        {
+          "created_at": "2022-08-08T23:15:33+00:00",
+          "shipment_id": "16599806855311914452",
+          "status": "bag_packed",
+          "bag_list": [
+            "19207348"
+          ],
+          "id": 78707658
+        },
+        {
+          "created_at": "2022-08-08T23:15:33+00:00",
+          "shipment_id": "16599806855311914452",
+          "status": "bag_picked",
+          "bag_list": [
+            "19207348"
+          ],
+          "id": 78707659
+        },
+        {
+          "created_at": "2022-08-08T23:15:45+00:00",
+          "shipment_id": "16599806855311914452",
+          "status": "delivery_done",
+          "bag_list": [
+            "19207348"
+          ],
+          "id": 78707677,
+          "current_shipment_status": "delivery_done",
+          "status_created_at": "2022-08-08T23:15:45+00:00"
+        }
+      ],
+      "shipment_update_time": 1659980745.2105737,
+      "shipment_value": 10000,
+      "tags": [
+        "bag"
+      ],
+      "total_shipment_bags": 1,
+      "total_shipments_in_order": 1,
+      "transaction_type": "shipment",
+      "user": {
+        "email": "rahulrathod@gofynd.com",
+        "user_oid": "000000000000000014402534",
+        "last_name": "Rathod",
+        "gender": "male",
+        "mongo_user_id": "14402534",
+        "mobile": "7621937989",
+        "first_name": "Rahul",
+        "id": 17952150,
+        "is_anonymous_user": false
+      },
+      "weight": {
+        "value": 250,
+        "unit": "gram"
+      },
+      "id": "62f14b93af6c692530bb0df6"
+    }
+  ],
+  "page": {
+    "type": "number",
+    "size": 1,
+    "current": 1,
+    "has_next": false,
+    "item_total": 1
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBagById
+
+
+
+
+
+```swift
+client.order.getBagById(bagId: bagId, channelBagId: channelBagId, channelId: channelId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| bagId | String? | no |  |   
+| channelBagId | String? | no |  |   
+| channelId | String? | no |  |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[BagDetailsPlatformResponse](#BagDetailsPlatformResponse)
+
+Successfully retrived shipment details!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "shipment_id": "16599806855311914452",
+  "affiliate_details": {
+    "id": "5dd3ce1f1662684aa7019f1e",
+    "affiliate_bag_id": "19207348",
+    "affiliate_order_id": "FY62F14B8501F18E8FD3",
+    "company_affiliate_tag": "OpexTesting",
+    "affiliate_id": "5dd3ce1f1662684aa7019f1e",
+    "affiliate_shipment_id": "16599806855311914452",
+    "shipment_meta": {
+      "dp_id": "7",
+      "weight": 250,
+      "external": {},
+      "formatted": {
+        "max": "Mon, 15 Aug",
+        "min": "Sat, 13 Aug"
+      },
+      "timestamp": {
+        "max": 1660585474,
+        "min": 1660412674
+      },
+      "bag_weight": {
+        "19207348": 250
+      },
+      "debug_info": {
+        "stormbreaker_uuid": "06647bed-59ec-4f36-ad92-3057f991883f"
+      },
+      "dp_options": {
+        "7": {
+          "area_code": {
+            "to_pincode": null,
+            "from_pincode": null
+          },
+          "f_priority": 2,
+          "operations": [
+            "inter_city"
+          ],
+          "r_priority": 1,
+          "fm_priority": 2,
+          "lm_priority": 2,
+          "payment_mode": "all",
+          "rvp_priority": 1,
+          "assign_dp_from_sb": true,
+          "external_account_id": null,
+          "internal_account_id": "7"
+        },
+        "29": {
+          "area_code": {
+            "to_pincode": null,
+            "from_pincode": null
+          },
+          "f_priority": 4,
+          "operations": [
+            "inter_city"
+          ],
+          "r_priority": 3,
+          "fm_priority": 4,
+          "lm_priority": 4,
+          "payment_mode": "all",
+          "rvp_priority": 3,
+          "assign_dp_from_sb": true,
+          "external_account_id": null,
+          "internal_account_id": "29"
+        },
+        "36": {
+          "area_code": {
+            "to_pincode": null,
+            "from_pincode": null
+          },
+          "f_priority": 6,
+          "operations": [
+            "inter_city"
+          ],
+          "r_priority": -1,
+          "fm_priority": 6,
+          "lm_priority": 6,
+          "payment_mode": "all",
+          "rvp_priority": -1,
+          "assign_dp_from_sb": true,
+          "external_account_id": null,
+          "internal_account_id": "36"
+        },
+        "37": {
+          "area_code": {
+            "to_pincode": null,
+            "from_pincode": null
+          },
+          "f_priority": 7,
+          "operations": [
+            "inter_city"
+          ],
+          "r_priority": -1,
+          "fm_priority": 7,
+          "lm_priority": 7,
+          "payment_mode": "all",
+          "rvp_priority": -1,
+          "assign_dp_from_sb": true,
+          "external_account_id": null,
+          "internal_account_id": "37"
+        }
+      },
+      "order_type": null,
+      "dp_sort_key": "fm_priority",
+      "ewaybill_info": {},
+      "packaging_name": "POLYB_M_1411P5",
+      "assign_dp_from_sb": true,
+      "same_store_available": false,
+      "fulfilment_priority_text": null,
+      "store_invoice_updated_date": "2022-08-08T23:15:20+00:00",
+      "auto_trigger_dp_assignment_ACF": true
+    },
+    "affiliate_meta": {
+      "fynd": {
+        "fulfilment_identifier": "pulse"
+      },
+      "channel_shipment_id": null,
+      "channel_order_id": null,
+      "due_date": null,
+      "is_priority": false,
+      "box_type": null,
+      "coupon_code": null,
+      "size_level_total_qty": 924,
+      "loyalty_discount": 0,
+      "employee_discount": 0
+    },
+    "affiliate_store_id": "10182",
+    "pdf_links": {
+      "label_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a4.pdf",
+      "label_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a6.pdf",
+      "label_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_pos.pdf",
+      "invoice_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a4.pdf",
+      "invoice_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a6.pdf",
+      "label_type": "fynd",
+      "invoice_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_pos.pdf",
+      "invoice_type": "fynd"
+    },
+    "config": {
+      "id": "5dd3ce1f1662684aa7019f1e",
+      "meta": [],
+      "name": "OpexTesting",
+      "owner": "000000000000000000000020",
+      "token": "np0tHm04",
+      "secret": "dTSEQkEE7",
+      "createdAt": null,
+      "updatedAt": null,
+      "description": "Opex testing app",
+      "dp_assignment": true,
+      "app_company_id": 61,
+      "article_assignment": {
+        "level": "multi-companies",
+        "strategy": "optimal"
+      },
+      "force_reassignment": false,
+      "post_order_reassignment": true
+    }
+  },
+  "app_id": "5dd3ce1f1662684aa7019f1e",
+  "article_details": {
+    "status": {
+      "delivery_done": {
+        "5f8a4751d2f36f00014ff8ed": {
+          "uid": "5f8a4751d2f36f00014ff8ed",
+          "_id": "5f8a4751d2f36f00014ff8ed",
+          "is_set": false,
+          "bag_ids": [
+            19207348
+          ],
+          "quantity": 1,
+          "reasons": {
+            "90": [
+              {
+                "slug": "others",
+                "display_name": "Others",
+                "id": 90,
+                "state": "bag_confirmed",
+                "text": "FY62F14B8501F18E8FD3",
+                "bag_id": 19207348
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "bag_status_history": [
+    {
+      "created_at": "2022-08-08T23:14:46+00:00",
+      "delivery_partner_id": null,
+      "bag_id": 19207348,
+      "delivery_awb_number": null,
+      "updated_at": "2022-08-08T23:14:46+00:00",
+      "state_id": 89,
+      "store_id": 10182,
+      "state_type": "operational",
+      "status": "pending",
+      "shipment_id": "16599806855311914452",
+      "id": 120514809,
+      "kafka_sync": false,
+      "bag_state_mapper": {
+        "id": 89,
+        "display_name": "Pending",
+        "notify_customer": true,
+        "app_display_name": "Pending",
+        "state_type": "operational",
+        "app_state_name": "pending",
+        "name": "pending",
+        "is_active": true,
+        "app_facing": true,
+        "journey_type": "forward"
+      },
+      "reasons": []
+    },
+    {
+      "created_at": "2022-08-08T23:14:46+00:00",
+      "delivery_partner_id": null,
+      "bag_id": 19207348,
+      "delivery_awb_number": null,
+      "updated_at": "2022-08-08T23:14:46+00:00",
+      "state_id": 1,
+      "store_id": 10182,
+      "state_type": "operational",
+      "status": "placed",
+      "shipment_id": "16599806855311914452",
+      "id": 120514810,
+      "kafka_sync": false,
+      "bag_state_mapper": {
+        "id": 1,
+        "display_name": "Placed",
+        "notify_customer": true,
+        "app_display_name": "Processing",
+        "state_type": "operational",
+        "app_state_name": "processing",
+        "name": "placed",
+        "is_active": true,
+        "app_facing": true,
+        "journey_type": "forward"
+      },
+      "reasons": []
+    },
+    {
+      "created_at": "2022-08-08T23:15:14+00:00",
+      "delivery_partner_id": null,
+      "bag_id": 19207348,
+      "delivery_awb_number": null,
+      "updated_at": "2022-08-08T23:15:14+00:00",
+      "state_id": 2,
+      "store_id": 10182,
+      "state_type": "operational",
+      "status": "bag_confirmed",
+      "shipment_id": "16599806855311914452",
+      "id": 120514842,
+      "kafka_sync": false,
+      "bag_state_mapper": {
+        "id": 2,
+        "display_name": "Confirmed",
+        "notify_customer": false,
+        "app_display_name": "Confirmed",
+        "state_type": "operational",
+        "app_state_name": "confirmed",
+        "name": "bag_confirmed",
+        "is_active": true,
+        "app_facing": true,
+        "journey_type": "forward"
+      },
+      "reasons": [
+        {
+          "slug": "others",
+          "display_name": "Others",
+          "id": 90,
+          "state": "bag_confirmed",
+          "text": "FY62F14B8501F18E8FD3n"
+        }
+      ]
+    },
+    {
+      "created_at": "2022-08-08T23:15:20+00:00",
+      "delivery_partner_id": null,
+      "bag_id": 19207348,
+      "delivery_awb_number": null,
+      "updated_at": "2022-08-08T23:15:20+00:00",
+      "state_id": 91,
+      "store_id": 10182,
+      "state_type": "operational",
+      "status": "bag_invoiced",
+      "shipment_id": "16599806855311914452",
+      "id": 120514845,
+      "kafka_sync": false,
+      "bag_state_mapper": {
+        "id": 91,
+        "display_name": "Bag Invoiced",
+        "notify_customer": false,
+        "app_display_name": "Bag Invoiced",
+        "state_type": "operational",
+        "app_state_name": "bag_invoiced",
+        "name": "bag_invoiced",
+        "is_active": true,
+        "app_facing": false,
+        "journey_type": "forward"
+      },
+      "reasons": []
+    },
+    {
+      "created_at": "2022-08-08T23:15:20+00:00",
+      "delivery_partner_id": null,
+      "bag_id": 19207348,
+      "delivery_awb_number": null,
+      "updated_at": "2022-08-08T23:15:20+00:00",
+      "state_id": 113,
+      "store_id": 10182,
+      "state_type": "operational",
+      "status": "ready_for_dp_assignment",
+      "shipment_id": "16599806855311914452",
+      "id": 120514846,
+      "kafka_sync": false,
+      "bag_state_mapper": {
+        "id": 113,
+        "display_name": "Ready For Dp Assignment",
+        "notify_customer": false,
+        "app_display_name": "Ready For Dp Assignment",
+        "state_type": "operational",
+        "app_state_name": "ready_for_dp_assignment",
+        "name": "ready_for_dp_assignment",
+        "is_active": true,
+        "app_facing": false,
+        "journey_type": "forward"
+      },
+      "reasons": []
+    },
+    {
+      "created_at": "2022-08-08T23:15:23+00:00",
+      "delivery_partner_id": 22,
+      "bag_id": 19207348,
+      "delivery_awb_number": "4982512202351",
+      "updated_at": "2022-08-08T23:15:23+00:00",
+      "state_id": 7,
+      "store_id": 10182,
+      "state_type": "operational",
+      "status": "dp_assigned",
+      "shipment_id": "16599806855311914452",
+      "id": 120514848,
+      "kafka_sync": false,
+      "bag_state_mapper": {
+        "id": 7,
+        "display_name": "DP Assigned",
+        "notify_customer": false,
+        "app_display_name": "DP Assigned",
+        "state_type": "operational",
+        "app_state_name": "dp_assigned",
+        "name": "dp_assigned",
+        "is_active": true,
+        "app_facing": true,
+        "journey_type": "forward"
+      },
+      "reasons": []
+    },
+    {
+      "created_at": "2022-08-08T23:15:33+00:00",
+      "delivery_partner_id": 22,
+      "bag_id": 19207348,
+      "delivery_awb_number": "4982512202351",
+      "updated_at": "2022-08-08T23:15:33+00:00",
+      "state_id": 8,
+      "store_id": 10182,
+      "state_type": "operational",
+      "status": "bag_packed",
+      "shipment_id": "16599806855311914452",
+      "id": 120514898,
+      "kafka_sync": false,
+      "bag_state_mapper": {
+        "id": 8,
+        "display_name": "Bag Packed",
+        "notify_customer": true,
+        "app_display_name": "Bag Packed",
+        "state_type": "operational",
+        "app_state_name": "bag_packed",
+        "name": "bag_packed",
+        "is_active": true,
+        "app_facing": true,
+        "journey_type": "forward"
+      },
+      "reasons": [
+        {
+          "slug": "missed_state_ingestion",
+          "display_name": "Missed state is ingested",
+          "id": 162,
+          "state": "missed_state",
+          "text": "Missed state is ingested"
+        }
+      ]
+    },
+    {
+      "created_at": "2022-08-08T23:15:33+00:00",
+      "delivery_partner_id": 22,
+      "bag_id": 19207348,
+      "delivery_awb_number": "4982512202351",
+      "updated_at": "2022-08-08T23:15:33+00:00",
+      "state_id": 12,
+      "store_id": 10182,
+      "state_type": "operational",
+      "status": "bag_picked",
+      "shipment_id": "16599806855311914452",
+      "id": 120514899,
+      "kafka_sync": false,
+      "bag_state_mapper": {
+        "id": 12,
+        "display_name": "In Transit",
+        "notify_customer": false,
+        "app_display_name": "In Transit",
+        "state_type": "operational",
+        "app_state_name": "in_transit",
+        "name": "bag_picked",
+        "is_active": true,
+        "app_facing": true,
+        "journey_type": "forward"
+      },
+      "reasons": [
+        {
+          "slug": "others",
+          "display_name": "Others",
+          "id": 90,
+          "state": "bag_confirmed",
+          "text": "FY62F14B8501F18E8FD3"
+        }
+      ]
+    },
+    {
+      "created_at": "2022-08-08T23:15:45+00:00",
+      "delivery_partner_id": 22,
+      "bag_id": 19207348,
+      "delivery_awb_number": "4982512202351",
+      "updated_at": "2022-08-08T23:15:45+00:00",
+      "state_id": 14,
+      "store_id": 10182,
+      "state_type": "operational",
+      "status": "delivery_done",
+      "shipment_id": "16599806855311914452",
+      "id": 120514917,
+      "kafka_sync": false,
+      "bag_state_mapper": {
+        "id": 14,
+        "display_name": "Delivery Done",
+        "notify_customer": true,
+        "app_display_name": "Delivered",
+        "state_type": "operational",
+        "app_state_name": "delivered",
+        "name": "delivery_done",
+        "is_active": true,
+        "app_facing": true,
+        "journey_type": "forward"
+      },
+      "reasons": [
+        {
+          "slug": "others",
+          "display_name": "Others",
+          "id": 90,
+          "state": "bag_confirmed",
+          "text": "FY62F14B8501F18E8FD3"
+        }
+      ]
+    }
+  ],
+  "bags": [
+    {
+      "id": 19207348,
+      "display_name": "Bag",
+      "entity_type": "bag",
+      "type": "single",
+      "status": {
+        "is_returnable": true,
+        "can_be_cancelled": true,
+        "enable_tracking": false,
+        "is_customer_return_allowed": true,
+        "is_active": false
+      },
+      "financial_breakup": [
+        {
+          "price_effective": 10000,
+          "discount": 0,
+          "amount_paid": 10000,
+          "coupon_effective_discount": 0,
+          "delivery_charge": 0,
+          "fynd_credits": 0,
+          "cod_charges": 0,
+          "refund_credit": 0,
+          "cashback": 0,
+          "refund_amount": 10000,
+          "added_to_fynd_cash": false,
+          "cashback_applied": 0,
+          "gst_tax_percentage": 12,
+          "value_of_good": 8928.57,
+          "price_marked": 10000,
+          "transfer_price": 0,
+          "brand_calculated_amount": 10000,
+          "tax_collected_at_source": 0,
+          "tcs_percentage": 0,
+          "promotion_effective_discount": 0,
+          "coupon_value": 0,
+          "amount_paid_roundoff": 10000,
+          "size": "S",
+          "total_units": 1,
+          "hsn_code": "61091000",
+          "identifiers": {
+            "sku_code": "MT-100 WHITE_S"
+          },
+          "item_name": "White Printed T-Shirt",
+          "gst_fee": 1071.43,
+          "gst_tag": "IGST"
+        }
+      ],
+      "bag_id": 19207348,
+      "bag_update_time": 1659980745.2105737,
+      "current_status": {
+        "created_at": "2022-08-08T23:15:45+00:00",
+        "delivery_partner_id": 22,
+        "bag_id": 19207348,
+        "delivery_awb_number": "4982512202351",
+        "updated_at": 1660000545,
+        "state_id": 14,
+        "store_id": 10182,
+        "state_type": "operational",
+        "status": "delivery_done",
+        "shipment_id": "16599806855311914452",
+        "id": 120514917,
+        "kafka_sync": false,
+        "bag_state_mapper": {
+          "id": 14,
+          "display_name": "Delivery Done",
+          "notify_customer": true,
+          "app_display_name": "Delivered",
+          "state_type": "operational",
+          "app_state_name": "delivered",
+          "name": "delivery_done",
+          "is_active": true,
+          "app_facing": true,
+          "journey_type": "forward"
+        }
+      },
+      "bag_status": [
+        {
+          "created_at": "2022-08-08T23:14:46+00:00",
+          "delivery_partner_id": null,
+          "bag_id": 19207348,
+          "delivery_awb_number": null,
+          "updated_at": 1660000486,
+          "state_id": 89,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "pending",
+          "shipment_id": "16599806855311914452",
+          "id": 120514809,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 89,
+            "display_name": "Pending",
+            "notify_customer": true,
+            "app_display_name": "Pending",
+            "state_type": "operational",
+            "app_state_name": "pending",
+            "name": "pending",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": []
+        },
+        {
+          "created_at": "2022-08-08T23:14:46+00:00",
+          "delivery_partner_id": null,
+          "bag_id": 19207348,
+          "delivery_awb_number": null,
+          "updated_at": 1660000486,
+          "state_id": 1,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "placed",
+          "shipment_id": "16599806855311914452",
+          "id": 120514810,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 1,
+            "display_name": "Placed",
+            "notify_customer": true,
+            "app_display_name": "Processing",
+            "state_type": "operational",
+            "app_state_name": "processing",
+            "name": "placed",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": []
+        },
+        {
+          "created_at": "2022-08-08T23:15:14+00:00",
+          "delivery_partner_id": null,
+          "bag_id": 19207348,
+          "delivery_awb_number": null,
+          "updated_at": 1660000514,
+          "state_id": 2,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "bag_confirmed",
+          "shipment_id": "16599806855311914452",
+          "id": 120514842,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 2,
+            "display_name": "Confirmed",
+            "notify_customer": false,
+            "app_display_name": "Confirmed",
+            "state_type": "operational",
+            "app_state_name": "confirmed",
+            "name": "bag_confirmed",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": [
+            {
+              "slug": "others",
+              "display_name": "Others",
+              "id": 90,
+              "state": "bag_confirmed",
+              "text": "FY62F14B8501F18E8FD3n"
+            }
+          ]
+        },
+        {
+          "created_at": "2022-08-08T23:15:20+00:00",
+          "delivery_partner_id": null,
+          "bag_id": 19207348,
+          "delivery_awb_number": null,
+          "updated_at": 1660000520,
+          "state_id": 91,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "bag_invoiced",
+          "shipment_id": "16599806855311914452",
+          "id": 120514845,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 91,
+            "display_name": "Bag Invoiced",
+            "notify_customer": false,
+            "app_display_name": "Bag Invoiced",
+            "state_type": "operational",
+            "app_state_name": "bag_invoiced",
+            "name": "bag_invoiced",
+            "is_active": true,
+            "app_facing": false,
+            "journey_type": "forward"
+          },
+          "reasons": []
+        },
+        {
+          "created_at": "2022-08-08T23:15:20+00:00",
+          "delivery_partner_id": null,
+          "bag_id": 19207348,
+          "delivery_awb_number": null,
+          "updated_at": 1660000520,
+          "state_id": 113,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "ready_for_dp_assignment",
+          "shipment_id": "16599806855311914452",
+          "id": 120514846,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 113,
+            "display_name": "Ready For Dp Assignment",
+            "notify_customer": false,
+            "app_display_name": "Ready For Dp Assignment",
+            "state_type": "operational",
+            "app_state_name": "ready_for_dp_assignment",
+            "name": "ready_for_dp_assignment",
+            "is_active": true,
+            "app_facing": false,
+            "journey_type": "forward"
+          },
+          "reasons": []
+        },
+        {
+          "created_at": "2022-08-08T23:15:23+00:00",
+          "delivery_partner_id": 22,
+          "bag_id": 19207348,
+          "delivery_awb_number": "4982512202351",
+          "updated_at": 1660000523,
+          "state_id": 7,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "dp_assigned",
+          "shipment_id": "16599806855311914452",
+          "id": 120514848,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 7,
+            "display_name": "DP Assigned",
+            "notify_customer": false,
+            "app_display_name": "DP Assigned",
+            "state_type": "operational",
+            "app_state_name": "dp_assigned",
+            "name": "dp_assigned",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": []
+        },
+        {
+          "created_at": "2022-08-08T23:15:33+00:00",
+          "delivery_partner_id": 22,
+          "bag_id": 19207348,
+          "delivery_awb_number": "4982512202351",
+          "updated_at": 1660000533,
+          "state_id": 8,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "bag_packed",
+          "shipment_id": "16599806855311914452",
+          "id": 120514898,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 8,
+            "display_name": "Bag Packed",
+            "notify_customer": true,
+            "app_display_name": "Bag Packed",
+            "state_type": "operational",
+            "app_state_name": "bag_packed",
+            "name": "bag_packed",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": [
+            {
+              "slug": "missed_state_ingestion",
+              "display_name": "Missed state is ingested",
+              "id": 162,
+              "state": "missed_state",
+              "text": "Missed state is ingested"
+            }
+          ]
+        },
+        {
+          "created_at": "2022-08-08T23:15:33+00:00",
+          "delivery_partner_id": 22,
+          "bag_id": 19207348,
+          "delivery_awb_number": "4982512202351",
+          "updated_at": 1660000533,
+          "state_id": 12,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "bag_picked",
+          "shipment_id": "16599806855311914452",
+          "id": 120514899,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 12,
+            "display_name": "In Transit",
+            "notify_customer": false,
+            "app_display_name": "In Transit",
+            "state_type": "operational",
+            "app_state_name": "in_transit",
+            "name": "bag_picked",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": [
+            {
+              "slug": "others",
+              "display_name": "Others",
+              "id": 90,
+              "state": "bag_confirmed",
+              "text": "FY62F14B8501F18E8FD3"
+            }
+          ]
+        },
+        {
+          "created_at": "2022-08-08T23:15:45+00:00",
+          "delivery_partner_id": 22,
+          "bag_id": 19207348,
+          "delivery_awb_number": "4982512202351",
+          "updated_at": 1660000545,
+          "state_id": 14,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "delivery_done",
+          "shipment_id": "16599806855311914452",
+          "id": 120514917,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 14,
+            "display_name": "Delivery Done",
+            "notify_customer": true,
+            "app_display_name": "Delivered",
+            "state_type": "operational",
+            "app_state_name": "delivered",
+            "name": "delivery_done",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": [
+            {
+              "slug": "others",
+              "display_name": "Others",
+              "id": 90,
+              "state": "bag_confirmed",
+              "text": "FY62F14B8501F18E8FD3"
+            }
+          ]
+        }
+      ],
+      "item": {
+        "brand": "play clan",
+        "can_return": true,
+        "id": 95944,
+        "webstore_product_url": null,
+        "last_updated_at": 1660000486,
+        "slug_key": "play-clan-white-printed-t-shirt-387",
+        "attributes": {
+          "color": "White",
+          "gender": [
+            "Men"
+          ],
+          "season": "SS16",
+          "pattern": "Printed",
+          "essential": "Yes",
+          "brand_name": "play clan",
+          "net-quantity": "1 U",
+          "marketer-name": "Fynd",
+          "primary_color": "White",
+          "sleeve_length": "Short",
+          "marketer-address": "Fynd",
+          "primary_material": "Others",
+          "primary_color_hex": "FFFFFF"
+        },
+        "meta": {
+          "departments": [
+            21
+          ]
+        },
+        "gender": null,
+        "l3_category": 192,
+        "color": null,
+        "can_cancel": true,
+        "l3_category_name": "T-Shirts",
+        "l1_category": [
+          "Clothing"
+        ],
+        "brand_id": 85,
+        "branch_url": "http://go.fyndi.ng/iSyg/dXGX4QXldy",
+        "l2_category": [
+          "Polos & T-Shirts"
+        ],
+        "name": "White Printed T-Shirt",
+        "code": "MT-100 WHITE",
+        "department_id": 21,
+        "size": "S",
+        "image": [
+          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/1.jpg",
+          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/2.jpg",
+          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/3.jpg",
+          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/4.jpg"
+        ]
+      },
+      "reasons": [
+        {
+          "slug": "others",
+          "display_name": "Others",
+          "id": 90,
+          "state": "bag_confirmed",
+          "text": "FY62F14B8501F18E8FD3",
+          "bag_id": 19207348
+        }
+      ],
+      "article": {
+        "identifiers": {
+          "sku_code": "MT-100 WHITE_S"
+        },
+        "esp_modified": false,
+        "size": "S",
+        "code": "",
+        "raw_meta": null,
+        "set": {},
+        "is_set": false,
+        "seller_identifier": "MT-100 WHITE_S",
+        "return_config": {
+          "time": 30,
+          "unit": "days",
+          "returnable": true
+        },
+        "_id": "5f8a4751d2f36f00014ff8ed",
+        "uid": "5f8a4751d2f36f00014ff8ed",
+        "child_details": {}
+      },
+      "journey_type": "forward",
+      "current_operational_status": {
+        "created_at": "2022-08-08T23:15:45+00:00",
+        "delivery_partner_id": 22,
+        "bag_id": 19207348,
+        "delivery_awb_number": "4982512202351",
+        "updated_at": "2022-08-08T23:15:45+00:00",
+        "state_id": 14,
+        "store_id": 10182,
+        "state_type": "operational",
+        "status": "delivery_done",
+        "shipment_id": "16599806855311914452",
+        "id": 120514917,
+        "kafka_sync": false,
+        "bag_state_mapper": {
+          "id": 14,
+          "display_name": "Delivery Done",
+          "notify_customer": true,
+          "app_display_name": "Delivered",
+          "state_type": "operational",
+          "app_state_name": "delivered",
+          "name": "delivery_done",
+          "is_active": true,
+          "app_facing": true,
+          "journey_type": "forward"
+        },
+        "reasons": [
+          {
+            "slug": "others",
+            "display_name": "Others",
+            "id": 90,
+            "state": "bag_confirmed",
+            "text": "FY62F14B8501F18E8FD3"
+          }
+        ]
+      },
+      "dates": {
+        "order_created": "2022-08-08T23:14:45+00:00",
+        "delivery_date": "2022-08-08T23:15:45+00:00"
+      },
+      "prices": {
+        "price_effective": 10000,
+        "discount": 0,
+        "amount_paid": 10000,
+        "coupon_effective_discount": 0,
+        "delivery_charge": 0,
+        "fynd_credits": 0,
+        "cod_charges": 0,
+        "refund_credit": 0,
+        "cashback": 0,
+        "refund_amount": 10000,
+        "added_to_fynd_cash": false,
+        "cashback_applied": 0,
+        "gst_tax_percentage": 12,
+        "value_of_good": 8928.57,
+        "price_marked": 10000,
+        "transfer_price": 0,
+        "brand_calculated_amount": 10000,
+        "tax_collected_at_source": 0,
+        "tcs_percentage": 0,
+        "promotion_effective_discount": 0,
+        "coupon_value": 0,
+        "amount_paid_roundoff": 10000
+      },
+      "payment_methods": {
+        "COD": {
+          "amount": 10000
+        }
+      },
+      "gst_details": {
+        "gstin_code": "null",
+        "gst_tag": "IGST",
+        "hsn_code": "61091000",
+        "value_of_good": 8928.57,
+        "gst_tax_percentage": 12,
+        "is_default_hsn_code": false,
+        "brand_calculated_amount": 10000,
+        "tax_collected_at_source": 0,
+        "hsn_code_id": "6277837c5e4c6fdbc8be3e93",
+        "gst_fee": 1071.43,
+        "igst_tax_percentage": 12,
+        "sgst_tax_percentage": 0,
+        "cgst_tax_percentage": 0,
+        "igst_gst_fee": 1071.43,
+        "cgst_gst_fee": "0",
+        "sgst_gst_fee": "0"
+      },
+      "brand": {
+        "credit_note_allowed": false,
+        "id": 85,
+        "script_last_ran": null,
+        "pickup_location": null,
+        "invoice_prefix": "pc",
+        "brand_name": "play clan",
+        "is_virtual_invoice": false,
+        "created_on": 1452571237,
+        "modified_on": 1623871060,
+        "company": 61,
+        "logo": "https://hdn-1.fynd.com/brands/pictures/square-logo/original/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg",
+        "credit_note_expiry_days": null,
+        "start_date": null
+      },
+      "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
+      "affiliate_bag_details": {
+        "affiliate_bag_id": "19207348",
+        "affiliate_order_id": "FY62F14B8501F18E8FD3",
+        "affiliate_meta": {
+          "fynd": {
+            "fulfilment_identifier": "pulse"
+          },
+          "channel_shipment_id": null,
+          "channel_order_id": null,
+          "due_date": null,
+          "is_priority": false,
+          "box_type": null,
+          "coupon_code": null,
+          "size_level_total_qty": 924,
+          "loyalty_discount": 0,
+          "employee_discount": 0
+        },
+        "loyalty_discount": 0,
+        "employee_discount": 0
+      },
+      "meta": {},
+      "applied_promos": []
+    }
+  ],
+  "brand": {
+    "credit_note_allowed": false,
+    "id": 85,
+    "script_last_ran": null,
+    "pickup_location": null,
+    "invoice_prefix": "pc",
+    "brand_name": "play clan",
+    "is_virtual_invoice": false,
+    "created_on": 1452571237,
+    "modified_on": 1623871060,
+    "company": 61,
+    "logo": "https://hdn-1.fynd.com/brands/pictures/square-logo/original/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg",
+    "credit_note_expiry_days": null,
+    "start_date": null
+  },
+  "cart_id": 41262745,
+  "comment": "",
+  "company": {
+    "modified_on": 1656409302,
+    "company_type": "distributor",
+    "id": 61,
+    "commission": 0,
+    "meta": {
+      "stage": "verified",
+      "address": [
+        {
+          "city": "GHORMACH",
+          "state": "BADGHIS",
+          "country": "AFGHANISTAN",
+          "pincode": 401209,
+          "address1": "A/204, SAI VANDAN",
+          "address2": "TULINJ ROAD, NALLASOPARA EAST",
+          "landmark": "Near Utsav Hotel",
+          "latitude": 35.6495457,
+          "longitude": 63.9113296,
+          "address_type": "office",
+          "country_code": "IN"
+        },
+        {
+          "city": "GHORMACH",
+          "state": "BADGHIS",
+          "country": "AFGHANISTAN",
+          "pincode": 401209,
+          "address1": "A/204, SAI VANDAN",
+          "address2": "TULINJ ROAD, NALLASOPARA EAST",
+          "landmark": "Near Utsav Hotel",
+          "latitude": 35.6495457,
+          "longitude": 63.9113296,
+          "address_type": "registered",
+          "country_code": "IN"
+        }
+      ],
+      "documents": {
+        "cin": {
+          "url": "https://fynd-obscuro-media-new.s3-accelerate.amazonaws.com/company/61/self/legal/documents/free/original/ZjGFzuE8_-20_Python_Libraries.pdf?AWSAccessKeyId=AKIAJU7QAWL4LO5KSCYA&Expires=1656409357&Signature=IC%2FgIDdSymHbSKJGT12Zq9zOe4M%3D",
+          "type": "cin",
+          "value": "L21700MH1907PLC000260",
+          "verified": true,
+          "legal_name": "FUCHSIA VINE DESIGNS PRIVATE LIMITED"
+        },
+        "gst": {
+          "type": "gst",
+          "value": "27AALCA0442L1ZM",
+          "verified": true,
+          "legal_name": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED"
+        },
+        "pan": {
+          "url": "https://fynd-obscuro-media-new.s3-accelerate.amazonaws.com/company/61/self/legal/documents/free/original/oURvMfX1p-2de4a88b_ticket.pdf?AWSAccessKeyId=AKIAJU7QAWL4LO5KSCYA&Expires=1656409357&Signature=lG1wi0G6cqtav0i9cOf3dFNBuNY%3D",
+          "type": "pan",
+          "value": "AALCA0442L",
+          "verified": true,
+          "legal_name": ""
+        },
+        "digital_signature": {
+          "url": "https://fynd-obscuro-media-new.s3-accelerate.amazonaws.com/company/61/self/legal/documents/free/original/iigdJTk27-3.png?AWSAccessKeyId=AKIAJU7QAWL4LO5KSCYA&Expires=1656409357&Signature=Nc38H2KxR1ymSZz8jVRQyUCXobs%3D",
+          "type": "digital_signature",
+          "value": "Aayush Jain",
+          "verified": true,
+          "legal_name": "Aayush Jain"
+        }
+      },
+      "business_info": "This is a description area to write about the company.",
+      "contact_details": {
+        "phone": [
+          {
+            "number": "7009853732",
+            "country_code": 91
+          },
+          {
+            "number": "9821012533",
+            "country_code": 91
+          }
+        ],
+        "emails": [
+          "aayushvjain@gofynd.com",
+          "abc@gmail.com",
+          "asmaidris1994@gmail.com"
+        ]
+      },
+      "business_details": {
+        "website": {
+          "url": "https://www.playclan.com"
+        }
+      },
+      "notification_emails": [
+        "pranavverma@gofynd.com",
+        "vermapranav28@gmail.com",
+        "vaishakhshetty@gofynd.com"
+      ]
+    },
+    "exchange_allowed": false,
+    "payment_procesing_charge": 0,
+    "tan_no": "11",
+    "vat_no": null,
+    "exchange_within_days": null,
+    "gst_number": "27AALCA0442L1ZM",
+    "created_on": 1452571141,
+    "company_name": "FUCHSIA VINE DESIGNS PRIVATE LIMITED",
+    "fynd_a_fit_available": false,
+    "return_allowed": true,
+    "return_within_days": 30,
+    "payment_type": "Happay",
+    "business_type": "ltd/pvt ltd",
+    "agreement_start_date": 1503532800,
+    "cst": null,
+    "pan_no": "AALCA0442L"
+  },
+  "coupon": {},
+  "delivery_address": {
+    "area": "Bhagyoday Society",
+    "city": "Palanpur",
+    "email": "",
+    "phone": "7621937989",
+    "state": "Gujarat",
+    "country": "India",
+    "pincode": "385001",
+    "version": "1.0",
+    "address1": "11",
+    "address2": "",
+    "landmark": "mansarovar road",
+    "latitude": 24.1724338,
+    "longitude": 72.434581,
+    "created_at": "2022-08-08T23:14:45+00:00",
+    "updated_at": "2022-08-08T23:14:45+00:00",
+    "address_type": "home",
+    "contact_person": "Rahul",
+    "address_category": "delivery",
+    "name": "Rahul",
+    "address": "11"
+  },
+  "delivery_slot": {
+    "slot": "By 17:00 PM",
+    "upper_bound": "2022-08-15T17:44:34+00:00",
+    "lower_bound": "2022-08-13T17:44:34+00:00",
+    "date": "2022-08-15T17:44:34+00:00",
+    "type": "order_window"
+  },
+  "dp_details": {
+    "id": 22,
+    "name": "fyndr",
+    "awb_no": "4982512202351",
+    "eway_bill_id": null,
+    "track_url": null,
+    "dp_charges": 110,
+    "dp_return_charges": 70,
+    "amount_handling_charges": 15,
+    "gst_tag": "sgst"
+  },
+  "einvoice_info": null,
+  "fallback_user": {
+    "email": "",
+    "mobile": "7621937989"
+  },
+  "fulfilling_store": {
+    "login_username": "TEST_FFSPS_61",
+    "mall_area": null,
+    "updated_at": "2022-05-19T15:46:52+00:00",
+    "packaging_material_count": 0,
+    "id": 10182,
+    "store_address_json": {
+      "area": "",
+      "city": "MUMBAI SUBURBAN",
+      "email": "javedkazi@gofynd.com",
+      "phone": "918286865180",
+      "state": "MAHARASHTRA",
+      "country": "INDIA",
+      "pincode": "400093",
+      "version": "1.0",
+      "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
+      "address2": "",
+      "landmark": "Opposite MIDC police station",
+      "latitude": 19.1174798,
+      "longitude": 72.8691603,
+      "created_at": "2022-05-24 18:35:09",
+      "updated_at": "2022-05-24 18:35:09",
+      "address_type": "store",
+      "contact_person": "Javed",
+      "address_category": "store"
+    },
+    "is_archived": false,
+    "meta": {
+      "stage": "verified",
+      "timing": [
+        {
+          "open": true,
+          "closing": {
+            "hour": 21,
+            "minute": 0
+          },
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "weekday": "monday"
+        },
+        {
+          "open": true,
+          "closing": {
+            "hour": 21,
+            "minute": 0
+          },
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "weekday": "tuesday"
+        },
+        {
+          "open": true,
+          "closing": {
+            "hour": 21,
+            "minute": 0
+          },
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "weekday": "wednesday"
+        },
+        {
+          "open": true,
+          "closing": {
+            "hour": 14,
+            "minute": 12
+          },
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "weekday": "thursday"
+        },
+        {
+          "open": true,
+          "closing": {
+            "hour": 21,
+            "minute": 0
+          },
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "weekday": "friday"
+        },
+        {
+          "open": true,
+          "closing": {
+            "hour": 21,
+            "minute": 0
+          },
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "weekday": "saturday"
+        },
+        {
+          "open": true,
+          "closing": {
+            "hour": 21,
+            "minute": 0
+          },
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "weekday": "sunday"
+        }
+      ],
+      "documents": {},
+      "gst_number": null,
+      "display_name": "Fuschia",
+      "gst_credentials": {
+        "e_invoice": {
+          "enabled": false
+        },
+        "e_waybill": {
+          "enabled": false
+        }
+      },
+      "notification_emails": [
+        "vaishakhshetty@gofynd.com"
+      ],
+      "product_return_config": {
+        "on_same_store": true
+      },
+      "additional_contact_details": {
+        "number": [
+          "91 - 8286865180"
+        ]
+      },
+      "ewaybill_portal_details": null
+    },
+    "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
+    "parent_store_id": null,
+    "alohomora_user_id": 11070,
+    "store_active_from": null,
+    "vat_no": null,
+    "longitude": 72.8292187,
+    "location_type": "mall",
+    "latitude": 19.0551125,
+    "created_at": "2020-01-15T05:30:41+00:00",
+    "fulfillment_channel": "pulse",
+    "brand_id": null,
+    "is_active": false,
+    "name": "Fuschia",
+    "mall_name": null,
+    "company_id": 61,
+    "is_enabled_for_recon": false,
+    "code": "FFSPS",
+    "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
+    "address2": "",
+    "city": "MUMBAI SUBURBAN",
+    "state": "MAHARASHTRA",
+    "country": "INDIA",
+    "pincode": "400093",
+    "store_email": "javedkazi@gofynd.com",
+    "contact_person": "Javed",
+    "phone": "918286865180",
+    "brand_store_tags": [
+      "pulse"
+    ]
+  },
+  "fyndstore_emp": {},
+  "invoice": {
+    "updated_date": 1660000520,
+    "store_invoice_id": "1659980720191361",
+    "invoice_url": "https://fynd-recon-reports-mumbai.s3.amazonaws.com/invoice_labels/16599806855311914452_invoice_a4.pdf",
+    "label_url": "https://fynd-recon-reports-mumbai.s3.amazonaws.com/invoice_labels/16599806855311914452_invoice_pos.pdf"
+  },
+  "is_processing": false,
+  "journey_type": "forward",
+  "lock_status": false,
+  "no_of_bags_order": 1,
+  "operational_status": "delivery_done",
+  "order": {
+    "raw_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
+    "affiliate_order_date": "2022-08-08T23:14:45+00:00",
+    "total_order_value": 10000,
+    "transaction_id": "FY62F14B8501F18E8FD3",
+    "refund_by": "fynd",
+    "headers": {
+      "host": "fplt-gringotts-main-svc.default.svc.cluster.local",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
+      "cookie": "G_ENABLED_IDPS=google; f.session=s%3AHQX0JDLgWOHd8z7NOu-E9mT9yBDaqfPR.6T82v4OlerGY6lfKfATfojYQzDCtSRhEJkIA%2FyH%2Fz%2BM; ordering_store=s%3A15114.6VinzJtp1QRjsKZ52NWvXXPoTuLc38KYLxiLJSMl6CE",
+      "x-application-id": "5dd3ce1f1662684aa7019f1e",
+      "x-application-token": "np0tHm04",
+      "x-currency-code": "INR",
+      "authorization": "04a544ac-7e85-437f-b6d6-0adb694c4045",
+      "accept": "*/*",
+      "accept-encoding": "gzip, deflate",
+      "content-length": "17443",
+      "content-type": "text/plain; charset=utf-8",
+      "x-newrelic-id": "VQcHWVJVDhAHXFFVBAUEUVI=",
+      "x-newrelic-transaction": "PxQPAlJaXgNRVQUDVAgOAlUFFB8EBw8RVU4aWlsMDVQDBAgFUAIKWwAHA0NKQQEDAlBWAQ4AFTs=",
+      "request-source": "Fynd",
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
+      "source": "uniket-desktop",
+      "user_agent_version": null,
+      "deprecated": false
+    },
+    "id": 13030531,
+    "cod_charges": 0,
+    "collect_by": "fynd",
+    "tax_details": {
+      "gstin": null
+    },
+    "promotion_effective_discount": 0,
+    "affiliate_order_id": "FY62F14B8501F18E8FD3",
+    "meta": {
+      "files": [],
+      "staff": {},
+      "comment": "",
+      "extra_meta": {},
+      "order_type": "HomeDelivery",
+      "employee_id": null,
+      "payment_type": "fynd",
+      "mongo_cart_id": 41262745,
+      "order_platform": "platform-site",
+      "ordering_store": 15114,
+      "order_child_entities": [
+        "shipment",
+        "bag"
+      ]
+    },
+    "order_value": 10000,
+    "fynd_credits": 0,
+    "mode_of_payment": "FYND",
+    "discount": 0,
+    "payment_methods": {
+      "COD": {
+        "meta": {
+          "logo_url": {
+            "large": "https://hdn-1.fynd.com/payment/cod.png",
+            "small": "https://hdn-1.fynd.com/payment/cod.png"
+          },
+          "payment_id": "FY62F14B8501F18E8FD3",
+          "merchant_code": "",
+          "payment_gateway": "Fynd",
+          "payment_identifier": "11"
+        },
+        "mode": "COD",
+        "name": "COD",
+        "amount": 10000,
+        "refund_by": "fynd",
+        "collect_by": "fynd"
+      }
+    },
+    "fynd_order_id": "FY62F14B8501F18E8FD3",
+    "delivery_charges": 0,
+    "mongo_cart_id": 41262745,
+    "source": "uniket-desktop",
+    "created_time": 1660000485,
+    "payment_mode_id": 2,
+    "currency": "INR",
+    "coupon_value": 0,
+    "cashback_value": 0,
+    "cashback_applied": 0,
+    "ordering_channel": "FYND_STORE",
+    "user_id": 17952150,
+    "affiliate_id": "5dd3ce1f1662684aa7019f1e",
+    "ordering_channel_logo": "https://fynd-static.s3.amazonaws.com/mode_of_payment/fynd_store_logo.png",
+    "prices": {
+      "amount_paid": 10000,
+      "refund_amount": 10000,
+      "price_marked": 10000,
+      "cod_charges": 0,
+      "discount": 0,
+      "cashback_applied": 0,
+      "delivery_charge": 0,
+      "fynd_credits": 0,
+      "cashback": 0,
+      "price_effective": 10000,
+      "refund_credit": 0,
+      "value_of_good": 8928.57,
+      "coupon_value": 0,
+      "tax_collected_at_source": 0,
+      "promotion_effective_discount": 0,
+      "amount_paid_roundoff": 10000
+    }
+  },
+  "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
+  "order_source": "uniket-desktop",
+  "order_type": "forward",
+  "order_value": 10000,
+  "ordering_store": {
+    "login_username": null,
+    "mall_area": null,
+    "updated_at": "2022-04-21T14:44:10+00:00",
+    "packaging_material_count": 0,
+    "id": 15114,
+    "store_address_json": {
+      "area": "",
+      "city": "MUMBAI",
+      "email": "talha1891@gmail.com",
+      "phone": "918104556147",
+      "state": "MAHARASHTRA",
+      "country": "INDIA",
+      "pincode": "421301",
+      "version": "1.0",
+      "address1": "KALYAN, MAHARASHTRA 421301",
+      "address2": "",
+      "landmark": "",
+      "latitude": 73.1290596,
+      "longitude": 19.2527132,
+      "created_at": "2022-05-10 18:50:25",
+      "updated_at": "2022-05-10 18:50:25",
+      "address_type": "store",
+      "contact_person": "talha",
+      "address_category": "store"
+    },
+    "is_archived": false,
+    "meta": {
+      "stage": "verified",
+      "timing": [
+        {
+          "open": true,
+          "closing": {
+            "hour": 22,
+            "minute": 0
+          },
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "weekday": "monday"
+        },
+        {
+          "open": true,
+          "closing": {
+            "hour": 22,
+            "minute": 0
+          },
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "weekday": "tuesday"
+        },
+        {
+          "open": true,
+          "closing": {
+            "hour": 22,
+            "minute": 0
+          },
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "weekday": "wednesday"
+        },
+        {
+          "open": true,
+          "closing": {
+            "hour": 22,
+            "minute": 0
+          },
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "weekday": "thursday"
+        },
+        {
+          "open": true,
+          "closing": {
+            "hour": 22,
+            "minute": 0
+          },
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "weekday": "friday"
+        },
+        {
+          "open": true,
+          "closing": {
+            "hour": 22,
+            "minute": 0
+          },
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "weekday": "saturday"
+        },
+        {
+          "open": false,
+          "closing": {
+            "hour": 22,
+            "minute": 0
+          },
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "weekday": "sunday"
+        }
+      ],
+      "documents": {},
+      "gst_number": null,
+      "display_name": "0Test Loc",
+      "gst_credentials": {
+        "e_invoice": {
+          "enabled": false
+        },
+        "e_waybill": {
+          "enabled": false
+        }
+      },
+      "notification_emails": [
+        "talha1891@gmail.com"
+      ],
+      "product_return_config": {
+        "on_same_store": true
+      },
+      "additional_contact_details": {
+        "number": [
+          "91 - 8104556147"
+        ]
+      },
+      "ewaybill_portal_details": null
+    },
+    "order_integration_id": null,
+    "parent_store_id": null,
+    "alohomora_user_id": null,
+    "store_active_from": null,
+    "vat_no": null,
+    "longitude": null,
+    "location_type": "high_street",
+    "latitude": null,
+    "created_at": "2022-04-21T14:44:10+00:00",
+    "fulfillment_channel": "pulse",
+    "brand_id": null,
+    "is_active": false,
+    "name": "0Test Loc",
+    "mall_name": null,
+    "company_id": 61,
+    "is_enabled_for_recon": false,
+    "code": "0_loc_code",
+    "address1": "KALYAN, MAHARASHTRA 421301",
+    "address2": "",
+    "city": "MUMBAI",
+    "state": "MAHARASHTRA",
+    "country": "INDIA",
+    "pincode": "421301",
+    "store_email": "talha1891@gmail.com",
+    "contact_person": "talha",
+    "phone": "918104556147"
+  },
+  "original_bag_list": [
+    19207348
+  ],
+  "payment_methods": {
+    "COD": {
+      "amount": 10000,
+      "mode": "COD",
+      "name": "COD",
+      "collect_by": "fynd",
+      "refund_by": "fynd",
+      "meta": {
+        "logo_url": {
+          "large": "https://hdn-1.fynd.com/payment/cod.png",
+          "small": "https://hdn-1.fynd.com/payment/cod.png"
+        },
+        "payment_id": "FY62F14B8501F18E8FD3",
+        "merchant_code": "",
+        "payment_gateway": "Fynd",
+        "payment_identifier": "11"
+      }
+    }
+  },
+  "payment_type": "fynd",
+  "payments": {
+    "mode": "COD",
+    "is_active": true,
+    "display_priority": 1,
+    "display_name": "Cash on Delivery",
+    "id": 2,
+    "logo": "https://hdn-1.fynd.com/payment/cod.png",
+    "source": "Cash on Delivery",
+    "payment_identifier": "11",
+    "source_nickname": ""
+  },
+  "prices": {
+    "amount_paid": 10000,
+    "refund_amount": 10000,
+    "price_marked": 10000,
+    "cod_charges": 0,
+    "discount": 0,
+    "cashback_applied": 0,
+    "delivery_charge": 0,
+    "fynd_credits": 0,
+    "cashback": 0,
+    "price_effective": 10000,
+    "refund_credit": 0,
+    "value_of_good": 8928.57,
+    "coupon_value": 0,
+    "tax_collected_at_source": 0,
+    "promotion_effective_discount": 0,
+    "amount_paid_roundoff": 10000
+  },
+  "products": [
+    {
+      "id": 19207348,
+      "display_name": "Bag",
+      "entity_type": "bag",
+      "type": "single",
+      "status": {
+        "is_returnable": true,
+        "can_be_cancelled": true,
+        "enable_tracking": false,
+        "is_customer_return_allowed": true,
+        "is_active": false
+      },
+      "financial_breakup": [
+        {
+          "price_effective": 10000,
+          "discount": 0,
+          "amount_paid": 10000,
+          "coupon_effective_discount": 0,
+          "delivery_charge": 0,
+          "fynd_credits": 0,
+          "cod_charges": 0,
+          "refund_credit": 0,
+          "cashback": 0,
+          "refund_amount": 10000,
+          "added_to_fynd_cash": false,
+          "cashback_applied": 0,
+          "gst_tax_percentage": 12,
+          "value_of_good": 8928.57,
+          "price_marked": 10000,
+          "transfer_price": 0,
+          "brand_calculated_amount": 10000,
+          "tax_collected_at_source": 0,
+          "tcs_percentage": 0,
+          "promotion_effective_discount": 0,
+          "coupon_value": 0,
+          "amount_paid_roundoff": 10000,
+          "size": "S",
+          "total_units": 1,
+          "hsn_code": "61091000",
+          "identifiers": {
+            "sku_code": "MT-100 WHITE_S"
+          },
+          "item_name": "White Printed T-Shirt",
+          "gst_fee": 1071.43,
+          "gst_tag": "IGST"
+        }
+      ],
+      "bag_id": 19207348,
+      "bag_update_time": 1659980745.2105737,
+      "current_status": {
+        "created_at": "2022-08-08T23:15:45+00:00",
+        "delivery_partner_id": 22,
+        "bag_id": 19207348,
+        "delivery_awb_number": "4982512202351",
+        "updated_at": 1660000545,
+        "state_id": 14,
+        "store_id": 10182,
+        "state_type": "operational",
+        "status": "delivery_done",
+        "shipment_id": "16599806855311914452",
+        "id": 120514917,
+        "kafka_sync": false,
+        "bag_state_mapper": {
+          "id": 14,
+          "display_name": "Delivery Done",
+          "notify_customer": true,
+          "app_display_name": "Delivered",
+          "state_type": "operational",
+          "app_state_name": "delivered",
+          "name": "delivery_done",
+          "is_active": true,
+          "app_facing": true,
+          "journey_type": "forward"
+        }
+      },
+      "bag_status": [
+        {
+          "created_at": "2022-08-08T23:14:46+00:00",
+          "delivery_partner_id": null,
+          "bag_id": 19207348,
+          "delivery_awb_number": null,
+          "updated_at": 1660000486,
+          "state_id": 89,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "pending",
+          "shipment_id": "16599806855311914452",
+          "id": 120514809,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 89,
+            "display_name": "Pending",
+            "notify_customer": true,
+            "app_display_name": "Pending",
+            "state_type": "operational",
+            "app_state_name": "pending",
+            "name": "pending",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": []
+        },
+        {
+          "created_at": "2022-08-08T23:14:46+00:00",
+          "delivery_partner_id": null,
+          "bag_id": 19207348,
+          "delivery_awb_number": null,
+          "updated_at": 1660000486,
+          "state_id": 1,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "placed",
+          "shipment_id": "16599806855311914452",
+          "id": 120514810,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 1,
+            "display_name": "Placed",
+            "notify_customer": true,
+            "app_display_name": "Processing",
+            "state_type": "operational",
+            "app_state_name": "processing",
+            "name": "placed",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": []
+        },
+        {
+          "created_at": "2022-08-08T23:15:14+00:00",
+          "delivery_partner_id": null,
+          "bag_id": 19207348,
+          "delivery_awb_number": null,
+          "updated_at": 1660000514,
+          "state_id": 2,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "bag_confirmed",
+          "shipment_id": "16599806855311914452",
+          "id": 120514842,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 2,
+            "display_name": "Confirmed",
+            "notify_customer": false,
+            "app_display_name": "Confirmed",
+            "state_type": "operational",
+            "app_state_name": "confirmed",
+            "name": "bag_confirmed",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": [
+            {
+              "slug": "others",
+              "display_name": "Others",
+              "id": 90,
+              "state": "bag_confirmed",
+              "text": "FY62F14B8501F18E8FD3n"
+            }
+          ]
+        },
+        {
+          "created_at": "2022-08-08T23:15:20+00:00",
+          "delivery_partner_id": null,
+          "bag_id": 19207348,
+          "delivery_awb_number": null,
+          "updated_at": 1660000520,
+          "state_id": 91,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "bag_invoiced",
+          "shipment_id": "16599806855311914452",
+          "id": 120514845,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 91,
+            "display_name": "Bag Invoiced",
+            "notify_customer": false,
+            "app_display_name": "Bag Invoiced",
+            "state_type": "operational",
+            "app_state_name": "bag_invoiced",
+            "name": "bag_invoiced",
+            "is_active": true,
+            "app_facing": false,
+            "journey_type": "forward"
+          },
+          "reasons": []
+        },
+        {
+          "created_at": "2022-08-08T23:15:20+00:00",
+          "delivery_partner_id": null,
+          "bag_id": 19207348,
+          "delivery_awb_number": null,
+          "updated_at": 1660000520,
+          "state_id": 113,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "ready_for_dp_assignment",
+          "shipment_id": "16599806855311914452",
+          "id": 120514846,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 113,
+            "display_name": "Ready For Dp Assignment",
+            "notify_customer": false,
+            "app_display_name": "Ready For Dp Assignment",
+            "state_type": "operational",
+            "app_state_name": "ready_for_dp_assignment",
+            "name": "ready_for_dp_assignment",
+            "is_active": true,
+            "app_facing": false,
+            "journey_type": "forward"
+          },
+          "reasons": []
+        },
+        {
+          "created_at": "2022-08-08T23:15:23+00:00",
+          "delivery_partner_id": 22,
+          "bag_id": 19207348,
+          "delivery_awb_number": "4982512202351",
+          "updated_at": 1660000523,
+          "state_id": 7,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "dp_assigned",
+          "shipment_id": "16599806855311914452",
+          "id": 120514848,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 7,
+            "display_name": "DP Assigned",
+            "notify_customer": false,
+            "app_display_name": "DP Assigned",
+            "state_type": "operational",
+            "app_state_name": "dp_assigned",
+            "name": "dp_assigned",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": []
+        },
+        {
+          "created_at": "2022-08-08T23:15:33+00:00",
+          "delivery_partner_id": 22,
+          "bag_id": 19207348,
+          "delivery_awb_number": "4982512202351",
+          "updated_at": 1660000533,
+          "state_id": 8,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "bag_packed",
+          "shipment_id": "16599806855311914452",
+          "id": 120514898,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 8,
+            "display_name": "Bag Packed",
+            "notify_customer": true,
+            "app_display_name": "Bag Packed",
+            "state_type": "operational",
+            "app_state_name": "bag_packed",
+            "name": "bag_packed",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": [
+            {
+              "slug": "missed_state_ingestion",
+              "display_name": "Missed state is ingested",
+              "id": 162,
+              "state": "missed_state",
+              "text": "Missed state is ingested"
+            }
+          ]
+        },
+        {
+          "created_at": "2022-08-08T23:15:33+00:00",
+          "delivery_partner_id": 22,
+          "bag_id": 19207348,
+          "delivery_awb_number": "4982512202351",
+          "updated_at": 1660000533,
+          "state_id": 12,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "bag_picked",
+          "shipment_id": "16599806855311914452",
+          "id": 120514899,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 12,
+            "display_name": "In Transit",
+            "notify_customer": false,
+            "app_display_name": "In Transit",
+            "state_type": "operational",
+            "app_state_name": "in_transit",
+            "name": "bag_picked",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": [
+            {
+              "slug": "others",
+              "display_name": "Others",
+              "id": 90,
+              "state": "bag_confirmed",
+              "text": "FY62F14B8501F18E8FD3"
+            }
+          ]
+        },
+        {
+          "created_at": "2022-08-08T23:15:45+00:00",
+          "delivery_partner_id": 22,
+          "bag_id": 19207348,
+          "delivery_awb_number": "4982512202351",
+          "updated_at": 1660000545,
+          "state_id": 14,
+          "store_id": 10182,
+          "state_type": "operational",
+          "status": "delivery_done",
+          "shipment_id": "16599806855311914452",
+          "id": 120514917,
+          "kafka_sync": false,
+          "bag_state_mapper": {
+            "id": 14,
+            "display_name": "Delivery Done",
+            "notify_customer": true,
+            "app_display_name": "Delivered",
+            "state_type": "operational",
+            "app_state_name": "delivered",
+            "name": "delivery_done",
+            "is_active": true,
+            "app_facing": true,
+            "journey_type": "forward"
+          },
+          "reasons": [
+            {
+              "slug": "others",
+              "display_name": "Others",
+              "id": 90,
+              "state": "bag_confirmed",
+              "text": "FY62F14B8501F18E8FD3"
+            }
+          ]
+        }
+      ],
+      "item": {
+        "brand": "play clan",
+        "can_return": true,
+        "id": 95944,
+        "webstore_product_url": null,
+        "last_updated_at": 1660000486,
+        "slug_key": "play-clan-white-printed-t-shirt-387",
+        "attributes": {
+          "color": "White",
+          "gender": [
+            "Men"
+          ],
+          "season": "SS16",
+          "pattern": "Printed",
+          "essential": "Yes",
+          "brand_name": "play clan",
+          "net-quantity": "1 U",
+          "marketer-name": "Fynd",
+          "primary_color": "White",
+          "sleeve_length": "Short",
+          "marketer-address": "Fynd",
+          "primary_material": "Others",
+          "primary_color_hex": "FFFFFF"
+        },
+        "meta": {
+          "departments": [
+            21
+          ]
+        },
+        "gender": null,
+        "l3_category": 192,
+        "color": null,
+        "can_cancel": true,
+        "l3_category_name": "T-Shirts",
+        "l1_category": [
+          "Clothing"
+        ],
+        "brand_id": 85,
+        "branch_url": "http://go.fyndi.ng/iSyg/dXGX4QXldy",
+        "l2_category": [
+          "Polos & T-Shirts"
+        ],
+        "name": "White Printed T-Shirt",
+        "code": "MT-100 WHITE",
+        "department_id": 21,
+        "size": "S",
+        "image": [
+          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/1.jpg",
+          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/2.jpg",
+          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/3.jpg",
+          "https://hdn-1.fynd.com/media/pictures/tagged_items/270x0/85_MT-100 WHITE/4.jpg"
+        ]
+      },
+      "reasons": [
+        {
+          "slug": "others",
+          "display_name": "Others",
+          "id": 90,
+          "state": "bag_confirmed",
+          "text": "FY62F14B8501F18E8FD3",
+          "bag_id": 19207348
+        }
+      ],
+      "article": {
+        "identifiers": {
+          "sku_code": "MT-100 WHITE_S"
+        },
+        "esp_modified": false,
+        "size": "S",
+        "code": "",
+        "raw_meta": null,
+        "set": {},
+        "is_set": false,
+        "seller_identifier": "MT-100 WHITE_S",
+        "return_config": {
+          "time": 30,
+          "unit": "days",
+          "returnable": true
+        },
+        "_id": "5f8a4751d2f36f00014ff8ed",
+        "uid": "5f8a4751d2f36f00014ff8ed",
+        "child_details": {}
+      },
+      "journey_type": "forward",
+      "current_operational_status": {
+        "created_at": "2022-08-08T23:15:45+00:00",
+        "delivery_partner_id": 22,
+        "bag_id": 19207348,
+        "delivery_awb_number": "4982512202351",
+        "updated_at": "2022-08-08T23:15:45+00:00",
+        "state_id": 14,
+        "store_id": 10182,
+        "state_type": "operational",
+        "status": "delivery_done",
+        "shipment_id": "16599806855311914452",
+        "id": 120514917,
+        "kafka_sync": false,
+        "bag_state_mapper": {
+          "id": 14,
+          "display_name": "Delivery Done",
+          "notify_customer": true,
+          "app_display_name": "Delivered",
+          "state_type": "operational",
+          "app_state_name": "delivered",
+          "name": "delivery_done",
+          "is_active": true,
+          "app_facing": true,
+          "journey_type": "forward"
+        },
+        "reasons": [
+          {
+            "slug": "others",
+            "display_name": "Others",
+            "id": 90,
+            "state": "bag_confirmed",
+            "text": "FY62F14B8501F18E8FD3"
+          }
+        ]
+      },
+      "dates": {
+        "order_created": "2022-08-08T23:14:45+00:00",
+        "delivery_date": "2022-08-08T23:15:45+00:00"
+      },
+      "prices": {
+        "price_effective": 10000,
+        "discount": 0,
+        "amount_paid": 10000,
+        "coupon_effective_discount": 0,
+        "delivery_charge": 0,
+        "fynd_credits": 0,
+        "cod_charges": 0,
+        "refund_credit": 0,
+        "cashback": 0,
+        "refund_amount": 10000,
+        "added_to_fynd_cash": false,
+        "cashback_applied": 0,
+        "gst_tax_percentage": 12,
+        "value_of_good": 8928.57,
+        "price_marked": 10000,
+        "transfer_price": 0,
+        "brand_calculated_amount": 10000,
+        "tax_collected_at_source": 0,
+        "tcs_percentage": 0,
+        "promotion_effective_discount": 0,
+        "coupon_value": 0,
+        "amount_paid_roundoff": 10000
+      },
+      "payment_methods": {
+        "COD": {
+          "amount": 10000
+        }
+      },
+      "gst_details": {
+        "gstin_code": "null",
+        "gst_tag": "IGST",
+        "hsn_code": "61091000",
+        "value_of_good": 8928.57,
+        "gst_tax_percentage": 12,
+        "is_default_hsn_code": false,
+        "brand_calculated_amount": 10000,
+        "tax_collected_at_source": 0,
+        "hsn_code_id": "6277837c5e4c6fdbc8be3e93",
+        "gst_fee": 1071.43,
+        "igst_tax_percentage": 12,
+        "sgst_tax_percentage": 0,
+        "cgst_tax_percentage": 0,
+        "igst_gst_fee": 1071.43,
+        "cgst_gst_fee": "0",
+        "sgst_gst_fee": "0"
+      },
+      "brand": {
+        "credit_note_allowed": false,
+        "id": 85,
+        "script_last_ran": null,
+        "pickup_location": null,
+        "invoice_prefix": "pc",
+        "brand_name": "play clan",
+        "is_virtual_invoice": false,
+        "created_on": 1452571237,
+        "modified_on": 1623871060,
+        "company": 61,
+        "logo": "https://hdn-1.fynd.com/brands/pictures/square-logo/original/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg",
+        "credit_note_expiry_days": null,
+        "start_date": null
+      },
+      "order_integration_id": "5efd7e53cfdf28620d3f0ce3",
+      "affiliate_bag_details": {
+        "affiliate_bag_id": "19207348",
+        "affiliate_order_id": "FY62F14B8501F18E8FD3",
+        "affiliate_meta": {
+          "fynd": {
+            "fulfilment_identifier": "pulse"
+          },
+          "channel_shipment_id": null,
+          "channel_order_id": null,
+          "due_date": null,
+          "is_priority": false,
+          "box_type": null,
+          "coupon_code": null,
+          "size_level_total_qty": 924,
+          "loyalty_discount": 0,
+          "employee_discount": 0
+        },
+        "loyalty_discount": 0,
+        "employee_discount": 0
+      },
+      "meta": {},
+      "applied_promos": []
+    }
+  ],
+  "qc_required": null,
+  "requested_dp_conf": {
+    "awb_type": "express",
+    "exclude_dps": [
+      27,
+      29
+    ],
+    "ewbn": null,
+    "id": 22,
+    "is_dp_assigned_manually": true
+  },
+  "restore_coupon": false,
+  "restore_promos": {},
+  "rto_address": {
+    "store_address_json": {
+      "area": "",
+      "city": "MUMBAI SUBURBAN",
+      "email": "javedkazi@gofynd.com",
+      "phone": "918286865180",
+      "state": "MAHARASHTRA",
+      "country": "INDIA",
+      "pincode": "400093",
+      "version": "1.0",
+      "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
+      "address2": "",
+      "landmark": "Opposite MIDC police station",
+      "latitude": 19.1174798,
+      "longitude": 72.8691603,
+      "created_at": "2022-05-24 18:35:09",
+      "updated_at": "2022-05-24 18:35:09",
+      "address_type": "store",
+      "contact_person": "Javed",
+      "address_category": "store"
+    },
+    "name": "Fuschia",
+    "longitude": 72.8292187,
+    "company_id": 61,
+    "location_type": "mall",
+    "latitude": 19.0551125,
+    "id": 10182,
+    "code": "FFSPS",
+    "address1": "WEWORK, 1ST FLOOR, VIJAY DIAMOND, CROSS ROAD B KONDIVITA, OPPOSITE SBI BANK, ANDHERI EAST",
+    "address2": "",
+    "city": "MUMBAI SUBURBAN",
+    "state": "MAHARASHTRA",
+    "country": "INDIA",
+    "pincode": "400093",
+    "store_email": "javedkazi@gofynd.com",
+    "contact_person": "Javed",
+    "phone": "918286865180"
+  },
+  "search_key": {
+    "shipment_id": "914452",
+    "order_id": "8E8FD3"
+  },
+  "shipment": {
+    "type": "shipment",
+    "tags": [
+      "bag"
+    ],
+    "billing_address_json": {
+      "area": "Bhagyoday Society",
+      "city": "Palanpur",
+      "email": "",
+      "phone": "7621937989",
+      "state": "Gujarat",
+      "country": "India",
+      "pincode": "385001",
+      "version": "1.0",
+      "address1": "11",
+      "address2": "",
+      "landmark": "mansarovar road",
+      "latitude": 24.1724338,
+      "longitude": 72.434581,
+      "created_at": "2022-08-08 23:14:45",
+      "updated_at": "2022-08-08 23:14:45",
+      "address_type": "home",
+      "contact_person": "Rahul",
+      "address_category": "billing"
+    },
+    "id": "16599806855311914452",
+    "previous_shipment_id": null,
+    "meta": {
+      "dp_id": "7",
+      "weight": 250,
+      "external": {},
+      "formatted": {
+        "max": "Mon, 15 Aug",
+        "min": "Sat, 13 Aug"
+      },
+      "timestamp": {
+        "max": 1660585474,
+        "min": 1660412674
+      },
+      "bag_weight": {
+        "19207348": 250
+      },
+      "debug_info": {
+        "stormbreaker_uuid": "06647bed-59ec-4f36-ad92-3057f991883f"
+      },
+      "dp_options": {
+        "7": {
+          "area_code": {
+            "to_pincode": null,
+            "from_pincode": null
+          },
+          "f_priority": 2,
+          "operations": [
+            "inter_city"
+          ],
+          "r_priority": 1,
+          "fm_priority": 2,
+          "lm_priority": 2,
+          "payment_mode": "all",
+          "rvp_priority": 1,
+          "assign_dp_from_sb": true,
+          "external_account_id": null,
+          "internal_account_id": "7"
+        },
+        "29": {
+          "area_code": {
+            "to_pincode": null,
+            "from_pincode": null
+          },
+          "f_priority": 4,
+          "operations": [
+            "inter_city"
+          ],
+          "r_priority": 3,
+          "fm_priority": 4,
+          "lm_priority": 4,
+          "payment_mode": "all",
+          "rvp_priority": 3,
+          "assign_dp_from_sb": true,
+          "external_account_id": null,
+          "internal_account_id": "29"
+        },
+        "36": {
+          "area_code": {
+            "to_pincode": null,
+            "from_pincode": null
+          },
+          "f_priority": 6,
+          "operations": [
+            "inter_city"
+          ],
+          "r_priority": -1,
+          "fm_priority": 6,
+          "lm_priority": 6,
+          "payment_mode": "all",
+          "rvp_priority": -1,
+          "assign_dp_from_sb": true,
+          "external_account_id": null,
+          "internal_account_id": "36"
+        },
+        "37": {
+          "area_code": {
+            "to_pincode": null,
+            "from_pincode": null
+          },
+          "f_priority": 7,
+          "operations": [
+            "inter_city"
+          ],
+          "r_priority": -1,
+          "fm_priority": 7,
+          "lm_priority": 7,
+          "payment_mode": "all",
+          "rvp_priority": -1,
+          "assign_dp_from_sb": true,
+          "external_account_id": null,
+          "internal_account_id": "37"
+        }
+      },
+      "order_type": null,
+      "dp_sort_key": "fm_priority",
+      "ewaybill_info": {},
+      "packaging_name": "POLYB_M_1411P5",
+      "assign_dp_from_sb": true,
+      "same_store_available": false,
+      "fulfilment_priority_text": null,
+      "store_invoice_updated_date": "2022-08-08T23:15:20+00:00",
+      "auto_trigger_dp_assignment_ACF": true
+    },
+    "fynd_order_id": "FY62F14B8501F18E8FD3",
+    "delivery_awb_number": "4982512202351",
+    "lock_status": "",
+    "pdf_links": {
+      "label_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a4.pdf",
+      "label_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_a6.pdf",
+      "label_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_label_pos.pdf",
+      "invoice_a4": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a4.pdf",
+      "invoice_a6": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_a6.pdf",
+      "label_type": "fynd",
+      "invoice_pos": "https://fynd-recon-reports-mumbai.s3.ap-south-1.amazonaws.com/invoice_labels%2F16599806855311914452_invoice_pos.pdf",
+      "invoice_type": "fynd"
+    },
+    "parent_type": null,
+    "store_invoice_id": "1659980720191361",
+    "delivery_address_json": {
+      "area": "Bhagyoday Society",
+      "city": "Palanpur",
+      "email": "",
+      "phone": "7621937989",
+      "state": "Gujarat",
+      "country": "India",
+      "pincode": "385001",
+      "version": "1.0",
+      "address1": "11",
+      "address2": "",
+      "landmark": "mansarovar road",
+      "latitude": 24.1724338,
+      "longitude": 72.434581,
+      "created_at": "2022-08-08T23:14:45+00:00",
+      "updated_at": "2022-08-08T23:14:45+00:00",
+      "address_type": "home",
+      "contact_person": "Rahul",
+      "address_category": "delivery",
+      "name": "Rahul",
+      "address": "11"
+    },
+    "created_at": 1660000486,
+    "hand_over_contact_json": {
+      "email": "",
+      "phone": "7621937989",
+      "version": "1.0",
+      "created_at": "2022-08-08 23:14:45",
+      "updated_at": "2022-08-08 23:14:45",
+      "contact_person": "Rahul"
+    },
+    "parent_id": "",
+    "is_active": true,
+    "affiliate_id": "5dd3ce1f1662684aa7019f1e",
+    "affiliate_shipment_id": "16599806855311914452",
+    "fulfilment_priority": 10,
+    "credit_note_id": null,
+    "eway_bill_id": null,
+    "packaging_type": "POLYB_M_1411P5"
+  },
+  "shipment_details": {
+    "dp_id": "7",
+    "dp_options": {
+      "7": {
+        "area_code": {
+          "to_pincode": null,
+          "from_pincode": null
+        },
+        "f_priority": 2,
+        "operations": [
+          "inter_city"
+        ],
+        "r_priority": 1,
+        "fm_priority": 2,
+        "lm_priority": 2,
+        "payment_mode": "all",
+        "rvp_priority": 1,
+        "assign_dp_from_sb": true,
+        "external_account_id": null,
+        "internal_account_id": "7"
+      },
+      "29": {
+        "area_code": {
+          "to_pincode": null,
+          "from_pincode": null
+        },
+        "f_priority": 4,
+        "operations": [
+          "inter_city"
+        ],
+        "r_priority": 3,
+        "fm_priority": 4,
+        "lm_priority": 4,
+        "payment_mode": "all",
+        "rvp_priority": 3,
+        "assign_dp_from_sb": true,
+        "external_account_id": null,
+        "internal_account_id": "29"
+      },
+      "36": {
+        "area_code": {
+          "to_pincode": null,
+          "from_pincode": null
+        },
+        "f_priority": 6,
+        "operations": [
+          "inter_city"
+        ],
+        "r_priority": -1,
+        "fm_priority": 6,
+        "lm_priority": 6,
+        "payment_mode": "all",
+        "rvp_priority": -1,
+        "assign_dp_from_sb": true,
+        "external_account_id": null,
+        "internal_account_id": "36"
+      },
+      "37": {
+        "area_code": {
+          "to_pincode": null,
+          "from_pincode": null
+        },
+        "f_priority": 7,
+        "operations": [
+          "inter_city"
+        ],
+        "r_priority": -1,
+        "fm_priority": 7,
+        "lm_priority": 7,
+        "payment_mode": "all",
+        "rvp_priority": -1,
+        "assign_dp_from_sb": true,
+        "external_account_id": null,
+        "internal_account_id": "37"
+      }
+    }
+  },
+  "shipment_gst": {
+    "value_of_good": 8928.57,
+    "gst_fee": 1071.43,
+    "brand_calculated_amount": 10000,
+    "tax_collected_at_source": 0,
+    "gstin_code": "null"
+  },
+  "shipment_quantity": 1,
+  "shipment_status": {
+    "created_at": 1660000545,
+    "shipment_id": "16599806855311914452",
+    "status": "delivery_done",
+    "bag_list": [
+      "19207348"
+    ],
+    "id": 78707677,
+    "current_shipment_status": "delivery_done",
+    "status_created_at": 1660000545
+  },
+  "shipment_status_history": [
+    {
+      "created_at": "2022-08-08T23:14:46+00:00",
+      "shipment_id": "16599806855311914452",
+      "status": "pending",
+      "bag_list": [
+        "19207348"
+      ],
+      "id": 78707571
+    },
+    {
+      "created_at": "2022-08-08T23:14:46+00:00",
+      "shipment_id": "16599806855311914452",
+      "status": "placed",
+      "bag_list": [
+        "19207348"
+      ],
+      "id": 78707572
+    },
+    {
+      "created_at": "2022-08-08T23:15:12+00:00",
+      "shipment_id": "16599806855311914452",
+      "status": "bag_confirmed",
+      "bag_list": [
+        "19207348"
+      ],
+      "id": 78707602
+    },
+    {
+      "created_at": "2022-08-08T23:15:20+00:00",
+      "shipment_id": "16599806855311914452",
+      "status": "bag_invoiced",
+      "bag_list": [
+        "19207348"
+      ],
+      "id": 78707605
+    },
+    {
+      "created_at": "2022-08-08T23:15:20+00:00",
+      "shipment_id": "16599806855311914452",
+      "status": "ready_for_dp_assignment",
+      "bag_list": [
+        "19207348"
+      ],
+      "id": 78707606
+    },
+    {
+      "created_at": "2022-08-08T23:15:23+00:00",
+      "shipment_id": "16599806855311914452",
+      "status": "dp_assigned",
+      "bag_list": [
+        "19207348"
+      ],
+      "id": 78707608
+    },
+    {
+      "created_at": "2022-08-08T23:15:33+00:00",
+      "shipment_id": "16599806855311914452",
+      "status": "bag_packed",
+      "bag_list": [
+        "19207348"
+      ],
+      "id": 78707658
+    },
+    {
+      "created_at": "2022-08-08T23:15:33+00:00",
+      "shipment_id": "16599806855311914452",
+      "status": "bag_picked",
+      "bag_list": [
+        "19207348"
+      ],
+      "id": 78707659
+    },
+    {
+      "created_at": "2022-08-08T23:15:45+00:00",
+      "shipment_id": "16599806855311914452",
+      "status": "delivery_done",
+      "bag_list": [
+        "19207348"
+      ],
+      "id": 78707677,
+      "current_shipment_status": "delivery_done",
+      "status_created_at": "2022-08-08T23:15:45+00:00"
+    }
+  ],
+  "shipment_update_time": 1659980745.2105737,
+  "shipment_value": 10000,
+  "tags": [
+    "bag"
+  ],
+  "total_shipment_bags": 1,
+  "total_shipments_in_order": 1,
+  "transaction_type": "shipment",
+  "user": {
+    "email": "rahulrathod@gofynd.com",
+    "user_oid": "000000000000000014402534",
+    "last_name": "Rathod",
+    "gender": "male",
+    "mongo_user_id": "14402534",
+    "mobile": "7621937989",
+    "first_name": "Rahul",
+    "id": 17952150,
+    "is_anonymous_user": false
+  },
+  "weight": {
+    "value": 250,
+    "unit": "gram"
+  },
+  "id": "62f14b93af6c692530bb0df6"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -20714,155 +20750,110 @@ Successfully retrieved all the given shipments details!
 
  
  
- #### [AffiliateStoreIdMapping](#AffiliateStoreIdMapping)
+ #### [OrderUser](#OrderUser)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | marketplaceStoreId | String |  no  |  |
- | storeId | Int |  no  |  |
+ | address2 | String? |  yes  |  |
+ | address1 | String? |  yes  |  |
+ | city | String |  no  |  |
+ | country | String |  no  |  |
+ | phone | Int |  no  |  |
+ | firstName | String |  no  |  |
+ | mobile | Int |  no  |  |
+ | lastName | String |  no  |  |
+ | email | String |  no  |  |
+ | state | String |  no  |  |
+ | pincode | String |  no  |  |
 
 ---
 
 
  
  
- #### [AffiliateAppConfigMeta](#AffiliateAppConfigMeta)
+ #### [OrderPriority](#OrderPriority)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String |  no  |  |
- | value | String |  no  |  |
+ | fulfilmentPriorityText | String? |  yes  |  |
+ | affiliatePriorityCode | String? |  yes  |  |
+ | fulfilmentPriority | Int? |  yes  |  |
 
 ---
 
 
  
  
- #### [AffiliateAppConfig](#AffiliateAppConfig)
+ #### [ArticleDetails](#ArticleDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | [[AffiliateAppConfigMeta](#AffiliateAppConfigMeta)]? |  yes  |  |
+ | category | [String: Any] |  no  |  |
+ | weight | [String: Any] |  no  |  |
+ | quantity | Int |  no  |  |
+ | attributes | [String: Any] |  no  |  |
  | id | String |  no  |  |
- | secret | String |  no  |  |
- | description | String? |  yes  |  |
- | createdAt | String |  no  |  |
- | updatedAt | String |  no  |  |
- | owner | String |  no  |  |
- | name | String |  no  |  |
- | token | String |  no  |  |
+ | brandId | Int |  no  |  |
+ | dimension | [String: Any] |  no  |  |
 
 ---
 
 
  
  
- #### [AffiliateInventoryPaymentConfig](#AffiliateInventoryPaymentConfig)
+ #### [ShipmentDetails](#ShipmentDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modeOfPayment | String? |  yes  |  |
- | source | String? |  yes  |  |
+ | boxType | String? |  yes  |  |
+ | fulfillmentId | Int |  no  |  |
+ | articles | [[ArticleDetails](#ArticleDetails)] |  no  |  |
+ | dpId | Int? |  yes  |  |
+ | affiliateShipmentId | String |  no  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | shipments | Int |  no  |  |
 
 ---
 
 
  
  
- #### [AffiliateInventoryOrderConfig](#AffiliateInventoryOrderConfig)
+ #### [LocationDetails](#LocationDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | forceReassignment | Bool? |  yes  |  |
+ | fulfillmentId | Int |  no  |  |
+ | fulfillmentType | String |  no  |  |
+ | articles | [[ArticleDetails](#ArticleDetails)] |  no  |  |
 
 ---
 
 
  
  
- #### [AffiliateInventoryStoreConfig](#AffiliateInventoryStoreConfig)
+ #### [ShipmentConfig](#ShipmentConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store | [String: Any]? |  yes  |  |
+ | paymentMode | String |  no  |  |
+ | journey | String |  no  |  |
+ | identifier | String |  no  |  |
+ | action | String |  no  |  |
+ | toPincode | String |  no  |  |
+ | shipment | [[ShipmentDetails](#ShipmentDetails)] |  no  |  |
+ | locationDetails | [LocationDetails](#LocationDetails)? |  yes  |  |
+ | source | String |  no  |  |
 
 ---
 
 
  
  
- #### [AffiliateInventoryArticleAssignmentConfig](#AffiliateInventoryArticleAssignmentConfig)
+ #### [ShipmentData](#ShipmentData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | postOrderReassignment | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [AffiliateInventoryLogisticsConfig](#AffiliateInventoryLogisticsConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dpAssignment | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [AffiliateInventoryConfig](#AffiliateInventoryConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payment | [AffiliateInventoryPaymentConfig](#AffiliateInventoryPaymentConfig)? |  yes  |  |
- | order | [AffiliateInventoryOrderConfig](#AffiliateInventoryOrderConfig)? |  yes  |  |
- | inventory | [AffiliateInventoryStoreConfig](#AffiliateInventoryStoreConfig)? |  yes  |  |
- | articleAssignment | [AffiliateInventoryArticleAssignmentConfig](#AffiliateInventoryArticleAssignmentConfig)? |  yes  |  |
- | logistics | [AffiliateInventoryLogisticsConfig](#AffiliateInventoryLogisticsConfig)? |  yes  |  |
-
----
-
-
- 
- 
- #### [AffiliateConfig](#AffiliateConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | app | [AffiliateAppConfig](#AffiliateAppConfig)? |  yes  |  |
- | inventory | [AffiliateInventoryConfig](#AffiliateInventoryConfig)? |  yes  |  |
-
----
-
-
- 
- 
- #### [Affiliate](#Affiliate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | token | String |  no  |  |
- | config | [AffiliateConfig](#AffiliateConfig)? |  yes  |  |
- | id | String |  no  |  |
-
----
-
-
- 
- 
- #### [OrderConfig](#OrderConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | storeLookup | String? |  yes  |  |
- | affiliateStoreIdMapping | [[AffiliateStoreIdMapping](#AffiliateStoreIdMapping)] |  no  |  |
- | affiliate | [Affiliate](#Affiliate) |  no  |  |
- | bagEndState | String? |  yes  |  |
- | articleLookup | String? |  yes  |  |
- | createUser | Bool? |  yes  |  |
+ | shipmentData | [ShipmentConfig](#ShipmentConfig) |  no  |  |
 
 ---
 
@@ -20885,126 +20876,29 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliateStoreId | String |  no  |  |
- | sku | String |  no  |  |
- | quantity | Int |  no  |  |
- | avlQty | Int |  no  |  |
- | identifier | [String: Any] |  no  |  |
- | amountPaid | Double |  no  |  |
- | deliveryCharge | Double |  no  |  |
- | unitPrice | Double |  no  |  |
- | itemSize | String |  no  |  |
- | modifiedOn | String |  no  |  |
- | fyndStoreId | String |  no  |  |
- | itemId | Int |  no  |  |
- | affiliateMeta | [String: Any] |  no  |  |
- | priceEffective | Double |  no  |  |
- | id | String |  no  |  |
- | pdfLinks | [MarketPlacePdf](#MarketPlacePdf)? |  yes  |  |
- | transferPrice | Int |  no  |  |
- | priceMarked | Double |  no  |  |
- | sellerIdentifier | String |  no  |  |
  | companyId | Int |  no  |  |
+ | quantity | Int |  no  |  |
+ | priceMarked | Double |  no  |  |
+ | amountPaid | Double |  no  |  |
+ | sellerIdentifier | String |  no  |  |
+ | fyndStoreId | String |  no  |  |
+ | sku | String |  no  |  |
+ | unitPrice | Double |  no  |  |
+ | identifier | [String: Any] |  no  |  |
+ | avlQty | Int |  no  |  |
+ | pdfLinks | [MarketPlacePdf](#MarketPlacePdf)? |  yes  |  |
+ | itemId | Int |  no  |  |
  | hsnCodeId | String |  no  |  |
  | discount | Double |  no  |  |
- | storeId | Int |  no  |  |
-
----
-
-
- 
- 
- #### [OrderUser](#OrderUser)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address2 | String? |  yes  |  |
- | firstName | String |  no  |  |
- | address1 | String? |  yes  |  |
- | pincode | String |  no  |  |
- | email | String |  no  |  |
- | city | String |  no  |  |
- | mobile | Int |  no  |  |
- | state | String |  no  |  |
- | phone | Int |  no  |  |
- | lastName | String |  no  |  |
- | country | String |  no  |  |
-
----
-
-
- 
- 
- #### [ArticleDetails](#ArticleDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
  | id | String |  no  |  |
- | attributes | [String: Any] |  no  |  |
- | weight | [String: Any] |  no  |  |
- | quantity | Int |  no  |  |
- | category | [String: Any] |  no  |  |
- | dimension | [String: Any] |  no  |  |
- | brandId | Int |  no  |  |
-
----
-
-
- 
- 
- #### [LocationDetails](#LocationDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | fulfillmentId | Int |  no  |  |
- | articles | [[ArticleDetails](#ArticleDetails)] |  no  |  |
- | fulfillmentType | String |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentDetails](#ShipmentDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | boxType | String? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | fulfillmentId | Int |  no  |  |
- | dpId | Int? |  yes  |  |
- | shipments | Int |  no  |  |
- | articles | [[ArticleDetails](#ArticleDetails)] |  no  |  |
- | affiliateShipmentId | String |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentConfig](#ShipmentConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | locationDetails | [LocationDetails](#LocationDetails)? |  yes  |  |
- | shipment | [[ShipmentDetails](#ShipmentDetails)] |  no  |  |
- | action | String |  no  |  |
- | source | String |  no  |  |
- | toPincode | String |  no  |  |
- | paymentMode | String |  no  |  |
- | identifier | String |  no  |  |
- | journey | String |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentData](#ShipmentData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipmentData | [ShipmentConfig](#ShipmentConfig) |  no  |  |
+ | affiliateMeta | [String: Any] |  no  |  |
+ | modifiedOn | String |  no  |  |
+ | priceEffective | Double |  no  |  |
+ | transferPrice | Int |  no  |  |
+ | deliveryCharge | Double |  no  |  |
+ | affiliateStoreId | String |  no  |  |
+ | storeId | Int |  no  |  |
+ | itemSize | String |  no  |  |
 
 ---
 
@@ -21015,21 +20909,8 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | billingUser | [OrderUser](#OrderUser)? |  yes  |  |
  | shippingUser | [OrderUser](#OrderUser)? |  yes  |  |
-
----
-
-
- 
- 
- #### [OrderPriority](#OrderPriority)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | fulfilmentPriority | Int? |  yes  |  |
- | affiliatePriorityCode | String? |  yes  |  |
- | fulfilmentPriorityText | String? |  yes  |  |
+ | billingUser | [OrderUser](#OrderUser)? |  yes  |  |
 
 ---
 
@@ -21040,21 +20921,176 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bags | [[AffiliateBag](#AffiliateBag)] |  no  |  |
+ | coupon | String? |  yes  |  |
+ | paymentMode | String |  no  |  |
  | shippingAddress | [OrderUser](#OrderUser) |  no  |  |
+ | items | [String: Any] |  no  |  |
+ | orderValue | Double |  no  |  |
+ | deliveryCharges | Double |  no  |  |
+ | orderPriority | [OrderPriority](#OrderPriority)? |  yes  |  |
+ | discount | Double |  no  |  |
+ | shipment | [ShipmentData](#ShipmentData)? |  yes  |  |
+ | bags | [[AffiliateBag](#AffiliateBag)] |  no  |  |
+ | billingAddress | [OrderUser](#OrderUser) |  no  |  |
+ | affiliateOrderId | String? |  yes  |  |
+ | user | [UserData](#UserData) |  no  |  |
  | payment | [String: Any]? |  yes  |  |
  | codCharges | Double |  no  |  |
- | items | [String: Any] |  no  |  |
- | shipment | [ShipmentData](#ShipmentData)? |  yes  |  |
- | deliveryCharges | Double |  no  |  |
- | discount | Double |  no  |  |
- | paymentMode | String |  no  |  |
- | coupon | String? |  yes  |  |
- | billingAddress | [OrderUser](#OrderUser) |  no  |  |
- | user | [UserData](#UserData) |  no  |  |
- | affiliateOrderId | String? |  yes  |  |
- | orderValue | Double |  no  |  |
- | orderPriority | [OrderPriority](#OrderPriority)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateStoreIdMapping](#AffiliateStoreIdMapping)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | storeId | Int |  no  |  |
+ | marketplaceStoreId | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateAppConfigMeta](#AffiliateAppConfigMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | String |  no  |  |
+ | name | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateAppConfig](#AffiliateAppConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | secret | String |  no  |  |
+ | updatedAt | String |  no  |  |
+ | description | String? |  yes  |  |
+ | owner | String |  no  |  |
+ | name | String |  no  |  |
+ | id | String |  no  |  |
+ | createdAt | String |  no  |  |
+ | meta | [[AffiliateAppConfigMeta](#AffiliateAppConfigMeta)]? |  yes  |  |
+ | token | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateInventoryLogisticsConfig](#AffiliateInventoryLogisticsConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dpAssignment | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateInventoryArticleAssignmentConfig](#AffiliateInventoryArticleAssignmentConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | postOrderReassignment | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateInventoryStoreConfig](#AffiliateInventoryStoreConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | store | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateInventoryOrderConfig](#AffiliateInventoryOrderConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | forceReassignment | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateInventoryPaymentConfig](#AffiliateInventoryPaymentConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | modeOfPayment | String? |  yes  |  |
+ | source | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateInventoryConfig](#AffiliateInventoryConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | logistics | [AffiliateInventoryLogisticsConfig](#AffiliateInventoryLogisticsConfig)? |  yes  |  |
+ | articleAssignment | [AffiliateInventoryArticleAssignmentConfig](#AffiliateInventoryArticleAssignmentConfig)? |  yes  |  |
+ | inventory | [AffiliateInventoryStoreConfig](#AffiliateInventoryStoreConfig)? |  yes  |  |
+ | order | [AffiliateInventoryOrderConfig](#AffiliateInventoryOrderConfig)? |  yes  |  |
+ | payment | [AffiliateInventoryPaymentConfig](#AffiliateInventoryPaymentConfig)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateConfig](#AffiliateConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app | [AffiliateAppConfig](#AffiliateAppConfig)? |  yes  |  |
+ | inventory | [AffiliateInventoryConfig](#AffiliateInventoryConfig)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Affiliate](#Affiliate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | config | [AffiliateConfig](#AffiliateConfig)? |  yes  |  |
+ | id | String |  no  |  |
+ | token | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderConfig](#OrderConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | createUser | Bool? |  yes  |  |
+ | affiliateStoreIdMapping | [[AffiliateStoreIdMapping](#AffiliateStoreIdMapping)] |  no  |  |
+ | bagEndState | String? |  yes  |  |
+ | affiliate | [Affiliate](#Affiliate) |  no  |  |
+ | storeLookup | String? |  yes  |  |
+ | articleLookup | String? |  yes  |  |
 
 ---
 
@@ -21066,8 +21102,8 @@ Successfully retrieved all the given shipments details!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | affiliateId | String |  no  |  |
- | orderConfig | [OrderConfig](#OrderConfig) |  no  |  |
  | orderInfo | [OrderInfo](#OrderInfo) |  no  |  |
+ | orderConfig | [OrderConfig](#OrderConfig) |  no  |  |
 
 ---
 
@@ -21089,9 +21125,9 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | errorTrace | String? |  yes  |  |
- | message | String |  no  |  |
  | status | Int |  no  |  |
+ | message | String |  no  |  |
+ | errorTrace | String? |  yes  |  |
 
 ---
 
@@ -21114,9 +21150,9 @@ Successfully retrieved all the given shipments details!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | error | String? |  yes  |  |
- | shipmentId | String? |  yes  |  |
- | message | String? |  yes  |  |
  | status | Int? |  yes  |  |
+ | message | String? |  yes  |  |
+ | shipmentId | String? |  yes  |  |
 
 ---
 
@@ -21138,16 +21174,16 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | affiliateId | String? |  yes  |  |
  | reasonIds | [Int]? |  yes  |  |
- | setId | String? |  yes  |  |
- | fyndOrderId | String? |  yes  |  |
- | affiliateBagId | String? |  yes  |  |
- | mongoArticleId | String? |  yes  |  |
  | itemId | String? |  yes  |  |
  | bagId | Int? |  yes  |  |
- | affiliateId | String? |  yes  |  |
- | storeId | Int |  no  |  |
  | affiliateOrderId | String? |  yes  |  |
+ | setId | String? |  yes  |  |
+ | storeId | Int |  no  |  |
+ | affiliateBagId | String? |  yes  |  |
+ | fyndOrderId | String? |  yes  |  |
+ | mongoArticleId | String? |  yes  |  |
 
 ---
 
@@ -21170,12 +21206,12 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliateBagId | String? |  yes  |  |
- | reasonText | String |  no  |  |
  | affiliateId | String? |  yes  |  |
- | id | String? |  yes  |  |
+ | reasonText | String |  no  |  |
  | affiliateOrderId | String? |  yes  |  |
+ | id | String? |  yes  |  |
  | affiliateShipmentId | String? |  yes  |  |
+ | affiliateBagId | String? |  yes  |  |
 
 ---
 
@@ -21186,24 +21222,10 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | entities | [[Entities](#Entities)] |  no  |  |
  | actionType | String |  no  |  |
- | action | String |  no  |  |
  | entityType | String |  no  |  |
-
----
-
-
- 
- 
- #### [Bags1](#Bags1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | isLocked | Bool? |  yes  |  |
- | affiliateOrderId | String? |  yes  |  |
- | affiliateBagId | String? |  yes  |  |
- | bagId | Int? |  yes  |  |
+ | entities | [[Entities](#Entities)] |  no  |  |
+ | action | String |  no  |  |
 
 ---
 
@@ -21222,19 +21244,33 @@ Successfully retrieved all the given shipments details!
 
  
  
+ #### [Bags1](#Bags1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isLocked | Bool? |  yes  |  |
+ | affiliateOrderId | String? |  yes  |  |
+ | bagId | Int? |  yes  |  |
+ | affiliateBagId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [CheckResponse](#CheckResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bags | [[Bags1](#Bags1)]? |  yes  |  |
- | isShipmentLocked | Bool? |  yes  |  |
- | isBagLocked | Bool? |  yes  |  |
- | lockStatus | Bool? |  yes  |  |
- | originalFilter | [OriginalFilter](#OriginalFilter)? |  yes  |  |
  | affiliateId | String? |  yes  |  |
  | status | String? |  yes  |  |
- | shipmentId | String? |  yes  |  |
+ | lockStatus | Bool? |  yes  |  |
+ | isShipmentLocked | Bool? |  yes  |  |
+ | originalFilter | [OriginalFilter](#OriginalFilter)? |  yes  |  |
+ | bags | [[Bags1](#Bags1)]? |  yes  |  |
  | affiliateShipmentId | String? |  yes  |  |
+ | isBagLocked | Bool? |  yes  |  |
+ | shipmentId | String? |  yes  |  |
 
 ---
 
@@ -21245,9 +21281,21 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | checkResponse | [[CheckResponse](#CheckResponse)]? |  yes  |  |
  | message | String? |  yes  |  |
+ | checkResponse | [[CheckResponse](#CheckResponse)]? |  yes  |  |
  | success | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [RecursiveUpdate](#RecursiveUpdate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bagIds | [String]? |  yes  |  |
+ | entityIds | [String]? |  yes  |  |
 
 ---
 
@@ -21265,24 +21313,12 @@ Successfully retrieved all the given shipments details!
 
  
  
- #### [RecursiveUpdate](#RecursiveUpdate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | entityIds | [String]? |  yes  |  |
- | bagIds | [String]? |  yes  |  |
-
----
-
-
- 
- 
  #### [DataUpdate](#DataUpdate)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | entityIds | [DataUpdatePerEntity](#DataUpdatePerEntity)? |  yes  |  |
  | recursiveUpdates | [RecursiveUpdate](#RecursiveUpdate)? |  yes  |  |
+ | entityIds | [DataUpdatePerEntity](#DataUpdatePerEntity)? |  yes  |  |
 
 ---
 
@@ -21327,11 +21363,11 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | entityIds | [String]? |  yes  |  |
- | dataUpdates | [DataUpdate](#DataUpdate)? |  yes  |  |
  | nextStatus | String? |  yes  |  |
+ | dataUpdates | [DataUpdate](#DataUpdate)? |  yes  |  |
  | bagIds | [String] |  no  |  |
  | reasons | [EntityReason](#EntityReason)? |  yes  |  |
+ | entityIds | [String]? |  yes  |  |
 
 ---
 
@@ -21353,10 +21389,10 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unlockBeforeTransition | Bool? |  yes  |  |
  | lockAfterTransition | Bool? |  yes  |  |
- | processInBackground | Bool? |  yes  |  |
+ | unlockBeforeTransition | Bool? |  yes  |  |
  | entities | [EntitiesDetail](#EntitiesDetail) |  no  |  |
+ | processInBackground | Bool? |  yes  |  |
 
 ---
 
@@ -21379,25 +21415,76 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | errorEntities | [[EntityTransitionError](#EntityTransitionError)]? |  yes  |  |
  | status | Bool |  no  |  |
+ | errorEntities | [[EntityTransitionError](#EntityTransitionError)]? |  yes  |  |
 
 ---
 
 
  
  
- #### [ShipmentStatusCommon](#ShipmentStatusCommon)
+ #### [ShipmentPrices1](#ShipmentPrices1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipmentId | String |  no  |  |
- | ssId | Int |  no  |  |
- | currentShipmentStatus | String? |  yes  |  |
- | bagList | [String] |  no  |  |
- | createdAt | String |  no  |  |
- | statusCreatedAt | String? |  yes  |  |
- | status | String |  no  |  |
+ | valueOfGood | Double |  no  |  |
+ | priceMarked | Double |  no  |  |
+ | fyndCredits | Double |  no  |  |
+ | refundCredit | Double |  no  |  |
+ | cashback | Double |  no  |  |
+ | promotionEffectiveDiscount | Double |  no  |  |
+ | deliveryCharge | Double |  no  |  |
+ | refundAmount | Double |  no  |  |
+ | taxCollectedAtSource | Double |  no  |  |
+ | codCharges | Double |  no  |  |
+ | amountPaid | Double |  no  |  |
+ | couponValue | Double |  no  |  |
+ | discount | Double |  no  |  |
+ | priceEffective | Double |  no  |  |
+ | cashbackApplied | Double |  no  |  |
+ | amountPaidRoundoff | Double |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateConfig1](#AffiliateConfig1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | appCompanyId | Int |  no  |  |
+ | token | String? |  yes  |  |
+ | secret | String |  no  |  |
+ | postOrderReassignment | Bool |  no  |  |
+ | name | String |  no  |  |
+ | owner | String |  no  |  |
+ | updatedAt | String? |  yes  |  |
+ | articleAssignment | [String: Any]? |  yes  |  |
+ | description | String? |  yes  |  |
+ | dpAssignment | Bool |  no  |  |
+ | forceReassignment | Bool |  no  |  |
+ | stores | [Int]? |  yes  |  |
+ | meta | [[String: Any]]? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+ | acId | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BuyerDetails](#BuyerDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String |  no  |  |
+ | city | String |  no  |  |
+ | state | String |  no  |  |
+ | ajioSiteId | String? |  yes  |  |
+ | address | String |  no  |  |
+ | gstin | String |  no  |  |
+ | pincode | Int |  no  |  |
 
 ---
 
@@ -21408,13 +21495,13 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | signedQrCode | String? |  yes  |  |
- | irn | String? |  yes  |  |
- | signedInvoice | String? |  yes  |  |
- | acknowledgeNo | Int? |  yes  |  |
- | acknowledgeDate | String? |  yes  |  |
- | errorCode | String? |  yes  |  |
  | errorMessage | String? |  yes  |  |
+ | acknowledgeDate | String? |  yes  |  |
+ | signedQrCode | String? |  yes  |  |
+ | acknowledgeNo | Int? |  yes  |  |
+ | errorCode | String? |  yes  |  |
+ | signedInvoice | String? |  yes  |  |
+ | irn | String? |  yes  |  |
 
 ---
 
@@ -21433,13 +21520,163 @@ Successfully retrieved all the given shipments details!
 
  
  
- #### [EInvoicePortalDetails](#EInvoicePortalDetails)
+ #### [ShipmentMeta](#ShipmentMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | String? |  yes  |  |
- | password | String? |  yes  |  |
- | username | String? |  yes  |  |
+ | forwardAffiliateOrderId | String? |  yes  |  |
+ | returnDetails | [String: Any]? |  yes  |  |
+ | boxType | String? |  yes  |  |
+ | dpId | String? |  yes  |  |
+ | forwardAffiliateShipmentId | String? |  yes  |  |
+ | awbNumber | String? |  yes  |  |
+ | b2BBuyerDetails | [BuyerDetails](#BuyerDetails)? |  yes  |  |
+ | external | [String: Any]? |  yes  |  |
+ | orderType | String? |  yes  |  |
+ | dpName | String? |  yes  |  |
+ | returnStoreNode | Int? |  yes  |  |
+ | autoTriggerDpAssignmentAcf | Bool |  no  |  |
+ | b2CBuyerDetails | [String: Any]? |  yes  |  |
+ | returnAwbNumber | String? |  yes  |  |
+ | dpOptions | [String: Any]? |  yes  |  |
+ | einvoiceInfo | [EinvoiceInfo](#EinvoiceInfo)? |  yes  |  |
+ | ewaybillInfo | [String: Any]? |  yes  |  |
+ | dpSortKey | String? |  yes  |  |
+ | bagWeight | [String: Any]? |  yes  |  |
+ | assignDpFromSb | Bool? |  yes  |  |
+ | weight | Int |  no  |  |
+ | returnAffiliateShipmentId | String? |  yes  |  |
+ | dueDate | String? |  yes  |  |
+ | returnAffiliateOrderId | String? |  yes  |  |
+ | marketplaceStoreId | String? |  yes  |  |
+ | fulfilmentPriorityText | String? |  yes  |  |
+ | sameStoreAvailable | Bool |  no  |  |
+ | formatted | [String: Any]? |  yes  |  |
+ | debugInfo | [String: Any]? |  yes  |  |
+ | packagingName | String? |  yes  |  |
+ | poNumber | String? |  yes  |  |
+ | storeInvoiceUpdatedDate | String? |  yes  |  |
+ | timestamp | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PDFLinks](#PDFLinks)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | b2B | String? |  yes  |  |
+ | labelA4 | String? |  yes  |  |
+ | labelType | String |  no  |  |
+ | invoiceA4 | String? |  yes  |  |
+ | labelA6 | String? |  yes  |  |
+ | creditNoteUrl | String? |  yes  |  |
+ | invoiceA6 | String? |  yes  |  |
+ | invoiceType | String |  no  |  |
+ | poInvoice | String? |  yes  |  |
+ | invoicePos | String? |  yes  |  |
+ | labelPos | String? |  yes  |  |
+ | invoice | String? |  yes  |  |
+ | label | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateMeta](#AffiliateMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | channelOrderId | String? |  yes  |  |
+ | orderItemId | String? |  yes  |  |
+ | isPriority | Bool? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | employeeDiscount | Double? |  yes  |  |
+ | boxType | String? |  yes  |  |
+ | couponCode | String? |  yes  |  |
+ | loyaltyDiscount | Double? |  yes  |  |
+ | dueDate | String? |  yes  |  |
+ | channelShipmentId | String? |  yes  |  |
+ | sizeLevelTotalQty | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateDetails](#AffiliateDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliateBagId | String |  no  |  |
+ | affiliateId | String? |  yes  |  |
+ | config | [AffiliateConfig1](#AffiliateConfig1) |  no  |  |
+ | shipmentMeta | [ShipmentMeta](#ShipmentMeta) |  no  |  |
+ | affiliateShipmentId | String |  no  |  |
+ | companyAffiliateTag | String? |  yes  |  |
+ | adId | String? |  yes  |  |
+ | affiliateOrderId | String |  no  |  |
+ | pdfLinks | [PDFLinks](#PDFLinks)? |  yes  |  |
+ | affiliateStoreId | String |  no  |  |
+ | affiliateMeta | [AffiliateMeta](#AffiliateMeta) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreAddress](#StoreAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | updatedAt | String |  no  |  |
+ | phone | String |  no  |  |
+ | latitude | Double |  no  |  |
+ | area | String? |  yes  |  |
+ | countryCode | String |  no  |  |
+ | city | String |  no  |  |
+ | state | String |  no  |  |
+ | pincode | Int |  no  |  |
+ | address2 | String? |  yes  |  |
+ | contactPerson | String |  no  |  |
+ | createdAt | String |  no  |  |
+ | addressType | String |  no  |  |
+ | addressCategory | String |  no  |  |
+ | address1 | String |  no  |  |
+ | longitude | Double |  no  |  |
+ | email | String? |  yes  |  |
+ | country | String |  no  |  |
+ | version | String? |  yes  |  |
+ | landmark | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Document](#Document)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | String |  no  |  |
+ | legalName | String |  no  |  |
+ | url | String? |  yes  |  |
+ | verified | Bool |  no  |  |
+ | dsType | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreDocuments](#StoreDocuments)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gst | [Document](#Document)? |  yes  |  |
 
 ---
 
@@ -21461,10 +21698,10 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | password | String? |  yes  |  |
+ | username | String? |  yes  |  |
  | enabled | Bool |  no  |  |
  | user | String? |  yes  |  |
- | username | String? |  yes  |  |
+ | password | String? |  yes  |  |
 
 ---
 
@@ -21483,26 +21720,13 @@ Successfully retrieved all the given shipments details!
 
  
  
- #### [Document](#Document)
+ #### [EInvoicePortalDetails](#EInvoicePortalDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | verified | Bool |  no  |  |
- | legalName | String |  no  |  |
- | value | String |  no  |  |
- | url | String? |  yes  |  |
- | dsType | String |  no  |  |
-
----
-
-
- 
- 
- #### [StoreDocuments](#StoreDocuments)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gst | [Document](#Document)? |  yes  |  |
+ | username | String? |  yes  |  |
+ | user | String? |  yes  |  |
+ | password | String? |  yes  |  |
 
 ---
 
@@ -21513,46 +21737,17 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | gstNumber | String? |  yes  |  |
+ | documents | [StoreDocuments](#StoreDocuments)? |  yes  |  |
+ | stage | String |  no  |  |
+ | additionalContactDetails | [String: Any]? |  yes  |  |
+ | displayName | String |  no  |  |
+ | ewaybillPortalDetails | [String: Any]? |  yes  |  |
+ | gstCredentials | [StoreGstCredentials](#StoreGstCredentials) |  no  |  |
  | notificationEmails | [String]? |  yes  |  |
  | productReturnConfig | [String: Any]? |  yes  |  |
  | einvoicePortalDetails | [EInvoicePortalDetails](#EInvoicePortalDetails)? |  yes  |  |
- | ewaybillPortalDetails | [String: Any]? |  yes  |  |
- | displayName | String |  no  |  |
- | gstCredentials | [StoreGstCredentials](#StoreGstCredentials) |  no  |  |
- | documents | [StoreDocuments](#StoreDocuments)? |  yes  |  |
  | timing | [[String: Any]]? |  yes  |  |
- | gstNumber | String? |  yes  |  |
- | stage | String |  no  |  |
- | additionalContactDetails | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [StoreAddress](#StoreAddress)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address2 | String? |  yes  |  |
- | createdAt | String |  no  |  |
- | address1 | String |  no  |  |
- | state | String |  no  |  |
- | area | String? |  yes  |  |
- | pincode | Int |  no  |  |
- | version | String? |  yes  |  |
- | latitude | Double |  no  |  |
- | landmark | String? |  yes  |  |
- | countryCode | String |  no  |  |
- | addressType | String |  no  |  |
- | country | String |  no  |  |
- | city | String |  no  |  |
- | addressCategory | String |  no  |  |
- | updatedAt | String |  no  |  |
- | contactPerson | String |  no  |  |
- | email | String? |  yes  |  |
- | longitude | Double |  no  |  |
- | phone | String |  no  |  |
 
 ---
 
@@ -21563,169 +21758,175 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brandStoreTags | [String]? |  yes  |  |
- | locationType | String |  no  |  |
- | name | String |  no  |  |
- | address2 | String? |  yes  |  |
- | createdAt | String |  no  |  |
- | address1 | String |  no  |  |
- | parentStoreId | Int? |  yes  |  |
+ | storeEmail | String |  no  |  |
  | packagingMaterialCount | Int? |  yes  |  |
- | state | String |  no  |  |
- | pincode | String |  no  |  |
- | isActive | Bool? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | phone | Int |  no  |  |
  | isEnabledForRecon | Bool? |  yes  |  |
  | latitude | Double |  no  |  |
- | code | String? |  yes  |  |
- | brandId | [String: Any]? |  yes  |  |
- | isArchived | Bool? |  yes  |  |
- | meta | [StoreMeta](#StoreMeta) |  no  |  |
- | loginUsername | String |  no  |  |
- | sId | String |  no  |  |
- | companyId | Int |  no  |  |
- | country | String |  no  |  |
- | orderIntegrationId | String? |  yes  |  |
- | city | String |  no  |  |
- | storeActiveFrom | String? |  yes  |  |
- | storeEmail | String |  no  |  |
- | mallName | String? |  yes  |  |
- | alohomoraUserId | Int? |  yes  |  |
- | vatNo | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | contactPerson | String |  no  |  |
  | fulfillmentChannel | String |  no  |  |
- | storeAddressJson | [StoreAddress](#StoreAddress)? |  yes  |  |
- | longitude | Double |  no  |  |
- | phone | Int |  no  |  |
- | mallArea | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [FinancialBreakup](#FinancialBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gstTaxPercentage | Double |  no  |  |
- | gstTag | String |  no  |  |
- | discount | Double |  no  |  |
- | itemName | String |  no  |  |
- | tcsPercentage | Double |  no  |  |
- | codCharges | Double |  no  |  |
- | amountPaidRoundoff | Int |  no  |  |
- | transferPrice | Double |  no  |  |
- | priceEffective | Double |  no  |  |
- | cashbackApplied | Double |  no  |  |
- | promotionEffectiveDiscount | Double |  no  |  |
- | addedToFyndCash | Bool |  no  |  |
- | refundCredit | Double |  no  |  |
- | valueOfGood | Double |  no  |  |
- | totalUnits | Int |  no  |  |
- | couponValue | Double |  no  |  |
- | brandCalculatedAmount | Double |  no  |  |
- | gstFee | String |  no  |  |
- | deliveryCharge | Double |  no  |  |
- | amountPaid | Double |  no  |  |
- | fyndCredits | Double |  no  |  |
- | priceMarked | Double |  no  |  |
- | taxCollectedAtSource | Double |  no  |  |
- | hsnCode | String |  no  |  |
- | refundAmount | Double |  no  |  |
- | couponEffectiveDiscount | Double |  no  |  |
- | cashback | Double |  no  |  |
- | identifiers | [String: Any] |  no  |  |
- | size | String |  no  |  |
-
----
-
-
- 
- 
- #### [Article](#Article)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aSet | [String: Any]? |  yes  |  |
- | sellerIdentifier | String |  no  |  |
- | rawMeta | [String: Any]? |  yes  |  |
- | identifiers | [String: Any] |  no  |  |
- | uid | String |  no  |  |
- | id | String |  no  |  |
- | code | String? |  yes  |  |
- | isSet | [String: Any]? |  yes  |  |
- | espModified | [String: Any]? |  yes  |  |
- | childDetails | [String: Any]? |  yes  |  |
- | returnConfig | [String: Any]? |  yes  |  |
- | size | String |  no  |  |
-
----
-
-
- 
- 
- #### [Brand](#Brand)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | createdOn | Int? |  yes  |  |
- | brandName | String |  no  |  |
- | modifiedOn | Int? |  yes  |  |
- | pickupLocation | String? |  yes  |  |
- | creditNoteExpiryDays | Int? |  yes  |  |
- | creditNoteAllowed | Bool? |  yes  |  |
- | isVirtualInvoice | Bool? |  yes  |  |
- | brandId | Int |  no  |  |
- | startDate | String? |  yes  |  |
- | invoicePrefix | String? |  yes  |  |
- | company | String |  no  |  |
- | logo | String? |  yes  |  |
- | scriptLastRan | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [BagStateMapper1](#BagStateMapper1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | appStateName | String? |  yes  |  |
- | name | String |  no  |  |
- | stateType | String |  no  |  |
- | appFacing | Bool? |  yes  |  |
- | displayName | String |  no  |  |
- | bsId | Int |  no  |  |
+ | brandStoreTags | [String]? |  yes  |  |
+ | companyId | Int |  no  |  |
  | isActive | Bool? |  yes  |  |
- | appDisplayName | String? |  yes  |  |
- | notifyCustomer | Bool? |  yes  |  |
- | journeyType | String |  no  |  |
+ | name | String |  no  |  |
+ | city | String |  no  |  |
+ | brandId | [String: Any]? |  yes  |  |
+ | storeActiveFrom | String? |  yes  |  |
+ | storeAddressJson | [StoreAddress](#StoreAddress)? |  yes  |  |
+ | state | String |  no  |  |
+ | loginUsername | String |  no  |  |
+ | pincode | String |  no  |  |
+ | address2 | String? |  yes  |  |
+ | contactPerson | String |  no  |  |
+ | mallName | String? |  yes  |  |
+ | createdAt | String |  no  |  |
+ | alohomoraUserId | Int? |  yes  |  |
+ | address1 | String |  no  |  |
+ | orderIntegrationId | String? |  yes  |  |
+ | isArchived | Bool? |  yes  |  |
+ | mallArea | String? |  yes  |  |
+ | code | String? |  yes  |  |
+ | locationType | String |  no  |  |
+ | longitude | Double |  no  |  |
+ | sId | String |  no  |  |
+ | vatNo | String? |  yes  |  |
+ | parentStoreId | Int? |  yes  |  |
+ | country | String |  no  |  |
+ | meta | [StoreMeta](#StoreMeta) |  no  |  |
 
 ---
 
 
  
  
- #### [BagStatusHistory](#BagStatusHistory)
+ #### [UserObj](#UserObj)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | gender | String |  no  |  |
+ | firstName | String |  no  |  |
+ | email | String? |  yes  |  |
+ | userOid | String |  no  |  |
+ | mongoUserId | String |  no  |  |
+ | isAnonymousUser | Bool |  no  |  |
+ | mobile | String |  no  |  |
+ | uId | Int |  no  |  |
+ | lastName | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Documents1](#Documents1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gst | [Document](#Document) |  no  |  |
+ | pan | [Document](#Document) |  no  |  |
+ | cin | [Document](#Document)? |  yes  |  |
+ | digitalSignature | [Document](#Document)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyAddress](#CompanyAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | longitude | Double |  no  |  |
+ | addressType | String |  no  |  |
+ | countryCode | String |  no  |  |
+ | city | String |  no  |  |
+ | state | String |  no  |  |
+ | country | String |  no  |  |
+ | address1 | String |  no  |  |
+ | latitude | Double |  no  |  |
+ | pincode | Int |  no  |  |
+ | address2 | String? |  yes  |  |
+ | landmark | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyMeta](#CompanyMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | businessInfo | String? |  yes  |  |
+ | documents | [Documents1](#Documents1) |  no  |  |
+ | businessDetails | [String: Any]? |  yes  |  |
+ | stage | String |  no  |  |
+ | address | [[CompanyAddress](#CompanyAddress)] |  no  |  |
+ | notificationEmails | [String] |  no  |  |
+ | contactDetails | [String: Any] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Company1](#Company1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | companyType | String? |  yes  |  |
+ | paymentType | String? |  yes  |  |
+ | exchangeWithinDays | Int? |  yes  |  |
+ | modifiedOn | Int? |  yes  |  |
+ | fyndAFitAvailable | Bool |  no  |  |
+ | cst | String? |  yes  |  |
+ | createdOn | Int? |  yes  |  |
+ | cId | Int? |  yes  |  |
+ | paymentProcesingCharge | Double? |  yes  |  |
+ | businessType | String? |  yes  |  |
+ | gstNumber | String? |  yes  |  |
+ | returnAllowed | Bool? |  yes  |  |
+ | tanNo | String? |  yes  |  |
+ | panNo | String? |  yes  |  |
+ | commission | Double? |  yes  |  |
+ | companyName | String? |  yes  |  |
+ | exchangeAllowed | Bool? |  yes  |  |
+ | agreementStartDate | Int? |  yes  |  |
+ | returnWithinDays | Int? |  yes  |  |
+ | vatNo | String? |  yes  |  |
+ | meta | [CompanyMeta](#CompanyMeta)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentStatusCommon](#ShipmentStatusCommon)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bagList | [String] |  no  |  |
+ | currentShipmentStatus | String? |  yes  |  |
+ | ssId | Int |  no  |  |
+ | statusCreatedAt | String? |  yes  |  |
  | shipmentId | String |  no  |  |
- | stateId | Int |  no  |  |
- | storeId | Int |  no  |  |
- | kafkaSync | Bool? |  yes  |  |
- | stateType | String |  no  |  |
- | updatedAt | String |  no  |  |
- | deliveryAwbNumber | String? |  yes  |  |
- | reasons | [[String: Any]]? |  yes  |  |
  | createdAt | String |  no  |  |
- | deliveryPartnerId | Int? |  yes  |  |
- | bagStateMapper | [BagStateMapper1](#BagStateMapper1) |  no  |  |
  | status | String |  no  |  |
- | bshId | Int |  no  |  |
- | bagId | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentGst1](#ShipmentGst1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gstinCode | String? |  yes  |  |
+ | gstFee | Double |  no  |  |
+ | valueOfGood | Double |  no  |  |
+ | taxCollectedAtSource | Double |  no  |  |
+ | brandCalculatedAmount | Double |  no  |  |
 
 ---
 
@@ -21736,28 +21937,244 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gstTaxPercentage | Double |  no  |  |
- | discount | Double |  no  |  |
- | tcsPercentage | Double |  no  |  |
- | codCharges | Double |  no  |  |
- | amountPaidRoundoff | Int |  no  |  |
- | transferPrice | Double |  no  |  |
+ | valueOfGood | Double |  no  |  |
+ | priceMarked | Double |  no  |  |
+ | refundAmount | Double |  no  |  |
  | priceEffective | Double |  no  |  |
- | cashbackApplied | Double |  no  |  |
+ | fyndCredits | Double |  no  |  |
+ | refundCredit | Double |  no  |  |
+ | deliveryCharge | Double |  no  |  |
+ | gstTaxPercentage | Double |  no  |  |
+ | amountPaid | Double |  no  |  |
+ | codCharges | Double |  no  |  |
+ | transferPrice | Double |  no  |  |
+ | discount | Double |  no  |  |
+ | brandCalculatedAmount | Double |  no  |  |
+ | couponEffectiveDiscount | Double |  no  |  |
  | promotionEffectiveDiscount | Double |  no  |  |
  | addedToFyndCash | Bool |  no  |  |
- | refundCredit | Double |  no  |  |
- | valueOfGood | Double |  no  |  |
- | couponValue | Double |  no  |  |
- | brandCalculatedAmount | Double |  no  |  |
- | deliveryCharge | Double |  no  |  |
- | amountPaid | Double |  no  |  |
- | fyndCredits | Double |  no  |  |
- | priceMarked | Double |  no  |  |
- | taxCollectedAtSource | Double |  no  |  |
- | refundAmount | Double |  no  |  |
- | couponEffectiveDiscount | Double |  no  |  |
+ | amountPaidRoundoff | Int |  no  |  |
+ | tcsPercentage | Double |  no  |  |
  | cashback | Double |  no  |  |
+ | taxCollectedAtSource | Double |  no  |  |
+ | couponValue | Double |  no  |  |
+ | cashbackApplied | Double |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateBagDetails](#AffiliateBagDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliateBagId | String |  no  |  |
+ | employeeDiscount | Double? |  yes  |  |
+ | loyaltyDiscount | Double? |  yes  |  |
+ | affiliateOrderId | String |  no  |  |
+ | affiliateMeta | [AffiliateMeta](#AffiliateMeta) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagGSTDetails](#BagGSTDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gstinCode | String? |  yes  |  |
+ | gstFee | Double |  no  |  |
+ | valueOfGood | Double |  no  |  |
+ | hsnCodeId | String |  no  |  |
+ | cgstTaxPercentage | Double |  no  |  |
+ | gstTaxPercentage | Double |  no  |  |
+ | igstTaxPercentage | Double |  no  |  |
+ | sgstGstFee | String |  no  |  |
+ | taxCollectedAtSource | Double |  no  |  |
+ | igstGstFee | String |  no  |  |
+ | sgstTaxPercentage | Double |  no  |  |
+ | hsnCode | String |  no  |  |
+ | isDefaultHsnCode | Bool? |  yes  |  |
+ | cgstGstFee | String |  no  |  |
+ | gstTag | String |  no  |  |
+ | brandCalculatedAmount | Double |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FinancialBreakup](#FinancialBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | valueOfGood | Double |  no  |  |
+ | priceMarked | Double |  no  |  |
+ | refundAmount | Double |  no  |  |
+ | totalUnits | Int |  no  |  |
+ | hsnCode | String |  no  |  |
+ | priceEffective | Double |  no  |  |
+ | fyndCredits | Double |  no  |  |
+ | refundCredit | Double |  no  |  |
+ | deliveryCharge | Double |  no  |  |
+ | gstTaxPercentage | Double |  no  |  |
+ | amountPaid | Double |  no  |  |
+ | codCharges | Double |  no  |  |
+ | transferPrice | Double |  no  |  |
+ | discount | Double |  no  |  |
+ | itemName | String |  no  |  |
+ | brandCalculatedAmount | Double |  no  |  |
+ | couponEffectiveDiscount | Double |  no  |  |
+ | promotionEffectiveDiscount | Double |  no  |  |
+ | addedToFyndCash | Bool |  no  |  |
+ | amountPaidRoundoff | Int |  no  |  |
+ | tcsPercentage | Double |  no  |  |
+ | gstFee | String |  no  |  |
+ | cashback | Double |  no  |  |
+ | identifiers | [String: Any] |  no  |  |
+ | taxCollectedAtSource | Double |  no  |  |
+ | couponValue | Double |  no  |  |
+ | size | String |  no  |  |
+ | cashbackApplied | Double |  no  |  |
+ | gstTag | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Item](#Item)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | branchUrl | String? |  yes  |  |
+ | slugKey | String |  no  |  |
+ | l1Category | [String]? |  yes  |  |
+ | image | [String] |  no  |  |
+ | canReturn | Bool? |  yes  |  |
+ | l3CategoryName | String? |  yes  |  |
+ | name | String |  no  |  |
+ | size | String |  no  |  |
+ | brandId | Int |  no  |  |
+ | attributes | [String: Any] |  no  |  |
+ | itemId | Int |  no  |  |
+ | canCancel | Bool? |  yes  |  |
+ | gender | String? |  yes  |  |
+ | brand | String |  no  |  |
+ | webstoreProductUrl | String? |  yes  |  |
+ | color | String? |  yes  |  |
+ | code | String? |  yes  |  |
+ | l2Category | [String]? |  yes  |  |
+ | lastUpdatedAt | Int? |  yes  |  |
+ | departmentId | Int? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | l3Category | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BagReturnableCancelableStatus](#BagReturnableCancelableStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enableTracking | Bool |  no  |  |
+ | isActive | Bool |  no  |  |
+ | isReturnable | Bool |  no  |  |
+ | isCustomerReturnAllowed | Bool |  no  |  |
+ | canBeCancelled | Bool |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagStateMapper1](#BagStateMapper1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | appDisplayName | String? |  yes  |  |
+ | stateType | String |  no  |  |
+ | isActive | Bool? |  yes  |  |
+ | name | String |  no  |  |
+ | appStateName | String? |  yes  |  |
+ | displayName | String |  no  |  |
+ | journeyType | String |  no  |  |
+ | notifyCustomer | Bool? |  yes  |  |
+ | bsId | Int |  no  |  |
+ | appFacing | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BagStatusHistory](#BagStatusHistory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | stateType | String |  no  |  |
+ | bagId | Int |  no  |  |
+ | reasons | [[String: Any]]? |  yes  |  |
+ | stateId | Int |  no  |  |
+ | status | String |  no  |  |
+ | deliveryPartnerId | Int? |  yes  |  |
+ | updatedAt | String |  no  |  |
+ | storeId | Int |  no  |  |
+ | deliveryAwbNumber | String? |  yes  |  |
+ | bagStateMapper | [BagStateMapper1](#BagStateMapper1) |  no  |  |
+ | kafkaSync | Bool? |  yes  |  |
+ | shipmentId | String |  no  |  |
+ | createdAt | String |  no  |  |
+ | bshId | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Brand](#Brand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | invoicePrefix | String? |  yes  |  |
+ | scriptLastRan | String? |  yes  |  |
+ | brandName | String |  no  |  |
+ | creditNoteExpiryDays | Int? |  yes  |  |
+ | brandId | Int |  no  |  |
+ | logo | String? |  yes  |  |
+ | modifiedOn | Int? |  yes  |  |
+ | startDate | String? |  yes  |  |
+ | createdOn | Int? |  yes  |  |
+ | isVirtualInvoice | Bool? |  yes  |  |
+ | pickupLocation | String? |  yes  |  |
+ | company | String |  no  |  |
+ | creditNoteAllowed | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Article](#Article)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | childDetails | [String: Any]? |  yes  |  |
+ | code | String? |  yes  |  |
+ | espModified | [String: Any]? |  yes  |  |
+ | identifiers | [String: Any] |  no  |  |
+ | returnConfig | [String: Any]? |  yes  |  |
+ | isSet | [String: Any]? |  yes  |  |
+ | aSet | [String: Any]? |  yes  |  |
+ | id | String |  no  |  |
+ | rawMeta | [String: Any]? |  yes  |  |
+ | uid | String |  no  |  |
+ | size | String |  no  |  |
+ | sellerIdentifier | String |  no  |  |
 
 ---
 
@@ -21768,9 +22185,9 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | totalGstPercentage | Double |  no  |  |
  | poTaxAmount | Double |  no  |  |
  | itemBasePrice | Double |  no  |  |
- | totalGstPercentage | Double |  no  |  |
  | poLineAmount | Double |  no  |  |
 
 ---
@@ -21789,369 +22206,51 @@ Successfully retrieved all the given shipments details!
 
  
  
- #### [BagReturnableCancelableStatus](#BagReturnableCancelableStatus)
+ #### [ShipmentProduct](#ShipmentProduct)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | canBeCancelled | Bool |  no  |  |
- | isActive | Bool |  no  |  |
- | isReturnable | Bool |  no  |  |
- | enableTracking | Bool |  no  |  |
- | isCustomerReturnAllowed | Bool |  no  |  |
-
----
-
-
- 
- 
- #### [AffiliateMeta](#AffiliateMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dueDate | String? |  yes  |  |
- | boxType | String? |  yes  |  |
- | couponCode | String? |  yes  |  |
- | sizeLevelTotalQty | Int? |  yes  |  |
- | channelShipmentId | String? |  yes  |  |
- | orderItemId | String? |  yes  |  |
- | channelOrderId | String? |  yes  |  |
- | isPriority | Bool? |  yes  |  |
- | quantity | Int? |  yes  |  |
- | employeeDiscount | Double? |  yes  |  |
- | loyaltyDiscount | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [AffiliateBagDetails](#AffiliateBagDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | affiliateBagId | String |  no  |  |
- | affiliateOrderId | String |  no  |  |
- | employeeDiscount | Double? |  yes  |  |
- | affiliateMeta | [AffiliateMeta](#AffiliateMeta) |  no  |  |
- | loyaltyDiscount | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [Item](#Item)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | l3Category | Int? |  yes  |  |
- | name | String |  no  |  |
- | gender | String? |  yes  |  |
- | canCancel | Bool? |  yes  |  |
- | brand | String |  no  |  |
- | canReturn | Bool? |  yes  |  |
- | l2Category | [String]? |  yes  |  |
- | branchUrl | String? |  yes  |  |
- | l1Category | [String]? |  yes  |  |
- | webstoreProductUrl | String? |  yes  |  |
- | code | String? |  yes  |  |
- | brandId | Int |  no  |  |
- | lastUpdatedAt | Int? |  yes  |  |
- | slugKey | String |  no  |  |
- | meta | [String: Any]? |  yes  |  |
- | color | String? |  yes  |  |
- | departmentId | Int? |  yes  |  |
- | image | [String] |  no  |  |
- | attributes | [String: Any] |  no  |  |
- | l3CategoryName | String? |  yes  |  |
- | itemId | Int |  no  |  |
- | size | String |  no  |  |
-
----
-
-
- 
- 
- #### [BagGSTDetails](#BagGSTDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | hsnCodeId | String |  no  |  |
- | hsnCode | String |  no  |  |
- | cgstGstFee | String |  no  |  |
- | taxCollectedAtSource | Double |  no  |  |
- | brandCalculatedAmount | Double |  no  |  |
- | gstFee | Double |  no  |  |
- | cgstTaxPercentage | Double |  no  |  |
- | sgstTaxPercentage | Double |  no  |  |
- | gstTaxPercentage | Double |  no  |  |
- | isDefaultHsnCode | Bool? |  yes  |  |
- | gstTag | String |  no  |  |
- | sgstGstFee | String |  no  |  |
- | valueOfGood | Double |  no  |  |
- | igstGstFee | String |  no  |  |
- | gstinCode | String? |  yes  |  |
- | igstTaxPercentage | Double |  no  |  |
-
----
-
-
- 
- 
- #### [Bag](#Bag)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | financialBreakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
- | article | [Article](#Article) |  no  |  |
- | appliedPromos | [[String: Any]]? |  yes  |  |
- | bType | String? |  yes  |  |
- | brand | [Brand](#Brand) |  no  |  |
- | currentOperationalStatus | [BagStatusHistory](#BagStatusHistory) |  no  |  |
- | paymentMethods | [String: Any] |  no  |  |
  | prices | [Prices](#Prices) |  no  |  |
- | bagId | Int |  no  |  |
- | entityType | String? |  yes  |  |
- | bId | Int |  no  |  |
- | dates | [String: Any]? |  yes  |  |
- | journeyType | String |  no  |  |
- | currentStatus | [BagStatusHistory](#BagStatusHistory) |  no  |  |
- | bagStatus | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
- | meta | [BagMeta](#BagMeta)? |  yes  |  |
- | bagUpdateTime | Double? |  yes  |  |
- | status | [BagReturnableCancelableStatus](#BagReturnableCancelableStatus) |  no  |  |
- | orderIntegrationId | String? |  yes  |  |
- | displayName | String? |  yes  |  |
- | reasons | [[String: Any]]? |  yes  |  |
  | affiliateBagDetails | [AffiliateBagDetails](#AffiliateBagDetails) |  no  |  |
- | item | [Item](#Item) |  no  |  |
+ | journeyType | String |  no  |  |
+ | appliedPromos | [[String: Any]]? |  yes  |  |
  | gstDetails | [BagGSTDetails](#BagGSTDetails) |  no  |  |
+ | bagUpdateTime | Double? |  yes  |  |
+ | financialBreakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
+ | bType | String? |  yes  |  |
+ | item | [Item](#Item) |  no  |  |
+ | status | [BagReturnableCancelableStatus](#BagReturnableCancelableStatus) |  no  |  |
+ | currentStatus | [BagStatusHistory](#BagStatusHistory) |  no  |  |
+ | bagId | Int |  no  |  |
+ | reasons | [[String: Any]]? |  yes  |  |
+ | bagStatus | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
+ | entityType | String? |  yes  |  |
+ | brand | [Brand](#Brand) |  no  |  |
+ | dates | [String: Any]? |  yes  |  |
+ | orderIntegrationId | String? |  yes  |  |
+ | paymentMethods | [String: Any] |  no  |  |
+ | bId | Int |  no  |  |
+ | currentOperationalStatus | [BagStatusHistory](#BagStatusHistory) |  no  |  |
+ | article | [Article](#Article) |  no  |  |
+ | displayName | String? |  yes  |  |
+ | meta | [BagMeta](#BagMeta)? |  yes  |  |
 
 ---
 
 
  
  
- #### [PDFLinks](#PDFLinks)
+ #### [CurrentShipmentStatus](#CurrentShipmentStatus)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | b2B | String? |  yes  |  |
- | invoice | String? |  yes  |  |
- | invoiceA6 | String? |  yes  |  |
- | labelA6 | String? |  yes  |  |
- | label | String? |  yes  |  |
- | labelA4 | String? |  yes  |  |
- | invoiceA4 | String? |  yes  |  |
- | labelPos | String? |  yes  |  |
- | creditNoteUrl | String? |  yes  |  |
- | labelType | String |  no  |  |
- | poInvoice | String? |  yes  |  |
- | invoiceType | String |  no  |  |
- | invoicePos | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ShipmentHandOverCustomerContact](#ShipmentHandOverCustomerContact)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | version | String |  no  |  |
- | updatedAt | String |  no  |  |
- | createdAt | String |  no  |  |
- | contactPerson | String |  no  |  |
- | email | String? |  yes  |  |
- | phone | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [DeliveryAddress](#DeliveryAddress)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String |  no  |  |
- | address2 | String? |  yes  |  |
- | createdAt | String |  no  |  |
- | address1 | String |  no  |  |
- | state | String |  no  |  |
- | area | String? |  yes  |  |
- | pincode | Int |  no  |  |
- | version | String? |  yes  |  |
- | latitude | Double |  no  |  |
- | address | String |  no  |  |
- | landmark | String? |  yes  |  |
- | countryCode | String? |  yes  |  |
- | addressType | String |  no  |  |
- | country | String |  no  |  |
- | city | String |  no  |  |
- | addressCategory | String |  no  |  |
- | updatedAt | String |  no  |  |
- | contactPerson | String |  no  |  |
- | email | String? |  yes  |  |
- | longitude | Double |  no  |  |
- | phone | String |  no  |  |
-
----
-
-
- 
- 
- #### [BuyerDetails](#BuyerDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String |  no  |  |
- | pincode | Int |  no  |  |
- | gstin | String |  no  |  |
- | address | String |  no  |  |
- | state | String |  no  |  |
- | ajioSiteId | String? |  yes  |  |
- | city | String |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentMeta](#ShipmentMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dueDate | String? |  yes  |  |
- | boxType | String? |  yes  |  |
- | returnDetails | [String: Any]? |  yes  |  |
- | einvoiceInfo | [EinvoiceInfo](#EinvoiceInfo)? |  yes  |  |
- | b2BBuyerDetails | [BuyerDetails](#BuyerDetails)? |  yes  |  |
- | returnAffiliateOrderId | String? |  yes  |  |
- | weight | Int |  no  |  |
- | marketplaceStoreId | String? |  yes  |  |
- | dpOptions | [String: Any]? |  yes  |  |
- | dpSortKey | String? |  yes  |  |
- | forwardAffiliateShipmentId | String? |  yes  |  |
- | external | [String: Any]? |  yes  |  |
- | returnStoreNode | Int? |  yes  |  |
- | b2CBuyerDetails | [String: Any]? |  yes  |  |
- | dpName | String? |  yes  |  |
- | awbNumber | String? |  yes  |  |
- | returnAwbNumber | String? |  yes  |  |
- | dpId | String? |  yes  |  |
- | sameStoreAvailable | Bool |  no  |  |
- | timestamp | [String: Any]? |  yes  |  |
- | debugInfo | [String: Any]? |  yes  |  |
- | storeInvoiceUpdatedDate | String? |  yes  |  |
- | forwardAffiliateOrderId | String? |  yes  |  |
- | returnAffiliateShipmentId | String? |  yes  |  |
- | orderType | String? |  yes  |  |
- | assignDpFromSb | Bool? |  yes  |  |
- | bagWeight | [String: Any]? |  yes  |  |
- | formatted | [String: Any]? |  yes  |  |
- | packagingName | String? |  yes  |  |
- | ewaybillInfo | [String: Any]? |  yes  |  |
- | autoTriggerDpAssignmentAcf | Bool |  no  |  |
- | poNumber | String? |  yes  |  |
- | fulfilmentPriorityText | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [BillingAddress1](#BillingAddress1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address2 | String? |  yes  |  |
- | createdAt | String |  no  |  |
- | address1 | String |  no  |  |
- | state | String |  no  |  |
- | area | String? |  yes  |  |
- | pincode | Int |  no  |  |
- | version | String? |  yes  |  |
- | latitude | Double |  no  |  |
- | landmark | String? |  yes  |  |
- | countryCode | String |  no  |  |
- | addressType | String |  no  |  |
- | country | String |  no  |  |
- | city | String |  no  |  |
- | addressCategory | String |  no  |  |
- | updatedAt | String |  no  |  |
- | contactPerson | String |  no  |  |
- | email | String? |  yes  |  |
- | longitude | Double |  no  |  |
- | phone | String |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentDetails1](#ShipmentDetails1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ewayBillId | String? |  yes  |  |
- | pdfLinks | [PDFLinks](#PDFLinks) |  no  |  |
+ | bagList | [String] |  no  |  |
+ | currentShipmentStatus | String |  no  |  |
+ | ssId | Int |  no  |  |
+ | statusCreatedAt | String |  no  |  |
+ | shipmentId | String |  no  |  |
  | createdAt | Int |  no  |  |
- | affiliateId | String |  no  |  |
- | fulfilmentPriority | Int |  no  |  |
- | storeInvoiceId | String? |  yes  |  |
- | handOverContactJson | [ShipmentHandOverCustomerContact](#ShipmentHandOverCustomerContact) |  no  |  |
- | isActive | Bool |  no  |  |
- | tags | [String]? |  yes  |  |
- | lockStatus | String |  no  |  |
- | deliveryAddressJson | [DeliveryAddress](#DeliveryAddress) |  no  |  |
- | fyndOrderId | String |  no  |  |
- | packagingType | String |  no  |  |
- | meta | [ShipmentMeta](#ShipmentMeta) |  no  |  |
- | sdType | String |  no  |  |
- | sId | String |  no  |  |
- | deliveryAwbNumber | String? |  yes  |  |
- | previousShipmentId | String? |  yes  |  |
- | parentType | String? |  yes  |  |
- | affiliateShipmentId | String |  no  |  |
- | billingAddressJson | [BillingAddress1](#BillingAddress1) |  no  |  |
- | parentId | String? |  yes  |  |
- | creditNoteId | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ShipmentGst1](#ShipmentGst1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | taxCollectedAtSource | Double |  no  |  |
- | brandCalculatedAmount | Double |  no  |  |
- | gstFee | Double |  no  |  |
- | valueOfGood | Double |  no  |  |
- | gstinCode | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [UserObj](#UserObj)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | mobile | String |  no  |  |
- | userOid | String |  no  |  |
- | isAnonymousUser | Bool |  no  |  |
- | gender | String |  no  |  |
- | lastName | String |  no  |  |
- | email | String? |  yes  |  |
- | mongoUserId | String |  no  |  |
- | firstName | String |  no  |  |
- | uId | Int |  no  |  |
+ | status | String |  no  |  |
 
 ---
 
@@ -22162,41 +22261,143 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | spId | Int |  no  |  |
- | sourceNickname | String? |  yes  |  |
- | displayName | String |  no  |  |
- | isActive | Bool |  no  |  |
  | source | String |  no  |  |
- | displayPriority | Int |  no  |  |
+ | isActive | Bool |  no  |  |
  | mode | String |  no  |  |
- | paymentIdentifier | String? |  yes  |  |
+ | displayName | String |  no  |  |
  | logo | String |  no  |  |
+ | sourceNickname | String? |  yes  |  |
+ | paymentIdentifier | String? |  yes  |  |
+ | displayPriority | Int |  no  |  |
+ | spId | Int |  no  |  |
 
 ---
 
 
  
  
- #### [ShipmentPrices1](#ShipmentPrices1)
+ #### [DpDetails1](#DpDetails1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | priceMarked | Double |  no  |  |
- | couponValue | Double |  no  |  |
- | cashbackApplied | Double |  no  |  |
- | priceEffective | Double |  no  |  |
- | taxCollectedAtSource | Double |  no  |  |
- | promotionEffectiveDiscount | Double |  no  |  |
- | deliveryCharge | Double |  no  |  |
- | refundCredit | Double |  no  |  |
- | refundAmount | Double |  no  |  |
- | discount | Double |  no  |  |
- | cashback | Double |  no  |  |
- | amountPaid | Double |  no  |  |
- | fyndCredits | Double |  no  |  |
- | valueOfGood | Double |  no  |  |
- | codCharges | Double |  no  |  |
- | amountPaidRoundoff | Double |  no  |  |
+ | awbNo | String? |  yes  |  |
+ | ewayBillId | String? |  yes  |  |
+ | name | String |  no  |  |
+ | dpdId | String |  no  |  |
+ | dpReturnCharges | Int? |  yes  |  |
+ | dpCharges | Int |  no  |  |
+ | amountHandlingCharges | Int? |  yes  |  |
+ | trackUrl | String? |  yes  |  |
+ | gstTag | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeliveryAddress](#DeliveryAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | updatedAt | String |  no  |  |
+ | phone | String |  no  |  |
+ | address | String |  no  |  |
+ | latitude | Double |  no  |  |
+ | area | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
+ | name | String |  no  |  |
+ | city | String |  no  |  |
+ | state | String |  no  |  |
+ | pincode | Int |  no  |  |
+ | address2 | String? |  yes  |  |
+ | contactPerson | String |  no  |  |
+ | createdAt | String |  no  |  |
+ | addressType | String |  no  |  |
+ | addressCategory | String |  no  |  |
+ | address1 | String |  no  |  |
+ | longitude | Double |  no  |  |
+ | email | String? |  yes  |  |
+ | country | String |  no  |  |
+ | version | String? |  yes  |  |
+ | landmark | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentHandOverCustomerContact](#ShipmentHandOverCustomerContact)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | updatedAt | String |  no  |  |
+ | email | String? |  yes  |  |
+ | phone | String? |  yes  |  |
+ | version | String |  no  |  |
+ | contactPerson | String |  no  |  |
+ | createdAt | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BillingAddress1](#BillingAddress1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | updatedAt | String |  no  |  |
+ | phone | String |  no  |  |
+ | latitude | Double |  no  |  |
+ | area | String? |  yes  |  |
+ | countryCode | String |  no  |  |
+ | city | String |  no  |  |
+ | state | String |  no  |  |
+ | pincode | Int |  no  |  |
+ | address2 | String? |  yes  |  |
+ | contactPerson | String |  no  |  |
+ | createdAt | String |  no  |  |
+ | addressType | String |  no  |  |
+ | addressCategory | String |  no  |  |
+ | address1 | String |  no  |  |
+ | longitude | Double |  no  |  |
+ | email | String? |  yes  |  |
+ | country | String |  no  |  |
+ | version | String? |  yes  |  |
+ | landmark | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentDetails1](#ShipmentDetails1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | deliveryAddressJson | [DeliveryAddress](#DeliveryAddress) |  no  |  |
+ | fyndOrderId | String |  no  |  |
+ | parentId | String? |  yes  |  |
+ | affiliateId | String |  no  |  |
+ | creditNoteId | String? |  yes  |  |
+ | isActive | Bool |  no  |  |
+ | fulfilmentPriority | Int |  no  |  |
+ | sdType | String |  no  |  |
+ | packagingType | String |  no  |  |
+ | createdAt | Int |  no  |  |
+ | ewayBillId | String? |  yes  |  |
+ | previousShipmentId | String? |  yes  |  |
+ | affiliateShipmentId | String |  no  |  |
+ | deliveryAwbNumber | String? |  yes  |  |
+ | tags | [String]? |  yes  |  |
+ | lockStatus | String |  no  |  |
+ | parentType | String? |  yes  |  |
+ | storeInvoiceId | String? |  yes  |  |
+ | sId | String |  no  |  |
+ | handOverContactJson | [ShipmentHandOverCustomerContact](#ShipmentHandOverCustomerContact) |  no  |  |
+ | billingAddressJson | [BillingAddress1](#BillingAddress1) |  no  |  |
+ | pdfLinks | [PDFLinks](#PDFLinks) |  no  |  |
+ | meta | [ShipmentMeta](#ShipmentMeta) |  no  |  |
 
 ---
 
@@ -22207,25 +22408,45 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ewbn | [String: Any]? |  yes  |  |
  | rdpcId | Int |  no  |  |
- | awbType | String |  no  |  |
- | isDpAssignedManually | Bool |  no  |  |
  | excludeDps | [Int]? |  yes  |  |
+ | awbType | String |  no  |  |
+ | ewbn | [String: Any]? |  yes  |  |
+ | isDpAssignedManually | Bool |  no  |  |
 
 ---
 
 
  
  
- #### [ShipmentInvoice1](#ShipmentInvoice1)
+ #### [Bag](#Bag)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | storeInvoiceId | String |  no  |  |
- | updatedDate | Int? |  yes  |  |
- | labelUrl | String |  no  |  |
- | invoiceUrl | String |  no  |  |
+ | prices | [Prices](#Prices) |  no  |  |
+ | affiliateBagDetails | [AffiliateBagDetails](#AffiliateBagDetails) |  no  |  |
+ | journeyType | String |  no  |  |
+ | appliedPromos | [[String: Any]]? |  yes  |  |
+ | gstDetails | [BagGSTDetails](#BagGSTDetails) |  no  |  |
+ | bagUpdateTime | Double? |  yes  |  |
+ | financialBreakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
+ | bType | String? |  yes  |  |
+ | item | [Item](#Item) |  no  |  |
+ | status | [BagReturnableCancelableStatus](#BagReturnableCancelableStatus) |  no  |  |
+ | currentStatus | [BagStatusHistory](#BagStatusHistory) |  no  |  |
+ | bagId | Int |  no  |  |
+ | reasons | [[String: Any]]? |  yes  |  |
+ | bagStatus | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
+ | entityType | String? |  yes  |  |
+ | brand | [Brand](#Brand) |  no  |  |
+ | dates | [String: Any]? |  yes  |  |
+ | orderIntegrationId | String? |  yes  |  |
+ | paymentMethods | [String: Any] |  no  |  |
+ | bId | Int |  no  |  |
+ | currentOperationalStatus | [BagStatusHistory](#BagStatusHistory) |  no  |  |
+ | article | [Article](#Article) |  no  |  |
+ | displayName | String? |  yes  |  |
+ | meta | [BagMeta](#BagMeta)? |  yes  |  |
 
 ---
 
@@ -22236,43 +22457,22 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | valueOfGood | Double |  no  |  |
  | priceMarked | Double |  no  |  |
- | couponValue | Double |  no  |  |
- | cashbackApplied | Double |  no  |  |
- | priceEffective | Double |  no  |  |
- | taxCollectedAtSource | Double |  no  |  |
+ | fyndCredits | Double |  no  |  |
+ | refundCredit | Double |  no  |  |
+ | cashback | Double |  no  |  |
  | promotionEffectiveDiscount | Double |  no  |  |
  | deliveryCharge | Double |  no  |  |
- | refundCredit | Double |  no  |  |
  | refundAmount | Double |  no  |  |
- | discount | Double |  no  |  |
- | cashback | Double |  no  |  |
- | amountPaid | Double |  no  |  |
- | fyndCredits | Double |  no  |  |
- | valueOfGood | Double |  no  |  |
+ | taxCollectedAtSource | Double |  no  |  |
  | codCharges | Double |  no  |  |
+ | amountPaid | Double |  no  |  |
+ | couponValue | Double |  no  |  |
+ | discount | Double |  no  |  |
+ | priceEffective | Double |  no  |  |
+ | cashbackApplied | Double |  no  |  |
  | amountPaidRoundoff | Double |  no  |  |
-
----
-
-
- 
- 
- #### [OrderMeta](#OrderMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | orderingStore | Int? |  yes  |  |
- | paymentType | String? |  yes  |  |
- | files | [String]? |  yes  |  |
- | orderPlatform | String |  no  |  |
- | comment | String? |  yes  |  |
- | employeeId | String? |  yes  |  |
- | orderType | String |  no  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | mongoCartId | [String: Any] |  no  |  |
- | orderChildEntities | [String]? |  yes  |  |
- | staff | [String: Any]? |  yes  |  |
 
 ---
 
@@ -22291,242 +22491,64 @@ Successfully retrieved all the given shipments details!
 
  
  
+ #### [OrderMeta](#OrderMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | orderType | String |  no  |  |
+ | orderingStore | Int? |  yes  |  |
+ | employeeId | String? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | orderChildEntities | [String]? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
+ | mongoCartId | [String: Any] |  no  |  |
+ | paymentType | String? |  yes  |  |
+ | orderPlatform | String |  no  |  |
+ | staff | [String: Any]? |  yes  |  |
+ | files | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [OrderObj](#OrderObj)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliateId | String |  no  |  |
- | headers | [String: Any] |  no  |  |
- | source | String |  no  |  |
- | discount | Double |  no  |  |
- | paymentMethods | [String: Any] |  no  |  |
  | prices | [OrderPrices](#OrderPrices) |  no  |  |
- | codCharges | Int |  no  |  |
- | rawUserAgent | String |  no  |  |
- | refundBy | String |  no  |  |
- | cashbackApplied | Double |  no  |  |
- | orderingChannel | String |  no  |  |
- | promotionEffectiveDiscount | Double |  no  |  |
- | createdTime | Int |  no  |  |
- | userId | Int |  no  |  |
- | affiliateOrderDate | String |  no  |  |
- | orderingChannelLogo | String |  no  |  |
- | cashbackValue | Double |  no  |  |
- | oId | Int |  no  |  |
- | paymentModeId | Int |  no  |  |
- | mongoCartId | [String: Any] |  no  |  |
  | modeOfPayment | String |  no  |  |
- | fyndOrderId | String |  no  |  |
- | deliveryCharges | Double |  no  |  |
- | meta | [OrderMeta](#OrderMeta) |  no  |  |
- | couponValue | Double |  no  |  |
- | transactionId | String? |  yes  |  |
- | totalOrderValue | Double |  no  |  |
- | fyndCredits | Double |  no  |  |
- | collectBy | String |  no  |  |
  | currency | String |  no  |  |
- | taxDetails | [OrderTaxDetails](#OrderTaxDetails)? |  yes  |  |
- | affiliateOrderId | String |  no  |  |
+ | fyndOrderId | String |  no  |  |
+ | rawUserAgent | String |  no  |  |
+ | fyndCredits | Double |  no  |  |
+ | affiliateId | String |  no  |  |
+ | paymentModeId | Int |  no  |  |
+ | codCharges | Int |  no  |  |
+ | headers | [String: Any] |  no  |  |
+ | discount | Double |  no  |  |
+ | deliveryCharges | Double |  no  |  |
+ | orderingChannelLogo | String |  no  |  |
+ | collectBy | String |  no  |  |
  | orderValue | Double |  no  |  |
-
----
-
-
- 
- 
- #### [Documents1](#Documents1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cin | [Document](#Document)? |  yes  |  |
- | pan | [Document](#Document) |  no  |  |
- | digitalSignature | [Document](#Document)? |  yes  |  |
- | gst | [Document](#Document) |  no  |  |
-
----
-
-
- 
- 
- #### [CompanyAddress](#CompanyAddress)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pincode | Int |  no  |  |
- | countryCode | String |  no  |  |
- | address2 | String? |  yes  |  |
- | addressType | String |  no  |  |
- | latitude | Double |  no  |  |
- | address1 | String |  no  |  |
- | longitude | Double |  no  |  |
- | country | String |  no  |  |
- | state | String |  no  |  |
- | city | String |  no  |  |
- | landmark | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CompanyMeta](#CompanyMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | notificationEmails | [String] |  no  |  |
- | contactDetails | [String: Any] |  no  |  |
- | documents | [Documents1](#Documents1) |  no  |  |
- | businessInfo | String? |  yes  |  |
- | address | [[CompanyAddress](#CompanyAddress)] |  no  |  |
- | stage | String |  no  |  |
- | businessDetails | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [Company1](#Company1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | commission | Double? |  yes  |  |
- | cst | String? |  yes  |  |
- | agreementStartDate | Int? |  yes  |  |
- | createdOn | Int? |  yes  |  |
- | cId | Int? |  yes  |  |
- | exchangeAllowed | Bool? |  yes  |  |
- | paymentType | String? |  yes  |  |
- | returnWithinDays | Int? |  yes  |  |
- | panNo | String? |  yes  |  |
- | meta | [CompanyMeta](#CompanyMeta)? |  yes  |  |
- | companyName | String? |  yes  |  |
- | businessType | String? |  yes  |  |
- | exchangeWithinDays | Int? |  yes  |  |
- | fyndAFitAvailable | Bool |  no  |  |
- | vatNo | String? |  yes  |  |
- | tanNo | String? |  yes  |  |
- | modifiedOn | Int? |  yes  |  |
- | returnAllowed | Bool? |  yes  |  |
- | companyType | String? |  yes  |  |
- | gstNumber | String? |  yes  |  |
- | paymentProcesingCharge | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [AffiliateConfig1](#AffiliateConfig1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | meta | [[String: Any]]? |  yes  |  |
- | name | String |  no  |  |
- | updatedAt | String? |  yes  |  |
- | owner | String |  no  |  |
- | dpAssignment | Bool |  no  |  |
- | createdAt | String? |  yes  |  |
- | appCompanyId | Int |  no  |  |
- | token | String? |  yes  |  |
- | description | String? |  yes  |  |
- | forceReassignment | Bool |  no  |  |
- | stores | [Int]? |  yes  |  |
- | secret | String |  no  |  |
- | acId | String |  no  |  |
- | articleAssignment | [String: Any]? |  yes  |  |
- | postOrderReassignment | Bool |  no  |  |
-
----
-
-
- 
- 
- #### [AffiliateDetails](#AffiliateDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | affiliateBagId | String |  no  |  |
- | config | [AffiliateConfig1](#AffiliateConfig1) |  no  |  |
- | affiliateStoreId | String |  no  |  |
- | adId | String? |  yes  |  |
- | pdfLinks | [PDFLinks](#PDFLinks)? |  yes  |  |
- | affiliateShipmentId | String |  no  |  |
- | affiliateId | String? |  yes  |  |
- | shipmentMeta | [ShipmentMeta](#ShipmentMeta) |  no  |  |
- | affiliateOrderId | String |  no  |  |
- | companyAffiliateTag | String? |  yes  |  |
- | affiliateMeta | [AffiliateMeta](#AffiliateMeta) |  no  |  |
-
----
-
-
- 
- 
- #### [CurrentShipmentStatus](#CurrentShipmentStatus)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipmentId | String |  no  |  |
- | ssId | Int |  no  |  |
- | currentShipmentStatus | String |  no  |  |
- | bagList | [String] |  no  |  |
- | createdAt | Int |  no  |  |
- | statusCreatedAt | String |  no  |  |
- | status | String |  no  |  |
-
----
-
-
- 
- 
- #### [DpDetails1](#DpDetails1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String |  no  |  |
- | dpdId | String |  no  |  |
- | awbNo | String? |  yes  |  |
- | ewayBillId | String? |  yes  |  |
- | gstTag | String |  no  |  |
- | dpReturnCharges | Int? |  yes  |  |
- | trackUrl | String? |  yes  |  |
- | dpCharges | Int |  no  |  |
- | amountHandlingCharges | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [ShipmentProduct](#ShipmentProduct)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | financialBreakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
- | article | [Article](#Article) |  no  |  |
- | appliedPromos | [[String: Any]]? |  yes  |  |
- | bType | String? |  yes  |  |
- | brand | [Brand](#Brand) |  no  |  |
- | currentOperationalStatus | [BagStatusHistory](#BagStatusHistory) |  no  |  |
+ | userId | Int |  no  |  |
+ | mongoCartId | [String: Any] |  no  |  |
+ | source | String |  no  |  |
+ | createdTime | Int |  no  |  |
+ | oId | Int |  no  |  |
+ | promotionEffectiveDiscount | Double |  no  |  |
+ | taxDetails | [OrderTaxDetails](#OrderTaxDetails)? |  yes  |  |
  | paymentMethods | [String: Any] |  no  |  |
- | prices | [Prices](#Prices) |  no  |  |
- | bagId | Int |  no  |  |
- | entityType | String? |  yes  |  |
- | bId | Int |  no  |  |
- | dates | [String: Any]? |  yes  |  |
- | journeyType | String |  no  |  |
- | currentStatus | [BagStatusHistory](#BagStatusHistory) |  no  |  |
- | bagStatus | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
- | meta | [BagMeta](#BagMeta)? |  yes  |  |
- | bagUpdateTime | Double? |  yes  |  |
- | status | [BagReturnableCancelableStatus](#BagReturnableCancelableStatus) |  no  |  |
- | orderIntegrationId | String? |  yes  |  |
- | displayName | String? |  yes  |  |
- | reasons | [[String: Any]]? |  yes  |  |
- | affiliateBagDetails | [AffiliateBagDetails](#AffiliateBagDetails) |  no  |  |
- | item | [Item](#Item) |  no  |  |
- | gstDetails | [BagGSTDetails](#BagGSTDetails) |  no  |  |
+ | orderingChannel | String |  no  |  |
+ | totalOrderValue | Double |  no  |  |
+ | affiliateOrderDate | String |  no  |  |
+ | transactionId | String? |  yes  |  |
+ | refundBy | String |  no  |  |
+ | cashbackValue | Double |  no  |  |
+ | couponValue | Double |  no  |  |
+ | affiliateOrderId | String |  no  |  |
+ | meta | [OrderMeta](#OrderMeta) |  no  |  |
+ | cashbackApplied | Double |  no  |  |
 
 ---
 
@@ -22537,23 +22559,37 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | locationType | String |  no  |  |
- | name | String |  no  |  |
- | pincode | String |  no  |  |
- | address2 | String? |  yes  |  |
- | companyId | Int |  no  |  |
- | contactPerson | String |  no  |  |
- | latitude | Double |  no  |  |
- | address1 | String |  no  |  |
- | storeAddressJson | [StoreAddress](#StoreAddress) |  no  |  |
- | code | String? |  yes  |  |
- | longitude | Double |  no  |  |
- | country | String |  no  |  |
- | phone | String |  no  |  |
- | state | String |  no  |  |
- | city | String |  no  |  |
  | storeEmail | String |  no  |  |
  | rtoaId | Int |  no  |  |
+ | code | String? |  yes  |  |
+ | locationType | String |  no  |  |
+ | companyId | Int |  no  |  |
+ | longitude | Double |  no  |  |
+ | name | String |  no  |  |
+ | city | String |  no  |  |
+ | phone | String |  no  |  |
+ | storeAddressJson | [StoreAddress](#StoreAddress) |  no  |  |
+ | state | String |  no  |  |
+ | country | String |  no  |  |
+ | address1 | String |  no  |  |
+ | latitude | Double |  no  |  |
+ | pincode | String |  no  |  |
+ | address2 | String? |  yes  |  |
+ | contactPerson | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentInvoice1](#ShipmentInvoice1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | invoiceUrl | String |  no  |  |
+ | labelUrl | String |  no  |  |
+ | storeInvoiceId | String |  no  |  |
+ | updatedDate | Int? |  yes  |  |
 
 ---
 
@@ -22564,62 +22600,62 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipmentStatusHistory | [[ShipmentStatusCommon](#ShipmentStatusCommon)] |  no  |  |
- | einvoiceInfo | [EinvoiceInfo](#EinvoiceInfo)? |  yes  |  |
- | fulfillingStore | [Store1](#Store1) |  no  |  |
- | bags | [[Bag](#Bag)] |  no  |  |
- | shipment | [ShipmentDetails1](#ShipmentDetails1) |  no  |  |
- | brand | [Brand](#Brand) |  no  |  |
- | shipmentQuantity | Int |  no  |  |
- | shipmentGst | [ShipmentGst1](#ShipmentGst1) |  no  |  |
- | weight | [String: Any] |  no  |  |
- | user | [UserObj](#UserObj) |  no  |  |
- | paymentMethods | [String: Any] |  no  |  |
- | payments | [ShipmentPayments](#ShipmentPayments) |  no  |  |
  | prices | [ShipmentPrices1](#ShipmentPrices1)? |  yes  |  |
- | requestedDpConf | [RequestedDPConfs](#RequestedDPConfs)? |  yes  |  |
- | totalShipmentBags | Int |  no  |  |
- | invoice | [ShipmentInvoice1](#ShipmentInvoice1)? |  yes  |  |
- | transactionType | String |  no  |  |
- | deliverySlot | [String: Any]? |  yes  |  |
- | paymentType | String? |  yes  |  |
- | bagStatusHistory | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
- | noOfBagsOrder | Int |  no  |  |
- | shipmentUpdateTime | Double |  no  |  |
- | order | [OrderObj](#OrderObj) |  no  |  |
- | tags | [String] |  no  |  |
- | journeyType | String |  no  |  |
- | company | [Company1](#Company1) |  no  |  |
- | affiliateDetails | [AffiliateDetails](#AffiliateDetails) |  no  |  |
- | coupon | [String: Any]? |  yes  |  |
- | isProcessing | Bool |  no  |  |
- | lockStatus | Bool |  no  |  |
- | orderSource | String |  no  |  |
- | shipmentValue | Double |  no  |  |
- | restoreCoupon | Bool |  no  |  |
- | deliveryAddress | [DeliveryAddress](#DeliveryAddress) |  no  |  |
- | sId | String? |  yes  |  |
  | restorePromos | [String: Any]? |  yes  |  |
- | shipmentStatus | [CurrentShipmentStatus](#CurrentShipmentStatus) |  no  |  |
- | orderType | String |  no  |  |
- | cartId | Int? |  yes  |  |
- | orderIntegrationId | String? |  yes  |  |
- | dpDetails | [DpDetails1](#DpDetails1)? |  yes  |  |
- | products | [[ShipmentProduct](#ShipmentProduct)]? |  yes  |  |
- | qcRequired | [String: Any]? |  yes  |  |
- | shipmentId | String |  no  |  |
- | operationalStatus | String |  no  |  |
- | orderingStore | [Store1](#Store1)? |  yes  |  |
- | searchKey | [String: Any] |  no  |  |
  | totalShipmentsInOrder | Int |  no  |  |
- | rtoAddress | [RtoAddress1](#RtoAddress1) |  no  |  |
- | fallbackUser | [String: Any]? |  yes  |  |
- | comment | String? |  yes  |  |
+ | paymentType | String? |  yes  |  |
+ | deliverySlot | [String: Any]? |  yes  |  |
  | fyndstoreEmp | [String: Any]? |  yes  |  |
- | orderValue | Double |  no  |  |
+ | journeyType | String |  no  |  |
+ | affiliateDetails | [AffiliateDetails](#AffiliateDetails) |  no  |  |
+ | orderSource | String |  no  |  |
+ | fulfillingStore | [Store1](#Store1) |  no  |  |
  | originalBagList | [Int] |  no  |  |
+ | user | [UserObj](#UserObj) |  no  |  |
+ | company | [Company1](#Company1) |  no  |  |
+ | orderType | String |  no  |  |
+ | orderingStore | [Store1](#Store1)? |  yes  |  |
  | appId | String |  no  |  |
+ | qcRequired | [String: Any]? |  yes  |  |
+ | restoreCoupon | Bool |  no  |  |
+ | transactionType | String |  no  |  |
+ | shipmentStatusHistory | [[ShipmentStatusCommon](#ShipmentStatusCommon)] |  no  |  |
+ | operationalStatus | String |  no  |  |
+ | totalShipmentBags | Int |  no  |  |
+ | fallbackUser | [String: Any]? |  yes  |  |
+ | shipmentGst | [ShipmentGst1](#ShipmentGst1) |  no  |  |
+ | products | [[ShipmentProduct](#ShipmentProduct)]? |  yes  |  |
+ | shipmentStatus | [CurrentShipmentStatus](#CurrentShipmentStatus) |  no  |  |
+ | payments | [ShipmentPayments](#ShipmentPayments) |  no  |  |
+ | cartId | Int? |  yes  |  |
+ | orderValue | Double |  no  |  |
+ | comment | String? |  yes  |  |
+ | dpDetails | [DpDetails1](#DpDetails1)? |  yes  |  |
+ | searchKey | [String: Any] |  no  |  |
+ | einvoiceInfo | [EinvoiceInfo](#EinvoiceInfo)? |  yes  |  |
+ | shipmentUpdateTime | Double |  no  |  |
+ | shipmentQuantity | Int |  no  |  |
+ | noOfBagsOrder | Int |  no  |  |
+ | weight | [String: Any] |  no  |  |
+ | brand | [Brand](#Brand) |  no  |  |
+ | orderIntegrationId | String? |  yes  |  |
  | articleDetails | [String: Any] |  no  |  |
+ | tags | [String] |  no  |  |
+ | shipmentId | String |  no  |  |
+ | lockStatus | Bool |  no  |  |
+ | shipmentValue | Double |  no  |  |
+ | paymentMethods | [String: Any] |  no  |  |
+ | shipment | [ShipmentDetails1](#ShipmentDetails1) |  no  |  |
+ | sId | String? |  yes  |  |
+ | deliveryAddress | [DeliveryAddress](#DeliveryAddress) |  no  |  |
+ | requestedDpConf | [RequestedDPConfs](#RequestedDPConfs)? |  yes  |  |
+ | isProcessing | Bool |  no  |  |
+ | bags | [[Bag](#Bag)] |  no  |  |
+ | order | [OrderObj](#OrderObj) |  no  |  |
+ | coupon | [String: Any]? |  yes  |  |
+ | rtoAddress | [RtoAddress1](#RtoAddress1) |  no  |  |
+ | invoice | [ShipmentInvoice1](#ShipmentInvoice1)? |  yes  |  |
+ | bagStatusHistory | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
 
 ---
 
@@ -22630,8 +22666,74 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String |  no  |  |
  | error | String |  no  |  |
+ | message | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Shipment](#Shipment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | prices | [ShipmentPrices1](#ShipmentPrices1)? |  yes  |  |
+ | restorePromos | [String: Any]? |  yes  |  |
+ | totalShipmentsInOrder | Int |  no  |  |
+ | paymentType | String? |  yes  |  |
+ | deliverySlot | [String: Any]? |  yes  |  |
+ | fyndstoreEmp | [String: Any]? |  yes  |  |
+ | journeyType | String |  no  |  |
+ | affiliateDetails | [AffiliateDetails](#AffiliateDetails) |  no  |  |
+ | orderSource | String |  no  |  |
+ | fulfillingStore | [Store1](#Store1) |  no  |  |
+ | originalBagList | [Int] |  no  |  |
+ | user | [UserObj](#UserObj) |  no  |  |
+ | company | [Company1](#Company1) |  no  |  |
+ | orderType | String |  no  |  |
+ | orderingStore | [Store1](#Store1)? |  yes  |  |
+ | appId | String |  no  |  |
+ | qcRequired | [String: Any]? |  yes  |  |
+ | restoreCoupon | Bool |  no  |  |
+ | transactionType | String |  no  |  |
+ | shipmentStatusHistory | [[ShipmentStatusCommon](#ShipmentStatusCommon)] |  no  |  |
+ | operationalStatus | String |  no  |  |
+ | totalShipmentBags | Int |  no  |  |
+ | fallbackUser | [String: Any]? |  yes  |  |
+ | shipmentGst | [ShipmentGst1](#ShipmentGst1) |  no  |  |
+ | products | [[ShipmentProduct](#ShipmentProduct)]? |  yes  |  |
+ | shipmentStatus | [CurrentShipmentStatus](#CurrentShipmentStatus) |  no  |  |
+ | payments | [ShipmentPayments](#ShipmentPayments) |  no  |  |
+ | cartId | Int? |  yes  |  |
+ | orderValue | Double |  no  |  |
+ | comment | String? |  yes  |  |
+ | dpDetails | [DpDetails1](#DpDetails1)? |  yes  |  |
+ | searchKey | [String: Any] |  no  |  |
+ | einvoiceInfo | [EinvoiceInfo](#EinvoiceInfo)? |  yes  |  |
+ | shipmentUpdateTime | Double |  no  |  |
+ | shipmentQuantity | Int |  no  |  |
+ | noOfBagsOrder | Int |  no  |  |
+ | weight | [String: Any] |  no  |  |
+ | brand | [Brand](#Brand) |  no  |  |
+ | orderIntegrationId | String? |  yes  |  |
+ | articleDetails | [String: Any] |  no  |  |
+ | tags | [String] |  no  |  |
+ | shipmentId | String |  no  |  |
+ | lockStatus | Bool |  no  |  |
+ | shipmentValue | Double |  no  |  |
+ | paymentMethods | [String: Any] |  no  |  |
+ | shipment | [ShipmentDetails1](#ShipmentDetails1) |  no  |  |
+ | sId | String? |  yes  |  |
+ | deliveryAddress | [DeliveryAddress](#DeliveryAddress) |  no  |  |
+ | requestedDpConf | [RequestedDPConfs](#RequestedDPConfs)? |  yes  |  |
+ | isProcessing | Bool |  no  |  |
+ | bags | [[Bag](#Bag)] |  no  |  |
+ | order | [OrderObj](#OrderObj) |  no  |  |
+ | coupon | [String: Any]? |  yes  |  |
+ | rtoAddress | [RtoAddress1](#RtoAddress1) |  no  |  |
+ | invoice | [ShipmentInvoice1](#ShipmentInvoice1)? |  yes  |  |
+ | bagStatusHistory | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
 
 ---
 
@@ -22643,76 +22745,10 @@ Successfully retrieved all the given shipments details!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | current | Int |  no  |  |
- | size | Int |  no  |  |
- | itemTotal | Int |  no  |  |
- | pageType | String |  no  |  |
  | hasNext | Bool |  no  |  |
-
----
-
-
- 
- 
- #### [Shipment](#Shipment)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipmentStatusHistory | [[ShipmentStatusCommon](#ShipmentStatusCommon)] |  no  |  |
- | einvoiceInfo | [EinvoiceInfo](#EinvoiceInfo)? |  yes  |  |
- | fulfillingStore | [Store1](#Store1) |  no  |  |
- | bags | [[Bag](#Bag)] |  no  |  |
- | shipment | [ShipmentDetails1](#ShipmentDetails1) |  no  |  |
- | brand | [Brand](#Brand) |  no  |  |
- | shipmentQuantity | Int |  no  |  |
- | shipmentGst | [ShipmentGst1](#ShipmentGst1) |  no  |  |
- | weight | [String: Any] |  no  |  |
- | user | [UserObj](#UserObj) |  no  |  |
- | paymentMethods | [String: Any] |  no  |  |
- | payments | [ShipmentPayments](#ShipmentPayments) |  no  |  |
- | prices | [ShipmentPrices1](#ShipmentPrices1)? |  yes  |  |
- | requestedDpConf | [RequestedDPConfs](#RequestedDPConfs)? |  yes  |  |
- | totalShipmentBags | Int |  no  |  |
- | invoice | [ShipmentInvoice1](#ShipmentInvoice1)? |  yes  |  |
- | transactionType | String |  no  |  |
- | deliverySlot | [String: Any]? |  yes  |  |
- | paymentType | String? |  yes  |  |
- | bagStatusHistory | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
- | noOfBagsOrder | Int |  no  |  |
- | shipmentUpdateTime | Double |  no  |  |
- | order | [OrderObj](#OrderObj) |  no  |  |
- | tags | [String] |  no  |  |
- | journeyType | String |  no  |  |
- | company | [Company1](#Company1) |  no  |  |
- | affiliateDetails | [AffiliateDetails](#AffiliateDetails) |  no  |  |
- | coupon | [String: Any]? |  yes  |  |
- | isProcessing | Bool |  no  |  |
- | lockStatus | Bool |  no  |  |
- | orderSource | String |  no  |  |
- | shipmentValue | Double |  no  |  |
- | restoreCoupon | Bool |  no  |  |
- | deliveryAddress | [DeliveryAddress](#DeliveryAddress) |  no  |  |
- | sId | String? |  yes  |  |
- | restorePromos | [String: Any]? |  yes  |  |
- | shipmentStatus | [CurrentShipmentStatus](#CurrentShipmentStatus) |  no  |  |
- | orderType | String |  no  |  |
- | cartId | Int? |  yes  |  |
- | orderIntegrationId | String? |  yes  |  |
- | dpDetails | [DpDetails1](#DpDetails1)? |  yes  |  |
- | products | [[ShipmentProduct](#ShipmentProduct)]? |  yes  |  |
- | qcRequired | [String: Any]? |  yes  |  |
- | shipmentId | String |  no  |  |
- | operationalStatus | String |  no  |  |
- | orderingStore | [Store1](#Store1)? |  yes  |  |
- | searchKey | [String: Any] |  no  |  |
- | totalShipmentsInOrder | Int |  no  |  |
- | rtoAddress | [RtoAddress1](#RtoAddress1) |  no  |  |
- | fallbackUser | [String: Any]? |  yes  |  |
- | comment | String? |  yes  |  |
- | fyndstoreEmp | [String: Any]? |  yes  |  |
- | orderValue | Double |  no  |  |
- | originalBagList | [Int] |  no  |  |
- | appId | String |  no  |  |
- | articleDetails | [String: Any] |  no  |  |
+ | itemTotal | Int |  no  |  |
+ | size | Int |  no  |  |
+ | pageType | String |  no  |  |
 
 ---
 
@@ -22723,8 +22759,8 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
  | items | [[Shipment](#Shipment)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
 
 ---
 
@@ -22735,128 +22771,108 @@ Successfully retrieved all the given shipments details!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipmentStatusHistory | [[ShipmentStatusCommon](#ShipmentStatusCommon)] |  no  |  |
- | einvoiceInfo | [EinvoiceInfo](#EinvoiceInfo)? |  yes  |  |
- | fulfillingStore | [Store1](#Store1) |  no  |  |
- | bags | [[Bag](#Bag)] |  no  |  |
- | shipment | [ShipmentDetails1](#ShipmentDetails1) |  no  |  |
- | brand | [Brand](#Brand) |  no  |  |
- | shipmentQuantity | Int |  no  |  |
- | shipmentGst | [ShipmentGst1](#ShipmentGst1) |  no  |  |
- | weight | [String: Any] |  no  |  |
- | user | [UserObj](#UserObj) |  no  |  |
- | paymentMethods | [String: Any] |  no  |  |
- | payments | [ShipmentPayments](#ShipmentPayments) |  no  |  |
  | prices | [ShipmentPrices1](#ShipmentPrices1)? |  yes  |  |
- | requestedDpConf | [RequestedDPConfs](#RequestedDPConfs)? |  yes  |  |
- | totalShipmentBags | Int |  no  |  |
- | invoice | [ShipmentInvoice1](#ShipmentInvoice1)? |  yes  |  |
- | transactionType | String |  no  |  |
- | deliverySlot | [String: Any]? |  yes  |  |
- | paymentType | String? |  yes  |  |
- | bagStatusHistory | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
- | noOfBagsOrder | Int |  no  |  |
- | shipmentUpdateTime | Double |  no  |  |
- | order | [OrderObj](#OrderObj) |  no  |  |
- | tags | [String] |  no  |  |
- | journeyType | String |  no  |  |
- | company | [Company1](#Company1) |  no  |  |
- | affiliateDetails | [AffiliateDetails](#AffiliateDetails) |  no  |  |
- | coupon | [String: Any]? |  yes  |  |
- | isProcessing | Bool |  no  |  |
- | lockStatus | Bool |  no  |  |
- | orderSource | String |  no  |  |
- | shipmentValue | Double |  no  |  |
- | restoreCoupon | Bool |  no  |  |
- | deliveryAddress | [DeliveryAddress](#DeliveryAddress) |  no  |  |
- | sId | String? |  yes  |  |
  | restorePromos | [String: Any]? |  yes  |  |
- | shipmentStatus | [CurrentShipmentStatus](#CurrentShipmentStatus) |  no  |  |
- | orderType | String |  no  |  |
- | cartId | Int? |  yes  |  |
- | orderIntegrationId | String? |  yes  |  |
- | dpDetails | [DpDetails1](#DpDetails1)? |  yes  |  |
- | products | [[ShipmentProduct](#ShipmentProduct)]? |  yes  |  |
- | qcRequired | [String: Any]? |  yes  |  |
- | shipmentId | String |  no  |  |
- | operationalStatus | String |  no  |  |
- | orderingStore | [Store1](#Store1)? |  yes  |  |
- | searchKey | [String: Any] |  no  |  |
  | totalShipmentsInOrder | Int |  no  |  |
- | rtoAddress | [RtoAddress1](#RtoAddress1) |  no  |  |
- | fallbackUser | [String: Any]? |  yes  |  |
- | comment | String? |  yes  |  |
+ | paymentType | String? |  yes  |  |
+ | deliverySlot | [String: Any]? |  yes  |  |
  | fyndstoreEmp | [String: Any]? |  yes  |  |
- | orderValue | Double |  no  |  |
+ | journeyType | String |  no  |  |
+ | affiliateDetails | [AffiliateDetails](#AffiliateDetails) |  no  |  |
+ | orderSource | String |  no  |  |
+ | fulfillingStore | [Store1](#Store1) |  no  |  |
  | originalBagList | [Int] |  no  |  |
+ | user | [UserObj](#UserObj) |  no  |  |
+ | company | [Company1](#Company1) |  no  |  |
+ | orderType | String |  no  |  |
+ | orderingStore | [Store1](#Store1)? |  yes  |  |
  | appId | String |  no  |  |
+ | qcRequired | [String: Any]? |  yes  |  |
+ | restoreCoupon | Bool |  no  |  |
+ | transactionType | String |  no  |  |
+ | shipmentStatusHistory | [[ShipmentStatusCommon](#ShipmentStatusCommon)] |  no  |  |
+ | operationalStatus | String |  no  |  |
+ | totalShipmentBags | Int |  no  |  |
+ | fallbackUser | [String: Any]? |  yes  |  |
+ | shipmentGst | [ShipmentGst1](#ShipmentGst1) |  no  |  |
+ | products | [[ShipmentProduct](#ShipmentProduct)]? |  yes  |  |
+ | shipmentStatus | [CurrentShipmentStatus](#CurrentShipmentStatus) |  no  |  |
+ | payments | [ShipmentPayments](#ShipmentPayments) |  no  |  |
+ | cartId | Int? |  yes  |  |
+ | orderValue | Double |  no  |  |
+ | comment | String? |  yes  |  |
+ | dpDetails | [DpDetails1](#DpDetails1)? |  yes  |  |
+ | searchKey | [String: Any] |  no  |  |
+ | einvoiceInfo | [EinvoiceInfo](#EinvoiceInfo)? |  yes  |  |
+ | shipmentUpdateTime | Double |  no  |  |
+ | shipmentQuantity | Int |  no  |  |
+ | noOfBagsOrder | Int |  no  |  |
+ | weight | [String: Any] |  no  |  |
+ | brand | [Brand](#Brand) |  no  |  |
+ | orderIntegrationId | String? |  yes  |  |
  | articleDetails | [String: Any] |  no  |  |
+ | tags | [String] |  no  |  |
+ | shipmentId | String |  no  |  |
+ | lockStatus | Bool |  no  |  |
+ | shipmentValue | Double |  no  |  |
+ | paymentMethods | [String: Any] |  no  |  |
+ | shipment | [ShipmentDetails1](#ShipmentDetails1) |  no  |  |
+ | sId | String? |  yes  |  |
+ | deliveryAddress | [DeliveryAddress](#DeliveryAddress) |  no  |  |
+ | requestedDpConf | [RequestedDPConfs](#RequestedDPConfs)? |  yes  |  |
+ | isProcessing | Bool |  no  |  |
+ | bags | [[Bag](#Bag)] |  no  |  |
+ | order | [OrderObj](#OrderObj) |  no  |  |
+ | coupon | [String: Any]? |  yes  |  |
+ | rtoAddress | [RtoAddress1](#RtoAddress1) |  no  |  |
+ | invoice | [ShipmentInvoice1](#ShipmentInvoice1)? |  yes  |  |
+ | bagStatusHistory | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
 
 ---
 
 
  
  
- #### [ShipmentDetailsByAffiliateBagIdResponse](#ShipmentDetailsByAffiliateBagIdResponse)
+ #### [GetBagsPlatformResponse](#GetBagsPlatformResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipmentStatusHistory | [[ShipmentStatusCommon](#ShipmentStatusCommon)] |  no  |  |
- | einvoiceInfo | [EinvoiceInfo](#EinvoiceInfo)? |  yes  |  |
- | fulfillingStore | [Store1](#Store1) |  no  |  |
- | bags | [[Bag](#Bag)] |  no  |  |
- | shipment | [ShipmentDetails1](#ShipmentDetails1) |  no  |  |
- | brand | [Brand](#Brand) |  no  |  |
- | shipmentQuantity | Int |  no  |  |
- | shipmentGst | [ShipmentGst1](#ShipmentGst1) |  no  |  |
- | weight | [String: Any] |  no  |  |
- | user | [UserObj](#UserObj) |  no  |  |
- | paymentMethods | [String: Any] |  no  |  |
- | payments | [ShipmentPayments](#ShipmentPayments) |  no  |  |
- | prices | [ShipmentPrices1](#ShipmentPrices1)? |  yes  |  |
- | requestedDpConf | [RequestedDPConfs](#RequestedDPConfs)? |  yes  |  |
- | totalShipmentBags | Int |  no  |  |
- | invoice | [ShipmentInvoice1](#ShipmentInvoice1)? |  yes  |  |
- | transactionType | String |  no  |  |
- | deliverySlot | [String: Any]? |  yes  |  |
- | paymentType | String? |  yes  |  |
- | bagStatusHistory | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
- | noOfBagsOrder | Int |  no  |  |
- | shipmentUpdateTime | Double |  no  |  |
- | order | [OrderObj](#OrderObj) |  no  |  |
- | tags | [String] |  no  |  |
+ | items | [[Bag](#Bag)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagDetailsPlatformResponse](#BagDetailsPlatformResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | prices | [Prices](#Prices) |  no  |  |
+ | affiliateBagDetails | [AffiliateBagDetails](#AffiliateBagDetails) |  no  |  |
  | journeyType | String |  no  |  |
- | company | [Company1](#Company1) |  no  |  |
- | affiliateDetails | [AffiliateDetails](#AffiliateDetails) |  no  |  |
- | coupon | [String: Any]? |  yes  |  |
- | isProcessing | Bool |  no  |  |
- | lockStatus | Bool |  no  |  |
- | orderSource | String |  no  |  |
- | shipmentValue | Double |  no  |  |
- | restoreCoupon | Bool |  no  |  |
- | deliveryAddress | [DeliveryAddress](#DeliveryAddress) |  no  |  |
- | sId | String? |  yes  |  |
- | restorePromos | [String: Any]? |  yes  |  |
- | shipmentStatus | [CurrentShipmentStatus](#CurrentShipmentStatus) |  no  |  |
- | orderType | String |  no  |  |
- | cartId | Int? |  yes  |  |
+ | appliedPromos | [[String: Any]]? |  yes  |  |
+ | gstDetails | [BagGSTDetails](#BagGSTDetails) |  no  |  |
+ | bagUpdateTime | Double? |  yes  |  |
+ | financialBreakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
+ | bType | String? |  yes  |  |
+ | item | [Item](#Item) |  no  |  |
+ | status | [BagReturnableCancelableStatus](#BagReturnableCancelableStatus) |  no  |  |
+ | currentStatus | [BagStatusHistory](#BagStatusHistory) |  no  |  |
+ | bagId | Int |  no  |  |
+ | reasons | [[String: Any]]? |  yes  |  |
+ | bagStatus | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
+ | entityType | String? |  yes  |  |
+ | brand | [Brand](#Brand) |  no  |  |
+ | dates | [String: Any]? |  yes  |  |
  | orderIntegrationId | String? |  yes  |  |
- | dpDetails | [DpDetails1](#DpDetails1)? |  yes  |  |
- | products | [[ShipmentProduct](#ShipmentProduct)]? |  yes  |  |
- | qcRequired | [String: Any]? |  yes  |  |
- | shipmentId | String |  no  |  |
- | operationalStatus | String |  no  |  |
- | orderingStore | [Store1](#Store1)? |  yes  |  |
- | searchKey | [String: Any] |  no  |  |
- | totalShipmentsInOrder | Int |  no  |  |
- | rtoAddress | [RtoAddress1](#RtoAddress1) |  no  |  |
- | fallbackUser | [String: Any]? |  yes  |  |
- | comment | String? |  yes  |  |
- | fyndstoreEmp | [String: Any]? |  yes  |  |
- | orderValue | Double |  no  |  |
- | originalBagList | [Int] |  no  |  |
- | appId | String |  no  |  |
- | articleDetails | [String: Any] |  no  |  |
+ | paymentMethods | [String: Any] |  no  |  |
+ | bId | Int |  no  |  |
+ | currentOperationalStatus | [BagStatusHistory](#BagStatusHistory) |  no  |  |
+ | article | [Article](#Article) |  no  |  |
+ | displayName | String? |  yes  |  |
+ | meta | [BagMeta](#BagMeta)? |  yes  |  |
 
 ---
 
