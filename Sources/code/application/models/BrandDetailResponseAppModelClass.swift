@@ -13,6 +13,8 @@ public extension ApplicationClient {
 
         public var uid: Int?
 
+        public var description: String?
+
         public var logo: Media?
 
         public enum CodingKeys: String, CodingKey {
@@ -22,15 +24,19 @@ public extension ApplicationClient {
 
             case uid
 
+            case description
+
             case logo
         }
 
-        public init(banners: ImageUrls? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
+        public init(banners: ImageUrls? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
             self.banners = banners
 
             self.name = name
 
             self.uid = uid
+
+            self.description = description
 
             self.logo = logo
         }
@@ -63,6 +69,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -79,6 +93,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }

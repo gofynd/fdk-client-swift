@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var currencyCode: String?
 
-        public var bulkEffective: Double?
+        public var marked: Int?
 
         public var currencySymbol: String?
 
-        public var marked: Int?
+        public var bulkEffective: Double?
 
         public enum CodingKeys: String, CodingKey {
             case effective
 
             case currencyCode = "currency_code"
 
-            case bulkEffective = "bulk_effective"
+            case marked
 
             case currencySymbol = "currency_symbol"
 
-            case marked
+            case bulkEffective = "bulk_effective"
         }
 
         public init(bulkEffective: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Int? = nil, marked: Int? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.currencyCode = currencyCode
 
-            self.bulkEffective = bulkEffective
+            self.marked = marked
 
             self.currencySymbol = currencySymbol
 
-            self.marked = marked
+            self.bulkEffective = bulkEffective
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                bulkEffective = try container.decode(Double.self, forKey: .bulkEffective)
+                marked = try container.decode(Int.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                marked = try container.decode(Int.self, forKey: .marked)
+                bulkEffective = try container.decode(Double.self, forKey: .bulkEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
-            try? container.encodeIfPresent(bulkEffective, forKey: .bulkEffective)
+            try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(marked, forKey: .marked)
+            try? container.encodeIfPresent(bulkEffective, forKey: .bulkEffective)
         }
     }
 }

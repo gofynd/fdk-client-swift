@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var rate: Double
 
-        public var cess: Double?
-
         public var threshold: Double
+
+        public var cess: Double?
 
         public enum CodingKeys: String, CodingKey {
             case effectiveDate = "effective_date"
 
             case rate
 
-            case cess
-
             case threshold
+
+            case cess
         }
 
         public init(cess: Double? = nil, effectiveDate: String, rate: Double, threshold: Double) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.rate = rate
 
-            self.cess = cess
-
             self.threshold = threshold
+
+            self.cess = cess
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,6 +43,8 @@ public extension PlatformClient {
 
             rate = try container.decode(Double.self, forKey: .rate)
 
+            threshold = try container.decode(Double.self, forKey: .threshold)
+
             do {
                 cess = try container.decode(Double.self, forKey: .cess)
 
@@ -50,8 +52,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            threshold = try container.decode(Double.self, forKey: .threshold)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -61,9 +61,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(rate, forKey: .rate)
 
-            try? container.encodeIfPresent(cess, forKey: .cess)
-
             try? container.encodeIfPresent(threshold, forKey: .threshold)
+
+            try? container.encodeIfPresent(cess, forKey: .cess)
         }
     }
 }

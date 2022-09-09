@@ -12,19 +12,19 @@ public extension PlatformClient {
 
         public var pincode: Int?
 
-        public var bankName: String?
+        public var ifscCode: String
+
+        public var accountNo: String?
 
         public var state: String?
 
         public var country: String?
 
-        public var accountHolder: String?
+        public var bankName: String?
 
         public var accountType: String
 
-        public var ifscCode: String
-
-        public var accountNo: String?
+        public var accountHolder: String?
 
         public var branchName: String?
 
@@ -33,19 +33,19 @@ public extension PlatformClient {
 
             case pincode
 
-            case bankName = "bank_name"
+            case ifscCode = "ifsc_code"
+
+            case accountNo = "account_no"
 
             case state
 
             case country
 
-            case accountHolder = "account_holder"
+            case bankName = "bank_name"
 
             case accountType = "account_type"
 
-            case ifscCode = "ifsc_code"
-
-            case accountNo = "account_no"
+            case accountHolder = "account_holder"
 
             case branchName = "branch_name"
         }
@@ -55,19 +55,19 @@ public extension PlatformClient {
 
             self.pincode = pincode
 
-            self.bankName = bankName
+            self.ifscCode = ifscCode
+
+            self.accountNo = accountNo
 
             self.state = state
 
             self.country = country
 
-            self.accountHolder = accountHolder
+            self.bankName = bankName
 
             self.accountType = accountType
 
-            self.ifscCode = ifscCode
-
-            self.accountNo = accountNo
+            self.accountHolder = accountHolder
 
             self.branchName = branchName
         }
@@ -91,8 +91,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            ifscCode = try container.decode(String.self, forKey: .ifscCode)
+
             do {
-                bankName = try container.decode(String.self, forKey: .bankName)
+                accountNo = try container.decode(String.self, forKey: .accountNo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +118,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                accountHolder = try container.decode(String.self, forKey: .accountHolder)
+                bankName = try container.decode(String.self, forKey: .bankName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,10 +127,8 @@ public extension PlatformClient {
 
             accountType = try container.decode(String.self, forKey: .accountType)
 
-            ifscCode = try container.decode(String.self, forKey: .ifscCode)
-
             do {
-                accountNo = try container.decode(String.self, forKey: .accountNo)
+                accountHolder = try container.decode(String.self, forKey: .accountHolder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -151,19 +151,19 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(bankName, forKey: .bankName)
+            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
+
+            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
 
             try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(country, forKey: .country)
 
-            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+            try? container.encodeIfPresent(bankName, forKey: .bankName)
 
             try? container.encodeIfPresent(accountType, forKey: .accountType)
 
-            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
-
-            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
 
             try? container.encodeIfPresent(branchName, forKey: .branchName)
         }
