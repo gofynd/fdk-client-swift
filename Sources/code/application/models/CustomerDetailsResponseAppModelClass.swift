@@ -3,49 +3,49 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: OrderPage
+         Model: CustomerDetailsResponse
          Used By: Order
      */
-    class OrderPage: Codable {
-        public var itemTotal: Int?
+    class CustomerDetailsResponse: Codable {
+        public var shipmentId: String?
 
-        public var type: String?
+        public var phone: String?
 
-        public var size: Int?
+        public var country: String?
 
-        public var current: Int?
+        public var orderId: String?
 
-        public var hasNext: Bool?
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case itemTotal = "item_total"
+            case shipmentId = "shipment_id"
 
-            case type
+            case phone
 
-            case size
+            case country
 
-            case current
+            case orderId = "order_id"
 
-            case hasNext = "has_next"
+            case name
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
-            self.itemTotal = itemTotal
+        public init(country: String? = nil, name: String? = nil, orderId: String? = nil, phone: String? = nil, shipmentId: String? = nil) {
+            self.shipmentId = shipmentId
 
-            self.type = type
+            self.phone = phone
 
-            self.size = size
+            self.country = country
 
-            self.current = current
+            self.orderId = orderId
 
-            self.hasNext = hasNext
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                phone = try container.decode(String.self, forKey: .phone)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                size = try container.decode(Int.self, forKey: .size)
+                country = try container.decode(String.self, forKey: .country)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                current = try container.decode(Int.self, forKey: .current)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,15 +88,15 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(phone, forKey: .phone)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(country, forKey: .country)
 
-            try? container.encodeIfPresent(current, forKey: .current)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

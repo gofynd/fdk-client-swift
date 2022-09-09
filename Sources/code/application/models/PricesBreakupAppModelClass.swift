@@ -3,30 +3,30 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: OrderStatuses
+         Model: PricesBreakup
          Used By: Order
      */
-    class OrderStatuses: Codable {
+    class PricesBreakup: Codable {
         public var display: String?
 
         public var value: Int?
 
-        public var isSelected: Bool?
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case display
 
             case value
 
-            case isSelected = "is_selected"
+            case name
         }
 
-        public init(display: String? = nil, isSelected: Bool? = nil, value: Int? = nil) {
+        public init(display: String? = nil, name: String? = nil, value: Int? = nil) {
             self.display = display
 
             self.value = value
 
-            self.isSelected = isSelected
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
