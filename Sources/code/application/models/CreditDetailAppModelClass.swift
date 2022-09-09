@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class CreditDetail: Codable {
         public var status: Bool
 
-        public var signupUrl: String
-
         public var isRegistered: Bool
+
+        public var signupUrl: String
 
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case signupUrl = "signup_url"
-
             case isRegistered = "is_registered"
+
+            case signupUrl = "signup_url"
         }
 
         public init(isRegistered: Bool, signupUrl: String, status: Bool) {
             self.status = status
 
-            self.signupUrl = signupUrl
-
             self.isRegistered = isRegistered
+
+            self.signupUrl = signupUrl
         }
 
         required public init(from decoder: Decoder) throws {
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             status = try container.decode(Bool.self, forKey: .status)
 
-            signupUrl = try container.decode(String.self, forKey: .signupUrl)
-
             isRegistered = try container.decode(Bool.self, forKey: .isRegistered)
+
+            signupUrl = try container.decode(String.self, forKey: .signupUrl)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -44,9 +44,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(signupUrl, forKey: .signupUrl)
-
             try? container.encodeIfPresent(isRegistered, forKey: .isRegistered)
+
+            try? container.encodeIfPresent(signupUrl, forKey: .signupUrl)
         }
     }
 }

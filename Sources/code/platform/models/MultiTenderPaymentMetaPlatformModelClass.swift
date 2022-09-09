@@ -4,13 +4,13 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: MultiTenderPaymentMeta
-         Used By: Payment
+         Used By: Cart
      */
 
     class MultiTenderPaymentMeta: Codable {
-        public var paymentId: String?
-
         public var paymentGateway: String?
+
+        public var paymentId: String?
 
         public var currentStatus: String?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var extraMeta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case paymentId = "payment_id"
-
             case paymentGateway = "payment_gateway"
+
+            case paymentId = "payment_id"
 
             case currentStatus = "current_status"
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil) {
-            self.paymentId = paymentId
-
             self.paymentGateway = paymentGateway
+
+            self.paymentId = paymentId
 
             self.currentStatus = currentStatus
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                paymentId = try container.decode(String.self, forKey: .paymentId)
+                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
+                paymentId = try container.decode(String.self, forKey: .paymentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,13 +89,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(paymentId, forKey: .paymentId)
+            try? container.encode(paymentGateway, forKey: .paymentGateway)
 
-            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
+            try? container.encode(paymentId, forKey: .paymentId)
 
-            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
+            try? container.encode(currentStatus, forKey: .currentStatus)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encode(orderId, forKey: .orderId)
 
             try? container.encode(extraMeta, forKey: .extraMeta)
         }

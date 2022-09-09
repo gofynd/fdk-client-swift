@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class PaymentConfirmationRequest: Codable {
-        public var paymentMethods: [MultiTenderPaymentMethod]
+        public var paymentMethods: [PaymentConfirmationMode]
 
         public var orderId: String
 
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case orderId = "order_id"
         }
 
-        public init(orderId: String, paymentMethods: [MultiTenderPaymentMethod]) {
+        public init(orderId: String, paymentMethods: [PaymentConfirmationMode]) {
             self.paymentMethods = paymentMethods
 
             self.orderId = orderId
@@ -27,7 +27,7 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            paymentMethods = try container.decode([MultiTenderPaymentMethod].self, forKey: .paymentMethods)
+            paymentMethods = try container.decode([PaymentConfirmationMode].self, forKey: .paymentMethods)
 
             orderId = try container.decode(String.self, forKey: .orderId)
         }
