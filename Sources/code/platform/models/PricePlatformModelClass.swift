@@ -10,9 +10,9 @@ public extension PlatformClient {
     class Price: Codable {
         public var currency: String?
 
-        public var minMarked: Double?
-
         public var minEffective: Double?
+
+        public var minMarked: Double?
 
         public var maxMarked: Double?
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case currency
 
-            case minMarked = "min_marked"
-
             case minEffective = "min_effective"
+
+            case minMarked = "min_marked"
 
             case maxMarked = "max_marked"
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(currency: String? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
             self.currency = currency
 
-            self.minMarked = minMarked
-
             self.minEffective = minEffective
+
+            self.minMarked = minMarked
 
             self.maxMarked = maxMarked
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                minMarked = try container.decode(Double.self, forKey: .minMarked)
+                minEffective = try container.decode(Double.self, forKey: .minEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                minEffective = try container.decode(Double.self, forKey: .minEffective)
+                minMarked = try container.decode(Double.self, forKey: .minMarked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(minMarked, forKey: .minMarked)
-
             try? container.encodeIfPresent(minEffective, forKey: .minEffective)
+
+            try? container.encodeIfPresent(minMarked, forKey: .minMarked)
 
             try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
 
