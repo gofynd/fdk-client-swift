@@ -13,13 +13,13 @@ public extension ApplicationClient {
 
         public var pincode: String
 
+        public var city: String
+
         public var landMark: String?
 
         public var addressline2: String?
 
         public var state: String
-
-        public var city: String
 
         public enum CodingKeys: String, CodingKey {
             case ownershipType = "ownership_type"
@@ -28,13 +28,13 @@ public extension ApplicationClient {
 
             case pincode
 
+            case city
+
             case landMark = "land_mark"
 
             case addressline2
 
             case state
-
-            case city
         }
 
         public init(addressline1: String, addressline2: String? = nil, city: String, landMark: String? = nil, ownershipType: String? = nil, pincode: String, state: String) {
@@ -44,13 +44,13 @@ public extension ApplicationClient {
 
             self.pincode = pincode
 
+            self.city = city
+
             self.landMark = landMark
 
             self.addressline2 = addressline2
 
             self.state = state
-
-            self.city = city
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,6 +67,8 @@ public extension ApplicationClient {
             addressline1 = try container.decode(String.self, forKey: .addressline1)
 
             pincode = try container.decode(String.self, forKey: .pincode)
+
+            city = try container.decode(String.self, forKey: .city)
 
             do {
                 landMark = try container.decode(String.self, forKey: .landMark)
@@ -85,8 +87,6 @@ public extension ApplicationClient {
             } catch {}
 
             state = try container.decode(String.self, forKey: .state)
-
-            city = try container.decode(String.self, forKey: .city)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -98,13 +98,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
+            try? container.encodeIfPresent(city, forKey: .city)
+
             try? container.encode(landMark, forKey: .landMark)
 
             try? container.encode(addressline2, forKey: .addressline2)
 
             try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(city, forKey: .city)
         }
     }
 }

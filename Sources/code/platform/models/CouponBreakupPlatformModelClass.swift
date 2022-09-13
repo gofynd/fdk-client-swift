@@ -8,6 +8,8 @@ public extension PlatformClient {
      */
 
     class CouponBreakup: Codable {
+        public var value: Double?
+
         public var isApplied: Bool?
 
         public var code: String?
@@ -16,11 +18,11 @@ public extension PlatformClient {
 
         public var message: String?
 
-        public var value: Double?
-
         public var uid: String?
 
         public enum CodingKeys: String, CodingKey {
+            case value
+
             case isApplied = "is_applied"
 
             case code
@@ -29,12 +31,12 @@ public extension PlatformClient {
 
             case message
 
-            case value
-
             case uid
         }
 
         public init(code: String? = nil, isApplied: Bool? = nil, message: String? = nil, type: String? = nil, uid: String? = nil, value: Double? = nil) {
+            self.value = value
+
             self.isApplied = isApplied
 
             self.code = code
@@ -43,13 +45,19 @@ public extension PlatformClient {
 
             self.message = message
 
-            self.value = value
-
             self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                value = try container.decode(Double.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 isApplied = try container.decode(Bool.self, forKey: .isApplied)
@@ -84,14 +92,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -103,6 +103,8 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(value, forKey: .value)
+
             try? container.encodeIfPresent(isApplied, forKey: .isApplied)
 
             try? container.encodeIfPresent(code, forKey: .code)
@@ -110,8 +112,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(message, forKey: .message)
-
-            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }

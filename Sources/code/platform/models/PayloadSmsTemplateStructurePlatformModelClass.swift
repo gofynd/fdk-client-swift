@@ -10,7 +10,7 @@ public extension PlatformClient {
     class PayloadSmsTemplateStructure: Codable {
         public var key: String?
 
-        public var value: String?
+        public var value: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case key
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case value
         }
 
-        public init(key: String? = nil, value: String? = nil) {
+        public init(key: String? = nil, value: [String: Any]? = nil) {
             self.key = key
 
             self.value = value
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                value = try container.decode([String: Any].self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
