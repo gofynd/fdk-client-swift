@@ -8,70 +8,72 @@ public extension PlatformClient {
      */
 
     class UserObj: Codable {
-        public var gender: String
-
         public var firstName: String
-
-        public var email: String?
-
-        public var userOid: String
-
-        public var mongoUserId: String
 
         public var isAnonymousUser: Bool
 
         public var mobile: String
 
-        public var uId: Int
+        public var email: String?
 
         public var lastName: String
 
+        public var uId: Int
+
+        public var mongoUserId: String
+
+        public var gender: String
+
+        public var userOid: String
+
         public enum CodingKeys: String, CodingKey {
-            case gender
-
             case firstName = "first_name"
-
-            case email
-
-            case userOid = "user_oid"
-
-            case mongoUserId = "mongo_user_id"
 
             case isAnonymousUser = "is_anonymous_user"
 
             case mobile
 
-            case uId = "u_id"
+            case email
 
             case lastName = "last_name"
+
+            case uId = "u_id"
+
+            case mongoUserId = "mongo_user_id"
+
+            case gender
+
+            case userOid = "user_oid"
         }
 
         public init(email: String? = nil, firstName: String, gender: String, isAnonymousUser: Bool, lastName: String, mobile: String, mongoUserId: String, userOid: String, uId: Int) {
-            self.gender = gender
-
             self.firstName = firstName
-
-            self.email = email
-
-            self.userOid = userOid
-
-            self.mongoUserId = mongoUserId
 
             self.isAnonymousUser = isAnonymousUser
 
             self.mobile = mobile
 
-            self.uId = uId
+            self.email = email
 
             self.lastName = lastName
+
+            self.uId = uId
+
+            self.mongoUserId = mongoUserId
+
+            self.gender = gender
+
+            self.userOid = userOid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            gender = try container.decode(String.self, forKey: .gender)
-
             firstName = try container.decode(String.self, forKey: .firstName)
+
+            isAnonymousUser = try container.decode(Bool.self, forKey: .isAnonymousUser)
+
+            mobile = try container.decode(String.self, forKey: .mobile)
 
             do {
                 email = try container.decode(String.self, forKey: .email)
@@ -81,39 +83,37 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            userOid = try container.decode(String.self, forKey: .userOid)
-
-            mongoUserId = try container.decode(String.self, forKey: .mongoUserId)
-
-            isAnonymousUser = try container.decode(Bool.self, forKey: .isAnonymousUser)
-
-            mobile = try container.decode(String.self, forKey: .mobile)
+            lastName = try container.decode(String.self, forKey: .lastName)
 
             uId = try container.decode(Int.self, forKey: .uId)
 
-            lastName = try container.decode(String.self, forKey: .lastName)
+            mongoUserId = try container.decode(String.self, forKey: .mongoUserId)
+
+            gender = try container.decode(String.self, forKey: .gender)
+
+            userOid = try container.decode(String.self, forKey: .userOid)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(gender, forKey: .gender)
-
             try? container.encodeIfPresent(firstName, forKey: .firstName)
-
-            try? container.encode(email, forKey: .email)
-
-            try? container.encode(userOid, forKey: .userOid)
-
-            try? container.encode(mongoUserId, forKey: .mongoUserId)
 
             try? container.encodeIfPresent(isAnonymousUser, forKey: .isAnonymousUser)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encodeIfPresent(uId, forKey: .uId)
+            try? container.encode(email, forKey: .email)
 
             try? container.encodeIfPresent(lastName, forKey: .lastName)
+
+            try? container.encodeIfPresent(uId, forKey: .uId)
+
+            try? container.encode(mongoUserId, forKey: .mongoUserId)
+
+            try? container.encode(gender, forKey: .gender)
+
+            try? container.encode(userOid, forKey: .userOid)
         }
     }
 }

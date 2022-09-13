@@ -8,193 +8,161 @@ public extension PlatformClient {
      */
 
     class Item: Codable {
-        public var branchUrl: String?
-
-        public var slugKey: String
-
-        public var l1Category: [String]?
-
         public var image: [String]
-
-        public var canReturn: Bool?
-
-        public var l3CategoryName: String?
 
         public var name: String
 
-        public var size: String
+        public var departmentId: Int?
 
         public var brandId: Int
 
-        public var attributes: [String: Any]
-
-        public var itemId: Int
-
-        public var canCancel: Bool?
+        public var l3Category: Int?
 
         public var gender: String?
 
+        public var meta: [String: Any]?
+
+        public var canCancel: Bool?
+
+        public var lastUpdatedAt: Int?
+
         public var brand: String
 
-        public var webstoreProductUrl: String?
-
-        public var color: String?
+        public var l3CategoryName: String?
 
         public var code: String?
 
         public var l2Category: [String]?
 
-        public var lastUpdatedAt: Int?
+        public var branchUrl: String?
 
-        public var departmentId: Int?
+        public var l1Category: [String]?
 
-        public var meta: [String: Any]?
+        public var slugKey: String
 
-        public var l3Category: Int?
+        public var size: String
+
+        public var attributes: [String: Any]
+
+        public var canReturn: Bool?
+
+        public var color: String?
+
+        public var webstoreProductUrl: String?
+
+        public var itemId: Int
 
         public enum CodingKeys: String, CodingKey {
-            case branchUrl = "branch_url"
-
-            case slugKey = "slug_key"
-
-            case l1Category = "l1_category"
-
             case image
-
-            case canReturn = "can_return"
-
-            case l3CategoryName = "l3_category_name"
 
             case name
 
-            case size
+            case departmentId = "department_id"
 
             case brandId = "brand_id"
 
-            case attributes
-
-            case itemId = "item_id"
-
-            case canCancel = "can_cancel"
+            case l3Category = "l3_category"
 
             case gender
 
+            case meta
+
+            case canCancel = "can_cancel"
+
+            case lastUpdatedAt = "last_updated_at"
+
             case brand
 
-            case webstoreProductUrl = "webstore_product_url"
-
-            case color
+            case l3CategoryName = "l3_category_name"
 
             case code
 
             case l2Category = "l2_category"
 
-            case lastUpdatedAt = "last_updated_at"
+            case branchUrl = "branch_url"
 
-            case departmentId = "department_id"
+            case l1Category = "l1_category"
 
-            case meta
+            case slugKey = "slug_key"
 
-            case l3Category = "l3_category"
+            case size
+
+            case attributes
+
+            case canReturn = "can_return"
+
+            case color
+
+            case webstoreProductUrl = "webstore_product_url"
+
+            case itemId = "item_id"
         }
 
         public init(attributes: [String: Any], branchUrl: String? = nil, brand: String, brandId: Int, canCancel: Bool? = nil, canReturn: Bool? = nil, code: String? = nil, color: String? = nil, departmentId: Int? = nil, gender: String? = nil, image: [String], itemId: Int, l1Category: [String]? = nil, l2Category: [String]? = nil, l3Category: Int? = nil, l3CategoryName: String? = nil, lastUpdatedAt: Int? = nil, meta: [String: Any]? = nil, name: String, size: String, slugKey: String, webstoreProductUrl: String? = nil) {
-            self.branchUrl = branchUrl
-
-            self.slugKey = slugKey
-
-            self.l1Category = l1Category
-
             self.image = image
-
-            self.canReturn = canReturn
-
-            self.l3CategoryName = l3CategoryName
 
             self.name = name
 
-            self.size = size
+            self.departmentId = departmentId
 
             self.brandId = brandId
 
-            self.attributes = attributes
-
-            self.itemId = itemId
-
-            self.canCancel = canCancel
+            self.l3Category = l3Category
 
             self.gender = gender
 
+            self.meta = meta
+
+            self.canCancel = canCancel
+
+            self.lastUpdatedAt = lastUpdatedAt
+
             self.brand = brand
 
-            self.webstoreProductUrl = webstoreProductUrl
-
-            self.color = color
+            self.l3CategoryName = l3CategoryName
 
             self.code = code
 
             self.l2Category = l2Category
 
-            self.lastUpdatedAt = lastUpdatedAt
+            self.branchUrl = branchUrl
 
-            self.departmentId = departmentId
+            self.l1Category = l1Category
 
-            self.meta = meta
+            self.slugKey = slugKey
 
-            self.l3Category = l3Category
+            self.size = size
+
+            self.attributes = attributes
+
+            self.canReturn = canReturn
+
+            self.color = color
+
+            self.webstoreProductUrl = webstoreProductUrl
+
+            self.itemId = itemId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                branchUrl = try container.decode(String.self, forKey: .branchUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            slugKey = try container.decode(String.self, forKey: .slugKey)
-
-            do {
-                l1Category = try container.decode([String].self, forKey: .l1Category)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             image = try container.decode([String].self, forKey: .image)
-
-            do {
-                canReturn = try container.decode(Bool.self, forKey: .canReturn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                l3CategoryName = try container.decode(String.self, forKey: .l3CategoryName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             name = try container.decode(String.self, forKey: .name)
 
-            size = try container.decode(String.self, forKey: .size)
+            do {
+                departmentId = try container.decode(Int.self, forKey: .departmentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             brandId = try container.decode(Int.self, forKey: .brandId)
 
-            attributes = try container.decode([String: Any].self, forKey: .attributes)
-
-            itemId = try container.decode(Int.self, forKey: .itemId)
-
             do {
-                canCancel = try container.decode(Bool.self, forKey: .canCancel)
+                l3Category = try container.decode(Int.self, forKey: .l3Category)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -209,10 +177,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            brand = try container.decode(String.self, forKey: .brand)
-
             do {
-                webstoreProductUrl = try container.decode(String.self, forKey: .webstoreProductUrl)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -220,7 +186,25 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                color = try container.decode(String.self, forKey: .color)
+                canCancel = try container.decode(Bool.self, forKey: .canCancel)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                lastUpdatedAt = try container.decode(Int.self, forKey: .lastUpdatedAt)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            brand = try container.decode(String.self, forKey: .brand)
+
+            do {
+                l3CategoryName = try container.decode(String.self, forKey: .l3CategoryName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -244,7 +228,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                lastUpdatedAt = try container.decode(Int.self, forKey: .lastUpdatedAt)
+                branchUrl = try container.decode(String.self, forKey: .branchUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -252,7 +236,21 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                departmentId = try container.decode(Int.self, forKey: .departmentId)
+                l1Category = try container.decode([String].self, forKey: .l1Category)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            slugKey = try container.decode(String.self, forKey: .slugKey)
+
+            size = try container.decode(String.self, forKey: .size)
+
+            attributes = try container.decode([String: Any].self, forKey: .attributes)
+
+            do {
+                canReturn = try container.decode(Bool.self, forKey: .canReturn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -260,7 +258,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                color = try container.decode(String.self, forKey: .color)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -268,60 +266,62 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                l3Category = try container.decode(Int.self, forKey: .l3Category)
+                webstoreProductUrl = try container.decode(String.self, forKey: .webstoreProductUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            itemId = try container.decode(Int.self, forKey: .itemId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(branchUrl, forKey: .branchUrl)
-
-            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
-
-            try? container.encodeIfPresent(l1Category, forKey: .l1Category)
-
             try? container.encodeIfPresent(image, forKey: .image)
-
-            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
-
-            try? container.encodeIfPresent(l3CategoryName, forKey: .l3CategoryName)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
 
             try? container.encodeIfPresent(brandId, forKey: .brandId)
 
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
-
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-
-            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
+            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
 
             try? container.encode(gender, forKey: .gender)
 
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
+
+            try? container.encodeIfPresent(lastUpdatedAt, forKey: .lastUpdatedAt)
+
             try? container.encodeIfPresent(brand, forKey: .brand)
 
-            try? container.encode(webstoreProductUrl, forKey: .webstoreProductUrl)
-
-            try? container.encode(color, forKey: .color)
+            try? container.encodeIfPresent(l3CategoryName, forKey: .l3CategoryName)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(l2Category, forKey: .l2Category)
 
-            try? container.encodeIfPresent(lastUpdatedAt, forKey: .lastUpdatedAt)
+            try? container.encode(branchUrl, forKey: .branchUrl)
 
-            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
+            try? container.encodeIfPresent(l1Category, forKey: .l1Category)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
 
-            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
+
+            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
+
+            try? container.encode(color, forKey: .color)
+
+            try? container.encode(webstoreProductUrl, forKey: .webstoreProductUrl)
+
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
         }
     }
 }

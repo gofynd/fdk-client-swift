@@ -633,8 +633,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get brands by company
-         * Description: Get brands by company
+         * Summary: Get brands by company.
+         * Description: Get brands by company for current sales channel
          **/
         public func getBrandsByCompany(
             q: String?,

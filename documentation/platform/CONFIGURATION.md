@@ -1504,7 +1504,7 @@ Success
 
 
 #### getInventoryConfig
-Get application configuration
+Get sales channel configuration
 
 
 
@@ -1520,7 +1520,7 @@ client.application("<APPLICATION_ID>").configuration.getInventoryConfig() { (res
 
 
 
-Get application configuration for various features and data
+Get sales channel configuration for various features and data
 
 *Returned Response:*
 
@@ -1739,7 +1739,7 @@ Success
 
 
 #### updateInventoryConfig
-Update application configuration
+Update sales channel configuration
 
 
 
@@ -1759,7 +1759,7 @@ client.application("<APPLICATION_ID>").configuration.updateInventoryConfig(body:
 | body | ApplicationInventory | yes | Request body |
 
 
-Update application configuration for various features and data
+Update sales channel configuration for various features and data
 
 *Returned Response:*
 
@@ -1978,7 +1978,7 @@ Success
 
 
 #### partiallyUpdateInventoryConfig
-Partially update application configuration
+Partially update sales channel configuration
 
 
 
@@ -1998,7 +1998,7 @@ client.application("<APPLICATION_ID>").configuration.partiallyUpdateInventoryCon
 | body | AppInventoryPartialUpdate | yes | Request body |
 
 
-Partially update application configuration for various features and data
+Partially update sales channel configuration for various features and data
 
 *Returned Response:*
 
@@ -4191,7 +4191,7 @@ Success
 
 
 #### getBrandsByCompany
-Get brands by company
+Get brands by company.
 
 
 
@@ -4212,7 +4212,7 @@ client.configuration.getBrandsByCompany(q: q) { (response, error) in
 
 
 
-Get brands by company
+Get brands by company for current sales channel
 
 *Returned Response:*
 
@@ -4756,10 +4756,10 @@ Success
  | category | [InventoryCategory](#InventoryCategory)? |  yes  |  |
  | price | [InventoryPrice](#InventoryPrice)? |  yes  |  |
  | discount | [InventoryDiscount](#InventoryDiscount)? |  yes  |  |
- | outOfStock | Bool? |  yes  |  |
- | onlyVerifiedProducts | Bool? |  yes  |  |
+ | outOfStock | Bool? |  yes  | Show out of stock products |
+ | onlyVerifiedProducts | Bool? |  yes  | Show only verified products |
  | franchiseEnabled | Bool? |  yes  |  |
- | excludeCategory | [[String: Any]]? |  yes  |  |
+ | excludeCategory | [[String: Any]]? |  yes  | List of excluded brands category |
  | image | [String]? |  yes  |  |
  | companyStore | [[String: Any]]? |  yes  |  |
 
@@ -4773,7 +4773,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | criteria | String? |  yes  |  |
- | brands | [[String: Any]]? |  yes  |  |
+ | brands | [[String: Any]]? |  yes  | List of brands |
 
 ---
 
@@ -4785,7 +4785,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | criteria | String? |  yes  |  |
- | stores | [[String: Any]]? |  yes  |  |
+ | stores | [[String: Any]]? |  yes  | List of stores |
  | rules | [AppStoreRules](#AppStoreRules)? |  yes  |  |
 
 ---
@@ -4797,8 +4797,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | companies | [Int]? |  yes  |  |
- | brands | [[String: Any]]? |  yes  |  |
+ | companies | [Int]? |  yes  | List of companies |
+ | brands | [[String: Any]]? |  yes  | List of brands |
 
 ---
 
@@ -4810,7 +4810,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | criteria | String? |  yes  |  |
- | categories | [[String: Any]]? |  yes  |  |
+ | categories | [[String: Any]]? |  yes  | List of inventory categories |
 
 ---
 
@@ -4821,8 +4821,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min | Double? |  yes  |  |
- | max | Double? |  yes  |  |
+ | min | Double? |  yes  | Minimum inventory price |
+ | max | Double? |  yes  | Maximum inventory price |
 
 ---
 
@@ -4833,8 +4833,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min | Double? |  yes  |  |
- | max | Double? |  yes  |  |
+ | min | Double? |  yes  | Minimum inventory discount |
+ | max | Double? |  yes  | Maximum inventory discount |
 
 ---
 
@@ -4893,11 +4893,11 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | deliveryCharges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
- | enabled | Bool? |  yes  |  |
- | maxCartItems | Int? |  yes  |  |
- | minCartValue | Double? |  yes  |  |
- | bulkCoupons | Bool? |  yes  |  |
- | revenueEngineCoupon | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Allow cart configuration |
+ | maxCartItems | Int? |  yes  | Maximum number of items can be added to cart |
+ | minCartValue | Double? |  yes  | Minimum cart value |
+ | bulkCoupons | Bool? |  yes  | Allow creation of bluk coupons |
+ | revenueEngineCoupon | Bool? |  yes  | Allow coupon and revenue engine together |
 
 ---
 
@@ -4908,7 +4908,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Allow delivery charges |
  | charges | [Charges](#Charges)? |  yes  |  |
 
 ---
@@ -4920,8 +4920,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | threshold | Double? |  yes  |  |
- | charges | Double? |  yes  |  |
+ | threshold | Double? |  yes  | Threshold of delivery amount to be charged |
+ | charges | Double? |  yes  | Delivery amount to be charged |
 
 ---
 
@@ -4935,11 +4935,12 @@ Success
  | callbackUrl | [CallbackUrl](#CallbackUrl)? |  yes  |  |
  | methods | [Methods](#Methods)? |  yes  |  |
  | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | modeOfPayment | String? |  yes  |  |
+ | modeOfPayment | String? |  yes  | Mode of payment |
  | source | String? |  yes  |  |
- | enabled | Bool? |  yes  |  |
- | codAmountLimit | Double? |  yes  |  |
- | codCharges | Double? |  yes  |  |
+ | enabled | Bool? |  yes  | Allow payment |
+ | codAmountLimit | Double? |  yes  | Maximum amount allowed for cash on delivery |
+ | codCharges | Double? |  yes  | cash on delivery charges |
+ | anonymousCod | Bool? |  yes  | Allow cash on delivery for anonymous user |
 
 ---
 
@@ -4950,8 +4951,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app | String? |  yes  |  |
- | web | String? |  yes  |  |
+ | app | String? |  yes  | Payment callback url for app |
+ | web | String? |  yes  | Payment callback url for web |
 
 ---
 
@@ -4991,7 +4992,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Allow payment method for payment |
 
 ---
 
@@ -5002,9 +5003,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | defaultOptions | String? |  yes  |  |
- | paymentIdentifier | String? |  yes  |  |
+ | enabled | Bool? |  yes  | Allow payment selection method |
+ | defaultOptions | String? |  yes  | Default options for payment selection method |
+ | paymentIdentifier | String? |  yes  | Payment method choosed from default options for payment |
 
 ---
 
@@ -5015,9 +5016,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | forceReassignment | Bool? |  yes  |  |
- | message | String? |  yes  |  |
+ | enabled | Bool? |  yes  | Allow order |
+ | forceReassignment | Bool? |  yes  | Allow force reassigning of an order |
+ | message | String? |  yes  | Reason for reassigning of an order |
 
 ---
 
@@ -5042,8 +5043,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | autoApply | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Allow loyalty points |
+ | autoApply | Bool? |  yes  | Allow auto apply of loyalty points |
 
 ---
 
@@ -5146,11 +5147,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
+ | name | String? |  yes  | Brand name |
  | value | Int? |  yes  |  |
- | brandLogoUrl | String? |  yes  |  |
- | brandBannerUrl | String? |  yes  |  |
- | brandBannerPortraitUrl | String? |  yes  |  |
+ | brandLogoUrl | String? |  yes  | Brand logo hosted url |
+ | brandBannerUrl | String? |  yes  | Brand banner hosted url |
+ | brandBannerPortraitUrl | String? |  yes  | Brand banner portrait hosted url |
 
 ---
 
@@ -5162,6 +5163,28 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brands | [CompanyBrandInfo](#CompanyBrandInfo)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ValidationFailedResponse](#ValidationFailedResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [NotFound](#NotFound)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -6292,7 +6315,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Allow credit of reward points |
 
 ---
 
@@ -6303,9 +6326,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | autoApply | Bool? |  yes  |  |
- | strategyChannel | String? |  yes  |  |
+ | enabled | Bool? |  yes  | Allow debit of reward points |
+ | autoApply | Bool? |  yes  | Allow automatic debit of reward points |
+ | strategyChannel | String? |  yes  | Strategy channel for debiting reward points |
 
 ---
 
@@ -6687,17 +6710,6 @@ Success
  | appType | String? |  yes  |  |
  | mobileLogo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | domain | [Domain](#Domain)? |  yes  |  |
-
----
-
-
- 
- 
- #### [NotFound](#NotFound)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
 
 ---
 

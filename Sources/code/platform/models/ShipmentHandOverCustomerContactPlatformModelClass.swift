@@ -8,50 +8,48 @@ public extension PlatformClient {
      */
 
     class ShipmentHandOverCustomerContact: Codable {
-        public var updatedAt: String
-
         public var email: String?
 
         public var phone: String?
 
-        public var version: String
-
-        public var contactPerson: String
+        public var updatedAt: String
 
         public var createdAt: String
 
-        public enum CodingKeys: String, CodingKey {
-            case updatedAt = "updated_at"
+        public var contactPerson: String
 
+        public var version: String
+
+        public enum CodingKeys: String, CodingKey {
             case email
 
             case phone
 
-            case version
+            case updatedAt = "updated_at"
+
+            case createdAt = "created_at"
 
             case contactPerson = "contact_person"
 
-            case createdAt = "created_at"
+            case version
         }
 
         public init(contactPerson: String, createdAt: String, email: String? = nil, phone: String? = nil, updatedAt: String, version: String) {
-            self.updatedAt = updatedAt
-
             self.email = email
 
             self.phone = phone
 
-            self.version = version
+            self.updatedAt = updatedAt
+
+            self.createdAt = createdAt
 
             self.contactPerson = contactPerson
 
-            self.createdAt = createdAt
+            self.version = version
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
             do {
                 email = try container.decode(String.self, forKey: .email)
@@ -69,27 +67,29 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            version = try container.decode(String.self, forKey: .version)
+            updatedAt = try container.decode(String.self, forKey: .updatedAt)
+
+            createdAt = try container.decode(String.self, forKey: .createdAt)
 
             contactPerson = try container.decode(String.self, forKey: .contactPerson)
 
-            createdAt = try container.decode(String.self, forKey: .createdAt)
+            version = try container.decode(String.self, forKey: .version)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-
             try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(phone, forKey: .phone)
 
-            try? container.encodeIfPresent(version, forKey: .version)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
 
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(version, forKey: .version)
         }
     }
 }

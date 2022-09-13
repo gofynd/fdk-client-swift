@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var legalName: String
 
+        public var dsType: String
+
         public var url: String?
 
         public var verified: Bool
-
-        public var dsType: String
 
         public enum CodingKeys: String, CodingKey {
             case value
 
             case legalName = "legal_name"
 
+            case dsType = "ds_type"
+
             case url
 
             case verified
-
-            case dsType = "ds_type"
         }
 
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.legalName = legalName
 
+            self.dsType = dsType
+
             self.url = url
 
             self.verified = verified
-
-            self.dsType = dsType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,6 +48,8 @@ public extension PlatformClient {
             value = try container.decode(String.self, forKey: .value)
 
             legalName = try container.decode(String.self, forKey: .legalName)
+
+            dsType = try container.decode(String.self, forKey: .dsType)
 
             do {
                 url = try container.decode(String.self, forKey: .url)
@@ -58,8 +60,6 @@ public extension PlatformClient {
             } catch {}
 
             verified = try container.decode(Bool.self, forKey: .verified)
-
-            dsType = try container.decode(String.self, forKey: .dsType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -69,11 +69,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
 
+            try? container.encodeIfPresent(dsType, forKey: .dsType)
+
             try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(verified, forKey: .verified)
-
-            try? container.encodeIfPresent(dsType, forKey: .dsType)
         }
     }
 }

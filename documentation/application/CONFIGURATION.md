@@ -1902,7 +1902,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Allow credit of reward points |
 
 ---
 
@@ -1913,9 +1913,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | autoApply | Bool? |  yes  |  |
- | strategyChannel | String? |  yes  |  |
+ | enabled | Bool? |  yes  | Allow debit of reward points |
+ | autoApply | Bool? |  yes  | Allow automatic debit of reward points |
+ | strategyChannel | String? |  yes  | Strategy channel for debiting reward points |
 
 ---
 

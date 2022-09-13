@@ -977,7 +977,7 @@ public extension PlatformClient {
          * Description:
          **/
         public func getShipmentById(
-            shipmentId: String,
+            shipmentId: String?,
             channelOrderId: String?,
             channelShipmentId: String?,
             channelBagId: String?,
@@ -987,7 +987,9 @@ public extension PlatformClient {
         ) {
             var xQuery: [String: Any] = [:]
 
-            xQuery["shipment_id"] = shipmentId
+            if let value = shipmentId {
+                xQuery["shipment_id"] = value
+            }
 
             if let value = channelOrderId {
                 xQuery["channel_order_id"] = value

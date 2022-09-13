@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class ShipmentInvoice1: Codable {
-        public var invoiceUrl: String
-
         public var labelUrl: String
+
+        public var invoiceUrl: String
 
         public var storeInvoiceId: String
 
         public var updatedDate: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case invoiceUrl = "invoice_url"
-
             case labelUrl = "label_url"
+
+            case invoiceUrl = "invoice_url"
 
             case storeInvoiceId = "store_invoice_id"
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(invoiceUrl: String, labelUrl: String, storeInvoiceId: String, updatedDate: Int? = nil) {
-            self.invoiceUrl = invoiceUrl
-
             self.labelUrl = labelUrl
+
+            self.invoiceUrl = invoiceUrl
 
             self.storeInvoiceId = storeInvoiceId
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            invoiceUrl = try container.decode(String.self, forKey: .invoiceUrl)
-
             labelUrl = try container.decode(String.self, forKey: .labelUrl)
+
+            invoiceUrl = try container.decode(String.self, forKey: .invoiceUrl)
 
             storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
 
@@ -57,9 +57,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
-
             try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
+
+            try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
 
             try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
 

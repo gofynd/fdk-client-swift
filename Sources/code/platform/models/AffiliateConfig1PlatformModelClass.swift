@@ -8,123 +8,105 @@ public extension PlatformClient {
      */
 
     class AffiliateConfig1: Codable {
-        public var appCompanyId: Int
-
-        public var token: String?
-
-        public var secret: String
-
-        public var postOrderReassignment: Bool
-
-        public var name: String
-
-        public var owner: String
-
-        public var updatedAt: String?
+        public var meta: [[String: Any]]?
 
         public var articleAssignment: [String: Any]?
 
-        public var description: String?
+        public var stores: [Int]?
+
+        public var postOrderReassignment: Bool
+
+        public var secret: String
+
+        public var owner: String
 
         public var dpAssignment: Bool
 
+        public var acId: String
+
+        public var name: String
+
+        public var token: String?
+
+        public var updatedAt: String?
+
+        public var description: String?
+
         public var forceReassignment: Bool
-
-        public var stores: [Int]?
-
-        public var meta: [[String: Any]]?
 
         public var createdAt: String?
 
-        public var acId: String
+        public var appCompanyId: Int
 
         public enum CodingKeys: String, CodingKey {
-            case appCompanyId = "app_company_id"
-
-            case token
-
-            case secret
-
-            case postOrderReassignment = "post_order_reassignment"
-
-            case name
-
-            case owner
-
-            case updatedAt = "updated_at"
+            case meta
 
             case articleAssignment = "article_assignment"
 
-            case description
+            case stores
+
+            case postOrderReassignment = "post_order_reassignment"
+
+            case secret
+
+            case owner
 
             case dpAssignment = "dp_assignment"
 
+            case acId = "ac_id"
+
+            case name
+
+            case token
+
+            case updatedAt = "updated_at"
+
+            case description
+
             case forceReassignment = "force_reassignment"
-
-            case stores
-
-            case meta
 
             case createdAt = "created_at"
 
-            case acId = "ac_id"
+            case appCompanyId = "app_company_id"
         }
 
         public init(acId: String, appCompanyId: Int, articleAssignment: [String: Any]? = nil, createdAt: String? = nil, description: String? = nil, dpAssignment: Bool, forceReassignment: Bool, meta: [[String: Any]]? = nil, name: String, owner: String, postOrderReassignment: Bool, secret: String, stores: [Int]? = nil, token: String? = nil, updatedAt: String? = nil) {
-            self.appCompanyId = appCompanyId
-
-            self.token = token
-
-            self.secret = secret
-
-            self.postOrderReassignment = postOrderReassignment
-
-            self.name = name
-
-            self.owner = owner
-
-            self.updatedAt = updatedAt
+            self.meta = meta
 
             self.articleAssignment = articleAssignment
 
-            self.description = description
+            self.stores = stores
+
+            self.postOrderReassignment = postOrderReassignment
+
+            self.secret = secret
+
+            self.owner = owner
 
             self.dpAssignment = dpAssignment
 
+            self.acId = acId
+
+            self.name = name
+
+            self.token = token
+
+            self.updatedAt = updatedAt
+
+            self.description = description
+
             self.forceReassignment = forceReassignment
-
-            self.stores = stores
-
-            self.meta = meta
 
             self.createdAt = createdAt
 
-            self.acId = acId
+            self.appCompanyId = appCompanyId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            appCompanyId = try container.decode(Int.self, forKey: .appCompanyId)
-
             do {
-                token = try container.decode(String.self, forKey: .token)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            secret = try container.decode(String.self, forKey: .secret)
-
-            postOrderReassignment = try container.decode(Bool.self, forKey: .postOrderReassignment)
-
-            name = try container.decode(String.self, forKey: .name)
-
-            owner = try container.decode(String.self, forKey: .owner)
-
-            do {
-                updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                meta = try container.decode([[String: Any]].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,18 +122,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            dpAssignment = try container.decode(Bool.self, forKey: .dpAssignment)
-
-            forceReassignment = try container.decode(Bool.self, forKey: .forceReassignment)
-
-            do {
                 stores = try container.decode([Int].self, forKey: .stores)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -159,13 +129,43 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            postOrderReassignment = try container.decode(Bool.self, forKey: .postOrderReassignment)
+
+            secret = try container.decode(String.self, forKey: .secret)
+
+            owner = try container.decode(String.self, forKey: .owner)
+
+            dpAssignment = try container.decode(Bool.self, forKey: .dpAssignment)
+
+            acId = try container.decode(String.self, forKey: .acId)
+
+            name = try container.decode(String.self, forKey: .name)
+
             do {
-                meta = try container.decode([[String: Any]].self, forKey: .meta)
+                token = try container.decode(String.self, forKey: .token)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                updatedAt = try container.decode(String.self, forKey: .updatedAt)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            forceReassignment = try container.decode(Bool.self, forKey: .forceReassignment)
 
             do {
                 createdAt = try container.decode(String.self, forKey: .createdAt)
@@ -175,41 +175,41 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            acId = try container.decode(String.self, forKey: .acId)
+            appCompanyId = try container.decode(Int.self, forKey: .appCompanyId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(appCompanyId, forKey: .appCompanyId)
-
-            try? container.encode(token, forKey: .token)
-
-            try? container.encodeIfPresent(secret, forKey: .secret)
-
-            try? container.encodeIfPresent(postOrderReassignment, forKey: .postOrderReassignment)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(owner, forKey: .owner)
-
-            try? container.encode(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(stores, forKey: .stores)
+
+            try? container.encodeIfPresent(postOrderReassignment, forKey: .postOrderReassignment)
+
+            try? container.encodeIfPresent(secret, forKey: .secret)
+
+            try? container.encodeIfPresent(owner, forKey: .owner)
 
             try? container.encodeIfPresent(dpAssignment, forKey: .dpAssignment)
 
+            try? container.encodeIfPresent(acId, forKey: .acId)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encode(token, forKey: .token)
+
+            try? container.encode(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(description, forKey: .description)
+
             try? container.encodeIfPresent(forceReassignment, forKey: .forceReassignment)
-
-            try? container.encodeIfPresent(stores, forKey: .stores)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encode(createdAt, forKey: .createdAt)
 
-            try? container.encodeIfPresent(acId, forKey: .acId)
+            try? container.encodeIfPresent(appCompanyId, forKey: .appCompanyId)
         }
     }
 }

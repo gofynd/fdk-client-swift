@@ -50,8 +50,10 @@ Content System
 * [createPagePreview](#createpagepreview)
 * [updatePagePreview](#updatepagepreview)
 * [deletePage](#deletepage)
-* [updatePathRedirectionRules](#updatepathredirectionrules)
+* [addPathRedirectionRules](#addpathredirectionrules)
 * [getPathRedirectionRules](#getpathredirectionrules)
+* [updatePathRedirectionRules](#updatepathredirectionrules)
+* [deletePathRedirectionRules](#deletepathredirectionrules)
 * [getSEOConfiguration](#getseoconfiguration)
 * [updateSEOConfiguration](#updateseoconfiguration)
 * [getSlideshows](#getslideshows)
@@ -5286,14 +5288,14 @@ Success.
 ---
 
 
-#### updatePathRedirectionRules
+#### addPathRedirectionRules
 Save path based redirection rules
 
 
 
 
 ```swift
-client.application("<APPLICATION_ID>").content.updatePathRedirectionRules(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.addPathRedirectionRules(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5307,7 +5309,7 @@ client.application("<APPLICATION_ID>").content.updatePathRedirectionRules(body: 
 | body | PathMappingSchema | yes | Request body |
 
 
-Use this API to add, update or delete path-based redirection rules
+Use this API to add redirection rules
 
 *Returned Response:*
 
@@ -5322,18 +5324,26 @@ Success. Refer `PathMappingSchema` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
 
 ```json
 {
-  "redirections": [
-    {
-      "redirect_from": "test.hostfynd.dev/redirect_from",
-      "redirect_to": "/redirect_to"
-    }
-  ]
+  "value": {
+    "_id": "615188e9db1e444cb0f40837",
+    "application": "000000000000000000000002",
+    "redirect_from": "/from",
+    "redirect_to": "/to",
+    "createdAt": "2021-09-27T09:03:37.053Z",
+    "updatedAt": "2021-09-27T09:09:25.587Z"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -5390,12 +5400,8 @@ Success. Refer `PathMappingSchema` for more details.
   "value": {
     "_id": "615188e9db1e444cb0f40837",
     "application": "000000000000000000000002",
-    "redirections": [
-      {
-        "redirect_from": "/from",
-        "redirect_to": "/to"
-      }
-    ],
+    "redirect_from": "/from",
+    "redirect_to": "/to",
     "createdAt": "2021-09-27T09:03:37.053Z",
     "updatedAt": "2021-09-27T09:09:25.587Z"
   }
@@ -5403,6 +5409,133 @@ Success. Refer `PathMappingSchema` for more details.
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePathRedirectionRules
+Update path based redirection rules
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").content.updatePathRedirectionRules(pathId: pathId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pathId | String | yes | ID allotted to the path redirection rule. |  
+| body | PathMappingSchema | yes | Request body |
+
+
+Use this API to update redirection rules
+
+*Returned Response:*
+
+
+
+
+[PathMappingSchema](#PathMappingSchema)
+
+Success. Refer `PathMappingSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "615188e9db1e444cb0f40837",
+    "application": "000000000000000000000002",
+    "redirect_from": "/from",
+    "redirect_to": "/to",
+    "createdAt": "2021-09-27T09:03:37.053Z",
+    "updatedAt": "2021-09-27T09:09:25.587Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deletePathRedirectionRules
+Delete path based redirection rules
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").content.deletePathRedirectionRules(pathId: pathId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pathId | String | yes | ID allotted to the path redirection rule. |  
+
+
+
+Use this API to delete redirection rules
+
+*Returned Response:*
+
+
+
+
+[[String: Any]](#[String: Any])
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Redirection deleted successfully"
+}
+```
 </details>
 
 
@@ -7187,22 +7320,12 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | application | String? |  yes  |  |
- | redirections | [[RedirectionSchema](#RedirectionSchema)]? |  yes  |  |
  | id | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [RedirectionSchema](#RedirectionSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
  | redirectFrom | String? |  yes  |  |
  | redirectTo | String? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+ | source | [TagSourceSchema](#TagSourceSchema)? |  yes  |  |
 
 ---
 

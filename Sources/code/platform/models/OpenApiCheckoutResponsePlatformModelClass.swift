@@ -10,30 +10,30 @@ public extension PlatformClient {
     class OpenApiCheckoutResponse: Codable {
         public var success: Bool?
 
-        public var message: String?
+        public var orderRefId: String?
 
         public var orderId: String
 
-        public var orderRefId: String?
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case message
+            case orderRefId = "order_ref_id"
 
             case orderId = "order_id"
 
-            case orderRefId = "order_ref_id"
+            case message
         }
 
         public init(message: String? = nil, orderId: String, orderRefId: String? = nil, success: Bool? = nil) {
             self.success = success
 
-            self.message = message
+            self.orderRefId = orderRefId
 
             self.orderId = orderId
 
-            self.orderRefId = orderRefId
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                orderRefId = try container.decode(String.self, forKey: .orderRefId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,7 +58,7 @@ public extension PlatformClient {
             orderId = try container.decode(String.self, forKey: .orderId)
 
             do {
-                orderRefId = try container.decode(String.self, forKey: .orderRefId)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,11 +71,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(orderRefId, forKey: .orderRefId)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encodeIfPresent(orderRefId, forKey: .orderRefId)
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
