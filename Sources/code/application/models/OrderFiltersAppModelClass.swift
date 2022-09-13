@@ -3,25 +3,25 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: TrackShipmentResponse
+         Model: OrderFilters
          Used By: Order
      */
-    class TrackShipmentResponse: Codable {
-        public var results: [TrackShipmentResults]?
+    class OrderFilters: Codable {
+        public var statuses: [OrderStatuses]?
 
         public enum CodingKeys: String, CodingKey {
-            case results
+            case statuses
         }
 
-        public init(results: [TrackShipmentResults]? = nil) {
-            self.results = results
+        public init(statuses: [OrderStatuses]? = nil) {
+            self.statuses = statuses
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                results = try container.decode([TrackShipmentResults].self, forKey: .results)
+                statuses = try container.decode([OrderStatuses].self, forKey: .statuses)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -32,7 +32,7 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(results, forKey: .results)
+            try? container.encodeIfPresent(statuses, forKey: .statuses)
         }
     }
 }

@@ -14,11 +14,11 @@ public extension PlatformClient {
 
         public var listing: GetCatalogConfigurationDetailsSchemaListing?
 
+        public var appId: String
+
         public var product: GetCatalogConfigurationDetailsProduct?
 
         public var id: String?
-
-        public var appId: String
 
         public enum CodingKeys: String, CodingKey {
             case configId = "config_id"
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case listing
 
+            case appId = "app_id"
+
             case product
 
             case id
-
-            case appId = "app_id"
         }
 
         public init(appId: String, configId: String? = nil, configType: String, id: String? = nil, listing: GetCatalogConfigurationDetailsSchemaListing? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
@@ -41,11 +41,11 @@ public extension PlatformClient {
 
             self.listing = listing
 
+            self.appId = appId
+
             self.product = product
 
             self.id = id
-
-            self.appId = appId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,6 +69,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            appId = try container.decode(String.self, forKey: .appId)
+
             do {
                 product = try container.decode(GetCatalogConfigurationDetailsProduct.self, forKey: .product)
 
@@ -84,8 +86,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            appId = try container.decode(String.self, forKey: .appId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,11 +97,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(listing, forKey: .listing)
 
+            try? container.encodeIfPresent(appId, forKey: .appId)
+
             try? container.encodeIfPresent(product, forKey: .product)
 
             try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(appId, forKey: .appId)
         }
     }
 }
