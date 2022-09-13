@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: PromiseTimestamp
+         Model: RevenueTaxDetail
          Used By: Cart
      */
-    class PromiseTimestamp: Codable {
-        public var min: Double?
+    class RevenueTaxDetail: Codable {
+        public var taxPercentage: Double?
 
-        public var max: Double?
+        public var taxType: String?
 
         public enum CodingKeys: String, CodingKey {
-            case min
+            case taxPercentage = "tax_percentage"
 
-            case max
+            case taxType = "tax_type"
         }
 
-        public init(max: Double? = nil, min: Double? = nil) {
-            self.min = min
+        public init(taxPercentage: Double? = nil, taxType: String? = nil) {
+            self.taxPercentage = taxPercentage
 
-            self.max = max
+            self.taxType = taxType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
+                taxPercentage = try container.decode(Double.self, forKey: .taxPercentage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                max = try container.decode(Double.self, forKey: .max)
+                taxType = try container.decode(String.self, forKey: .taxType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(min, forKey: .min)
+            try? container.encodeIfPresent(taxPercentage, forKey: .taxPercentage)
 
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encodeIfPresent(taxType, forKey: .taxType)
         }
     }
 }
