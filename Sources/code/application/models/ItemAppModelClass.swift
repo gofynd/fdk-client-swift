@@ -21,6 +21,8 @@ public extension ApplicationClient {
 
         public var id: Double?
 
+        public var sellerIdentifier: String?
+
         public enum CodingKeys: String, CodingKey {
             case brand
 
@@ -35,9 +37,11 @@ public extension ApplicationClient {
             case code
 
             case id
+
+            case sellerIdentifier = "seller_identifier"
         }
 
-        public init(brand: ItemBrand? = nil, code: String? = nil, id: Double? = nil, image: [String]? = nil, name: String? = nil, size: String? = nil, slugKey: String? = nil) {
+        public init(brand: ItemBrand? = nil, code: String? = nil, id: Double? = nil, image: [String]? = nil, name: String? = nil, sellerIdentifier: String? = nil, size: String? = nil, slugKey: String? = nil) {
             self.brand = brand
 
             self.name = name
@@ -51,6 +55,8 @@ public extension ApplicationClient {
             self.code = code
 
             self.id = id
+
+            self.sellerIdentifier = sellerIdentifier
         }
 
         required public init(from decoder: Decoder) throws {
@@ -111,6 +117,14 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,6 +143,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
         }
     }
 }

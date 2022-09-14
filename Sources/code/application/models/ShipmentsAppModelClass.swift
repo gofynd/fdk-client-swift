@@ -27,7 +27,13 @@ public extension ApplicationClient {
 
         public var canBreak: [String: Any]?
 
+        public var deliveryDate: String?
+
+        public var returnableDate: String?
+
         public var showDownloadInvoice: Bool?
+
+        public var showTrackLink: Bool?
 
         public var prices: Prices?
 
@@ -42,6 +48,8 @@ public extension ApplicationClient {
         public var invoice: Invoice?
 
         public var comment: String?
+
+        public var refundDetails: [String: Any]?
 
         public var orderType: String?
 
@@ -86,7 +94,13 @@ public extension ApplicationClient {
 
             case canBreak = "can_break"
 
+            case deliveryDate = "delivery_date"
+
+            case returnableDate = "returnable_date"
+
             case showDownloadInvoice = "show_download_invoice"
+
+            case showTrackLink = "show_track_link"
 
             case prices
 
@@ -101,6 +115,8 @@ public extension ApplicationClient {
             case invoice
 
             case comment
+
+            case refundDetails = "refund_details"
 
             case orderType = "order_type"
 
@@ -125,7 +141,7 @@ public extension ApplicationClient {
             case totalDetails = "total_details"
         }
 
-        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, comment: String? = nil, deliveryAddress: DeliveryAddress? = nil, dpName: String? = nil, fulfillingStore: FulfillingStore? = nil, invoice: Invoice? = nil, needHelpUrl: String? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, prices: Prices? = nil, promise: Promise? = nil, shipmentCreatedAt: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
+        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, comment: String? = nil, deliveryAddress: DeliveryAddress? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingStore: FulfillingStore? = nil, invoice: Invoice? = nil, needHelpUrl: String? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, returnableDate: String? = nil, shipmentCreatedAt: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
             self.orderId = orderId
 
             self.breakupValues = breakupValues
@@ -146,7 +162,13 @@ public extension ApplicationClient {
 
             self.canBreak = canBreak
 
+            self.deliveryDate = deliveryDate
+
+            self.returnableDate = returnableDate
+
             self.showDownloadInvoice = showDownloadInvoice
+
+            self.showTrackLink = showTrackLink
 
             self.prices = prices
 
@@ -161,6 +183,8 @@ public extension ApplicationClient {
             self.invoice = invoice
 
             self.comment = comment
+
+            self.refundDetails = refundDetails
 
             self.orderType = orderType
 
@@ -269,7 +293,31 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                deliveryDate = try container.decode(String.self, forKey: .deliveryDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                returnableDate = try container.decode(String.self, forKey: .returnableDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 showDownloadInvoice = try container.decode(Bool.self, forKey: .showDownloadInvoice)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                showTrackLink = try container.decode(Bool.self, forKey: .showTrackLink)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -326,6 +374,14 @@ public extension ApplicationClient {
 
             do {
                 comment = try container.decode(String.self, forKey: .comment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                refundDetails = try container.decode([String: Any].self, forKey: .refundDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -444,7 +500,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(canBreak, forKey: .canBreak)
 
+            try? container.encodeIfPresent(deliveryDate, forKey: .deliveryDate)
+
+            try? container.encodeIfPresent(returnableDate, forKey: .returnableDate)
+
             try? container.encodeIfPresent(showDownloadInvoice, forKey: .showDownloadInvoice)
+
+            try? container.encodeIfPresent(showTrackLink, forKey: .showTrackLink)
 
             try? container.encodeIfPresent(prices, forKey: .prices)
 
@@ -459,6 +521,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(invoice, forKey: .invoice)
 
             try? container.encodeIfPresent(comment, forKey: .comment)
+
+            try? container.encodeIfPresent(refundDetails, forKey: .refundDetails)
 
             try? container.encodeIfPresent(orderType, forKey: .orderType)
 
