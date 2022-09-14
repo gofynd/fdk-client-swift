@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class InvoiceCredSerializer: Codable {
-        public var username: String?
-
         public var password: String?
+
+        public var username: String?
 
         public var enabled: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case username
-
             case password
+
+            case username
 
             case enabled
         }
 
         public init(enabled: Bool? = nil, password: String? = nil, username: String? = nil) {
-            self.username = username
-
             self.password = password
+
+            self.username = username
 
             self.enabled = enabled
         }
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                username = try container.decode(String.self, forKey: .username)
+                password = try container.decode(String.self, forKey: .password)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                password = try container.decode(String.self, forKey: .password)
+                username = try container.decode(String.self, forKey: .username)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,9 +61,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(username, forKey: .username)
-
             try? container.encodeIfPresent(password, forKey: .password)
+
+            try? container.encodeIfPresent(username, forKey: .username)
 
             try? container.encodeIfPresent(enabled, forKey: .enabled)
         }
