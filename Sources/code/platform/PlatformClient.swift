@@ -12169,7 +12169,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Get ordering store by filter
-             * Description: Get ordering store by filter
+             * Description: Get ordering store from all stores by filter
              **/
             public func getOrderingStoresByFilter(
                 pageNo: Int?,

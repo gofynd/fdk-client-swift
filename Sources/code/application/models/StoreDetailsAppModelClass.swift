@@ -11,38 +11,38 @@ public extension ApplicationClient {
 
         public var manager: StoreManagerSerializer?
 
-        public var address: StoreAddressSerializer?
-
-        public var uid: Int?
-
-        public var customJson: [String: Any]?
+        public var contactNumbers: [SellerPhoneNumber]?
 
         public var departments: [StoreDepartments]?
 
         public var timing: [StoreTiming]?
 
-        public var contactNumbers: [SellerPhoneNumber]?
+        public var address: StoreAddressSerializer?
+
+        public var uid: Int?
 
         public var company: CompanyStore?
+
+        public var customJson: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
             case manager
 
-            case address
-
-            case uid
-
-            case customJson = "_custom_json"
+            case contactNumbers = "contact_numbers"
 
             case departments
 
             case timing
 
-            case contactNumbers = "contact_numbers"
+            case address
+
+            case uid
 
             case company
+
+            case customJson = "_custom_json"
         }
 
         public init(address: StoreAddressSerializer? = nil, company: CompanyStore? = nil, contactNumbers: [SellerPhoneNumber]? = nil, departments: [StoreDepartments]? = nil, manager: StoreManagerSerializer? = nil, name: String? = nil, timing: [StoreTiming]? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
@@ -50,19 +50,19 @@ public extension ApplicationClient {
 
             self.manager = manager
 
-            self.address = address
-
-            self.uid = uid
-
-            self.customJson = customJson
+            self.contactNumbers = contactNumbers
 
             self.departments = departments
 
             self.timing = timing
 
-            self.contactNumbers = contactNumbers
+            self.address = address
+
+            self.uid = uid
 
             self.company = company
+
+            self.customJson = customJson
         }
 
         required public init(from decoder: Decoder) throws {
@@ -85,23 +85,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                contactNumbers = try container.decode([SellerPhoneNumber].self, forKey: .contactNumbers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,7 +109,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                contactNumbers = try container.decode([SellerPhoneNumber].self, forKey: .contactNumbers)
+                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,6 +126,14 @@ public extension ApplicationClient {
 
             do {
                 company = try container.decode(CompanyStore.self, forKey: .company)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,19 +148,19 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(manager, forKey: .manager)
 
-            try? container.encodeIfPresent(address, forKey: .address)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
 
             try? container.encodeIfPresent(departments, forKey: .departments)
 
             try? container.encodeIfPresent(timing, forKey: .timing)
 
-            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
         }
     }
 }

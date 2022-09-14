@@ -20,7 +20,7 @@ public extension PlatformClient {
 
         public var message: String?
 
-        public var txtRecords: [[String: Any]]?
+        public var txtRecords: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case name
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case txtRecords = "txt_records"
         }
 
-        public init(isPrimary: Bool? = nil, isShortlink: Bool? = nil, message: String? = nil, name: String? = nil, txtRecords: [[String: Any]]? = nil, verified: Bool? = nil, id: String? = nil) {
+        public init(isPrimary: Bool? = nil, isShortlink: Bool? = nil, message: String? = nil, name: String? = nil, txtRecords: [String]? = nil, verified: Bool? = nil, id: String? = nil) {
             self.name = name
 
             self.id = id
@@ -106,7 +106,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                txtRecords = try container.decode([[String: Any]].self, forKey: .txtRecords)
+                txtRecords = try container.decode([String].self, forKey: .txtRecords)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

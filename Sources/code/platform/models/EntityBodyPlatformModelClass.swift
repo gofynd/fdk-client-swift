@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class EntityBody: Codable {
-        public var reasons: EntityReason?
+        public var nextStatus: String?
 
         public var bagIds: [String]
 
@@ -16,10 +16,10 @@ public extension PlatformClient {
 
         public var dataUpdates: DataUpdate?
 
-        public var nextStatus: String?
+        public var reasons: EntityReason?
 
         public enum CodingKeys: String, CodingKey {
-            case reasons
+            case nextStatus = "next_status"
 
             case bagIds = "bag_ids"
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case dataUpdates = "data_updates"
 
-            case nextStatus = "next_status"
+            case reasons
         }
 
         public init(bagIds: [String], dataUpdates: DataUpdate? = nil, entityIds: [String]? = nil, nextStatus: String? = nil, reasons: EntityReason? = nil) {
-            self.reasons = reasons
+            self.nextStatus = nextStatus
 
             self.bagIds = bagIds
 
@@ -39,14 +39,14 @@ public extension PlatformClient {
 
             self.dataUpdates = dataUpdates
 
-            self.nextStatus = nextStatus
+            self.reasons = reasons
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                reasons = try container.decode(EntityReason.self, forKey: .reasons)
+                nextStatus = try container.decode(String.self, forKey: .nextStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,7 +72,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                nextStatus = try container.decode(String.self, forKey: .nextStatus)
+                reasons = try container.decode(EntityReason.self, forKey: .reasons)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(reasons, forKey: .reasons)
+            try? container.encodeIfPresent(nextStatus, forKey: .nextStatus)
 
             try? container.encodeIfPresent(bagIds, forKey: .bagIds)
 
@@ -91,7 +91,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(dataUpdates, forKey: .dataUpdates)
 
-            try? container.encodeIfPresent(nextStatus, forKey: .nextStatus)
+            try? container.encodeIfPresent(reasons, forKey: .reasons)
         }
     }
 }

@@ -2496,13 +2496,13 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String |  no  |  |
- | size | Int? |  yes  |  |
- | current | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
- | itemTotal | Int? |  yes  |  |
- | nextId | String? |  yes  |  |
- | hasPrevious | Bool? |  yes  |  |
+ | type | String |  no  | Page type |
+ | size | Int? |  yes  | The number of items to retrieve in each page. Default value is 10. |
+ | current | Int? |  yes  | Current page number |
+ | hasNext | Bool? |  yes  | Next page is present or not |
+ | itemTotal | Int? |  yes  | Total number of items to retrieve |
+ | nextId | String? |  yes  | Next page id |
+ | hasPrevious | Bool? |  yes  | Previous page is present or not |
 
 ---
 
@@ -2792,7 +2792,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
+ | type | String? |  yes  | coordinates type of the opted store |
  | coordinates | [Double]? |  yes  |  |
 
 ---
@@ -2804,13 +2804,13 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | state | String? |  yes  |  |
- | address1 | String? |  yes  |  |
+ | state | String? |  yes  | State of the opted store |
+ | address1 | String? |  yes  | Address of the opted store |
  | latLong | [StoreLatLong](#StoreLatLong)? |  yes  |  |
- | address2 | String? |  yes  |  |
- | pincode | Int? |  yes  |  |
- | country | String? |  yes  |  |
- | city | String? |  yes  |  |
+ | address2 | String? |  yes  | Address of the opted store |
+ | pincode | Int? |  yes  | Pincode of the opted store location |
+ | country | String? |  yes  | Country of the opted store |
+ | city | String? |  yes  | City of the opted store |
 
 ---
 
@@ -2822,14 +2822,14 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | address | [OptedStoreAddress](#OptedStoreAddress)? |  yes  |  |
- | id | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | name | String? |  yes  |  |
- | displayName | String? |  yes  |  |
- | storeType | String? |  yes  |  |
- | storeCode | String? |  yes  |  |
- | pincode | Int? |  yes  |  |
- | code | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier of the ordering store |
+ | uid | Int? |  yes  | Ordering store uid |
+ | name | String? |  yes  | Store name of the ordering store |
+ | displayName | String? |  yes  | Display name of the ordering store |
+ | storeType | String? |  yes  | Store type of the ordering store |
+ | storeCode | String? |  yes  | Store code of the ordering store |
+ | pincode | Int? |  yes  | Pincode of the ordering store |
+ | code | String? |  yes  | Code of the ordering store |
 
 ---
 
@@ -2843,12 +2843,12 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | page | [Page](#Page)? |  yes  |  |
  | items | [[OrderingStore](#OrderingStore)]? |  yes  |  |
  | deployedStores | [Int]? |  yes  |  |
- | allStores | Bool? |  yes  |  |
- | enabled | Bool? |  yes  |  |
+ | allStores | Bool? |  yes  | Allow all stores of the ordering stores |
+ | enabled | Bool? |  yes  | Allow ordering stores |
  | type | String? |  yes  |  |
- | id | String? |  yes  |  |
- | app | String? |  yes  |  |
- | v | Int? |  yes  |  |
+ | id | String? |  yes  | The unique identifier of the ordering stores |
+ | app | String? |  yes  | Current application id |
+ | v | Int? |  yes  | Version of the ordering stores |
 
 ---
 
