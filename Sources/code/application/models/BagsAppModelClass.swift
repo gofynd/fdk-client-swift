@@ -21,6 +21,10 @@ public extension ApplicationClient {
 
         public var canReturn: Bool?
 
+        public var deliveryDate: String?
+
+        public var returnableDate: String?
+
         public enum CodingKeys: String, CodingKey {
             case item
 
@@ -35,9 +39,13 @@ public extension ApplicationClient {
             case canCancel = "can_cancel"
 
             case canReturn = "can_return"
+
+            case deliveryDate = "delivery_date"
+
+            case returnableDate = "returnable_date"
         }
 
-        public init(canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: CurrentStatus? = nil, financialBreakup: [FinancialBreakup]? = nil, id: Int? = nil, item: Item? = nil, prices: Prices? = nil) {
+        public init(canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: CurrentStatus? = nil, deliveryDate: String? = nil, financialBreakup: [FinancialBreakup]? = nil, id: Int? = nil, item: Item? = nil, prices: Prices? = nil, returnableDate: String? = nil) {
             self.item = item
 
             self.prices = prices
@@ -51,6 +59,10 @@ public extension ApplicationClient {
             self.canCancel = canCancel
 
             self.canReturn = canReturn
+
+            self.deliveryDate = deliveryDate
+
+            self.returnableDate = returnableDate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -111,6 +123,22 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                deliveryDate = try container.decode(String.self, forKey: .deliveryDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                returnableDate = try container.decode(String.self, forKey: .returnableDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,6 +157,10 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(canCancel, forKey: .canCancel)
 
             try? container.encodeIfPresent(canReturn, forKey: .canReturn)
+
+            try? container.encodeIfPresent(deliveryDate, forKey: .deliveryDate)
+
+            try? container.encodeIfPresent(returnableDate, forKey: .returnableDate)
         }
     }
 }

@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class AttributeDetail: Codable {
         public var key: String?
 
-        public var description: String?
-
         public var display: String?
+
+        public var description: String?
 
         public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
             case key
 
-            case description
-
             case display
+
+            case description
 
             case logo
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(description: String? = nil, display: String? = nil, key: String? = nil, logo: String? = nil) {
             self.key = key
 
-            self.description = description
-
             self.display = display
+
+            self.description = description
 
             self.logo = logo
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }

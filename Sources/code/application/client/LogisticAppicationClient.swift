@@ -9,11 +9,9 @@ public extension ApplicationClient {
             self.config = config
             var ulrs = [String: String]()
 
-            ulrs["getTatProduct"] = config.domain.appendAsPath("/service/application/logistics/v1.0")
+            ulrs["getPincodeView"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/{pincode}")
 
-            ulrs["getPincodeZones"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/zones")
-
-            ulrs["getPincodeCity"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/{pincode}")
+            ulrs["getTATView"] = config.domain.appendAsPath("/service/application/logistics/v1.0/")
 
             self.relativeUrls = ulrs
         }
@@ -26,95 +24,22 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Get TAT of a product
-         * Description: Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
+         * Summary: Get Pincode API
+         * Description: Get pincode data
          **/
-        public func getTatProduct(
-            body: GetTatProductReqBody,
-            onResponse: @escaping (_ response: GetTatProductResponse?, _ error: FDKError?) -> Void
-        ) {
-            let fullUrl = relativeUrls["getTatProduct"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(GetTatProductResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Get Pincode Zones
-         * Description: Get to know the zones of a specefic pincode
-         **/
-        public func getPincodeZones(
-            body: GetPincodeZonesReqBody,
-            onResponse: @escaping (_ response: GetPincodeZonesResponse?, _ error: FDKError?) -> Void
-        ) {
-            let fullUrl = relativeUrls["getPincodeZones"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(GetPincodeZonesResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Get city from PIN Code
-         * Description: Use this API to retrieve a city by its PIN Code.
-         **/
-        public func getPincodeCity(
+        public func getPincodeView(
             pincode: String,
+            xApplicationId: String?,
 
-            onResponse: @escaping (_ response: GetPincodeCityResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PincodeApiResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["getPincodeCity"] ?? ""
+            var xHeaders: [(key: String, value: String)] = []
+
+            if let value = xApplicationId {
+                xHeaders.append((key: "x-application-id", value: value))
+            }
+
+            var fullUrl = relativeUrls["getPincodeView"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "pincode" + "}", with: "\(pincode)")
 
@@ -123,7 +48,7 @@ public extension ApplicationClient {
                 method: "get",
                 url: fullUrl,
                 query: nil,
-                extraHeaders: [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -134,7 +59,54 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(GetPincodeCityResponse.self, from: data)
+                        let response = Utility.decode(PincodeApiResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Get TAT API
+         * Description: Get TAT data
+         **/
+        public func getTATView(
+            xApplicationId: String?,
+            body: TATViewRequest,
+            onResponse: @escaping (_ response: TATViewResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xHeaders: [(key: String, value: String)] = []
+
+            if let value = xApplicationId {
+                xHeaders.append((key: "x-application-id", value: value))
+            }
+
+            let fullUrl = relativeUrls["getTATView"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: xHeaders,
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(TATViewResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

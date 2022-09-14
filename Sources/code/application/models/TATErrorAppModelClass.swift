@@ -3,37 +3,37 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: UnArchiveUserRequestSchema
-         Used By: User
+         Model: TATError
+         Used By: Logistic
      */
-    class UnArchiveUserRequestSchema: Codable {
-        public var userId: String?
+    class TATError: Codable {
+        public var value: String?
 
-        public var reason: String?
+        public var message: String?
 
-        public var reasonId: String?
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
-            case userId = "user_id"
+            case value
 
-            case reason
+            case message
 
-            case reasonId = "reason_id"
+            case type
         }
 
-        public init(reason: String? = nil, reasonId: String? = nil, userId: String? = nil) {
-            self.userId = userId
+        public init(message: String? = nil, type: String? = nil, value: String? = nil) {
+            self.value = value
 
-            self.reason = reason
+            self.message = message
 
-            self.reasonId = reasonId
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                reason = try container.decode(String.self, forKey: .reason)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                reasonId = try container.decode(String.self, forKey: .reasonId)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
+            try? container.encode(value, forKey: .value)
 
-            try? container.encodeIfPresent(reason, forKey: .reason)
+            try? container.encode(message, forKey: .message)
 
-            try? container.encodeIfPresent(reasonId, forKey: .reasonId)
+            try? container.encode(type, forKey: .type)
         }
     }
 }

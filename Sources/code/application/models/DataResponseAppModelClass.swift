@@ -3,74 +3,60 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: LogisticPincodeData
+         Model: DataResponse
          Used By: Logistic
      */
-    class LogisticPincodeData: Codable {
-        public var meta: LogisticMeta?
-
-        public var parents: [LogisticParents]?
+    class DataResponse: Codable {
+        public var error: Error
 
         public var subType: String?
 
-        public var name: String?
-
-        public var error: LogisticError?
+        public var meta: Meta?
 
         public var uid: String?
 
         public var displayName: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case meta
+        public var parents: [Parents]?
 
-            case parents
+        public var name: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case error
 
             case subType = "sub_type"
 
-            case name
-
-            case error
+            case meta
 
             case uid
 
             case displayName = "display_name"
+
+            case parents
+
+            case name
         }
 
-        public init(displayName: String? = nil, error: LogisticError? = nil, meta: LogisticMeta? = nil, name: String? = nil, parents: [LogisticParents]? = nil, subType: String? = nil, uid: String? = nil) {
-            self.meta = meta
-
-            self.parents = parents
+        public init(displayName: String? = nil, error: Error, meta: Meta? = nil, name: String? = nil, parents: [Parents]? = nil, subType: String? = nil, uid: String? = nil) {
+            self.error = error
 
             self.subType = subType
 
-            self.name = name
-
-            self.error = error
+            self.meta = meta
 
             self.uid = uid
 
             self.displayName = displayName
+
+            self.parents = parents
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                meta = try container.decode(LogisticMeta.self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                parents = try container.decode([LogisticParents].self, forKey: .parents)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            error = try container.decode(Error.self, forKey: .error)
 
             do {
                 subType = try container.decode(String.self, forKey: .subType)
@@ -81,15 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                error = try container.decode(LogisticError.self, forKey: .error)
+                meta = try container.decode(Meta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,24 +89,40 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                parents = try container.decode([Parents].self, forKey: .parents)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(parents, forKey: .parents)
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(subType, forKey: .subType)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(parents, forKey: .parents)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

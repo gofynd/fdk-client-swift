@@ -3,11 +3,11 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: LogisticResponseCategory
+         Model: Category
          Used By: Logistic
      */
-    class LogisticResponseCategory: Codable {
-        public var id: Int?
+    class Category: Codable {
+        public var id: String?
 
         public var level: String?
 
@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case level
         }
 
-        public init(id: Int? = nil, level: String? = nil) {
+        public init(id: String? = nil, level: String? = nil) {
             self.id = id
 
             self.level = level
@@ -27,7 +27,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

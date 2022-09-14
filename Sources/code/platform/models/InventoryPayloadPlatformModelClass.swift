@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var storeId: Int
 
+        public var priceEffective: Double?
+
         public var expirationDate: String?
 
         public var totalQuantity: Int?
-
-        public var priceEffective: Double?
 
         public var priceMarked: Double?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case storeId = "store_id"
 
+            case priceEffective = "price_effective"
+
             case expirationDate = "expiration_date"
 
             case totalQuantity = "total_quantity"
-
-            case priceEffective = "price_effective"
 
             case priceMarked = "price_marked"
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.storeId = storeId
 
+            self.priceEffective = priceEffective
+
             self.expirationDate = expirationDate
 
             self.totalQuantity = totalQuantity
-
-            self.priceEffective = priceEffective
 
             self.priceMarked = priceMarked
         }
@@ -56,6 +56,14 @@ public extension PlatformClient {
             storeId = try container.decode(Int.self, forKey: .storeId)
 
             do {
+                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 expirationDate = try container.decode(String.self, forKey: .expirationDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -65,14 +73,6 @@ public extension PlatformClient {
 
             do {
                 totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,11 +95,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+
             try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
 
             try? container.encode(totalQuantity, forKey: .totalQuantity)
-
-            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
 
             try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
         }

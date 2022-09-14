@@ -8,17 +8,15 @@ public extension PlatformClient {
      */
 
     class ValidateSizeGuide: Codable {
-        public var active: Bool?
-
-        public var tag: String?
+        public var brandId: Int?
 
         public var companyId: Int?
 
-        public var createdOn: String?
+        public var modifiedOn: String?
 
-        public var id: String?
+        public var tag: String?
 
-        public var modifiedBy: [String: Any]?
+        public var active: Bool?
 
         public var description: String?
 
@@ -26,30 +24,30 @@ public extension PlatformClient {
 
         public var createdBy: [String: Any]?
 
-        public var modifiedOn: String?
-
-        public var subtitle: String?
-
         public var name: String
+
+        public var id: String?
+
+        public var modifiedBy: [String: Any]?
 
         public var image: String?
 
-        public var brandId: Int?
+        public var createdOn: String?
+
+        public var subtitle: String?
 
         public var title: String
 
         public enum CodingKeys: String, CodingKey {
-            case active
-
-            case tag
+            case brandId = "brand_id"
 
             case companyId = "company_id"
 
-            case createdOn = "created_on"
+            case modifiedOn = "modified_on"
 
-            case id
+            case tag
 
-            case modifiedBy = "modified_by"
+            case active
 
             case description
 
@@ -57,31 +55,31 @@ public extension PlatformClient {
 
             case createdBy = "created_by"
 
-            case modifiedOn = "modified_on"
-
-            case subtitle
-
             case name
+
+            case id
+
+            case modifiedBy = "modified_by"
 
             case image
 
-            case brandId = "brand_id"
+            case createdOn = "created_on"
+
+            case subtitle
 
             case title
         }
 
         public init(active: Bool? = nil, brandId: Int? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, description: String? = nil, guide: Guide? = nil, id: String? = nil, image: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, subtitle: String? = nil, tag: String? = nil, title: String) {
-            self.active = active
-
-            self.tag = tag
+            self.brandId = brandId
 
             self.companyId = companyId
 
-            self.createdOn = createdOn
+            self.modifiedOn = modifiedOn
 
-            self.id = id
+            self.tag = tag
 
-            self.modifiedBy = modifiedBy
+            self.active = active
 
             self.description = description
 
@@ -89,15 +87,17 @@ public extension PlatformClient {
 
             self.createdBy = createdBy
 
-            self.modifiedOn = modifiedOn
-
-            self.subtitle = subtitle
-
             self.name = name
+
+            self.id = id
+
+            self.modifiedBy = modifiedBy
 
             self.image = image
 
-            self.brandId = brandId
+            self.createdOn = createdOn
+
+            self.subtitle = subtitle
 
             self.title = title
         }
@@ -106,15 +106,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                active = try container.decode(Bool.self, forKey: .active)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                tag = try container.decode(String.self, forKey: .tag)
+                brandId = try container.decode(Int.self, forKey: .brandId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,7 +122,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -138,7 +130,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                tag = try container.decode(String.self, forKey: .tag)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,7 +138,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
+                active = try container.decode(Bool.self, forKey: .active)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -177,8 +169,34 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            name = try container.decode(String.self, forKey: .name)
+
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                id = try container.decode(String.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                image = try container.decode(String.self, forKey: .image)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,41 +211,21 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
-            do {
-                image = try container.decode(String.self, forKey: .image)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brandId = try container.decode(Int.self, forKey: .brandId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             title = try container.decode(String.self, forKey: .title)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(active, forKey: .active)
-
-            try? container.encodeIfPresent(tag, forKey: .tag)
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(tag, forKey: .tag)
 
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            try? container.encodeIfPresent(active, forKey: .active)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
@@ -235,15 +233,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
 
             try? container.encodeIfPresent(image, forKey: .image)
 
-            try? container.encodeIfPresent(brandId, forKey: .brandId)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
             try? container.encodeIfPresent(title, forKey: .title)
         }

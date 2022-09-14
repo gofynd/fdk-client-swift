@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var customJson: [String: Any]?
 
-        public var appId: String?
+        public var result: [String: Any]?
 
         public var uid: String?
 
-        public var result: [String: Any]?
+        public var appId: String?
 
         public var words: [String]?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case customJson = "_custom_json"
 
-            case appId = "app_id"
+            case result
 
             case uid
 
-            case result
+            case appId = "app_id"
 
             case words
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.customJson = customJson
 
-            self.appId = appId
+            self.result = result
 
             self.uid = uid
 
-            self.result = result
+            self.appId = appId
 
             self.words = words
         }
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                appId = try container.decode(String.self, forKey: .appId)
+                result = try container.decode([String: Any].self, forKey: .result)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                result = try container.decode([String: Any].self, forKey: .result)
+                appId = try container.decode(String.self, forKey: .appId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,11 +107,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(result, forKey: .result)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(result, forKey: .result)
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(words, forKey: .words)
         }

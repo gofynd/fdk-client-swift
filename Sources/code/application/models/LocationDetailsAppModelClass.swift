@@ -9,7 +9,7 @@ public extension ApplicationClient {
     class LocationDetails: Codable {
         public var fromPincode: String?
 
-        public var articles: [TatProductArticles]?
+        public var articles: [Articles]?
 
         public var fulfillmentId: Int?
 
@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case fulfillmentId = "fulfillment_id"
         }
 
-        public init(articles: [TatProductArticles]? = nil, fromPincode: String? = nil, fulfillmentId: Int? = nil) {
+        public init(articles: [Articles]? = nil, fromPincode: String? = nil, fulfillmentId: Int? = nil) {
             self.fromPincode = fromPincode
 
             self.articles = articles
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                articles = try container.decode([TatProductArticles].self, forKey: .articles)
+                articles = try container.decode([Articles].self, forKey: .articles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
