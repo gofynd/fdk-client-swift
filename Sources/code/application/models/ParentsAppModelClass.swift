@@ -7,18 +7,18 @@ public extension ApplicationClient {
          Used By: Logistic
      */
     class Parents: Codable {
-        public var name: String?
-
         public var uid: String?
+
+        public var name: String?
 
         public var displayName: String?
 
         public var subType: String?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
             case uid
+
+            case name
 
             case displayName = "display_name"
 
@@ -26,9 +26,9 @@ public extension ApplicationClient {
         }
 
         public init(displayName: String? = nil, name: String? = nil, subType: String? = nil, uid: String? = nil) {
-            self.name = name
-
             self.uid = uid
+
+            self.name = name
 
             self.displayName = displayName
 
@@ -39,7 +39,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 

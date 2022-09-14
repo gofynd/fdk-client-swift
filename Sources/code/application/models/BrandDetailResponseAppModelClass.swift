@@ -9,22 +9,22 @@ public extension ApplicationClient {
     class BrandDetailResponse: Codable {
         public var logo: Media?
 
-        public var uid: Int?
+        public var customJson: [String: Any]?
 
         public var banners: ImageUrls?
 
-        public var customJson: [String: Any]?
+        public var uid: Int?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case logo
 
-            case uid
+            case customJson = "_custom_json"
 
             case banners
 
-            case customJson = "_custom_json"
+            case uid
 
             case name
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient {
         public init(banners: ImageUrls? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             self.logo = logo
 
-            self.uid = uid
+            self.customJson = customJson
 
             self.banners = banners
 
-            self.customJson = customJson
+            self.uid = uid
 
             self.name = name
         }
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

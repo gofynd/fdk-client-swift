@@ -9,9 +9,9 @@ public extension ApplicationClient {
             self.config = config
             var ulrs = [String: String]()
 
-            ulrs["getPincodeView"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/{pincode}")
+            ulrs["getPincodeCity"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/{pincode}")
 
-            ulrs["getTATView"] = config.domain.appendAsPath("/service/application/logistics/v1.0/")
+            ulrs["getTatProduct"] = config.domain.appendAsPath("/service/application/logistics/v1.0/")
 
             self.relativeUrls = ulrs
         }
@@ -27,7 +27,7 @@ public extension ApplicationClient {
          * Summary: Get Pincode API
          * Description: Get pincode data
          **/
-        public func getPincodeView(
+        public func getPincodeCity(
             pincode: String,
             xApplicationId: String?,
 
@@ -39,7 +39,7 @@ public extension ApplicationClient {
                 xHeaders.append((key: "x-application-id", value: value))
             }
 
-            var fullUrl = relativeUrls["getPincodeView"] ?? ""
+            var fullUrl = relativeUrls["getPincodeCity"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "pincode" + "}", with: "\(pincode)")
 
@@ -77,7 +77,7 @@ public extension ApplicationClient {
          * Summary: Get TAT API
          * Description: Get TAT data
          **/
-        public func getTATView(
+        public func getTatProduct(
             xApplicationId: String?,
             body: TATViewRequest,
             onResponse: @escaping (_ response: TATViewResponse?, _ error: FDKError?) -> Void
@@ -88,7 +88,7 @@ public extension ApplicationClient {
                 xHeaders.append((key: "x-application-id", value: value))
             }
 
-            let fullUrl = relativeUrls["getTATView"] ?? ""
+            let fullUrl = relativeUrls["getTatProduct"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
