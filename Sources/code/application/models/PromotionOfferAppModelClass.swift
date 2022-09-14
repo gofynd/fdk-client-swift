@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var id: String?
 
-        public var promotionGroup: String?
+        public var description: String?
 
         public var validTill: String?
 
-        public var description: String?
+        public var promotionGroup: String?
 
         public enum CodingKeys: String, CodingKey {
             case offerText = "offer_text"
 
             case id
 
-            case promotionGroup = "promotion_group"
+            case description
 
             case validTill = "valid_till"
 
-            case description
+            case promotionGroup = "promotion_group"
         }
 
         public init(description: String? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.id = id
 
-            self.promotionGroup = promotionGroup
+            self.description = description
 
             self.validTill = validTill
 
-            self.description = description
+            self.promotionGroup = promotionGroup
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(validTill, forKey: .validTill)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
         }
     }
 }

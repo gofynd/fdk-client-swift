@@ -8,22 +8,22 @@ public extension PlatformClient {
      */
 
     class AssignStoreArticle: Codable {
+        public var quantity: Int?
+
         public var articleAssignment: ArticleAssignment?
 
         public var meta: [String: Any]?
-
-        public var quantity: Int?
 
         public var groupId: String?
 
         public var query: ArticleQuery?
 
         public enum CodingKeys: String, CodingKey {
+            case quantity
+
             case articleAssignment = "article_assignment"
 
             case meta
-
-            case quantity
 
             case groupId = "group_id"
 
@@ -31,11 +31,11 @@ public extension PlatformClient {
         }
 
         public init(articleAssignment: ArticleAssignment? = nil, groupId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, query: ArticleQuery? = nil) {
+            self.quantity = quantity
+
             self.articleAssignment = articleAssignment
 
             self.meta = meta
-
-            self.quantity = quantity
 
             self.groupId = groupId
 
@@ -44,6 +44,14 @@ public extension PlatformClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 articleAssignment = try container.decode(ArticleAssignment.self, forKey: .articleAssignment)
@@ -55,14 +63,6 @@ public extension PlatformClient {
 
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,11 +89,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(groupId, forKey: .groupId)
 
