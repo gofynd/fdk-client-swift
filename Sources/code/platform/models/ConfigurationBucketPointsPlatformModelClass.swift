@@ -8,33 +8,33 @@ public extension PlatformClient {
      */
 
     class ConfigurationBucketPoints: Codable {
-        public var end: Double?
+        public var display: String?
 
         public var start: Double?
 
-        public var display: String?
+        public var end: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case end
+            case display
 
             case start
 
-            case display
+            case end
         }
 
         public init(display: String? = nil, end: Double? = nil, start: Double? = nil) {
-            self.end = end
+            self.display = display
 
             self.start = start
 
-            self.display = display
+            self.end = end
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                end = try container.decode(Double.self, forKey: .end)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                end = try container.decode(Double.self, forKey: .end)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,11 +61,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(end, forKey: .end)
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(start, forKey: .start)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(end, forKey: .end)
         }
     }
 }

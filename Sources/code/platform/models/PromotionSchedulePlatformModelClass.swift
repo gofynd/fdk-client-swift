@@ -10,11 +10,11 @@ public extension PlatformClient {
     class PromotionSchedule: Codable {
         public var published: Bool
 
+        public var end: String?
+
         public var start: String
 
         public var duration: Int?
-
-        public var end: String?
 
         public var cron: String?
 
@@ -23,11 +23,11 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case published
 
+            case end
+
             case start
 
             case duration
-
-            case end
 
             case cron
 
@@ -37,11 +37,11 @@ public extension PlatformClient {
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, published: Bool, start: String) {
             self.published = published
 
+            self.end = end
+
             self.start = start
 
             self.duration = duration
-
-            self.end = end
 
             self.cron = cron
 
@@ -53,18 +53,18 @@ public extension PlatformClient {
 
             published = try container.decode(Bool.self, forKey: .published)
 
-            start = try container.decode(String.self, forKey: .start)
-
             do {
-                duration = try container.decode(Int.self, forKey: .duration)
+                end = try container.decode(String.self, forKey: .end)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            start = try container.decode(String.self, forKey: .start)
+
             do {
-                end = try container.decode(String.self, forKey: .end)
+                duration = try container.decode(Int.self, forKey: .duration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,11 +93,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(published, forKey: .published)
 
+            try? container.encode(end, forKey: .end)
+
             try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encode(duration, forKey: .duration)
-
-            try? container.encode(end, forKey: .end)
 
             try? container.encode(cron, forKey: .cron)
 
