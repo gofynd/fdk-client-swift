@@ -10,18 +10,18 @@ public extension PlatformClient {
     class Size: Codable {
         public var display: String?
 
-        public var value: String?
-
         public var quantity: Int?
+
+        public var value: String?
 
         public var isAvailable: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case display
 
-            case value
-
             case quantity
+
+            case value
 
             case isAvailable = "is_available"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, value: String? = nil) {
             self.display = display
 
-            self.value = value
-
             self.quantity = quantity
+
+            self.value = value
 
             self.isAvailable = isAvailable
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
         }

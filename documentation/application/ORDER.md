@@ -976,6 +976,8 @@ Success, the code is valid and returns a SignedUrl
  | financialBreakup | [[FinancialBreakup](#FinancialBreakup)]? |  yes  |  |
  | canCancel | Bool? |  yes  |  |
  | canReturn | Bool? |  yes  |  |
+ | deliveryDate | String? |  yes  |  |
+ | returnableDate | String? |  yes  |  |
 
 ---
 
@@ -1329,6 +1331,21 @@ Success, the code is valid and returns a SignedUrl
  
  
  #### [TrackingDetails](#TrackingDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isCurrent | Bool? |  yes  |  |
+ | status | String? |  yes  |  |
+ | time | String? |  yes  |  |
+ | isPassed | Bool? |  yes  |  |
+ | trackingDetails | [[NestedTrackingDetails](#NestedTrackingDetails)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [NestedTrackingDetails](#NestedTrackingDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
