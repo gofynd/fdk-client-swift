@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class MultiTenderPaymentMeta: Codable {
-        public var extraMeta: [String: Any]?
+        public var currentStatus: String?
 
         public var paymentId: String?
 
@@ -16,10 +16,10 @@ public extension PlatformClient {
 
         public var orderId: String?
 
-        public var currentStatus: String?
+        public var extraMeta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case extraMeta = "extra_meta"
+            case currentStatus = "current_status"
 
             case paymentId = "payment_id"
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case orderId = "order_id"
 
-            case currentStatus = "current_status"
+            case extraMeta = "extra_meta"
         }
 
         public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil) {
-            self.extraMeta = extraMeta
+            self.currentStatus = currentStatus
 
             self.paymentId = paymentId
 
@@ -39,14 +39,14 @@ public extension PlatformClient {
 
             self.orderId = orderId
 
-            self.currentStatus = currentStatus
+            self.extraMeta = extraMeta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
+                currentStatus = try container.decode(String.self, forKey: .currentStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                currentStatus = try container.decode(String.self, forKey: .currentStatus)
+                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(extraMeta, forKey: .extraMeta)
+            try? container.encode(currentStatus, forKey: .currentStatus)
 
             try? container.encode(paymentId, forKey: .paymentId)
 
@@ -97,7 +97,7 @@ public extension PlatformClient {
 
             try? container.encode(orderId, forKey: .orderId)
 
-            try? container.encode(currentStatus, forKey: .currentStatus)
+            try? container.encode(extraMeta, forKey: .extraMeta)
         }
     }
 }

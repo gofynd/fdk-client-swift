@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var otherStoreQuantity: Int?
 
-        public var outOfStock: Bool?
-
         public var isValid: Bool?
+
+        public var outOfStock: Bool?
 
         public var deliverable: Bool?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case otherStoreQuantity = "other_store_quantity"
 
-            case outOfStock = "out_of_stock"
-
             case isValid = "is_valid"
+
+            case outOfStock = "out_of_stock"
 
             case deliverable
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.otherStoreQuantity = otherStoreQuantity
 
-            self.outOfStock = outOfStock
-
             self.isValid = isValid
+
+            self.outOfStock = outOfStock
 
             self.deliverable = deliverable
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
+                isValid = try container.decode(Bool.self, forKey: .isValid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isValid = try container.decode(Bool.self, forKey: .isValid)
+                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
 
-            try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
-
             try? container.encodeIfPresent(isValid, forKey: .isValid)
+
+            try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
 
             try? container.encodeIfPresent(deliverable, forKey: .deliverable)
         }

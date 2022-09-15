@@ -9,36 +9,36 @@ public extension ApplicationClient {
     class ValidateCustomerRequest: Codable {
         public var payload: String
 
-        public var phoneNumber: String
+        public var aggregator: String
 
-        public var transactionAmountInPaise: Int
+        public var phoneNumber: String
 
         public var merchantParams: [String: Any]
 
-        public var aggregator: String
+        public var transactionAmountInPaise: Int
 
         public enum CodingKeys: String, CodingKey {
             case payload
 
-            case phoneNumber = "phone_number"
+            case aggregator
 
-            case transactionAmountInPaise = "transaction_amount_in_paise"
+            case phoneNumber = "phone_number"
 
             case merchantParams = "merchant_params"
 
-            case aggregator
+            case transactionAmountInPaise = "transaction_amount_in_paise"
         }
 
         public init(aggregator: String, merchantParams: [String: Any], payload: String, phoneNumber: String, transactionAmountInPaise: Int) {
             self.payload = payload
 
-            self.phoneNumber = phoneNumber
+            self.aggregator = aggregator
 
-            self.transactionAmountInPaise = transactionAmountInPaise
+            self.phoneNumber = phoneNumber
 
             self.merchantParams = merchantParams
 
-            self.aggregator = aggregator
+            self.transactionAmountInPaise = transactionAmountInPaise
         }
 
         required public init(from decoder: Decoder) throws {
@@ -46,13 +46,13 @@ public extension ApplicationClient {
 
             payload = try container.decode(String.self, forKey: .payload)
 
-            phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
-            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
+            phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
 
             merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
+            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -60,13 +60,13 @@ public extension ApplicationClient {
 
             try? container.encode(payload, forKey: .payload)
 
-            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
+            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
             try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
         }
     }
 }

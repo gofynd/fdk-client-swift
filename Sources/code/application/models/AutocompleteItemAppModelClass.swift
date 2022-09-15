@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var display: String?
 
-        public var action: ProductListingAction?
-
         public var logo: Media?
+
+        public var action: ProductListingAction?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
             case display
 
-            case action
-
             case logo
+
+            case action
         }
 
         public init(action: ProductListingAction? = nil, display: String? = nil, logo: Media? = nil, type: String? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.display = display
 
-            self.action = action
-
             self.logo = logo
+
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }
