@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ArchiveApplicationUserRequestSchema
+         Model: DeleteApplicationUserRequestSchema
          Used By: User
      */
 
-    class ArchiveApplicationUserRequestSchema: Codable {
+    class DeleteApplicationUserRequestSchema: Codable {
         public var userId: String?
 
         public var reason: String?

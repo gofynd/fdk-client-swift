@@ -10,38 +10,38 @@ public extension PlatformClient {
     class AppConfigurationDetail: Codable {
         public var isDefault: Bool
 
-        public var appId: String
-
-        public var logo: String?
-
-        public var isActive: Bool
+        public var templateSlugs: [String]?
 
         public var name: String?
 
-        public var slug: String
+        public var logo: String?
 
-        public var templateSlugs: [String]?
+        public var appId: String
 
         public var priority: Int
+
+        public var slug: String
+
+        public var isActive: Bool
 
         public var attributes: [AttributeDetailsGroup]?
 
         public enum CodingKeys: String, CodingKey {
             case isDefault = "is_default"
 
-            case appId = "app_id"
-
-            case logo
-
-            case isActive = "is_active"
+            case templateSlugs = "template_slugs"
 
             case name
 
-            case slug
+            case logo
 
-            case templateSlugs = "template_slugs"
+            case appId = "app_id"
 
             case priority
+
+            case slug
+
+            case isActive = "is_active"
 
             case attributes
         }
@@ -49,19 +49,19 @@ public extension PlatformClient {
         public init(appId: String, attributes: [AttributeDetailsGroup]? = nil, isActive: Bool, isDefault: Bool, logo: String? = nil, name: String? = nil, priority: Int, slug: String, templateSlugs: [String]? = nil) {
             self.isDefault = isDefault
 
-            self.appId = appId
-
-            self.logo = logo
-
-            self.isActive = isActive
+            self.templateSlugs = templateSlugs
 
             self.name = name
 
-            self.slug = slug
+            self.logo = logo
 
-            self.templateSlugs = templateSlugs
+            self.appId = appId
 
             self.priority = priority
+
+            self.slug = slug
+
+            self.isActive = isActive
 
             self.attributes = attributes
         }
@@ -71,17 +71,13 @@ public extension PlatformClient {
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
-            appId = try container.decode(String.self, forKey: .appId)
-
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                templateSlugs = try container.decode([String].self, forKey: .templateSlugs)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             do {
                 name = try container.decode(String.self, forKey: .name)
@@ -91,17 +87,21 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            slug = try container.decode(String.self, forKey: .slug)
-
             do {
-                templateSlugs = try container.decode([String].self, forKey: .templateSlugs)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            appId = try container.decode(String.self, forKey: .appId)
+
             priority = try container.decode(Int.self, forKey: .priority)
+
+            slug = try container.decode(String.self, forKey: .slug)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             do {
                 attributes = try container.decode([AttributeDetailsGroup].self, forKey: .attributes)
@@ -117,19 +117,19 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(templateSlugs, forKey: .templateSlugs)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(templateSlugs, forKey: .templateSlugs)
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(attributes, forKey: .attributes)
         }
