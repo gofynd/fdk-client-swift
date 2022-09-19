@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: Formatted
+         Model: TATFormattedResponse
          Used By: Logistic
      */
-    class Formatted: Codable {
+    class TATFormattedResponse: Codable {
         public var min: String?
 
         public var max: String?

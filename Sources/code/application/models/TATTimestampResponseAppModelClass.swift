@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: Category
+         Model: TATTimestampResponse
          Used By: Logistic
      */
-    class Category: Codable {
-        public var id: String?
+    class TATTimestampResponse: Codable {
+        public var min: Int?
 
-        public var level: String?
+        public var max: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case id
+            case min
 
-            case level
+            case max
         }
 
-        public init(id: String? = nil, level: String? = nil) {
-            self.id = id
+        public init(max: Int? = nil, min: Int? = nil) {
+            self.min = min
 
-            self.level = level
+            self.max = max
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                min = try container.decode(Int.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                level = try container.decode(String.self, forKey: .level)
+                max = try container.decode(Int.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(min, forKey: .min)
 
-            try? container.encodeIfPresent(level, forKey: .level)
+            try? container.encodeIfPresent(max, forKey: .max)
         }
     }
 }

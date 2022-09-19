@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class ProductBrand: Codable {
         public var logo: Media?
 
-        public var action: ProductListingAction?
-
         public var uid: Int?
+
+        public var action: ProductListingAction?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case logo
 
-            case action
-
             case uid
+
+            case action
 
             case name
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(action: ProductListingAction? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
             self.logo = logo
 
-            self.action = action
-
             self.uid = uid
+
+            self.action = action
 
             self.name = name
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

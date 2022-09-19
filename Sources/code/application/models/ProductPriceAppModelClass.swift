@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var addOn: Double?
 
-        public var selling: Double?
-
         public var marked: Double?
+
+        public var selling: Double?
 
         public var currencyCode: String?
 
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case addOn = "add_on"
 
-            case selling
-
             case marked
+
+            case selling
 
             case currencyCode = "currency_code"
 
@@ -38,9 +38,9 @@ public extension ApplicationClient {
 
             self.addOn = addOn
 
-            self.selling = selling
-
             self.marked = marked
+
+            self.selling = selling
 
             self.currencyCode = currencyCode
 
@@ -67,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                selling = try container.decode(Double.self, forKey: .selling)
+                marked = try container.decode(Double.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                marked = try container.decode(Double.self, forKey: .marked)
+                selling = try container.decode(Double.self, forKey: .selling)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,9 +106,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(addOn, forKey: .addOn)
 
-            try? container.encodeIfPresent(selling, forKey: .selling)
-
             try? container.encodeIfPresent(marked, forKey: .marked)
+
+            try? container.encodeIfPresent(selling, forKey: .selling)
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 

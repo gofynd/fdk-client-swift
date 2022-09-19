@@ -10,24 +10,24 @@ public extension PlatformClient {
     class Trader1: Codable {
         public var name: String
 
-        public var type: String
-
         public var address: [String]
+
+        public var type: String
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case type
-
             case address
+
+            case type
         }
 
         public init(address: [String], name: String, type: String) {
             self.name = name
 
-            self.type = type
-
             self.address = address
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             name = try container.decode(String.self, forKey: .name)
 
-            type = try container.decode(String.self, forKey: .type)
-
             address = try container.decode([String].self, forKey: .address)
+
+            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

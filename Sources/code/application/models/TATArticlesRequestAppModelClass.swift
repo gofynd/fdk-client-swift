@@ -3,37 +3,37 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: LocationDetails
+         Model: TATArticlesRequest
          Used By: Logistic
      */
-    class LocationDetails: Codable {
-        public var fromPincode: String?
+    class TATArticlesRequest: Codable {
+        public var manufacturingTimeUnit: String?
 
-        public var fulfillmentId: Int?
+        public var category: TATCategoryRequest?
 
-        public var articles: [Articles]?
+        public var manufacturingTime: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case fromPincode = "from_pincode"
+            case manufacturingTimeUnit = "manufacturing_time_unit"
 
-            case fulfillmentId = "fulfillment_id"
+            case category
 
-            case articles
+            case manufacturingTime = "manufacturing_time"
         }
 
-        public init(articles: [Articles]? = nil, fromPincode: String? = nil, fulfillmentId: Int? = nil) {
-            self.fromPincode = fromPincode
+        public init(category: TATCategoryRequest? = nil, manufacturingTime: Int? = nil, manufacturingTimeUnit: String? = nil) {
+            self.manufacturingTimeUnit = manufacturingTimeUnit
 
-            self.fulfillmentId = fulfillmentId
+            self.category = category
 
-            self.articles = articles
+            self.manufacturingTime = manufacturingTime
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                fromPincode = try container.decode(String.self, forKey: .fromPincode)
+                manufacturingTimeUnit = try container.decode(String.self, forKey: .manufacturingTimeUnit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
+                category = try container.decode(TATCategoryRequest.self, forKey: .category)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                articles = try container.decode([Articles].self, forKey: .articles)
+                manufacturingTime = try container.decode(Int.self, forKey: .manufacturingTime)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(fromPincode, forKey: .fromPincode)
+            try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
 
-            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
+            try? container.encodeIfPresent(category, forKey: .category)
 
-            try? container.encodeIfPresent(articles, forKey: .articles)
+            try? container.encodeIfPresent(manufacturingTime, forKey: .manufacturingTime)
         }
     }
 }

@@ -8,84 +8,84 @@ public extension PlatformClient {
      */
 
     class ShipmentPricesDataInfo: Codable {
-        public var amountPaid: Int?
-
-        public var refundCredit: Int?
-
-        public var discount: Int?
-
-        public var fyndCredits: Int?
-
-        public var valueOfGood: Int?
-
-        public var couponValue: String?
+        public var refundAmount: Int?
 
         public var cashback: Int?
 
+        public var refundCredit: Int?
+
         public var deliveryCharge: Int?
 
-        public var cashbackApplied: Int?
+        public var amountPaid: Int?
+
+        public var valueOfGood: Int?
+
+        public var fyndCredits: Int?
 
         public var priceMarked: Int?
 
+        public var cashbackApplied: Int?
+
+        public var couponValue: String?
+
         public var priceEffective: Int?
 
-        public var refundAmount: Int?
+        public var discount: Int?
 
         public var codCharges: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case amountPaid = "amount_paid"
-
-            case refundCredit = "refund_credit"
-
-            case discount
-
-            case fyndCredits = "fynd_credits"
-
-            case valueOfGood = "value_of_good"
-
-            case couponValue = "coupon_value"
+            case refundAmount = "refund_amount"
 
             case cashback
 
+            case refundCredit = "refund_credit"
+
             case deliveryCharge = "delivery_charge"
 
-            case cashbackApplied = "cashback_applied"
+            case amountPaid = "amount_paid"
+
+            case valueOfGood = "value_of_good"
+
+            case fyndCredits = "fynd_credits"
 
             case priceMarked = "price_marked"
 
+            case cashbackApplied = "cashback_applied"
+
+            case couponValue = "coupon_value"
+
             case priceEffective = "price_effective"
 
-            case refundAmount = "refund_amount"
+            case discount
 
             case codCharges = "cod_charges"
         }
 
         public init(amountPaid: Int? = nil, cashback: Int? = nil, cashbackApplied: Int? = nil, codCharges: Int? = nil, couponValue: String? = nil, deliveryCharge: Int? = nil, discount: Int? = nil, fyndCredits: Int? = nil, priceEffective: Int? = nil, priceMarked: Int? = nil, refundAmount: Int? = nil, refundCredit: Int? = nil, valueOfGood: Int? = nil) {
-            self.amountPaid = amountPaid
-
-            self.refundCredit = refundCredit
-
-            self.discount = discount
-
-            self.fyndCredits = fyndCredits
-
-            self.valueOfGood = valueOfGood
-
-            self.couponValue = couponValue
+            self.refundAmount = refundAmount
 
             self.cashback = cashback
 
+            self.refundCredit = refundCredit
+
             self.deliveryCharge = deliveryCharge
 
-            self.cashbackApplied = cashbackApplied
+            self.amountPaid = amountPaid
+
+            self.valueOfGood = valueOfGood
+
+            self.fyndCredits = fyndCredits
 
             self.priceMarked = priceMarked
 
+            self.cashbackApplied = cashbackApplied
+
+            self.couponValue = couponValue
+
             self.priceEffective = priceEffective
 
-            self.refundAmount = refundAmount
+            self.discount = discount
 
             self.codCharges = codCharges
         }
@@ -94,47 +94,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                amountPaid = try container.decode(Int.self, forKey: .amountPaid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                refundCredit = try container.decode(Int.self, forKey: .refundCredit)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                discount = try container.decode(Int.self, forKey: .discount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                fyndCredits = try container.decode(Int.self, forKey: .fyndCredits)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                valueOfGood = try container.decode(Int.self, forKey: .valueOfGood)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                couponValue = try container.decode(String.self, forKey: .couponValue)
+                refundAmount = try container.decode(Int.self, forKey: .refundAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,6 +110,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                refundCredit = try container.decode(Int.self, forKey: .refundCredit)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 deliveryCharge = try container.decode(Int.self, forKey: .deliveryCharge)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -158,7 +126,23 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                cashbackApplied = try container.decode(Int.self, forKey: .cashbackApplied)
+                amountPaid = try container.decode(Int.self, forKey: .amountPaid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                valueOfGood = try container.decode(Int.self, forKey: .valueOfGood)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                fyndCredits = try container.decode(Int.self, forKey: .fyndCredits)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -174,6 +158,22 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                cashbackApplied = try container.decode(Int.self, forKey: .cashbackApplied)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                couponValue = try container.decode(String.self, forKey: .couponValue)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 priceEffective = try container.decode(Int.self, forKey: .priceEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -182,7 +182,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                refundAmount = try container.decode(Int.self, forKey: .refundAmount)
+                discount = try container.decode(Int.self, forKey: .discount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -201,29 +201,29 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
-
-            try? container.encodeIfPresent(refundCredit, forKey: .refundCredit)
-
-            try? container.encodeIfPresent(discount, forKey: .discount)
-
-            try? container.encodeIfPresent(fyndCredits, forKey: .fyndCredits)
-
-            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
-
-            try? container.encodeIfPresent(couponValue, forKey: .couponValue)
+            try? container.encodeIfPresent(refundAmount, forKey: .refundAmount)
 
             try? container.encodeIfPresent(cashback, forKey: .cashback)
 
+            try? container.encodeIfPresent(refundCredit, forKey: .refundCredit)
+
             try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
 
-            try? container.encodeIfPresent(cashbackApplied, forKey: .cashbackApplied)
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
+
+            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
+
+            try? container.encodeIfPresent(fyndCredits, forKey: .fyndCredits)
 
             try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
 
+            try? container.encodeIfPresent(cashbackApplied, forKey: .cashbackApplied)
+
+            try? container.encodeIfPresent(couponValue, forKey: .couponValue)
+
             try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
 
-            try? container.encodeIfPresent(refundAmount, forKey: .refundAmount)
+            try? container.encodeIfPresent(discount, forKey: .discount)
 
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
         }

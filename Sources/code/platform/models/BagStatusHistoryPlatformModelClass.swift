@@ -12,26 +12,26 @@ public extension PlatformClient {
 
         public var status: String
 
-        public var appDisplayName: Bool?
+        public var stateType: Bool?
 
         public var forward: Bool?
 
-        public var displayName: Bool?
+        public var appDisplayName: Bool?
 
-        public var stateType: Bool?
+        public var displayName: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case updatedAt = "updated_at"
 
             case status
 
-            case appDisplayName = "app_display_name"
+            case stateType = "state_type"
 
             case forward
 
-            case displayName = "display_name"
+            case appDisplayName = "app_display_name"
 
-            case stateType = "state_type"
+            case displayName = "display_name"
         }
 
         public init(appDisplayName: Bool? = nil, displayName: Bool? = nil, forward: Bool? = nil, stateType: Bool? = nil, status: String, updatedAt: String? = nil) {
@@ -39,13 +39,13 @@ public extension PlatformClient {
 
             self.status = status
 
-            self.appDisplayName = appDisplayName
+            self.stateType = stateType
 
             self.forward = forward
 
-            self.displayName = displayName
+            self.appDisplayName = appDisplayName
 
-            self.stateType = stateType
+            self.displayName = displayName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,7 +62,7 @@ public extension PlatformClient {
             status = try container.decode(String.self, forKey: .status)
 
             do {
-                appDisplayName = try container.decode(Bool.self, forKey: .appDisplayName)
+                stateType = try container.decode(Bool.self, forKey: .stateType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                displayName = try container.decode(Bool.self, forKey: .displayName)
+                appDisplayName = try container.decode(Bool.self, forKey: .appDisplayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                stateType = try container.decode(Bool.self, forKey: .stateType)
+                displayName = try container.decode(Bool.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,13 +101,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(appDisplayName, forKey: .appDisplayName)
+            try? container.encodeIfPresent(stateType, forKey: .stateType)
 
             try? container.encodeIfPresent(forward, forKey: .forward)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(appDisplayName, forKey: .appDisplayName)
 
-            try? container.encodeIfPresent(stateType, forKey: .stateType)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
         }
     }
 }

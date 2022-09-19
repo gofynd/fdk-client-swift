@@ -5,9 +5,10 @@
 ##### [Back to Application docs](./README.md)
 
 ## Logistic Methods
-Open API Documentation for opex-logistics domain
+Logistics Promise Engine API's allows you to configure zone, pincode, TAT, logistics and many more useful features. 
 * [getPincodeCity](#getpincodecity)
 * [getTatProduct](#gettatproduct)
+* [getPincodeZones](#getpincodezones)
 
 
 
@@ -21,7 +22,7 @@ Get Pincode API
 
 
 ```swift
-logistic.getPincodeCity(pincode: pincode, xApplicationId: xApplicationId) { (response, error) in
+logistic.getPincodeCity(pincode: pincode) { (response, error) in
     // Use response
 }
 ```
@@ -32,8 +33,7 @@ logistic.getPincodeCity(pincode: pincode, xApplicationId: xApplicationId) { (res
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| pincode | String | yes | A `pincode` contains a specific address of a location. |   
-| xApplicationId | String? | no | Application id is neccessary for app authorizations & retrieving config of application |  
+| pincode | String | yes | A `pincode` contains a specific address of a location. |  
 
 
 
@@ -161,7 +161,7 @@ Get TAT API
 
 
 ```swift
-logistic.getTatProduct(xApplicationId: xApplicationId, body: body) { (response, error) in
+logistic.getTatProduct(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -171,8 +171,7 @@ logistic.getTatProduct(xApplicationId: xApplicationId, body: body) { (response, 
 
 
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| xApplicationId | String? | no | Application id is neccessary for app authorizations & retrieving config of application |  
+| -------- | ---- | -------- | ----------- |
 | body | TATViewRequest | yes | Request body |
 
 
@@ -316,83 +315,79 @@ Get TAT  data
 ---
 
 
+#### getPincodeZones
+GET zone from the Pincode.
+
+
+
+
+```swift
+logistic.getPincodeZones(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | GetZoneFromPincodeViewRequest | yes | Request body |
+
+
+This API returns zone from the Pincode View.
+
+*Returned Response:*
+
+
+
+
+[GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
  
  
- #### [ValidatePincodeSchema](#ValidatePincodeSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | String |  no  |  |
- | toPincode | String |  no  |  |
- | source | String? |  yes  |  |
- | journey | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ErrorResponse](#ErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String |  no  |  |
- | type | String |  no  |  |
- | journey | String |  no  |  |
-
----
-
-
- 
- 
- #### [ValidatePincodeResponseSchema](#ValidatePincodeResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  |  |
- | error | [ErrorResponse](#ErrorResponse) |  no  |  |
- | journey | String? |  yes  |  |
- | source | String? |  yes  |  |
- | toPincode | String |  no  |  |
- | requestUuid | String |  no  |  |
- | action | String |  no  |  |
-
----
-
-
- 
- 
- #### [Parents](#Parents)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | String? |  yes  |  |
- | name | String? |  yes  |  |
- | displayName | String? |  yes  |  |
- | subType | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Error](#Error)
+ #### [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | String? |  yes  |  |
- | type | String? |  yes  |  |
  | value | String? |  yes  |  |
+ | type | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [Meta](#Meta)
+ #### [PincodeMetaResponse](#PincodeMetaResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -404,17 +399,31 @@ Get TAT  data
 
  
  
- #### [DataResponse](#DataResponse)
+ #### [PincodeParentsResponse](#PincodeParentsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | uid | String? |  yes  |  |
- | parents | [[Parents](#Parents)]? |  yes  |  |
- | error | [Error](#Error) |  no  |  |
  | subType | String? |  yes  |  |
  | name | String? |  yes  |  |
- | meta | [Meta](#Meta)? |  yes  |  |
  | displayName | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeDataResponse](#PincodeDataResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | subType | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | meta | [PincodeMetaResponse](#PincodeMetaResponse)? |  yes  |  |
+ | displayName | String? |  yes  |  |
+ | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  no  |  |
+ | parents | [[PincodeParentsResponse](#PincodeParentsResponse)]? |  yes  |  |
 
 ---
 
@@ -425,16 +434,16 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[DataResponse](#DataResponse)]? |  yes  |  |
  | success | Bool |  no  |  |
- | error | [Error](#Error) |  no  |  |
+ | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  no  |  |
+ | data | [[PincodeDataResponse](#PincodeDataResponse)]? |  yes  |  |
 
 ---
 
 
  
  
- #### [Category](#Category)
+ #### [TATCategoryRequest](#TATCategoryRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -446,26 +455,26 @@ Get TAT  data
 
  
  
- #### [Articles](#Articles)
+ #### [TATArticlesRequest](#TATArticlesRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | manufacturingTime | Int? |  yes  |  |
- | category | [Category](#Category)? |  yes  |  |
  | manufacturingTimeUnit | String? |  yes  |  |
+ | category | [TATCategoryRequest](#TATCategoryRequest)? |  yes  |  |
+ | manufacturingTime | Int? |  yes  |  |
 
 ---
 
 
  
  
- #### [LocationDetails](#LocationDetails)
+ #### [TATLocationDetailsRequest](#TATLocationDetailsRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | articles | [[TATArticlesRequest](#TATArticlesRequest)]? |  yes  |  |
  | fromPincode | String? |  yes  |  |
  | fulfillmentId | Int? |  yes  |  |
- | articles | [[Articles](#Articles)]? |  yes  |  |
 
 ---
 
@@ -476,44 +485,19 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | toPincode | String |  no  |  |
+ | locationDetails | [[TATLocationDetailsRequest](#TATLocationDetailsRequest)]? |  yes  |  |
+ | action | String |  no  |  |
+ | source | String |  no  |  |
  | journey | String |  no  |  |
  | identifier | String |  no  |  |
- | source | String |  no  |  |
- | toPincode | String |  no  |  |
- | locationDetails | [[LocationDetails](#LocationDetails)]? |  yes  |  |
- | action | String |  no  |  |
 
 ---
 
 
  
  
- #### [TATError](#TATError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | type | String? |  yes  |  |
- | value | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Timestamp](#Timestamp)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | min | Int? |  yes  |  |
- | max | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [Formatted](#Formatted)
+ #### [TATFormattedResponse](#TATFormattedResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -525,42 +509,67 @@ Get TAT  data
 
  
  
- #### [Promise](#Promise)
+ #### [TATTimestampResponse](#TATTimestampResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | timestamp | [Timestamp](#Timestamp)? |  yes  |  |
- | formatted | [Formatted](#Formatted)? |  yes  |  |
+ | min | Int? |  yes  |  |
+ | max | Int? |  yes  |  |
 
 ---
 
 
  
  
- #### [ArticlesResponse](#ArticlesResponse)
+ #### [TATPromiseResponse](#TATPromiseResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | manufacturingTime | Int? |  yes  |  |
- | error | [TATError](#TATError) |  no  |  |
- | promise | [Promise](#Promise)? |  yes  |  |
- | isCodAvailable | Bool? |  yes  |  |
- | manufacturingTimeSeconds | String? |  yes  |  |
- | category | [Category](#Category)? |  yes  |  |
+ | formatted | [TATFormattedResponse](#TATFormattedResponse)? |  yes  |  |
+ | timestamp | [TATTimestampResponse](#TATTimestampResponse)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TATErrorSchemaResponse](#TATErrorSchemaResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | value | String? |  yes  |  |
+ | type | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TATArticlesResponse](#TATArticlesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | manufacturingTimeUnit | String? |  yes  |  |
+ | category | [TATCategoryRequest](#TATCategoryRequest)? |  yes  |  |
+ | manufacturingTimeSeconds | String? |  yes  |  |
+ | promise | [TATPromiseResponse](#TATPromiseResponse)? |  yes  |  |
+ | isCodAvailable | Bool? |  yes  |  |
+ | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse) |  no  |  |
+ | manufacturingTime | Int? |  yes  |  |
 
 ---
 
 
  
  
- #### [LocationDetailsResponse](#LocationDetailsResponse)
+ #### [TATLocationDetailsResponse](#TATLocationDetailsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | articles | [[TATArticlesResponse](#TATArticlesResponse)]? |  yes  |  |
  | fromPincode | String? |  yes  |  |
  | fulfillmentId | Int? |  yes  |  |
- | articles | [[ArticlesResponse](#ArticlesResponse)]? |  yes  |  |
 
 ---
 
@@ -571,19 +580,43 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  |  |
- | error | [TATError](#TATError) |  no  |  |
- | isCodAvailable | Bool |  no  |  |
- | journey | String |  no  |  |
- | identifier | String |  no  |  |
- | paymentMode | String |  no  |  |
- | source | String |  no  |  |
  | toPincode | String |  no  |  |
- | locationDetails | [[LocationDetailsResponse](#LocationDetailsResponse)]? |  yes  |  |
  | requestUuid | String |  no  |  |
- | toCity | String |  no  |  |
+ | paymentMode | String |  no  |  |
+ | locationDetails | [[TATLocationDetailsResponse](#TATLocationDetailsResponse)]? |  yes  |  |
+ | success | Bool |  no  |  |
  | action | String |  no  |  |
+ | source | String |  no  |  |
+ | journey | String |  no  |  |
  | stormbreakerUuid | String |  no  |  |
+ | isCodAvailable | Bool |  no  |  |
+ | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse) |  no  |  |
+ | identifier | String |  no  |  |
+ | toCity | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetZoneFromPincodeViewRequest](#GetZoneFromPincodeViewRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | String |  no  |  |
+ | pincode | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | zones | [String] |  no  |  |
+ | serviceabilityType | String |  no  |  |
 
 ---
 
