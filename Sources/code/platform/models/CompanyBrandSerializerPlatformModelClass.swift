@@ -8,87 +8,87 @@ public extension PlatformClient {
      */
 
     class CompanyBrandSerializer: Codable {
-        public var verifiedBy: UserSerializer?
+        public var createdBy: UserSerializer?
 
         public var uid: Int?
 
-        public var warnings: [String: Any]?
-
         public var verifiedOn: String?
-
-        public var rejectReason: String?
 
         public var modifiedBy: UserSerializer?
 
-        public var createdBy: UserSerializer?
+        public var stage: String?
+
+        public var rejectReason: String?
+
+        public var brand: GetBrandResponseSerializer?
+
+        public var verifiedBy: UserSerializer?
 
         public var createdOn: String?
 
         public var company: CompanySerializer?
 
-        public var brand: GetBrandResponseSerializer?
+        public var warnings: [String: Any]?
 
         public var modifiedOn: String?
 
-        public var stage: String?
-
         public enum CodingKeys: String, CodingKey {
-            case verifiedBy = "verified_by"
+            case createdBy = "created_by"
 
             case uid
 
-            case warnings
-
             case verifiedOn = "verified_on"
-
-            case rejectReason = "reject_reason"
 
             case modifiedBy = "modified_by"
 
-            case createdBy = "created_by"
+            case stage
+
+            case rejectReason = "reject_reason"
+
+            case brand
+
+            case verifiedBy = "verified_by"
 
             case createdOn = "created_on"
 
             case company
 
-            case brand
+            case warnings
 
             case modifiedOn = "modified_on"
-
-            case stage
         }
 
         public init(brand: GetBrandResponseSerializer? = nil, company: CompanySerializer? = nil, createdBy: UserSerializer? = nil, createdOn: String? = nil, modifiedBy: UserSerializer? = nil, modifiedOn: String? = nil, rejectReason: String? = nil, stage: String? = nil, uid: Int? = nil, verifiedBy: UserSerializer? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil) {
-            self.verifiedBy = verifiedBy
+            self.createdBy = createdBy
 
             self.uid = uid
 
-            self.warnings = warnings
-
             self.verifiedOn = verifiedOn
-
-            self.rejectReason = rejectReason
 
             self.modifiedBy = modifiedBy
 
-            self.createdBy = createdBy
+            self.stage = stage
+
+            self.rejectReason = rejectReason
+
+            self.brand = brand
+
+            self.verifiedBy = verifiedBy
 
             self.createdOn = createdOn
 
             self.company = company
 
-            self.brand = brand
+            self.warnings = warnings
 
             self.modifiedOn = modifiedOn
-
-            self.stage = stage
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                verifiedBy = try container.decode(UserSerializer.self, forKey: .verifiedBy)
+                createdBy = try container.decode(UserSerializer.self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,23 +104,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                warnings = try container.decode([String: Any].self, forKey: .warnings)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 verifiedOn = try container.decode(String.self, forKey: .verifiedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                rejectReason = try container.decode(String.self, forKey: .rejectReason)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -136,7 +120,31 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                createdBy = try container.decode(UserSerializer.self, forKey: .createdBy)
+                stage = try container.decode(String.self, forKey: .stage)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                rejectReason = try container.decode(String.self, forKey: .rejectReason)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brand = try container.decode(GetBrandResponseSerializer.self, forKey: .brand)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                verifiedBy = try container.decode(UserSerializer.self, forKey: .verifiedBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,7 +168,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                brand = try container.decode(GetBrandResponseSerializer.self, forKey: .brand)
+                warnings = try container.decode([String: Any].self, forKey: .warnings)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -174,42 +182,34 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                stage = try container.decode(String.self, forKey: .stage)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(warnings, forKey: .warnings)
-
             try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
-
-            try? container.encodeIfPresent(rejectReason, forKey: .rejectReason)
 
             try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
 
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            try? container.encodeIfPresent(stage, forKey: .stage)
+
+            try? container.encodeIfPresent(rejectReason, forKey: .rejectReason)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
+
+            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(company, forKey: .company)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
+            try? container.encodeIfPresent(warnings, forKey: .warnings)
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(stage, forKey: .stage)
         }
     }
 }
