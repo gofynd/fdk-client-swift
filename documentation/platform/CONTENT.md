@@ -52,6 +52,7 @@ Content System
 * [deletePage](#deletepage)
 * [addPathRedirectionRules](#addpathredirectionrules)
 * [getPathRedirectionRules](#getpathredirectionrules)
+* [getPathRedirectionRule](#getpathredirectionrule)
 * [updatePathRedirectionRules](#updatepathredirectionrules)
 * [deletePathRedirectionRules](#deletepathredirectionrules)
 * [getSEOConfiguration](#getseoconfiguration)
@@ -5364,7 +5365,7 @@ Get path based redirection rules
 
 
 ```swift
-client.application("<APPLICATION_ID>").content.getPathRedirectionRules() { (response, error) in
+client.application("<APPLICATION_ID>").content.getPathRedirectionRules(pageSize: pageSize, pageNo: pageNo) { (response, error) in
     // Use response
 }
 ```
@@ -5373,8 +5374,84 @@ client.application("<APPLICATION_ID>").content.getPathRedirectionRules() { (resp
 
 
 
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pageSize | Int? | no | The number of items to retrieve in each page. Default value is 5.  |   
+| pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1. |  
+
+
 
 Use this API to get path based redirection rules.
+
+*Returned Response:*
+
+
+
+
+[PathMappingSchema](#PathMappingSchema)
+
+Success. Refer `PathMappingSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "615188e9db1e444cb0f40837",
+    "application": "000000000000000000000002",
+    "redirect_from": "/from",
+    "redirect_to": "/to",
+    "createdAt": "2021-09-27T09:03:37.053Z",
+    "updatedAt": "2021-09-27T09:09:25.587Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPathRedirectionRule
+Get path based redirection rule
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").content.getPathRedirectionRule(pathId: pathId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pathId | String | yes | ID allotted to the path redirection rule. |  
+
+
+
+Use this API to get path based redirection rule.
 
 *Returned Response:*
 
