@@ -8,54 +8,48 @@ public extension PlatformClient {
      */
 
     class ProductBundleItem: Codable {
+        public var allowRemove: Bool?
+
         public var productUid: Int
 
-        public var maxQuantity: Int
+        public var autoAddToCart: Bool?
 
         public var minQuantity: Int
 
-        public var allowRemove: Bool?
-
-        public var autoAddToCart: Bool?
+        public var maxQuantity: Int
 
         public var autoSelect: Bool?
 
         public enum CodingKeys: String, CodingKey {
+            case allowRemove = "allow_remove"
+
             case productUid = "product_uid"
 
-            case maxQuantity = "max_quantity"
+            case autoAddToCart = "auto_add_to_cart"
 
             case minQuantity = "min_quantity"
 
-            case allowRemove = "allow_remove"
-
-            case autoAddToCart = "auto_add_to_cart"
+            case maxQuantity = "max_quantity"
 
             case autoSelect = "auto_select"
         }
 
         public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int, minQuantity: Int, productUid: Int) {
+            self.allowRemove = allowRemove
+
             self.productUid = productUid
 
-            self.maxQuantity = maxQuantity
+            self.autoAddToCart = autoAddToCart
 
             self.minQuantity = minQuantity
 
-            self.allowRemove = allowRemove
-
-            self.autoAddToCart = autoAddToCart
+            self.maxQuantity = maxQuantity
 
             self.autoSelect = autoSelect
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            productUid = try container.decode(Int.self, forKey: .productUid)
-
-            maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
-
-            minQuantity = try container.decode(Int.self, forKey: .minQuantity)
 
             do {
                 allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
@@ -65,6 +59,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            productUid = try container.decode(Int.self, forKey: .productUid)
+
             do {
                 autoAddToCart = try container.decode(Bool.self, forKey: .autoAddToCart)
 
@@ -72,6 +68,10 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            minQuantity = try container.decode(Int.self, forKey: .minQuantity)
+
+            maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
 
             do {
                 autoSelect = try container.decode(Bool.self, forKey: .autoSelect)
@@ -85,15 +85,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
+
             try? container.encodeIfPresent(productUid, forKey: .productUid)
 
-            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
+            try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
 
             try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
 
-            try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
-
-            try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
+            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
 
             try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
         }
