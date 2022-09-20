@@ -32,8 +32,6 @@ public class ApplicationClient {
 
     public let rewards: Rewards
 
-    public let feedback: Feedback
-
     public let posCart: PosCart
 
     public let logistic: Logistic
@@ -68,8 +66,6 @@ public class ApplicationClient {
         order = Order(config: config)
 
         rewards = Rewards(config: config)
-
-        feedback = Feedback(config: config)
 
         posCart = PosCart(config: config)
 

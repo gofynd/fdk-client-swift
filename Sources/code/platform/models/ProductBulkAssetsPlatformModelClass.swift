@@ -8,32 +8,30 @@ public extension PlatformClient {
      */
 
     class ProductBulkAssets: Codable {
-        public var url: String
-
         public var user: [String: Any]
 
         public var companyId: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case url
+        public var url: String
 
+        public enum CodingKeys: String, CodingKey {
             case user
 
             case companyId = "company_id"
+
+            case url
         }
 
         public init(companyId: Int? = nil, url: String, user: [String: Any]) {
-            self.url = url
-
             self.user = user
 
             self.companyId = companyId
+
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            url = try container.decode(String.self, forKey: .url)
 
             user = try container.decode([String: Any].self, forKey: .user)
 
@@ -44,16 +42,18 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            url = try container.decode(String.self, forKey: .url)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }
