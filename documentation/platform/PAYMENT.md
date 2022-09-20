@@ -2678,12 +2678,12 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | excludedFields | [String] |  no  | List of all excluded  options with their Details. |
- | appId | String |  no  | Application Id to which Payment config Mapped |
- | success | Bool |  no  | Response is successful or not |
- | created | Bool |  no  | Response is created or not |
  | displayFields | [String] |  no  | List of all included  options with their Details. |
+ | created | Bool |  no  | Response is created or not |
+ | excludedFields | [String] |  no  | List of all excluded  options with their Details. |
+ | success | Bool |  no  | Response is successful or not |
  | aggregators | [[String: Any]]? |  yes  | List of all speceific Payment options with their Details. |
+ | appId | String |  no  | Application Id to which Payment config Mapped |
 
 ---
 
@@ -2694,9 +2694,9 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | description | String |  no  | Error human understandable description. |
  | code | String |  no  | Error descrption code. |
  | success | Bool |  no  | Response is successful or not |
- | description | String |  no  | Error human understandable description. |
 
 ---
 
@@ -2707,10 +2707,10 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | String |  no  | Api key of the payment aggregator |
- | secret | String |  no  | Secret Key of the payment aggregator |
- | configType | String |  no  | Config Type of the aggregator |
  | isActive | Bool? |  yes  | Enable/ Disable Flag |
+ | configType | String |  no  | Config Type of the aggregator |
+ | secret | String |  no  | Secret Key of the payment aggregator |
+ | key | String |  no  | Api key of the payment aggregator |
  | merchantSalt | String |  no  | Merchant key of the payment aggregator |
 
 ---
@@ -2722,8 +2722,8 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregatorName | [PaymentGatewayConfig](#PaymentGatewayConfig)? |  yes  |  |
  | isActive | Bool? |  yes  | Enable/ Disable Flag |
+ | aggregatorName | [PaymentGatewayConfig](#PaymentGatewayConfig)? |  yes  |  |
  | appId | String |  no  | Application Id to which Payment config Mapped |
 
 ---
@@ -2735,8 +2735,8 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  | Response is successful or not |
  | aggregator | [String] |  no  | List of added payment gateway |
+ | success | Bool |  no  | Response is successful or not |
 
 ---
 
@@ -2747,8 +2747,8 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String |  no  | Error descrption code. |
  | description | String |  no  | Error human understandable description. |
+ | code | String |  no  | Error descrption code. |
 
 ---
 
@@ -2759,8 +2759,8 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  | Response is successful or not |
  | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  no  |  |
+ | success | Bool |  no  | Response is successful or not |
 
 ---
 
@@ -2779,20 +2779,6 @@ save payout response object
 
  
  
- #### [IntentApp](#IntentApp)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | displayName | String? |  yes  | display_name |
- | code | String? |  yes  | code |
- | packageName | String? |  yes  | package_name |
- | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | logos |
-
----
-
-
- 
- 
  #### [IntentAppErrorList](#IntentAppErrorList)
 
  | Properties | Type | Nullable | Description |
@@ -2805,39 +2791,53 @@ save payout response object
 
  
  
+ #### [IntentApp](#IntentApp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | logos |
+ | code | String? |  yes  | code |
+ | packageName | String? |  yes  | package_name |
+ | displayName | String? |  yes  | display_name |
+
+---
+
+
+ 
+ 
  #### [PaymentModeList](#PaymentModeList)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | cardFingerprint | String? |  yes  | card_fingerprint |
  | cardToken | String? |  yes  | card_token |
- | merchantCode | String? |  yes  | merchant code |
- | intentAppErrorList | [String]? |  yes  | intent_app_error_list |
- | nickname | String? |  yes  | nickname |
- | cardIsin | String? |  yes  | card_isin |
- | code | String? |  yes  | code |
- | cardType | String? |  yes  | card_type |
- | cardBrandImage | String? |  yes  | card_brand_image |
+ | cardBrand | String? |  yes  | card_brand |
  | displayPriority | Int? |  yes  | Dispaly Priority |
- | cardName | String? |  yes  | card_name |
+ | cardId | String? |  yes  | card_id |
  | expYear | Int? |  yes  | exp_year |
- | intentApp | [[IntentApp](#IntentApp)]? |  yes  | intent_app |
- | retryCount | Int? |  yes  | retry_count |
- | name | String? |  yes  | name |
- | intentAppErrorDictList | [[IntentAppErrorList](#IntentAppErrorList)]? |  yes  | intent_app_error_dict_list |
+ | cardNumber | String? |  yes  | card_number |
  | logoUrl | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | Logo |
+ | expired | Bool? |  yes  | expired |
+ | code | String? |  yes  | code |
+ | name | String? |  yes  | name |
+ | cardType | String? |  yes  | card_type |
+ | intentAppErrorDictList | [[IntentAppErrorList](#IntentAppErrorList)]? |  yes  | intent_app_error_dict_list |
+ | intentFlow | Bool? |  yes  | intent_flow |
+ | intentApp | [[IntentApp](#IntentApp)]? |  yes  | intent_app |
+ | cardIsin | String? |  yes  | card_isin |
  | cardReference | String? |  yes  | card_reference |
+ | intentAppErrorList | [String]? |  yes  | intent_app_error_list |
+ | expMonth | Int? |  yes  | exp_month |
+ | merchantCode | String? |  yes  | merchant code |
+ | fyndVpa | String? |  yes  | fynd_vpa |
  | timeout | Int? |  yes  | timeout |
+ | cardName | String? |  yes  | card_name |
+ | retryCount | Int? |  yes  | retry_count |
+ | nickname | String? |  yes  | nickname |
+ | cardBrandImage | String? |  yes  | card_brand_image |
+ | aggregatorName | String |  no  | aggregator_name |
  | displayName | String? |  yes  | display name |
  | cardIssuer | String? |  yes  | card_issuer |
- | cardBrand | String? |  yes  | card_brand |
- | cardId | String? |  yes  | card_id |
- | aggregatorName | String |  no  | aggregator_name |
- | expired | Bool? |  yes  | expired |
- | fyndVpa | String? |  yes  | fynd_vpa |
- | intentFlow | Bool? |  yes  | intent_flow |
- | cardNumber | String? |  yes  | card_number |
- | cardFingerprint | String? |  yes  | card_fingerprint |
- | expMonth | Int? |  yes  | exp_month |
 
 ---
 
@@ -2848,13 +2848,13 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregatorName | String? |  yes  | Dispaly Priority |
- | anonymousEnable | Bool? |  yes  | Annonymous card flag |
  | name | String |  no  | Payment mode name |
- | list | [[PaymentModeList](#PaymentModeList)]? |  yes  | Payment mode |
  | displayPriority | Int |  no  | Dispaly Priority |
+ | aggregatorName | String? |  yes  | Dispaly Priority |
  | displayName | String |  no  | Payment mode display name |
+ | list | [[PaymentModeList](#PaymentModeList)]? |  yes  | Payment mode |
  | addCardEnabled | Bool? |  yes  | Annonymous card flag |
+ | anonymousEnable | Bool? |  yes  | Annonymous card flag |
 
 ---
 
@@ -2876,8 +2876,8 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  | Response is successful or not |
  | paymentOptions | [PaymentOptions](#PaymentOptions) |  no  | Payment options |
+ | success | Bool |  no  | Response is successful or not |
 
 ---
 
@@ -2888,13 +2888,13 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | transferType | String |  no  | transafer type |
- | uniqueTransferNo | [String: Any] |  no  | display priority of the payment mode |
- | customers | [String: Any] |  no  | customers details object |
  | isActive | Bool |  no  | Enable/DIsable Flag Payout |
- | isDefault | Bool |  no  | default or not  |
- | payoutsAggregators | [[String: Any]] |  no  | payout aggregator object |
+ | uniqueTransferNo | [String: Any] |  no  | display priority of the payment mode |
  | moreAttributes | [String: Any] |  no  | bank details object |
+ | payoutsAggregators | [[String: Any]] |  no  | payout aggregator object |
+ | customers | [String: Any] |  no  | customers details object |
+ | transferType | String |  no  | transafer type |
+ | isDefault | Bool |  no  | default or not  |
 
 ---
 
@@ -2905,16 +2905,16 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | branchName | String? |  yes  |  |
- | accountHolder | String? |  yes  |  |
  | state | String? |  yes  |  |
  | city | String? |  yes  |  |
- | accountType | String |  no  |  |
- | country | String? |  yes  |  |
- | pincode | Int? |  yes  |  |
- | accountNo | String? |  yes  |  |
  | ifscCode | String |  no  |  |
  | bankName | String? |  yes  |  |
+ | accountType | String |  no  |  |
+ | accountNo | String? |  yes  |  |
+ | country | String? |  yes  |  |
+ | pincode | Int? |  yes  |  |
+ | branchName | String? |  yes  |  |
+ | accountHolder | String? |  yes  |  |
 
 ---
 
@@ -2925,12 +2925,12 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | transferType | String |  no  | transafer type |
- | uniqueExternalId | String |  no  | Unique Id of Payout |
  | isActive | Bool |  no  | Enable/Disable Flag Payout |
+ | uniqueExternalId | String |  no  | Unique Id of Payout |
  | bankDetails | [PayoutBankDetails](#PayoutBankDetails) |  no  | payout bank details object |
  | users | [String: Any] |  no  | payout users object |
  | aggregator | String |  no  | Aggregator Name |
+ | transferType | String |  no  | transafer type |
 
 ---
 
@@ -2941,16 +2941,16 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | isActive | Bool |  no  | Enable/DIsable Flag Payout |
+ | aggregator | String |  no  | Aggregator Name |
+ | payouts | [String: Any] |  no  | payout  object |
+ | bankDetails | [String: Any] |  no  | payout bank_details object |
+ | paymentStatus | String |  no  | status of payment |
+ | users | [String: Any] |  no  | users details object |
+ | created | Bool |  no  | created flag |
+ | success | Bool |  no  | Response is successful or not |
  | transferType | String |  no  | transfer type |
  | uniqueTransferNo | String |  no  | unique transfer no |
- | success | Bool |  no  | Response is successful or not |
- | payouts | [String: Any] |  no  | payout  object |
- | created | Bool |  no  | created flag |
- | paymentStatus | String |  no  | status of payment |
- | isActive | Bool |  no  | Enable/DIsable Flag Payout |
- | bankDetails | [String: Any] |  no  | payout bank_details object |
- | users | [String: Any] |  no  | users details object |
- | aggregator | String |  no  | Aggregator Name |
 
 ---
 
@@ -2961,8 +2961,8 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isActive | Bool |  no  | Enable/DIsable Flag Payout |
  | isDefault | Bool |  no  | Enable/Disable Default Payout |
+ | isActive | Bool |  no  | Enable/DIsable Flag Payout |
  | success | Bool |  no  | Response is successful or not |
 
 ---
@@ -2975,8 +2975,8 @@ save payout response object
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | isActive | Bool |  no  | Enable/Disable Flag Payout |
- | isDefault | Bool |  no  | Enable/Disable Default Payout |
  | uniqueExternalId | String |  no  | Unique Id of Payout |
+ | isDefault | Bool |  no  | Enable/Disable Default Payout |
 
 ---
 
@@ -2998,8 +2998,8 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  | Response is successful or not |
  | data | [[String: Any]] |  no  | Subscription Payment Method Object |
+ | success | Bool |  no  | Response is successful or not |
 
 ---
 
@@ -3022,8 +3022,8 @@ save payout response object
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | config | [String: Any] |  no  | Aggregator Config |
- | success | Bool |  no  | Response is successful or not |
  | aggregator | String |  no  | Aggregator Name |
+ | success | Bool |  no  | Response is successful or not |
 
 ---
 
@@ -3045,8 +3045,8 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  | Response is successful or not |
  | data | [String: Any] |  no  | Subscription Payment Method Object |
+ | success | Bool |  no  | Response is successful or not |
 
 ---
 
@@ -3057,17 +3057,17 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | branchName | String |  no  | Branch Name of the Account |
- | accountHolder | String |  no  | Name of the Account Holder |
- | vpa | String? |  yes  |  |
- | mobile | String |  no  | Moblie Number of the User |
- | comment | String? |  yes  | Remarks added by The user |
+ | ifscCode | String |  no  | Ifsc Code of the Account |
  | wallet | String? |  yes  |  |
+ | bankName | String |  no  | Bank Name of the Account |
+ | comment | String? |  yes  | Remarks added by The user |
+ | mobile | String |  no  | Moblie Number of the User |
  | accountNo | String |  no  | Account NUmber of the Account Holder |
  | address | String? |  yes  | Address of the User |
- | ifscCode | String |  no  | Ifsc Code of the Account |
+ | vpa | String? |  yes  |  |
  | email | String |  no  | Email of the Account Holder |
- | bankName | String |  no  | Bank Name of the Account |
+ | branchName | String |  no  | Branch Name of the Account |
+ | accountHolder | String |  no  | Name of the Account Holder |
 
 ---
 
@@ -3078,13 +3078,13 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | orderId | String |  no  | Merchant Order Id |
+ | transferMode | String |  no  | Transfer Mode of the Beneficiary to be added |
+ | otp | String? |  yes  |  |
  | shipmentId | String |  no  | Shipment Id of the respective Merchant Order Id |
  | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  no  | Beneficiary bank details |
- | transferMode | String |  no  | Transfer Mode of the Beneficiary to be added |
- | delights | Bool |  no  | True if  beneficiary to be added by delights or False if by User |
  | requestId | String? |  yes  |  |
- | orderId | String |  no  | Merchant Order Id |
- | otp | String? |  yes  |  |
+ | delights | Bool |  no  | True if  beneficiary to be added by delights or False if by User |
 
 ---
 
@@ -3095,10 +3095,10 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  | Success or failure flag. |
  | isVerifiedFlag | Bool? |  yes  |  |
- | data | [String: Any]? |  yes  | Refund account data. |
  | message | String |  no  | Response message |
+ | data | [String: Any]? |  yes  | Refund account data. |
+ | success | Bool |  no  | Success or failure flag. |
 
 ---
 
@@ -3109,9 +3109,9 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | description | String |  no  | Not Found |
  | code | String |  no  | Bad Request Data |
  | success | Bool |  no  | Response is successful or not |
- | description | String |  no  | Not Found |
 
 ---
 
@@ -3122,9 +3122,9 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  | Response is successful or not |
  | branchName | String |  no  | Branch Name Of Account |
  | bankName | String |  no  | Bank Name Of Account |
+ | success | Bool? |  yes  | Response is successful or not |
 
 ---
 
@@ -3135,25 +3135,25 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | createdOn | String |  no  | Creation Date of Beneficiary |
- | isActive | Bool |  no  | Boolean Flag whether Beneficiary set or not |
- | delightsUserName | String? |  yes  | User Id Who filled the Beneficiary  |
- | address | String |  no  | Address of User |
- | branchName | String? |  yes  | Branch Name Of Account |
  | subtitle | String |  no  | SHort Title Of Account |
- | transferMode | String |  no  | Transfer Mode Of Account |
- | id | Int |  no  |   |
- | accountHolder | String |  no  | Account Holder Name |
- | mobile | String? |  yes  | MObile no of User |
- | modifiedOn | String |  no  | MOdification Date of Beneficiary |
  | comment | String? |  yes  | Remarks |
- | beneficiaryId | String |  no  | Benenficiary Id |
- | displayName | String |  no  | Display Name Of Account |
- | ifscCode | String |  no  | Ifsc Code Of Account |
- | bankName | String |  no  | Bank Name Of Account |
- | title | String |  no  | Title Of Account |
- | accountNo | String |  no  | Account Number |
+ | isActive | Bool |  no  | Boolean Flag whether Beneficiary set or not |
+ | mobile | String? |  yes  | MObile no of User |
  | email | String |  no  | EMail of User |
+ | beneficiaryId | String |  no  | Benenficiary Id |
+ | ifscCode | String |  no  | Ifsc Code Of Account |
+ | transferMode | String |  no  | Transfer Mode Of Account |
+ | address | String |  no  | Address of User |
+ | modifiedOn | String |  no  | MOdification Date of Beneficiary |
+ | delightsUserName | String? |  yes  | User Id Who filled the Beneficiary  |
+ | title | String |  no  | Title Of Account |
+ | bankName | String |  no  | Bank Name Of Account |
+ | displayName | String |  no  | Display Name Of Account |
+ | accountNo | String |  no  | Account Number |
+ | createdOn | String |  no  | Creation Date of Beneficiary |
+ | id | Int |  no  |   |
+ | branchName | String? |  yes  | Branch Name Of Account |
+ | accountHolder | String |  no  | Account Holder Name |
 
 ---
 
@@ -3164,8 +3164,8 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)]? |  yes  | All Beneficiaries Of An Order |
  | showBeneficiaryDetails | Bool? |  yes  | Show beneficiary details or not. |
+ | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)]? |  yes  | All Beneficiaries Of An Order |
 
 ---
 
@@ -3176,8 +3176,8 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | [String: Any]? |  yes  | Payment meta i.e payment id, order id, gateway |
  | amount | Double |  no  | Payment amount |
+ | meta | [String: Any]? |  yes  | Payment meta i.e payment id, order id, gateway |
  | name | String? |  yes  | Payment mode name |
  | mode | String |  no  | Payment mode |
 
@@ -3190,8 +3190,8 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentMethods | [[PaymentConfirmationMode](#PaymentConfirmationMode)] |  no  |  |
  | orderId | String |  no  | Unique order id |
+ | paymentMethods | [[PaymentConfirmationMode](#PaymentConfirmationMode)] |  no  |  |
 
 ---
 
@@ -3202,21 +3202,9 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  | Payment confirmation updated or not. |
  | orderId | String |  no  | Unique order id |
  | message | String |  no  | Message |
-
----
-
-
- 
- 
- #### [PennyDropPayload](#PennyDropPayload)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | serviceProvider | String? |  yes  |  |
- | enabled | Bool |  no  |  |
+ | success | Bool |  no  | Payment confirmation updated or not. |
 
 ---
 
@@ -3227,8 +3215,20 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | documentMandatory | Bool? |  yes  |  |
  | enabled | Bool |  no  |  |
+ | documentMandatory | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PennyDropPayload](#PennyDropPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool |  no  |  |
+ | serviceProvider | String? |  yes  |  |
 
 ---
 
@@ -3239,8 +3239,8 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pennyDrop | [PennyDropPayload](#PennyDropPayload) |  no  |  |
  | cancelledCheque | [CancelledChequePayload](#CancelledChequePayload) |  no  |  |
+ | pennyDrop | [PennyDropPayload](#PennyDropPayload) |  no  |  |
 
 ---
 
