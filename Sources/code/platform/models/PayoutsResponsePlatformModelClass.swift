@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var customers: [String: Any]
 
-        public var moreAttributes: [String: Any]
-
         public var isActive: Bool
 
         public var isDefault: Bool
+
+        public var moreAttributes: [String: Any]
 
         public var uniqueTransferNo: [String: Any]
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case customers
 
-            case moreAttributes = "more_attributes"
-
             case isActive = "is_active"
 
             case isDefault = "is_default"
+
+            case moreAttributes = "more_attributes"
 
             case uniqueTransferNo = "unique_transfer_no"
 
@@ -43,11 +43,11 @@ public extension PlatformClient {
 
             self.customers = customers
 
-            self.moreAttributes = moreAttributes
-
             self.isActive = isActive
 
             self.isDefault = isDefault
+
+            self.moreAttributes = moreAttributes
 
             self.uniqueTransferNo = uniqueTransferNo
 
@@ -61,11 +61,11 @@ public extension PlatformClient {
 
             customers = try container.decode([String: Any].self, forKey: .customers)
 
-            moreAttributes = try container.decode([String: Any].self, forKey: .moreAttributes)
-
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
+            moreAttributes = try container.decode([String: Any].self, forKey: .moreAttributes)
 
             uniqueTransferNo = try container.decode([String: Any].self, forKey: .uniqueTransferNo)
 
@@ -79,11 +79,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(customers, forKey: .customers)
 
-            try? container.encodeIfPresent(moreAttributes, forKey: .moreAttributes)
-
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(moreAttributes, forKey: .moreAttributes)
 
             try? container.encodeIfPresent(uniqueTransferNo, forKey: .uniqueTransferNo)
 

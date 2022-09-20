@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var message: [String]?
 
-        public var currencyCode: String?
-
         public var display: String?
+
+        public var currencyCode: String?
 
         public var currencySymbol: String?
 
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case message
 
-            case currencyCode = "currency_code"
-
             case display
+
+            case currencyCode = "currency_code"
 
             case currencySymbol = "currency_symbol"
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
 
             self.message = message
 
-            self.currencyCode = currencyCode
-
             self.display = display
+
+            self.currencyCode = currencyCode
 
             self.currencySymbol = currencySymbol
 
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,9 +107,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 

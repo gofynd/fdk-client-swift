@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var mrpPromotion: Bool?
 
-        public var offerText: String?
+        public var articleQuantity: Int?
 
         public var amount: Double?
 
-        public var articleQuantity: Int?
+        public var offerText: String?
 
         public var promoId: String?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case mrpPromotion = "mrp_promotion"
 
-            case offerText = "offer_text"
+            case articleQuantity = "article_quantity"
 
             case amount
 
-            case articleQuantity = "article_quantity"
+            case offerText = "offer_text"
 
             case promoId = "promo_id"
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.mrpPromotion = mrpPromotion
 
-            self.offerText = offerText
+            self.articleQuantity = articleQuantity
 
             self.amount = amount
 
-            self.articleQuantity = articleQuantity
+            self.offerText = offerText
 
             self.promoId = promoId
         }
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                offerText = try container.decode(String.self, forKey: .offerText)
+                articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
+                offerText = try container.decode(String.self, forKey: .offerText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,11 +107,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
 
-            try? container.encodeIfPresent(offerText, forKey: .offerText)
+            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
+            try? container.encodeIfPresent(offerText, forKey: .offerText)
 
             try? container.encodeIfPresent(promoId, forKey: .promoId)
         }
