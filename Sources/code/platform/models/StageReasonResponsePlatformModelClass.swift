@@ -8,27 +8,27 @@ public extension PlatformClient {
      */
 
     class StageReasonResponse: Codable {
-        public var reasonCode: String?
-
         public var desc: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case reasonCode = "reason_code"
+        public var reasonCode: String?
 
+        public enum CodingKeys: String, CodingKey {
             case desc
+
+            case reasonCode = "reason_code"
         }
 
         public init(desc: String? = nil, reasonCode: String? = nil) {
-            self.reasonCode = reasonCode
-
             self.desc = desc
+
+            self.reasonCode = reasonCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                reasonCode = try container.decode(String.self, forKey: .reasonCode)
+                desc = try container.decode(String.self, forKey: .desc)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                desc = try container.decode(String.self, forKey: .desc)
+                reasonCode = try container.decode(String.self, forKey: .reasonCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(reasonCode, forKey: .reasonCode)
-
             try? container.encodeIfPresent(desc, forKey: .desc)
+
+            try? container.encodeIfPresent(reasonCode, forKey: .reasonCode)
         }
     }
 }

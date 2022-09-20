@@ -13,8 +13,6 @@ public extension ApplicationClient {
 
             ulrs["getTatProduct"] = config.domain.appendAsPath("/service/application/logistics/v1.0/")
 
-            ulrs["getPincodeZones"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/zones")
-
             self.relativeUrls = ulrs
         }
 
@@ -95,46 +93,6 @@ public extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(TATViewResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: GET zone from the Pincode.
-         * Description: This API returns zone from the Pincode View.
-         **/
-        public func getPincodeZones(
-            body: GetZoneFromPincodeViewRequest,
-            onResponse: @escaping (_ response: GetZoneFromPincodeViewResponse?, _ error: FDKError?) -> Void
-        ) {
-            let fullUrl = relativeUrls["getPincodeZones"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(GetZoneFromPincodeViewResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

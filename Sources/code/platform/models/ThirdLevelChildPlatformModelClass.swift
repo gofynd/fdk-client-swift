@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var banners: ImageUrls?
 
-        public var childs: [[String: Any]]?
+        public var name: String?
 
         public var slug: String?
 
         public var action: Action?
 
-        public var name: String?
+        public var childs: [[String: Any]]?
 
         public var customJson: [String: Any]?
 
@@ -27,13 +27,13 @@ public extension PlatformClient {
 
             case banners
 
-            case childs
+            case name
 
             case slug
 
             case action
 
-            case name
+            case childs
 
             case customJson = "_custom_json"
         }
@@ -43,13 +43,13 @@ public extension PlatformClient {
 
             self.banners = banners
 
-            self.childs = childs
+            self.name = name
 
             self.slug = slug
 
             self.action = action
 
-            self.name = name
+            self.childs = childs
 
             self.customJson = customJson
         }
@@ -74,7 +74,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                childs = try container.decode([[String: Any]].self, forKey: .childs)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +98,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                childs = try container.decode([[String: Any]].self, forKey: .childs)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,13 +121,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(childs, forKey: .childs)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(childs, forKey: .childs)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
         }

@@ -10,15 +10,13 @@ public extension PlatformClient {
     class HsnCodesObject: Codable {
         public var threshold2: Double?
 
-        public var hsnCode: String?
-
-        public var modifiedOn: String?
-
-        public var companyId: Int?
-
         public var tax2: Double?
 
         public var taxOnMrp: Bool?
+
+        public var hsnCode: String?
+
+        public var companyId: Int?
 
         public var threshold1: Double?
 
@@ -26,22 +24,22 @@ public extension PlatformClient {
 
         public var id: String?
 
-        public var taxOnEsp: Bool?
+        public var modifiedOn: String?
 
         public var tax1: Double?
+
+        public var taxOnEsp: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case threshold2
 
-            case hsnCode = "hsn_code"
-
-            case modifiedOn = "modified_on"
-
-            case companyId = "company_id"
-
             case tax2
 
             case taxOnMrp = "tax_on_mrp"
+
+            case hsnCode = "hsn_code"
+
+            case companyId = "company_id"
 
             case threshold1
 
@@ -49,23 +47,23 @@ public extension PlatformClient {
 
             case id
 
-            case taxOnEsp = "tax_on_esp"
+            case modifiedOn = "modified_on"
 
             case tax1
+
+            case taxOnEsp = "tax_on_esp"
         }
 
         public init(companyId: Int? = nil, hs2Code: String? = nil, hsnCode: String? = nil, id: String? = nil, modifiedOn: String? = nil, tax1: Double? = nil, tax2: Double? = nil, taxOnEsp: Bool? = nil, taxOnMrp: Bool? = nil, threshold1: Double? = nil, threshold2: Double? = nil) {
             self.threshold2 = threshold2
 
-            self.hsnCode = hsnCode
-
-            self.modifiedOn = modifiedOn
-
-            self.companyId = companyId
-
             self.tax2 = tax2
 
             self.taxOnMrp = taxOnMrp
+
+            self.hsnCode = hsnCode
+
+            self.companyId = companyId
 
             self.threshold1 = threshold1
 
@@ -73,9 +71,11 @@ public extension PlatformClient {
 
             self.id = id
 
-            self.taxOnEsp = taxOnEsp
+            self.modifiedOn = modifiedOn
 
             self.tax1 = tax1
+
+            self.taxOnEsp = taxOnEsp
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,30 +83,6 @@ public extension PlatformClient {
 
             do {
                 threshold2 = try container.decode(Double.self, forKey: .threshold2)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                hsnCode = try container.decode(String.self, forKey: .hsnCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -123,6 +99,22 @@ public extension PlatformClient {
 
             do {
                 taxOnMrp = try container.decode(Bool.self, forKey: .taxOnMrp)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                hsnCode = try container.decode(String.self, forKey: .hsnCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -154,7 +146,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                taxOnEsp = try container.decode(Bool.self, forKey: .taxOnEsp)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -168,6 +160,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                taxOnEsp = try container.decode(Bool.self, forKey: .taxOnEsp)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -175,15 +175,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(threshold2, forKey: .threshold2)
 
-            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
             try? container.encodeIfPresent(tax2, forKey: .tax2)
 
             try? container.encodeIfPresent(taxOnMrp, forKey: .taxOnMrp)
+
+            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(threshold1, forKey: .threshold1)
 
@@ -191,9 +189,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(taxOnEsp, forKey: .taxOnEsp)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(tax1, forKey: .tax1)
+
+            try? container.encodeIfPresent(taxOnEsp, forKey: .taxOnEsp)
         }
     }
 }

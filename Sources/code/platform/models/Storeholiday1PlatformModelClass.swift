@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var year: Int
 
-        public var endDate: String
-
         public var name: String
 
         public var slug: String
+
+        public var endDate: String
 
         public var type: String
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case year
 
-            case endDate = "end_date"
-
             case name
 
             case slug
+
+            case endDate = "end_date"
 
             case type
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.year = year
 
-            self.endDate = endDate
-
             self.name = name
 
             self.slug = slug
+
+            self.endDate = endDate
 
             self.type = type
         }
@@ -55,11 +55,11 @@ public extension PlatformClient {
 
             year = try container.decode(Int.self, forKey: .year)
 
-            endDate = try container.decode(String.self, forKey: .endDate)
-
             name = try container.decode(String.self, forKey: .name)
 
             slug = try container.decode(String.self, forKey: .slug)
+
+            endDate = try container.decode(String.self, forKey: .endDate)
 
             type = try container.decode(String.self, forKey: .type)
         }
@@ -71,11 +71,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(year, forKey: .year)
 
-            try? container.encodeIfPresent(endDate, forKey: .endDate)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
 
             try? container.encodeIfPresent(type, forKey: .type)
         }
