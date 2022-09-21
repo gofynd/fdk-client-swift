@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var name: String
 
-        public var logoSmall: String
-
         public var id: Int
+
+        public var logoSmall: String
 
         public var displayName: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case name
 
-            case logoSmall = "logo_small"
-
             case id
+
+            case logoSmall = "logo_small"
 
             case displayName = "display_name"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.name = name
 
-            self.logoSmall = logoSmall
-
             self.id = id
+
+            self.logoSmall = logoSmall
 
             self.displayName = displayName
         }
@@ -48,9 +48,9 @@ public extension ApplicationClient {
 
             name = try container.decode(String.self, forKey: .name)
 
-            logoSmall = try container.decode(String.self, forKey: .logoSmall)
-
             id = try container.decode(Int.self, forKey: .id)
+
+            logoSmall = try container.decode(String.self, forKey: .logoSmall)
 
             do {
                 displayName = try container.decode(String.self, forKey: .displayName)
@@ -68,9 +68,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
         }
