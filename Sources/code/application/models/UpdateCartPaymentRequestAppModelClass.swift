@@ -11,11 +11,11 @@ public extension ApplicationClient {
 
         public var merchantCode: String?
 
-        public var paymentIdentifier: String?
-
         public var id: String?
 
         public var aggregatorName: String?
+
+        public var paymentIdentifier: String?
 
         public var paymentMode: String?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient {
 
             case merchantCode = "merchant_code"
 
-            case paymentIdentifier = "payment_identifier"
-
             case id
 
             case aggregatorName = "aggregator_name"
+
+            case paymentIdentifier = "payment_identifier"
 
             case paymentMode = "payment_mode"
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient {
 
             self.merchantCode = merchantCode
 
-            self.paymentIdentifier = paymentIdentifier
-
             self.id = id
 
             self.aggregatorName = aggregatorName
+
+            self.paymentIdentifier = paymentIdentifier
 
             self.paymentMode = paymentMode
         }
@@ -67,14 +67,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -84,6 +76,14 @@ public extension ApplicationClient {
 
             do {
                 aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
 
-            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
-
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+
+            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
 
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
         }

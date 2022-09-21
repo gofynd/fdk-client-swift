@@ -8,30 +8,30 @@ public extension PlatformClient {
      */
 
     class PaymentModes: Codable {
-        public var codes: [String]?
+        public var uses: PaymentAllowValue?
 
         public var types: [String]?
 
-        public var uses: PaymentAllowValue?
+        public var codes: [String]?
 
         public var networks: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case codes
+            case uses
 
             case types
 
-            case uses
+            case codes
 
             case networks
         }
 
         public init(codes: [String]? = nil, networks: [String]? = nil, types: [String]? = nil, uses: PaymentAllowValue? = nil) {
-            self.codes = codes
+            self.uses = uses
 
             self.types = types
 
-            self.uses = uses
+            self.codes = codes
 
             self.networks = networks
         }
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                codes = try container.decode([String].self, forKey: .codes)
+                uses = try container.decode(PaymentAllowValue.self, forKey: .uses)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uses = try container.decode(PaymentAllowValue.self, forKey: .uses)
+                codes = try container.decode([String].self, forKey: .codes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,11 +75,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(codes, forKey: .codes)
+            try? container.encodeIfPresent(uses, forKey: .uses)
 
             try? container.encodeIfPresent(types, forKey: .types)
 
-            try? container.encodeIfPresent(uses, forKey: .uses)
+            try? container.encodeIfPresent(codes, forKey: .codes)
 
             try? container.encodeIfPresent(networks, forKey: .networks)
         }
