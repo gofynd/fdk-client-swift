@@ -9,22 +9,22 @@ public extension ApplicationClient {
     class PromotionOffer: Codable {
         public var promotionGroup: String?
 
-        public var description: String?
+        public var id: String?
 
         public var offerText: String?
 
-        public var id: String?
+        public var description: String?
 
         public var validTill: String?
 
         public enum CodingKeys: String, CodingKey {
             case promotionGroup = "promotion_group"
 
-            case description
+            case id
 
             case offerText = "offer_text"
 
-            case id
+            case description
 
             case validTill = "valid_till"
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient {
         public init(description: String? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
             self.promotionGroup = promotionGroup
 
-            self.description = description
+            self.id = id
 
             self.offerText = offerText
 
-            self.id = id
+            self.description = description
 
             self.validTill = validTill
         }
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(validTill, forKey: .validTill)
         }
