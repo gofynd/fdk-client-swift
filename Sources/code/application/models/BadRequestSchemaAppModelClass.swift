@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: BadRequestErr
+         Model: BadRequestSchema
          Used By: Communication
      */
-    class BadRequestErr: Codable {
+    class BadRequestSchema: Codable {
         public var status: String?
 
         public var message: String?
