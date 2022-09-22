@@ -978,6 +978,8 @@ public extension PlatformClient {
          **/
         public func getReasonCodes(
             category: String?,
+            pageSize: String?,
+            pageNo: String?,
 
             onResponse: @escaping (_ response: ReasonCodesResponse?, _ error: FDKError?) -> Void
         ) {
@@ -985,6 +987,14 @@ public extension PlatformClient {
 
             if let value = category {
                 xQuery["category"] = value
+            }
+
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+
+            if let value = pageNo {
+                xQuery["page_no"] = value
             }
 
             PlatformAPIClient.execute(

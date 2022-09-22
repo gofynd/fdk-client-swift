@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var dimension: [String: Any]
 
+        public var attributes: [String: Any]
+
         public var weight: [String: Any]
 
         public var brandId: Int
 
         public var quantity: Int
-
-        public var attributes: [String: Any]
 
         public var id: String
 
@@ -27,13 +27,13 @@ public extension PlatformClient {
 
             case dimension
 
+            case attributes
+
             case weight
 
             case brandId = "brand_id"
 
             case quantity
-
-            case attributes
 
             case id = "_id"
         }
@@ -43,13 +43,13 @@ public extension PlatformClient {
 
             self.dimension = dimension
 
+            self.attributes = attributes
+
             self.weight = weight
 
             self.brandId = brandId
 
             self.quantity = quantity
-
-            self.attributes = attributes
 
             self.id = id
         }
@@ -61,13 +61,13 @@ public extension PlatformClient {
 
             dimension = try container.decode([String: Any].self, forKey: .dimension)
 
+            attributes = try container.decode([String: Any].self, forKey: .attributes)
+
             weight = try container.decode([String: Any].self, forKey: .weight)
 
             brandId = try container.decode(Int.self, forKey: .brandId)
 
             quantity = try container.decode(Int.self, forKey: .quantity)
-
-            attributes = try container.decode([String: Any].self, forKey: .attributes)
 
             id = try container.decode(String.self, forKey: .id)
         }
@@ -79,13 +79,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(dimension, forKey: .dimension)
 
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
+
             try? container.encodeIfPresent(weight, forKey: .weight)
 
             try? container.encodeIfPresent(brandId, forKey: .brandId)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
-
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
 
             try? container.encodeIfPresent(id, forKey: .id)
         }
