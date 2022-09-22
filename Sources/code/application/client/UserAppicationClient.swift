@@ -25,6 +25,8 @@ public extension ApplicationClient {
 
             ulrs["sendResetPasswordEmail"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password/reset")
 
+            ulrs["sendResetPasswordMobile"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password/mobile/reset")
+
             ulrs["forgotPassword"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password/reset/forgot")
 
             ulrs["sendResetToken"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password/reset/token")
@@ -41,6 +43,8 @@ public extension ApplicationClient {
 
             ulrs["updatePassword"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/password")
 
+            ulrs["deleteUser"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/delete")
+
             ulrs["logout"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/logout")
 
             ulrs["sendOTPOnMobile"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/otp/mobile/send")
@@ -54,6 +58,8 @@ public extension ApplicationClient {
             ulrs["getLoggedInUser"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/session")
 
             ulrs["getListOfActiveSessions"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/sessions")
+
+            ulrs["getPlatformConfig"] = config.domain.appendAsPath("/service/application/user/platform/v1.0/config")
 
             ulrs["updateProfile"] = config.domain.appendAsPath("/service/application/user/profile/v1.0/detail")
 
@@ -453,6 +459,53 @@ public extension ApplicationClient {
 
         /**
          *
+         * Summary: Reset Password
+         * Description: Use this API to reset a password using the link sent on mobile.
+         **/
+        public func sendResetPasswordMobile(
+            platform: String?,
+            body: SendResetPasswordMobileRequestSchema,
+            onResponse: @escaping (_ response: ResetPasswordSuccess?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+
+            let fullUrl = relativeUrls["sendResetPasswordMobile"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResetPasswordSuccess.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
          * Summary: Forgot Password
          * Description: Use this API to reset a password using the code sent on email or SMS.
          **/
@@ -779,6 +832,46 @@ public extension ApplicationClient {
 
         /**
          *
+         * Summary: verify otp and delete user
+         * Description: verify otp and delete user
+         **/
+        public func deleteUser(
+            body: DeleteApplicationUserRequestSchema,
+            onResponse: @escaping (_ response: DeleteUserSuccess?, _ error: FDKError?) -> Void
+        ) {
+            let fullUrl = relativeUrls["deleteUser"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(DeleteUserSuccess.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
          * Summary: Logs out currently logged in user
          * Description: Use this API to check to logout a user from the app.
          **/
@@ -1070,6 +1163,53 @@ public extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(SessionListSuccess.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Get platform configurations
+         * Description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
+         **/
+        public func getPlatformConfig(
+            name: String?,
+
+            onResponse: @escaping (_ response: PlatformSchema?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = name {
+                xQuery["name"] = value
+            }
+
+            let fullUrl = relativeUrls["getPlatformConfig"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(PlatformSchema.self, from: data)
 
                         onResponse(response, nil)
                     } else {

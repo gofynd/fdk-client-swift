@@ -3,32 +3,32 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ArticleAssignment1
-         Used By: Catalog
+         Model: ReasonCodesResponse
+         Used By: Order
      */
 
-    class ArticleAssignment1: Codable {
-        public var strategy: String?
+    class ReasonCodesResponse: Codable {
+        public var items: [ReasonCodes]?
 
-        public var level: String?
+        public var page: Page?
 
         public enum CodingKeys: String, CodingKey {
-            case strategy
+            case items
 
-            case level
+            case page
         }
 
-        public init(level: String? = nil, strategy: String? = nil) {
-            self.strategy = strategy
+        public init(items: [ReasonCodes]? = nil, page: Page? = nil) {
+            self.items = items
 
-            self.level = level
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                strategy = try container.decode(String.self, forKey: .strategy)
+                items = try container.decode([ReasonCodes].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                level = try container.decode(String.self, forKey: .level)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(strategy, forKey: .strategy)
+            try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(level, forKey: .level)
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }

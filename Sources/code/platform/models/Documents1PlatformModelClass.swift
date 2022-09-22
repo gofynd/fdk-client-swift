@@ -10,30 +10,30 @@ public extension PlatformClient {
     class Documents1: Codable {
         public var pan: Document
 
-        public var cin: Document?
+        public var digitalSignature: Document?
 
         public var gst: Document
 
-        public var digitalSignature: Document?
+        public var cin: Document?
 
         public enum CodingKeys: String, CodingKey {
             case pan
 
-            case cin
+            case digitalSignature = "digital_signature"
 
             case gst
 
-            case digitalSignature = "digital_signature"
+            case cin
         }
 
         public init(cin: Document? = nil, digitalSignature: Document? = nil, gst: Document, pan: Document) {
             self.pan = pan
 
-            self.cin = cin
+            self.digitalSignature = digitalSignature
 
             self.gst = gst
 
-            self.digitalSignature = digitalSignature
+            self.cin = cin
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             pan = try container.decode(Document.self, forKey: .pan)
 
             do {
-                cin = try container.decode(Document.self, forKey: .cin)
+                digitalSignature = try container.decode(Document.self, forKey: .digitalSignature)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,7 +52,7 @@ public extension PlatformClient {
             gst = try container.decode(Document.self, forKey: .gst)
 
             do {
-                digitalSignature = try container.decode(Document.self, forKey: .digitalSignature)
+                cin = try container.decode(Document.self, forKey: .cin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,11 +65,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(pan, forKey: .pan)
 
-            try? container.encodeIfPresent(cin, forKey: .cin)
+            try? container.encodeIfPresent(digitalSignature, forKey: .digitalSignature)
 
             try? container.encodeIfPresent(gst, forKey: .gst)
 
-            try? container.encodeIfPresent(digitalSignature, forKey: .digitalSignature)
+            try? container.encodeIfPresent(cin, forKey: .cin)
         }
     }
 }

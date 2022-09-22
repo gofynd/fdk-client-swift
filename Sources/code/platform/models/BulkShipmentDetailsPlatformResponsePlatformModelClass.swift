@@ -10,7 +10,7 @@ public extension PlatformClient {
     class BulkShipmentDetailsPlatformResponse: Codable {
         public var items: [Shipment]
 
-        public var page: Page
+        public var page: Page1
 
         public enum CodingKeys: String, CodingKey {
             case items
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [Shipment], page: Page) {
+        public init(items: [Shipment], page: Page1) {
             self.items = items
 
             self.page = page
@@ -29,7 +29,7 @@ public extension PlatformClient {
 
             items = try container.decode([Shipment].self, forKey: .items)
 
-            page = try container.decode(Page.self, forKey: .page)
+            page = try container.decode(Page1.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {

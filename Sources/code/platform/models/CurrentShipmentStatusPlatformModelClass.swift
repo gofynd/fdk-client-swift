@@ -10,13 +10,13 @@ public extension PlatformClient {
     class CurrentShipmentStatus: Codable {
         public var bagList: [String]
 
-        public var currentShipmentStatus: String
-
         public var status: String
 
-        public var ssId: Int
+        public var currentShipmentStatus: String
 
         public var createdAt: Int
+
+        public var ssId: Int
 
         public var shipmentId: String
 
@@ -25,13 +25,13 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case bagList = "bag_list"
 
-            case currentShipmentStatus = "current_shipment_status"
-
             case status
 
-            case ssId = "ss_id"
+            case currentShipmentStatus = "current_shipment_status"
 
             case createdAt = "created_at"
+
+            case ssId = "ss_id"
 
             case shipmentId = "shipment_id"
 
@@ -41,13 +41,13 @@ public extension PlatformClient {
         public init(bagList: [String], createdAt: Int, currentShipmentStatus: String, shipmentId: String, ssId: Int, status: String, statusCreatedAt: String) {
             self.bagList = bagList
 
-            self.currentShipmentStatus = currentShipmentStatus
-
             self.status = status
 
-            self.ssId = ssId
+            self.currentShipmentStatus = currentShipmentStatus
 
             self.createdAt = createdAt
+
+            self.ssId = ssId
 
             self.shipmentId = shipmentId
 
@@ -59,13 +59,13 @@ public extension PlatformClient {
 
             bagList = try container.decode([String].self, forKey: .bagList)
 
-            currentShipmentStatus = try container.decode(String.self, forKey: .currentShipmentStatus)
-
             status = try container.decode(String.self, forKey: .status)
 
-            ssId = try container.decode(Int.self, forKey: .ssId)
+            currentShipmentStatus = try container.decode(String.self, forKey: .currentShipmentStatus)
 
             createdAt = try container.decode(Int.self, forKey: .createdAt)
+
+            ssId = try container.decode(Int.self, forKey: .ssId)
 
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
@@ -77,13 +77,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(bagList, forKey: .bagList)
 
-            try? container.encodeIfPresent(currentShipmentStatus, forKey: .currentShipmentStatus)
-
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(ssId, forKey: .ssId)
+            try? container.encodeIfPresent(currentShipmentStatus, forKey: .currentShipmentStatus)
 
             try? container.encode(createdAt, forKey: .createdAt)
+
+            try? container.encodeIfPresent(ssId, forKey: .ssId)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 

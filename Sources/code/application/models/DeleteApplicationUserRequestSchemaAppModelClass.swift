@@ -1,52 +1,51 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension ApplicationClient {
     /*
-         Model: CollectionSchedule
-         Used By: Catalog
+         Model: DeleteApplicationUserRequestSchema
+         Used By: User
      */
+    class DeleteApplicationUserRequestSchema: Codable {
+        public var userId: String?
 
-    class CollectionSchedule: Codable {
-        public var nextSchedule: [NextSchedule]?
+        public var reason: String?
 
-        public var duration: Int?
+        public var reasonId: String?
 
-        public var end: String?
+        public var requestId: String?
 
-        public var cron: String?
-
-        public var start: String?
+        public var otp: String?
 
         public enum CodingKeys: String, CodingKey {
-            case nextSchedule = "next_schedule"
+            case userId = "user_id"
 
-            case duration
+            case reason
 
-            case end
+            case reasonId = "reason_id"
 
-            case cron
+            case requestId = "request_id"
 
-            case start
+            case otp
         }
 
-        public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
-            self.nextSchedule = nextSchedule
+        public init(otp: String? = nil, reason: String? = nil, reasonId: String? = nil, requestId: String? = nil, userId: String? = nil) {
+            self.userId = userId
 
-            self.duration = duration
+            self.reason = reason
 
-            self.end = end
+            self.reasonId = reasonId
 
-            self.cron = cron
+            self.requestId = requestId
 
-            self.start = start
+            self.otp = otp
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                nextSchedule = try container.decode([NextSchedule].self, forKey: .nextSchedule)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +53,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                duration = try container.decode(Int.self, forKey: .duration)
+                reason = try container.decode(String.self, forKey: .reason)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +61,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                end = try container.decode(String.self, forKey: .end)
+                reasonId = try container.decode(String.self, forKey: .reasonId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +69,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                cron = try container.decode(String.self, forKey: .cron)
+                requestId = try container.decode(String.self, forKey: .requestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +77,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                start = try container.decode(String.self, forKey: .start)
+                otp = try container.decode(String.self, forKey: .otp)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,15 +88,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encode(duration, forKey: .duration)
+            try? container.encodeIfPresent(reason, forKey: .reason)
 
-            try? container.encode(end, forKey: .end)
+            try? container.encodeIfPresent(reasonId, forKey: .reasonId)
 
-            try? container.encode(cron, forKey: .cron)
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
 
-            try? container.encodeIfPresent(start, forKey: .start)
+            try? container.encodeIfPresent(otp, forKey: .otp)
         }
     }
 }

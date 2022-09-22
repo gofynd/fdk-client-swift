@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var affiliateStoreIdMapping: [AffiliateStoreIdMapping]
 
+        public var affiliate: Affiliate
+
         public var bagEndState: String?
 
         public var articleLookup: String?
-
-        public var affiliate: Affiliate
 
         public var createUser: Bool?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case affiliateStoreIdMapping = "affiliate_store_id_mapping"
 
+            case affiliate
+
             case bagEndState = "bag_end_state"
 
             case articleLookup = "article_lookup"
-
-            case affiliate
 
             case createUser = "create_user"
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.affiliateStoreIdMapping = affiliateStoreIdMapping
 
+            self.affiliate = affiliate
+
             self.bagEndState = bagEndState
 
             self.articleLookup = articleLookup
-
-            self.affiliate = affiliate
 
             self.createUser = createUser
         }
@@ -61,6 +61,8 @@ public extension PlatformClient {
 
             affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
 
+            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
+
             do {
                 bagEndState = try container.decode(String.self, forKey: .bagEndState)
 
@@ -76,8 +78,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
 
             do {
                 createUser = try container.decode(Bool.self, forKey: .createUser)
@@ -95,11 +95,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(affiliateStoreIdMapping, forKey: .affiliateStoreIdMapping)
 
+            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
+
             try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
 
             try? container.encodeIfPresent(articleLookup, forKey: .articleLookup)
-
-            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
 
             try? container.encodeIfPresent(createUser, forKey: .createUser)
         }
