@@ -8,42 +8,66 @@ public extension PlatformClient {
      */
 
     class Rule: Codable {
+        public var min: Double?
+
+        public var max: Double?
+
+        public var discountQty: Double?
+
         public var value: Double?
 
         public var key: Double?
 
-        public var min: Double?
-
-        public var discountQty: Double?
-
-        public var max: Double?
-
         public enum CodingKeys: String, CodingKey {
-            case value
-
-            case key
-
             case min
+
+            case max
 
             case discountQty = "discount_qty"
 
-            case max
+            case value
+
+            case key
         }
 
         public init(discountQty: Double? = nil, key: Double? = nil, max: Double? = nil, min: Double? = nil, value: Double? = nil) {
-            self.value = value
-
-            self.key = key
-
             self.min = min
+
+            self.max = max
 
             self.discountQty = discountQty
 
-            self.max = max
+            self.value = value
+
+            self.key = key
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                min = try container.decode(Double.self, forKey: .min)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                max = try container.decode(Double.self, forKey: .max)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                discountQty = try container.decode(Double.self, forKey: .discountQty)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 value = try container.decode(Double.self, forKey: .value)
@@ -60,44 +84,20 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                min = try container.decode(Double.self, forKey: .min)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                discountQty = try container.decode(Double.self, forKey: .discountQty)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                max = try container.decode(Double.self, forKey: .max)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(min, forKey: .min)
+
+            try? container.encodeIfPresent(max, forKey: .max)
 
             try? container.encodeIfPresent(discountQty, forKey: .discountQty)
 
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(key, forKey: .key)
         }
     }
 }

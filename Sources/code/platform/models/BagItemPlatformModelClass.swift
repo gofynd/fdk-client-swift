@@ -40,6 +40,8 @@ public extension PlatformClient {
 
         public var lastUpdatedAt: String?
 
+        public var quantity: Int?
+
         public enum CodingKeys: String, CodingKey {
             case id
 
@@ -72,9 +74,11 @@ public extension PlatformClient {
             case brand
 
             case lastUpdatedAt = "last_updated_at"
+
+            case quantity
         }
 
-        public init(attributes: BagItemAttributes? = nil, brand: String? = nil, brandId: Int? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, code: String? = nil, id: Int? = nil, image: [String]? = nil, l1Category: [String]? = nil, l2Category: [String]? = nil, l3Category: Int? = nil, l3CategoryName: String? = nil, lastUpdatedAt: String? = nil, name: String? = nil, size: String? = nil, slugKey: String? = nil) {
+        public init(attributes: BagItemAttributes? = nil, brand: String? = nil, brandId: Int? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, code: String? = nil, id: Int? = nil, image: [String]? = nil, l1Category: [String]? = nil, l2Category: [String]? = nil, l3Category: Int? = nil, l3CategoryName: String? = nil, lastUpdatedAt: String? = nil, name: String? = nil, quantity: Int? = nil, size: String? = nil, slugKey: String? = nil) {
             self.id = id
 
             self.size = size
@@ -106,6 +110,8 @@ public extension PlatformClient {
             self.brand = brand
 
             self.lastUpdatedAt = lastUpdatedAt
+
+            self.quantity = quantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -238,6 +244,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -274,6 +288,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(brand, forKey: .brand)
 
             try? container.encodeIfPresent(lastUpdatedAt, forKey: .lastUpdatedAt)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 }
