@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var slug: String?
 
-        public var name: String?
-
         public var uid: Int?
+
+        public var name: String?
 
         public var childs: [Child]?
 
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case slug
 
-            case name
-
             case uid
+
+            case name
 
             case childs
 
@@ -38,9 +38,9 @@ public extension ApplicationClient {
 
             self.slug = slug
 
-            self.name = name
-
             self.uid = uid
+
+            self.name = name
 
             self.childs = childs
 
@@ -67,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,9 +106,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 

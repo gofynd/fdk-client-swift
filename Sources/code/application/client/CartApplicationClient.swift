@@ -80,7 +80,7 @@ public extension ApplicationClient {
             i: Bool?,
             b: Bool?,
             assignCardId: Int?,
-            buyNow: Bool?,
+            areaCode: String?,
 
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -102,8 +102,8 @@ public extension ApplicationClient {
                 xQuery["assign_card_id"] = value
             }
 
-            if let value = buyNow {
-                xQuery["buy_now"] = value
+            if let value = areaCode {
+                xQuery["area_code"] = value
             }
 
             let fullUrl = relativeUrls["getCart"] ?? ""
@@ -192,7 +192,7 @@ public extension ApplicationClient {
         public func addItems(
             i: Bool?,
             b: Bool?,
-            buyNow: Bool?,
+            areaCode: String?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -206,8 +206,8 @@ public extension ApplicationClient {
                 xQuery["b"] = value
             }
 
-            if let value = buyNow {
-                xQuery["buy_now"] = value
+            if let value = areaCode {
+                xQuery["area_code"] = value
             }
 
             let fullUrl = relativeUrls["addItems"] ?? ""
@@ -250,7 +250,7 @@ public extension ApplicationClient {
             id: String?,
             i: Bool?,
             b: Bool?,
-            buyNow: Bool?,
+            areaCode: String?,
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -268,8 +268,8 @@ public extension ApplicationClient {
                 xQuery["b"] = value
             }
 
-            if let value = buyNow {
-                xQuery["buy_now"] = value
+            if let value = areaCode {
+                xQuery["area_code"] = value
             }
 
             let fullUrl = relativeUrls["updateCart"] ?? ""
@@ -310,7 +310,6 @@ public extension ApplicationClient {
          **/
         public func getItemCount(
             id: String?,
-            buyNow: Bool?,
 
             onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
         ) {
@@ -318,10 +317,6 @@ public extension ApplicationClient {
 
             if let value = id {
                 xQuery["id"] = value
-            }
-
-            if let value = buyNow {
-                xQuery["buy_now"] = value
             }
 
             let fullUrl = relativeUrls["getItemCount"] ?? ""
@@ -362,7 +357,6 @@ public extension ApplicationClient {
          **/
         public func getCoupons(
             id: String?,
-            buyNow: Bool?,
 
             onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
         ) {
@@ -370,10 +364,6 @@ public extension ApplicationClient {
 
             if let value = id {
                 xQuery["id"] = value
-            }
-
-            if let value = buyNow {
-                xQuery["buy_now"] = value
             }
 
             let fullUrl = relativeUrls["getCoupons"] ?? ""
@@ -417,7 +407,6 @@ public extension ApplicationClient {
             b: Bool?,
             p: Bool?,
             id: String?,
-            buyNow: Bool?,
             body: ApplyCouponRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -437,10 +426,6 @@ public extension ApplicationClient {
 
             if let value = id {
                 xQuery["id"] = value
-            }
-
-            if let value = buyNow {
-                xQuery["buy_now"] = value
             }
 
             let fullUrl = relativeUrls["applyCoupon"] ?? ""
@@ -481,7 +466,6 @@ public extension ApplicationClient {
          **/
         public func removeCoupon(
             id: String?,
-            buyNow: Bool?,
 
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -489,10 +473,6 @@ public extension ApplicationClient {
 
             if let value = id {
                 xQuery["id"] = value
-            }
-
-            if let value = buyNow {
-                xQuery["buy_now"] = value
             }
 
             let fullUrl = relativeUrls["removeCoupon"] ?? ""
@@ -597,7 +577,6 @@ public extension ApplicationClient {
             id: String?,
             i: Bool?,
             b: Bool?,
-            buyNow: Bool?,
             body: RewardPointRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -613,10 +592,6 @@ public extension ApplicationClient {
 
             if let value = b {
                 xQuery["b"] = value
-            }
-
-            if let value = buyNow {
-                xQuery["buy_now"] = value
             }
 
             let fullUrl = relativeUrls["applyRewardPoints"] ?? ""
@@ -657,7 +632,6 @@ public extension ApplicationClient {
          **/
         public func getAddresses(
             cartId: String?,
-            buyNow: Bool?,
             mobileNo: String?,
             checkoutMode: String?,
             tags: String?,
@@ -669,10 +643,6 @@ public extension ApplicationClient {
 
             if let value = cartId {
                 xQuery["cart_id"] = value
-            }
-
-            if let value = buyNow {
-                xQuery["buy_now"] = value
             }
 
             if let value = mobileNo {
@@ -770,7 +740,6 @@ public extension ApplicationClient {
         public func getAddressById(
             id: String,
             cartId: String?,
-            buyNow: Bool?,
             mobileNo: String?,
             checkoutMode: String?,
             tags: String?,
@@ -782,10 +751,6 @@ public extension ApplicationClient {
 
             if let value = cartId {
                 xQuery["cart_id"] = value
-            }
-
-            if let value = buyNow {
-                xQuery["buy_now"] = value
             }
 
             if let value = mobileNo {
@@ -930,7 +895,6 @@ public extension ApplicationClient {
          **/
         public func selectAddress(
             cartId: String?,
-            buyNow: Bool?,
             i: Bool?,
             b: Bool?,
             body: SelectCartAddressRequest,
@@ -940,10 +904,6 @@ public extension ApplicationClient {
 
             if let value = cartId {
                 xQuery["cart_id"] = value
-            }
-
-            if let value = buyNow {
-                xQuery["buy_now"] = value
             }
 
             if let value = i {
@@ -992,7 +952,6 @@ public extension ApplicationClient {
          **/
         public func selectPaymentMode(
             id: String?,
-            buyNow: Bool?,
             body: UpdateCartPaymentRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1000,10 +959,6 @@ public extension ApplicationClient {
 
             if let value = id {
                 xQuery["id"] = value
-            }
-
-            if let value = buyNow {
-                xQuery["buy_now"] = value
             }
 
             let fullUrl = relativeUrls["selectPaymentMode"] ?? ""
@@ -1044,7 +999,6 @@ public extension ApplicationClient {
          **/
         public func validateCouponForPayment(
             id: String?,
-            buyNow: Bool?,
             addressId: String?,
             paymentMode: String?,
             paymentIdentifier: String?,
@@ -1057,10 +1011,6 @@ public extension ApplicationClient {
 
             if let value = id {
                 xQuery["id"] = value
-            }
-
-            if let value = buyNow {
-                xQuery["buy_now"] = value
             }
 
             if let value = addressId {
@@ -1122,9 +1072,9 @@ public extension ApplicationClient {
         public func getShipments(
             p: Bool?,
             id: String?,
-            buyNow: Bool?,
             addressId: String?,
             areaCode: String?,
+            orderType: String?,
 
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1138,16 +1088,16 @@ public extension ApplicationClient {
                 xQuery["id"] = value
             }
 
-            if let value = buyNow {
-                xQuery["buy_now"] = value
-            }
-
             if let value = addressId {
                 xQuery["address_id"] = value
             }
 
             if let value = areaCode {
                 xQuery["area_code"] = value
+            }
+
+            if let value = orderType {
+                xQuery["order_type"] = value
             }
 
             let fullUrl = relativeUrls["getShipments"] ?? ""
@@ -1187,23 +1137,16 @@ public extension ApplicationClient {
          * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
          **/
         public func checkoutCart(
-            buyNow: Bool?,
             body: CartCheckoutDetailRequest,
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = buyNow {
-                xQuery["buy_now"] = value
-            }
-
             let fullUrl = relativeUrls["checkoutCart"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
                 method: "post",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders: [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -1235,7 +1178,6 @@ public extension ApplicationClient {
          **/
         public func updateCartMeta(
             id: String?,
-            buyNow: Bool?,
             body: CartMetaRequest,
             onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1243,10 +1185,6 @@ public extension ApplicationClient {
 
             if let value = id {
                 xQuery["id"] = value
-            }
-
-            if let value = buyNow {
-                xQuery["buy_now"] = value
             }
 
             let fullUrl = relativeUrls["updateCartMeta"] ?? ""
