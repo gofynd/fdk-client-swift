@@ -226,8 +226,8 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | String? |  yes  |  |
  | quantity | Int? |  yes  |  |
+ | identifier | String? |  yes  |  |
 
 ---
 
@@ -238,10 +238,10 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | storeInvoiceId | String? |  yes  |  |
- | dataUpdate | [String: Any]? |  yes  |  |
  | products | [[ProductDetail](#ProductDetail)]? |  yes  |  |
+ | storeInvoiceId | String? |  yes  |  |
  | reason | [Int]? |  yes  |  |
+ | dataUpdate | [String: Any]? |  yes  |  |
 
 ---
 
@@ -263,9 +263,9 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | String |  no  |  |
- | shipments | [ShipmentDetail](#ShipmentDetail)? |  yes  |  |
  | excludeBagsNextState | String |  no  |  |
+ | shipments | [ShipmentDetail](#ShipmentDetail)? |  yes  |  |
+ | status | String |  no  |  |
 
 ---
 
@@ -276,9 +276,9 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statuses | [Statuses](#Statuses)? |  yes  |  |
  | task | Bool? |  yes  |  |
  | forceTransition | Bool? |  yes  |  |
+ | statuses | [Statuses](#Statuses)? |  yes  |  |
 
 ---
 
@@ -313,15 +313,15 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | l3Detail | String? |  yes  |  |
- | ticketUrl | String? |  yes  |  |
- | l2Detail | String? |  yes  |  |
- | ticketId | String? |  yes  |  |
  | l1Detail | String? |  yes  |  |
- | message | String |  no  |  |
- | type | String |  no  |  |
- | user | String |  no  |  |
+ | ticketId | String? |  yes  |  |
+ | ticketUrl | String? |  yes  |  |
  | createdat | String |  no  |  |
+ | l3Detail | String? |  yes  |  |
+ | message | String |  no  |  |
+ | user | String |  no  |  |
+ | type | String |  no  |  |
+ | l2Detail | String? |  yes  |  |
 
 ---
 
