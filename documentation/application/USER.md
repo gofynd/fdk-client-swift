@@ -31,6 +31,7 @@ Authentication Service
 * [verifyEmailOTP](#verifyemailotp)
 * [getLoggedInUser](#getloggedinuser)
 * [getListOfActiveSessions](#getlistofactivesessions)
+* [getPlatformConfig](#getplatformconfig)
 * [updateProfile](#updateprofile)
 * [addMobileNumber](#addmobilenumber)
 * [deleteMobileNumber](#deletemobilenumber)
@@ -1906,6 +1907,141 @@ Success. Returns a JSON object containing an array of sessions. Refer `SessionLi
     "session_1",
     "session_2"
   ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPlatformConfig
+Get platform configurations
+
+
+
+
+```swift
+user.getPlatformConfig(name: name) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| name | String? | no | Name of the application, e.g. Fynd |  
+
+
+
+Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
+
+*Returned Response:*
+
+
+
+
+[PlatformSchema](#PlatformSchema)
+
+Success. Returns a JSON object containing the all the platform configurations. Refer `PlatformSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "active": true,
+  "mobile_image": null,
+  "desktop_image": null,
+  "social": {
+    "facebook": true,
+    "google": true,
+    "account_kit": true
+  },
+  "flash_card": {
+    "text": "",
+    "text_color": "#FFFFFF",
+    "background_color": "#EF5350"
+  },
+  "register": true,
+  "forgot_password": true,
+  "login": {
+    "password": true,
+    "otp": true
+  },
+  "skip_captcha": false,
+  "display": "Fynd",
+  "subtext": "Login to Fynd",
+  "name": "Fynd",
+  "meta": {},
+  "required_fields": {
+    "email": {
+      "is_required": false,
+      "level": "hard"
+    },
+    "mobile": {
+      "is_required": true,
+      "level": "hard"
+    }
+  },
+  "register_required_fields": {
+    "email": {
+      "is_required": false,
+      "level": "hard"
+    },
+    "mobile": {
+      "is_required": true,
+      "level": "hard"
+    }
+  },
+  "skip_login": false,
+  "look_and_feel": {
+    "background_color": "#F5F5F5",
+    "card_position": "center"
+  },
+  "social_tokens": {
+    "google": {
+      "appId": "token_123"
+    },
+    "facebook": {
+      "appId": "2033146826724884"
+    },
+    "account_kit": {
+      "appId": "548529975557631"
+    }
+  },
+  "delete_account_reasons": [
+    {
+      "reason_text": "test",
+      "reason_id": "123",
+      "show_text_area": true
+    }
+  ],
+  "delete_account_day": 7,
+  "delete_account_consent": {
+    "consent_text": ""
+  },
+  "session_timeout": {
+    "duration": 30,
+    "type": "Days"
+  },
+  "_id": "5e04a5e5220bc15839ad9bc0",
+  "created_at": "2019-12-26T12:21:57.878Z",
+  "updated_at": "2020-08-13T14:31:09.878Z",
+  "__v": 0
 }
 ```
 </details>

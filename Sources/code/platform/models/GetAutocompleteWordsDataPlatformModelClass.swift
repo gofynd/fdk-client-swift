@@ -8,22 +8,22 @@ public extension PlatformClient {
      */
 
     class GetAutocompleteWordsData: Codable {
-        public var customJson: [String: Any]?
+        public var appId: String?
 
         public var results: [[String: Any]]?
 
-        public var appId: String?
+        public var customJson: [String: Any]?
 
         public var words: [String]?
 
         public var uid: String?
 
         public enum CodingKeys: String, CodingKey {
-            case customJson = "_custom_json"
+            case appId = "app_id"
 
             case results
 
-            case appId = "app_id"
+            case customJson = "_custom_json"
 
             case words
 
@@ -31,11 +31,11 @@ public extension PlatformClient {
         }
 
         public init(appId: String? = nil, results: [[String: Any]]? = nil, uid: String? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
-            self.customJson = customJson
+            self.appId = appId
 
             self.results = results
 
-            self.appId = appId
+            self.customJson = customJson
 
             self.words = words
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                appId = try container.decode(String.self, forKey: .appId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                appId = try container.decode(String.self, forKey: .appId)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,11 +89,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(results, forKey: .results)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(words, forKey: .words)
 
