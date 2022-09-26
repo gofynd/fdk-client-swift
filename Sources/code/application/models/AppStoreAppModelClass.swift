@@ -9,48 +9,48 @@ public extension ApplicationClient {
     class AppStore: Codable {
         public var manager: StoreManagerSerializer?
 
-        public var company: CompanyStore?
+        public var address: StoreAddressSerializer?
 
         public var departments: [StoreDepartments]?
 
-        public var name: String?
+        public var contactNumbers: [SellerPhoneNumber]?
+
+        public var company: CompanyStore?
 
         public var uid: Int?
 
-        public var contactNumbers: [SellerPhoneNumber]?
-
-        public var address: StoreAddressSerializer?
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case manager
 
-            case company
+            case address
 
             case departments
 
-            case name
+            case contactNumbers = "contact_numbers"
+
+            case company
 
             case uid
 
-            case contactNumbers = "contact_numbers"
-
-            case address
+            case name
         }
 
         public init(address: StoreAddressSerializer? = nil, company: CompanyStore? = nil, contactNumbers: [SellerPhoneNumber]? = nil, departments: [StoreDepartments]? = nil, manager: StoreManagerSerializer? = nil, name: String? = nil, uid: Int? = nil) {
             self.manager = manager
 
-            self.company = company
+            self.address = address
 
             self.departments = departments
 
-            self.name = name
+            self.contactNumbers = contactNumbers
+
+            self.company = company
 
             self.uid = uid
 
-            self.contactNumbers = contactNumbers
-
-            self.address = address
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,7 +65,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                company = try container.decode(CompanyStore.self, forKey: .company)
+                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                contactNumbers = try container.decode([SellerPhoneNumber].self, forKey: .contactNumbers)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                company = try container.decode(CompanyStore.self, forKey: .company)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,15 +105,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                contactNumbers = try container.decode([SellerPhoneNumber].self, forKey: .contactNumbers)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,17 +118,17 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(manager, forKey: .manager)
 
-            try? container.encodeIfPresent(company, forKey: .company)
+            try? container.encodeIfPresent(address, forKey: .address)
 
             try? container.encodeIfPresent(departments, forKey: .departments)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
+
+            try? container.encodeIfPresent(company, forKey: .company)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
-
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
