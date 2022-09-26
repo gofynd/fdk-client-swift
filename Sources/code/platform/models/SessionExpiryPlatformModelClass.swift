@@ -3,32 +3,32 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: GetAppCatalogConfiguration
-         Used By: Catalog
+         Model: SessionExpiry
+         Used By: User
      */
 
-    class GetAppCatalogConfiguration: Codable {
-        public var isDefault: Bool?
+    class SessionExpiry: Codable {
+        public var duration: Int?
 
-        public var data: AppCatalogConfiguration?
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
-            case isDefault = "is_default"
+            case duration
 
-            case data
+            case type
         }
 
-        public init(data: AppCatalogConfiguration? = nil, isDefault: Bool? = nil) {
-            self.isDefault = isDefault
+        public init(duration: Int? = nil, type: String? = nil) {
+            self.duration = duration
 
-            self.data = data
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                duration = try container.decode(Int.self, forKey: .duration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                data = try container.decode(AppCatalogConfiguration.self, forKey: .data)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+            try? container.encodeIfPresent(duration, forKey: .duration)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
