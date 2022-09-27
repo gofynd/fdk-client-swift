@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class Child: Codable {
         public var slug: String?
 
-        public var customJson: [String: Any]?
+        public var banners: ImageUrls?
 
-        public var name: String?
+        public var customJson: [String: Any]?
 
         public var action: ProductListingAction?
 
@@ -19,14 +19,14 @@ public extension ApplicationClient {
 
         public var childs: [SecondLevelChild]?
 
-        public var banners: ImageUrls?
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case slug
 
-            case customJson = "_custom_json"
+            case banners
 
-            case name
+            case customJson = "_custom_json"
 
             case action
 
@@ -34,15 +34,15 @@ public extension ApplicationClient {
 
             case childs
 
-            case banners
+            case name
         }
 
         public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [SecondLevelChild]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             self.slug = slug
 
-            self.customJson = customJson
+            self.banners = banners
 
-            self.name = name
+            self.customJson = customJson
 
             self.action = action
 
@@ -50,7 +50,7 @@ public extension ApplicationClient {
 
             self.childs = childs
 
-            self.banners = banners
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,7 +65,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                banners = try container.decode(ImageUrls.self, forKey: .banners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,7 +73,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                banners = try container.decode(ImageUrls.self, forKey: .banners)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,9 +118,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(action, forKey: .action)
 
@@ -128,7 +128,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 
-            try? container.encodeIfPresent(banners, forKey: .banners)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
