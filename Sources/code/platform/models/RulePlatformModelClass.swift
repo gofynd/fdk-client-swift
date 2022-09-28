@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var value: Double?
 
-        public var key: Double?
-
         public var min: Double?
+
+        public var key: Double?
 
         public var discountQty: Double?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case value
 
-            case key
-
             case min
+
+            case key
 
             case discountQty = "discount_qty"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.value = value
 
-            self.key = key
-
             self.min = min
+
+            self.key = key
 
             self.discountQty = discountQty
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                key = try container.decode(Double.self, forKey: .key)
+                min = try container.decode(Double.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
+                key = try container.decode(Double.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(min, forKey: .min)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(discountQty, forKey: .discountQty)
         }
