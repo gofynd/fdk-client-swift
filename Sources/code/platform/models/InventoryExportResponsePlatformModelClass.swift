@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var status: String?
 
-        public var sellerId: Int
-
         public var triggerOn: String?
+
+        public var sellerId: Int
 
         public var taskId: String
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case status
 
-            case sellerId = "seller_id"
-
             case triggerOn = "trigger_on"
+
+            case sellerId = "seller_id"
 
             case taskId = "task_id"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.status = status
 
-            self.sellerId = sellerId
-
             self.triggerOn = triggerOn
+
+            self.sellerId = sellerId
 
             self.taskId = taskId
         }
@@ -61,8 +61,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            sellerId = try container.decode(Int.self, forKey: .sellerId)
-
             do {
                 triggerOn = try container.decode(String.self, forKey: .triggerOn)
 
@@ -70,6 +68,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            sellerId = try container.decode(Int.self, forKey: .sellerId)
 
             taskId = try container.decode(String.self, forKey: .taskId)
         }
@@ -81,9 +81,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
-
             try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
+
+            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
             try? container.encodeIfPresent(taskId, forKey: .taskId)
         }
