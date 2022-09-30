@@ -7,51 +7,51 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class LadderPriceOffer: Codable {
-        public var promotionGroup: String?
+        public var validTill: String?
 
-        public var description: String?
+        public var promotionGroup: String?
 
         public var offerText: String?
 
         public var id: String?
 
-        public var validTill: String?
-
         public var offerPrices: [LadderOfferItem]?
 
-        public enum CodingKeys: String, CodingKey {
-            case promotionGroup = "promotion_group"
+        public var description: String?
 
-            case description
+        public enum CodingKeys: String, CodingKey {
+            case validTill = "valid_till"
+
+            case promotionGroup = "promotion_group"
 
             case offerText = "offer_text"
 
             case id
 
-            case validTill = "valid_till"
-
             case offerPrices = "offer_prices"
+
+            case description
         }
 
         public init(description: String? = nil, id: String? = nil, offerPrices: [LadderOfferItem]? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
-            self.promotionGroup = promotionGroup
+            self.validTill = validTill
 
-            self.description = description
+            self.promotionGroup = promotionGroup
 
             self.offerText = offerText
 
             self.id = id
 
-            self.validTill = validTill
-
             self.offerPrices = offerPrices
+
+            self.description = description
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
+                validTill = try container.decode(String.self, forKey: .validTill)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -59,7 +59,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                validTill = try container.decode(String.self, forKey: .validTill)
+                offerPrices = try container.decode([LadderOfferItem].self, forKey: .offerPrices)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                offerPrices = try container.decode([LadderOfferItem].self, forKey: .offerPrices)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,17 +102,17 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
+            try? container.encodeIfPresent(validTill, forKey: .validTill)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(validTill, forKey: .validTill)
-
             try? container.encodeIfPresent(offerPrices, forKey: .offerPrices)
+
+            try? container.encodeIfPresent(description, forKey: .description)
         }
     }
 }

@@ -12,15 +12,15 @@ public extension PlatformClient {
 
         public var isDefault: Bool
 
-        public var name: String?
-
-        public var key: String
-
         public var priority: Int
 
         public var appId: String
 
+        public var name: String?
+
         public var isActive: Bool
+
+        public var key: String
 
         public var defaultKey: String
 
@@ -29,15 +29,15 @@ public extension PlatformClient {
 
             case isDefault = "is_default"
 
-            case name
-
-            case key
-
             case priority
 
             case appId = "app_id"
 
+            case name
+
             case isActive = "is_active"
+
+            case key
 
             case defaultKey = "default_key"
         }
@@ -47,15 +47,15 @@ public extension PlatformClient {
 
             self.isDefault = isDefault
 
-            self.name = name
-
-            self.key = key
-
             self.priority = priority
 
             self.appId = appId
 
+            self.name = name
+
             self.isActive = isActive
+
+            self.key = key
 
             self.defaultKey = defaultKey
         }
@@ -73,6 +73,10 @@ public extension PlatformClient {
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
+            priority = try container.decode(Int.self, forKey: .priority)
+
+            appId = try container.decode(String.self, forKey: .appId)
+
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -81,13 +85,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            key = try container.decode(String.self, forKey: .key)
-
-            priority = try container.decode(Int.self, forKey: .priority)
-
-            appId = try container.decode(String.self, forKey: .appId)
-
             isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            key = try container.decode(String.self, forKey: .key)
 
             defaultKey = try container.decode(String.self, forKey: .defaultKey)
         }
@@ -99,15 +99,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(defaultKey, forKey: .defaultKey)
         }
