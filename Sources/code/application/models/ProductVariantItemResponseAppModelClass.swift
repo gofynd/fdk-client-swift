@@ -9,11 +9,13 @@ public extension ApplicationClient {
     class ProductVariantItemResponse: Codable {
         public var action: ProductListingAction?
 
-        public var colorName: String?
+        public var isAvailable: Bool?
 
         public var medias: [Media]?
 
         public var slug: String?
+
+        public var colorName: String?
 
         public var value: String?
 
@@ -21,18 +23,18 @@ public extension ApplicationClient {
 
         public var name: String?
 
-        public var isAvailable: Bool?
-
         public var color: String?
 
         public enum CodingKeys: String, CodingKey {
             case action
 
-            case colorName = "color_name"
+            case isAvailable = "is_available"
 
             case medias
 
             case slug
+
+            case colorName = "color_name"
 
             case value
 
@@ -40,27 +42,25 @@ public extension ApplicationClient {
 
             case name
 
-            case isAvailable = "is_available"
-
             case color
         }
 
         public init(action: ProductListingAction? = nil, color: String? = nil, colorName: String? = nil, isAvailable: Bool? = nil, medias: [Media]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, value: String? = nil) {
             self.action = action
 
-            self.colorName = colorName
+            self.isAvailable = isAvailable
 
             self.medias = medias
 
             self.slug = slug
+
+            self.colorName = colorName
 
             self.value = value
 
             self.uid = uid
 
             self.name = name
-
-            self.isAvailable = isAvailable
 
             self.color = color
         }
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                colorName = try container.decode(String.self, forKey: .colorName)
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,6 +94,14 @@ public extension ApplicationClient {
 
             do {
                 slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                colorName = try container.decode(String.self, forKey: .colorName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,14 +133,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 color = try container.decode(String.self, forKey: .color)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -146,19 +146,19 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(colorName, forKey: .colorName)
+            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
             try? container.encodeIfPresent(medias, forKey: .medias)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(colorName, forKey: .colorName)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
             try? container.encodeIfPresent(color, forKey: .color)
         }

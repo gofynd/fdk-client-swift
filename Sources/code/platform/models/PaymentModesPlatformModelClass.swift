@@ -10,30 +10,30 @@ public extension PlatformClient {
     class PaymentModes: Codable {
         public var codes: [String]?
 
-        public var types: [String]?
-
         public var uses: PaymentAllowValue?
 
         public var networks: [String]?
 
+        public var types: [String]?
+
         public enum CodingKeys: String, CodingKey {
             case codes
-
-            case types
 
             case uses
 
             case networks
+
+            case types
         }
 
         public init(codes: [String]? = nil, networks: [String]? = nil, types: [String]? = nil, uses: PaymentAllowValue? = nil) {
             self.codes = codes
 
-            self.types = types
-
             self.uses = uses
 
             self.networks = networks
+
+            self.types = types
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,14 +41,6 @@ public extension PlatformClient {
 
             do {
                 codes = try container.decode([String].self, forKey: .codes)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                types = try container.decode([String].self, forKey: .types)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,6 +62,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                types = try container.decode([String].self, forKey: .types)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -77,11 +77,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(codes, forKey: .codes)
 
-            try? container.encodeIfPresent(types, forKey: .types)
-
             try? container.encodeIfPresent(uses, forKey: .uses)
 
             try? container.encodeIfPresent(networks, forKey: .networks)
+
+            try? container.encodeIfPresent(types, forKey: .types)
         }
     }
 }

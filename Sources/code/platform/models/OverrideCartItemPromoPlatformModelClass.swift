@@ -10,36 +10,36 @@ public extension PlatformClient {
     class OverrideCartItemPromo: Codable {
         public var rwrdTndr: String?
 
-        public var promoId: String
+        public var promoAmount: String
 
         public var itemList: [[String: Any]]?
 
         public var promoDesc: String?
 
-        public var promoAmount: String
+        public var promoId: String
 
         public enum CodingKeys: String, CodingKey {
             case rwrdTndr = "rwrd_tndr"
 
-            case promoId = "promo_id"
+            case promoAmount = "promo_amount"
 
             case itemList = "item_list"
 
             case promoDesc = "promo_desc"
 
-            case promoAmount = "promo_amount"
+            case promoId = "promo_id"
         }
 
         public init(itemList: [[String: Any]]? = nil, promoAmount: String, promoDesc: String? = nil, promoId: String, rwrdTndr: String? = nil) {
             self.rwrdTndr = rwrdTndr
 
-            self.promoId = promoId
+            self.promoAmount = promoAmount
 
             self.itemList = itemList
 
             self.promoDesc = promoDesc
 
-            self.promoAmount = promoAmount
+            self.promoId = promoId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            promoId = try container.decode(String.self, forKey: .promoId)
+            promoAmount = try container.decode(String.self, forKey: .promoAmount)
 
             do {
                 itemList = try container.decode([[String: Any]].self, forKey: .itemList)
@@ -71,7 +71,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            promoAmount = try container.decode(String.self, forKey: .promoAmount)
+            promoId = try container.decode(String.self, forKey: .promoId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -79,13 +79,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(rwrdTndr, forKey: .rwrdTndr)
 
-            try? container.encodeIfPresent(promoId, forKey: .promoId)
+            try? container.encodeIfPresent(promoAmount, forKey: .promoAmount)
 
             try? container.encodeIfPresent(itemList, forKey: .itemList)
 
             try? container.encodeIfPresent(promoDesc, forKey: .promoDesc)
 
-            try? container.encodeIfPresent(promoAmount, forKey: .promoAmount)
+            try? container.encodeIfPresent(promoId, forKey: .promoId)
         }
     }
 }
