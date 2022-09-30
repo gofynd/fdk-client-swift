@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var status: String
 
-        public var statusMessage: String
-
         public var merchantCustomerRefId: String
+
+        public var statusMessage: String
 
         public enum CodingKeys: String, CodingKey {
             case balance
 
             case status
 
-            case statusMessage = "status_message"
-
             case merchantCustomerRefId = "merchant_customer_ref_id"
+
+            case statusMessage = "status_message"
         }
 
         public init(balance: BalanceDetails? = nil, merchantCustomerRefId: String, status: String, statusMessage: String) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.status = status
 
-            self.statusMessage = statusMessage
-
             self.merchantCustomerRefId = merchantCustomerRefId
+
+            self.statusMessage = statusMessage
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,9 +48,9 @@ public extension ApplicationClient {
 
             status = try container.decode(String.self, forKey: .status)
 
-            statusMessage = try container.decode(String.self, forKey: .statusMessage)
-
             merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
+
+            statusMessage = try container.decode(String.self, forKey: .statusMessage)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -60,9 +60,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(statusMessage, forKey: .statusMessage)
-
             try? container.encodeIfPresent(merchantCustomerRefId, forKey: .merchantCustomerRefId)
+
+            try? container.encodeIfPresent(statusMessage, forKey: .statusMessage)
         }
     }
 }
