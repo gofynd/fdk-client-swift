@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var created: Bool
 
-        public var appId: String
-
         public var success: Bool
+
+        public var appId: String
 
         public var excludedFields: [String]
 
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case created
 
-            case appId = "app_id"
-
             case success
+
+            case appId = "app_id"
 
             case excludedFields = "excluded_fields"
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
 
             self.created = created
 
-            self.appId = appId
-
             self.success = success
+
+            self.appId = appId
 
             self.excludedFields = excludedFields
 
@@ -55,9 +55,9 @@ public extension PlatformClient {
 
             created = try container.decode(Bool.self, forKey: .created)
 
-            appId = try container.decode(String.self, forKey: .appId)
-
             success = try container.decode(Bool.self, forKey: .success)
+
+            appId = try container.decode(String.self, forKey: .appId)
 
             excludedFields = try container.decode([String].self, forKey: .excludedFields)
 
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(created, forKey: .created)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(excludedFields, forKey: .excludedFields)
 
