@@ -10,42 +10,42 @@ public extension PlatformClient {
     class GlobalValidation: Codable {
         public var required: [String]?
 
-        public var description: String?
-
-        public var title: String?
-
-        public var definitions: [String: Any]?
-
         public var properties: Properties?
 
         public var type: String?
 
+        public var title: String?
+
+        public var description: String?
+
+        public var definitions: [String: Any]?
+
         public enum CodingKeys: String, CodingKey {
             case required
-
-            case description
-
-            case title
-
-            case definitions
 
             case properties
 
             case type
+
+            case title
+
+            case description
+
+            case definitions
         }
 
         public init(definitions: [String: Any]? = nil, description: String? = nil, properties: Properties? = nil, required: [String]? = nil, title: String? = nil, type: String? = nil) {
             self.required = required
 
-            self.description = description
-
-            self.title = title
-
-            self.definitions = definitions
-
             self.properties = properties
 
             self.type = type
+
+            self.title = title
+
+            self.description = description
+
+            self.definitions = definitions
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,30 +53,6 @@ public extension PlatformClient {
 
             do {
                 required = try container.decode([String].self, forKey: .required)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                title = try container.decode(String.self, forKey: .title)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                definitions = try container.decode([String: Any].self, forKey: .definitions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,6 +74,30 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                title = try container.decode(String.self, forKey: .title)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                definitions = try container.decode([String: Any].self, forKey: .definitions)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -105,15 +105,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(required, forKey: .required)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
-            try? container.encodeIfPresent(title, forKey: .title)
-
-            try? container.encodeIfPresent(definitions, forKey: .definitions)
-
             try? container.encodeIfPresent(properties, forKey: .properties)
 
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(definitions, forKey: .definitions)
         }
     }
 }
