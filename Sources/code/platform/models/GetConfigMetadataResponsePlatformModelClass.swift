@@ -8,32 +8,30 @@ public extension PlatformClient {
      */
 
     class GetConfigMetadataResponse: Codable {
-        public var data: [[String: Any]]
-
         public var condition: [[String: Any]]?
 
         public var values: [[String: Any]]?
 
-        public enum CodingKeys: String, CodingKey {
-            case data
+        public var data: [[String: Any]]
 
+        public enum CodingKeys: String, CodingKey {
             case condition
 
             case values
+
+            case data
         }
 
         public init(condition: [[String: Any]]? = nil, data: [[String: Any]], values: [[String: Any]]? = nil) {
-            self.data = data
-
             self.condition = condition
 
             self.values = values
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            data = try container.decode([[String: Any]].self, forKey: .data)
 
             do {
                 condition = try container.decode([[String: Any]].self, forKey: .condition)
@@ -50,16 +48,18 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            data = try container.decode([[String: Any]].self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(condition, forKey: .condition)
 
             try? container.encodeIfPresent(values, forKey: .values)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
