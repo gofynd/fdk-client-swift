@@ -7,22 +7,22 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class ValidateCustomerRequest: Codable {
-        public var payload: String
-
         public var aggregator: String
 
         public var merchantParams: [String: Any]
+
+        public var payload: String
 
         public var transactionAmountInPaise: Int
 
         public var phoneNumber: String
 
         public enum CodingKeys: String, CodingKey {
-            case payload
-
             case aggregator
 
             case merchantParams = "merchant_params"
+
+            case payload
 
             case transactionAmountInPaise = "transaction_amount_in_paise"
 
@@ -30,11 +30,11 @@ public extension ApplicationClient {
         }
 
         public init(aggregator: String, merchantParams: [String: Any], payload: String, phoneNumber: String, transactionAmountInPaise: Int) {
-            self.payload = payload
-
             self.aggregator = aggregator
 
             self.merchantParams = merchantParams
+
+            self.payload = payload
 
             self.transactionAmountInPaise = transactionAmountInPaise
 
@@ -44,11 +44,11 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            payload = try container.decode(String.self, forKey: .payload)
-
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
             merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
+
+            payload = try container.decode(String.self, forKey: .payload)
 
             transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
 
@@ -58,11 +58,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(payload, forKey: .payload)
-
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
+
+            try? container.encode(payload, forKey: .payload)
 
             try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
 

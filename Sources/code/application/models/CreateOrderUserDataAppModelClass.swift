@@ -11,42 +11,42 @@ public extension ApplicationClient {
 
         public var aggregator: String?
 
-        public var contact: String?
+        public var customerId: String?
 
-        public var email: String?
-
-        public var callbackUrl: String?
+        public var currency: String?
 
         public var amount: Double?
 
+        public var contact: String?
+
         public var method: String?
 
-        public var customerId: String?
+        public var email: String?
 
         public var merchantOrderId: String?
 
-        public var currency: String?
+        public var callbackUrl: String?
 
         public enum CodingKeys: String, CodingKey {
             case orderId = "order_id"
 
             case aggregator
 
-            case contact
+            case customerId = "customer_id"
 
-            case email
-
-            case callbackUrl = "callback_url"
+            case currency
 
             case amount
 
+            case contact
+
             case method
 
-            case customerId = "customer_id"
+            case email
 
             case merchantOrderId = "merchant_order_id"
 
-            case currency
+            case callbackUrl = "callback_url"
         }
 
         public init(aggregator: String? = nil, amount: Double? = nil, callbackUrl: String? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, email: String? = nil, merchantOrderId: String? = nil, method: String? = nil, orderId: String? = nil) {
@@ -54,21 +54,21 @@ public extension ApplicationClient {
 
             self.aggregator = aggregator
 
-            self.contact = contact
+            self.customerId = customerId
 
-            self.email = email
-
-            self.callbackUrl = callbackUrl
+            self.currency = currency
 
             self.amount = amount
 
+            self.contact = contact
+
             self.method = method
 
-            self.customerId = customerId
+            self.email = email
 
             self.merchantOrderId = merchantOrderId
 
-            self.currency = currency
+            self.callbackUrl = callbackUrl
         }
 
         required public init(from decoder: Decoder) throws {
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                contact = try container.decode(String.self, forKey: .contact)
+                customerId = try container.decode(String.self, forKey: .customerId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,15 +99,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                email = try container.decode(String.self, forKey: .email)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -123,6 +115,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                contact = try container.decode(String.self, forKey: .contact)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 method = try container.decode(String.self, forKey: .method)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -131,7 +131,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                customerId = try container.decode(String.self, forKey: .customerId)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,7 +147,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -162,21 +162,21 @@ public extension ApplicationClient {
 
             try? container.encode(aggregator, forKey: .aggregator)
 
-            try? container.encode(contact, forKey: .contact)
+            try? container.encode(customerId, forKey: .customerId)
 
-            try? container.encode(email, forKey: .email)
-
-            try? container.encode(callbackUrl, forKey: .callbackUrl)
+            try? container.encode(currency, forKey: .currency)
 
             try? container.encode(amount, forKey: .amount)
 
+            try? container.encode(contact, forKey: .contact)
+
             try? container.encode(method, forKey: .method)
 
-            try? container.encode(customerId, forKey: .customerId)
+            try? container.encode(email, forKey: .email)
 
             try? container.encode(merchantOrderId, forKey: .merchantOrderId)
 
-            try? container.encode(currency, forKey: .currency)
+            try? container.encode(callbackUrl, forKey: .callbackUrl)
         }
     }
 }
