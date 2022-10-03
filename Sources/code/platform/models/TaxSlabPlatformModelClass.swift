@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class TaxSlab: Codable {
-        public var threshold: Double
-
         public var cess: Double?
+
+        public var threshold: Double
 
         public var rate: Double
 
         public var effectiveDate: String
 
         public enum CodingKeys: String, CodingKey {
-            case threshold
-
             case cess
+
+            case threshold
 
             case rate
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(cess: Double? = nil, effectiveDate: String, rate: Double, threshold: Double) {
-            self.threshold = threshold
-
             self.cess = cess
+
+            self.threshold = threshold
 
             self.rate = rate
 
@@ -39,8 +39,6 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            threshold = try container.decode(Double.self, forKey: .threshold)
-
             do {
                 cess = try container.decode(Double.self, forKey: .cess)
 
@@ -48,6 +46,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            threshold = try container.decode(Double.self, forKey: .threshold)
 
             rate = try container.decode(Double.self, forKey: .rate)
 
@@ -57,9 +57,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(threshold, forKey: .threshold)
-
             try? container.encodeIfPresent(cess, forKey: .cess)
+
+            try? container.encodeIfPresent(threshold, forKey: .threshold)
 
             try? container.encodeIfPresent(rate, forKey: .rate)
 

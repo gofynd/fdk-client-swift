@@ -10,30 +10,30 @@ public extension PlatformClient {
     class AutocompletePageAction: Codable {
         public var params: [String: Any]?
 
-        public var type: String?
-
         public var url: String?
 
         public var query: [String: Any]?
 
+        public var type: String?
+
         public enum CodingKeys: String, CodingKey {
             case params
-
-            case type
 
             case url
 
             case query
+
+            case type
         }
 
         public init(params: [String: Any]? = nil, query: [String: Any]? = nil, type: String? = nil, url: String? = nil) {
             self.params = params
 
-            self.type = type
-
             self.url = url
 
             self.query = query
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,14 +41,6 @@ public extension PlatformClient {
 
             do {
                 params = try container.decode([String: Any].self, forKey: .params)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,6 +62,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -77,11 +77,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(params, forKey: .params)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(query, forKey: .query)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
