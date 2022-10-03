@@ -10,18 +10,18 @@ public extension PlatformClient {
     class Image: Codable {
         public var aspectRatioF: Double?
 
-        public var url: String?
-
         public var aspectRatio: String?
+
+        public var url: String?
 
         public var secureUrl: String?
 
         public enum CodingKeys: String, CodingKey {
             case aspectRatioF = "aspect_ratio_f"
 
-            case url
-
             case aspectRatio = "aspect_ratio"
+
+            case url
 
             case secureUrl = "secure_url"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(aspectRatio: String? = nil, aspectRatioF: Double? = nil, secureUrl: String? = nil, url: String? = nil) {
             self.aspectRatioF = aspectRatioF
 
-            self.url = url
-
             self.aspectRatio = aspectRatio
+
+            self.url = url
 
             self.secureUrl = secureUrl
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(aspectRatioF, forKey: .aspectRatioF)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
+
+            try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(secureUrl, forKey: .secureUrl)
         }

@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var action: ProductListingAction?
 
-        public var description: String?
-
         public var logo: Media?
 
         public var name: String?
+
+        public var description: String?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
             case action
 
-            case description
-
             case logo
 
             case name
+
+            case description
         }
 
         public init(action: ProductListingAction? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.action = action
 
-            self.description = description
-
             self.logo = logo
 
             self.name = name
+
+            self.description = description
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,14 +61,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -83,6 +75,14 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -92,11 +92,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(description, forKey: .description)
         }
     }
 }

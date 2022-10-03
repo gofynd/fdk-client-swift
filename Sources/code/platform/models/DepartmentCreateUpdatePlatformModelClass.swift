@@ -8,96 +8,78 @@ public extension PlatformClient {
      */
 
     class DepartmentCreateUpdate: Codable {
-        public var logo: String
-
-        public var slug: String?
-
-        public var cls: String?
-
         public var synonyms: [String]?
-
-        public var priorityOrder: Int
 
         public var name: String
 
+        public var logo: String
+
+        public var customJson: [String: Any]?
+
         public var uid: Int?
+
+        public var platforms: [String: Any]?
 
         public var tags: [String]?
 
         public var isActive: Bool?
 
-        public var customJson: [String: Any]?
+        public var priorityOrder: Int
 
-        public var platforms: [String: Any]?
+        public var slug: String?
+
+        public var cls: String?
 
         public enum CodingKeys: String, CodingKey {
-            case logo
-
-            case slug
-
-            case cls = "_cls"
-
             case synonyms
-
-            case priorityOrder = "priority_order"
 
             case name
 
+            case logo
+
+            case customJson = "_custom_json"
+
             case uid
+
+            case platforms
 
             case tags
 
             case isActive = "is_active"
 
-            case customJson = "_custom_json"
+            case priorityOrder = "priority_order"
 
-            case platforms
+            case slug
+
+            case cls = "_cls"
         }
 
         public init(isActive: Bool? = nil, logo: String, name: String, platforms: [String: Any]? = nil, priorityOrder: Int, slug: String? = nil, synonyms: [String]? = nil, tags: [String]? = nil, uid: Int? = nil, cls: String? = nil, customJson: [String: Any]? = nil) {
-            self.logo = logo
-
-            self.slug = slug
-
-            self.cls = cls
-
             self.synonyms = synonyms
-
-            self.priorityOrder = priorityOrder
 
             self.name = name
 
+            self.logo = logo
+
+            self.customJson = customJson
+
             self.uid = uid
+
+            self.platforms = platforms
 
             self.tags = tags
 
             self.isActive = isActive
 
-            self.customJson = customJson
+            self.priorityOrder = priorityOrder
 
-            self.platforms = platforms
+            self.slug = slug
+
+            self.cls = cls
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            logo = try container.decode(String.self, forKey: .logo)
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cls = try container.decode(String.self, forKey: .cls)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 synonyms = try container.decode([String].self, forKey: .synonyms)
@@ -107,12 +89,28 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
-
             name = try container.decode(String.self, forKey: .name)
+
+            logo = try container.decode(String.self, forKey: .logo)
+
+            do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                platforms = try container.decode([String: Any].self, forKey: .platforms)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -135,8 +133,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
+
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -144,7 +144,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                platforms = try container.decode([String: Any].self, forKey: .platforms)
+                cls = try container.decode(String.self, forKey: .cls)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -155,27 +155,27 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(cls, forKey: .cls)
-
             try? container.encodeIfPresent(synonyms, forKey: .synonyms)
-
-            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(platforms, forKey: .platforms)
 
             try? container.encodeIfPresent(tags, forKey: .tags)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
 
-            try? container.encodeIfPresent(platforms, forKey: .platforms)
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(cls, forKey: .cls)
         }
     }
 }
