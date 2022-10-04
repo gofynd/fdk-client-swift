@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var isActive: Bool
 
-        public var key: String
-
         public var logo: String?
 
         public var name: String?
+
+        public var key: String
 
         public enum CodingKeys: String, CodingKey {
             case priority
 
             case isActive = "is_active"
 
-            case key
-
             case logo
 
             case name
+
+            case key
         }
 
         public init(isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.isActive = isActive
 
-            self.key = key
-
             self.logo = logo
 
             self.name = name
+
+            self.key = key
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,8 +48,6 @@ public extension PlatformClient {
             priority = try container.decode(Int.self, forKey: .priority)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            key = try container.decode(String.self, forKey: .key)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -66,6 +64,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            key = try container.decode(String.self, forKey: .key)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -75,11 +75,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(key, forKey: .key)
         }
     }
 }

@@ -10,6 +10,12 @@ public extension PlatformClient {
     class AppConfiguration: Codable {
         public var product: ConfigurationProduct?
 
+        public var appId: String
+
+        public var createdOn: String?
+
+        public var createdBy: [String: Any]?
+
         public var listing: ConfigurationListing?
 
         public var type: String?
@@ -18,18 +24,18 @@ public extension PlatformClient {
 
         public var modifiedOn: String?
 
-        public var createdOn: String?
-
-        public var createdBy: [String: Any]?
+        public var configType: String
 
         public var configId: String?
 
-        public var configType: String
-
-        public var appId: String
-
         public enum CodingKeys: String, CodingKey {
             case product
+
+            case appId = "app_id"
+
+            case createdOn = "created_on"
+
+            case createdBy = "created_by"
 
             case listing
 
@@ -39,19 +45,19 @@ public extension PlatformClient {
 
             case modifiedOn = "modified_on"
 
-            case createdOn = "created_on"
-
-            case createdBy = "created_by"
-
-            case configId = "config_id"
-
             case configType = "config_type"
 
-            case appId = "app_id"
+            case configId = "config_id"
         }
 
         public init(appId: String, configId: String? = nil, configType: String, createdBy: [String: Any]? = nil, createdOn: String? = nil, listing: ConfigurationListing? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, product: ConfigurationProduct? = nil, type: String? = nil) {
             self.product = product
+
+            self.appId = appId
+
+            self.createdOn = createdOn
+
+            self.createdBy = createdBy
 
             self.listing = listing
 
@@ -61,15 +67,9 @@ public extension PlatformClient {
 
             self.modifiedOn = modifiedOn
 
-            self.createdOn = createdOn
-
-            self.createdBy = createdBy
-
-            self.configId = configId
-
             self.configType = configType
 
-            self.appId = appId
+            self.configId = configId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -77,6 +77,24 @@ public extension PlatformClient {
 
             do {
                 product = try container.decode(ConfigurationProduct.self, forKey: .product)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            appId = try container.decode(String.self, forKey: .appId)
+
+            do {
+                createdOn = try container.decode(String.self, forKey: .createdOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                createdBy = try container.decode([String: Any].self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -115,21 +133,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                createdBy = try container.decode([String: Any].self, forKey: .createdBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            configType = try container.decode(String.self, forKey: .configType)
 
             do {
                 configId = try container.decode(String.self, forKey: .configId)
@@ -138,16 +142,18 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            configType = try container.decode(String.self, forKey: .configType)
-
-            appId = try container.decode(String.self, forKey: .appId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(product, forKey: .product)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(listing, forKey: .listing)
 
@@ -157,15 +163,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-
-            try? container.encodeIfPresent(configId, forKey: .configId)
-
             try? container.encodeIfPresent(configType, forKey: .configType)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(configId, forKey: .configId)
         }
     }
 }

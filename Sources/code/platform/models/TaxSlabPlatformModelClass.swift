@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var rate: Double
 
-        public var threshold: Double
-
         public var effectiveDate: String
+
+        public var threshold: Double
 
         public enum CodingKeys: String, CodingKey {
             case cess
 
             case rate
 
-            case threshold
-
             case effectiveDate = "effective_date"
+
+            case threshold
         }
 
         public init(cess: Double? = nil, effectiveDate: String, rate: Double, threshold: Double) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.rate = rate
 
-            self.threshold = threshold
-
             self.effectiveDate = effectiveDate
+
+            self.threshold = threshold
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,9 +49,9 @@ public extension PlatformClient {
 
             rate = try container.decode(Double.self, forKey: .rate)
 
-            threshold = try container.decode(Double.self, forKey: .threshold)
-
             effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
+
+            threshold = try container.decode(Double.self, forKey: .threshold)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -61,9 +61,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(rate, forKey: .rate)
 
-            try? container.encodeIfPresent(threshold, forKey: .threshold)
-
             try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
+
+            try? container.encodeIfPresent(threshold, forKey: .threshold)
         }
     }
 }
