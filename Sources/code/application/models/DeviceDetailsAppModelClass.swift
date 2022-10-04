@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class DeviceDetails: Codable {
         public var identificationNumber: String?
 
-        public var deviceType: String?
-
-        public var deviceModel: String?
+        public var deviceMake: String?
 
         public var osVersion: String?
 
-        public var deviceMake: String?
-
         public var identifierType: String?
+
+        public var deviceType: String?
+
+        public var deviceModel: String?
 
         public var os: String?
 
         public enum CodingKeys: String, CodingKey {
             case identificationNumber = "identification_number"
 
-            case deviceType = "device_type"
-
-            case deviceModel = "device_model"
+            case deviceMake = "device_make"
 
             case osVersion = "os_version"
 
-            case deviceMake = "device_make"
-
             case identifierType = "identifier_type"
+
+            case deviceType = "device_type"
+
+            case deviceModel = "device_model"
 
             case os
         }
@@ -40,15 +40,15 @@ public extension ApplicationClient {
         public init(deviceMake: String? = nil, deviceModel: String? = nil, deviceType: String? = nil, identificationNumber: String? = nil, identifierType: String? = nil, os: String? = nil, osVersion: String? = nil) {
             self.identificationNumber = identificationNumber
 
-            self.deviceType = deviceType
-
-            self.deviceModel = deviceModel
+            self.deviceMake = deviceMake
 
             self.osVersion = osVersion
 
-            self.deviceMake = deviceMake
-
             self.identifierType = identifierType
+
+            self.deviceType = deviceType
+
+            self.deviceModel = deviceModel
 
             self.os = os
         }
@@ -58,6 +58,30 @@ public extension ApplicationClient {
 
             do {
                 identificationNumber = try container.decode(String.self, forKey: .identificationNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                deviceMake = try container.decode(String.self, forKey: .deviceMake)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                osVersion = try container.decode(String.self, forKey: .osVersion)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                identifierType = try container.decode(String.self, forKey: .identifierType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,30 +105,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                osVersion = try container.decode(String.self, forKey: .osVersion)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                deviceMake = try container.decode(String.self, forKey: .deviceMake)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                identifierType = try container.decode(String.self, forKey: .identifierType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 os = try container.decode(String.self, forKey: .os)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -118,15 +118,15 @@ public extension ApplicationClient {
 
             try? container.encode(identificationNumber, forKey: .identificationNumber)
 
-            try? container.encode(deviceType, forKey: .deviceType)
-
-            try? container.encode(deviceModel, forKey: .deviceModel)
+            try? container.encode(deviceMake, forKey: .deviceMake)
 
             try? container.encode(osVersion, forKey: .osVersion)
 
-            try? container.encode(deviceMake, forKey: .deviceMake)
-
             try? container.encode(identifierType, forKey: .identifierType)
+
+            try? container.encode(deviceType, forKey: .deviceType)
+
+            try? container.encode(deviceModel, forKey: .deviceModel)
 
             try? container.encode(os, forKey: .os)
         }
