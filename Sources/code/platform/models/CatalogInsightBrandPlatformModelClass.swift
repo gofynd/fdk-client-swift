@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var availableArticles: Int?
 
-        public var totalArticles: Int?
-
         public var totalSizes: Int?
+
+        public var totalArticles: Int?
 
         public var name: String?
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case availableArticles = "available_articles"
 
-            case totalArticles = "total_articles"
-
             case totalSizes = "total_sizes"
+
+            case totalArticles = "total_articles"
 
             case name
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             self.availableArticles = availableArticles
 
-            self.totalArticles = totalArticles
-
             self.totalSizes = totalSizes
+
+            self.totalArticles = totalArticles
 
             self.name = name
         }
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                totalArticles = try container.decode(Int.self, forKey: .totalArticles)
+                totalSizes = try container.decode(Int.self, forKey: .totalSizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                totalSizes = try container.decode(Int.self, forKey: .totalSizes)
+                totalArticles = try container.decode(Int.self, forKey: .totalArticles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,9 +109,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(availableArticles, forKey: .availableArticles)
 
-            try? container.encodeIfPresent(totalArticles, forKey: .totalArticles)
-
             try? container.encodeIfPresent(totalSizes, forKey: .totalSizes)
+
+            try? container.encodeIfPresent(totalArticles, forKey: .totalArticles)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
