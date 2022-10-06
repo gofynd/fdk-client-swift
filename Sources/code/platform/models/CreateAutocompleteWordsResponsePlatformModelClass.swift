@@ -10,18 +10,18 @@ public extension PlatformClient {
     class CreateAutocompleteWordsResponse: Codable {
         public var results: [[String: Any]]?
 
-        public var appId: String?
-
         public var words: [String]?
+
+        public var appId: String?
 
         public var customJson: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case results
 
-            case appId = "app_id"
-
             case words
+
+            case appId = "app_id"
 
             case customJson = "_custom_json"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(appId: String? = nil, results: [[String: Any]]? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
             self.results = results
 
-            self.appId = appId
-
             self.words = words
+
+            self.appId = appId
 
             self.customJson = customJson
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                appId = try container.decode(String.self, forKey: .appId)
+                words = try container.decode([String].self, forKey: .words)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                words = try container.decode([String].self, forKey: .words)
+                appId = try container.decode(String.self, forKey: .appId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(results, forKey: .results)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
             try? container.encodeIfPresent(words, forKey: .words)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
         }

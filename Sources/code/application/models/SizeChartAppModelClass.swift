@@ -9,13 +9,13 @@ public extension ApplicationClient {
     class SizeChart: Codable {
         public var headers: ColumnHeaders?
 
-        public var description: String?
+        public var sizeTip: String?
 
-        public var sizes: [SizeChartValues]?
+        public var description: String?
 
         public var unit: String?
 
-        public var sizeTip: String?
+        public var sizes: [SizeChartValues]?
 
         public var title: String?
 
@@ -24,13 +24,13 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case headers
 
-            case description
+            case sizeTip = "size_tip"
 
-            case sizes
+            case description
 
             case unit
 
-            case sizeTip = "size_tip"
+            case sizes
 
             case title
 
@@ -40,13 +40,13 @@ public extension ApplicationClient {
         public init(description: String? = nil, headers: ColumnHeaders? = nil, image: String? = nil, sizes: [SizeChartValues]? = nil, sizeTip: String? = nil, title: String? = nil, unit: String? = nil) {
             self.headers = headers
 
-            self.description = description
+            self.sizeTip = sizeTip
 
-            self.sizes = sizes
+            self.description = description
 
             self.unit = unit
 
-            self.sizeTip = sizeTip
+            self.sizes = sizes
 
             self.title = title
 
@@ -65,7 +65,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                sizeTip = try container.decode(String.self, forKey: .sizeTip)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,7 +73,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sizes = try container.decode([SizeChartValues].self, forKey: .sizes)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sizeTip = try container.decode(String.self, forKey: .sizeTip)
+                sizes = try container.decode([SizeChartValues].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,13 +118,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(headers, forKey: .headers)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(sizeTip, forKey: .sizeTip)
 
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(sizeTip, forKey: .sizeTip)
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
 
             try? container.encodeIfPresent(title, forKey: .title)
 
