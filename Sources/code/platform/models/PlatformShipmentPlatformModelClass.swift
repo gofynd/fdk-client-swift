@@ -18,8 +18,6 @@ public extension PlatformClient {
 
         public var gst: ShipmentGst?
 
-        public var breakupValues: ShipmentBreakupValues?
-
         public var priority: Double?
 
         public var priorityText: String?
@@ -41,8 +39,6 @@ public extension PlatformClient {
 
             case gst
 
-            case breakupValues = "breakup_values"
-
             case priority
 
             case priorityText = "priority_text"
@@ -54,7 +50,7 @@ public extension PlatformClient {
             case totalShipmentBags = "total_shipment_bags"
         }
 
-        public init(bags: Bags? = nil, breakupValues: ShipmentBreakupValues? = nil, gst: ShipmentGst? = nil, id: String? = nil, lockStatus: Bool? = nil, orderingChannel: String? = nil, prices: ShipmentPrices? = nil, priority: Double? = nil, priorityText: String? = nil, status: PlatformShipmentStatus? = nil, totalShipmentBags: Int? = nil) {
+        public init(bags: Bags? = nil, gst: ShipmentGst? = nil, id: String? = nil, lockStatus: Bool? = nil, orderingChannel: String? = nil, prices: ShipmentPrices? = nil, priority: Double? = nil, priorityText: String? = nil, status: PlatformShipmentStatus? = nil, totalShipmentBags: Int? = nil) {
             self.status = status
 
             self.bags = bags
@@ -64,8 +60,6 @@ public extension PlatformClient {
             self.id = id
 
             self.gst = gst
-
-            self.breakupValues = breakupValues
 
             self.priority = priority
 
@@ -115,14 +109,6 @@ public extension PlatformClient {
 
             do {
                 gst = try container.decode(ShipmentGst.self, forKey: .gst)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                breakupValues = try container.decode(ShipmentBreakupValues.self, forKey: .breakupValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -182,8 +168,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(gst, forKey: .gst)
-
-            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 

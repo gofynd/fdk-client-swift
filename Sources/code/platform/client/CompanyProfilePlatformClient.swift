@@ -372,7 +372,6 @@ public extension PlatformClient {
             stage: String?,
             pageNo: Int?,
             pageSize: Int?,
-            locationIds: [Int]?,
 
             onResponse: @escaping (_ response: LocationListSerializer?, _ error: FDKError?) -> Void
         ) {
@@ -396,10 +395,6 @@ public extension PlatformClient {
 
             if let value = pageSize {
                 xQuery["page_size"] = value
-            }
-
-            if let value = locationIds {
-                xQuery["location_ids"] = value
             }
 
             PlatformAPIClient.execute(
@@ -440,8 +435,7 @@ public extension PlatformClient {
             storeType: String?,
             q: String?,
             stage: String?,
-            pageSize: Int?,
-            locationIds: [Int]?
+            pageSize: Int?
 
         ) -> Paginator<LocationListSerializer> {
             let pageSize = pageSize ?? 20
@@ -453,9 +447,8 @@ public extension PlatformClient {
                     stage: stage,
                     pageNo: paginator.pageNo,
 
-                    pageSize: paginator.pageSize,
+                    pageSize: paginator.pageSize
 
-                    locationIds: locationIds
                 ) { response, error in
                     if let response = response {
                         paginator.hasNext = response.page?.hasNext ?? false

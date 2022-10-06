@@ -9,6 +9,8 @@ public extension ApplicationClient {
     class ProductSize: Codable {
         public var isAvailable: Bool?
 
+        public var sellerIdentifiers: [String]?
+
         public var value: String?
 
         public var display: String?
@@ -18,6 +20,8 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case isAvailable = "is_available"
 
+            case sellerIdentifiers = "seller_identifiers"
+
             case value
 
             case display
@@ -25,8 +29,10 @@ public extension ApplicationClient {
             case quantity
         }
 
-        public init(display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, value: String? = nil) {
+        public init(display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, sellerIdentifiers: [String]? = nil, value: String? = nil) {
             self.isAvailable = isAvailable
+
+            self.sellerIdentifiers = sellerIdentifiers
 
             self.value = value
 
@@ -40,6 +46,14 @@ public extension ApplicationClient {
 
             do {
                 isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sellerIdentifiers = try container.decode([String].self, forKey: .sellerIdentifiers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,6 +89,8 @@ public extension ApplicationClient {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+
+            try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
