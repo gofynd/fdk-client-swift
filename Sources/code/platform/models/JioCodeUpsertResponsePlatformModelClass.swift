@@ -3,50 +3,50 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: AssignStoreArticle
-         Used By: Catalog
+         Model: JioCodeUpsertResponse
+         Used By: Orders
      */
 
-    class AssignStoreArticle: Codable {
-        public var articleAssignment: ArticleAssignment?
+    class JioCodeUpsertResponse: Codable {
+        public var error: [NestedErrorSchemaDataSet]?
 
-        public var groupId: String?
+        public var data: [[String: Any]]?
 
-        public var quantity: Int?
+        public var success: Bool?
 
-        public var meta: [String: Any]?
+        public var identifier: String?
 
-        public var query: ArticleQuery?
+        public var traceId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case articleAssignment = "article_assignment"
+            case error
 
-            case groupId = "group_id"
+            case data
 
-            case quantity
+            case success
 
-            case meta
+            case identifier
 
-            case query
+            case traceId = "trace_id"
         }
 
-        public init(articleAssignment: ArticleAssignment? = nil, groupId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, query: ArticleQuery? = nil) {
-            self.articleAssignment = articleAssignment
+        public init(data: [[String: Any]]? = nil, error: [NestedErrorSchemaDataSet]? = nil, identifier: String? = nil, success: Bool? = nil, traceId: String? = nil) {
+            self.error = error
 
-            self.groupId = groupId
+            self.data = data
 
-            self.quantity = quantity
+            self.success = success
 
-            self.meta = meta
+            self.identifier = identifier
 
-            self.query = query
+            self.traceId = traceId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                articleAssignment = try container.decode(ArticleAssignment.self, forKey: .articleAssignment)
+                error = try container.decode([NestedErrorSchemaDataSet].self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                groupId = try container.decode(String.self, forKey: .groupId)
+                data = try container.decode([[String: Any]].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                query = try container.decode(ArticleQuery.self, forKey: .query)
+                traceId = try container.decode(String.self, forKey: .traceId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,15 +89,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
+            try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(groupId, forKey: .groupId)
+            try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(query, forKey: .query)
+            try? container.encodeIfPresent(traceId, forKey: .traceId)
         }
     }
 }

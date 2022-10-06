@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class AddBeneficiaryViaOtpVerificationRequest: Codable {
         public var requestId: String
 
-        public var otp: String
-
         public var hashKey: String
+
+        public var otp: String
 
         public enum CodingKeys: String, CodingKey {
             case requestId = "request_id"
 
-            case otp
-
             case hashKey = "hash_key"
+
+            case otp
         }
 
         public init(hashKey: String, otp: String, requestId: String) {
             self.requestId = requestId
 
-            self.otp = otp
-
             self.hashKey = hashKey
+
+            self.otp = otp
         }
 
         required public init(from decoder: Decoder) throws {
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             requestId = try container.decode(String.self, forKey: .requestId)
 
-            otp = try container.decode(String.self, forKey: .otp)
-
             hashKey = try container.decode(String.self, forKey: .hashKey)
+
+            otp = try container.decode(String.self, forKey: .otp)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -44,9 +44,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(requestId, forKey: .requestId)
 
-            try? container.encodeIfPresent(otp, forKey: .otp)
-
             try? container.encodeIfPresent(hashKey, forKey: .hashKey)
+
+            try? container.encodeIfPresent(otp, forKey: .otp)
         }
     }
 }

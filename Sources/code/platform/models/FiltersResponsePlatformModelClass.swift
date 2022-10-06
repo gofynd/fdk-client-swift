@@ -3,32 +3,32 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ArticleAssignment1
-         Used By: Catalog
+         Model: FiltersResponse
+         Used By: Orders
      */
 
-    class ArticleAssignment1: Codable {
-        public var strategy: String?
+    class FiltersResponse: Codable {
+        public var deliveryPartners: [FiltersInfo]?
 
-        public var level: String?
+        public var channels: [FiltersInfo]?
 
         public enum CodingKeys: String, CodingKey {
-            case strategy
+            case deliveryPartners = "delivery_partners"
 
-            case level
+            case channels
         }
 
-        public init(level: String? = nil, strategy: String? = nil) {
-            self.strategy = strategy
+        public init(channels: [FiltersInfo]? = nil, deliveryPartners: [FiltersInfo]? = nil) {
+            self.deliveryPartners = deliveryPartners
 
-            self.level = level
+            self.channels = channels
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                strategy = try container.decode(String.self, forKey: .strategy)
+                deliveryPartners = try container.decode([FiltersInfo].self, forKey: .deliveryPartners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                level = try container.decode(String.self, forKey: .level)
+                channels = try container.decode([FiltersInfo].self, forKey: .channels)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(strategy, forKey: .strategy)
+            try? container.encodeIfPresent(deliveryPartners, forKey: .deliveryPartners)
 
-            try? container.encodeIfPresent(level, forKey: .level)
+            try? container.encodeIfPresent(channels, forKey: .channels)
         }
     }
 }

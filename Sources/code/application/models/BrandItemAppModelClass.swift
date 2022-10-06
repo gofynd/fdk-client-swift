@@ -11,15 +11,15 @@ public extension ApplicationClient {
 
         public var banners: ImageUrls?
 
-        public var name: String?
+        public var slug: String?
 
         public var uid: Int?
-
-        public var slug: String?
 
         public var action: ProductListingAction?
 
         public var description: String?
+
+        public var name: String?
 
         public var logo: Media?
 
@@ -30,15 +30,15 @@ public extension ApplicationClient {
 
             case banners
 
-            case name
+            case slug
 
             case uid
-
-            case slug
 
             case action
 
             case description
+
+            case name
 
             case logo
 
@@ -50,15 +50,15 @@ public extension ApplicationClient {
 
             self.banners = banners
 
-            self.name = name
+            self.slug = slug
 
             self.uid = uid
-
-            self.slug = slug
 
             self.action = action
 
             self.description = description
+
+            self.name = name
 
             self.logo = logo
 
@@ -85,7 +85,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,14 +94,6 @@ public extension ApplicationClient {
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,6 +110,14 @@ public extension ApplicationClient {
 
             do {
                 description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,15 +148,15 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
