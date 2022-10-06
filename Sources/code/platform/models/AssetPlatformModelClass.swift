@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: Asset
-         Used By: Content
+         Used By: Rewards
      */
 
     class Asset: Codable {

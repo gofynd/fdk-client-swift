@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class InventoryExportResponse: Codable {
-        public var triggerOn: String?
-
         public var requestParams: [String: Any]?
+
+        public var triggerOn: String?
 
         public var status: String?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var sellerId: Int
 
         public enum CodingKeys: String, CodingKey {
-            case triggerOn = "trigger_on"
-
             case requestParams = "request_params"
+
+            case triggerOn = "trigger_on"
 
             case status
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(requestParams: [String: Any]? = nil, sellerId: Int, status: String? = nil, taskId: String, triggerOn: String? = nil) {
-            self.triggerOn = triggerOn
-
             self.requestParams = requestParams
+
+            self.triggerOn = triggerOn
 
             self.status = status
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                triggerOn = try container.decode(String.self, forKey: .triggerOn)
+                requestParams = try container.decode([String: Any].self, forKey: .requestParams)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                requestParams = try container.decode([String: Any].self, forKey: .requestParams)
+                triggerOn = try container.decode(String.self, forKey: .triggerOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
-
             try? container.encodeIfPresent(requestParams, forKey: .requestParams)
+
+            try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
 
             try? container.encodeIfPresent(status, forKey: .status)
 

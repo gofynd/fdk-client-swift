@@ -8,8 +8,6 @@ public extension PlatformClient {
      */
 
     class ApplicationProductListingResponse: Codable {
-        public var items: [ProductListingDetail]?
-
         public var operators: [String: Any]?
 
         public var page: Page
@@ -18,9 +16,9 @@ public extension PlatformClient {
 
         public var filters: [ProductFilters]?
 
-        public enum CodingKeys: String, CodingKey {
-            case items
+        public var items: [ProductListingDetail]?
 
+        public enum CodingKeys: String, CodingKey {
             case operators
 
             case page
@@ -28,11 +26,11 @@ public extension PlatformClient {
             case sortOn = "sort_on"
 
             case filters
+
+            case items
         }
 
         public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, operators: [String: Any]? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
-            self.items = items
-
             self.operators = operators
 
             self.page = page
@@ -40,18 +38,12 @@ public extension PlatformClient {
             self.sortOn = sortOn
 
             self.filters = filters
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                items = try container.decode([ProductListingDetail].self, forKey: .items)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 operators = try container.decode([String: Any].self, forKey: .operators)
@@ -78,12 +70,18 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                items = try container.decode([ProductListingDetail].self, forKey: .items)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(operators, forKey: .operators)
 
@@ -92,6 +90,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }
