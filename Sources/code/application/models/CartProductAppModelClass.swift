@@ -7,34 +7,34 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class CartProduct: Codable {
+        public var name: String?
+
         public var uid: Int?
 
         public var type: String?
 
-        public var images: [ProductImage]?
-
-        public var name: String?
+        public var slug: String?
 
         public var categories: [CategoryInfo]?
 
-        public var slug: String?
+        public var images: [ProductImage]?
 
         public var action: ProductAction?
 
         public var brand: BaseInfo?
 
         public enum CodingKeys: String, CodingKey {
+            case name
+
             case uid
 
             case type
 
-            case images
-
-            case name
+            case slug
 
             case categories
 
-            case slug
+            case images
 
             case action
 
@@ -42,17 +42,17 @@ public extension ApplicationClient {
         }
 
         public init(action: ProductAction? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, images: [ProductImage]? = nil, name: String? = nil, slug: String? = nil, type: String? = nil, uid: Int? = nil) {
+            self.name = name
+
             self.uid = uid
 
             self.type = type
 
-            self.images = images
-
-            self.name = name
+            self.slug = slug
 
             self.categories = categories
 
-            self.slug = slug
+            self.images = images
 
             self.action = action
 
@@ -61,6 +61,14 @@ public extension ApplicationClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
@@ -79,15 +87,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                images = try container.decode([ProductImage].self, forKey: .images)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,7 +103,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                images = try container.decode([ProductImage].self, forKey: .images)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,17 +130,17 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(images, forKey: .images)
-
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(categories, forKey: .categories)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(images, forKey: .images)
 
             try? container.encodeIfPresent(action, forKey: .action)
 

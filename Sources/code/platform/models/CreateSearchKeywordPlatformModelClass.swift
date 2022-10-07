@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var isActive: Bool?
 
-        public var result: SearchKeywordResult
-
         public var words: [String]?
+
+        public var result: SearchKeywordResult
 
         public var customJson: [String: Any]?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case isActive = "is_active"
 
-            case result
-
             case words
+
+            case result
 
             case customJson = "_custom_json"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.isActive = isActive
 
-            self.result = result
-
             self.words = words
+
+            self.result = result
 
             self.customJson = customJson
         }
@@ -61,8 +61,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            result = try container.decode(SearchKeywordResult.self, forKey: .result)
-
             do {
                 words = try container.decode([String].self, forKey: .words)
 
@@ -70,6 +68,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            result = try container.decode(SearchKeywordResult.self, forKey: .result)
 
             do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
@@ -87,9 +87,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(result, forKey: .result)
-
             try? container.encodeIfPresent(words, forKey: .words)
+
+            try? container.encodeIfPresent(result, forKey: .result)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
         }

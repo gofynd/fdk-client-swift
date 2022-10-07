@@ -7,27 +7,27 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class AddCartRequest: Codable {
-        public var newCart: String?
-
         public var items: [AddProductCart]?
 
-        public enum CodingKeys: String, CodingKey {
-            case newCart = "new_cart"
+        public var newCart: String?
 
+        public enum CodingKeys: String, CodingKey {
             case items
+
+            case newCart = "new_cart"
         }
 
         public init(items: [AddProductCart]? = nil, newCart: String? = nil) {
-            self.newCart = newCart
-
             self.items = items
+
+            self.newCart = newCart
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                newCart = try container.decode(String.self, forKey: .newCart)
+                items = try container.decode([AddProductCart].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                items = try container.decode([AddProductCart].self, forKey: .items)
+                newCart = try container.decode(String.self, forKey: .newCart)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(newCart, forKey: .newCart)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(newCart, forKey: .newCart)
         }
     }
 }
