@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var value: String
 
-        public var verified: Bool?
-
         public var legalName: String?
+
+        public var verified: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case type
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case value
 
-            case verified
-
             case legalName = "legal_name"
+
+            case verified
         }
 
         public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.value = value
 
-            self.verified = verified
-
             self.legalName = legalName
+
+            self.verified = verified
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ public extension PlatformClient {
             value = try container.decode(String.self, forKey: .value)
 
             do {
-                verified = try container.decode(Bool.self, forKey: .verified)
+                legalName = try container.decode(String.self, forKey: .legalName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -66,7 +66,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                legalName = try container.decode(String.self, forKey: .legalName)
+                verified = try container.decode(Bool.self, forKey: .verified)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,9 +83,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(verified, forKey: .verified)
-
             try? container.encodeIfPresent(legalName, forKey: .legalName)
+
+            try? container.encodeIfPresent(verified, forKey: .verified)
         }
     }
 }

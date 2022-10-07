@@ -8,82 +8,100 @@ public extension PlatformClient {
      */
 
     class CreateUpdateBrandRequestSerializer: Codable {
-        public var uid: Int?
-
         public var logo: String
+
+        public var companyId: Int?
+
+        public var description: String?
+
+        public var brandTier: String?
+
+        public var name: String
 
         public var banner: BrandBannerSerializer?
 
         public var localeLanguage: [String: Any]?
 
-        public var name: String
-
         public var synonyms: [String]?
-
-        public var companyId: Int?
-
-        public var brandTier: String?
 
         public var customJson: [String: Any]?
 
-        public var description: String?
+        public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case uid
-
             case logo
+
+            case companyId = "company_id"
+
+            case description
+
+            case brandTier = "brand_tier"
+
+            case name
 
             case banner
 
             case localeLanguage = "_locale_language"
 
-            case name
-
             case synonyms
-
-            case companyId = "company_id"
-
-            case brandTier = "brand_tier"
 
             case customJson = "_custom_json"
 
-            case description
+            case uid
         }
 
         public init(banner: BrandBannerSerializer? = nil, brandTier: String? = nil, companyId: Int? = nil, description: String? = nil, logo: String, name: String, synonyms: [String]? = nil, uid: Int? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil) {
-            self.uid = uid
-
             self.logo = logo
+
+            self.companyId = companyId
+
+            self.description = description
+
+            self.brandTier = brandTier
+
+            self.name = name
 
             self.banner = banner
 
             self.localeLanguage = localeLanguage
 
-            self.name = name
-
             self.synonyms = synonyms
-
-            self.companyId = companyId
-
-            self.brandTier = brandTier
 
             self.customJson = customJson
 
-            self.description = description
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            logo = try container.decode(String.self, forKey: .logo)
+
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            logo = try container.decode(String.self, forKey: .logo)
+            do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brandTier = try container.decode(String.self, forKey: .brandTier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
 
             do {
                 banner = try container.decode(BrandBannerSerializer.self, forKey: .banner)
@@ -101,26 +119,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
                 synonyms = try container.decode([String].self, forKey: .synonyms)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brandTier = try container.decode(String.self, forKey: .brandTier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -136,7 +136,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,25 +147,25 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(brandTier, forKey: .brandTier)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(banner, forKey: .banner)
 
             try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(synonyms, forKey: .synonyms)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(brandTier, forKey: .brandTier)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

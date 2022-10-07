@@ -10,24 +10,24 @@ public extension PlatformClient {
     class AttributeMasterFilter: Codable {
         public var dependsOn: [String]?
 
-        public var indexing: Bool
-
         public var priority: Int?
+
+        public var indexing: Bool
 
         public enum CodingKeys: String, CodingKey {
             case dependsOn = "depends_on"
 
-            case indexing
-
             case priority
+
+            case indexing
         }
 
         public init(dependsOn: [String]? = nil, indexing: Bool, priority: Int? = nil) {
             self.dependsOn = dependsOn
 
-            self.indexing = indexing
-
             self.priority = priority
+
+            self.indexing = indexing
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,8 +41,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            indexing = try container.decode(Bool.self, forKey: .indexing)
-
             do {
                 priority = try container.decode(Int.self, forKey: .priority)
 
@@ -50,6 +48,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            indexing = try container.decode(Bool.self, forKey: .indexing)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -57,9 +57,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(dependsOn, forKey: .dependsOn)
 
-            try? container.encodeIfPresent(indexing, forKey: .indexing)
-
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(indexing, forKey: .indexing)
         }
     }
 }
