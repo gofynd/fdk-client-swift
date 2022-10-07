@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class PageResponse: Codable {
-        public var hasNext: Bool?
-
         public var hasPrevious: Bool?
+
+        public var hasNext: Bool?
 
         public var current: String?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var size: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case hasNext = "has_next"
-
             case hasPrevious = "has_previous"
+
+            case hasNext = "has_next"
 
             case current
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(current: String? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil) {
-            self.hasNext = hasNext
-
             self.hasPrevious = hasPrevious
+
+            self.hasNext = hasNext
 
             self.current = current
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+                hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
-
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
             try? container.encodeIfPresent(current, forKey: .current)
 

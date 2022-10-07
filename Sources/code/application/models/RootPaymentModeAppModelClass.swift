@@ -11,12 +11,6 @@ public extension ApplicationClient {
 
         public var list: [PaymentModeList]?
 
-        public var name: String
-
-        public var displayName: String
-
-        public var logo: String?
-
         public var logoUrl: PaymentModeLogo?
 
         public var aggregatorName: String?
@@ -25,16 +19,16 @@ public extension ApplicationClient {
 
         public var displayPriority: Int
 
+        public var logo: String?
+
+        public var displayName: String
+
+        public var name: String
+
         public enum CodingKeys: String, CodingKey {
             case addCardEnabled = "add_card_enabled"
 
             case list
-
-            case name
-
-            case displayName = "display_name"
-
-            case logo
 
             case logoUrl = "logo_url"
 
@@ -43,18 +37,18 @@ public extension ApplicationClient {
             case anonymousEnable = "anonymous_enable"
 
             case displayPriority = "display_priority"
+
+            case logo
+
+            case displayName = "display_name"
+
+            case name
         }
 
         public init(addCardEnabled: Bool? = nil, aggregatorName: String? = nil, anonymousEnable: Bool? = nil, displayName: String, displayPriority: Int, list: [PaymentModeList]? = nil, logo: String? = nil, logoUrl: PaymentModeLogo? = nil, name: String) {
             self.addCardEnabled = addCardEnabled
 
             self.list = list
-
-            self.name = name
-
-            self.displayName = displayName
-
-            self.logo = logo
 
             self.logoUrl = logoUrl
 
@@ -63,6 +57,12 @@ public extension ApplicationClient {
             self.anonymousEnable = anonymousEnable
 
             self.displayPriority = displayPriority
+
+            self.logo = logo
+
+            self.displayName = displayName
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -78,18 +78,6 @@ public extension ApplicationClient {
 
             do {
                 list = try container.decode([PaymentModeList].self, forKey: .list)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            name = try container.decode(String.self, forKey: .name)
-
-            displayName = try container.decode(String.self, forKey: .displayName)
-
-            do {
-                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,6 +109,18 @@ public extension ApplicationClient {
             } catch {}
 
             displayPriority = try container.decode(Int.self, forKey: .displayPriority)
+
+            do {
+                logo = try container.decode(String.self, forKey: .logo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            displayName = try container.decode(String.self, forKey: .displayName)
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -130,12 +130,6 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(list, forKey: .list)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-
-            try? container.encode(logo, forKey: .logo)
-
             try? container.encode(logoUrl, forKey: .logoUrl)
 
             try? container.encode(aggregatorName, forKey: .aggregatorName)
@@ -143,6 +137,12 @@ public extension ApplicationClient {
             try? container.encode(anonymousEnable, forKey: .anonymousEnable)
 
             try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
+
+            try? container.encode(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
