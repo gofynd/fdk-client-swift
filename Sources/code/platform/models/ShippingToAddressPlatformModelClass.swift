@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: ShippingToAddress
-         Used By: OrderInvoiceEngine
+         Used By: DocumentEngine
      */
 
     class ShippingToAddress: Codable {

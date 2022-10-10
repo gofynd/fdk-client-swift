@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: ManifestLink
-         Used By: OrderInvoiceEngine
+         Used By: DocumentEngine
      */
 
     class ManifestLink: Codable {

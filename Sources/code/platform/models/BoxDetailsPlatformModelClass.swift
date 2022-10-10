@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: BoxDetails
-         Used By: OrderInvoiceEngine
+         Used By: DocumentEngine
      */
 
     class BoxDetails: Codable {

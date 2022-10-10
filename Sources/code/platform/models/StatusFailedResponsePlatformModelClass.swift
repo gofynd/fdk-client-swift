@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: StatusFailedResponse
-         Used By: OrderInvoiceEngine
+         Used By: DocumentEngine
      */
 
     class StatusFailedResponse: Codable {

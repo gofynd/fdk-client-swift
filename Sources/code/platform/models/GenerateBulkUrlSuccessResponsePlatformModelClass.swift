@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: GenerateBulkUrlSuccessResponse
-         Used By: OrderInvoiceEngine
+         Used By: DocumentEngine
      */
 
     class GenerateBulkUrlSuccessResponse: Codable {

@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: GenerateBulkInvoiceOrLabelUrl
-         Used By: OrderInvoiceEngine
+         Used By: DocumentEngine
      */
 
     class GenerateBulkInvoiceOrLabelUrl: Codable {

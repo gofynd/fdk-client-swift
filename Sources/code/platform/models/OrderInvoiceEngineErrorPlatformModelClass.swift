@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: OrderInvoiceEngineError
-         Used By: OrderInvoiceEngine
+         Used By: DocumentEngine
      */
 
     class OrderInvoiceEngineError: Codable {

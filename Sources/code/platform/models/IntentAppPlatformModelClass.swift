@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class IntentApp: Codable {
-        public var logos: PaymentModeLogo?
-
         public var code: String?
+
+        public var logos: PaymentModeLogo?
 
         public var packageName: String?
 
         public var displayName: String?
 
         public enum CodingKeys: String, CodingKey {
-            case logos
-
             case code
+
+            case logos
 
             case packageName = "package_name"
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(code: String? = nil, displayName: String? = nil, logos: PaymentModeLogo? = nil, packageName: String? = nil) {
-            self.logos = logos
-
             self.code = code
+
+            self.logos = logos
 
             self.packageName = packageName
 
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                logos = try container.decode(PaymentModeLogo.self, forKey: .logos)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                logos = try container.decode(PaymentModeLogo.self, forKey: .logos)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,9 +75,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(logos, forKey: .logos)
-
             try? container.encode(code, forKey: .code)
+
+            try? container.encode(logos, forKey: .logos)
 
             try? container.encode(packageName, forKey: .packageName)
 

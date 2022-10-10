@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: BadRequestResponseGenerateBulkUrl
-         Used By: OrderInvoiceEngine
+         Used By: DocumentEngine
      */
 
     class BadRequestResponseGenerateBulkUrl: Codable {

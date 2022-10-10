@@ -8,96 +8,96 @@ public extension PlatformClient {
      */
 
     class UserDataInfo: Codable {
-        public var lastName: String
+        public var firstName: String
 
-        public var uid: Int
-
-        public var avisUserId: String
+        public var mobile: String
 
         public var email: String
+
+        public var lastName: String
 
         public var isAnonymousUser: Bool
 
         public var gender: String
 
-        public var mobile: String
+        public var avisUserId: String
 
-        public var firstName: String
+        public var uid: Int
 
         public enum CodingKeys: String, CodingKey {
-            case lastName = "last_name"
+            case firstName = "first_name"
 
-            case uid
-
-            case avisUserId = "avis_user_id"
+            case mobile
 
             case email
+
+            case lastName = "last_name"
 
             case isAnonymousUser = "is_anonymous_user"
 
             case gender
 
-            case mobile
+            case avisUserId = "avis_user_id"
 
-            case firstName = "first_name"
+            case uid
         }
 
         public init(avisUserId: String, email: String, firstName: String, gender: String, isAnonymousUser: Bool, lastName: String, mobile: String, uid: Int) {
-            self.lastName = lastName
+            self.firstName = firstName
 
-            self.uid = uid
-
-            self.avisUserId = avisUserId
+            self.mobile = mobile
 
             self.email = email
+
+            self.lastName = lastName
 
             self.isAnonymousUser = isAnonymousUser
 
             self.gender = gender
 
-            self.mobile = mobile
+            self.avisUserId = avisUserId
 
-            self.firstName = firstName
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            lastName = try container.decode(String.self, forKey: .lastName)
+            firstName = try container.decode(String.self, forKey: .firstName)
 
-            uid = try container.decode(Int.self, forKey: .uid)
-
-            avisUserId = try container.decode(String.self, forKey: .avisUserId)
+            mobile = try container.decode(String.self, forKey: .mobile)
 
             email = try container.decode(String.self, forKey: .email)
+
+            lastName = try container.decode(String.self, forKey: .lastName)
 
             isAnonymousUser = try container.decode(Bool.self, forKey: .isAnonymousUser)
 
             gender = try container.decode(String.self, forKey: .gender)
 
-            mobile = try container.decode(String.self, forKey: .mobile)
+            avisUserId = try container.decode(String.self, forKey: .avisUserId)
 
-            firstName = try container.decode(String.self, forKey: .firstName)
+            uid = try container.decode(Int.self, forKey: .uid)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(avisUserId, forKey: .avisUserId)
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
 
             try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
 
             try? container.encodeIfPresent(isAnonymousUser, forKey: .isAnonymousUser)
 
             try? container.encodeIfPresent(gender, forKey: .gender)
 
-            try? container.encodeIfPresent(mobile, forKey: .mobile)
+            try? container.encodeIfPresent(avisUserId, forKey: .avisUserId)
 
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

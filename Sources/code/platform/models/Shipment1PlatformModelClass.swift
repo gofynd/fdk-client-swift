@@ -8,48 +8,52 @@ public extension PlatformClient {
      */
 
     class Shipment1: Codable {
+        public var shipmentStatus: String
+
+        public var orderId: String
+
         public var prices: ShipmentPricesDataSet?
 
-        public var shipmentStatus: String
+        public var totalItems: String
 
         public var rtdDone: String
 
         public var shipmentId: String
 
-        public var orderId: String
-
-        public var totalItems: String
-
         public enum CodingKeys: String, CodingKey {
+            case shipmentStatus = "shipment_status"
+
+            case orderId = "order_id"
+
             case prices
 
-            case shipmentStatus = "shipment_status"
+            case totalItems = "total_items"
 
             case rtdDone = "rtd_done"
 
             case shipmentId = "shipment_id"
-
-            case orderId = "order_id"
-
-            case totalItems = "total_items"
         }
 
         public init(orderId: String, prices: ShipmentPricesDataSet? = nil, rtdDone: String, shipmentId: String, shipmentStatus: String, totalItems: String) {
+            self.shipmentStatus = shipmentStatus
+
+            self.orderId = orderId
+
             self.prices = prices
 
-            self.shipmentStatus = shipmentStatus
+            self.totalItems = totalItems
 
             self.rtdDone = rtdDone
 
             self.shipmentId = shipmentId
-
-            self.orderId = orderId
-
-            self.totalItems = totalItems
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            shipmentStatus = try container.decode(String.self, forKey: .shipmentStatus)
+
+            orderId = try container.decode(String.self, forKey: .orderId)
 
             do {
                 prices = try container.decode(ShipmentPricesDataSet.self, forKey: .prices)
@@ -59,31 +63,27 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            shipmentStatus = try container.decode(String.self, forKey: .shipmentStatus)
+            totalItems = try container.decode(String.self, forKey: .totalItems)
 
             rtdDone = try container.decode(String.self, forKey: .rtdDone)
 
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
-            orderId = try container.decode(String.self, forKey: .orderId)
-
-            totalItems = try container.decode(String.self, forKey: .totalItems)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(shipmentStatus, forKey: .shipmentStatus)
+
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
+
             try? container.encodeIfPresent(prices, forKey: .prices)
 
-            try? container.encodeIfPresent(shipmentStatus, forKey: .shipmentStatus)
+            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
 
             try? container.encodeIfPresent(rtdDone, forKey: .rtdDone)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
-
-            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
         }
     }
 }

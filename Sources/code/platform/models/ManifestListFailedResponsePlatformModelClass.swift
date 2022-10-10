@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: ManifestListFailedResponse
-         Used By: OrderInvoiceEngine
+         Used By: DocumentEngine
      */
 
     class ManifestListFailedResponse: Codable {

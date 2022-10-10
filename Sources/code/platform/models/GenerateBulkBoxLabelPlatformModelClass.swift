@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: GenerateBulkBoxLabel
-         Used By: OrderInvoiceEngine
+         Used By: DocumentEngine
      */
 
     class GenerateBulkBoxLabel: Codable {

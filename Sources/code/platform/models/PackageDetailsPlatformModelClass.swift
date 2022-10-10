@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: PackageDetails
-         Used By: OrderInvoiceEngine
+         Used By: DocumentEngine
      */
 
     class PackageDetails: Codable {

@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: BulkListFailedResponse
-         Used By: OrderInvoiceEngine
+         Used By: DocumentEngine
      */
 
     class BulkListFailedResponse: Codable {

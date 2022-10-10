@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: BadRequestResponseGenerateBulkItemParameters
-         Used By: OrderInvoiceEngine
+         Used By: DocumentEngine
      */
 
     class BadRequestResponseGenerateBulkItemParameters: Codable {

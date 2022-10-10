@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: SellerAddress
-         Used By: OrderInvoiceEngine
+         Used By: DocumentEngine
      */
 
     class SellerAddress: Codable {

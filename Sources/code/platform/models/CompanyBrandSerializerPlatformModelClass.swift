@@ -8,54 +8,54 @@ public extension PlatformClient {
      */
 
     class CompanyBrandSerializer: Codable {
-        public var brand: GetBrandResponseSerializer?
+        public var stage: String?
 
         public var company: CompanySerializer?
 
         public var documents: [CompanyBrandDocumentsResponseSerializer]?
 
-        public var stage: String?
-
-        public var warnings: [String: Any]?
+        public var corrections: [[String: Any]]?
 
         public var rejectReason: String?
 
-        public var corrections: [[String: Any]]?
+        public var warnings: [String: Any]?
+
+        public var brand: GetBrandResponseSerializer?
 
         public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case brand
+            case stage
 
             case company
 
             case documents
 
-            case stage
-
-            case warnings
+            case corrections
 
             case rejectReason = "reject_reason"
 
-            case corrections
+            case warnings
+
+            case brand
 
             case uid
         }
 
         public init(brand: GetBrandResponseSerializer? = nil, company: CompanySerializer? = nil, corrections: [[String: Any]]? = nil, documents: [CompanyBrandDocumentsResponseSerializer]? = nil, rejectReason: String? = nil, stage: String? = nil, uid: Int? = nil, warnings: [String: Any]? = nil) {
-            self.brand = brand
+            self.stage = stage
 
             self.company = company
 
             self.documents = documents
 
-            self.stage = stage
-
-            self.warnings = warnings
+            self.corrections = corrections
 
             self.rejectReason = rejectReason
 
-            self.corrections = corrections
+            self.warnings = warnings
+
+            self.brand = brand
 
             self.uid = uid
         }
@@ -64,7 +64,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                brand = try container.decode(GetBrandResponseSerializer.self, forKey: .brand)
+                stage = try container.decode(String.self, forKey: .stage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,15 +88,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                stage = try container.decode(String.self, forKey: .stage)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                warnings = try container.decode([String: Any].self, forKey: .warnings)
+                corrections = try container.decode([[String: Any]].self, forKey: .corrections)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +104,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                corrections = try container.decode([[String: Any]].self, forKey: .corrections)
+                warnings = try container.decode([String: Any].self, forKey: .warnings)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brand = try container.decode(GetBrandResponseSerializer.self, forKey: .brand)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,19 +131,19 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
+            try? container.encodeIfPresent(stage, forKey: .stage)
 
             try? container.encodeIfPresent(company, forKey: .company)
 
             try? container.encodeIfPresent(documents, forKey: .documents)
 
-            try? container.encodeIfPresent(stage, forKey: .stage)
-
-            try? container.encodeIfPresent(warnings, forKey: .warnings)
+            try? container.encodeIfPresent(corrections, forKey: .corrections)
 
             try? container.encodeIfPresent(rejectReason, forKey: .rejectReason)
 
-            try? container.encodeIfPresent(corrections, forKey: .corrections)
+            try? container.encodeIfPresent(warnings, forKey: .warnings)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }
