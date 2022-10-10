@@ -1333,14 +1333,14 @@ public extension ApplicationClient {
          * Description: Use this API to fetch the outstanding order details.
          **/
         public func outstandingOrderDetails(
-            merchantUserId: String?,
+            aggregator: String?,
 
             onResponse: @escaping (_ response: OutstandingOrderDetailsResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
-            if let value = merchantUserId {
-                xQuery["merchant_user_id"] = value
+            if let value = aggregator {
+                xQuery["aggregator"] = value
             }
 
             let fullUrl = relativeUrls["outstandingOrderDetails"] ?? ""
@@ -1380,14 +1380,14 @@ public extension ApplicationClient {
          * Description: Use this API to fetch the paid order details.
          **/
         public func paidOrderDetails(
-            merchantUserId: String?,
+            aggregator: String?,
 
             onResponse: @escaping (_ response: PaidOrderDetailsResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
-            if let value = merchantUserId {
-                xQuery["merchant_user_id"] = value
+            if let value = aggregator {
+                xQuery["aggregator"] = value
             }
 
             let fullUrl = relativeUrls["paidOrderDetails"] ?? ""

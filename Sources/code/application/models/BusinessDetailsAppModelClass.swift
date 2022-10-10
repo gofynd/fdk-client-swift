@@ -7,72 +7,72 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class BusinessDetails: Codable {
-        public var entityType: String?
-
-        public var gstin: String?
+        public var businessType: String?
 
         public var businessOwnershipType: String?
 
-        public var businessType: String?
-
         public var pan: String?
 
-        public var fssai: String?
-
-        public var vintage: String?
-
-        public var fda: String?
+        public var entityType: String?
 
         public var address: KYCAddress?
 
+        public var fssai: String?
+
+        public var gstin: String?
+
         public var shopAndEstablishment: [String: Any]?
+
+        public var fda: String?
+
+        public var vintage: String?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case entityType = "entity_type"
-
-            case gstin
+            case businessType = "business_type"
 
             case businessOwnershipType = "business_ownership_type"
 
-            case businessType = "business_type"
-
             case pan
 
-            case fssai
-
-            case vintage
-
-            case fda
+            case entityType = "entity_type"
 
             case address
 
+            case fssai
+
+            case gstin
+
             case shopAndEstablishment = "shop_and_establishment"
+
+            case fda
+
+            case vintage
 
             case name
         }
 
         public init(address: KYCAddress? = nil, businessOwnershipType: String? = nil, businessType: String? = nil, entityType: String? = nil, fda: String? = nil, fssai: String? = nil, gstin: String? = nil, name: String? = nil, pan: String? = nil, shopAndEstablishment: [String: Any]? = nil, vintage: String? = nil) {
-            self.entityType = entityType
-
-            self.gstin = gstin
+            self.businessType = businessType
 
             self.businessOwnershipType = businessOwnershipType
 
-            self.businessType = businessType
-
             self.pan = pan
 
-            self.fssai = fssai
-
-            self.vintage = vintage
-
-            self.fda = fda
+            self.entityType = entityType
 
             self.address = address
 
+            self.fssai = fssai
+
+            self.gstin = gstin
+
             self.shopAndEstablishment = shopAndEstablishment
+
+            self.fda = fda
+
+            self.vintage = vintage
 
             self.name = name
         }
@@ -81,15 +81,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                entityType = try container.decode(String.self, forKey: .entityType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                gstin = try container.decode(String.self, forKey: .gstin)
+                businessType = try container.decode(String.self, forKey: .businessType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,14 +97,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                businessType = try container.decode(String.self, forKey: .businessType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 pan = try container.decode(String.self, forKey: .pan)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -121,23 +105,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                fssai = try container.decode(String.self, forKey: .fssai)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                vintage = try container.decode(String.self, forKey: .vintage)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                fda = try container.decode(String.self, forKey: .fda)
+                entityType = try container.decode(String.self, forKey: .entityType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,7 +121,39 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                fssai = try container.decode(String.self, forKey: .fssai)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                gstin = try container.decode(String.self, forKey: .gstin)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 shopAndEstablishment = try container.decode([String: Any].self, forKey: .shopAndEstablishment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                fda = try container.decode(String.self, forKey: .fda)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                vintage = try container.decode(String.self, forKey: .vintage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,25 +172,25 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(entityType, forKey: .entityType)
-
-            try? container.encode(gstin, forKey: .gstin)
+            try? container.encode(businessType, forKey: .businessType)
 
             try? container.encode(businessOwnershipType, forKey: .businessOwnershipType)
 
-            try? container.encode(businessType, forKey: .businessType)
-
             try? container.encode(pan, forKey: .pan)
 
-            try? container.encode(fssai, forKey: .fssai)
-
-            try? container.encode(vintage, forKey: .vintage)
-
-            try? container.encode(fda, forKey: .fda)
+            try? container.encode(entityType, forKey: .entityType)
 
             try? container.encodeIfPresent(address, forKey: .address)
 
+            try? container.encode(fssai, forKey: .fssai)
+
+            try? container.encode(gstin, forKey: .gstin)
+
             try? container.encodeIfPresent(shopAndEstablishment, forKey: .shopAndEstablishment)
+
+            try? container.encode(fda, forKey: .fda)
+
+            try? container.encode(vintage, forKey: .vintage)
 
             try? container.encode(name, forKey: .name)
         }
