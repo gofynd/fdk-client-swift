@@ -7385,27 +7385,19 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get COD limit for user
-             * Description: Use this API to get user cod limit and reamining limit for the payment
+             * Summary: API to register repayment details
+             * Description: Use this API to register any repayment record in the db and notify the aggrgator
              **/
-            public func getUserCODlimitRoutes(
-                merchantUserId: String,
-                mobileNo: String,
-
-                onResponse: @escaping (_ response: GetUserCODLimitResponse?, _ error: FDKError?) -> Void
+            public func repaymentDetails(
+                body: RepaymentRequestDetails,
+                onResponse: @escaping (_ response: RepaymentResponse?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:]
-
-                xQuery["merchant_user_id"] = merchantUserId
-
-                xQuery["mobile_no"] = mobileNo
-
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "get",
-                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/user-cod",
-                    query: xQuery,
-                    body: nil,
+                    method: "post",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/repayment-details",
+                    query: nil,
+                    body: body.dictionary,
                     headers: [],
                     responseType: "application/json",
                     onResponse: { responseData, error, responseCode in
@@ -7416,7 +7408,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(GetUserCODLimitResponse.self, from: data)
+                            let response = Utility.decode(RepaymentResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -7431,17 +7423,17 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Set COD option for user for payment
-             * Description: Use this API to set cod option as true or false for the payment
+             * Summary: API to push Ajiodhan merchant data to Gringotts system
+             * Description: Use this API to push Ajiodhan merchant data to Gringotts system
              **/
-            public func setUserCODlimitRoutes(
-                body: SetCODForUserRequest,
-                onResponse: @escaping (_ response: SetCODOptionResponse?, _ error: FDKError?) -> Void
+            public func merchantOnBoarding(
+                body: MerchantOnBoardingRequest,
+                onResponse: @escaping (_ response: MerchantOnBoardingResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "put",
-                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/user-cod",
+                    method: "post",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/merchant-onboarding",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -7454,7 +7446,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(SetCODOptionResponse.self, from: data)
+                            let response = Utility.decode(MerchantOnBoardingResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {

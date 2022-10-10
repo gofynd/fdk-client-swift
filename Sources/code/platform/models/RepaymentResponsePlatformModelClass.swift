@@ -3,25 +3,25 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: GetUserCODLimitResponse
+         Model: RepaymentResponse
          Used By: Payment
      */
 
-    class GetUserCODLimitResponse: Codable {
+    class RepaymentResponse: Codable {
         public var success: Bool
 
-        public var userCodData: CODdata
+        public var data: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case userCodData = "user_cod_data"
+            case data
         }
 
-        public init(success: Bool, userCodData: CODdata) {
+        public init(data: [String: Any], success: Bool) {
             self.success = success
 
-            self.userCodData = userCodData
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -29,7 +29,7 @@ public extension PlatformClient {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            userCodData = try container.decode(CODdata.self, forKey: .userCodData)
+            data = try container.decode([String: Any].self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -37,7 +37,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(userCodData, forKey: .userCodData)
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
