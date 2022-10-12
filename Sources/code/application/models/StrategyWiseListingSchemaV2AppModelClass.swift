@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class StrategyWiseListingSchemaV2: Codable {
         public var quantity: Int?
 
-        public var pincode: Int?
+        public var tat: Int?
 
         public var distance: Int?
 
-        public var tat: Int?
+        public var pincode: Int?
 
         public enum CodingKeys: String, CodingKey {
             case quantity
 
-            case pincode
+            case tat
 
             case distance
 
-            case tat
+            case pincode
         }
 
         public init(distance: Int? = nil, pincode: Int? = nil, quantity: Int? = nil, tat: Int? = nil) {
             self.quantity = quantity
 
-            self.pincode = pincode
+            self.tat = tat
 
             self.distance = distance
 
-            self.tat = tat
+            self.pincode = pincode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                pincode = try container.decode(Int.self, forKey: .pincode)
+                tat = try container.decode(Int.self, forKey: .tat)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                tat = try container.decode(Int.self, forKey: .tat)
+                pincode = try container.decode(Int.self, forKey: .pincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(tat, forKey: .tat)
 
             try? container.encodeIfPresent(distance, forKey: .distance)
 
-            try? container.encodeIfPresent(tat, forKey: .tat)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
         }
     }
 }

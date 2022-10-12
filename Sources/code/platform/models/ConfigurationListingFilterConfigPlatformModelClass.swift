@@ -10,8 +10,6 @@ public extension PlatformClient {
     class ConfigurationListingFilterConfig: Codable {
         public var key: String
 
-        public var isActive: Bool
-
         public var type: String
 
         public var priority: Int
@@ -20,14 +18,14 @@ public extension PlatformClient {
 
         public var displayName: String?
 
+        public var isActive: Bool
+
         public var logo: String?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case key
-
-            case isActive = "is_active"
 
             case type
 
@@ -37,6 +35,8 @@ public extension PlatformClient {
 
             case displayName = "display_name"
 
+            case isActive = "is_active"
+
             case logo
 
             case name
@@ -45,8 +45,6 @@ public extension PlatformClient {
         public init(displayName: String? = nil, isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int, type: String, valueConfig: ConfigurationListingFilterValue? = nil) {
             self.key = key
 
-            self.isActive = isActive
-
             self.type = type
 
             self.priority = priority
@@ -54,6 +52,8 @@ public extension PlatformClient {
             self.valueConfig = valueConfig
 
             self.displayName = displayName
+
+            self.isActive = isActive
 
             self.logo = logo
 
@@ -64,8 +64,6 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             key = try container.decode(String.self, forKey: .key)
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             type = try container.decode(String.self, forKey: .type)
 
@@ -86,6 +84,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -109,8 +109,6 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
@@ -118,6 +116,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(valueConfig, forKey: .valueConfig)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 

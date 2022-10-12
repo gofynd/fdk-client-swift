@@ -82,7 +82,6 @@ public extension ApplicationClient {
             i: Bool?,
             b: Bool?,
             assignCardId: Int?,
-            areaCode: String?,
             buyNow: Bool?,
 
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
@@ -103,10 +102,6 @@ public extension ApplicationClient {
 
             if let value = assignCardId {
                 xQuery["assign_card_id"] = value
-            }
-
-            if let value = areaCode {
-                xQuery["area_code"] = value
             }
 
             if let value = buyNow {
@@ -199,7 +194,6 @@ public extension ApplicationClient {
         public func addItems(
             i: Bool?,
             b: Bool?,
-            areaCode: String?,
             buyNow: Bool?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
@@ -212,10 +206,6 @@ public extension ApplicationClient {
 
             if let value = b {
                 xQuery["b"] = value
-            }
-
-            if let value = areaCode {
-                xQuery["area_code"] = value
             }
 
             if let value = buyNow {
@@ -262,7 +252,6 @@ public extension ApplicationClient {
             id: String?,
             i: Bool?,
             b: Bool?,
-            areaCode: String?,
             buyNow: Bool?,
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
@@ -279,10 +268,6 @@ public extension ApplicationClient {
 
             if let value = b {
                 xQuery["b"] = value
-            }
-
-            if let value = areaCode {
-                xQuery["area_code"] = value
             }
 
             if let value = buyNow {
