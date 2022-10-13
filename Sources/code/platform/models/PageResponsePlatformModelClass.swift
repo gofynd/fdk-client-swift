@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var hasNext: Bool?
 
+        public var hasPrevious: Bool?
+
         public var size: Int?
 
         public var current: String?
-
-        public var hasPrevious: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case itemTotal = "item_total"
 
             case hasNext = "has_next"
 
+            case hasPrevious = "has_previous"
+
             case size
 
             case current
-
-            case hasPrevious = "has_previous"
         }
 
         public init(current: String? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.hasNext = hasNext
 
+            self.hasPrevious = hasPrevious
+
             self.size = size
 
             self.current = current
-
-            self.hasPrevious = hasPrevious
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,6 +62,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 size = try container.decode(Int.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,14 +84,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -93,11 +93,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(current, forKey: .current)
-
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
         }
     }
 }
