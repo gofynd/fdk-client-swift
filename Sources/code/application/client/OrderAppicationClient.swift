@@ -183,7 +183,7 @@ public extension ApplicationClient {
          * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
          **/
         public func getShipmentReasons(
-            shipmentId: Int,
+            shipmentId: String,
             bagId: String,
 
             onResponse: @escaping (_ response: ShipmentReasonsResponse?, _ error: FDKError?) -> Void

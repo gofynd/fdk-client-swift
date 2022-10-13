@@ -8,84 +8,60 @@ public extension PlatformClient {
      */
 
     class BrandItem: Codable {
-        public var logo: Media?
-
-        public var slug: String?
-
-        public var discount: String?
-
         public var banners: ImageUrls?
 
         public var name: String?
 
         public var uid: Int?
 
-        public var action: Action?
+        public var slug: String?
 
         public var departments: [String]?
 
+        public var action: Action?
+
+        public var logo: Media?
+
+        public var discount: String?
+
         public enum CodingKeys: String, CodingKey {
-            case logo
-
-            case slug
-
-            case discount
-
             case banners
 
             case name
 
             case uid
 
-            case action
+            case slug
 
             case departments
+
+            case action
+
+            case logo
+
+            case discount
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, departments: [String]? = nil, discount: String? = nil, logo: Media? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
-            self.logo = logo
-
-            self.slug = slug
-
-            self.discount = discount
-
             self.banners = banners
 
             self.name = name
 
             self.uid = uid
 
-            self.action = action
+            self.slug = slug
 
             self.departments = departments
+
+            self.action = action
+
+            self.logo = logo
+
+            self.discount = discount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                logo = try container.decode(Media.self, forKey: .logo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                discount = try container.decode(String.self, forKey: .discount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 banners = try container.decode(ImageUrls.self, forKey: .banners)
@@ -112,7 +88,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -126,16 +102,34 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                action = try container.decode(Action.self, forKey: .action)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                logo = try container.decode(Media.self, forKey: .logo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                discount = try container.decode(String.self, forKey: .discount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(discount, forKey: .discount)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
@@ -143,9 +137,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(departments, forKey: .departments)
+
+            try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(discount, forKey: .discount)
         }
     }
 }

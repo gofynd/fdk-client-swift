@@ -12,26 +12,26 @@ public extension PlatformClient {
 
         public var index: Int
 
-        public var text: String
+        public var totalShipments: Int
 
         public var nextState: [String]?
 
         public var value: String
 
-        public var totalShipments: Int
+        public var text: String
 
         public enum CodingKeys: String, CodingKey {
             case currentState = "current_state"
 
             case index
 
-            case text
+            case totalShipments = "total_shipments"
 
             case nextState = "next_state"
 
             case value
 
-            case totalShipments = "total_shipments"
+            case text
         }
 
         public init(currentState: [String]? = nil, index: Int, nextState: [String]? = nil, text: String, totalShipments: Int, value: String) {
@@ -39,13 +39,13 @@ public extension PlatformClient {
 
             self.index = index
 
-            self.text = text
+            self.totalShipments = totalShipments
 
             self.nextState = nextState
 
             self.value = value
 
-            self.totalShipments = totalShipments
+            self.text = text
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension PlatformClient {
 
             index = try container.decode(Int.self, forKey: .index)
 
-            text = try container.decode(String.self, forKey: .text)
+            totalShipments = try container.decode(Int.self, forKey: .totalShipments)
 
             do {
                 nextState = try container.decode([String].self, forKey: .nextState)
@@ -73,7 +73,7 @@ public extension PlatformClient {
 
             value = try container.decode(String.self, forKey: .value)
 
-            totalShipments = try container.decode(Int.self, forKey: .totalShipments)
+            text = try container.decode(String.self, forKey: .text)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -83,13 +83,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(index, forKey: .index)
 
-            try? container.encodeIfPresent(text, forKey: .text)
+            try? container.encodeIfPresent(totalShipments, forKey: .totalShipments)
 
             try? container.encodeIfPresent(nextState, forKey: .nextState)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(totalShipments, forKey: .totalShipments)
+            try? container.encodeIfPresent(text, forKey: .text)
         }
     }
 }

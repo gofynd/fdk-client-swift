@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class PaymentInfo: Codable {
         public var logo: String?
 
-        public var mode: String?
+        public var mop: String?
 
         public var status: String?
 
-        public var mop: String?
+        public var mode: String?
 
         public enum CodingKeys: String, CodingKey {
             case logo
 
-            case mode
+            case mop
 
             case status
 
-            case mop
+            case mode
         }
 
         public init(logo: String? = nil, mode: String? = nil, mop: String? = nil, status: String? = nil) {
             self.logo = logo
 
-            self.mode = mode
+            self.mop = mop
 
             self.status = status
 
-            self.mop = mop
+            self.mode = mode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                mode = try container.decode(String.self, forKey: .mode)
+                mop = try container.decode(String.self, forKey: .mop)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                mop = try container.decode(String.self, forKey: .mop)
+                mode = try container.decode(String.self, forKey: .mode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
+            try? container.encodeIfPresent(mop, forKey: .mop)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(mop, forKey: .mop)
+            try? container.encodeIfPresent(mode, forKey: .mode)
         }
     }
 }
