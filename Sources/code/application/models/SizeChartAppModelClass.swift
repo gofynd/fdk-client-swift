@@ -7,9 +7,9 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class SizeChart: Codable {
-        public var description: String?
+        public var title: String?
 
-        public var sizes: [SizeChartValues]?
+        public var description: String?
 
         public var sizeTip: String?
 
@@ -17,14 +17,14 @@ public extension ApplicationClient {
 
         public var image: String?
 
+        public var sizes: [SizeChartValues]?
+
         public var headers: ColumnHeaders?
 
-        public var title: String?
-
         public enum CodingKeys: String, CodingKey {
-            case description
+            case title
 
-            case sizes
+            case description
 
             case sizeTip = "size_tip"
 
@@ -32,15 +32,15 @@ public extension ApplicationClient {
 
             case image
 
-            case headers
+            case sizes
 
-            case title
+            case headers
         }
 
         public init(description: String? = nil, headers: ColumnHeaders? = nil, image: String? = nil, sizes: [SizeChartValues]? = nil, sizeTip: String? = nil, title: String? = nil, unit: String? = nil) {
-            self.description = description
+            self.title = title
 
-            self.sizes = sizes
+            self.description = description
 
             self.sizeTip = sizeTip
 
@@ -48,16 +48,16 @@ public extension ApplicationClient {
 
             self.image = image
 
-            self.headers = headers
+            self.sizes = sizes
 
-            self.title = title
+            self.headers = headers
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sizes = try container.decode([SizeChartValues].self, forKey: .sizes)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                headers = try container.decode(ColumnHeaders.self, forKey: .headers)
+                sizes = try container.decode([SizeChartValues].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                headers = try container.decode(ColumnHeaders.self, forKey: .headers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,9 +116,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(sizeTip, forKey: .sizeTip)
 
@@ -126,9 +126,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(image, forKey: .image)
 
-            try? container.encodeIfPresent(headers, forKey: .headers)
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(headers, forKey: .headers)
         }
     }
 }

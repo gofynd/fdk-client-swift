@@ -11,17 +11,17 @@ public extension ApplicationClient {
 
         public var shipmentType: String?
 
-        public var dpOptions: [String: Any]?
-
         public var fulfillmentId: Int?
 
-        public var boxType: String?
+        public var promise: ShipmentPromise?
 
         public var orderType: String?
 
         public var items: [CartProductInfo]?
 
-        public var promise: ShipmentPromise?
+        public var boxType: String?
+
+        public var dpOptions: [String: Any]?
 
         public var fulfillmentType: String?
 
@@ -32,17 +32,17 @@ public extension ApplicationClient {
 
             case shipmentType = "shipment_type"
 
-            case dpOptions = "dp_options"
-
             case fulfillmentId = "fulfillment_id"
 
-            case boxType = "box_type"
+            case promise
 
             case orderType = "order_type"
 
             case items
 
-            case promise
+            case boxType = "box_type"
+
+            case dpOptions = "dp_options"
 
             case fulfillmentType = "fulfillment_type"
 
@@ -54,17 +54,17 @@ public extension ApplicationClient {
 
             self.shipmentType = shipmentType
 
-            self.dpOptions = dpOptions
-
             self.fulfillmentId = fulfillmentId
 
-            self.boxType = boxType
+            self.promise = promise
 
             self.orderType = orderType
 
             self.items = items
 
-            self.promise = promise
+            self.boxType = boxType
+
+            self.dpOptions = dpOptions
 
             self.fulfillmentType = fulfillmentType
 
@@ -91,14 +91,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                dpOptions = try container.decode([String: Any].self, forKey: .dpOptions)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -107,7 +99,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                boxType = try container.decode(String.self, forKey: .boxType)
+                promise = try container.decode(ShipmentPromise.self, forKey: .promise)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,7 +123,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                promise = try container.decode(ShipmentPromise.self, forKey: .promise)
+                boxType = try container.decode(String.self, forKey: .boxType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dpOptions = try container.decode([String: Any].self, forKey: .dpOptions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -162,17 +162,17 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
 
-            try? container.encode(dpOptions, forKey: .dpOptions)
-
             try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
 
-            try? container.encode(boxType, forKey: .boxType)
+            try? container.encodeIfPresent(promise, forKey: .promise)
 
             try? container.encodeIfPresent(orderType, forKey: .orderType)
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(promise, forKey: .promise)
+            try? container.encode(boxType, forKey: .boxType)
+
+            try? container.encode(dpOptions, forKey: .dpOptions)
 
             try? container.encodeIfPresent(fulfillmentType, forKey: .fulfillmentType)
 
