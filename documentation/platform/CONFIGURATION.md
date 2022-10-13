@@ -4122,7 +4122,7 @@ Check store has active integration
 
 
 ```swift
-client.configuration.getLevelActiveIntegrations(id: id, level: level, uid: uid) { (response, error) in
+client.configuration.getLevelActiveIntegrations(id: id, level: level, uid: uid, permission: permission) { (response, error) in
     // Use response
 }
 ```
@@ -4135,7 +4135,8 @@ client.configuration.getLevelActiveIntegrations(id: id, level: level, uid: uid) 
 | -------- | ---- | -------- | ----------- | 
 | id | String | yes | Integration id |   
 | level | String | yes | Integration level |   
-| uid | Int | yes | Integration level uid |  
+| uid | Int | yes | Integration level uid |   
+| permission | String? | no | Check opt-in for specific integration permissions |  
 
 
 
@@ -4974,6 +4975,7 @@ Success
  | pac | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
  | fc | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
  | jiopp | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | jiopplink | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
  | stripepg | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
  | juspaypg | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
  | payubizpg | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |

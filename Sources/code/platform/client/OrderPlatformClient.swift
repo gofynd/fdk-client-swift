@@ -227,6 +227,7 @@ public extension PlatformClient {
             deploymentStores: String?,
             status: String?,
             dp: String?,
+            shortenUrls: Bool?,
             filterType: String?,
 
             onResponse: @escaping (_ response: OrderListing?, _ error: FDKError?) -> Void
@@ -293,6 +294,10 @@ public extension PlatformClient {
                 xQuery["dp"] = value
             }
 
+            if let value = shortenUrls {
+                xQuery["shorten_urls"] = value
+            }
+
             if let value = filterType {
                 xQuery["filter_type"] = value
             }
@@ -342,6 +347,7 @@ public extension PlatformClient {
             orderId: String?,
             stores: String?,
             status: String?,
+            shortenUrls: Bool?,
             filterType: String?,
 
             onResponse: @escaping (_ response: OrderLanesCount?, _ error: FDKError?) -> Void
@@ -386,6 +392,10 @@ public extension PlatformClient {
 
             if let value = status {
                 xQuery["status"] = value
+            }
+
+            if let value = shortenUrls {
+                xQuery["shorten_urls"] = value
             }
 
             if let value = filterType {
@@ -492,6 +502,7 @@ public extension PlatformClient {
             orderId: String?,
             stores: String?,
             status: String?,
+            shortenUrls: Bool?,
             filterType: String?,
 
             onResponse: @escaping (_ response: OrderPicklistListing?, _ error: FDKError?) -> Void
@@ -536,6 +547,10 @@ public extension PlatformClient {
 
             if let value = status {
                 xQuery["status"] = value
+            }
+
+            if let value = shortenUrls {
+                xQuery["shorten_urls"] = value
             }
 
             if let value = filterType {
@@ -639,6 +654,126 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(UpdateShipmentAddressResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Get Ping
+         * Description: Get Ping
+         **/
+        public func getPing(
+            onResponse: @escaping (_ response: GetPingResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/order/v1.0/company/\(companyId)/ping",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetPingResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Get Voice Callback
+         * Description: Voice Callback
+         **/
+        public func voiceCallback(
+            onResponse: @escaping (_ response: GetVoiceCallbackResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/order/v1.0/company/\(companyId)/voice/callback",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetVoiceCallbackResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Get Voice Click to Call
+         * Description: Voice Click to Call
+         **/
+        public func voiceClickToCall(
+            caller: String,
+            receiver: String,
+
+            onResponse: @escaping (_ response: GetClickToCallResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:]
+
+            xQuery["caller"] = caller
+
+            xQuery["receiver"] = receiver
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/order/v1.0/company/\(companyId)/voice/click-to-call",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetClickToCallResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

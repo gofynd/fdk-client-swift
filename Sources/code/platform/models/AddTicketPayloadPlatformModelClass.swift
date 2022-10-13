@@ -18,8 +18,6 @@ public extension PlatformClient {
 
         public var content: TicketContent
 
-        public var customJson: [String: Any]?
-
         public enum CodingKeys: String, CodingKey {
             case createdBy = "created_by"
 
@@ -30,11 +28,9 @@ public extension PlatformClient {
             case category
 
             case content
-
-            case customJson = "_custom_json"
         }
 
-        public init(category: String, content: TicketContent, createdBy: [String: Any]? = nil, priority: PriorityEnum? = nil, status: String? = nil, customJson: [String: Any]? = nil) {
+        public init(category: String, content: TicketContent, createdBy: [String: Any]? = nil, priority: PriorityEnum? = nil, status: String? = nil) {
             self.createdBy = createdBy
 
             self.status = status
@@ -44,8 +40,6 @@ public extension PlatformClient {
             self.category = category
 
             self.content = content
-
-            self.customJson = customJson
         }
 
         required public init(from decoder: Decoder) throws {
@@ -78,14 +72,6 @@ public extension PlatformClient {
             category = try container.decode(String.self, forKey: .category)
 
             content = try container.decode(TicketContent.self, forKey: .content)
-
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -100,8 +86,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(category, forKey: .category)
 
             try? container.encodeIfPresent(content, forKey: .content)
-
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
         }
     }
 }

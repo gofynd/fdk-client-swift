@@ -19,9 +19,6 @@ Cart APIs
 * [fetchAndvalidateCartItems](#fetchandvalidatecartitems)
 * [checkCartServiceability](#checkcartserviceability)
 * [checkoutCart](#checkoutcart)
-* [getAbandonedCart](#getabandonedcart)
-* [addItems](#additems)
-* [updateCart](#updatecart)
 
 
 
@@ -2194,1512 +2191,20 @@ Checkout cart and create Fynd order id
 ---
 
 
-#### getAbandonedCart
-Get with abandoned cart list
-
-
-
-
-```swift
-client.application("<APPLICATION_ID>").cart.getAbandonedCart(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, anonymousCart: anonymousCart, lastId: lastId, sortOn: sortOn) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| pageNo | Int? | no |  |   
-| pageSize | Int? | no |  |   
-| fromDate | String? | no |  |   
-| toDate | String? | no |  |   
-| anonymousCart | Bool? | no |  |   
-| lastId | String? | no |  |   
-| sortOn | String? | no |  |  
-
-
-
-Get abandoned cart list with pagination
-
-*Returned Response:*
-
-
-
-
-[AbandonedCartResponse](#AbandonedCartResponse)
-
-Abandoned Cart List for sent page_size and page_no
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Abandoned Cart list for sent filter and page size</i></summary>
-
-```json
-{
-  "value": {
-    "message": "Cart fetched successfully !!",
-    "success": true,
-    "result": {},
-    "items": [
-      {
-        "_id": "62bbe2c4b79692d559ac1f16",
-        "uid": 19986,
-        "user_id": "600693a01faf8695d70a15df",
-        "is_default": true,
-        "app_id": "5d64e3500bcad8693a821c0d",
-        "articles": [
-          {
-            "service_item_meta": {
-              "product_group_tags": null,
-              "products": null
-            },
-            "parent_item_identifiers": {
-              "identifier": null,
-              "parent_item_size": null,
-              "parent_item_id": null
-            },
-            "item_id": 7500426,
-            "item_size": "SET1",
-            "article_id": "5f37d9b71cb7c10001b90ee2",
-            "quantity": 2,
-            "price_marked": 1000,
-            "price_effective": 1,
-            "currency_code": "INR",
-            "store_id": 10183,
-            "company_id": 61,
-            "article_assignment": {
-              "level": "multi-companies",
-              "strategy": "optimal"
-            },
-            "brand_uid": 85,
-            "l3_categories": [
-              466
-            ],
-            "discount": 99.9,
-            "coupon": {
-              "amount": 0,
-              "currency_code": "INR",
-              "article_count": 0
-            },
-            "referral_credits": {
-              "amount": 0,
-              "currency_code": "FC"
-            },
-            "cashback": {
-              "amount": 0,
-              "currency_code": "FC"
-            },
-            "bulk_coupon": {
-              "margin": 0,
-              "discount": 0,
-              "code": null
-            },
-            "promotion": [
-              {
-                "promo_id": "62bbf355beda57df173122fa",
-                "amount": 1,
-                "article_quantity": 2,
-                "mrp_promotion": false,
-                "promotion_type": "amount",
-                "discount_rules": [
-                  {
-                    "type": "amount",
-                    "value": 125
-                  }
-                ]
-              }
-            ],
-            "identifiers": {
-              "identifier": "pEF2t4GGTKaieox5rsRibw"
-            },
-            "meta": {},
-            "extra_meta": {},
-            "payment_methods": []
-          }
-        ],
-        "cart_value": 1,
-        "discount": 0,
-        "delivery_charges": {
-          "amount": 1,
-          "currency_code": "INR"
-        },
-        "coupon": {
-          "amount": 0,
-          "currency_code": "INR",
-          "code": null,
-          "type": "cart",
-          "uid": null,
-          "id": null
-        },
-        "promotion": {
-          "amount": 2,
-          "currency_code": "INR",
-          "mode": "promotion",
-          "promotions": [
-            {
-              "id": "62bbf355beda57df173122fa",
-              "mrp_promo": false,
-              "promo_group": "product"
-            }
-          ]
-        },
-        "fynd_credits": {
-          "amount": 0,
-          "currency_code": "FC",
-          "auto_applied": true
-        },
-        "cod_charges": {
-          "amount": 0,
-          "currency_code": "INR"
-        },
-        "cashback": {
-          "amount": 0,
-          "currency_code": "FC",
-          "uid": null
-        },
-        "payments": {},
-        "is_archive": false,
-        "created_on": "2022-06-28 14:25:15.578000",
-        "last_modified": "2022-06-29 13:52:03.313000",
-        "expire_at": "2023-06-24 13:52:03.313000",
-        "fc_index_map": [
-          0,
-          0
-        ],
-        "checkout_mode": "self",
-        "meta": {
-          "shipping_address_id": "62b161cb3ad0eed3e48ec6a9",
-          "billing_address_id": "62b161cb3ad0eed3e48ec6a9"
-        },
-        "comment": "",
-        "bulk_coupon_discount": 0,
-        "pick_up_customer_details": {},
-        "is_active": true,
-        "shipments": [],
-        "payment_methods": [],
-        "buy_now": false
-      }
-    ],
-    "page": {
-      "type": "number",
-      "has_next": false,
-      "item_total": 28,
-      "size": 20,
-      "page": 2,
-      "current": 2,
-      "last_id": "62d4ff76d6aec8db897de407"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### addItems
-Add items to abandoned cart
-
-
-
-
-```swift
-client.application("<APPLICATION_ID>").cart.addItems(cartId: cartId, b: b, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| cartId | String | yes | Current Cart _id |   
-| b | Bool? | no |  |  
-| body | AddCartRequest | yes | Request body |
-
-
-Use this API to add items to the abandoned cart.
-
-*Returned Response:*
-
-
-
-
-[AddCartDetailResponse](#AddCartDetailResponse)
-
-Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Product has been added to your cart</i></summary>
-
-```json
-{
-  "value": {
-    "message": "Product has been added to your cart",
-    "success": true,
-    "cart": {
-      "breakup_values": {
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 17486,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Discount",
-            "key": "discount",
-            "value": -3540,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 13946,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 13946,
-            "currency_code": "INR"
-          }
-        ],
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": -3540,
-          "fynd_cash": 0,
-          "gst_charges": 1529.96,
-          "mrp_total": 17486,
-          "subtotal": 13946,
-          "total": 13946,
-          "vog": 12416.04,
-          "you_saved": 0
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        }
-      },
-      "items": [
-        {
-          "key": "751083_10",
-          "parent_item_identifiers": {
-            "identifier": "ZASFF",
-            "parent_item_id": 7501190,
-            "parent_item_size": "OS"
-          },
-          "article": {
-            "type": "article",
-            "uid": "612_9_SE61201_19100302_10",
-            "size": "10",
-            "seller": {
-              "uid": 612,
-              "name": "SSR ENTERPRISE"
-            },
-            "store": {
-              "uid": 4431,
-              "name": "Motilal Nagar 1, Goregaon"
-            },
-            "quantity": 4,
-            "price": {
-              "base": {
-                "marked": 3999,
-                "effective": 2399,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 3999,
-                "effective": 2399,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 4798,
-              "marked": 7998,
-              "effective": 4798,
-              "selling": 4798,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 4798,
-              "marked": 7998,
-              "effective": 4798,
-              "selling": 4798,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "10"
-            ],
-            "other_store_quantity": 2,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 751083,
-            "name": "Carson 2",
-            "slug": "puma-carson-2-751083-6ad98d",
-            "brand": {
-              "uid": 9,
-              "name": "Puma"
-            },
-            "categories": [
-              {
-                "uid": 165,
-                "name": "Outdoor Sports Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/9_19100302/1_1542807042296.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/9_19100302/1_1542807042296.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/puma-carson-2-751083-6ad98d/",
-              "query": {
-                "product_slug": [
-                  "puma-carson-2-751083-6ad98d"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 2,
-          "message": "",
-          "bulk_offer": {},
-          "discount": "41% OFF"
-        },
-        {
-          "key": "246228_S",
-          "article": {
-            "type": "article",
-            "uid": "46_235_TM62_M11029ONDSXNS_S",
-            "size": "S",
-            "seller": {
-              "uid": 46,
-              "name": "RELIANCE BRANDS LIMITED"
-            },
-            "store": {
-              "uid": 4550,
-              "name": "VR Mall"
-            },
-            "quantity": 1,
-            "price": {
-              "base": {
-                "marked": 4490,
-                "effective": 4490,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 4490,
-                "effective": 4490,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 4490,
-              "marked": 4490,
-              "effective": 4490,
-              "selling": 4490,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 4490,
-              "marked": 4490,
-              "effective": 4490,
-              "selling": 4490,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "L",
-              "M",
-              "S",
-              "XL",
-              "XXL"
-            ],
-            "other_store_quantity": 0,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 246228,
-            "name": "Blue Solid T-Shirt",
-            "slug": "superdry-blue-solid-t-shirt-2",
-            "brand": {
-              "uid": 235,
-              "name": "Superdry"
-            },
-            "categories": [
-              {
-                "uid": 192,
-                "name": "T-Shirts"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/235_M11029ONDSXNS/1.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/235_M11029ONDSXNS/1.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/superdry-blue-solid-t-shirt-2/",
-              "query": {
-                "product_slug": [
-                  "superdry-blue-solid-t-shirt-2"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 1,
-          "message": "",
-          "bulk_offer": {},
-          "discount": ""
-        },
-        {
-          "key": "443175_S",
-          "article": {
-            "type": "article",
-            "uid": "162_207_1271_LJ03LBLUDN88_S",
-            "size": "S",
-            "seller": {
-              "uid": 162,
-              "name": "GO FASHION INDIA PRIVATE LIMITED"
-            },
-            "store": {
-              "uid": 5784,
-              "name": "Vega City mall"
-            },
-            "quantity": 3,
-            "price": {
-              "base": {
-                "marked": 1599,
-                "effective": 1599,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 1599,
-                "effective": 1599,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 1599,
-              "marked": 1599,
-              "effective": 1599,
-              "selling": 1599,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 1599,
-              "marked": 1599,
-              "effective": 1599,
-              "selling": 1599,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "XL",
-              "M",
-              "L",
-              "S"
-            ],
-            "other_store_quantity": 8,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 443175,
-            "name": "Light Blue Denim Jeggings",
-            "slug": "go-colors-light-blue-denim-jeggings-443175-3c688c",
-            "brand": {
-              "uid": 207,
-              "name": "Go Colors"
-            },
-            "categories": [
-              {
-                "uid": 267,
-                "name": "Jeggings"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/207_LJ03LBLUDN88/1_1512382513548.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/207_LJ03LBLUDN88/1_1512382513548.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/go-colors-light-blue-denim-jeggings-443175-3c688c/",
-              "query": {
-                "product_slug": [
-                  "go-colors-light-blue-denim-jeggings-443175-3c688c"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 1,
-          "message": "",
-          "bulk_offer": {},
-          "discount": ""
-        },
-        {
-          "key": "778937_OS",
-          "article": {
-            "type": "article",
-            "uid": "686_963_IC68601_PWUPC01977_OS",
-            "size": "OS",
-            "seller": {
-              "uid": 686,
-              "name": "INDUS CORPORATION"
-            },
-            "store": {
-              "uid": 5059,
-              "name": "Vidyaranyapura Main Road"
-            },
-            "quantity": 3,
-            "price": {
-              "base": {
-                "marked": 3399,
-                "effective": 3059,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 3399,
-                "effective": 3059,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 3059,
-              "marked": 3399,
-              "effective": 3059,
-              "selling": 3059,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 3059,
-              "marked": 3399,
-              "effective": 3059,
-              "selling": 3059,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "OS"
-            ],
-            "other_store_quantity": 2,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 778937,
-            "name": "Colourful Carnival Bouncer",
-            "slug": "fisher-price-colourful-carnival-bouncer-778937-fafa1f",
-            "brand": {
-              "uid": 963,
-              "name": "Fisher-Price"
-            },
-            "categories": [
-              {
-                "uid": 576,
-                "name": "Cradles"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/963_PWUPC01977/1_1545308400588.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/963_PWUPC01977/1_1545308400588.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/fisher-price-colourful-carnival-bouncer-778937-fafa1f/",
-              "query": {
-                "product_slug": [
-                  "fisher-price-colourful-carnival-bouncer-778937-fafa1f"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 1,
-          "message": "",
-          "bulk_offer": {},
-          "discount": "11% OFF"
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "buy_now": false,
-      "cart_id": 7927,
-      "uid": "7927",
-      "gstin": null,
-      "checkout_mode": "self",
-      "last_modified": "Tue, 03 Sep 2019 06:00:43 GMT",
-      "restrict_checkout": false,
-      "is_valid": true
-    },
-    "result": {}
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; Sorry, item is out of stock</i></summary>
-
-```json
-{
-  "value": {
-    "message": "Sorry, item is out of stock",
-    "success": false,
-    "cart": {
-      "breakup_values": {
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": -202000,
-          "fynd_cash": 0,
-          "gst_charges": 4804.71,
-          "mrp_total": 302899,
-          "subtotal": 100899,
-          "total": 100899,
-          "vog": 96094.29,
-          "you_saved": 0
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 302899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Discount",
-            "key": "discount",
-            "value": -202000,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 100899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 100899,
-            "currency_code": "INR"
-          }
-        ],
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        }
-      },
-      "items": [
-        {
-          "bulk_offer": {},
-          "discount": "67% OFF",
-          "parent_item_identifiers": {
-            "identifier": "ZASFF",
-            "parent_item_id": 7501190,
-            "parent_item_size": "OS"
-          },
-          "article": {
-            "type": "article",
-            "uid": "604_902_SSTC60401_636BLUE_1",
-            "size": "1",
-            "seller": {
-              "uid": 604,
-              "name": "SHRI SHANTINATH TRADING COMPANY"
-            },
-            "store": {
-              "uid": 4579,
-              "name": "Gandhi Nagar"
-            },
-            "quantity": 108,
-            "price": {
-              "base": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "key": "707569_1",
-          "availability": {
-            "sizes": [
-              "1",
-              "8",
-              "7",
-              "2",
-              "9",
-              "5",
-              "3",
-              "6"
-            ],
-            "other_store_quantity": 7,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 707569,
-            "name": "Blue and Gold Printed Ethnic Set",
-            "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
-            "brand": {
-              "uid": 902,
-              "name": ""
-            },
-            "categories": [
-              {
-                "uid": 525,
-                "name": ""
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
-              "query": {
-                "product_slug": [
-                  "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
-                ]
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            }
-          },
-          "message": "",
-          "quantity": 101
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "buy_now": false,
-      "cart_id": 54,
-      "uid": "54",
-      "gstin": null,
-      "checkout_mode": "self",
-      "restrict_checkout": false,
-      "is_valid": false,
-      "last_modified": "Tue, 03 Sep 2019 09:55:40 GMT"
-    },
-    "result": {}
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateCart
-Update items in the abandoned cart
-
-
-
-
-```swift
-client.application("<APPLICATION_ID>").cart.updateCart(cartId: cartId, b: b, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| cartId | String | yes | Current Cart _id |   
-| b | Bool? | no |  |  
-| body | UpdateCartRequest | yes | Request body |
-
-
-<p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
-
-*Returned Response:*
-
-
-
-
-[UpdateCartDetailResponse](#UpdateCartDetailResponse)
-
-Success. Updates and returns a cart object as shown below. Refer `UpdateCartDetailResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Nothing updated</i></summary>
-
-```json
-{
-  "value": {
-    "cart": {
-      "breakup_values": {
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": -202000,
-          "fynd_cash": 0,
-          "gst_charges": 4804.71,
-          "mrp_total": 302899,
-          "subtotal": 100899,
-          "total": 100899,
-          "vog": 96094.29,
-          "you_saved": 0
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 302899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Discount",
-            "key": "discount",
-            "value": -202000,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 100899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 100899,
-            "currency_code": "INR"
-          }
-        ],
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        }
-      },
-      "items": [
-        {
-          "bulk_offer": {},
-          "discount": "67% OFF",
-          "parent_item_identifiers": {
-            "identifier": "ZASFF",
-            "parent_item_id": 7501190,
-            "parent_item_size": "OS"
-          },
-          "article": {
-            "type": "article",
-            "uid": "604_902_SSTC60401_636BLUE_1",
-            "size": "1",
-            "seller": {
-              "uid": 604,
-              "name": "SHRI SHANTINATH TRADING COMPANY"
-            },
-            "store": {
-              "uid": 4579,
-              "name": "Gandhi Nagar"
-            },
-            "quantity": 108,
-            "price": {
-              "base": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "key": "707569_1",
-          "availability": {
-            "sizes": [
-              "1",
-              "8",
-              "7",
-              "2",
-              "9",
-              "5",
-              "3",
-              "6"
-            ],
-            "other_store_quantity": 7,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 707569,
-            "name": "Blue and Gold Printed Ethnic Set",
-            "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
-            "brand": {
-              "uid": 902,
-              "name": ""
-            },
-            "categories": [
-              {
-                "uid": 525,
-                "name": ""
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
-              "query": {
-                "product_slug": [
-                  "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
-                ]
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            }
-          },
-          "message": "",
-          "quantity": 101
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "buy_now": false,
-      "cart_id": 54,
-      "uid": "54",
-      "gstin": null,
-      "checkout_mode": "self",
-      "restrict_checkout": false,
-      "is_valid": true,
-      "last_modified": "Tue, 03 Sep 2019 10:19:20 GMT"
-    },
-    "result": {
-      "707569_90": {
-        "success": true,
-        "message": "Nothing updated"
-      }
-    },
-    "message": "Nothing updated",
-    "success": true
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; Item updated in the cart</i></summary>
-
-```json
-{
-  "value": {
-    "cart": {
-      "breakup_values": {
-        "raw": {
-          "sub_total": 8000,
-          "subtotal": 8000,
-          "coupon": 0,
-          "promotion": -100,
-          "delivery_charge": 100,
-          "you_saved": 0,
-          "fynd_cash": 0,
-          "cod_charge": 0,
-          "total": 8000,
-          "gst_charges": 0,
-          "vog": 0,
-          "convenience_fee": 0,
-          "mrp_total": 20010,
-          "discount": -12010
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid coupon"
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, reward points, and refund amount get credited to Fynd Cash which can be redeemed while placing an order.",
-          "message": "Reward point not applicable with Coupon"
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "original": 20010,
-            "attr": "mrp_total",
-            "value": 20010,
-            "currency_code": "INR",
-            "currency_symbol": "₹",
-            "message": []
-          },
-          {
-            "display": "Discount",
-            "key": "discount",
-            "original": -12010,
-            "attr": "discount",
-            "value": -12010,
-            "currency_code": "INR",
-            "currency_symbol": "₹",
-            "message": []
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "original": 8000,
-            "attr": "subtotal",
-            "value": 8000,
-            "currency_code": "INR",
-            "currency_symbol": "₹",
-            "message": []
-          },
-          {
-            "display": "Promotion",
-            "key": "promotion",
-            "original": -100,
-            "attr": "promotion",
-            "value": -100,
-            "currency_code": "INR",
-            "currency_symbol": "₹",
-            "message": []
-          },
-          {
-            "display": "Delivery Charge",
-            "key": "delivery_charge",
-            "original": 100,
-            "attr": "delivery_charge",
-            "value": 100,
-            "currency_code": "INR",
-            "currency_symbol": "₹",
-            "message": [
-              "Delivery charges applicable ₹100.00 on order upto ₹10,000.00",
-              "Free delivery on order above ₹10,000.00"
-            ]
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "original": 8000,
-            "attr": "total",
-            "value": 8000,
-            "currency_code": "INR",
-            "currency_symbol": "₹",
-            "message": []
-          }
-        ]
-      },
-      "items": [
-        {
-          "parent_item_identifiers": {
-            "identifier": null,
-            "parent_item_size": null,
-            "parent_item_id": null
-          },
-          "article": {
-            "type": "article",
-            "uid": "618c1a6874b93908c98f6d18",
-            "size": "XL",
-            "product_group_tags": null,
-            "seller": {
-              "uid": 61,
-              "name": "FUCHSIA VINE DESIGNS PRIVATE LIMITED"
-            },
-            "store": {
-              "uid": 11491,
-              "name": "Store46"
-            },
-            "quantity": 200,
-            "price": {
-              "base": {
-                "marked": 2001,
-                "effective": 800,
-                "selling": 800,
-                "currency_code": "INR",
-                "currency_symbol": "₹"
-              },
-              "converted": {
-                "marked": 2001,
-                "effective": 800,
-                "selling": 800,
-                "currency_code": "INR",
-                "currency_symbol": "INR"
-              }
-            },
-            "extra_meta": {}
-          },
-          "product": {
-            "type": "product",
-            "uid": 75252592,
-            "name": "Nike Yellow Top",
-            "slug": "nike-black-top",
-            "brand": {
-              "uid": 18,
-              "name": "Nike"
-            },
-            "categories": [
-              {
-                "uid": 258,
-                "name": "Blouson Top"
-              }
-            ],
-            "attributes": {
-              "hsn_code": "62040000",
-              "short_description": "test description1",
-              "essential": "No",
-              "item_code": "1304678617",
-              "gender": "Women",
-              "currency": "INR",
-              "media": [
-                {
-                  "url": "https://hdn-1.addsale.com/addsale/products/pictures/item/free/original/oy168nSHP-Nike-Black-Top.jpeg",
-                  "type": "image"
-                }
-              ],
-              "marketer-address": "Tops Range",
-              "marketer-name": "Bandra(W), Link Road",
-              "brand_name": "Nike"
-            },
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "https://hdn-1.addsale.com/addsale/products/pictures/item/free/original/oy168nSHP-Nike-Black-Top.jpeg",
-                "secure_url": "https://hdn-1.addsale.com/addsale/products/pictures/item/free/original/oy168nSHP-Nike-Black-Top.jpeg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.fyndx0.de/platform/content/v1/products/nike-black-top/",
-              "query": {
-                "product_slug": [
-                  "nike-black-top"
-                ]
-              }
-            },
-            "item_code": "1304678617",
-            "_custom_json": {}
-          },
-          "message": "",
-          "price_per_unit": {
-            "base": {
-              "marked": 2001,
-              "effective": 800,
-              "selling_price": 800,
-              "currency_code": "INR",
-              "currency_symbol": "₹"
-            },
-            "converted": {
-              "marked": 2001,
-              "effective": 800,
-              "selling_price": 800,
-              "currency_code": "INR",
-              "currency_symbol": "₹"
-            }
-          },
-          "promo_meta": {},
-          "bulk_offer": {},
-          "price": {
-            "base": {
-              "add_on": 8000,
-              "marked": 20010,
-              "effective": 8000,
-              "selling": 8000,
-              "currency_code": "INR",
-              "currency_symbol": "₹"
-            },
-            "converted": {
-              "add_on": 8000,
-              "marked": 20010,
-              "effective": 8000,
-              "selling": 8000,
-              "currency_code": "INR",
-              "currency_symbol": "₹"
-            }
-          },
-          "is_set": false,
-          "identifiers": {
-            "identifier": "SfOmcAtTR4ut4pI_eVU6FQ"
-          },
-          "discount": "60% OFF",
-          "moq": {},
-          "availability": {
-            "sizes": [
-              "S",
-              "XL",
-              "L"
-            ],
-            "other_store_quantity": 984,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true,
-            "available_sizes": [
-              {
-                "is_available": true,
-                "display": "S",
-                "value": "S"
-              },
-              {
-                "is_available": true,
-                "display": "XL",
-                "value": "XL"
-              },
-              {
-                "is_available": false,
-                "display": "CLL",
-                "value": "CLL"
-              },
-              {
-                "is_available": true,
-                "display": "L",
-                "value": "L"
-              },
-              {
-                "is_available": false,
-                "display": "XLL",
-                "value": "XLL"
-              },
-              {
-                "is_available": false,
-                "display": "XLLL",
-                "value": "XLLL"
-              }
-            ]
-          },
-          "quantity": 10,
-          "promotions_applied": [
-            {
-              "promo_id": "62da8b75e951ea5e67b1454b",
-              "amount": 10,
-              "article_quantity": 10,
-              "mrp_promotion": false,
-              "promotion_type": "shipping_price",
-              "offer_text": "Free shipping 22/07/2"
-            }
-          ],
-          "key": "75252592_XL",
-          "delivery_promise": null,
-          "coupon_message": ""
-        }
-      ],
-      "cart_id": 22251,
-      "id": "62d4ff76d6aec8db897de407",
-      "uid": "22251",
-      "buy_now": false,
-      "gstin": null,
-      "comment": "",
-      "checkout_mode": "self",
-      "restrict_checkout": false,
-      "is_valid": true,
-      "currency": {
-        "code": "INR",
-        "symbol": "₹"
-      },
-      "last_modified": "Mon, 01 Aug 2022 09:33:20 GMT"
-    },
-    "message": "Item updated in the bag",
-    "success": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 ### Schemas
 
  
  
- #### [Page](#Page)
+ #### [CouponSchedule](#CouponSchedule)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size | Int? |  yes  | Current request page size |
- | hasNext | Bool? |  yes  | True if more records are present for next pages |
- | page | Int? |  yes  | Page requested |
- | lastId | String? |  yes  | Last objects id |
- | itemTotal | Int? |  yes  | Total coupon count in system |
- | type | String |  no  |  |
- | current | Int? |  yes  | Current page no |
- | nextId | String? |  yes  | Cursor id for next set of records. |
- | hasPrevious | Bool? |  yes  | True if more records are present for previous pages. Sent for cursor pagination |
+ | cron | String? |  yes  |  |
+ | duration | Int? |  yes  |  |
+ | nextSchedule | [[String: Any]]? |  yes  |  |
+ | end | String? |  yes  |  |
+ | start | String? |  yes  |  |
 
 ---
 
@@ -3710,61 +2215,39 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | scope | [String]? |  yes  |  |
- | currencyCode | String? |  yes  |  |
  | isExact | Bool? |  yes  |  |
- | applicableOn | String |  no  |  |
- | type | String |  no  |  |
  | autoApply | Bool? |  yes  |  |
- | calculateOn | String |  no  |  |
+ | applicableOn | String |  no  |  |
+ | scope | [String]? |  yes  |  |
+ | type | String |  no  |  |
+ | currencyCode | String? |  yes  |  |
  | valueType | String |  no  |  |
+ | calculateOn | String |  no  |  |
 
 ---
 
 
  
  
- #### [CouponAuthor](#CouponAuthor)
+ #### [UsesRemaining](#UsesRemaining)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedBy | String? |  yes  |  |
- | createdBy | String? |  yes  |  |
+ | app | Int? |  yes  |  |
+ | user | Int? |  yes  |  |
+ | total | Int? |  yes  |  |
 
 ---
 
 
  
  
- #### [BulkBundleRestriction](#BulkBundleRestriction)
+ #### [UsesRestriction](#UsesRestriction)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | multiStoreAllowed | Bool |  no  |  |
-
----
-
-
- 
- 
- #### [PriceRange](#PriceRange)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | Int? |  yes  |  |
- | min | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [PostOrder](#PostOrder)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | returnAllowed | Bool? |  yes  |  |
- | cancellationAllowed | Bool? |  yes  |  |
+ | maximum | [UsesRemaining](#UsesRemaining)? |  yes  |  |
+ | remaining | [UsesRemaining](#UsesRemaining)? |  yes  |  |
 
 ---
 
@@ -3786,35 +2269,45 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | types | [String]? |  yes  |  |
  | codes | [String]? |  yes  |  |
  | uses | [PaymentAllowValue](#PaymentAllowValue)? |  yes  |  |
  | networks | [String]? |  yes  |  |
+ | types | [String]? |  yes  |  |
 
 ---
 
 
  
  
- #### [UsesRemaining](#UsesRemaining)
+ #### [PostOrder](#PostOrder)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | Int? |  yes  |  |
- | app | Int? |  yes  |  |
- | total | Int? |  yes  |  |
+ | cancellationAllowed | Bool? |  yes  |  |
+ | returnAllowed | Bool? |  yes  |  |
 
 ---
 
 
  
  
- #### [UsesRestriction](#UsesRestriction)
+ #### [PriceRange](#PriceRange)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | remaining | [UsesRemaining](#UsesRemaining)? |  yes  |  |
- | maximum | [UsesRemaining](#UsesRemaining)? |  yes  |  |
+ | min | Int? |  yes  |  |
+ | max | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkBundleRestriction](#BulkBundleRestriction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | multiStoreAllowed | Bool |  no  |  |
 
 ---
 
@@ -3825,96 +2318,15 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bulkBundle | [BulkBundleRestriction](#BulkBundleRestriction)? |  yes  |  |
- | couponAllowed | Bool? |  yes  |  |
- | priceRange | [PriceRange](#PriceRange)? |  yes  |  |
- | postOrder | [PostOrder](#PostOrder)? |  yes  |  |
  | orderingStores | [Int]? |  yes  |  |
- | payments | [String: [PaymentModes](#PaymentModes)]? |  yes  |  |
  | uses | [UsesRestriction](#UsesRestriction)? |  yes  |  |
+ | payments | [String: [PaymentModes](#PaymentModes)]? |  yes  |  |
+ | postOrder | [PostOrder](#PostOrder)? |  yes  |  |
+ | priceRange | [PriceRange](#PriceRange)? |  yes  |  |
  | platforms | [String]? |  yes  |  |
  | userGroups | [Int]? |  yes  |  |
-
----
-
-
- 
- 
- #### [DisplayMetaDict](#DisplayMetaDict)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | subtitle | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [DisplayMeta](#DisplayMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | remove | [DisplayMetaDict](#DisplayMetaDict)? |  yes  |  |
- | apply | [DisplayMetaDict](#DisplayMetaDict)? |  yes  |  |
- | subtitle | String? |  yes  |  |
- | auto | [DisplayMetaDict](#DisplayMetaDict)? |  yes  |  |
- | description | String? |  yes  |  |
- | title | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Validity](#Validity)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | priority | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [CouponSchedule](#CouponSchedule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | duration | Int? |  yes  |  |
- | end | String? |  yes  |  |
- | nextSchedule | [[String: Any]]? |  yes  |  |
- | cron | String? |  yes  |  |
- | start | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Rule](#Rule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | discountQty | Double? |  yes  |  |
- | max | Double? |  yes  |  |
- | value | Double? |  yes  |  |
- | min | Double? |  yes  |  |
- | key | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [Ownership](#Ownership)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payableBy | String |  no  |  |
- | payableCategory | String |  no  |  |
+ | couponAllowed | Bool? |  yes  |  |
+ | bulkBundle | [BulkBundleRestriction](#BulkBundleRestriction)? |  yes  |  |
 
 ---
 
@@ -3934,12 +2346,38 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  
  
- #### [CouponAction](#CouponAction)
+ #### [Ownership](#Ownership)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | txnMode | String? |  yes  |  |
- | actionDate | String? |  yes  |  |
+ | payableBy | String |  no  |  |
+ | payableCategory | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Rule](#Rule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | Double? |  yes  |  |
+ | max | Double? |  yes  |  |
+ | discountQty | Double? |  yes  |  |
+ | value | Double? |  yes  |  |
+ | min | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Validity](#Validity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | priority | Int? |  yes  |  |
 
 ---
 
@@ -3951,20 +2389,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | isPublic | Bool? |  yes  |  |
- | isDisplay | Bool? |  yes  |  |
  | isArchived | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [CouponDateMeta](#CouponDateMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | modifiedOn | String? |  yes  |  |
- | createdOn | String? |  yes  |  |
+ | isDisplay | Bool? |  yes  |  |
 
 ---
 
@@ -3975,15 +2401,78 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | collectionId | [String]? |  yes  |  |
- | brandId | [Int]? |  yes  |  |
- | companyId | [Int]? |  yes  |  |
- | userId | [String]? |  yes  |  |
- | storeId | [Int]? |  yes  |  |
- | articleId | [String]? |  yes  |  |
  | categoryId | [Int]? |  yes  |  |
- | excludeBrandId | [Int]? |  yes  |  |
  | itemId | [Int]? |  yes  |  |
+ | companyId | [Int]? |  yes  |  |
+ | storeId | [Int]? |  yes  |  |
+ | userId | [String]? |  yes  |  |
+ | brandId | [Int]? |  yes  |  |
+ | articleId | [String]? |  yes  |  |
+ | collectionId | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponDateMeta](#CouponDateMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | createdOn | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayMetaDict](#DisplayMetaDict)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | subtitle | String? |  yes  |  |
+ | title | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayMeta](#DisplayMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | auto | [DisplayMetaDict](#DisplayMetaDict)? |  yes  |  |
+ | subtitle | String? |  yes  |  |
+ | remove | [DisplayMetaDict](#DisplayMetaDict)? |  yes  |  |
+ | apply | [DisplayMetaDict](#DisplayMetaDict)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponAuthor](#CouponAuthor)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | createdBy | String? |  yes  |  |
+ | modifiedBy | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponAction](#CouponAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | actionDate | String? |  yes  |  |
+ | txnMode | String? |  yes  |  |
 
 ---
 
@@ -3994,22 +2483,39 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String |  no  |  |
- | ruleDefinition | [RuleDefinition](#RuleDefinition) |  no  |  |
- | author | [CouponAuthor](#CouponAuthor)? |  yes  |  |
- | restrictions | [Restrictions](#Restrictions)? |  yes  |  |
- | displayMeta | [DisplayMeta](#DisplayMeta) |  no  |  |
- | validity | [Validity](#Validity) |  no  |  |
  | schedule | [CouponSchedule](#CouponSchedule)? |  yes  |  |
- | rule | [[Rule](#Rule)] |  no  |  |
+ | ruleDefinition | [RuleDefinition](#RuleDefinition) |  no  |  |
+ | restrictions | [Restrictions](#Restrictions)? |  yes  |  |
  | tags | [String]? |  yes  |  |
- | ownership | [Ownership](#Ownership) |  no  |  |
  | validation | [Validation](#Validation)? |  yes  |  |
- | action | [CouponAction](#CouponAction)? |  yes  |  |
+ | ownership | [Ownership](#Ownership) |  no  |  |
+ | rule | [[Rule](#Rule)] |  no  |  |
+ | validity | [Validity](#Validity) |  no  |  |
  | state | [State](#State)? |  yes  |  |
- | dateMeta | [CouponDateMeta](#CouponDateMeta)? |  yes  |  |
  | identifiers | [Identifier](#Identifier) |  no  |  |
+ | dateMeta | [CouponDateMeta](#CouponDateMeta)? |  yes  |  |
+ | displayMeta | [DisplayMeta](#DisplayMeta) |  no  |  |
+ | author | [CouponAuthor](#CouponAuthor)? |  yes  |  |
  | typeSlug | String |  no  |  |
+ | code | String |  no  |  |
+ | action | [CouponAction](#CouponAction)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hasNext | Bool? |  yes  | True if more records are present for next pages |
+ | type | String |  no  |  |
+ | nextId | String? |  yes  | Cursor id for next set of records. |
+ | current | Int? |  yes  | Current page no |
+ | hasPrevious | Bool? |  yes  | True if more records are present for previous pages. Sent for cursor pagination |
+ | itemTotal | Int? |  yes  | Total coupon count in system |
+ | size | Int? |  yes  | Current request page size |
 
 ---
 
@@ -4020,8 +2526,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [CouponAdd](#CouponAdd)? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -4056,22 +2562,22 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String |  no  |  |
- | ruleDefinition | [RuleDefinition](#RuleDefinition) |  no  |  |
- | author | [CouponAuthor](#CouponAuthor)? |  yes  |  |
- | restrictions | [Restrictions](#Restrictions)? |  yes  |  |
- | displayMeta | [DisplayMeta](#DisplayMeta) |  no  |  |
- | validity | [Validity](#Validity) |  no  |  |
  | schedule | [CouponSchedule](#CouponSchedule)? |  yes  |  |
- | rule | [[Rule](#Rule)] |  no  |  |
+ | ruleDefinition | [RuleDefinition](#RuleDefinition) |  no  |  |
+ | restrictions | [Restrictions](#Restrictions)? |  yes  |  |
  | tags | [String]? |  yes  |  |
- | ownership | [Ownership](#Ownership) |  no  |  |
  | validation | [Validation](#Validation)? |  yes  |  |
- | action | [CouponAction](#CouponAction)? |  yes  |  |
+ | ownership | [Ownership](#Ownership) |  no  |  |
+ | rule | [[Rule](#Rule)] |  no  |  |
+ | validity | [Validity](#Validity) |  no  |  |
  | state | [State](#State)? |  yes  |  |
- | dateMeta | [CouponDateMeta](#CouponDateMeta)? |  yes  |  |
  | identifiers | [Identifier](#Identifier) |  no  |  |
+ | dateMeta | [CouponDateMeta](#CouponDateMeta)? |  yes  |  |
+ | displayMeta | [DisplayMeta](#DisplayMeta) |  no  |  |
+ | author | [CouponAuthor](#CouponAuthor)? |  yes  |  |
  | typeSlug | String |  no  |  |
+ | code | String |  no  |  |
+ | action | [CouponAction](#CouponAction)? |  yes  |  |
 
 ---
 
@@ -4082,187 +2588,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | schedule | [CouponSchedule](#CouponSchedule)? |  yes  |  |
  | archive | Bool? |  yes  | Send true to unpublish coupon |
-
----
-
-
- 
- 
- #### [CompareObject](#CompareObject)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | equals | Double? |  yes  |  |
- | greaterThanEquals | Double? |  yes  |  |
- | greaterThan | Double? |  yes  |  |
- | lessThan | Double? |  yes  |  |
- | lessThanEquals | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [ItemCriteria](#ItemCriteria)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | itemCategory | [Int]? |  yes  |  |
- | itemExcludeBrand | [Int]? |  yes  |  |
- | itemExcludeCompany | [Int]? |  yes  |  |
- | itemStore | [Int]? |  yes  |  |
- | itemSize | [String]? |  yes  |  |
- | allItems | Bool? |  yes  |  |
- | itemExcludeCategory | [Int]? |  yes  |  |
- | cartQuantity | [CompareObject](#CompareObject)? |  yes  |  |
- | cartTotal | [CompareObject](#CompareObject)? |  yes  |  |
- | itemExcludeStore | [Int]? |  yes  |  |
- | itemBrand | [Int]? |  yes  |  |
- | itemSku | [String]? |  yes  |  |
- | itemCompany | [Int]? |  yes  |  |
- | itemId | [Int]? |  yes  |  |
- | buyRules | [String]? |  yes  |  |
- | itemExcludeSku | [String]? |  yes  |  |
-
----
-
-
- 
- 
- #### [DiscountOffer](#DiscountOffer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | maxOfferQuantity | Int? |  yes  |  |
- | code | String? |  yes  |  |
- | discountPrice | Double? |  yes  |  |
- | minOfferQuantity | Int? |  yes  |  |
- | discountAmount | Double? |  yes  |  |
- | discountPercentage | Double? |  yes  |  |
- | maxDiscountAmount | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [DiscountRule](#DiscountRule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | discountType | String |  no  |  |
- | itemCriteria | [ItemCriteria](#ItemCriteria) |  no  |  |
- | offer | [DiscountOffer](#DiscountOffer) |  no  |  |
- | buyCondition | String |  no  |  |
-
----
-
-
- 
- 
- #### [UserRegistered](#UserRegistered)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | start | String? |  yes  |  |
- | end | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [PostOrder1](#PostOrder1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | returnAllowed | Bool? |  yes  |  |
- | cancellationAllowed | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [PaymentAllowValue1](#PaymentAllowValue1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [PromotionPaymentModes](#PromotionPaymentModes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | codes | [String]? |  yes  |  |
- | uses | [PaymentAllowValue1](#PaymentAllowValue1)? |  yes  |  |
- | type | String |  no  |  |
-
----
-
-
- 
- 
- #### [UsesRemaining1](#UsesRemaining1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user | Int? |  yes  |  |
- | total | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [UsesRestriction1](#UsesRestriction1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | remaining | [UsesRemaining1](#UsesRemaining1)? |  yes  |  |
- | maximum | [UsesRemaining1](#UsesRemaining1)? |  yes  |  |
-
----
-
-
- 
- 
- #### [Restrictions1](#Restrictions1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | userRegistered | [UserRegistered](#UserRegistered)? |  yes  |  |
- | userId | [String]? |  yes  |  |
- | postOrder | [PostOrder1](#PostOrder1)? |  yes  |  |
- | payments | [[PromotionPaymentModes](#PromotionPaymentModes)]? |  yes  |  |
- | uses | [UsesRestriction1](#UsesRestriction1) |  no  |  |
- | orderQuantity | Int? |  yes  |  |
- | platforms | [String]? |  yes  |  |
- | userGroups | [Int]? |  yes  |  |
- | anonymousUsers | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [PromotionSchedule](#PromotionSchedule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | published | Bool |  no  |  |
- | duration | Int? |  yes  |  |
- | end | String? |  yes  |  |
- | nextSchedule | [[String: Any]]? |  yes  |  |
- | cron | String? |  yes  |  |
- | start | String |  no  |  |
+ | schedule | [CouponSchedule](#CouponSchedule)? |  yes  |  |
 
 ---
 
@@ -4281,12 +2608,16 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  
  
- #### [PromotionDateMeta](#PromotionDateMeta)
+ #### [PromotionSchedule](#PromotionSchedule)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedOn | String? |  yes  |  |
- | createdOn | String? |  yes  |  |
+ | cron | String? |  yes  |  |
+ | duration | Int? |  yes  |  |
+ | published | Bool |  no  |  |
+ | nextSchedule | [[String: Any]]? |  yes  |  |
+ | end | String? |  yes  |  |
+ | start | String |  no  |  |
 
 ---
 
@@ -4309,9 +2640,9 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | offerText | String? |  yes  |  |
  | description | String? |  yes  |  |
  | name | String? |  yes  |  |
- | offerText | String? |  yes  |  |
 
 ---
 
@@ -4322,8 +2653,111 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedBy | String? |  yes  |  |
  | createdBy | String? |  yes  |  |
+ | modifiedBy | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserRegistered](#UserRegistered)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | end | String? |  yes  |  |
+ | start | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UsesRemaining1](#UsesRemaining1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user | Int? |  yes  |  |
+ | total | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UsesRestriction1](#UsesRestriction1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | maximum | [UsesRemaining1](#UsesRemaining1)? |  yes  |  |
+ | remaining | [UsesRemaining1](#UsesRemaining1)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PaymentAllowValue1](#PaymentAllowValue1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PromotionPaymentModes](#PromotionPaymentModes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String |  no  |  |
+ | uses | [PaymentAllowValue1](#PaymentAllowValue1)? |  yes  |  |
+ | codes | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PostOrder1](#PostOrder1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cancellationAllowed | Bool? |  yes  |  |
+ | returnAllowed | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Restrictions1](#Restrictions1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | userRegistered | [UserRegistered](#UserRegistered)? |  yes  |  |
+ | uses | [UsesRestriction1](#UsesRestriction1) |  no  |  |
+ | anonymousUsers | Bool? |  yes  |  |
+ | payments | [[PromotionPaymentModes](#PromotionPaymentModes)]? |  yes  |  |
+ | userId | [String]? |  yes  |  |
+ | postOrder | [PostOrder1](#PostOrder1)? |  yes  |  |
+ | platforms | [String]? |  yes  |  |
+ | userGroups | [Int]? |  yes  |  |
+ | orderQuantity | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PromotionDateMeta](#PromotionDateMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | createdOn | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
 
 ---
 
@@ -4342,31 +2776,104 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  
  
+ #### [CompareObject](#CompareObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | lessThanEquals | Double? |  yes  |  |
+ | greaterThanEquals | Double? |  yes  |  |
+ | lessThan | Double? |  yes  |  |
+ | equals | Double? |  yes  |  |
+ | greaterThan | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ItemCriteria](#ItemCriteria)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | itemId | [Int]? |  yes  |  |
+ | cartTotal | [CompareObject](#CompareObject)? |  yes  |  |
+ | itemExcludeStore | [Int]? |  yes  |  |
+ | itemSku | [String]? |  yes  |  |
+ | itemCategory | [Int]? |  yes  |  |
+ | cartQuantity | [CompareObject](#CompareObject)? |  yes  |  |
+ | itemCompany | [Int]? |  yes  |  |
+ | itemExcludeCategory | [Int]? |  yes  |  |
+ | itemBrand | [Int]? |  yes  |  |
+ | buyRules | [String]? |  yes  |  |
+ | allItems | Bool? |  yes  |  |
+ | itemExcludeSku | [String]? |  yes  |  |
+ | itemExcludeBrand | [Int]? |  yes  |  |
+ | itemStore | [Int]? |  yes  |  |
+ | itemExcludeCompany | [Int]? |  yes  |  |
+ | itemSize | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DiscountOffer](#DiscountOffer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | maxOfferQuantity | Int? |  yes  |  |
+ | discountAmount | Double? |  yes  |  |
+ | discountPercentage | Double? |  yes  |  |
+ | discountPrice | Double? |  yes  |  |
+ | code | String? |  yes  |  |
+ | maxDiscountAmount | Double? |  yes  |  |
+ | minOfferQuantity | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DiscountRule](#DiscountRule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | itemCriteria | [ItemCriteria](#ItemCriteria) |  no  |  |
+ | buyCondition | String |  no  |  |
+ | offer | [DiscountOffer](#DiscountOffer) |  no  |  |
+ | discountType | String |  no  |  |
+
+---
+
+
+ 
+ 
  #### [PromotionListItem](#PromotionListItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | promoGroup | String |  no  |  |
- | discountRules | [[DiscountRule](#DiscountRule)] |  no  |  |
- | stackable | Bool? |  yes  |  |
- | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
- | schedule | [PromotionSchedule](#PromotionSchedule)? |  yes  |  |
  | postOrderAction | [PromotionAction](#PromotionAction)? |  yes  |  |
- | applyPriority | Int? |  yes  |  |
- | dateMeta | [PromotionDateMeta](#PromotionDateMeta)? |  yes  |  |
- | visiblility | [Visibility](#Visibility)? |  yes  |  |
- | buyRules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
- | promotionType | String |  no  |  |
+ | schedule | [PromotionSchedule](#PromotionSchedule)? |  yes  |  |
  | applicationId | String |  no  |  |
  | code | String? |  yes  |  |
+ | stackable | Bool? |  yes  |  |
  | applyAllDiscount | Bool? |  yes  |  |
- | applyExclusive | String? |  yes  |  |
- | displayMeta | [DisplayMeta1](#DisplayMeta1) |  no  |  |
- | currency | String? |  yes  |  |
+ | promoGroup | String |  no  |  |
  | customJson | [String: Any]? |  yes  |  |
+ | visiblility | [Visibility](#Visibility)? |  yes  |  |
+ | displayMeta | [DisplayMeta1](#DisplayMeta1) |  no  |  |
+ | calculateOn | String? |  yes  | Only available for Contract pricing and Ladder pricing promotion type |
  | author | [PromotionAuthor](#PromotionAuthor)? |  yes  |  |
+ | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
+ | applyExclusive | String? |  yes  |  |
+ | dateMeta | [PromotionDateMeta](#PromotionDateMeta)? |  yes  |  |
+ | applyPriority | Int? |  yes  |  |
  | mode | String |  no  |  |
+ | promotionType | String |  no  |  |
+ | currency | String? |  yes  |  |
  | ownership | [Ownership1](#Ownership1) |  no  |  |
+ | discountRules | [[DiscountRule](#DiscountRule)] |  no  |  |
+ | buyRules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
 
 ---
 
@@ -4377,8 +2884,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | items | [PromotionListItem](#PromotionListItem)? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -4389,27 +2896,28 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | promoGroup | String |  no  |  |
- | discountRules | [[DiscountRule](#DiscountRule)] |  no  |  |
- | stackable | Bool? |  yes  |  |
- | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
- | schedule | [PromotionSchedule](#PromotionSchedule)? |  yes  |  |
  | postOrderAction | [PromotionAction](#PromotionAction)? |  yes  |  |
- | applyPriority | Int? |  yes  |  |
- | dateMeta | [PromotionDateMeta](#PromotionDateMeta)? |  yes  |  |
- | visiblility | [Visibility](#Visibility)? |  yes  |  |
- | buyRules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
- | promotionType | String |  no  |  |
+ | schedule | [PromotionSchedule](#PromotionSchedule)? |  yes  |  |
  | applicationId | String |  no  |  |
  | code | String? |  yes  |  |
+ | stackable | Bool? |  yes  |  |
  | applyAllDiscount | Bool? |  yes  |  |
- | applyExclusive | String? |  yes  |  |
- | displayMeta | [DisplayMeta1](#DisplayMeta1) |  no  |  |
- | currency | String? |  yes  |  |
+ | promoGroup | String |  no  |  |
  | customJson | [String: Any]? |  yes  |  |
+ | visiblility | [Visibility](#Visibility)? |  yes  |  |
+ | displayMeta | [DisplayMeta1](#DisplayMeta1) |  no  |  |
+ | calculateOn | String? |  yes  | Only available for Contract pricing and Ladder pricing promotion type |
  | author | [PromotionAuthor](#PromotionAuthor)? |  yes  |  |
+ | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
+ | applyExclusive | String? |  yes  |  |
+ | dateMeta | [PromotionDateMeta](#PromotionDateMeta)? |  yes  |  |
+ | applyPriority | Int? |  yes  |  |
  | mode | String |  no  |  |
+ | promotionType | String |  no  |  |
+ | currency | String? |  yes  |  |
  | ownership | [Ownership1](#Ownership1) |  no  |  |
+ | discountRules | [[DiscountRule](#DiscountRule)] |  no  |  |
+ | buyRules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
 
 ---
 
@@ -4420,27 +2928,28 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | promoGroup | String |  no  |  |
- | discountRules | [[DiscountRule](#DiscountRule)] |  no  |  |
- | stackable | Bool? |  yes  |  |
- | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
- | schedule | [PromotionSchedule](#PromotionSchedule)? |  yes  |  |
  | postOrderAction | [PromotionAction](#PromotionAction)? |  yes  |  |
- | applyPriority | Int? |  yes  |  |
- | dateMeta | [PromotionDateMeta](#PromotionDateMeta)? |  yes  |  |
- | visiblility | [Visibility](#Visibility)? |  yes  |  |
- | buyRules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
- | promotionType | String |  no  |  |
+ | schedule | [PromotionSchedule](#PromotionSchedule)? |  yes  |  |
  | applicationId | String |  no  |  |
  | code | String? |  yes  |  |
+ | stackable | Bool? |  yes  |  |
  | applyAllDiscount | Bool? |  yes  |  |
- | applyExclusive | String? |  yes  |  |
- | displayMeta | [DisplayMeta1](#DisplayMeta1) |  no  |  |
- | currency | String? |  yes  |  |
+ | promoGroup | String |  no  |  |
  | customJson | [String: Any]? |  yes  |  |
+ | visiblility | [Visibility](#Visibility)? |  yes  |  |
+ | displayMeta | [DisplayMeta1](#DisplayMeta1) |  no  |  |
+ | calculateOn | String? |  yes  | Only available for Contract pricing and Ladder pricing promotion type |
  | author | [PromotionAuthor](#PromotionAuthor)? |  yes  |  |
+ | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
+ | applyExclusive | String? |  yes  |  |
+ | dateMeta | [PromotionDateMeta](#PromotionDateMeta)? |  yes  |  |
+ | applyPriority | Int? |  yes  |  |
  | mode | String |  no  |  |
+ | promotionType | String |  no  |  |
+ | currency | String? |  yes  |  |
  | ownership | [Ownership1](#Ownership1) |  no  |  |
+ | discountRules | [[DiscountRule](#DiscountRule)] |  no  |  |
+ | buyRules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
 
 ---
 
@@ -4451,8 +2960,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | schedule | [PromotionSchedule](#PromotionSchedule)? |  yes  |  |
  | archive | Bool? |  yes  | Send true to unpublish promotion |
+ | schedule | [PromotionSchedule](#PromotionSchedule)? |  yes  |  |
 
 ---
 
@@ -4464,8 +2973,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | productId | String |  no  |  |
- | quantity | Int? |  yes  |  |
  | size | String |  no  |  |
+ | quantity | Int? |  yes  |  |
 
 ---
 
@@ -4483,12 +2992,101 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  
  
+ #### [CouponBreakup](#CouponBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isApplied | Bool? |  yes  |  |
+ | subTitle | String? |  yes  |  |
+ | title | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | minimumCartValue | Double? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | maxDiscountValue | Double? |  yes  |  |
+ | couponValue | Double? |  yes  |  |
+ | couponType | String? |  yes  |  |
+ | code | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | value | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LoyaltyPoints](#LoyaltyPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | applicable | Double? |  yes  |  |
+ | description | String? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+ | total | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [RawBreakup](#RawBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | discount | Double? |  yes  |  |
+ | youSaved | Double? |  yes  |  |
+ | subtotal | Double? |  yes  |  |
+ | gstCharges | Double? |  yes  |  |
+ | total | Double? |  yes  |  |
+ | convenienceFee | Double? |  yes  |  |
+ | mrpTotal | Double? |  yes  |  |
+ | coupon | Double? |  yes  |  |
+ | fyndCash | Double? |  yes  |  |
+ | deliveryCharge | Double? |  yes  |  |
+ | codCharge | Double? |  yes  |  |
+ | vog | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayBreakup](#DisplayBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | String? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | key | String? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+ | message | [String]? |  yes  |  |
+ | value | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartBreakup](#CartBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | coupon | [CouponBreakup](#CouponBreakup)? |  yes  |  |
+ | loyaltyPoints | [LoyaltyPoints](#LoyaltyPoints)? |  yes  |  |
+ | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
+ | display | [[DisplayBreakup](#DisplayBreakup)]? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [BaseInfo](#BaseInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
  | name | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
 
 ---
 
@@ -4499,10 +3097,10 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | marked | Double? |  yes  |  |
- | effective | Double? |  yes  |  |
  | currencySymbol | String? |  yes  |  |
+ | marked | Double? |  yes  |  |
  | currencyCode | String? |  yes  |  |
+ | effective | Double? |  yes  |  |
 
 ---
 
@@ -4513,8 +3111,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | base | [BasePrice](#BasePrice)? |  yes  |  |
  | converted | [BasePrice](#BasePrice)? |  yes  |  |
+ | base | [BasePrice](#BasePrice)? |  yes  |  |
 
 ---
 
@@ -4525,16 +3123,16 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | productGroupTags | [String]? |  yes  |  |
- | size | String? |  yes  |  |
  | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
  | parentItemIdentifiers | [String: Any]? |  yes  |  |
+ | productGroupTags | [String]? |  yes  |  |
  | uid | String? |  yes  |  |
  | type | String? |  yes  |  |
- | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | quantity | Int? |  yes  |  |
  | store | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
+ | size | String? |  yes  |  |
 
 ---
 
@@ -4547,10 +3145,10 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
  | ---------- | ---- | -------- | ----------- |
  | marked | Double? |  yes  |  |
  | selling | Double? |  yes  |  |
- | currencySymbol | String? |  yes  |  |
- | addOn | Double? |  yes  |  |
- | effective | Double? |  yes  |  |
  | currencyCode | String? |  yes  |  |
+ | addOn | Double? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+ | effective | Double? |  yes  |  |
 
 ---
 
@@ -4561,91 +3159,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | base | [ProductPrice](#ProductPrice)? |  yes  |  |
  | converted | [ProductPrice](#ProductPrice)? |  yes  |  |
-
----
-
-
- 
- 
- #### [CategoryInfo](#CategoryInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  | Product Category Id |
- | name | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ActionQuery](#ActionQuery)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | productSlug | [String]? |  yes  | Contains list of product slug |
-
----
-
-
- 
- 
- #### [ProductAction](#ProductAction)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | query | [ActionQuery](#ActionQuery)? |  yes  |  |
- | url | String? |  yes  |  |
- | type | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductImage](#ProductImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aspectRatio | String? |  yes  |  |
- | url | String? |  yes  |  |
- | secureUrl | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartProduct](#CartProduct)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
- | slug | String? |  yes  | Unique product url name generated via product name and other meta data |
- | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
- | action | [ProductAction](#ProductAction)? |  yes  |  |
- | uid | Int? |  yes  |  |
- | type | String? |  yes  |  |
- | images | [[ProductImage](#ProductImage)]? |  yes  |  |
- | name | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [AppliedPromotion](#AppliedPromotion)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | articleQuantity | Int? |  yes  | Quantity of article on which promotion is applicable |
- | mrpPromotion | Bool? |  yes  | If applied promotion is applied on product MRP or ESP |
- | offerText | String? |  yes  | Offer text of current promotion |
- | promoId | String? |  yes  | Promotion id |
- | amount | Double? |  yes  | Per unit discount amount applied with current promotion |
- | promotionType | String? |  yes  | Promotion type of current promotion |
+ | base | [ProductPrice](#ProductPrice)? |  yes  |  |
 
 ---
 
@@ -4674,6 +3189,73 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  
  
+ #### [CategoryInfo](#CategoryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | uid | Int? |  yes  | Product Category Id |
+
+---
+
+
+ 
+ 
+ #### [ProductImage](#ProductImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | String? |  yes  |  |
+ | aspectRatio | String? |  yes  |  |
+ | secureUrl | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ActionQuery](#ActionQuery)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | productSlug | [String]? |  yes  | Contains list of product slug |
+
+---
+
+
+ 
+ 
+ #### [ProductAction](#ProductAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | query | [ActionQuery](#ActionQuery)? |  yes  |  |
+ | url | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProduct](#CartProduct)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | Int? |  yes  |  |
+ | type | String? |  yes  |  |
+ | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
+ | images | [[ProductImage](#ProductImage)]? |  yes  |  |
+ | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | slug | String? |  yes  | Unique product url name generated via product name and other meta data |
+ | action | [ProductAction](#ProductAction)? |  yes  |  |
+ | name | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [ProductAvailability](#ProductAvailability)
 
  | Properties | Type | Nullable | Description |
@@ -4681,8 +3263,24 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
  | outOfStock | Bool? |  yes  |  |
  | isValid | Bool? |  yes  |  |
  | deliverable | Bool? |  yes  |  |
- | sizes | [String]? |  yes  |  |
  | otherStoreQuantity | Int? |  yes  |  |
+ | sizes | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AppliedPromotion](#AppliedPromotion)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | offerText | String? |  yes  | Offer text of current promotion |
+ | articleQuantity | Int? |  yes  | Quantity of article on which promotion is applicable |
+ | amount | Double? |  yes  | Per unit discount amount applied with current promotion |
+ | mrpPromotion | Bool? |  yes  | If applied promotion is applied on product MRP or ESP |
+ | promoId | String? |  yes  | Promotion id |
+ | promotionType | String? |  yes  | Promotion type of current promotion |
 
 ---
 
@@ -4694,103 +3292,21 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | article | [ProductArticle](#ProductArticle)? |  yes  |  |
- | couponMessage | String? |  yes  |  |
- | bulkOffer | [String: Any]? |  yes  |  |
- | pricePerUnit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
- | product | [CartProduct](#CartProduct)? |  yes  |  |
  | discount | String? |  yes  |  |
- | promotionsApplied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | parentItemIdentifiers | [String: Any]? |  yes  |  |
+ | pricePerUnit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | couponMessage | String? |  yes  |  |
  | promoMeta | [PromoMeta](#PromoMeta)? |  yes  |  |
- | message | String? |  yes  |  |
  | quantity | Int? |  yes  |  |
- | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
- | isSet | Bool? |  yes  |  |
  | key | String? |  yes  |  |
- | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
-
----
-
-
- 
- 
- #### [CouponBreakup](#CouponBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | String? |  yes  |  |
- | isApplied | Bool? |  yes  |  |
- | value | Double? |  yes  |  |
- | uid | String? |  yes  |  |
+ | product | [CartProduct](#CartProduct)? |  yes  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | bulkOffer | [String: Any]? |  yes  |  |
  | message | String? |  yes  |  |
- | type | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [LoyaltyPoints](#LoyaltyPoints)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | applicable | Double? |  yes  |  |
- | description | String? |  yes  |  |
- | total | Double? |  yes  |  |
- | isApplied | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [RawBreakup](#RawBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | mrpTotal | Double? |  yes  |  |
- | youSaved | Double? |  yes  |  |
- | vog | Double? |  yes  |  |
- | discount | Double? |  yes  |  |
- | fyndCash | Double? |  yes  |  |
- | total | Double? |  yes  |  |
- | convenienceFee | Double? |  yes  |  |
- | coupon | Double? |  yes  |  |
- | gstCharges | Double? |  yes  |  |
- | deliveryCharge | Double? |  yes  |  |
- | subtotal | Double? |  yes  |  |
- | codCharge | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [DisplayBreakup](#DisplayBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currencySymbol | String? |  yes  |  |
- | display | String? |  yes  |  |
- | value | Double? |  yes  |  |
- | message | [String]? |  yes  |  |
- | currencyCode | String? |  yes  |  |
- | key | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartBreakup](#CartBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | coupon | [CouponBreakup](#CouponBreakup)? |  yes  |  |
- | loyaltyPoints | [LoyaltyPoints](#LoyaltyPoints)? |  yes  |  |
- | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
- | display | [[DisplayBreakup](#DisplayBreakup)]? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
+ | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
+ | promotionsApplied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
 
 ---
 
@@ -4801,10 +3317,10 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
  | message | String? |  yes  |  |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
  | isValid | Bool? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
 
 ---
 
@@ -4815,8 +3331,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | errors | [String: Any]? |  yes  | Contains field name which has error as key and error message as value |
  | message | String? |  yes  |  |
+ | errors | [String: Any]? |  yes  | Contains field name which has error as key and error message as value |
  | success | Bool? |  yes  |  |
 
 ---
@@ -4828,20 +3344,20 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | email | String? |  yes  |  |
+ | addressType | String? |  yes  |  |
+ | areaCode | String |  no  |  |
+ | area | String? |  yes  |  |
+ | landmark | String? |  yes  |  |
+ | phone | Int? |  yes  |  |
+ | address | String? |  yes  |  |
+ | areaCodeSlug | String? |  yes  |  |
+ | city | String? |  yes  |  |
+ | state | String? |  yes  |  |
  | country | String? |  yes  |  |
  | countryCode | String? |  yes  |  |
  | pincode | Int? |  yes  |  |
- | landmark | String? |  yes  |  |
- | email | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
- | city | String? |  yes  |  |
- | areaCodeSlug | String? |  yes  |  |
- | addressType | String? |  yes  |  |
- | area | String? |  yes  |  |
- | phone | Int? |  yes  |  |
- | areaCode | String |  no  |  |
- | state | String? |  yes  |  |
- | address | String? |  yes  |  |
  | name | String? |  yes  |  |
 
 ---
@@ -4865,8 +3381,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | Double? |  yes  |  |
  | min | Double? |  yes  |  |
+ | max | Double? |  yes  |  |
 
 ---
 
@@ -4877,8 +3393,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | String? |  yes  |  |
  | min | String? |  yes  |  |
+ | max | String? |  yes  |  |
 
 ---
 
@@ -4901,11 +3417,11 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
  | isValid | Bool? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | message | String? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
 
 ---
 
@@ -4916,11 +3432,11 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | orderId | String? |  yes  |  |
  | paymentGateway | String? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
  | currentStatus | String? |  yes  |  |
  | paymentId | String? |  yes  |  |
- | orderId | String? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  |  |
 
 ---
 
@@ -4933,8 +3449,20 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
  | ---------- | ---- | -------- | ----------- |
  | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta)? |  yes  |  |
  | amount | Double |  no  | Payment amount |
- | name | String? |  yes  | Payment mode name |
  | mode | String |  no  |  |
+ | name | String? |  yes  | Payment mode name |
+
+---
+
+
+ 
+ 
+ #### [CartItemMeta](#CartItemMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | primaryItem | Bool? |  yes  |  |
+ | groupId | String? |  yes  |  |
 
 ---
 
@@ -4953,39 +3481,27 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  
  
- #### [CartItemMeta](#CartItemMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | groupId | String? |  yes  |  |
- | primaryItem | Bool? |  yes  |  |
-
----
-
-
- 
- 
  #### [OpenApiOrderItem](#OpenApiOrderItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | productId | Int |  no  |  |
+ | discount | Double |  no  |  |
+ | priceEffective | Double |  no  |  |
+ | employeeDiscount | Double? |  yes  |  |
  | paymentMethods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  no  |  |
- | couponEffectiveDiscount | Double |  no  |  |
  | deliveryCharges | Double |  no  |  |
+ | quantity | Int? |  yes  |  |
+ | couponEffectiveDiscount | Double |  no  |  |
+ | cashbackApplied | Double |  no  |  |
+ | priceMarked | Double |  no  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
+ | codCharges | Double |  no  |  |
+ | meta | [CartItemMeta](#CartItemMeta)? |  yes  |  |
+ | amountPaid | Double |  no  |  |
  | loyaltyDiscount | Double? |  yes  |  |
  | files | [[OpenApiFiles](#OpenApiFiles)]? |  yes  |  |
  | size | String |  no  |  |
- | codCharges | Double |  no  |  |
- | employeeDiscount | Double? |  yes  |  |
- | meta | [CartItemMeta](#CartItemMeta)? |  yes  |  |
- | discount | Double |  no  |  |
- | cashbackApplied | Double |  no  |  |
- | priceEffective | Double |  no  |  |
- | priceMarked | Double |  no  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | productId | Int |  no  |  |
- | quantity | Int? |  yes  |  |
- | amountPaid | Double |  no  |  |
 
 ---
 
@@ -4996,26 +3512,24 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | orderId | String? |  yes  |  |
+ | deliveryCharges | Double |  no  |  |
+ | couponValue | Double |  no  |  |
+ | shippingAddress | [ShippingAddress](#ShippingAddress)? |  yes  |  |
+ | couponCode | String |  no  |  |
+ | affiliateOrderId | String? |  yes  |  |
+ | employeeDiscount | [String: Any]? |  yes  |  |
  | paymentMethods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  no  |  |
- | files | [[OpenApiFiles](#OpenApiFiles)]? |  yes  |  |
+ | paymentMode | String? |  yes  |  |
+ | billingAddress | [ShippingAddress](#ShippingAddress) |  no  |  |
+ | currencyCode | String? |  yes  |  |
+ | cashbackApplied | Double |  no  |  |
+ | cartValue | Double |  no  |  |
+ | coupon | String? |  yes  |  |
  | codCharges | Double |  no  |  |
  | cartItems | [[OpenApiOrderItem](#OpenApiOrderItem)] |  no  |  |
- | affiliateOrderId | String? |  yes  |  |
- | orderId | String? |  yes  |  |
- | employeeDiscount | [String: Any]? |  yes  |  |
- | comment | String? |  yes  |  |
- | paymentMode | String? |  yes  |  |
- | couponValue | Double |  no  |  |
  | loyaltyDiscount | Double? |  yes  |  |
- | deliveryCharges | Double |  no  |  |
- | gstin | String? |  yes  |  |
- | billingAddress | [ShippingAddress](#ShippingAddress) |  no  |  |
- | cashbackApplied | Double |  no  |  |
- | currencyCode | String? |  yes  |  |
- | coupon | String? |  yes  |  |
- | cartValue | Double |  no  |  |
- | couponCode | String |  no  |  |
- | shippingAddress | [ShippingAddress](#ShippingAddress)? |  yes  |  |
+ | files | [[OpenApiFiles](#OpenApiFiles)]? |  yes  |  |
 
 ---
 
@@ -5026,209 +3540,10 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
  | orderId | String |  no  | Fynd order id |
- | message | String? |  yes  |  |
- | orderRefId | String? |  yes  | Order id sent in request |
  | success | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [AbandonedCart](#AbandonedCart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pickUpCustomerDetails | [String: Any]? |  yes  |  |
- | codCharges | [String: Any]? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | payments | [String: Any]? |  yes  |  |
- | mergeQty | Bool? |  yes  |  |
- | comment | String? |  yes  |  |
- | fyndCredits | [String: Any]? |  yes  |  |
- | userId | String |  no  |  |
- | discount | Double? |  yes  |  |
- | expireAt | String |  no  |  |
- | gstin | String? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | uid | Int |  no  |  |
- | cartValue | Double? |  yes  |  |
- | buyNow | Bool? |  yes  |  |
- | isDefault | Bool |  no  |  |
- | lastModified | String |  no  |  |
- | paymentMethods | [[String: Any]]? |  yes  |  |
- | shipments | [[String: Any]]? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | appId | String? |  yes  |  |
- | orderId | String? |  yes  |  |
- | createdOn | String |  no  |  |
- | paymentMode | String? |  yes  |  |
- | fcIndexMap | [Int]? |  yes  |  |
- | cashback | [String: Any] |  no  |  |
- | deliveryCharges | [String: Any]? |  yes  |  |
- | isArchive | Bool? |  yes  |  |
- | id | String |  no  |  |
- | promotion | [String: Any]? |  yes  |  |
- | coupon | [String: Any]? |  yes  |  |
- | bulkCouponDiscount | Double? |  yes  |  |
- | articles | [[String: Any]] |  no  |  |
-
----
-
-
- 
- 
- #### [AbandonedCartResponse](#AbandonedCartResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
- | items | [[AbandonedCart](#AbandonedCart)]? |  yes  |  |
- | result | [String: Any]? |  yes  |  |
- | message | String? |  yes  | message of the response |
- | success | Bool? |  yes  | the request success is defined |
-
----
-
-
- 
- 
- #### [AddProductCart](#AddProductCart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pos | Bool? |  yes  |  |
- | productGroupTags | [String]? |  yes  |  |
- | itemSize | String? |  yes  |  |
- | display | String? |  yes  |  |
- | storeId | Int? |  yes  |  |
- | articleAssignment | [String: Any]? |  yes  |  |
- | parentItemIdentifiers | [String: Any]? |  yes  |  |
- | articleId | String? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | itemId | Int? |  yes  |  |
- | sellerId | Int? |  yes  |  |
- | quantity | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [AddCartRequest](#AddCartRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[AddProductCart](#AddProductCart)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartCurrency](#CartCurrency)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | String? |  yes  | Currency code defined by ISO 4217:2015 |
- | symbol | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [PaymentSelectionLock](#PaymentSelectionLock)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | defaultOptions | String? |  yes  |  |
- | paymentIdentifier | String? |  yes  |  |
- | enabled | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartDetailResponse](#CartDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | couponText | String? |  yes  |  |
- | lastModified | String? |  yes  |  |
- | deliveryChargeInfo | String? |  yes  |  |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | gstin | String? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | restrictCheckout | Bool? |  yes  |  |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | id | String? |  yes  |  |
- | message | String? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | buyNow | Bool? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | comment | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [AddCartDetailResponse](#AddCartDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | partial | Bool? |  yes  | When adding multiple items check if all added. True if only few are added. |
- | message | String? |  yes  |  |
- | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
- | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
-
----
-
-
- 
- 
- #### [UpdateProductCart](#UpdateProductCart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | itemSize | String? |  yes  |  |
- | articleId | String? |  yes  |  |
- | parentItemIdentifiers | [String: Any]? |  yes  |  |
- | itemIndex | Int? |  yes  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | itemId | Int? |  yes  |  |
- | quantity | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [UpdateCartRequest](#UpdateCartRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | operation | String |  no  |  |
- | items | [[UpdateProductCart](#UpdateProductCart)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [UpdateCartDetailResponse](#UpdateCartDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
- | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
+ | orderRefId | String? |  yes  | Order id sent in request |
 
 ---
 

@@ -7,42 +7,42 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductSizes: Codable {
-        public var price: ProductListingPrice?
+        public var discount: String?
 
         public var stores: ProductSizeStores?
 
-        public var sizeChart: SizeChart?
-
-        public var discount: String?
+        public var price: ProductListingPrice?
 
         public var sizes: [ProductSize]?
+
+        public var sizeChart: SizeChart?
 
         public var sellable: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case price
+            case discount
 
             case stores
 
-            case sizeChart = "size_chart"
-
-            case discount
+            case price
 
             case sizes
+
+            case sizeChart = "size_chart"
 
             case sellable
         }
 
         public init(discount: String? = nil, price: ProductListingPrice? = nil, sellable: Bool? = nil, sizes: [ProductSize]? = nil, sizeChart: SizeChart? = nil, stores: ProductSizeStores? = nil) {
-            self.price = price
+            self.discount = discount
 
             self.stores = stores
 
-            self.sizeChart = sizeChart
-
-            self.discount = discount
+            self.price = price
 
             self.sizes = sizes
+
+            self.sizeChart = sizeChart
 
             self.sellable = sellable
         }
@@ -51,7 +51,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                price = try container.decode(ProductListingPrice.self, forKey: .price)
+                discount = try container.decode(String.self, forKey: .discount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,15 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sizeChart = try container.decode(SizeChart.self, forKey: .sizeChart)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                discount = try container.decode(String.self, forKey: .discount)
+                price = try container.decode(ProductListingPrice.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,6 +76,14 @@ public extension ApplicationClient {
 
             do {
                 sizes = try container.decode([ProductSize].self, forKey: .sizes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sizeChart = try container.decode(SizeChart.self, forKey: .sizeChart)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,15 +102,15 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(price, forKey: .price)
+            try? container.encodeIfPresent(discount, forKey: .discount)
 
             try? container.encodeIfPresent(stores, forKey: .stores)
 
-            try? container.encodeIfPresent(sizeChart, forKey: .sizeChart)
-
-            try? container.encodeIfPresent(discount, forKey: .discount)
+            try? container.encodeIfPresent(price, forKey: .price)
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
+
+            try? container.encodeIfPresent(sizeChart, forKey: .sizeChart)
 
             try? container.encodeIfPresent(sellable, forKey: .sellable)
         }
