@@ -2649,6 +2649,182 @@ public class PlatformClient {
                     }
                 )
             }
+
+            /**
+             *
+             * Summary: Create an User Group
+             * Description: Use this API to create new user Group
+             **/
+            public func createUserGroup(
+                body: CreateUserGroupSchema,
+                onResponse: @escaping (_ response: UserGroupResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_groups",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(UserGroupResponseSchema.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Get User Groups mathcing criteria
+             * Description: Use this API to get User Groups mathing criteria passed in query
+             **/
+            public func getUserGroups(
+                pageNo: String?,
+                pageSize: String?,
+                name: String?,
+                status: String?,
+
+                onResponse: @escaping (_ response: UserGroupListResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+
+                if let value = name {
+                    xQuery["name"] = value
+                }
+
+                if let value = status {
+                    xQuery["status"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_groups",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(UserGroupListResponseSchema.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Update an User Group
+             * Description: Use this API to update an existing user Group
+             **/
+            public func updateUserGroup(
+                groupId: String,
+                body: UpdateUserGroupSchema,
+                onResponse: @escaping (_ response: UserGroupResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/userGroups/\(groupId)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(UserGroupResponseSchema.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Get an User Group by Id
+             * Description: Use this API to get details of an existing user Group
+             **/
+            public func getUserGroupById(
+                groupId: String,
+
+                onResponse: @escaping (_ response: UserGroupResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/userGroups/\(groupId)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(UserGroupResponseSchema.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
         }
 
         public class Content {
@@ -11337,8 +11513,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get latest build config
-             * Description: Get latest build config
+             * Summary: Get configuration of latest mobile build
+             * Description: Fetch latest build configuration, such as app name, landing page image, splash image used in a mobile build.
              **/
             public func getBuildConfig(
                 platformType: String,
@@ -11454,8 +11630,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get features of application
-             * Description: Get features of application
+             * Summary: Get features of sales channel
+             * Description: It gives the features of sales channel. Moreover, get the details about product details, landing page, registration page, home page, listing page, reward points and many more properties.
              **/
             public func getAppFeatures(
                 onResponse: @escaping (_ response: AppFeatureResponse?, _ error: FDKError?) -> Void
@@ -11491,8 +11667,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Update features of application
-             * Description: Update features of application
+             * Summary: Update features of sale channel
+             * Description: It saves or Updates the features of sales channel.
              **/
             public func updateAppFeatures(
                 body: AppFeatureRequest,
@@ -11529,8 +11705,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get basic application details
-             * Description: Get basic application details like name
+             * Summary: Get basic sales channel details
+             * Description: Get basic sales channel details like name, description, logo, domain ,company id and other related information.
              **/
             public func getAppBasicDetails(
                 onResponse: @escaping (_ response: ApplicationDetail?, _ error: FDKError?) -> Void
@@ -11566,8 +11742,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Add or update application's basic details
-             * Description: Add or update application's basic details
+             * Summary: Add or update sales channel basic details
+             * Description: Add or update sales channel basic details like name, description, logo, domain ,company id and other information.
              **/
             public func updateAppBasicDetails(
                 body: ApplicationDetail,
@@ -11604,8 +11780,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get application information
-             * Description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+             * Summary: Get sales channel current information
+             * Description: Get sales channel Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
              **/
             public func getAppContactInfo(
                 onResponse: @escaping (_ response: ApplicationInformation?, _ error: FDKError?) -> Void
@@ -11641,8 +11817,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get application information
-             * Description: Save Application Current Information. This includes information about social links, address and contact information of an application.
+             * Summary: Save or update sales channel current information
+             * Description: Save or update the sales channel current information. This includes information about social links, address and contact information of an application.
              **/
             public func updateAppContactInfo(
                 body: ApplicationInformation,
@@ -11679,8 +11855,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get social tokens
-             * Description: Get social tokens.
+             * Summary: Get social tokens for the sales channel
+             * Description: Get social tokens for the sales channel.
              **/
             public func getAppApiTokens(
                 onResponse: @escaping (_ response: TokenResponse?, _ error: FDKError?) -> Void
@@ -11716,8 +11892,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Add social tokens
-             * Description: Add social tokens.
+             * Summary: Add social tokens for the sales channel
+             * Description: Add social tokens for the sales channel.
              **/
             public func updateAppApiTokens(
                 body: TokenResponse,
@@ -11754,8 +11930,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Application inventory enabled companies
-             * Description: Application inventory enabled companies.
+             * Summary: Get sales channel inventory enabled companies
+             * Description: Get sales channel inventory enabled companies. Company has information about company name, uid and company type.
              **/
             public func getAppCompanies(
                 uid: Int?,
@@ -11839,8 +12015,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Application inventory enabled stores
-             * Description: Application inventory enabled stores.
+             * Summary: sales channel inventory enabled stores
+             * Description: Get sales channel inventory enabled stores. Inventory enabled store has information about uid, name, display name, store type, store code and company id.
              **/
             public func getAppStores(
                 pageNo: Int?,
@@ -12030,8 +12206,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get application enabled currency list
-             * Description: Get application enabled currency list
+             * Summary: Get current channel enabled currency list
+             * Description: It gives all enabled currency list for the current sales channel.
              **/
             public func getAppCurrencyConfig(
                 onResponse: @escaping (_ response: AppSupportedCurrency?, _ error: FDKError?) -> Void
@@ -12067,8 +12243,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Add initial application supported currency
-             * Description: Add initial application supported currency for various features and data. Default INR will be enabled.
+             * Summary: Update initial sales channel supported currency
+             * Description: Update sales channel supported currency for various features and data. Default INR will be enabled.
              **/
             public func updateAppCurrencyConfig(
                 body: AppSupportedCurrency,

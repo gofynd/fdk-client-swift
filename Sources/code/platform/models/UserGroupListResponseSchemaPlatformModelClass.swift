@@ -1,33 +1,34 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: ImageUrls
-         Used By: Catalog
+         Model: UserGroupListResponseSchema
+         Used By: User
      */
-    class ImageUrls: Codable {
-        public var landscape: Media?
 
-        public var portrait: Media?
+    class UserGroupListResponseSchema: Codable {
+        public var items: [UserGroupResponseSchema]?
+
+        public var page: PaginationSchema?
 
         public enum CodingKeys: String, CodingKey {
-            case landscape
+            case items
 
-            case portrait
+            case page
         }
 
-        public init(landscape: Media? = nil, portrait: Media? = nil) {
-            self.landscape = landscape
+        public init(items: [UserGroupResponseSchema]? = nil, page: PaginationSchema? = nil) {
+            self.items = items
 
-            self.portrait = portrait
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                landscape = try container.decode(Media.self, forKey: .landscape)
+                items = try container.decode([UserGroupResponseSchema].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +36,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                portrait = try container.decode(Media.self, forKey: .portrait)
+                page = try container.decode(PaginationSchema.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +47,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(landscape, forKey: .landscape)
+            try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(portrait, forKey: .portrait)
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }

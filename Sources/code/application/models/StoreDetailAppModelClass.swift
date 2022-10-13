@@ -7,18 +7,18 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class StoreDetail: Codable {
-        public var city: String?
-
         public var id: Int?
+
+        public var city: String?
 
         public var name: String?
 
         public var code: String?
 
         public enum CodingKeys: String, CodingKey {
-            case city
-
             case id
+
+            case city
 
             case name
 
@@ -26,9 +26,9 @@ public extension ApplicationClient {
         }
 
         public init(city: String? = nil, code: String? = nil, id: Int? = nil, name: String? = nil) {
-            self.city = city
-
             self.id = id
+
+            self.city = city
 
             self.name = name
 
@@ -39,7 +39,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                city = try container.decode(String.self, forKey: .city)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                city = try container.decode(String.self, forKey: .city)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(city, forKey: .city)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(city, forKey: .city)
 
             try? container.encodeIfPresent(name, forKey: .name)
 

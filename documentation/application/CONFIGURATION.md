@@ -1927,9 +1927,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | similar | [String]? |  yes  |  |
- | sellerSelection | Bool? |  yes  |  |
- | updateProductMeta | Bool? |  yes  |  |
- | requestProduct | Bool? |  yes  |  |
+ | sellerSelection | Bool? |  yes  | Allow seller selection. Default value is true. |
+ | updateProductMeta | Bool? |  yes  | Allow user to update product meta. Default value is true. |
+ | requestProduct | Bool? |  yes  | Allow user to request product. Default value is false. |
 
 ---
 
@@ -1940,9 +1940,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pageType | String? |  yes  |  |
- | params | [String: Any]? |  yes  |  |
- | query | [String: Any]? |  yes  |  |
+ | pageType | String? |  yes  | Type of the launch page |
+ | params | [String: Any]? |  yes  | Launch page params. It can be nullable. |
+ | query | [String: Any]? |  yes  | Query related to launch page. It can be nullable. |
 
 ---
 
@@ -1954,10 +1954,10 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | launchPage | [LaunchPage](#LaunchPage)? |  yes  |  |
- | continueAsGuest | Bool? |  yes  |  |
- | loginBtnText | String? |  yes  |  |
- | showDomainTextbox | Bool? |  yes  |  |
- | showRegisterBtn | Bool? |  yes  |  |
+ | continueAsGuest | Bool? |  yes  | Allow user to continue as a guest |
+ | loginBtnText | String? |  yes  | Login button text |
+ | showDomainTextbox | Bool? |  yes  | Allow to show domain text box |
+ | showRegisterBtn | Bool? |  yes  | Allow to show registeration button |
 
 ---
 
@@ -1968,7 +1968,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | askStoreAddress | Bool? |  yes  |  |
+ | askStoreAddress | Bool? |  yes  | Allow ask or add store address |
 
 ---
 
@@ -1988,10 +1988,10 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | qr | [QrFeature](#QrFeature)? |  yes  |  |
  | pcr | [PcrFeature](#PcrFeature)? |  yes  |  |
  | order | [OrderFeature](#OrderFeature)? |  yes  |  |
- | id | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier for the sales channel features |
  | app | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
+ | createdAt | String? |  yes  | Epoch timestamp of sales channel feature creation |
+ | updatedAt | String? |  yes  | Epoch timestamp of sales channel feature updation |
  | v | Int? |  yes  |  |
 
 ---
@@ -2003,7 +2003,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | orderProcessing | Bool? |  yes  |  |
+ | orderProcessing | Bool? |  yes  | Allow order processing |
 
 ---
 
@@ -2032,7 +2032,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | visibility | Bool? |  yes  |  |
+ | visibility | Bool? |  yes  | Allow to show communication dialog |
 
 ---
 
@@ -2043,8 +2043,8 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | type | String? |  yes  |  |
+ | enabled | Bool? |  yes  | Enable deployment store selection |
+ | type | String? |  yes  | Type of deployment store value |
 
 ---
 
@@ -2055,7 +2055,8 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | String? |  yes  |  |
+ | value | String? |  yes  | Listing price value like min, max or range. Default value is range. |
+ | sort | String? |  yes  | Sorting of listing price with min or max value. Default value is min. |
 
 ---
 
@@ -2067,8 +2068,8 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | value | [String]? |  yes  |  |
- | type | String? |  yes  |  |
- | defaultCurrency | String? |  yes  |  |
+ | type | String? |  yes  | For explicit or all currency selection |
+ | defaultCurrency | String? |  yes  | Value of Default currency. Default vaule is 'INR'. |
 
 ---
 
@@ -2079,7 +2080,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Enable revenue engine. Default value is false. |
 
 ---
 
@@ -2090,7 +2091,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Enable user feedback. Default value is false. |
 
 ---
 
@@ -2101,7 +2102,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Enable comparison of the products. |
 
 ---
 
@@ -2112,11 +2113,11 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gstInput | Bool? |  yes  |  |
- | staffSelection | Bool? |  yes  |  |
- | placingForCustomer | Bool? |  yes  |  |
- | googleMap | Bool? |  yes  |  |
- | revenueEngineCoupon | Bool? |  yes  |  |
+ | gstInput | Bool? |  yes  | Allow gst input in cart. Default value is true. |
+ | staffSelection | Bool? |  yes  | Allow staff selection. Default value is true. |
+ | placingForCustomer | Bool? |  yes  | Show placing for customer. Default value is true. |
+ | googleMap | Bool? |  yes  | Allow adding of google map. Default value is true. |
+ | revenueEngineCoupon | Bool? |  yes  | Allow coupon apply and credits together. Default value is false. |
 
 ---
 
@@ -2127,9 +2128,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | Bool? |  yes  |  |
- | products | Bool? |  yes  |  |
- | collections | Bool? |  yes  |  |
+ | application | Bool? |  yes  | Allow application. Default value is false. |
+ | products | Bool? |  yes  | Allow products. Default value is false. |
+ | collections | Bool? |  yes  | Allow collection. Default value is false. |
 
 ---
 
@@ -2140,7 +2141,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | staffSelection | Bool? |  yes  |  |
+ | staffSelection | Bool? |  yes  | Allow staff selection. Default value is false. |
 
 ---
 
@@ -2151,7 +2152,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | buyAgain | Bool? |  yes  |  |
+ | buyAgain | Bool? |  yes  | Allow buy again for order. Default value is false. |
 
 ---
 
@@ -2184,14 +2185,14 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | name | String? |  yes  |  |
- | code | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | decimalDigits | Int? |  yes  |  |
- | symbol | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier of the current sales channel support currency |
+ | isActive | Bool? |  yes  | Shows currency is enabled or not in current sales channel |
+ | name | String? |  yes  | Name of the currency |
+ | code | String? |  yes  | Identifier code of the currency |
+ | createdAt | String? |  yes  | Epoch timestamp of sales channel support currency creation |
+ | updatedAt | String? |  yes  | Epoch timestamp of sales channel support currency updation |
+ | decimalDigits | Int? |  yes  | It shows a currency that can be divided into smaller units by dividing by ten or a hundred |
+ | symbol | String? |  yes  | Unique Symbol of the currency for identify the currency |
 
 ---
 
@@ -2202,11 +2203,11 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | verified | Bool? |  yes  |  |
- | isPrimary | Bool? |  yes  |  |
- | isShortlink | Bool? |  yes  |  |
- | id | String? |  yes  |  |
- | name | String? |  yes  |  |
+ | verified | Bool? |  yes  | Domain is verified or not |
+ | isPrimary | Bool? |  yes  | Domain is primary or not |
+ | isShortlink | Bool? |  yes  | Shortlink is present or not for the domain |
+ | id | String? |  yes  | The unique identifier of the sales channel domain |
+ | name | String? |  yes  | Full domain name |
 
 ---
 
@@ -2276,7 +2277,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | secureUrl | String? |  yes  |  |
+ | secureUrl | String? |  yes  | hosted Url of the image |
 
 ---
 
@@ -2517,13 +2518,13 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | support | [InformationSupport](#InformationSupport)? |  yes  |  |
  | socialLinks | [SocialLinks](#SocialLinks)? |  yes  |  |
  | links | [Links](#Links)? |  yes  |  |
- | copyrightText | String? |  yes  |  |
- | id | String? |  yes  |  |
+ | copyrightText | String? |  yes  | Copyright text |
+ | id | String? |  yes  | Unique identifier of the application information |
  | businessHighlights | [BusinessHighlights](#BusinessHighlights)? |  yes  |  |
- | application | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | v | Int? |  yes  |  |
+ | application | String? |  yes  | Application id |
+ | createdAt | String? |  yes  | Epoch timestamp of the application information creation |
+ | updatedAt | String? |  yes  | Epoch timestamp of the application information updation |
+ | v | Int? |  yes  | Show version of the application information |
 
 ---
 
@@ -2534,12 +2535,12 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | loc | String? |  yes  |  |
- | addressLine | [String]? |  yes  |  |
+ | loc | String? |  yes  | Contain Address location |
+ | addressLine | [String]? |  yes  | Detailed address info of the company |
  | phone | [InformationPhone](#InformationPhone)? |  yes  |  |
- | city | String? |  yes  |  |
- | country | String? |  yes  |  |
- | pincode | Int? |  yes  |  |
+ | city | String? |  yes  | City name |
+ | country | String? |  yes  | Country name |
+ | pincode | Int? |  yes  | Pincode of the city |
 
 ---
 
@@ -2594,9 +2595,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the social media platfrom |
+ | icon | String? |  yes  | Hosted url of icon image |
+ | link | String? |  yes  | Web url for redirecting to facebook |
 
 ---
 
@@ -2607,9 +2608,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the social media platfrom |
+ | icon | String? |  yes  | Hosted url of icon image |
+ | link | String? |  yes  | Web url for redirecting to instagram |
 
 ---
 
@@ -2620,9 +2621,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the social media platfrom |
+ | icon | String? |  yes  | Hosted url of icon image |
+ | link | String? |  yes  | Web url for redirecting to twitter |
 
 ---
 
@@ -2633,9 +2634,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the social media platfrom |
+ | icon | String? |  yes  | Hosted url of icon image |
+ | link | String? |  yes  | Web url for redirecting to pinterest |
 
 ---
 
@@ -2646,9 +2647,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the social media platfrom |
+ | icon | String? |  yes  | Hosted url of icon image |
+ | link | String? |  yes  | Web url for redirecting to goole plus |
 
 ---
 
@@ -2659,9 +2660,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the social media platfrom |
+ | icon | String? |  yes  | Hosted url of icon image |
+ | link | String? |  yes  | Web url for redirecting to youtube channel |
 
 ---
 
@@ -2672,9 +2673,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the social networking platfrom |
+ | icon | String? |  yes  | Hosted url of icon image |
+ | link | String? |  yes  | Web url for redirecting to facebook |
 
 ---
 
@@ -2685,9 +2686,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the platfrom |
+ | icon | String? |  yes  | Hosted url of icon image |
+ | link | String? |  yes  | Web url for redirecting to vimeo |
 
 ---
 
@@ -2698,9 +2699,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the Blog title |
+ | icon | String? |  yes  | Hosted url of icon image |
+ | link | String? |  yes  | Web url for redirecting to Blog |
 
 ---
 
@@ -2711,8 +2712,8 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the related page or link |
+ | link | String? |  yes  | Web url for redirecting to related page |
 
 ---
 
@@ -2723,10 +2724,10 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | subTitle | String? |  yes  |  |
+ | id | String? |  yes  | Unique identifier of the related business |
+ | title | String? |  yes  | Title of the business |
+ | icon | String? |  yes  | Hosted url of icon image |
+ | subTitle | String? |  yes  | Detailed information about the business |
 
 ---
 
@@ -2737,15 +2738,15 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String |  no  |  |
- | description | String |  no  |  |
+ | name | String |  no  | Name of the sales channel. It is required. |
+ | description | String |  no  | Description about the sales channel. It gives the detail information about the sales channel. It is required. |
  | logo | [SecureUrl](#SecureUrl) |  no  |  |
  | mobileLogo | [SecureUrl](#SecureUrl) |  no  |  |
  | favicon | [SecureUrl](#SecureUrl) |  no  |  |
  | banner | [SecureUrl](#SecureUrl) |  no  |  |
  | domain | [Domain](#Domain)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
- | id | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier for the sales channel details |
 
 ---
 
@@ -2767,8 +2768,8 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ref | String? |  yes  |  |
- | code | String? |  yes  |  |
+ | ref | String? |  yes  | Unique identifier of the default currency |
+ | code | String? |  yes  | Identifier code of the dafault currency |
 
 ---
 
@@ -2779,7 +2780,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | String? |  yes  |  |
+ | application | String? |  yes  | Current sales channel id |
  | defaultCurrency | [DefaultCurrency](#DefaultCurrency)? |  yes  |  |
  | supportedCurrency | [[Currency](#Currency)]? |  yes  |  |
 
