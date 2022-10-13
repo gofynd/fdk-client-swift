@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: LogisticError
+         Model: PincodeErrorSchemaResponse
          Used By: Logistic
      */
-    class LogisticError: Codable {
+    class PincodeErrorSchemaResponse: Codable {
         public var type: String?
 
         public var value: String?
@@ -60,11 +60,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encode(type, forKey: .type)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encode(value, forKey: .value)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encode(message, forKey: .message)
         }
     }
 }

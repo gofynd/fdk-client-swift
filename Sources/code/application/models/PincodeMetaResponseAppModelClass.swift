@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: LogisticPromise
+         Model: PincodeMetaResponse
          Used By: Logistic
      */
-    class LogisticPromise: Codable {
-        public var timestamp: LogisticTimestamp?
+    class PincodeMetaResponse: Codable {
+        public var internalZoneId: Int?
 
-        public var formatted: Formatted?
+        public var zone: String?
 
         public enum CodingKeys: String, CodingKey {
-            case timestamp
+            case internalZoneId = "internal_zone_id"
 
-            case formatted
+            case zone
         }
 
-        public init(formatted: Formatted? = nil, timestamp: LogisticTimestamp? = nil) {
-            self.timestamp = timestamp
+        public init(internalZoneId: Int? = nil, zone: String? = nil) {
+            self.internalZoneId = internalZoneId
 
-            self.formatted = formatted
+            self.zone = zone
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                timestamp = try container.decode(LogisticTimestamp.self, forKey: .timestamp)
+                internalZoneId = try container.decode(Int.self, forKey: .internalZoneId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                formatted = try container.decode(Formatted.self, forKey: .formatted)
+                zone = try container.decode(String.self, forKey: .zone)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
+            try? container.encodeIfPresent(internalZoneId, forKey: .internalZoneId)
 
-            try? container.encodeIfPresent(formatted, forKey: .formatted)
+            try? container.encodeIfPresent(zone, forKey: .zone)
         }
     }
 }

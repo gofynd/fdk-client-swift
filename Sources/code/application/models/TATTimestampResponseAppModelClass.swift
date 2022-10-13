@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: LogisticMeta
+         Model: TATTimestampResponse
          Used By: Logistic
      */
-    class LogisticMeta: Codable {
-        public var zone: String?
+    class TATTimestampResponse: Codable {
+        public var min: Int?
 
-        public var deliverables: [[String: Any]]?
+        public var max: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case zone
+            case min
 
-            case deliverables
+            case max
         }
 
-        public init(deliverables: [[String: Any]]? = nil, zone: String? = nil) {
-            self.zone = zone
+        public init(max: Int? = nil, min: Int? = nil) {
+            self.min = min
 
-            self.deliverables = deliverables
+            self.max = max
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                zone = try container.decode(String.self, forKey: .zone)
+                min = try container.decode(Int.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                deliverables = try container.decode([[String: Any]].self, forKey: .deliverables)
+                max = try container.decode(Int.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(zone, forKey: .zone)
+            try? container.encodeIfPresent(min, forKey: .min)
 
-            try? container.encodeIfPresent(deliverables, forKey: .deliverables)
+            try? container.encodeIfPresent(max, forKey: .max)
         }
     }
 }

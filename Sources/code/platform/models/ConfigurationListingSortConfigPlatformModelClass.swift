@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var name: String?
 
-        public var key: String
-
         public var isActive: Bool
+
+        public var key: String
 
         public enum CodingKeys: String, CodingKey {
             case logo
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case name
 
-            case key
-
             case isActive = "is_active"
+
+            case key
         }
 
         public init(isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.name = name
 
-            self.key = key
-
             self.isActive = isActive
+
+            self.key = key
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,9 +63,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            key = try container.decode(String.self, forKey: .key)
-
             isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            key = try container.decode(String.self, forKey: .key)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(key, forKey: .key)
         }
     }
 }

@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: GetPincodeZonesReqBody
+         Model: GetZoneFromPincodeViewRequest
          Used By: Logistic
      */
-    class GetPincodeZonesReqBody: Codable {
+    class GetZoneFromPincodeViewRequest: Codable {
         public var country: String
 
         public var pincode: String

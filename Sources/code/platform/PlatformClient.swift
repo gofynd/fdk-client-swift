@@ -10392,6 +10392,7 @@ public class PlatformClient {
                 timestamp: String?,
                 pageSize: Int?,
                 pageId: String?,
+                isExtension: Bool?,
 
                 onResponse: @escaping (_ response: InventoryStockResponse?, _ error: FDKError?) -> Void
             ) {
@@ -10423,6 +10424,10 @@ public class PlatformClient {
 
                 if let value = pageId {
                     xQuery["page_id"] = value
+                }
+
+                if let value = isExtension {
+                    xQuery["is_extension"] = value
                 }
 
                 PlatformAPIClient.execute(

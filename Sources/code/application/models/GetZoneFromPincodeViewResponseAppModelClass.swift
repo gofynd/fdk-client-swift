@@ -3,11 +3,11 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: GetPincodeZonesResponse
+         Model: GetZoneFromPincodeViewResponse
          Used By: Logistic
      */
-    class GetPincodeZonesResponse: Codable {
-        public var zones: [[String: Any]]
+    class GetZoneFromPincodeViewResponse: Codable {
+        public var zones: [String]
 
         public var serviceabilityType: String
 
@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case serviceabilityType = "serviceability_type"
         }
 
-        public init(serviceabilityType: String, zones: [[String: Any]]) {
+        public init(serviceabilityType: String, zones: [String]) {
             self.zones = zones
 
             self.serviceabilityType = serviceabilityType
@@ -26,7 +26,7 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            zones = try container.decode([[String: Any]].self, forKey: .zones)
+            zones = try container.decode([String].self, forKey: .zones)
 
             serviceabilityType = try container.decode(String.self, forKey: .serviceabilityType)
         }
