@@ -10,24 +10,24 @@ public extension PlatformClient {
     class InventoryExportRequest: Codable {
         public var store: [Int]?
 
-        public var type: String?
-
         public var brand: [Int]?
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case store
 
-            case type
-
             case brand
+
+            case type
         }
 
         public init(brand: [Int]? = nil, store: [Int]? = nil, type: String? = nil) {
             self.store = store
 
-            self.type = type
-
             self.brand = brand
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                brand = try container.decode([Int].self, forKey: .brand)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                brand = try container.decode([Int].self, forKey: .brand)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(store, forKey: .store)
 
-            try? container.encode(type, forKey: .type)
-
             try? container.encodeIfPresent(brand, forKey: .brand)
+
+            try? container.encode(type, forKey: .type)
         }
     }
 }
