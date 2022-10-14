@@ -2717,9 +2717,9 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | products | [[ProductDetail](#ProductDetail)]? |  yes  |  |
  | dataUpdate | [String: Any]? |  yes  |  |
  | storeInvoiceId | String? |  yes  |  |
- | products | [[ProductDetail](#ProductDetail)]? |  yes  |  |
  | bags | [Int]? |  yes  |  |
  | reason | [Int]? |  yes  |  |
 
@@ -2743,9 +2743,9 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | excludeBagsNextState | String |  no  |  |
  | status | String |  no  |  |
  | shipments | [ShipmentDetail](#ShipmentDetail)? |  yes  |  |
- | excludeBagsNextState | String |  no  |  |
 
 ---
 
@@ -2756,7 +2756,7 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statuses | [Statuses1](#Statuses1)? |  yes  |  |
+ | statuses | [[Statuses1](#Statuses1)]? |  yes  |  |
  | task | Bool? |  yes  |  |
  | forceTransition | Bool? |  yes  |  |
 

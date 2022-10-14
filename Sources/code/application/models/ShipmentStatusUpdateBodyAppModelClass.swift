@@ -7,7 +7,7 @@ public extension ApplicationClient {
          Used By: Order
      */
     class ShipmentStatusUpdateBody: Codable {
-        public var statuses: Statuses1?
+        public var statuses: [Statuses1]?
 
         public var task: Bool?
 
@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case forceTransition = "force_transition"
         }
 
-        public init(forceTransition: Bool? = nil, statuses: Statuses1? = nil, task: Bool? = nil) {
+        public init(forceTransition: Bool? = nil, statuses: [Statuses1]? = nil, task: Bool? = nil) {
             self.statuses = statuses
 
             self.task = task
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                statuses = try container.decode(Statuses1.self, forKey: .statuses)
+                statuses = try container.decode([Statuses1].self, forKey: .statuses)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
