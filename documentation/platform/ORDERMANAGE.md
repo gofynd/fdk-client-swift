@@ -183,11 +183,11 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | dataUpdate | [String: Any]? |  yes  |  |
+ | storeInvoiceId | String? |  yes  |  |
+ | products | [[ProductDetail](#ProductDetail)]? |  yes  |  |
  | bags | [Int]? |  yes  |  |
  | reason | [Int]? |  yes  |  |
- | products | [[ProductDetail](#ProductDetail)]? |  yes  |  |
- | storeInvoiceId | String? |  yes  |  |
- | dataUpdate | [String: Any]? |  yes  |  |
 
 ---
 
@@ -209,9 +209,9 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | excludeBagsNextState | String |  no  |  |
- | status | String |  no  |  |
  | shipments | [ShipmentDetail](#ShipmentDetail)? |  yes  |  |
+ | excludeBagsNextState | String? |  yes  |  |
+ | status | String |  no  |  |
 
 ---
 
@@ -258,15 +258,15 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String |  no  |  |
- | l1Detail | String? |  yes  |  |
- | createdat | String |  no  |  |
- | user | String |  no  |  |
- | l2Detail | String? |  yes  |  |
- | ticketId | String? |  yes  |  |
- | l3Detail | String? |  yes  |  |
- | type | String |  no  |  |
  | ticketUrl | String? |  yes  |  |
+ | ticketId | String? |  yes  |  |
+ | user | String |  no  |  |
+ | l1Detail | String? |  yes  |  |
+ | l3Detail | String? |  yes  |  |
+ | l2Detail | String? |  yes  |  |
+ | message | String |  no  |  |
+ | type | String |  no  |  |
+ | createdat | String |  no  |  |
 
 ---
 

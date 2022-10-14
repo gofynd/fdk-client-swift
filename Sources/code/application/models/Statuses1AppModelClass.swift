@@ -7,7 +7,7 @@ public extension ApplicationClient {
          Used By: Order
      */
     class Statuses1: Codable {
-        public var excludeBagsNextState: String
+        public var excludeBagsNextState: String?
 
         public var status: String
 
@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case shipments
         }
 
-        public init(excludeBagsNextState: String, shipments: ShipmentDetail? = nil, status: String) {
+        public init(excludeBagsNextState: String? = nil, shipments: ShipmentDetail? = nil, status: String) {
             self.excludeBagsNextState = excludeBagsNextState
 
             self.status = status
@@ -32,7 +32,13 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
+            do {
+                excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             status = try container.decode(String.self, forKey: .status)
 
