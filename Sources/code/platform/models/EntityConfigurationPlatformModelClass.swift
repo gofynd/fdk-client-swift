@@ -10,42 +10,42 @@ public extension PlatformClient {
     class EntityConfiguration: Codable {
         public var product: GetCatalogConfigurationDetailsProduct?
 
-        public var configId: String?
+        public var appId: String
+
+        public var id: String?
 
         public var configType: String
 
         public var listing: GetCatalogConfigurationDetailsSchemaListing?
 
-        public var id: String?
-
-        public var appId: String
+        public var configId: String?
 
         public enum CodingKeys: String, CodingKey {
             case product
 
-            case configId = "config_id"
+            case appId = "app_id"
+
+            case id
 
             case configType = "config_type"
 
             case listing
 
-            case id
-
-            case appId = "app_id"
+            case configId = "config_id"
         }
 
         public init(appId: String, configId: String? = nil, configType: String, id: String? = nil, listing: GetCatalogConfigurationDetailsSchemaListing? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
             self.product = product
 
-            self.configId = configId
+            self.appId = appId
+
+            self.id = id
 
             self.configType = configType
 
             self.listing = listing
 
-            self.id = id
-
-            self.appId = appId
+            self.configId = configId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,8 +59,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            appId = try container.decode(String.self, forKey: .appId)
+
             do {
-                configId = try container.decode(String.self, forKey: .configId)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,14 +80,12 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                configId = try container.decode(String.self, forKey: .configId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            appId = try container.decode(String.self, forKey: .appId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -93,15 +93,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(product, forKey: .product)
 
-            try? container.encodeIfPresent(configId, forKey: .configId)
+            try? container.encodeIfPresent(appId, forKey: .appId)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(configType, forKey: .configType)
 
             try? container.encodeIfPresent(listing, forKey: .listing)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(configId, forKey: .configId)
         }
     }
 }

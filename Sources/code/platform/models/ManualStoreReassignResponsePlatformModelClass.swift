@@ -1,33 +1,34 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: ProductsComparisonResponse
-         Used By: Catalog
+         Model: ManualStoreReassignResponse
+         Used By: OrderManage
      */
-    class ProductsComparisonResponse: Codable {
-        public var items: [ProductDetail]?
 
-        public var attributesMetadata: [AttributeMetadata]?
+    class ManualStoreReassignResponse: Codable {
+        public var success: Bool?
+
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case items
+            case success
 
-            case attributesMetadata = "attributes_metadata"
+            case message
         }
 
-        public init(attributesMetadata: [AttributeMetadata]? = nil, items: [ProductDetail]? = nil) {
-            self.items = items
+        public init(message: String? = nil, success: Bool? = nil) {
+            self.success = success
 
-            self.attributesMetadata = attributesMetadata
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([ProductDetail].self, forKey: .items)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +36,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                attributesMetadata = try container.decode([AttributeMetadata].self, forKey: .attributesMetadata)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +47,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(attributesMetadata, forKey: .attributesMetadata)
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

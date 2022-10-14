@@ -8,6 +8,7 @@
 Update Status all platform shipment api(s)
 * [statusInternalUpdate](#statusinternalupdate)
 * [getShipmentHistory](#getshipmenthistory)
+* [manualStoreReassignment](#manualstorereassignment)
 
 
 
@@ -162,6 +163,60 @@ It shows the journey of the shipment!
 ---
 
 
+#### manualStoreReassignment
+
+
+
+
+
+```swift
+client.ordermanage.manualStoreReassignment(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | ManualStoreReassign | yes | Request body |
+
+
+Manual Store Reassignment
+
+*Returned Response:*
+
+
+
+
+[ManualStoreReassignResponse](#ManualStoreReassignResponse)
+
+Successfully reassigned store!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -171,8 +226,8 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | Int? |  yes  |  |
  | identifier | String? |  yes  |  |
+ | quantity | Int? |  yes  |  |
 
 ---
 
@@ -221,9 +276,9 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | statuses | [Statuses](#Statuses)? |  yes  |  |
  | task | Bool? |  yes  |  |
  | forceTransition | Bool? |  yes  |  |
- | statuses | [Statuses](#Statuses)? |  yes  |  |
 
 ---
 
@@ -258,15 +313,15 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | l3Detail | String? |  yes  |  |
- | ticketUrl | String? |  yes  |  |
- | ticketId | String? |  yes  |  |
- | createdat | String |  no  |  |
- | type | String |  no  |  |
- | l1Detail | String? |  yes  |  |
- | user | String |  no  |  |
- | message | String |  no  |  |
  | l2Detail | String? |  yes  |  |
+ | ticketId | String? |  yes  |  |
+ | type | String |  no  |  |
+ | ticketUrl | String? |  yes  |  |
+ | user | String |  no  |  |
+ | createdat | String |  no  |  |
+ | message | String |  no  |  |
+ | l3Detail | String? |  yes  |  |
+ | l1Detail | String? |  yes  |  |
 
 ---
 
@@ -278,6 +333,32 @@ It shows the journey of the shipment!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | activityHistory | [[HistoryDict](#HistoryDict)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ManualStoreReassign](#ManualStoreReassign)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reasonId | [Int]? |  yes  |  |
+ | storeId | Int |  no  |  |
+ | reasonText | String? |  yes  |  |
+ | shipmentId | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ManualStoreReassignResponse](#ManualStoreReassignResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
