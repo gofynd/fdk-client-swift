@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var checkoutMode: String
 
-        public var amount: String
-
         public var pincode: String
+
+        public var amount: String
 
         public var assignCardId: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case checkoutMode = "checkout_mode"
 
-            case amount
-
             case pincode
+
+            case amount
 
             case assignCardId = "assign_card_id"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.checkoutMode = checkoutMode
 
-            self.amount = amount
-
             self.pincode = pincode
+
+            self.amount = amount
 
             self.assignCardId = assignCardId
         }
@@ -48,9 +48,9 @@ public extension ApplicationClient {
 
             checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
-            amount = try container.decode(String.self, forKey: .amount)
-
             pincode = try container.decode(String.self, forKey: .pincode)
+
+            amount = try container.decode(String.self, forKey: .amount)
 
             do {
                 assignCardId = try container.decode(String.self, forKey: .assignCardId)
@@ -68,9 +68,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encode(assignCardId, forKey: .assignCardId)
         }
