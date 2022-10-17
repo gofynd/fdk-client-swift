@@ -1,12 +1,13 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: UnArchiveUserSuccess
+         Model: UnDeleteUserSuccess
          Used By: User
      */
-    class UnArchiveUserSuccess: Codable {
+
+    class UnDeleteUserSuccess: Codable {
         public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {

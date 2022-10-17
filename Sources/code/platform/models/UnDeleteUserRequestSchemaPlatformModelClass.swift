@@ -1,12 +1,13 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: UnArchiveUserRequestSchema
+         Model: UnDeleteUserRequestSchema
          Used By: User
      */
-    class UnArchiveUserRequestSchema: Codable {
+
+    class UnDeleteUserRequestSchema: Codable {
         public var userId: String?
 
         public var reason: String?
