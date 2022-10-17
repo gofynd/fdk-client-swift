@@ -11548,7 +11548,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Update build config for next build
-             * Description: Update build config for next build
+             * Description: It Updates the build configuration for next build. It updates the details such as app name, landing page image, splash image used in a mobile build.
              **/
             public func updateBuildConfig(
                 platformType: String,
@@ -11585,10 +11585,16 @@ public class PlatformClient {
             }
 
             /**
-             *
-             * Summary: Get previous build versions
-             * Description: Get previous build versions
-             **/
+                         *
+                         * Summary: Get previous build versions
+                         * Description: It gives previous build versions info. It contains the details about platform type, build status, version name, and version code in previous build versions.
+             Builed status - It shows application build status. Build status can be pending or cancelled or failed or success.
+                 * pending
+                 * cancelled
+                 * failed
+                 * success
+
+                         **/
             public func getPreviousVersions(
                 platformType: String,
 

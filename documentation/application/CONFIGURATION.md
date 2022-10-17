@@ -29,7 +29,7 @@ Application configuration apis
 
 
 #### getApplication
-Get current application details
+Get current sales channel details
 
 
 
@@ -45,7 +45,7 @@ configuration.getApplication() { (response, error) in
 
 
 
-Use this API to get the current application details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
+Use this API to get the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
 
 *Returned Response:*
 
@@ -142,7 +142,7 @@ Success. Check the example shown below or refer `Application` for more details.
 
 
 #### getOwnerInfo
-Get application, owner and seller information
+Get sales channel, owner and seller information
 
 
 
@@ -158,7 +158,7 @@ configuration.getOwnerInfo() { (response, error) in
 
 
 
-Use this API to get the current application details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
+Use this API to get the current sale channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
 
 *Returned Response:*
 
@@ -502,7 +502,7 @@ Success. Check the example shown below or refer `AppTokenResponse` for more deta
 
 
 #### getOrderingStores
-Get deployment stores
+Get all deployment stores
 
 
 
@@ -1433,19 +1433,19 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of application information |
  | domain | [Domain](#Domain)? |  yes  |  |
  | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
  | cors | [ApplicationCors](#ApplicationCors)? |  yes  |  |
- | description | String? |  yes  |  |
- | name | String? |  yes  |  |
+ | description | String? |  yes  | It contains details information about the sales channel. |
+ | name | String? |  yes  | Name of the sales channel |
  | meta | [ApplicationMeta](#ApplicationMeta)? |  yes  |  |
  | token | String? |  yes  |  |
  | secret | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
+ | createdAt | String? |  yes  | Epoch timestamp of sales channel information creation |
  | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
  | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
- | isActive | Bool? |  yes  |  |
+ | isActive | Bool? |  yes  | Indicates sales channel is active or not active |
 
 ---
 
@@ -1456,11 +1456,11 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of company information |
  | uid | Int? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | name | String? |  yes  |  |
+ | createdOn | String? |  yes  | Epoch timestamp of company information creation |
+ | isActive | Bool? |  yes  | Indicates company is active or not active |
+ | name | String? |  yes  | Name of the company |
  | addresses | [[CompanyAboutAddress](#CompanyAboutAddress)]? |  yes  |  |
  | notificationEmails | [String]? |  yes  |  |
 
@@ -1473,12 +1473,12 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of owner info |
  | emails | [[UserEmail](#UserEmail)]? |  yes  |  |
  | phoneNumbers | [[UserPhoneNumber](#UserPhoneNumber)]? |  yes  |  |
- | firstName | String? |  yes  |  |
- | lastName | String? |  yes  |  |
- | profilePic | String? |  yes  |  |
+ | firstName | String? |  yes  | First name of the owner |
+ | lastName | String? |  yes  | Last name of the owner |
+ | profilePic | String? |  yes  | Hosted url of profile pic |
 
 ---
 
@@ -1543,8 +1543,8 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | code | String? |  yes  |  |
+ | name | String? |  yes  | Name of the supported language. |
+ | code | String? |  yes  | Unique code of supported language. |
 
 ---
 
@@ -1644,11 +1644,11 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | tokens | [Tokens](#Tokens)? |  yes  |  |
- | id | String? |  yes  |  |
- | application | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | v | Int? |  yes  |  |
+ | id | String? |  yes  | Unique identifier of the token |
+ | application | String? |  yes  | Current sales channel id |
+ | createdAt | String? |  yes  | Epoch timestamp of token creation |
+ | updatedAt | String? |  yes  | Epoch timestamp of token updation |
+ | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
 
 ---
 
@@ -1989,10 +1989,10 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | pcr | [PcrFeature](#PcrFeature)? |  yes  |  |
  | order | [OrderFeature](#OrderFeature)? |  yes  |  |
  | id | String? |  yes  | The unique identifier for the sales channel features |
- | app | String? |  yes  |  |
+ | app | String? |  yes  | Current sales channel id |
  | createdAt | String? |  yes  | Epoch timestamp of sales channel feature creation |
  | updatedAt | String? |  yes  | Epoch timestamp of sales channel feature updation |
- | v | Int? |  yes  |  |
+ | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
 
 ---
 
@@ -2130,7 +2130,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | ---------- | ---- | -------- | ----------- |
  | application | Bool? |  yes  | Allow application. Default value is false. |
  | products | Bool? |  yes  | Allow products. Default value is false. |
- | collections | Bool? |  yes  | Allow collection. Default value is false. |
+ | collections | Bool? |  yes  | Allow collections. Default value is false. |
 
 ---
 
@@ -2218,8 +2218,8 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | basepath | String? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows sales channel website url is enabled or not |
+ | basepath | String? |  yes  | Base path for the current sales channel website |
 
 ---
 
@@ -2252,9 +2252,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | redirectFrom | String? |  yes  |  |
- | redirectTo | String? |  yes  |  |
- | type | String? |  yes  |  |
+ | redirectFrom | String? |  yes  | Old domain url of the sales channel. |
+ | redirectTo | String? |  yes  | New domain url of the sales channel. User will redirect from old domain to new domain. |
+ | type | String? |  yes  | It shows domain redirection type. Permanent redirection is for long time period redirection and temporary redirection for the short time period. |
 
 ---
 
@@ -2277,7 +2277,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | secureUrl | String? |  yes  | hosted Url of the image |
+ | secureUrl | String? |  yes  | Hosted Url of the image |
 
 ---
 
@@ -2291,26 +2291,26 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
  | cors | [ApplicationCors](#ApplicationCors)? |  yes  |  |
  | auth | [ApplicationAuth](#ApplicationAuth)? |  yes  |  |
- | description | String? |  yes  |  |
- | channelType | String? |  yes  |  |
+ | description | String? |  yes  | It contains details information about the sales channel. |
+ | channelType | String? |  yes  | It indicates different channel types like store, website-and-mobile-apps. Default value is store |
  | cacheTtl | Int? |  yes  |  |
  | isInternal | Bool? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | id | String? |  yes  |  |
- | name | String? |  yes  |  |
- | owner | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
+ | isActive | Bool? |  yes  | Indicates sales channel is active or not active |
+ | id | String? |  yes  | The unique identifier of the sales channel |
+ | name | String? |  yes  | Name of the sales channel |
+ | owner | String? |  yes  | Unique id of the owner to identify owner |
+ | companyId | Int? |  yes  | Company ID for the sales channel |
  | token | String? |  yes  |  |
  | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
  | meta | [[ApplicationMeta](#ApplicationMeta)]? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | v | Int? |  yes  |  |
+ | createdAt | String? |  yes  | Epoch timestamp of sales channel creation |
+ | updatedAt | String? |  yes  | Epoch timestamp of sales channel updation |
+ | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
  | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
  | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
- | appType | String? |  yes  |  |
+ | appType | String? |  yes  | It shows application is live or in development mode. |
  | mobileLogo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | domain | [Domain](#Domain)? |  yes  |  |
 
@@ -2323,7 +2323,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
+ | message | String? |  yes  | Response message for not found |
 
 ---
 
@@ -2451,13 +2451,13 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | Int? |  yes  |  |
- | address1 | String? |  yes  |  |
- | address2 | String? |  yes  |  |
- | city | String? |  yes  |  |
- | state | String? |  yes  |  |
- | country | String? |  yes  |  |
- | addressType | String? |  yes  |  |
+ | pincode | Int? |  yes  | Pin code of the city |
+ | address1 | String? |  yes  | Primary details about the address of the comapany |
+ | address2 | String? |  yes  | Secondary details about the address of the comapany |
+ | city | String? |  yes  | City name |
+ | state | String? |  yes  | State name |
+ | country | String? |  yes  | Country name |
+ | addressType | String? |  yes  | Indicates different office types like office, registered and home. |
 
 ---
 
@@ -2468,10 +2468,10 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | Bool? |  yes  |  |
- | primary | Bool? |  yes  |  |
- | verified | Bool? |  yes  |  |
- | email | String? |  yes  |  |
+ | active | Bool? |  yes  | Current email is active or not active |
+ | primary | Bool? |  yes  | Indicates current email is primay email or not primary email of user |
+ | verified | Bool? |  yes  | Indicates current email is verified email or not verified email |
+ | email | String? |  yes  | Email address of the user |
 
 ---
 
@@ -2482,11 +2482,11 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | Bool? |  yes  |  |
- | primary | Bool? |  yes  |  |
- | verified | Bool? |  yes  |  |
- | countryCode | Int? |  yes  |  |
- | phone | String? |  yes  |  |
+ | active | Bool? |  yes  | Current phone number is active or not active |
+ | primary | Bool? |  yes  | Indicates current phone number is primay  or not primary of user |
+ | verified | Bool? |  yes  | Indicates current phone number is verified or not verified |
+ | countryCode | Int? |  yes  | Country code |
+ | phone | String? |  yes  | Phone nubmer of the user |
 
 ---
 
@@ -2518,13 +2518,13 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | support | [InformationSupport](#InformationSupport)? |  yes  |  |
  | socialLinks | [SocialLinks](#SocialLinks)? |  yes  |  |
  | links | [Links](#Links)? |  yes  |  |
- | copyrightText | String? |  yes  | Copyright text |
+ | copyrightText | String? |  yes  | Copyright text for current sales channel |
  | id | String? |  yes  | Unique identifier of the application information |
  | businessHighlights | [BusinessHighlights](#BusinessHighlights)? |  yes  |  |
- | application | String? |  yes  | Application id |
+ | application | String? |  yes  | Current application id |
  | createdAt | String? |  yes  | Epoch timestamp of the application information creation |
  | updatedAt | String? |  yes  | Epoch timestamp of the application information updation |
- | v | Int? |  yes  | Show version of the application information |
+ | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
 
 ---
 
@@ -2536,7 +2536,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | loc | String? |  yes  | Contain Address location |
- | addressLine | [String]? |  yes  | Detailed address info of the company |
+ | addressLine | [String]? |  yes  |  |
  | phone | [InformationPhone](#InformationPhone)? |  yes  |  |
  | city | String? |  yes  | City name |
  | country | String? |  yes  | Country name |
@@ -2551,8 +2551,8 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String? |  yes  |  |
- | number | String? |  yes  |  |
+ | code | String? |  yes  | Unique code related to country for contact number |
+ | number | String? |  yes  | Contact number for application information |
 
 ---
 
@@ -2565,7 +2565,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | ---------- | ---- | -------- | ----------- |
  | phone | [String]? |  yes  |  |
  | email | [String]? |  yes  |  |
- | timing | String? |  yes  |  |
+ | timing | String? |  yes  | Information support available timing for user |
 
 ---
 
@@ -2846,7 +2846,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | deployedStores | [Int]? |  yes  |  |
  | allStores | Bool? |  yes  | Allow all stores of the ordering stores |
  | enabled | Bool? |  yes  | Allow ordering stores |
- | type | String? |  yes  |  |
+ | type | String? |  yes  | For hard type delivery store selection is compulsory and for soft type delivery store selection is optional. |
  | id | String? |  yes  | The unique identifier of the ordering stores |
  | app | String? |  yes  | Current application id |
  | v | Int? |  yes  | Version of the ordering stores |
