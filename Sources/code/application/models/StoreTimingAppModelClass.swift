@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var weekday: String?
 
-        public var opening: Time?
-
         public var open: Bool?
+
+        public var opening: Time?
 
         public enum CodingKeys: String, CodingKey {
             case closing
 
             case weekday
 
-            case opening
-
             case open
+
+            case opening
         }
 
         public init(closing: Time? = nil, open: Bool? = nil, opening: Time? = nil, weekday: String? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.weekday = weekday
 
-            self.opening = opening
-
             self.open = open
+
+            self.opening = opening
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                opening = try container.decode(Time.self, forKey: .opening)
+                open = try container.decode(Bool.self, forKey: .open)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                open = try container.decode(Bool.self, forKey: .open)
+                opening = try container.decode(Time.self, forKey: .opening)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(weekday, forKey: .weekday)
 
-            try? container.encodeIfPresent(opening, forKey: .opening)
-
             try? container.encodeIfPresent(open, forKey: .open)
+
+            try? container.encodeIfPresent(opening, forKey: .opening)
         }
     }
 }

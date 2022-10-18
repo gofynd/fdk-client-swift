@@ -10,11 +10,11 @@ public extension PlatformClient {
     class PayoutsResponse: Codable {
         public var isDefault: Bool
 
-        public var customers: [String: Any]
+        public var uniqueTransferNo: [String: Any]
 
         public var payoutsAggregators: [[String: Any]]
 
-        public var uniqueTransferNo: [String: Any]
+        public var customers: [String: Any]
 
         public var transferType: String
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case isDefault = "is_default"
 
-            case customers
+            case uniqueTransferNo = "unique_transfer_no"
 
             case payoutsAggregators = "payouts_aggregators"
 
-            case uniqueTransferNo = "unique_transfer_no"
+            case customers
 
             case transferType = "transfer_type"
 
@@ -41,11 +41,11 @@ public extension PlatformClient {
         public init(customers: [String: Any], isActive: Bool, isDefault: Bool, moreAttributes: [String: Any], payoutsAggregators: [[String: Any]], transferType: String, uniqueTransferNo: [String: Any]) {
             self.isDefault = isDefault
 
-            self.customers = customers
+            self.uniqueTransferNo = uniqueTransferNo
 
             self.payoutsAggregators = payoutsAggregators
 
-            self.uniqueTransferNo = uniqueTransferNo
+            self.customers = customers
 
             self.transferType = transferType
 
@@ -59,11 +59,11 @@ public extension PlatformClient {
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
-            customers = try container.decode([String: Any].self, forKey: .customers)
+            uniqueTransferNo = try container.decode([String: Any].self, forKey: .uniqueTransferNo)
 
             payoutsAggregators = try container.decode([[String: Any]].self, forKey: .payoutsAggregators)
 
-            uniqueTransferNo = try container.decode([String: Any].self, forKey: .uniqueTransferNo)
+            customers = try container.decode([String: Any].self, forKey: .customers)
 
             transferType = try container.decode(String.self, forKey: .transferType)
 
@@ -77,11 +77,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(customers, forKey: .customers)
+            try? container.encodeIfPresent(uniqueTransferNo, forKey: .uniqueTransferNo)
 
             try? container.encodeIfPresent(payoutsAggregators, forKey: .payoutsAggregators)
 
-            try? container.encodeIfPresent(uniqueTransferNo, forKey: .uniqueTransferNo)
+            try? container.encodeIfPresent(customers, forKey: .customers)
 
             try? container.encodeIfPresent(transferType, forKey: .transferType)
 

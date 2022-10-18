@@ -3,23 +3,23 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: InventoryDelete
+         Model: SuccessResponse1
          Used By: Catalog
      */
 
-    class InventoryDelete: Codable {
-        public var data: InventoryDeleteData?
+    class SuccessResponse1: Codable {
+        public var uid: Int?
 
         public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case data
+            case uid
 
             case success
         }
 
-        public init(data: InventoryDeleteData? = nil, success: Bool? = nil) {
-            self.data = data
+        public init(success: Bool? = nil, uid: Int? = nil) {
+            self.uid = uid
 
             self.success = success
         }
@@ -28,7 +28,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode(InventoryDeleteData.self, forKey: .data)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }

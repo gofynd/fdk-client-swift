@@ -10,6 +10,95 @@ public extension PublicClient {
 
         /**
          *
+         * Summary: Get Slingshot Configuration Of  A Company using API key
+         * Description: REST Endpoint that returns all configuration detail of a company
+         **/
+        public func getConfigByApiKey(
+            apikey: String,
+
+            onResponse: @escaping (_ response: ResponseEnvelopeSlingshotConfigurationDetail?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:]
+
+            xQuery["apikey"] = apikey
+
+            PublicAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/common/inventory/v1.0/company/slingshot",
+                query: xQuery,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResponseEnvelopeSlingshotConfigurationDetail.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Get apikey  for  Company  to call other Slingshot Configuration APIs
+         * Description: REST Endpoint that returns apikey by username by password
+         **/
+        public func getApiKey(
+            userName: String,
+            password: String,
+
+            onResponse: @escaping (_ response: ResponseEnvelopeApikeyModel?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:]
+
+            xQuery["user_name"] = userName
+
+            xQuery["password"] = password
+
+            PublicAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/common/inventory/v1.0/company/slingshot/apikey",
+                query: xQuery,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResponseEnvelopeApikeyModel.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
          * Summary: Get Job Config By Code
          * Description: REST Endpoint that returns job config by code
          **/

@@ -1899,6 +1899,7 @@ public extension ApplicationClient {
             size: String,
             storeId: Int?,
             pincode: String?,
+            moq: Int?,
 
             onResponse: @escaping (_ response: ProductSizePriceResponseV2?, _ error: FDKError?) -> Void
         ) {
@@ -1910,6 +1911,10 @@ public extension ApplicationClient {
 
             if let value = pincode {
                 xQuery["pincode"] = value
+            }
+
+            if let value = moq {
+                xQuery["moq"] = value
             }
 
             var fullUrl = relativeUrls["getProductPriceBySlug"] ?? ""
