@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var currencySymbol: String?
 
-        public var effective: Double?
-
         public var marked: Double?
+
+        public var effective: Double?
 
         public var addOn: Double?
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case currencySymbol = "currency_symbol"
 
-            case effective
-
             case marked
+
+            case effective
 
             case addOn = "add_on"
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             self.currencySymbol = currencySymbol
 
-            self.effective = effective
-
             self.marked = marked
+
+            self.effective = effective
 
             self.addOn = addOn
         }
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                effective = try container.decode(Double.self, forKey: .effective)
+                marked = try container.decode(Double.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                marked = try container.decode(Double.self, forKey: .marked)
+                effective = try container.decode(Double.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,9 +109,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
-
             try? container.encodeIfPresent(marked, forKey: .marked)
+
+            try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(addOn, forKey: .addOn)
         }

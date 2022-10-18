@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class BankDetailsForOTP: Codable {
         public var branchName: String
 
-        public var ifscCode: String
-
         public var accountHolder: String
+
+        public var ifscCode: String
 
         public var accountNo: String
 
@@ -20,9 +20,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case branchName = "branch_name"
 
-            case ifscCode = "ifsc_code"
-
             case accountHolder = "account_holder"
+
+            case ifscCode = "ifsc_code"
 
             case accountNo = "account_no"
 
@@ -32,9 +32,9 @@ public extension ApplicationClient {
         public init(accountHolder: String, accountNo: String, bankName: String, branchName: String, ifscCode: String) {
             self.branchName = branchName
 
-            self.ifscCode = ifscCode
-
             self.accountHolder = accountHolder
+
+            self.ifscCode = ifscCode
 
             self.accountNo = accountNo
 
@@ -46,9 +46,9 @@ public extension ApplicationClient {
 
             branchName = try container.decode(String.self, forKey: .branchName)
 
-            ifscCode = try container.decode(String.self, forKey: .ifscCode)
-
             accountHolder = try container.decode(String.self, forKey: .accountHolder)
+
+            ifscCode = try container.decode(String.self, forKey: .ifscCode)
 
             accountNo = try container.decode(String.self, forKey: .accountNo)
 
@@ -60,9 +60,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(branchName, forKey: .branchName)
 
-            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
-
             try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+
+            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
 
             try? container.encodeIfPresent(accountNo, forKey: .accountNo)
 

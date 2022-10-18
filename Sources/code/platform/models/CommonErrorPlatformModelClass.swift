@@ -3,34 +3,26 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: InventoryUpdateResponse
-         Used By: Catalog
+         Model: CommonError
+         Used By: Content
      */
 
-    class InventoryUpdateResponse: Codable {
-        public var message: String
-
-        public var items: [InventoryResponseItem]?
+    class CommonError: Codable {
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case message
-
-            case items
         }
 
-        public init(items: [InventoryResponseItem]? = nil, message: String) {
+        public init(message: String? = nil) {
             self.message = message
-
-            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            message = try container.decode(String.self, forKey: .message)
-
             do {
-                items = try container.decode([InventoryResponseItem].self, forKey: .items)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,8 +34,6 @@ public extension PlatformClient {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(message, forKey: .message)
-
-            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

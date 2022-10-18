@@ -16,9 +16,9 @@ public extension PlatformClient {
 
         public var uniqueExternalId: String
 
-        public var isActive: Bool
-
         public var bankDetails: PayoutBankDetails
+
+        public var isActive: Bool
 
         public enum CodingKeys: String, CodingKey {
             case users
@@ -29,9 +29,9 @@ public extension PlatformClient {
 
             case uniqueExternalId = "unique_external_id"
 
-            case isActive = "is_active"
-
             case bankDetails = "bank_details"
+
+            case isActive = "is_active"
         }
 
         public init(aggregator: String, bankDetails: PayoutBankDetails, isActive: Bool, transferType: String, uniqueExternalId: String, users: [String: Any]) {
@@ -43,9 +43,9 @@ public extension PlatformClient {
 
             self.uniqueExternalId = uniqueExternalId
 
-            self.isActive = isActive
-
             self.bankDetails = bankDetails
+
+            self.isActive = isActive
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,9 +59,9 @@ public extension PlatformClient {
 
             uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
             bankDetails = try container.decode(PayoutBankDetails.self, forKey: .bankDetails)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -75,9 +75,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
     }
 }
