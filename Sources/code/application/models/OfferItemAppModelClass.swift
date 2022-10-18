@@ -7,57 +7,73 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class OfferItem: Codable {
-        public var quantity: Int?
+        public var best: Bool?
+
+        public var margin: Int?
+
+        public var autoApplied: Bool?
 
         public var price: OfferPrice?
 
         public var type: String?
 
-        public var margin: Int?
+        public var quantity: Int?
 
         public var total: Double?
 
-        public var best: Bool?
-
-        public var autoApplied: Bool?
-
         public enum CodingKeys: String, CodingKey {
-            case quantity
+            case best
+
+            case margin
+
+            case autoApplied = "auto_applied"
 
             case price
 
             case type
 
-            case margin
+            case quantity
 
             case total
-
-            case best
-
-            case autoApplied = "auto_applied"
         }
 
         public init(autoApplied: Bool? = nil, best: Bool? = nil, margin: Int? = nil, price: OfferPrice? = nil, quantity: Int? = nil, total: Double? = nil, type: String? = nil) {
-            self.quantity = quantity
+            self.best = best
+
+            self.margin = margin
+
+            self.autoApplied = autoApplied
 
             self.price = price
 
             self.type = type
 
-            self.margin = margin
+            self.quantity = quantity
 
             self.total = total
-
-            self.best = best
-
-            self.autoApplied = autoApplied
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                best = try container.decode(Bool.self, forKey: .best)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                margin = try container.decode(Int.self, forKey: .margin)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                autoApplied = try container.decode(Bool.self, forKey: .autoApplied)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +97,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                margin = try container.decode(Int.self, forKey: .margin)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,40 +111,24 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                best = try container.decode(Bool.self, forKey: .best)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                autoApplied = try container.decode(Bool.self, forKey: .autoApplied)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(best, forKey: .best)
+
+            try? container.encodeIfPresent(margin, forKey: .margin)
+
+            try? container.encodeIfPresent(autoApplied, forKey: .autoApplied)
 
             try? container.encodeIfPresent(price, forKey: .price)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(margin, forKey: .margin)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(total, forKey: .total)
-
-            try? container.encodeIfPresent(best, forKey: .best)
-
-            try? container.encodeIfPresent(autoApplied, forKey: .autoApplied)
         }
     }
 }

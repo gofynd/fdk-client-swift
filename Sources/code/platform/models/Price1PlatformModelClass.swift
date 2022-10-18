@@ -8,36 +8,44 @@ public extension PlatformClient {
      */
 
     class Price1: Codable {
+        public var currencySymbol: String?
+
         public var min: Double?
 
         public var currencyCode: String?
 
-        public var currencySymbol: String?
-
         public var max: Double?
 
         public enum CodingKeys: String, CodingKey {
+            case currencySymbol = "currency_symbol"
+
             case min
 
             case currencyCode = "currency_code"
-
-            case currencySymbol = "currency_symbol"
 
             case max
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
+            self.currencySymbol = currencySymbol
+
             self.min = min
 
             self.currencyCode = currencyCode
-
-            self.currencySymbol = currencySymbol
 
             self.max = max
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 min = try container.decode(Double.self, forKey: .min)
@@ -56,14 +64,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 max = try container.decode(Double.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -75,11 +75,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+
             try? container.encodeIfPresent(min, forKey: .min)
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
             try? container.encodeIfPresent(max, forKey: .max)
         }

@@ -3,41 +3,43 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ManualStoreReassign
+         Model: ShipmentEDDUpdate
          Used By: OrderManage
      */
 
-    class ManualStoreReassign: Codable {
+    class ShipmentEDDUpdate: Codable {
+        public var edd: String
+
         public var reasonText: String?
 
         public var shipmentId: String
 
         public var reasonId: [Int]?
 
-        public var storeId: Int
-
         public enum CodingKeys: String, CodingKey {
+            case edd
+
             case reasonText = "reason_text"
 
             case shipmentId = "shipment_id"
 
             case reasonId = "reason_id"
-
-            case storeId = "store_id"
         }
 
-        public init(reasonId: [Int]? = nil, reasonText: String? = nil, shipmentId: String, storeId: Int) {
+        public init(edd: String, reasonId: [Int]? = nil, reasonText: String? = nil, shipmentId: String) {
+            self.edd = edd
+
             self.reasonText = reasonText
 
             self.shipmentId = shipmentId
 
             self.reasonId = reasonId
-
-            self.storeId = storeId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            edd = try container.decode(String.self, forKey: .edd)
 
             do {
                 reasonText = try container.decode(String.self, forKey: .reasonText)
@@ -56,20 +58,18 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            storeId = try container.decode(Int.self, forKey: .storeId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(edd, forKey: .edd)
 
             try? container.encode(reasonText, forKey: .reasonText)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encode(reasonId, forKey: .reasonId)
-
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
         }
     }
 }

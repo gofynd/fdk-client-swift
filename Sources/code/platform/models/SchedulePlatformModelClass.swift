@@ -10,36 +10,36 @@ public extension PlatformClient {
     class Schedule: Codable {
         public var duration: Int?
 
-        public var end: String?
+        public var nextSchedule: [NextSchedule]?
 
         public var cron: String?
 
         public var start: String?
 
-        public var nextSchedule: [NextSchedule]?
+        public var end: String?
 
         public enum CodingKeys: String, CodingKey {
             case duration
 
-            case end
+            case nextSchedule = "next_schedule"
 
             case cron
 
             case start
 
-            case nextSchedule = "next_schedule"
+            case end
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
             self.duration = duration
 
-            self.end = end
+            self.nextSchedule = nextSchedule
 
             self.cron = cron
 
             self.start = start
 
-            self.nextSchedule = nextSchedule
+            self.end = end
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                end = try container.decode(String.self, forKey: .end)
+                nextSchedule = try container.decode([NextSchedule].self, forKey: .nextSchedule)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                nextSchedule = try container.decode([NextSchedule].self, forKey: .nextSchedule)
+                end = try container.decode(String.self, forKey: .end)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,13 +91,13 @@ public extension PlatformClient {
 
             try? container.encode(duration, forKey: .duration)
 
-            try? container.encode(end, forKey: .end)
+            try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
 
             try? container.encode(cron, forKey: .cron)
 
             try? container.encodeIfPresent(start, forKey: .start)
 
-            try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
+            try? container.encode(end, forKey: .end)
         }
     }
 }

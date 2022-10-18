@@ -9,6 +9,7 @@ Update Status all platform shipment api(s)
 * [statusInternalUpdate](#statusinternalupdate)
 * [getShipmentHistory](#getshipmenthistory)
 * [manualStoreReassignment](#manualstorereassignment)
+* [shipmentEDDUpdate](#shipmenteddupdate)
 
 
 
@@ -191,9 +192,63 @@ Manual Store Reassignment
 
 
 
-[ManualStoreReassignResponse](#ManualStoreReassignResponse)
+[SuccessResponse](#SuccessResponse)
 
 Successfully reassigned store!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### shipmentEDDUpdate
+
+
+
+
+
+```swift
+client.ordermanage.shipmentEDDUpdate(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | ShipmentEDDUpdate | yes | Request body |
+
+
+Shipment EDD Update
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Successfully Updated Shipment EDD!
 
 
 
@@ -238,10 +293,10 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason | [Int]? |  yes  |  |
- | storeInvoiceId | String? |  yes  |  |
  | dataUpdate | [String: Any]? |  yes  |  |
+ | storeInvoiceId | String? |  yes  |  |
  | products | [[ProductDetail](#ProductDetail)]? |  yes  |  |
+ | reason | [Int]? |  yes  |  |
 
 ---
 
@@ -263,9 +318,9 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | String |  no  |  |
- | shipments | [ShipmentDetail](#ShipmentDetail)? |  yes  |  |
  | excludeBagsNextState | String |  no  |  |
+ | shipments | [ShipmentDetail](#ShipmentDetail)? |  yes  |  |
+ | status | String |  no  |  |
 
 ---
 
@@ -276,8 +331,8 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statuses | [Statuses](#Statuses)? |  yes  |  |
  | task | Bool? |  yes  |  |
+ | statuses | [Statuses](#Statuses)? |  yes  |  |
  | forceTransition | Bool? |  yes  |  |
 
 ---
@@ -313,15 +368,15 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | l2Detail | String? |  yes  |  |
- | ticketId | String? |  yes  |  |
  | type | String |  no  |  |
  | ticketUrl | String? |  yes  |  |
- | user | String |  no  |  |
  | createdat | String |  no  |  |
- | message | String |  no  |  |
  | l3Detail | String? |  yes  |  |
  | l1Detail | String? |  yes  |  |
+ | l2Detail | String? |  yes  |  |
+ | user | String |  no  |  |
+ | message | String |  no  |  |
+ | ticketId | String? |  yes  |  |
 
 ---
 
@@ -343,22 +398,36 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reasonId | [Int]? |  yes  |  |
- | storeId | Int |  no  |  |
  | reasonText | String? |  yes  |  |
  | shipmentId | String |  no  |  |
+ | reasonId | [Int]? |  yes  |  |
+ | storeId | Int |  no  |  |
 
 ---
 
 
  
  
- #### [ManualStoreReassignResponse](#ManualStoreReassignResponse)
+ #### [SuccessResponse](#SuccessResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | Bool? |  yes  |  |
  | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentEDDUpdate](#ShipmentEDDUpdate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | edd | String |  no  |  |
+ | reasonText | String? |  yes  |  |
+ | shipmentId | String |  no  |  |
+ | reasonId | [Int]? |  yes  |  |
 
 ---
 
