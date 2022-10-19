@@ -12,8 +12,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Create application
-         * Description: Create new application
+         * Summary: Create new sales channel
+         * Description: Create new sales channel under current company
          **/
         public func createApplication(
             body: CreateApplicationRequest,
@@ -50,8 +50,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get list of application under company
-         * Description: Get list of application under company
+         * Summary: Get list of registered sales channels under company
+         * Description: Get list of registered sales channels under current company. Sales channel has the details of name , description, channel_type, app_type, domain and many others.
          **/
         public func getApplications(
             pageNo: Int?,
@@ -136,7 +136,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get all currencies
-         * Description: Get all currencies
+         * Description: Get all currencies for the current company
          **/
         public func getCurrencies(
             onResponse: @escaping (_ response: CurrenciesResponse?, _ error: FDKError?) -> Void
@@ -634,7 +634,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get brands by company.
-         * Description: Get brands by company for current sales channel
+         * Description: Get brands by company. Brand has information about name, value, brand logo, brand banner and brand portrait image.
          **/
         public func getBrandsByCompany(
             q: String?,
@@ -679,7 +679,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get company by brand uids
-         * Description: Get company by brand uids
+         * Description: Get company by brand uids. Company has information about company name and company id.
          **/
         public func getCompanyByBrands(
             pageNo: Int?,
@@ -757,8 +757,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get stores by brand uids
-         * Description: Get stores by brand uids
+         * Summary: Get stores by brand uids for the current company
+         * Description: Get stores by brand uids for the current company. Store has information about store name, store type, store code, store address, and company detail.
          **/
         public func getStoreByBrands(
             pageNo: Int?,
@@ -836,8 +836,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get other seller applications
-         * Description: Get other seller applications who has opted current company as inventory
+         * Summary: Get other seller sales channels
+         * Description: Get other seller sales channels who has opted current company as inventory
          **/
         public func getOtherSellerApplications(
             pageNo: Int?,
@@ -914,8 +914,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get other seller applications
-         * Description: Get other seller application
+         * Summary: Get other seller sales channel
+         * Description: Get other seller sales channel in current company
          **/
         public func getOtherSellerApplicationById(
             id: String,
@@ -953,8 +953,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Opt out company or store from other seller application
-         * Description: Opt out company or store from other seller application
+         * Summary: UpdateOpt out company or store from other seller sales channel
+         * Description: Update Opt out company or store data from other seller sales channel.
          **/
         public func optOutFromApplication(
             id: String,

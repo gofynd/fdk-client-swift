@@ -1457,7 +1457,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of company information |
- | uid | Int? |  yes  |  |
+ | uid | Int? |  yes  | company uid |
  | createdOn | String? |  yes  | Epoch timestamp of company information creation |
  | isActive | Bool? |  yes  | Indicates company is active or not active |
  | name | String? |  yes  | Name of the company |
@@ -2404,8 +2404,8 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modeOfPayment | String? |  yes  |  |
- | source | String? |  yes  |  |
+ | modeOfPayment | String? |  yes  | Mode of payment for the inventory of sales channel. It is required and default value is null. |
+ | source | String? |  yes  | Source of the payment mode for the inventory payment of sales channel. Default value is FYND. |
 
 ---
 

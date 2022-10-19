@@ -7,36 +7,36 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductVariantListingResponse: Codable {
-        public var header: String?
+        public var items: [ProductVariantItemResponse]?
 
         public var displayType: String?
 
         public var key: String?
 
-        public var items: [ProductVariantItemResponse]?
+        public var header: String?
 
         public var total: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case header
+            case items
 
             case displayType = "display_type"
 
             case key
 
-            case items
+            case header
 
             case total
         }
 
         public init(displayType: String? = nil, header: String? = nil, items: [ProductVariantItemResponse]? = nil, key: String? = nil, total: Int? = nil) {
-            self.header = header
+            self.items = items
 
             self.displayType = displayType
 
             self.key = key
 
-            self.items = items
+            self.header = header
 
             self.total = total
         }
@@ -45,7 +45,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                header = try container.decode(String.self, forKey: .header)
+                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
+                header = try container.decode(String.self, forKey: .header)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,13 +88,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(header, forKey: .header)
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(header, forKey: .header)
 
             try? container.encodeIfPresent(total, forKey: .total)
         }
