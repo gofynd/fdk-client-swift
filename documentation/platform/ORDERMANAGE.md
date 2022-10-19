@@ -9,7 +9,6 @@ Update Status all platform shipment api(s)
 * [statusInternalUpdate](#statusinternalupdate)
 * [getShipmentHistory](#getshipmenthistory)
 * [manualStoreReassignment](#manualstorereassignment)
-* [shipmentEDDUpdate](#shipmenteddupdate)
 
 
 
@@ -218,60 +217,6 @@ Successfully reassigned store!
 ---
 
 
-#### shipmentEDDUpdate
-
-
-
-
-
-```swift
-client.ordermanage.shipmentEDDUpdate(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | ShipmentEDDUpdate | yes | Request body |
-
-
-Shipment EDD Update
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Successfully Updated Shipment EDD!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 ### Schemas
 
@@ -293,10 +238,10 @@ Successfully Updated Shipment EDD!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | dataUpdate | [String: Any]? |  yes  |  |
- | storeInvoiceId | String? |  yes  |  |
- | products | [[ProductDetail](#ProductDetail)]? |  yes  |  |
  | reason | [Int]? |  yes  |  |
+ | products | [[ProductDetail](#ProductDetail)]? |  yes  |  |
+ | storeInvoiceId | String? |  yes  |  |
+ | dataUpdate | [String: Any]? |  yes  |  |
 
 ---
 
@@ -318,8 +263,8 @@ Successfully Updated Shipment EDD!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | excludeBagsNextState | String |  no  |  |
  | shipments | [ShipmentDetail](#ShipmentDetail)? |  yes  |  |
+ | excludeBagsNextState | String |  no  |  |
  | status | String |  no  |  |
 
 ---
@@ -331,8 +276,8 @@ Successfully Updated Shipment EDD!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | task | Bool? |  yes  |  |
  | statuses | [Statuses](#Statuses)? |  yes  |  |
+ | task | Bool? |  yes  |  |
  | forceTransition | Bool? |  yes  |  |
 
 ---
@@ -368,15 +313,15 @@ Successfully Updated Shipment EDD!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String |  no  |  |
  | ticketUrl | String? |  yes  |  |
- | createdat | String |  no  |  |
- | l3Detail | String? |  yes  |  |
- | l1Detail | String? |  yes  |  |
  | l2Detail | String? |  yes  |  |
  | user | String |  no  |  |
  | message | String |  no  |  |
  | ticketId | String? |  yes  |  |
+ | createdat | String |  no  |  |
+ | l1Detail | String? |  yes  |  |
+ | type | String |  no  |  |
+ | l3Detail | String? |  yes  |  |
 
 ---
 
@@ -398,10 +343,10 @@ Successfully Updated Shipment EDD!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reasonText | String? |  yes  |  |
  | shipmentId | String |  no  |  |
  | reasonId | [Int]? |  yes  |  |
  | storeId | Int |  no  |  |
+ | reasonText | String? |  yes  |  |
 
 ---
 
@@ -414,20 +359,6 @@ Successfully Updated Shipment EDD!
  | ---------- | ---- | -------- | ----------- |
  | success | Bool? |  yes  |  |
  | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ShipmentEDDUpdate](#ShipmentEDDUpdate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | edd | String |  no  |  |
- | reasonText | String? |  yes  |  |
- | shipmentId | String |  no  |  |
- | reasonId | [Int]? |  yes  |  |
 
 ---
 
