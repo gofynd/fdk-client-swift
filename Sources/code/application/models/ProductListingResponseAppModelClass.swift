@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var filters: [ProductFilters]?
 
-        public var page: Page
-
         public var sortOn: [ProductSortOn]?
+
+        public var page: Page
 
         public enum CodingKeys: String, CodingKey {
             case items
 
             case filters
 
-            case page
-
             case sortOn = "sort_on"
+
+            case page
         }
 
         public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.filters = filters
 
-            self.page = page
-
             self.sortOn = sortOn
+
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,8 +54,6 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            page = try container.decode(Page.self, forKey: .page)
-
             do {
                 sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
 
@@ -63,6 +61,8 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            page = try container.decode(Page.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -72,9 +72,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
+
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }
