@@ -7,30 +7,32 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class CustomerDetails: Codable {
+        public var mobile: String
+
         public var name: String?
 
         public var email: String?
 
-        public var mobile: String
-
         public enum CodingKeys: String, CodingKey {
+            case mobile
+
             case name
 
             case email
-
-            case mobile
         }
 
         public init(email: String? = nil, mobile: String, name: String? = nil) {
+            self.mobile = mobile
+
             self.name = name
 
             self.email = email
-
-            self.mobile = mobile
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            mobile = try container.decode(String.self, forKey: .mobile)
 
             do {
                 name = try container.decode(String.self, forKey: .name)
@@ -47,18 +49,16 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            mobile = try container.decode(String.self, forKey: .mobile)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
+
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encode(email, forKey: .email)
-
-            try? container.encodeIfPresent(mobile, forKey: .mobile)
         }
     }
 }

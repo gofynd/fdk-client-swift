@@ -10,6 +10,8 @@ public extension PlatformClient {
     class AddBeneficiaryDetailsRequest: Codable {
         public var transferMode: String
 
+        public var orderId: String
+
         public var requestId: String?
 
         public var shipmentId: String
@@ -18,12 +20,12 @@ public extension PlatformClient {
 
         public var delights: Bool
 
-        public var orderId: String
-
         public var otp: String?
 
         public enum CodingKeys: String, CodingKey {
             case transferMode = "transfer_mode"
+
+            case orderId = "order_id"
 
             case requestId = "request_id"
 
@@ -33,13 +35,13 @@ public extension PlatformClient {
 
             case delights
 
-            case orderId = "order_id"
-
             case otp
         }
 
         public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String? = nil, requestId: String? = nil, shipmentId: String, transferMode: String) {
             self.transferMode = transferMode
+
+            self.orderId = orderId
 
             self.requestId = requestId
 
@@ -49,8 +51,6 @@ public extension PlatformClient {
 
             self.delights = delights
 
-            self.orderId = orderId
-
             self.otp = otp
         }
 
@@ -58,6 +58,8 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             transferMode = try container.decode(String.self, forKey: .transferMode)
+
+            orderId = try container.decode(String.self, forKey: .orderId)
 
             do {
                 requestId = try container.decode(String.self, forKey: .requestId)
@@ -73,8 +75,6 @@ public extension PlatformClient {
 
             delights = try container.decode(Bool.self, forKey: .delights)
 
-            orderId = try container.decode(String.self, forKey: .orderId)
-
             do {
                 otp = try container.decode(String.self, forKey: .otp)
 
@@ -89,6 +89,8 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(transferMode, forKey: .transferMode)
 
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
+
             try? container.encodeIfPresent(requestId, forKey: .requestId)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
@@ -96,8 +98,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(details, forKey: .details)
 
             try? container.encodeIfPresent(delights, forKey: .delights)
-
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(otp, forKey: .otp)
         }
