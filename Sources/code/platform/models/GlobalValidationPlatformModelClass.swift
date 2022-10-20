@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var required: [String]?
 
-        public var properties: Properties?
+        public var definitions: [String: Any]?
 
         public var title: String?
 
-        public var definitions: [String: Any]?
+        public var properties: Properties?
 
         public var description: String?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case required
 
-            case properties
+            case definitions
 
             case title
 
-            case definitions
+            case properties
 
             case description
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.required = required
 
-            self.properties = properties
+            self.definitions = definitions
 
             self.title = title
 
-            self.definitions = definitions
+            self.properties = properties
 
             self.description = description
         }
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                properties = try container.decode(Properties.self, forKey: .properties)
+                definitions = try container.decode([String: Any].self, forKey: .definitions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                definitions = try container.decode([String: Any].self, forKey: .definitions)
+                properties = try container.decode(Properties.self, forKey: .properties)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,11 +107,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(required, forKey: .required)
 
-            try? container.encodeIfPresent(properties, forKey: .properties)
+            try? container.encodeIfPresent(definitions, forKey: .definitions)
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(definitions, forKey: .definitions)
+            try? container.encodeIfPresent(properties, forKey: .properties)
 
             try? container.encodeIfPresent(description, forKey: .description)
         }
