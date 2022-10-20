@@ -8,30 +8,30 @@ public extension PlatformClient {
      */
 
     class ProductBrand: Codable {
-        public var name: String?
+        public var action: Action?
 
         public var logo: Media1?
 
-        public var action: Action?
+        public var name: String?
 
         public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case name
+            case action
 
             case logo
 
-            case action
+            case name
 
             case uid
         }
 
         public init(action: Action? = nil, logo: Media1? = nil, name: String? = nil, uid: Int? = nil) {
-            self.name = name
+            self.action = action
 
             self.logo = logo
 
-            self.action = action
+            self.name = name
 
             self.uid = uid
         }
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,11 +75,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }

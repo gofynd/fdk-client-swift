@@ -233,7 +233,7 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary:
+         * Summary: Get All Webhook Events
          * Description: Get All Webhook Events
          **/
         public func fetchAllEventConfigurations(
