@@ -10,30 +10,30 @@ public extension PlatformClient {
     class PaymentConfirmationMode: Codable {
         public var meta: [String: Any]?
 
+        public var amount: Double
+
         public var name: String?
 
         public var mode: String
 
-        public var amount: Double
-
         public enum CodingKeys: String, CodingKey {
             case meta
+
+            case amount
 
             case name
 
             case mode
-
-            case amount
         }
 
         public init(amount: Double, meta: [String: Any]? = nil, mode: String, name: String? = nil) {
             self.meta = meta
 
+            self.amount = amount
+
             self.name = name
 
             self.mode = mode
-
-            self.amount = amount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,6 +47,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            amount = try container.decode(Double.self, forKey: .amount)
+
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -56,8 +58,6 @@ public extension PlatformClient {
             } catch {}
 
             mode = try container.decode(String.self, forKey: .mode)
-
-            amount = try container.decode(Double.self, forKey: .amount)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -65,11 +65,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
+            try? container.encodeIfPresent(amount, forKey: .amount)
+
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(mode, forKey: .mode)
-
-            try? container.encodeIfPresent(amount, forKey: .amount)
         }
     }
 }

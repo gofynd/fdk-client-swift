@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var page: EntityRegionViewPage
 
-        public var data: [EntityRegionViewItems]
-
         public var success: Bool
+
+        public var data: [EntityRegionViewItems]
 
         public enum CodingKeys: String, CodingKey {
             case error
 
             case page
 
-            case data
-
             case success
+
+            case data
         }
 
         public init(data: [EntityRegionViewItems], error: EntityRegionViewError, page: EntityRegionViewPage, success: Bool) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.page = page
 
-            self.data = data
-
             self.success = success
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,9 +43,9 @@ public extension PlatformClient {
 
             page = try container.decode(EntityRegionViewPage.self, forKey: .page)
 
-            data = try container.decode([EntityRegionViewItems].self, forKey: .data)
-
             success = try container.decode(Bool.self, forKey: .success)
+
+            data = try container.decode([EntityRegionViewItems].self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -55,9 +55,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
