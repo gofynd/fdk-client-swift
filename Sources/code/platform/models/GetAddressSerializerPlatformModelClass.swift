@@ -10,46 +10,46 @@ public extension PlatformClient {
     class GetAddressSerializer: Codable {
         public var address2: String?
 
-        public var latitude: Double?
+        public var city: String?
 
         public var countryCode: String?
 
         public var state: String?
 
-        public var pincode: Int?
+        public var landmark: String?
 
         public var address1: String?
 
-        public var country: String?
+        public var latitude: Double?
 
         public var addressType: String?
 
-        public var city: String?
+        public var pincode: Int?
 
-        public var landmark: String?
+        public var country: String?
 
         public var longitude: Double?
 
         public enum CodingKeys: String, CodingKey {
             case address2
 
-            case latitude
+            case city
 
             case countryCode = "country_code"
 
             case state
 
-            case pincode
+            case landmark
 
             case address1
 
-            case country
+            case latitude
 
             case addressType = "address_type"
 
-            case city
+            case pincode
 
-            case landmark
+            case country
 
             case longitude
         }
@@ -57,23 +57,23 @@ public extension PlatformClient {
         public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, pincode: Int? = nil, state: String? = nil) {
             self.address2 = address2
 
-            self.latitude = latitude
+            self.city = city
 
             self.countryCode = countryCode
 
             self.state = state
 
-            self.pincode = pincode
+            self.landmark = landmark
 
             self.address1 = address1
 
-            self.country = country
+            self.latitude = latitude
 
             self.addressType = addressType
 
-            self.city = city
+            self.pincode = pincode
 
-            self.landmark = landmark
+            self.country = country
 
             self.longitude = longitude
         }
@@ -90,7 +90,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                latitude = try container.decode(Double.self, forKey: .latitude)
+                city = try container.decode(String.self, forKey: .city)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -114,7 +114,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                pincode = try container.decode(Int.self, forKey: .pincode)
+                landmark = try container.decode(String.self, forKey: .landmark)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,7 +130,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                country = try container.decode(String.self, forKey: .country)
+                latitude = try container.decode(Double.self, forKey: .latitude)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,7 +146,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                city = try container.decode(String.self, forKey: .city)
+                pincode = try container.decode(Int.self, forKey: .pincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -154,7 +154,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                landmark = try container.decode(String.self, forKey: .landmark)
+                country = try container.decode(String.self, forKey: .country)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -175,23 +175,23 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(address2, forKey: .address2)
 
-            try? container.encodeIfPresent(latitude, forKey: .latitude)
+            try? container.encodeIfPresent(city, forKey: .city)
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
             try? container.encodeIfPresent(state, forKey: .state)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
 
             try? container.encodeIfPresent(address1, forKey: .address1)
 
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
 
             try? container.encodeIfPresent(addressType, forKey: .addressType)
 
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(landmark, forKey: .landmark)
+            try? container.encodeIfPresent(country, forKey: .country)
 
             try? container.encodeIfPresent(longitude, forKey: .longitude)
         }

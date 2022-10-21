@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: DateMeta
-         Used By: Feedback
+         Used By: Content
      */
 
     class DateMeta: Codable {
