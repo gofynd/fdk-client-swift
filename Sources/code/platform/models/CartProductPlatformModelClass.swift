@@ -10,7 +10,7 @@ public extension PlatformClient {
     class CartProduct: Codable {
         public var images: [ProductImage]?
 
-        public var brand: BaseInfo?
+        public var name: String?
 
         public var action: ProductAction?
 
@@ -18,7 +18,7 @@ public extension PlatformClient {
 
         public var uid: Int?
 
-        public var name: String?
+        public var brand: BaseInfo?
 
         public var slug: String?
 
@@ -27,7 +27,7 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case images
 
-            case brand
+            case name
 
             case action
 
@@ -35,7 +35,7 @@ public extension PlatformClient {
 
             case uid
 
-            case name
+            case brand
 
             case slug
 
@@ -45,7 +45,7 @@ public extension PlatformClient {
         public init(action: ProductAction? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, images: [ProductImage]? = nil, name: String? = nil, slug: String? = nil, type: String? = nil, uid: Int? = nil) {
             self.images = images
 
-            self.brand = brand
+            self.name = name
 
             self.action = action
 
@@ -53,7 +53,7 @@ public extension PlatformClient {
 
             self.uid = uid
 
-            self.name = name
+            self.brand = brand
 
             self.slug = slug
 
@@ -72,7 +72,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                brand = try container.decode(BaseInfo.self, forKey: .brand)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +104,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                brand = try container.decode(BaseInfo.self, forKey: .brand)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,7 +133,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(images, forKey: .images)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(action, forKey: .action)
 
@@ -141,7 +141,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(brand, forKey: .brand)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 

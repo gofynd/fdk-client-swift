@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class LoyaltyPoints: Codable {
         public var applicable: Double?
 
-        public var description: String?
-
         public var isApplied: Bool?
+
+        public var description: String?
 
         public var total: Double?
 
         public enum CodingKeys: String, CodingKey {
             case applicable
 
-            case description
-
             case isApplied = "is_applied"
+
+            case description
 
             case total
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(applicable: Double? = nil, description: String? = nil, isApplied: Bool? = nil, total: Double? = nil) {
             self.applicable = applicable
 
-            self.description = description
-
             self.isApplied = isApplied
+
+            self.description = description
 
             self.total = total
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                isApplied = try container.decode(Bool.self, forKey: .isApplied)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isApplied = try container.decode(Bool.self, forKey: .isApplied)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(applicable, forKey: .applicable)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
             try? container.encodeIfPresent(isApplied, forKey: .isApplied)
+
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(total, forKey: .total)
         }
