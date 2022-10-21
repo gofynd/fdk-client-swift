@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var meta: [String: Any]?
 
-        public var source: [String: Any]?
-
         public var createdOn: String?
+
+        public var source: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case user
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case meta
 
-            case source
-
             case createdOn = "created_on"
+
+            case source
         }
 
         public init(createdOn: String? = nil, meta: [String: Any]? = nil, source: [String: Any]? = nil, token: String? = nil, user: [String: Any]? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient {
 
             self.meta = meta
 
-            self.source = source
-
             self.createdOn = createdOn
+
+            self.source = source
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                source = try container.decode([String: Any].self, forKey: .source)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
+                source = try container.decode([String: Any].self, forKey: .source)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(source, forKey: .source)
-
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
+            try? container.encodeIfPresent(source, forKey: .source)
         }
     }
 }
