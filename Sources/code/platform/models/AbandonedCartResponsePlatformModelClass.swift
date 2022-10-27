@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var result: [String: Any]?
 
-        public var message: String?
-
         public var items: [AbandonedCart]?
+
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case page
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case result
 
-            case message
-
             case items
+
+            case message
         }
 
         public init(items: [AbandonedCart]? = nil, message: String? = nil, page: Page? = nil, result: [String: Any]? = nil, success: Bool? = nil) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.result = result
 
-            self.message = message
-
             self.items = items
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                items = try container.decode([AbandonedCart].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                items = try container.decode([AbandonedCart].self, forKey: .items)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,9 +95,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(result, forKey: .result)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

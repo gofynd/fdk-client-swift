@@ -1230,7 +1230,9 @@ Success
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "message": "success"
+}
 ```
 </details>
 
@@ -1280,7 +1282,9 @@ Success
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "message": "success"
+}
 ```
 </details>
 
@@ -1612,7 +1616,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int |  no  | store uid |
+ | uid | Int |  no  | Ordering store unique uid. It is required. |
 
 ---
 
@@ -1623,16 +1627,17 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | orderIncent | Bool? |  yes  |  |
+ | id | String? |  yes  | The unique identifier for the sale channel staff member |
+ | orderIncent | Bool? |  yes  | This is a boolean value. `true` to retrieve the staff members eligible for getting incentives on orders. |
  | stores | [Int]? |  yes  |  |
  | application | String? |  yes  |  |
- | title | String? |  yes  |  |
- | user | String? |  yes  |  |
- | employeeCode | String? |  yes  |  |
- | firstName | String? |  yes  |  |
- | lastName | String? |  yes  |  |
+ | title | String? |  yes  | Tittle for the staff member like owner, staff. |
+ | user | String? |  yes  | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |
+ | employeeCode | String? |  yes  | Employee code of sale channel staff member. It has unique value. |
+ | firstName | String? |  yes  | First name the staff member |
+ | lastName | String? |  yes  | Last name the staff member |
  | profilePicUrl | String? |  yes  |  |
+ | description | [String: Any]? |  yes  |  |
 
 ---
 

@@ -45,7 +45,7 @@ public extension PlatformClient {
         case cartReview = "cart-review"
         case login
         case register
-        case shipmentPolicy = "shipment-policy"
+        case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
 
         init?(path: String) {
@@ -181,7 +181,7 @@ public extension PlatformClient {
                 return "/auth/login"
             case .register:
                 return "/auth/register"
-            case .shipmentPolicy:
+            case .shippingPolicy:
                 return "/shipping-policy"
             case .returnPolicy:
                 return "/return-policy"
@@ -278,7 +278,7 @@ public extension PlatformClient {
                 return "Login"
             case .register:
                 return "Register"
-            case .shipmentPolicy:
+            case .shippingPolicy:
                 return "Shipping policy"
             case .returnPolicy:
                 return "Return policy"
@@ -375,7 +375,7 @@ public extension PlatformClient {
                 return []
             case .register:
                 return []
-            case .shipmentPolicy:
+            case .shippingPolicy:
                 return []
             case .returnPolicy:
                 return []
@@ -472,7 +472,7 @@ public extension PlatformClient {
                 return []
             case .register:
                 return []
-            case .shipmentPolicy:
+            case .shippingPolicy:
                 return []
             case .returnPolicy:
                 return []

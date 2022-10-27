@@ -210,8 +210,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get integration data
-         * Description: Get integration data
+         * Summary: Get integration data by integration id
+         * Description: Get integration data by integration id for the current company
          **/
         public func getIntegrationById(
             id: Int,
@@ -250,7 +250,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get all available integration opt-ins
-         * Description: Get all available integration opt-ins
+         * Description: Get all available integration opt-ins fot the current company
          **/
         public func getAvailableOptIns(
             pageNo: Int?,
@@ -328,7 +328,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get company/store level integration opt-ins
-         * Description: Get company/store level integration opt-ins
+         * Description: Get company/store level integration opt-ins for the current company
          **/
         public func getSelectedOptIns(
             level: String,
@@ -464,7 +464,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get level data for integration
-         * Description: Get level data for integration
+         * Description: Get level data for integration for current company
          **/
         public func getIntegrationByLevelId(
             id: String,
@@ -505,7 +505,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Update a store level opt-in for integration
-         * Description: Update a store level opt-in for integration
+         * Description: Update a store level opt-in for integration by store uid
          **/
         public func updateLevelUidIntegration(
             id: String,
