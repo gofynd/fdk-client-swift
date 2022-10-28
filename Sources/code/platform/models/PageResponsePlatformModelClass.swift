@@ -8,22 +8,22 @@ public extension PlatformClient {
      */
 
     class PageResponse: Codable {
-        public var hasPrevious: Bool?
+        public var current: String?
 
         public var itemTotal: Int?
 
-        public var current: String?
+        public var hasPrevious: Bool?
 
         public var size: Int?
 
         public var hasNext: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case hasPrevious = "has_previous"
+            case current
 
             case itemTotal = "item_total"
 
-            case current
+            case hasPrevious = "has_previous"
 
             case size
 
@@ -31,11 +31,11 @@ public extension PlatformClient {
         }
 
         public init(current: String? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil) {
-            self.hasPrevious = hasPrevious
+            self.current = current
 
             self.itemTotal = itemTotal
 
-            self.current = current
+            self.hasPrevious = hasPrevious
 
             self.size = size
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+                current = try container.decode(String.self, forKey: .current)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                current = try container.decode(String.self, forKey: .current)
+                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,11 +89,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+            try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(current, forKey: .current)
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
             try? container.encodeIfPresent(size, forKey: .size)
 
