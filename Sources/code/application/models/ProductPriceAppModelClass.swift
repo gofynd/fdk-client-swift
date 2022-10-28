@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var effective: Double?
 
-        public var currencyCode: String?
-
         public var addOn: Double?
+
+        public var currencyCode: String?
 
         public var marked: Double?
 
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case effective
 
-            case currencyCode = "currency_code"
-
             case addOn = "add_on"
+
+            case currencyCode = "currency_code"
 
             case marked
 
@@ -38,9 +38,9 @@ public extension ApplicationClient {
 
             self.effective = effective
 
-            self.currencyCode = currencyCode
-
             self.addOn = addOn
+
+            self.currencyCode = currencyCode
 
             self.marked = marked
 
@@ -67,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                addOn = try container.decode(Double.self, forKey: .addOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                addOn = try container.decode(Double.self, forKey: .addOn)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,9 +106,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-
             try? container.encodeIfPresent(addOn, forKey: .addOn)
+
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 

@@ -8,67 +8,51 @@ public extension PlatformClient {
      */
 
     class DisplayBreakup: Codable {
-        public var currencySymbol: String?
-
-        public var currencyCode: String?
-
-        public var key: String?
+        public var message: [String]?
 
         public var value: Double?
 
-        public var message: [String]?
+        public var currencySymbol: String?
 
         public var display: String?
 
+        public var key: String?
+
+        public var currencyCode: String?
+
         public enum CodingKeys: String, CodingKey {
-            case currencySymbol = "currency_symbol"
-
-            case currencyCode = "currency_code"
-
-            case key
+            case message
 
             case value
 
-            case message
+            case currencySymbol = "currency_symbol"
 
             case display
+
+            case key
+
+            case currencyCode = "currency_code"
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, display: String? = nil, key: String? = nil, message: [String]? = nil, value: Double? = nil) {
-            self.currencySymbol = currencySymbol
-
-            self.currencyCode = currencyCode
-
-            self.key = key
+            self.message = message
 
             self.value = value
 
-            self.message = message
+            self.currencySymbol = currencySymbol
 
             self.display = display
+
+            self.key = key
+
+            self.currencyCode = currencyCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                key = try container.decode(String.self, forKey: .key)
+                message = try container.decode([String].self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode([String].self, forKey: .message)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,22 +82,38 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                key = try container.decode(String.self, forKey: .key)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
-
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
         }
     }
 }
