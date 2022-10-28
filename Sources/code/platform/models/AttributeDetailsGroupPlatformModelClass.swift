@@ -10,34 +10,34 @@ public extension PlatformClient {
     class AttributeDetailsGroup: Codable {
         public var isActive: Bool
 
-        public var unit: String?
-
-        public var logo: String?
+        public var priority: Int
 
         public var displayType: String
 
-        public var key: String?
-
-        public var priority: Int
-
         public var slug: String?
+
+        public var logo: String?
+
+        public var unit: String?
+
+        public var key: String?
 
         public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case unit
-
-            case logo
+            case priority
 
             case displayType = "display_type"
 
-            case key
-
-            case priority
-
             case slug
+
+            case logo
+
+            case unit
+
+            case key
 
             case name
         }
@@ -45,17 +45,17 @@ public extension PlatformClient {
         public init(displayType: String, isActive: Bool, key: String? = nil, logo: String? = nil, name: String, priority: Int, slug: String? = nil, unit: String? = nil) {
             self.isActive = isActive
 
-            self.unit = unit
-
-            self.logo = logo
+            self.priority = priority
 
             self.displayType = displayType
 
-            self.key = key
-
-            self.priority = priority
-
             self.slug = slug
+
+            self.logo = logo
+
+            self.unit = unit
+
+            self.key = key
 
             self.name = name
         }
@@ -65,8 +65,12 @@ public extension PlatformClient {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
+            priority = try container.decode(Int.self, forKey: .priority)
+
+            displayType = try container.decode(String.self, forKey: .displayType)
+
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,20 +85,16 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            displayType = try container.decode(String.self, forKey: .displayType)
-
             do {
-                key = try container.decode(String.self, forKey: .key)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            priority = try container.decode(Int.self, forKey: .priority)
-
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,17 +109,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(unit, forKey: .unit)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
