@@ -11,29 +11,29 @@ public extension ApplicationClient {
 
         public var merchantCode: String?
 
-        public var orderingStore: Int?
-
-        public var deliveryAddress: [String: Any]?
-
-        public var paymentIdentifier: String?
-
-        public var paymentMode: String
+        public var paymentParams: [String: Any]?
 
         public var meta: [String: Any]?
-
-        public var billingAddress: [String: Any]?
-
-        public var paymentParams: [String: Any]?
 
         public var billingAddressId: String?
 
         public var aggregator: String?
 
-        public var addressId: String?
-
         public var callbackUrl: String?
 
+        public var paymentMode: String
+
+        public var deliveryAddress: [String: Any]?
+
+        public var billingAddress: [String: Any]?
+
         public var staff: StaffCheckout?
+
+        public var paymentIdentifier: String?
+
+        public var orderingStore: Int?
+
+        public var addressId: String?
 
         public var paymentAutoConfirm: Bool?
 
@@ -42,29 +42,29 @@ public extension ApplicationClient {
 
             case merchantCode = "merchant_code"
 
-            case orderingStore = "ordering_store"
-
-            case deliveryAddress = "delivery_address"
-
-            case paymentIdentifier = "payment_identifier"
-
-            case paymentMode = "payment_mode"
+            case paymentParams = "payment_params"
 
             case meta
-
-            case billingAddress = "billing_address"
-
-            case paymentParams = "payment_params"
 
             case billingAddressId = "billing_address_id"
 
             case aggregator
 
-            case addressId = "address_id"
-
             case callbackUrl = "callback_url"
 
+            case paymentMode = "payment_mode"
+
+            case deliveryAddress = "delivery_address"
+
+            case billingAddress = "billing_address"
+
             case staff
+
+            case paymentIdentifier = "payment_identifier"
+
+            case orderingStore = "ordering_store"
+
+            case addressId = "address_id"
 
             case paymentAutoConfirm = "payment_auto_confirm"
         }
@@ -74,29 +74,29 @@ public extension ApplicationClient {
 
             self.merchantCode = merchantCode
 
-            self.orderingStore = orderingStore
-
-            self.deliveryAddress = deliveryAddress
-
-            self.paymentIdentifier = paymentIdentifier
-
-            self.paymentMode = paymentMode
+            self.paymentParams = paymentParams
 
             self.meta = meta
-
-            self.billingAddress = billingAddress
-
-            self.paymentParams = paymentParams
 
             self.billingAddressId = billingAddressId
 
             self.aggregator = aggregator
 
-            self.addressId = addressId
-
             self.callbackUrl = callbackUrl
 
+            self.paymentMode = paymentMode
+
+            self.deliveryAddress = deliveryAddress
+
+            self.billingAddress = billingAddress
+
             self.staff = staff
+
+            self.paymentIdentifier = paymentIdentifier
+
+            self.orderingStore = orderingStore
+
+            self.addressId = addressId
 
             self.paymentAutoConfirm = paymentAutoConfirm
         }
@@ -121,49 +121,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                orderingStore = try container.decode(Int.self, forKey: .orderingStore)
+                paymentParams = try container.decode([String: Any].self, forKey: .paymentParams)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                deliveryAddress = try container.decode([String: Any].self, forKey: .deliveryAddress)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                billingAddress = try container.decode([String: Any].self, forKey: .billingAddress)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                paymentParams = try container.decode([String: Any].self, forKey: .paymentParams)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +153,17 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                addressId = try container.decode(String.self, forKey: .addressId)
+                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            do {
+                deliveryAddress = try container.decode([String: Any].self, forKey: .deliveryAddress)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,7 +171,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+                billingAddress = try container.decode([String: Any].self, forKey: .billingAddress)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -204,6 +180,30 @@ public extension ApplicationClient {
 
             do {
                 staff = try container.decode(StaffCheckout.self, forKey: .staff)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                orderingStore = try container.decode(Int.self, forKey: .orderingStore)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                addressId = try container.decode(String.self, forKey: .addressId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -226,29 +226,29 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
 
-            try? container.encode(orderingStore, forKey: .orderingStore)
-
-            try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
-
-            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
-
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+            try? container.encode(paymentParams, forKey: .paymentParams)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
-
-            try? container.encode(paymentParams, forKey: .paymentParams)
 
             try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encodeIfPresent(addressId, forKey: .addressId)
-
             try? container.encode(callbackUrl, forKey: .callbackUrl)
 
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
+            try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
+
+            try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
+
             try? container.encodeIfPresent(staff, forKey: .staff)
+
+            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
+
+            try? container.encode(orderingStore, forKey: .orderingStore)
+
+            try? container.encodeIfPresent(addressId, forKey: .addressId)
 
             try? container.encodeIfPresent(paymentAutoConfirm, forKey: .paymentAutoConfirm)
         }

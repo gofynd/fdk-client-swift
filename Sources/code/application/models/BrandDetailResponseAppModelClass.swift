@@ -7,7 +7,7 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class BrandDetailResponse: Codable {
-        public var uid: Int?
+        public var description: String?
 
         public var logo: Media?
 
@@ -15,10 +15,10 @@ public extension ApplicationClient {
 
         public var name: String?
 
-        public var description: String?
+        public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case uid
+            case description
 
             case logo
 
@@ -26,11 +26,11 @@ public extension ApplicationClient {
 
             case name
 
-            case description
+            case uid
         }
 
         public init(banners: ImageUrls? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
-            self.uid = uid
+            self.description = description
 
             self.logo = logo
 
@@ -38,14 +38,14 @@ public extension ApplicationClient {
 
             self.name = name
 
-            self.description = description
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +88,7 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
@@ -96,7 +96,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }
