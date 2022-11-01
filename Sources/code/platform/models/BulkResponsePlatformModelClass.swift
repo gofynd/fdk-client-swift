@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var createdOn: String
 
-        public var createdBy: UserInfo1?
-
         public var modifiedBy: UserInfo1?
+
+        public var createdBy: UserInfo1?
 
         public var isActive: Bool?
 
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case createdOn = "created_on"
 
-            case createdBy = "created_by"
-
             case modifiedBy = "modified_by"
+
+            case createdBy = "created_by"
 
             case isActive = "is_active"
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
 
             self.createdOn = createdOn
 
-            self.createdBy = createdBy
-
             self.modifiedBy = modifiedBy
+
+            self.createdBy = createdBy
 
             self.isActive = isActive
 
@@ -56,7 +56,7 @@ public extension PlatformClient {
             createdOn = try container.decode(String.self, forKey: .createdOn)
 
             do {
-                createdBy = try container.decode(UserInfo1.self, forKey: .createdBy)
+                modifiedBy = try container.decode(UserInfo1.self, forKey: .modifiedBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                modifiedBy = try container.decode(UserInfo1.self, forKey: .modifiedBy)
+                createdBy = try container.decode(UserInfo1.self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,9 +95,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-
             try? container.encode(modifiedBy, forKey: .modifiedBy)
+
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
