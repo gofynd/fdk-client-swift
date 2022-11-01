@@ -1090,7 +1090,6 @@ Successful operation
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | required | Bool? |  yes  |  |
- | mapping | [String: [PropBeanConfig](#PropBeanConfig)]? |  yes  |  |
  | optional | Bool? |  yes  |  |
  | send | [Send](#Send)? |  yes  |  |
  | validations | [[String: Any]]? |  yes  |  |

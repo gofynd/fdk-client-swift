@@ -5,7 +5,6 @@
 
 * [Common](COMMON.md) - Application configuration apis 
 * [Lead](LEAD.md) - Handles communication between Administrator <-> Staff and Staff <-> Users 
-* [Rewards](REWARDS.md) - Rewards 
 * [Theme](THEME.md) - Responsible for themes 
 * [User](USER.md) - Authentication Service 
 * [Content](CONTENT.md) - Content System 
@@ -20,6 +19,7 @@
 * [Inventory](INVENTORY.md) -  
 * [Configuration](CONFIGURATION.md) - Application configuration apis 
 * [Cart](CART.md) - Cart APIs 
+* [Rewards](REWARDS.md) - Rewards 
 * [Analytics](ANALYTICS.md) - Perceptor analytics 
 * [Discount](DISCOUNT.md) - Discount 
 * [Partner](PARTNER.md) - Partner configuration apis 
