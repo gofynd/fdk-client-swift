@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var email: String?
 
-        public var uid: String?
-
         public var userId: String?
+
+        public var uid: String?
 
         public enum CodingKeys: String, CodingKey {
             case username
 
             case email
 
-            case uid
-
             case userId = "user_id"
+
+            case uid
         }
 
         public init(email: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.email = email
 
-            self.uid = uid
-
             self.userId = userId
+
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(email, forKey: .email)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(userId, forKey: .userId)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }
