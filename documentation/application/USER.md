@@ -2036,7 +2036,8 @@ Success. Returns a JSON object containing the all the platform configurations. R
   },
   "session_timeout": {
     "duration": "30",
-    "type": "Days"
+    "type": "Days",
+    "is_active": false
   },
   "_id": "5e04a5e5220bc15839ad9bc0",
   "created_at": "2019-12-26T12:21:57.878Z",
@@ -4206,6 +4207,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | ---------- | ---- | -------- | ----------- |
  | duration | Int? |  yes  |  |
  | type | String? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
 
 ---
 

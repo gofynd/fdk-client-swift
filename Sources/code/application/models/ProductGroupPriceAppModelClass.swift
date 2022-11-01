@@ -3,19 +3,19 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: Price1
+         Model: ProductGroupPrice
          Used By: Catalog
      */
-    class Price1: Codable {
+    class ProductGroupPrice: Codable {
         public var minEffective: Double?
 
         public var minMarked: Double?
 
         public var maxEffective: Double?
 
-        public var maxMarked: Double?
+        public var currency: [String: Any]?
 
-        public var currency: String?
+        public var maxMarked: Double?
 
         public enum CodingKeys: String, CodingKey {
             case minEffective = "min_effective"
@@ -24,21 +24,21 @@ public extension ApplicationClient {
 
             case maxEffective = "max_effective"
 
-            case maxMarked = "max_marked"
-
             case currency
+
+            case maxMarked = "max_marked"
         }
 
-        public init(currency: String? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
+        public init(currency: [String: Any]? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
             self.minEffective = minEffective
 
             self.minMarked = minMarked
 
             self.maxEffective = maxEffective
 
-            self.maxMarked = maxMarked
-
             self.currency = currency
+
+            self.maxMarked = maxMarked
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                maxMarked = try container.decode(Double.self, forKey: .maxMarked)
+                currency = try container.decode([String: Any].self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                maxMarked = try container.decode(Double.self, forKey: .maxMarked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(maxEffective, forKey: .maxEffective)
 
-            try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
-
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
         }
     }
 }

@@ -17,7 +17,7 @@ public extension ApplicationClient {
 
         public var answer: String?
 
-        public var tags: [String: Any]?
+        public var tags: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case slug
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             case tags
         }
 
-        public init(answer: String? = nil, application: String? = nil, question: String? = nil, slug: String? = nil, tags: [String: Any]? = nil, id: String? = nil) {
+        public init(answer: String? = nil, application: String? = nil, question: String? = nil, slug: String? = nil, tags: [String]? = nil, id: String? = nil) {
             self.slug = slug
 
             self.application = application
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                tags = try container.decode([String: Any].self, forKey: .tags)
+                tags = try container.decode([String].self, forKey: .tags)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
