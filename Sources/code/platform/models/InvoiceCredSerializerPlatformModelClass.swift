@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class InvoiceCredSerializer: Codable {
-        public var enabled: Bool?
-
         public var password: String?
+
+        public var enabled: Bool?
 
         public var username: String?
 
         public enum CodingKeys: String, CodingKey {
-            case enabled
-
             case password
+
+            case enabled
 
             case username
         }
 
         public init(enabled: Bool? = nil, password: String? = nil, username: String? = nil) {
-            self.enabled = enabled
-
             self.password = password
+
+            self.enabled = enabled
 
             self.username = username
         }
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                enabled = try container.decode(Bool.self, forKey: .enabled)
+                password = try container.decode(String.self, forKey: .password)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                password = try container.decode(String.self, forKey: .password)
+                enabled = try container.decode(Bool.self, forKey: .enabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,9 +61,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
-
             try? container.encodeIfPresent(password, forKey: .password)
+
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(username, forKey: .username)
         }

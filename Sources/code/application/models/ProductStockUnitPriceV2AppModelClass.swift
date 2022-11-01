@@ -1,46 +1,45 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension ApplicationClient {
     /*
-         Model: GetCatalogConfigurationDetailsProduct
+         Model: ProductStockUnitPriceV2
          Used By: Catalog
      */
+    class ProductStockUnitPriceV2: Codable {
+        public var currencySymbol: String?
 
-    class GetCatalogConfigurationDetailsProduct: Codable {
-        public var detail: [String: Any]?
+        public var unit: String?
 
-        public var variant: [String: Any]?
+        public var currencyCode: String?
 
-        public var compare: [String: Any]?
-
-        public var similar: [String: Any]?
+        public var price: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case detail
+            case currencySymbol = "currency_symbol"
 
-            case variant
+            case unit
 
-            case compare
+            case currencyCode = "currency_code"
 
-            case similar
+            case price
         }
 
-        public init(compare: [String: Any]? = nil, detail: [String: Any]? = nil, similar: [String: Any]? = nil, variant: [String: Any]? = nil) {
-            self.detail = detail
+        public init(currencyCode: String? = nil, currencySymbol: String? = nil, price: Double? = nil, unit: String? = nil) {
+            self.currencySymbol = currencySymbol
 
-            self.variant = variant
+            self.unit = unit
 
-            self.compare = compare
+            self.currencyCode = currencyCode
 
-            self.similar = similar
+            self.price = price
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                detail = try container.decode([String: Any].self, forKey: .detail)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +47,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                variant = try container.decode([String: Any].self, forKey: .variant)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +55,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                compare = try container.decode([String: Any].self, forKey: .compare)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +63,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                similar = try container.decode([String: Any].self, forKey: .similar)
+                price = try container.decode(Double.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,13 +74,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(detail, forKey: .detail)
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(variant, forKey: .variant)
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(compare, forKey: .compare)
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
-            try? container.encodeIfPresent(similar, forKey: .similar)
+            try? container.encodeIfPresent(price, forKey: .price)
         }
     }
 }
