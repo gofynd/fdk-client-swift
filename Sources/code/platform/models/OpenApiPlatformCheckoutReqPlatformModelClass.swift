@@ -8,135 +8,141 @@ public extension PlatformClient {
      */
 
     class OpenApiPlatformCheckoutReq: Codable {
-        public var codCharges: Double
-
-        public var deliveryCharges: Double
-
-        public var files: [OpenApiFiles]?
-
-        public var affiliateOrderId: String?
-
-        public var cartValue: Double
-
-        public var currencyCode: String?
-
-        public var cartItems: [OpenApiOrderItem]
-
         public var billingAddress: ShippingAddress
 
         public var couponCode: String
 
-        public var coupon: String?
+        public var deliveryCharges: Double
 
         public var paymentMode: String?
 
+        public var codCharges: Double
+
+        public var cartItems: [OpenApiOrderItem]
+
         public var shippingAddress: ShippingAddress?
 
-        public var orderId: String?
+        public var cartValue: Double
 
-        public var paymentMethods: [MultiTenderPaymentMethod]
-
-        public var cashbackApplied: Double
-
-        public var couponValue: Double
-
-        public var employeeDiscount: [String: Any]?
+        public var coupon: String?
 
         public var loyaltyDiscount: Double?
 
+        public var orderId: String?
+
+        public var cashbackApplied: Double
+
+        public var employeeDiscount: [String: Any]?
+
+        public var currencyCode: String?
+
+        public var affiliateOrderId: String?
+
+        public var paymentMethods: [MultiTenderPaymentMethod]
+
+        public var couponValue: Double
+
+        public var files: [OpenApiFiles]?
+
         public enum CodingKeys: String, CodingKey {
-            case codCharges = "cod_charges"
-
-            case deliveryCharges = "delivery_charges"
-
-            case files
-
-            case affiliateOrderId = "affiliate_order_id"
-
-            case cartValue = "cart_value"
-
-            case currencyCode = "currency_code"
-
-            case cartItems = "cart_items"
-
             case billingAddress = "billing_address"
 
             case couponCode = "coupon_code"
 
-            case coupon
+            case deliveryCharges = "delivery_charges"
 
             case paymentMode = "payment_mode"
 
+            case codCharges = "cod_charges"
+
+            case cartItems = "cart_items"
+
             case shippingAddress = "shipping_address"
+
+            case cartValue = "cart_value"
+
+            case coupon
+
+            case loyaltyDiscount = "loyalty_discount"
 
             case orderId = "order_id"
 
-            case paymentMethods = "payment_methods"
-
             case cashbackApplied = "cashback_applied"
-
-            case couponValue = "coupon_value"
 
             case employeeDiscount = "employee_discount"
 
-            case loyaltyDiscount = "loyalty_discount"
+            case currencyCode = "currency_code"
+
+            case affiliateOrderId = "affiliate_order_id"
+
+            case paymentMethods = "payment_methods"
+
+            case couponValue = "coupon_value"
+
+            case files
         }
 
         public init(affiliateOrderId: String? = nil, billingAddress: ShippingAddress, cartItems: [OpenApiOrderItem], cartValue: Double, cashbackApplied: Double, codCharges: Double, coupon: String? = nil, couponCode: String, couponValue: Double, currencyCode: String? = nil, deliveryCharges: Double, employeeDiscount: [String: Any]? = nil, files: [OpenApiFiles]? = nil, loyaltyDiscount: Double? = nil, orderId: String? = nil, paymentMethods: [MultiTenderPaymentMethod], paymentMode: String? = nil, shippingAddress: ShippingAddress? = nil) {
-            self.codCharges = codCharges
-
-            self.deliveryCharges = deliveryCharges
-
-            self.files = files
-
-            self.affiliateOrderId = affiliateOrderId
-
-            self.cartValue = cartValue
-
-            self.currencyCode = currencyCode
-
-            self.cartItems = cartItems
-
             self.billingAddress = billingAddress
 
             self.couponCode = couponCode
 
-            self.coupon = coupon
+            self.deliveryCharges = deliveryCharges
 
             self.paymentMode = paymentMode
 
+            self.codCharges = codCharges
+
+            self.cartItems = cartItems
+
             self.shippingAddress = shippingAddress
+
+            self.cartValue = cartValue
+
+            self.coupon = coupon
+
+            self.loyaltyDiscount = loyaltyDiscount
 
             self.orderId = orderId
 
-            self.paymentMethods = paymentMethods
-
             self.cashbackApplied = cashbackApplied
-
-            self.couponValue = couponValue
 
             self.employeeDiscount = employeeDiscount
 
-            self.loyaltyDiscount = loyaltyDiscount
+            self.currencyCode = currencyCode
+
+            self.affiliateOrderId = affiliateOrderId
+
+            self.paymentMethods = paymentMethods
+
+            self.couponValue = couponValue
+
+            self.files = files
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            codCharges = try container.decode(Double.self, forKey: .codCharges)
+            billingAddress = try container.decode(ShippingAddress.self, forKey: .billingAddress)
+
+            couponCode = try container.decode(String.self, forKey: .couponCode)
 
             deliveryCharges = try container.decode(Double.self, forKey: .deliveryCharges)
 
             do {
-                files = try container.decode([OpenApiFiles].self, forKey: .files)
+                paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            codCharges = try container.decode(Double.self, forKey: .codCharges)
+
+            cartItems = try container.decode([OpenApiOrderItem].self, forKey: .cartItems)
+
             do {
-                affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
+                shippingAddress = try container.decode(ShippingAddress.self, forKey: .shippingAddress)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -144,20 +150,6 @@ public extension PlatformClient {
             } catch {}
 
             cartValue = try container.decode(Double.self, forKey: .cartValue)
-
-            do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            cartItems = try container.decode([OpenApiOrderItem].self, forKey: .cartItems)
-
-            billingAddress = try container.decode(ShippingAddress.self, forKey: .billingAddress)
-
-            couponCode = try container.decode(String.self, forKey: .couponCode)
 
             do {
                 coupon = try container.decode(String.self, forKey: .coupon)
@@ -168,15 +160,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                shippingAddress = try container.decode(ShippingAddress.self, forKey: .shippingAddress)
+                loyaltyDiscount = try container.decode(Double.self, forKey: .loyaltyDiscount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,11 +175,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            paymentMethods = try container.decode([MultiTenderPaymentMethod].self, forKey: .paymentMethods)
-
             cashbackApplied = try container.decode(Double.self, forKey: .cashbackApplied)
-
-            couponValue = try container.decode(Double.self, forKey: .couponValue)
 
             do {
                 employeeDiscount = try container.decode([String: Any].self, forKey: .employeeDiscount)
@@ -206,7 +186,27 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                loyaltyDiscount = try container.decode(Double.self, forKey: .loyaltyDiscount)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            paymentMethods = try container.decode([MultiTenderPaymentMethod].self, forKey: .paymentMethods)
+
+            couponValue = try container.decode(Double.self, forKey: .couponValue)
+
+            do {
+                files = try container.decode([OpenApiFiles].self, forKey: .files)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -217,41 +217,41 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
-
-            try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
-
-            try? container.encodeIfPresent(files, forKey: .files)
-
-            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
-
-            try? container.encodeIfPresent(cartValue, forKey: .cartValue)
-
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-
-            try? container.encodeIfPresent(cartItems, forKey: .cartItems)
-
             try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
 
             try? container.encodeIfPresent(couponCode, forKey: .couponCode)
 
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
+            try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
 
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
+            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
+
+            try? container.encodeIfPresent(cartItems, forKey: .cartItems)
+
             try? container.encodeIfPresent(shippingAddress, forKey: .shippingAddress)
+
+            try? container.encodeIfPresent(cartValue, forKey: .cartValue)
+
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
+
+            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
-
             try? container.encodeIfPresent(cashbackApplied, forKey: .cashbackApplied)
-
-            try? container.encodeIfPresent(couponValue, forKey: .couponValue)
 
             try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
 
-            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+
+            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
+
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+
+            try? container.encodeIfPresent(couponValue, forKey: .couponValue)
+
+            try? container.encodeIfPresent(files, forKey: .files)
         }
     }
 }

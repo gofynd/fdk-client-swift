@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class CustomFormSubmissionPayload: Codable {
-        public var response: [KeyValue]
+        public var response: [[String: Any]]
 
         public var attachments: [TicketAsset]?
 
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case attachments
         }
 
-        public init(attachments: [TicketAsset]? = nil, response: [KeyValue]) {
+        public init(attachments: [TicketAsset]? = nil, response: [[String: Any]]) {
             self.response = response
 
             self.attachments = attachments
@@ -27,7 +27,7 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            response = try container.decode([KeyValue].self, forKey: .response)
+            response = try container.decode([[String: Any]].self, forKey: .response)
 
             do {
                 attachments = try container.decode([TicketAsset].self, forKey: .attachments)

@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var data: [String: Any]?
 
-        public var isVerifiedFlag: Bool?
-
         public var message: String
+
+        public var isVerifiedFlag: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
             case data
 
-            case isVerifiedFlag = "is_verified_flag"
-
             case message
+
+            case isVerifiedFlag = "is_verified_flag"
         }
 
         public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.data = data
 
-            self.isVerifiedFlag = isVerifiedFlag
-
             self.message = message
+
+            self.isVerifiedFlag = isVerifiedFlag
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,6 +49,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            message = try container.decode(String.self, forKey: .message)
+
             do {
                 isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
 
@@ -56,8 +58,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -67,9 +67,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
         }
     }
 }
