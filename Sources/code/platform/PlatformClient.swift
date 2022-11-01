@@ -1887,6 +1887,44 @@ public class PlatformClient {
 
             /**
              *
+             * Summary: undelete user who deleted from application and have not elapsed the platform configured delete days
+             * Description: undelete user who deleted from application and have not elapsed the platform configured delete days
+             **/
+            public func unDeleteUser(
+                body: UnDeleteUserRequestSchema,
+                onResponse: @escaping (_ response: UnDeleteUserSuccess?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/undelete",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(UnDeleteUserSuccess.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
              * Summary: Update user
              * Description: Update user
              **/
@@ -6446,6 +6484,82 @@ public class PlatformClient {
 
             /**
              *
+             * Summary: Send OTP using email and sms
+             * Description: Send OTP Comms via email and sms
+             **/
+            public func sendOtp(
+                body: SendOtpCommsReq,
+                onResponse: @escaping (_ response: SendOtpCommsRes?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/otp/send-otp-comms",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SendOtpCommsRes.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Verify OTP sent via email and sms
+             * Description: Verify OTP sent via email and sms
+             **/
+            public func verfiyOtp(
+                body: VerifyOtpCommsReq,
+                onResponse: @escaping (_ response: VerifyOtpCommsSuccessRes?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/otp/verify-otp-comms",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(VerifyOtpCommsSuccessRes.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
              * Summary: Get sms providers
              * Description: Get sms providers
              **/
@@ -10354,7 +10468,7 @@ public class PlatformClient {
             public func appCopyFiles(
                 sync: Bool?,
                 body: BulkRequest,
-                onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: BulkUploadResponse?, _ error: FDKError?) -> Void
             ) {
                 var xQuery: [String: Any] = [:]
 
@@ -10378,7 +10492,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(BulkResponse.self, from: data)
+                            let response = Utility.decode(BulkUploadResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {
