@@ -7,24 +7,24 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductListingActionPage: Codable {
-        public var type: String?
-
         public var params: [String: Any]?
+
+        public var type: String?
 
         public var query: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case type
-
             case params
+
+            case type
 
             case query
         }
 
         public init(params: [String: Any]? = nil, query: [String: Any]? = nil, type: String? = nil) {
-            self.type = type
-
             self.params = params
+
+            self.type = type
 
             self.query = query
         }
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                params = try container.decode([String: Any].self, forKey: .params)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                params = try container.decode([String: Any].self, forKey: .params)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,9 +60,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(params, forKey: .params)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(query, forKey: .query)
         }
