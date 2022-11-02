@@ -10,34 +10,34 @@ public extension PlatformClient {
     class ConfigurationListingFilterConfig: Codable {
         public var displayName: String?
 
-        public var name: String?
+        public var valueConfig: ConfigurationListingFilterValue?
 
         public var isActive: Bool
 
-        public var valueConfig: ConfigurationListingFilterValue?
+        public var logo: String?
 
         public var key: String
 
         public var priority: Int
 
-        public var logo: String?
+        public var name: String?
 
         public var type: String
 
         public enum CodingKeys: String, CodingKey {
             case displayName = "display_name"
 
-            case name
+            case valueConfig = "value_config"
 
             case isActive = "is_active"
 
-            case valueConfig = "value_config"
+            case logo
 
             case key
 
             case priority
 
-            case logo
+            case name
 
             case type
         }
@@ -45,17 +45,17 @@ public extension PlatformClient {
         public init(displayName: String? = nil, isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int, type: String, valueConfig: ConfigurationListingFilterValue? = nil) {
             self.displayName = displayName
 
-            self.name = name
+            self.valueConfig = valueConfig
 
             self.isActive = isActive
 
-            self.valueConfig = valueConfig
+            self.logo = logo
 
             self.key = key
 
             self.priority = priority
 
-            self.logo = logo
+            self.name = name
 
             self.type = type
         }
@@ -72,7 +72,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                valueConfig = try container.decode(ConfigurationListingFilterValue.self, forKey: .valueConfig)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,7 +82,7 @@ public extension PlatformClient {
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
             do {
-                valueConfig = try container.decode(ConfigurationListingFilterValue.self, forKey: .valueConfig)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,7 +94,7 @@ public extension PlatformClient {
             priority = try container.decode(Int.self, forKey: .priority)
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,17 +109,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(valueConfig, forKey: .valueConfig)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(valueConfig, forKey: .valueConfig)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(type, forKey: .type)
         }

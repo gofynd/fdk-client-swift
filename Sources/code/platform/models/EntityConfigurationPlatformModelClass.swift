@@ -8,7 +8,9 @@ public extension PlatformClient {
      */
 
     class EntityConfiguration: Codable {
-        public var listing: GetCatalogConfigurationDetailsSchemaListing?
+        public var configType: String
+
+        public var configId: String?
 
         public var id: String?
 
@@ -16,12 +18,12 @@ public extension PlatformClient {
 
         public var product: GetCatalogConfigurationDetailsProduct?
 
-        public var configType: String
-
-        public var configId: String?
+        public var listing: GetCatalogConfigurationDetailsSchemaListing?
 
         public enum CodingKeys: String, CodingKey {
-            case listing
+            case configType = "config_type"
+
+            case configId = "config_id"
 
             case id
 
@@ -29,13 +31,13 @@ public extension PlatformClient {
 
             case product
 
-            case configType = "config_type"
-
-            case configId = "config_id"
+            case listing
         }
 
         public init(appId: String, configId: String? = nil, configType: String, id: String? = nil, listing: GetCatalogConfigurationDetailsSchemaListing? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
-            self.listing = listing
+            self.configType = configType
+
+            self.configId = configId
 
             self.id = id
 
@@ -43,16 +45,16 @@ public extension PlatformClient {
 
             self.product = product
 
-            self.configType = configType
-
-            self.configId = configId
+            self.listing = listing
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            configType = try container.decode(String.self, forKey: .configType)
+
             do {
-                listing = try container.decode(GetCatalogConfigurationDetailsSchemaListing.self, forKey: .listing)
+                configId = try container.decode(String.self, forKey: .configId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,10 +79,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            configType = try container.decode(String.self, forKey: .configType)
-
             do {
-                configId = try container.decode(String.self, forKey: .configId)
+                listing = try container.decode(GetCatalogConfigurationDetailsSchemaListing.self, forKey: .listing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(listing, forKey: .listing)
+            try? container.encodeIfPresent(configType, forKey: .configType)
+
+            try? container.encodeIfPresent(configId, forKey: .configId)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
@@ -99,9 +101,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(product, forKey: .product)
 
-            try? container.encodeIfPresent(configType, forKey: .configType)
-
-            try? container.encodeIfPresent(configId, forKey: .configId)
+            try? container.encodeIfPresent(listing, forKey: .listing)
         }
     }
 }
