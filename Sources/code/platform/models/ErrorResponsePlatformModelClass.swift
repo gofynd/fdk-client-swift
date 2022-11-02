@@ -10,22 +10,22 @@ public extension PlatformClient {
     class ErrorResponse: Codable {
         public var error: String?
 
-        public var meta: [String: Any]?
-
         public var code: String?
 
         public var status: Int?
+
+        public var meta: [String: Any]?
 
         public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case error
 
-            case meta
-
             case code
 
             case status
+
+            case meta
 
             case message
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(code: String? = nil, error: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
             self.error = error
 
-            self.meta = meta
-
             self.code = code
 
             self.status = status
+
+            self.meta = meta
 
             self.message = message
         }
@@ -47,14 +47,6 @@ public extension PlatformClient {
 
             do {
                 error = try container.decode(String.self, forKey: .error)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,6 +70,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -91,11 +91,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(message, forKey: .message)
         }
