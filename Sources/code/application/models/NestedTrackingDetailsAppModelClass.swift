@@ -3,43 +3,43 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: AggregatorRoute
-         Used By: Payment
+         Model: NestedTrackingDetails
+         Used By: Order
      */
-    class AggregatorRoute: Codable {
-        public var data: [String: Any]?
+    class NestedTrackingDetails: Codable {
+        public var isCurrent: Bool?
 
-        public var paymentFlow: String?
+        public var status: String?
 
-        public var paymentFlowData: String?
+        public var time: String?
 
-        public var apiLink: String?
+        public var isPassed: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case data
+            case isCurrent = "is_current"
 
-            case paymentFlow = "payment_flow"
+            case status
 
-            case paymentFlowData = "payment_flow_data"
+            case time
 
-            case apiLink = "api_link"
+            case isPassed = "is_passed"
         }
 
-        public init(apiLink: String? = nil, data: [String: Any]? = nil, paymentFlow: String? = nil, paymentFlowData: String? = nil) {
-            self.data = data
+        public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String? = nil, time: String? = nil) {
+            self.isCurrent = isCurrent
 
-            self.paymentFlow = paymentFlow
+            self.status = status
 
-            self.paymentFlowData = paymentFlowData
+            self.time = time
 
-            self.apiLink = apiLink
+            self.isPassed = isPassed
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode([String: Any].self, forKey: .data)
+                isCurrent = try container.decode(Bool.self, forKey: .isCurrent)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                paymentFlow = try container.decode(String.self, forKey: .paymentFlow)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                paymentFlowData = try container.decode(String.self, forKey: .paymentFlowData)
+                time = try container.decode(String.self, forKey: .time)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                apiLink = try container.decode(String.self, forKey: .apiLink)
+                isPassed = try container.decode(Bool.self, forKey: .isPassed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,13 +74,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(data, forKey: .data)
+            try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
 
-            try? container.encode(paymentFlow, forKey: .paymentFlow)
+            try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encode(paymentFlowData, forKey: .paymentFlowData)
+            try? container.encodeIfPresent(time, forKey: .time)
 
-            try? container.encode(apiLink, forKey: .apiLink)
+            try? container.encodeIfPresent(isPassed, forKey: .isPassed)
         }
     }
 }

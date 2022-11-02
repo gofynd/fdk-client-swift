@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var delights: Bool
 
-        public var shipmentId: String
-
         public var transferMode: String
 
         public var orderId: String
 
         public var details: BeneficiaryModeDetails
+
+        public var shipmentId: String
 
         public var otp: String?
 
@@ -27,13 +27,13 @@ public extension PlatformClient {
 
             case delights
 
-            case shipmentId = "shipment_id"
-
             case transferMode = "transfer_mode"
 
             case orderId = "order_id"
 
             case details
+
+            case shipmentId = "shipment_id"
 
             case otp
         }
@@ -43,13 +43,13 @@ public extension PlatformClient {
 
             self.delights = delights
 
-            self.shipmentId = shipmentId
-
             self.transferMode = transferMode
 
             self.orderId = orderId
 
             self.details = details
+
+            self.shipmentId = shipmentId
 
             self.otp = otp
         }
@@ -67,13 +67,13 @@ public extension PlatformClient {
 
             delights = try container.decode(Bool.self, forKey: .delights)
 
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
             transferMode = try container.decode(String.self, forKey: .transferMode)
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
             details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
+
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             do {
                 otp = try container.decode(String.self, forKey: .otp)
@@ -91,13 +91,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(delights, forKey: .delights)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
             try? container.encodeIfPresent(transferMode, forKey: .transferMode)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(details, forKey: .details)
+
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(otp, forKey: .otp)
         }

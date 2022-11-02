@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class RefundAccountResponse: Codable {
         public var data: [String: Any]?
 
+        public var message: String
+
         public var isVerifiedFlag: Bool?
 
         public var success: Bool
 
-        public var message: String
-
         public enum CodingKeys: String, CodingKey {
             case data
+
+            case message
 
             case isVerifiedFlag = "is_verified_flag"
 
             case success
-
-            case message
         }
 
         public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
             self.data = data
 
+            self.message = message
+
             self.isVerifiedFlag = isVerifiedFlag
 
             self.success = success
-
-            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -46,6 +46,8 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            message = try container.decode(String.self, forKey: .message)
+
             do {
                 isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
 
@@ -55,8 +57,6 @@ public extension ApplicationClient {
             } catch {}
 
             success = try container.decode(Bool.self, forKey: .success)
-
-            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -64,11 +64,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
+            try? container.encodeIfPresent(message, forKey: .message)
+
             try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
 
             try? container.encodeIfPresent(success, forKey: .success)
-
-            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
