@@ -65,6 +65,10 @@ public extension ApplicationClient {
 
             ulrs["customerOnboard"] = config.domain.appendAsPath("/service/application/payment/v1.0/credit-onboard/")
 
+            ulrs["outstandingOrderDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/outstanding-orders/")
+
+            ulrs["paidOrderDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/paid-orders/")
+
             self.relativeUrls = ulrs
         }
 
@@ -1311,6 +1315,100 @@ public extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(CustomerOnboardingResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: API to fetch the outstanding order details
+         * Description: Use this API to fetch the outstanding order details.
+         **/
+        public func outstandingOrderDetails(
+            aggregator: String?,
+
+            onResponse: @escaping (_ response: OutstandingOrderDetailsResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = aggregator {
+                xQuery["aggregator"] = value
+            }
+
+            let fullUrl = relativeUrls["outstandingOrderDetails"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(OutstandingOrderDetailsResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: API to fetch the paid order details
+         * Description: Use this API to fetch the paid order details.
+         **/
+        public func paidOrderDetails(
+            aggregator: String?,
+
+            onResponse: @escaping (_ response: PaidOrderDetailsResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = aggregator {
+                xQuery["aggregator"] = value
+            }
+
+            let fullUrl = relativeUrls["paidOrderDetails"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(PaidOrderDetailsResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

@@ -14,13 +14,13 @@ public extension PlatformClient {
 
         public var size: ProductSize?
 
-        public var logo: String?
+        public var subtitle: String?
 
         public var title: String?
 
         public var key: String
 
-        public var subtitle: String?
+        public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
@@ -29,13 +29,13 @@ public extension PlatformClient {
 
             case size
 
-            case logo
+            case subtitle
 
             case title
 
             case key
 
-            case subtitle
+            case logo
         }
 
         public init(isActive: Bool, key: String, logo: String? = nil, priority: Int, size: ProductSize? = nil, subtitle: String? = nil, title: String? = nil) {
@@ -45,13 +45,13 @@ public extension PlatformClient {
 
             self.size = size
 
-            self.logo = logo
+            self.subtitle = subtitle
 
             self.title = title
 
             self.key = key
 
-            self.subtitle = subtitle
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                subtitle = try container.decode(String.self, forKey: .subtitle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +88,7 @@ public extension PlatformClient {
             key = try container.decode(String.self, forKey: .key)
 
             do {
-                subtitle = try container.decode(String.self, forKey: .subtitle)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,13 +105,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
             try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }

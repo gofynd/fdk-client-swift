@@ -51,6 +51,8 @@ public extension ApplicationClient {
 
         public var orderType: String?
 
+        public var customMeta: [[String: Any]]?
+
         public var promise: Promise?
 
         public var fulfillingStore: FulfillingStore?
@@ -116,6 +118,8 @@ public extension ApplicationClient {
 
             case orderType = "order_type"
 
+            case customMeta = "custom_meta"
+
             case promise
 
             case fulfillingStore = "fulfilling_store"
@@ -137,7 +141,7 @@ public extension ApplicationClient {
             case totalDetails = "total_details"
         }
 
-        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, comment: String? = nil, deliveryAddress: DeliveryAddress? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingStore: FulfillingStore? = nil, invoice: Invoice? = nil, needHelpUrl: String? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, prices: Prices? = nil, promise: Promise? = nil, returnableDate: String? = nil, shipmentCreatedAt: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
+        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: DeliveryAddress? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingStore: FulfillingStore? = nil, invoice: Invoice? = nil, needHelpUrl: String? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, prices: Prices? = nil, promise: Promise? = nil, returnableDate: String? = nil, shipmentCreatedAt: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
             self.orderId = orderId
 
             self.breakupValues = breakupValues
@@ -181,6 +185,8 @@ public extension ApplicationClient {
             self.comment = comment
 
             self.orderType = orderType
+
+            self.customMeta = customMeta
 
             self.promise = promise
 
@@ -383,6 +389,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                customMeta = try container.decode([[String: Any]].self, forKey: .customMeta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 promise = try container.decode(Promise.self, forKey: .promise)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -509,6 +523,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(comment, forKey: .comment)
 
             try? container.encodeIfPresent(orderType, forKey: .orderType)
+
+            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
 
             try? container.encodeIfPresent(promise, forKey: .promise)
 
