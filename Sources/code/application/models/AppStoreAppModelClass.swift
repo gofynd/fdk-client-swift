@@ -9,48 +9,48 @@ public extension ApplicationClient {
     class AppStore: Codable {
         public var contactNumbers: [SellerPhoneNumber]?
 
-        public var departments: [StoreDepartments]?
-
-        public var name: String?
-
         public var company: CompanyStore?
 
         public var manager: StoreManagerSerializer?
 
-        public var address: StoreAddressSerializer?
+        public var name: String?
 
         public var uid: Int?
 
+        public var departments: [StoreDepartments]?
+
+        public var address: StoreAddressSerializer?
+
         public enum CodingKeys: String, CodingKey {
             case contactNumbers = "contact_numbers"
-
-            case departments
-
-            case name
 
             case company
 
             case manager
 
-            case address
+            case name
 
             case uid
+
+            case departments
+
+            case address
         }
 
         public init(address: StoreAddressSerializer? = nil, company: CompanyStore? = nil, contactNumbers: [SellerPhoneNumber]? = nil, departments: [StoreDepartments]? = nil, manager: StoreManagerSerializer? = nil, name: String? = nil, uid: Int? = nil) {
             self.contactNumbers = contactNumbers
 
-            self.departments = departments
-
-            self.name = name
-
             self.company = company
 
             self.manager = manager
 
-            self.address = address
+            self.name = name
 
             self.uid = uid
+
+            self.departments = departments
+
+            self.address = address
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,22 +58,6 @@ public extension ApplicationClient {
 
             do {
                 contactNumbers = try container.decode([SellerPhoneNumber].self, forKey: .contactNumbers)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                departments = try container.decode([StoreDepartments].self, forKey: .departments)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +81,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,6 +95,22 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                departments = try container.decode([StoreDepartments].self, forKey: .departments)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -118,17 +118,17 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
 
-            try? container.encodeIfPresent(departments, forKey: .departments)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(company, forKey: .company)
 
             try? container.encodeIfPresent(manager, forKey: .manager)
 
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(departments, forKey: .departments)
+
+            try? container.encodeIfPresent(address, forKey: .address)
         }
     }
 }
