@@ -226,8 +226,8 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | Int? |  yes  |  |
  | identifier | String? |  yes  |  |
+ | quantity | Int? |  yes  |  |
 
 ---
 
@@ -239,9 +239,10 @@ We are processing the order!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | products | [[ProductDetail](#ProductDetail)]? |  yes  |  |
- | storeInvoiceId | String? |  yes  |  |
- | dataUpdate | [String: Any]? |  yes  |  |
  | reason | [Int]? |  yes  |  |
+ | storeInvoiceId | String? |  yes  |  |
+ | bags | [Int]? |  yes  |  |
+ | dataUpdate | [String: Any]? |  yes  |  |
 
 ---
 
@@ -263,9 +264,9 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | excludeBagsNextState | String |  no  |  |
- | shipments | [ShipmentDetail](#ShipmentDetail)? |  yes  |  |
  | status | String |  no  |  |
+ | excludeBagsNextState | String? |  yes  |  |
+ | shipments | [ShipmentDetail](#ShipmentDetail)? |  yes  |  |
 
 ---
 
@@ -276,8 +277,8 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | task | Bool? |  yes  |  |
  | statuses | [Statuses](#Statuses)? |  yes  |  |
+ | task | Bool? |  yes  |  |
  | forceTransition | Bool? |  yes  |  |
 
 ---
@@ -289,8 +290,8 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | [String]? |  yes  |  |
  | success | Bool? |  yes  |  |
+ | message | [String]? |  yes  |  |
 
 ---
 
@@ -302,7 +303,6 @@ We are processing the order!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | String? |  yes  |  |
- | success | Bool? |  yes  |  |
 
 ---
 
@@ -313,14 +313,14 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String |  no  |  |
- | type | String |  no  |  |
- | createdat | String |  no  |  |
  | user | String |  no  |  |
- | ticketId | String? |  yes  |  |
- | ticketUrl | String? |  yes  |  |
+ | createdat | String |  no  |  |
+ | type | String |  no  |  |
  | l1Detail | String? |  yes  |  |
  | l2Detail | String? |  yes  |  |
+ | ticketId | String? |  yes  |  |
+ | ticketUrl | String? |  yes  |  |
+ | message | String |  no  |  |
  | l3Detail | String? |  yes  |  |
 
 ---

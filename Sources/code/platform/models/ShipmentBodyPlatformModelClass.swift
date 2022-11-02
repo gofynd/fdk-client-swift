@@ -10,30 +10,36 @@ public extension PlatformClient {
     class ShipmentBody: Codable {
         public var products: [ProductDetail]?
 
+        public var reason: [Int]?
+
         public var storeInvoiceId: String?
 
-        public var dataUpdate: [String: Any]?
+        public var bags: [Int]?
 
-        public var reason: [Int]?
+        public var dataUpdate: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case products
 
+            case reason
+
             case storeInvoiceId = "store_invoice_id"
 
-            case dataUpdate = "data_update"
+            case bags
 
-            case reason
+            case dataUpdate = "data_update"
         }
 
-        public init(dataUpdate: [String: Any]? = nil, products: [ProductDetail]? = nil, reason: [Int]? = nil, storeInvoiceId: String? = nil) {
+        public init(bags: [Int]? = nil, dataUpdate: [String: Any]? = nil, products: [ProductDetail]? = nil, reason: [Int]? = nil, storeInvoiceId: String? = nil) {
             self.products = products
+
+            self.reason = reason
 
             self.storeInvoiceId = storeInvoiceId
 
-            self.dataUpdate = dataUpdate
+            self.bags = bags
 
-            self.reason = reason
+            self.dataUpdate = dataUpdate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,6 +47,14 @@ public extension PlatformClient {
 
             do {
                 products = try container.decode([ProductDetail].self, forKey: .products)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                reason = try container.decode([Int].self, forKey: .reason)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                dataUpdate = try container.decode([String: Any].self, forKey: .dataUpdate)
+                bags = try container.decode([Int].self, forKey: .bags)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                reason = try container.decode([Int].self, forKey: .reason)
+                dataUpdate = try container.decode([String: Any].self, forKey: .dataUpdate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,11 +91,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(products, forKey: .products)
 
+            try? container.encodeIfPresent(reason, forKey: .reason)
+
             try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
 
-            try? container.encodeIfPresent(dataUpdate, forKey: .dataUpdate)
+            try? container.encodeIfPresent(bags, forKey: .bags)
 
-            try? container.encodeIfPresent(reason, forKey: .reason)
+            try? container.encodeIfPresent(dataUpdate, forKey: .dataUpdate)
         }
     }
 }
