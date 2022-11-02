@@ -8,129 +8,129 @@ public extension PlatformClient {
      */
 
     class ItemCriteria: Codable {
-        public var itemCategory: [Int]?
+        public var itemExcludeStore: [Int]?
 
-        public var itemId: [Int]?
+        public var itemSku: [String]?
+
+        public var allItems: Bool?
+
+        public var cartUniqueItemAmount: CompareObject?
+
+        public var itemCategory: [Int]?
 
         public var cartTotal: CompareObject?
 
-        public var itemExcludeCompany: [Int]?
+        public var itemExcludeSku: [String]?
 
         public var availableZones: [String]?
 
-        public var itemSize: [String]?
+        public var itemCompany: [Int]?
+
+        public var itemExcludeCompany: [Int]?
+
+        public var itemId: [Int]?
 
         public var itemBrand: [Int]?
 
         public var cartQuantity: CompareObject?
 
-        public var itemSku: [String]?
-
-        public var cartUniqueItemAmount: CompareObject?
-
-        public var itemCompany: [Int]?
-
-        public var itemExcludeCategory: [Int]?
-
-        public var itemExcludeBrand: [Int]?
-
-        public var itemStore: [Int]?
-
-        public var buyRules: [String]?
+        public var itemSize: [String]?
 
         public var cartUniqueItemQuantity: CompareObject?
 
-        public var allItems: Bool?
+        public var buyRules: [String]?
 
-        public var itemExcludeStore: [Int]?
+        public var itemStore: [Int]?
 
-        public var itemExcludeSku: [String]?
+        public var itemExcludeBrand: [Int]?
+
+        public var itemExcludeCategory: [Int]?
 
         public enum CodingKeys: String, CodingKey {
-            case itemCategory = "item_category"
+            case itemExcludeStore = "item_exclude_store"
 
-            case itemId = "item_id"
+            case itemSku = "item_sku"
+
+            case allItems = "all_items"
+
+            case cartUniqueItemAmount = "cart_unique_item_amount"
+
+            case itemCategory = "item_category"
 
             case cartTotal = "cart_total"
 
-            case itemExcludeCompany = "item_exclude_company"
+            case itemExcludeSku = "item_exclude_sku"
 
             case availableZones = "available_zones"
 
-            case itemSize = "item_size"
+            case itemCompany = "item_company"
+
+            case itemExcludeCompany = "item_exclude_company"
+
+            case itemId = "item_id"
 
             case itemBrand = "item_brand"
 
             case cartQuantity = "cart_quantity"
 
-            case itemSku = "item_sku"
-
-            case cartUniqueItemAmount = "cart_unique_item_amount"
-
-            case itemCompany = "item_company"
-
-            case itemExcludeCategory = "item_exclude_category"
-
-            case itemExcludeBrand = "item_exclude_brand"
-
-            case itemStore = "item_store"
-
-            case buyRules = "buy_rules"
+            case itemSize = "item_size"
 
             case cartUniqueItemQuantity = "cart_unique_item_quantity"
 
-            case allItems = "all_items"
+            case buyRules = "buy_rules"
 
-            case itemExcludeStore = "item_exclude_store"
+            case itemStore = "item_store"
 
-            case itemExcludeSku = "item_exclude_sku"
+            case itemExcludeBrand = "item_exclude_brand"
+
+            case itemExcludeCategory = "item_exclude_category"
         }
 
         public init(allItems: Bool? = nil, availableZones: [String]? = nil, buyRules: [String]? = nil, cartQuantity: CompareObject? = nil, cartTotal: CompareObject? = nil, cartUniqueItemAmount: CompareObject? = nil, cartUniqueItemQuantity: CompareObject? = nil, itemBrand: [Int]? = nil, itemCategory: [Int]? = nil, itemCompany: [Int]? = nil, itemExcludeBrand: [Int]? = nil, itemExcludeCategory: [Int]? = nil, itemExcludeCompany: [Int]? = nil, itemExcludeSku: [String]? = nil, itemExcludeStore: [Int]? = nil, itemId: [Int]? = nil, itemSize: [String]? = nil, itemSku: [String]? = nil, itemStore: [Int]? = nil) {
-            self.itemCategory = itemCategory
+            self.itemExcludeStore = itemExcludeStore
 
-            self.itemId = itemId
+            self.itemSku = itemSku
+
+            self.allItems = allItems
+
+            self.cartUniqueItemAmount = cartUniqueItemAmount
+
+            self.itemCategory = itemCategory
 
             self.cartTotal = cartTotal
 
-            self.itemExcludeCompany = itemExcludeCompany
+            self.itemExcludeSku = itemExcludeSku
 
             self.availableZones = availableZones
 
-            self.itemSize = itemSize
+            self.itemCompany = itemCompany
+
+            self.itemExcludeCompany = itemExcludeCompany
+
+            self.itemId = itemId
 
             self.itemBrand = itemBrand
 
             self.cartQuantity = cartQuantity
 
-            self.itemSku = itemSku
-
-            self.cartUniqueItemAmount = cartUniqueItemAmount
-
-            self.itemCompany = itemCompany
-
-            self.itemExcludeCategory = itemExcludeCategory
-
-            self.itemExcludeBrand = itemExcludeBrand
-
-            self.itemStore = itemStore
-
-            self.buyRules = buyRules
+            self.itemSize = itemSize
 
             self.cartUniqueItemQuantity = cartUniqueItemQuantity
 
-            self.allItems = allItems
+            self.buyRules = buyRules
 
-            self.itemExcludeStore = itemExcludeStore
+            self.itemStore = itemStore
 
-            self.itemExcludeSku = itemExcludeSku
+            self.itemExcludeBrand = itemExcludeBrand
+
+            self.itemExcludeCategory = itemExcludeCategory
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemCategory = try container.decode([Int].self, forKey: .itemCategory)
+                itemExcludeStore = try container.decode([Int].self, forKey: .itemExcludeStore)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -138,7 +138,31 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemId = try container.decode([Int].self, forKey: .itemId)
+                itemSku = try container.decode([String].self, forKey: .itemSku)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                allItems = try container.decode(Bool.self, forKey: .allItems)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                cartUniqueItemAmount = try container.decode(CompareObject.self, forKey: .cartUniqueItemAmount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemCategory = try container.decode([Int].self, forKey: .itemCategory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -154,7 +178,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemExcludeCompany = try container.decode([Int].self, forKey: .itemExcludeCompany)
+                itemExcludeSku = try container.decode([String].self, forKey: .itemExcludeSku)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,7 +194,23 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemSize = try container.decode([String].self, forKey: .itemSize)
+                itemCompany = try container.decode([Int].self, forKey: .itemCompany)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemExcludeCompany = try container.decode([Int].self, forKey: .itemExcludeCompany)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemId = try container.decode([Int].self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,55 +234,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemSku = try container.decode([String].self, forKey: .itemSku)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cartUniqueItemAmount = try container.decode(CompareObject.self, forKey: .cartUniqueItemAmount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemCompany = try container.decode([Int].self, forKey: .itemCompany)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemExcludeCategory = try container.decode([Int].self, forKey: .itemExcludeCategory)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemExcludeBrand = try container.decode([Int].self, forKey: .itemExcludeBrand)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemStore = try container.decode([Int].self, forKey: .itemStore)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                buyRules = try container.decode([String].self, forKey: .buyRules)
+                itemSize = try container.decode([String].self, forKey: .itemSize)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -258,7 +250,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                allItems = try container.decode(Bool.self, forKey: .allItems)
+                buyRules = try container.decode([String].self, forKey: .buyRules)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -266,7 +258,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemExcludeStore = try container.decode([Int].self, forKey: .itemExcludeStore)
+                itemStore = try container.decode([Int].self, forKey: .itemStore)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -274,7 +266,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemExcludeSku = try container.decode([String].self, forKey: .itemExcludeSku)
+                itemExcludeBrand = try container.decode([Int].self, forKey: .itemExcludeBrand)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemExcludeCategory = try container.decode([Int].self, forKey: .itemExcludeCategory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -285,43 +285,43 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemCategory, forKey: .itemCategory)
+            try? container.encodeIfPresent(itemExcludeStore, forKey: .itemExcludeStore)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(itemSku, forKey: .itemSku)
+
+            try? container.encodeIfPresent(allItems, forKey: .allItems)
+
+            try? container.encodeIfPresent(cartUniqueItemAmount, forKey: .cartUniqueItemAmount)
+
+            try? container.encodeIfPresent(itemCategory, forKey: .itemCategory)
 
             try? container.encodeIfPresent(cartTotal, forKey: .cartTotal)
 
-            try? container.encodeIfPresent(itemExcludeCompany, forKey: .itemExcludeCompany)
+            try? container.encodeIfPresent(itemExcludeSku, forKey: .itemExcludeSku)
 
             try? container.encodeIfPresent(availableZones, forKey: .availableZones)
 
-            try? container.encodeIfPresent(itemSize, forKey: .itemSize)
+            try? container.encodeIfPresent(itemCompany, forKey: .itemCompany)
+
+            try? container.encodeIfPresent(itemExcludeCompany, forKey: .itemExcludeCompany)
+
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
             try? container.encodeIfPresent(itemBrand, forKey: .itemBrand)
 
             try? container.encodeIfPresent(cartQuantity, forKey: .cartQuantity)
 
-            try? container.encodeIfPresent(itemSku, forKey: .itemSku)
-
-            try? container.encodeIfPresent(cartUniqueItemAmount, forKey: .cartUniqueItemAmount)
-
-            try? container.encodeIfPresent(itemCompany, forKey: .itemCompany)
-
-            try? container.encodeIfPresent(itemExcludeCategory, forKey: .itemExcludeCategory)
-
-            try? container.encodeIfPresent(itemExcludeBrand, forKey: .itemExcludeBrand)
-
-            try? container.encodeIfPresent(itemStore, forKey: .itemStore)
-
-            try? container.encodeIfPresent(buyRules, forKey: .buyRules)
+            try? container.encodeIfPresent(itemSize, forKey: .itemSize)
 
             try? container.encodeIfPresent(cartUniqueItemQuantity, forKey: .cartUniqueItemQuantity)
 
-            try? container.encodeIfPresent(allItems, forKey: .allItems)
+            try? container.encodeIfPresent(buyRules, forKey: .buyRules)
 
-            try? container.encodeIfPresent(itemExcludeStore, forKey: .itemExcludeStore)
+            try? container.encodeIfPresent(itemStore, forKey: .itemStore)
 
-            try? container.encodeIfPresent(itemExcludeSku, forKey: .itemExcludeSku)
+            try? container.encodeIfPresent(itemExcludeBrand, forKey: .itemExcludeBrand)
+
+            try? container.encodeIfPresent(itemExcludeCategory, forKey: .itemExcludeCategory)
         }
     }
 }

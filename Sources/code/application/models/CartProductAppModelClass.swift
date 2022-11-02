@@ -11,34 +11,34 @@ public extension ApplicationClient {
 
         public var type: String?
 
-        public var images: [ProductImage]?
+        public var uid: Int?
 
         public var action: ProductAction?
 
-        public var name: String?
-
-        public var uid: Int?
+        public var slug: String?
 
         public var categories: [CategoryInfo]?
 
-        public var slug: String?
+        public var name: String?
+
+        public var images: [ProductImage]?
 
         public enum CodingKeys: String, CodingKey {
             case brand
 
             case type
 
-            case images
+            case uid
 
             case action
 
-            case name
-
-            case uid
+            case slug
 
             case categories
 
-            case slug
+            case name
+
+            case images
         }
 
         public init(action: ProductAction? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, images: [ProductImage]? = nil, name: String? = nil, slug: String? = nil, type: String? = nil, uid: Int? = nil) {
@@ -46,17 +46,17 @@ public extension ApplicationClient {
 
             self.type = type
 
-            self.images = images
+            self.uid = uid
 
             self.action = action
 
-            self.name = name
-
-            self.uid = uid
+            self.slug = slug
 
             self.categories = categories
 
-            self.slug = slug
+            self.name = name
+
+            self.images = images
         }
 
         required public init(from decoder: Decoder) throws {
@@ -79,7 +79,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                images = try container.decode([ProductImage].self, forKey: .images)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,15 +95,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,7 +111,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                images = try container.decode([ProductImage].self, forKey: .images)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,17 +134,17 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(images, forKey: .images)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(categories, forKey: .categories)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(images, forKey: .images)
         }
     }
 }
