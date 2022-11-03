@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: BulkResponse
+         Model: BulkUploadResponse
          Used By: FileStorage
      */
-    class BulkResponse: Codable {
+    class BulkUploadResponse: Codable {
         public var trackingUrl: String
 
         public var task: CopyFileTask

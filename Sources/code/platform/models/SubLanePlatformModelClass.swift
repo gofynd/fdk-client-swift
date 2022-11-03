@@ -10,7 +10,7 @@ public extension PlatformClient {
     class SubLane: Codable {
         public var text: String
 
-        public var currentState: [String]?
+        public var totalShipments: Int
 
         public var value: String
 
@@ -18,12 +18,12 @@ public extension PlatformClient {
 
         public var index: Int
 
-        public var totalShipments: Int
+        public var currentState: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case text
 
-            case currentState = "current_state"
+            case totalShipments = "total_shipments"
 
             case value
 
@@ -31,13 +31,13 @@ public extension PlatformClient {
 
             case index
 
-            case totalShipments = "total_shipments"
+            case currentState = "current_state"
         }
 
         public init(currentState: [String]? = nil, index: Int, nextState: [String]? = nil, text: String, totalShipments: Int, value: String) {
             self.text = text
 
-            self.currentState = currentState
+            self.totalShipments = totalShipments
 
             self.value = value
 
@@ -45,7 +45,7 @@ public extension PlatformClient {
 
             self.index = index
 
-            self.totalShipments = totalShipments
+            self.currentState = currentState
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,13 +53,7 @@ public extension PlatformClient {
 
             text = try container.decode(String.self, forKey: .text)
 
-            do {
-                currentState = try container.decode([String].self, forKey: .currentState)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            totalShipments = try container.decode(Int.self, forKey: .totalShipments)
 
             value = try container.decode(String.self, forKey: .value)
 
@@ -73,7 +67,13 @@ public extension PlatformClient {
 
             index = try container.decode(Int.self, forKey: .index)
 
-            totalShipments = try container.decode(Int.self, forKey: .totalShipments)
+            do {
+                currentState = try container.decode([String].self, forKey: .currentState)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -81,7 +81,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(currentState, forKey: .currentState)
+            try? container.encodeIfPresent(totalShipments, forKey: .totalShipments)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
@@ -89,7 +89,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(index, forKey: .index)
 
-            try? container.encodeIfPresent(totalShipments, forKey: .totalShipments)
+            try? container.encodeIfPresent(currentState, forKey: .currentState)
         }
     }
 }

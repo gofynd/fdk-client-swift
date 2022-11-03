@@ -14,6 +14,8 @@ public extension PlatformClient {
 
         public var storeInvoiceId: String?
 
+        public var bags: [Int]?
+
         public var dataUpdate: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
@@ -23,15 +25,19 @@ public extension PlatformClient {
 
             case storeInvoiceId = "store_invoice_id"
 
+            case bags
+
             case dataUpdate = "data_update"
         }
 
-        public init(dataUpdate: [String: Any]? = nil, products: [ProductDetail]? = nil, reason: [Int]? = nil, storeInvoiceId: String? = nil) {
+        public init(bags: [Int]? = nil, dataUpdate: [String: Any]? = nil, products: [ProductDetail]? = nil, reason: [Int]? = nil, storeInvoiceId: String? = nil) {
             self.reason = reason
 
             self.products = products
 
             self.storeInvoiceId = storeInvoiceId
+
+            self.bags = bags
 
             self.dataUpdate = dataUpdate
         }
@@ -64,6 +70,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                bags = try container.decode([Int].self, forKey: .bags)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 dataUpdate = try container.decode([String: Any].self, forKey: .dataUpdate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -80,6 +94,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(products, forKey: .products)
 
             try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
+
+            try? container.encodeIfPresent(bags, forKey: .bags)
 
             try? container.encodeIfPresent(dataUpdate, forKey: .dataUpdate)
         }
