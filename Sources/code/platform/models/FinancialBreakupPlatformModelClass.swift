@@ -8,276 +8,276 @@ public extension PlatformClient {
      */
 
     class FinancialBreakup: Codable {
-        public var gstFee: String
+        public var gstTaxPercentage: Int
+
+        public var codCharges: Int
+
+        public var priceMarked: Int
+
+        public var pmPriceSplit: [String: Any]
 
         public var priceEffective: Int
-
-        public var couponEffectiveDiscount: Int
-
-        public var amountPaid: Int
-
-        public var transferPrice: Int
-
-        public var itemName: String
-
-        public var identifiers: [String: Any]
-
-        public var gstTag: String
-
-        public var brandCalculatedAmount: Int
-
-        public var refundCredit: Int
-
-        public var couponValue: Int
 
         public var cashbackApplied: Int
 
         public var cashback: Int
 
-        public var pmPriceSplit: [String: Any]
+        public var deliveryCharge: Int
 
-        public var addedToFyndCash: Bool
+        public var couponEffectiveDiscount: Int
+
+        public var identifiers: [String: Any]
+
+        public var itemName: String
 
         public var fyndCredits: Int
 
-        public var gstTaxPercentage: Int
+        public var amountPaid: Int
+
+        public var refundCredit: Int
+
+        public var gstFee: String
+
+        public var couponValue: Int
 
         public var totalUnits: Int
 
-        public var size: String
-
-        public var deliveryCharge: Int
+        public var gstTag: String
 
         public var promotionEffectiveDiscount: Int
 
-        public var codCharges: Int
-
-        public var hsnCode: String
+        public var discount: Int
 
         public var valueOfGood: Int
 
-        public var priceMarked: Int
+        public var addedToFyndCash: Bool
 
-        public var discount: Int
+        public var transferPrice: Int
+
+        public var brandCalculatedAmount: Int
+
+        public var size: String
+
+        public var hsnCode: String
 
         public enum CodingKeys: String, CodingKey {
-            case gstFee = "gst_fee"
+            case gstTaxPercentage = "gst_tax_percentage"
+
+            case codCharges = "cod_charges"
+
+            case priceMarked = "price_marked"
+
+            case pmPriceSplit = "pm_price_split"
 
             case priceEffective = "price_effective"
-
-            case couponEffectiveDiscount = "coupon_effective_discount"
-
-            case amountPaid = "amount_paid"
-
-            case transferPrice = "transfer_price"
-
-            case itemName = "item_name"
-
-            case identifiers
-
-            case gstTag = "gst_tag"
-
-            case brandCalculatedAmount = "brand_calculated_amount"
-
-            case refundCredit = "refund_credit"
-
-            case couponValue = "coupon_value"
 
             case cashbackApplied = "cashback_applied"
 
             case cashback
 
-            case pmPriceSplit = "pm_price_split"
+            case deliveryCharge = "delivery_charge"
 
-            case addedToFyndCash = "added_to_fynd_cash"
+            case couponEffectiveDiscount = "coupon_effective_discount"
+
+            case identifiers
+
+            case itemName = "item_name"
 
             case fyndCredits = "fynd_credits"
 
-            case gstTaxPercentage = "gst_tax_percentage"
+            case amountPaid = "amount_paid"
+
+            case refundCredit = "refund_credit"
+
+            case gstFee = "gst_fee"
+
+            case couponValue = "coupon_value"
 
             case totalUnits = "total_units"
 
-            case size
-
-            case deliveryCharge = "delivery_charge"
+            case gstTag = "gst_tag"
 
             case promotionEffectiveDiscount = "promotion_effective_discount"
 
-            case codCharges = "cod_charges"
-
-            case hsnCode = "hsn_code"
+            case discount
 
             case valueOfGood = "value_of_good"
 
-            case priceMarked = "price_marked"
+            case addedToFyndCash = "added_to_fynd_cash"
 
-            case discount
+            case transferPrice = "transfer_price"
+
+            case brandCalculatedAmount = "brand_calculated_amount"
+
+            case size
+
+            case hsnCode = "hsn_code"
         }
 
         public init(addedToFyndCash: Bool, amountPaid: Int, brandCalculatedAmount: Int, cashback: Int, cashbackApplied: Int, codCharges: Int, couponEffectiveDiscount: Int, couponValue: Int, deliveryCharge: Int, discount: Int, fyndCredits: Int, gstFee: String, gstTag: String, gstTaxPercentage: Int, hsnCode: String, identifiers: [String: Any], itemName: String, pmPriceSplit: [String: Any], priceEffective: Int, priceMarked: Int, promotionEffectiveDiscount: Int, refundCredit: Int, size: String, totalUnits: Int, transferPrice: Int, valueOfGood: Int) {
-            self.gstFee = gstFee
+            self.gstTaxPercentage = gstTaxPercentage
+
+            self.codCharges = codCharges
+
+            self.priceMarked = priceMarked
+
+            self.pmPriceSplit = pmPriceSplit
 
             self.priceEffective = priceEffective
-
-            self.couponEffectiveDiscount = couponEffectiveDiscount
-
-            self.amountPaid = amountPaid
-
-            self.transferPrice = transferPrice
-
-            self.itemName = itemName
-
-            self.identifiers = identifiers
-
-            self.gstTag = gstTag
-
-            self.brandCalculatedAmount = brandCalculatedAmount
-
-            self.refundCredit = refundCredit
-
-            self.couponValue = couponValue
 
             self.cashbackApplied = cashbackApplied
 
             self.cashback = cashback
 
-            self.pmPriceSplit = pmPriceSplit
+            self.deliveryCharge = deliveryCharge
 
-            self.addedToFyndCash = addedToFyndCash
+            self.couponEffectiveDiscount = couponEffectiveDiscount
+
+            self.identifiers = identifiers
+
+            self.itemName = itemName
 
             self.fyndCredits = fyndCredits
 
-            self.gstTaxPercentage = gstTaxPercentage
+            self.amountPaid = amountPaid
+
+            self.refundCredit = refundCredit
+
+            self.gstFee = gstFee
+
+            self.couponValue = couponValue
 
             self.totalUnits = totalUnits
 
-            self.size = size
-
-            self.deliveryCharge = deliveryCharge
+            self.gstTag = gstTag
 
             self.promotionEffectiveDiscount = promotionEffectiveDiscount
 
-            self.codCharges = codCharges
-
-            self.hsnCode = hsnCode
+            self.discount = discount
 
             self.valueOfGood = valueOfGood
 
-            self.priceMarked = priceMarked
+            self.addedToFyndCash = addedToFyndCash
 
-            self.discount = discount
+            self.transferPrice = transferPrice
+
+            self.brandCalculatedAmount = brandCalculatedAmount
+
+            self.size = size
+
+            self.hsnCode = hsnCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            gstFee = try container.decode(String.self, forKey: .gstFee)
+            gstTaxPercentage = try container.decode(Int.self, forKey: .gstTaxPercentage)
+
+            codCharges = try container.decode(Int.self, forKey: .codCharges)
+
+            priceMarked = try container.decode(Int.self, forKey: .priceMarked)
+
+            pmPriceSplit = try container.decode([String: Any].self, forKey: .pmPriceSplit)
 
             priceEffective = try container.decode(Int.self, forKey: .priceEffective)
-
-            couponEffectiveDiscount = try container.decode(Int.self, forKey: .couponEffectiveDiscount)
-
-            amountPaid = try container.decode(Int.self, forKey: .amountPaid)
-
-            transferPrice = try container.decode(Int.self, forKey: .transferPrice)
-
-            itemName = try container.decode(String.self, forKey: .itemName)
-
-            identifiers = try container.decode([String: Any].self, forKey: .identifiers)
-
-            gstTag = try container.decode(String.self, forKey: .gstTag)
-
-            brandCalculatedAmount = try container.decode(Int.self, forKey: .brandCalculatedAmount)
-
-            refundCredit = try container.decode(Int.self, forKey: .refundCredit)
-
-            couponValue = try container.decode(Int.self, forKey: .couponValue)
 
             cashbackApplied = try container.decode(Int.self, forKey: .cashbackApplied)
 
             cashback = try container.decode(Int.self, forKey: .cashback)
 
-            pmPriceSplit = try container.decode([String: Any].self, forKey: .pmPriceSplit)
+            deliveryCharge = try container.decode(Int.self, forKey: .deliveryCharge)
 
-            addedToFyndCash = try container.decode(Bool.self, forKey: .addedToFyndCash)
+            couponEffectiveDiscount = try container.decode(Int.self, forKey: .couponEffectiveDiscount)
+
+            identifiers = try container.decode([String: Any].self, forKey: .identifiers)
+
+            itemName = try container.decode(String.self, forKey: .itemName)
 
             fyndCredits = try container.decode(Int.self, forKey: .fyndCredits)
 
-            gstTaxPercentage = try container.decode(Int.self, forKey: .gstTaxPercentage)
+            amountPaid = try container.decode(Int.self, forKey: .amountPaid)
+
+            refundCredit = try container.decode(Int.self, forKey: .refundCredit)
+
+            gstFee = try container.decode(String.self, forKey: .gstFee)
+
+            couponValue = try container.decode(Int.self, forKey: .couponValue)
 
             totalUnits = try container.decode(Int.self, forKey: .totalUnits)
 
-            size = try container.decode(String.self, forKey: .size)
-
-            deliveryCharge = try container.decode(Int.self, forKey: .deliveryCharge)
+            gstTag = try container.decode(String.self, forKey: .gstTag)
 
             promotionEffectiveDiscount = try container.decode(Int.self, forKey: .promotionEffectiveDiscount)
 
-            codCharges = try container.decode(Int.self, forKey: .codCharges)
-
-            hsnCode = try container.decode(String.self, forKey: .hsnCode)
+            discount = try container.decode(Int.self, forKey: .discount)
 
             valueOfGood = try container.decode(Int.self, forKey: .valueOfGood)
 
-            priceMarked = try container.decode(Int.self, forKey: .priceMarked)
+            addedToFyndCash = try container.decode(Bool.self, forKey: .addedToFyndCash)
 
-            discount = try container.decode(Int.self, forKey: .discount)
+            transferPrice = try container.decode(Int.self, forKey: .transferPrice)
+
+            brandCalculatedAmount = try container.decode(Int.self, forKey: .brandCalculatedAmount)
+
+            size = try container.decode(String.self, forKey: .size)
+
+            hsnCode = try container.decode(String.self, forKey: .hsnCode)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(gstFee, forKey: .gstFee)
+            try? container.encodeIfPresent(gstTaxPercentage, forKey: .gstTaxPercentage)
+
+            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
+
+            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+
+            try? container.encodeIfPresent(pmPriceSplit, forKey: .pmPriceSplit)
 
             try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
-
-            try? container.encodeIfPresent(couponEffectiveDiscount, forKey: .couponEffectiveDiscount)
-
-            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
-
-            try? container.encodeIfPresent(transferPrice, forKey: .transferPrice)
-
-            try? container.encodeIfPresent(itemName, forKey: .itemName)
-
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
-
-            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
-
-            try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
-
-            try? container.encodeIfPresent(refundCredit, forKey: .refundCredit)
-
-            try? container.encodeIfPresent(couponValue, forKey: .couponValue)
 
             try? container.encodeIfPresent(cashbackApplied, forKey: .cashbackApplied)
 
             try? container.encodeIfPresent(cashback, forKey: .cashback)
 
-            try? container.encodeIfPresent(pmPriceSplit, forKey: .pmPriceSplit)
+            try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
 
-            try? container.encodeIfPresent(addedToFyndCash, forKey: .addedToFyndCash)
+            try? container.encodeIfPresent(couponEffectiveDiscount, forKey: .couponEffectiveDiscount)
+
+            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+
+            try? container.encodeIfPresent(itemName, forKey: .itemName)
 
             try? container.encodeIfPresent(fyndCredits, forKey: .fyndCredits)
 
-            try? container.encodeIfPresent(gstTaxPercentage, forKey: .gstTaxPercentage)
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
+
+            try? container.encodeIfPresent(refundCredit, forKey: .refundCredit)
+
+            try? container.encodeIfPresent(gstFee, forKey: .gstFee)
+
+            try? container.encodeIfPresent(couponValue, forKey: .couponValue)
 
             try? container.encodeIfPresent(totalUnits, forKey: .totalUnits)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
+            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
 
             try? container.encodeIfPresent(promotionEffectiveDiscount, forKey: .promotionEffectiveDiscount)
 
-            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
-
-            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
+            try? container.encodeIfPresent(discount, forKey: .discount)
 
             try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
 
-            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+            try? container.encodeIfPresent(addedToFyndCash, forKey: .addedToFyndCash)
 
-            try? container.encodeIfPresent(discount, forKey: .discount)
+            try? container.encodeIfPresent(transferPrice, forKey: .transferPrice)
+
+            try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
+
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
         }
     }
 }

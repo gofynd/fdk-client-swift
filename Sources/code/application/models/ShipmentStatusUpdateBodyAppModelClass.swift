@@ -7,24 +7,24 @@ public extension ApplicationClient {
          Used By: Order
      */
     class ShipmentStatusUpdateBody: Codable {
-        public var forceTransition: Bool?
-
         public var task: Bool?
+
+        public var forceTransition: Bool?
 
         public var statuses: [Statuses1]?
 
         public enum CodingKeys: String, CodingKey {
-            case forceTransition = "force_transition"
-
             case task
+
+            case forceTransition = "force_transition"
 
             case statuses
         }
 
         public init(forceTransition: Bool? = nil, statuses: [Statuses1]? = nil, task: Bool? = nil) {
-            self.forceTransition = forceTransition
-
             self.task = task
+
+            self.forceTransition = forceTransition
 
             self.statuses = statuses
         }
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
+                task = try container.decode(Bool.self, forKey: .task)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                task = try container.decode(Bool.self, forKey: .task)
+                forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,9 +60,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
-
             try? container.encodeIfPresent(task, forKey: .task)
+
+            try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
 
             try? container.encodeIfPresent(statuses, forKey: .statuses)
         }

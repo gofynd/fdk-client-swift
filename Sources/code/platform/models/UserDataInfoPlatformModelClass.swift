@@ -8,54 +8,54 @@ public extension PlatformClient {
      */
 
     class UserDataInfo: Codable {
-        public var firstName: String
-
-        public var email: String
+        public var avisUserId: String
 
         public var uid: Int
 
+        public var email: String
+
         public var mobile: String
 
-        public var avisUserId: String
+        public var gender: String
 
         public var lastName: String
 
-        public var gender: String
+        public var firstName: String
 
         public var isAnonymousUser: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case firstName = "first_name"
-
-            case email
+            case avisUserId = "avis_user_id"
 
             case uid
 
+            case email
+
             case mobile
 
-            case avisUserId = "avis_user_id"
+            case gender
 
             case lastName = "last_name"
 
-            case gender
+            case firstName = "first_name"
 
             case isAnonymousUser = "is_anonymous_user"
         }
 
         public init(avisUserId: String, email: String, firstName: String, gender: String, isAnonymousUser: Bool, lastName: String, mobile: String, uid: Int) {
-            self.firstName = firstName
-
-            self.email = email
+            self.avisUserId = avisUserId
 
             self.uid = uid
 
+            self.email = email
+
             self.mobile = mobile
 
-            self.avisUserId = avisUserId
+            self.gender = gender
 
             self.lastName = lastName
 
-            self.gender = gender
+            self.firstName = firstName
 
             self.isAnonymousUser = isAnonymousUser
         }
@@ -63,19 +63,19 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            firstName = try container.decode(String.self, forKey: .firstName)
-
-            email = try container.decode(String.self, forKey: .email)
+            avisUserId = try container.decode(String.self, forKey: .avisUserId)
 
             uid = try container.decode(Int.self, forKey: .uid)
 
+            email = try container.decode(String.self, forKey: .email)
+
             mobile = try container.decode(String.self, forKey: .mobile)
 
-            avisUserId = try container.decode(String.self, forKey: .avisUserId)
+            gender = try container.decode(String.self, forKey: .gender)
 
             lastName = try container.decode(String.self, forKey: .lastName)
 
-            gender = try container.decode(String.self, forKey: .gender)
+            firstName = try container.decode(String.self, forKey: .firstName)
 
             isAnonymousUser = try container.decode(Bool.self, forKey: .isAnonymousUser)
         }
@@ -83,19 +83,19 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
-
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encodeIfPresent(avisUserId, forKey: .avisUserId)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
+            try? container.encodeIfPresent(email, forKey: .email)
+
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encodeIfPresent(avisUserId, forKey: .avisUserId)
+            try? container.encodeIfPresent(gender, forKey: .gender)
 
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
-            try? container.encodeIfPresent(gender, forKey: .gender)
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
 
             try? container.encodeIfPresent(isAnonymousUser, forKey: .isAnonymousUser)
         }

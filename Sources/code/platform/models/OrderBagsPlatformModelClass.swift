@@ -8,88 +8,78 @@ public extension PlatformClient {
      */
 
     class OrderBags: Codable {
+        public var item: OrderBagItem?
+
         public var quantity: Int
 
-        public var article: OrderBagArticle?
+        public var gstDetails: BagGST?
 
-        public var item: OrderBagItem?
+        public var entityType: String
 
         public var bagConfigs: BagConfigs?
 
         public var displayName: String
 
-        public var financialBreakup: [FinancialBreakup]?
-
         public var currentStatus: String
-
-        public var gstDetails: BagGST?
-
-        public var bagId: Int
-
-        public var entityType: String
 
         public var brand: OrderBrandName?
 
+        public var financialBreakup: [FinancialBreakup]?
+
+        public var bagId: Int
+
+        public var article: OrderBagArticle?
+
         public enum CodingKeys: String, CodingKey {
+            case item
+
             case quantity
 
-            case article
+            case gstDetails = "gst_details"
 
-            case item
+            case entityType = "entity_type"
 
             case bagConfigs = "bag_configs"
 
             case displayName = "display_name"
 
-            case financialBreakup = "financial_breakup"
-
             case currentStatus = "current_status"
 
-            case gstDetails = "gst_details"
+            case brand
+
+            case financialBreakup = "financial_breakup"
 
             case bagId = "bag_id"
 
-            case entityType = "entity_type"
-
-            case brand
+            case article
         }
 
         public init(article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, brand: OrderBrandName? = nil, currentStatus: String, displayName: String, entityType: String, financialBreakup: [FinancialBreakup]? = nil, gstDetails: BagGST? = nil, item: OrderBagItem? = nil, quantity: Int) {
+            self.item = item
+
             self.quantity = quantity
 
-            self.article = article
+            self.gstDetails = gstDetails
 
-            self.item = item
+            self.entityType = entityType
 
             self.bagConfigs = bagConfigs
 
             self.displayName = displayName
 
-            self.financialBreakup = financialBreakup
-
             self.currentStatus = currentStatus
 
-            self.gstDetails = gstDetails
+            self.brand = brand
+
+            self.financialBreakup = financialBreakup
 
             self.bagId = bagId
 
-            self.entityType = entityType
-
-            self.brand = brand
+            self.article = article
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            quantity = try container.decode(Int.self, forKey: .quantity)
-
-            do {
-                article = try container.decode(OrderBagArticle.self, forKey: .article)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 item = try container.decode(OrderBagItem.self, forKey: .item)
@@ -98,6 +88,18 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            quantity = try container.decode(Int.self, forKey: .quantity)
+
+            do {
+                gstDetails = try container.decode(BagGST.self, forKey: .gstDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            entityType = try container.decode(String.self, forKey: .entityType)
 
             do {
                 bagConfigs = try container.decode(BagConfigs.self, forKey: .bagConfigs)
@@ -109,6 +111,16 @@ public extension PlatformClient {
 
             displayName = try container.decode(String.self, forKey: .displayName)
 
+            currentStatus = try container.decode(String.self, forKey: .currentStatus)
+
+            do {
+                brand = try container.decode(OrderBrandName.self, forKey: .brand)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             do {
                 financialBreakup = try container.decode([FinancialBreakup].self, forKey: .financialBreakup)
 
@@ -117,22 +129,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            currentStatus = try container.decode(String.self, forKey: .currentStatus)
-
-            do {
-                gstDetails = try container.decode(BagGST.self, forKey: .gstDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             bagId = try container.decode(Int.self, forKey: .bagId)
 
-            entityType = try container.decode(String.self, forKey: .entityType)
-
             do {
-                brand = try container.decode(OrderBrandName.self, forKey: .brand)
+                article = try container.decode(OrderBagArticle.self, forKey: .article)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -143,27 +143,27 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(item, forKey: .item)
+
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(article, forKey: .article)
+            try? container.encodeIfPresent(gstDetails, forKey: .gstDetails)
 
-            try? container.encodeIfPresent(item, forKey: .item)
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
 
             try? container.encodeIfPresent(bagConfigs, forKey: .bagConfigs)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(financialBreakup, forKey: .financialBreakup)
-
             try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
 
-            try? container.encodeIfPresent(gstDetails, forKey: .gstDetails)
+            try? container.encodeIfPresent(brand, forKey: .brand)
+
+            try? container.encodeIfPresent(financialBreakup, forKey: .financialBreakup)
 
             try? container.encodeIfPresent(bagId, forKey: .bagId)
 
-            try? container.encodeIfPresent(entityType, forKey: .entityType)
-
-            try? container.encodeIfPresent(brand, forKey: .brand)
+            try? container.encodeIfPresent(article, forKey: .article)
         }
     }
 }

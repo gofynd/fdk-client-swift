@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var reason: [Int]?
 
-        public var bags: [Int]?
-
         public var dataUpdate: [String: Any]?
+
+        public var bags: [Int]?
 
         public enum CodingKeys: String, CodingKey {
             case products
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case reason
 
-            case bags
-
             case dataUpdate = "data_update"
+
+            case bags
         }
 
         public init(bags: [Int]? = nil, dataUpdate: [String: Any]? = nil, products: [ProductDetail]? = nil, reason: [Int]? = nil, storeInvoiceId: String? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient {
 
             self.reason = reason
 
-            self.bags = bags
-
             self.dataUpdate = dataUpdate
+
+            self.bags = bags
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                bags = try container.decode([Int].self, forKey: .bags)
+                dataUpdate = try container.decode([String: Any].self, forKey: .dataUpdate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                dataUpdate = try container.decode([String: Any].self, forKey: .dataUpdate)
+                bags = try container.decode([Int].self, forKey: .bags)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(reason, forKey: .reason)
 
-            try? container.encodeIfPresent(bags, forKey: .bags)
-
             try? container.encodeIfPresent(dataUpdate, forKey: .dataUpdate)
+
+            try? container.encodeIfPresent(bags, forKey: .bags)
         }
     }
 }
