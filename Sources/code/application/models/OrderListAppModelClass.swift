@@ -7,46 +7,64 @@ public extension ApplicationClient {
          Used By: Order
      */
     class OrderList: Codable {
-        public var items: [OrderSchema]
+        public var page: Page?
 
-        public var page: OrderPage
+        public var filters: Filters?
 
-        public var filters: OrderFilters
+        public var items: [OrderItems]?
 
         public enum CodingKeys: String, CodingKey {
-            case items
-
             case page
 
             case filters
+
+            case items
         }
 
-        public init(filters: OrderFilters, items: [OrderSchema], page: OrderPage) {
-            self.items = items
-
+        public init(filters: Filters? = nil, items: [OrderItems]? = nil, page: Page? = nil) {
             self.page = page
 
             self.filters = filters
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            items = try container.decode([OrderSchema].self, forKey: .items)
+            do {
+                page = try container.decode(Page.self, forKey: .page)
 
-            page = try container.decode(OrderPage.self, forKey: .page)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            filters = try container.decode(OrderFilters.self, forKey: .filters)
+            do {
+                filters = try container.decode(Filters.self, forKey: .filters)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                items = try container.decode([OrderItems].self, forKey: .items)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

@@ -10,9 +10,9 @@ public extension PlatformClient {
     class InventoryPage: Codable {
         public var hasPrevious: Bool?
 
-        public var itemTotal: Int
-
         public var nextId: String?
+
+        public var itemTotal: Int
 
         public var type: String
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case hasPrevious = "has_previous"
 
-            case itemTotal = "item_total"
-
             case nextId = "next_id"
+
+            case itemTotal = "item_total"
 
             case type
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int, nextId: String? = nil, type: String) {
             self.hasPrevious = hasPrevious
 
-            self.itemTotal = itemTotal
-
             self.nextId = nextId
+
+            self.itemTotal = itemTotal
 
             self.type = type
 
@@ -53,8 +53,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-
             do {
                 nextId = try container.decode(String.self, forKey: .nextId)
 
@@ -62,6 +60,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             type = try container.decode(String.self, forKey: .type)
 
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-
             try? container.encodeIfPresent(nextId, forKey: .nextId)
+
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
             try? container.encodeIfPresent(type, forKey: .type)
 

@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class CollectionQuery: Codable {
         public var attribute: String
 
-        public var op: String
-
         public var value: [[String: Any]]
+
+        public var op: String
 
         public enum CodingKeys: String, CodingKey {
             case attribute
 
-            case op
-
             case value
+
+            case op
         }
 
         public init(attribute: String, op: String, value: [[String: Any]]) {
             self.attribute = attribute
 
-            self.op = op
-
             self.value = value
+
+            self.op = op
         }
 
         required public init(from decoder: Decoder) throws {
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             attribute = try container.decode(String.self, forKey: .attribute)
 
-            op = try container.decode(String.self, forKey: .op)
-
             value = try container.decode([[String: Any]].self, forKey: .value)
+
+            op = try container.decode(String.self, forKey: .op)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -44,9 +44,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(attribute, forKey: .attribute)
 
-            try? container.encodeIfPresent(op, forKey: .op)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(op, forKey: .op)
         }
     }
 }
