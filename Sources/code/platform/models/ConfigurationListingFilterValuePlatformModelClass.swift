@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var sort: String?
 
-        public var mapValues: [[String: Any]]?
-
         public var map: [String: Any]?
+
+        public var mapValues: [[String: Any]]?
 
         public var condition: String?
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case sort
 
-            case mapValues = "map_values"
-
             case map
+
+            case mapValues = "map_values"
 
             case condition
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             self.sort = sort
 
-            self.mapValues = mapValues
-
             self.map = map
+
+            self.mapValues = mapValues
 
             self.condition = condition
         }
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                mapValues = try container.decode([[String: Any]].self, forKey: .mapValues)
+                map = try container.decode([String: Any].self, forKey: .map)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                map = try container.decode([String: Any].self, forKey: .map)
+                mapValues = try container.decode([[String: Any]].self, forKey: .mapValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,9 +109,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(sort, forKey: .sort)
 
-            try? container.encodeIfPresent(mapValues, forKey: .mapValues)
-
             try? container.encodeIfPresent(map, forKey: .map)
+
+            try? container.encodeIfPresent(mapValues, forKey: .mapValues)
 
             try? container.encodeIfPresent(condition, forKey: .condition)
         }

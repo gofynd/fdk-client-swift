@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class CreditSummary: Codable {
         public var balance: BalanceDetails?
 
-        public var status: String
-
         public var merchantCustomerRefId: String
+
+        public var status: String
 
         public var statusMessage: String
 
         public enum CodingKeys: String, CodingKey {
             case balance
 
-            case status
-
             case merchantCustomerRefId = "merchant_customer_ref_id"
+
+            case status
 
             case statusMessage = "status_message"
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(balance: BalanceDetails? = nil, merchantCustomerRefId: String, status: String, statusMessage: String) {
             self.balance = balance
 
-            self.status = status
-
             self.merchantCustomerRefId = merchantCustomerRefId
+
+            self.status = status
 
             self.statusMessage = statusMessage
         }
@@ -46,9 +46,9 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            status = try container.decode(String.self, forKey: .status)
-
             merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
+
+            status = try container.decode(String.self, forKey: .status)
 
             statusMessage = try container.decode(String.self, forKey: .statusMessage)
         }
@@ -58,9 +58,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(balance, forKey: .balance)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(merchantCustomerRefId, forKey: .merchantCustomerRefId)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(statusMessage, forKey: .statusMessage)
         }
