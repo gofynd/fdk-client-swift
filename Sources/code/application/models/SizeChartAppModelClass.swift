@@ -13,11 +13,11 @@ public extension ApplicationClient {
 
         public var image: String?
 
+        public var sizeTip: String?
+
         public var sizes: [SizeChartValues]?
 
         public var headers: ColumnHeaders?
-
-        public var sizeTip: String?
 
         public var unit: String?
 
@@ -28,11 +28,11 @@ public extension ApplicationClient {
 
             case image
 
+            case sizeTip = "size_tip"
+
             case sizes
 
             case headers
-
-            case sizeTip = "size_tip"
 
             case unit
         }
@@ -44,11 +44,11 @@ public extension ApplicationClient {
 
             self.image = image
 
+            self.sizeTip = sizeTip
+
             self.sizes = sizes
 
             self.headers = headers
-
-            self.sizeTip = sizeTip
 
             self.unit = unit
         }
@@ -81,6 +81,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                sizeTip = try container.decode(String.self, forKey: .sizeTip)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 sizes = try container.decode([SizeChartValues].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -90,14 +98,6 @@ public extension ApplicationClient {
 
             do {
                 headers = try container.decode(ColumnHeaders.self, forKey: .headers)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                sizeTip = try container.decode(String.self, forKey: .sizeTip)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,11 +122,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(image, forKey: .image)
 
+            try? container.encodeIfPresent(sizeTip, forKey: .sizeTip)
+
             try? container.encodeIfPresent(sizes, forKey: .sizes)
 
             try? container.encodeIfPresent(headers, forKey: .headers)
-
-            try? container.encodeIfPresent(sizeTip, forKey: .sizeTip)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
         }
