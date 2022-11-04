@@ -53,6 +53,7 @@ public extension ApplicationClient {
             fromDate: String?,
             toDate: String?,
             status: Int?,
+            customMeta: String?,
 
             onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
         ) {
@@ -76,6 +77,10 @@ public extension ApplicationClient {
 
             if let value = status {
                 xQuery["status"] = value
+            }
+
+            if let value = customMeta {
+                xQuery["custom_meta"] = value
             }
 
             let fullUrl = relativeUrls["getOrders"] ?? ""

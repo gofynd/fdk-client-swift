@@ -3,38 +3,38 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: OrderQuantity
-         Used By: Catalog
+         Model: CommunicationDetails
+         Used By: Lead
      */
 
-    class OrderQuantity: Codable {
-        public var isSet: Bool?
+    class CommunicationDetails: Codable {
+        public var value: String?
 
-        public var maximum: Int?
+        public var description: String?
 
-        public var minimum: Int?
+        public var enabled: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case isSet = "is_set"
+            case value
 
-            case maximum
+            case description
 
-            case minimum
+            case enabled
         }
 
-        public init(isSet: Bool? = nil, maximum: Int? = nil, minimum: Int? = nil) {
-            self.isSet = isSet
+        public init(description: String? = nil, enabled: Bool? = nil, value: String? = nil) {
+            self.value = value
 
-            self.maximum = maximum
+            self.description = description
 
-            self.minimum = minimum
+            self.enabled = enabled
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isSet = try container.decode(Bool.self, forKey: .isSet)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                maximum = try container.decode(Int.self, forKey: .maximum)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                minimum = try container.decode(Int.self, forKey: .minimum)
+                enabled = try container.decode(Bool.self, forKey: .enabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,11 +61,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
+            try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(maximum, forKey: .maximum)
+            try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(minimum, forKey: .minimum)
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
         }
     }
 }

@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class TaxSlab: Codable {
-        public var threshold: Double
-
         public var rate: Double
+
+        public var threshold: Double
 
         public var effectiveDate: String
 
         public var cess: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case threshold
-
             case rate
+
+            case threshold
 
             case effectiveDate = "effective_date"
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(cess: Double? = nil, effectiveDate: String, rate: Double, threshold: Double) {
-            self.threshold = threshold
-
             self.rate = rate
+
+            self.threshold = threshold
 
             self.effectiveDate = effectiveDate
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            threshold = try container.decode(Double.self, forKey: .threshold)
-
             rate = try container.decode(Double.self, forKey: .rate)
+
+            threshold = try container.decode(Double.self, forKey: .threshold)
 
             effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
 
@@ -57,9 +57,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(threshold, forKey: .threshold)
-
             try? container.encodeIfPresent(rate, forKey: .rate)
+
+            try? container.encodeIfPresent(threshold, forKey: .threshold)
 
             try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
 

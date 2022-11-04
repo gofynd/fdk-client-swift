@@ -9,34 +9,34 @@ public extension ApplicationClient {
     class CartCheckoutResponse: Codable {
         public var callbackUrl: String?
 
-        public var message: String?
+        public var cart: CheckCart?
 
         public var paymentConfirmUrl: String?
 
-        public var orderId: String?
+        public var message: String?
 
         public var appInterceptUrl: String?
 
         public var data: [String: Any]?
 
-        public var cart: CheckCart?
+        public var orderId: String?
 
         public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case callbackUrl = "callback_url"
 
-            case message
+            case cart
 
             case paymentConfirmUrl = "payment_confirm_url"
 
-            case orderId = "order_id"
+            case message
 
             case appInterceptUrl = "app_intercept_url"
 
             case data
 
-            case cart
+            case orderId = "order_id"
 
             case success
         }
@@ -44,17 +44,17 @@ public extension ApplicationClient {
         public init(appInterceptUrl: String? = nil, callbackUrl: String? = nil, cart: CheckCart? = nil, data: [String: Any]? = nil, message: String? = nil, orderId: String? = nil, paymentConfirmUrl: String? = nil, success: Bool? = nil) {
             self.callbackUrl = callbackUrl
 
-            self.message = message
+            self.cart = cart
 
             self.paymentConfirmUrl = paymentConfirmUrl
 
-            self.orderId = orderId
+            self.message = message
 
             self.appInterceptUrl = appInterceptUrl
 
             self.data = data
 
-            self.cart = cart
+            self.orderId = orderId
 
             self.success = success
         }
@@ -71,7 +71,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                cart = try container.decode(CheckCart.self, forKey: .cart)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -87,7 +87,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,7 +111,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                cart = try container.decode(CheckCart.self, forKey: .cart)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,17 +132,17 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(cart, forKey: .cart)
 
             try? container.encodeIfPresent(paymentConfirmUrl, forKey: .paymentConfirmUrl)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(appInterceptUrl, forKey: .appInterceptUrl)
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(cart, forKey: .cart)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }

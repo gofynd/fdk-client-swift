@@ -187,8 +187,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | requestUuid | String |  no  |  |
- | stormbreakerUuid | String |  no  |  |
+ | requestUuid | String? |  yes  |  |
+ | stormbreakerUuid | String? |  yes  |  |
  | success | Bool |  no  |  |
  | data | [[LogisticPincodeData](#LogisticPincodeData)] |  no  |  |
 
@@ -307,6 +307,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | manufacturingTime | Int? |  yes  |  |
+ | manufacturingTimeUnit | String? |  yes  |  |
  | category | [LogisticRequestCategory](#LogisticRequestCategory)? |  yes  |  |
 
 ---
@@ -331,13 +333,13 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | locationDetails | [[LocationDetails](#LocationDetails)] |  no  |  |
- | requestUuid | String |  no  |  |
+ | requestUuid | String? |  yes  |  |
  | error | [String: Any] |  no  |  |
  | toCity | String |  no  |  |
  | source | String |  no  |  |
  | toPincode | String |  no  |  |
  | action | String |  no  |  |
- | stormbreakerUuid | String |  no  |  |
+ | stormbreakerUuid | String? |  yes  |  |
  | success | Bool |  no  |  |
  | identifier | String |  no  |  |
  | journey | String |  no  |  |

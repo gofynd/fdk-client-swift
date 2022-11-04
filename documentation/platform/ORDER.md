@@ -14,6 +14,7 @@ Handles Platform websites OMS
 * [getOrdersByCompanyId](#getordersbycompanyid)
 * [getOrderLanesCountByCompanyId](#getorderlanescountbycompanyid)
 * [getOrderDetails](#getorderdetails)
+* [getOrderDetails](#getorderdetails)
 * [getPicklistOrdersByCompanyId](#getpicklistordersbycompanyid)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [trackOrder](#trackorder)
@@ -25,9 +26,6 @@ Handles Platform websites OMS
 * [getShipmentAddress](#getshipmentaddress)
 * [updateShipmentAddress](#updateshipmentaddress)
 * [getOrdersByApplicationId](#getordersbyapplicationid)
-* [getPing](#getping)
-* [voiceCallback](#voicecallback)
-* [voiceClickToCall](#voiceclicktocall)
 
 
 
@@ -313,7 +311,7 @@ Get Orders for company based on Company Id
 
 
 ```swift
-client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, isPrioritySort: isPrioritySort, lockStatus: lockStatus, userId: userId, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, deploymentStores: deploymentStores, status: status, dp: dp, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, isPrioritySort: isPrioritySort, lockStatus: lockStatus, userId: userId, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, deploymentStores: deploymentStores, status: status, dp: dp, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -339,7 +337,6 @@ client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: 
 | deploymentStores | String? | no | Selected Deployment Stores |   
 | status | String? | no | Status of order |   
 | dp | String? | no | Delivery Partners |   
-| shortenUrls | Bool? | no | Shorten URL option |   
 | filterType | String? | no | Filters |  
 
 
@@ -384,7 +381,7 @@ Get Order Lanes Count for company based on Company Id
 
 
 ```swift
-client.order.getOrderLanesCountByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+client.order.getOrderLanesCountByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -405,7 +402,6 @@ client.order.getOrderLanesCountByCompanyId(pageNo: pageNo, pageSize: pageSize, f
 | orderId | String? | no | Order Id |   
 | stores | String? | no | Selected Stores |   
 | status | String? | no | Status of order |   
-| shortenUrls | Bool? | no | Shorten URL option |   
 | filterType | String? | no | Filters |  
 
 
@@ -500,6 +496,63 @@ Success
 ---
 
 
+#### getOrderDetails
+Get Order Details for company based on Company Id and Order Id
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").order.getOrderDetails(orderId: orderId, next: next, previous: previous) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| orderId | String? | no | Order Id |   
+| next | String? | no | Next |   
+| previous | String? | no | Previous |  
+
+
+
+Get Orders
+
+*Returned Response:*
+
+
+
+
+[OrderDetails](#OrderDetails)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getPicklistOrdersByCompanyId
 Get Orders for company based on Company Id
 
@@ -507,7 +560,7 @@ Get Orders for company based on Company Id
 
 
 ```swift
-client.order.getPicklistOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+client.order.getPicklistOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -528,7 +581,6 @@ client.order.getPicklistOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fr
 | orderId | String? | no | Order Id |   
 | stores | String? | no | Selected Stores |   
 | status | String? | no | Status of order |   
-| shortenUrls | Bool? | no | Shorten URL option |   
 | filterType | String? | no | Filters |  
 
 
@@ -1089,7 +1141,7 @@ client.application("<APPLICATION_ID>").order.getOrdersByApplicationId(pageNo: pa
 | status | String? | no | Status of order |   
 | dp | String? | no | Delivery Partners |   
 | userId | String? | no | User Id |   
-| shortenUrls | Bool? | no | Shorten URL option |   
+| shortenUrls | String? | no | User Id |   
 | filterType | String? | no | Filters |  
 
 
@@ -1102,162 +1154,6 @@ Get Orders at Application Level
 
 
 [OrderListing](#OrderListing)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getPing
-Get Ping
-
-
-
-
-```swift
-client.order.getPing() { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-
-Get Ping
-
-*Returned Response:*
-
-
-
-
-[GetPingResponse](#GetPingResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### voiceCallback
-Get Voice Callback
-
-
-
-
-```swift
-client.order.voiceCallback() { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-
-Voice Callback
-
-*Returned Response:*
-
-
-
-
-[GetVoiceCallbackResponse](#GetVoiceCallbackResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### voiceClickToCall
-Get Voice Click to Call
-
-
-
-
-```swift
-client.order.voiceClickToCall(caller: caller, receiver: receiver) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| caller | String | yes | Caller contact number |   
-| receiver | String | yes | Receiver contact number |  
-
-
-
-Voice Click to Call
-
-*Returned Response:*
-
-
-
-
-[GetClickToCallResponse](#GetClickToCallResponse)
 
 Success
 
@@ -2645,7 +2541,7 @@ Success
  | hsnCode | String? |  yes  |  |
  | priceEffective | Double? |  yes  |  |
  | codCharges | Double? |  yes  |  |
- | gstFee | String? |  yes  |  |
+ | gstFee | Double? |  yes  |  |
  | fyndCredits | Double? |  yes  |  |
  | refundAmount | Double? |  yes  |  |
  | cashbackApplied | Double? |  yes  |  |
@@ -2785,7 +2681,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brandCalculatedAmount | Double? |  yes  |  |
- | gstFee | String? |  yes  |  |
+ | gstFee | Double? |  yes  |  |
  | gstTag | String? |  yes  |  |
  | hsnCode | String? |  yes  |  |
  | valueOfGood | Double? |  yes  |  |

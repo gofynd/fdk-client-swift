@@ -10,24 +10,24 @@ public extension PlatformClient {
     class WeightResponse: Codable {
         public var isDefault: Bool
 
-        public var shipping: Double
-
         public var unit: String
+
+        public var shipping: Double
 
         public enum CodingKeys: String, CodingKey {
             case isDefault = "is_default"
 
-            case shipping
-
             case unit
+
+            case shipping
         }
 
         public init(isDefault: Bool, shipping: Double, unit: String) {
             self.isDefault = isDefault
 
-            self.shipping = shipping
-
             self.unit = unit
+
+            self.shipping = shipping
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
-            shipping = try container.decode(Double.self, forKey: .shipping)
-
             unit = try container.decode(String.self, forKey: .unit)
+
+            shipping = try container.decode(Double.self, forKey: .shipping)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(shipping, forKey: .shipping)
-
             try? container.encodeIfPresent(unit, forKey: .unit)
+
+            try? container.encodeIfPresent(shipping, forKey: .shipping)
         }
     }
 }
