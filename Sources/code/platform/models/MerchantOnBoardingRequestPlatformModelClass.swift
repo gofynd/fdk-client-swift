@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var userId: String
 
-        public var creditLineId: String
-
         public var aggregator: String
+
+        public var creditLineId: String
 
         public var appId: String
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case userId = "user_id"
 
-            case creditLineId = "credit_line_id"
-
             case aggregator
+
+            case creditLineId = "credit_line_id"
 
             case appId = "app_id"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.userId = userId
 
-            self.creditLineId = creditLineId
-
             self.aggregator = aggregator
+
+            self.creditLineId = creditLineId
 
             self.appId = appId
         }
@@ -49,9 +49,9 @@ public extension PlatformClient {
 
             userId = try container.decode(String.self, forKey: .userId)
 
-            creditLineId = try container.decode(String.self, forKey: .creditLineId)
-
             aggregator = try container.decode(String.self, forKey: .aggregator)
+
+            creditLineId = try container.decode(String.self, forKey: .creditLineId)
 
             appId = try container.decode(String.self, forKey: .appId)
         }
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(creditLineId, forKey: .creditLineId)
-
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encodeIfPresent(creditLineId, forKey: .creditLineId)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
         }

@@ -52,7 +52,7 @@ public extension ApplicationClient {
             pageSize: Int?,
             fromDate: String?,
             toDate: String?,
-            status: String?,
+            status: Int?,
             customMeta: String?,
 
             onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
