@@ -46,7 +46,7 @@ order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: 
 | pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10. |   
 | fromDate | String? | no | The date from which the orders should be retrieved. |   
 | toDate | String? | no | The date till which the orders should be retrieved. |   
-| status | String? | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |   
+| status | Int? | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |   
 | customMeta | String? | no | A filter and retrieve data using special fields included for special use-cases |  
 
 
