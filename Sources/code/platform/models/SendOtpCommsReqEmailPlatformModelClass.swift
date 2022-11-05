@@ -1,39 +1,40 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: ProductSimilarItem
-         Used By: Catalog
+         Model: SendOtpCommsReqEmail
+         Used By: Communication
      */
-    class ProductSimilarItem: Codable {
-        public var subtitle: String?
 
-        public var items: [ProductDetail]?
+    class SendOtpCommsReqEmail: Codable {
+        public var otpLength: Int?
 
-        public var title: String?
+        public var expiry: Int?
+
+        public var template: SendOtpSmsCommsTemplate?
 
         public enum CodingKeys: String, CodingKey {
-            case subtitle
+            case otpLength = "otp_length"
 
-            case items
+            case expiry
 
-            case title
+            case template
         }
 
-        public init(items: [ProductDetail]? = nil, subtitle: String? = nil, title: String? = nil) {
-            self.subtitle = subtitle
+        public init(expiry: Int? = nil, otpLength: Int? = nil, template: SendOtpSmsCommsTemplate? = nil) {
+            self.otpLength = otpLength
 
-            self.items = items
+            self.expiry = expiry
 
-            self.title = title
+            self.template = template
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                subtitle = try container.decode(String.self, forKey: .subtitle)
+                otpLength = try container.decode(Int.self, forKey: .otpLength)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +42,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                items = try container.decode([ProductDetail].self, forKey: .items)
+                expiry = try container.decode(Int.self, forKey: .expiry)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +50,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                template = try container.decode(SendOtpSmsCommsTemplate.self, forKey: .template)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +61,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+            try? container.encodeIfPresent(otpLength, forKey: .otpLength)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(expiry, forKey: .expiry)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(template, forKey: .template)
         }
     }
 }

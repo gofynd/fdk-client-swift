@@ -10,36 +10,36 @@ public extension PlatformClient {
     class ProductFiltersKey: Codable {
         public var operators: [String]?
 
+        public var logo: String?
+
+        public var kind: String?
+
         public var name: String
 
         public var display: String
 
-        public var kind: String?
-
-        public var logo: String?
-
         public enum CodingKeys: String, CodingKey {
             case operators
+
+            case logo
+
+            case kind
 
             case name
 
             case display
-
-            case kind
-
-            case logo
         }
 
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String, operators: [String]? = nil) {
             self.operators = operators
 
-            self.name = name
-
-            self.display = display
+            self.logo = logo
 
             self.kind = kind
 
-            self.logo = logo
+            self.name = name
+
+            self.display = display
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,9 +53,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
+            do {
+                logo = try container.decode(String.self, forKey: .logo)
 
-            display = try container.decode(String.self, forKey: .display)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 kind = try container.decode(String.self, forKey: .kind)
@@ -65,13 +69,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                logo = try container.decode(String.self, forKey: .logo)
+            name = try container.decode(String.self, forKey: .name)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            display = try container.decode(String.self, forKey: .display)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -79,13 +79,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(operators, forKey: .operators)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(kind, forKey: .kind)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 }

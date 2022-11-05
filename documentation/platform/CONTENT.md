@@ -21,7 +21,6 @@ Content System
 * [getDataLoaders](#getdataloaders)
 * [deleteDataLoader](#deletedataloader)
 * [editDataLoader](#editdataloader)
-* [getDataLoadersByService](#getdataloadersbyservice)
 * [selectDataLoader](#selectdataloader)
 * [resetDataLoader](#resetdataloader)
 * [getFaqCategories](#getfaqcategories)
@@ -1494,94 +1493,6 @@ Success.
   "type": "url",
   "application": "000000000000000000000001",
   "__v": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getDataLoadersByService
-Get all the data loaders in an application by service name
-
-
-
-
-```swift
-client.application("<APPLICATION_ID>").content.getDataLoadersByService(serviceName: serviceName) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| serviceName | String | yes | Service name of the data loader. |  
-
-
-
-Use this to get all data loaders of an application by service name
-
-*Returned Response:*
-
-
-
-
-[DataLoadersSchema](#DataLoadersSchema)
-
-Success. Refer `DataLoaderResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "name": "Algolia",
-      "is_selected": false,
-      "type": "url",
-      "_id": "61bc4523a7ffc7504f4de4a5",
-      "service": "catalog",
-      "operation_id": "fetchSuggestions",
-      "url": "/ext/example/url",
-      "__source": {
-        "type": "extension",
-        "id": "000000000000000000000003"
-      },
-      "application": "100000000000000000000001",
-      "__v": 0
-    },
-    {
-      "name": "Algolia v3",
-      "is_selected": false,
-      "type": "url",
-      "_id": "61bc452da7ffc7504f4de4a7",
-      "service": "catalog",
-      "operation_id": "fetchSuggestions",
-      "url": "/ext/example/url",
-      "__source": {
-        "type": "extension",
-        "id": "000000000000000000000003"
-      },
-      "application": "100000000000000000000001",
-      "__v": 0
-    }
-  ]
 }
 ```
 </details>
@@ -7734,7 +7645,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | active | Bool? |  yes  |  |
  | display | String? |  yes  |  |
  | sortOrder | Int? |  yes  |  |
- | subNavigation | [[NavigationReference](#NavigationReference)]? |  yes  |  |
+ | subNavigation | [[String: Any]]? |  yes  |  |
 
 ---
 
@@ -7951,6 +7862,17 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | requestId | String? |  yes  |  |
  | stackTrace | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CommonError](#CommonError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
 
 ---
 

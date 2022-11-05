@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class SharedCartDetails: Codable {
         public var source: [String: Any]?
 
-        public var token: String?
-
         public var user: [String: Any]?
+
+        public var token: String?
 
         public var createdOn: String?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case source
 
-            case token
-
             case user
+
+            case token
 
             case createdOn = "created_on"
 
@@ -32,9 +32,9 @@ public extension ApplicationClient {
         public init(createdOn: String? = nil, meta: [String: Any]? = nil, source: [String: Any]? = nil, token: String? = nil, user: [String: Any]? = nil) {
             self.source = source
 
-            self.token = token
-
             self.user = user
+
+            self.token = token
 
             self.createdOn = createdOn
 
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                token = try container.decode(String.self, forKey: .token)
+                user = try container.decode([String: Any].self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                user = try container.decode([String: Any].self, forKey: .user)
+                token = try container.decode(String.self, forKey: .token)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(source, forKey: .source)
 
-            try? container.encodeIfPresent(token, forKey: .token)
-
             try? container.encodeIfPresent(user, forKey: .user)
+
+            try? container.encodeIfPresent(token, forKey: .token)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 

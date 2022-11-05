@@ -3,64 +3,64 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: Products
+         Model: ProductInGroup
          Used By: Catalog
      */
-    class Products: Codable {
-        public var allowRemove: Bool?
-
+    class ProductInGroup: Codable {
         public var minQuantity: Int?
 
-        public var sizes: [Size]?
-
-        public var maxQuantity: Int?
-
-        public var autoAddToCart: Bool?
+        public var price: ProductGroupPrice?
 
         public var autoSelect: Bool?
 
-        public var price: Price1?
+        public var maxQuantity: Int
 
         public var productDetails: ProductDetails?
 
-        public var productUid: Int?
+        public var sizes: [Size]?
+
+        public var allowRemove: Bool?
+
+        public var autoAddToCart: Bool?
+
+        public var productUid: Int
 
         public enum CodingKeys: String, CodingKey {
-            case allowRemove = "allow_remove"
-
             case minQuantity = "min_quantity"
-
-            case sizes
-
-            case maxQuantity = "max_quantity"
-
-            case autoAddToCart = "auto_add_to_cart"
-
-            case autoSelect = "auto_select"
 
             case price
 
+            case autoSelect = "auto_select"
+
+            case maxQuantity = "max_quantity"
+
             case productDetails = "product_details"
+
+            case sizes
+
+            case allowRemove = "allow_remove"
+
+            case autoAddToCart = "auto_add_to_cart"
 
             case productUid = "product_uid"
         }
 
-        public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: Price1? = nil, productDetails: ProductDetails? = nil, productUid: Int? = nil, sizes: [Size]? = nil) {
-            self.allowRemove = allowRemove
-
+        public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int, minQuantity: Int? = nil, price: ProductGroupPrice? = nil, productDetails: ProductDetails? = nil, productUid: Int, sizes: [Size]? = nil) {
             self.minQuantity = minQuantity
-
-            self.sizes = sizes
-
-            self.maxQuantity = maxQuantity
-
-            self.autoAddToCart = autoAddToCart
-
-            self.autoSelect = autoSelect
 
             self.price = price
 
+            self.autoSelect = autoSelect
+
+            self.maxQuantity = maxQuantity
+
             self.productDetails = productDetails
+
+            self.sizes = sizes
+
+            self.allowRemove = allowRemove
+
+            self.autoAddToCart = autoAddToCart
 
             self.productUid = productUid
         }
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
+                minQuantity = try container.decode(Int.self, forKey: .minQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,25 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                minQuantity = try container.decode(Int.self, forKey: .minQuantity)
+                price = try container.decode(ProductGroupPrice.self, forKey: .price)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                autoSelect = try container.decode(Bool.self, forKey: .autoSelect)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
+
+            do {
+                productDetails = try container.decode(ProductDetails.self, forKey: .productDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +111,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
+                allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,57 +126,27 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                autoSelect = try container.decode(Bool.self, forKey: .autoSelect)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                price = try container.decode(Price1.self, forKey: .price)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                productDetails = try container.decode(ProductDetails.self, forKey: .productDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                productUid = try container.decode(Int.self, forKey: .productUid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            productUid = try container.decode(Int.self, forKey: .productUid)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
-
             try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
-
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
-
-            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
-
-            try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
-
-            try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
 
             try? container.encodeIfPresent(price, forKey: .price)
 
+            try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
+
+            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
+
             try? container.encodeIfPresent(productDetails, forKey: .productDetails)
+
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
+
+            try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
+
+            try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
 
             try? container.encodeIfPresent(productUid, forKey: .productUid)
         }

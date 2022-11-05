@@ -12,34 +12,34 @@ public extension PlatformClient {
 
         public var type: String?
 
-        public var images: [ProductImage]?
-
         public var action: ProductAction?
 
-        public var brand: BaseInfo?
+        public var name: String?
 
         public var categories: [CategoryInfo]?
 
         public var uid: Int?
 
-        public var name: String?
+        public var images: [ProductImage]?
+
+        public var brand: BaseInfo?
 
         public enum CodingKeys: String, CodingKey {
             case slug
 
             case type
 
-            case images
-
             case action
 
-            case brand
+            case name
 
             case categories
 
             case uid
 
-            case name
+            case images
+
+            case brand
         }
 
         public init(action: ProductAction? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, images: [ProductImage]? = nil, name: String? = nil, slug: String? = nil, type: String? = nil, uid: Int? = nil) {
@@ -47,17 +47,17 @@ public extension PlatformClient {
 
             self.type = type
 
-            self.images = images
-
             self.action = action
 
-            self.brand = brand
+            self.name = name
 
             self.categories = categories
 
             self.uid = uid
 
-            self.name = name
+            self.images = images
+
+            self.brand = brand
         }
 
         required public init(from decoder: Decoder) throws {
@@ -80,14 +80,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                images = try container.decode([ProductImage].self, forKey: .images)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 action = try container.decode(ProductAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -96,7 +88,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                brand = try container.decode(BaseInfo.self, forKey: .brand)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +112,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                images = try container.decode([ProductImage].self, forKey: .images)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brand = try container.decode(BaseInfo.self, forKey: .brand)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -135,17 +135,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(images, forKey: .images)
-
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(categories, forKey: .categories)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(images, forKey: .images)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
         }
     }
 }
