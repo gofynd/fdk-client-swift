@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var min: Double?
 
-        public var discountQty: Double?
+        public var value: Double?
 
         public var key: Double?
 
-        public var value: Double?
+        public var discountQty: Double?
 
         public enum CodingKeys: String, CodingKey {
             case max
 
             case min
 
-            case discountQty = "discount_qty"
+            case value
 
             case key
 
-            case value
+            case discountQty = "discount_qty"
         }
 
         public init(discountQty: Double? = nil, key: Double? = nil, max: Double? = nil, min: Double? = nil, value: Double? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.min = min
 
-            self.discountQty = discountQty
+            self.value = value
 
             self.key = key
 
-            self.value = value
+            self.discountQty = discountQty
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                discountQty = try container.decode(Double.self, forKey: .discountQty)
+                value = try container.decode(Double.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                discountQty = try container.decode(Double.self, forKey: .discountQty)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,11 +93,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(min, forKey: .min)
 
-            try? container.encodeIfPresent(discountQty, forKey: .discountQty)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(discountQty, forKey: .discountQty)
         }
     }
 }

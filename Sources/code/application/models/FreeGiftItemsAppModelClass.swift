@@ -3,49 +3,49 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: LadderOfferItem
+         Model: FreeGiftItems
          Used By: Cart
      */
-    class LadderOfferItem: Codable {
-        public var type: String?
+    class FreeGiftItems: Codable {
+        public var itemName: String?
 
-        public var maxQuantity: Int?
+        public var itemImageUrl: [String]?
 
-        public var minQuantity: Int?
+        public var itemPriceDetails: [String: Any]?
 
-        public var price: LadderPrice?
+        public var itemId: Int?
 
-        public var margin: Int?
+        public var itemBrandName: String?
 
         public enum CodingKeys: String, CodingKey {
-            case type
+            case itemName = "item_name"
 
-            case maxQuantity = "max_quantity"
+            case itemImageUrl = "item_image_url"
 
-            case minQuantity = "min_quantity"
+            case itemPriceDetails = "item_price_details"
 
-            case price
+            case itemId = "item_id"
 
-            case margin
+            case itemBrandName = "item_brand_name"
         }
 
-        public init(margin: Int? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: LadderPrice? = nil, type: String? = nil) {
-            self.type = type
+        public init(itemBrandName: String? = nil, itemId: Int? = nil, itemImageUrl: [String]? = nil, itemName: String? = nil, itemPriceDetails: [String: Any]? = nil) {
+            self.itemName = itemName
 
-            self.maxQuantity = maxQuantity
+            self.itemImageUrl = itemImageUrl
 
-            self.minQuantity = minQuantity
+            self.itemPriceDetails = itemPriceDetails
 
-            self.price = price
+            self.itemId = itemId
 
-            self.margin = margin
+            self.itemBrandName = itemBrandName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                itemName = try container.decode(String.self, forKey: .itemName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
+                itemImageUrl = try container.decode([String].self, forKey: .itemImageUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                minQuantity = try container.decode(Int.self, forKey: .minQuantity)
+                itemPriceDetails = try container.decode([String: Any].self, forKey: .itemPriceDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                price = try container.decode(LadderPrice.self, forKey: .price)
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                margin = try container.decode(Int.self, forKey: .margin)
+                itemBrandName = try container.decode(String.self, forKey: .itemBrandName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,15 +88,15 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(itemName, forKey: .itemName)
 
-            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
+            try? container.encodeIfPresent(itemImageUrl, forKey: .itemImageUrl)
 
-            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
+            try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
 
-            try? container.encodeIfPresent(price, forKey: .price)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(margin, forKey: .margin)
+            try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
         }
     }
 }
