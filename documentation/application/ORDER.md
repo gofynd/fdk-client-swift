@@ -978,7 +978,7 @@ Success, the code is valid and returns a SignedUrl
  | brandCalculatedAmount | Double? |  yes  |  |
  | couponValue | Double? |  yes  |  |
  | amountPaidRoundoff | Double? |  yes  |  |
- | gstFee | String? |  yes  |  |
+ | gstFee | Double? |  yes  |  |
  | refundCredit | Double? |  yes  |  |
  | cashback | Double? |  yes  |  |
  | refundAmount | Double? |  yes  |  |

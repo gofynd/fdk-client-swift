@@ -2303,7 +2303,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | active | Bool? |  yes  |  |
  | display | String? |  yes  |  |
  | sortOrder | Int? |  yes  |  |
- | subNavigation | [[String: Any]]? |  yes  |  |
+ | subNavigation | [[NavigationReference](#NavigationReference)]? |  yes  |  |
 
 ---
 
@@ -2611,6 +2611,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | id | String? |  yes  |  |
  | question | String? |  yes  |  |
  | answer | String? |  yes  |  |
+ | tags | [String]? |  yes  |  |
 
 ---
 
@@ -3296,6 +3297,8 @@ Success. Returns a list of pages along with their details. Check the example sho
  | cartReview | cart-review | Symbolic link for Cart Order Review: /cart/order-review |
  | login | login | Symbolic link for Login: /auth/login |
  | register | register | Symbolic link for Register: /auth/register |
+ | shippingPolicy | shipping-policy | Symbolic link for Shipping policy: /shipping-policy |
+ | returnPolicy | return-policy | Symbolic link for Return policy: /return-policy |
 
 ---
 

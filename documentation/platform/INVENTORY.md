@@ -585,8 +585,8 @@ client.inventory.getJobCodeMetrics(code: code, pageNo: pageNo, pageSize: pageSiz
 | code | String | yes | Code |   
 | pageNo | Int? | no | Page Number |   
 | pageSize | Int? | no | Page Size |   
-| status | String? | no | Status |   
-| date | String? | no | From Date |  
+| status | String? | no |  |   
+| date | String? | no |  |  
 
 
 
@@ -1380,7 +1380,6 @@ Successful operation
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | required | Bool? |  yes  |  |
- | mapping | [String: [PropBeanConfig](#PropBeanConfig)]? |  yes  |  |
  | optional | Bool? |  yes  |  |
  | send | [Send](#Send)? |  yes  |  |
  | validations | [[String: Any]]? |  yes  |  |
