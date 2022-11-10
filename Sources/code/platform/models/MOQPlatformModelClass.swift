@@ -1,39 +1,40 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: ProductSimilarItem
+         Model: MOQ
          Used By: Catalog
      */
-    class ProductSimilarItem: Codable {
-        public var items: [ProductDetail]?
 
-        public var title: String?
+    class MOQ: Codable {
+        public var maximum: Int?
 
-        public var subtitle: String?
+        public var minimum: Int?
+
+        public var incrementUnit: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case items
+            case maximum
 
-            case title
+            case minimum
 
-            case subtitle
+            case incrementUnit = "increment_unit"
         }
 
-        public init(items: [ProductDetail]? = nil, subtitle: String? = nil, title: String? = nil) {
-            self.items = items
+        public init(incrementUnit: Int? = nil, maximum: Int? = nil, minimum: Int? = nil) {
+            self.maximum = maximum
 
-            self.title = title
+            self.minimum = minimum
 
-            self.subtitle = subtitle
+            self.incrementUnit = incrementUnit
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([ProductDetail].self, forKey: .items)
+                maximum = try container.decode(Int.self, forKey: .maximum)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +42,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                minimum = try container.decode(Int.self, forKey: .minimum)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +50,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                subtitle = try container.decode(String.self, forKey: .subtitle)
+                incrementUnit = try container.decode(Int.self, forKey: .incrementUnit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +61,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(maximum, forKey: .maximum)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(minimum, forKey: .minimum)
 
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+            try? container.encodeIfPresent(incrementUnit, forKey: .incrementUnit)
         }
     }
 }

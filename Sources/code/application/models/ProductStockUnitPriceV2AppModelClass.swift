@@ -1,46 +1,45 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension ApplicationClient {
     /*
-         Model: GetCatalogConfigurationDetailsProduct
+         Model: ProductStockUnitPriceV2
          Used By: Catalog
      */
+    class ProductStockUnitPriceV2: Codable {
+        public var unit: String?
 
-    class GetCatalogConfigurationDetailsProduct: Codable {
-        public var detail: [String: Any]?
+        public var price: Double?
 
-        public var variant: [String: Any]?
+        public var currencySymbol: String?
 
-        public var compare: [String: Any]?
-
-        public var similar: [String: Any]?
+        public var currencyCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case detail
+            case unit
 
-            case variant
+            case price
 
-            case compare
+            case currencySymbol = "currency_symbol"
 
-            case similar
+            case currencyCode = "currency_code"
         }
 
-        public init(compare: [String: Any]? = nil, detail: [String: Any]? = nil, similar: [String: Any]? = nil, variant: [String: Any]? = nil) {
-            self.detail = detail
+        public init(currencyCode: String? = nil, currencySymbol: String? = nil, price: Double? = nil, unit: String? = nil) {
+            self.unit = unit
 
-            self.variant = variant
+            self.price = price
 
-            self.compare = compare
+            self.currencySymbol = currencySymbol
 
-            self.similar = similar
+            self.currencyCode = currencyCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                detail = try container.decode([String: Any].self, forKey: .detail)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +47,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                variant = try container.decode([String: Any].self, forKey: .variant)
+                price = try container.decode(Double.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +55,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                compare = try container.decode([String: Any].self, forKey: .compare)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +63,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                similar = try container.decode([String: Any].self, forKey: .similar)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,13 +74,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(detail, forKey: .detail)
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(variant, forKey: .variant)
+            try? container.encodeIfPresent(price, forKey: .price)
 
-            try? container.encodeIfPresent(compare, forKey: .compare)
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(similar, forKey: .similar)
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
         }
     }
 }

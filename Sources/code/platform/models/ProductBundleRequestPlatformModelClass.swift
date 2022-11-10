@@ -8,27 +8,27 @@ public extension PlatformClient {
      */
 
     class ProductBundleRequest: Codable {
-        public var companyId: Int?
-
-        public var meta: [String: Any]?
-
-        public var slug: String
-
-        public var sameStoreAssignment: Bool?
+        public var modifiedOn: String?
 
         public var createdBy: [String: Any]?
 
-        public var isActive: Bool
-
-        public var pageVisibility: [String]?
+        public var sameStoreAssignment: Bool?
 
         public var createdOn: String?
 
-        public var modifiedOn: String?
+        public var meta: [String: Any]?
 
         public var logo: String?
 
+        public var slug: String
+
+        public var pageVisibility: [String]?
+
+        public var companyId: Int?
+
         public var modifiedBy: [String: Any]?
+
+        public var isActive: Bool
 
         public var name: String
 
@@ -37,27 +37,27 @@ public extension PlatformClient {
         public var products: [ProductBundleItem]
 
         public enum CodingKeys: String, CodingKey {
-            case companyId = "company_id"
-
-            case meta
-
-            case slug
-
-            case sameStoreAssignment = "same_store_assignment"
+            case modifiedOn = "modified_on"
 
             case createdBy = "created_by"
 
-            case isActive = "is_active"
-
-            case pageVisibility = "page_visibility"
+            case sameStoreAssignment = "same_store_assignment"
 
             case createdOn = "created_on"
 
-            case modifiedOn = "modified_on"
+            case meta
 
             case logo
 
+            case slug
+
+            case pageVisibility = "page_visibility"
+
+            case companyId = "company_id"
+
             case modifiedBy = "modified_by"
+
+            case isActive = "is_active"
 
             case name
 
@@ -67,27 +67,27 @@ public extension PlatformClient {
         }
 
         public init(choice: String, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, isActive: Bool, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, pageVisibility: [String]? = nil, products: [ProductBundleItem], sameStoreAssignment: Bool? = nil, slug: String) {
-            self.companyId = companyId
-
-            self.meta = meta
-
-            self.slug = slug
-
-            self.sameStoreAssignment = sameStoreAssignment
+            self.modifiedOn = modifiedOn
 
             self.createdBy = createdBy
 
-            self.isActive = isActive
-
-            self.pageVisibility = pageVisibility
+            self.sameStoreAssignment = sameStoreAssignment
 
             self.createdOn = createdOn
 
-            self.modifiedOn = modifiedOn
+            self.meta = meta
 
             self.logo = logo
 
+            self.slug = slug
+
+            self.pageVisibility = pageVisibility
+
+            self.companyId = companyId
+
             self.modifiedBy = modifiedBy
+
+            self.isActive = isActive
 
             self.name = name
 
@@ -100,25 +100,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            slug = try container.decode(String.self, forKey: .slug)
-
-            do {
-                sameStoreAssignment = try container.decode(Bool.self, forKey: .sameStoreAssignment)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,10 +115,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
             do {
-                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
+                sameStoreAssignment = try container.decode(Bool.self, forKey: .sameStoreAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -152,7 +132,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -167,6 +147,24 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            slug = try container.decode(String.self, forKey: .slug)
+
+            do {
+                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyId = try container.decode(Int.self, forKey: .companyId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             do {
                 modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
 
@@ -174,6 +172,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             name = try container.decode(String.self, forKey: .name)
 
@@ -185,27 +185,27 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(sameStoreAssignment, forKey: .sameStoreAssignment)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
+            try? container.encodeIfPresent(sameStoreAssignment, forKey: .sameStoreAssignment)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encode(logo, forKey: .logo)
 
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
             try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
