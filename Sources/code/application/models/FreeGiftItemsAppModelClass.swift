@@ -9,36 +9,42 @@ public extension ApplicationClient {
     class FreeGiftItems: Codable {
         public var itemName: String?
 
-        public var itemImageUrl: [String]?
+        public var itemBrandName: String?
 
-        public var itemPriceDetails: [String: Any]?
+        public var itemImagesUrl: [String]?
 
         public var itemId: Int?
 
-        public var itemBrandName: String?
+        public var itemSlug: String?
+
+        public var itemPriceDetails: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case itemName = "item_name"
 
-            case itemImageUrl = "item_image_url"
+            case itemBrandName = "item_brand_name"
 
-            case itemPriceDetails = "item_price_details"
+            case itemImagesUrl = "item_images_url"
 
             case itemId = "item_id"
 
-            case itemBrandName = "item_brand_name"
+            case itemSlug = "item_slug"
+
+            case itemPriceDetails = "item_price_details"
         }
 
-        public init(itemBrandName: String? = nil, itemId: Int? = nil, itemImageUrl: [String]? = nil, itemName: String? = nil, itemPriceDetails: [String: Any]? = nil) {
+        public init(itemBrandName: String? = nil, itemId: Int? = nil, itemImagesUrl: [String]? = nil, itemName: String? = nil, itemPriceDetails: [String: Any]? = nil, itemSlug: String? = nil) {
             self.itemName = itemName
 
-            self.itemImageUrl = itemImageUrl
+            self.itemBrandName = itemBrandName
 
-            self.itemPriceDetails = itemPriceDetails
+            self.itemImagesUrl = itemImagesUrl
 
             self.itemId = itemId
 
-            self.itemBrandName = itemBrandName
+            self.itemSlug = itemSlug
+
+            self.itemPriceDetails = itemPriceDetails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,7 +59,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                itemImageUrl = try container.decode([String].self, forKey: .itemImageUrl)
+                itemBrandName = try container.decode(String.self, forKey: .itemBrandName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                itemPriceDetails = try container.decode([String: Any].self, forKey: .itemPriceDetails)
+                itemImagesUrl = try container.decode([String].self, forKey: .itemImagesUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +83,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                itemBrandName = try container.decode(String.self, forKey: .itemBrandName)
+                itemSlug = try container.decode(String.self, forKey: .itemSlug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemPriceDetails = try container.decode([String: Any].self, forKey: .itemPriceDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +104,15 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(itemName, forKey: .itemName)
 
-            try? container.encodeIfPresent(itemImageUrl, forKey: .itemImageUrl)
+            try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
 
-            try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
+            try? container.encodeIfPresent(itemImagesUrl, forKey: .itemImagesUrl)
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
+            try? container.encodeIfPresent(itemSlug, forKey: .itemSlug)
+
+            try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
         }
     }
 }

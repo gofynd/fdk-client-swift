@@ -12,19 +12,19 @@ public extension PlatformClient {
 
         public var companyId: Int?
 
+        public var customJson: [String: Any]?
+
         public var brandTier: String?
+
+        public var uid: Int?
+
+        public var synonyms: [String]?
 
         public var description: String?
 
         public var localeLanguage: [String: Any]?
 
         public var logo: String
-
-        public var uid: Int?
-
-        public var synonyms: [String]?
-
-        public var customJson: [String: Any]?
 
         public var name: String
 
@@ -33,19 +33,19 @@ public extension PlatformClient {
 
             case companyId = "company_id"
 
+            case customJson = "_custom_json"
+
             case brandTier = "brand_tier"
+
+            case uid
+
+            case synonyms
 
             case description
 
             case localeLanguage = "_locale_language"
 
             case logo
-
-            case uid
-
-            case synonyms
-
-            case customJson = "_custom_json"
 
             case name
         }
@@ -55,19 +55,19 @@ public extension PlatformClient {
 
             self.companyId = companyId
 
+            self.customJson = customJson
+
             self.brandTier = brandTier
+
+            self.uid = uid
+
+            self.synonyms = synonyms
 
             self.description = description
 
             self.localeLanguage = localeLanguage
 
             self.logo = logo
-
-            self.uid = uid
-
-            self.synonyms = synonyms
-
-            self.customJson = customJson
 
             self.name = name
         }
@@ -92,7 +92,31 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 brandTier = try container.decode(String.self, forKey: .brandTier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                synonyms = try container.decode([String].self, forKey: .synonyms)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,30 +141,6 @@ public extension PlatformClient {
 
             logo = try container.decode(String.self, forKey: .logo)
 
-            do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                synonyms = try container.decode([String].self, forKey: .synonyms)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             name = try container.decode(String.self, forKey: .name)
         }
 
@@ -151,19 +151,19 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
             try? container.encodeIfPresent(brandTier, forKey: .brandTier)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
-
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

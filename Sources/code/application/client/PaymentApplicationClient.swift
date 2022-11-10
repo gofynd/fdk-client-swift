@@ -730,7 +730,7 @@ public extension ApplicationClient {
          **/
         public func renderHTML(
             body: renderHTMLRequest,
-            onResponse: @escaping (_ response: renderHTMLResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             let fullUrl = relativeUrls["renderHTML"] ?? ""
 
@@ -750,7 +750,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(renderHTMLResponse.self, from: data)
+                        let response = data.dictionary
 
                         onResponse(response, nil)
                     } else {
