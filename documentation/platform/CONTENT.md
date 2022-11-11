@@ -7690,7 +7690,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | active | Bool? |  yes  |  |
  | display | String? |  yes  |  |
  | sortOrder | Int? |  yes  |  |
- | subNavigation | [[String: Any]]? |  yes  |  |
+ | subNavigation | [[NavigationReference](#NavigationReference)]? |  yes  |  |
 
 ---
 

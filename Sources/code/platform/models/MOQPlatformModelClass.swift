@@ -3,27 +3,27 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: OrderQuantity
+         Model: MOQ
          Used By: Catalog
      */
 
-    class OrderQuantity: Codable {
-        public var isSet: Bool?
+    class MOQ: Codable {
+        public var incrementUnit: Int?
 
         public var minimum: Int?
 
         public var maximum: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case isSet = "is_set"
+            case incrementUnit = "increment_unit"
 
             case minimum
 
             case maximum
         }
 
-        public init(isSet: Bool? = nil, maximum: Int? = nil, minimum: Int? = nil) {
-            self.isSet = isSet
+        public init(incrementUnit: Int? = nil, maximum: Int? = nil, minimum: Int? = nil) {
+            self.incrementUnit = incrementUnit
 
             self.minimum = minimum
 
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isSet = try container.decode(Bool.self, forKey: .isSet)
+                incrementUnit = try container.decode(Int.self, forKey: .incrementUnit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
+            try? container.encodeIfPresent(incrementUnit, forKey: .incrementUnit)
 
             try? container.encodeIfPresent(minimum, forKey: .minimum)
 
