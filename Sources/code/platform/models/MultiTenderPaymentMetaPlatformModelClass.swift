@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var paymentGateway: String?
 
-        public var orderId: String?
-
         public var extraMeta: [String: Any]?
+
+        public var orderId: String?
 
         public var paymentId: String?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case paymentGateway = "payment_gateway"
 
-            case orderId = "order_id"
-
             case extraMeta = "extra_meta"
+
+            case orderId = "order_id"
 
             case paymentId = "payment_id"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.paymentGateway = paymentGateway
 
-            self.orderId = orderId
-
             self.extraMeta = extraMeta
+
+            self.orderId = orderId
 
             self.paymentId = paymentId
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encode(paymentGateway, forKey: .paymentGateway)
 
-            try? container.encode(orderId, forKey: .orderId)
-
             try? container.encode(extraMeta, forKey: .extraMeta)
+
+            try? container.encode(orderId, forKey: .orderId)
 
             try? container.encode(paymentId, forKey: .paymentId)
         }

@@ -11,26 +11,26 @@ public extension ApplicationClient {
 
         public var col2: ColumnHeader?
 
-        public var col3: ColumnHeader?
+        public var col6: ColumnHeader?
 
         public var col1: ColumnHeader?
 
-        public var col6: ColumnHeader?
-
         public var col4: ColumnHeader?
+
+        public var col3: ColumnHeader?
 
         public enum CodingKeys: String, CodingKey {
             case col5 = "col_5"
 
             case col2 = "col_2"
 
-            case col3 = "col_3"
+            case col6 = "col_6"
 
             case col1 = "col_1"
 
-            case col6 = "col_6"
-
             case col4 = "col_4"
+
+            case col3 = "col_3"
         }
 
         public init(col1: ColumnHeader? = nil, col2: ColumnHeader? = nil, col3: ColumnHeader? = nil, col4: ColumnHeader? = nil, col5: ColumnHeader? = nil, col6: ColumnHeader? = nil) {
@@ -38,13 +38,13 @@ public extension ApplicationClient {
 
             self.col2 = col2
 
-            self.col3 = col3
+            self.col6 = col6
 
             self.col1 = col1
 
-            self.col6 = col6
-
             self.col4 = col4
+
+            self.col3 = col3
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                col3 = try container.decode(ColumnHeader.self, forKey: .col3)
+                col6 = try container.decode(ColumnHeader.self, forKey: .col6)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                col6 = try container.decode(ColumnHeader.self, forKey: .col6)
+                col4 = try container.decode(ColumnHeader.self, forKey: .col4)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                col4 = try container.decode(ColumnHeader.self, forKey: .col4)
+                col3 = try container.decode(ColumnHeader.self, forKey: .col3)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,13 +106,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(col2, forKey: .col2)
 
-            try? container.encodeIfPresent(col3, forKey: .col3)
+            try? container.encodeIfPresent(col6, forKey: .col6)
 
             try? container.encodeIfPresent(col1, forKey: .col1)
 
-            try? container.encodeIfPresent(col6, forKey: .col6)
-
             try? container.encodeIfPresent(col4, forKey: .col4)
+
+            try? container.encodeIfPresent(col3, forKey: .col3)
         }
     }
 }
