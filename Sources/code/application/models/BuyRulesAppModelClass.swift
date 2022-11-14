@@ -1,34 +1,33 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension ApplicationClient {
     /*
-         Model: RedirectionSchema
-         Used By: Content
+         Model: BuyRules
+         Used By: Cart
      */
+    class BuyRules: Codable {
+        public var itemCriteria: [String: Any]?
 
-    class RedirectionSchema: Codable {
-        public var redirectFrom: String?
-
-        public var redirectTo: String?
+        public var cartConditions: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case redirectFrom = "redirect_from"
+            case itemCriteria = "item_criteria"
 
-            case redirectTo = "redirect_to"
+            case cartConditions = "cart_conditions"
         }
 
-        public init(redirectFrom: String? = nil, redirectTo: String? = nil) {
-            self.redirectFrom = redirectFrom
+        public init(cartConditions: [String: Any]? = nil, itemCriteria: [String: Any]? = nil) {
+            self.itemCriteria = itemCriteria
 
-            self.redirectTo = redirectTo
+            self.cartConditions = cartConditions
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                redirectFrom = try container.decode(String.self, forKey: .redirectFrom)
+                itemCriteria = try container.decode([String: Any].self, forKey: .itemCriteria)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +35,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                redirectTo = try container.decode(String.self, forKey: .redirectTo)
+                cartConditions = try container.decode([String: Any].self, forKey: .cartConditions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +46,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(redirectFrom, forKey: .redirectFrom)
+            try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
 
-            try? container.encodeIfPresent(redirectTo, forKey: .redirectTo)
+            try? container.encodeIfPresent(cartConditions, forKey: .cartConditions)
         }
     }
 }

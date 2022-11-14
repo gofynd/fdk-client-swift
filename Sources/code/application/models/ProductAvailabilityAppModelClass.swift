@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var deliverable: Bool?
 
-        public var isValid: Bool?
-
         public var otherStoreQuantity: Int?
+
+        public var isValid: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case outOfStock = "out_of_stock"
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case deliverable
 
-            case isValid = "is_valid"
-
             case otherStoreQuantity = "other_store_quantity"
+
+            case isValid = "is_valid"
         }
 
         public init(deliverable: Bool? = nil, isValid: Bool? = nil, otherStoreQuantity: Int? = nil, outOfStock: Bool? = nil, sizes: [String]? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient {
 
             self.deliverable = deliverable
 
-            self.isValid = isValid
-
             self.otherStoreQuantity = otherStoreQuantity
+
+            self.isValid = isValid
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isValid = try container.decode(Bool.self, forKey: .isValid)
+                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
+                isValid = try container.decode(Bool.self, forKey: .isValid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(deliverable, forKey: .deliverable)
 
-            try? container.encodeIfPresent(isValid, forKey: .isValid)
-
             try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
+
+            try? container.encodeIfPresent(isValid, forKey: .isValid)
         }
     }
 }

@@ -9,11 +9,11 @@ public extension ApplicationClient {
     class ProductSizes: Codable {
         public var sellable: Bool?
 
-        public var sizeChart: SizeChart?
+        public var discount: String?
 
         public var stores: ProductSizeStores?
 
-        public var discount: String?
+        public var sizeChart: SizeChart?
 
         public var price: ProductListingPrice?
 
@@ -22,11 +22,11 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case sellable
 
-            case sizeChart = "size_chart"
+            case discount
 
             case stores
 
-            case discount
+            case sizeChart = "size_chart"
 
             case price
 
@@ -36,11 +36,11 @@ public extension ApplicationClient {
         public init(discount: String? = nil, price: ProductListingPrice? = nil, sellable: Bool? = nil, sizes: [ProductSize]? = nil, sizeChart: SizeChart? = nil, stores: ProductSizeStores? = nil) {
             self.sellable = sellable
 
-            self.sizeChart = sizeChart
+            self.discount = discount
 
             self.stores = stores
 
-            self.discount = discount
+            self.sizeChart = sizeChart
 
             self.price = price
 
@@ -59,7 +59,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sizeChart = try container.decode(SizeChart.self, forKey: .sizeChart)
+                discount = try container.decode(String.self, forKey: .discount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                discount = try container.decode(String.self, forKey: .discount)
+                sizeChart = try container.decode(SizeChart.self, forKey: .sizeChart)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,11 +104,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(sellable, forKey: .sellable)
 
-            try? container.encodeIfPresent(sizeChart, forKey: .sizeChart)
+            try? container.encodeIfPresent(discount, forKey: .discount)
 
             try? container.encodeIfPresent(stores, forKey: .stores)
 
-            try? container.encodeIfPresent(discount, forKey: .discount)
+            try? container.encodeIfPresent(sizeChart, forKey: .sizeChart)
 
             try? container.encodeIfPresent(price, forKey: .price)
 
