@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var transfer: Double
 
-        public var tpNotes: [String: Any]?
-
         public var updatedAt: String?
+
+        public var tpNotes: [String: Any]?
 
         public var currency: String
 
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case transfer
 
-            case tpNotes = "tp_notes"
-
             case updatedAt = "updated_at"
+
+            case tpNotes = "tp_notes"
 
             case currency
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
 
             self.transfer = transfer
 
-            self.tpNotes = tpNotes
-
             self.updatedAt = updatedAt
+
+            self.tpNotes = tpNotes
 
             self.currency = currency
 
@@ -56,7 +56,7 @@ public extension PlatformClient {
             transfer = try container.decode(Double.self, forKey: .transfer)
 
             do {
-                tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
+                updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,9 +83,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(transfer, forKey: .transfer)
 
-            try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
-
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
