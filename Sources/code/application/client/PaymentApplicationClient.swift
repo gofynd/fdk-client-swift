@@ -730,7 +730,7 @@ public extension ApplicationClient {
          **/
         public func renderHTML(
             body: renderHTMLRequest,
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: renderHTMLResponse?, _ error: FDKError?) -> Void
         ) {
             let fullUrl = relativeUrls["renderHTML"] ?? ""
 
@@ -741,7 +741,7 @@ public extension ApplicationClient {
                 query: nil,
                 extraHeaders: [],
                 body: body.dictionary,
-                responseType: "application/json",
+                responseType: "text/html",
                 onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -750,7 +750,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = data.dictionary
+                        let response = Utility.decode(renderHTMLResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
