@@ -11042,7 +11042,7 @@ public class PlatformClient {
             public func appCopyFiles(
                 sync: Bool?,
                 body: BulkRequest,
-                onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: BulkUploadResponse?, _ error: FDKError?) -> Void
             ) {
                 var xQuery: [String: Any] = [:]
 
@@ -11066,7 +11066,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(BulkResponse.self, from: data)
+                            let response = Utility.decode(BulkUploadResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {

@@ -9,28 +9,22 @@ public extension ApplicationClient {
     class CartCheckoutResponse: Codable {
         public var appInterceptUrl: String?
 
-        public var callbackUrl: String?
-
-        public var cart: CheckCart?
-
-        public var success: Bool?
-
         public var message: String?
 
         public var orderId: String?
 
         public var data: [String: Any]?
 
+        public var callbackUrl: String?
+
+        public var cart: CheckCart?
+
+        public var success: Bool?
+
         public var paymentConfirmUrl: String?
 
         public enum CodingKeys: String, CodingKey {
             case appInterceptUrl = "app_intercept_url"
-
-            case callbackUrl = "callback_url"
-
-            case cart
-
-            case success
 
             case message
 
@@ -38,23 +32,29 @@ public extension ApplicationClient {
 
             case data
 
+            case callbackUrl = "callback_url"
+
+            case cart
+
+            case success
+
             case paymentConfirmUrl = "payment_confirm_url"
         }
 
         public init(appInterceptUrl: String? = nil, callbackUrl: String? = nil, cart: CheckCart? = nil, data: [String: Any]? = nil, message: String? = nil, orderId: String? = nil, paymentConfirmUrl: String? = nil, success: Bool? = nil) {
             self.appInterceptUrl = appInterceptUrl
 
-            self.callbackUrl = callbackUrl
-
-            self.cart = cart
-
-            self.success = success
-
             self.message = message
 
             self.orderId = orderId
 
             self.data = data
+
+            self.callbackUrl = callbackUrl
+
+            self.cart = cart
+
+            self.success = success
 
             self.paymentConfirmUrl = paymentConfirmUrl
         }
@@ -64,30 +64,6 @@ public extension ApplicationClient {
 
             do {
                 appInterceptUrl = try container.decode(String.self, forKey: .appInterceptUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cart = try container.decode(CheckCart.self, forKey: .cart)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,6 +95,30 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                cart = try container.decode(CheckCart.self, forKey: .cart)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                success = try container.decode(Bool.self, forKey: .success)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 paymentConfirmUrl = try container.decode(String.self, forKey: .paymentConfirmUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -132,17 +132,17 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(appInterceptUrl, forKey: .appInterceptUrl)
 
-            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
-
-            try? container.encodeIfPresent(cart, forKey: .cart)
-
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
+
+            try? container.encodeIfPresent(cart, forKey: .cart)
+
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(paymentConfirmUrl, forKey: .paymentConfirmUrl)
         }
