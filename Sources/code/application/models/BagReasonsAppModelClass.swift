@@ -7,7 +7,7 @@ public extension ApplicationClient {
          Used By: Order
      */
     class BagReasons: Codable {
-        public var id: String?
+        public var id: Int?
 
         public var displayName: String?
 
@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case displayName = "display_name"
         }
 
-        public init(displayName: String? = nil, id: String? = nil) {
+        public init(displayName: String? = nil, id: Int? = nil) {
             self.id = id
 
             self.displayName = displayName
@@ -27,7 +27,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

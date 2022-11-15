@@ -3,43 +3,43 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: CartMetaRequest
-         Used By: Cart
+         Model: ProductStockUnitPriceV2
+         Used By: Catalog
      */
-    class CartMetaRequest: Codable {
-        public var pickUpCustomerDetails: [String: Any]?
+    class ProductStockUnitPriceV2: Codable {
+        public var currencySymbol: String?
 
-        public var checkoutMode: String?
+        public var price: Double?
 
-        public var gstin: String?
+        public var unit: String?
 
-        public var comment: String?
+        public var currencyCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case pickUpCustomerDetails = "pick_up_customer_details"
+            case currencySymbol = "currency_symbol"
 
-            case checkoutMode = "checkout_mode"
+            case price
 
-            case gstin
+            case unit
 
-            case comment
+            case currencyCode = "currency_code"
         }
 
-        public init(checkoutMode: String? = nil, comment: String? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
-            self.pickUpCustomerDetails = pickUpCustomerDetails
+        public init(currencyCode: String? = nil, currencySymbol: String? = nil, price: Double? = nil, unit: String? = nil) {
+            self.currencySymbol = currencySymbol
 
-            self.checkoutMode = checkoutMode
+            self.price = price
 
-            self.gstin = gstin
+            self.unit = unit
 
-            self.comment = comment
+            self.currencyCode = currencyCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
+                price = try container.decode(Double.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                gstin = try container.decode(String.self, forKey: .gstin)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                comment = try container.decode(String.self, forKey: .comment)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,13 +74,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
+            try? container.encodeIfPresent(price, forKey: .price)
 
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(comment, forKey: .comment)
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
         }
     }
 }
