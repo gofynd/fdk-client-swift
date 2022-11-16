@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class DimensionResponse: Codable {
-        public var height: Double
+        public var length: Double
 
         public var isDefault: Bool
 
@@ -16,10 +16,10 @@ public extension PlatformClient {
 
         public var width: Double
 
-        public var length: Double
+        public var height: Double
 
         public enum CodingKeys: String, CodingKey {
-            case height
+            case length
 
             case isDefault = "is_default"
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case width
 
-            case length
+            case height
         }
 
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
-            self.height = height
+            self.length = length
 
             self.isDefault = isDefault
 
@@ -39,13 +39,13 @@ public extension PlatformClient {
 
             self.width = width
 
-            self.length = length
+            self.height = height
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            height = try container.decode(Double.self, forKey: .height)
+            length = try container.decode(Double.self, forKey: .length)
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
@@ -53,13 +53,13 @@ public extension PlatformClient {
 
             width = try container.decode(Double.self, forKey: .width)
 
-            length = try container.decode(Double.self, forKey: .length)
+            height = try container.decode(Double.self, forKey: .height)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(height, forKey: .height)
+            try? container.encodeIfPresent(length, forKey: .length)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
@@ -67,7 +67,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(width, forKey: .width)
 
-            try? container.encodeIfPresent(length, forKey: .length)
+            try? container.encodeIfPresent(height, forKey: .height)
         }
     }
 }

@@ -296,7 +296,7 @@ Success
 
 
 #### fetchAllEventConfigurations
-Get All Webhook Events
+
 
 
 

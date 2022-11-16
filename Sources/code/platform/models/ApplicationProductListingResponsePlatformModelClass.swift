@@ -8,22 +8,22 @@ public extension PlatformClient {
      */
 
     class ApplicationProductListingResponse: Codable {
-        public var items: [ProductListingDetail]?
+        public var operators: [String: Any]?
 
         public var filters: [ProductFilters]?
 
-        public var operators: [String: Any]?
+        public var items: [ProductListingDetail]?
 
         public var page: Page
 
         public var sortOn: [ProductSortOn]?
 
         public enum CodingKeys: String, CodingKey {
-            case items
+            case operators
 
             case filters
 
-            case operators
+            case items
 
             case page
 
@@ -31,11 +31,11 @@ public extension PlatformClient {
         }
 
         public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, operators: [String: Any]? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
-            self.items = items
+            self.operators = operators
 
             self.filters = filters
 
-            self.operators = operators
+            self.items = items
 
             self.page = page
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([ProductListingDetail].self, forKey: .items)
+                operators = try container.decode([String: Any].self, forKey: .operators)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                operators = try container.decode([String: Any].self, forKey: .operators)
+                items = try container.decode([ProductListingDetail].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,11 +83,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(operators, forKey: .operators)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(operators, forKey: .operators)
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(page, forKey: .page)
 
