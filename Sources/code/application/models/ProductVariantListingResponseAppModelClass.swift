@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var total: Int?
 
-        public var items: [ProductVariantItemResponse]?
-
         public var header: String?
+
+        public var items: [ProductVariantItemResponse]?
 
         public var key: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case total
 
-            case items
-
             case header
+
+            case items
 
             case key
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.total = total
 
-            self.items = items
-
             self.header = header
+
+            self.items = items
 
             self.key = key
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
+                header = try container.decode(String.self, forKey: .header)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                header = try container.decode(String.self, forKey: .header)
+                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(total, forKey: .total)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(header, forKey: .header)
+
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(key, forKey: .key)
         }

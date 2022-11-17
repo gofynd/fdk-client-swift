@@ -741,7 +741,7 @@ public extension ApplicationClient {
                 query: nil,
                 extraHeaders: [],
                 body: body.dictionary,
-                responseType: "application/json",
+                responseType: "text/html",
                 onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
