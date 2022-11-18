@@ -10,9 +10,9 @@ public extension PlatformClient {
     class Document: Codable {
         public var verified: Bool?
 
-        public var url: String?
-
         public var legalName: String?
+
+        public var url: String?
 
         public var type: String
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case verified
 
-            case url
-
             case legalName = "legal_name"
+
+            case url
 
             case type
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
             self.verified = verified
 
-            self.url = url
-
             self.legalName = legalName
+
+            self.url = url
 
             self.type = type
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                legalName = try container.decode(String.self, forKey: .legalName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                legalName = try container.decode(String.self, forKey: .legalName)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(verified, forKey: .verified)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(legalName, forKey: .legalName)
+
+            try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(type, forKey: .type)
 

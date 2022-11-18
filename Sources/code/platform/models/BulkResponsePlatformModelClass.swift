@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var batchId: String
 
-        public var modifiedOn: String?
-
         public var isActive: Bool?
+
+        public var modifiedOn: String?
 
         public var modifiedBy: UserInfo1?
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case batchId = "batch_id"
 
-            case modifiedOn = "modified_on"
-
             case isActive = "is_active"
+
+            case modifiedOn = "modified_on"
 
             case modifiedBy = "modified_by"
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             self.batchId = batchId
 
-            self.modifiedOn = modifiedOn
-
             self.isActive = isActive
+
+            self.modifiedOn = modifiedOn
 
             self.modifiedBy = modifiedBy
         }
@@ -64,7 +64,7 @@ public extension PlatformClient {
             batchId = try container.decode(String.self, forKey: .batchId)
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,7 +72,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,9 +97,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encode(modifiedBy, forKey: .modifiedBy)
         }
