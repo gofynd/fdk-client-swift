@@ -11,11 +11,11 @@ public extension ApplicationClient {
 
         public var banners: ImageUrls?
 
-        public var action: ProductListingAction?
+        public var slug: String?
 
         public var childs: [Child]?
 
-        public var slug: String?
+        public var action: ProductListingAction?
 
         public var name: String?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient {
 
             case banners
 
-            case action
+            case slug
 
             case childs
 
-            case slug
+            case action
 
             case name
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient {
 
             self.banners = banners
 
-            self.action = action
+            self.slug = slug
 
             self.childs = childs
 
-            self.slug = slug
+            self.action = action
 
             self.name = name
         }
@@ -67,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

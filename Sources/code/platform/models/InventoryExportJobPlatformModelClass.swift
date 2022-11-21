@@ -10,13 +10,13 @@ public extension PlatformClient {
     class InventoryExportJob: Codable {
         public var url: String?
 
-        public var status: String?
+        public var completedOn: String?
 
         public var requestParams: [String: Any]?
 
-        public var taskId: String
+        public var status: String?
 
-        public var completedOn: String?
+        public var taskId: String
 
         public var triggerOn: String?
 
@@ -25,13 +25,13 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case url
 
-            case status
+            case completedOn = "completed_on"
 
             case requestParams = "request_params"
 
-            case taskId = "task_id"
+            case status
 
-            case completedOn = "completed_on"
+            case taskId = "task_id"
 
             case triggerOn = "trigger_on"
 
@@ -41,13 +41,13 @@ public extension PlatformClient {
         public init(completedOn: String? = nil, requestParams: [String: Any]? = nil, sellerId: Int, status: String? = nil, taskId: String, triggerOn: String? = nil, url: String? = nil) {
             self.url = url
 
-            self.status = status
+            self.completedOn = completedOn
 
             self.requestParams = requestParams
 
-            self.taskId = taskId
+            self.status = status
 
-            self.completedOn = completedOn
+            self.taskId = taskId
 
             self.triggerOn = triggerOn
 
@@ -66,7 +66,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                completedOn = try container.decode(String.self, forKey: .completedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,15 +81,15 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            taskId = try container.decode(String.self, forKey: .taskId)
-
             do {
-                completedOn = try container.decode(String.self, forKey: .completedOn)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            taskId = try container.decode(String.self, forKey: .taskId)
 
             do {
                 triggerOn = try container.decode(String.self, forKey: .triggerOn)
@@ -107,13 +107,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(completedOn, forKey: .completedOn)
 
             try? container.encodeIfPresent(requestParams, forKey: .requestParams)
 
-            try? container.encodeIfPresent(taskId, forKey: .taskId)
+            try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(completedOn, forKey: .completedOn)
+            try? container.encodeIfPresent(taskId, forKey: .taskId)
 
             try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
 
