@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var message: String?
 
-        public var status: Int?
-
         public var code: String?
 
         public var meta: [String: Any]?
+
+        public var status: Int?
 
         public enum CodingKeys: String, CodingKey {
             case error
 
             case message
 
-            case status
-
             case code
 
             case meta
+
+            case status
         }
 
         public init(code: String? = nil, error: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.message = message
 
-            self.status = status
-
             self.code = code
 
             self.meta = meta
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,14 +62,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -84,6 +76,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                status = try container.decode(Int.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -93,11 +93,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

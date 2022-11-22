@@ -3,38 +3,38 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: OrderQuantity
+         Model: ApplicationItemResponse
          Used By: Catalog
      */
 
-    class OrderQuantity: Codable {
-        public var minimum: Int?
+    class ApplicationItemResponse: Codable {
+        public var altText: [String: Any]?
 
-        public var isSet: Bool?
+        public var moq: MOQ?
 
-        public var maximum: Int?
+        public var seo: SEO?
 
         public enum CodingKeys: String, CodingKey {
-            case minimum
+            case altText = "alt_text"
 
-            case isSet = "is_set"
+            case moq
 
-            case maximum
+            case seo
         }
 
-        public init(isSet: Bool? = nil, maximum: Int? = nil, minimum: Int? = nil) {
-            self.minimum = minimum
+        public init(altText: [String: Any]? = nil, moq: MOQ? = nil, seo: SEO? = nil) {
+            self.altText = altText
 
-            self.isSet = isSet
+            self.moq = moq
 
-            self.maximum = maximum
+            self.seo = seo
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                minimum = try container.decode(Int.self, forKey: .minimum)
+                altText = try container.decode([String: Any].self, forKey: .altText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isSet = try container.decode(Bool.self, forKey: .isSet)
+                moq = try container.decode(MOQ.self, forKey: .moq)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                maximum = try container.decode(Int.self, forKey: .maximum)
+                seo = try container.decode(SEO.self, forKey: .seo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,11 +61,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(minimum, forKey: .minimum)
+            try? container.encodeIfPresent(altText, forKey: .altText)
 
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
+            try? container.encodeIfPresent(moq, forKey: .moq)
 
-            try? container.encodeIfPresent(maximum, forKey: .maximum)
+            try? container.encodeIfPresent(seo, forKey: .seo)
         }
     }
 }
