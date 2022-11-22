@@ -1931,136 +1931,15 @@ Success to acknowledge the service was notified
 
  
  
- #### [FilterInfoOption](#FilterInfoOption)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | text | String |  no  |  |
- | name | String? |  yes  |  |
- | value | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [FiltersInfo](#FiltersInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | text | String |  no  |  |
- | options | [[FilterInfoOption](#FilterInfoOption)]? |  yes  |  |
- | value | String |  no  |  |
- | type | String |  no  |  |
-
----
-
-
- 
- 
- #### [GST](#GST)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | taxCollectedAtSource | Double |  no  |  |
- | brandCalculatedAmount | Double |  no  |  |
- | gstFee | Double |  no  |  |
- | valueOfGood | Double |  no  |  |
- | gstinCode | String |  no  |  |
-
----
-
-
- 
- 
- #### [Prices](#Prices)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cashback | Double |  no  |  |
- | taxCollectedAtSource | Double |  no  |  |
- | discount | Double |  no  |  |
- | codCharges | Double |  no  |  |
- | amountPaid | Double |  no  |  |
- | refundAmount | Double |  no  |  |
- | deliveryCharge | Double |  no  |  |
- | refundCredit | Double |  no  |  |
- | couponValue | Double |  no  |  |
- | amountPaidRoundoff | Double |  no  |  |
- | cashbackApplied | Double |  no  |  |
- | priceMarked | Double |  no  |  |
- | promotionEffectiveDiscount | Double |  no  |  |
- | priceEffective | Double |  no  |  |
- | fyndCredits | Double |  no  |  |
- | valueOfGood | Double |  no  |  |
-
----
-
-
- 
- 
- #### [Item](#Item)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String |  no  |  |
- | size | String |  no  |  |
- | l3CategoryName | String |  no  |  |
- | color | String? |  yes  |  |
- | id | Int |  no  |  |
- | departmentId | Int |  no  |  |
- | code | String |  no  |  |
- | image | [String]? |  yes  |  |
- | l3Category | Int |  no  |  |
- | l1Category | [String]? |  yes  |  |
- | canReturn | Bool |  no  |  |
- | canCancel | Bool |  no  |  |
-
----
-
-
- 
- 
- #### [BagUnit](#BagUnit)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gst | [GST](#GST)? |  yes  |  |
- | totalShipmentBags | Int |  no  |  |
- | status | [String: Any] |  no  |  |
- | prices | [Prices](#Prices)? |  yes  |  |
- | shipmentId | String |  no  |  |
- | itemQuantity | Int |  no  |  |
- | item | [Item](#Item)? |  yes  |  |
- | orderingChannel | String |  no  |  |
- | bagId | Int |  no  |  |
-
----
-
-
- 
- 
  #### [ShipmentStatus](#ShipmentStatus)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | hexCode | String |  no  |  |
  | opsStatus | String |  no  |  |
- | status | String |  no  |  |
- | actualStatus | String |  no  |  |
  | title | String |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String |  no  |  |
- | code | String |  no  |  |
+ | status | String |  no  |  |
+ | hexCode | String |  no  |  |
+ | actualStatus | String |  no  |  |
 
 ---
 
@@ -2072,13 +1951,13 @@ Success to acknowledge the service was notified
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | uid | Int |  no  |  |
- | mobile | String |  no  |  |
  | isAnonymousUser | Bool |  no  |  |
- | firstName | String |  no  |  |
- | email | String |  no  |  |
- | gender | String |  no  |  |
+ | mobile | String |  no  |  |
  | avisUserId | String |  no  |  |
+ | email | String |  no  |  |
  | lastName | String |  no  |  |
+ | firstName | String |  no  |  |
+ | gender | String |  no  |  |
 
 ---
 
@@ -2097,25 +1976,146 @@ Success to acknowledge the service was notified
 
  
  
+ #### [Item](#Item)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | l3Category | Int |  no  |  |
+ | id | Int |  no  |  |
+ | departmentId | Int |  no  |  |
+ | l3CategoryName | String |  no  |  |
+ | canReturn | Bool |  no  |  |
+ | color | String? |  yes  |  |
+ | canCancel | Bool |  no  |  |
+ | name | String |  no  |  |
+ | code | String |  no  |  |
+ | image | [String]? |  yes  |  |
+ | size | String |  no  |  |
+ | l1Category | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Prices](#Prices)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cashback | Double |  no  |  |
+ | taxCollectedAtSource | Double |  no  |  |
+ | amountPaid | Double |  no  |  |
+ | deliveryCharge | Double |  no  |  |
+ | priceEffective | Double |  no  |  |
+ | fyndCredits | Double |  no  |  |
+ | valueOfGood | Double |  no  |  |
+ | cashbackApplied | Double |  no  |  |
+ | priceMarked | Double |  no  |  |
+ | couponValue | Double |  no  |  |
+ | refundAmount | Double |  no  |  |
+ | codCharges | Double |  no  |  |
+ | discount | Double |  no  |  |
+ | promotionEffectiveDiscount | Double |  no  |  |
+ | refundCredit | Double |  no  |  |
+ | amountPaidRoundoff | Double |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GST](#GST)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | taxCollectedAtSource | Double |  no  |  |
+ | gstinCode | String |  no  |  |
+ | brandCalculatedAmount | Double |  no  |  |
+ | valueOfGood | Double |  no  |  |
+ | gstFee | Double |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagUnit](#BagUnit)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | orderingChannel | String |  no  |  |
+ | bagId | Int |  no  |  |
+ | status | [String: Any] |  no  |  |
+ | item | [Item](#Item)? |  yes  |  |
+ | shipmentId | String |  no  |  |
+ | totalShipmentBags | Int |  no  |  |
+ | prices | [Prices](#Prices)? |  yes  |  |
+ | gst | [GST](#GST)? |  yes  |  |
+ | itemQuantity | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String |  no  |  |
+ | code | String |  no  |  |
+
+---
+
+
+ 
+ 
  #### [ShipmentItem](#ShipmentItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | id | String |  no  |  |
+ | application | [String: Any]? |  yes  |  |
+ | shipmentStatus | [ShipmentStatus](#ShipmentStatus)? |  yes  |  |
+ | user | [UserDataInfo](#UserDataInfo)? |  yes  |  |
+ | sla | [String: Any]? |  yes  |  |
+ | shipmentCreatedAt | Int |  no  |  |
  | totalShipmentsInOrder | Int |  no  |  |
  | fulfillingCentre | String |  no  |  |
- | totalBagsCount | Int |  no  |  |
- | shipmentCreatedAt | Int |  no  |  |
- | createdAt | String |  no  |  |
- | id | String |  no  |  |
- | bags | [[BagUnit](#BagUnit)]? |  yes  |  |
- | shipmentStatus | [ShipmentStatus](#ShipmentStatus)? |  yes  |  |
- | fulfillingStore | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore)? |  yes  |  |
- | user | [UserDataInfo](#UserDataInfo)? |  yes  |  |
- | channel | [String: Any]? |  yes  |  |
- | sla | [String: Any]? |  yes  |  |
  | paymentModeInfo | [PaymentModeInfo](#PaymentModeInfo)? |  yes  |  |
- | application | [String: Any]? |  yes  |  |
+ | totalBagsCount | Int |  no  |  |
+ | bags | [[BagUnit](#BagUnit)]? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
+ | createdAt | String |  no  |  |
+ | fulfillingStore | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore)? |  yes  |  |
+ | channel | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FilterInfoOption](#FilterInfoOption)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text | String |  no  |  |
+ | value | String? |  yes  |  |
+ | name | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FiltersInfo](#FiltersInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text | String |  no  |  |
+ | type | String |  no  |  |
+ | value | String |  no  |  |
+ | options | [[FilterInfoOption](#FilterInfoOption)]? |  yes  |  |
 
 ---
 
@@ -2126,10 +2126,10 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
  | page | [String: Any]? |  yes  |  |
- | appliedFilters | [String: Any]? |  yes  |  |
  | items | [[ShipmentItem](#ShipmentItem)]? |  yes  |  |
+ | filters | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
+ | appliedFilters | [String: Any]? |  yes  |  |
 
 ---
 
@@ -2140,46 +2140,8 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
  | success | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [FulfillingStore](#FulfillingStore)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | contactPerson | String |  no  |  |
- | address | String |  no  |  |
- | state | String |  no  |  |
- | pincode | String |  no  |  |
- | fulfillmentChannel | String |  no  |  |
- | id | String |  no  |  |
- | storeName | String |  no  |  |
- | meta | [String: Any] |  no  |  |
- | code | String |  no  |  |
- | country | String |  no  |  |
- | phone | String |  no  |  |
- | city | String |  no  |  |
-
----
-
-
- 
- 
- #### [BagStatusHistory](#BagStatusHistory)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | displayName | Bool? |  yes  |  |
- | appDisplayName | Bool? |  yes  |  |
- | stateType | Bool? |  yes  |  |
- | status | String |  no  |  |
- | updatedAt | String? |  yes  |  |
- | forward | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -2190,94 +2152,30 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String |  no  |  |
- | address | String |  no  |  |
  | state | String |  no  |  |
  | pincode | String |  no  |  |
- | email | String |  no  |  |
- | country | String |  no  |  |
- | phone | String |  no  |  |
  | city | String |  no  |  |
-
----
-
-
- 
- 
- #### [OrderBagArticle](#OrderBagArticle)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifiers | [String: Any]? |  yes  |  |
- | uid | String? |  yes  |  |
- | returnConfig | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [BagConfigs](#BagConfigs)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | isCustomerReturnAllowed | Bool |  no  |  |
- | enableTracking | Bool |  no  |  |
- | canBeCancelled | Bool |  no  |  |
- | allowForceReturn | Bool |  no  |  |
- | isActive | Bool |  no  |  |
- | isReturnable | Bool |  no  |  |
-
----
-
-
- 
- 
- #### [BagGST](#BagGST)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brandCalculatedAmount | Int? |  yes  |  |
- | gstTag | String? |  yes  |  |
- | gstFee | Int? |  yes  |  |
- | hsnCode | String? |  yes  |  |
- | gstTaxPercentage | Int? |  yes  |  |
- | isDefaultHsnCode | Bool? |  yes  |  |
- | valueOfGood | Int? |  yes  |  |
- | gstinCode | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [OrderBagItem](#OrderBagItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
+ | phone | String |  no  |  |
+ | address | String |  no  |  |
+ | email | String |  no  |  |
  | name | String |  no  |  |
- | size | String |  no  |  |
- | image | [String]? |  yes  |  |
- | l3Category | Int |  no  |  |
- | l1Category | [String]? |  yes  |  |
- | brand | String |  no  |  |
- | slugKey | String |  no  |  |
+ | country | String |  no  |  |
 
 ---
 
 
  
  
- #### [OrderBrandName](#OrderBrandName)
+ #### [BagStatusHistory](#BagStatusHistory)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedOn | Int? |  yes  |  |
- | id | Int |  no  |  |
- | logo | String |  no  |  |
- | company | String |  no  |  |
- | createdOn | Int |  no  |  |
- | brandName | String |  no  |  |
+ | appDisplayName | Bool? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | stateType | Bool? |  yes  |  |
+ | displayName | Bool? |  yes  |  |
+ | status | String |  no  |  |
+ | forward | Bool? |  yes  |  |
 
 ---
 
@@ -2288,32 +2186,112 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | totalUnits | Int |  no  |  |
- | gstTag | String |  no  |  |
- | gstTaxPercentage | Int |  no  |  |
- | fyndCredits | Int |  no  |  |
- | discount | Int |  no  |  |
- | refundCredit | Int |  no  |  |
- | hsnCode | String |  no  |  |
- | gstFee | String |  no  |  |
- | couponValue | Int |  no  |  |
- | transferPrice | Int |  no  |  |
- | itemName | String |  no  |  |
  | priceEffective | Int |  no  |  |
- | cashback | Int |  no  |  |
  | identifiers | [String: Any] |  no  |  |
- | deliveryCharge | Int |  no  |  |
- | codCharges | Int |  no  |  |
- | priceMarked | Int |  no  |  |
- | promotionEffectiveDiscount | Int |  no  |  |
- | addedToFyndCash | Bool |  no  |  |
+ | discount | Int |  no  |  |
+ | transferPrice | Int |  no  |  |
+ | gstTaxPercentage | Int |  no  |  |
  | pmPriceSplit | [String: Any] |  no  |  |
  | valueOfGood | Int |  no  |  |
- | brandCalculatedAmount | Int |  no  |  |
- | size | String |  no  |  |
- | amountPaid | Int |  no  |  |
- | cashbackApplied | Int |  no  |  |
+ | couponValue | Int |  no  |  |
+ | priceMarked | Int |  no  |  |
+ | gstTag | String |  no  |  |
+ | cashback | Int |  no  |  |
+ | deliveryCharge | Int |  no  |  |
+ | hsnCode | String |  no  |  |
+ | codCharges | Int |  no  |  |
+ | gstFee | String |  no  |  |
  | couponEffectiveDiscount | Int |  no  |  |
+ | refundCredit | Int |  no  |  |
+ | size | String |  no  |  |
+ | itemName | String |  no  |  |
+ | amountPaid | Int |  no  |  |
+ | brandCalculatedAmount | Int |  no  |  |
+ | fyndCredits | Int |  no  |  |
+ | cashbackApplied | Int |  no  |  |
+ | addedToFyndCash | Bool |  no  |  |
+ | promotionEffectiveDiscount | Int |  no  |  |
+ | totalUnits | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderBrandName](#OrderBrandName)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | logo | String |  no  |  |
+ | id | Int |  no  |  |
+ | brandName | String |  no  |  |
+ | createdOn | Int |  no  |  |
+ | company | String |  no  |  |
+ | modifiedOn | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderBagArticle](#OrderBagArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | returnConfig | [String: Any]? |  yes  |  |
+ | identifiers | [String: Any]? |  yes  |  |
+ | uid | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BagGST](#BagGST)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gstTaxPercentage | Int? |  yes  |  |
+ | gstFee | Int? |  yes  |  |
+ | gstinCode | String? |  yes  |  |
+ | hsnCode | String? |  yes  |  |
+ | brandCalculatedAmount | Int? |  yes  |  |
+ | valueOfGood | Int? |  yes  |  |
+ | isDefaultHsnCode | Bool? |  yes  |  |
+ | gstTag | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderBagItem](#OrderBagItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slugKey | String |  no  |  |
+ | brand | String |  no  |  |
+ | name | String |  no  |  |
+ | image | [String]? |  yes  |  |
+ | l1Category | [String]? |  yes  |  |
+ | size | String |  no  |  |
+ | l3Category | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagConfigs](#BagConfigs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enableTracking | Bool |  no  |  |
+ | allowForceReturn | Bool |  no  |  |
+ | isReturnable | Bool |  no  |  |
+ | isActive | Bool |  no  |  |
+ | canBeCancelled | Bool |  no  |  |
+ | isCustomerReturnAllowed | Bool |  no  |  |
 
 ---
 
@@ -2324,50 +2302,39 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | bagId | Int |  no  |  |
  | displayName | String |  no  |  |
+ | financialBreakup | [[FinancialBreakup](#FinancialBreakup)]? |  yes  |  |
  | currentStatus | String |  no  |  |
+ | brand | [OrderBrandName](#OrderBrandName)? |  yes  |  |
  | article | [OrderBagArticle](#OrderBagArticle)? |  yes  |  |
+ | gstDetails | [BagGST](#BagGST)? |  yes  |  |
+ | item | [OrderBagItem](#OrderBagItem)? |  yes  |  |
+ | entityType | String |  no  |  |
  | quantity | Int |  no  |  |
  | bagConfigs | [BagConfigs](#BagConfigs)? |  yes  |  |
- | gstDetails | [BagGST](#BagGST)? |  yes  |  |
- | entityType | String |  no  |  |
- | item | [OrderBagItem](#OrderBagItem)? |  yes  |  |
- | brand | [OrderBrandName](#OrderBrandName)? |  yes  |  |
- | financialBreakup | [[FinancialBreakup](#FinancialBreakup)]? |  yes  |  |
- | bagId | Int |  no  |  |
 
 ---
 
 
  
  
- #### [ShipmentStatusData](#ShipmentStatusData)
+ #### [FulfillingStore](#FulfillingStore)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | String? |  yes  |  |
- | id | Int? |  yes  |  |
- | bagList | [Int]? |  yes  |  |
- | shipmentId | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [DPDetails](#DPDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | gstTag | String? |  yes  |  |
- | pincode | String? |  yes  |  |
- | awbNo | String? |  yes  |  |
- | id | String? |  yes  |  |
- | ewayBillId | String? |  yes  |  |
- | country | String? |  yes  |  |
- | trackUrl | String? |  yes  |  |
+ | state | String |  no  |  |
+ | id | String |  no  |  |
+ | pincode | String |  no  |  |
+ | contactPerson | String |  no  |  |
+ | phone | String |  no  |  |
+ | city | String |  no  |  |
+ | meta | [String: Any] |  no  |  |
+ | address | String |  no  |  |
+ | fulfillmentChannel | String |  no  |  |
+ | storeName | String |  no  |  |
+ | code | String |  no  |  |
+ | country | String |  no  |  |
 
 ---
 
@@ -2378,29 +2345,15 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | orderDate | String? |  yes  |  |
- | taxDetails | [String: Any]? |  yes  |  |
- | codCharges | String? |  yes  |  |
- | source | String? |  yes  |  |
- | orderingChannelLogo | [String: Any]? |  yes  |  |
- | affiliateId | String? |  yes  |  |
- | orderValue | String? |  yes  |  |
- | fyndOrderId | String |  no  |  |
  | orderingChannel | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [TrackingList](#TrackingList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | isPassed | Bool? |  yes  |  |
- | time | String? |  yes  |  |
- | status | String |  no  |  |
- | isCurrent | Bool? |  yes  |  |
+ | fyndOrderId | String |  no  |  |
+ | source | String? |  yes  |  |
+ | affiliateId | String? |  yes  |  |
+ | taxDetails | [String: Any]? |  yes  |  |
+ | orderDate | String? |  yes  |  |
+ | codCharges | String? |  yes  |  |
+ | orderValue | String? |  yes  |  |
+ | orderingChannelLogo | [String: Any]? |  yes  |  |
 
 ---
 
@@ -2411,9 +2364,56 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mode | String |  no  |  |
  | logo | String? |  yes  |  |
+ | mode | String |  no  |  |
  | source | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TrackingList](#TrackingList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | time | String? |  yes  |  |
+ | isCurrent | Bool? |  yes  |  |
+ | isPassed | Bool? |  yes  |  |
+ | status | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DPDetails](#DPDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | String? |  yes  |  |
+ | ewayBillId | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | pincode | String? |  yes  |  |
+ | awbNo | String? |  yes  |  |
+ | trackUrl | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | gstTag | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentStatusData](#ShipmentStatusData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | Int? |  yes  |  |
+ | status | String? |  yes  |  |
+ | bagList | [Int]? |  yes  |  |
+ | shipmentId | String? |  yes  |  |
+ | createdAt | String? |  yes  |  |
 
 ---
 
@@ -2424,89 +2424,76 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fulfillingStore | [FulfillingStore](#FulfillingStore)? |  yes  |  |
- | securedDeliveryFlag | String? |  yes  |  |
- | bagStatusHistory | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | totalItems | Int? |  yes  |  |
- | goGreen | Bool? |  yes  |  |
- | kiranaStoreId | String? |  yes  |  |
- | statusProgress | Int |  no  |  |
- | isFyndStore | String? |  yes  |  |
- | orderingStore | [String: Any] |  no  |  |
- | isNotFyndSource | Bool |  no  |  |
- | items | [[String: Any]] |  no  |  |
- | fyndstoreEmp | [String: Any] |  no  |  |
- | orderStatus | [String: Any] |  no  |  |
- | canCancel | Bool? |  yes  |  |
- | prices | [Prices](#Prices)? |  yes  |  |
- | billingDetails | [UserDetailsData](#UserDetailsData)? |  yes  |  |
- | bankData | [String: Any]? |  yes  |  |
- | isInvoiced | Bool |  no  |  |
- | deliverySlot | [String: Any] |  no  |  |
- | affiliateShipmentId | String |  no  |  |
+ | replacementDetails | String? |  yes  |  |
+ | deliveryDetails | [UserDetailsData](#UserDetailsData)? |  yes  |  |
+ | bagStatusHistory | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | pickedDate | String |  no  |  |
  | emailId | String |  no  |  |
- | company | [String: Any] |  no  |  |
- | userInfo | [String: Any]? |  yes  |  |
- | invoice | [String: Any] |  no  |  |
- | trackingUrl | String |  no  |  |
- | userAgent | String |  no  |  |
- | replacementDetails | String? |  yes  |  |
- | bags | [OrderBags](#OrderBags)? |  yes  |  |
- | canReturn | Bool? |  yes  |  |
- | escalation | [String: Any]? |  yes  |  |
- | canBreak | String |  no  |  |
- | refundDetails | [String: Any]? |  yes  |  |
- | orderType | String |  no  |  |
- | isPdsr | String? |  yes  |  |
- | paymentMode | String |  no  |  |
- | status | [ShipmentStatusData](#ShipmentStatusData)? |  yes  |  |
- | dpDetails | [DPDetails](#DPDetails)? |  yes  |  |
- | beneficiaryDetails | Bool? |  yes  |  |
- | dueDate | String? |  yes  |  |
- | forwardTrackingList | [[String: Any]]? |  yes  |  |
- | forwardShipmentStatus | [[String: Any]]? |  yes  |  |
- | creditNoteId | String |  no  |  |
- | journeyType | String |  no  |  |
- | mid | String? |  yes  |  |
- | priorityText | String? |  yes  |  |
- | order | [OrderDetailsData](#OrderDetailsData)? |  yes  |  |
- | isPackagingOrder | Bool |  no  |  |
  | currentShipmentStatus | [String: Any] |  no  |  |
- | shipmentQuantity | Int |  no  |  |
- | trackingList | [[TrackingList](#TrackingList)]? |  yes  |  |
- | coupon | [String: Any]? |  yes  |  |
- | vertical | String? |  yes  |  |
- | enableTracking | Bool? |  yes  |  |
- | lockStatus | String |  no  |  |
- | enableDpTracking | String |  no  |  |
- | userId | String |  no  |  |
- | gstDetails | [GST](#GST)? |  yes  |  |
- | payments | [ShipmentPayments](#ShipmentPayments)? |  yes  |  |
- | deliveryStatus | [[String: Any]] |  no  |  |
- | childNodes | [String]? |  yes  |  |
- | packagingType | String |  no  |  |
- | refundText | String? |  yes  |  |
+ | invoice | [String: Any] |  no  |  |
+ | isPackagingOrder | Bool |  no  |  |
  | forwardOrderStatus | [[String: Any]]? |  yes  |  |
- | shipmentId | String |  no  |  |
- | payButton | String? |  yes  |  |
+ | userInfo | [String: Any]? |  yes  |  |
+ | enableDpTracking | String |  no  |  |
+ | mid | String? |  yes  |  |
+ | packagingType | String |  no  |  |
+ | canReturn | Bool? |  yes  |  |
+ | canCancel | Bool? |  yes  |  |
+ | bags | [OrderBags](#OrderBags)? |  yes  |  |
+ | userAgent | String |  no  |  |
+ | company | [String: Any] |  no  |  |
+ | lockStatus | String |  no  |  |
+ | fulfillingStore | [FulfillingStore](#FulfillingStore)? |  yes  |  |
+ | orderStatus | [String: Any] |  no  |  |
+ | affiliateShipmentId | String |  no  |  |
+ | kiranaStoreId | String? |  yes  |  |
+ | beneficiaryDetails | Bool? |  yes  |  |
+ | statusProgress | Int |  no  |  |
+ | forwardTrackingList | [[String: Any]]? |  yes  |  |
+ | isInvoiced | Bool |  no  |  |
+ | items | [[String: Any]] |  no  |  |
+ | fyndstoreEmp | [String: Any] |  no  |  |
+ | order | [OrderDetailsData](#OrderDetailsData)? |  yes  |  |
+ | enableTracking | Bool? |  yes  |  |
+ | refundText | String? |  yes  |  |
+ | canBreak | String |  no  |  |
  | platformLogo | Bool |  no  |  |
- | deliveryDetails | [UserDetailsData](#UserDetailsData)? |  yes  |  |
- | isFyndCoupon | Bool |  no  |  |
+ | dueDate | String? |  yes  |  |
+ | payments | [ShipmentPayments](#ShipmentPayments)? |  yes  |  |
+ | trackingList | [[TrackingList](#TrackingList)]? |  yes  |  |
+ | escalation | [String: Any]? |  yes  |  |
  | orderCreatedTime | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [OrderDict](#OrderDict)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | fyndOrderId | String |  no  |  |
- | shipmentCount | Int |  no  |  |
- | orderDate | String |  no  |  |
+ | payButton | String? |  yes  |  |
+ | coupon | [String: Any]? |  yes  |  |
+ | childNodes | [String]? |  yes  |  |
+ | dpDetails | [DPDetails](#DPDetails)? |  yes  |  |
+ | paymentMode | String |  no  |  |
+ | shipmentQuantity | Int |  no  |  |
+ | billingDetails | [UserDetailsData](#UserDetailsData)? |  yes  |  |
+ | priorityText | String? |  yes  |  |
+ | securedDeliveryFlag | String? |  yes  |  |
+ | orderType | String |  no  |  |
+ | creditNoteId | String |  no  |  |
+ | status | [ShipmentStatusData](#ShipmentStatusData)? |  yes  |  |
+ | isPdsr | String? |  yes  |  |
+ | userId | String |  no  |  |
+ | deliveryStatus | [[String: Any]] |  no  |  |
+ | shipmentId | String |  no  |  |
+ | bankData | [String: Any]? |  yes  |  |
+ | journeyType | String |  no  |  |
+ | vertical | String? |  yes  |  |
+ | trackingUrl | String |  no  |  |
+ | refundDetails | [String: Any]? |  yes  |  |
+ | orderingStore | [String: Any] |  no  |  |
+ | goGreen | Bool? |  yes  |  |
+ | isFyndCoupon | Bool |  no  |  |
+ | gstDetails | [GST](#GST)? |  yes  |  |
+ | deliverySlot | [String: Any] |  no  |  |
+ | prices | [Prices](#Prices)? |  yes  |  |
+ | isNotFyndSource | Bool |  no  |  |
+ | forwardShipmentStatus | [[String: Any]]? |  yes  |  |
+ | isFyndStore | String? |  yes  |  |
 
 ---
 
@@ -2517,31 +2504,44 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fulfillingStore | [FulfillingStore](#FulfillingStore)? |  yes  |  |
- | bagStatusHistory | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | totalItems | Int? |  yes  |  |
- | prices | [Prices](#Prices)? |  yes  |  |
- | billingDetails | [UserDetailsData](#UserDetailsData)? |  yes  |  |
- | deliverySlot | [String: Any] |  no  |  |
- | pickedDate | String |  no  |  |
- | userAgent | String |  no  |  |
- | bags | [OrderBags](#OrderBags)? |  yes  |  |
- | paymentMode | String |  no  |  |
- | status | [ShipmentStatusData](#ShipmentStatusData)? |  yes  |  |
- | dpDetails | [DPDetails](#DPDetails)? |  yes  |  |
- | journeyType | String |  no  |  |
- | priorityText | String? |  yes  |  |
- | order | [OrderDetailsData](#OrderDetailsData)? |  yes  |  |
- | shipmentQuantity | Int |  no  |  |
- | trackingList | [[TrackingList](#TrackingList)]? |  yes  |  |
- | vertical | String? |  yes  |  |
- | enableDpTracking | String |  no  |  |
- | gstDetails | [GST](#GST)? |  yes  |  |
- | payments | [ShipmentPayments](#ShipmentPayments)? |  yes  |  |
- | packagingType | String |  no  |  |
- | shipmentId | String |  no  |  |
- | platformLogo | String |  no  |  |
  | deliveryDetails | [UserDetailsData](#UserDetailsData)? |  yes  |  |
+ | bagStatusHistory | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
+ | pickedDate | String |  no  |  |
+ | enableDpTracking | String |  no  |  |
+ | packagingType | String |  no  |  |
+ | bags | [OrderBags](#OrderBags)? |  yes  |  |
+ | userAgent | String |  no  |  |
+ | fulfillingStore | [FulfillingStore](#FulfillingStore)? |  yes  |  |
+ | order | [OrderDetailsData](#OrderDetailsData)? |  yes  |  |
+ | platformLogo | String |  no  |  |
+ | payments | [ShipmentPayments](#ShipmentPayments)? |  yes  |  |
+ | trackingList | [[TrackingList](#TrackingList)]? |  yes  |  |
+ | dpDetails | [DPDetails](#DPDetails)? |  yes  |  |
+ | paymentMode | String |  no  |  |
+ | shipmentQuantity | Int |  no  |  |
+ | billingDetails | [UserDetailsData](#UserDetailsData)? |  yes  |  |
+ | priorityText | String? |  yes  |  |
+ | status | [ShipmentStatusData](#ShipmentStatusData)? |  yes  |  |
+ | shipmentId | String |  no  |  |
+ | journeyType | String |  no  |  |
+ | vertical | String? |  yes  |  |
+ | gstDetails | [GST](#GST)? |  yes  |  |
+ | deliverySlot | [String: Any] |  no  |  |
+ | prices | [Prices](#Prices)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderDict](#OrderDict)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipmentCount | Int |  no  |  |
+ | fyndOrderId | String |  no  |  |
+ | orderDate | String |  no  |  |
 
 ---
 
@@ -2552,9 +2552,9 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order | [OrderDict](#OrderDict)? |  yes  |  |
  | shipments | [[Shipment](#Shipment)]? |  yes  |  |
  | success | Bool |  no  |  |
+ | order | [OrderDict](#OrderDict)? |  yes  |  |
 
 ---
 
@@ -2565,12 +2565,12 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | totalShipments | Int |  no  |  |
  | text | String |  no  |  |
- | index | Int |  no  |  |
- | nextState | [String]? |  yes  |  |
  | currentState | [String]? |  yes  |  |
  | value | String |  no  |  |
+ | totalShipments | Int |  no  |  |
+ | index | Int |  no  |  |
+ | nextState | [String]? |  yes  |  |
 
 ---
 
@@ -2582,8 +2582,8 @@ Success to acknowledge the service was notified
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | text | String |  no  |  |
- | options | [[SubLane](#SubLane)]? |  yes  |  |
  | value | String |  no  |  |
+ | options | [[SubLane](#SubLane)]? |  yes  |  |
 
 ---
 
@@ -2617,10 +2617,10 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | options | [[Options](#Options)]? |  yes  |  |
- | key | String |  no  |  |
- | value | Int |  no  |  |
  | text | String |  no  |  |
+ | value | Int |  no  |  |
+ | key | String |  no  |  |
+ | options | [[Options](#Options)]? |  yes  |  |
 
 ---
 
@@ -2642,8 +2642,8 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channels | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
  | deliveryPartners | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
+ | channels | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
 
 ---
 
@@ -2654,8 +2654,8 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
  | success | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -2666,15 +2666,15 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | displayName | String? |  yes  |  |
- | reportCreatedAt | String? |  yes  |  |
- | reportId | String? |  yes  |  |
  | requestDetails | [String: Any]? |  yes  |  |
+ | displayName | String? |  yes  |  |
+ | reportId | String? |  yes  |  |
+ | reportCreatedAt | String? |  yes  |  |
+ | reportType | String? |  yes  |  |
  | status | String? |  yes  |  |
  | s3Key | String? |  yes  |  |
- | reportName | String? |  yes  |  |
  | reportRequestedAt | String? |  yes  |  |
- | reportType | String? |  yes  |  |
+ | reportName | String? |  yes  |  |
 
 ---
 
@@ -2685,10 +2685,10 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | companyId | String? |  yes  |  |
  | jioCode | String? |  yes  |  |
- | itemId | String? |  yes  |  |
  | articleId | String? |  yes  |  |
+ | companyId | String? |  yes  |  |
+ | itemId | String? |  yes  |  |
 
 ---
 
@@ -2710,9 +2710,9 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | value | String? |  yes  |  |
  | type | String? |  yes  |  |
+ | value | String? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -2723,11 +2723,11 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [[NestedErrorSchemaDataSet](#NestedErrorSchemaDataSet)]? |  yes  |  |
- | identifier | String? |  yes  |  |
- | success | Bool? |  yes  |  |
  | traceId | String? |  yes  |  |
+ | identifier | String? |  yes  |  |
  | data | [[String: Any]]? |  yes  |  |
+ | success | Bool? |  yes  |  |
+ | error | [[NestedErrorSchemaDataSet](#NestedErrorSchemaDataSet)]? |  yes  |  |
 
 ---
 
@@ -2751,11 +2751,11 @@ Success to acknowledge the service was notified
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | successfulShipmentsCount | Int? |  yes  |  |
- | processingShipmentsCount | Int? |  yes  |  |
  | batchId | String? |  yes  |  |
- | successfulShipmentIds | [String]? |  yes  |  |
  | failedShipmentsCount | Int? |  yes  |  |
  | totalShipmentsCount | Int? |  yes  |  |
+ | successfulShipmentIds | [String]? |  yes  |  |
+ | processingShipmentsCount | Int? |  yes  |  |
  | companyId | String? |  yes  |  |
 
 ---
@@ -2767,15 +2767,15 @@ Success to acknowledge the service was notified
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uploadedBy | String? |  yes  |  |
- | error | [String]? |  yes  |  |
- | success | String? |  yes  |  |
- | userId | String? |  yes  |  |
- | status | Bool? |  yes  |  |
- | message | String? |  yes  |  |
- | data | [[BulkActionDetailsDataField](#BulkActionDetailsDataField)]? |  yes  |  |
- | failedRecords | [String]? |  yes  |  |
  | uploadedOn | String? |  yes  |  |
+ | status | Bool? |  yes  |  |
+ | data | [[BulkActionDetailsDataField](#BulkActionDetailsDataField)]? |  yes  |  |
+ | success | String? |  yes  |  |
+ | error | [String]? |  yes  |  |
+ | failedRecords | [String]? |  yes  |  |
+ | userId | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | uploadedBy | String? |  yes  |  |
 
 ---
 

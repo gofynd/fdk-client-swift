@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class ProductFiltersKey: Codable {
         public var kind: String?
 
-        public var name: String
-
         public var display: String
+
+        public var name: String
 
         public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
             case kind
 
-            case name
-
             case display
+
+            case name
 
             case logo
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String) {
             self.kind = kind
 
-            self.name = name
-
             self.display = display
+
+            self.name = name
 
             self.logo = logo
         }
@@ -46,9 +46,9 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
             display = try container.decode(String.self, forKey: .display)
+
+            name = try container.decode(String.self, forKey: .name)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -64,9 +64,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(kind, forKey: .kind)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }
