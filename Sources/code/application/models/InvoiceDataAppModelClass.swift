@@ -3,37 +3,37 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: Statuses
+         Model: InvoiceData
          Used By: Order
      */
-    class Statuses: Codable {
-        public var display: String?
+    class InvoiceData: Codable {
+        public var invoiceUrl: String?
 
-        public var isSelected: Bool?
+        public var updatedDate: String?
 
-        public var value: Int?
+        public var labelUrl: String?
 
         public enum CodingKeys: String, CodingKey {
-            case display
+            case invoiceUrl = "invoice_url"
 
-            case isSelected = "is_selected"
+            case updatedDate = "updated_date"
 
-            case value
+            case labelUrl = "label_url"
         }
 
-        public init(display: String? = nil, isSelected: Bool? = nil, value: Int? = nil) {
-            self.display = display
+        public init(invoiceUrl: String? = nil, labelUrl: String? = nil, updatedDate: String? = nil) {
+            self.invoiceUrl = invoiceUrl
 
-            self.isSelected = isSelected
+            self.updatedDate = updatedDate
 
-            self.value = value
+            self.labelUrl = labelUrl
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                invoiceUrl = try container.decode(String.self, forKey: .invoiceUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
+                updatedDate = try container.decode(String.self, forKey: .updatedDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                value = try container.decode(Int.self, forKey: .value)
+                labelUrl = try container.decode(String.self, forKey: .labelUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
 
-            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
+            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
         }
     }
 }

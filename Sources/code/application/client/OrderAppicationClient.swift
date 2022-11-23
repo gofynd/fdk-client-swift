@@ -950,7 +950,7 @@ public extension ApplicationClient {
          **/
         public func verifyOtpShipmentCustomer1(
             orderId: String,
-            shipmentId: Int,
+            shipmentId: String,
             body: VerifyOtp,
             onResponse: @escaping (_ response: VerifyOtpResponse?, _ error: FDKError?) -> Void
         ) {
