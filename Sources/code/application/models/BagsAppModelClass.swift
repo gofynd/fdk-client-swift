@@ -17,6 +17,8 @@ public extension ApplicationClient {
 
         public var financialBreakup: [FinancialBreakup]?
 
+        public var appliedPromos: [AppliedPromos]?
+
         public enum CodingKeys: String, CodingKey {
             case item
 
@@ -27,9 +29,11 @@ public extension ApplicationClient {
             case id
 
             case financialBreakup = "financial_breakup"
+
+            case appliedPromos = "applied_promos"
         }
 
-        public init(currentStatus: CurrentStatus? = nil, financialBreakup: [FinancialBreakup]? = nil, id: Int? = nil, item: Item? = nil, prices: Prices? = nil) {
+        public init(appliedPromos: [AppliedPromos]? = nil, currentStatus: CurrentStatus? = nil, financialBreakup: [FinancialBreakup]? = nil, id: Int? = nil, item: Item? = nil, prices: Prices? = nil) {
             self.item = item
 
             self.prices = prices
@@ -39,6 +43,8 @@ public extension ApplicationClient {
             self.id = id
 
             self.financialBreakup = financialBreakup
+
+            self.appliedPromos = appliedPromos
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,6 +89,14 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                appliedPromos = try container.decode([AppliedPromos].self, forKey: .appliedPromos)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,6 +111,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(financialBreakup, forKey: .financialBreakup)
+
+            try? container.encodeIfPresent(appliedPromos, forKey: .appliedPromos)
         }
     }
 }

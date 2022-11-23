@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class InventoryPage: Codable {
-        public var hasPrevious: Bool?
+        public var nextId: String?
 
         public var hasNext: Bool?
 
@@ -16,10 +16,10 @@ public extension PlatformClient {
 
         public var type: String
 
-        public var nextId: String?
+        public var hasPrevious: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case hasPrevious = "has_previous"
+            case nextId = "next_id"
 
             case hasNext = "has_next"
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case type
 
-            case nextId = "next_id"
+            case hasPrevious = "has_previous"
         }
 
         public init(hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int, nextId: String? = nil, type: String) {
-            self.hasPrevious = hasPrevious
+            self.nextId = nextId
 
             self.hasNext = hasNext
 
@@ -39,14 +39,14 @@ public extension PlatformClient {
 
             self.type = type
 
-            self.nextId = nextId
+            self.hasPrevious = hasPrevious
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+                nextId = try container.decode(String.self, forKey: .nextId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -66,7 +66,7 @@ public extension PlatformClient {
             type = try container.decode(String.self, forKey: .type)
 
             do {
-                nextId = try container.decode(String.self, forKey: .nextId)
+                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+            try? container.encodeIfPresent(nextId, forKey: .nextId)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
@@ -85,7 +85,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(nextId, forKey: .nextId)
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
         }
     }
 }

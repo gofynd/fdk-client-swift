@@ -1041,16 +1041,10 @@ public extension ApplicationClient {
          * Description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
          **/
         public func addRefundBankAccountUsingOTP(
-            companyId: Int,
-            applicationId: String,
             body: AddBeneficiaryDetailsOTPRequest,
             onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["addRefundBankAccountUsingOTP"] ?? ""
-
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "company_id" + "}", with: "\(companyId)")
-
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "application_id" + "}", with: "\(applicationId)")
+            let fullUrl = relativeUrls["addRefundBankAccountUsingOTP"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,

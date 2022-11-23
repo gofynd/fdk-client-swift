@@ -374,13 +374,27 @@ Response status_code
 
  
  
+ #### [PincodeParentsResponse](#PincodeParentsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | displayName | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | subType | String? |  yes  |  |
+ | uid | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
  | value | String? |  yes  |  |
  | type | String? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -391,22 +405,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | internalZoneId | Int? |  yes  |  |
  | zone | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [PincodeParentsResponse](#PincodeParentsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | displayName | String? |  yes  |  |
- | subType | String? |  yes  |  |
- | uid | String? |  yes  |  |
+ | internalZoneId | Int? |  yes  |  |
 
 ---
 
@@ -417,13 +417,13 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | displayName | String? |  yes  |  |
+ | parents | [[PincodeParentsResponse](#PincodeParentsResponse)]? |  yes  |  |
  | subType | String? |  yes  |  |
- | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  no  |  |
  | uid | String? |  yes  |  |
+ | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  no  |  |
+ | displayName | String? |  yes  |  |
  | meta | [PincodeMetaResponse](#PincodeMetaResponse)? |  yes  |  |
  | name | String? |  yes  |  |
- | parents | [[PincodeParentsResponse](#PincodeParentsResponse)]? |  yes  |  |
 
 ---
 
@@ -435,8 +435,8 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [[PincodeDataResponse](#PincodeDataResponse)]? |  yes  |  |
- | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  no  |  |
  | success | Bool |  no  |  |
+ | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  no  |  |
 
 ---
 
@@ -485,12 +485,25 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | source | String? |  yes  |  |
  | locationDetails | [[TATLocationDetailsRequest](#TATLocationDetailsRequest)]? |  yes  |  |
- | identifier | String? |  yes  |  |
- | action | String? |  yes  |  |
  | toPincode | String? |  yes  |  |
+ | identifier | String? |  yes  |  |
  | journey | String? |  yes  |  |
+ | source | String? |  yes  |  |
+ | action | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TATErrorSchemaResponse](#TATErrorSchemaResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -501,8 +514,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | String? |  yes  |  |
  | min | String? |  yes  |  |
+ | max | String? |  yes  |  |
 
 ---
 
@@ -513,8 +526,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | Int? |  yes  |  |
  | min | Int? |  yes  |  |
+ | max | Int? |  yes  |  |
 
 ---
 
@@ -533,30 +546,17 @@ Response status_code
 
  
  
- #### [TATErrorSchemaResponse](#TATErrorSchemaResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | value | String? |  yes  |  |
- | type | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [TATArticlesResponse](#TATArticlesResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | manufacturingTime | Int? |  yes  |  |
  | manufacturingTimeUnit | String? |  yes  |  |
- | promise | [TATPromiseResponse](#TATPromiseResponse)? |  yes  |  |
  | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse)? |  yes  |  |
  | manufacturingTimeSeconds | Int? |  yes  |  |
  | isCodAvailable | Bool? |  yes  |  |
  | category | [TATCategoryRequest](#TATCategoryRequest)? |  yes  |  |
+ | manufacturingTime | Int? |  yes  |  |
+ | promise | [TATPromiseResponse](#TATPromiseResponse)? |  yes  |  |
 
 ---
 
@@ -580,19 +580,19 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | source | String? |  yes  |  |
  | locationDetails | [[TATLocationDetailsResponse](#TATLocationDetailsResponse)]? |  yes  |  |
- | identifier | String? |  yes  |  |
- | action | String? |  yes  |  |
- | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse)? |  yes  |  |
- | toCity | String? |  yes  |  |
  | paymentMode | String? |  yes  |  |
- | stormbreakerUuid | String? |  yes  |  |
- | requestUuid | String? |  yes  |  |
  | toPincode | String? |  yes  |  |
- | isCodAvailable | Bool? |  yes  |  |
+ | requestUuid | String? |  yes  |  |
+ | identifier | String? |  yes  |  |
  | success | Bool? |  yes  |  |
  | journey | String? |  yes  |  |
+ | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse)? |  yes  |  |
+ | isCodAvailable | Bool? |  yes  |  |
+ | toCity | String? |  yes  |  |
+ | source | String? |  yes  |  |
+ | stormbreakerUuid | String? |  yes  |  |
+ | action | String? |  yes  |  |
 
 ---
 
@@ -603,8 +603,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country | String |  no  |  |
  | pincode | String |  no  |  |
+ | country | String |  no  |  |
 
 ---
 
