@@ -2293,14 +2293,14 @@ Success. Returns a list of pages along with their details. Check the example sho
  | active | Bool? |  yes  |  |
  | display | String? |  yes  |  |
  | sortOrder | Int? |  yes  |  |
- | subNavigation | [[_NavigationReference](#_NavigationReference)]? |  yes  |  |
+ | subNavigation | [[SubNavigationReference](#SubNavigationReference)]? |  yes  |  |
 
 ---
 
 
  
  
- #### [_NavigationReference](#_NavigationReference)
+ #### [SubNavigationReference](#SubNavigationReference)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

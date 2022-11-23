@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: _NavigationReference
+         Model: SubNavigationReference
          Used By: Content
      */
 
-    class _NavigationReference: Codable {
+    class SubNavigationReference: Codable {
         public var acl: [String]?
 
         public var tags: [String]?
