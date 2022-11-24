@@ -7,22 +7,22 @@ public extension ApplicationClient {
          Used By: Order
      */
     class CustomerDetailsResponse: Codable {
-        public var shipmentId: String?
+        public var orderId: String?
 
         public var name: String?
 
-        public var orderId: String?
+        public var shipmentId: String?
 
         public var phone: String?
 
         public var country: String?
 
         public enum CodingKeys: String, CodingKey {
-            case shipmentId = "shipment_id"
+            case orderId = "order_id"
 
             case name
 
-            case orderId = "order_id"
+            case shipmentId = "shipment_id"
 
             case phone
 
@@ -30,11 +30,11 @@ public extension ApplicationClient {
         }
 
         public init(country: String? = nil, name: String? = nil, orderId: String? = nil, phone: String? = nil, shipmentId: String? = nil) {
-            self.shipmentId = shipmentId
+            self.orderId = orderId
 
             self.name = name
 
-            self.orderId = orderId
+            self.shipmentId = shipmentId
 
             self.phone = phone
 
@@ -45,7 +45,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,11 +88,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(phone, forKey: .phone)
 

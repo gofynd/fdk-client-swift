@@ -25,7 +25,7 @@ public extension ApplicationClient {
 
             ulrs["verifyOtpShipmentCustomer"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/")
 
-            ulrs["getPlatformShipmentReasons"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/bags/{bag_id}/reasons")
+            ulrs["getShipmentBagReasons"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons")
 
             ulrs["updateShipmentStatus"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status")
 
@@ -376,7 +376,7 @@ public extension ApplicationClient {
          **/
         public func verifyOtpShipmentCustomer(
             orderId: String,
-            shipmentId: Int,
+            shipmentId: String,
             body: VerifyOtp,
             onResponse: @escaping (_ response: VerifyOtpResponse?, _ error: FDKError?) -> Void
         ) {
@@ -420,12 +420,15 @@ public extension ApplicationClient {
          * Summary: Get reasons behind full or partial cancellation of a shipment
          * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
          **/
-        public func getPlatformShipmentReasons(
-            bagId: String,
+        public func getShipmentBagReasons(
+            shipmentId: String,
+            bagId: Int,
 
             onResponse: @escaping (_ response: ShipmentReasonsResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["getPlatformShipmentReasons"] ?? ""
+            var fullUrl = relativeUrls["getShipmentBagReasons"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "bag_id" + "}", with: "\(bagId)")
 

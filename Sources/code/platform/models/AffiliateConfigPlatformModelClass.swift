@@ -1,33 +1,34 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: RedirectionSchema
-         Used By: Content
+         Model: AffiliateConfig
+         Used By: Order
      */
-    class RedirectionSchema: Codable {
-        public var redirectFrom: String?
 
-        public var redirectTo: String?
+    class AffiliateConfig: Codable {
+        public var app: AffiliateAppConfig?
+
+        public var inventory: AffiliateInventoryConfig?
 
         public enum CodingKeys: String, CodingKey {
-            case redirectFrom = "redirect_from"
+            case app
 
-            case redirectTo = "redirect_to"
+            case inventory
         }
 
-        public init(redirectFrom: String? = nil, redirectTo: String? = nil) {
-            self.redirectFrom = redirectFrom
+        public init(app: AffiliateAppConfig? = nil, inventory: AffiliateInventoryConfig? = nil) {
+            self.app = app
 
-            self.redirectTo = redirectTo
+            self.inventory = inventory
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                redirectFrom = try container.decode(String.self, forKey: .redirectFrom)
+                app = try container.decode(AffiliateAppConfig.self, forKey: .app)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +36,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                redirectTo = try container.decode(String.self, forKey: .redirectTo)
+                inventory = try container.decode(AffiliateInventoryConfig.self, forKey: .inventory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +47,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(redirectFrom, forKey: .redirectFrom)
+            try? container.encodeIfPresent(app, forKey: .app)
 
-            try? container.encodeIfPresent(redirectTo, forKey: .redirectTo)
+            try? container.encodeIfPresent(inventory, forKey: .inventory)
         }
     }
 }

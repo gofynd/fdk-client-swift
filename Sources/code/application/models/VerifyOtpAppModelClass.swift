@@ -9,7 +9,7 @@ public extension ApplicationClient {
     class VerifyOtp: Codable {
         public var requestId: String?
 
-        public var otpCode: Int?
+        public var otpCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case requestId = "request_id"
@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case otpCode = "otp_code"
         }
 
-        public init(otpCode: Int? = nil, requestId: String? = nil) {
+        public init(otpCode: String? = nil, requestId: String? = nil) {
             self.requestId = requestId
 
             self.otpCode = otpCode
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                otpCode = try container.decode(Int.self, forKey: .otpCode)
+                otpCode = try container.decode(String.self, forKey: .otpCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

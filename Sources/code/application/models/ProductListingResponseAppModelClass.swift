@@ -7,36 +7,38 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductListingResponse: Codable {
+        public var page: Page
+
         public var filters: [ProductFilters]?
 
         public var sortOn: [ProductSortOn]?
 
-        public var page: Page
-
         public var items: [ProductListingDetail]?
 
         public enum CodingKeys: String, CodingKey {
+            case page
+
             case filters
 
             case sortOn = "sort_on"
-
-            case page
 
             case items
         }
 
         public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
+            self.page = page
+
             self.filters = filters
 
             self.sortOn = sortOn
-
-            self.page = page
 
             self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            page = try container.decode(Page.self, forKey: .page)
 
             do {
                 filters = try container.decode([ProductFilters].self, forKey: .filters)
@@ -54,8 +56,6 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            page = try container.decode(Page.self, forKey: .page)
-
             do {
                 items = try container.decode([ProductListingDetail].self, forKey: .items)
 
@@ -68,11 +68,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(page, forKey: .page)
+
             try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
-
-            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(items, forKey: .items)
         }
