@@ -53,6 +53,7 @@ public extension ApplicationClient {
             pageSize: Int?,
             fromDate: String?,
             toDate: String?,
+            customMeta: String?,
 
             onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
         ) {
@@ -76,6 +77,10 @@ public extension ApplicationClient {
 
             if let value = toDate {
                 xQuery["to_date"] = value
+            }
+
+            if let value = customMeta {
+                xQuery["custom_meta"] = value
             }
 
             let fullUrl = relativeUrls["getOrders"] ?? ""
@@ -117,7 +122,7 @@ public extension ApplicationClient {
         public func getOrderById(
             orderId: String,
 
-            onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OrderById?, _ error: FDKError?) -> Void
         ) {
             var fullUrl = relativeUrls["getOrderById"] ?? ""
 
@@ -139,7 +144,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(OrderList.self, from: data)
+                        let response = Utility.decode(OrderById.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -426,9 +431,9 @@ public extension ApplicationClient {
          **/
         public func getShipmentBagReasons(
             shipmentId: String,
-            bagId: Int,
+            bagId: String,
 
-            onResponse: @escaping (_ response: ShipmentReasonsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentBagReasons?, _ error: FDKError?) -> Void
         ) {
             var fullUrl = relativeUrls["getShipmentBagReasons"] ?? ""
 
@@ -452,7 +457,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(ShipmentReasonsResponse.self, from: data)
+                        let response = Utility.decode(ShipmentBagReasons.self, from: data)
 
                         onResponse(response, nil)
                     } else {

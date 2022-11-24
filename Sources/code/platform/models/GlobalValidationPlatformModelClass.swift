@@ -12,26 +12,26 @@ public extension PlatformClient {
 
         public var type: String?
 
-        public var definitions: [String: Any]?
-
         public var required: [String]?
 
-        public var description: String?
+        public var definitions: [String: Any]?
 
         public var title: String?
+
+        public var description: String?
 
         public enum CodingKeys: String, CodingKey {
             case properties
 
             case type
 
-            case definitions
-
             case required
 
-            case description
+            case definitions
 
             case title
+
+            case description
         }
 
         public init(definitions: [String: Any]? = nil, description: String? = nil, properties: Properties? = nil, required: [String]? = nil, title: String? = nil, type: String? = nil) {
@@ -39,13 +39,13 @@ public extension PlatformClient {
 
             self.type = type
 
-            self.definitions = definitions
-
             self.required = required
 
-            self.description = description
+            self.definitions = definitions
 
             self.title = title
+
+            self.description = description
         }
 
         required public init(from decoder: Decoder) throws {
@@ -68,14 +68,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                definitions = try container.decode([String: Any].self, forKey: .definitions)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 required = try container.decode([String].self, forKey: .required)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -84,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                definitions = try container.decode([String: Any].self, forKey: .definitions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,6 +85,14 @@ public extension PlatformClient {
 
             do {
                 title = try container.decode(String.self, forKey: .title)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,13 +107,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(definitions, forKey: .definitions)
-
             try? container.encodeIfPresent(required, forKey: .required)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(definitions, forKey: .definitions)
 
             try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encodeIfPresent(description, forKey: .description)
         }
     }
 }
