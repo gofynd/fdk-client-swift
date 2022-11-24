@@ -10,26 +10,26 @@ public extension PlatformClient {
     class BulkResponse: Codable {
         public var modifiedOn: String?
 
-        public var createdOn: String
-
         public var modifiedBy: UserInfo1?
 
-        public var isActive: Bool?
+        public var createdOn: String
 
         public var createdBy: UserInfo1?
+
+        public var isActive: Bool?
 
         public var batchId: String
 
         public enum CodingKeys: String, CodingKey {
             case modifiedOn = "modified_on"
 
-            case createdOn = "created_on"
-
             case modifiedBy = "modified_by"
 
-            case isActive = "is_active"
+            case createdOn = "created_on"
 
             case createdBy = "created_by"
+
+            case isActive = "is_active"
 
             case batchId = "batch_id"
         }
@@ -37,13 +37,13 @@ public extension PlatformClient {
         public init(batchId: String, createdBy: UserInfo1? = nil, createdOn: String, isActive: Bool? = nil, modifiedBy: UserInfo1? = nil, modifiedOn: String? = nil) {
             self.modifiedOn = modifiedOn
 
-            self.createdOn = createdOn
-
             self.modifiedBy = modifiedBy
 
-            self.isActive = isActive
+            self.createdOn = createdOn
 
             self.createdBy = createdBy
+
+            self.isActive = isActive
 
             self.batchId = batchId
         }
@@ -59,10 +59,18 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            do {
+                modifiedBy = try container.decode(UserInfo1.self, forKey: .modifiedBy)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             createdOn = try container.decode(String.self, forKey: .createdOn)
 
             do {
-                modifiedBy = try container.decode(UserInfo1.self, forKey: .modifiedBy)
+                createdBy = try container.decode(UserInfo1.self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,14 +85,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                createdBy = try container.decode(UserInfo1.self, forKey: .createdBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             batchId = try container.decode(String.self, forKey: .batchId)
         }
 
@@ -93,13 +93,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
             try? container.encode(modifiedBy, forKey: .modifiedBy)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(batchId, forKey: .batchId)
         }

@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class ShipmentStatusUpdate: Codable {
         public var message: [[String: Any]]
 
-        public var status: Bool
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case message
 
-            case status
+            case success
         }
 
-        public init(message: [[String: Any]], status: Bool) {
+        public init(message: [[String: Any]], success: Bool) {
             self.message = message
 
-            self.status = status
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ public extension ApplicationClient {
 
             message = try container.decode([[String: Any]].self, forKey: .message)
 
-            status = try container.decode(Bool.self, forKey: .status)
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -36,7 +36,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

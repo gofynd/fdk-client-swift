@@ -7,9 +7,9 @@ public extension ApplicationClient {
          Used By: Order
      */
     class ShipmentStatusUpdateBody: Codable {
-        public var statuses: [StatusesBody]
+        public var statuses: [Statuses1]?
 
-        public var forceTransition: Bool
+        public var forceTransition: Bool?
 
         public var task: Bool?
 
@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case task
         }
 
-        public init(forceTransition: Bool, statuses: [StatusesBody], task: Bool? = nil) {
+        public init(forceTransition: Bool? = nil, statuses: [Statuses1]? = nil, task: Bool? = nil) {
             self.statuses = statuses
 
             self.forceTransition = forceTransition
@@ -32,9 +32,21 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            statuses = try container.decode([StatusesBody].self, forKey: .statuses)
+            do {
+                statuses = try container.decode([Statuses1].self, forKey: .statuses)
 
-            forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 task = try container.decode(Bool.self, forKey: .task)

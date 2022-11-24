@@ -12,7 +12,7 @@ public extension PlatformClient {
 
         public var expiry: Int?
 
-        public var template: SendOtpSmsCommsTemplate?
+        public var template: SendOtpEmailCommsTemplate?
 
         public enum CodingKeys: String, CodingKey {
             case otpLength = "otp_length"
@@ -22,7 +22,7 @@ public extension PlatformClient {
             case template
         }
 
-        public init(expiry: Int? = nil, otpLength: Int? = nil, template: SendOtpSmsCommsTemplate? = nil) {
+        public init(expiry: Int? = nil, otpLength: Int? = nil, template: SendOtpEmailCommsTemplate? = nil) {
             self.otpLength = otpLength
 
             self.expiry = expiry
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                template = try container.decode(SendOtpSmsCommsTemplate.self, forKey: .template)
+                template = try container.decode(SendOtpEmailCommsTemplate.self, forKey: .template)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
