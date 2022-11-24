@@ -7,13 +7,13 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductBundle: Codable {
-        public var items: [GetGroupedProducts]?
+        public var items: [ProductGroupingModel]?
 
         public enum CodingKeys: String, CodingKey {
             case items
         }
 
-        public init(items: [GetGroupedProducts]? = nil) {
+        public init(items: [ProductGroupingModel]? = nil) {
             self.items = items
         }
 
@@ -21,7 +21,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([GetGroupedProducts].self, forKey: .items)
+                items = try container.decode([ProductGroupingModel].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

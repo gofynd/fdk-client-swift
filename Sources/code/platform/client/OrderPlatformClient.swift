@@ -227,7 +227,6 @@ public extension PlatformClient {
             deploymentStores: String?,
             status: String?,
             dp: String?,
-            shortenUrls: Bool?,
             filterType: String?,
 
             onResponse: @escaping (_ response: OrderListing?, _ error: FDKError?) -> Void
@@ -292,10 +291,6 @@ public extension PlatformClient {
 
             if let value = dp {
                 xQuery["dp"] = value
-            }
-
-            if let value = shortenUrls {
-                xQuery["shorten_urls"] = value
             }
 
             if let value = filterType {
@@ -402,7 +397,6 @@ public extension PlatformClient {
             orderId: String?,
             stores: String?,
             status: String?,
-            shortenUrls: Bool?,
             filterType: String?,
 
             onResponse: @escaping (_ response: OrderPicklistListing?, _ error: FDKError?) -> Void
@@ -447,10 +441,6 @@ public extension PlatformClient {
 
             if let value = status {
                 xQuery["status"] = value
-            }
-
-            if let value = shortenUrls {
-                xQuery["shorten_urls"] = value
             }
 
             if let value = filterType {

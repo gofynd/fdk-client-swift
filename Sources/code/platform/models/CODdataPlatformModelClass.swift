@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var limit: Int
 
-        public var remainingLimit: Int
-
         public var usages: Int
+
+        public var remainingLimit: Int
 
         public enum CodingKeys: String, CodingKey {
             case userId = "user_id"
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case limit
 
-            case remainingLimit = "remaining_limit"
-
             case usages
+
+            case remainingLimit = "remaining_limit"
         }
 
         public init(isActive: Bool, limit: Int, remainingLimit: Int, usages: Int, userId: String) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.limit = limit
 
-            self.remainingLimit = remainingLimit
-
             self.usages = usages
+
+            self.remainingLimit = remainingLimit
         }
 
         required public init(from decoder: Decoder) throws {
@@ -51,9 +51,9 @@ public extension PlatformClient {
 
             limit = try container.decode(Int.self, forKey: .limit)
 
-            remainingLimit = try container.decode(Int.self, forKey: .remainingLimit)
-
             usages = try container.decode(Int.self, forKey: .usages)
+
+            remainingLimit = try container.decode(Int.self, forKey: .remainingLimit)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -65,9 +65,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(limit, forKey: .limit)
 
-            try? container.encodeIfPresent(remainingLimit, forKey: .remainingLimit)
-
             try? container.encodeIfPresent(usages, forKey: .usages)
+
+            try? container.encodeIfPresent(remainingLimit, forKey: .remainingLimit)
         }
     }
 }

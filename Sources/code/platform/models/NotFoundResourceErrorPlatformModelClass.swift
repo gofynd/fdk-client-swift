@@ -10,24 +10,24 @@ public extension PlatformClient {
     class NotFoundResourceError: Codable {
         public var success: Bool
 
-        public var description: String
-
         public var code: String
+
+        public var description: String
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case description
-
             case code
+
+            case description
         }
 
         public init(code: String, description: String, success: Bool) {
             self.success = success
 
-            self.description = description
-
             self.code = code
+
+            self.description = description
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            description = try container.decode(String.self, forKey: .description)
-
             code = try container.decode(String.self, forKey: .code)
+
+            description = try container.decode(String.self, forKey: .description)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(description, forKey: .description)
         }
     }
 }

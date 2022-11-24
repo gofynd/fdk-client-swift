@@ -10,9 +10,9 @@ public extension PlatformClient {
     class PaymentGatewayConfig: Codable {
         public var configType: String
 
-        public var key: String
-
         public var isActive: Bool?
+
+        public var key: String
 
         public var secret: String
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case configType = "config_type"
 
-            case key
-
             case isActive = "is_active"
+
+            case key
 
             case secret
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
             self.configType = configType
 
-            self.key = key
-
             self.isActive = isActive
+
+            self.key = key
 
             self.secret = secret
 
@@ -47,8 +47,6 @@ public extension PlatformClient {
 
             configType = try container.decode(String.self, forKey: .configType)
 
-            key = try container.decode(String.self, forKey: .key)
-
             do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
 
@@ -56,6 +54,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            key = try container.decode(String.self, forKey: .key)
 
             secret = try container.decode(String.self, forKey: .secret)
 
@@ -67,9 +67,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(configType, forKey: .configType)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encode(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(secret, forKey: .secret)
 

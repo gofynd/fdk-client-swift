@@ -7,22 +7,22 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class LadderPrice: Codable {
-        public var offerPrice: Double?
+        public var effective: Int?
 
         public var currencySymbol: String?
 
-        public var effective: Int?
+        public var offerPrice: Double?
 
         public var currencyCode: String?
 
         public var marked: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case offerPrice = "offer_price"
+            case effective
 
             case currencySymbol = "currency_symbol"
 
-            case effective
+            case offerPrice = "offer_price"
 
             case currencyCode = "currency_code"
 
@@ -30,11 +30,11 @@ public extension ApplicationClient {
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, effective: Int? = nil, marked: Int? = nil, offerPrice: Double? = nil) {
-            self.offerPrice = offerPrice
+            self.effective = effective
 
             self.currencySymbol = currencySymbol
 
-            self.effective = effective
+            self.offerPrice = offerPrice
 
             self.currencyCode = currencyCode
 
@@ -45,7 +45,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                offerPrice = try container.decode(Double.self, forKey: .offerPrice)
+                effective = try container.decode(Int.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                effective = try container.decode(Int.self, forKey: .effective)
+                offerPrice = try container.decode(Double.self, forKey: .offerPrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,11 +88,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(offerPrice, forKey: .offerPrice)
+            try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
+            try? container.encodeIfPresent(offerPrice, forKey: .offerPrice)
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 

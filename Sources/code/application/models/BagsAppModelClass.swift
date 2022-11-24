@@ -25,6 +25,8 @@ public extension ApplicationClient {
 
         public var returnableDate: String?
 
+        public var appliedPromos: [AppliedPromos]?
+
         public enum CodingKeys: String, CodingKey {
             case item
 
@@ -43,9 +45,11 @@ public extension ApplicationClient {
             case deliveryDate = "delivery_date"
 
             case returnableDate = "returnable_date"
+
+            case appliedPromos = "applied_promos"
         }
 
-        public init(canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: CurrentStatus? = nil, deliveryDate: String? = nil, financialBreakup: [FinancialBreakup]? = nil, id: Int? = nil, item: Item? = nil, prices: Prices? = nil, returnableDate: String? = nil) {
+        public init(appliedPromos: [AppliedPromos]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: CurrentStatus? = nil, deliveryDate: String? = nil, financialBreakup: [FinancialBreakup]? = nil, id: Int? = nil, item: Item? = nil, prices: Prices? = nil, returnableDate: String? = nil) {
             self.item = item
 
             self.prices = prices
@@ -63,6 +67,8 @@ public extension ApplicationClient {
             self.deliveryDate = deliveryDate
 
             self.returnableDate = returnableDate
+
+            self.appliedPromos = appliedPromos
         }
 
         required public init(from decoder: Decoder) throws {
@@ -139,6 +145,14 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                appliedPromos = try container.decode([AppliedPromos].self, forKey: .appliedPromos)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -161,6 +175,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(deliveryDate, forKey: .deliveryDate)
 
             try? container.encodeIfPresent(returnableDate, forKey: .returnableDate)
+
+            try? container.encodeIfPresent(appliedPromos, forKey: .appliedPromos)
         }
     }
 }

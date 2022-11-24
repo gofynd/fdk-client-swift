@@ -9,7 +9,7 @@ public extension ApplicationClient {
     class GetTatProductResponse: Codable {
         public var locationDetails: [LocationDetails]
 
-        public var requestUuid: String
+        public var requestUuid: String?
 
         public var error: [String: Any]
 
@@ -21,7 +21,7 @@ public extension ApplicationClient {
 
         public var action: String
 
-        public var stormbreakerUuid: String
+        public var stormbreakerUuid: String?
 
         public var success: Bool
 
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             case journey
         }
 
-        public init(action: String, error: [String: Any], identifier: String, journey: String, locationDetails: [LocationDetails], requestUuid: String, source: String, stormbreakerUuid: String, success: Bool, toCity: String, toPincode: String) {
+        public init(action: String, error: [String: Any], identifier: String, journey: String, locationDetails: [LocationDetails], requestUuid: String? = nil, source: String, stormbreakerUuid: String? = nil, success: Bool, toCity: String, toPincode: String) {
             self.locationDetails = locationDetails
 
             self.requestUuid = requestUuid
@@ -82,7 +82,13 @@ public extension ApplicationClient {
 
             locationDetails = try container.decode([LocationDetails].self, forKey: .locationDetails)
 
-            requestUuid = try container.decode(String.self, forKey: .requestUuid)
+            do {
+                requestUuid = try container.decode(String.self, forKey: .requestUuid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             error = try container.decode([String: Any].self, forKey: .error)
 
@@ -94,7 +100,13 @@ public extension ApplicationClient {
 
             action = try container.decode(String.self, forKey: .action)
 
-            stormbreakerUuid = try container.decode(String.self, forKey: .stormbreakerUuid)
+            do {
+                stormbreakerUuid = try container.decode(String.self, forKey: .stormbreakerUuid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             success = try container.decode(Bool.self, forKey: .success)
 
