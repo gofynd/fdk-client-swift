@@ -251,7 +251,7 @@ public extension ApplicationClient {
         public func trackShipment(
             shipmentId: String,
 
-            onResponse: @escaping (_ response: TrackShipmentResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentTrack?, _ error: FDKError?) -> Void
         ) {
             var fullUrl = relativeUrls["trackShipment"] ?? ""
 
@@ -273,7 +273,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(TrackShipmentResponse.self, from: data)
+                        let response = Utility.decode(ShipmentTrack.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -477,8 +477,8 @@ public extension ApplicationClient {
          **/
         public func updateShipmentStatus(
             shipmentId: String,
-            body: StatusUpdateInternalRequest,
-            onResponse: @escaping (_ response: StatusUpdateInternalResponse?, _ error: FDKError?) -> Void
+            body: ShipmentStatusUpdateBody,
+            onResponse: @escaping (_ response: ShipmentStatusUpdate?, _ error: FDKError?) -> Void
         ) {
             var fullUrl = relativeUrls["updateShipmentStatus"] ?? ""
 
@@ -500,7 +500,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(StatusUpdateInternalResponse.self, from: data)
+                        let response = Utility.decode(ShipmentStatusUpdate.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -522,7 +522,7 @@ public extension ApplicationClient {
             shipmentId: String,
             parameters: invoiceParameter?,
 
-            onResponse: @escaping (_ response: getInvoiceByShipmentId200Response?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ResponseGetInvoiceShipment?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -550,7 +550,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(getInvoiceByShipmentId200Response.self, from: data)
+                        let response = Utility.decode(ResponseGetInvoiceShipment.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -572,7 +572,7 @@ public extension ApplicationClient {
             shipmentId: String,
             parameters: creditNoteParameter?,
 
-            onResponse: @escaping (_ response: getInvoiceByShipmentId200Response?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ResponseGetInvoiceShipment?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -600,7 +600,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(getInvoiceByShipmentId200Response.self, from: data)
+                        let response = Utility.decode(ResponseGetInvoiceShipment.self, from: data)
 
                         onResponse(response, nil)
                     } else {

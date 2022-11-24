@@ -8,58 +8,54 @@ public extension PlatformClient {
      */
 
     class OrderBagItem: Codable {
-        public var size: String
-
-        public var brand: String
-
         public var l3Category: Int
 
         public var l1Category: [String]?
 
         public var name: String
 
-        public var slugKey: String
+        public var size: String
 
         public var image: [String]?
 
+        public var brand: String
+
+        public var slugKey: String
+
         public enum CodingKeys: String, CodingKey {
-            case size
-
-            case brand
-
             case l3Category = "l3_category"
 
             case l1Category = "l1_category"
 
             case name
 
-            case slugKey = "slug_key"
+            case size
 
             case image
+
+            case brand
+
+            case slugKey = "slug_key"
         }
 
         public init(brand: String, image: [String]? = nil, l1Category: [String]? = nil, l3Category: Int, name: String, size: String, slugKey: String) {
-            self.size = size
-
-            self.brand = brand
-
             self.l3Category = l3Category
 
             self.l1Category = l1Category
 
             self.name = name
 
-            self.slugKey = slugKey
+            self.size = size
 
             self.image = image
+
+            self.brand = brand
+
+            self.slugKey = slugKey
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            size = try container.decode(String.self, forKey: .size)
-
-            brand = try container.decode(String.self, forKey: .brand)
 
             l3Category = try container.decode(Int.self, forKey: .l3Category)
 
@@ -73,7 +69,7 @@ public extension PlatformClient {
 
             name = try container.decode(String.self, forKey: .name)
 
-            slugKey = try container.decode(String.self, forKey: .slugKey)
+            size = try container.decode(String.self, forKey: .size)
 
             do {
                 image = try container.decode([String].self, forKey: .image)
@@ -82,14 +78,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            brand = try container.decode(String.self, forKey: .brand)
+
+            slugKey = try container.decode(String.self, forKey: .slugKey)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(brand, forKey: .brand)
 
             try? container.encodeIfPresent(l3Category, forKey: .l3Category)
 
@@ -97,9 +93,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(image, forKey: .image)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
+
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
         }
     }
 }

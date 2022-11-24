@@ -3,17 +3,17 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: TrackShipmentResponse
+         Model: ShipmentTrack
          Used By: Order
      */
-    class TrackShipmentResponse: Codable {
-        public var results: [TrackShipmentResults]?
+    class ShipmentTrack: Codable {
+        public var results: [Track]?
 
         public enum CodingKeys: String, CodingKey {
             case results
         }
 
-        public init(results: [TrackShipmentResults]? = nil) {
+        public init(results: [Track]? = nil) {
             self.results = results
         }
 
@@ -21,7 +21,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                results = try container.decode([TrackShipmentResults].self, forKey: .results)
+                results = try container.decode([Track].self, forKey: .results)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -7,27 +7,27 @@ public extension ApplicationClient {
          Used By: Order
      */
     class Promise: Codable {
+        public var showPromise: Bool?
+
         public var timestamp: TimeStampData?
 
-        public var showPromise: String?
-
         public enum CodingKeys: String, CodingKey {
-            case timestamp
-
             case showPromise = "show_promise"
+
+            case timestamp
         }
 
-        public init(showPromise: String? = nil, timestamp: TimeStampData? = nil) {
-            self.timestamp = timestamp
-
+        public init(showPromise: Bool? = nil, timestamp: TimeStampData? = nil) {
             self.showPromise = showPromise
+
+            self.timestamp = timestamp
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                timestamp = try container.decode(TimeStampData.self, forKey: .timestamp)
+                showPromise = try container.decode(Bool.self, forKey: .showPromise)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                showPromise = try container.decode(String.self, forKey: .showPromise)
+                timestamp = try container.decode(TimeStampData.self, forKey: .timestamp)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
-
             try? container.encodeIfPresent(showPromise, forKey: .showPromise)
+
+            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
         }
     }
 }

@@ -7,32 +7,30 @@ public extension ApplicationClient {
          Used By: PosCart
      */
     class UpdateCartShipmentItem: Codable {
-        public var articleUid: String
-
         public var shipmentType: String
 
         public var quantity: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case articleUid = "article_uid"
+        public var articleUid: String
 
+        public enum CodingKeys: String, CodingKey {
             case shipmentType = "shipment_type"
 
             case quantity
+
+            case articleUid = "article_uid"
         }
 
         public init(articleUid: String, quantity: Int? = nil, shipmentType: String) {
-            self.articleUid = articleUid
-
             self.shipmentType = shipmentType
 
             self.quantity = quantity
+
+            self.articleUid = articleUid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            articleUid = try container.decode(String.self, forKey: .articleUid)
 
             shipmentType = try container.decode(String.self, forKey: .shipmentType)
 
@@ -43,16 +41,18 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            articleUid = try container.decode(String.self, forKey: .articleUid)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(articleUid, forKey: .articleUid)
-
             try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(articleUid, forKey: .articleUid)
         }
     }
 }

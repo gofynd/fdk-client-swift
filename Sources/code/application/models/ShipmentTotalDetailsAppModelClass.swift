@@ -7,9 +7,9 @@ public extension ApplicationClient {
          Used By: Order
      */
     class ShipmentTotalDetails: Codable {
-        public var sizes: Double?
+        public var sizes: Int?
 
-        public var pieces: Double?
+        public var pieces: Int?
 
         public var totalPrice: Double?
 
@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case totalPrice = "total_price"
         }
 
-        public init(pieces: Double? = nil, sizes: Double? = nil, totalPrice: Double? = nil) {
+        public init(pieces: Int? = nil, sizes: Int? = nil, totalPrice: Double? = nil) {
             self.sizes = sizes
 
             self.pieces = pieces
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                sizes = try container.decode(Double.self, forKey: .sizes)
+                sizes = try container.decode(Int.self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                pieces = try container.decode(Double.self, forKey: .pieces)
+                pieces = try container.decode(Int.self, forKey: .pieces)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

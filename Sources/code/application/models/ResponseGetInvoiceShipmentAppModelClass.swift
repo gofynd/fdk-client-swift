@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: getInvoiceByShipmentId200Response
+         Model: ResponseGetInvoiceShipment
          Used By: Order
      */
-    class getInvoiceByShipmentId200Response: Codable {
+    class ResponseGetInvoiceShipment: Codable {
         public var success: Bool
 
         public var presignedType: String
