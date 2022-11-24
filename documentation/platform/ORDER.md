@@ -310,7 +310,7 @@ Get Orders for company based on Company Id
 
 
 ```swift
-client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, isPrioritySort: isPrioritySort, lockStatus: lockStatus, userId: userId, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, deploymentStores: deploymentStores, status: status, dp: dp, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, isPrioritySort: isPrioritySort, lockStatus: lockStatus, userId: userId, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, deploymentStores: deploymentStores, status: status, dp: dp, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -336,7 +336,6 @@ client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: 
 | deploymentStores | String? | no | Selected Deployment Stores |   
 | status | String? | no | Status of order |   
 | dp | String? | no | Delivery Partners |   
-| shortenUrls | Bool? | no | Shorten URL option |   
 | filterType | String? | no | Filters |  
 
 
@@ -495,7 +494,7 @@ Get Orders for company based on Company Id
 
 
 ```swift
-client.order.getPicklistOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+client.order.getPicklistOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -516,7 +515,6 @@ client.order.getPicklistOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fr
 | orderId | String? | no | Order Id |   
 | stores | String? | no | Selected Stores |   
 | status | String? | no | Status of order |   
-| shortenUrls | Bool? | no | Shorten URL option |   
 | filterType | String? | no | Filters |  
 
 
@@ -1077,7 +1075,7 @@ client.application("<APPLICATION_ID>").order.getOrdersByApplicationId(pageNo: pa
 | status | String? | no | Status of order |   
 | dp | String? | no | Delivery Partners |   
 | userId | String? | no | User Id |   
-| shortenUrls | Bool? | no | Shorten URL option |   
+| shortenUrls | String? | no | User Id |   
 | filterType | String? | no | Filters |  
 
 
@@ -2478,7 +2476,7 @@ Success
  | hsnCode | String? |  yes  |  |
  | priceEffective | Double? |  yes  |  |
  | codCharges | Double? |  yes  |  |
- | gstFee | String? |  yes  |  |
+ | gstFee | Double? |  yes  |  |
  | fyndCredits | Double? |  yes  |  |
  | refundAmount | Double? |  yes  |  |
  | cashbackApplied | Double? |  yes  |  |
@@ -2618,7 +2616,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brandCalculatedAmount | Double? |  yes  |  |
- | gstFee | String? |  yes  |  |
+ | gstFee | Double? |  yes  |  |
  | gstTag | String? |  yes  |  |
  | hsnCode | String? |  yes  |  |
  | valueOfGood | Double? |  yes  |  |
@@ -3422,7 +3420,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | [String: Any]? |  yes  |  |
+ | shipments | [String: Any] |  no  |  |
  | statuses | [[String: Any]]? |  yes  |  |
  | forceTransition | Bool |  no  |  |
  | task | Bool |  no  |  |

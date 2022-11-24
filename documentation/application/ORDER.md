@@ -5,16 +5,16 @@
 ##### [Back to Application docs](./README.md)
 
 ## Order Methods
-Handles all platform order and shipment api(s)
-* [getShipmentById](#getshipmentbyid)
-* [getCustomerDetailsByShipmentId](#getcustomerdetailsbyshipmentid)
-* [sendOtpToShipmentCustomer](#sendotptoshipmentcustomer)
-* [getShipmentReasons](#getshipmentreasons)
-* [verifyOtpShipmentCustomer](#verifyotpshipmentcustomer)
+Handles all Application order and shipment api(s)
 * [getOrders](#getorders)
 * [getOrderById](#getorderbyid)
 * [getPosOrderById](#getposorderbyid)
+* [getShipmentById](#getshipmentbyid)
 * [trackShipment](#trackshipment)
+* [getCustomerDetailsByShipmentId](#getcustomerdetailsbyshipmentid)
+* [sendOtpToShipmentCustomer](#sendotptoshipmentcustomer)
+* [verifyOtpShipmentCustomer](#verifyotpshipmentcustomer)
+* [getShipmentBagReasons](#getshipmentbagreasons)
 * [updateShipmentStatus](#updateshipmentstatus)
 * [getInvoiceByShipmentId](#getinvoicebyshipmentid)
 * [getCreditNoteByShipmentId](#getcreditnotebyshipmentid)
@@ -22,663 +22,6 @@ Handles all platform order and shipment api(s)
 
 
 ## Methods with example and description
-
-
-#### getShipmentById
-Get details of a shipment
-
-
-
-
-```swift
-order.getShipmentById(shipmentId: shipmentId) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| shipmentId | String | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
-
-
-
-Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
-
-*Returned Response:*
-
-
-
-
-[ShipmentById](#ShipmentById)
-
-Success. Check the example shown below or refer `ShipmentById` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "shipment": {
-    "order_id": "FY62F3B8290150D13E36",
-    "breakup_values": [
-      {
-        "name": "mrp_total",
-        "display": "MRP Total",
-        "value": 50
-      },
-      {
-        "name": "sub_total",
-        "display": "Sub Total",
-        "value": 50
-      },
-      {
-        "name": "coupon",
-        "display": "Coupon",
-        "value": 0
-      },
-      {
-        "name": "discount",
-        "display": "Discount",
-        "value": 0
-      },
-      {
-        "name": "promotion",
-        "display": "Promotion",
-        "value": 0
-      },
-      {
-        "name": "reward_points",
-        "display": "Reward Points",
-        "value": 0
-      },
-      {
-        "name": "cashback_applied",
-        "display": "Cashback Applied",
-        "value": 0
-      },
-      {
-        "name": "delivery_charges",
-        "display": "Delivery Charges",
-        "value": 0
-      },
-      {
-        "name": "cod_charges",
-        "display": "COD Charges",
-        "value": 0
-      },
-      {
-        "name": "total",
-        "display": "Total",
-        "value": 50
-      }
-    ],
-    "beneficiary_details": false,
-    "need_help_url": "https://fynd.freshdesk.com/support/solutions/33000003306",
-    "shipment_created_at": "2022-08-10T19:22:42.000Z",
-    "shipment_id": "16601395620321798247K",
-    "shipment_status": {
-      "title": "DP Assigned",
-      "value": "dp_assigned",
-      "hex_code": "#FE8F46"
-    },
-    "track_url": "",
-    "traking_no": "Tracking No.: 5923410031146",
-    "awb_no": "5923410031146",
-    "dp_name": "delhivery_jio_surface",
-    "tracking_details": [
-      {
-        "status": "Order Placed",
-        "time": "2022-08-10T19:22:55.000Z",
-        "is_passed": true,
-        "value": "processing"
-      },
-      {
-        "status": "Order Confirmed",
-        "time": "2022-08-18T19:11:02.000Z",
-        "is_passed": true,
-        "value": "confirmed"
-      },
-      {
-        "status": "Delivery Partner Assigned",
-        "time": "2022-08-18T19:11:38.000Z",
-        "is_passed": true,
-        "value": "dp_assigned"
-      },
-      {
-        "status": "In Transit",
-        "time": "",
-        "is_passed": false,
-        "value": "in_transit"
-      },
-      {
-        "status": "Out For Delivery",
-        "time": "",
-        "is_passed": false,
-        "value": "out_for_delivery"
-      },
-      {
-        "status": "Delivered",
-        "time": "",
-        "is_passed": false,
-        "value": "delivered"
-      }
-    ],
-    "total_bags": 1,
-    "promise": {
-      "show_promise": false,
-      "timestamp": {
-        "min": "2022-08-14T13:52:37+00:00",
-        "max": "2022-08-17T13:52:37+00:00",
-        "dp_promise": null
-      }
-    },
-    "bags": [
-      {
-        "id": 59624,
-        "current_status": {
-          "status": "bag_not_picked",
-          "updated_at": "2022-08-18T23:46:11+00:00",
-          "name": "Bag Not Picked",
-          "journey_type": "forward"
-        },
-        "prices": {
-          "price_effective": 50,
-          "discount": 0,
-          "amount_paid": 50,
-          "coupon_effective_discount": 0,
-          "delivery_charge": 0,
-          "fynd_credits": 0,
-          "cod_charges": 0,
-          "refund_credit": 0,
-          "cashback": 0,
-          "refund_amount": 50,
-          "added_to_fynd_cash": false,
-          "cashback_applied": 0,
-          "gst_tax_percentage": 18,
-          "value_of_good": 42.37,
-          "price_marked": 50,
-          "transfer_price": 0,
-          "brand_calculated_amount": 50,
-          "promotion_effective_discount": 0,
-          "coupon_value": 0,
-          "pm_price_split": {
-            "COD": 50
-          }
-        },
-        "item": {
-          "name": "Tissues",
-          "brand": {
-            "name": "Zepto",
-            "logo": "https://hdn-1.jiomarketx0.de/x0/brands/pictures/square-logo/original/5XLRHXC5H-Logo.png"
-          },
-          "image": [
-            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/hGov80Pbv-411yLXtNYNL._SL1000_.jpg",
-            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
-            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
-            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
-            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
-            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
-            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
-            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
-            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
-            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
-            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg"
-          ],
-          "slug_key": "tissues",
-          "size": "OS",
-          "code": "TIS-102",
-          "id": 7500474,
-          "seller_identifier": "987432134"
-        },
-        "financial_breakup": [
-          {
-            "price_effective": 50,
-            "discount": 0,
-            "amount_paid": 50,
-            "coupon_effective_discount": 0,
-            "delivery_charge": 0,
-            "fynd_credits": 0,
-            "cod_charges": 0,
-            "refund_credit": 0,
-            "cashback": 0,
-            "refund_amount": 50,
-            "added_to_fynd_cash": false,
-            "cashback_applied": 0,
-            "gst_tax_percentage": 18,
-            "value_of_good": 42.37,
-            "price_marked": 50,
-            "transfer_price": 0,
-            "brand_calculated_amount": 50,
-            "promotion_effective_discount": 0,
-            "coupon_value": 0,
-            "pm_price_split": {
-              "COD": 50
-            },
-            "size": "OS",
-            "total_units": 1,
-            "hsn_code": "70099200",
-            "identifiers": {
-              "sku_code": "987432134"
-            },
-            "item_name": "Tissues",
-            "gst_fee": "7.62",
-            "gst_tag": "SGST"
-          }
-        ],
-        "quantity": 1,
-        "departments": [
-          31
-        ],
-        "can_cancel": false,
-        "can_return": false
-      }
-    ],
-    "size_info": {
-      "TIS-102": {
-        "quantity": 1,
-        "price_effective": 50,
-        "amount_paid": 50,
-        "price_marked": 50,
-        "margin": 0
-      }
-    },
-    "total_details": {
-      "sizes": 1,
-      "total_price": 50,
-      "pieces": 1
-    },
-    "fulfilling_store": {
-      "name": "Jio-market-store3",
-      "company_id": 33,
-      "id": 50,
-      "code": "store3"
-    },
-    "fulfilling_company": {
-      "id": 33,
-      "name": "RELIANCE JIO INFOCOMM LIMITED"
-    },
-    "delivery_address": {
-      "id": "62e8fc91c1700b808fe528bd",
-      "uid": 745,
-      "area": "test",
-      "city": "Mumbai",
-      "name": "abc",
-      "email": "abc@gofynd.com",
-      "phone": "1234567890",
-      "state": "Maharashtra",
-      "address": "1234",
-      "country": "India",
-      "pincode": "400074",
-      "version": "1.0",
-      "address1": " test",
-      "address2": "",
-      "landmark": "test",
-      "latitude": 19.0653252,
-      "address_1": " test",
-      "area_code": "400074",
-      "longitude": 72.8423802,
-      "created_at": "2022-08-10T18:52:38+00:00",
-      "updated_at": "2022-08-10T18:52:38+00:00",
-      "address_type": "home",
-      "country_code": "91",
-      "geo_location": {
-        "latitude": 19.0653252,
-        "longitude": 72.8423802
-      },
-      "area_code_slug": "pincode",
-      "delivery_address_id": 745,
-      "addressee_name": "abc",
-      "delivery_code_required": 1
-    },
-    "can_cancel": false,
-    "can_return": false,
-    "delivery_date": null,
-    "returnable_date": null,
-    "show_download_invoice": true,
-    "show_track_link": true,
-    "prices": {
-      "amount_paid": 50,
-      "refund_amount": 50,
-      "price_marked": 50,
-      "cod_charges": 0,
-      "coupon_value": 0,
-      "discount": 0,
-      "cashback_applied": 0,
-      "delivery_charge": 0,
-      "fynd_credits": 0,
-      "cashback": 0,
-      "price_effective": 50,
-      "refund_credit": 0,
-      "value_of_good": 42.37
-    },
-    "can_break": {
-      "bag_not_picked": {
-        "can_break_entity": false
-      },
-      "cancelled_customer": {
-        "can_break_entity": true
-      },
-      "bag_picked": {
-        "can_break_entity": false
-      },
-      "cancelled_fynd": {
-        "can_break_entity": true
-      },
-      "bag_rescheduled": {
-        "can_break_entity": false
-      },
-      "cancelled_at_dp": {
-        "can_break_entity": false
-      },
-      "handed_over_to_dg": {
-        "can_break_entity": false
-      },
-      "dp_assigned": {
-        "can_break_entity": false
-      },
-      "cancelled_operations": {
-        "can_break_entity": false
-      },
-      "cancelled_seller": {
-        "can_break_entity": false
-      },
-      "out_for_pickup": {
-        "can_break_entity": false
-      },
-      "bag_pick_failed": {
-        "can_break_entity": false
-      },
-      "update_qr_code": {
-        "can_break_entity": false
-      }
-    },
-    "payment": {
-      "logo": "https://hdn-1.fynd.com/payment/Pos+Logo.png",
-      "mode": "Jio Partner Pay",
-      "mop": "COD",
-      "status": "Unpaid"
-    },
-    "user_info": {
-      "email": "paymentsdummy@gofynd.com",
-      "gender": "male",
-      "mobile": "1234567890",
-      "name": "User -"
-    },
-    "comment": "",
-    "invoice": {
-      "updated_date": "2022-08-18T19:11:02.000Z",
-      "store_invoice_id": "00000050AA000147",
-      "invoice_url": "",
-      "label_url": ""
-    },
-    "refund_details": {
-      "rrn": ""
-    }
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCustomerDetailsByShipmentId
-Get Customer Details by Shipment Id
-
-
-
-
-```swift
-order.getCustomerDetailsByShipmentId(orderId: orderId, shipmentId: shipmentId) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| orderId | String | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
-| shipmentId | String | yes | A unique number used for identifying and tracking your orders. |  
-
-
-
-Use this API to retrieve customer details such as mobileno using Shipment ID.
-
-*Returned Response:*
-
-
-
-
-[CustomerDetailsResponse](#CustomerDetailsResponse)
-
-Success. Check the example shown below or refer `CustomerDetailsByShipmentId` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "order_id": "FYMP629D972D01B6BD76",
-  "shipment_id": "16544950215681060915J",
-  "name": "sagar Kulkarni",
-  "phone": "XXX-XXX-6780",
-  "country": "India"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### sendOtpToShipmentCustomer
-Send and Resend Otp code to Order-Shipment customer
-
-
-
-
-```swift
-order.sendOtpToShipmentCustomer(orderId: orderId, shipmentId: shipmentId) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| orderId | String | yes | A unique number used for identifying and tracking your orders. |   
-| shipmentId | String | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
-
-
-
-Use this API to send OTP to the customer of the mapped Shipment.
-
-*Returned Response:*
-
-
-
-
-[SendOtpToCustomerResponse](#SendOtpToCustomerResponse)
-
-Success to acknowledge the service was notified
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "request_id": "0fe0d6e16205ddc57d212e947ee31896",
-  "message": "OTP sent",
-  "resend_timer": 30
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getShipmentReasons
-Get reasons behind full or partial cancellation of a shipment
-
-
-
-
-```swift
-order.getShipmentReasons(shipmentId: shipmentId, bagId: bagId) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| shipmentId | String | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
-| bagId | String | yes | Bag Id of a specefic bags which will help to categorize the reasons |  
-
-
-
-Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
-
-*Returned Response:*
-
-
-
-
-[ShipmentReasonsResponse](#ShipmentReasonsResponse)
-
-Success. Check the example shown below or refer `ShipmentReasons` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "reason_id": 195,
-  "priority": 1,
-  "reason_text": "Expected delivery time is long",
-  "show_text_area": false,
-  "feedback_type": "bag",
-  "flow": "cancel"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### verifyOtpShipmentCustomer
-Verify Otp code
-
-
-
-
-```swift
-order.verifyOtpShipmentCustomer(orderId: orderId, shipmentId: shipmentId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| orderId | String | yes | A unique number used for identifying and tracking your orders. |   
-| shipmentId | Int | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
-| body | VerifyOtp | yes | Request body |
-
-
-Use this API to verify OTP and create a session token with custom payload.
-
-*Returned Response:*
-
-
-
-
-[VerifyOtpResponse](#VerifyOtpResponse)
-
-Success, the code is valid and returns a session token
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 #### getOrders
@@ -2072,6 +1415,419 @@ Success. Check the example shown below or refer `PosOrderById` for more details.
 ---
 
 
+#### getShipmentById
+Get details of a shipment
+
+
+
+
+```swift
+order.getShipmentById(shipmentId: shipmentId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| shipmentId | String | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+
+
+
+Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
+
+*Returned Response:*
+
+
+
+
+[ShipmentById](#ShipmentById)
+
+Success. Check the example shown below or refer `ShipmentById` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "shipment": {
+    "order_id": "FY62F3B8290150D13E36",
+    "breakup_values": [
+      {
+        "name": "mrp_total",
+        "display": "MRP Total",
+        "value": 50
+      },
+      {
+        "name": "sub_total",
+        "display": "Sub Total",
+        "value": 50
+      },
+      {
+        "name": "coupon",
+        "display": "Coupon",
+        "value": 0
+      },
+      {
+        "name": "discount",
+        "display": "Discount",
+        "value": 0
+      },
+      {
+        "name": "promotion",
+        "display": "Promotion",
+        "value": 0
+      },
+      {
+        "name": "reward_points",
+        "display": "Reward Points",
+        "value": 0
+      },
+      {
+        "name": "cashback_applied",
+        "display": "Cashback Applied",
+        "value": 0
+      },
+      {
+        "name": "delivery_charges",
+        "display": "Delivery Charges",
+        "value": 0
+      },
+      {
+        "name": "cod_charges",
+        "display": "COD Charges",
+        "value": 0
+      },
+      {
+        "name": "total",
+        "display": "Total",
+        "value": 50
+      }
+    ],
+    "beneficiary_details": false,
+    "need_help_url": "https://fynd.freshdesk.com/support/solutions/33000003306",
+    "shipment_created_at": "2022-08-10T19:22:42.000Z",
+    "shipment_id": "16601395620321798247K",
+    "shipment_status": {
+      "title": "DP Assigned",
+      "value": "dp_assigned",
+      "hex_code": "#FE8F46"
+    },
+    "track_url": "",
+    "traking_no": "Tracking No.: 5923410031146",
+    "awb_no": "5923410031146",
+    "dp_name": "delhivery_jio_surface",
+    "tracking_details": [
+      {
+        "status": "Order Placed",
+        "time": "2022-08-10T19:22:55.000Z",
+        "is_passed": true,
+        "value": "processing"
+      },
+      {
+        "status": "Order Confirmed",
+        "time": "2022-08-18T19:11:02.000Z",
+        "is_passed": true,
+        "value": "confirmed"
+      },
+      {
+        "status": "Delivery Partner Assigned",
+        "time": "2022-08-18T19:11:38.000Z",
+        "is_passed": true,
+        "value": "dp_assigned"
+      },
+      {
+        "status": "In Transit",
+        "time": "",
+        "is_passed": false,
+        "value": "in_transit"
+      },
+      {
+        "status": "Out For Delivery",
+        "time": "",
+        "is_passed": false,
+        "value": "out_for_delivery"
+      },
+      {
+        "status": "Delivered",
+        "time": "",
+        "is_passed": false,
+        "value": "delivered"
+      }
+    ],
+    "total_bags": 1,
+    "promise": {
+      "show_promise": false,
+      "timestamp": {
+        "min": "2022-08-14T13:52:37+00:00",
+        "max": "2022-08-17T13:52:37+00:00",
+        "dp_promise": null
+      }
+    },
+    "bags": [
+      {
+        "id": 59624,
+        "current_status": {
+          "status": "bag_not_picked",
+          "updated_at": "2022-08-18T23:46:11+00:00",
+          "name": "Bag Not Picked",
+          "journey_type": "forward"
+        },
+        "prices": {
+          "price_effective": 50,
+          "discount": 0,
+          "amount_paid": 50,
+          "coupon_effective_discount": 0,
+          "delivery_charge": 0,
+          "fynd_credits": 0,
+          "cod_charges": 0,
+          "refund_credit": 0,
+          "cashback": 0,
+          "refund_amount": 50,
+          "added_to_fynd_cash": false,
+          "cashback_applied": 0,
+          "gst_tax_percentage": 18,
+          "value_of_good": 42.37,
+          "price_marked": 50,
+          "transfer_price": 0,
+          "brand_calculated_amount": 50,
+          "promotion_effective_discount": 0,
+          "coupon_value": 0,
+          "pm_price_split": {
+            "COD": 50
+          }
+        },
+        "item": {
+          "name": "Tissues",
+          "brand": {
+            "name": "Zepto",
+            "logo": "https://hdn-1.jiomarketx0.de/x0/brands/pictures/square-logo/original/5XLRHXC5H-Logo.png"
+          },
+          "image": [
+            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/hGov80Pbv-411yLXtNYNL._SL1000_.jpg",
+            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
+            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
+            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
+            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
+            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
+            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
+            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
+            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
+            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg",
+            "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/270x0/U-6bpneFP-Tissues.jpeg"
+          ],
+          "slug_key": "tissues",
+          "size": "OS",
+          "code": "TIS-102",
+          "id": 7500474,
+          "seller_identifier": "987432134"
+        },
+        "financial_breakup": [
+          {
+            "price_effective": 50,
+            "discount": 0,
+            "amount_paid": 50,
+            "coupon_effective_discount": 0,
+            "delivery_charge": 0,
+            "fynd_credits": 0,
+            "cod_charges": 0,
+            "refund_credit": 0,
+            "cashback": 0,
+            "refund_amount": 50,
+            "added_to_fynd_cash": false,
+            "cashback_applied": 0,
+            "gst_tax_percentage": 18,
+            "value_of_good": 42.37,
+            "price_marked": 50,
+            "transfer_price": 0,
+            "brand_calculated_amount": 50,
+            "promotion_effective_discount": 0,
+            "coupon_value": 0,
+            "pm_price_split": {
+              "COD": 50
+            },
+            "size": "OS",
+            "total_units": 1,
+            "hsn_code": "70099200",
+            "identifiers": {
+              "sku_code": "987432134"
+            },
+            "item_name": "Tissues",
+            "gst_fee": "7.62",
+            "gst_tag": "SGST"
+          }
+        ],
+        "quantity": 1,
+        "departments": [
+          31
+        ],
+        "can_cancel": false,
+        "can_return": false
+      }
+    ],
+    "size_info": {
+      "TIS-102": {
+        "quantity": 1,
+        "price_effective": 50,
+        "amount_paid": 50,
+        "price_marked": 50,
+        "margin": 0
+      }
+    },
+    "total_details": {
+      "sizes": 1,
+      "total_price": 50,
+      "pieces": 1
+    },
+    "fulfilling_store": {
+      "name": "Jio-market-store3",
+      "company_id": 33,
+      "id": 50,
+      "code": "store3"
+    },
+    "fulfilling_company": {
+      "id": 33,
+      "name": "RELIANCE JIO INFOCOMM LIMITED"
+    },
+    "delivery_address": {
+      "id": "62e8fc91c1700b808fe528bd",
+      "uid": 745,
+      "area": "test",
+      "city": "Mumbai",
+      "name": "abc",
+      "email": "abc@gofynd.com",
+      "phone": "1234567890",
+      "state": "Maharashtra",
+      "address": "1234",
+      "country": "India",
+      "pincode": "400074",
+      "version": "1.0",
+      "address1": " test",
+      "address2": "",
+      "landmark": "test",
+      "latitude": 19.0653252,
+      "address_1": " test",
+      "area_code": "400074",
+      "longitude": 72.8423802,
+      "created_at": "2022-08-10T18:52:38+00:00",
+      "updated_at": "2022-08-10T18:52:38+00:00",
+      "address_type": "home",
+      "country_code": "91",
+      "geo_location": {
+        "latitude": 19.0653252,
+        "longitude": 72.8423802
+      },
+      "area_code_slug": "pincode",
+      "delivery_address_id": 745,
+      "addressee_name": "abc",
+      "delivery_code_required": 1
+    },
+    "can_cancel": false,
+    "can_return": false,
+    "delivery_date": null,
+    "returnable_date": null,
+    "show_download_invoice": true,
+    "show_track_link": true,
+    "prices": {
+      "amount_paid": 50,
+      "refund_amount": 50,
+      "price_marked": 50,
+      "cod_charges": 0,
+      "coupon_value": 0,
+      "discount": 0,
+      "cashback_applied": 0,
+      "delivery_charge": 0,
+      "fynd_credits": 0,
+      "cashback": 0,
+      "price_effective": 50,
+      "refund_credit": 0,
+      "value_of_good": 42.37
+    },
+    "can_break": {
+      "bag_not_picked": {
+        "can_break_entity": false
+      },
+      "cancelled_customer": {
+        "can_break_entity": true
+      },
+      "bag_picked": {
+        "can_break_entity": false
+      },
+      "cancelled_fynd": {
+        "can_break_entity": true
+      },
+      "bag_rescheduled": {
+        "can_break_entity": false
+      },
+      "cancelled_at_dp": {
+        "can_break_entity": false
+      },
+      "handed_over_to_dg": {
+        "can_break_entity": false
+      },
+      "dp_assigned": {
+        "can_break_entity": false
+      },
+      "cancelled_operations": {
+        "can_break_entity": false
+      },
+      "cancelled_seller": {
+        "can_break_entity": false
+      },
+      "out_for_pickup": {
+        "can_break_entity": false
+      },
+      "bag_pick_failed": {
+        "can_break_entity": false
+      },
+      "update_qr_code": {
+        "can_break_entity": false
+      }
+    },
+    "payment": {
+      "logo": "https://hdn-1.fynd.com/payment/Pos+Logo.png",
+      "mode": "Jio Partner Pay",
+      "mop": "COD",
+      "status": "Unpaid"
+    },
+    "user_info": {
+      "email": "paymentsdummy@gofynd.com",
+      "gender": "male",
+      "mobile": "1234567890",
+      "name": "User -"
+    },
+    "comment": "",
+    "invoice": {
+      "updated_date": "2022-08-18T19:11:02.000Z",
+      "store_invoice_id": "00000050AA000147",
+      "invoice_url": "",
+      "label_url": ""
+    },
+    "refund_details": {
+      "rrn": ""
+    }
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### trackShipment
 Track shipment
 
@@ -2140,8 +1896,287 @@ Success. Check the example shown below or refer `ShipmentTrack` for more details
 ---
 
 
+#### getCustomerDetailsByShipmentId
+Get Customer Details by Shipment Id
+
+
+
+
+```swift
+order.getCustomerDetailsByShipmentId(orderId: orderId, shipmentId: shipmentId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| orderId | String | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
+| shipmentId | String | yes | A unique number used for identifying and tracking your orders. |  
+
+
+
+Use this API to retrieve customer details such as mobileno using Shipment ID.
+
+*Returned Response:*
+
+
+
+
+[CustomerDetailsResponse](#CustomerDetailsResponse)
+
+Success. Check the example shown below or refer `CustomerDetailsByShipmentId` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "order_id": "FYMP629D972D01B6BD76",
+  "shipment_id": "16544950215681060915J",
+  "name": "sagar Kulkarni",
+  "phone": "XXX-XXX-6780",
+  "country": "India"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendOtpToShipmentCustomer
+Send and Resend Otp code to Order-Shipment customer
+
+
+
+
+```swift
+order.sendOtpToShipmentCustomer(orderId: orderId, shipmentId: shipmentId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| orderId | String | yes | A unique number used for identifying and tracking your orders. |   
+| shipmentId | String | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+
+
+
+Use this API to send OTP to the customer of the mapped Shipment.
+
+*Returned Response:*
+
+
+
+
+[SendOtpToCustomerResponse](#SendOtpToCustomerResponse)
+
+Success to acknowledge the service was notified
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "request_id": "0fe0d6e16205ddc57d212e947ee31896",
+  "message": "OTP sent",
+  "resend_timer": 30
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyOtpShipmentCustomer
+Verify Otp code
+
+
+
+
+```swift
+order.verifyOtpShipmentCustomer(orderId: orderId, shipmentId: shipmentId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| orderId | String | yes | A unique number used for identifying and tracking your orders. |   
+| shipmentId | String | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+| body | VerifyOtp | yes | Request body |
+
+
+Use this API to verify OTP and create a session token with custom payload.
+
+*Returned Response:*
+
+
+
+
+[VerifyOtpResponse](#VerifyOtpResponse)
+
+Success, the code is valid and returns a session token
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getShipmentBagReasons
+Get reasons behind full or partial cancellation of a shipment
+
+
+
+
+```swift
+order.getShipmentBagReasons(shipmentId: shipmentId, bagId: bagId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| shipmentId | String | yes | ID of the bag. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
+| bagId | Int | yes | ID of the bag. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+
+
+
+Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+
+*Returned Response:*
+
+
+
+
+[ShipmentReasonsResponse](#ShipmentReasonsResponse)
+
+Success. Check the example shown below or refer `ShipmentReasons` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "reasons": [
+    {
+      "id": 1,
+      "display_name": "Not available",
+      "qc_type": [],
+      "question_set": []
+    },
+    {
+      "reasons": [
+        {
+          "id": 2,
+          "display_name": "Processing other orders",
+          "qc_type": [],
+          "question_set": []
+        },
+        {
+          "id": 3,
+          "display_name": "Printer not working",
+          "qc_type": [],
+          "question_set": []
+        },
+        {
+          "reasons": [
+            {
+              "id": 4,
+              "display_name": "Card issues",
+              "qc_type": [],
+              "question_set": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "display_name": "Card issues",
+      "qc_type": [],
+      "question_set": []
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### updateShipmentStatus
-Update the shipment status
+
 
 
 
@@ -2158,20 +2193,20 @@ order.updateShipmentStatus(shipmentId: shipmentId, body: body) { (response, erro
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| shipmentId | String | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
-| body | ShipmentStatusUpdateBody | yes | Request body |
+| shipmentId | String | yes |  |  
+| body | StatusUpdateInternalRequest | yes | Request body |
 
 
-Use this API to update the status of a shipment using its shipment ID.
+updateShipmentStatus
 
 *Returned Response:*
 
 
 
 
-[ShipmentStatusUpdate](#ShipmentStatusUpdate)
+[StatusUpdateInternalResponse](#StatusUpdateInternalResponse)
 
-Success. Check the example shown below or refer `ShipmentStatusUpdateBody` for more details.
+Successfully updateShipmentStatus!
 
 
 
@@ -2312,313 +2347,6 @@ Success Response, Presigned URL of Invoice
 
  
  
- #### [FulfillingStore](#FulfillingStore)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | Int? |  yes  |  |
- | code | String? |  yes  |  |
- | name | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [PricesBreakup](#PricesBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | Int? |  yes  |  |
- | name | String? |  yes  |  |
- | display | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [PaymentInfo](#PaymentInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | mode | String? |  yes  |  |
- | mop | String? |  yes  |  |
- | logo | String? |  yes  |  |
- | status | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [UserInfo](#UserInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gender | String? |  yes  |  |
- | email | String? |  yes  |  |
- | name | String? |  yes  |  |
- | mobile | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CurrentStatus](#CurrentStatus)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | updatedAt | String? |  yes  |  |
- | name | String? |  yes  |  |
- | status | String? |  yes  |  |
- | journeyType | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Prices](#Prices)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cashbackApplied | Int? |  yes  |  |
- | priceEffective | Int? |  yes  |  |
- | gstTaxPercentage | Int? |  yes  |  |
- | amountPaid | Int? |  yes  |  |
- | pmPriceSplit | [String: Any]? |  yes  |  |
- | promotionEffectiveDiscount | Int? |  yes  |  |
- | refundCredit | Int? |  yes  |  |
- | couponEffectiveDiscount | Int? |  yes  |  |
- | codCharges | Int? |  yes  |  |
- | addedToFyndCash | Int? |  yes  |  |
- | discount | Int? |  yes  |  |
- | fyndCredits | Int? |  yes  |  |
- | cashback | Int? |  yes  |  |
- | valueOfGood | Int? |  yes  |  |
- | refundAmount | Int? |  yes  |  |
- | deliveryCharge | Int? |  yes  |  |
- | transferPrice | Int? |  yes  |  |
- | priceMarked | Int? |  yes  |  |
- | couponValue | Int? |  yes  |  |
- | brandCalculatedAmount | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [ItemBrand](#ItemBrand)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | logo | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Item](#Item)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | slugKey | String? |  yes  |  |
- | brand | [ItemBrand](#ItemBrand)? |  yes  |  |
- | name | String? |  yes  |  |
- | image | [String]? |  yes  |  |
- | code | String? |  yes  |  |
- | id | Int? |  yes  |  |
- | size | String? |  yes  |  |
- | sellerIdentifier | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [BagsData](#BagsData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | quantity | Int? |  yes  |  |
- | currentStatus | [CurrentStatus](#CurrentStatus)? |  yes  |  |
- | financialBreakup | [[String: Any]]? |  yes  |  |
- | canReturn | Bool? |  yes  |  |
- | canCancel | Bool? |  yes  |  |
- | prices | [Prices](#Prices)? |  yes  |  |
- | id | Int? |  yes  |  |
- | item | [Item](#Item)? |  yes  |  |
-
----
-
-
- 
- 
- #### [FulfillingCompany](#FulfillingCompany)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | Int? |  yes  |  |
- | name | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ShipmentResponse](#ShipmentResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | returnableDate | String? |  yes  |  |
- | deliveryDate | String? |  yes  |  |
- | orderId | String? |  yes  |  |
- | refundDetails | [String: Any]? |  yes  |  |
- | canReturn | Bool? |  yes  |  |
- | promise | [String: Any]? |  yes  |  |
- | sizeInfo | [String: Any]? |  yes  |  |
- | fulfillingStore | [FulfillingStore](#FulfillingStore)? |  yes  |  |
- | beneficiaryDetails | Bool? |  yes  |  |
- | awbNo | String? |  yes  |  |
- | shipmentStatus | [String: Any]? |  yes  |  |
- | breakupValues | [[PricesBreakup](#PricesBreakup)]? |  yes  |  |
- | totalDetails | [String: Any]? |  yes  |  |
- | trackUrl | String? |  yes  |  |
- | payment | [PaymentInfo](#PaymentInfo)? |  yes  |  |
- | showDownloadInvoice | Bool? |  yes  |  |
- | canCancel | Bool? |  yes  |  |
- | prices | [String: Any]? |  yes  |  |
- | userInfo | [UserInfo](#UserInfo)? |  yes  |  |
- | canBreak | [String: Any]? |  yes  |  |
- | showTrackLink | Bool? |  yes  |  |
- | dpName | String? |  yes  |  |
- | bags | [[BagsData](#BagsData)]? |  yes  |  |
- | trackingDetails | [String: Any]? |  yes  |  |
- | invoice | [String: Any]? |  yes  |  |
- | deliveryAddress | [String: Any]? |  yes  |  |
- | comment | String? |  yes  |  |
- | totalBags | Int? |  yes  |  |
- | needHelpUrl | String? |  yes  |  |
- | shipmentId | String? |  yes  |  |
- | shipmentCreatedAt | String? |  yes  |  |
- | trakingNo | String? |  yes  |  |
- | fulfillingCompany | [FulfillingCompany](#FulfillingCompany)? |  yes  |  |
-
----
-
-
- 
- 
- #### [ShipmentById](#ShipmentById)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipment | [ShipmentResponse](#ShipmentResponse)? |  yes  |  |
-
----
-
-
- 
- 
- #### [Error](#Error)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CustomerDetailsResponse](#CustomerDetailsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | orderId | String? |  yes  |  |
- | name | String? |  yes  |  |
- | phone | String? |  yes  |  |
- | shipmentId | String? |  yes  |  |
- | country | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [SendOtpToCustomerResponse](#SendOtpToCustomerResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | requestId | String? |  yes  |  |
- | success | Bool? |  yes  |  |
- | resendTimer | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [ShipmentReasonsResponse](#ShipmentReasonsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | reasonText | String? |  yes  |  |
- | flow | String? |  yes  |  |
- | feedbackType | String? |  yes  |  |
- | priority | Int? |  yes  |  |
- | reasonId | Int? |  yes  |  |
- | showTextArea | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [VerifyOtp](#VerifyOtp)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | requestId | String? |  yes  |  |
- | otpCode | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [VerifyOtpResponse](#VerifyOtpResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | hasNext | Bool? |  yes  |  |
- | current | Int? |  yes  |  |
- | itemTotal | Int? |  yes  |  |
- | type | String? |  yes  |  |
- | size | Int? |  yes  |  |
-
----
-
-
- 
- 
  #### [Statuses](#Statuses)
 
  | Properties | Type | Nullable | Description |
@@ -2643,16 +2371,519 @@ Success Response, Presigned URL of Invoice
 
  
  
+ #### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | Int? |  yes  |  |
+ | type | String? |  yes  |  |
+ | itemTotal | Int? |  yes  |  |
+ | size | Int? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DeliveryAddress](#DeliveryAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | landmark | String? |  yes  |  |
+ | address2 | String? |  yes  |  |
+ | addressCategory | String? |  yes  |  |
+ | address | String? |  yes  |  |
+ | pincode | String? |  yes  |  |
+ | phone | String? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+ | address1 | String? |  yes  |  |
+ | city | String? |  yes  |  |
+ | addressType | String? |  yes  |  |
+ | email | String? |  yes  |  |
+ | area | String? |  yes  |  |
+ | contactPerson | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | version | String? |  yes  |  |
+ | state | String? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | latitude | Double? |  yes  |  |
+ | longitude | Double? |  yes  |  |
+ | country | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [MarkedValues](#MarkedValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | Double? |  yes  |  |
+ | max | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EffectiveValues](#EffectiveValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | Double? |  yes  |  |
+ | max | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ItemPriceDetails](#ItemPriceDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | String? |  yes  |  |
+ | marked | [MarkedValues](#MarkedValues)? |  yes  |  |
+ | effective | [EffectiveValues](#EffectiveValues)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FreeGiftItemDetails](#FreeGiftItemDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | itemPriceDetails | [ItemPriceDetails](#ItemPriceDetails)? |  yes  |  |
+ | itemBrandName | String? |  yes  |  |
+ | itemId | String? |  yes  |  |
+ | itemName | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AppliedFreeArticles](#AppliedFreeArticles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | parentItemIdentifier | String? |  yes  |  |
+ | quantity | Double? |  yes  |  |
+ | articleId | String? |  yes  |  |
+ | freeGiftItemDetails | [[FreeGiftItemDetails](#FreeGiftItemDetails)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AppliedPromos](#AppliedPromos)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | promoId | String? |  yes  |  |
+ | promotionName | String? |  yes  |  |
+ | promotionType | String? |  yes  |  |
+ | mrpPromotion | Bool? |  yes  |  |
+ | amount | Double? |  yes  |  |
+ | articleQuantity | Double? |  yes  |  |
+ | appliedFreeArticles | [AppliedFreeArticles](#AppliedFreeArticles)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Prices](#Prices)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brandCalculatedAmount | Double? |  yes  |  |
+ | cashbackApplied | Double? |  yes  |  |
+ | couponValue | Double? |  yes  |  |
+ | amountPaidRoundoff | Double? |  yes  |  |
+ | refundCredit | Double? |  yes  |  |
+ | promotionEffectiveDiscount | Double? |  yes  |  |
+ | deliveryCharge | Double? |  yes  |  |
+ | codCharges | Double? |  yes  |  |
+ | priceEffective | Double? |  yes  |  |
+ | discount | Double? |  yes  |  |
+ | fyndCredits | Double? |  yes  |  |
+ | gstTaxPercentage | Double? |  yes  |  |
+ | transferPrice | Double? |  yes  |  |
+ | priceMarked | Double? |  yes  |  |
+ | amountPaid | Double? |  yes  |  |
+ | refundAmount | Double? |  yes  |  |
+ | addedToFyndCash | Bool? |  yes  |  |
+ | couponEffectiveDiscount | Double? |  yes  |  |
+ | valueOfGood | Double? |  yes  |  |
+ | cashback | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Identifiers](#Identifiers)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ean | String? |  yes  |  |
+ | skuCode | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FinancialBreakup](#FinancialBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brandCalculatedAmount | Double? |  yes  |  |
+ | cashbackApplied | Double? |  yes  |  |
+ | hsnCode | String? |  yes  |  |
+ | couponValue | Double? |  yes  |  |
+ | amountPaidRoundoff | Double? |  yes  |  |
+ | refundCredit | Double? |  yes  |  |
+ | promotionEffectiveDiscount | Double? |  yes  |  |
+ | size | String? |  yes  |  |
+ | deliveryCharge | Double? |  yes  |  |
+ | codCharges | Double? |  yes  |  |
+ | priceEffective | Double? |  yes  |  |
+ | discount | Double? |  yes  |  |
+ | fyndCredits | Double? |  yes  |  |
+ | totalUnits | Int? |  yes  |  |
+ | gstTaxPercentage | Double? |  yes  |  |
+ | transferPrice | Double? |  yes  |  |
+ | gstTag | String? |  yes  |  |
+ | priceMarked | Double? |  yes  |  |
+ | amountPaid | Double? |  yes  |  |
+ | refundAmount | Double? |  yes  |  |
+ | identifiers | [Identifiers](#Identifiers)? |  yes  |  |
+ | addedToFyndCash | Bool? |  yes  |  |
+ | valueOfGood | Double? |  yes  |  |
+ | couponEffectiveDiscount | Double? |  yes  |  |
+ | itemName | String? |  yes  |  |
+ | gstFee | Double? |  yes  |  |
+ | cashback | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CurrentStatus](#CurrentStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | String? |  yes  |  |
+ | journeyType | String? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | name | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ItemBrand](#ItemBrand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | logo | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Item](#Item)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sellerIdentifier | String? |  yes  |  |
+ | image | [String]? |  yes  |  |
+ | code | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | size | String? |  yes  |  |
+ | id | Int? |  yes  |  |
+ | slugKey | String? |  yes  |  |
+ | brand | [ItemBrand](#ItemBrand)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BagsData](#BagsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | appliedPromos | [[AppliedPromos](#AppliedPromos)]? |  yes  |  |
+ | prices | [Prices](#Prices)? |  yes  |  |
+ | deliveryDate | String? |  yes  |  |
+ | canCancel | Bool? |  yes  |  |
+ | financialBreakup | [[FinancialBreakup](#FinancialBreakup)]? |  yes  |  |
+ | canReturn | Bool? |  yes  |  |
+ | currentStatus | [CurrentStatus](#CurrentStatus)? |  yes  |  |
+ | returnableDate | String? |  yes  |  |
+ | item | [Item](#Item)? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | id | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TimeStampData](#TimeStampData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | String? |  yes  |  |
+ | max | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Promise](#Promise)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | showPromise | String? |  yes  |  |
+ | timestamp | [TimeStampData](#TimeStampData)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TrackingDetails](#TrackingDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | String? |  yes  |  |
+ | isCurrent | Bool? |  yes  |  |
+ | time | String? |  yes  |  |
+ | isPassed | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserInfo](#UserInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | firstName | String? |  yes  |  |
+ | mobile | String? |  yes  |  |
+ | gender | String? |  yes  |  |
+ | lastName | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FulfillingCompany](#FulfillingCompany)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | Int? |  yes  |  |
+ | name | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceData](#InvoiceData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | labelUrl | String? |  yes  |  |
+ | updatedDate | String? |  yes  |  |
+ | invoiceUrl | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PricesBreakup](#PricesBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | Double? |  yes  |  |
+ | name | String? |  yes  |  |
+ | display | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PaymentInfo](#PaymentInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | String? |  yes  |  |
+ | mop | String? |  yes  |  |
+ | mode | String? |  yes  |  |
+ | logo | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentTotalDetails](#ShipmentTotalDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sizes | Double? |  yes  |  |
+ | pieces | Double? |  yes  |  |
+ | totalPrice | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentStatus](#ShipmentStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | String? |  yes  |  |
+ | hexCode | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FulfillingStore](#FulfillingStore)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | companyId | Int? |  yes  |  |
+ | companyName | String? |  yes  |  |
+ | code | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | id | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentResponse](#ShipmentResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | deliveryAddress | [DeliveryAddress](#DeliveryAddress)? |  yes  |  |
+ | orderType | String? |  yes  |  |
+ | canCancel | Bool? |  yes  |  |
+ | trackUrl | String? |  yes  |  |
+ | beneficiaryDetails | Bool? |  yes  |  |
+ | bags | [[BagsData](#BagsData)]? |  yes  |  |
+ | shipmentId | String? |  yes  |  |
+ | promise | [Promise](#Promise)? |  yes  |  |
+ | refundDetails | [String: Any]? |  yes  |  |
+ | trackingDetails | [[TrackingDetails](#TrackingDetails)]? |  yes  |  |
+ | canBreak | [String: Any]? |  yes  |  |
+ | customMeta | [[String: Any]]? |  yes  |  |
+ | returnableDate | String? |  yes  |  |
+ | showDownloadInvoice | Bool? |  yes  |  |
+ | userInfo | [UserInfo](#UserInfo)? |  yes  |  |
+ | fulfillingCompany | [FulfillingCompany](#FulfillingCompany)? |  yes  |  |
+ | trakingNo | String? |  yes  |  |
+ | invoice | [InvoiceData](#InvoiceData)? |  yes  |  |
+ | prices | [Prices](#Prices)? |  yes  |  |
+ | deliveryDate | String? |  yes  |  |
+ | needHelpUrl | String? |  yes  |  |
+ | dpName | String? |  yes  |  |
+ | showTrackLink | Bool? |  yes  |  |
+ | sizeInfo | [String: Any]? |  yes  |  |
+ | breakupValues | [[PricesBreakup](#PricesBreakup)]? |  yes  |  |
+ | totalBags | Int? |  yes  |  |
+ | orderId | String? |  yes  |  |
+ | canReturn | Bool? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | shipmentCreatedAt | String? |  yes  |  |
+ | payment | [PaymentInfo](#PaymentInfo)? |  yes  |  |
+ | totalDetails | [ShipmentTotalDetails](#ShipmentTotalDetails)? |  yes  |  |
+ | shipmentStatus | [ShipmentStatus](#ShipmentStatus)? |  yes  |  |
+ | fulfillingStore | [FulfillingStore](#FulfillingStore)? |  yes  |  |
+ | awbNo | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | strategy | String? |  yes  |  |
+ | level | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BagsForReorder](#BagsForReorder)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | itemSize | String? |  yes  |  |
+ | storeId | Int? |  yes  |  |
+ | itemId | Int? |  yes  |  |
+ | sellerId | Int? |  yes  |  |
+ | articleAssignment | [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment)? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserInfo1](#UserInfo1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | String? |  yes  |  |
+ | mobile | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | gender | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [OrderItems](#OrderItems)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | shipments | [[ShipmentResponse](#ShipmentResponse)]? |  yes  |  |
- | bagsForReorder | [[String: Any]]? |  yes  |  |
- | orderCreatedTime | String? |  yes  |  |
+ | bagsForReorder | [[BagsForReorder](#BagsForReorder)]? |  yes  |  |
+ | userInfo | [UserInfo1](#UserInfo1)? |  yes  |  |
+ | breakupValues | [[PricesBreakup](#PricesBreakup)]? |  yes  |  |
  | orderId | String? |  yes  |  |
+ | orderCreatedTime | String? |  yes  |  |
  | totalShipmentsInOrder | Int? |  yes  |  |
- | userInfo | [String: Any]? |  yes  |  |
 
 ---
 
@@ -2663,9 +2894,31 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
  | filters | [Filters](#Filters)? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  | items | [[OrderItems](#OrderItems)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Error](#Error)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentById](#ShipmentById)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipment | [ShipmentResponse](#ShipmentResponse)? |  yes  |  |
 
 ---
 
@@ -2676,14 +2929,14 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | updatedTime | String? |  yes  |  |
- | status | String? |  yes  |  |
  | reason | String? |  yes  |  |
- | shipmentType | String? |  yes  |  |
  | lastLocationRecievedAt | String? |  yes  |  |
- | awb | String? |  yes  |  |
  | accountName | String? |  yes  |  |
+ | shipmentType | String? |  yes  |  |
+ | awb | String? |  yes  |  |
+ | status | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
+ | updatedTime | String? |  yes  |  |
 
 ---
 
@@ -2701,11 +2954,102 @@ Success Response, Presigned URL of Invoice
 
  
  
- #### [ProductDetail](#ProductDetail)
+ #### [CustomerDetailsResponse](#CustomerDetailsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipmentId | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | orderId | String? |  yes  |  |
+ | phone | String? |  yes  |  |
+ | country | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SendOtpToCustomerResponse](#SendOtpToCustomerResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+ | requestId | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | resendTimer | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [VerifyOtp](#VerifyOtp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | otpCode | String? |  yes  |  |
+ | requestId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [VerifyOtpResponse](#VerifyOtpResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [QuestionSet](#QuestionSet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | Int? |  yes  |  |
+ | displayName | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ReasonsResponse](#ReasonsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | qcType | [String]? |  yes  |  |
+ | id | Int? |  yes  |  |
+ | displayName | String? |  yes  |  |
+ | questionSet | [[QuestionSet](#QuestionSet)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentReasonsResponse](#ShipmentReasonsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reasons | [[ReasonsResponse](#ReasonsResponse)]? |  yes  |  |
+ | success | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Products](#Products)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | identifier | String? |  yes  |  |
+ | lineNumber | Int? |  yes  |  |
  | quantity | Int? |  yes  |  |
 
 ---
@@ -2713,38 +3057,24 @@ Success Response, Presigned URL of Invoice
 
  
  
- #### [ShipmentBody](#ShipmentBody)
+ #### [ShipmentsRequest](#ShipmentsRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason | [Int]? |  yes  |  |
- | storeInvoiceId | String? |  yes  |  |
- | bags | [Int]? |  yes  |  |
- | dataUpdate | [String: Any]? |  yes  |  |
- | products | [[ProductDetail](#ProductDetail)]? |  yes  |  |
+ | reasons | [[String: Any]]? |  yes  |  |
+ | products | [[Products](#Products)]? |  yes  |  |
 
 ---
 
 
  
  
- #### [ShipmentDetail](#ShipmentDetail)
+ #### [StatuesRequest](#StatuesRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipmentId | [ShipmentBody](#ShipmentBody)? |  yes  |  |
-
----
-
-
- 
- 
- #### [Statuses1](#Statuses1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipments | [ShipmentDetail](#ShipmentDetail)? |  yes  |  |
- | status | String |  no  |  |
+ | shipments | [ShipmentsRequest](#ShipmentsRequest)? |  yes  |  |
+ | status | String? |  yes  |  |
  | excludeBagsNextState | String? |  yes  |  |
 
 ---
@@ -2752,36 +3082,76 @@ Success Response, Presigned URL of Invoice
 
  
  
- #### [ShipmentStatusUpdateBody](#ShipmentStatusUpdateBody)
+ #### [StatusUpdateInternalRequest](#StatusUpdateInternalRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | forceTransition | Bool? |  yes  |  |
- | statuses | [[Statuses1](#Statuses1)]? |  yes  |  |
+ | statues | [[StatuesRequest](#StatuesRequest)]? |  yes  |  |
  | task | Bool? |  yes  |  |
+ | unlockBeforeTransition | Bool? |  yes  |  |
+ | lockAfterTransition | Bool? |  yes  |  |
 
 ---
 
 
  
  
- #### [ShipmentStatusUpdate](#ShipmentStatusUpdate)
+ #### [ShipmentidResponse](#ShipmentidResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  |  |
- | message | [[String: Any]] |  no  |  |
-
----
-
-
- 
- 
- #### [ErrorDetail](#ErrorDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
+ | code | String? |  yes  |  |
+ | exception | String? |  yes  |  |
+ | status | Int? |  yes  |  |
+ | stackTrace | String? |  yes  |  |
  | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentsResponse](#ShipmentsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipmentId | [ShipmentidResponse](#ShipmentidResponse)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [StatuesResponse](#StatuesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipments | [ShipmentsResponse](#ShipmentsResponse)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [StatusUpdateInternalResponse](#StatusUpdateInternalResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | statuses | [[StatuesResponse](#StatuesResponse)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ErrorResponse](#ErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | Int |  no  |  |
+ | errorTrace | String? |  yes  |  |
+ | message | String |  no  |  |
 
 ---
 

@@ -10,9 +10,9 @@ public extension PlatformClient {
     class AttributeMaster: Codable {
         public var allowedValues: [String]?
 
-        public var mandatory: Bool?
-
         public var format: String?
+
+        public var mandatory: Bool?
 
         public var type: String
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case allowedValues = "allowed_values"
 
-            case mandatory
-
             case format
+
+            case mandatory
 
             case type
 
@@ -37,9 +37,9 @@ public extension PlatformClient {
         public init(allowedValues: [String]? = nil, format: String? = nil, mandatory: Bool? = nil, multi: Bool? = nil, range: AttributeSchemaRange? = nil, type: String) {
             self.allowedValues = allowedValues
 
-            self.mandatory = mandatory
-
             self.format = format
+
+            self.mandatory = mandatory
 
             self.type = type
 
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                mandatory = try container.decode(Bool.self, forKey: .mandatory)
+                format = try container.decode(String.self, forKey: .format)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                format = try container.decode(String.self, forKey: .format)
+                mandatory = try container.decode(Bool.self, forKey: .mandatory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,9 +99,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(allowedValues, forKey: .allowedValues)
 
-            try? container.encodeIfPresent(mandatory, forKey: .mandatory)
-
             try? container.encodeIfPresent(format, forKey: .format)
+
+            try? container.encodeIfPresent(mandatory, forKey: .mandatory)
 
             try? container.encodeIfPresent(type, forKey: .type)
 

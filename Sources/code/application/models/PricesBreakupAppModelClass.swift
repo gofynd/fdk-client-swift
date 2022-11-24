@@ -7,7 +7,7 @@ public extension ApplicationClient {
          Used By: Order
      */
     class PricesBreakup: Codable {
-        public var value: Int?
+        public var value: Double?
 
         public var name: String?
 
@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case display
         }
 
-        public init(display: String? = nil, name: String? = nil, value: Int? = nil) {
+        public init(display: String? = nil, name: String? = nil, value: Double? = nil) {
             self.value = value
 
             self.name = name
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode(Int.self, forKey: .value)
+                value = try container.decode(Double.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
