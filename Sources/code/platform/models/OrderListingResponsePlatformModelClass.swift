@@ -8,56 +8,52 @@ public extension PlatformClient {
      */
 
     class OrderListingResponse: Codable {
-        public var success: Bool
+        public var page: [String: Any]
 
         public var totalCount: Int
 
-        public var page: [String: Any]
+        public var message: String?
 
         public var items: [[String: Any]]
 
-        public var message: String?
-
         public var lane: String
 
+        public var success: Bool
+
         public enum CodingKeys: String, CodingKey {
-            case success
+            case page
 
             case totalCount = "total_count"
 
-            case page
+            case message
 
             case items
 
-            case message
-
             case lane
+
+            case success
         }
 
         public init(items: [[String: Any]], lane: String, message: String? = nil, page: [String: Any], success: Bool, totalCount: Int) {
-            self.success = success
+            self.page = page
 
             self.totalCount = totalCount
 
-            self.page = page
+            self.message = message
 
             self.items = items
 
-            self.message = message
-
             self.lane = lane
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
-            totalCount = try container.decode(Int.self, forKey: .totalCount)
-
             page = try container.decode([String: Any].self, forKey: .page)
 
-            items = try container.decode([[String: Any]].self, forKey: .items)
+            totalCount = try container.decode(Int.self, forKey: .totalCount)
 
             do {
                 message = try container.decode(String.self, forKey: .message)
@@ -67,23 +63,27 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            items = try container.decode([[String: Any]].self, forKey: .items)
+
             lane = try container.decode(String.self, forKey: .lane)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(totalCount, forKey: .totalCount)
 
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(lane, forKey: .lane)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

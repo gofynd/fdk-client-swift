@@ -9,36 +9,36 @@ public extension ApplicationClient {
     class ShipmentidResponse: Codable {
         public var code: String?
 
-        public var exception: String?
+        public var message: String?
 
-        public var status: Int?
+        public var exception: String?
 
         public var stackTrace: String?
 
-        public var message: String?
+        public var status: Int?
 
         public enum CodingKeys: String, CodingKey {
             case code
 
-            case exception
+            case message
 
-            case status
+            case exception
 
             case stackTrace = "stack_trace"
 
-            case message
+            case status
         }
 
         public init(code: String? = nil, exception: String? = nil, message: String? = nil, stackTrace: String? = nil, status: Int? = nil) {
             self.code = code
 
-            self.exception = exception
+            self.message = message
 
-            self.status = status
+            self.exception = exception
 
             self.stackTrace = stackTrace
 
-            self.message = message
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -46,6 +46,14 @@ public extension ApplicationClient {
 
             do {
                 code = try container.decode(String.self, forKey: .code)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,14 +69,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 stackTrace = try container.decode(String.self, forKey: .stackTrace)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(exception, forKey: .exception)
+            try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(exception, forKey: .exception)
 
             try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

@@ -1,12 +1,13 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: SignedBadRequestResponse
-         Used By: Order
+         Model: StatusBadRequestResponse
+         Used By: DocumentEngine
      */
-    class SignedBadRequestResponse: Codable {
+
+    class StatusBadRequestResponse: Codable {
         public var success: Bool?
 
         public var errorMessage: String?

@@ -517,7 +517,7 @@ public extension ApplicationClient {
             shipmentId: String,
             parameters: invoiceParameter?,
 
-            onResponse: @escaping (_ response: getInvoiceByShipmentId200Response?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ResponseGetInvoiceShipment?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -545,7 +545,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(getInvoiceByShipmentId200Response.self, from: data)
+                        let response = Utility.decode(ResponseGetInvoiceShipment.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -567,7 +567,7 @@ public extension ApplicationClient {
             shipmentId: String,
             parameters: creditNoteParameter?,
 
-            onResponse: @escaping (_ response: getInvoiceByShipmentId200Response?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ResponseGetInvoiceShipment?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -595,7 +595,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(getInvoiceByShipmentId200Response.self, from: data)
+                        let response = Utility.decode(ResponseGetInvoiceShipment.self, from: data)
 
                         onResponse(response, nil)
                     } else {
