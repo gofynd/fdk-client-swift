@@ -623,6 +623,7 @@ public extension ApplicationClient {
             pageSize: Int?,
             fromDate: String?,
             toDate: String?,
+            customMeta: String?,
 
             onResponse: @escaping (_ response: OrderList1?, _ error: FDKError?) -> Void
         ) {
@@ -646,6 +647,10 @@ public extension ApplicationClient {
 
             if let value = toDate {
                 xQuery["to_date"] = value
+            }
+
+            if let value = customMeta {
+                xQuery["custom_meta"] = value
             }
 
             let fullUrl = relativeUrls["getOrders1"] ?? ""
@@ -687,7 +692,7 @@ public extension ApplicationClient {
         public func getOrderById1(
             orderId: String,
 
-            onResponse: @escaping (_ response: OrderList1?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OrderById1?, _ error: FDKError?) -> Void
         ) {
             var fullUrl = relativeUrls["getOrderById1"] ?? ""
 
@@ -709,7 +714,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(OrderList1.self, from: data)
+                        let response = Utility.decode(OrderById1.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -816,7 +821,7 @@ public extension ApplicationClient {
         public func trackShipment1(
             shipmentId: String,
 
-            onResponse: @escaping (_ response: TrackShipmentResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentTrack1?, _ error: FDKError?) -> Void
         ) {
             var fullUrl = relativeUrls["trackShipment1"] ?? ""
 
@@ -838,7 +843,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(TrackShipmentResponse.self, from: data)
+                        let response = Utility.decode(ShipmentTrack1.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -996,9 +1001,9 @@ public extension ApplicationClient {
          **/
         public func getShipmentBagReasons1(
             shipmentId: String,
-            bagId: Int,
+            bagId: String,
 
-            onResponse: @escaping (_ response: ShipmentReasonsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentBagReasons1?, _ error: FDKError?) -> Void
         ) {
             var fullUrl = relativeUrls["getShipmentBagReasons1"] ?? ""
 
@@ -1022,7 +1027,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(ShipmentReasonsResponse.self, from: data)
+                        let response = Utility.decode(ShipmentBagReasons1.self, from: data)
 
                         onResponse(response, nil)
                     } else {
