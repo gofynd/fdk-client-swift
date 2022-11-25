@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var requestId: String?
 
-        public var message: String?
-
         public var resendTimer: Int?
+
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
             case requestId = "request_id"
 
-            case message
-
             case resendTimer = "resend_timer"
+
+            case message
         }
 
         public init(message: String? = nil, requestId: String? = nil, resendTimer: Int? = nil, success: Bool? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.requestId = requestId
 
-            self.message = message
-
             self.resendTimer = resendTimer
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                resendTimer = try container.decode(Int.self, forKey: .resendTimer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                resendTimer = try container.decode(Int.self, forKey: .resendTimer)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(requestId, forKey: .requestId)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
