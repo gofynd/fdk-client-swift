@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: FreeGiftItem
+         Model: FreeGiftItems
          Used By: Cart
      */
-    class FreeGiftItem: Codable {
+    class FreeGiftItems: Codable {
         public var itemId: Int?
 
         public var itemImagesUrl: [String]?

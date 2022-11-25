@@ -9,9 +9,11 @@ public extension ApplicationClient {
     class AppStore: Codable {
         public var company: CompanyStore?
 
+        public var name: String?
+
         public var uid: Int?
 
-        public var name: String?
+        public var address: StoreAddressSerializer?
 
         public var contactNumbers: [SellerPhoneNumber]?
 
@@ -19,38 +21,36 @@ public extension ApplicationClient {
 
         public var departments: [StoreDepartments]?
 
-        public var address: StoreAddressSerializer?
-
         public enum CodingKeys: String, CodingKey {
             case company
 
+            case name
+
             case uid
 
-            case name
+            case address
 
             case contactNumbers = "contact_numbers"
 
             case manager
 
             case departments
-
-            case address
         }
 
         public init(address: StoreAddressSerializer? = nil, company: CompanyStore? = nil, contactNumbers: [SellerPhoneNumber]? = nil, departments: [StoreDepartments]? = nil, manager: StoreManagerSerializer? = nil, name: String? = nil, uid: Int? = nil) {
             self.company = company
 
+            self.name = name
+
             self.uid = uid
 
-            self.name = name
+            self.address = address
 
             self.contactNumbers = contactNumbers
 
             self.manager = manager
 
             self.departments = departments
-
-            self.address = address
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,6 +58,14 @@ public extension ApplicationClient {
 
             do {
                 company = try container.decode(CompanyStore.self, forKey: .company)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,7 +81,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,14 +111,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -118,17 +118,17 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(company, forKey: .company)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(address, forKey: .address)
 
             try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
 
             try? container.encodeIfPresent(manager, forKey: .manager)
 
             try? container.encodeIfPresent(departments, forKey: .departments)
-
-            try? container.encodeIfPresent(address, forKey: .address)
         }
     }
 }

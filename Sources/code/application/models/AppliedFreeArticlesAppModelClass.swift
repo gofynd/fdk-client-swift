@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var quantity: Int?
 
-        public var freeGiftItemDetials: [FreeGiftItem]?
-
         public var parentItemIdentifier: String?
+
+        public var freeGiftItemDetials: [FreeGiftItem]?
 
         public enum CodingKeys: String, CodingKey {
             case articleId = "article_id"
 
             case quantity
 
-            case freeGiftItemDetials = "free_gift_item_detials"
-
             case parentItemIdentifier = "parent_item_identifier"
+
+            case freeGiftItemDetials = "free_gift_item_detials"
         }
 
         public init(articleId: String? = nil, freeGiftItemDetials: [FreeGiftItem]? = nil, parentItemIdentifier: String? = nil, quantity: Int? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.quantity = quantity
 
-            self.freeGiftItemDetials = freeGiftItemDetials
-
             self.parentItemIdentifier = parentItemIdentifier
+
+            self.freeGiftItemDetials = freeGiftItemDetials
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                freeGiftItemDetials = try container.decode([FreeGiftItem].self, forKey: .freeGiftItemDetials)
+                parentItemIdentifier = try container.decode(String.self, forKey: .parentItemIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                parentItemIdentifier = try container.decode(String.self, forKey: .parentItemIdentifier)
+                freeGiftItemDetials = try container.decode([FreeGiftItem].self, forKey: .freeGiftItemDetials)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(freeGiftItemDetials, forKey: .freeGiftItemDetials)
-
             try? container.encodeIfPresent(parentItemIdentifier, forKey: .parentItemIdentifier)
+
+            try? container.encodeIfPresent(freeGiftItemDetials, forKey: .freeGiftItemDetials)
         }
     }
 }
