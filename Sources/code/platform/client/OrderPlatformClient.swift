@@ -1226,13 +1226,20 @@ public extension PlatformClient {
          * Description:
          **/
         public func getShipmentHistory(
-            bagId: Int,
+            shipmentId: Int?,
+            bagId: Int?,
 
             onResponse: @escaping (_ response: ShipmentHistoryResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
-            xQuery["bag_id"] = bagId
+            if let value = shipmentId {
+                xQuery["shipment_id"] = value
+            }
+
+            if let value = bagId {
+                xQuery["bag_id"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,

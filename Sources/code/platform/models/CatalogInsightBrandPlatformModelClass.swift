@@ -10,9 +10,9 @@ public extension PlatformClient {
     class CatalogInsightBrand: Codable {
         public var availableSizes: Int?
 
-        public var name: String?
-
         public var articleFreshness: Int?
+
+        public var name: String?
 
         public var availableArticles: Int?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case availableSizes = "available_sizes"
 
-            case name
-
             case articleFreshness = "article_freshness"
+
+            case name
 
             case availableArticles = "available_articles"
 
@@ -37,9 +37,9 @@ public extension PlatformClient {
         public init(articleFreshness: Int? = nil, availableArticles: Int? = nil, availableSizes: Int? = nil, name: String? = nil, totalArticles: Int? = nil, totalSizes: Int? = nil) {
             self.availableSizes = availableSizes
 
-            self.name = name
-
             self.articleFreshness = articleFreshness
+
+            self.name = name
 
             self.availableArticles = availableArticles
 
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                articleFreshness = try container.decode(Int.self, forKey: .articleFreshness)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                articleFreshness = try container.decode(Int.self, forKey: .articleFreshness)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,9 +105,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(articleFreshness, forKey: .articleFreshness)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(availableArticles, forKey: .availableArticles)
 
