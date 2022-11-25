@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var url: String?
 
-        public var secureUrl: String?
-
         public var aspectRatio: String?
+
+        public var secureUrl: String?
 
         public enum CodingKeys: String, CodingKey {
             case aspectRatioF = "aspect_ratio_f"
 
             case url
 
-            case secureUrl = "secure_url"
-
             case aspectRatio = "aspect_ratio"
+
+            case secureUrl = "secure_url"
         }
 
         public init(aspectRatio: String? = nil, aspectRatioF: Int? = nil, secureUrl: String? = nil, url: String? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.url = url
 
-            self.secureUrl = secureUrl
-
             self.aspectRatio = aspectRatio
+
+            self.secureUrl = secureUrl
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                secureUrl = try container.decode(String.self, forKey: .secureUrl)
+                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
+                secureUrl = try container.decode(String.self, forKey: .secureUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(secureUrl, forKey: .secureUrl)
-
             try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
+
+            try? container.encodeIfPresent(secureUrl, forKey: .secureUrl)
         }
     }
 }

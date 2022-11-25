@@ -10,26 +10,26 @@ public extension PlatformClient {
     class GetSearchWordsData: Codable {
         public var isActive: Bool?
 
-        public var uid: String?
-
         public var words: [String]?
+
+        public var result: [String: Any]?
 
         public var appId: String?
 
-        public var result: [String: Any]?
+        public var uid: String?
 
         public var customJson: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case uid
-
             case words
+
+            case result
 
             case appId = "app_id"
 
-            case result
+            case uid
 
             case customJson = "_custom_json"
         }
@@ -37,13 +37,13 @@ public extension PlatformClient {
         public init(appId: String? = nil, isActive: Bool? = nil, result: [String: Any]? = nil, uid: String? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
             self.isActive = isActive
 
-            self.uid = uid
-
             self.words = words
+
+            self.result = result
 
             self.appId = appId
 
-            self.result = result
+            self.uid = uid
 
             self.customJson = customJson
         }
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                words = try container.decode([String].self, forKey: .words)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                words = try container.decode([String].self, forKey: .words)
+                result = try container.decode([String: Any].self, forKey: .result)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                result = try container.decode([String: Any].self, forKey: .result)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,13 +105,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(words, forKey: .words)
+
+            try? container.encodeIfPresent(result, forKey: .result)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(result, forKey: .result)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
         }

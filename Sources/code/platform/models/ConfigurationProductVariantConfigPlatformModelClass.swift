@@ -14,13 +14,13 @@ public extension PlatformClient {
 
         public var displayType: String
 
-        public var size: ProductSize
+        public var priority: Int
 
         public var key: String
 
         public var logo: String?
 
-        public var priority: Int
+        public var size: ProductSize
 
         public enum CodingKeys: String, CodingKey {
             case name
@@ -29,13 +29,13 @@ public extension PlatformClient {
 
             case displayType = "display_type"
 
-            case size
+            case priority
 
             case key
 
             case logo
 
-            case priority
+            case size
         }
 
         public init(displayType: String, isActive: Bool, key: String, logo: String? = nil, name: String, priority: Int, size: ProductSize) {
@@ -45,13 +45,13 @@ public extension PlatformClient {
 
             self.displayType = displayType
 
-            self.size = size
+            self.priority = priority
 
             self.key = key
 
             self.logo = logo
 
-            self.priority = priority
+            self.size = size
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ public extension PlatformClient {
 
             displayType = try container.decode(String.self, forKey: .displayType)
 
-            size = try container.decode(ProductSize.self, forKey: .size)
+            priority = try container.decode(Int.self, forKey: .priority)
 
             key = try container.decode(String.self, forKey: .key)
 
@@ -75,7 +75,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            priority = try container.decode(Int.self, forKey: .priority)
+            size = try container.decode(ProductSize.self, forKey: .size)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -87,13 +87,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(size, forKey: .size)
         }
     }
 }

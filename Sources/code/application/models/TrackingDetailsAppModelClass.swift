@@ -9,22 +9,22 @@ public extension ApplicationClient {
     class TrackingDetails: Codable {
         public var status: String?
 
-        public var isPassed: Bool?
+        public var time: String?
 
         public var trackingDetails: [NestedTrackingDetails]?
 
-        public var time: String?
+        public var isPassed: Bool?
 
         public var isCurrent: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case isPassed = "is_passed"
+            case time
 
             case trackingDetails = "tracking_details"
 
-            case time
+            case isPassed = "is_passed"
 
             case isCurrent = "is_current"
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient {
         public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String? = nil, time: String? = nil, trackingDetails: [NestedTrackingDetails]? = nil) {
             self.status = status
 
-            self.isPassed = isPassed
+            self.time = time
 
             self.trackingDetails = trackingDetails
 
-            self.time = time
+            self.isPassed = isPassed
 
             self.isCurrent = isCurrent
         }
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isPassed = try container.decode(Bool.self, forKey: .isPassed)
+                time = try container.decode(String.self, forKey: .time)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                time = try container.decode(String.self, forKey: .time)
+                isPassed = try container.decode(Bool.self, forKey: .isPassed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(isPassed, forKey: .isPassed)
+            try? container.encodeIfPresent(time, forKey: .time)
 
             try? container.encodeIfPresent(trackingDetails, forKey: .trackingDetails)
 
-            try? container.encodeIfPresent(time, forKey: .time)
+            try? container.encodeIfPresent(isPassed, forKey: .isPassed)
 
             try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
         }
