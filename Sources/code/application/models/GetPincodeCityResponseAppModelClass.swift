@@ -7,9 +7,9 @@ public extension ApplicationClient {
          Used By: Logistic
      */
     class GetPincodeCityResponse: Codable {
-        public var requestUuid: String
+        public var requestUuid: String?
 
-        public var stormbreakerUuid: String
+        public var stormbreakerUuid: String?
 
         public var success: Bool
 
@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case data
         }
 
-        public init(data: [LogisticPincodeData], requestUuid: String, stormbreakerUuid: String, success: Bool) {
+        public init(data: [LogisticPincodeData], requestUuid: String? = nil, stormbreakerUuid: String? = nil, success: Bool) {
             self.requestUuid = requestUuid
 
             self.stormbreakerUuid = stormbreakerUuid
@@ -38,9 +38,21 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            requestUuid = try container.decode(String.self, forKey: .requestUuid)
+            do {
+                requestUuid = try container.decode(String.self, forKey: .requestUuid)
 
-            stormbreakerUuid = try container.decode(String.self, forKey: .stormbreakerUuid)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                stormbreakerUuid = try container.decode(String.self, forKey: .stormbreakerUuid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             success = try container.decode(Bool.self, forKey: .success)
 

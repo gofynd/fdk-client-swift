@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class CollectionListingFilterType: Codable {
         public var isSelected: Bool?
 
-        public var name: String?
-
         public var display: String?
+
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case isSelected = "is_selected"
 
-            case name
-
             case display
+
+            case name
         }
 
         public init(display: String? = nil, isSelected: Bool? = nil, name: String? = nil) {
             self.isSelected = isSelected
 
-            self.name = name
-
             self.display = display
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(isSelected, forKey: .isSelected)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

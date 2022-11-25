@@ -8,42 +8,42 @@ public extension PlatformClient {
      */
 
     class PaymentGatewayConfigResponse: Codable {
-        public var created: Bool
+        public var success: Bool
 
-        public var appId: String
+        public var created: Bool
 
         public var excludedFields: [String]
 
         public var displayFields: [String]
 
-        public var success: Bool
+        public var appId: String
 
         public var aggregators: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
-            case created
+            case success
 
-            case appId = "app_id"
+            case created
 
             case excludedFields = "excluded_fields"
 
             case displayFields = "display_fields"
 
-            case success
+            case appId = "app_id"
 
             case aggregators
         }
 
         public init(aggregators: [[String: Any]]? = nil, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
-            self.created = created
+            self.success = success
 
-            self.appId = appId
+            self.created = created
 
             self.excludedFields = excludedFields
 
             self.displayFields = displayFields
 
-            self.success = success
+            self.appId = appId
 
             self.aggregators = aggregators
         }
@@ -51,15 +51,15 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            created = try container.decode(Bool.self, forKey: .created)
+            success = try container.decode(Bool.self, forKey: .success)
 
-            appId = try container.decode(String.self, forKey: .appId)
+            created = try container.decode(Bool.self, forKey: .created)
 
             excludedFields = try container.decode([String].self, forKey: .excludedFields)
 
             displayFields = try container.decode([String].self, forKey: .displayFields)
 
-            success = try container.decode(Bool.self, forKey: .success)
+            appId = try container.decode(String.self, forKey: .appId)
 
             do {
                 aggregators = try container.decode([[String: Any]].self, forKey: .aggregators)
@@ -73,15 +73,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(created, forKey: .created)
+            try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(created, forKey: .created)
 
             try? container.encodeIfPresent(excludedFields, forKey: .excludedFields)
 
             try? container.encodeIfPresent(displayFields, forKey: .displayFields)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(aggregators, forKey: .aggregators)
         }

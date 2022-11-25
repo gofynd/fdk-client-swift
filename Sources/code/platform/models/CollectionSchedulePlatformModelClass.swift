@@ -1,51 +1,52 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: Price1
+         Model: CollectionSchedule
          Used By: Catalog
      */
-    class Price1: Codable {
-        public var maxEffective: Double?
 
-        public var currency: String?
+    class CollectionSchedule: Codable {
+        public var duration: Int?
 
-        public var minEffective: Double?
+        public var nextSchedule: [NextSchedule]?
 
-        public var maxMarked: Double?
+        public var end: String?
 
-        public var minMarked: Double?
+        public var cron: String?
+
+        public var start: String?
 
         public enum CodingKeys: String, CodingKey {
-            case maxEffective = "max_effective"
+            case duration
 
-            case currency
+            case nextSchedule = "next_schedule"
 
-            case minEffective = "min_effective"
+            case end
 
-            case maxMarked = "max_marked"
+            case cron
 
-            case minMarked = "min_marked"
+            case start
         }
 
-        public init(currency: String? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
-            self.maxEffective = maxEffective
+        public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
+            self.duration = duration
 
-            self.currency = currency
+            self.nextSchedule = nextSchedule
 
-            self.minEffective = minEffective
+            self.end = end
 
-            self.maxMarked = maxMarked
+            self.cron = cron
 
-            self.minMarked = minMarked
+            self.start = start
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                maxEffective = try container.decode(Double.self, forKey: .maxEffective)
+                duration = try container.decode(Int.self, forKey: .duration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +54,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                nextSchedule = try container.decode([NextSchedule].self, forKey: .nextSchedule)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +62,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                minEffective = try container.decode(Double.self, forKey: .minEffective)
+                end = try container.decode(String.self, forKey: .end)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +70,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                maxMarked = try container.decode(Double.self, forKey: .maxMarked)
+                cron = try container.decode(String.self, forKey: .cron)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +78,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                minMarked = try container.decode(Double.self, forKey: .minMarked)
+                start = try container.decode(String.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,15 +89,15 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(maxEffective, forKey: .maxEffective)
+            try? container.encode(duration, forKey: .duration)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
 
-            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
+            try? container.encode(end, forKey: .end)
 
-            try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
+            try? container.encode(cron, forKey: .cron)
 
-            try? container.encodeIfPresent(minMarked, forKey: .minMarked)
+            try? container.encodeIfPresent(start, forKey: .start)
         }
     }
 }
