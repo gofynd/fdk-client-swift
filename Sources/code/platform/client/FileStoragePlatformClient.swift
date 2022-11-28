@@ -126,7 +126,7 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Explain here
+         * Summary: Gives signed urls to access private files
          * Description: Describe here
          **/
         public func getSignUrls(
@@ -170,7 +170,7 @@ public extension PlatformClient {
         public func copyFiles(
             sync: Bool?,
             body: BulkRequest,
-            onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkUploadResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -194,7 +194,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(BulkResponse.self, from: data)
+                        let response = Utility.decode(BulkUploadResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

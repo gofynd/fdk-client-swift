@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var appId: String?
 
-        public var words: [String]?
-
         public var isActive: Bool?
+
+        public var words: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case result
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case appId = "app_id"
 
-            case words
-
             case isActive = "is_active"
+
+            case words
         }
 
         public init(appId: String? = nil, isActive: Bool? = nil, result: SearchKeywordResult, words: [String]? = nil, customJson: [String: Any]? = nil) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.appId = appId
 
-            self.words = words
-
             self.isActive = isActive
+
+            self.words = words
         }
 
         required public init(from decoder: Decoder) throws {
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                words = try container.decode([String].self, forKey: .words)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,7 +72,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                words = try container.decode([String].self, forKey: .words)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(words, forKey: .words)
-
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(words, forKey: .words)
         }
     }
 }

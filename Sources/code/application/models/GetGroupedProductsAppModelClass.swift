@@ -7,6 +7,18 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class GetGroupedProducts: Codable {
+        public var pageVisibility: [String]?
+
+        public var products: [Products]?
+
+        public var choice: String?
+
+        public var meta: [String: Any]?
+
+        public var active: Bool?
+
+        public var name: String?
+
         public var companyId: Int?
 
         public var logo: String?
@@ -15,19 +27,19 @@ public extension ApplicationClient {
 
         public var sameStoreAssignment: Bool?
 
-        public var name: String?
-
-        public var pageVisibility: [String]?
-
-        public var active: Bool?
-
-        public var choice: String?
-
-        public var meta: [String: Any]?
-
-        public var products: [Products]?
-
         public enum CodingKeys: String, CodingKey {
+            case pageVisibility = "page_visibility"
+
+            case products
+
+            case choice
+
+            case meta
+
+            case active
+
+            case name
+
             case companyId = "company_id"
 
             case logo
@@ -35,21 +47,21 @@ public extension ApplicationClient {
             case slug
 
             case sameStoreAssignment = "same_store_assignment"
-
-            case name
-
-            case pageVisibility = "page_visibility"
-
-            case active
-
-            case choice
-
-            case meta
-
-            case products
         }
 
         public init(active: Bool? = nil, choice: String? = nil, companyId: Int? = nil, logo: String? = nil, meta: [String: Any]? = nil, name: String? = nil, pageVisibility: [String]? = nil, products: [Products]? = nil, sameStoreAssignment: Bool? = nil, slug: String? = nil) {
+            self.pageVisibility = pageVisibility
+
+            self.products = products
+
+            self.choice = choice
+
+            self.meta = meta
+
+            self.active = active
+
+            self.name = name
+
             self.companyId = companyId
 
             self.logo = logo
@@ -57,22 +69,58 @@ public extension ApplicationClient {
             self.slug = slug
 
             self.sameStoreAssignment = sameStoreAssignment
-
-            self.name = name
-
-            self.pageVisibility = pageVisibility
-
-            self.active = active
-
-            self.choice = choice
-
-            self.meta = meta
-
-            self.products = products
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                products = try container.decode([Products].self, forKey: .products)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                choice = try container.decode(String.self, forKey: .choice)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                active = try container.decode(Bool.self, forKey: .active)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 companyId = try container.decode(Int.self, forKey: .companyId)
@@ -105,58 +153,22 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                active = try container.decode(Bool.self, forKey: .active)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                choice = try container.decode(String.self, forKey: .choice)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                products = try container.decode([Products].self, forKey: .products)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
+
+            try? container.encodeIfPresent(products, forKey: .products)
+
+            try? container.encodeIfPresent(choice, forKey: .choice)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(active, forKey: .active)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
@@ -165,18 +177,6 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(sameStoreAssignment, forKey: .sameStoreAssignment)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
-
-            try? container.encodeIfPresent(active, forKey: .active)
-
-            try? container.encodeIfPresent(choice, forKey: .choice)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(products, forKey: .products)
         }
     }
 }
