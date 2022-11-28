@@ -2303,7 +2303,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | active | Bool? |  yes  |  |
  | display | String? |  yes  |  |
  | sortOrder | Int? |  yes  |  |
- | subNavigation | [[String: Any]]? |  yes  |  |
+ | subNavigation | [[NavigationReference](#NavigationReference)]? |  yes  |  |
 
 ---
 

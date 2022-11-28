@@ -8,7 +8,11 @@ public extension PlatformClient {
      */
 
     class ConfigurationListingFilterConfig: Codable {
+        public var displayName: String?
+
         public var logo: String?
+
+        public var isActive: Bool
 
         public var valueConfig: ConfigurationListingFilterValue?
 
@@ -16,16 +20,16 @@ public extension PlatformClient {
 
         public var name: String?
 
-        public var isActive: Bool
-
-        public var displayName: String?
-
         public var key: String
 
         public var type: String
 
         public enum CodingKeys: String, CodingKey {
+            case displayName = "display_name"
+
             case logo
+
+            case isActive = "is_active"
 
             case valueConfig = "value_config"
 
@@ -33,27 +37,23 @@ public extension PlatformClient {
 
             case name
 
-            case isActive = "is_active"
-
-            case displayName = "display_name"
-
             case key
 
             case type
         }
 
         public init(displayName: String? = nil, isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int, type: String, valueConfig: ConfigurationListingFilterValue? = nil) {
+            self.displayName = displayName
+
             self.logo = logo
+
+            self.isActive = isActive
 
             self.valueConfig = valueConfig
 
             self.priority = priority
 
             self.name = name
-
-            self.isActive = isActive
-
-            self.displayName = displayName
 
             self.key = key
 
@@ -64,12 +64,22 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
+                displayName = try container.decode(String.self, forKey: .displayName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             do {
                 valueConfig = try container.decode(ConfigurationListingFilterValue.self, forKey: .valueConfig)
@@ -89,16 +99,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            do {
-                displayName = try container.decode(String.self, forKey: .displayName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             key = try container.decode(String.self, forKey: .key)
 
             type = try container.decode(String.self, forKey: .type)
@@ -107,17 +107,17 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
+
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(valueConfig, forKey: .valueConfig)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
