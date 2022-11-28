@@ -12,16 +12,22 @@ public extension PlatformClient {
 
         public var reasons: [[String: Any]]?
 
+        public var dataUpdates: DataUpdates?
+
         public enum CodingKeys: String, CodingKey {
             case products
 
             case reasons
+
+            case dataUpdates = "data_updates"
         }
 
-        public init(products: [Products]? = nil, reasons: [[String: Any]]? = nil) {
+        public init(dataUpdates: DataUpdates? = nil, products: [Products]? = nil, reasons: [[String: Any]]? = nil) {
             self.products = products
 
             self.reasons = reasons
+
+            self.dataUpdates = dataUpdates
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,6 +48,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                dataUpdates = try container.decode(DataUpdates.self, forKey: .dataUpdates)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -50,6 +64,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(products, forKey: .products)
 
             try? container.encodeIfPresent(reasons, forKey: .reasons)
+
+            try? container.encodeIfPresent(dataUpdates, forKey: .dataUpdates)
         }
     }
 }

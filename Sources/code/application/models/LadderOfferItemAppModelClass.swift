@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class LadderOfferItem: Codable {
         public var minQuantity: Int?
 
-        public var maxQuantity: Int?
-
         public var margin: Int?
+
+        public var maxQuantity: Int?
 
         public var price: LadderPrice?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case minQuantity = "min_quantity"
 
-            case maxQuantity = "max_quantity"
-
             case margin
+
+            case maxQuantity = "max_quantity"
 
             case price
 
@@ -32,9 +32,9 @@ public extension ApplicationClient {
         public init(margin: Int? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: LadderPrice? = nil, type: String? = nil) {
             self.minQuantity = minQuantity
 
-            self.maxQuantity = maxQuantity
-
             self.margin = margin
+
+            self.maxQuantity = maxQuantity
 
             self.price = price
 
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
+                margin = try container.decode(Int.self, forKey: .margin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                margin = try container.decode(Int.self, forKey: .margin)
+                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
 
-            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
-
             try? container.encodeIfPresent(margin, forKey: .margin)
+
+            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
 
             try? container.encodeIfPresent(price, forKey: .price)
 

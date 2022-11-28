@@ -10,24 +10,24 @@ public extension PlatformClient {
     class CreateOrderPayload: Codable {
         public var orderInfo: OrderInfo
 
-        public var orderConfig: OrderConfig
-
         public var affiliateId: String
+
+        public var orderConfig: OrderConfig
 
         public enum CodingKeys: String, CodingKey {
             case orderInfo = "order_info"
 
-            case orderConfig = "order_config"
-
             case affiliateId = "affiliate_id"
+
+            case orderConfig = "order_config"
         }
 
         public init(affiliateId: String, orderConfig: OrderConfig, orderInfo: OrderInfo) {
             self.orderInfo = orderInfo
 
-            self.orderConfig = orderConfig
-
             self.affiliateId = affiliateId
+
+            self.orderConfig = orderConfig
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             orderInfo = try container.decode(OrderInfo.self, forKey: .orderInfo)
 
-            orderConfig = try container.decode(OrderConfig.self, forKey: .orderConfig)
-
             affiliateId = try container.decode(String.self, forKey: .affiliateId)
+
+            orderConfig = try container.decode(OrderConfig.self, forKey: .orderConfig)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(orderInfo, forKey: .orderInfo)
 
-            try? container.encodeIfPresent(orderConfig, forKey: .orderConfig)
-
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+
+            try? container.encodeIfPresent(orderConfig, forKey: .orderConfig)
         }
     }
 }

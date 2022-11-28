@@ -472,8 +472,8 @@ public extension ApplicationClient {
          **/
         public func updateShipmentStatus(
             shipmentId: String,
-            body: StatusUpdateInternalRequest,
-            onResponse: @escaping (_ response: StatusUpdateInternalResponse?, _ error: FDKError?) -> Void
+            body: ShipmentStatusUpdateBody,
+            onResponse: @escaping (_ response: ShipmentApplicationStatusResponse?, _ error: FDKError?) -> Void
         ) {
             var fullUrl = relativeUrls["updateShipmentStatus"] ?? ""
 
@@ -495,7 +495,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(StatusUpdateInternalResponse.self, from: data)
+                        let response = Utility.decode(ShipmentApplicationStatusResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

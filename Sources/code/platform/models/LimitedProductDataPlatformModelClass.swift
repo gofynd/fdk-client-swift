@@ -8,13 +8,15 @@ public extension PlatformClient {
      */
 
     class LimitedProductData: Codable {
-        public var identifier: [String: Any]?
-
-        public var sizes: [String]?
+        public var name: String?
 
         public var uid: Int?
 
-        public var slug: String?
+        public var quantity: Int?
+
+        public var identifier: [String: Any]?
+
+        public var shortDescription: String?
 
         public var attributes: [String: Any]?
 
@@ -22,24 +24,24 @@ public extension PlatformClient {
 
         public var images: [String]?
 
-        public var shortDescription: String?
-
-        public var name: String?
-
-        public var price: [String: Any]?
+        public var sizes: [String]?
 
         public var countryOfOrigin: String?
 
-        public var quantity: Int?
+        public var slug: String?
+
+        public var price: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case identifier
-
-            case sizes
+            case name
 
             case uid
 
-            case slug
+            case quantity
+
+            case identifier
+
+            case shortDescription = "short_description"
 
             case attributes
 
@@ -47,25 +49,25 @@ public extension PlatformClient {
 
             case images
 
-            case shortDescription = "short_description"
-
-            case name
-
-            case price
+            case sizes
 
             case countryOfOrigin = "country_of_origin"
 
-            case quantity
+            case slug
+
+            case price
         }
 
         public init(attributes: [String: Any]? = nil, countryOfOrigin: String? = nil, identifier: [String: Any]? = nil, images: [String]? = nil, itemCode: String? = nil, name: String? = nil, price: [String: Any]? = nil, quantity: Int? = nil, shortDescription: String? = nil, sizes: [String]? = nil, slug: String? = nil, uid: Int? = nil) {
-            self.identifier = identifier
-
-            self.sizes = sizes
+            self.name = name
 
             self.uid = uid
 
-            self.slug = slug
+            self.quantity = quantity
+
+            self.identifier = identifier
+
+            self.shortDescription = shortDescription
 
             self.attributes = attributes
 
@@ -73,30 +75,20 @@ public extension PlatformClient {
 
             self.images = images
 
-            self.shortDescription = shortDescription
-
-            self.name = name
-
-            self.price = price
+            self.sizes = sizes
 
             self.countryOfOrigin = countryOfOrigin
 
-            self.quantity = quantity
+            self.slug = slug
+
+            self.price = price
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                identifier = try container.decode([String: Any].self, forKey: .identifier)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                sizes = try container.decode([String].self, forKey: .sizes)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +104,23 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                quantity = try container.decode(Int.self, forKey: .quantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                identifier = try container.decode([String: Any].self, forKey: .identifier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shortDescription = try container.decode(String.self, forKey: .shortDescription)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -144,23 +152,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                shortDescription = try container.decode(String.self, forKey: .shortDescription)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                price = try container.decode([String: Any].self, forKey: .price)
+                sizes = try container.decode([String].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -176,7 +168,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                price = try container.decode([String: Any].self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,13 +187,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
-
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(shortDescription, forKey: .shortDescription)
 
             try? container.encodeIfPresent(attributes, forKey: .attributes)
 
@@ -201,15 +203,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(images, forKey: .images)
 
-            try? container.encodeIfPresent(shortDescription, forKey: .shortDescription)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(price, forKey: .price)
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
 
             try? container.encodeIfPresent(countryOfOrigin, forKey: .countryOfOrigin)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(price, forKey: .price)
         }
     }
 }

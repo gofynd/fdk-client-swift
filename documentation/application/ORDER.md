@@ -2194,7 +2194,7 @@ order.updateShipmentStatus(shipmentId: shipmentId, body: body) { (response, erro
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | shipmentId | String | yes |  |  
-| body | StatusUpdateInternalRequest | yes | Request body |
+| body | ShipmentStatusUpdateBody | yes | Request body |
 
 
 updateShipmentStatus
@@ -2204,7 +2204,7 @@ updateShipmentStatus
 
 
 
-[StatusUpdateInternalResponse](#StatusUpdateInternalResponse)
+[ShipmentApplicationStatusResponse](#ShipmentApplicationStatusResponse)
 
 Successfully updateShipmentStatus!
 
@@ -2215,7 +2215,20 @@ Successfully updateShipmentStatus!
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "statuses": [
+    {
+      "shipments": {
+        "16692039109731769080": {
+          "status": 200,
+          "final_state": {
+            "cancelled_customer": "cancelled_customer"
+          }
+        }
+      }
+    }
+  ]
+}
 ```
 </details>
 
@@ -3044,114 +3057,34 @@ Success Response, Presigned URL of Invoice
 
  
  
- #### [Products](#Products)
+ #### [StatusesBody](#StatusesBody)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | Int? |  yes  |  |
- | lineNumber | Int? |  yes  |  |
- | identifier | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ShipmentsRequest](#ShipmentsRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | reasons | [[String: Any]]? |  yes  |  |
- | products | [[Products](#Products)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [StatuesRequest](#StatuesRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | excludeBagsNextState | String? |  yes  |  |
- | shipments | [ShipmentsRequest](#ShipmentsRequest)? |  yes  |  |
  | status | String? |  yes  |  |
+ | shipments | [String: Any]? |  yes  |  |
 
 ---
 
 
  
  
- #### [StatusUpdateInternalRequest](#StatusUpdateInternalRequest)
+ #### [ShipmentStatusUpdateBody](#ShipmentStatusUpdateBody)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | lockAfterTransition | Bool? |  yes  |  |
- | forceTransition | Bool? |  yes  |  |
- | unlockBeforeTransition | Bool? |  yes  |  |
- | task | Bool? |  yes  |  |
- | statues | [[StatuesRequest](#StatuesRequest)]? |  yes  |  |
+ | statuses | [[StatusesBody](#StatusesBody)]? |  yes  |  |
 
 ---
 
 
  
  
- #### [ShipmentidResponse](#ShipmentidResponse)
+ #### [ShipmentApplicationStatusResponse](#ShipmentApplicationStatusResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String? |  yes  |  |
- | message | String? |  yes  |  |
- | exception | String? |  yes  |  |
- | stackTrace | String? |  yes  |  |
- | status | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [ShipmentsResponse](#ShipmentsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipmentId | [ShipmentidResponse](#ShipmentidResponse)? |  yes  |  |
-
----
-
-
- 
- 
- #### [StatuesResponse](#StatuesResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipments | [ShipmentsResponse](#ShipmentsResponse)? |  yes  |  |
-
----
-
-
- 
- 
- #### [StatusUpdateInternalResponse](#StatusUpdateInternalResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | statuses | [[StatuesResponse](#StatuesResponse)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [ErrorResponse](#ErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String |  no  |  |
- | errorTrace | String? |  yes  |  |
- | status | Int |  no  |  |
+ | statuses | [[StatusesBody](#StatusesBody)]? |  yes  |  |
 
 ---
 

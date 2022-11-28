@@ -1,33 +1,34 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: ShipmentsRequest
-         Used By: Order
+         Model: ProductsDataUpdates
+         Used By: OrderManage
      */
-    class ShipmentsRequest: Codable {
-        public var reasons: [[String: Any]]?
 
-        public var products: [Products]?
+    class ProductsDataUpdates: Codable {
+        public var filters: [[String: Any]]?
+
+        public var data: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case reasons
+            case filters
 
-            case products
+            case data
         }
 
-        public init(products: [Products]? = nil, reasons: [[String: Any]]? = nil) {
-            self.reasons = reasons
+        public init(data: [String: Any]? = nil, filters: [[String: Any]]? = nil) {
+            self.filters = filters
 
-            self.products = products
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                reasons = try container.decode([[String: Any]].self, forKey: .reasons)
+                filters = try container.decode([[String: Any]].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +36,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                products = try container.decode([Products].self, forKey: .products)
+                data = try container.decode([String: Any].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +47,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(reasons, forKey: .reasons)
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(products, forKey: .products)
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
