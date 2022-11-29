@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class BalanceDetails: Codable {
         public var formattedValue: String?
 
-        public var value: Double?
-
         public var currency: String?
+
+        public var value: Double?
 
         public enum CodingKeys: String, CodingKey {
             case formattedValue = "formatted_value"
 
-            case value
-
             case currency
+
+            case value
         }
 
         public init(currency: String? = nil, formattedValue: String? = nil, value: Double? = nil) {
             self.formattedValue = formattedValue
 
-            self.value = value
-
             self.currency = currency
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                value = try container.decode(Double.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient {
 
             try? container.encode(formattedValue, forKey: .formattedValue)
 
-            try? container.encode(value, forKey: .value)
-
             try? container.encode(currency, forKey: .currency)
+
+            try? container.encode(value, forKey: .value)
         }
     }
 }

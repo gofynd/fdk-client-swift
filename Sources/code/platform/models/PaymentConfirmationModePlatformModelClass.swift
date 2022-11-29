@@ -10,30 +10,30 @@ public extension PlatformClient {
     class PaymentConfirmationMode: Codable {
         public var amount: Double
 
-        public var meta: [String: Any]?
-
         public var mode: String
 
         public var name: String?
 
+        public var meta: [String: Any]?
+
         public enum CodingKeys: String, CodingKey {
             case amount
-
-            case meta
 
             case mode
 
             case name
+
+            case meta
         }
 
         public init(amount: Double, meta: [String: Any]? = nil, mode: String, name: String? = nil) {
             self.amount = amount
 
-            self.meta = meta
-
             self.mode = mode
 
             self.name = name
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,18 +41,18 @@ public extension PlatformClient {
 
             amount = try container.decode(Double.self, forKey: .amount)
 
+            mode = try container.decode(String.self, forKey: .mode)
+
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            mode = try container.decode(String.self, forKey: .mode)
-
             do {
-                name = try container.decode(String.self, forKey: .name)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,11 +65,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(mode, forKey: .mode)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }
