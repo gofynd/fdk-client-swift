@@ -9,9 +9,7 @@ public extension ApplicationClient {
     class DeviceDetails: Codable {
         public var os: String?
 
-        public var deviceMake: String?
-
-        public var identificationNumber: String?
+        public var identifierType: String?
 
         public var deviceType: String?
 
@@ -19,14 +17,14 @@ public extension ApplicationClient {
 
         public var deviceModel: String?
 
-        public var identifierType: String?
+        public var identificationNumber: String?
+
+        public var deviceMake: String?
 
         public enum CodingKeys: String, CodingKey {
             case os
 
-            case deviceMake = "device_make"
-
-            case identificationNumber = "identification_number"
+            case identifierType = "identifier_type"
 
             case deviceType = "device_type"
 
@@ -34,15 +32,15 @@ public extension ApplicationClient {
 
             case deviceModel = "device_model"
 
-            case identifierType = "identifier_type"
+            case identificationNumber = "identification_number"
+
+            case deviceMake = "device_make"
         }
 
         public init(deviceMake: String? = nil, deviceModel: String? = nil, deviceType: String? = nil, identificationNumber: String? = nil, identifierType: String? = nil, os: String? = nil, osVersion: String? = nil) {
             self.os = os
 
-            self.deviceMake = deviceMake
-
-            self.identificationNumber = identificationNumber
+            self.identifierType = identifierType
 
             self.deviceType = deviceType
 
@@ -50,7 +48,9 @@ public extension ApplicationClient {
 
             self.deviceModel = deviceModel
 
-            self.identifierType = identifierType
+            self.identificationNumber = identificationNumber
+
+            self.deviceMake = deviceMake
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,15 +65,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                deviceMake = try container.decode(String.self, forKey: .deviceMake)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                identificationNumber = try container.decode(String.self, forKey: .identificationNumber)
+                identifierType = try container.decode(String.self, forKey: .identifierType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +97,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                identifierType = try container.decode(String.self, forKey: .identifierType)
+                identificationNumber = try container.decode(String.self, forKey: .identificationNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                deviceMake = try container.decode(String.self, forKey: .deviceMake)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,9 +118,7 @@ public extension ApplicationClient {
 
             try? container.encode(os, forKey: .os)
 
-            try? container.encode(deviceMake, forKey: .deviceMake)
-
-            try? container.encode(identificationNumber, forKey: .identificationNumber)
+            try? container.encode(identifierType, forKey: .identifierType)
 
             try? container.encode(deviceType, forKey: .deviceType)
 
@@ -128,7 +126,9 @@ public extension ApplicationClient {
 
             try? container.encode(deviceModel, forKey: .deviceModel)
 
-            try? container.encode(identifierType, forKey: .identifierType)
+            try? container.encode(identificationNumber, forKey: .identificationNumber)
+
+            try? container.encode(deviceMake, forKey: .deviceMake)
         }
     }
 }

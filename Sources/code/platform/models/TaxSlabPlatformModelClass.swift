@@ -10,18 +10,18 @@ public extension PlatformClient {
     class TaxSlab: Codable {
         public var rate: Double
 
-        public var threshold: Double
-
         public var cess: Double?
+
+        public var threshold: Double
 
         public var effectiveDate: String
 
         public enum CodingKeys: String, CodingKey {
             case rate
 
-            case threshold
-
             case cess
+
+            case threshold
 
             case effectiveDate = "effective_date"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(cess: Double? = nil, effectiveDate: String, rate: Double, threshold: Double) {
             self.rate = rate
 
-            self.threshold = threshold
-
             self.cess = cess
+
+            self.threshold = threshold
 
             self.effectiveDate = effectiveDate
         }
@@ -41,8 +41,6 @@ public extension PlatformClient {
 
             rate = try container.decode(Double.self, forKey: .rate)
 
-            threshold = try container.decode(Double.self, forKey: .threshold)
-
             do {
                 cess = try container.decode(Double.self, forKey: .cess)
 
@@ -50,6 +48,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            threshold = try container.decode(Double.self, forKey: .threshold)
 
             effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
         }
@@ -59,9 +59,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(rate, forKey: .rate)
 
-            try? container.encodeIfPresent(threshold, forKey: .threshold)
-
             try? container.encodeIfPresent(cess, forKey: .cess)
+
+            try? container.encodeIfPresent(threshold, forKey: .threshold)
 
             try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
         }
