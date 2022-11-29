@@ -41,6 +41,8 @@ public extension ApplicationClient {
 
             ulrs["getShipmentById1"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}")
 
+            ulrs["getInvoiceByShipmentId1"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice")
+
             ulrs["trackShipment1"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/track")
 
             ulrs["getCustomerDetailsByShipmentId1"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/customer-details")
@@ -50,6 +52,8 @@ public extension ApplicationClient {
             ulrs["verifyOtpShipmentCustomer1"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/")
 
             ulrs["getShipmentBagReasons1"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons")
+
+            ulrs["getShipmentReasons1"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons")
 
             self.relativeUrls = ulrs
         }
@@ -815,6 +819,49 @@ public extension ApplicationClient {
 
         /**
          *
+         * Summary: Get Invoice of a shipment
+         * Description: Use this API to retrieve shipment invoice.
+         **/
+        public func getInvoiceByShipmentId1(
+            shipmentId: String,
+
+            onResponse: @escaping (_ response: ResponseGetInvoiceShipment1?, _ error: FDKError?) -> Void
+        ) {
+            var fullUrl = relativeUrls["getInvoiceByShipmentId1"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResponseGetInvoiceShipment1.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
          * Summary: Track shipment
          * Description: Track Shipment by shipment id, for application based on application Id
          **/
@@ -1028,6 +1075,49 @@ public extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ShipmentBagReasons1.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Get reasons behind full or partial cancellation of a shipment
+         * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+         **/
+        public func getShipmentReasons1(
+            shipmentId: String,
+
+            onResponse: @escaping (_ response: ShipmentReasons1?, _ error: FDKError?) -> Void
+        ) {
+            var fullUrl = relativeUrls["getShipmentReasons1"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ShipmentReasons1.self, from: data)
 
                         onResponse(response, nil)
                     } else {

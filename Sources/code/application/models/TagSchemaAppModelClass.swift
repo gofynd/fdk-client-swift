@@ -23,7 +23,7 @@ public extension ApplicationClient {
 
         public var content: String?
 
-        public var pages: [String]?
+        public var pages: [[String: Any]]?
 
         public var source: TagSourceSchema?
 
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             case source = "__source"
         }
 
-        public init(attributes: [String: Any]? = nil, content: String? = nil, name: String? = nil, pages: [String]? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: TagSourceSchema? = nil) {
+        public init(attributes: [String: Any]? = nil, content: String? = nil, name: String? = nil, pages: [[String: Any]]? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: TagSourceSchema? = nil) {
             self.name = name
 
             self.url = url
@@ -139,7 +139,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                pages = try container.decode([String].self, forKey: .pages)
+                pages = try container.decode([[String: Any]].self, forKey: .pages)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

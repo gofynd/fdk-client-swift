@@ -2213,6 +2213,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | isShortlink | Bool? |  yes  | Shortlink is present or not for the domain |
  | id | String? |  yes  | The unique identifier of the sales channel domain |
  | name | String? |  yes  | Full domain name |
+ | isPredefined | Bool? |  yes  | Domain is hosting domain or not. |
 
 ---
 
