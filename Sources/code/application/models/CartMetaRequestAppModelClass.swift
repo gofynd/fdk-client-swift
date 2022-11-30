@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class CartMetaRequest: Codable {
         public var gstin: String?
 
-        public var pickUpCustomerDetails: [String: Any]?
-
         public var checkoutMode: String?
+
+        public var pickUpCustomerDetails: [String: Any]?
 
         public var comment: String?
 
         public enum CodingKeys: String, CodingKey {
             case gstin
 
-            case pickUpCustomerDetails = "pick_up_customer_details"
-
             case checkoutMode = "checkout_mode"
+
+            case pickUpCustomerDetails = "pick_up_customer_details"
 
             case comment
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(checkoutMode: String? = nil, comment: String? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
             self.gstin = gstin
 
-            self.pickUpCustomerDetails = pickUpCustomerDetails
-
             self.checkoutMode = checkoutMode
+
+            self.pickUpCustomerDetails = pickUpCustomerDetails
 
             self.comment = comment
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
+                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
+                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(gstin, forKey: .gstin)
 
-            try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
-
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
+
+            try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
 
             try? container.encodeIfPresent(comment, forKey: .comment)
         }
