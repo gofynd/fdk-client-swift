@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var opening: LocationTimingSerializer?
 
-        public var open: Bool
-
         public var weekday: String
+
+        public var open: Bool
 
         public enum CodingKeys: String, CodingKey {
             case closing
 
             case opening
 
-            case open
-
             case weekday
+
+            case open
         }
 
         public init(closing: LocationTimingSerializer? = nil, open: Bool, opening: LocationTimingSerializer? = nil, weekday: String) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.opening = opening
 
-            self.open = open
-
             self.weekday = weekday
+
+            self.open = open
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,9 +55,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            open = try container.decode(Bool.self, forKey: .open)
-
             weekday = try container.decode(String.self, forKey: .weekday)
+
+            open = try container.decode(Bool.self, forKey: .open)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -67,9 +67,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(opening, forKey: .opening)
 
-            try? container.encodeIfPresent(open, forKey: .open)
-
             try? container.encodeIfPresent(weekday, forKey: .weekday)
+
+            try? container.encodeIfPresent(open, forKey: .open)
         }
     }
 }
