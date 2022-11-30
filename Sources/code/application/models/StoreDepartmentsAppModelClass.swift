@@ -7,7 +7,7 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class StoreDepartments: Codable {
-        public var uid: Int?
+        public var priorityOrder: Int?
 
         public var logo: String?
 
@@ -15,10 +15,10 @@ public extension ApplicationClient {
 
         public var name: String?
 
-        public var priorityOrder: Int?
+        public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case uid
+            case priorityOrder = "priority_order"
 
             case logo
 
@@ -26,11 +26,11 @@ public extension ApplicationClient {
 
             case name
 
-            case priorityOrder = "priority_order"
+            case uid
         }
 
         public init(logo: String? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, uid: Int? = nil) {
-            self.uid = uid
+            self.priorityOrder = priorityOrder
 
             self.logo = logo
 
@@ -38,14 +38,14 @@ public extension ApplicationClient {
 
             self.name = name
 
-            self.priorityOrder = priorityOrder
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +88,7 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
@@ -96,7 +96,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }
