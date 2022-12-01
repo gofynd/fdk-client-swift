@@ -1,13 +1,12 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension ApplicationClient {
     /*
-         Model: MetaFields
-         Used By: Catalog
+         Model: CartCheckoutCustomMeta
+         Used By: Cart
      */
-
-    class MetaFields: Codable {
+    class CartCheckoutCustomMeta: Codable {
         public var value: String
 
         public var key: String
