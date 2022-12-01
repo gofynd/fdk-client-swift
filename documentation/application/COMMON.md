@@ -229,7 +229,8 @@ Success
  | isPrimary | Bool? |  yes  | Indicates domain is primary or not |
  | isShortlink | Bool? |  yes  | Shortlink is present or not for the domain |
  | id | String? |  yes  | The unique identifier of the domain |
- | name | String? |  yes  | Full domain name |
+ | name | String? |  yes  |  |
+ | isPredefined | Bool? |  yes  | Domain is hosting domain or not. |
 
 ---
 

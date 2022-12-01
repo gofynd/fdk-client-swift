@@ -8,8 +8,6 @@ public extension PlatformClient {
      */
 
     class PriceMeta: Codable {
-        public var currency: String
-
         public var marked: Double
 
         public var updatedAt: String?
@@ -20,9 +18,9 @@ public extension PlatformClient {
 
         public var transfer: Double
 
-        public enum CodingKeys: String, CodingKey {
-            case currency
+        public var currency: String
 
+        public enum CodingKeys: String, CodingKey {
             case marked
 
             case updatedAt = "updated_at"
@@ -32,11 +30,11 @@ public extension PlatformClient {
             case tpNotes = "tp_notes"
 
             case transfer
+
+            case currency
         }
 
         public init(currency: String, effective: Double, marked: Double, tpNotes: [String: Any]? = nil, transfer: Double, updatedAt: String? = nil) {
-            self.currency = currency
-
             self.marked = marked
 
             self.updatedAt = updatedAt
@@ -46,12 +44,12 @@ public extension PlatformClient {
             self.tpNotes = tpNotes
 
             self.transfer = transfer
+
+            self.currency = currency
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            currency = try container.decode(String.self, forKey: .currency)
 
             marked = try container.decode(Double.self, forKey: .marked)
 
@@ -74,12 +72,12 @@ public extension PlatformClient {
             } catch {}
 
             transfer = try container.decode(Double.self, forKey: .transfer)
+
+            currency = try container.decode(String.self, forKey: .currency)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(currency, forKey: .currency)
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 
@@ -90,6 +88,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
 
             try? container.encodeIfPresent(transfer, forKey: .transfer)
+
+            try? container.encodeIfPresent(currency, forKey: .currency)
         }
     }
 }

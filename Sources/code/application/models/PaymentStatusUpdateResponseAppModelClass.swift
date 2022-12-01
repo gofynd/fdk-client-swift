@@ -9,22 +9,22 @@ public extension ApplicationClient {
     class PaymentStatusUpdateResponse: Codable {
         public var aggregatorName: String
 
-        public var status: String
+        public var redirectUrl: String?
 
         public var retry: Bool
 
-        public var redirectUrl: String?
+        public var status: String
 
         public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case aggregatorName = "aggregator_name"
 
-            case status
+            case redirectUrl = "redirect_url"
 
             case retry
 
-            case redirectUrl = "redirect_url"
+            case status
 
             case success
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient {
         public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool, status: String, success: Bool? = nil) {
             self.aggregatorName = aggregatorName
 
-            self.status = status
+            self.redirectUrl = redirectUrl
 
             self.retry = retry
 
-            self.redirectUrl = redirectUrl
+            self.status = status
 
             self.success = success
         }
@@ -46,10 +46,6 @@ public extension ApplicationClient {
 
             aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
 
-            status = try container.decode(String.self, forKey: .status)
-
-            retry = try container.decode(Bool.self, forKey: .retry)
-
             do {
                 redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
 
@@ -57,6 +53,10 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            retry = try container.decode(Bool.self, forKey: .retry)
+
+            status = try container.decode(String.self, forKey: .status)
 
             do {
                 success = try container.decode(Bool.self, forKey: .success)
@@ -72,11 +72,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(redirectUrl, forKey: .redirectUrl)
 
             try? container.encodeIfPresent(retry, forKey: .retry)
 
-            try? container.encode(redirectUrl, forKey: .redirectUrl)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encode(success, forKey: .success)
         }
