@@ -3081,10 +3081,10 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size | Int? |  yes  |  |
  | itemTotal | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
  | current | Int? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | size | Int? |  yes  |  |
  | type | String? |  yes  |  |
 
 ---
@@ -3107,9 +3107,9 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | String? |  yes  |  |
  | value | Int? |  yes  |  |
  | isSelected | Bool? |  yes  |  |
+ | display | String? |  yes  |  |
 
 ---
 
@@ -3284,12 +3284,12 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | articleAssignment | [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment)? |  yes  |  |
  | storeId | Int? |  yes  |  |
- | quantity | Int? |  yes  |  |
  | itemId | Int? |  yes  |  |
  | itemSize | String? |  yes  |  |
  | sellerId | Int? |  yes  |  |
+ | articleAssignment | [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment)? |  yes  |  |
+ | quantity | Int? |  yes  |  |
 
 ---
 
@@ -3368,26 +3368,26 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | couponEffectiveDiscount | Double? |  yes  |  |
- | couponValue | Double? |  yes  |  |
- | discount | Double? |  yes  |  |
+ | priceMarked | Double? |  yes  |  |
+ | fyndCredits | Double? |  yes  |  |
+ | amountPaid | Double? |  yes  |  |
+ | refundAmount | Double? |  yes  |  |
+ | brandCalculatedAmount | Double? |  yes  |  |
  | promotionEffectiveDiscount | Double? |  yes  |  |
- | amountPaidRoundoff | Double? |  yes  |  |
+ | cashbackApplied | Double? |  yes  |  |
+ | discount | Double? |  yes  |  |
+ | transferPrice | Double? |  yes  |  |
+ | gstTaxPercentage | Double? |  yes  |  |
+ | codCharges | Double? |  yes  |  |
  | addedToFyndCash | Bool? |  yes  |  |
  | refundCredit | Double? |  yes  |  |
- | refundAmount | Double? |  yes  |  |
- | transferPrice | Double? |  yes  |  |
- | valueOfGood | Double? |  yes  |  |
  | priceEffective | Double? |  yes  |  |
+ | amountPaidRoundoff | Double? |  yes  |  |
  | deliveryCharge | Double? |  yes  |  |
- | cashbackApplied | Double? |  yes  |  |
- | codCharges | Double? |  yes  |  |
- | brandCalculatedAmount | Double? |  yes  |  |
- | fyndCredits | Double? |  yes  |  |
- | gstTaxPercentage | Double? |  yes  |  |
+ | valueOfGood | Double? |  yes  |  |
+ | couponEffectiveDiscount | Double? |  yes  |  |
  | cashback | Double? |  yes  |  |
- | priceMarked | Double? |  yes  |  |
- | amountPaid | Double? |  yes  |  |
+ | couponValue | Double? |  yes  |  |
 
 ---
 
@@ -3412,33 +3412,33 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | totalUnits | Int? |  yes  |  |
  | identifiers | [Identifiers](#Identifiers)? |  yes  |  |
- | couponValue | Double? |  yes  |  |
- | couponEffectiveDiscount | Double? |  yes  |  |
+ | priceMarked | Double? |  yes  |  |
  | itemName | String? |  yes  |  |
- | discount | Double? |  yes  |  |
+ | fyndCredits | Double? |  yes  |  |
+ | gstTag | String? |  yes  |  |
+ | refundAmount | Double? |  yes  |  |
+ | amountPaid | Double? |  yes  |  |
+ | brandCalculatedAmount | Double? |  yes  |  |
  | promotionEffectiveDiscount | Double? |  yes  |  |
- | amountPaidRoundoff | Double? |  yes  |  |
+ | cashbackApplied | Double? |  yes  |  |
+ | discount | Double? |  yes  |  |
+ | transferPrice | Double? |  yes  |  |
+ | hsnCode | String? |  yes  |  |
+ | gstTaxPercentage | Double? |  yes  |  |
+ | codCharges | Double? |  yes  |  |
+ | size | String? |  yes  |  |
  | addedToFyndCash | Bool? |  yes  |  |
  | refundCredit | Double? |  yes  |  |
- | refundAmount | Double? |  yes  |  |
- | totalUnits | Int? |  yes  |  |
- | transferPrice | Double? |  yes  |  |
- | valueOfGood | Double? |  yes  |  |
  | priceEffective | Double? |  yes  |  |
  | deliveryCharge | Double? |  yes  |  |
- | cashbackApplied | Double? |  yes  |  |
- | gstTag | String? |  yes  |  |
- | codCharges | Double? |  yes  |  |
- | gstFee | Double? |  yes  |  |
- | fyndCredits | Double? |  yes  |  |
- | brandCalculatedAmount | Double? |  yes  |  |
- | size | String? |  yes  |  |
- | gstTaxPercentage | Double? |  yes  |  |
+ | valueOfGood | Double? |  yes  |  |
+ | couponEffectiveDiscount | Double? |  yes  |  |
+ | couponValue | Double? |  yes  |  |
+ | amountPaidRoundoff | Double? |  yes  |  |
  | cashback | Double? |  yes  |  |
- | hsnCode | String? |  yes  |  |
- | priceMarked | Double? |  yes  |  |
- | amountPaid | Double? |  yes  |  |
+ | gstFee | Double? |  yes  |  |
 
 ---
 
@@ -3473,13 +3473,13 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | Double? |  yes  |  |
- | promotionType | String? |  yes  |  |
- | articleQuantity | Double? |  yes  |  |
- | promoId | String? |  yes  |  |
- | promotionName | String? |  yes  |  |
- | mrpPromotion | Bool? |  yes  |  |
  | appliedFreeArticles | [AppliedFreeArticles](#AppliedFreeArticles)? |  yes  |  |
+ | promotionType | String? |  yes  |  |
+ | amount | Double? |  yes  |  |
+ | promotionName | String? |  yes  |  |
+ | articleQuantity | Double? |  yes  |  |
+ | mrpPromotion | Bool? |  yes  |  |
+ | promoId | String? |  yes  |  |
 
 ---
 
@@ -3491,8 +3491,8 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | parentItemIdentifier | String? |  yes  |  |
- | freeGiftItemDetails | [[FreeGiftItemDetails](#FreeGiftItemDetails)]? |  yes  |  |
  | quantity | Double? |  yes  |  |
+ | freeGiftItemDetails | [[FreeGiftItemDetails](#FreeGiftItemDetails)]? |  yes  |  |
  | articleId | String? |  yes  |  |
 
 ---
@@ -3504,10 +3504,10 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | itemName | String? |  yes  |  |
+ | itemBrandName | String? |  yes  |  |
  | itemId | String? |  yes  |  |
  | itemPriceDetails | [ItemPriceDetails](#ItemPriceDetails)? |  yes  |  |
- | itemBrandName | String? |  yes  |  |
- | itemName | String? |  yes  |  |
 
 ---
 
@@ -3518,8 +3518,8 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | effective | [EffectiveValues](#EffectiveValues)? |  yes  |  |
  | marked | [MarkedValues](#MarkedValues)? |  yes  |  |
+ | effective | [EffectiveValues](#EffectiveValues)? |  yes  |  |
  | currency | String? |  yes  |  |
 
 ---
@@ -3555,9 +3555,9 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | String? |  yes  |  |
- | value | Double? |  yes  |  |
  | name | String? |  yes  |  |
+ | value | Double? |  yes  |  |
+ | display | String? |  yes  |  |
 
 ---
 
@@ -3568,26 +3568,26 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | version | String? |  yes  |  |
- | address2 | String? |  yes  |  |
- | name | String? |  yes  |  |
- | country | String? |  yes  |  |
- | addressCategory | String? |  yes  |  |
- | pincode | String? |  yes  |  |
- | email | String? |  yes  |  |
- | city | String? |  yes  |  |
- | landmark | String? |  yes  |  |
  | state | String? |  yes  |  |
+ | email | String? |  yes  |  |
  | address1 | String? |  yes  |  |
+ | version | String? |  yes  |  |
+ | addressType | String? |  yes  |  |
+ | addressCategory | String? |  yes  |  |
+ | address2 | String? |  yes  |  |
+ | address | String? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | longitude | Double? |  yes  |  |
+ | country | String? |  yes  |  |
+ | area | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+ | city | String? |  yes  |  |
  | contactPerson | String? |  yes  |  |
  | latitude | Double? |  yes  |  |
- | area | String? |  yes  |  |
- | addressType | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | address | String? |  yes  |  |
+ | pincode | String? |  yes  |  |
  | phone | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | longitude | Double? |  yes  |  |
+ | landmark | String? |  yes  |  |
 
 ---
 
@@ -3598,11 +3598,11 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String? |  yes  |  |
  | name | String? |  yes  |  |
+ | code | String? |  yes  |  |
+ | companyId | Int? |  yes  |  |
  | companyName | String? |  yes  |  |
  | id | Int? |  yes  |  |
- | companyId | Int? |  yes  |  |
 
 ---
 
@@ -3613,9 +3613,9 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | invoiceUrl | String? |  yes  |  |
  | updatedDate | String? |  yes  |  |
  | labelUrl | String? |  yes  |  |
+ | invoiceUrl | String? |  yes  |  |
 
 ---
 
@@ -3678,9 +3678,9 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gender | String? |  yes  |  |
  | lastName | String? |  yes  |  |
  | mobile | String? |  yes  |  |
+ | gender | String? |  yes  |  |
  | firstName | String? |  yes  |  |
 
 ---
@@ -3757,14 +3757,14 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason | String? |  yes  |  |
+ | shipmentType | String? |  yes  |  |
  | updatedTime | String? |  yes  |  |
  | accountName | String? |  yes  |  |
- | shipmentType | String? |  yes  |  |
+ | status | String? |  yes  |  |
  | lastLocationRecievedAt | String? |  yes  |  |
  | awb | String? |  yes  |  |
+ | reason | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
- | status | String? |  yes  |  |
 
 ---
 
@@ -3790,8 +3790,8 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | name | String? |  yes  |  |
- | gender | String? |  yes  |  |
  | mobile | String? |  yes  |  |
+ | gender | String? |  yes  |  |
  | email | String? |  yes  |  |
 
 ---
@@ -3810,61 +3810,18 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  
  
- #### [NestedTrackingDetails](#NestedTrackingDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | status | String? |  yes  |  |
- | time | String? |  yes  |  |
- | isPassed | Bool? |  yes  |  |
- | isCurrent | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [TrackingDetails1](#TrackingDetails1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | trackingDetails | [[NestedTrackingDetails](#NestedTrackingDetails)]? |  yes  |  |
- | time | String? |  yes  |  |
- | isPassed | Bool? |  yes  |  |
- | isCurrent | Bool? |  yes  |  |
- | status | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ShipmentPayment1](#ShipmentPayment1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | mode | String? |  yes  |  |
- | mop | String? |  yes  |  |
- | status | String? |  yes  |  |
- | logo | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [Item1](#Item1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String? |  yes  |  |
- | size | String? |  yes  |  |
- | image | [String]? |  yes  |  |
- | name | String? |  yes  |  |
- | id | Double? |  yes  |  |
- | slugKey | String? |  yes  |  |
  | sellerIdentifier | String? |  yes  |  |
  | brand | [ItemBrand](#ItemBrand)? |  yes  |  |
+ | name | String? |  yes  |  |
+ | code | String? |  yes  |  |
+ | slugKey | String? |  yes  |  |
+ | id | Double? |  yes  |  |
+ | size | String? |  yes  |  |
+ | image | [String]? |  yes  |  |
 
 ---
 
@@ -3875,32 +3832,20 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | canReturn | Bool? |  yes  |  |
- | parentPromoBags | [String: Any]? |  yes  |  |
- | canCancel | Bool? |  yes  |  |
+ | currentStatus | [CurrentStatus](#CurrentStatus)? |  yes  |  |
  | returnableDate | String? |  yes  |  |
- | quantity | Int? |  yes  |  |
- | id | Int? |  yes  |  |
- | sellerIdentifier | String? |  yes  |  |
+ | canReturn | Bool? |  yes  |  |
+ | canCancel | Bool? |  yes  |  |
+ | appliedPromos | [[AppliedPromos](#AppliedPromos)]? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
+ | sellerIdentifier | String? |  yes  |  |
+ | deliveryDate | String? |  yes  |  |
  | financialBreakup | [[FinancialBreakup](#FinancialBreakup)]? |  yes  |  |
  | item | [Item1](#Item1)? |  yes  |  |
- | appliedPromos | [[AppliedPromos](#AppliedPromos)]? |  yes  |  |
- | currentStatus | [CurrentStatus](#CurrentStatus)? |  yes  |  |
- | deliveryDate | String? |  yes  |  |
- | lineNumber | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [FulfillingCompany](#FulfillingCompany)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
  | id | Int? |  yes  |  |
+ | parentPromoBags | [String: Any]? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | lineNumber | Int? |  yes  |  |
 
 ---
 
@@ -3923,8 +3868,63 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | timestamp | [TimeStampData](#TimeStampData)? |  yes  |  |
  | showPromise | Bool? |  yes  |  |
+ | timestamp | [TimeStampData](#TimeStampData)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FulfillingCompany](#FulfillingCompany)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | id | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [NestedTrackingDetails](#NestedTrackingDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isCurrent | Bool? |  yes  |  |
+ | isPassed | Bool? |  yes  |  |
+ | status | String? |  yes  |  |
+ | time | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TrackingDetails1](#TrackingDetails1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isCurrent | Bool? |  yes  |  |
+ | time | String? |  yes  |  |
+ | trackingDetails | [[NestedTrackingDetails](#NestedTrackingDetails)]? |  yes  |  |
+ | status | String? |  yes  |  |
+ | isPassed | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentPayment1](#ShipmentPayment1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | String? |  yes  |  |
+ | mode | String? |  yes  |  |
+ | logo | String? |  yes  |  |
+ | mop | String? |  yes  |  |
 
 ---
 
@@ -3935,41 +3935,41 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | trackingDetails | [[TrackingDetails1](#TrackingDetails1)]? |  yes  |  |
- | orderId | String? |  yes  |  |
- | payment | [ShipmentPayment1](#ShipmentPayment1)? |  yes  |  |
- | totalBags | Int? |  yes  |  |
- | returnableDate | String? |  yes  |  |
- | shipmentCreatedAt | String? |  yes  |  |
- | dpName | String? |  yes  |  |
- | deliveryDate | String? |  yes  |  |
- | deliveryAddress | [DeliveryAddress](#DeliveryAddress)? |  yes  |  |
- | breakupValues | [[BreakupValues](#BreakupValues)]? |  yes  |  |
- | beneficiaryDetails | Bool? |  yes  |  |
- | bags | [[Bags1](#Bags1)]? |  yes  |  |
- | sizeInfo | [String: Any]? |  yes  |  |
- | canCancel | Bool? |  yes  |  |
- | awbNo | String? |  yes  |  |
- | customMeta | [[String: Any]]? |  yes  |  |
- | fulfillingCompany | [FulfillingCompany](#FulfillingCompany)? |  yes  |  |
- | trakingNo | String? |  yes  |  |
- | showDownloadInvoice | Bool? |  yes  |  |
- | showTrackLink | Bool? |  yes  |  |
- | orderType | String? |  yes  |  |
- | shipmentStatus | [ShipmentStatus](#ShipmentStatus)? |  yes  |  |
  | fulfillingStore | [FulfillingStore](#FulfillingStore)? |  yes  |  |
- | promise | [Promise1](#Promise1)? |  yes  |  |
+ | returnableDate | String? |  yes  |  |
+ | orderId | String? |  yes  |  |
+ | trackUrl | String? |  yes  |  |
+ | customMeta | [[String: Any]]? |  yes  |  |
+ | canCancel | Bool? |  yes  |  |
+ | bags | [[Bags1](#Bags1)]? |  yes  |  |
+ | shipmentStatus | [ShipmentStatus](#ShipmentStatus)? |  yes  |  |
+ | trakingNo | String? |  yes  |  |
  | totalDetails | [ShipmentTotalDetails](#ShipmentTotalDetails)? |  yes  |  |
- | invoice | [Invoice](#Invoice)? |  yes  |  |
+ | prices | [Prices](#Prices)? |  yes  |  |
+ | promise | [Promise1](#Promise1)? |  yes  |  |
+ | canBreak | [String: Any]? |  yes  |  |
+ | shipmentCreatedAt | String? |  yes  |  |
+ | needHelpUrl | String? |  yes  |  |
+ | beneficiaryDetails | Bool? |  yes  |  |
+ | showDownloadInvoice | Bool? |  yes  |  |
  | canReturn | Bool? |  yes  |  |
  | refundDetails | [String: Any]? |  yes  |  |
- | comment | String? |  yes  |  |
- | canBreak | [String: Any]? |  yes  |  |
- | shipmentId | String? |  yes  |  |
+ | totalBags | Int? |  yes  |  |
+ | deliveryDate | String? |  yes  |  |
  | userInfo | [ShipmentUserInfo](#ShipmentUserInfo)? |  yes  |  |
- | prices | [Prices](#Prices)? |  yes  |  |
- | needHelpUrl | String? |  yes  |  |
- | trackUrl | String? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | sizeInfo | [String: Any]? |  yes  |  |
+ | deliveryAddress | [DeliveryAddress](#DeliveryAddress)? |  yes  |  |
+ | fulfillingCompany | [FulfillingCompany](#FulfillingCompany)? |  yes  |  |
+ | shipmentId | String? |  yes  |  |
+ | invoice | [Invoice](#Invoice)? |  yes  |  |
+ | awbNo | String? |  yes  |  |
+ | trackingDetails | [[TrackingDetails1](#TrackingDetails1)]? |  yes  |  |
+ | breakupValues | [[BreakupValues](#BreakupValues)]? |  yes  |  |
+ | orderType | String? |  yes  |  |
+ | showTrackLink | Bool? |  yes  |  |
+ | payment | [ShipmentPayment1](#ShipmentPayment1)? |  yes  |  |
+ | dpName | String? |  yes  |  |
 
 ---
 
@@ -3980,13 +3980,13 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bagsForReorder | [[BagsForReorder](#BagsForReorder)]? |  yes  |  |
+ | totalShipmentsInOrder | Int? |  yes  |  |
  | orderCreatedTime | String? |  yes  |  |
  | orderId | String? |  yes  |  |
- | shipments | [[Shipments1](#Shipments1)]? |  yes  |  |
- | userInfo | [UserInfo](#UserInfo)? |  yes  |  |
- | totalShipmentsInOrder | Int? |  yes  |  |
+ | bagsForReorder | [[BagsForReorder](#BagsForReorder)]? |  yes  |  |
  | breakupValues | [[BreakupValues](#BreakupValues)]? |  yes  |  |
+ | userInfo | [UserInfo](#UserInfo)? |  yes  |  |
+ | shipments | [[Shipments1](#Shipments1)]? |  yes  |  |
 
 ---
 
@@ -4010,8 +4010,8 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
  | message | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -4044,10 +4044,10 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  |  |
  | presignedType | String |  no  |  |
  | shipmentId | String |  no  |  |
  | presignedUrl | String |  no  |  |
+ | success | Bool |  no  |  |
 
 ---
 
@@ -4069,11 +4069,11 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | country | String? |  yes  |  |
+ | shipmentId | String? |  yes  |  |
+ | phone | String? |  yes  |  |
  | orderId | String? |  yes  |  |
  | name | String? |  yes  |  |
- | shipmentId | String? |  yes  |  |
- | country | String? |  yes  |  |
- | phone | String? |  yes  |  |
 
 ---
 
@@ -4084,10 +4084,10 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | requestId | String? |  yes  |  |
  | message | String? |  yes  |  |
  | success | Bool? |  yes  |  |
  | resendTimer | Int? |  yes  |  |
- | requestId | String? |  yes  |  |
 
 ---
 
@@ -4098,8 +4098,8 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | otpCode | String? |  yes  |  |
  | requestId | String? |  yes  |  |
+ | otpCode | String? |  yes  |  |
 
 ---
 
@@ -4133,10 +4133,10 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | qcType | [String]? |  yes  |  |
  | displayName | String? |  yes  |  |
- | id | Int? |  yes  |  |
+ | qcType | [String]? |  yes  |  |
  | questionSet | [[QuestionSet](#QuestionSet)]? |  yes  |  |
+ | id | Int? |  yes  |  |
 
 ---
 
@@ -4147,8 +4147,8 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
  | reasons | [[BagReasons1](#BagReasons1)]? |  yes  |  |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -4160,10 +4160,10 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | reasonText | String? |  yes  |  |
- | showTextArea | Bool? |  yes  |  |
  | feedbackType | String? |  yes  |  |
- | flow | String? |  yes  |  |
+ | showTextArea | Bool? |  yes  |  |
  | reasonId | Int? |  yes  |  |
+ | flow | String? |  yes  |  |
  | priority | Int? |  yes  |  |
 
 ---

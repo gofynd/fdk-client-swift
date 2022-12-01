@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class AppliedFreeArticles: Codable {
         public var parentItemIdentifier: String?
 
-        public var freeGiftItemDetails: [FreeGiftItemDetails]?
-
         public var quantity: Double?
+
+        public var freeGiftItemDetails: [FreeGiftItemDetails]?
 
         public var articleId: String?
 
         public enum CodingKeys: String, CodingKey {
             case parentItemIdentifier = "parent_item_identifier"
 
-            case freeGiftItemDetails = "free_gift_item_details"
-
             case quantity
+
+            case freeGiftItemDetails = "free_gift_item_details"
 
             case articleId = "article_id"
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(articleId: String? = nil, freeGiftItemDetails: [FreeGiftItemDetails]? = nil, parentItemIdentifier: String? = nil, quantity: Double? = nil) {
             self.parentItemIdentifier = parentItemIdentifier
 
-            self.freeGiftItemDetails = freeGiftItemDetails
-
             self.quantity = quantity
+
+            self.freeGiftItemDetails = freeGiftItemDetails
 
             self.articleId = articleId
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                freeGiftItemDetails = try container.decode([FreeGiftItemDetails].self, forKey: .freeGiftItemDetails)
+                quantity = try container.decode(Double.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Double.self, forKey: .quantity)
+                freeGiftItemDetails = try container.decode([FreeGiftItemDetails].self, forKey: .freeGiftItemDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(parentItemIdentifier, forKey: .parentItemIdentifier)
 
-            try? container.encodeIfPresent(freeGiftItemDetails, forKey: .freeGiftItemDetails)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(freeGiftItemDetails, forKey: .freeGiftItemDetails)
 
             try? container.encodeIfPresent(articleId, forKey: .articleId)
         }

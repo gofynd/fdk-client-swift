@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class TATErrorSchemaResponse: Codable {
         public var value: String?
 
-        public var type: String?
-
         public var message: String?
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case type
-
             case message
+
+            case type
         }
 
         public init(message: String? = nil, type: String? = nil, value: String? = nil) {
             self.value = value
 
-            self.type = type
-
             self.message = message
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient {
 
             try? container.encode(value, forKey: .value)
 
-            try? container.encode(type, forKey: .type)
-
             try? container.encode(message, forKey: .message)
+
+            try? container.encode(type, forKey: .type)
         }
     }
 }
