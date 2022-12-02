@@ -17,6 +17,8 @@ public extension ApplicationClient {
 
             ulrs["getShipmentById"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}")
 
+            ulrs["getInvoiceByShipmentId"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice")
+
             ulrs["trackShipment"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/track")
 
             ulrs["getCustomerDetailsByShipmentId"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/customer-details")
@@ -31,7 +33,7 @@ public extension ApplicationClient {
 
             ulrs["updateShipmentStatus"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status")
 
-            ulrs["getInvoiceByShipmentId"] = config.domain.appendAsPath("/service/application/document/v1.0/orders/shipments/{shipment_id}/invoice")
+            ulrs["getInvoiceByShipmentId1"] = config.domain.appendAsPath("/service/application/document/v1.0/orders/shipments/{shipment_id}/invoice")
 
             ulrs["getCreditNoteByShipmentId"] = config.domain.appendAsPath("/service/application/document/v1.0/orders/shipments/{shipment_id}/credit-note")
 
@@ -233,6 +235,49 @@ public extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ShipmentById.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Get Invoice of a shipment
+         * Description: Use this API to retrieve shipment invoice.
+         **/
+        public func getInvoiceByShipmentId(
+            shipmentId: String,
+
+            onResponse: @escaping (_ response: ResponseGetInvoiceShipment?, _ error: FDKError?) -> Void
+        ) {
+            var fullUrl = relativeUrls["getInvoiceByShipmentId"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ResponseGetInvoiceShipment.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -523,7 +568,7 @@ public extension ApplicationClient {
         public func updateShipmentStatus(
             shipmentId: String,
             body: ShipmentStatusUpdateBody,
-            onResponse: @escaping (_ response: ShipmentStatusUpdate?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ShipmentApplicationStatusResponse?, _ error: FDKError?) -> Void
         ) {
             var fullUrl = relativeUrls["updateShipmentStatus"] ?? ""
 
@@ -545,7 +590,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(ShipmentStatusUpdate.self, from: data)
+                        let response = Utility.decode(ShipmentApplicationStatusResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -563,11 +608,11 @@ public extension ApplicationClient {
          * Summary: Get Presigned URL to download Invoice
          * Description: Use this API to generate Presigned URLs for downloading Invoice
          **/
-        public func getInvoiceByShipmentId(
+        public func getInvoiceByShipmentId1(
             shipmentId: String,
             parameters: invoiceParameter?,
 
-            onResponse: @escaping (_ response: ResponseGetInvoiceShipment?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ResponseGetInvoiceShipment1?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -575,7 +620,7 @@ public extension ApplicationClient {
                 xQuery["parameters"] = value
             }
 
-            var fullUrl = relativeUrls["getInvoiceByShipmentId"] ?? ""
+            var fullUrl = relativeUrls["getInvoiceByShipmentId1"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
 
@@ -595,7 +640,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(ResponseGetInvoiceShipment.self, from: data)
+                        let response = Utility.decode(ResponseGetInvoiceShipment1.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -617,7 +662,7 @@ public extension ApplicationClient {
             shipmentId: String,
             parameters: creditNoteParameter?,
 
-            onResponse: @escaping (_ response: ResponseGetInvoiceShipment?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ResponseGetInvoiceShipment1?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -645,7 +690,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(ResponseGetInvoiceShipment.self, from: data)
+                        let response = Utility.decode(ResponseGetInvoiceShipment1.self, from: data)
 
                         onResponse(response, nil)
                     } else {

@@ -3,68 +3,68 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: DPDetails
+         Model: ManifestFilter
          Used By: Order
      */
 
-    class DPDetails: Codable {
-        public var id: String?
+    class ManifestFilter: Codable {
+        public var storeName: String?
 
-        public var gstTag: String?
+        public var stores: String?
 
-        public var trackUrl: String?
+        public var dpName: String?
 
-        public var country: String?
+        public var dpIds: String?
 
-        public var pincode: String?
+        public var lane: String?
 
-        public var ewayBillId: String?
+        public var dateRange: DateRange?
 
-        public var name: String?
+        public var salesChannelName: String?
 
-        public var awbNo: String?
+        public var salesChannels: String?
 
         public enum CodingKeys: String, CodingKey {
-            case id
+            case storeName = "store_name"
 
-            case gstTag = "gst_tag"
+            case stores
 
-            case trackUrl = "track_url"
+            case dpName = "dp_name"
 
-            case country
+            case dpIds = "dp_ids"
 
-            case pincode
+            case lane
 
-            case ewayBillId = "eway_bill_id"
+            case dateRange = "date_range"
 
-            case name
+            case salesChannelName = "sales_channel_name"
 
-            case awbNo = "awb_no"
+            case salesChannels = "sales_channels"
         }
 
-        public init(awbNo: String? = nil, country: String? = nil, ewayBillId: String? = nil, gstTag: String? = nil, id: String? = nil, name: String? = nil, pincode: String? = nil, trackUrl: String? = nil) {
-            self.id = id
+        public init(dateRange: DateRange? = nil, dpIds: String? = nil, dpName: String? = nil, lane: String? = nil, salesChannels: String? = nil, salesChannelName: String? = nil, stores: String? = nil, storeName: String? = nil) {
+            self.storeName = storeName
 
-            self.gstTag = gstTag
+            self.stores = stores
 
-            self.trackUrl = trackUrl
+            self.dpName = dpName
 
-            self.country = country
+            self.dpIds = dpIds
 
-            self.pincode = pincode
+            self.lane = lane
 
-            self.ewayBillId = ewayBillId
+            self.dateRange = dateRange
 
-            self.name = name
+            self.salesChannelName = salesChannelName
 
-            self.awbNo = awbNo
+            self.salesChannels = salesChannels
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                storeName = try container.decode(String.self, forKey: .storeName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,7 +72,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                gstTag = try container.decode(String.self, forKey: .gstTag)
+                stores = try container.decode(String.self, forKey: .stores)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,7 +80,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                trackUrl = try container.decode(String.self, forKey: .trackUrl)
+                dpName = try container.decode(String.self, forKey: .dpName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +88,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                country = try container.decode(String.self, forKey: .country)
+                dpIds = try container.decode(String.self, forKey: .dpIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,7 +96,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                pincode = try container.decode(String.self, forKey: .pincode)
+                lane = try container.decode(String.self, forKey: .lane)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +104,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                ewayBillId = try container.decode(String.self, forKey: .ewayBillId)
+                dateRange = try container.decode(DateRange.self, forKey: .dateRange)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                salesChannelName = try container.decode(String.self, forKey: .salesChannelName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                awbNo = try container.decode(String.self, forKey: .awbNo)
+                salesChannels = try container.decode(String.self, forKey: .salesChannels)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,21 +131,21 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(storeName, forKey: .storeName)
 
-            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
+            try? container.encodeIfPresent(stores, forKey: .stores)
 
-            try? container.encodeIfPresent(trackUrl, forKey: .trackUrl)
+            try? container.encodeIfPresent(dpName, forKey: .dpName)
 
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(dpIds, forKey: .dpIds)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(lane, forKey: .lane)
 
-            try? container.encodeIfPresent(ewayBillId, forKey: .ewayBillId)
+            try? container.encodeIfPresent(dateRange, forKey: .dateRange)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(salesChannelName, forKey: .salesChannelName)
 
-            try? container.encodeIfPresent(awbNo, forKey: .awbNo)
+            try? container.encodeIfPresent(salesChannels, forKey: .salesChannels)
         }
     }
 }

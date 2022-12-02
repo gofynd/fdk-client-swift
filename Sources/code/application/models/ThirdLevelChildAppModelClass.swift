@@ -11,13 +11,13 @@ public extension ApplicationClient {
 
         public var uid: Int?
 
-        public var action: ProductListingAction?
+        public var customJson: [String: Any]?
 
-        public var name: String?
+        public var action: ProductListingAction?
 
         public var slug: String?
 
-        public var customJson: [String: Any]?
+        public var name: String?
 
         public var banners: ImageUrls?
 
@@ -26,13 +26,13 @@ public extension ApplicationClient {
 
             case uid
 
-            case action
+            case customJson = "_custom_json"
 
-            case name
+            case action
 
             case slug
 
-            case customJson = "_custom_json"
+            case name
 
             case banners
         }
@@ -42,13 +42,13 @@ public extension ApplicationClient {
 
             self.uid = uid
 
-            self.action = action
+            self.customJson = customJson
 
-            self.name = name
+            self.action = action
 
             self.slug = slug
 
-            self.customJson = customJson
+            self.name = name
 
             self.banners = banners
         }
@@ -73,7 +73,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,13 +120,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
         }

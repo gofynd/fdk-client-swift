@@ -1845,12 +1845,22 @@ Success. Returns a list of pages along with their details. Check the example sho
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | application | String? |  yes  |  |
+ | redirections | [[RedirectionSchema](#RedirectionSchema)]? |  yes  |  |
  | id | String? |  yes  |  |
- | redirectFrom | String? |  yes  |  |
- | redirectTo | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
- | source | [TagSourceSchema](#TagSourceSchema)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [RedirectionSchema](#RedirectionSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | redirectFrom | String? |  yes  |  |
+ | redirectTo | String? |  yes  |  |
 
 ---
 
@@ -2293,14 +2303,14 @@ Success. Returns a list of pages along with their details. Check the example sho
  | active | Bool? |  yes  |  |
  | display | String? |  yes  |  |
  | sortOrder | Int? |  yes  |  |
- | subNavigation | [[_NavigationReference](#_NavigationReference)]? |  yes  |  |
+ | subNavigation | [[SubNavigationReference](#SubNavigationReference)]? |  yes  |  |
 
 ---
 
 
  
  
- #### [_NavigationReference](#_NavigationReference)
+ #### [SubNavigationReference](#SubNavigationReference)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -2448,7 +2458,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  | url | String? |  yes  |  |
  | position | String? |  yes  |  |
  | attributes | [String: Any]? |  yes  |  |
- | pages | [String]? |  yes  |  |
  | content | String? |  yes  |  |
 
 ---
@@ -2622,7 +2631,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  | id | String? |  yes  |  |
  | question | String? |  yes  |  |
  | answer | String? |  yes  |  |
- | tags | [String]? |  yes  |  |
 
 ---
 
@@ -3234,7 +3242,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  | position | String? |  yes  |  |
  | attributes | [String: Any]? |  yes  |  |
  | content | String? |  yes  |  |
- | pages | [String]? |  yes  |  |
  | source | [TagSourceSchema](#TagSourceSchema)? |  yes  |  |
 
 ---

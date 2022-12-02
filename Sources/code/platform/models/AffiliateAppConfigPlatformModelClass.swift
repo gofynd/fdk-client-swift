@@ -8,86 +8,66 @@ public extension PlatformClient {
      */
 
     class AffiliateAppConfig: Codable {
-        public var name: String
-
-        public var id: String
+        public var meta: [AffiliateAppConfigMeta]?
 
         public var secret: String
 
-        public var description: String?
-
-        public var createdAt: String
-
-        public var owner: String
+        public var token: String
 
         public var updatedAt: String
 
-        public var meta: [AffiliateAppConfigMeta]?
+        public var createdAt: String
 
-        public var token: String
+        public var description: String?
+
+        public var name: String
+
+        public var owner: String
+
+        public var id: String
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
-            case id
+            case meta
 
             case secret
 
-            case description
-
-            case createdAt = "created_at"
-
-            case owner
+            case token
 
             case updatedAt = "updated_at"
 
-            case meta
+            case createdAt = "created_at"
 
-            case token
+            case description
+
+            case name
+
+            case owner
+
+            case id
         }
 
         public init(createdAt: String, description: String? = nil, id: String, meta: [AffiliateAppConfigMeta]? = nil, name: String, owner: String, secret: String, token: String, updatedAt: String) {
-            self.name = name
-
-            self.id = id
+            self.meta = meta
 
             self.secret = secret
 
-            self.description = description
-
-            self.createdAt = createdAt
-
-            self.owner = owner
+            self.token = token
 
             self.updatedAt = updatedAt
 
-            self.meta = meta
+            self.createdAt = createdAt
 
-            self.token = token
+            self.description = description
+
+            self.name = name
+
+            self.owner = owner
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            name = try container.decode(String.self, forKey: .name)
-
-            id = try container.decode(String.self, forKey: .id)
-
-            secret = try container.decode(String.self, forKey: .secret)
-
-            do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            createdAt = try container.decode(String.self, forKey: .createdAt)
-
-            owner = try container.decode(String.self, forKey: .owner)
-
-            updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
             do {
                 meta = try container.decode([AffiliateAppConfigMeta].self, forKey: .meta)
@@ -97,29 +77,49 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            secret = try container.decode(String.self, forKey: .secret)
+
             token = try container.decode(String.self, forKey: .token)
+
+            updatedAt = try container.decode(String.self, forKey: .updatedAt)
+
+            createdAt = try container.decode(String.self, forKey: .createdAt)
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
+
+            owner = try container.decode(String.self, forKey: .owner)
+
+            id = try container.decode(String.self, forKey: .id)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(secret, forKey: .secret)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-
-            try? container.encodeIfPresent(owner, forKey: .owner)
+            try? container.encodeIfPresent(token, forKey: .token)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
-            try? container.encodeIfPresent(token, forKey: .token)
+            try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(owner, forKey: .owner)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

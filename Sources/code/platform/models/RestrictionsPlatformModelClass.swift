@@ -10,38 +10,38 @@ public extension PlatformClient {
     class Restrictions: Codable {
         public var uses: UsesRestriction?
 
-        public var postOrder: PostOrder?
+        public var orderingStores: [Int]?
+
+        public var payments: [String: PaymentModes]?
 
         public var bulkBundle: BulkBundleRestriction?
 
-        public var priceRange: PriceRange?
+        public var postOrder: PostOrder?
 
-        public var payments: [String: PaymentModes]?
+        public var priceRange: PriceRange?
 
         public var userGroups: [Int]?
 
         public var couponAllowed: Bool?
-
-        public var orderingStores: [Int]?
 
         public var platforms: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case uses
 
-            case postOrder = "post_order"
+            case orderingStores = "ordering_stores"
+
+            case payments
 
             case bulkBundle = "bulk_bundle"
 
-            case priceRange = "price_range"
+            case postOrder = "post_order"
 
-            case payments
+            case priceRange = "price_range"
 
             case userGroups = "user_groups"
 
             case couponAllowed = "coupon_allowed"
-
-            case orderingStores = "ordering_stores"
 
             case platforms
         }
@@ -49,19 +49,19 @@ public extension PlatformClient {
         public init(bulkBundle: BulkBundleRestriction? = nil, couponAllowed: Bool? = nil, orderingStores: [Int]? = nil, payments: [String: PaymentModes]? = nil, platforms: [String]? = nil, postOrder: PostOrder? = nil, priceRange: PriceRange? = nil, userGroups: [Int]? = nil, uses: UsesRestriction? = nil) {
             self.uses = uses
 
-            self.postOrder = postOrder
+            self.orderingStores = orderingStores
+
+            self.payments = payments
 
             self.bulkBundle = bulkBundle
 
-            self.priceRange = priceRange
+            self.postOrder = postOrder
 
-            self.payments = payments
+            self.priceRange = priceRange
 
             self.userGroups = userGroups
 
             self.couponAllowed = couponAllowed
-
-            self.orderingStores = orderingStores
 
             self.platforms = platforms
         }
@@ -78,7 +78,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                postOrder = try container.decode(PostOrder.self, forKey: .postOrder)
+                orderingStores = try container.decode([Int].self, forKey: .orderingStores)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                payments = try container.decode([String: PaymentModes].self, forKey: .payments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,7 +102,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                priceRange = try container.decode(PriceRange.self, forKey: .priceRange)
+                postOrder = try container.decode(PostOrder.self, forKey: .postOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,7 +110,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                payments = try container.decode([String: PaymentModes].self, forKey: .payments)
+                priceRange = try container.decode(PriceRange.self, forKey: .priceRange)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -126,14 +134,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                orderingStores = try container.decode([Int].self, forKey: .orderingStores)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 platforms = try container.decode([String].self, forKey: .platforms)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -147,19 +147,19 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(uses, forKey: .uses)
 
-            try? container.encodeIfPresent(postOrder, forKey: .postOrder)
+            try? container.encodeIfPresent(orderingStores, forKey: .orderingStores)
+
+            try? container.encodeIfPresent(payments, forKey: .payments)
 
             try? container.encodeIfPresent(bulkBundle, forKey: .bulkBundle)
 
-            try? container.encodeIfPresent(priceRange, forKey: .priceRange)
+            try? container.encodeIfPresent(postOrder, forKey: .postOrder)
 
-            try? container.encodeIfPresent(payments, forKey: .payments)
+            try? container.encodeIfPresent(priceRange, forKey: .priceRange)
 
             try? container.encodeIfPresent(userGroups, forKey: .userGroups)
 
             try? container.encodeIfPresent(couponAllowed, forKey: .couponAllowed)
-
-            try? container.encodeIfPresent(orderingStores, forKey: .orderingStores)
 
             try? container.encodeIfPresent(platforms, forKey: .platforms)
         }

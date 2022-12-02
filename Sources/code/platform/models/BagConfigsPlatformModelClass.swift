@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var isCustomerReturnAllowed: Bool
 
+        public var allowForceReturn: Bool
+
         public var isReturnable: Bool
 
         public var isActive: Bool
-
-        public var allowForceReturn: Bool
 
         public var canBeCancelled: Bool
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case isCustomerReturnAllowed = "is_customer_return_allowed"
 
+            case allowForceReturn = "allow_force_return"
+
             case isReturnable = "is_returnable"
 
             case isActive = "is_active"
-
-            case allowForceReturn = "allow_force_return"
 
             case canBeCancelled = "can_be_cancelled"
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.isCustomerReturnAllowed = isCustomerReturnAllowed
 
+            self.allowForceReturn = allowForceReturn
+
             self.isReturnable = isReturnable
 
             self.isActive = isActive
-
-            self.allowForceReturn = allowForceReturn
 
             self.canBeCancelled = canBeCancelled
         }
@@ -55,11 +55,11 @@ public extension PlatformClient {
 
             isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
 
+            allowForceReturn = try container.decode(Bool.self, forKey: .allowForceReturn)
+
             isReturnable = try container.decode(Bool.self, forKey: .isReturnable)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            allowForceReturn = try container.decode(Bool.self, forKey: .allowForceReturn)
 
             canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
         }
@@ -71,11 +71,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
 
+            try? container.encodeIfPresent(allowForceReturn, forKey: .allowForceReturn)
+
             try? container.encodeIfPresent(isReturnable, forKey: .isReturnable)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(allowForceReturn, forKey: .allowForceReturn)
 
             try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
         }

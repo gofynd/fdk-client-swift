@@ -1,24 +1,25 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: OrderInvoiceEngineError
+         Model: PlatformShipmentReasonsResponse
          Used By: Order
      */
-    class OrderInvoiceEngineError: Codable {
-        public var message: String?
+
+    class PlatformShipmentReasonsResponse: Codable {
+        public var reasons: [Reason]?
 
         public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case message
+            case reasons
 
             case success
         }
 
-        public init(message: String? = nil, success: Bool? = nil) {
-            self.message = message
+        public init(reasons: [Reason]? = nil, success: Bool? = nil) {
+            self.reasons = reasons
 
             self.success = success
         }
@@ -27,7 +28,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                reasons = try container.decode([Reason].self, forKey: .reasons)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,7 +47,7 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(reasons, forKey: .reasons)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }
