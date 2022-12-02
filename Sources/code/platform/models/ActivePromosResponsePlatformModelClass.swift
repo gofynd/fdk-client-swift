@@ -3,71 +3,71 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ProductArticle
+         Model: ActivePromosResponse
          Used By: Cart
      */
 
-    class ProductArticle: Codable {
-        public var parentItemIdentifiers: [String: Any]?
+    class ActivePromosResponse: Codable {
+        public var createdOn: String?
 
-        public var productGroupTags: [String]?
+        public var modifiedOn: String?
 
-        public var uid: String?
+        public var entityType: String?
 
-        public var size: String?
+        public var subtitle: String?
 
-        public var extraMeta: [String: Any]?
+        public var example: String?
 
-        public var price: ArticlePriceInfo?
+        public var entitySlug: String?
 
-        public var store: BaseInfo?
+        public var title: String?
 
-        public var quantity: Int?
+        public var description: String?
 
-        public var seller: BaseInfo?
+        public var isHidden: Bool?
 
         public var type: String?
 
         public enum CodingKeys: String, CodingKey {
-            case parentItemIdentifiers = "parent_item_identifiers"
+            case createdOn = "created_on"
 
-            case productGroupTags = "product_group_tags"
+            case modifiedOn = "modified_on"
 
-            case uid
+            case entityType = "entity_type"
 
-            case size
+            case subtitle
 
-            case extraMeta = "extra_meta"
+            case example
 
-            case price
+            case entitySlug = "entity_slug"
 
-            case store
+            case title
 
-            case quantity
+            case description
 
-            case seller
+            case isHidden = "is_hidden"
 
             case type
         }
 
-        public init(extraMeta: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, size: String? = nil, store: BaseInfo? = nil, type: String? = nil, uid: String? = nil) {
-            self.parentItemIdentifiers = parentItemIdentifiers
+        public init(createdOn: String? = nil, description: String? = nil, entitySlug: String? = nil, entityType: String? = nil, example: String? = nil, isHidden: Bool? = nil, modifiedOn: String? = nil, subtitle: String? = nil, title: String? = nil, type: String? = nil) {
+            self.createdOn = createdOn
 
-            self.productGroupTags = productGroupTags
+            self.modifiedOn = modifiedOn
 
-            self.uid = uid
+            self.entityType = entityType
 
-            self.size = size
+            self.subtitle = subtitle
 
-            self.extraMeta = extraMeta
+            self.example = example
 
-            self.price = price
+            self.entitySlug = entitySlug
 
-            self.store = store
+            self.title = title
 
-            self.quantity = quantity
+            self.description = description
 
-            self.seller = seller
+            self.isHidden = isHidden
 
             self.type = type
         }
@@ -76,7 +76,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                parentItemIdentifiers = try container.decode([String: Any].self, forKey: .parentItemIdentifiers)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                productGroupTags = try container.decode([String].self, forKey: .productGroupTags)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,7 +92,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                entityType = try container.decode(String.self, forKey: .entityType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -100,7 +100,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                size = try container.decode(String.self, forKey: .size)
+                subtitle = try container.decode(String.self, forKey: .subtitle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,7 +108,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
+                example = try container.decode(String.self, forKey: .example)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +116,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                price = try container.decode(ArticlePriceInfo.self, forKey: .price)
+                entitySlug = try container.decode(String.self, forKey: .entitySlug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,7 +124,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                store = try container.decode(BaseInfo.self, forKey: .store)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,7 +132,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,7 +140,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                seller = try container.decode(BaseInfo.self, forKey: .seller)
+                isHidden = try container.decode(Bool.self, forKey: .isHidden)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,23 +159,23 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(parentItemIdentifiers, forKey: .parentItemIdentifiers)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(productGroupTags, forKey: .productGroupTags)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
-            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
+            try? container.encodeIfPresent(example, forKey: .example)
 
-            try? container.encodeIfPresent(price, forKey: .price)
+            try? container.encodeIfPresent(entitySlug, forKey: .entitySlug)
 
-            try? container.encodeIfPresent(store, forKey: .store)
+            try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(seller, forKey: .seller)
+            try? container.encodeIfPresent(isHidden, forKey: .isHidden)
 
             try? container.encodeIfPresent(type, forKey: .type)
         }

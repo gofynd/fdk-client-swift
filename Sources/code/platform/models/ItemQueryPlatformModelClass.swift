@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ItemQuery: Codable {
         public var brandUid: Int?
 
-        public var uid: Int?
-
         public var itemCode: String?
+
+        public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
             case brandUid = "brand_uid"
 
-            case uid
-
             case itemCode = "item_code"
+
+            case uid
         }
 
         public init(brandUid: Int? = nil, itemCode: String? = nil, uid: Int? = nil) {
             self.brandUid = brandUid
 
-            self.uid = uid
-
             self.itemCode = itemCode
+
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                itemCode = try container.decode(String.self, forKey: .itemCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemCode = try container.decode(String.self, forKey: .itemCode)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(brandUid, forKey: .brandUid)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(itemCode, forKey: .itemCode)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

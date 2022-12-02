@@ -8,66 +8,48 @@ public extension PlatformClient {
      */
 
     class BagStatusHistory: Codable {
-        public var status: String
-
-        public var stateType: Bool?
-
-        public var appDisplayName: Bool?
-
         public var displayName: Bool?
 
         public var forward: Bool?
 
         public var updatedAt: String?
 
+        public var stateType: Bool?
+
+        public var status: String
+
+        public var appDisplayName: Bool?
+
         public enum CodingKeys: String, CodingKey {
-            case status
-
-            case stateType = "state_type"
-
-            case appDisplayName = "app_display_name"
-
             case displayName = "display_name"
 
             case forward
 
             case updatedAt = "updated_at"
+
+            case stateType = "state_type"
+
+            case status
+
+            case appDisplayName = "app_display_name"
         }
 
         public init(appDisplayName: Bool? = nil, displayName: Bool? = nil, forward: Bool? = nil, stateType: Bool? = nil, status: String, updatedAt: String? = nil) {
-            self.status = status
-
-            self.stateType = stateType
-
-            self.appDisplayName = appDisplayName
-
             self.displayName = displayName
 
             self.forward = forward
 
             self.updatedAt = updatedAt
+
+            self.stateType = stateType
+
+            self.status = status
+
+            self.appDisplayName = appDisplayName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            status = try container.decode(String.self, forKey: .status)
-
-            do {
-                stateType = try container.decode(Bool.self, forKey: .stateType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                appDisplayName = try container.decode(Bool.self, forKey: .appDisplayName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 displayName = try container.decode(Bool.self, forKey: .displayName)
@@ -92,22 +74,40 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                stateType = try container.decode(Bool.self, forKey: .stateType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            status = try container.decode(String.self, forKey: .status)
+
+            do {
+                appDisplayName = try container.decode(Bool.self, forKey: .appDisplayName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(stateType, forKey: .stateType)
-
-            try? container.encodeIfPresent(appDisplayName, forKey: .appDisplayName)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(forward, forKey: .forward)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(stateType, forKey: .stateType)
+
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(appDisplayName, forKey: .appDisplayName)
         }
     }
 }

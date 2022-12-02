@@ -9,66 +9,66 @@ public extension ApplicationClient {
     class AppliedPromotion: Codable {
         public var discountRules: [DiscountRulesApp]?
 
-        public var offerText: String?
+        public var promotionName: String?
 
         public var buyRules: [BuyRules]?
 
-        public var amount: Double?
-
-        public var promotionType: String?
-
-        public var promotionName: String?
+        public var articleQuantity: Int?
 
         public var promoId: String?
 
         public var mrpPromotion: Bool?
 
-        public var appliedFreeArticles: AppliedFreeArticles?
+        public var promotionType: String?
 
-        public var articleQuantity: Int?
+        public var appliedFreeArticles: [AppliedFreeArticles]?
+
+        public var amount: Double?
+
+        public var offerText: String?
 
         public enum CodingKeys: String, CodingKey {
             case discountRules = "discount_rules"
 
-            case offerText = "offer_text"
+            case promotionName = "promotion_name"
 
             case buyRules = "buy_rules"
 
-            case amount
-
-            case promotionType = "promotion_type"
-
-            case promotionName = "promotion_name"
+            case articleQuantity = "article_quantity"
 
             case promoId = "promo_id"
 
             case mrpPromotion = "mrp_promotion"
 
+            case promotionType = "promotion_type"
+
             case appliedFreeArticles = "applied_free_articles"
 
-            case articleQuantity = "article_quantity"
+            case amount
+
+            case offerText = "offer_text"
         }
 
-        public init(amount: Double? = nil, appliedFreeArticles: AppliedFreeArticles? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, discountRules: [DiscountRulesApp]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
+        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, discountRules: [DiscountRulesApp]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
             self.discountRules = discountRules
 
-            self.offerText = offerText
+            self.promotionName = promotionName
 
             self.buyRules = buyRules
 
-            self.amount = amount
-
-            self.promotionType = promotionType
-
-            self.promotionName = promotionName
+            self.articleQuantity = articleQuantity
 
             self.promoId = promoId
 
             self.mrpPromotion = mrpPromotion
 
+            self.promotionType = promotionType
+
             self.appliedFreeArticles = appliedFreeArticles
 
-            self.articleQuantity = articleQuantity
+            self.amount = amount
+
+            self.offerText = offerText
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                offerText = try container.decode(String.self, forKey: .offerText)
+                promotionName = try container.decode(String.self, forKey: .promotionName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,23 +99,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                amount = try container.decode(Double.self, forKey: .amount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                promotionType = try container.decode(String.self, forKey: .promotionType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                promotionName = try container.decode(String.self, forKey: .promotionName)
+                articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,7 +123,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                appliedFreeArticles = try container.decode(AppliedFreeArticles.self, forKey: .appliedFreeArticles)
+                promotionType = try container.decode(String.self, forKey: .promotionType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,7 +131,23 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
+                appliedFreeArticles = try container.decode([AppliedFreeArticles].self, forKey: .appliedFreeArticles)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                amount = try container.decode(Double.self, forKey: .amount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                offerText = try container.decode(String.self, forKey: .offerText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,23 +160,23 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(discountRules, forKey: .discountRules)
 
-            try? container.encodeIfPresent(offerText, forKey: .offerText)
+            try? container.encodeIfPresent(promotionName, forKey: .promotionName)
 
             try? container.encodeIfPresent(buyRules, forKey: .buyRules)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
-            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
-
-            try? container.encodeIfPresent(promotionName, forKey: .promotionName)
+            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
 
             try? container.encodeIfPresent(promoId, forKey: .promoId)
 
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
 
+            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
+
             try? container.encodeIfPresent(appliedFreeArticles, forKey: .appliedFreeArticles)
 
-            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
+            try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(offerText, forKey: .offerText)
         }
     }
 }

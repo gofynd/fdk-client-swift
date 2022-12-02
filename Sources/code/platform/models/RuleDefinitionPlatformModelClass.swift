@@ -8,15 +8,15 @@ public extension PlatformClient {
      */
 
     class RuleDefinition: Codable {
-        public var valueType: String
+        public var applicableOn: String
 
-        public var scope: [String]?
+        public var valueType: String
 
         public var autoApply: Bool?
 
-        public var applicableOn: String
-
         public var isExact: Bool?
+
+        public var scope: [String]?
 
         public var calculateOn: String
 
@@ -25,15 +25,15 @@ public extension PlatformClient {
         public var type: String
 
         public enum CodingKeys: String, CodingKey {
-            case valueType = "value_type"
+            case applicableOn = "applicable_on"
 
-            case scope
+            case valueType = "value_type"
 
             case autoApply = "auto_apply"
 
-            case applicableOn = "applicable_on"
-
             case isExact = "is_exact"
+
+            case scope
 
             case calculateOn = "calculate_on"
 
@@ -43,15 +43,15 @@ public extension PlatformClient {
         }
 
         public init(applicableOn: String, autoApply: Bool? = nil, calculateOn: String, currencyCode: String? = nil, isExact: Bool? = nil, scope: [String]? = nil, type: String, valueType: String) {
-            self.valueType = valueType
+            self.applicableOn = applicableOn
 
-            self.scope = scope
+            self.valueType = valueType
 
             self.autoApply = autoApply
 
-            self.applicableOn = applicableOn
-
             self.isExact = isExact
+
+            self.scope = scope
 
             self.calculateOn = calculateOn
 
@@ -63,15 +63,9 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            applicableOn = try container.decode(String.self, forKey: .applicableOn)
+
             valueType = try container.decode(String.self, forKey: .valueType)
-
-            do {
-                scope = try container.decode([String].self, forKey: .scope)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 autoApply = try container.decode(Bool.self, forKey: .autoApply)
@@ -81,10 +75,16 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            applicableOn = try container.decode(String.self, forKey: .applicableOn)
-
             do {
                 isExact = try container.decode(Bool.self, forKey: .isExact)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                scope = try container.decode([String].self, forKey: .scope)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,15 +107,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(valueType, forKey: .valueType)
+            try? container.encodeIfPresent(applicableOn, forKey: .applicableOn)
 
-            try? container.encodeIfPresent(scope, forKey: .scope)
+            try? container.encodeIfPresent(valueType, forKey: .valueType)
 
             try? container.encodeIfPresent(autoApply, forKey: .autoApply)
 
-            try? container.encodeIfPresent(applicableOn, forKey: .applicableOn)
-
             try? container.encodeIfPresent(isExact, forKey: .isExact)
+
+            try? container.encodeIfPresent(scope, forKey: .scope)
 
             try? container.encodeIfPresent(calculateOn, forKey: .calculateOn)
 
