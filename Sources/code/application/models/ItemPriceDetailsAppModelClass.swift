@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class ItemPriceDetails: Codable {
         public var effective: EffectiveValues?
 
-        public var marked: MarkedValues?
-
         public var currency: String?
+
+        public var marked: MarkedValues?
 
         public enum CodingKeys: String, CodingKey {
             case effective
 
-            case marked
-
             case currency
+
+            case marked
         }
 
         public init(currency: String? = nil, effective: EffectiveValues? = nil, marked: MarkedValues? = nil) {
             self.effective = effective
 
-            self.marked = marked
-
             self.currency = currency
+
+            self.marked = marked
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                marked = try container.decode(MarkedValues.self, forKey: .marked)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                marked = try container.decode(MarkedValues.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
-            try? container.encodeIfPresent(marked, forKey: .marked)
-
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(marked, forKey: .marked)
         }
     }
 }

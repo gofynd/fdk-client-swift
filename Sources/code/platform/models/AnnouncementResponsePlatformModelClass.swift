@@ -8,42 +8,42 @@ public extension PlatformClient {
      */
 
     class AnnouncementResponse: Codable {
-        public var companyId: Int?
+        public var createdAt: String?
 
         public var logoUrl: String?
 
-        public var toDatetime: String?
-
-        public var createdAt: String?
+        public var fromDatetime: String?
 
         public var platformName: String?
 
-        public var platformId: String?
-
-        public var fromDatetime: String?
-
         public var description: String?
+
+        public var companyId: Int?
+
+        public var toDatetime: String?
+
+        public var platformId: String?
 
         public var title: String?
 
         public var id: Int
 
         public enum CodingKeys: String, CodingKey {
-            case companyId = "company_id"
+            case createdAt = "created_at"
 
             case logoUrl = "logo_url"
 
-            case toDatetime = "to_datetime"
-
-            case createdAt = "created_at"
+            case fromDatetime = "from_datetime"
 
             case platformName = "platform_name"
 
-            case platformId = "platform_id"
-
-            case fromDatetime = "from_datetime"
-
             case description
+
+            case companyId = "company_id"
+
+            case toDatetime = "to_datetime"
+
+            case platformId = "platform_id"
 
             case title
 
@@ -51,21 +51,21 @@ public extension PlatformClient {
         }
 
         public init(companyId: Int? = nil, createdAt: String? = nil, description: String? = nil, fromDatetime: String? = nil, id: Int, logoUrl: String? = nil, platformId: String? = nil, platformName: String? = nil, title: String? = nil, toDatetime: String? = nil) {
-            self.companyId = companyId
+            self.createdAt = createdAt
 
             self.logoUrl = logoUrl
 
-            self.toDatetime = toDatetime
-
-            self.createdAt = createdAt
+            self.fromDatetime = fromDatetime
 
             self.platformName = platformName
 
-            self.platformId = platformId
-
-            self.fromDatetime = fromDatetime
-
             self.description = description
+
+            self.companyId = companyId
+
+            self.toDatetime = toDatetime
+
+            self.platformId = platformId
 
             self.title = title
 
@@ -76,7 +76,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                createdAt = try container.decode(String.self, forKey: .createdAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,15 +92,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                toDatetime = try container.decode(String.self, forKey: .toDatetime)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                createdAt = try container.decode(String.self, forKey: .createdAt)
+                fromDatetime = try container.decode(String.self, forKey: .fromDatetime)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,23 +108,31 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                platformId = try container.decode(String.self, forKey: .platformId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                fromDatetime = try container.decode(String.self, forKey: .fromDatetime)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyId = try container.decode(Int.self, forKey: .companyId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                toDatetime = try container.decode(String.self, forKey: .toDatetime)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                platformId = try container.decode(String.self, forKey: .platformId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,21 +153,21 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
 
-            try? container.encodeIfPresent(toDatetime, forKey: .toDatetime)
-
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(fromDatetime, forKey: .fromDatetime)
 
             try? container.encodeIfPresent(platformName, forKey: .platformName)
 
-            try? container.encodeIfPresent(platformId, forKey: .platformId)
-
-            try? container.encodeIfPresent(fromDatetime, forKey: .fromDatetime)
-
             try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(toDatetime, forKey: .toDatetime)
+
+            try? container.encodeIfPresent(platformId, forKey: .platformId)
 
             try? container.encodeIfPresent(title, forKey: .title)
 
