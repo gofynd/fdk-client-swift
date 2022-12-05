@@ -15,9 +15,9 @@ public extension ApplicationClient {
 
         public var creditLineId: String?
 
-        public var merchantCustomerRefId: String?
-
         public var buyerStatus: String?
+
+        public var merchantCustomerRefId: String?
 
         public var status: String?
 
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             case creditLineId = "credit_line_id"
 
-            case merchantCustomerRefId = "merchant_customer_ref_id"
-
             case buyerStatus = "buyer_status"
+
+            case merchantCustomerRefId = "merchant_customer_ref_id"
 
             case status
         }
@@ -46,9 +46,9 @@ public extension ApplicationClient {
 
             self.creditLineId = creditLineId
 
-            self.merchantCustomerRefId = merchantCustomerRefId
-
             self.buyerStatus = buyerStatus
+
+            self.merchantCustomerRefId = merchantCustomerRefId
 
             self.status = status
         }
@@ -89,7 +89,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
+                buyerStatus = try container.decode(String.self, forKey: .buyerStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                buyerStatus = try container.decode(String.self, forKey: .buyerStatus)
+                merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,9 +124,9 @@ public extension ApplicationClient {
 
             try? container.encode(creditLineId, forKey: .creditLineId)
 
-            try? container.encode(merchantCustomerRefId, forKey: .merchantCustomerRefId)
-
             try? container.encode(buyerStatus, forKey: .buyerStatus)
+
+            try? container.encode(merchantCustomerRefId, forKey: .merchantCustomerRefId)
 
             try? container.encode(status, forKey: .status)
         }

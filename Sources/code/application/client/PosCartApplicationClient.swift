@@ -195,6 +195,7 @@ public extension ApplicationClient {
             i: Bool?,
             b: Bool?,
             areaCode: String?,
+            id: String?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -210,6 +211,10 @@ public extension ApplicationClient {
 
             if let value = areaCode {
                 xQuery["area_code"] = value
+            }
+
+            if let value = id {
+                xQuery["id"] = value
             }
 
             let fullUrl = relativeUrls["addItems"] ?? ""
