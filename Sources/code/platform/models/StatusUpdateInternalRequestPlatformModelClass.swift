@@ -10,9 +10,9 @@ public extension PlatformClient {
     class StatusUpdateInternalRequest: Codable {
         public var task: Bool?
 
-        public var statues: [StatuesRequest]?
-
         public var forceTransition: Bool?
+
+        public var statues: [StatuesRequest]?
 
         public var lockAfterTransition: Bool?
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case task
 
-            case statues
-
             case forceTransition = "force_transition"
+
+            case statues
 
             case lockAfterTransition = "lock_after_transition"
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, statues: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
             self.task = task
 
-            self.statues = statues
-
             self.forceTransition = forceTransition
+
+            self.statues = statues
 
             self.lockAfterTransition = lockAfterTransition
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                statues = try container.decode([StatuesRequest].self, forKey: .statues)
+                forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
+                statues = try container.decode([StatuesRequest].self, forKey: .statues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(task, forKey: .task)
 
-            try? container.encodeIfPresent(statues, forKey: .statues)
-
             try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
+
+            try? container.encodeIfPresent(statues, forKey: .statues)
 
             try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
 

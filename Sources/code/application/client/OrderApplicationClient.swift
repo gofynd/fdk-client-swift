@@ -17,7 +17,7 @@ public extension ApplicationClient {
 
             ulrs["getShipmentById"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}")
 
-            ulrs["getInvoiceByShipmentId"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice")
+            ulrs["getInvoiceByShipmentIds"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice")
 
             ulrs["trackShipment"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/track")
 
@@ -33,7 +33,7 @@ public extension ApplicationClient {
 
             ulrs["updateShipmentStatus"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status")
 
-            ulrs["getInvoiceByShipmentId1"] = config.domain.appendAsPath("/service/application/document/v1.0/orders/shipments/{shipment_id}/invoice")
+            ulrs["getInvoiceByShipmentId"] = config.domain.appendAsPath("/service/application/document/v1.0/orders/shipments/{shipment_id}/invoice")
 
             ulrs["getCreditNoteByShipmentId"] = config.domain.appendAsPath("/service/application/document/v1.0/orders/shipments/{shipment_id}/credit-note")
 
@@ -252,12 +252,12 @@ public extension ApplicationClient {
          * Summary: Get Invoice of a shipment
          * Description: Use this API to retrieve shipment invoice.
          **/
-        public func getInvoiceByShipmentId(
+        public func getInvoiceByShipmentIds(
             shipmentId: String,
 
             onResponse: @escaping (_ response: ResponseGetInvoiceShipment?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["getInvoiceByShipmentId"] ?? ""
+            var fullUrl = relativeUrls["getInvoiceByShipmentIds"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
 
@@ -608,7 +608,7 @@ public extension ApplicationClient {
          * Summary: Get Presigned URL to download Invoice
          * Description: Use this API to generate Presigned URLs for downloading Invoice
          **/
-        public func getInvoiceByShipmentId1(
+        public func getInvoiceByShipmentId(
             shipmentId: String,
             parameters: invoiceParameter?,
 
@@ -620,7 +620,7 @@ public extension ApplicationClient {
                 xQuery["parameters"] = value
             }
 
-            var fullUrl = relativeUrls["getInvoiceByShipmentId1"] ?? ""
+            var fullUrl = relativeUrls["getInvoiceByShipmentId"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
 
