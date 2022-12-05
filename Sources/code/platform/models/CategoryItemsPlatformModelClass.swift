@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class CategoryItems: Codable {
-        public var banners: ImageUrls?
+        public var name: String?
 
         public var uid: Int?
 
@@ -16,12 +16,12 @@ public extension PlatformClient {
 
         public var action: Action?
 
-        public var name: String?
+        public var banners: ImageUrls?
 
         public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
-            case banners
+            case name
 
             case uid
 
@@ -29,13 +29,13 @@ public extension PlatformClient {
 
             case action
 
-            case name
+            case banners
 
             case slug
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [Child]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
-            self.banners = banners
+            self.name = name
 
             self.uid = uid
 
@@ -43,7 +43,7 @@ public extension PlatformClient {
 
             self.action = action
 
-            self.name = name
+            self.banners = banners
 
             self.slug = slug
         }
@@ -52,7 +52,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                banners = try container.decode(ImageUrls.self, forKey: .banners)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                banners = try container.decode(ImageUrls.self, forKey: .banners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,7 +103,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(banners, forKey: .banners)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
@@ -111,7 +111,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(banners, forKey: .banners)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
         }

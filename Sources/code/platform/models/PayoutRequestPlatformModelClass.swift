@@ -10,9 +10,9 @@ public extension PlatformClient {
     class PayoutRequest: Codable {
         public var transferType: String
 
-        public var bankDetails: PayoutBankDetails
-
         public var uniqueExternalId: String
+
+        public var bankDetails: PayoutBankDetails
 
         public var aggregator: String
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case transferType = "transfer_type"
 
-            case bankDetails = "bank_details"
-
             case uniqueExternalId = "unique_external_id"
+
+            case bankDetails = "bank_details"
 
             case aggregator
 
@@ -37,9 +37,9 @@ public extension PlatformClient {
         public init(aggregator: String, bankDetails: PayoutBankDetails, isActive: Bool, transferType: String, uniqueExternalId: String, users: [String: Any]) {
             self.transferType = transferType
 
-            self.bankDetails = bankDetails
-
             self.uniqueExternalId = uniqueExternalId
+
+            self.bankDetails = bankDetails
 
             self.aggregator = aggregator
 
@@ -53,9 +53,9 @@ public extension PlatformClient {
 
             transferType = try container.decode(String.self, forKey: .transferType)
 
-            bankDetails = try container.decode(PayoutBankDetails.self, forKey: .bankDetails)
-
             uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
+
+            bankDetails = try container.decode(PayoutBankDetails.self, forKey: .bankDetails)
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(transferType, forKey: .transferType)
 
-            try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
-
             try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
+
+            try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
