@@ -12,16 +12,22 @@ public extension PlatformClient {
 
         public var timestamps: [String: Any]?
 
+        public var list: CategorySchema?
+
         public enum CodingKeys: String, CodingKey {
             case id = "_id"
 
             case timestamps
+
+            case list
         }
 
-        public init(timestamps: [String: Any]? = nil, id: String? = nil) {
+        public init(list: CategorySchema? = nil, timestamps: [String: Any]? = nil, id: String? = nil) {
             self.id = id
 
             self.timestamps = timestamps
+
+            self.list = list
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,6 +48,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                list = try container.decode(CategorySchema.self, forKey: .list)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -50,6 +64,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(timestamps, forKey: .timestamps)
+
+            try? container.encodeIfPresent(list, forKey: .list)
         }
     }
 }

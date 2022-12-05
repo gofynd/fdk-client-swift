@@ -7,24 +7,24 @@ public extension ApplicationClient {
          Used By: Order
      */
     class Invoice: Codable {
-        public var updatedDate: String?
-
         public var labelUrl: String?
+
+        public var updatedDate: String?
 
         public var invoiceUrl: String?
 
         public enum CodingKeys: String, CodingKey {
-            case updatedDate = "updated_date"
-
             case labelUrl = "label_url"
+
+            case updatedDate = "updated_date"
 
             case invoiceUrl = "invoice_url"
         }
 
         public init(invoiceUrl: String? = nil, labelUrl: String? = nil, updatedDate: String? = nil) {
-            self.updatedDate = updatedDate
-
             self.labelUrl = labelUrl
+
+            self.updatedDate = updatedDate
 
             self.invoiceUrl = invoiceUrl
         }
@@ -33,7 +33,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                updatedDate = try container.decode(String.self, forKey: .updatedDate)
+                labelUrl = try container.decode(String.self, forKey: .labelUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                labelUrl = try container.decode(String.self, forKey: .labelUrl)
+                updatedDate = try container.decode(String.self, forKey: .updatedDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,9 +60,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
-
             try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
+
+            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
 
             try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
         }

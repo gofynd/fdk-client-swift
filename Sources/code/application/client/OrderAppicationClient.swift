@@ -41,7 +41,7 @@ public extension ApplicationClient {
 
             ulrs["getShipmentById1"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}")
 
-            ulrs["getInvoiceByShipmentId1"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice")
+            ulrs["getInvoiceByShipmentIds"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice")
 
             ulrs["trackShipment1"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/track")
 
@@ -822,12 +822,12 @@ public extension ApplicationClient {
          * Summary: Get Invoice of a shipment
          * Description: Use this API to retrieve shipment invoice.
          **/
-        public func getInvoiceByShipmentId1(
+        public func getInvoiceByShipmentIds(
             shipmentId: String,
 
             onResponse: @escaping (_ response: ResponseGetInvoiceShipment1?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["getInvoiceByShipmentId1"] ?? ""
+            var fullUrl = relativeUrls["getInvoiceByShipmentIds"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
 
