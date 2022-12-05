@@ -10,36 +10,36 @@ public extension PlatformClient {
     class Document: Codable {
         public var verified: Bool?
 
-        public var url: String?
-
-        public var value: String
+        public var legalName: String?
 
         public var type: String
 
-        public var legalName: String?
+        public var value: String
+
+        public var url: String?
 
         public enum CodingKeys: String, CodingKey {
             case verified
 
-            case url
-
-            case value
+            case legalName = "legal_name"
 
             case type
 
-            case legalName = "legal_name"
+            case value
+
+            case url
         }
 
         public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
             self.verified = verified
 
-            self.url = url
-
-            self.value = value
+            self.legalName = legalName
 
             self.type = type
 
-            self.legalName = legalName
+            self.value = value
+
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,19 +54,19 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                legalName = try container.decode(String.self, forKey: .legalName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            value = try container.decode(String.self, forKey: .value)
-
             type = try container.decode(String.self, forKey: .type)
 
+            value = try container.decode(String.self, forKey: .value)
+
             do {
-                legalName = try container.decode(String.self, forKey: .legalName)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,13 +79,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(verified, forKey: .verified)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(legalName, forKey: .legalName)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(legalName, forKey: .legalName)
+            try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }
