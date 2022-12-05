@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var quantity: Int?
 
-        public var query: ArticleQuery?
-
         public var meta: [String: Any]?
+
+        public var query: ArticleQuery?
 
         public var articleAssignment: ArticleAssignment?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case quantity
 
-            case query
-
             case meta
+
+            case query
 
             case articleAssignment = "article_assignment"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.quantity = quantity
 
-            self.query = query
-
             self.meta = meta
+
+            self.query = query
 
             self.articleAssignment = articleAssignment
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                query = try container.decode(ArticleQuery.self, forKey: .query)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                query = try container.decode(ArticleQuery.self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(query, forKey: .query)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(query, forKey: .query)
 
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
         }
