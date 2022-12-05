@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var users: [String: Any]
 
-        public var uniqueExternalId: String
-
         public var aggregator: String
+
+        public var uniqueExternalId: String
 
         public var bankDetails: PayoutBankDetails
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case users
 
-            case uniqueExternalId = "unique_external_id"
-
             case aggregator
+
+            case uniqueExternalId = "unique_external_id"
 
             case bankDetails = "bank_details"
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             self.users = users
 
-            self.uniqueExternalId = uniqueExternalId
-
             self.aggregator = aggregator
+
+            self.uniqueExternalId = uniqueExternalId
 
             self.bankDetails = bankDetails
         }
@@ -57,9 +57,9 @@ public extension PlatformClient {
 
             users = try container.decode([String: Any].self, forKey: .users)
 
-            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
-
             aggregator = try container.decode(String.self, forKey: .aggregator)
+
+            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
 
             bankDetails = try container.decode(PayoutBankDetails.self, forKey: .bankDetails)
         }
@@ -73,9 +73,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(users, forKey: .users)
 
-            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
-
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
 
             try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
         }

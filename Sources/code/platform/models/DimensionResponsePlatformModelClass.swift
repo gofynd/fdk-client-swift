@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var height: Double
 
+        public var length: Double
+
         public var width: Double
 
         public var unit: String
-
-        public var length: Double
 
         public enum CodingKeys: String, CodingKey {
             case isDefault = "is_default"
 
             case height
 
+            case length
+
             case width
 
             case unit
-
-            case length
         }
 
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.height = height
 
+            self.length = length
+
             self.width = width
 
             self.unit = unit
-
-            self.length = length
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,11 +49,11 @@ public extension PlatformClient {
 
             height = try container.decode(Double.self, forKey: .height)
 
+            length = try container.decode(Double.self, forKey: .length)
+
             width = try container.decode(Double.self, forKey: .width)
 
             unit = try container.decode(String.self, forKey: .unit)
-
-            length = try container.decode(Double.self, forKey: .length)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -63,11 +63,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(height, forKey: .height)
 
+            try? container.encodeIfPresent(length, forKey: .length)
+
             try? container.encodeIfPresent(width, forKey: .width)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
-
-            try? container.encodeIfPresent(length, forKey: .length)
         }
     }
 }

@@ -8,66 +8,66 @@ public extension PlatformClient {
      */
 
     class MerchantOnBoardingRequest: Codable {
-        public var userId: String
-
-        public var creditLineId: String
-
-        public var status: String
+        public var appId: String
 
         public var aggregator: String
 
-        public var appId: String
+        public var status: String
+
+        public var creditLineId: String
+
+        public var userId: String
 
         public enum CodingKeys: String, CodingKey {
-            case userId = "user_id"
-
-            case creditLineId = "credit_line_id"
-
-            case status
+            case appId = "app_id"
 
             case aggregator
 
-            case appId = "app_id"
+            case status
+
+            case creditLineId = "credit_line_id"
+
+            case userId = "user_id"
         }
 
         public init(aggregator: String, appId: String, creditLineId: String, status: String, userId: String) {
-            self.userId = userId
-
-            self.creditLineId = creditLineId
-
-            self.status = status
+            self.appId = appId
 
             self.aggregator = aggregator
 
-            self.appId = appId
+            self.status = status
+
+            self.creditLineId = creditLineId
+
+            self.userId = userId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            userId = try container.decode(String.self, forKey: .userId)
-
-            creditLineId = try container.decode(String.self, forKey: .creditLineId)
-
-            status = try container.decode(String.self, forKey: .status)
+            appId = try container.decode(String.self, forKey: .appId)
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
-            appId = try container.decode(String.self, forKey: .appId)
+            status = try container.decode(String.self, forKey: .status)
+
+            creditLineId = try container.decode(String.self, forKey: .creditLineId)
+
+            userId = try container.decode(String.self, forKey: .userId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
-            try? container.encodeIfPresent(creditLineId, forKey: .creditLineId)
-
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(creditLineId, forKey: .creditLineId)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
         }
     }
 }

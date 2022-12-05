@@ -10,24 +10,24 @@ public extension PlatformClient {
     class SubscriptionConfigResponse: Codable {
         public var config: [String: Any]
 
-        public var aggregator: String
-
         public var success: Bool
+
+        public var aggregator: String
 
         public enum CodingKeys: String, CodingKey {
             case config
 
-            case aggregator
-
             case success
+
+            case aggregator
         }
 
         public init(aggregator: String, config: [String: Any], success: Bool) {
             self.config = config
 
-            self.aggregator = aggregator
-
             self.success = success
+
+            self.aggregator = aggregator
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             config = try container.decode([String: Any].self, forKey: .config)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
             success = try container.decode(Bool.self, forKey: .success)
+
+            aggregator = try container.decode(String.self, forKey: .aggregator)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(config, forKey: .config)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
         }
     }
 }
