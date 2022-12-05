@@ -10,26 +10,26 @@ public extension PlatformClient {
     class CategoryItems: Codable {
         public var uid: Int?
 
-        public var childs: [Child]?
+        public var name: String?
 
         public var banners: ImageUrls?
 
         public var slug: String?
 
-        public var name: String?
+        public var childs: [Child]?
 
         public var action: Action?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
-            case childs
+            case name
 
             case banners
 
             case slug
 
-            case name
+            case childs
 
             case action
         }
@@ -37,13 +37,13 @@ public extension PlatformClient {
         public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [Child]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
             self.uid = uid
 
-            self.childs = childs
+            self.name = name
 
             self.banners = banners
 
             self.slug = slug
 
-            self.name = name
+            self.childs = childs
 
             self.action = action
         }
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                childs = try container.decode([Child].self, forKey: .childs)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                childs = try container.decode([Child].self, forKey: .childs)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,13 +105,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(childs, forKey: .childs)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(childs, forKey: .childs)
 
             try? container.encodeIfPresent(action, forKey: .action)
         }
