@@ -10,18 +10,18 @@ public extension PlatformClient {
     class MetricsCount: Codable {
         public var key: String
 
-        public var value: Int
-
         public var options: [Options]?
+
+        public var value: Int
 
         public var text: String
 
         public enum CodingKeys: String, CodingKey {
             case key
 
-            case value
-
             case options
+
+            case value
 
             case text
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(key: String, options: [Options]? = nil, text: String, value: Int) {
             self.key = key
 
-            self.value = value
-
             self.options = options
+
+            self.value = value
 
             self.text = text
         }
@@ -41,8 +41,6 @@ public extension PlatformClient {
 
             key = try container.decode(String.self, forKey: .key)
 
-            value = try container.decode(Int.self, forKey: .value)
-
             do {
                 options = try container.decode([Options].self, forKey: .options)
 
@@ -50,6 +48,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            value = try container.decode(Int.self, forKey: .value)
 
             text = try container.decode(String.self, forKey: .text)
         }
@@ -59,9 +59,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(options, forKey: .options)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(text, forKey: .text)
         }

@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var sizes: [ProductSize]?
 
-        public var price: ProductListingPrice?
-
         public var stores: ProductSizeStores?
+
+        public var price: ProductListingPrice?
 
         public var discount: String?
 
@@ -26,9 +26,9 @@ public extension ApplicationClient {
 
             case sizes
 
-            case price
-
             case stores
+
+            case price
 
             case discount
         }
@@ -40,9 +40,9 @@ public extension ApplicationClient {
 
             self.sizes = sizes
 
-            self.price = price
-
             self.stores = stores
+
+            self.price = price
 
             self.discount = discount
         }
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                price = try container.decode(ProductListingPrice.self, forKey: .price)
+                stores = try container.decode(ProductSizeStores.self, forKey: .stores)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                stores = try container.decode(ProductSizeStores.self, forKey: .stores)
+                price = try container.decode(ProductListingPrice.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
 
-            try? container.encodeIfPresent(price, forKey: .price)
-
             try? container.encodeIfPresent(stores, forKey: .stores)
+
+            try? container.encodeIfPresent(price, forKey: .price)
 
             try? container.encodeIfPresent(discount, forKey: .discount)
         }

@@ -8,27 +8,27 @@ public extension PlatformClient {
      */
 
     class ProductsDataUpdates: Codable {
-        public var data: [String: Any]?
-
         public var filters: [[String: Any]]?
 
-        public enum CodingKeys: String, CodingKey {
-            case data
+        public var data: [String: Any]?
 
+        public enum CodingKeys: String, CodingKey {
             case filters
+
+            case data
         }
 
         public init(data: [String: Any]? = nil, filters: [[String: Any]]? = nil) {
-            self.data = data
-
             self.filters = filters
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode([String: Any].self, forKey: .data)
+                filters = try container.decode([[String: Any]].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                filters = try container.decode([[String: Any]].self, forKey: .filters)
+                data = try container.decode([String: Any].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

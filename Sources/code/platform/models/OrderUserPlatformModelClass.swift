@@ -12,46 +12,46 @@ public extension PlatformClient {
 
         public var mobile: Int
 
-        public var city: String
-
-        public var lastName: String
+        public var country: String
 
         public var state: String
 
-        public var pincode: String
-
-        public var address1: String?
-
-        public var email: String
+        public var address2: String?
 
         public var firstName: String
 
-        public var country: String
+        public var lastName: String
 
-        public var address2: String?
+        public var city: String
+
+        public var email: String
+
+        public var address1: String?
+
+        public var pincode: String
 
         public enum CodingKeys: String, CodingKey {
             case phone
 
             case mobile
 
-            case city
-
-            case lastName = "last_name"
+            case country
 
             case state
 
-            case pincode
-
-            case address1
-
-            case email
+            case address2
 
             case firstName = "first_name"
 
-            case country
+            case lastName = "last_name"
 
-            case address2
+            case city
+
+            case email
+
+            case address1
+
+            case pincode
         }
 
         public init(address1: String? = nil, address2: String? = nil, city: String, country: String, email: String, firstName: String, lastName: String, mobile: Int, phone: Int, pincode: String, state: String) {
@@ -59,23 +59,23 @@ public extension PlatformClient {
 
             self.mobile = mobile
 
-            self.city = city
-
-            self.lastName = lastName
+            self.country = country
 
             self.state = state
 
-            self.pincode = pincode
-
-            self.address1 = address1
-
-            self.email = email
+            self.address2 = address2
 
             self.firstName = firstName
 
-            self.country = country
+            self.lastName = lastName
 
-            self.address2 = address2
+            self.city = city
+
+            self.email = email
+
+            self.address1 = address1
+
+            self.pincode = pincode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -85,13 +85,25 @@ public extension PlatformClient {
 
             mobile = try container.decode(Int.self, forKey: .mobile)
 
-            city = try container.decode(String.self, forKey: .city)
-
-            lastName = try container.decode(String.self, forKey: .lastName)
+            country = try container.decode(String.self, forKey: .country)
 
             state = try container.decode(String.self, forKey: .state)
 
-            pincode = try container.decode(String.self, forKey: .pincode)
+            do {
+                address2 = try container.decode(String.self, forKey: .address2)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            firstName = try container.decode(String.self, forKey: .firstName)
+
+            lastName = try container.decode(String.self, forKey: .lastName)
+
+            city = try container.decode(String.self, forKey: .city)
+
+            email = try container.decode(String.self, forKey: .email)
 
             do {
                 address1 = try container.decode(String.self, forKey: .address1)
@@ -101,19 +113,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            email = try container.decode(String.self, forKey: .email)
-
-            firstName = try container.decode(String.self, forKey: .firstName)
-
-            country = try container.decode(String.self, forKey: .country)
-
-            do {
-                address2 = try container.decode(String.self, forKey: .address2)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            pincode = try container.decode(String.self, forKey: .pincode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -123,23 +123,23 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encodeIfPresent(city, forKey: .city)
-
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
+            try? container.encodeIfPresent(country, forKey: .country)
 
             try? container.encodeIfPresent(state, forKey: .state)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
-            try? container.encode(address1, forKey: .address1)
-
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encode(address2, forKey: .address2)
 
             try? container.encodeIfPresent(firstName, forKey: .firstName)
 
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
 
-            try? container.encode(address2, forKey: .address2)
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encode(address1, forKey: .address1)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
         }
     }
 }

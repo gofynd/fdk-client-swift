@@ -17,7 +17,7 @@ public extension ApplicationClient {
 
             ulrs["getShipmentById"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}")
 
-            ulrs["getInvoiceByShipmentIds"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice")
+            ulrs["getInvoiceByShipmentId"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice")
 
             ulrs["trackShipment"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/track")
 
@@ -33,7 +33,11 @@ public extension ApplicationClient {
 
             ulrs["updateShipmentStatus"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status")
 
-            ulrs["getInvoiceByShipmentId"] = config.domain.appendAsPath("/service/application/document/v1.0/orders/shipments/{shipment_id}/invoice")
+            ulrs["createOrderConfig"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/orders/co-config")
+
+            ulrs["getCreateOrderConfig"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/orders/co-config")
+
+            ulrs["getInvoiceByShipmentId1"] = config.domain.appendAsPath("/service/application/document/v1.0/orders/shipments/{shipment_id}/invoice")
 
             ulrs["getCreditNoteByShipmentId"] = config.domain.appendAsPath("/service/application/document/v1.0/orders/shipments/{shipment_id}/credit-note")
 
@@ -252,12 +256,12 @@ public extension ApplicationClient {
          * Summary: Get Invoice of a shipment
          * Description: Use this API to retrieve shipment invoice.
          **/
-        public func getInvoiceByShipmentIds(
+        public func getInvoiceByShipmentId(
             shipmentId: String,
 
             onResponse: @escaping (_ response: ResponseGetInvoiceShipment?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["getInvoiceByShipmentIds"] ?? ""
+            var fullUrl = relativeUrls["getInvoiceByShipmentId"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
 
@@ -605,10 +609,89 @@ public extension ApplicationClient {
 
         /**
          *
+         * Summary:
+         * Description: createOrderConfig
+         **/
+        public func createOrderConfig(
+            body: CreateOrderConfigData,
+            onResponse: @escaping (_ response: CreateOrderConfigDataResponse?, _ error: FDKError?) -> Void
+        ) {
+            let fullUrl = relativeUrls["createOrderConfig"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CreateOrderConfigDataResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary:
+         * Description: getCreateOrderConfig
+         **/
+        public func getCreateOrderConfig(
+            onResponse: @escaping (_ response: CreateOrderConfigData?, _ error: FDKError?) -> Void
+        ) {
+            let fullUrl = relativeUrls["getCreateOrderConfig"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CreateOrderConfigData.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
          * Summary: Get Presigned URL to download Invoice
          * Description: Use this API to generate Presigned URLs for downloading Invoice
          **/
-        public func getInvoiceByShipmentId(
+        public func getInvoiceByShipmentId1(
             shipmentId: String,
             parameters: invoiceParameter?,
 
@@ -620,7 +703,7 @@ public extension ApplicationClient {
                 xQuery["parameters"] = value
             }
 
-            var fullUrl = relativeUrls["getInvoiceByShipmentId"] ?? ""
+            var fullUrl = relativeUrls["getInvoiceByShipmentId1"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
 
