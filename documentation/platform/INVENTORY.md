@@ -6,11 +6,11 @@
 
 ## Inventory Methods
 
-* [getConfigByCompany](#getconfigbycompany)
-* [suppressStores](#suppressstores)
 * [getJobsByCompany](#getjobsbycompany)
 * [updateJob](#updatejob)
 * [createJob](#createjob)
+* [suppressStores](#suppressstores)
+* [getConfigByCompany](#getconfigbycompany)
 * [getJobSteps](#getjobsteps)
 * [getJobByCompanyAndIntegration](#getjobbycompanyandintegration)
 * [disable](#disable)
@@ -22,110 +22,6 @@
 
 
 ## Methods with example and description
-
-
-#### getConfigByCompany
-Get Slingshot Configuration Of  A Company
-
-
-
-
-```swift
-client.inventory.getConfigByCompany() { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-
-REST Endpoint that returns all configuration detail of a company
-
-*Returned Response:*
-
-
-
-
-[ResponseEnvelopeListSlingshotConfigurationDetail](#ResponseEnvelopeListSlingshotConfigurationDetail)
-
-Successful operation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### suppressStores
-Get Slingshot Configuration Of  A Company
-
-
-
-
-```swift
-client.inventory.suppressStores(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | SuppressStorePayload | yes | Request body |
-
-
-REST Endpoint that returns all configuration detail of a company
-
-*Returned Response:*
-
-
-
-
-[ResponseEnvelopeKafkaResponse](#ResponseEnvelopeKafkaResponse)
-
-Successful operation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 #### getJobsByCompany
@@ -269,6 +165,110 @@ REST Endpoint that creates a new job config
 [ResponseEnvelopeString](#ResponseEnvelopeString)
 
 Job Config Created Successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### suppressStores
+Get Slingshot Configuration Of  A Company
+
+
+
+
+```swift
+client.inventory.suppressStores(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | SuppressStorePayload | yes | Request body |
+
+
+REST Endpoint that returns all configuration detail of a company
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeKafkaResponse](#ResponseEnvelopeKafkaResponse)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getConfigByCompany
+Get Slingshot Configuration Of  A Company
+
+
+
+
+```swift
+client.inventory.getConfigByCompany() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+REST Endpoint that returns all configuration detail of a company
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeListSlingshotConfigurationDetail](#ResponseEnvelopeListSlingshotConfigurationDetail)
+
+Successful operation
 
 
 
@@ -685,53 +685,57 @@ Successful operation
 
  
  
- #### [GCompany](#GCompany)
+ #### [DataTresholdDTO](#DataTresholdDTO)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | integration | String? |  yes  |  |
- | level | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | opted | Bool? |  yes  |  |
- | permissions | [String]? |  yes  |  |
- | token | String? |  yes  |  |
- | name | String? |  yes  |  |
- | stores | [[GStore](#GStore)]? |  yes  |  |
- | gstores | [[GStore](#GStore)]? |  yes  |  |
+ | minPrice | Double? |  yes  |  |
+ | safeStock | Int? |  yes  |  |
+ | periodThreshold | Int? |  yes  |  |
+ | periodThresholdType | String? |  yes  |  |
+ | periodTypeList | [[GenericDTO](#GenericDTO)]? |  yes  |  |
 
 ---
 
 
  
  
- #### [GStore](#GStore)
+ #### [GenericDTO](#GenericDTO)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | integration | String? |  yes  |  |
- | level | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | opted | Bool? |  yes  |  |
- | permissions | [String]? |  yes  |  |
- | token | String? |  yes  |  |
- | code | String? |  yes  |  |
- | name | String? |  yes  |  |
- | data | [StoreData](#StoreData)? |  yes  |  |
+ | text | String? |  yes  |  |
+ | value | [String: Any]? |  yes  |  |
 
 ---
 
 
  
  
- #### [Metum](#Metum)
+ #### [JobConfigDTO](#JobConfigDTO)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | name | String? |  yes  |  |
- | value | String? |  yes  |  |
+ | integrationData | [String: Any]? |  yes  |  |
+ | companyName | String? |  yes  |  |
+ | integration | String |  no  |  |
+ | companyId | Int |  no  |  |
+ | taskDetails | [TaskDTO](#TaskDTO)? |  yes  |  |
+ | thresholdDetails | [DataTresholdDTO](#DataTresholdDTO)? |  yes  |  |
+ | jobCode | String? |  yes  |  |
+ | alias | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TaskDTO](#TaskDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | Int? |  yes  |  |
+ | groupList | [[GenericDTO](#GenericDTO)]? |  yes  |  |
 
 ---
 
@@ -755,7 +759,7 @@ Successful operation
 
  
  
- #### [ResponseEnvelopeListSlingshotConfigurationDetail](#ResponseEnvelopeListSlingshotConfigurationDetail)
+ #### [ResponseEnvelopeString](#ResponseEnvelopeString)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -766,48 +770,10 @@ Successful operation
  | message | String? |  yes  |  |
  | totalTimeTakenInMillis | Int? |  yes  |  |
  | httpStatus | String? |  yes  |  |
- | items | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)]? |  yes  |  |
- | payload | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)]? |  yes  |  |
+ | items | String? |  yes  |  |
+ | payload | String? |  yes  |  |
  | traceId | String? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
-
----
-
-
- 
- 
- #### [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | integration | [SlingshotIntegration](#SlingshotIntegration)? |  yes  |  |
- | companies | [[GCompany](#GCompany)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [SlingshotIntegration](#SlingshotIntegration)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | description | String? |  yes  |  |
- | name | String? |  yes  |  |
- | slug | String? |  yes  |  |
- | meta | [[Metum](#Metum)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [StoreData](#StoreData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | locationId | String? |  yes  |  |
 
 ---
 
@@ -886,64 +852,59 @@ Successful operation
 
  
  
- #### [DataTresholdDTO](#DataTresholdDTO)
+ #### [GCompany](#GCompany)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | minPrice | Double? |  yes  |  |
- | safeStock | Int? |  yes  |  |
- | periodThreshold | Int? |  yes  |  |
- | periodThresholdType | String? |  yes  |  |
- | periodTypeList | [[GenericDTO](#GenericDTO)]? |  yes  |  |
+ | id | String? |  yes  |  |
+ | integration | String? |  yes  |  |
+ | level | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | opted | Bool? |  yes  |  |
+ | permissions | [String]? |  yes  |  |
+ | token | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | stores | [[GStore](#GStore)]? |  yes  |  |
 
 ---
 
 
  
  
- #### [GenericDTO](#GenericDTO)
+ #### [GStore](#GStore)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | text | String? |  yes  |  |
- | value | [String: Any]? |  yes  |  |
+ | id | String? |  yes  |  |
+ | integration | String? |  yes  |  |
+ | level | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | opted | Bool? |  yes  |  |
+ | permissions | [String]? |  yes  |  |
+ | token | String? |  yes  |  |
+ | code | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | data | [StoreData](#StoreData)? |  yes  |  |
 
 ---
 
 
  
  
- #### [JobConfigDTO](#JobConfigDTO)
+ #### [Metum](#Metum)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | integration | String |  no  |  |
- | integrationData | [String: Any]? |  yes  |  |
- | companyName | String? |  yes  |  |
- | companyId | Int |  no  |  |
- | taskDetails | [TaskDTO](#TaskDTO)? |  yes  |  |
- | thresholdDetails | [DataTresholdDTO](#DataTresholdDTO)? |  yes  |  |
- | jobCode | String? |  yes  |  |
- | alias | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | value | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [TaskDTO](#TaskDTO)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | Int? |  yes  |  |
- | groupList | [[GenericDTO](#GenericDTO)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [ResponseEnvelopeString](#ResponseEnvelopeString)
+ #### [ResponseEnvelopeListSlingshotConfigurationDetail](#ResponseEnvelopeListSlingshotConfigurationDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -954,10 +915,48 @@ Successful operation
  | message | String? |  yes  |  |
  | totalTimeTakenInMillis | Int? |  yes  |  |
  | httpStatus | String? |  yes  |  |
- | items | String? |  yes  |  |
- | payload | String? |  yes  |  |
+ | items | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)]? |  yes  |  |
+ | payload | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)]? |  yes  |  |
  | traceId | String? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | integration | [SlingshotIntegration](#SlingshotIntegration)? |  yes  |  |
+ | companies | [[GCompany](#GCompany)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SlingshotIntegration](#SlingshotIntegration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | meta | [[Metum](#Metum)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreData](#StoreData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | locationId | String? |  yes  |  |
 
 ---
 
@@ -1273,8 +1272,8 @@ Successful operation
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | integration | String |  no  |  |
  | companyName | String |  no  |  |
+ | integration | String |  no  |  |
  | companyId | Int |  no  |  |
  | data | [JobConfig](#JobConfig)? |  yes  |  |
 

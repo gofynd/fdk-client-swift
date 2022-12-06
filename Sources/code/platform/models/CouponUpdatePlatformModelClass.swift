@@ -10,102 +10,102 @@ public extension PlatformClient {
     class CouponUpdate: Codable {
         public var identifiers: Identifier
 
-        public var schedule: CouponSchedule?
+        public var typeSlug: String
+
+        public var validity: Validity
 
         public var author: CouponAuthor?
 
         public var validation: Validation?
 
+        public var action: CouponAction?
+
         public var displayMeta: DisplayMeta
 
         public var rule: [Rule]
 
-        public var ownership: Ownership
-
         public var ruleDefinition: RuleDefinition
 
-        public var restrictions: Restrictions?
-
-        public var code: String
-
-        public var state: State?
-
-        public var typeSlug: String
-
-        public var action: CouponAction?
-
-        public var tags: [String]?
+        public var ownership: Ownership
 
         public var dateMeta: CouponDateMeta?
 
-        public var validity: Validity
+        public var restrictions: Restrictions?
+
+        public var schedule: CouponSchedule?
+
+        public var state: State?
+
+        public var tags: [String]?
+
+        public var code: String
 
         public enum CodingKeys: String, CodingKey {
             case identifiers
 
-            case schedule = "_schedule"
+            case typeSlug = "type_slug"
+
+            case validity
 
             case author
 
             case validation
 
+            case action
+
             case displayMeta = "display_meta"
 
             case rule
 
-            case ownership
-
             case ruleDefinition = "rule_definition"
 
-            case restrictions
-
-            case code
-
-            case state
-
-            case typeSlug = "type_slug"
-
-            case action
-
-            case tags
+            case ownership
 
             case dateMeta = "date_meta"
 
-            case validity
+            case restrictions
+
+            case schedule = "_schedule"
+
+            case state
+
+            case tags
+
+            case code
         }
 
         public init(action: CouponAction? = nil, author: CouponAuthor? = nil, code: String, dateMeta: CouponDateMeta? = nil, displayMeta: DisplayMeta, identifiers: Identifier, ownership: Ownership, restrictions: Restrictions? = nil, rule: [Rule], ruleDefinition: RuleDefinition, state: State? = nil, tags: [String]? = nil, typeSlug: String, validation: Validation? = nil, validity: Validity, schedule: CouponSchedule? = nil) {
             self.identifiers = identifiers
 
-            self.schedule = schedule
+            self.typeSlug = typeSlug
+
+            self.validity = validity
 
             self.author = author
 
             self.validation = validation
 
+            self.action = action
+
             self.displayMeta = displayMeta
 
             self.rule = rule
 
-            self.ownership = ownership
-
             self.ruleDefinition = ruleDefinition
 
-            self.restrictions = restrictions
-
-            self.code = code
-
-            self.state = state
-
-            self.typeSlug = typeSlug
-
-            self.action = action
-
-            self.tags = tags
+            self.ownership = ownership
 
             self.dateMeta = dateMeta
 
-            self.validity = validity
+            self.restrictions = restrictions
+
+            self.schedule = schedule
+
+            self.state = state
+
+            self.tags = tags
+
+            self.code = code
         }
 
         required public init(from decoder: Decoder) throws {
@@ -113,13 +113,9 @@ public extension PlatformClient {
 
             identifiers = try container.decode(Identifier.self, forKey: .identifiers)
 
-            do {
-                schedule = try container.decode(CouponSchedule.self, forKey: .schedule)
+            typeSlug = try container.decode(String.self, forKey: .typeSlug)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            validity = try container.decode(Validity.self, forKey: .validity)
 
             do {
                 author = try container.decode(CouponAuthor.self, forKey: .author)
@@ -137,13 +133,29 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            do {
+                action = try container.decode(CouponAction.self, forKey: .action)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             displayMeta = try container.decode(DisplayMeta.self, forKey: .displayMeta)
 
             rule = try container.decode([Rule].self, forKey: .rule)
 
+            ruleDefinition = try container.decode(RuleDefinition.self, forKey: .ruleDefinition)
+
             ownership = try container.decode(Ownership.self, forKey: .ownership)
 
-            ruleDefinition = try container.decode(RuleDefinition.self, forKey: .ruleDefinition)
+            do {
+                dateMeta = try container.decode(CouponDateMeta.self, forKey: .dateMeta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 restrictions = try container.decode(Restrictions.self, forKey: .restrictions)
@@ -153,20 +165,16 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            code = try container.decode(String.self, forKey: .code)
-
             do {
-                state = try container.decode(State.self, forKey: .state)
+                schedule = try container.decode(CouponSchedule.self, forKey: .schedule)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            typeSlug = try container.decode(String.self, forKey: .typeSlug)
-
             do {
-                action = try container.decode(CouponAction.self, forKey: .action)
+                state = try container.decode(State.self, forKey: .state)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -181,15 +189,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                dateMeta = try container.decode(CouponDateMeta.self, forKey: .dateMeta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            validity = try container.decode(Validity.self, forKey: .validity)
+            code = try container.decode(String.self, forKey: .code)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -197,35 +197,35 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(identifiers, forKey: .identifiers)
 
-            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            try? container.encodeIfPresent(typeSlug, forKey: .typeSlug)
+
+            try? container.encodeIfPresent(validity, forKey: .validity)
 
             try? container.encodeIfPresent(author, forKey: .author)
 
             try? container.encodeIfPresent(validation, forKey: .validation)
 
+            try? container.encodeIfPresent(action, forKey: .action)
+
             try? container.encodeIfPresent(displayMeta, forKey: .displayMeta)
 
             try? container.encodeIfPresent(rule, forKey: .rule)
 
-            try? container.encodeIfPresent(ownership, forKey: .ownership)
-
             try? container.encodeIfPresent(ruleDefinition, forKey: .ruleDefinition)
 
-            try? container.encodeIfPresent(restrictions, forKey: .restrictions)
-
-            try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(typeSlug, forKey: .typeSlug)
-
-            try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(tags, forKey: .tags)
+            try? container.encodeIfPresent(ownership, forKey: .ownership)
 
             try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
 
-            try? container.encodeIfPresent(validity, forKey: .validity)
+            try? container.encodeIfPresent(restrictions, forKey: .restrictions)
+
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+
+            try? container.encodeIfPresent(state, forKey: .state)
+
+            try? container.encodeIfPresent(tags, forKey: .tags)
+
+            try? container.encodeIfPresent(code, forKey: .code)
         }
     }
 }

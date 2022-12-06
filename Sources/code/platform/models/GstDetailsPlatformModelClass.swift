@@ -10,7 +10,7 @@ public extension PlatformClient {
     class GstDetails: Codable {
         public var brandCalculatedAmount: Double?
 
-        public var gstFee: String?
+        public var gstFee: Double?
 
         public var gstTag: String?
 
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case isDefaultHsnCode = "is_default_hsn_code"
         }
 
-        public init(brandCalculatedAmount: Double? = nil, gstFee: String? = nil, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, isDefaultHsnCode: Bool? = nil, valueOfGood: Double? = nil) {
+        public init(brandCalculatedAmount: Double? = nil, gstFee: Double? = nil, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, isDefaultHsnCode: Bool? = nil, valueOfGood: Double? = nil) {
             self.brandCalculatedAmount = brandCalculatedAmount
 
             self.gstFee = gstFee
@@ -66,7 +66,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                gstFee = try container.decode(String.self, forKey: .gstFee)
+                gstFee = try container.decode(Double.self, forKey: .gstFee)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
