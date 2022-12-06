@@ -7,30 +7,30 @@ public extension ApplicationClient {
          Used By: Order
      */
     class ShipmentPayment1: Codable {
-        public var logo: String?
+        public var mode: String?
 
         public var status: String?
 
-        public var mode: String?
+        public var logo: String?
 
         public var mop: String?
 
         public enum CodingKeys: String, CodingKey {
-            case logo
+            case mode
 
             case status
 
-            case mode
+            case logo
 
             case mop
         }
 
         public init(logo: String? = nil, mode: String? = nil, mop: String? = nil, status: String? = nil) {
-            self.logo = logo
+            self.mode = mode
 
             self.status = status
 
-            self.mode = mode
+            self.logo = logo
 
             self.mop = mop
         }
@@ -39,7 +39,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                mode = try container.decode(String.self, forKey: .mode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                mode = try container.decode(String.self, forKey: .mode)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,11 +74,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(mode, forKey: .mode)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(mop, forKey: .mop)
         }
