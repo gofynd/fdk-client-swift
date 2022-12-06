@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var gender: String?
 
-        public var name: String?
-
         public var email: String?
+
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case mobile
 
             case gender
 
-            case name
-
             case email
+
+            case name
         }
 
         public init(email: String? = nil, gender: String? = nil, mobile: String? = nil, name: String? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.gender = gender
 
-            self.name = name
-
             self.email = email
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(gender, forKey: .gender)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
