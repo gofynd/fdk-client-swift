@@ -7,8 +7,6 @@ public extension ApplicationClient {
          Used By: Lead
      */
     class CategorySchema: Codable {
-        public var id: String?
-
         public var display: String?
 
         public var key: String?
@@ -20,8 +18,6 @@ public extension ApplicationClient {
         public var feedbackForm: FeedbackForm?
 
         public enum CodingKeys: String, CodingKey {
-            case id = "_id"
-
             case display
 
             case key
@@ -33,9 +29,7 @@ public extension ApplicationClient {
             case feedbackForm = "feedback_form"
         }
 
-        public init(display: String? = nil, feedbackForm: FeedbackForm? = nil, groupId: Double? = nil, key: String? = nil, subCategories: CategorySchema? = nil, id: String? = nil) {
-            self.id = id
-
+        public init(display: String? = nil, feedbackForm: FeedbackForm? = nil, groupId: Double? = nil, key: String? = nil, subCategories: CategorySchema? = nil) {
             self.display = display
 
             self.key = key
@@ -49,14 +43,6 @@ public extension ApplicationClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                id = try container.decode(String.self, forKey: .id)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 display = try container.decode(String.self, forKey: .display)
@@ -101,8 +87,6 @@ public extension ApplicationClient {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(display, forKey: .display)
 
