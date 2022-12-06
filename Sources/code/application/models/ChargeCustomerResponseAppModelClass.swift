@@ -13,13 +13,13 @@ public extension ApplicationClient {
 
         public var message: String
 
-        public var orderId: String
-
-        public var cartId: String?
-
         public var status: String
 
+        public var orderId: String
+
         public var deliveryAddressId: String?
+
+        public var cartId: String?
 
         public enum CodingKeys: String, CodingKey {
             case success
@@ -28,13 +28,13 @@ public extension ApplicationClient {
 
             case message
 
-            case orderId = "order_id"
-
-            case cartId = "cart_id"
-
             case status
 
+            case orderId = "order_id"
+
             case deliveryAddressId = "delivery_address_id"
+
+            case cartId = "cart_id"
         }
 
         public init(aggregator: String, cartId: String? = nil, deliveryAddressId: String? = nil, message: String, orderId: String, status: String, success: Bool) {
@@ -44,13 +44,13 @@ public extension ApplicationClient {
 
             self.message = message
 
-            self.orderId = orderId
-
-            self.cartId = cartId
-
             self.status = status
 
+            self.orderId = orderId
+
             self.deliveryAddressId = deliveryAddressId
+
+            self.cartId = cartId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,20 +62,20 @@ public extension ApplicationClient {
 
             message = try container.decode(String.self, forKey: .message)
 
+            status = try container.decode(String.self, forKey: .status)
+
             orderId = try container.decode(String.self, forKey: .orderId)
 
             do {
-                cartId = try container.decode(String.self, forKey: .cartId)
+                deliveryAddressId = try container.decode(String.self, forKey: .deliveryAddressId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            status = try container.decode(String.self, forKey: .status)
-
             do {
-                deliveryAddressId = try container.decode(String.self, forKey: .deliveryAddressId)
+                cartId = try container.decode(String.self, forKey: .cartId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,13 +92,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
-
-            try? container.encode(cartId, forKey: .cartId)
-
             try? container.encodeIfPresent(status, forKey: .status)
 
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
+
             try? container.encode(deliveryAddressId, forKey: .deliveryAddressId)
+
+            try? container.encode(cartId, forKey: .cartId)
         }
     }
 }

@@ -10,42 +10,42 @@ public extension PlatformClient {
     class ProductPrice: Codable {
         public var selling: Double?
 
-        public var effective: Double?
-
         public var currencySymbol: String?
 
-        public var marked: Double?
+        public var effective: Double?
 
         public var currencyCode: String?
 
         public var addOn: Double?
 
+        public var marked: Double?
+
         public enum CodingKeys: String, CodingKey {
             case selling
 
-            case effective
-
             case currencySymbol = "currency_symbol"
 
-            case marked
+            case effective
 
             case currencyCode = "currency_code"
 
             case addOn = "add_on"
+
+            case marked
         }
 
         public init(addOn: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Double? = nil, marked: Double? = nil, selling: Double? = nil) {
             self.selling = selling
 
-            self.effective = effective
-
             self.currencySymbol = currencySymbol
 
-            self.marked = marked
+            self.effective = effective
 
             self.currencyCode = currencyCode
 
             self.addOn = addOn
+
+            self.marked = marked
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,14 +53,6 @@ public extension PlatformClient {
 
             do {
                 selling = try container.decode(Double.self, forKey: .selling)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                effective = try container.decode(Double.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                marked = try container.decode(Double.self, forKey: .marked)
+                effective = try container.decode(Double.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,6 +90,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                marked = try container.decode(Double.self, forKey: .marked)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -105,15 +105,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(selling, forKey: .selling)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
-
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(marked, forKey: .marked)
+            try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(addOn, forKey: .addOn)
+
+            try? container.encodeIfPresent(marked, forKey: .marked)
         }
     }
 }
