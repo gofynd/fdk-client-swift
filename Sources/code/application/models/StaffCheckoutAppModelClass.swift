@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class StaffCheckout: Codable {
         public var firstName: String
 
-        public var lastName: String
-
         public var id: String
+
+        public var lastName: String
 
         public var user: String
 
         public enum CodingKeys: String, CodingKey {
             case firstName = "first_name"
 
-            case lastName = "last_name"
-
             case id = "_id"
+
+            case lastName = "last_name"
 
             case user
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(firstName: String, lastName: String, user: String, id: String) {
             self.firstName = firstName
 
-            self.lastName = lastName
-
             self.id = id
+
+            self.lastName = lastName
 
             self.user = user
         }
@@ -40,9 +40,9 @@ public extension ApplicationClient {
 
             firstName = try container.decode(String.self, forKey: .firstName)
 
-            lastName = try container.decode(String.self, forKey: .lastName)
-
             id = try container.decode(String.self, forKey: .id)
+
+            lastName = try container.decode(String.self, forKey: .lastName)
 
             user = try container.decode(String.self, forKey: .user)
         }
@@ -52,9 +52,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(firstName, forKey: .firstName)
 
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
 
             try? container.encodeIfPresent(user, forKey: .user)
         }

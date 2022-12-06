@@ -3,37 +3,37 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: Timestamp
+         Model: createOrderConfigResponse
          Used By: Order
      */
-    class Timestamp: Codable {
-        public var showPromise: Bool?
+    class createOrderConfigResponse: Codable {
+        public var isInserted: Bool?
 
-        public var min: String?
+        public var isUpserted: Bool?
 
-        public var max: String?
+        public var acknowledged: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case showPromise = "show_promise"
+            case isInserted = "is_inserted"
 
-            case min
+            case isUpserted = "is_upserted"
 
-            case max
+            case acknowledged
         }
 
-        public init(max: String? = nil, min: String? = nil, showPromise: Bool? = nil) {
-            self.showPromise = showPromise
+        public init(acknowledged: Bool? = nil, isInserted: Bool? = nil, isUpserted: Bool? = nil) {
+            self.isInserted = isInserted
 
-            self.min = min
+            self.isUpserted = isUpserted
 
-            self.max = max
+            self.acknowledged = acknowledged
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                showPromise = try container.decode(Bool.self, forKey: .showPromise)
+                isInserted = try container.decode(Bool.self, forKey: .isInserted)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                min = try container.decode(String.self, forKey: .min)
+                isUpserted = try container.decode(Bool.self, forKey: .isUpserted)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                max = try container.decode(String.self, forKey: .max)
+                acknowledged = try container.decode(Bool.self, forKey: .acknowledged)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(showPromise, forKey: .showPromise)
+            try? container.encodeIfPresent(isInserted, forKey: .isInserted)
 
-            try? container.encodeIfPresent(min, forKey: .min)
+            try? container.encodeIfPresent(isUpserted, forKey: .isUpserted)
 
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encodeIfPresent(acknowledged, forKey: .acknowledged)
         }
     }
 }

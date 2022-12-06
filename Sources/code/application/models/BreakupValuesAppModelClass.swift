@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class BreakupValues: Codable {
         public var display: String?
 
-        public var value: Double?
-
         public var name: String?
+
+        public var value: Double?
 
         public enum CodingKeys: String, CodingKey {
             case display
 
-            case value
-
             case name
+
+            case value
         }
 
         public init(display: String? = nil, name: String? = nil, value: Double? = nil) {
             self.display = display
 
-            self.value = value
-
             self.name = name
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                value = try container.decode(Double.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
