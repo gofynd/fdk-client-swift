@@ -10,12 +10,6 @@ public extension PlatformClient {
     class OverrideCartItem: Codable {
         public var promoList: [OverrideCartItemPromo]?
 
-        public var quantity: Int?
-
-        public var priceEffective: Double
-
-        public var priceMarked: Double
-
         public var extraMeta: [String: Any]?
 
         public var itemId: Int
@@ -24,18 +18,18 @@ public extension PlatformClient {
 
         public var size: String
 
+        public var amountPaid: Double
+
+        public var priceEffective: Double
+
         public var discount: Double
 
-        public var amountPaid: Double
+        public var quantity: Int?
+
+        public var priceMarked: Double
 
         public enum CodingKeys: String, CodingKey {
             case promoList = "promo_list"
-
-            case quantity
-
-            case priceEffective = "price_effective"
-
-            case priceMarked = "price_marked"
 
             case extraMeta = "extra_meta"
 
@@ -45,19 +39,19 @@ public extension PlatformClient {
 
             case size
 
+            case amountPaid = "amount_paid"
+
+            case priceEffective = "price_effective"
+
             case discount
 
-            case amountPaid = "amount_paid"
+            case quantity
+
+            case priceMarked = "price_marked"
         }
 
         public init(amountPaid: Double, discount: Double, extraMeta: [String: Any]? = nil, itemId: Int, priceEffective: Double, priceMarked: Double, promoList: [OverrideCartItemPromo]? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil, size: String) {
             self.promoList = promoList
-
-            self.quantity = quantity
-
-            self.priceEffective = priceEffective
-
-            self.priceMarked = priceMarked
 
             self.extraMeta = extraMeta
 
@@ -67,9 +61,15 @@ public extension PlatformClient {
 
             self.size = size
 
+            self.amountPaid = amountPaid
+
+            self.priceEffective = priceEffective
+
             self.discount = discount
 
-            self.amountPaid = amountPaid
+            self.quantity = quantity
+
+            self.priceMarked = priceMarked
         }
 
         required public init(from decoder: Decoder) throws {
@@ -82,18 +82,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            priceEffective = try container.decode(Double.self, forKey: .priceEffective)
-
-            priceMarked = try container.decode(Double.self, forKey: .priceMarked)
 
             do {
                 extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
@@ -115,21 +103,27 @@ public extension PlatformClient {
 
             size = try container.decode(String.self, forKey: .size)
 
+            amountPaid = try container.decode(Double.self, forKey: .amountPaid)
+
+            priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+
             discount = try container.decode(Double.self, forKey: .discount)
 
-            amountPaid = try container.decode(Double.self, forKey: .amountPaid)
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            priceMarked = try container.decode(Double.self, forKey: .priceMarked)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(promoList, forKey: .promoList)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
-            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
-
-            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
 
             try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
 
@@ -139,9 +133,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
+
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+
             try? container.encodeIfPresent(discount, forKey: .discount)
 
-            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
         }
     }
 }

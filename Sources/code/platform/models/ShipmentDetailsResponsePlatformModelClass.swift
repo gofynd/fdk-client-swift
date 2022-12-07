@@ -10,24 +10,30 @@ public extension PlatformClient {
     class ShipmentDetailsResponse: Codable {
         public var shipments: [Shipment]?
 
-        public var success: Bool
-
         public var order: OrderDict?
+
+        public var isValidated: Bool?
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case shipments
 
-            case success
-
             case order
+
+            case isValidated = "is_validated"
+
+            case success
         }
 
-        public init(order: OrderDict? = nil, shipments: [Shipment]? = nil, success: Bool) {
+        public init(isValidated: Bool? = nil, order: OrderDict? = nil, shipments: [Shipment]? = nil, success: Bool) {
             self.shipments = shipments
 
-            self.success = success
-
             self.order = order
+
+            self.isValidated = isValidated
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,8 +47,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             do {
                 order = try container.decode(OrderDict.self, forKey: .order)
 
@@ -50,6 +54,16 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                isValidated = try container.decode(Bool.self, forKey: .isValidated)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -57,9 +71,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(order, forKey: .order)
+
+            try? container.encodeIfPresent(isValidated, forKey: .isValidated)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

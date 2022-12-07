@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class AttributeDetail: Codable {
         public var display: String?
 
-        public var key: String?
+        public var description: String?
 
         public var logo: String?
 
-        public var description: String?
+        public var key: String?
 
         public enum CodingKeys: String, CodingKey {
             case display
 
-            case key
+            case description
 
             case logo
 
-            case description
+            case key
         }
 
         public init(description: String? = nil, display: String? = nil, key: String? = nil, logo: String? = nil) {
             self.display = display
 
-            self.key = key
+            self.description = description
 
             self.logo = logo
 
-            self.description = description
+            self.key = key
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(key, forKey: .key)
         }
     }
 }

@@ -1,27 +1,20 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension ApplicationClient {
     /*
-         Model: HSNCodesResponse
-         Used By: Catalog
+         Model: CommonError
+         Used By: Content
      */
-
-    class HSNCodesResponse: Codable {
+    class CommonError: Codable {
         public var message: String?
-
-        public var data: HSNData?
 
         public enum CodingKeys: String, CodingKey {
             case message
-
-            case data
         }
 
-        public init(data: HSNData? = nil, message: String? = nil) {
+        public init(message: String? = nil) {
             self.message = message
-
-            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -34,22 +27,12 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                data = try container.decode(HSNData.self, forKey: .data)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(message, forKey: .message)
-
-            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

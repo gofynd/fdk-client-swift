@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class LadderOfferItem: Codable {
         public var minQuantity: Int?
 
-        public var margin: Int?
-
         public var type: String?
+
+        public var margin: Int?
 
         public var price: LadderPrice?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case minQuantity = "min_quantity"
 
-            case margin
-
             case type
+
+            case margin
 
             case price
 
@@ -32,9 +32,9 @@ public extension ApplicationClient {
         public init(margin: Int? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: LadderPrice? = nil, type: String? = nil) {
             self.minQuantity = minQuantity
 
-            self.margin = margin
-
             self.type = type
+
+            self.margin = margin
 
             self.price = price
 
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                margin = try container.decode(Int.self, forKey: .margin)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                margin = try container.decode(Int.self, forKey: .margin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
 
-            try? container.encodeIfPresent(margin, forKey: .margin)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(margin, forKey: .margin)
 
             try? container.encodeIfPresent(price, forKey: .price)
 

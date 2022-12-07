@@ -7,60 +7,60 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductVariantItemResponse: Codable {
-        public var name: String?
-
-        public var isAvailable: Bool?
+        public var action: ProductListingAction?
 
         public var colorName: String?
 
-        public var action: ProductListingAction?
+        public var uid: Int?
+
+        public var isAvailable: Bool?
+
+        public var value: String?
 
         public var color: String?
 
-        public var uid: Int?
-
         public var medias: [Media]?
 
-        public var value: String?
+        public var name: String?
 
         public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
-            case isAvailable = "is_available"
+            case action
 
             case colorName = "color_name"
 
-            case action
+            case uid
+
+            case isAvailable = "is_available"
+
+            case value
 
             case color
 
-            case uid
-
             case medias
 
-            case value
+            case name
 
             case slug
         }
 
         public init(action: ProductListingAction? = nil, color: String? = nil, colorName: String? = nil, isAvailable: Bool? = nil, medias: [Media]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, value: String? = nil) {
-            self.name = name
-
-            self.isAvailable = isAvailable
+            self.action = action
 
             self.colorName = colorName
 
-            self.action = action
+            self.uid = uid
+
+            self.isAvailable = isAvailable
+
+            self.value = value
 
             self.color = color
 
-            self.uid = uid
-
             self.medias = medias
 
-            self.value = value
+            self.name = name
 
             self.slug = slug
         }
@@ -69,15 +69,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +85,23 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,14 +117,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 medias = try container.decode([Media].self, forKey: .medias)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -125,7 +125,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -144,21 +144,21 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(colorName, forKey: .colorName)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(color, forKey: .color)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(medias, forKey: .medias)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
         }

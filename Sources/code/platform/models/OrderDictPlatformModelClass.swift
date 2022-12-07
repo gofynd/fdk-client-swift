@@ -12,6 +12,8 @@ public extension PlatformClient {
 
         public var fyndOrderId: String
 
+        public var isValidated: Bool?
+
         public var shipmentCount: Int
 
         public enum CodingKeys: String, CodingKey {
@@ -19,13 +21,17 @@ public extension PlatformClient {
 
             case fyndOrderId = "fynd_order_id"
 
+            case isValidated = "is_validated"
+
             case shipmentCount = "shipment_count"
         }
 
-        public init(fyndOrderId: String, orderDate: String, shipmentCount: Int) {
+        public init(fyndOrderId: String, isValidated: Bool? = nil, orderDate: String, shipmentCount: Int) {
             self.orderDate = orderDate
 
             self.fyndOrderId = fyndOrderId
+
+            self.isValidated = isValidated
 
             self.shipmentCount = shipmentCount
         }
@@ -37,6 +43,14 @@ public extension PlatformClient {
 
             fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
 
+            do {
+                isValidated = try container.decode(Bool.self, forKey: .isValidated)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
         }
 
@@ -46,6 +60,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(orderDate, forKey: .orderDate)
 
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+
+            try? container.encodeIfPresent(isValidated, forKey: .isValidated)
 
             try? container.encodeIfPresent(shipmentCount, forKey: .shipmentCount)
         }
