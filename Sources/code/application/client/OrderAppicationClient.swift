@@ -33,9 +33,9 @@ public extension ApplicationClient {
 
             ulrs["updateShipmentStatus"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status")
 
-            ulrs["createOrderConfig"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/orders/co-config")
+            ulrs["createChannelConfig"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/orders/co-config")
 
-            ulrs["getCreateOrderConfig"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/orders/co-config")
+            ulrs["getChannelConfig"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/orders/co-config")
 
             self.relativeUrls = ulrs
         }
@@ -606,13 +606,13 @@ public extension ApplicationClient {
         /**
          *
          * Summary:
-         * Description: createOrderConfig
+         * Description: createChannelConfig
          **/
-        public func createOrderConfig(
+        public func createChannelConfig(
             body: CreateOrderConfigData,
             onResponse: @escaping (_ response: CreateOrderConfigDataResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["createOrderConfig"] ?? ""
+            let fullUrl = relativeUrls["createChannelConfig"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -646,12 +646,12 @@ public extension ApplicationClient {
         /**
          *
          * Summary:
-         * Description: getCreateOrderConfig
+         * Description: getChannelConfig
          **/
-        public func getCreateOrderConfig(
+        public func getChannelConfig(
             onResponse: @escaping (_ response: CreateOrderConfigData?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getCreateOrderConfig"] ?? ""
+            let fullUrl = relativeUrls["getChannelConfig"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
