@@ -8,67 +8,77 @@ public extension PlatformClient {
      */
 
     class SubLane: Codable {
-        public var totalShipments: Int
+        public var value: String?
 
-        public var text: String
+        public var totalItems: Int?
 
-        public var index: Int
+        public var actions: [[String: Any]]?
 
-        public var nextState: [String]?
+        public var text: String?
 
-        public var value: String
-
-        public var currentState: [String]?
+        public var index: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case totalShipments = "total_shipments"
+            case value
+
+            case totalItems = "total_items"
+
+            case actions
 
             case text
 
             case index
-
-            case nextState = "next_state"
-
-            case value
-
-            case currentState = "current_state"
         }
 
-        public init(currentState: [String]? = nil, index: Int, nextState: [String]? = nil, text: String, totalShipments: Int, value: String) {
-            self.totalShipments = totalShipments
+        public init(actions: [[String: Any]]? = nil, index: Int? = nil, text: String? = nil, totalItems: Int? = nil, value: String? = nil) {
+            self.value = value
+
+            self.totalItems = totalItems
+
+            self.actions = actions
 
             self.text = text
 
             self.index = index
-
-            self.nextState = nextState
-
-            self.value = value
-
-            self.currentState = currentState
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            totalShipments = try container.decode(Int.self, forKey: .totalShipments)
-
-            text = try container.decode(String.self, forKey: .text)
-
-            index = try container.decode(Int.self, forKey: .index)
-
             do {
-                nextState = try container.decode([String].self, forKey: .nextState)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            value = try container.decode(String.self, forKey: .value)
+            do {
+                totalItems = try container.decode(Int.self, forKey: .totalItems)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
-                currentState = try container.decode([String].self, forKey: .currentState)
+                actions = try container.decode([[String: Any]].self, forKey: .actions)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                text = try container.decode(String.self, forKey: .text)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                index = try container.decode(Int.self, forKey: .index)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,17 +89,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(totalShipments, forKey: .totalShipments)
+            try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
+
+            try? container.encodeIfPresent(actions, forKey: .actions)
 
             try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(index, forKey: .index)
-
-            try? container.encodeIfPresent(nextState, forKey: .nextState)
-
-            try? container.encodeIfPresent(value, forKey: .value)
-
-            try? container.encodeIfPresent(currentState, forKey: .currentState)
         }
     }
 }

@@ -8,36 +8,36 @@ public extension PlatformClient {
      */
 
     class DepartmentErrorResponse: Codable {
-        public var status: Int?
+        public var message: String?
 
         public var errors: [String: Any]?
 
         public var code: String?
 
-        public var message: String?
+        public var status: Int?
 
         public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case status
+            case message
 
             case errors
 
             case code
 
-            case message
+            case status
 
             case meta
         }
 
         public init(code: String? = nil, errors: [String: Any]? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
-            self.status = status
+            self.message = message
 
             self.errors = errors
 
             self.code = code
 
-            self.message = message
+            self.status = status
 
             self.meta = meta
         }
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,13 +89,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(errors, forKey: .errors)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
         }
