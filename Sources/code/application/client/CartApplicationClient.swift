@@ -83,7 +83,7 @@ public extension ApplicationClient {
             b: Bool?,
             assignCardId: Int?,
             areaCode: String?,
-            emptyCart: String?,
+            emptyCart: Bool?,
 
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {

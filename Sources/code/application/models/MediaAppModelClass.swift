@@ -7,33 +7,33 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class Media: Codable {
-        public var type: String?
+        public var meta: Meta?
 
         public var url: String?
 
-        public var meta: Meta?
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
-            case type
+            case meta
 
             case url
 
-            case meta
+            case type
         }
 
         public init(meta: Meta? = nil, type: String? = nil, url: String? = nil) {
-            self.type = type
+            self.meta = meta
 
             self.url = url
 
-            self.meta = meta
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                meta = try container.decode(Meta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                meta = try container.decode(Meta.self, forKey: .meta)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

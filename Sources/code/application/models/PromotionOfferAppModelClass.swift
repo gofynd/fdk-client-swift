@@ -7,36 +7,36 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class PromotionOffer: Codable {
-        public var description: String?
+        public var validTill: String?
 
         public var offerText: String?
 
         public var id: String?
 
-        public var validTill: String?
+        public var description: String?
 
         public var promotionGroup: String?
 
         public enum CodingKeys: String, CodingKey {
-            case description
+            case validTill = "valid_till"
 
             case offerText = "offer_text"
 
             case id
 
-            case validTill = "valid_till"
+            case description
 
             case promotionGroup = "promotion_group"
         }
 
         public init(description: String? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
-            self.description = description
+            self.validTill = validTill
 
             self.offerText = offerText
 
             self.id = id
 
-            self.validTill = validTill
+            self.description = description
 
             self.promotionGroup = promotionGroup
         }
@@ -45,7 +45,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                validTill = try container.decode(String.self, forKey: .validTill)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                validTill = try container.decode(String.self, forKey: .validTill)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,13 +88,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(validTill, forKey: .validTill)
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(validTill, forKey: .validTill)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
         }
