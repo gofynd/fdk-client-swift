@@ -10,22 +10,22 @@ public extension PlatformClient {
     class ErrorResponse: Codable {
         public var message: String?
 
-        public var error: String?
+        public var status: Int?
 
         public var code: String?
 
-        public var status: Int?
+        public var error: String?
 
         public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
-            case error
+            case status
 
             case code
 
-            case status
+            case error
 
             case meta
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(code: String? = nil, error: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
             self.message = message
 
-            self.error = error
+            self.status = status
 
             self.code = code
 
-            self.status = status
+            self.error = error
 
             self.meta = meta
         }
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                error = try container.decode(String.self, forKey: .error)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                error = try container.decode(String.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,11 +91,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
         }
