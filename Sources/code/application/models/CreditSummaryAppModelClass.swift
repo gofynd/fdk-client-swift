@@ -9,48 +9,48 @@ public extension ApplicationClient {
     class CreditSummary: Codable {
         public var statusMessage: String?
 
-        public var amountAvailable: BalanceDetails?
-
-        public var merchantCustomerRefId: String?
+        public var balance: BalanceDetails?
 
         public var status: String?
 
-        public var buyerStatus: String?
+        public var merchantCustomerRefId: String?
 
         public var creditLineId: String?
 
-        public var balance: BalanceDetails?
+        public var amountAvailable: BalanceDetails?
+
+        public var buyerStatus: String?
 
         public enum CodingKeys: String, CodingKey {
             case statusMessage = "status_message"
 
-            case amountAvailable = "amount_available"
-
-            case merchantCustomerRefId = "merchant_customer_ref_id"
+            case balance
 
             case status
 
-            case buyerStatus = "buyer_status"
+            case merchantCustomerRefId = "merchant_customer_ref_id"
 
             case creditLineId = "credit_line_id"
 
-            case balance
+            case amountAvailable = "amount_available"
+
+            case buyerStatus = "buyer_status"
         }
 
         public init(amountAvailable: BalanceDetails? = nil, balance: BalanceDetails? = nil, buyerStatus: String? = nil, creditLineId: String? = nil, merchantCustomerRefId: String? = nil, status: String? = nil, statusMessage: String? = nil) {
             self.statusMessage = statusMessage
 
-            self.amountAvailable = amountAvailable
-
-            self.merchantCustomerRefId = merchantCustomerRefId
+            self.balance = balance
 
             self.status = status
 
-            self.buyerStatus = buyerStatus
+            self.merchantCustomerRefId = merchantCustomerRefId
 
             self.creditLineId = creditLineId
 
-            self.balance = balance
+            self.amountAvailable = amountAvailable
+
+            self.buyerStatus = buyerStatus
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,15 +65,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                amountAvailable = try container.decode(BalanceDetails.self, forKey: .amountAvailable)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
+                balance = try container.decode(BalanceDetails.self, forKey: .balance)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +81,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                buyerStatus = try container.decode(String.self, forKey: .buyerStatus)
+                merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +97,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                balance = try container.decode(BalanceDetails.self, forKey: .balance)
+                amountAvailable = try container.decode(BalanceDetails.self, forKey: .amountAvailable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                buyerStatus = try container.decode(String.self, forKey: .buyerStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,17 +118,17 @@ public extension ApplicationClient {
 
             try? container.encode(statusMessage, forKey: .statusMessage)
 
-            try? container.encodeIfPresent(amountAvailable, forKey: .amountAvailable)
-
-            try? container.encode(merchantCustomerRefId, forKey: .merchantCustomerRefId)
+            try? container.encodeIfPresent(balance, forKey: .balance)
 
             try? container.encode(status, forKey: .status)
 
-            try? container.encode(buyerStatus, forKey: .buyerStatus)
+            try? container.encode(merchantCustomerRefId, forKey: .merchantCustomerRefId)
 
             try? container.encode(creditLineId, forKey: .creditLineId)
 
-            try? container.encodeIfPresent(balance, forKey: .balance)
+            try? container.encodeIfPresent(amountAvailable, forKey: .amountAvailable)
+
+            try? container.encode(buyerStatus, forKey: .buyerStatus)
         }
     }
 }
