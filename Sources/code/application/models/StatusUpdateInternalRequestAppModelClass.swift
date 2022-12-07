@@ -3,49 +3,49 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: ShipmentStatusUpdateBody
+         Model: StatusUpdateInternalRequest
          Used By: Order
      */
-    class ShipmentStatusUpdateBody: Codable {
-        public var statuses: [StatusesBody]?
+    class StatusUpdateInternalRequest: Codable {
+        public var task: Bool?
 
-        public var unlockBeforeTransition: Bool?
+        public var statues: [StatuesRequest]?
 
         public var lockAfterTransition: Bool?
 
         public var forceTransition: Bool?
 
-        public var task: Bool?
+        public var unlockBeforeTransition: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case statuses
+            case task
 
-            case unlockBeforeTransition = "unlock_before_transition"
+            case statues
 
             case lockAfterTransition = "lock_after_transition"
 
             case forceTransition = "force_transition"
 
-            case task
+            case unlockBeforeTransition = "unlock_before_transition"
         }
 
-        public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, statuses: [StatusesBody]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
-            self.statuses = statuses
+        public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, statues: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
+            self.task = task
 
-            self.unlockBeforeTransition = unlockBeforeTransition
+            self.statues = statues
 
             self.lockAfterTransition = lockAfterTransition
 
             self.forceTransition = forceTransition
 
-            self.task = task
+            self.unlockBeforeTransition = unlockBeforeTransition
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                statuses = try container.decode([StatusesBody].self, forKey: .statuses)
+                task = try container.decode(Bool.self, forKey: .task)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
+                statues = try container.decode([StatuesRequest].self, forKey: .statues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                task = try container.decode(Bool.self, forKey: .task)
+                unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,15 +88,15 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(statuses, forKey: .statuses)
+            try? container.encodeIfPresent(task, forKey: .task)
 
-            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
+            try? container.encodeIfPresent(statues, forKey: .statues)
 
             try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
 
             try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
 
-            try? container.encodeIfPresent(task, forKey: .task)
+            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
         }
     }
 }
