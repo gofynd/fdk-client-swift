@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class ProductDownloadItemsData: Codable {
-        public var templates: [String]?
-
         public var type: String?
+
+        public var templates: [String]?
 
         public var brand: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case templates
-
             case type
+
+            case templates
 
             case brand
         }
 
         public init(brand: [String]? = nil, templates: [String]? = nil, type: String? = nil) {
-            self.templates = templates
-
             self.type = type
+
+            self.templates = templates
 
             self.brand = brand
         }
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                templates = try container.decode([String].self, forKey: .templates)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                templates = try container.decode([String].self, forKey: .templates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,9 +61,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(templates, forKey: .templates)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(templates, forKey: .templates)
 
             try? container.encodeIfPresent(brand, forKey: .brand)
         }

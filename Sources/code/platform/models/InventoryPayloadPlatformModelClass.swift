@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class InventoryPayload: Codable {
-        public var storeId: Int
+        public var tags: [String]?
 
         public var priceEffective: Double?
 
@@ -16,14 +16,14 @@ public extension PlatformClient {
 
         public var priceMarked: Double?
 
+        public var storeId: Int
+
         public var sellerIdentifier: String
 
         public var totalQuantity: Int?
 
-        public var tags: [String]?
-
         public enum CodingKeys: String, CodingKey {
-            case storeId = "store_id"
+            case tags
 
             case priceEffective = "price_effective"
 
@@ -31,15 +31,15 @@ public extension PlatformClient {
 
             case priceMarked = "price_marked"
 
+            case storeId = "store_id"
+
             case sellerIdentifier = "seller_identifier"
 
             case totalQuantity = "total_quantity"
-
-            case tags
         }
 
         public init(expirationDate: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeId: Int, tags: [String]? = nil, totalQuantity: Int? = nil) {
-            self.storeId = storeId
+            self.tags = tags
 
             self.priceEffective = priceEffective
 
@@ -47,17 +47,23 @@ public extension PlatformClient {
 
             self.priceMarked = priceMarked
 
+            self.storeId = storeId
+
             self.sellerIdentifier = sellerIdentifier
 
             self.totalQuantity = totalQuantity
-
-            self.tags = tags
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            storeId = try container.decode(Int.self, forKey: .storeId)
+            do {
+                tags = try container.decode([String].self, forKey: .tags)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 priceEffective = try container.decode(Double.self, forKey: .priceEffective)
@@ -83,18 +89,12 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            storeId = try container.decode(Int.self, forKey: .storeId)
+
             sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
 
             do {
                 totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                tags = try container.decode([String].self, forKey: .tags)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
+            try? container.encode(tags, forKey: .tags)
 
             try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
 
@@ -113,11 +113,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
 
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
+
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
             try? container.encode(totalQuantity, forKey: .totalQuantity)
-
-            try? container.encode(tags, forKey: .tags)
         }
     }
 }

@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var companyName: String?
 
-        public var name: String?
+        public var id: Int?
 
         public var code: String?
 
-        public var id: Int?
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case companyId = "company_id"
 
             case companyName = "company_name"
 
-            case name
+            case id
 
             case code
 
-            case id
+            case name
         }
 
         public init(code: String? = nil, companyId: Int? = nil, companyName: String? = nil, id: Int? = nil, name: String? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.companyName = companyName
 
-            self.name = name
+            self.id = id
 
             self.code = code
 
-            self.id = id
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(companyName, forKey: .companyName)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
