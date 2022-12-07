@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var promoId: String?
 
-        public var offerText: String?
-
         public var articleQuantity: Int?
+
+        public var offerText: String?
 
         public var mrpPromotion: Bool?
 
@@ -26,9 +26,9 @@ public extension ApplicationClient {
 
             case promoId = "promo_id"
 
-            case offerText = "offer_text"
-
             case articleQuantity = "article_quantity"
+
+            case offerText = "offer_text"
 
             case mrpPromotion = "mrp_promotion"
         }
@@ -40,9 +40,9 @@ public extension ApplicationClient {
 
             self.promoId = promoId
 
-            self.offerText = offerText
-
             self.articleQuantity = articleQuantity
+
+            self.offerText = offerText
 
             self.mrpPromotion = mrpPromotion
         }
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                offerText = try container.decode(String.self, forKey: .offerText)
+                articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
+                offerText = try container.decode(String.self, forKey: .offerText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(promoId, forKey: .promoId)
 
-            try? container.encodeIfPresent(offerText, forKey: .offerText)
-
             try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
+
+            try? container.encodeIfPresent(offerText, forKey: .offerText)
 
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
         }

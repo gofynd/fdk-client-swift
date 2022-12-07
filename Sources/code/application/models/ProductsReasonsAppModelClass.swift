@@ -1,34 +1,33 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension ApplicationClient {
     /*
-         Model: TimeStamp
+         Model: ProductsReasons
          Used By: Order
      */
+    class ProductsReasons: Codable {
+        public var filters: [[String: Any]]?
 
-    class TimeStamp: Codable {
-        public var tMin: String?
-
-        public var tMax: String?
+        public var data: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case tMin = "t_min"
+            case filters
 
-            case tMax = "t_max"
+            case data
         }
 
-        public init(tMax: String? = nil, tMin: String? = nil) {
-            self.tMin = tMin
+        public init(data: [String: Any]? = nil, filters: [[String: Any]]? = nil) {
+            self.filters = filters
 
-            self.tMax = tMax
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                tMin = try container.decode(String.self, forKey: .tMin)
+                filters = try container.decode([[String: Any]].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +35,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                tMax = try container.decode(String.self, forKey: .tMax)
+                data = try container.decode([String: Any].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +46,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(tMin, forKey: .tMin)
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(tMax, forKey: .tMax)
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

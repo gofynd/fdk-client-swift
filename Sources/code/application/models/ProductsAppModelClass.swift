@@ -3,37 +3,37 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: StatusesBody
+         Model: Products
          Used By: Order
      */
-    class StatusesBody: Codable {
-        public var excludeBagsNextState: String?
+    class Products: Codable {
+        public var lineNumber: Int?
 
-        public var status: String?
+        public var quantity: Int?
 
-        public var shipments: [String: Any]?
+        public var identifier: String?
 
         public enum CodingKeys: String, CodingKey {
-            case excludeBagsNextState = "exclude_bags_next_state"
+            case lineNumber = "line_number"
 
-            case status
+            case quantity
 
-            case shipments
+            case identifier
         }
 
-        public init(excludeBagsNextState: String? = nil, shipments: [String: Any]? = nil, status: String? = nil) {
-            self.excludeBagsNextState = excludeBagsNextState
+        public init(identifier: String? = nil, lineNumber: Int? = nil, quantity: Int? = nil) {
+            self.lineNumber = lineNumber
 
-            self.status = status
+            self.quantity = quantity
 
-            self.shipments = shipments
+            self.identifier = identifier
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
+                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                shipments = try container.decode([String: Any].self, forKey: .shipments)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
         }
     }
 }

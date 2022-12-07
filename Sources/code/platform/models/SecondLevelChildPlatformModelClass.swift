@@ -10,48 +10,48 @@ public extension PlatformClient {
     class SecondLevelChild: Codable {
         public var banners: ImageUrls?
 
-        public var action: Action?
-
         public var slug: String?
-
-        public var name: String?
 
         public var customJson: [String: Any]?
 
-        public var uid: Int?
+        public var action: Action?
 
         public var childs: [ThirdLevelChild]?
+
+        public var uid: Int?
+
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case banners
 
-            case action
-
             case slug
-
-            case name
 
             case customJson = "_custom_json"
 
-            case uid
+            case action
 
             case childs
+
+            case uid
+
+            case name
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [ThirdLevelChild]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             self.banners = banners
 
-            self.action = action
-
             self.slug = slug
-
-            self.name = name
 
             self.customJson = customJson
 
-            self.uid = uid
+            self.action = action
 
             self.childs = childs
+
+            self.uid = uid
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,14 +59,6 @@ public extension PlatformClient {
 
             do {
                 banners = try container.decode(ImageUrls.self, forKey: .banners)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,7 +74,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +82,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                action = try container.decode(Action.self, forKey: .action)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                childs = try container.decode([ThirdLevelChild].self, forKey: .childs)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,7 +106,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                childs = try container.decode([ThirdLevelChild].self, forKey: .childs)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,17 +119,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

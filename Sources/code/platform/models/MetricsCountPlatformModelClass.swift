@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var options: [Options1]?
 
-        public var text: String
-
         public var key: String
+
+        public var text: String
 
         public enum CodingKeys: String, CodingKey {
             case value
 
             case options
 
-            case text
-
             case key
+
+            case text
         }
 
         public init(key: String, options: [Options1]? = nil, text: String, value: Int) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.options = options
 
-            self.text = text
-
             self.key = key
+
+            self.text = text
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,9 +49,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            text = try container.decode(String.self, forKey: .text)
-
             key = try container.decode(String.self, forKey: .key)
+
+            text = try container.decode(String.self, forKey: .text)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -61,9 +61,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(options, forKey: .options)
 
-            try? container.encodeIfPresent(text, forKey: .text)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(text, forKey: .text)
         }
     }
 }

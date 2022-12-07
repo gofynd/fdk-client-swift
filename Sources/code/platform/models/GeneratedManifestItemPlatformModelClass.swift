@@ -12,30 +12,30 @@ public extension PlatformClient {
 
         public var companyId: Int?
 
-        public var status: String?
+        public var filters: ManifestFilter?
+
+        public var createdBy: String?
 
         public var manifestId: String?
 
-        public var filters: ManifestFilter?
+        public var status: String?
 
         public var createdAt: String?
-
-        public var createdBy: String?
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
             case companyId = "company_id"
 
-            case status
+            case filters
+
+            case createdBy = "created_by"
 
             case manifestId = "manifest_id"
 
-            case filters
+            case status
 
             case createdAt = "created_at"
-
-            case createdBy = "created_by"
         }
 
         public init(companyId: Int? = nil, createdAt: String? = nil, createdBy: String? = nil, filters: ManifestFilter? = nil, isActive: Bool? = nil, manifestId: String? = nil, status: String? = nil) {
@@ -43,15 +43,15 @@ public extension PlatformClient {
 
             self.companyId = companyId
 
-            self.status = status
+            self.filters = filters
+
+            self.createdBy = createdBy
 
             self.manifestId = manifestId
 
-            self.filters = filters
+            self.status = status
 
             self.createdAt = createdAt
-
-            self.createdBy = createdBy
         }
 
         required public init(from decoder: Decoder) throws {
@@ -74,7 +74,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                filters = try container.decode(ManifestFilter.self, forKey: .filters)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                createdBy = try container.decode(String.self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +98,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                filters = try container.decode(ManifestFilter.self, forKey: .filters)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,14 +107,6 @@ public extension PlatformClient {
 
             do {
                 createdAt = try container.decode(String.self, forKey: .createdAt)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                createdBy = try container.decode(String.self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,15 +121,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(manifestId, forKey: .manifestId)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
         }
     }
 }

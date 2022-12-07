@@ -12,17 +12,17 @@ public extension PlatformClient {
 
         public var prices: Prices?
 
-        public var bagId: Int
-
-        public var shipmentId: String
-
         public var itemQuantity: Int
-
-        public var status: [String: Any]
 
         public var orderingChannel: String
 
         public var gst: GSTDetailsData?
+
+        public var status: [String: Any]
+
+        public var shipmentId: String
+
+        public var bagId: Int
 
         public var totalShipmentBags: Int
 
@@ -31,17 +31,17 @@ public extension PlatformClient {
 
             case prices
 
-            case bagId = "bag_id"
-
-            case shipmentId = "shipment_id"
-
             case itemQuantity = "item_quantity"
-
-            case status
 
             case orderingChannel = "ordering_channel"
 
             case gst
+
+            case status
+
+            case shipmentId = "shipment_id"
+
+            case bagId = "bag_id"
 
             case totalShipmentBags = "total_shipment_bags"
         }
@@ -51,17 +51,17 @@ public extension PlatformClient {
 
             self.prices = prices
 
-            self.bagId = bagId
-
-            self.shipmentId = shipmentId
-
             self.itemQuantity = itemQuantity
-
-            self.status = status
 
             self.orderingChannel = orderingChannel
 
             self.gst = gst
+
+            self.status = status
+
+            self.shipmentId = shipmentId
+
+            self.bagId = bagId
 
             self.totalShipmentBags = totalShipmentBags
         }
@@ -85,13 +85,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            bagId = try container.decode(Int.self, forKey: .bagId)
-
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
             itemQuantity = try container.decode(Int.self, forKey: .itemQuantity)
-
-            status = try container.decode([String: Any].self, forKey: .status)
 
             orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
 
@@ -103,6 +97,12 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            status = try container.decode([String: Any].self, forKey: .status)
+
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            bagId = try container.decode(Int.self, forKey: .bagId)
+
             totalShipmentBags = try container.decode(Int.self, forKey: .totalShipmentBags)
         }
 
@@ -113,17 +113,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(prices, forKey: .prices)
 
-            try? container.encodeIfPresent(bagId, forKey: .bagId)
-
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
             try? container.encodeIfPresent(itemQuantity, forKey: .itemQuantity)
-
-            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
 
             try? container.encodeIfPresent(gst, forKey: .gst)
+
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(bagId, forKey: .bagId)
 
             try? container.encodeIfPresent(totalShipmentBags, forKey: .totalShipmentBags)
         }

@@ -14,13 +14,13 @@ public extension PlatformClient {
 
         public var amount: Double
 
-        public var name: String
-
         public var meta: [String: Any]?
+
+        public var refundBy: String
 
         public var collectBy: String
 
-        public var refundBy: String
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case transactionData = "transaction_data"
@@ -29,13 +29,13 @@ public extension PlatformClient {
 
             case amount
 
-            case name
-
             case meta
+
+            case refundBy = "refund_by"
 
             case collectBy = "collect_by"
 
-            case refundBy = "refund_by"
+            case name
         }
 
         public init(amount: Double, collectBy: String, meta: [String: Any]? = nil, mode: String, name: String, refundBy: String, transactionData: [String: Any]? = nil) {
@@ -45,13 +45,13 @@ public extension PlatformClient {
 
             self.amount = amount
 
-            self.name = name
-
             self.meta = meta
+
+            self.refundBy = refundBy
 
             self.collectBy = collectBy
 
-            self.refundBy = refundBy
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,8 +69,6 @@ public extension PlatformClient {
 
             amount = try container.decode(Double.self, forKey: .amount)
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
 
@@ -79,9 +77,11 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            refundBy = try container.decode(String.self, forKey: .refundBy)
+
             collectBy = try container.decode(String.self, forKey: .collectBy)
 
-            refundBy = try container.decode(String.self, forKey: .refundBy)
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -93,13 +93,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
 
             try? container.encodeIfPresent(collectBy, forKey: .collectBy)
 
-            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

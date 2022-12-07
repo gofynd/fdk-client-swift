@@ -1340,6 +1340,7 @@ public extension PlatformClient {
             customerId: String?,
             isPrioritySort: Bool?,
             excludeLockedShipments: Bool?,
+            paymentMethods: String?,
 
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1407,6 +1408,10 @@ public extension PlatformClient {
 
             if let value = excludeLockedShipments {
                 xQuery["exclude_locked_shipments"] = value
+            }
+
+            if let value = paymentMethods {
+                xQuery["payment_methods"] = value
             }
 
             PlatformAPIClient.execute(
@@ -2471,7 +2476,7 @@ public extension PlatformClient {
          * Summary: Get reasons behind full or partial cancellation of a shipment
          * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
          **/
-        public func getPlatformShipmentReasons1(
+        public func getShipmentReasons(
             shipmentId: String,
             bagId: String,
             state: String,
