@@ -18,9 +18,9 @@ public extension PlatformClient {
 
         public var stores: String?
 
-        public var storeName: String?
-
         public var salesChannelName: String?
+
+        public var storeName: String?
 
         public var salesChannels: String?
 
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             case stores
 
-            case storeName = "store_name"
-
             case salesChannelName = "sales_channel_name"
+
+            case storeName = "store_name"
 
             case salesChannels = "sales_channels"
         }
@@ -53,9 +53,9 @@ public extension PlatformClient {
 
             self.stores = stores
 
-            self.storeName = storeName
-
             self.salesChannelName = salesChannelName
+
+            self.storeName = storeName
 
             self.salesChannels = salesChannels
         }
@@ -104,7 +104,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                storeName = try container.decode(String.self, forKey: .storeName)
+                salesChannelName = try container.decode(String.self, forKey: .salesChannelName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                salesChannelName = try container.decode(String.self, forKey: .salesChannelName)
+                storeName = try container.decode(String.self, forKey: .storeName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,9 +141,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(stores, forKey: .stores)
 
-            try? container.encodeIfPresent(storeName, forKey: .storeName)
-
             try? container.encodeIfPresent(salesChannelName, forKey: .salesChannelName)
+
+            try? container.encodeIfPresent(storeName, forKey: .storeName)
 
             try? container.encodeIfPresent(salesChannels, forKey: .salesChannels)
         }

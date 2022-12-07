@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var isReturnable: Bool
 
-        public var isCustomerReturnAllowed: Bool
-
         public var enableTracking: Bool
+
+        public var isCustomerReturnAllowed: Bool
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case isReturnable = "is_returnable"
 
-            case isCustomerReturnAllowed = "is_customer_return_allowed"
-
             case enableTracking = "enable_tracking"
+
+            case isCustomerReturnAllowed = "is_customer_return_allowed"
         }
 
         public init(canBeCancelled: Bool, enableTracking: Bool, isActive: Bool, isCustomerReturnAllowed: Bool, isReturnable: Bool) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.isReturnable = isReturnable
 
-            self.isCustomerReturnAllowed = isCustomerReturnAllowed
-
             self.enableTracking = enableTracking
+
+            self.isCustomerReturnAllowed = isCustomerReturnAllowed
         }
 
         required public init(from decoder: Decoder) throws {
@@ -51,9 +51,9 @@ public extension PlatformClient {
 
             isReturnable = try container.decode(Bool.self, forKey: .isReturnable)
 
-            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
-
             enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
+
+            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -65,9 +65,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isReturnable, forKey: .isReturnable)
 
-            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
-
             try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
+
+            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
         }
     }
 }

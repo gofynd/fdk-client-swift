@@ -10,48 +10,48 @@ public extension PlatformClient {
     class GeneratedManifestItem: Codable {
         public var isActive: Bool?
 
-        public var createdBy: String?
-
-        public var filters: ManifestFilter?
+        public var companyId: Int?
 
         public var status: String?
 
-        public var companyId: Int?
+        public var manifestId: String?
+
+        public var filters: ManifestFilter?
 
         public var createdAt: String?
 
-        public var manifestId: String?
+        public var createdBy: String?
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case createdBy = "created_by"
-
-            case filters
+            case companyId = "company_id"
 
             case status
 
-            case companyId = "company_id"
+            case manifestId = "manifest_id"
+
+            case filters
 
             case createdAt = "created_at"
 
-            case manifestId = "manifest_id"
+            case createdBy = "created_by"
         }
 
         public init(companyId: Int? = nil, createdAt: String? = nil, createdBy: String? = nil, filters: ManifestFilter? = nil, isActive: Bool? = nil, manifestId: String? = nil, status: String? = nil) {
             self.isActive = isActive
 
-            self.createdBy = createdBy
-
-            self.filters = filters
+            self.companyId = companyId
 
             self.status = status
 
-            self.companyId = companyId
+            self.manifestId = manifestId
+
+            self.filters = filters
 
             self.createdAt = createdAt
 
-            self.manifestId = manifestId
+            self.createdBy = createdBy
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,30 +59,6 @@ public extension PlatformClient {
 
             do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                createdBy = try container.decode(String.self, forKey: .createdBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                filters = try container.decode(ManifestFilter.self, forKey: .filters)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +74,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                createdAt = try container.decode(String.self, forKey: .createdAt)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,6 +88,30 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                filters = try container.decode(ManifestFilter.self, forKey: .filters)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                createdAt = try container.decode(String.self, forKey: .createdAt)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                createdBy = try container.decode(String.self, forKey: .createdBy)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -119,17 +119,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
-            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
         }
     }
 }
