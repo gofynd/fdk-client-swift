@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var current: Int?
 
-        public var itemTotal: Int?
-
         public var type: String?
+
+        public var itemTotal: Int?
 
         public enum CodingKeys: String, CodingKey {
             case size
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case current
 
-            case itemTotal = "item_total"
-
             case type
+
+            case itemTotal = "item_total"
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient {
 
             self.current = current
 
-            self.itemTotal = itemTotal
-
             self.type = type
+
+            self.itemTotal = itemTotal
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(current, forKey: .current)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
         }
     }
 }

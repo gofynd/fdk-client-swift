@@ -7,13 +7,13 @@ public extension ApplicationClient {
          Used By: Order
      */
     class StatusesBodyResponse: Codable {
-        public var shipments: [String: Any]?
+        public var shipments: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case shipments
         }
 
-        public init(shipments: [String: Any]? = nil) {
+        public init(shipments: [[String: Any]]? = nil) {
             self.shipments = shipments
         }
 
@@ -21,7 +21,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                shipments = try container.decode([String: Any].self, forKey: .shipments)
+                shipments = try container.decode([[String: Any]].self, forKey: .shipments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

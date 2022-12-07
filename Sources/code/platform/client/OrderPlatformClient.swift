@@ -1873,7 +1873,7 @@ public extension PlatformClient {
          * Description:
          **/
         public func createOrder(
-            body: CreateOrderPayload,
+            body: CreateOrderAPI,
             onResponse: @escaping (_ response: CreateOrderResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(

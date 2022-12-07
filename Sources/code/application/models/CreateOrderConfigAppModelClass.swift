@@ -11,26 +11,26 @@ public extension ApplicationClient {
 
         public var dpConfiguration: DpConfiguration?
 
-        public var locationReassignment: Bool?
-
         public var lockStates: String?
 
-        public var shipmentAssignment: String?
+        public var locationReassignment: Bool?
 
         public var paymentInfo: PaymentInfo?
+
+        public var shipmentAssignment: String?
 
         public enum CodingKeys: String, CodingKey {
             case logoUrl = "logo_url"
 
             case dpConfiguration = "dp_configuration"
 
-            case locationReassignment = "location_reassignment"
-
             case lockStates = "lock_states"
 
-            case shipmentAssignment = "shipment_assignment"
+            case locationReassignment = "location_reassignment"
 
             case paymentInfo = "payment_info"
+
+            case shipmentAssignment = "shipment_assignment"
         }
 
         public init(dpConfiguration: DpConfiguration? = nil, locationReassignment: Bool? = nil, lockStates: String? = nil, logoUrl: [String: Any]? = nil, paymentInfo: PaymentInfo? = nil, shipmentAssignment: String? = nil) {
@@ -38,13 +38,13 @@ public extension ApplicationClient {
 
             self.dpConfiguration = dpConfiguration
 
-            self.locationReassignment = locationReassignment
-
             self.lockStates = lockStates
 
-            self.shipmentAssignment = shipmentAssignment
+            self.locationReassignment = locationReassignment
 
             self.paymentInfo = paymentInfo
+
+            self.shipmentAssignment = shipmentAssignment
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,14 +67,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 lockStates = try container.decode(String.self, forKey: .lockStates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -83,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                shipmentAssignment = try container.decode(String.self, forKey: .shipmentAssignment)
+                locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,6 +84,14 @@ public extension ApplicationClient {
 
             do {
                 paymentInfo = try container.decode(PaymentInfo.self, forKey: .paymentInfo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shipmentAssignment = try container.decode(String.self, forKey: .shipmentAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,13 +106,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
 
-            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
-
             try? container.encodeIfPresent(lockStates, forKey: .lockStates)
 
-            try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
+            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
 
             try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
+
+            try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
         }
     }
 }
