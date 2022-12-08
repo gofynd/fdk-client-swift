@@ -4,48 +4,72 @@ import Foundation
 public extension ApplicationClient {
     /*
          Model: CategorySchema
-         Used By: Lead
+         Used By: Content
      */
     class CategorySchema: Codable {
-        public var display: String?
+        public var index: Int?
 
-        public var key: String?
+        public var title: String?
 
-        public var subCategories: CategorySchema?
+        public var description: String?
 
-        public var groupId: Double?
+        public var children: [String]?
 
-        public var feedbackForm: FeedbackForm?
+        public var id: String?
+
+        public var slug: String?
+
+        public var application: String?
+
+        public var iconUrl: String?
+
+        public var customJson: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case display
+            case index
 
-            case key
+            case title
 
-            case subCategories = "sub_categories"
+            case description
 
-            case groupId = "group_id"
+            case children
 
-            case feedbackForm = "feedback_form"
+            case id = "_id"
+
+            case slug
+
+            case application
+
+            case iconUrl = "icon_url"
+
+            case customJson = "_custom_json"
         }
 
-        public init(display: String? = nil, feedbackForm: FeedbackForm? = nil, groupId: Double? = nil, key: String? = nil, subCategories: CategorySchema? = nil) {
-            self.display = display
+        public init(application: String? = nil, children: [String]? = nil, description: String? = nil, iconUrl: String? = nil, index: Int? = nil, slug: String? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
+            self.index = index
 
-            self.key = key
+            self.title = title
 
-            self.subCategories = subCategories
+            self.description = description
 
-            self.groupId = groupId
+            self.children = children
 
-            self.feedbackForm = feedbackForm
+            self.id = id
+
+            self.slug = slug
+
+            self.application = application
+
+            self.iconUrl = iconUrl
+
+            self.customJson = customJson
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                index = try container.decode(Int.self, forKey: .index)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +85,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                subCategories = try container.decode(CategorySchema.self, forKey: .subCategories)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +93,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                groupId = try container.decode(Double.self, forKey: .groupId)
+                children = try container.decode([String].self, forKey: .children)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +101,39 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                feedbackForm = try container.decode(FeedbackForm.self, forKey: .feedbackForm)
+                id = try container.decode(String.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                application = try container.decode(String.self, forKey: .application)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                iconUrl = try container.decode(String.self, forKey: .iconUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,15 +144,23 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(index, forKey: .index)
 
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(subCategories, forKey: .subCategories)
+            try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(groupId, forKey: .groupId)
+            try? container.encodeIfPresent(children, forKey: .children)
 
-            try? container.encodeIfPresent(feedbackForm, forKey: .feedbackForm)
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(application, forKey: .application)
+
+            try? container.encodeIfPresent(iconUrl, forKey: .iconUrl)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
         }
     }
 }

@@ -7,13 +7,13 @@ public extension ApplicationClient {
          Used By: Lead
      */
     class CategoryData: Codable {
-        public var list: CategorySchema?
+        public var list: TicketCategory?
 
         public enum CodingKeys: String, CodingKey {
             case list
         }
 
-        public init(list: CategorySchema? = nil) {
+        public init(list: TicketCategory? = nil) {
             self.list = list
         }
 
@@ -21,7 +21,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                list = try container.decode(CategorySchema.self, forKey: .list)
+                list = try container.decode(TicketCategory.self, forKey: .list)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

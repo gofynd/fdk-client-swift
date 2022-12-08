@@ -10,26 +10,24 @@ public extension PlatformClient {
     class OmsReports: Codable {
         public var requestDetails: [String: Any]?
 
-        public var reportName: String?
-
         public var s3Key: String?
 
         public var reportId: String?
 
         public var reportType: String?
 
-        public var reportCreatedAt: String?
-
         public var status: String?
 
         public var reportRequestedAt: String?
+
+        public var reportCreatedAt: String?
+
+        public var reportName: String?
 
         public var displayName: String?
 
         public enum CodingKeys: String, CodingKey {
             case requestDetails = "request_details"
-
-            case reportName = "report_name"
 
             case s3Key = "s3_key"
 
@@ -37,11 +35,13 @@ public extension PlatformClient {
 
             case reportType = "report_type"
 
-            case reportCreatedAt = "report_created_at"
-
             case status
 
             case reportRequestedAt = "report_requested_at"
+
+            case reportCreatedAt = "report_created_at"
+
+            case reportName = "report_name"
 
             case displayName = "display_name"
         }
@@ -49,19 +49,19 @@ public extension PlatformClient {
         public init(displayName: String? = nil, reportCreatedAt: String? = nil, reportId: String? = nil, reportName: String? = nil, reportRequestedAt: String? = nil, reportType: String? = nil, requestDetails: [String: Any]? = nil, s3Key: String? = nil, status: String? = nil) {
             self.requestDetails = requestDetails
 
-            self.reportName = reportName
-
             self.s3Key = s3Key
 
             self.reportId = reportId
 
             self.reportType = reportType
 
-            self.reportCreatedAt = reportCreatedAt
-
             self.status = status
 
             self.reportRequestedAt = reportRequestedAt
+
+            self.reportCreatedAt = reportCreatedAt
+
+            self.reportName = reportName
 
             self.displayName = displayName
         }
@@ -71,14 +71,6 @@ public extension PlatformClient {
 
             do {
                 requestDetails = try container.decode([String: Any].self, forKey: .requestDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                reportName = try container.decode(String.self, forKey: .reportName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,14 +102,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                reportCreatedAt = try container.decode(String.self, forKey: .reportCreatedAt)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -127,6 +111,22 @@ public extension PlatformClient {
 
             do {
                 reportRequestedAt = try container.decode(String.self, forKey: .reportRequestedAt)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                reportCreatedAt = try container.decode(String.self, forKey: .reportCreatedAt)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                reportName = try container.decode(String.self, forKey: .reportName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,19 +147,19 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(requestDetails, forKey: .requestDetails)
 
-            try? container.encodeIfPresent(reportName, forKey: .reportName)
-
             try? container.encodeIfPresent(s3Key, forKey: .s3Key)
 
             try? container.encodeIfPresent(reportId, forKey: .reportId)
 
             try? container.encodeIfPresent(reportType, forKey: .reportType)
 
-            try? container.encode(reportCreatedAt, forKey: .reportCreatedAt)
-
             try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encode(reportRequestedAt, forKey: .reportRequestedAt)
+
+            try? container.encode(reportCreatedAt, forKey: .reportCreatedAt)
+
+            try? container.encodeIfPresent(reportName, forKey: .reportName)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
         }

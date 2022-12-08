@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class ManifestDetailItem: Codable {
-        public var invoiceId: String?
-
         public var itemQty: Int?
+
+        public var invoiceId: String?
 
         public var orderId: String?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var shipmentId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case invoiceId = "invoice_id"
-
             case itemQty = "item_qty"
+
+            case invoiceId = "invoice_id"
 
             case orderId = "order_id"
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(awb: String? = nil, invoiceId: String? = nil, itemQty: Int? = nil, orderId: String? = nil, shipmentId: String? = nil) {
-            self.invoiceId = invoiceId
-
             self.itemQty = itemQty
+
+            self.invoiceId = invoiceId
 
             self.orderId = orderId
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                invoiceId = try container.decode(String.self, forKey: .invoiceId)
+                itemQty = try container.decode(Int.self, forKey: .itemQty)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemQty = try container.decode(Int.self, forKey: .itemQty)
+                invoiceId = try container.decode(String.self, forKey: .invoiceId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(invoiceId, forKey: .invoiceId)
-
             try? container.encodeIfPresent(itemQty, forKey: .itemQty)
+
+            try? container.encodeIfPresent(invoiceId, forKey: .invoiceId)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 

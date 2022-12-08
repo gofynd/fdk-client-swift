@@ -10,7 +10,7 @@ public extension PlatformClient {
     class IntegrationConfig: Codable {
         public var id: String?
 
-        public var integrationType: String?
+        public var integrationType: String
 
         public var baseUrl: String?
 
@@ -26,9 +26,9 @@ public extension PlatformClient {
 
         public var configCompleted: Bool?
 
-        public var allowTicketCreation: Bool?
+        public var allowTicketCreation: Bool
 
-        public var showListing: Bool?
+        public var showListing: Bool
 
         public enum CodingKeys: String, CodingKey {
             case id = "_id"
@@ -54,7 +54,7 @@ public extension PlatformClient {
             case showListing = "show_listing"
         }
 
-        public init(allowTicketCreation: Bool? = nil, baseUrl: String? = nil, categoryData: CategoryData? = nil, categorySyncApikey: String? = nil, configCompleted: Bool? = nil, createTicketApikey: String? = nil, integrationType: String? = nil, showListing: Bool? = nil, updateTicketApikey: String? = nil, webhookApikey: String? = nil, id: String? = nil) {
+        public init(allowTicketCreation: Bool, baseUrl: String? = nil, categoryData: CategoryData? = nil, categorySyncApikey: String? = nil, configCompleted: Bool? = nil, createTicketApikey: String? = nil, integrationType: String, showListing: Bool, updateTicketApikey: String? = nil, webhookApikey: String? = nil, id: String? = nil) {
             self.id = id
 
             self.integrationType = integrationType
@@ -89,13 +89,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                integrationType = try container.decode(String.self, forKey: .integrationType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            integrationType = try container.decode(String.self, forKey: .integrationType)
 
             do {
                 baseUrl = try container.decode(String.self, forKey: .baseUrl)
@@ -153,21 +147,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                allowTicketCreation = try container.decode(Bool.self, forKey: .allowTicketCreation)
+            allowTicketCreation = try container.decode(Bool.self, forKey: .allowTicketCreation)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                showListing = try container.decode(Bool.self, forKey: .showListing)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            showListing = try container.decode(Bool.self, forKey: .showListing)
         }
 
         public func encode(to encoder: Encoder) throws {

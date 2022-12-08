@@ -4326,33 +4326,6 @@ Success
 
  
  
- #### [TicketCategory](#TicketCategory)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | String |  no  | Key for category |
- | display | String |  no  | Display text for category |
- | form | [CustomForm](#CustomForm)? |  yes  | Form related to the category |
- | subCategories | [[TicketSubCategory](#TicketSubCategory)]? |  yes  | Sub-category related to the category |
- | feedbackForm | [TicketFeedbackForm](#TicketFeedbackForm)? |  yes  | Feedback form of category used to submit ticket feedback |
-
----
-
-
- 
- 
- #### [TicketSubCategory](#TicketSubCategory)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | String |  no  | Key for sub-category |
- | display | String |  no  | Display text for sub-category |
-
----
-
-
- 
- 
  #### [TicketFeedbackForm](#TicketFeedbackForm)
 
  | Properties | Type | Nullable | Description |
@@ -4484,13 +4457,26 @@ Success
 
  
  
- #### [CategorySchema](#CategorySchema)
+ #### [TicketSubCategory](#TicketSubCategory)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | String? |  yes  | Category display value identifier |
- | key | String? |  yes  | Category key value identifier |
- | subCategories | [CategorySchema](#CategorySchema)? |  yes  | Support category array list details |
+ | key | String |  no  | Key for sub-category |
+ | display | String |  no  | Display text for sub-category |
+ | subCategories | [TicketSubCategory](#TicketSubCategory)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TicketCategory](#TicketCategory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | String |  no  | Category display value identifier |
+ | key | String |  no  | Category key value identifier |
+ | subCategories | [TicketCategory](#TicketCategory)? |  yes  | Support category array list details |
  | groupId | Double? |  yes  | Group id of category releted data |
  | feedbackForm | [FeedbackForm](#FeedbackForm)? |  yes  | Support category array list details |
 
@@ -4503,7 +4489,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | list | [CategorySchema](#CategorySchema)? |  yes  |  |
+ | list | [TicketCategory](#TicketCategory)? |  yes  |  |
 
 ---
 
@@ -4515,7 +4501,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | id | String? |  yes  | Unique id |
- | integrationType | String? |  yes  | Enum string values for integration |
+ | integrationType | String |  no  | Enum string values for integration |
  | baseUrl | String? |  yes  | Integration base url for validate and create ticket |
  | createTicketApikey | String? |  yes  | Integration apikey to validate and create ticket |
  | updateTicketApikey | String? |  yes  | Integration apikey to update ticket |
@@ -4523,8 +4509,8 @@ Success
  | categoryData | [CategoryData](#CategoryData)? |  yes  | Support category array list details |
  | webhookApikey | String? |  yes  | Integration webhook apikey to got callbacks from integration type dashboard like freshdesk, etc |
  | configCompleted | Bool? |  yes  | Denotes the current intergration is completed or partially done |
- | allowTicketCreation | Bool? |  yes  | Denotes ticket creation enable or disable on platform |
- | showListing | Bool? |  yes  | Denotes ticket listing enable or disable on platform |
+ | allowTicketCreation | Bool |  no  | Denotes ticket creation enable or disable on platform |
+ | showListing | Bool |  no  | Denotes ticket listing enable or disable on platform |
 
 ---
 
@@ -4589,8 +4575,8 @@ Success
  | responseId | String? |  yes  | Details of company and application realated to the ticket |
  | content | [TicketContent](#TicketContent)? |  yes  | Ticket conetent details |
  | ticketId | String |  no  | Readable ticket number |
- | category | [TicketCategory](#TicketCategory) |  no  | Category assigned to the ticket |
- | subCategory | [TicketSubCategory](#TicketSubCategory)? |  yes  | Sub-category assigned to the ticket |
+ | category | String |  no  | Category assigned to the ticket |
+ | subCategory | String? |  yes  | Sub-category assigned to the ticket |
  | source | [TicketSourceEnum](#TicketSourceEnum) |  no  | Denotes if the ticket was created at company or application level |
  | status | [Status](#Status) |  no  | Denotes in what state is the ticket |
  | priority | [Priority](#Priority) |  no  | Denotes the priority of ticket |
@@ -4668,6 +4654,19 @@ Success
  | ---- | ----- | ----------- |
  | platformPanel | platform_panel | This means it is company level ticket |
  | salesChannel | sales_channel | This means it is a application/sales channel level ticket |
+
+---
+
+
+
+ #### [TicketIntegrationDetails](#TicketIntegrationDetails)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | defaultCase | default | This means it is default level ticket integration |
+ | freshdesk | freshdesk | This means it is default level freshdesk integration |
+ | kapture | kapture | This means it is default level kapture integration |
 
 ---
 

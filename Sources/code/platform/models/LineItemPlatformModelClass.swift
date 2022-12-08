@@ -10,26 +10,26 @@ public extension PlatformClient {
     class LineItem: Codable {
         public var externalLineId: String?
 
-        public var meta: [String: Any]?
+        public var quantity: Int?
 
         public var customMessasge: String?
 
         public var charges: [Charge]
 
-        public var quantity: Int?
+        public var meta: [String: Any]?
 
         public var sellerIdentifier: String
 
         public enum CodingKeys: String, CodingKey {
             case externalLineId = "external_line_id"
 
-            case meta
+            case quantity
 
             case customMessasge = "custom_messasge"
 
             case charges
 
-            case quantity
+            case meta
 
             case sellerIdentifier = "seller_identifier"
         }
@@ -37,13 +37,13 @@ public extension PlatformClient {
         public init(charges: [Charge], customMessasge: String? = nil, externalLineId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, sellerIdentifier: String) {
             self.externalLineId = externalLineId
 
-            self.meta = meta
+            self.quantity = quantity
 
             self.customMessasge = customMessasge
 
             self.charges = charges
 
-            self.quantity = quantity
+            self.meta = meta
 
             self.sellerIdentifier = sellerIdentifier
         }
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             charges = try container.decode([Charge].self, forKey: .charges)
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,13 +93,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(externalLineId, forKey: .externalLineId)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(customMessasge, forKey: .customMessasge)
 
             try? container.encodeIfPresent(charges, forKey: .charges)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
         }

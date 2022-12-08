@@ -4919,6 +4919,7 @@ Success
  | minCartValue | Double? |  yes  | Minimum cart value |
  | bulkCoupons | Bool? |  yes  | Allow creation of bluk coupons |
  | revenueEngineCoupon | Bool? |  yes  | Allow coupon apply and credits together. Default value is false. |
+ | emptyCart | Bool? |  yes  |  |
 
 ---
 

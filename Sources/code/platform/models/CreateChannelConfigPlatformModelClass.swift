@@ -1,57 +1,58 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: CreateOrderConfig
+         Model: CreateChannelConfig
          Used By: Order
      */
-    class CreateOrderConfig: Codable {
-        public var dpConfiguration: DpConfiguration?
+
+    class CreateChannelConfig: Codable {
+        public var locationReassignment: Bool?
 
         public var shipmentAssignment: String?
 
-        public var paymentInfo: PaymentInfo?
+        public var dpConfiguration: DpConfiguration?
 
-        public var lockStates: String?
+        public var paymentInfo: CreateChannelPaymentInfo?
 
         public var logoUrl: [String: Any]?
 
-        public var locationReassignment: Bool?
+        public var lockStates: String?
 
         public enum CodingKeys: String, CodingKey {
-            case dpConfiguration = "dp_configuration"
+            case locationReassignment = "location_reassignment"
 
             case shipmentAssignment = "shipment_assignment"
 
-            case paymentInfo = "payment_info"
+            case dpConfiguration = "dp_configuration"
 
-            case lockStates = "lock_states"
+            case paymentInfo = "payment_info"
 
             case logoUrl = "logo_url"
 
-            case locationReassignment = "location_reassignment"
+            case lockStates = "lock_states"
         }
 
-        public init(dpConfiguration: DpConfiguration? = nil, locationReassignment: Bool? = nil, lockStates: String? = nil, logoUrl: [String: Any]? = nil, paymentInfo: PaymentInfo? = nil, shipmentAssignment: String? = nil) {
-            self.dpConfiguration = dpConfiguration
+        public init(dpConfiguration: DpConfiguration? = nil, locationReassignment: Bool? = nil, lockStates: String? = nil, logoUrl: [String: Any]? = nil, paymentInfo: CreateChannelPaymentInfo? = nil, shipmentAssignment: String? = nil) {
+            self.locationReassignment = locationReassignment
 
             self.shipmentAssignment = shipmentAssignment
 
-            self.paymentInfo = paymentInfo
+            self.dpConfiguration = dpConfiguration
 
-            self.lockStates = lockStates
+            self.paymentInfo = paymentInfo
 
             self.logoUrl = logoUrl
 
-            self.locationReassignment = locationReassignment
+            self.lockStates = lockStates
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
+                locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +68,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                paymentInfo = try container.decode(PaymentInfo.self, forKey: .paymentInfo)
+                dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +76,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                lockStates = try container.decode(String.self, forKey: .lockStates)
+                paymentInfo = try container.decode(CreateChannelPaymentInfo.self, forKey: .paymentInfo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +92,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
+                lockStates = try container.decode(String.self, forKey: .lockStates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,17 +103,17 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
+            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
 
             try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
 
-            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
+            try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
 
-            try? container.encodeIfPresent(lockStates, forKey: .lockStates)
+            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
 
             try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
 
-            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
+            try? container.encodeIfPresent(lockStates, forKey: .lockStates)
         }
     }
 }

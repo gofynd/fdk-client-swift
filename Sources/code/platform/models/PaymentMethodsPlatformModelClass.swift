@@ -1,39 +1,40 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: createOrderConfigResponse
+         Model: PaymentMethods
          Used By: Order
      */
-    class createOrderConfigResponse: Codable {
-        public var isInserted: Bool?
 
-        public var acknowledged: Bool?
+    class PaymentMethods: Codable {
+        public var mode: String?
 
-        public var isUpserted: Bool?
+        public var collectBy: String?
+
+        public var refundBy: String?
 
         public enum CodingKeys: String, CodingKey {
-            case isInserted = "is_inserted"
+            case mode
 
-            case acknowledged
+            case collectBy = "collect_by"
 
-            case isUpserted = "is_upserted"
+            case refundBy = "refund_by"
         }
 
-        public init(acknowledged: Bool? = nil, isInserted: Bool? = nil, isUpserted: Bool? = nil) {
-            self.isInserted = isInserted
+        public init(collectBy: String? = nil, mode: String? = nil, refundBy: String? = nil) {
+            self.mode = mode
 
-            self.acknowledged = acknowledged
+            self.collectBy = collectBy
 
-            self.isUpserted = isUpserted
+            self.refundBy = refundBy
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isInserted = try container.decode(Bool.self, forKey: .isInserted)
+                mode = try container.decode(String.self, forKey: .mode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +42,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                acknowledged = try container.decode(Bool.self, forKey: .acknowledged)
+                collectBy = try container.decode(String.self, forKey: .collectBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +50,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isUpserted = try container.decode(Bool.self, forKey: .isUpserted)
+                refundBy = try container.decode(String.self, forKey: .refundBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +61,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isInserted, forKey: .isInserted)
+            try? container.encodeIfPresent(mode, forKey: .mode)
 
-            try? container.encodeIfPresent(acknowledged, forKey: .acknowledged)
+            try? container.encodeIfPresent(collectBy, forKey: .collectBy)
 
-            try? container.encodeIfPresent(isUpserted, forKey: .isUpserted)
+            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
         }
     }
 }
