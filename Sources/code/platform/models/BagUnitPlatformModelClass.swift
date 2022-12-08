@@ -8,70 +8,66 @@ public extension PlatformClient {
      */
 
     class BagUnit: Codable {
-        public var status: [String: Any]
-
-        public var itemQuantity: Int
-
         public var totalShipmentBags: Int
 
         public var gst: GSTDetailsData?
 
-        public var bagId: Int
-
         public var prices: Prices?
+
+        public var status: [String: Any]
 
         public var shipmentId: String
 
-        public var orderingChannel: String
-
         public var item: PlatformItem?
 
+        public var itemQuantity: Int
+
+        public var orderingChannel: String
+
+        public var bagId: Int
+
         public enum CodingKeys: String, CodingKey {
-            case status
-
-            case itemQuantity = "item_quantity"
-
             case totalShipmentBags = "total_shipment_bags"
 
             case gst
 
-            case bagId = "bag_id"
-
             case prices
+
+            case status
 
             case shipmentId = "shipment_id"
 
+            case item
+
+            case itemQuantity = "item_quantity"
+
             case orderingChannel = "ordering_channel"
 
-            case item
+            case bagId = "bag_id"
         }
 
         public init(bagId: Int, gst: GSTDetailsData? = nil, item: PlatformItem? = nil, itemQuantity: Int, orderingChannel: String, prices: Prices? = nil, shipmentId: String, status: [String: Any], totalShipmentBags: Int) {
-            self.status = status
-
-            self.itemQuantity = itemQuantity
-
             self.totalShipmentBags = totalShipmentBags
 
             self.gst = gst
 
-            self.bagId = bagId
-
             self.prices = prices
+
+            self.status = status
 
             self.shipmentId = shipmentId
 
+            self.item = item
+
+            self.itemQuantity = itemQuantity
+
             self.orderingChannel = orderingChannel
 
-            self.item = item
+            self.bagId = bagId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            status = try container.decode([String: Any].self, forKey: .status)
-
-            itemQuantity = try container.decode(Int.self, forKey: .itemQuantity)
 
             totalShipmentBags = try container.decode(Int.self, forKey: .totalShipmentBags)
 
@@ -83,8 +79,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            bagId = try container.decode(Int.self, forKey: .bagId)
-
             do {
                 prices = try container.decode(Prices.self, forKey: .prices)
 
@@ -93,9 +87,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
+            status = try container.decode([String: Any].self, forKey: .status)
 
-            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             do {
                 item = try container.decode(PlatformItem.self, forKey: .item)
@@ -104,28 +98,34 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            itemQuantity = try container.decode(Int.self, forKey: .itemQuantity)
+
+            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+
+            bagId = try container.decode(Int.self, forKey: .bagId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(itemQuantity, forKey: .itemQuantity)
-
             try? container.encodeIfPresent(totalShipmentBags, forKey: .totalShipmentBags)
 
             try? container.encodeIfPresent(gst, forKey: .gst)
 
-            try? container.encodeIfPresent(bagId, forKey: .bagId)
-
             try? container.encodeIfPresent(prices, forKey: .prices)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
+            try? container.encodeIfPresent(item, forKey: .item)
+
+            try? container.encodeIfPresent(itemQuantity, forKey: .itemQuantity)
+
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
 
-            try? container.encodeIfPresent(item, forKey: .item)
+            try? container.encodeIfPresent(bagId, forKey: .bagId)
         }
     }
 }
