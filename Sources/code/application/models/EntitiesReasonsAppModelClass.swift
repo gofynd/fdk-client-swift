@@ -9,7 +9,7 @@ public extension ApplicationClient {
     class EntitiesReasons: Codable {
         public var filters: [[String: Any]]?
 
-        public var data: [String: Any]?
+        public var data: EntityReasonData?
 
         public enum CodingKeys: String, CodingKey {
             case filters
@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case data
         }
 
-        public init(data: [String: Any]? = nil, filters: [[String: Any]]? = nil) {
+        public init(data: EntityReasonData? = nil, filters: [[String: Any]]? = nil) {
             self.filters = filters
 
             self.data = data
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                data = try container.decode([String: Any].self, forKey: .data)
+                data = try container.decode(EntityReasonData.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var success: Bool?
 
-        public var resendTimer: Int?
-
         public var requestId: String?
+
+        public var resendTimer: Int?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
             case success
 
-            case resendTimer = "resend_timer"
-
             case requestId = "request_id"
+
+            case resendTimer = "resend_timer"
         }
 
         public init(message: String? = nil, requestId: String? = nil, resendTimer: Int? = nil, success: Bool? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.success = success
 
-            self.resendTimer = resendTimer
-
             self.requestId = requestId
+
+            self.resendTimer = resendTimer
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                resendTimer = try container.decode(Int.self, forKey: .resendTimer)
+                requestId = try container.decode(String.self, forKey: .requestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                requestId = try container.decode(String.self, forKey: .requestId)
+                resendTimer = try container.decode(Int.self, forKey: .resendTimer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
-
             try? container.encodeIfPresent(requestId, forKey: .requestId)
+
+            try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
         }
     }
 }

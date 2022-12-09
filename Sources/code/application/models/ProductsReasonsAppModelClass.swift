@@ -7,9 +7,9 @@ public extension ApplicationClient {
          Used By: Order
      */
     class ProductsReasons: Codable {
-        public var filters: [[String: Any]]?
+        public var filters: [ProductsReasonsFilters]?
 
-        public var data: [String: Any]?
+        public var data: ProductsReasonsData?
 
         public enum CodingKeys: String, CodingKey {
             case filters
@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case data
         }
 
-        public init(data: [String: Any]? = nil, filters: [[String: Any]]? = nil) {
+        public init(data: ProductsReasonsData? = nil, filters: [ProductsReasonsFilters]? = nil) {
             self.filters = filters
 
             self.data = data
@@ -27,7 +27,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                filters = try container.decode([[String: Any]].self, forKey: .filters)
+                filters = try container.decode([ProductsReasonsFilters].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                data = try container.decode([String: Any].self, forKey: .data)
+                data = try container.decode(ProductsReasonsData.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

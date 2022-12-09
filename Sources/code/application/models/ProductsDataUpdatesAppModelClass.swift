@@ -7,7 +7,7 @@ public extension ApplicationClient {
          Used By: Order
      */
     class ProductsDataUpdates: Codable {
-        public var filters: [[String: Any]]?
+        public var filters: [ProductsDataUpdatesFilters]?
 
         public var data: [String: Any]?
 
@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case data
         }
 
-        public init(data: [String: Any]? = nil, filters: [[String: Any]]? = nil) {
+        public init(data: [String: Any]? = nil, filters: [ProductsDataUpdatesFilters]? = nil) {
             self.filters = filters
 
             self.data = data
@@ -27,7 +27,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                filters = try container.decode([[String: Any]].self, forKey: .filters)
+                filters = try container.decode([ProductsDataUpdatesFilters].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

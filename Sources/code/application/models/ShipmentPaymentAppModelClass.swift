@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class ShipmentPayment: Codable {
         public var mode: String?
 
-        public var mop: String?
-
         public var logo: String?
 
         public var status: String?
 
+        public var mop: String?
+
         public enum CodingKeys: String, CodingKey {
             case mode
-
-            case mop
 
             case logo
 
             case status
+
+            case mop
         }
 
         public init(logo: String? = nil, mode: String? = nil, mop: String? = nil, status: String? = nil) {
             self.mode = mode
 
-            self.mop = mop
-
             self.logo = logo
 
             self.status = status
+
+            self.mop = mop
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,14 +40,6 @@ public extension ApplicationClient {
 
             do {
                 mode = try container.decode(String.self, forKey: .mode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                mop = try container.decode(String.self, forKey: .mop)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,6 +61,14 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                mop = try container.decode(String.self, forKey: .mop)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(mode, forKey: .mode)
 
-            try? container.encodeIfPresent(mop, forKey: .mop)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(mop, forKey: .mop)
         }
     }
 }
