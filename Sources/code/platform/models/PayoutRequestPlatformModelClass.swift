@@ -10,11 +10,11 @@ public extension PlatformClient {
     class PayoutRequest: Codable {
         public var aggregator: String
 
-        public var isActive: Bool
+        public var uniqueExternalId: String
 
         public var transferType: String
 
-        public var uniqueExternalId: String
+        public var isActive: Bool
 
         public var bankDetails: PayoutBankDetails
 
@@ -23,11 +23,11 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case aggregator
 
-            case isActive = "is_active"
+            case uniqueExternalId = "unique_external_id"
 
             case transferType = "transfer_type"
 
-            case uniqueExternalId = "unique_external_id"
+            case isActive = "is_active"
 
             case bankDetails = "bank_details"
 
@@ -37,11 +37,11 @@ public extension PlatformClient {
         public init(aggregator: String, bankDetails: PayoutBankDetails, isActive: Bool, transferType: String, uniqueExternalId: String, users: [String: Any]) {
             self.aggregator = aggregator
 
-            self.isActive = isActive
+            self.uniqueExternalId = uniqueExternalId
 
             self.transferType = transferType
 
-            self.uniqueExternalId = uniqueExternalId
+            self.isActive = isActive
 
             self.bankDetails = bankDetails
 
@@ -53,11 +53,11 @@ public extension PlatformClient {
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
+            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
 
             transferType = try container.decode(String.self, forKey: .transferType)
 
-            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             bankDetails = try container.decode(PayoutBankDetails.self, forKey: .bankDetails)
 
@@ -69,11 +69,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
 
             try? container.encodeIfPresent(transferType, forKey: .transferType)
 
-            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
 
