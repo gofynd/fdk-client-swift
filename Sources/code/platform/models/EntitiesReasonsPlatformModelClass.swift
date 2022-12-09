@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class EntitiesReasons: Codable {
-        public var data: [String: Any]?
+        public var data: EntityReasonData?
 
         public var filters: [[String: Any]]?
 
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case filters
         }
 
-        public init(data: [String: Any]? = nil, filters: [[String: Any]]? = nil) {
+        public init(data: EntityReasonData? = nil, filters: [[String: Any]]? = nil) {
             self.data = data
 
             self.filters = filters
@@ -28,7 +28,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode([String: Any].self, forKey: .data)
+                data = try container.decode(EntityReasonData.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class ProductsReasons: Codable {
-        public var data: [String: Any]?
+        public var data: ProductsReasonsData?
 
-        public var filters: [[String: Any]]?
+        public var filters: [ProductsReasonsFilters]?
 
         public enum CodingKeys: String, CodingKey {
             case data
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case filters
         }
 
-        public init(data: [String: Any]? = nil, filters: [[String: Any]]? = nil) {
+        public init(data: ProductsReasonsData? = nil, filters: [ProductsReasonsFilters]? = nil) {
             self.data = data
 
             self.filters = filters
@@ -28,7 +28,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode([String: Any].self, forKey: .data)
+                data = try container.decode(ProductsReasonsData.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                filters = try container.decode([[String: Any]].self, forKey: .filters)
+                filters = try container.decode([ProductsReasonsFilters].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

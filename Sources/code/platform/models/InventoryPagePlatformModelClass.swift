@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var type: String
 
-        public var itemTotal: Int
-
         public var hasPrevious: Bool?
+
+        public var itemTotal: Int
 
         public enum CodingKeys: String, CodingKey {
             case hasNext = "has_next"
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case type
 
-            case itemTotal = "item_total"
-
             case hasPrevious = "has_previous"
+
+            case itemTotal = "item_total"
         }
 
         public init(hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int, nextId: String? = nil, type: String) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.type = type
 
-            self.itemTotal = itemTotal
-
             self.hasPrevious = hasPrevious
+
+            self.itemTotal = itemTotal
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,8 +63,6 @@ public extension PlatformClient {
 
             type = try container.decode(String.self, forKey: .type)
 
-            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-
             do {
                 hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
 
@@ -72,6 +70,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -83,9 +83,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
         }
     }
 }
