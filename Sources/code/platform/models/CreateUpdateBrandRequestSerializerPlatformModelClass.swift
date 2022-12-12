@@ -10,11 +10,15 @@ public extension PlatformClient {
     class CreateUpdateBrandRequestSerializer: Codable {
         public var description: String?
 
+        public var localeLanguage: [String: Any]?
+
+        public var logo: String
+
         public var banner: BrandBannerSerializer?
 
-        public var brandTier: String?
+        public var customJson: [String: Any]?
 
-        public var localeLanguage: [String: Any]?
+        public var synonyms: [String]?
 
         public var name: String
 
@@ -22,20 +26,20 @@ public extension PlatformClient {
 
         public var uid: Int?
 
-        public var customJson: [String: Any]?
-
-        public var synonyms: [String]?
-
-        public var logo: String
+        public var brandTier: String?
 
         public enum CodingKeys: String, CodingKey {
             case description
 
+            case localeLanguage = "_locale_language"
+
+            case logo
+
             case banner
 
-            case brandTier = "brand_tier"
+            case customJson = "_custom_json"
 
-            case localeLanguage = "_locale_language"
+            case synonyms
 
             case name
 
@@ -43,21 +47,21 @@ public extension PlatformClient {
 
             case uid
 
-            case customJson = "_custom_json"
-
-            case synonyms
-
-            case logo
+            case brandTier = "brand_tier"
         }
 
         public init(banner: BrandBannerSerializer? = nil, brandTier: String? = nil, companyId: Int? = nil, description: String? = nil, logo: String, name: String, synonyms: [String]? = nil, uid: Int? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil) {
             self.description = description
 
+            self.localeLanguage = localeLanguage
+
+            self.logo = logo
+
             self.banner = banner
 
-            self.brandTier = brandTier
+            self.customJson = customJson
 
-            self.localeLanguage = localeLanguage
+            self.synonyms = synonyms
 
             self.name = name
 
@@ -65,11 +69,7 @@ public extension PlatformClient {
 
             self.uid = uid
 
-            self.customJson = customJson
-
-            self.synonyms = synonyms
-
-            self.logo = logo
+            self.brandTier = brandTier
         }
 
         required public init(from decoder: Decoder) throws {
@@ -84,6 +84,16 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                localeLanguage = try container.decode([String: Any].self, forKey: .localeLanguage)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            logo = try container.decode(String.self, forKey: .logo)
+
+            do {
                 banner = try container.decode(BrandBannerSerializer.self, forKey: .banner)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -92,7 +102,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                brandTier = try container.decode(String.self, forKey: .brandTier)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -100,7 +110,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                localeLanguage = try container.decode([String: Any].self, forKey: .localeLanguage)
+                synonyms = try container.decode([String].self, forKey: .synonyms)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -126,22 +136,12 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                brandTier = try container.decode(String.self, forKey: .brandTier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                synonyms = try container.decode([String].self, forKey: .synonyms)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            logo = try container.decode(String.self, forKey: .logo)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -149,11 +149,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(description, forKey: .description)
 
+            try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
             try? container.encodeIfPresent(banner, forKey: .banner)
 
-            try? container.encodeIfPresent(brandTier, forKey: .brandTier)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
+            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
@@ -161,11 +165,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(brandTier, forKey: .brandTier)
         }
     }
 }
