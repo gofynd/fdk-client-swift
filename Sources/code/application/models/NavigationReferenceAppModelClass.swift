@@ -25,7 +25,7 @@ public extension ApplicationClient {
 
         public var sortOrder: Int?
 
-        public var subNavigation: [SubNavigationReference]?
+        public var subNavigation: [NavigationReference]?
 
         public enum CodingKeys: String, CodingKey {
             case acl
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             case subNavigation = "sub_navigation"
         }
 
-        public init(acl: [String]? = nil, action: Action? = nil, active: Bool? = nil, display: String? = nil, image: String? = nil, sortOrder: Int? = nil, subNavigation: [SubNavigationReference]? = nil, tags: [String]? = nil, type: String? = nil, localeLanguage: LocaleLanguage? = nil) {
+        public init(acl: [String]? = nil, action: Action? = nil, active: Bool? = nil, display: String? = nil, image: String? = nil, sortOrder: Int? = nil, subNavigation: [NavigationReference]? = nil, tags: [String]? = nil, type: String? = nil, localeLanguage: LocaleLanguage? = nil) {
             self.acl = acl
 
             self.tags = tags
@@ -147,7 +147,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                subNavigation = try container.decode([SubNavigationReference].self, forKey: .subNavigation)
+                subNavigation = try container.decode([NavigationReference].self, forKey: .subNavigation)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

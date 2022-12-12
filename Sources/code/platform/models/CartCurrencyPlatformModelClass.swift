@@ -1,49 +1,42 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: CustomerDetails
+         Model: CartCurrency
          Used By: Cart
      */
-    class CustomerDetails: Codable {
-        public var email: String?
 
-        public var mobile: String
+    class CartCurrency: Codable {
+        public var code: String?
 
-        public var name: String?
+        public var symbol: String?
 
         public enum CodingKeys: String, CodingKey {
-            case email
+            case code
 
-            case mobile
-
-            case name
+            case symbol
         }
 
-        public init(email: String? = nil, mobile: String, name: String? = nil) {
-            self.email = email
+        public init(code: String? = nil, symbol: String? = nil) {
+            self.code = code
 
-            self.mobile = mobile
-
-            self.name = name
+            self.symbol = symbol
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            mobile = try container.decode(String.self, forKey: .mobile)
-
             do {
-                name = try container.decode(String.self, forKey: .name)
+                symbol = try container.decode(String.self, forKey: .symbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,11 +47,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(email, forKey: .email)
+            try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(mobile, forKey: .mobile)
-
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(symbol, forKey: .symbol)
         }
     }
 }

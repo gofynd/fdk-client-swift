@@ -10,18 +10,18 @@ public extension PlatformClient {
     class Logo: Codable {
         public var secureUrl: String?
 
-        public var aspectRatio: String?
-
         public var aspectRatioF: Int?
+
+        public var aspectRatio: String?
 
         public var url: String?
 
         public enum CodingKeys: String, CodingKey {
             case secureUrl = "secure_url"
 
-            case aspectRatio = "aspect_ratio"
-
             case aspectRatioF = "aspect_ratio_f"
+
+            case aspectRatio = "aspect_ratio"
 
             case url
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(aspectRatio: String? = nil, aspectRatioF: Int? = nil, secureUrl: String? = nil, url: String? = nil) {
             self.secureUrl = secureUrl
 
-            self.aspectRatio = aspectRatio
-
             self.aspectRatioF = aspectRatioF
+
+            self.aspectRatio = aspectRatio
 
             self.url = url
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
+                aspectRatioF = try container.decode(Int.self, forKey: .aspectRatioF)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                aspectRatioF = try container.decode(Int.self, forKey: .aspectRatioF)
+                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(secureUrl, forKey: .secureUrl)
 
-            try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
-
             try? container.encodeIfPresent(aspectRatioF, forKey: .aspectRatioF)
+
+            try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
 
             try? container.encodeIfPresent(url, forKey: .url)
         }

@@ -10,70 +10,70 @@ public extension PlatformClient {
     class LocationSerializer: Codable {
         public var stage: String?
 
-        public var productReturnConfig: ProductReturnConfigSerializer?
-
-        public var timing: [LocationDayWiseSerializer]?
-
-        public var code: String
+        public var manager: LocationManagerSerializer?
 
         public var displayName: String
 
+        public var timing: [LocationDayWiseSerializer]?
+
+        public var company: Int
+
+        public var code: String
+
         public var uid: Int?
 
-        public var manager: LocationManagerSerializer?
+        public var notificationEmails: [String]?
 
-        public var storeType: String?
+        public var gstCredentials: InvoiceDetailsSerializer?
 
         public var documents: [Document]?
 
-        public var notificationEmails: [String]?
+        public var contactNumbers: [SellerPhoneNumber]?
+
+        public var address: GetAddressSerializer
+
+        public var storeType: String?
+
+        public var productReturnConfig: ProductReturnConfigSerializer?
 
         public var customJson: [String: Any]?
 
         public var warnings: [String: Any]?
-
-        public var gstCredentials: InvoiceDetailsSerializer?
-
-        public var address: GetAddressSerializer
-
-        public var contactNumbers: [SellerPhoneNumber]?
-
-        public var company: Int
 
         public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case stage
 
-            case productReturnConfig = "product_return_config"
-
-            case timing
-
-            case code
+            case manager
 
             case displayName = "display_name"
 
+            case timing
+
+            case company
+
+            case code
+
             case uid
 
-            case manager
+            case notificationEmails = "notification_emails"
 
-            case storeType = "store_type"
+            case gstCredentials = "gst_credentials"
 
             case documents
 
-            case notificationEmails = "notification_emails"
+            case contactNumbers = "contact_numbers"
+
+            case address
+
+            case storeType = "store_type"
+
+            case productReturnConfig = "product_return_config"
 
             case customJson = "_custom_json"
 
             case warnings
-
-            case gstCredentials = "gst_credentials"
-
-            case address
-
-            case contactNumbers = "contact_numbers"
-
-            case company
 
             case name
         }
@@ -81,35 +81,35 @@ public extension PlatformClient {
         public init(address: GetAddressSerializer, code: String, company: Int, contactNumbers: [SellerPhoneNumber]? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSerializer? = nil, manager: LocationManagerSerializer? = nil, name: String, notificationEmails: [String]? = nil, productReturnConfig: ProductReturnConfigSerializer? = nil, stage: String? = nil, storeType: String? = nil, timing: [LocationDayWiseSerializer]? = nil, uid: Int? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             self.stage = stage
 
-            self.productReturnConfig = productReturnConfig
-
-            self.timing = timing
-
-            self.code = code
+            self.manager = manager
 
             self.displayName = displayName
 
+            self.timing = timing
+
+            self.company = company
+
+            self.code = code
+
             self.uid = uid
 
-            self.manager = manager
+            self.notificationEmails = notificationEmails
 
-            self.storeType = storeType
+            self.gstCredentials = gstCredentials
 
             self.documents = documents
 
-            self.notificationEmails = notificationEmails
+            self.contactNumbers = contactNumbers
+
+            self.address = address
+
+            self.storeType = storeType
+
+            self.productReturnConfig = productReturnConfig
 
             self.customJson = customJson
 
             self.warnings = warnings
-
-            self.gstCredentials = gstCredentials
-
-            self.address = address
-
-            self.contactNumbers = contactNumbers
-
-            self.company = company
 
             self.name = name
         }
@@ -126,12 +126,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                productReturnConfig = try container.decode(ProductReturnConfigSerializer.self, forKey: .productReturnConfig)
+                manager = try container.decode(LocationManagerSerializer.self, forKey: .manager)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            displayName = try container.decode(String.self, forKey: .displayName)
 
             do {
                 timing = try container.decode([LocationDayWiseSerializer].self, forKey: .timing)
@@ -141,9 +143,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            code = try container.decode(String.self, forKey: .code)
+            company = try container.decode(Int.self, forKey: .company)
 
-            displayName = try container.decode(String.self, forKey: .displayName)
+            code = try container.decode(String.self, forKey: .code)
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
@@ -154,7 +156,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                manager = try container.decode(LocationManagerSerializer.self, forKey: .manager)
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -162,7 +164,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                storeType = try container.decode(String.self, forKey: .storeType)
+                gstCredentials = try container.decode(InvoiceDetailsSerializer.self, forKey: .gstCredentials)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -178,7 +180,25 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
+                contactNumbers = try container.decode([SellerPhoneNumber].self, forKey: .contactNumbers)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            address = try container.decode(GetAddressSerializer.self, forKey: .address)
+
+            do {
+                storeType = try container.decode(String.self, forKey: .storeType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                productReturnConfig = try container.decode(ProductReturnConfigSerializer.self, forKey: .productReturnConfig)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -201,26 +221,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                gstCredentials = try container.decode(InvoiceDetailsSerializer.self, forKey: .gstCredentials)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            address = try container.decode(GetAddressSerializer.self, forKey: .address)
-
-            do {
-                contactNumbers = try container.decode([SellerPhoneNumber].self, forKey: .contactNumbers)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            company = try container.decode(Int.self, forKey: .company)
-
             name = try container.decode(String.self, forKey: .name)
         }
 
@@ -229,35 +229,35 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(stage, forKey: .stage)
 
-            try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
-
-            try? container.encodeIfPresent(timing, forKey: .timing)
-
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(manager, forKey: .manager)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
+            try? container.encodeIfPresent(timing, forKey: .timing)
+
+            try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(code, forKey: .code)
+
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(manager, forKey: .manager)
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
-            try? container.encodeIfPresent(storeType, forKey: .storeType)
+            try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
 
             try? container.encodeIfPresent(documents, forKey: .documents)
 
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
+            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
+
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(storeType, forKey: .storeType)
+
+            try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(warnings, forKey: .warnings)
-
-            try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
-
-            try? container.encodeIfPresent(address, forKey: .address)
-
-            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
-
-            try? container.encodeIfPresent(company, forKey: .company)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
