@@ -15,7 +15,7 @@ public extension PlatformClient {
          * Summary:
          * Description:
          **/
-        public func getShipmentList(
+        public func getShipments(
             lane: String?,
             searchType: String?,
             searchValue: String?,
@@ -29,9 +29,12 @@ public extension PlatformClient {
             requestByExt: String?,
             pageNo: Int?,
             pageSize: Int?,
-            customerId: String?,
             isPrioritySort: Bool?,
             excludeLockedShipments: Bool?,
+            paymentMethods: String?,
+            channelShipmentId: String?,
+            channelOrderId: String?,
+            customMeta: String?,
 
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
         ) {
@@ -89,16 +92,28 @@ public extension PlatformClient {
                 xQuery["page_size"] = value
             }
 
-            if let value = customerId {
-                xQuery["customer_id"] = value
-            }
-
             if let value = isPrioritySort {
                 xQuery["is_priority_sort"] = value
             }
 
             if let value = excludeLockedShipments {
                 xQuery["exclude_locked_shipments"] = value
+            }
+
+            if let value = paymentMethods {
+                xQuery["payment_methods"] = value
+            }
+
+            if let value = channelShipmentId {
+                xQuery["channel_shipment_id"] = value
+            }
+
+            if let value = channelOrderId {
+                xQuery["channel_order_id"] = value
+            }
+
+            if let value = customMeta {
+                xQuery["custom_meta"] = value
             }
 
             PlatformAPIClient.execute(
@@ -135,14 +150,23 @@ public extension PlatformClient {
          * Summary:
          * Description:
          **/
-        public func getShipmentDetails(
-            shipmentId: String,
+        public func getShipmentById(
+            channelShipmentId: String?,
+            shipmentId: String?,
             orderingCompanyId: String?,
             requestByExt: String?,
 
             onResponse: @escaping (_ response: ShipmentInfoResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
+
+            if let value = channelShipmentId {
+                xQuery["channel_shipment_id"] = value
+            }
+
+            if let value = shipmentId {
+                xQuery["shipment_id"] = value
+            }
 
             if let value = orderingCompanyId {
                 xQuery["ordering_company_id"] = value
@@ -155,7 +179,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/shipmentDetails/\(shipmentId)",
+                url: "/service/platform/orders/v1.0/company/\(companyId)/shipment-details",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -186,7 +210,7 @@ public extension PlatformClient {
          * Summary:
          * Description:
          **/
-        public func getOrderShipmentDetails(
+        public func getOrderById(
             orderId: String,
 
             onResponse: @escaping (_ response: ShipmentDetailsResponse?, _ error: FDKError?) -> Void
@@ -326,6 +350,7 @@ public extension PlatformClient {
             pageNo: Int?,
             pageSize: Int?,
             isPrioritySort: Bool?,
+            customMeta: String?,
 
             onResponse: @escaping (_ response: OrderListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -373,6 +398,10 @@ public extension PlatformClient {
 
             if let value = isPrioritySort {
                 xQuery["is_priority_sort"] = value
+            }
+
+            if let value = customMeta {
+                xQuery["custom_meta"] = value
             }
 
             PlatformAPIClient.execute(
@@ -1163,7 +1192,7 @@ public extension PlatformClient {
          * Summary: Get reasons behind full or partial cancellation of a shipment
          * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
          **/
-        public func getPlatformShipmentReasons(
+        public func getShipmentReasons(
             shipmentId: String,
             bagId: String,
             state: String,
@@ -1305,7 +1334,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/bag-details",
+                url: "/service/platform/orders/v1.0/company/\(companyId)/bag-details/",
                 query: xQuery,
                 body: nil,
                 headers: [],

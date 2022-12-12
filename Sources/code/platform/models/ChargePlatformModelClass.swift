@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var code: String?
 
-        public var tax: Tax
-
         public var amount: [String: Any]
+
+        public var tax: Tax
 
         public enum CodingKeys: String, CodingKey {
             case name
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case code
 
-            case tax
-
             case amount
+
+            case tax
         }
 
         public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax, type: String) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.code = code
 
-            self.tax = tax
-
             self.amount = amount
+
+            self.tax = tax
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,9 +57,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            tax = try container.decode(Tax.self, forKey: .tax)
-
             amount = try container.decode([String: Any].self, forKey: .amount)
+
+            tax = try container.decode(Tax.self, forKey: .tax)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -71,9 +71,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(tax, forKey: .tax)
-
             try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(tax, forKey: .tax)
         }
     }
 }

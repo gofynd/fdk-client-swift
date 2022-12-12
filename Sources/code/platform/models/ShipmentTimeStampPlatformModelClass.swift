@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: TimeStamp
+         Model: ShipmentTimeStamp
          Used By: Orders
      */
 
-    class TimeStamp: Codable {
+    class ShipmentTimeStamp: Codable {
         public var tMax: String?
 
         public var tMin: String?
