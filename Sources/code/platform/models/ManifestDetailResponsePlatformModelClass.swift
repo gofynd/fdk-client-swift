@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var items: [ManifestDetailItem]?
 
-        public var manifestDetails: [ManifestDetail]?
-
         public var additionalShipmentCount: Int?
+
+        public var manifestDetails: [ManifestDetail]?
 
         public enum CodingKeys: String, CodingKey {
             case page
 
             case items
 
-            case manifestDetails = "manifest_details"
-
             case additionalShipmentCount = "additional_shipment_count"
+
+            case manifestDetails = "manifest_details"
         }
 
         public init(additionalShipmentCount: Int? = nil, items: [ManifestDetailItem]? = nil, manifestDetails: [ManifestDetail]? = nil, page: ManifestPage? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.items = items
 
-            self.manifestDetails = manifestDetails
-
             self.additionalShipmentCount = additionalShipmentCount
+
+            self.manifestDetails = manifestDetails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                manifestDetails = try container.decode([ManifestDetail].self, forKey: .manifestDetails)
+                additionalShipmentCount = try container.decode(Int.self, forKey: .additionalShipmentCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                additionalShipmentCount = try container.decode(Int.self, forKey: .additionalShipmentCount)
+                manifestDetails = try container.decode([ManifestDetail].self, forKey: .manifestDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(manifestDetails, forKey: .manifestDetails)
-
             try? container.encodeIfPresent(additionalShipmentCount, forKey: .additionalShipmentCount)
+
+            try? container.encodeIfPresent(manifestDetails, forKey: .manifestDetails)
         }
     }
 }

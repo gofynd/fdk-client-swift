@@ -7,7 +7,9 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class ValidateCustomerRequest: Codable {
-        public var merchantParams: [String: Any]?
+        public var orderItems: [[String: Any]]?
+
+        public var deliveryAddress: [String: Any]?
 
         public var transactionAmountInPaise: Int
 
@@ -15,16 +17,16 @@ public extension ApplicationClient {
 
         public var billingAddress: [String: Any]?
 
-        public var deliveryAddress: [String: Any]?
-
-        public var orderItems: [[String: Any]]?
+        public var merchantParams: [String: Any]?
 
         public var aggregator: String
 
         public var phoneNumber: String
 
         public enum CodingKeys: String, CodingKey {
-            case merchantParams = "merchant_params"
+            case orderItems = "order_items"
+
+            case deliveryAddress = "delivery_address"
 
             case transactionAmountInPaise = "transaction_amount_in_paise"
 
@@ -32,9 +34,7 @@ public extension ApplicationClient {
 
             case billingAddress = "billing_address"
 
-            case deliveryAddress = "delivery_address"
-
-            case orderItems = "order_items"
+            case merchantParams = "merchant_params"
 
             case aggregator
 
@@ -42,7 +42,9 @@ public extension ApplicationClient {
         }
 
         public init(aggregator: String, billingAddress: [String: Any]? = nil, deliveryAddress: [String: Any]? = nil, merchantParams: [String: Any]? = nil, orderItems: [[String: Any]]? = nil, payload: String? = nil, phoneNumber: String, transactionAmountInPaise: Int) {
-            self.merchantParams = merchantParams
+            self.orderItems = orderItems
+
+            self.deliveryAddress = deliveryAddress
 
             self.transactionAmountInPaise = transactionAmountInPaise
 
@@ -50,9 +52,7 @@ public extension ApplicationClient {
 
             self.billingAddress = billingAddress
 
-            self.deliveryAddress = deliveryAddress
-
-            self.orderItems = orderItems
+            self.merchantParams = merchantParams
 
             self.aggregator = aggregator
 
@@ -63,7 +63,15 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
+                orderItems = try container.decode([[String: Any]].self, forKey: .orderItems)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                deliveryAddress = try container.decode([String: Any].self, forKey: .deliveryAddress)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,15 +97,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                deliveryAddress = try container.decode([String: Any].self, forKey: .deliveryAddress)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderItems = try container.decode([[String: Any]].self, forKey: .orderItems)
+                merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
+            try? container.encodeIfPresent(orderItems, forKey: .orderItems)
+
+            try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
 
             try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
 
@@ -120,9 +122,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
 
-            try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
-
-            try? container.encodeIfPresent(orderItems, forKey: .orderItems)
+            try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 

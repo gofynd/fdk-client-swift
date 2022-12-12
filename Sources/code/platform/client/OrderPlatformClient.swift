@@ -151,13 +151,22 @@ public extension PlatformClient {
          * Description:
          **/
         public func getShipmentById(
-            channelShipmentId: String,
+            channelShipmentId: String?,
+            shipmentId: String?,
             orderingCompanyId: String?,
             requestByExt: String?,
 
             onResponse: @escaping (_ response: ShipmentInfoResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
+
+            if let value = channelShipmentId {
+                xQuery["channel_shipment_id"] = value
+            }
+
+            if let value = shipmentId {
+                xQuery["shipment_id"] = value
+            }
 
             if let value = orderingCompanyId {
                 xQuery["ordering_company_id"] = value
@@ -170,7 +179,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/shipmentDetails/\(channelShipmentId)",
+                url: "/service/platform/orders/v1.0/company/\(companyId)/shipment-details",
                 query: xQuery,
                 body: nil,
                 headers: [],

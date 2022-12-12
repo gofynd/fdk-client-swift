@@ -16,9 +16,9 @@ public extension PlatformClient {
 
         public var itemPriceDetails: [String: Any]?
 
-        public var itemSlug: String?
-
         public var itemImagesUrl: [String]?
+
+        public var itemSlug: String?
 
         public enum CodingKeys: String, CodingKey {
             case itemBrandName = "item_brand_name"
@@ -29,9 +29,9 @@ public extension PlatformClient {
 
             case itemPriceDetails = "item_price_details"
 
-            case itemSlug = "item_slug"
-
             case itemImagesUrl = "item_images_url"
+
+            case itemSlug = "item_slug"
         }
 
         public init(itemBrandName: String? = nil, itemId: Int? = nil, itemImagesUrl: [String]? = nil, itemName: String? = nil, itemPriceDetails: [String: Any]? = nil, itemSlug: String? = nil) {
@@ -43,9 +43,9 @@ public extension PlatformClient {
 
             self.itemPriceDetails = itemPriceDetails
 
-            self.itemSlug = itemSlug
-
             self.itemImagesUrl = itemImagesUrl
+
+            self.itemSlug = itemSlug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemSlug = try container.decode(String.self, forKey: .itemSlug)
+                itemImagesUrl = try container.decode([String].self, forKey: .itemImagesUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,7 +92,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemImagesUrl = try container.decode([String].self, forKey: .itemImagesUrl)
+                itemSlug = try container.decode(String.self, forKey: .itemSlug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,9 +111,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
 
-            try? container.encodeIfPresent(itemSlug, forKey: .itemSlug)
-
             try? container.encodeIfPresent(itemImagesUrl, forKey: .itemImagesUrl)
+
+            try? container.encodeIfPresent(itemSlug, forKey: .itemSlug)
         }
     }
 }

@@ -10,22 +10,22 @@ public extension PlatformClient {
     class CompareObject: Codable {
         public var greaterThanEquals: Double?
 
-        public var equals: Double?
+        public var lessThan: Double?
 
         public var greaterThan: Double?
 
-        public var lessThan: Double?
+        public var equals: Double?
 
         public var lessThanEquals: Double?
 
         public enum CodingKeys: String, CodingKey {
             case greaterThanEquals = "greater_than_equals"
 
-            case equals
+            case lessThan = "less_than"
 
             case greaterThan = "greater_than"
 
-            case lessThan = "less_than"
+            case equals
 
             case lessThanEquals = "less_than_equals"
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(equals: Double? = nil, greaterThan: Double? = nil, greaterThanEquals: Double? = nil, lessThan: Double? = nil, lessThanEquals: Double? = nil) {
             self.greaterThanEquals = greaterThanEquals
 
-            self.equals = equals
+            self.lessThan = lessThan
 
             self.greaterThan = greaterThan
 
-            self.lessThan = lessThan
+            self.equals = equals
 
             self.lessThanEquals = lessThanEquals
         }
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                equals = try container.decode(Double.self, forKey: .equals)
+                lessThan = try container.decode(Double.self, forKey: .lessThan)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                lessThan = try container.decode(Double.self, forKey: .lessThan)
+                equals = try container.decode(Double.self, forKey: .equals)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,11 +91,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(greaterThanEquals, forKey: .greaterThanEquals)
 
-            try? container.encodeIfPresent(equals, forKey: .equals)
+            try? container.encodeIfPresent(lessThan, forKey: .lessThan)
 
             try? container.encodeIfPresent(greaterThan, forKey: .greaterThan)
 
-            try? container.encodeIfPresent(lessThan, forKey: .lessThan)
+            try? container.encodeIfPresent(equals, forKey: .equals)
 
             try? container.encodeIfPresent(lessThanEquals, forKey: .lessThanEquals)
         }
