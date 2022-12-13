@@ -7,48 +7,48 @@ public extension ApplicationClient {
          Used By: Order
      */
     class OrderSchema: Codable {
-        public var orderId: String?
-
-        public var breakupValues: [BreakupValues]?
-
         public var orderCreatedTime: String?
+
+        public var userInfo: UserInfo?
 
         public var shipments: [Shipments]?
 
+        public var orderId: String?
+
         public var totalShipmentsInOrder: Int?
 
-        public var userInfo: UserInfo?
+        public var breakupValues: [BreakupValues]?
 
         public var bagsForReorder: [BagsForReorder]?
 
         public enum CodingKeys: String, CodingKey {
-            case orderId = "order_id"
-
-            case breakupValues = "breakup_values"
-
             case orderCreatedTime = "order_created_time"
+
+            case userInfo = "user_info"
 
             case shipments
 
+            case orderId = "order_id"
+
             case totalShipmentsInOrder = "total_shipments_in_order"
 
-            case userInfo = "user_info"
+            case breakupValues = "breakup_values"
 
             case bagsForReorder = "bags_for_reorder"
         }
 
         public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, orderCreatedTime: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
-            self.orderId = orderId
-
-            self.breakupValues = breakupValues
-
             self.orderCreatedTime = orderCreatedTime
+
+            self.userInfo = userInfo
 
             self.shipments = shipments
 
+            self.orderId = orderId
+
             self.totalShipmentsInOrder = totalShipmentsInOrder
 
-            self.userInfo = userInfo
+            self.breakupValues = breakupValues
 
             self.bagsForReorder = bagsForReorder
         }
@@ -57,23 +57,15 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                breakupValues = try container.decode([BreakupValues].self, forKey: .breakupValues)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 orderCreatedTime = try container.decode(String.self, forKey: .orderCreatedTime)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                userInfo = try container.decode(UserInfo.self, forKey: .userInfo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,6 +81,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                orderId = try container.decode(String.self, forKey: .orderId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 totalShipmentsInOrder = try container.decode(Int.self, forKey: .totalShipmentsInOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -97,7 +97,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                userInfo = try container.decode(UserInfo.self, forKey: .userInfo)
+                breakupValues = try container.decode([BreakupValues].self, forKey: .breakupValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,17 +116,17 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
-
-            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
-
             try? container.encodeIfPresent(orderCreatedTime, forKey: .orderCreatedTime)
+
+            try? container.encodeIfPresent(userInfo, forKey: .userInfo)
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
 
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
+
             try? container.encodeIfPresent(totalShipmentsInOrder, forKey: .totalShipmentsInOrder)
 
-            try? container.encodeIfPresent(userInfo, forKey: .userInfo)
+            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
 
             try? container.encodeIfPresent(bagsForReorder, forKey: .bagsForReorder)
         }

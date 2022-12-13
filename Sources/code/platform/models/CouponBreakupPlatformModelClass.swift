@@ -10,26 +10,26 @@ public extension PlatformClient {
     class CouponBreakup: Codable {
         public var code: String?
 
-        public var message: String?
+        public var isApplied: Bool?
 
-        public var type: String?
+        public var message: String?
 
         public var uid: String?
 
-        public var isApplied: Bool?
+        public var type: String?
 
         public var value: Double?
 
         public enum CodingKeys: String, CodingKey {
             case code
 
-            case message
+            case isApplied = "is_applied"
 
-            case type
+            case message
 
             case uid
 
-            case isApplied = "is_applied"
+            case type
 
             case value
         }
@@ -37,13 +37,13 @@ public extension PlatformClient {
         public init(code: String? = nil, isApplied: Bool? = nil, message: String? = nil, type: String? = nil, uid: String? = nil, value: Double? = nil) {
             self.code = code
 
-            self.message = message
+            self.isApplied = isApplied
 
-            self.type = type
+            self.message = message
 
             self.uid = uid
 
-            self.isApplied = isApplied
+            self.type = type
 
             self.value = value
         }
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                isApplied = try container.decode(Bool.self, forKey: .isApplied)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isApplied = try container.decode(Bool.self, forKey: .isApplied)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,13 +105,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(value, forKey: .value)
         }
