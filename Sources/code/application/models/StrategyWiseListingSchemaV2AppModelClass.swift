@@ -7,18 +7,18 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class StrategyWiseListingSchemaV2: Codable {
-        public var pincode: Int?
-
         public var distance: Int?
+
+        public var pincode: Int?
 
         public var quantity: Int?
 
         public var tat: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case pincode
-
             case distance
+
+            case pincode
 
             case quantity
 
@@ -26,9 +26,9 @@ public extension ApplicationClient {
         }
 
         public init(distance: Int? = nil, pincode: Int? = nil, quantity: Int? = nil, tat: Int? = nil) {
-            self.pincode = pincode
-
             self.distance = distance
+
+            self.pincode = pincode
 
             self.quantity = quantity
 
@@ -39,7 +39,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                pincode = try container.decode(Int.self, forKey: .pincode)
+                distance = try container.decode(Int.self, forKey: .distance)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                distance = try container.decode(Int.self, forKey: .distance)
+                pincode = try container.decode(Int.self, forKey: .pincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
             try? container.encodeIfPresent(distance, forKey: .distance)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 

@@ -9,22 +9,22 @@ public extension ApplicationClient {
     class ProductSize: Codable {
         public var quantity: Int?
 
-        public var sellerIdentifiers: [String]?
+        public var isAvailable: Bool?
 
         public var value: String?
 
-        public var isAvailable: Bool?
+        public var sellerIdentifiers: [String]?
 
         public var display: String?
 
         public enum CodingKeys: String, CodingKey {
             case quantity
 
-            case sellerIdentifiers = "seller_identifiers"
+            case isAvailable = "is_available"
 
             case value
 
-            case isAvailable = "is_available"
+            case sellerIdentifiers = "seller_identifiers"
 
             case display
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient {
         public init(display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, sellerIdentifiers: [String]? = nil, value: String? = nil) {
             self.quantity = quantity
 
-            self.sellerIdentifiers = sellerIdentifiers
+            self.isAvailable = isAvailable
 
             self.value = value
 
-            self.isAvailable = isAvailable
+            self.sellerIdentifiers = sellerIdentifiers
 
             self.display = display
         }
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sellerIdentifiers = try container.decode([String].self, forKey: .sellerIdentifiers)
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
+                sellerIdentifiers = try container.decode([String].self, forKey: .sellerIdentifiers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
+            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+            try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
 
             try? container.encodeIfPresent(display, forKey: .display)
         }

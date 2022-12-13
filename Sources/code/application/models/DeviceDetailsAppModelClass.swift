@@ -15,11 +15,11 @@ public extension ApplicationClient {
 
         public var os: String?
 
+        public var deviceMake: String?
+
         public var deviceType: String?
 
         public var identifierType: String?
-
-        public var deviceMake: String?
 
         public enum CodingKeys: String, CodingKey {
             case identificationNumber = "identification_number"
@@ -30,11 +30,11 @@ public extension ApplicationClient {
 
             case os
 
+            case deviceMake = "device_make"
+
             case deviceType = "device_type"
 
             case identifierType = "identifier_type"
-
-            case deviceMake = "device_make"
         }
 
         public init(deviceMake: String? = nil, deviceModel: String? = nil, deviceType: String? = nil, identificationNumber: String? = nil, identifierType: String? = nil, os: String? = nil, osVersion: String? = nil) {
@@ -46,11 +46,11 @@ public extension ApplicationClient {
 
             self.os = os
 
+            self.deviceMake = deviceMake
+
             self.deviceType = deviceType
 
             self.identifierType = identifierType
-
-            self.deviceMake = deviceMake
         }
 
         required public init(from decoder: Decoder) throws {
@@ -89,6 +89,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                deviceMake = try container.decode(String.self, forKey: .deviceMake)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 deviceType = try container.decode(String.self, forKey: .deviceType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -98,14 +106,6 @@ public extension ApplicationClient {
 
             do {
                 identifierType = try container.decode(String.self, forKey: .identifierType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                deviceMake = try container.decode(String.self, forKey: .deviceMake)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,11 +124,11 @@ public extension ApplicationClient {
 
             try? container.encode(os, forKey: .os)
 
+            try? container.encode(deviceMake, forKey: .deviceMake)
+
             try? container.encode(deviceType, forKey: .deviceType)
 
             try? container.encode(identifierType, forKey: .identifierType)
-
-            try? container.encode(deviceMake, forKey: .deviceMake)
         }
     }
 }
