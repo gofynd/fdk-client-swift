@@ -10,22 +10,22 @@ public extension PlatformClient {
     class Rule: Codable {
         public var key: Double?
 
+        public var max: Double?
+
         public var value: Double?
 
         public var min: Double?
-
-        public var max: Double?
 
         public var discountQty: Double?
 
         public enum CodingKeys: String, CodingKey {
             case key
 
+            case max
+
             case value
 
             case min
-
-            case max
 
             case discountQty = "discount_qty"
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(discountQty: Double? = nil, key: Double? = nil, max: Double? = nil, min: Double? = nil, value: Double? = nil) {
             self.key = key
 
+            self.max = max
+
             self.value = value
 
             self.min = min
-
-            self.max = max
 
             self.discountQty = discountQty
         }
@@ -47,6 +47,14 @@ public extension PlatformClient {
 
             do {
                 key = try container.decode(Double.self, forKey: .key)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                max = try container.decode(Double.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,14 +78,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                max = try container.decode(Double.self, forKey: .max)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 discountQty = try container.decode(Double.self, forKey: .discountQty)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -91,11 +91,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
+            try? container.encodeIfPresent(max, forKey: .max)
+
             try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(min, forKey: .min)
-
-            try? container.encodeIfPresent(max, forKey: .max)
 
             try? container.encodeIfPresent(discountQty, forKey: .discountQty)
         }

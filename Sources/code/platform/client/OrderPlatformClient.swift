@@ -1321,18 +1321,17 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description: createChannelConfig
+         * Description: getChannelConfig
          **/
-        public func createChannelConfig(
-            body: CreateChannelConfigData,
-            onResponse: @escaping (_ response: CreateChannelConfigResponse?, _ error: FDKError?) -> Void
+        public func getChannelConfig(
+            onResponse: @escaping (_ response: CreateChannelConfigData?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/orders/co-config",
+                method: "get",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/order-config",
                 query: nil,
-                body: body.dictionary,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -1343,7 +1342,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CreateChannelConfigResponse.self, from: data)
+                        let response = Utility.decode(CreateChannelConfigData.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1359,17 +1358,18 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description: getChannelConfig
+         * Description: createChannelConfig
          **/
-        public func getChannelConfig(
-            onResponse: @escaping (_ response: CreateChannelConfigData?, _ error: FDKError?) -> Void
+        public func createChannelConfig(
+            body: CreateChannelConfigData,
+            onResponse: @escaping (_ response: CreateChannelConfigResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/orders/co-config",
+                method: "post",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/order-config",
                 query: nil,
-                body: nil,
+                body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -1380,7 +1380,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CreateChannelConfigData.self, from: data)
+                        let response = Utility.decode(CreateChannelConfigResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1488,12 +1488,12 @@ public extension PlatformClient {
             requestByExt: String?,
             pageNo: Int?,
             pageSize: Int?,
-            customerId: String?,
             isPrioritySort: Bool?,
             excludeLockedShipments: Bool?,
             paymentMethods: String?,
             channelShipmentId: String?,
             channelOrderId: String?,
+            customMeta: String?,
 
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1551,10 +1551,6 @@ public extension PlatformClient {
                 xQuery["page_size"] = value
             }
 
-            if let value = customerId {
-                xQuery["customer_id"] = value
-            }
-
             if let value = isPrioritySort {
                 xQuery["is_priority_sort"] = value
             }
@@ -1573,6 +1569,10 @@ public extension PlatformClient {
 
             if let value = channelOrderId {
                 xQuery["channel_order_id"] = value
+            }
+
+            if let value = customMeta {
+                xQuery["custom_meta"] = value
             }
 
             PlatformAPIClient.execute(
@@ -1610,13 +1610,22 @@ public extension PlatformClient {
          * Description:
          **/
         public func getShipmentById(
-            channelShipmentId: String,
+            channelShipmentId: String?,
+            shipmentId: String?,
             orderingCompanyId: String?,
             requestByExt: String?,
 
             onResponse: @escaping (_ response: ShipmentInfoResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
+
+            if let value = channelShipmentId {
+                xQuery["channel_shipment_id"] = value
+            }
+
+            if let value = shipmentId {
+                xQuery["shipment_id"] = value
+            }
 
             if let value = orderingCompanyId {
                 xQuery["ordering_company_id"] = value
@@ -1629,7 +1638,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/shipmentDetails/\(channelShipmentId)",
+                url: "/service/platform/orders/v1.0/company/\(companyId)/shipment-details",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -1800,6 +1809,7 @@ public extension PlatformClient {
             pageNo: Int?,
             pageSize: Int?,
             isPrioritySort: Bool?,
+            customMeta: String?,
 
             onResponse: @escaping (_ response: OrderListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1847,6 +1857,10 @@ public extension PlatformClient {
 
             if let value = isPrioritySort {
                 xQuery["is_priority_sort"] = value
+            }
+
+            if let value = customMeta {
+                xQuery["custom_meta"] = value
             }
 
             PlatformAPIClient.execute(

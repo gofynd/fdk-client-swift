@@ -4919,7 +4919,7 @@ Success
  | minCartValue | Double? |  yes  | Minimum cart value |
  | bulkCoupons | Bool? |  yes  | Allow creation of bluk coupons |
  | revenueEngineCoupon | Bool? |  yes  | Allow coupon apply and credits together. Default value is false. |
- | emptyCart | Bool? |  yes  |  |
+ | emptyCart | Bool? |  yes  | Enable/disable to allow adding cart items added before login to user's cart once user is logged in |
 
 ---
 

@@ -10,30 +10,30 @@ public extension PlatformClient {
     class Tax: Codable {
         public var taxExempt: Bool
 
-        public var name: String
+        public var breakup: [[String: Any]]
 
         public var amount: [String: Any]
 
-        public var breakup: [[String: Any]]
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case taxExempt = "tax_exempt"
 
-            case name
+            case breakup
 
             case amount
 
-            case breakup
+            case name
         }
 
         public init(amount: [String: Any], breakup: [[String: Any]], name: String, taxExempt: Bool) {
             self.taxExempt = taxExempt
 
-            self.name = name
+            self.breakup = breakup
 
             self.amount = amount
 
-            self.breakup = breakup
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,11 +41,11 @@ public extension PlatformClient {
 
             taxExempt = try container.decode(Bool.self, forKey: .taxExempt)
 
-            name = try container.decode(String.self, forKey: .name)
+            breakup = try container.decode([[String: Any]].self, forKey: .breakup)
 
             amount = try container.decode([String: Any].self, forKey: .amount)
 
-            breakup = try container.decode([[String: Any]].self, forKey: .breakup)
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -53,11 +53,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(taxExempt, forKey: .taxExempt)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(breakup, forKey: .breakup)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(breakup, forKey: .breakup)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

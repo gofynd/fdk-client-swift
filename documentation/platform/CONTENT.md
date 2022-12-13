@@ -37,6 +37,8 @@ Content System
 * [createLandingPage](#createlandingpage)
 * [updateLandingPage](#updatelandingpage)
 * [deleteLandingPage](#deletelandingpage)
+* [getLegalInformation](#getlegalinformation)
+* [updateLegalInformation](#updatelegalinformation)
 * [getNavigations](#getnavigations)
 * [createNavigation](#createnavigation)
 * [getDefaultNavigations](#getdefaultnavigations)
@@ -2616,6 +2618,159 @@ Success.
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLegalInformation
+Get legal information
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").content.getLegalInformation() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Use this API to get the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
+
+*Returned Response:*
+
+
+
+
+[ApplicationLegal](#ApplicationLegal)
+
+Success. Refer `ApplicationLegal` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "tnc": "**Terms and Conditions test**",
+    "policy": "**Privacy policy test**",
+    "shipping": "**Shipping term and conditions**",
+    "returns": "**Terms & conditions for returns **",
+    "_id": "5e8b2b96abe7dc94c02c9ac9",
+    "application": "000000000000000000000001",
+    "faq": [
+      {
+        "question": "New Question",
+        "answer": "New Answer"
+      },
+      {
+        "question": "New",
+        "answer": "sdfghjhg"
+      },
+      {
+        "question": "test",
+        "answer": "test"
+      },
+      {
+        "question": "New Test",
+        "answer": "New Test answer"
+      },
+      {
+        "question": "test",
+        "answer": "test"
+      }
+    ],
+    "created_at": "2020-04-06T13:16:06.818Z",
+    "updated_at": "2020-07-16T09:47:40.751Z",
+    "__v": 260
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLegalInformation
+Save legal information
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").content.updateLegalInformation(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | ApplicationLegal | yes | Request body |
+
+
+Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
+
+*Returned Response:*
+
+
+
+
+[ApplicationLegal](#ApplicationLegal)
+
+Success. Refer `ApplicationLegal` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "tnc": "This is terms and condition",
+  "policy": "This is policy",
+  "faq": [
+    {
+      "question": "This is question",
+      "answer": "This is answer"
+    }
+  ]
+}
+```
 </details>
 
 

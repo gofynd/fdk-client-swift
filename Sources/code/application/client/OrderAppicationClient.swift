@@ -563,7 +563,7 @@ public extension ApplicationClient {
          **/
         public func updateShipmentStatus(
             shipmentId: String,
-            body: StatusUpdateInternalRequest,
+            body: UpdateShipmentStatusRequest,
             onResponse: @escaping (_ response: ShipmentApplicationStatusResponse?, _ error: FDKError?) -> Void
         ) {
             var fullUrl = relativeUrls["updateShipmentStatus"] ?? ""
