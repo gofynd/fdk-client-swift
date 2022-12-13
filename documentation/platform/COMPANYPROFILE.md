@@ -1184,10 +1184,6 @@ Brand object. See example below or refer `GetLocationSerializer` for details
   ],
   "stage": "verified",
   "uid": 1,
-  "integration_type": {
-    "inventory": "pulse",
-    "order": "pulse"
-  },
   "notification_emails": []
 }
 ```
@@ -1324,25 +1320,41 @@ Returns a success response
 
  
  
- #### [UserSerializer](#UserSerializer)
+ #### [Document](#Document)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | username | String? |  yes  |  |
- | contact | String? |  yes  |  |
- | userId | String? |  yes  |  |
+ | legalName | String? |  yes  |  |
+ | type | String |  no  |  |
+ | verified | Bool? |  yes  |  |
+ | value | String |  no  |  |
+ | url | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [BusinessCountryInfo](#BusinessCountryInfo)
+ #### [CompanyTaxesSerializer](#CompanyTaxesSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country | String? |  yes  |  |
- | countryCode | String? |  yes  |  |
+ | effectiveDate | String? |  yes  |  |
+ | enable | Bool? |  yes  |  |
+ | rate | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserSerializer](#UserSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | username | String? |  yes  |  |
+ | userId | String? |  yes  |  |
+ | contact | String? |  yes  |  |
 
 ---
 
@@ -1353,17 +1365,17 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | latitude | Double? |  yes  |  |
+ | city | String? |  yes  |  |
  | landmark | String? |  yes  |  |
- | address2 | String? |  yes  |  |
  | address1 | String? |  yes  |  |
- | addressType | String? |  yes  |  |
- | state | String? |  yes  |  |
  | countryCode | String? |  yes  |  |
  | longitude | Double? |  yes  |  |
  | country | String? |  yes  |  |
- | city | String? |  yes  |  |
+ | addressType | String? |  yes  |  |
  | pincode | Int? |  yes  |  |
+ | latitude | Double? |  yes  |  |
+ | address2 | String? |  yes  |  |
+ | state | String? |  yes  |  |
 
 ---
 
@@ -1392,28 +1404,12 @@ Returns a success response
 
  
  
- #### [CompanyTaxesSerializer](#CompanyTaxesSerializer)
+ #### [BusinessCountryInfo](#BusinessCountryInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enable | Bool? |  yes  |  |
- | rate | Double? |  yes  |  |
- | effectiveDate | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Document](#Document)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | legalName | String? |  yes  |  |
- | verified | Bool? |  yes  |  |
- | value | String |  no  |  |
- | url | String? |  yes  |  |
- | type | String |  no  |  |
+ | country | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
 
 ---
 
@@ -1424,8 +1420,8 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | number | String |  no  |  |
  | countryCode | Int |  no  |  |
+ | number | String |  no  |  |
 
 ---
 
@@ -1436,8 +1432,8 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | phone | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
  | emails | [String]? |  yes  |  |
+ | phone | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
 
 ---
 
@@ -1448,28 +1444,28 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | warnings | [String: Any]? |  yes  |  |
- | franchiseEnabled | Bool? |  yes  |  |
- | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | businessCountryInfo | [BusinessCountryInfo](#BusinessCountryInfo)? |  yes  |  |
- | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
- | businessDetails | [BusinessDetails](#BusinessDetails)? |  yes  |  |
- | name | String? |  yes  |  |
- | companyType | String |  no  |  |
- | taxes | [[CompanyTaxesSerializer](#CompanyTaxesSerializer)]? |  yes  |  |
- | businessInfo | String? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | mode | String? |  yes  |  |
- | documents | [[Document](#Document)]? |  yes  |  |
- | stage | String? |  yes  |  |
- | contactDetails | [ContactDetails](#ContactDetails)? |  yes  |  |
- | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | notificationEmails | [String]? |  yes  |  |
  | businessType | String |  no  |  |
+ | documents | [[Document](#Document)]? |  yes  |  |
+ | taxes | [[CompanyTaxesSerializer](#CompanyTaxesSerializer)]? |  yes  |  |
+ | notificationEmails | [String]? |  yes  |  |
+ | franchiseEnabled | Bool? |  yes  |  |
+ | warnings | [String: Any]? |  yes  |  |
+ | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | mode | String? |  yes  |  |
+ | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | businessInfo | String? |  yes  |  |
  | uid | Int |  no  |  |
+ | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | companyType | String |  no  |  |
+ | stage | String? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
+ | businessDetails | [BusinessDetails](#BusinessDetails)? |  yes  |  |
+ | businessCountryInfo | [BusinessCountryInfo](#BusinessCountryInfo)? |  yes  |  |
+ | contactDetails | [ContactDetails](#ContactDetails)? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -1480,31 +1476,10 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | status | Int? |  yes  |  |
+ | message | String? |  yes  |  |
  | code | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
- | message | String? |  yes  |  |
- | status | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | latitude | Double |  no  |  |
- | landmark | String? |  yes  |  |
- | address2 | String? |  yes  |  |
- | address1 | String |  no  |  |
- | state | String |  no  |  |
- | addressType | String |  no  |  |
- | countryCode | String? |  yes  |  |
- | longitude | Double |  no  |  |
- | country | String |  no  |  |
- | city | String |  no  |  |
- | pincode | Int |  no  |  |
 
 ---
 
@@ -1515,9 +1490,30 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | effectiveDate | String? |  yes  |  |
  | enable | Bool? |  yes  |  |
  | rate | Double? |  yes  |  |
- | effectiveDate | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | city | String |  no  |  |
+ | landmark | String? |  yes  |  |
+ | address1 | String |  no  |  |
+ | countryCode | String? |  yes  |  |
+ | longitude | Double |  no  |  |
+ | country | String |  no  |  |
+ | pincode | Int |  no  |  |
+ | latitude | Double |  no  |  |
+ | addressType | String |  no  |  |
+ | address2 | String? |  yes  |  |
+ | state | String |  no  |  |
 
 ---
 
@@ -1528,20 +1524,20 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | businessInfo | String? |  yes  |  |
- | warnings | [String: Any]? |  yes  |  |
- | franchiseEnabled | Bool? |  yes  |  |
- | addresses | [[CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)]? |  yes  |  |
  | rejectReason | String? |  yes  |  |
- | notificationEmails | [String]? |  yes  |  |
- | taxes | [[CompanyTaxesSerializer1](#CompanyTaxesSerializer1)]? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | contactDetails | [ContactDetails](#ContactDetails)? |  yes  |  |
- | businessDetails | [BusinessDetails](#BusinessDetails)? |  yes  |  |
- | name | String? |  yes  |  |
- | documents | [[Document](#Document)]? |  yes  |  |
- | companyType | String? |  yes  |  |
+ | franchiseEnabled | Bool? |  yes  |  |
  | businessType | String? |  yes  |  |
+ | warnings | [String: Any]? |  yes  |  |
+ | businessDetails | [BusinessDetails](#BusinessDetails)? |  yes  |  |
+ | documents | [[Document](#Document)]? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | businessInfo | String? |  yes  |  |
+ | taxes | [[CompanyTaxesSerializer1](#CompanyTaxesSerializer1)]? |  yes  |  |
+ | notificationEmails | [String]? |  yes  |  |
+ | contactDetails | [ContactDetails](#ContactDetails)? |  yes  |  |
+ | addresses | [[CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)]? |  yes  |  |
+ | companyType | String? |  yes  |  |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -1552,8 +1548,8 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
  | success | Bool? |  yes  |  |
+ | uid | Int? |  yes  |  |
 
 ---
 
@@ -1578,11 +1574,11 @@ Returns a success response
  | ---------- | ---- | -------- | ----------- |
  | companyDocuments | [DocumentsObj](#DocumentsObj)? |  yes  |  |
  | brand | [DocumentsObj](#DocumentsObj)? |  yes  |  |
+ | storeDocuments | [DocumentsObj](#DocumentsObj)? |  yes  |  |
+ | uid | Int? |  yes  |  |
  | store | [DocumentsObj](#DocumentsObj)? |  yes  |  |
  | product | [DocumentsObj](#DocumentsObj)? |  yes  |  |
- | storeDocuments | [DocumentsObj](#DocumentsObj)? |  yes  |  |
  | stage | String? |  yes  |  |
- | uid | Int? |  yes  |  |
 
 ---
 
@@ -1605,25 +1601,25 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | localeLanguage | [String: Any]? |  yes  |  |
  | warnings | [String: Any]? |  yes  |  |
  | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | name | String |  no  |  |
- | synonyms | [String]? |  yes  |  |
+ | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | mode | String? |  yes  |  |
+ | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
+ | rejectReason | String? |  yes  |  |
  | createdOn | String? |  yes  |  |
  | logo | String? |  yes  |  |
- | mode | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | stage | String? |  yes  |  |
- | localeLanguage | [String: Any]? |  yes  |  |
- | slugKey | String? |  yes  |  |
- | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | description | String? |  yes  |  |
- | rejectReason | String? |  yes  |  |
+ | synonyms | [String]? |  yes  |  |
  | uid | Int? |  yes  |  |
+ | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | slugKey | String? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | name | String |  no  |  |
 
 ---
 
@@ -1634,16 +1630,16 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brandTier | String? |  yes  |  |
- | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
- | description | String? |  yes  |  |
- | logo | String |  no  |  |
  | localeLanguage | [String: Any]? |  yes  |  |
+ | synonyms | [String]? |  yes  |  |
+ | logo | String |  no  |  |
  | customJson | [String: Any]? |  yes  |  |
- | name | String |  no  |  |
  | companyId | Int? |  yes  |  |
  | uid | Int? |  yes  |  |
- | synonyms | [String]? |  yes  |  |
+ | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
+ | brandTier | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | name | String |  no  |  |
 
 ---
 
@@ -1666,8 +1662,8 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | websiteUrl | String? |  yes  |  |
  | socials | [[CompanySocialAccounts](#CompanySocialAccounts)]? |  yes  |  |
+ | websiteUrl | String? |  yes  |  |
 
 ---
 
@@ -1678,24 +1674,24 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedOn | String? |  yes  |  |
- | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
  | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
  | rejectReason | String? |  yes  |  |
- | notificationEmails | [String]? |  yes  |  |
- | businessCountryInfo | [BusinessCountryInfo](#BusinessCountryInfo)? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | details | [CompanyDetails](#CompanyDetails)? |  yes  |  |
- | name | String? |  yes  |  |
+ | createdOn | String? |  yes  |  |
  | marketChannels | [String]? |  yes  |  |
- | stage | String? |  yes  |  |
- | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | companyType | String |  no  |  |
+ | verifiedOn | String? |  yes  |  |
  | businessType | String |  no  |  |
+ | stage | String? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | notificationEmails | [String]? |  yes  |  |
  | uid | Int? |  yes  |  |
+ | businessCountryInfo | [BusinessCountryInfo](#BusinessCountryInfo)? |  yes  |  |
+ | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | details | [CompanyDetails](#CompanyDetails)? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | companyType | String |  no  |  |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -1706,18 +1702,18 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedOn | String? |  yes  |  |
- | warnings | [String: Any]? |  yes  |  |
- | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | rejectReason | String? |  yes  |  |
  | createdOn | String? |  yes  |  |
  | verifiedOn | String? |  yes  |  |
  | brand | [GetBrandResponseSerializer](#GetBrandResponseSerializer)? |  yes  |  |
+ | warnings | [String: Any]? |  yes  |  |
  | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | rejectReason | String? |  yes  |  |
- | company | [CompanySerializer](#CompanySerializer)? |  yes  |  |
- | stage | String? |  yes  |  |
  | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | company | [CompanySerializer](#CompanySerializer)? |  yes  |  |
  | uid | Int? |  yes  |  |
+ | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | stage | String? |  yes  |  |
 
 ---
 
@@ -1728,13 +1724,13 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | itemTotal | Int? |  yes  |  |
- | current | Int? |  yes  |  |
- | size | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
- | type | String |  no  |  |
- | nextId | String? |  yes  |  |
  | hasPrevious | Bool? |  yes  |  |
+ | type | String |  no  |  |
+ | itemTotal | Int? |  yes  |  |
+ | nextId | String? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | size | Int? |  yes  |  |
+ | current | Int? |  yes  |  |
 
 ---
 
@@ -1757,57 +1753,9 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company | Int |  no  |  |
  | uid | Int? |  yes  |  |
  | brands | [Int] |  no  |  |
-
----
-
-
- 
- 
- #### [InvoiceCredSerializer](#InvoiceCredSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | username | String? |  yes  |  |
- | password | String? |  yes  |  |
- | enabled | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | eInvoice | [InvoiceCredSerializer](#InvoiceCredSerializer)? |  yes  |  |
- | eWaybill | [InvoiceCredSerializer](#InvoiceCredSerializer)? |  yes  |  |
-
----
-
-
- 
- 
- #### [GetCompanySerializer](#GetCompanySerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | modifiedOn | String? |  yes  |  |
- | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | rejectReason | String? |  yes  |  |
- | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
- | name | String? |  yes  |  |
- | stage | String? |  yes  |  |
- | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | companyType | String? |  yes  |  |
- | businessType | String? |  yes  |  |
- | uid | Int? |  yes  |  |
+ | company | Int |  no  |  |
 
 ---
 
@@ -1830,10 +1778,10 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | open | Bool |  no  |  |
- | opening | [LocationTimingSerializer](#LocationTimingSerializer)? |  yes  |  |
- | closing | [LocationTimingSerializer](#LocationTimingSerializer)? |  yes  |  |
  | weekday | String |  no  |  |
+ | open | Bool |  no  |  |
+ | closing | [LocationTimingSerializer](#LocationTimingSerializer)? |  yes  |  |
+ | opening | [LocationTimingSerializer](#LocationTimingSerializer)? |  yes  |  |
 
 ---
 
@@ -1844,9 +1792,9 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | mobileNo | [SellerPhoneNumber](#SellerPhoneNumber) |  no  |  |
  | email | String? |  yes  |  |
  | name | String? |  yes  |  |
- | mobileNo | [SellerPhoneNumber](#SellerPhoneNumber) |  no  |  |
 
 ---
 
@@ -1865,12 +1813,48 @@ Returns a success response
 
  
  
- #### [LocationIntegrationType](#LocationIntegrationType)
+ #### [GetCompanySerializer](#GetCompanySerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | inventory | String? |  yes  |  |
- | order | String? |  yes  |  |
+ | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
+ | rejectReason | String? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
+ | businessType | String? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | companyType | String? |  yes  |  |
+ | name | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceCredSerializer](#InvoiceCredSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | password | String? |  yes  |  |
+ | username | String? |  yes  |  |
+ | enabled | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | eWaybill | [InvoiceCredSerializer](#InvoiceCredSerializer)? |  yes  |  |
+ | eInvoice | [InvoiceCredSerializer](#InvoiceCredSerializer)? |  yes  |  |
 
 ---
 
@@ -1881,31 +1865,30 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
+ | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
+ | productReturnConfig | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
+ | documents | [[Document](#Document)]? |  yes  |  |
+ | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
+ | notificationEmails | [String]? |  yes  |  |
+ | storeType | String? |  yes  |  |
  | warnings | [String: Any]? |  yes  |  |
  | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
- | name | String |  no  |  |
- | storeType | String? |  yes  |  |
- | phoneNumber | String |  no  |  |
+ | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
  | createdOn | String? |  yes  |  |
  | code | String |  no  |  |
- | gstCredentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
- | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
- | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | stage | String? |  yes  |  |
- | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
- | documents | [[Document](#Document)]? |  yes  |  |
- | displayName | String |  no  |  |
- | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | productReturnConfig | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
- | integrationType | [LocationIntegrationType](#LocationIntegrationType)? |  yes  |  |
- | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | notificationEmails | [String]? |  yes  |  |
  | uid | Int? |  yes  |  |
+ | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
+ | phoneNumber | String |  no  |  |
+ | gstCredentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | name | String |  no  |  |
+ | displayName | String |  no  |  |
 
 ---
 
@@ -1928,23 +1911,23 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | displayName | String |  no  |  |
- | warnings | [String: Any]? |  yes  |  |
- | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | code | String |  no  |  |
- | gstCredentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
- | productReturnConfig | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
- | notificationEmails | [String]? |  yes  |  |
- | company | Int |  no  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
- | name | String |  no  |  |
- | stage | String? |  yes  |  |
- | storeType | String? |  yes  |  |
- | documents | [[Document](#Document)]? |  yes  |  |
+ | gstCredentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
  | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
+ | productReturnConfig | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
+ | warnings | [String: Any]? |  yes  |  |
+ | code | String |  no  |  |
+ | documents | [[Document](#Document)]? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | company | Int |  no  |  |
+ | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
+ | notificationEmails | [String]? |  yes  |  |
  | uid | Int? |  yes  |  |
+ | storeType | String? |  yes  |  |
+ | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | name | String |  no  |  |
+ | displayName | String |  no  |  |
 
 ---
 

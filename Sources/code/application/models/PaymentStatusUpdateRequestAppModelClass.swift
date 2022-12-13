@@ -13,21 +13,21 @@ public extension ApplicationClient {
 
         public var customerId: String
 
-        public var merchantOrderId: String
-
-        public var vpa: String
+        public var currency: String
 
         public var status: String
 
-        public var contact: String
-
-        public var amount: Int
+        public var vpa: String
 
         public var aggregator: String
 
+        public var merchantOrderId: String
+
         public var method: String
 
-        public var currency: String
+        public var amount: Int
+
+        public var contact: String
 
         public enum CodingKeys: String, CodingKey {
             case email
@@ -36,21 +36,21 @@ public extension ApplicationClient {
 
             case customerId = "customer_id"
 
-            case merchantOrderId = "merchant_order_id"
-
-            case vpa
+            case currency
 
             case status
 
-            case contact
-
-            case amount
+            case vpa
 
             case aggregator
 
+            case merchantOrderId = "merchant_order_id"
+
             case method
 
-            case currency
+            case amount
+
+            case contact
         }
 
         public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, email: String, merchantOrderId: String, method: String, orderId: String, status: String, vpa: String) {
@@ -60,21 +60,21 @@ public extension ApplicationClient {
 
             self.customerId = customerId
 
-            self.merchantOrderId = merchantOrderId
-
-            self.vpa = vpa
+            self.currency = currency
 
             self.status = status
 
-            self.contact = contact
-
-            self.amount = amount
+            self.vpa = vpa
 
             self.aggregator = aggregator
 
+            self.merchantOrderId = merchantOrderId
+
             self.method = method
 
-            self.currency = currency
+            self.amount = amount
+
+            self.contact = contact
         }
 
         required public init(from decoder: Decoder) throws {
@@ -86,21 +86,21 @@ public extension ApplicationClient {
 
             customerId = try container.decode(String.self, forKey: .customerId)
 
-            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
-
-            vpa = try container.decode(String.self, forKey: .vpa)
+            currency = try container.decode(String.self, forKey: .currency)
 
             status = try container.decode(String.self, forKey: .status)
 
-            contact = try container.decode(String.self, forKey: .contact)
-
-            amount = try container.decode(Int.self, forKey: .amount)
+            vpa = try container.decode(String.self, forKey: .vpa)
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
+            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
+
             method = try container.decode(String.self, forKey: .method)
 
-            currency = try container.decode(String.self, forKey: .currency)
+            amount = try container.decode(Int.self, forKey: .amount)
+
+            contact = try container.decode(String.self, forKey: .contact)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -112,21 +112,21 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(customerId, forKey: .customerId)
 
-            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
-
-            try? container.encodeIfPresent(vpa, forKey: .vpa)
+            try? container.encodeIfPresent(currency, forKey: .currency)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(contact, forKey: .contact)
-
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(vpa, forKey: .vpa)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
+            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+
             try? container.encodeIfPresent(method, forKey: .method)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encode(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(contact, forKey: .contact)
         }
     }
 }
