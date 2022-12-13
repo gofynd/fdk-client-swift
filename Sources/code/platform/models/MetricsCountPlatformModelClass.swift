@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class MetricsCount: Codable {
-        public var options: [Options1]?
-
         public var value: Int
+
+        public var options: [Options1]?
 
         public var key: String
 
         public var text: String
 
         public enum CodingKeys: String, CodingKey {
-            case options
-
             case value
+
+            case options
 
             case key
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(key: String, options: [Options1]? = nil, text: String, value: Int) {
-            self.options = options
-
             self.value = value
+
+            self.options = options
 
             self.key = key
 
@@ -39,6 +39,8 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            value = try container.decode(Int.self, forKey: .value)
+
             do {
                 options = try container.decode([Options1].self, forKey: .options)
 
@@ -46,8 +48,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            value = try container.decode(Int.self, forKey: .value)
 
             key = try container.decode(String.self, forKey: .key)
 
@@ -57,9 +57,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(options, forKey: .options)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(options, forKey: .options)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
