@@ -10,18 +10,18 @@ public extension PlatformClient {
     class JioCodeUpsertDataSet: Codable {
         public var itemId: String?
 
-        public var jioCode: String?
-
         public var articleId: String?
+
+        public var jioCode: String?
 
         public var companyId: String?
 
         public enum CodingKeys: String, CodingKey {
             case itemId = "item_id"
 
-            case jioCode = "jio_code"
-
             case articleId = "article_id"
+
+            case jioCode = "jio_code"
 
             case companyId = "company_id"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(articleId: String? = nil, companyId: String? = nil, itemId: String? = nil, jioCode: String? = nil) {
             self.itemId = itemId
 
-            self.jioCode = jioCode
-
             self.articleId = articleId
+
+            self.jioCode = jioCode
 
             self.companyId = companyId
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                jioCode = try container.decode(String.self, forKey: .jioCode)
+                articleId = try container.decode(String.self, forKey: .articleId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                articleId = try container.decode(String.self, forKey: .articleId)
+                jioCode = try container.decode(String.self, forKey: .jioCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(jioCode, forKey: .jioCode)
-
             try? container.encodeIfPresent(articleId, forKey: .articleId)
+
+            try? container.encodeIfPresent(jioCode, forKey: .jioCode)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
         }

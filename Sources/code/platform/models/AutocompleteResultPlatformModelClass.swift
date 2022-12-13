@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var action: AutocompleteAction?
 
-        public var customJson: [String: Any]?
-
         public var display: String?
+
+        public var customJson: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case logo
 
             case action
 
-            case customJson = "_custom_json"
-
             case display
+
+            case customJson = "_custom_json"
         }
 
         public init(action: AutocompleteAction? = nil, display: String? = nil, logo: Media? = nil, customJson: [String: Any]? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.action = action
 
-            self.customJson = customJson
-
             self.display = display
+
+            self.customJson = customJson
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
         }
     }
 }

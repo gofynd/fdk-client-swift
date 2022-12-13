@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var triggerOn: String?
 
-        public var completedOn: String?
-
         public var status: String?
+
+        public var completedOn: String?
 
         public var url: String?
 
@@ -29,9 +29,9 @@ public extension PlatformClient {
 
             case triggerOn = "trigger_on"
 
-            case completedOn = "completed_on"
-
             case status
+
+            case completedOn = "completed_on"
 
             case url
 
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             self.triggerOn = triggerOn
 
-            self.completedOn = completedOn
-
             self.status = status
+
+            self.completedOn = completedOn
 
             self.url = url
 
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                completedOn = try container.decode(String.self, forKey: .completedOn)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                completedOn = try container.decode(String.self, forKey: .completedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,9 +111,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
 
-            try? container.encodeIfPresent(completedOn, forKey: .completedOn)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(completedOn, forKey: .completedOn)
 
             try? container.encodeIfPresent(url, forKey: .url)
 
