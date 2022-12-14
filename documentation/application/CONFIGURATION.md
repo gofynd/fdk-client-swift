@@ -2207,6 +2207,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | isShortlink | Bool? |  yes  |  |
  | id | String? |  yes  |  |
  | name | String? |  yes  |  |
+ | isPredefined | Bool? |  yes  | Domain is hosting domain or not. |
 
 ---
 
