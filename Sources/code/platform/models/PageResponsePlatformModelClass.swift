@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var itemTotal: Int?
 
-        public var current: String?
-
         public var hasNext: Bool?
+
+        public var current: String?
 
         public var size: Int?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case itemTotal = "item_total"
 
-            case current
-
             case hasNext = "has_next"
+
+            case current
 
             case size
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.itemTotal = itemTotal
 
-            self.current = current
-
             self.hasNext = hasNext
+
+            self.current = current
 
             self.size = size
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                current = try container.decode(String.self, forKey: .current)
+                hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                current = try container.decode(String.self, forKey: .current)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(current, forKey: .current)
-
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(size, forKey: .size)
         }

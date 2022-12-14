@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var companyId: Int?
 
-        public var optLevel: String
-
         public var enabled: Bool?
 
         public var brandIds: [Int]?
+
+        public var optLevel: String
 
         public var platform: String?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case companyId = "company_id"
 
-            case optLevel = "opt_level"
-
             case enabled
 
             case brandIds = "brand_ids"
+
+            case optLevel = "opt_level"
 
             case platform
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.companyId = companyId
 
-            self.optLevel = optLevel
-
             self.enabled = enabled
 
             self.brandIds = brandIds
+
+            self.optLevel = optLevel
 
             self.platform = platform
         }
@@ -67,8 +67,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            optLevel = try container.decode(String.self, forKey: .optLevel)
-
             do {
                 enabled = try container.decode(Bool.self, forKey: .enabled)
 
@@ -84,6 +82,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            optLevel = try container.decode(String.self, forKey: .optLevel)
 
             do {
                 platform = try container.decode(String.self, forKey: .platform)
@@ -101,11 +101,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(optLevel, forKey: .optLevel)
-
             try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(brandIds, forKey: .brandIds)
+
+            try? container.encodeIfPresent(optLevel, forKey: .optLevel)
 
             try? container.encodeIfPresent(platform, forKey: .platform)
         }

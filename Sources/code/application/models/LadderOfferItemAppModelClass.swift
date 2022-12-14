@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var minQuantity: Int?
 
-        public var price: LadderPrice?
-
         public var maxQuantity: Int?
 
         public var margin: Int?
+
+        public var price: LadderPrice?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
             case minQuantity = "min_quantity"
 
-            case price
-
             case maxQuantity = "max_quantity"
 
             case margin
+
+            case price
         }
 
         public init(margin: Int? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: LadderPrice? = nil, type: String? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.minQuantity = minQuantity
 
-            self.price = price
-
             self.maxQuantity = maxQuantity
 
             self.margin = margin
+
+            self.price = price
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,14 +61,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                price = try container.decode(LadderPrice.self, forKey: .price)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -83,6 +75,14 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                price = try container.decode(LadderPrice.self, forKey: .price)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -92,11 +92,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
 
-            try? container.encodeIfPresent(price, forKey: .price)
-
             try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
 
             try? container.encodeIfPresent(margin, forKey: .margin)
+
+            try? container.encodeIfPresent(price, forKey: .price)
         }
     }
 }
