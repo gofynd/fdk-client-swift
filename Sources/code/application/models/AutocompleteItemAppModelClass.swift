@@ -7,7 +7,7 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class AutocompleteItem: Codable {
-        public var action: ProductListingAction?
+        public var type: String?
 
         public var customJson: [String: Any]?
 
@@ -15,10 +15,10 @@ public extension ApplicationClient {
 
         public var display: String?
 
-        public var type: String?
+        public var action: ProductListingAction?
 
         public enum CodingKeys: String, CodingKey {
-            case action
+            case type
 
             case customJson = "_custom_json"
 
@@ -26,11 +26,11 @@ public extension ApplicationClient {
 
             case display
 
-            case type
+            case action
         }
 
         public init(action: ProductListingAction? = nil, display: String? = nil, logo: Media? = nil, type: String? = nil, customJson: [String: Any]? = nil) {
-            self.action = action
+            self.type = type
 
             self.customJson = customJson
 
@@ -38,14 +38,14 @@ public extension ApplicationClient {
 
             self.display = display
 
-            self.type = type
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +88,7 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
@@ -96,7 +96,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }
