@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var logo: Media?
 
-        public var name: String?
-
         public var description: String?
+
+        public var name: String?
 
         public var uid: Int?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case logo
 
-            case name
-
             case description
+
+            case name
 
             case uid
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.logo = logo
 
-            self.name = name
-
             self.description = description
+
+            self.name = name
 
             self.uid = uid
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }

@@ -11,13 +11,13 @@ public extension ApplicationClient {
 
         public var banners: ImageUrls?
 
-        public var slug: String?
+        public var customJson: [String: Any]?
 
         public var name: String?
 
         public var childs: [[String: Any]]?
 
-        public var customJson: [String: Any]?
+        public var slug: String?
 
         public var uid: Int?
 
@@ -26,13 +26,13 @@ public extension ApplicationClient {
 
             case banners
 
-            case slug
+            case customJson = "_custom_json"
 
             case name
 
             case childs
 
-            case customJson = "_custom_json"
+            case slug
 
             case uid
         }
@@ -42,13 +42,13 @@ public extension ApplicationClient {
 
             self.banners = banners
 
-            self.slug = slug
+            self.customJson = customJson
 
             self.name = name
 
             self.childs = childs
 
-            self.customJson = customJson
+            self.slug = slug
 
             self.uid = uid
         }
@@ -73,7 +73,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,13 +120,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }
