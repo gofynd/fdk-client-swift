@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class CatalogInsightBrand: Codable {
-        public var name: String?
-
         public var totalSizes: Int?
+
+        public var totalArticles: Int?
 
         public var articleFreshness: Int?
 
@@ -18,12 +18,12 @@ public extension PlatformClient {
 
         public var availableArticles: Int?
 
-        public var totalArticles: Int?
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
             case totalSizes = "total_sizes"
+
+            case totalArticles = "total_articles"
 
             case articleFreshness = "article_freshness"
 
@@ -31,13 +31,13 @@ public extension PlatformClient {
 
             case availableArticles = "available_articles"
 
-            case totalArticles = "total_articles"
+            case name
         }
 
         public init(articleFreshness: Int? = nil, availableArticles: Int? = nil, availableSizes: Int? = nil, name: String? = nil, totalArticles: Int? = nil, totalSizes: Int? = nil) {
-            self.name = name
-
             self.totalSizes = totalSizes
+
+            self.totalArticles = totalArticles
 
             self.articleFreshness = articleFreshness
 
@@ -45,14 +45,14 @@ public extension PlatformClient {
 
             self.availableArticles = availableArticles
 
-            self.totalArticles = totalArticles
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                totalSizes = try container.decode(Int.self, forKey: .totalSizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                totalSizes = try container.decode(Int.self, forKey: .totalSizes)
+                totalArticles = try container.decode(Int.self, forKey: .totalArticles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,7 +92,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                totalArticles = try container.decode(Int.self, forKey: .totalArticles)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,9 +103,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(totalSizes, forKey: .totalSizes)
+
+            try? container.encodeIfPresent(totalArticles, forKey: .totalArticles)
 
             try? container.encodeIfPresent(articleFreshness, forKey: .articleFreshness)
 
@@ -113,7 +113,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(availableArticles, forKey: .availableArticles)
 
-            try? container.encodeIfPresent(totalArticles, forKey: .totalArticles)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

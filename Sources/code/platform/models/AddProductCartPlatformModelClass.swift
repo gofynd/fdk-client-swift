@@ -12,23 +12,23 @@ public extension PlatformClient {
 
         public var storeId: Int?
 
-        public var itemId: Int?
-
-        public var sellerId: Int?
-
-        public var quantity: Int?
-
-        public var itemSize: String?
-
-        public var pos: Bool?
+        public var display: String?
 
         public var articleId: String?
 
-        public var display: String?
-
         public var parentItemIdentifiers: [String: Any]?
 
+        public var quantity: Int?
+
         public var articleAssignment: [String: Any]?
+
+        public var sellerId: Int?
+
+        public var pos: Bool?
+
+        public var itemSize: String?
+
+        public var itemId: Int?
 
         public var productGroupTags: [String]?
 
@@ -37,23 +37,23 @@ public extension PlatformClient {
 
             case storeId = "store_id"
 
-            case itemId = "item_id"
-
-            case sellerId = "seller_id"
-
-            case quantity
-
-            case itemSize = "item_size"
-
-            case pos
+            case display
 
             case articleId = "article_id"
 
-            case display
-
             case parentItemIdentifiers = "parent_item_identifiers"
 
+            case quantity
+
             case articleAssignment = "article_assignment"
+
+            case sellerId = "seller_id"
+
+            case pos
+
+            case itemSize = "item_size"
+
+            case itemId = "item_id"
 
             case productGroupTags = "product_group_tags"
         }
@@ -63,23 +63,23 @@ public extension PlatformClient {
 
             self.storeId = storeId
 
-            self.itemId = itemId
-
-            self.sellerId = sellerId
-
-            self.quantity = quantity
-
-            self.itemSize = itemSize
-
-            self.pos = pos
+            self.display = display
 
             self.articleId = articleId
 
-            self.display = display
-
             self.parentItemIdentifiers = parentItemIdentifiers
 
+            self.quantity = quantity
+
             self.articleAssignment = articleAssignment
+
+            self.sellerId = sellerId
+
+            self.pos = pos
+
+            self.itemSize = itemSize
+
+            self.itemId = itemId
 
             self.productGroupTags = productGroupTags
         }
@@ -104,39 +104,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                sellerId = try container.decode(Int.self, forKey: .sellerId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemSize = try container.decode(String.self, forKey: .itemSize)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pos = try container.decode(Bool.self, forKey: .pos)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -152,14 +120,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 parentItemIdentifiers = try container.decode([String: Any].self, forKey: .parentItemIdentifiers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -168,7 +128,47 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 articleAssignment = try container.decode([String: Any].self, forKey: .articleAssignment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sellerId = try container.decode(Int.self, forKey: .sellerId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                pos = try container.decode(Bool.self, forKey: .pos)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemSize = try container.decode(String.self, forKey: .itemSize)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,23 +191,23 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
-            try? container.encodeIfPresent(itemSize, forKey: .itemSize)
-
-            try? container.encodeIfPresent(pos, forKey: .pos)
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(articleId, forKey: .articleId)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(parentItemIdentifiers, forKey: .parentItemIdentifiers)
 
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
+
+            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
+            try? container.encodeIfPresent(pos, forKey: .pos)
+
+            try? container.encodeIfPresent(itemSize, forKey: .itemSize)
+
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
             try? container.encodeIfPresent(productGroupTags, forKey: .productGroupTags)
         }
