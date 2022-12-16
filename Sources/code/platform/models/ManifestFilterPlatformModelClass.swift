@@ -8,63 +8,63 @@ public extension PlatformClient {
      */
 
     class ManifestFilter: Codable {
-        public var dateRange: DateRange?
+        public var dpIds: String?
 
         public var salesChannelName: String?
 
-        public var dpName: String?
-
-        public var dpIds: String?
-
-        public var lane: String?
-
-        public var salesChannels: String?
-
         public var stores: String?
+
+        public var dpName: String?
 
         public var storeName: String?
 
+        public var salesChannels: String?
+
+        public var dateRange: DateRange?
+
+        public var lane: String?
+
         public enum CodingKeys: String, CodingKey {
-            case dateRange = "date_range"
+            case dpIds = "dp_ids"
 
             case salesChannelName = "sales_channel_name"
 
+            case stores
+
             case dpName = "dp_name"
 
-            case dpIds = "dp_ids"
-
-            case lane
+            case storeName = "store_name"
 
             case salesChannels = "sales_channels"
 
-            case stores
+            case dateRange = "date_range"
 
-            case storeName = "store_name"
+            case lane
         }
 
         public init(dateRange: DateRange? = nil, dpIds: String? = nil, dpName: String? = nil, lane: String? = nil, salesChannels: String? = nil, salesChannelName: String? = nil, stores: String? = nil, storeName: String? = nil) {
-            self.dateRange = dateRange
+            self.dpIds = dpIds
 
             self.salesChannelName = salesChannelName
 
+            self.stores = stores
+
             self.dpName = dpName
 
-            self.dpIds = dpIds
-
-            self.lane = lane
+            self.storeName = storeName
 
             self.salesChannels = salesChannels
 
-            self.stores = stores
+            self.dateRange = dateRange
 
-            self.storeName = storeName
+            self.lane = lane
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                dateRange = try container.decode(DateRange.self, forKey: .dateRange)
+                dpIds = try container.decode(String.self, forKey: .dpIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,6 +80,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                stores = try container.decode(String.self, forKey: .stores)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 dpName = try container.decode(String.self, forKey: .dpName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -88,15 +96,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                dpIds = try container.decode(String.self, forKey: .dpIds)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                lane = try container.decode(String.self, forKey: .lane)
+                storeName = try container.decode(String.self, forKey: .storeName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                stores = try container.decode(String.self, forKey: .stores)
+                dateRange = try container.decode(DateRange.self, forKey: .dateRange)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                storeName = try container.decode(String.self, forKey: .storeName)
+                lane = try container.decode(String.self, forKey: .lane)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,21 +131,21 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(dateRange, forKey: .dateRange)
+            try? container.encodeIfPresent(dpIds, forKey: .dpIds)
 
             try? container.encodeIfPresent(salesChannelName, forKey: .salesChannelName)
 
+            try? container.encodeIfPresent(stores, forKey: .stores)
+
             try? container.encodeIfPresent(dpName, forKey: .dpName)
 
-            try? container.encodeIfPresent(dpIds, forKey: .dpIds)
-
-            try? container.encodeIfPresent(lane, forKey: .lane)
+            try? container.encodeIfPresent(storeName, forKey: .storeName)
 
             try? container.encodeIfPresent(salesChannels, forKey: .salesChannels)
 
-            try? container.encodeIfPresent(stores, forKey: .stores)
+            try? container.encodeIfPresent(dateRange, forKey: .dateRange)
 
-            try? container.encodeIfPresent(storeName, forKey: .storeName)
+            try? container.encodeIfPresent(lane, forKey: .lane)
         }
     }
 }

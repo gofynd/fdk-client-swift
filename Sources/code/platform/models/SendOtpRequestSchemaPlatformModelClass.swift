@@ -14,20 +14,26 @@ public extension PlatformClient {
 
         public var mobile: String?
 
+        public var androidHash: String?
+
         public enum CodingKeys: String, CodingKey {
             case countryCode = "country_code"
 
             case captchaCode = "captcha_code"
 
             case mobile
+
+            case androidHash = "android_hash"
         }
 
-        public init(captchaCode: String? = nil, countryCode: String? = nil, mobile: String? = nil) {
+        public init(androidHash: String? = nil, captchaCode: String? = nil, countryCode: String? = nil, mobile: String? = nil) {
             self.countryCode = countryCode
 
             self.captchaCode = captchaCode
 
             self.mobile = mobile
+
+            self.androidHash = androidHash
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,6 +62,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                androidHash = try container.decode(String.self, forKey: .androidHash)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,6 +80,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(captchaCode, forKey: .captchaCode)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
+
+            try? container.encodeIfPresent(androidHash, forKey: .androidHash)
         }
     }
 }

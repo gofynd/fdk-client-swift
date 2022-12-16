@@ -8,38 +8,36 @@ public extension PlatformClient {
      */
 
     class MetricsCount: Codable {
-        public var value: Int
-
         public var options: [Options1]?
-
-        public var key: String
 
         public var text: String
 
-        public enum CodingKeys: String, CodingKey {
-            case value
+        public var value: Int
 
+        public var key: String
+
+        public enum CodingKeys: String, CodingKey {
             case options
 
-            case key
-
             case text
+
+            case value
+
+            case key
         }
 
         public init(key: String, options: [Options1]? = nil, text: String, value: Int) {
-            self.value = value
-
             self.options = options
 
-            self.key = key
-
             self.text = text
+
+            self.value = value
+
+            self.key = key
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            value = try container.decode(Int.self, forKey: .value)
 
             do {
                 options = try container.decode([Options1].self, forKey: .options)
@@ -49,21 +47,23 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            key = try container.decode(String.self, forKey: .key)
-
             text = try container.decode(String.self, forKey: .text)
+
+            value = try container.decode(Int.self, forKey: .value)
+
+            key = try container.decode(String.self, forKey: .key)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(options, forKey: .options)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(text, forKey: .text)
+
+            try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(key, forKey: .key)
         }
     }
 }

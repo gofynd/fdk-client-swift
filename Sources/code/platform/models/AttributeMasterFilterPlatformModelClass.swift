@@ -10,24 +10,24 @@ public extension PlatformClient {
     class AttributeMasterFilter: Codable {
         public var indexing: Bool
 
-        public var dependsOn: [String]?
-
         public var priority: Int?
+
+        public var dependsOn: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case indexing
 
-            case dependsOn = "depends_on"
-
             case priority
+
+            case dependsOn = "depends_on"
         }
 
         public init(dependsOn: [String]? = nil, indexing: Bool, priority: Int? = nil) {
             self.indexing = indexing
 
-            self.dependsOn = dependsOn
-
             self.priority = priority
+
+            self.dependsOn = dependsOn
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,7 +36,7 @@ public extension PlatformClient {
             indexing = try container.decode(Bool.self, forKey: .indexing)
 
             do {
-                dependsOn = try container.decode([String].self, forKey: .dependsOn)
+                priority = try container.decode(Int.self, forKey: .priority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -44,7 +44,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                priority = try container.decode(Int.self, forKey: .priority)
+                dependsOn = try container.decode([String].self, forKey: .dependsOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,9 +57,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(indexing, forKey: .indexing)
 
-            try? container.encodeIfPresent(dependsOn, forKey: .dependsOn)
-
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(dependsOn, forKey: .dependsOn)
         }
     }
 }

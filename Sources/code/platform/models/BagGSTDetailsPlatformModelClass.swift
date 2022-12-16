@@ -8,27 +8,13 @@ public extension PlatformClient {
      */
 
     class BagGSTDetails: Codable {
-        public var sgstTaxPercentage: Double
-
         public var taxCollectedAtSource: Double
 
         public var gstinCode: String?
 
-        public var gstFee: Double
-
-        public var igstTaxPercentage: Double
-
-        public var hsnCode: String
-
-        public var brandCalculatedAmount: Double
+        public var sgstTaxPercentage: Double
 
         public var gstTaxPercentage: Double
-
-        public var igstGstFee: String
-
-        public var hsnCodeId: String
-
-        public var cgstGstFee: String
 
         public var isDefaultHsnCode: Bool?
 
@@ -36,32 +22,32 @@ public extension PlatformClient {
 
         public var valueOfGood: Double
 
+        public var gstFee: Double
+
         public var cgstTaxPercentage: Double
+
+        public var igstGstFee: String
+
+        public var cgstGstFee: String
+
+        public var hsnCode: String
+
+        public var brandCalculatedAmount: Double
+
+        public var igstTaxPercentage: Double
 
         public var gstTag: String
 
-        public enum CodingKeys: String, CodingKey {
-            case sgstTaxPercentage = "sgst_tax_percentage"
+        public var hsnCodeId: String
 
+        public enum CodingKeys: String, CodingKey {
             case taxCollectedAtSource = "tax_collected_at_source"
 
             case gstinCode = "gstin_code"
 
-            case gstFee = "gst_fee"
-
-            case igstTaxPercentage = "igst_tax_percentage"
-
-            case hsnCode = "hsn_code"
-
-            case brandCalculatedAmount = "brand_calculated_amount"
+            case sgstTaxPercentage = "sgst_tax_percentage"
 
             case gstTaxPercentage = "gst_tax_percentage"
-
-            case igstGstFee = "igst_gst_fee"
-
-            case hsnCodeId = "hsn_code_id"
-
-            case cgstGstFee = "cgst_gst_fee"
 
             case isDefaultHsnCode = "is_default_hsn_code"
 
@@ -69,33 +55,33 @@ public extension PlatformClient {
 
             case valueOfGood = "value_of_good"
 
+            case gstFee = "gst_fee"
+
             case cgstTaxPercentage = "cgst_tax_percentage"
 
+            case igstGstFee = "igst_gst_fee"
+
+            case cgstGstFee = "cgst_gst_fee"
+
+            case hsnCode = "hsn_code"
+
+            case brandCalculatedAmount = "brand_calculated_amount"
+
+            case igstTaxPercentage = "igst_tax_percentage"
+
             case gstTag = "gst_tag"
+
+            case hsnCodeId = "hsn_code_id"
         }
 
         public init(brandCalculatedAmount: Double, cgstGstFee: String, cgstTaxPercentage: Double, gstinCode: String? = nil, gstFee: Double, gstTag: String, gstTaxPercentage: Double, hsnCode: String, hsnCodeId: String, igstGstFee: String, igstTaxPercentage: Double, isDefaultHsnCode: Bool? = nil, sgstGstFee: String, sgstTaxPercentage: Double, taxCollectedAtSource: Double, valueOfGood: Double) {
-            self.sgstTaxPercentage = sgstTaxPercentage
-
             self.taxCollectedAtSource = taxCollectedAtSource
 
             self.gstinCode = gstinCode
 
-            self.gstFee = gstFee
-
-            self.igstTaxPercentage = igstTaxPercentage
-
-            self.hsnCode = hsnCode
-
-            self.brandCalculatedAmount = brandCalculatedAmount
+            self.sgstTaxPercentage = sgstTaxPercentage
 
             self.gstTaxPercentage = gstTaxPercentage
-
-            self.igstGstFee = igstGstFee
-
-            self.hsnCodeId = hsnCodeId
-
-            self.cgstGstFee = cgstGstFee
 
             self.isDefaultHsnCode = isDefaultHsnCode
 
@@ -103,15 +89,27 @@ public extension PlatformClient {
 
             self.valueOfGood = valueOfGood
 
+            self.gstFee = gstFee
+
             self.cgstTaxPercentage = cgstTaxPercentage
 
+            self.igstGstFee = igstGstFee
+
+            self.cgstGstFee = cgstGstFee
+
+            self.hsnCode = hsnCode
+
+            self.brandCalculatedAmount = brandCalculatedAmount
+
+            self.igstTaxPercentage = igstTaxPercentage
+
             self.gstTag = gstTag
+
+            self.hsnCodeId = hsnCodeId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            sgstTaxPercentage = try container.decode(Double.self, forKey: .sgstTaxPercentage)
 
             taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
 
@@ -123,21 +121,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            gstFee = try container.decode(Double.self, forKey: .gstFee)
-
-            igstTaxPercentage = try container.decode(Double.self, forKey: .igstTaxPercentage)
-
-            hsnCode = try container.decode(String.self, forKey: .hsnCode)
-
-            brandCalculatedAmount = try container.decode(Double.self, forKey: .brandCalculatedAmount)
+            sgstTaxPercentage = try container.decode(Double.self, forKey: .sgstTaxPercentage)
 
             gstTaxPercentage = try container.decode(Double.self, forKey: .gstTaxPercentage)
-
-            igstGstFee = try container.decode(String.self, forKey: .igstGstFee)
-
-            hsnCodeId = try container.decode(String.self, forKey: .hsnCodeId)
-
-            cgstGstFee = try container.decode(String.self, forKey: .cgstGstFee)
 
             do {
                 isDefaultHsnCode = try container.decode(Bool.self, forKey: .isDefaultHsnCode)
@@ -151,35 +137,35 @@ public extension PlatformClient {
 
             valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
 
+            gstFee = try container.decode(Double.self, forKey: .gstFee)
+
             cgstTaxPercentage = try container.decode(Double.self, forKey: .cgstTaxPercentage)
 
+            igstGstFee = try container.decode(String.self, forKey: .igstGstFee)
+
+            cgstGstFee = try container.decode(String.self, forKey: .cgstGstFee)
+
+            hsnCode = try container.decode(String.self, forKey: .hsnCode)
+
+            brandCalculatedAmount = try container.decode(Double.self, forKey: .brandCalculatedAmount)
+
+            igstTaxPercentage = try container.decode(Double.self, forKey: .igstTaxPercentage)
+
             gstTag = try container.decode(String.self, forKey: .gstTag)
+
+            hsnCodeId = try container.decode(String.self, forKey: .hsnCodeId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sgstTaxPercentage, forKey: .sgstTaxPercentage)
-
             try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
 
             try? container.encode(gstinCode, forKey: .gstinCode)
 
-            try? container.encodeIfPresent(gstFee, forKey: .gstFee)
-
-            try? container.encodeIfPresent(igstTaxPercentage, forKey: .igstTaxPercentage)
-
-            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
-
-            try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
+            try? container.encodeIfPresent(sgstTaxPercentage, forKey: .sgstTaxPercentage)
 
             try? container.encodeIfPresent(gstTaxPercentage, forKey: .gstTaxPercentage)
-
-            try? container.encodeIfPresent(igstGstFee, forKey: .igstGstFee)
-
-            try? container.encodeIfPresent(hsnCodeId, forKey: .hsnCodeId)
-
-            try? container.encodeIfPresent(cgstGstFee, forKey: .cgstGstFee)
 
             try? container.encodeIfPresent(isDefaultHsnCode, forKey: .isDefaultHsnCode)
 
@@ -187,9 +173,23 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
 
+            try? container.encodeIfPresent(gstFee, forKey: .gstFee)
+
             try? container.encodeIfPresent(cgstTaxPercentage, forKey: .cgstTaxPercentage)
 
+            try? container.encodeIfPresent(igstGstFee, forKey: .igstGstFee)
+
+            try? container.encodeIfPresent(cgstGstFee, forKey: .cgstGstFee)
+
+            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
+
+            try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
+
+            try? container.encodeIfPresent(igstTaxPercentage, forKey: .igstTaxPercentage)
+
             try? container.encodeIfPresent(gstTag, forKey: .gstTag)
+
+            try? container.encodeIfPresent(hsnCodeId, forKey: .hsnCodeId)
         }
     }
 }
