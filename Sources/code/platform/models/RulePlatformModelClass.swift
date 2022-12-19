@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var max: Double?
 
-        public var min: Double?
-
         public var value: Double?
+
+        public var min: Double?
 
         public enum CodingKeys: String, CodingKey {
             case discountQty = "discount_qty"
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case max
 
-            case min
-
             case value
+
+            case min
         }
 
         public init(discountQty: Double? = nil, key: Double? = nil, max: Double? = nil, min: Double? = nil, value: Double? = nil) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.max = max
 
-            self.min = min
-
             self.value = value
+
+            self.min = min
         }
 
         required public init(from decoder: Decoder) throws {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
+                value = try container.decode(Double.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                min = try container.decode(Double.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,9 +95,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(max, forKey: .max)
 
-            try? container.encodeIfPresent(min, forKey: .min)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(min, forKey: .min)
         }
     }
 }

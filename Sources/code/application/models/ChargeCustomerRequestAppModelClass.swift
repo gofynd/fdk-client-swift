@@ -9,36 +9,36 @@ public extension ApplicationClient {
     class ChargeCustomerRequest: Codable {
         public var transactionToken: String?
 
-        public var amount: Int
+        public var aggregator: String
 
-        public var verified: Bool?
+        public var amount: Int
 
         public var orderId: String
 
-        public var aggregator: String
+        public var verified: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case transactionToken = "transaction_token"
 
-            case amount
+            case aggregator
 
-            case verified
+            case amount
 
             case orderId = "order_id"
 
-            case aggregator
+            case verified
         }
 
         public init(aggregator: String, amount: Int, orderId: String, transactionToken: String? = nil, verified: Bool? = nil) {
             self.transactionToken = transactionToken
 
-            self.amount = amount
+            self.aggregator = aggregator
 
-            self.verified = verified
+            self.amount = amount
 
             self.orderId = orderId
 
-            self.aggregator = aggregator
+            self.verified = verified
         }
 
         required public init(from decoder: Decoder) throws {
@@ -52,7 +52,11 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            aggregator = try container.decode(String.self, forKey: .aggregator)
+
             amount = try container.decode(Int.self, forKey: .amount)
+
+            orderId = try container.decode(String.self, forKey: .orderId)
 
             do {
                 verified = try container.decode(Bool.self, forKey: .verified)
@@ -61,10 +65,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            orderId = try container.decode(String.self, forKey: .orderId)
-
-            aggregator = try container.decode(String.self, forKey: .aggregator)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -72,13 +72,13 @@ public extension ApplicationClient {
 
             try? container.encode(transactionToken, forKey: .transactionToken)
 
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encode(verified, forKey: .verified)
+            try? container.encode(amount, forKey: .amount)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encode(verified, forKey: .verified)
         }
     }
 }

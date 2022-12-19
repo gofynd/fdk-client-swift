@@ -7,6 +7,8 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class CreatePaymentLinkRequest: Codable {
+        public var description: String?
+
         public var externalOrderId: String
 
         public var meta: CreatePaymentLinkMeta
@@ -17,9 +19,9 @@ public extension ApplicationClient {
 
         public var email: String
 
-        public var description: String?
-
         public enum CodingKeys: String, CodingKey {
+            case description
+
             case externalOrderId = "external_order_id"
 
             case meta
@@ -29,11 +31,11 @@ public extension ApplicationClient {
             case mobileNumber = "mobile_number"
 
             case email
-
-            case description
         }
 
         public init(amount: Double, description: String? = nil, email: String, externalOrderId: String, meta: CreatePaymentLinkMeta, mobileNumber: String) {
+            self.description = description
+
             self.externalOrderId = externalOrderId
 
             self.meta = meta
@@ -43,12 +45,18 @@ public extension ApplicationClient {
             self.mobileNumber = mobileNumber
 
             self.email = email
-
-            self.description = description
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
 
@@ -59,18 +67,12 @@ public extension ApplicationClient {
             mobileNumber = try container.decode(String.self, forKey: .mobileNumber)
 
             email = try container.decode(String.self, forKey: .email)
-
-            do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encode(description, forKey: .description)
 
             try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
 
@@ -81,8 +83,6 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(mobileNumber, forKey: .mobileNumber)
 
             try? container.encodeIfPresent(email, forKey: .email)
-
-            try? container.encode(description, forKey: .description)
         }
     }
 }
