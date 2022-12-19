@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class Media: Codable {
         public var alt: String?
 
-        public var type: String?
+        public var url: String?
 
         public var meta: Meta?
 
-        public var url: String?
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case alt
 
-            case type
+            case url
 
             case meta
 
-            case url
+            case type
         }
 
         public init(alt: String? = nil, meta: Meta? = nil, type: String? = nil, url: String? = nil) {
             self.alt = alt
 
-            self.type = type
+            self.url = url
 
             self.meta = meta
 
-            self.url = url
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(alt, forKey: .alt)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
