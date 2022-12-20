@@ -17,9 +17,9 @@ public extension ApplicationClient {
 
         public var ticketId: String
 
-        public var category: String
+        public var category: TicketCategory
 
-        public var subCategory: String?
+        public var subCategory: TicketSubCategory?
 
         public var source: TicketSourceEnum
 
@@ -36,8 +36,6 @@ public extension ApplicationClient {
         public var customJson: [String: Any]?
 
         public var isFeedbackPending: Bool?
-
-        public var integration: [String: Any]?
 
         public var id: String
 
@@ -76,8 +74,6 @@ public extension ApplicationClient {
 
             case isFeedbackPending = "is_feedback_pending"
 
-            case integration
-
             case id = "_id"
 
             case updatedAt = "updated_at"
@@ -85,7 +81,7 @@ public extension ApplicationClient {
             case createdAt = "created_at"
         }
 
-        public init(assignedTo: [String: Any]? = nil, category: String, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, integration: [String: Any]? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: String? = nil, tags: [String]? = nil, ticketId: String, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
+        public init(assignedTo: [String: Any]? = nil, category: TicketCategory, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: TicketSubCategory? = nil, tags: [String]? = nil, ticketId: String, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
             self.context = context
 
             self.createdOn = createdOn
@@ -115,8 +111,6 @@ public extension ApplicationClient {
             self.customJson = customJson
 
             self.isFeedbackPending = isFeedbackPending
-
-            self.integration = integration
 
             self.id = id
 
@@ -162,10 +156,10 @@ public extension ApplicationClient {
 
             ticketId = try container.decode(String.self, forKey: .ticketId)
 
-            category = try container.decode(String.self, forKey: .category)
+            category = try container.decode(TicketCategory.self, forKey: .category)
 
             do {
-                subCategory = try container.decode(String.self, forKey: .subCategory)
+                subCategory = try container.decode(TicketSubCategory.self, forKey: .subCategory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -212,14 +206,6 @@ public extension ApplicationClient {
 
             do {
                 isFeedbackPending = try container.decode(Bool.self, forKey: .isFeedbackPending)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                integration = try container.decode([String: Any].self, forKey: .integration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -277,8 +263,6 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(isFeedbackPending, forKey: .isFeedbackPending)
-
-            try? container.encodeIfPresent(integration, forKey: .integration)
 
             try? container.encodeIfPresent(id, forKey: .id)
 

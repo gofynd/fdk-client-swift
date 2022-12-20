@@ -8,21 +8,19 @@ public class PlatformConfig {
     var language: String?
     var currency: String?
     var extraHeaders: [(key: String, value: String)] = []
-    public var enableSSLPinning: Bool
 
     public lazy var oauthClient = PlatformOAuthClient(config: self)
 
-    public init?(companyId: String, domain: String = "https://api.fynd.com", userAgent: String? = nil, language: String? = "en-IN", currency: String? = "INR", extraHeaders: [(key: String, value: String)] = [], enableSSLPinning: Bool = false) {
+    public init?(companyId: String, domain: String = "https://api.fynd.com", userAgent: String? = nil, language: String? = "en-IN", currency: String? = "INR", extraHeaders: [(key: String, value: String)] = []) {
         self.companyId = companyId
         self.domain = domain
         self.userAgent = userAgent
         self.language = language
         self.currency = currency
         self.extraHeaders = extraHeaders
-        self.enableSSLPinning = enableSSLPinning
     }
 
-    public init?(companyId: String, apiKey: String, apiSecret: String, domain: String = "https://api.fynd.com", userAgent: String? = nil, language: String? = "en-IN", currency: String? = "INR", extraHeaders: [(key: String, value: String)] = [], enableSSLPinning: Bool = false) {
+    public init?(companyId: String, apiKey: String, apiSecret: String, domain: String = "https://api.fynd.com", userAgent: String? = nil, language: String? = "en-IN", currency: String? = "INR", extraHeaders: [(key: String, value: String)] = []) {
         self.companyId = companyId
         self.domain = domain
         self.apiKey = apiKey
@@ -31,6 +29,5 @@ public class PlatformConfig {
         self.language = language
         self.currency = currency
         self.extraHeaders = extraHeaders
-        self.enableSSLPinning = enableSSLPinning
     }
 }

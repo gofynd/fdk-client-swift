@@ -1,5 +1,5 @@
 import Foundation
-public struct FDKError: Codable, Error {
+public struct FDKError: Codable {
     public let message: String
     public var status: Int?
     public let code: String?

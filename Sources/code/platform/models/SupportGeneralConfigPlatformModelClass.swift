@@ -18,8 +18,6 @@ public extension PlatformClient {
 
         public var showCommunicationInfo: Bool?
 
-        public var supportCommunication: CommunicationDetails?
-
         public var showSupportDris: Bool?
 
         public var integration: [String: Any]?
@@ -35,14 +33,12 @@ public extension PlatformClient {
 
             case showCommunicationInfo = "show_communication_info"
 
-            case supportCommunication = "support_communication"
-
             case showSupportDris = "show_support_dris"
 
             case integration
         }
 
-        public init(integration: [String: Any]? = nil, showCommunicationInfo: Bool? = nil, showSupportDris: Bool? = nil, supportCommunication: CommunicationDetails? = nil, supportEmail: CommunicationDetails? = nil, supportFaq: CommunicationDetails? = nil, supportPhone: CommunicationDetails? = nil, id: String? = nil) {
+        public init(integration: [String: Any]? = nil, showCommunicationInfo: Bool? = nil, showSupportDris: Bool? = nil, supportEmail: CommunicationDetails? = nil, supportFaq: CommunicationDetails? = nil, supportPhone: CommunicationDetails? = nil, id: String? = nil) {
             self.id = id
 
             self.supportEmail = supportEmail
@@ -52,8 +48,6 @@ public extension PlatformClient {
             self.supportFaq = supportFaq
 
             self.showCommunicationInfo = showCommunicationInfo
-
-            self.supportCommunication = supportCommunication
 
             self.showSupportDris = showSupportDris
 
@@ -104,14 +98,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                supportCommunication = try container.decode(CommunicationDetails.self, forKey: .supportCommunication)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 showSupportDris = try container.decode(Bool.self, forKey: .showSupportDris)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -140,8 +126,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(supportFaq, forKey: .supportFaq)
 
             try? container.encodeIfPresent(showCommunicationInfo, forKey: .showCommunicationInfo)
-
-            try? container.encodeIfPresent(supportCommunication, forKey: .supportCommunication)
 
             try? container.encodeIfPresent(showSupportDris, forKey: .showSupportDris)
 

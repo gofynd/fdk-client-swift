@@ -126,7 +126,7 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Gives signed urls to access private files
+         * Summary: Explain here
          * Description: Describe here
          **/
         public func getSignUrls(
