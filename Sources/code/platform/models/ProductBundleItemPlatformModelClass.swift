@@ -10,9 +10,9 @@ public extension PlatformClient {
     class ProductBundleItem: Codable {
         public var autoSelect: Bool?
 
-        public var productUid: Int
-
         public var autoAddToCart: Bool?
+
+        public var productUid: Int
 
         public var allowRemove: Bool?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case autoSelect = "auto_select"
 
-            case productUid = "product_uid"
-
             case autoAddToCart = "auto_add_to_cart"
+
+            case productUid = "product_uid"
 
             case allowRemove = "allow_remove"
 
@@ -37,9 +37,9 @@ public extension PlatformClient {
         public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int, minQuantity: Int, productUid: Int) {
             self.autoSelect = autoSelect
 
-            self.productUid = productUid
-
             self.autoAddToCart = autoAddToCart
+
+            self.productUid = productUid
 
             self.allowRemove = allowRemove
 
@@ -59,8 +59,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            productUid = try container.decode(Int.self, forKey: .productUid)
-
             do {
                 autoAddToCart = try container.decode(Bool.self, forKey: .autoAddToCart)
 
@@ -68,6 +66,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            productUid = try container.decode(Int.self, forKey: .productUid)
 
             do {
                 allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
@@ -87,9 +87,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
 
-            try? container.encodeIfPresent(productUid, forKey: .productUid)
-
             try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
+
+            try? container.encodeIfPresent(productUid, forKey: .productUid)
 
             try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
 
