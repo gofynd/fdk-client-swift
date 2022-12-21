@@ -23,8 +23,6 @@ public extension ApplicationClient {
 
         public var content: String?
 
-        public var pages: [[String: Any]]?
-
         public var source: TagSourceSchema?
 
         public enum CodingKeys: String, CodingKey {
@@ -44,12 +42,10 @@ public extension ApplicationClient {
 
             case content
 
-            case pages
-
             case source = "__source"
         }
 
-        public init(attributes: [String: Any]? = nil, content: String? = nil, name: String? = nil, pages: [[String: Any]]? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: TagSourceSchema? = nil) {
+        public init(attributes: [String: Any]? = nil, content: String? = nil, name: String? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: TagSourceSchema? = nil) {
             self.name = name
 
             self.url = url
@@ -65,8 +61,6 @@ public extension ApplicationClient {
             self.attributes = attributes
 
             self.content = content
-
-            self.pages = pages
 
             self.source = source
         }
@@ -139,14 +133,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                pages = try container.decode([[String: Any]].self, forKey: .pages)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 source = try container.decode(TagSourceSchema.self, forKey: .source)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -173,8 +159,6 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(attributes, forKey: .attributes)
 
             try? container.encodeIfPresent(content, forKey: .content)
-
-            try? container.encodeIfPresent(pages, forKey: .pages)
 
             try? container.encodeIfPresent(source, forKey: .source)
         }

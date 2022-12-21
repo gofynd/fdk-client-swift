@@ -9,30 +9,32 @@ public extension ApplicationClient {
     class PincodeApiResponse: Codable {
         public var success: Bool
 
-        public var data: [PincodeDataResponse]?
-
         public var error: PincodeErrorSchemaResponse
+
+        public var data: [PincodeDataResponse]?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case data
-
             case error
+
+            case data
         }
 
         public init(data: [PincodeDataResponse]? = nil, error: PincodeErrorSchemaResponse, success: Bool) {
             self.success = success
 
-            self.data = data
-
             self.error = error
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             success = try container.decode(Bool.self, forKey: .success)
+
+            error = try container.decode(PincodeErrorSchemaResponse.self, forKey: .error)
 
             do {
                 data = try container.decode([PincodeDataResponse].self, forKey: .data)
@@ -41,8 +43,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            error = try container.decode(PincodeErrorSchemaResponse.self, forKey: .error)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -50,9 +50,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
