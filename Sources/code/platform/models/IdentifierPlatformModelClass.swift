@@ -8,7 +8,9 @@ public extension PlatformClient {
      */
 
     class Identifier: Codable {
-        public var storeId: [Int]?
+        public var excludeBrandId: [Int]?
+
+        public var itemId: [Int]?
 
         public var companyId: [Int]?
 
@@ -16,18 +18,18 @@ public extension PlatformClient {
 
         public var categoryId: [Int]?
 
-        public var itemId: [Int]?
-
-        public var excludeBrandId: [Int]?
-
-        public var brandId: [Int]?
-
-        public var collectionId: [String]?
+        public var storeId: [Int]?
 
         public var userId: [String]?
 
+        public var collectionId: [String]?
+
+        public var brandId: [Int]?
+
         public enum CodingKeys: String, CodingKey {
-            case storeId = "store_id"
+            case excludeBrandId = "exclude_brand_id"
+
+            case itemId = "item_id"
 
             case companyId = "company_id"
 
@@ -35,19 +37,19 @@ public extension PlatformClient {
 
             case categoryId = "category_id"
 
-            case itemId = "item_id"
+            case storeId = "store_id"
 
-            case excludeBrandId = "exclude_brand_id"
-
-            case brandId = "brand_id"
+            case userId = "user_id"
 
             case collectionId = "collection_id"
 
-            case userId = "user_id"
+            case brandId = "brand_id"
         }
 
         public init(articleId: [String]? = nil, brandId: [Int]? = nil, categoryId: [Int]? = nil, collectionId: [String]? = nil, companyId: [Int]? = nil, excludeBrandId: [Int]? = nil, itemId: [Int]? = nil, storeId: [Int]? = nil, userId: [String]? = nil) {
-            self.storeId = storeId
+            self.excludeBrandId = excludeBrandId
+
+            self.itemId = itemId
 
             self.companyId = companyId
 
@@ -55,22 +57,28 @@ public extension PlatformClient {
 
             self.categoryId = categoryId
 
-            self.itemId = itemId
+            self.storeId = storeId
 
-            self.excludeBrandId = excludeBrandId
-
-            self.brandId = brandId
+            self.userId = userId
 
             self.collectionId = collectionId
 
-            self.userId = userId
+            self.brandId = brandId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                storeId = try container.decode([Int].self, forKey: .storeId)
+                excludeBrandId = try container.decode([Int].self, forKey: .excludeBrandId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemId = try container.decode([Int].self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,7 +110,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemId = try container.decode([Int].self, forKey: .itemId)
+                storeId = try container.decode([Int].self, forKey: .storeId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,15 +118,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                excludeBrandId = try container.decode([Int].self, forKey: .excludeBrandId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brandId = try container.decode([Int].self, forKey: .brandId)
+                userId = try container.decode([String].self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                userId = try container.decode([String].self, forKey: .userId)
+                brandId = try container.decode([Int].self, forKey: .brandId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -145,7 +145,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
+            try? container.encodeIfPresent(excludeBrandId, forKey: .excludeBrandId)
+
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
@@ -153,15 +155,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(categoryId, forKey: .categoryId)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
 
-            try? container.encodeIfPresent(excludeBrandId, forKey: .excludeBrandId)
-
-            try? container.encodeIfPresent(brandId, forKey: .brandId)
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(collectionId, forKey: .collectionId)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
         }
     }
 }

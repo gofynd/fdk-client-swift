@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var action: Action?
 
-        public var name: String?
+        public var uid: Int?
 
         public var slug: String?
 
-        public var uid: Int?
+        public var name: String?
 
         public var childs: [Child]?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case action
 
-            case name
+            case uid
 
             case slug
 
-            case uid
+            case name
 
             case childs
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.action = action
 
-            self.name = name
+            self.uid = uid
 
             self.slug = slug
 
-            self.uid = uid
+            self.name = name
 
             self.childs = childs
         }
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,11 +107,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
         }

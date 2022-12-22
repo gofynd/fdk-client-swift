@@ -9,9 +9,7 @@ public extension ApplicationClient {
     class ChargeCustomerResponse: Codable {
         public var orderId: String
 
-        public var deliveryAddressId: String?
-
-        public var status: String
+        public var success: Bool
 
         public var message: String
 
@@ -19,14 +17,14 @@ public extension ApplicationClient {
 
         public var cartId: String?
 
-        public var success: Bool
+        public var status: String
+
+        public var deliveryAddressId: String?
 
         public enum CodingKeys: String, CodingKey {
             case orderId = "order_id"
 
-            case deliveryAddressId = "delivery_address_id"
-
-            case status
+            case success
 
             case message
 
@@ -34,15 +32,15 @@ public extension ApplicationClient {
 
             case cartId = "cart_id"
 
-            case success
+            case status
+
+            case deliveryAddressId = "delivery_address_id"
         }
 
         public init(aggregator: String, cartId: String? = nil, deliveryAddressId: String? = nil, message: String, orderId: String, status: String, success: Bool) {
             self.orderId = orderId
 
-            self.deliveryAddressId = deliveryAddressId
-
-            self.status = status
+            self.success = success
 
             self.message = message
 
@@ -50,7 +48,9 @@ public extension ApplicationClient {
 
             self.cartId = cartId
 
-            self.success = success
+            self.status = status
+
+            self.deliveryAddressId = deliveryAddressId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,15 +58,7 @@ public extension ApplicationClient {
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
-            do {
-                deliveryAddressId = try container.decode(String.self, forKey: .deliveryAddressId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            status = try container.decode(String.self, forKey: .status)
+            success = try container.decode(Bool.self, forKey: .success)
 
             message = try container.decode(String.self, forKey: .message)
 
@@ -80,7 +72,15 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
+            status = try container.decode(String.self, forKey: .status)
+
+            do {
+                deliveryAddressId = try container.decode(String.self, forKey: .deliveryAddressId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -88,9 +88,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encode(deliveryAddressId, forKey: .deliveryAddressId)
-
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
@@ -98,7 +96,9 @@ public extension ApplicationClient {
 
             try? container.encode(cartId, forKey: .cartId)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encode(deliveryAddressId, forKey: .deliveryAddressId)
         }
     }
 }
