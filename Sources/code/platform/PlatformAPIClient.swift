@@ -14,7 +14,7 @@ public enum PlatformAPIClient {
             if let token = token {
                 var finalHeaders = headers
                 finalHeaders.append((key: "Authorization", value: "Bearer " + token.accessToken))
-                finalHeaders.append((key: "x-fp-sdk-version", value: "0.1.28"))
+                finalHeaders.append((key: "x-fp-sdk-version", value: "0.1.31"))
                 finalHeaders.append(contentsOf: config.extraHeaders)
                 if let userAgent = config.userAgent {
                     finalHeaders.append((key: "User-Agent", value: userAgent))
@@ -25,6 +25,8 @@ public enum PlatformAPIClient {
                 if let currency = config.currency {
                     finalHeaders.append((key: "x-currency-code", value: currency))
                 }
+                // CustomServerTrustManager.enableSSLPinning = config.enableSSLPinning
+                // CustomServerTrustManager.host.insert(URL(string: url)?.host ?? "")
 
                 AlmofireHelper.request(config.domain.appendAsPath(url),
                                        query: query,
