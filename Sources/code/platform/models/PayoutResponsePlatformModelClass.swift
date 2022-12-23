@@ -10,13 +10,11 @@ public extension PlatformClient {
     class PayoutResponse: Codable {
         public var users: [String: Any]
 
-        public var aggregator: String
-
-        public var transferType: String
-
         public var created: Bool
 
-        public var success: Bool
+        public var aggregator: String
+
+        public var bankDetails: [String: Any]
 
         public var uniqueTransferNo: String
 
@@ -24,20 +22,20 @@ public extension PlatformClient {
 
         public var isActive: Bool
 
-        public var bankDetails: [String: Any]
-
         public var paymentStatus: String
+
+        public var transferType: String
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case users
 
-            case aggregator
-
-            case transferType = "transfer_type"
-
             case created
 
-            case success
+            case aggregator
+
+            case bankDetails = "bank_details"
 
             case uniqueTransferNo = "unique_transfer_no"
 
@@ -45,21 +43,21 @@ public extension PlatformClient {
 
             case isActive = "is_active"
 
-            case bankDetails = "bank_details"
-
             case paymentStatus = "payment_status"
+
+            case transferType = "transfer_type"
+
+            case success
         }
 
         public init(aggregator: String, bankDetails: [String: Any], created: Bool, isActive: Bool, paymentStatus: String, payouts: [String: Any], success: Bool, transferType: String, uniqueTransferNo: String, users: [String: Any]) {
             self.users = users
 
-            self.aggregator = aggregator
-
-            self.transferType = transferType
-
             self.created = created
 
-            self.success = success
+            self.aggregator = aggregator
+
+            self.bankDetails = bankDetails
 
             self.uniqueTransferNo = uniqueTransferNo
 
@@ -67,9 +65,11 @@ public extension PlatformClient {
 
             self.isActive = isActive
 
-            self.bankDetails = bankDetails
-
             self.paymentStatus = paymentStatus
+
+            self.transferType = transferType
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -77,13 +77,11 @@ public extension PlatformClient {
 
             users = try container.decode([String: Any].self, forKey: .users)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
-            transferType = try container.decode(String.self, forKey: .transferType)
-
             created = try container.decode(Bool.self, forKey: .created)
 
-            success = try container.decode(Bool.self, forKey: .success)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
+
+            bankDetails = try container.decode([String: Any].self, forKey: .bankDetails)
 
             uniqueTransferNo = try container.decode(String.self, forKey: .uniqueTransferNo)
 
@@ -91,9 +89,11 @@ public extension PlatformClient {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            bankDetails = try container.decode([String: Any].self, forKey: .bankDetails)
-
             paymentStatus = try container.decode(String.self, forKey: .paymentStatus)
+
+            transferType = try container.decode(String.self, forKey: .transferType)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -101,13 +101,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(users, forKey: .users)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
-            try? container.encodeIfPresent(transferType, forKey: .transferType)
-
             try? container.encodeIfPresent(created, forKey: .created)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
 
             try? container.encodeIfPresent(uniqueTransferNo, forKey: .uniqueTransferNo)
 
@@ -115,9 +113,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
-
             try? container.encodeIfPresent(paymentStatus, forKey: .paymentStatus)
+
+            try? container.encodeIfPresent(transferType, forKey: .transferType)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

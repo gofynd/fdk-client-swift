@@ -8,42 +8,42 @@ public extension PlatformClient {
      */
 
     class AppliedPromotion: Codable {
-        public var mrpPromotion: Bool?
-
         public var promotionType: String?
+
+        public var amount: Double?
 
         public var articleQuantity: Int?
 
-        public var promoId: String?
+        public var mrpPromotion: Bool?
 
-        public var amount: Double?
+        public var promoId: String?
 
         public var offerText: String?
 
         public enum CodingKeys: String, CodingKey {
-            case mrpPromotion = "mrp_promotion"
-
             case promotionType = "promotion_type"
+
+            case amount
 
             case articleQuantity = "article_quantity"
 
-            case promoId = "promo_id"
+            case mrpPromotion = "mrp_promotion"
 
-            case amount
+            case promoId = "promo_id"
 
             case offerText = "offer_text"
         }
 
         public init(amount: Double? = nil, articleQuantity: Int? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
-            self.mrpPromotion = mrpPromotion
-
             self.promotionType = promotionType
+
+            self.amount = amount
 
             self.articleQuantity = articleQuantity
 
-            self.promoId = promoId
+            self.mrpPromotion = mrpPromotion
 
-            self.amount = amount
+            self.promoId = promoId
 
             self.offerText = offerText
         }
@@ -52,7 +52,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                mrpPromotion = try container.decode(Bool.self, forKey: .mrpPromotion)
+                promotionType = try container.decode(String.self, forKey: .promotionType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                promotionType = try container.decode(String.self, forKey: .promotionType)
+                amount = try container.decode(Double.self, forKey: .amount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                promoId = try container.decode(String.self, forKey: .promoId)
+                mrpPromotion = try container.decode(Bool.self, forKey: .mrpPromotion)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                amount = try container.decode(Double.self, forKey: .amount)
+                promoId = try container.decode(String.self, forKey: .promoId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,15 +103,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
-
             try? container.encodeIfPresent(promotionType, forKey: .promotionType)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
 
-            try? container.encodeIfPresent(promoId, forKey: .promoId)
+            try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encodeIfPresent(promoId, forKey: .promoId)
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
         }
