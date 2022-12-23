@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class ProductSizeSellersResponseV2: Codable {
         public var sortOn: [ProductSizeSellerFilterSchemaV2]?
 
-        public var items: [ProductSizePriceResponseV2]?
-
         public var page: Page
+
+        public var items: [ProductSizePriceResponseV2]?
 
         public enum CodingKeys: String, CodingKey {
             case sortOn = "sort_on"
 
-            case items
-
             case page
+
+            case items
         }
 
         public init(items: [ProductSizePriceResponseV2]? = nil, page: Page, sortOn: [ProductSizeSellerFilterSchemaV2]? = nil) {
             self.sortOn = sortOn
 
-            self.items = items
-
             self.page = page
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,6 +40,8 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            page = try container.decode(Page.self, forKey: .page)
+
             do {
                 items = try container.decode([ProductSizePriceResponseV2].self, forKey: .items)
 
@@ -47,8 +49,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            page = try container.decode(Page.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -56,9 +56,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }
