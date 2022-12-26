@@ -11,30 +11,30 @@ public extension ApplicationClient {
 
         public var title: String?
 
-        public var sizeTip: String?
-
-        public var description: String?
-
         public var headers: ColumnHeaders?
 
         public var sizes: [SizeChartValues]?
 
+        public var sizeTip: String?
+
         public var image: String?
+
+        public var description: String?
 
         public enum CodingKeys: String, CodingKey {
             case unit
 
             case title
 
-            case sizeTip = "size_tip"
-
-            case description
-
             case headers
 
             case sizes
 
+            case sizeTip = "size_tip"
+
             case image
+
+            case description
         }
 
         public init(description: String? = nil, headers: ColumnHeaders? = nil, image: String? = nil, sizes: [SizeChartValues]? = nil, sizeTip: String? = nil, title: String? = nil, unit: String? = nil) {
@@ -42,15 +42,15 @@ public extension ApplicationClient {
 
             self.title = title
 
-            self.sizeTip = sizeTip
-
-            self.description = description
-
             self.headers = headers
 
             self.sizes = sizes
 
+            self.sizeTip = sizeTip
+
             self.image = image
+
+            self.description = description
         }
 
         required public init(from decoder: Decoder) throws {
@@ -66,22 +66,6 @@ public extension ApplicationClient {
 
             do {
                 title = try container.decode(String.self, forKey: .title)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                sizeTip = try container.decode(String.self, forKey: .sizeTip)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +89,23 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                sizeTip = try container.decode(String.self, forKey: .sizeTip)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 image = try container.decode(String.self, forKey: .image)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,15 +120,15 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(sizeTip, forKey: .sizeTip)
-
-            try? container.encodeIfPresent(description, forKey: .description)
-
             try? container.encodeIfPresent(headers, forKey: .headers)
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
 
+            try? container.encodeIfPresent(sizeTip, forKey: .sizeTip)
+
             try? container.encodeIfPresent(image, forKey: .image)
+
+            try? container.encodeIfPresent(description, forKey: .description)
         }
     }
 }

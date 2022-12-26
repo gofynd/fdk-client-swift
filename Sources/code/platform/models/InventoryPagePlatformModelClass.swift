@@ -8,8 +8,6 @@ public extension PlatformClient {
      */
 
     class InventoryPage: Codable {
-        public var itemTotal: Int
-
         public var hasNext: Bool?
 
         public var nextId: String?
@@ -18,9 +16,9 @@ public extension PlatformClient {
 
         public var type: String
 
-        public enum CodingKeys: String, CodingKey {
-            case itemTotal = "item_total"
+        public var itemTotal: Int
 
+        public enum CodingKeys: String, CodingKey {
             case hasNext = "has_next"
 
             case nextId = "next_id"
@@ -28,11 +26,11 @@ public extension PlatformClient {
             case hasPrevious = "has_previous"
 
             case type
+
+            case itemTotal = "item_total"
         }
 
         public init(hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int, nextId: String? = nil, type: String) {
-            self.itemTotal = itemTotal
-
             self.hasNext = hasNext
 
             self.nextId = nextId
@@ -40,12 +38,12 @@ public extension PlatformClient {
             self.hasPrevious = hasPrevious
 
             self.type = type
+
+            self.itemTotal = itemTotal
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             do {
                 hasNext = try container.decode(Bool.self, forKey: .hasNext)
@@ -72,12 +70,12 @@ public extension PlatformClient {
             } catch {}
 
             type = try container.decode(String.self, forKey: .type)
+
+            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
@@ -86,6 +84,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
         }
     }
 }

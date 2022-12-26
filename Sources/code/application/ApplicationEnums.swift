@@ -60,4 +60,16 @@ public extension ApplicationClient {
 
         case salesChannel = "sales_channel"
     }
+
+    /*
+         Enum: TicketIntegrationDetails
+         Used By: Lead
+     */
+    enum TicketIntegrationDetails: String, Codable {
+        case defaultCase = "default"
+
+        case freshdesk
+
+        case kapture
+    }
 }

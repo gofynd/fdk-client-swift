@@ -10,26 +10,26 @@ public extension PlatformClient {
     class ConfigurationListingFilterValue: Codable {
         public var sort: String?
 
-        public var value: String?
+        public var mapValues: [[String: Any]]?
 
         public var map: [String: Any]?
 
         public var condition: String?
 
-        public var mapValues: [[String: Any]]?
+        public var value: String?
 
         public var bucketPoints: [ConfigurationBucketPoints]?
 
         public enum CodingKeys: String, CodingKey {
             case sort
 
-            case value
+            case mapValues = "map_values"
 
             case map
 
             case condition
 
-            case mapValues = "map_values"
+            case value
 
             case bucketPoints = "bucket_points"
         }
@@ -37,13 +37,13 @@ public extension PlatformClient {
         public init(bucketPoints: [ConfigurationBucketPoints]? = nil, condition: String? = nil, map: [String: Any]? = nil, mapValues: [[String: Any]]? = nil, sort: String? = nil, value: String? = nil) {
             self.sort = sort
 
-            self.value = value
+            self.mapValues = mapValues
 
             self.map = map
 
             self.condition = condition
 
-            self.mapValues = mapValues
+            self.value = value
 
             self.bucketPoints = bucketPoints
         }
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                mapValues = try container.decode([[String: Any]].self, forKey: .mapValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                mapValues = try container.decode([[String: Any]].self, forKey: .mapValues)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,13 +105,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(sort, forKey: .sort)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(mapValues, forKey: .mapValues)
 
             try? container.encodeIfPresent(map, forKey: .map)
 
             try? container.encodeIfPresent(condition, forKey: .condition)
 
-            try? container.encodeIfPresent(mapValues, forKey: .mapValues)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(bucketPoints, forKey: .bucketPoints)
         }

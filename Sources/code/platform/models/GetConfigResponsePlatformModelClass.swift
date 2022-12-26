@@ -8,36 +8,36 @@ public extension PlatformClient {
      */
 
     class GetConfigResponse: Codable {
-        public var data: [[String: Any]]
-
         public var page: PageResponseType
 
-        public enum CodingKeys: String, CodingKey {
-            case data
+        public var data: [[String: Any]]
 
+        public enum CodingKeys: String, CodingKey {
             case page
+
+            case data
         }
 
         public init(data: [[String: Any]], page: PageResponseType) {
-            self.data = data
-
             self.page = page
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            data = try container.decode([[String: Any]].self, forKey: .data)
-
             page = try container.decode(PageResponseType.self, forKey: .page)
+
+            data = try container.decode([[String: Any]].self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
