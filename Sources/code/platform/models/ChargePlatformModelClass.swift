@@ -10,22 +10,22 @@ public extension PlatformClient {
     class Charge: Codable {
         public var tax: Tax
 
-        public var amount: [String: Any]
-
         public var name: String
 
         public var type: String
+
+        public var amount: [String: Any]
 
         public var code: String?
 
         public enum CodingKeys: String, CodingKey {
             case tax
 
-            case amount
-
             case name
 
             case type
+
+            case amount
 
             case code
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax, type: String) {
             self.tax = tax
 
-            self.amount = amount
-
             self.name = name
 
             self.type = type
+
+            self.amount = amount
 
             self.code = code
         }
@@ -47,11 +47,11 @@ public extension PlatformClient {
 
             tax = try container.decode(Tax.self, forKey: .tax)
 
-            amount = try container.decode([String: Any].self, forKey: .amount)
-
             name = try container.decode(String.self, forKey: .name)
 
             type = try container.decode(String.self, forKey: .type)
+
+            amount = try container.decode([String: Any].self, forKey: .amount)
 
             do {
                 code = try container.decode(String.self, forKey: .code)
@@ -67,11 +67,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(tax, forKey: .tax)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(code, forKey: .code)
         }

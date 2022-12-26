@@ -62,6 +62,18 @@ public extension PlatformClient {
     }
 
     /*
+         Enum: TicketIntegrationDetails
+         Used By: Lead
+     */
+    enum TicketIntegrationDetails: String, Codable {
+        case defaultCase = "default"
+
+        case freshdesk
+
+        case kapture
+    }
+
+    /*
          Enum: SubscriberStatus
          Used By: Webhook
      */

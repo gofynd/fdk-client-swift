@@ -10,7 +10,7 @@ public extension PlatformClient {
     class OptInPostRequest: Codable {
         public var brandIds: [Int]?
 
-        public var platform: String?
+        public var storeIds: [Int]?
 
         public var companyId: Int?
 
@@ -18,12 +18,12 @@ public extension PlatformClient {
 
         public var enabled: Bool?
 
-        public var storeIds: [Int]?
+        public var platform: String?
 
         public enum CodingKeys: String, CodingKey {
             case brandIds = "brand_ids"
 
-            case platform
+            case storeIds = "store_ids"
 
             case companyId = "company_id"
 
@@ -31,13 +31,13 @@ public extension PlatformClient {
 
             case enabled
 
-            case storeIds = "store_ids"
+            case platform
         }
 
         public init(brandIds: [Int]? = nil, companyId: Int? = nil, enabled: Bool? = nil, optLevel: String, platform: String? = nil, storeIds: [Int]? = nil) {
             self.brandIds = brandIds
 
-            self.platform = platform
+            self.storeIds = storeIds
 
             self.companyId = companyId
 
@@ -45,7 +45,7 @@ public extension PlatformClient {
 
             self.enabled = enabled
 
-            self.storeIds = storeIds
+            self.platform = platform
         }
 
         required public init(from decoder: Decoder) throws {
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                platform = try container.decode(String.self, forKey: .platform)
+                storeIds = try container.decode([Int].self, forKey: .storeIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                storeIds = try container.decode([Int].self, forKey: .storeIds)
+                platform = try container.decode(String.self, forKey: .platform)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,7 +99,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(brandIds, forKey: .brandIds)
 
-            try? container.encodeIfPresent(platform, forKey: .platform)
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
@@ -107,7 +107,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(enabled, forKey: .enabled)
 
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            try? container.encodeIfPresent(platform, forKey: .platform)
         }
     }
 }
