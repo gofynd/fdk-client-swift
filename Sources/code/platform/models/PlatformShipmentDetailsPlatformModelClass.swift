@@ -10,11 +10,11 @@ public extension PlatformClient {
     class PlatformShipmentDetails: Codable {
         public var status: PlatformShipmentDetailsStatus?
 
-        public var bags: BagsDetails?
+        public var bags: [BagsDetails]?
 
         public var prices: ShipmentPrices?
 
-        public var breakupValues: ShipmentBreakupValues?
+        public var breakupValues: [ShipmentBreakupValues]?
 
         public var id: String?
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
 
         public var promise: Promise?
 
-        public var trackingDetails: ShipmentTrackingDetails?
+        public var trackingDetails: [ShipmentTrackingDetails]?
 
         public var isFyndCoupon: Bool?
 
@@ -138,7 +138,7 @@ public extension PlatformClient {
             case dates
         }
 
-        public init(autoTriggerDpAssignment: Bool? = nil, bags: BagsDetails? = nil, brand: PlatformShipmentDetailsBrand? = nil, breakupValues: ShipmentBreakupValues? = nil, canBreak: [String: Any]? = nil, comment: String? = nil, company: Company? = nil, coupon: [String: Any]? = nil, creditNoteId: String? = nil, dates: ShipmentDates? = nil, dpDetails: DpDetails? = nil, fulfillingStore: PlatformFulfillingStore? = nil, gst: ShipmentGst? = nil, id: String? = nil, invoice: ShipmentInvoice? = nil, isFyndCoupon: Bool? = nil, isNotFyndSource: Bool? = nil, lockStatus: Bool? = nil, orderingChannel: String? = nil, orderSource: String? = nil, orderType: String? = nil, packagingType: String? = nil, payments: Payments? = nil, paymentMethods: [String: Any]? = nil, pod: [String: Any]? = nil, prices: ShipmentPrices? = nil, priority: Double? = nil, priorityText: String? = nil, promise: Promise? = nil, status: PlatformShipmentDetailsStatus? = nil, totalShipmentBags: Int? = nil, trackingDetails: ShipmentTrackingDetails? = nil) {
+        public init(autoTriggerDpAssignment: Bool? = nil, bags: [BagsDetails]? = nil, brand: PlatformShipmentDetailsBrand? = nil, breakupValues: [ShipmentBreakupValues]? = nil, canBreak: [String: Any]? = nil, comment: String? = nil, company: Company? = nil, coupon: [String: Any]? = nil, creditNoteId: String? = nil, dates: ShipmentDates? = nil, dpDetails: DpDetails? = nil, fulfillingStore: PlatformFulfillingStore? = nil, gst: ShipmentGst? = nil, id: String? = nil, invoice: ShipmentInvoice? = nil, isFyndCoupon: Bool? = nil, isNotFyndSource: Bool? = nil, lockStatus: Bool? = nil, orderingChannel: String? = nil, orderSource: String? = nil, orderType: String? = nil, packagingType: String? = nil, payments: Payments? = nil, paymentMethods: [String: Any]? = nil, pod: [String: Any]? = nil, prices: ShipmentPrices? = nil, priority: Double? = nil, priorityText: String? = nil, promise: Promise? = nil, status: PlatformShipmentDetailsStatus? = nil, totalShipmentBags: Int? = nil, trackingDetails: [ShipmentTrackingDetails]? = nil) {
             self.status = status
 
             self.bags = bags
@@ -216,7 +216,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                bags = try container.decode(BagsDetails.self, forKey: .bags)
+                bags = try container.decode([BagsDetails].self, forKey: .bags)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -232,7 +232,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                breakupValues = try container.decode(ShipmentBreakupValues.self, forKey: .breakupValues)
+                breakupValues = try container.decode([ShipmentBreakupValues].self, forKey: .breakupValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -360,7 +360,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                trackingDetails = try container.decode(ShipmentTrackingDetails.self, forKey: .trackingDetails)
+                trackingDetails = try container.decode([ShipmentTrackingDetails].self, forKey: .trackingDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -3,46 +3,36 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: CustomerCreditSummaryResponse
-         Used By: Payment
+         Model: ReturnMetaDataImages
+         Used By: Order
      */
-    class CustomerCreditSummaryResponse: Codable {
-        public var data: CreditSummary?
-
-        public var success: Bool
+    class ReturnMetaDataImages: Codable {
+        public var url: String?
 
         public enum CodingKeys: String, CodingKey {
-            case data
-
-            case success
+            case url
         }
 
-        public init(data: CreditSummary? = nil, success: Bool) {
-            self.data = data
-
-            self.success = success
+        public init(url: String? = nil) {
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode(CreditSummary.self, forKey: .data)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }

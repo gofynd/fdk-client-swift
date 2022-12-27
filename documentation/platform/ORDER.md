@@ -14,7 +14,7 @@ Handles Platform websites OMS
 * [getOrdersByCompanyId](#getordersbycompanyid)
 * [getOrderLanesCountByCompanyId](#getorderlanescountbycompanyid)
 * [getOrderDetails](#getorderdetails)
-* [getOrderDetails](#getorderdetails)
+* [getApplicationOrderDetails](#getapplicationorderdetails)
 * [getPicklistOrdersByCompanyId](#getpicklistordersbycompanyid)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [trackOrder](#trackorder)
@@ -496,14 +496,14 @@ Success
 ---
 
 
-#### getOrderDetails
+#### getApplicationOrderDetails
 Get Order Details for company based on Company Id and Order Id
 
 
 
 
 ```swift
-client.application("<APPLICATION_ID>").order.getOrderDetails(orderId: orderId, next: next, previous: previous) { (response, error) in
+client.application("<APPLICATION_ID>").order.getApplicationOrderDetails(orderId: orderId, next: next, previous: previous) { (response, error) in
     // Use response
 }
 ```
@@ -2408,7 +2408,7 @@ Success
  | channel | [Channel](#Channel)? |  yes  |  |
  | fyndstoreEmp | [String: Any]? |  yes  |  |
  | orderingStore | [String: Any]? |  yes  |  |
- | breakupValues | [PlatformBreakupValues](#PlatformBreakupValues)? |  yes  |  |
+ | breakupValues | [[PlatformBreakupValues](#PlatformBreakupValues)]? |  yes  |  |
  | id | String? |  yes  |  |
  | application | [PlatformApplication](#PlatformApplication)? |  yes  |  |
  | shipments | [PlatformShipmentDetails](#PlatformShipmentDetails)? |  yes  |  |
@@ -2452,9 +2452,9 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | status | [PlatformShipmentDetailsStatus](#PlatformShipmentDetailsStatus)? |  yes  |  |
- | bags | [BagsDetails](#BagsDetails)? |  yes  |  |
+ | bags | [[BagsDetails](#BagsDetails)]? |  yes  |  |
  | prices | [ShipmentPrices](#ShipmentPrices)? |  yes  |  |
- | breakupValues | [ShipmentBreakupValues](#ShipmentBreakupValues)? |  yes  |  |
+ | breakupValues | [[ShipmentBreakupValues](#ShipmentBreakupValues)]? |  yes  |  |
  | id | String? |  yes  |  |
  | dpDetails | [DpDetails](#DpDetails)? |  yes  |  |
  | paymentMethods | [String: Any]? |  yes  |  |
@@ -2470,7 +2470,7 @@ Success
  | canBreak | [String: Any]? |  yes  |  |
  | comment | String? |  yes  |  |
  | promise | [Promise](#Promise)? |  yes  |  |
- | trackingDetails | [ShipmentTrackingDetails](#ShipmentTrackingDetails)? |  yes  |  |
+ | trackingDetails | [[ShipmentTrackingDetails](#ShipmentTrackingDetails)]? |  yes  |  |
  | isFyndCoupon | Bool? |  yes  |  |
  | orderType | String? |  yes  |  |
  | totalShipmentBags | Int? |  yes  |  |
@@ -2519,7 +2519,7 @@ Success
  | id | Int? |  yes  |  |
  | prices | [BagPrices](#BagPrices)? |  yes  |  |
  | gstDetails | [GstDetails](#GstDetails)? |  yes  |  |
- | breakupValues | [BagBreakupValues](#BagBreakupValues)? |  yes  |  |
+ | breakupValues | [[BagBreakupValues](#BagBreakupValues)]? |  yes  |  |
  | updateTime | Int? |  yes  |  |
  | currentStatus | [BagCurrentStatus](#BagCurrentStatus)? |  yes  |  |
  | bagStatus | [BagStatus](#BagStatus)? |  yes  |  |
@@ -3216,11 +3216,11 @@ Success
  | deliveryAddress | [PlatformDeliveryAddress](#PlatformDeliveryAddress)? |  yes  |  |
  | channel | [Channel](#Channel)? |  yes  |  |
  | fyndstoreEmp | [String: Any]? |  yes  |  |
- | orderingStore | [String: Any]? |  yes  |  |
- | breakupValues | [PlatformBreakupValues](#PlatformBreakupValues)? |  yes  |  |
+ | orderingStore | [PlatformFulfillingStore](#PlatformFulfillingStore)? |  yes  |  |
+ | breakupValues | [[PlatformBreakupValues](#PlatformBreakupValues)]? |  yes  |  |
  | id | String? |  yes  |  |
  | application | [PlatformApplication](#PlatformApplication)? |  yes  |  |
- | shipments | [PlatformShipmentDetails](#PlatformShipmentDetails)? |  yes  |  |
+ | shipments | [[PlatformShipmentDetails](#PlatformShipmentDetails)]? |  yes  |  |
  | createdAt | String? |  yes  |  |
  | totalShipmentsInOrder | Int? |  yes  |  |
  | payments | [ItemsPayments](#ItemsPayments)? |  yes  |  |
