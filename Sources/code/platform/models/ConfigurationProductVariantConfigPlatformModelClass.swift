@@ -8,56 +8,62 @@ public extension PlatformClient {
      */
 
     class ConfigurationProductVariantConfig: Codable {
-        public var size: ProductSize
-
-        public var logo: String?
-
-        public var key: String
+        public var isActive: Bool
 
         public var priority: Int
 
-        public var isActive: Bool
+        public var size: ProductSize
 
-        public var name: String
+        public var key: String
+
+        public var logo: String?
 
         public var displayType: String
 
+        public var name: String
+
         public enum CodingKeys: String, CodingKey {
-            case size
-
-            case logo
-
-            case key
+            case isActive = "is_active"
 
             case priority
 
-            case isActive = "is_active"
+            case size
 
-            case name
+            case key
+
+            case logo
 
             case displayType = "display_type"
+
+            case name
         }
 
         public init(displayType: String, isActive: Bool, key: String, logo: String? = nil, name: String, priority: Int, size: ProductSize) {
-            self.size = size
-
-            self.logo = logo
-
-            self.key = key
+            self.isActive = isActive
 
             self.priority = priority
 
-            self.isActive = isActive
+            self.size = size
 
-            self.name = name
+            self.key = key
+
+            self.logo = logo
 
             self.displayType = displayType
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            priority = try container.decode(Int.self, forKey: .priority)
+
             size = try container.decode(ProductSize.self, forKey: .size)
+
+            key = try container.decode(String.self, forKey: .key)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -67,33 +73,27 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            key = try container.decode(String.self, forKey: .key)
-
-            priority = try container.decode(Int.self, forKey: .priority)
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
+            displayType = try container.decode(String.self, forKey: .displayType)
 
             name = try container.decode(String.self, forKey: .name)
-
-            displayType = try container.decode(String.self, forKey: .displayType)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
