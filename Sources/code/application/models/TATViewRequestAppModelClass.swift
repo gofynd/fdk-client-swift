@@ -9,42 +9,42 @@ public extension ApplicationClient {
     class TATViewRequest: Codable {
         public var action: String?
 
-        public var identifier: String?
+        public var locationDetails: [TATLocationDetailsRequest]?
 
         public var journey: String?
 
-        public var toPincode: String?
+        public var identifier: String?
 
         public var source: String?
 
-        public var locationDetails: [TATLocationDetailsRequest]?
+        public var toPincode: String?
 
         public enum CodingKeys: String, CodingKey {
             case action
 
-            case identifier
+            case locationDetails = "location_details"
 
             case journey
 
-            case toPincode = "to_pincode"
+            case identifier
 
             case source
 
-            case locationDetails = "location_details"
+            case toPincode = "to_pincode"
         }
 
         public init(action: String? = nil, identifier: String? = nil, journey: String? = nil, locationDetails: [TATLocationDetailsRequest]? = nil, source: String? = nil, toPincode: String? = nil) {
             self.action = action
 
-            self.identifier = identifier
+            self.locationDetails = locationDetails
 
             self.journey = journey
 
-            self.toPincode = toPincode
+            self.identifier = identifier
 
             self.source = source
 
-            self.locationDetails = locationDetails
+            self.toPincode = toPincode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,7 +59,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                locationDetails = try container.decode([TATLocationDetailsRequest].self, forKey: .locationDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                toPincode = try container.decode(String.self, forKey: .toPincode)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                locationDetails = try container.decode([TATLocationDetailsRequest].self, forKey: .locationDetails)
+                toPincode = try container.decode(String.self, forKey: .toPincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,15 +104,15 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
 
             try? container.encodeIfPresent(journey, forKey: .journey)
 
-            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(source, forKey: .source)
 
-            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
+            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
         }
     }
 }

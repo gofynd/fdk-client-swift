@@ -4743,13 +4743,19 @@ Get page meta
 
 
 ```swift
-client.application("<APPLICATION_ID>").content.getPageMeta() { (response, error) in
+client.application("<APPLICATION_ID>").content.getPageMeta(pageType: pageType, cartPages: cartPages) { (response, error) in
     // Use response
 }
 ```
 
 
 
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pageType | String? | no | Fetch meta by page type. Acceptable values are: system, custom and all |   
+| cartPages | Bool? | no | Pass this param value as `true` to fetch meta with cart pages |  
 
 
 
