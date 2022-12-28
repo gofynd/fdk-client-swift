@@ -120,7 +120,7 @@ public extension ApplicationClient {
             case .external:
                 return "/external/"
             case .faq:
-                return "/faq/:category"
+                return "/faq"
             case .freshchat:
                 return "/freshchat"
             case .home:
@@ -314,7 +314,7 @@ public extension ApplicationClient {
             case .external:
                 return []
             case .faq:
-                return [(name: "category", required: false)]
+                return []
             case .freshchat:
                 return []
             case .home:

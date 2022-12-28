@@ -10,30 +10,30 @@ public extension PlatformClient {
     class AssignStore: Codable {
         public var pincode: String
 
-        public var storeIds: [Int]?
-
-        public var appId: String
-
-        public var channelIdentifier: String?
+        public var channelType: String?
 
         public var companyId: Int?
 
-        public var channelType: String?
+        public var channelIdentifier: String?
+
+        public var appId: String
+
+        public var storeIds: [Int]?
 
         public var articles: [AssignStoreArticle]
 
         public enum CodingKeys: String, CodingKey {
             case pincode
 
-            case storeIds = "store_ids"
-
-            case appId = "app_id"
-
-            case channelIdentifier = "channel_identifier"
+            case channelType = "channel_type"
 
             case companyId = "company_id"
 
-            case channelType = "channel_type"
+            case channelIdentifier = "channel_identifier"
+
+            case appId = "app_id"
+
+            case storeIds = "store_ids"
 
             case articles
         }
@@ -41,15 +41,15 @@ public extension PlatformClient {
         public init(appId: String, articles: [AssignStoreArticle], channelIdentifier: String? = nil, channelType: String? = nil, companyId: Int? = nil, pincode: String, storeIds: [Int]? = nil) {
             self.pincode = pincode
 
-            self.storeIds = storeIds
-
-            self.appId = appId
-
-            self.channelIdentifier = channelIdentifier
+            self.channelType = channelType
 
             self.companyId = companyId
 
-            self.channelType = channelType
+            self.channelIdentifier = channelIdentifier
+
+            self.appId = appId
+
+            self.storeIds = storeIds
 
             self.articles = articles
         }
@@ -60,17 +60,7 @@ public extension PlatformClient {
             pincode = try container.decode(String.self, forKey: .pincode)
 
             do {
-                storeIds = try container.decode([Int].self, forKey: .storeIds)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            appId = try container.decode(String.self, forKey: .appId)
-
-            do {
-                channelIdentifier = try container.decode(String.self, forKey: .channelIdentifier)
+                channelType = try container.decode(String.self, forKey: .channelType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +76,17 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                channelType = try container.decode(String.self, forKey: .channelType)
+                channelIdentifier = try container.decode(String.self, forKey: .channelIdentifier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            appId = try container.decode(String.self, forKey: .appId)
+
+            do {
+                storeIds = try container.decode([Int].self, forKey: .storeIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,15 +101,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
-
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
-            try? container.encodeIfPresent(channelIdentifier, forKey: .channelIdentifier)
+            try? container.encodeIfPresent(channelType, forKey: .channelType)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(channelType, forKey: .channelType)
+            try? container.encodeIfPresent(channelIdentifier, forKey: .channelIdentifier)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
+
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
             try? container.encodeIfPresent(articles, forKey: .articles)
         }
