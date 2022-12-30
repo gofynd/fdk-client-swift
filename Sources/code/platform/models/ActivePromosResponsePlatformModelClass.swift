@@ -12,42 +12,42 @@ public extension PlatformClient {
 
         public var entityType: String?
 
-        public var type: String?
-
         public var title: String?
 
-        public var createdOn: String?
+        public var entitySlug: String?
+
+        public var type: String?
 
         public var modifiedOn: String?
 
         public var subtitle: String?
 
-        public var entitySlug: String?
-
-        public var example: String?
+        public var createdOn: String?
 
         public var description: String?
+
+        public var example: String?
 
         public enum CodingKeys: String, CodingKey {
             case isHidden = "is_hidden"
 
             case entityType = "entity_type"
 
-            case type
-
             case title
 
-            case createdOn = "created_on"
+            case entitySlug = "entity_slug"
+
+            case type
 
             case modifiedOn = "modified_on"
 
             case subtitle
 
-            case entitySlug = "entity_slug"
-
-            case example
+            case createdOn = "created_on"
 
             case description
+
+            case example
         }
 
         public init(createdOn: String? = nil, description: String? = nil, entitySlug: String? = nil, entityType: String? = nil, example: String? = nil, isHidden: Bool? = nil, modifiedOn: String? = nil, subtitle: String? = nil, title: String? = nil, type: String? = nil) {
@@ -55,21 +55,21 @@ public extension PlatformClient {
 
             self.entityType = entityType
 
-            self.type = type
-
             self.title = title
 
-            self.createdOn = createdOn
+            self.entitySlug = entitySlug
+
+            self.type = type
 
             self.modifiedOn = modifiedOn
 
             self.subtitle = subtitle
 
-            self.entitySlug = entitySlug
-
-            self.example = example
+            self.createdOn = createdOn
 
             self.description = description
+
+            self.example = example
         }
 
         required public init(from decoder: Decoder) throws {
@@ -92,14 +92,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -108,7 +100,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
+                entitySlug = try container.decode(String.self, forKey: .entitySlug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,15 +132,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                entitySlug = try container.decode(String.self, forKey: .entitySlug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                example = try container.decode(String.self, forKey: .example)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -149,6 +141,14 @@ public extension PlatformClient {
 
             do {
                 description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                example = try container.decode(String.self, forKey: .example)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,21 +163,21 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(entityType, forKey: .entityType)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(entitySlug, forKey: .entitySlug)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
-            try? container.encodeIfPresent(entitySlug, forKey: .entitySlug)
-
-            try? container.encodeIfPresent(example, forKey: .example)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(example, forKey: .example)
         }
     }
 }

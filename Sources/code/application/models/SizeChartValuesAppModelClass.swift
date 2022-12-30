@@ -11,11 +11,11 @@ public extension ApplicationClient {
 
         public var col6: String?
 
+        public var col5: String?
+
         public var col3: String?
 
         public var col1: String?
-
-        public var col5: String?
 
         public var col4: String?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient {
 
             case col6 = "col_6"
 
+            case col5 = "col_5"
+
             case col3 = "col_3"
 
             case col1 = "col_1"
-
-            case col5 = "col_5"
 
             case col4 = "col_4"
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient {
 
             self.col6 = col6
 
+            self.col5 = col5
+
             self.col3 = col3
 
             self.col1 = col1
-
-            self.col5 = col5
 
             self.col4 = col4
         }
@@ -67,6 +67,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                col5 = try container.decode(String.self, forKey: .col5)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 col3 = try container.decode(String.self, forKey: .col3)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,14 +84,6 @@ public extension ApplicationClient {
 
             do {
                 col1 = try container.decode(String.self, forKey: .col1)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                col5 = try container.decode(String.self, forKey: .col5)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(col6, forKey: .col6)
 
+            try? container.encodeIfPresent(col5, forKey: .col5)
+
             try? container.encodeIfPresent(col3, forKey: .col3)
 
             try? container.encodeIfPresent(col1, forKey: .col1)
-
-            try? container.encodeIfPresent(col5, forKey: .col5)
 
             try? container.encodeIfPresent(col4, forKey: .col4)
         }
