@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var effective: Double?
 
+        public var currencyCode: String?
+
         public var currencySymbol: String?
 
         public var selling: Double?
-
-        public var currencyCode: String?
 
         public var marked: Double?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case effective
 
+            case currencyCode = "currency_code"
+
             case currencySymbol = "currency_symbol"
 
             case selling
-
-            case currencyCode = "currency_code"
 
             case marked
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.effective = effective
 
+            self.currencyCode = currencyCode
+
             self.currencySymbol = currencySymbol
 
             self.selling = selling
-
-            self.currencyCode = currencyCode
 
             self.marked = marked
         }
@@ -68,6 +68,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -77,14 +85,6 @@ public extension PlatformClient {
 
             do {
                 selling = try container.decode(Double.self, forKey: .selling)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,11 +107,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
             try? container.encodeIfPresent(selling, forKey: .selling)
-
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(marked, forKey: .marked)
         }
