@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
   s.homepage         = 'https://github.com/gofynd/fdk-client-swift'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Nikhil Manapure' => 'nikhilmanapure@gofynd.com' }
+  s.author           = { 'Shopsense Retail Technologies Limited' => 'shopsense@icloud.com' }
   s.source           = { :git => 'https://github.com/gofynd/fdk-client-swift.git', :tag => s.version.to_s }
 
   s.swift_versions = '4.0'
