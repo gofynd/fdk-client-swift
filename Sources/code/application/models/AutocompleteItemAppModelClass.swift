@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var display: String?
 
-        public var logo: Media?
+        public var type: String?
 
         public var customJson: [String: Any]?
 
-        public var type: String?
+        public var logo: Media?
 
         public enum CodingKeys: String, CodingKey {
             case action
 
             case display
 
-            case logo
+            case type
 
             case customJson = "_custom_json"
 
-            case type
+            case logo
         }
 
         public init(action: ProductListingAction? = nil, display: String? = nil, logo: Media? = nil, type: String? = nil, customJson: [String: Any]? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.display = display
 
-            self.logo = logo
+            self.type = type
 
             self.customJson = customJson
 
-            self.type = type
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }

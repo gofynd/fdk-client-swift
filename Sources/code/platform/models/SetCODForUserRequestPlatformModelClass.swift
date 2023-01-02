@@ -10,24 +10,24 @@ public extension PlatformClient {
     class SetCODForUserRequest: Codable {
         public var isActive: Bool
 
-        public var merchantUserId: String
-
         public var mobileno: String
+
+        public var merchantUserId: String
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case merchantUserId = "merchant_user_id"
-
             case mobileno
+
+            case merchantUserId = "merchant_user_id"
         }
 
         public init(isActive: Bool, merchantUserId: String, mobileno: String) {
             self.isActive = isActive
 
-            self.merchantUserId = merchantUserId
-
             self.mobileno = mobileno
+
+            self.merchantUserId = merchantUserId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
-
             mobileno = try container.decode(String.self, forKey: .mobileno)
+
+            merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(merchantUserId, forKey: .merchantUserId)
-
             try? container.encodeIfPresent(mobileno, forKey: .mobileno)
+
+            try? container.encodeIfPresent(merchantUserId, forKey: .merchantUserId)
         }
     }
 }
