@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var currencySymbol: String?
 
-        public var currencyCode: String?
-
         public var addOn: Double?
+
+        public var currencyCode: String?
 
         public var effective: Double?
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case currencySymbol = "currency_symbol"
 
-            case currencyCode = "currency_code"
-
             case addOn = "add_on"
+
+            case currencyCode = "currency_code"
 
             case effective
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             self.currencySymbol = currencySymbol
 
-            self.currencyCode = currencyCode
-
             self.addOn = addOn
+
+            self.currencyCode = currencyCode
 
             self.effective = effective
         }
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                addOn = try container.decode(Double.self, forKey: .addOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                addOn = try container.decode(Double.self, forKey: .addOn)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,9 +109,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-
             try? container.encodeIfPresent(addOn, forKey: .addOn)
+
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
         }

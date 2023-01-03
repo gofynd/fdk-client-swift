@@ -9,36 +9,36 @@ public extension ApplicationClient {
     class SharedCartDetails: Codable {
         public var meta: [String: Any]?
 
-        public var createdOn: String?
+        public var source: [String: Any]?
 
         public var user: [String: Any]?
 
         public var token: String?
 
-        public var source: [String: Any]?
+        public var createdOn: String?
 
         public enum CodingKeys: String, CodingKey {
             case meta
 
-            case createdOn = "created_on"
+            case source
 
             case user
 
             case token
 
-            case source
+            case createdOn = "created_on"
         }
 
         public init(createdOn: String? = nil, meta: [String: Any]? = nil, source: [String: Any]? = nil, token: String? = nil, user: [String: Any]? = nil) {
             self.meta = meta
 
-            self.createdOn = createdOn
+            self.source = source
 
             self.user = user
 
             self.token = token
 
-            self.source = source
+            self.createdOn = createdOn
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
+                source = try container.decode([String: Any].self, forKey: .source)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                source = try container.decode([String: Any].self, forKey: .source)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(source, forKey: .source)
 
             try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(token, forKey: .token)
 
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
         }
     }
 }

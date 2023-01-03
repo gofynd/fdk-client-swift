@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var deliverable: Bool?
 
-        public var isValid: Bool?
-
         public var outOfStock: Bool?
+
+        public var isValid: Bool?
 
         public var sizes: [String]?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case deliverable
 
-            case isValid = "is_valid"
-
             case outOfStock = "out_of_stock"
+
+            case isValid = "is_valid"
 
             case sizes
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.deliverable = deliverable
 
-            self.isValid = isValid
-
             self.outOfStock = outOfStock
+
+            self.isValid = isValid
 
             self.sizes = sizes
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isValid = try container.decode(Bool.self, forKey: .isValid)
+                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
+                isValid = try container.decode(Bool.self, forKey: .isValid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(deliverable, forKey: .deliverable)
 
-            try? container.encodeIfPresent(isValid, forKey: .isValid)
-
             try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
+
+            try? container.encodeIfPresent(isValid, forKey: .isValid)
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
         }

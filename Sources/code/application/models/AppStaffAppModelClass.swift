@@ -27,8 +27,6 @@ public extension ApplicationClient {
 
         public var profilePicUrl: String?
 
-        public var description: [String: Any]?
-
         public enum CodingKeys: String, CodingKey {
             case id = "_id"
 
@@ -49,11 +47,9 @@ public extension ApplicationClient {
             case lastName = "last_name"
 
             case profilePicUrl = "profile_pic_url"
-
-            case description
         }
 
-        public init(application: String? = nil, description: [String: Any]? = nil, employeeCode: String? = nil, firstName: String? = nil, lastName: String? = nil, orderIncent: Bool? = nil, profilePicUrl: String? = nil, stores: [Int]? = nil, title: String? = nil, user: String? = nil, id: String? = nil) {
+        public init(application: String? = nil, employeeCode: String? = nil, firstName: String? = nil, lastName: String? = nil, orderIncent: Bool? = nil, profilePicUrl: String? = nil, stores: [Int]? = nil, title: String? = nil, user: String? = nil, id: String? = nil) {
             self.id = id
 
             self.orderIncent = orderIncent
@@ -73,8 +69,6 @@ public extension ApplicationClient {
             self.lastName = lastName
 
             self.profilePicUrl = profilePicUrl
-
-            self.description = description
         }
 
         required public init(from decoder: Decoder) throws {
@@ -159,14 +153,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                description = try container.decode([String: Any].self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -191,8 +177,6 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
             try? container.encodeIfPresent(profilePicUrl, forKey: .profilePicUrl)
-
-            try? container.encodeIfPresent(description, forKey: .description)
         }
     }
 }

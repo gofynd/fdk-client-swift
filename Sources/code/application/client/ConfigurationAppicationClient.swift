@@ -92,7 +92,7 @@ public extension ApplicationClient {
         /**
          *
          * Summary: Get sales channel, owner and seller information
-         * Description: Use this API to get the current sale channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
+         * Description: Use this API to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
          **/
         public func getOwnerInfo(
             onResponse: @escaping (_ response: ApplicationAboutResponse?, _ error: FDKError?) -> Void
@@ -130,7 +130,7 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Get basic application details
+         * Summary: Get basic details of the application
          * Description: Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
          **/
         public func getBasicDetails(
@@ -538,7 +538,7 @@ public extension ApplicationClient {
         /**
          *
          * Summary: Get list of languages
-         * Description: Use this API to get a list of languages supported in the application.
+         * Description: Use this API to get a list of languages supported in the application
          **/
         public func getLanguages(
             onResponse: @escaping (_ response: LanguageResponse?, _ error: FDKError?) -> Void

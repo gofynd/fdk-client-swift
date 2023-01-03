@@ -12,8 +12,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Create new sales channel
-         * Description: Create new sales channel under current company
+         * Summary: Create a new sales channel
+         * Description: Applications are sales channel websites which can be configured, personalized and customized. Use this API to create a new application in the current company.
          **/
         public func createApplication(
             body: CreateApplicationRequest,
@@ -51,7 +51,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get list of registered sales channels under company
-         * Description: Get list of registered sales channels under current company. Sales channel has the details of name , description, channel_type, app_type, domain and many others.
+         * Description: Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
          **/
         public func getApplications(
             pageNo: Int?,
@@ -136,7 +136,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get all currencies
-         * Description: Get all currencies for the current company
+         * Description: Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
          **/
         public func getCurrencies(
             onResponse: @escaping (_ response: CurrenciesResponse?, _ error: FDKError?) -> Void
@@ -172,8 +172,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Check domain availibility before linking to application
-         * Description: Check domain availibility before linking to application. Also sends domain suggestions with similar to queried domain. \ Custom domain search is currently powered by GoDaddy provider.
+         * Summary: Check domain availability before linking to application
+         * Description: Use this API to check the domain availability before linking it to application. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider.
          **/
         public func getDomainAvailibility(
             body: DomainSuggestionsRequest,
@@ -210,8 +210,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get integration data by integration id
-         * Description: Get integration data by integration id for the current company
+         * Summary: Get integration data by its ID
+         * Description: Use this API to fetch the details of an integration (such as Ginesys, SAP, etc.) using its ID
          **/
         public func getIntegrationById(
             id: Int,
@@ -250,7 +250,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get all available integration opt-ins
-         * Description: Get all available integration opt-ins fot the current company
+         * Description: Use this API to get a list of all available integrations in a company
          **/
         public func getAvailableOptIns(
             pageNo: Int?,
@@ -328,7 +328,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get company/store level integration opt-ins
-         * Description: Get company/store level integration opt-ins for the current company
+         * Description: Use this API to get the store-level/company-level integrations configured in a company
          **/
         public func getSelectedOptIns(
             level: String,
@@ -463,8 +463,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get level data for integration
-         * Description: Get level data for integration for current company
+         * Summary: Get integration config at a particular level (store/company)
+         * Description: Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
          **/
         public func getIntegrationByLevelId(
             id: String,
@@ -504,8 +504,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Update a store level opt-in for integration
-         * Description: Update a store level opt-in for integration by store uid
+         * Summary: Update integration level by store UID
+         * Description: Update the level of integration by store UID
          **/
         public func updateLevelUidIntegration(
             id: String,
@@ -545,8 +545,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Check store has active integration
-         * Description: API checks if a store is already opted in any other integrations
+         * Summary: Check active integration at store
+         * Description: Use this API to check if a store is already opted-in for any integration
          **/
         public func getLevelActiveIntegrations(
             id: String,
@@ -593,8 +593,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Update a store level opt-in for integration
-         * Description: Update a store level opt-in for integration
+         * Summary: Update a store level integration you opted
+         * Description: Use this API to update the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
          **/
         public func updateLevelIntegration(
             id: String,
@@ -634,7 +634,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get brands by company.
-         * Description: Get brands by company. Brand has information about name, value, brand logo, brand banner and brand portrait image.
+         * Description: Use this API to get all the brands added in a company. Get all the brand names, along with URLs of their logo, banner, and portrait image.
          **/
         public func getBrandsByCompany(
             q: String?,
@@ -679,7 +679,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get company by brand uids
-         * Description: Get company by brand uids. Company has information about company name and company id.
+         * Description: Use this API to get a list of companies by the brands they deal
          **/
         public func getCompanyByBrands(
             pageNo: Int?,
@@ -758,7 +758,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get stores by brand uids for the current company
-         * Description: Get stores by brand uids for the current company. Store has information about store name, store type, store code, store address, and company detail.
+         * Description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
          **/
         public func getStoreByBrands(
             pageNo: Int?,
@@ -837,7 +837,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get other seller sales channels
-         * Description: Get other seller sales channels who has opted current company as inventory
+         * Description: Use this API to fetch all other seller applications that were not created within the current company. but have opted for the current company's inventory
          **/
         public func getOtherSellerApplications(
             pageNo: Int?,
@@ -914,8 +914,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get other seller sales channel
-         * Description: Get other seller sales channel in current company
+         * Summary: Get other seller's sales channel by ID
+         * Description: Use application ID to fetch details of a seller application that was not created within the current company. but has opted for the current company's inventory
          **/
         public func getOtherSellerApplicationById(
             id: String,
@@ -953,8 +953,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: UpdateOpt out company or store from other seller sales channel
-         * Description: Update Opt out company or store data from other seller sales channel.
+         * Summary: Opt-out company or store from other seller application
+         * Description: Use this API to opt-out your company or store from other seller application. The specific seller application will no longer fetch inventory from your company or store.
          **/
         public func optOutFromApplication(
             id: String,

@@ -10,9 +10,9 @@ public extension PlatformClient {
     class GSTDetailsData: Codable {
         public var taxCollectedAtSource: Double
 
-        public var gstinCode: String
-
         public var valueOfGood: Double
+
+        public var gstinCode: String
 
         public var gstFee: Double
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case taxCollectedAtSource = "tax_collected_at_source"
 
-            case gstinCode = "gstin_code"
-
             case valueOfGood = "value_of_good"
+
+            case gstinCode = "gstin_code"
 
             case gstFee = "gst_fee"
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(brandCalculatedAmount: Double, gstinCode: String, gstFee: Double, taxCollectedAtSource: Double, valueOfGood: Double) {
             self.taxCollectedAtSource = taxCollectedAtSource
 
-            self.gstinCode = gstinCode
-
             self.valueOfGood = valueOfGood
+
+            self.gstinCode = gstinCode
 
             self.gstFee = gstFee
 
@@ -47,9 +47,9 @@ public extension PlatformClient {
 
             taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
 
-            gstinCode = try container.decode(String.self, forKey: .gstinCode)
-
             valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
+
+            gstinCode = try container.decode(String.self, forKey: .gstinCode)
 
             gstFee = try container.decode(Double.self, forKey: .gstFee)
 
@@ -61,9 +61,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
 
-            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
-
             try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
+
+            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
 
             try? container.encodeIfPresent(gstFee, forKey: .gstFee)
 

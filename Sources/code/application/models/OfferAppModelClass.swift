@@ -13,7 +13,7 @@ public extension ApplicationClient {
 
         public var applicationId: String?
 
-        public var bannerImage: Asset?
+        public var bannerImage: [String: Any]?
 
         public var createdAt: String?
 
@@ -65,7 +65,7 @@ public extension ApplicationClient {
             case url
         }
 
-        public init(active: Bool? = nil, applicationId: String? = nil, bannerImage: Asset? = nil, createdAt: String? = nil, name: String? = nil, rule: [String: Any]? = nil, share: ShareMessages? = nil, subText: String? = nil, text: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil, url: String? = nil, schedule: Schedule? = nil) {
+        public init(active: Bool? = nil, applicationId: String? = nil, bannerImage: [String: Any]? = nil, createdAt: String? = nil, name: String? = nil, rule: [String: Any]? = nil, share: ShareMessages? = nil, subText: String? = nil, text: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil, url: String? = nil, schedule: Schedule? = nil) {
             self.schedule = schedule
 
             self.active = active
@@ -123,7 +123,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                bannerImage = try container.decode(Asset.self, forKey: .bannerImage)
+                bannerImage = try container.decode([String: Any].self, forKey: .bannerImage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class UserDetail: Codable {
-        public var userId: String
-
         public var contact: String?
+
+        public var userId: String
 
         public var username: String
 
         public var superUser: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case userId = "user_id"
-
             case contact
+
+            case userId = "user_id"
 
             case username
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(contact: String? = nil, superUser: Bool? = nil, username: String, userId: String) {
-            self.userId = userId
-
             self.contact = contact
+
+            self.userId = userId
 
             self.username = username
 
@@ -39,8 +39,6 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            userId = try container.decode(String.self, forKey: .userId)
-
             do {
                 contact = try container.decode(String.self, forKey: .contact)
 
@@ -48,6 +46,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            userId = try container.decode(String.self, forKey: .userId)
 
             username = try container.decode(String.self, forKey: .username)
 
@@ -63,9 +63,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(contact, forKey: .contact)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(username, forKey: .username)
 
