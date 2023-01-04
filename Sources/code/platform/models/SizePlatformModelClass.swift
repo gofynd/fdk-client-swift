@@ -8,30 +8,30 @@ public extension PlatformClient {
      */
 
     class Size: Codable {
-        public var quantity: Int?
+        public var isAvailable: Bool?
 
         public var display: String?
 
-        public var isAvailable: Bool?
+        public var quantity: Int?
 
         public var value: String?
 
         public enum CodingKeys: String, CodingKey {
-            case quantity
+            case isAvailable = "is_available"
 
             case display
 
-            case isAvailable = "is_available"
+            case quantity
 
             case value
         }
 
         public init(display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, value: String? = nil) {
-            self.quantity = quantity
+            self.isAvailable = isAvailable
 
             self.display = display
 
-            self.isAvailable = isAvailable
+            self.quantity = quantity
 
             self.value = value
         }
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,11 +75,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(value, forKey: .value)
         }

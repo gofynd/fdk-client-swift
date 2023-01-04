@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ManufacturerResponse: Codable {
         public var name: String
 
-        public var address: String
-
         public var isDefault: Bool
+
+        public var address: String
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case address
-
             case isDefault = "is_default"
+
+            case address
         }
 
         public init(address: String, isDefault: Bool, name: String) {
             self.name = name
 
-            self.address = address
-
             self.isDefault = isDefault
+
+            self.address = address
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             name = try container.decode(String.self, forKey: .name)
 
-            address = try container.decode(String.self, forKey: .address)
-
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
+            address = try container.decode(String.self, forKey: .address)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(address, forKey: .address)
-
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(address, forKey: .address)
         }
     }
 }
