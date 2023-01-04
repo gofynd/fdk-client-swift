@@ -27,6 +27,7 @@ public extension ApplicationClient {
         case productRequest = "product-request"
         case products
         case profile
+        case profileOrderShipment = "profile-order-shipment"
         case profileBasic = "profile-basic"
         case profileCompany = "profile-company"
         case profileEmails = "profile-emails"
@@ -145,6 +146,8 @@ public extension ApplicationClient {
                 return "/products/"
             case .profile:
                 return "/profile"
+            case .profileOrderShipment:
+                return "/profile/orders/shipment/:shipmentid"
             case .profileBasic:
                 return "/profile/details"
             case .profileCompany:
@@ -242,6 +245,8 @@ public extension ApplicationClient {
                 return "Products"
             case .profile:
                 return "Profile"
+            case .profileOrderShipment:
+                return "profile orders shipment"
             case .profileBasic:
                 return "Basic Profile"
             case .profileCompany:
@@ -339,6 +344,8 @@ public extension ApplicationClient {
                 return []
             case .profile:
                 return []
+            case .profileOrderShipment:
+                return [(name: "shipmentid", required: true)]
             case .profileBasic:
                 return []
             case .profileCompany:
@@ -435,6 +442,8 @@ public extension ApplicationClient {
             case .products:
                 return []
             case .profile:
+                return []
+            case .profileOrderShipment:
                 return []
             case .profileBasic:
                 return []
