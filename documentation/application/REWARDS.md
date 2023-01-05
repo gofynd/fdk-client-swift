@@ -7,6 +7,12 @@
 ## Rewards Methods
 Earn and redeem reward points
 * [getOfferByName](#getofferbyname)
+* [catalogueOrder](#catalogueorder)
+* [getPointsHistory](#getpointshistory)
+* [getPoints](#getpoints)
+* [referral](#referral)
+* [orderDiscount](#orderdiscount)
+* [redeemReferralCode](#redeemreferralcode)
 
 
 
@@ -68,8 +74,386 @@ Success. Check example below or refer `Offer` for more details.
 ---
 
 
+#### catalogueOrder
+Get all transactions of reward points
+
+
+
+
+```swift
+rewards.catalogueOrder(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | CatalogueOrderRequest | yes | Request body |
+
+
+Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
+
+*Returned Response:*
+
+
+
+
+[CatalogueOrderResponse](#CatalogueOrderResponse)
+
+Success. Check example below or refer `CatalogueOrderResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPointsHistory
+Get all transactions of reward points
+
+
+
+
+```swift
+rewards.getPointsHistory(pageId: pageId, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pageId | String? | no | PageID is the ID of the requested page. For first request it should be kept empty. |   
+| pageSize | Int? | no | The number of items to retrieve in each page. |  
+
+
+
+Use this API to get a list of points transactions.
+
+*Returned Response:*
+
+
+
+
+[PointsHistoryResponse](#PointsHistoryResponse)
+
+Success. Check example below or refer `PointsHistoryResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPoints
+Get referral details of a user
+
+
+
+
+```swift
+rewards.getPoints() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Use this API to retrieve total available points of a user for current application
+
+*Returned Response:*
+
+
+
+
+[PointsResponse](#PointsResponse)
+
+Success. Check example below or refer `PointsResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### referral
+Get referral details of a user
+
+
+
+
+```swift
+rewards.referral() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Use this API to retrieve the referral details a user has configured in the application.
+
+*Returned Response:*
+
+
+
+
+[ReferralDetailsResponse](#ReferralDetailsResponse)
+
+Success. Check example below or refer `ReferralDetailsResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### orderDiscount
+Calculates the discount on order-amount
+
+
+
+
+```swift
+rewards.orderDiscount(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | OrderDiscountRequest | yes | Request body |
+
+
+Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
+
+*Returned Response:*
+
+
+
+
+[OrderDiscountResponse](#OrderDiscountResponse)
+
+Success. Check example below or refer `OrderDiscountResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### redeemReferralCode
+Redeems a referral code and credits reward points to users
+
+
+
+
+```swift
+rewards.redeemReferralCode(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | RedeemReferralCodeRequest | yes | Request body |
+
+
+Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account.
+
+*Returned Response:*
+
+
+
+
+[RedeemReferralCodeResponse](#RedeemReferralCodeResponse)
+
+Success. Check example below or refer `RedeemReferralCodeResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
+
+ 
+ 
+ #### [RewardsArticle](#RewardsArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | points | Double? |  yes  |  |
+ | price | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CatalogueOrderResponse](#CatalogueOrderResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [[RewardsArticle](#RewardsArticle)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CatalogueOrderRequest](#CatalogueOrderRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [[RewardsArticle](#RewardsArticle)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PointsResponse](#PointsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | points | Double? |  yes  | Total points available |
+
+---
+
+
+ 
+ 
+ #### [ReferralDetailsUser](#ReferralDetailsUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | blocked | Bool? |  yes  |  |
+ | points | Double? |  yes  |  |
+ | redeemed | Bool? |  yes  |  |
+ | referralCode | String? |  yes  |  |
+
+---
+
 
  
  
@@ -151,6 +535,157 @@ Success. Check example below or refer `Offer` for more details.
  | text | String? |  yes  |  |
  | twitter | String? |  yes  |  |
  | whatsapp | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ReferralDetailsResponse](#ReferralDetailsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | referral | [Offer](#Offer)? |  yes  |  |
+ | share | [ShareMessages](#ShareMessages)? |  yes  |  |
+ | user | [ReferralDetailsUser](#ReferralDetailsUser)? |  yes  |  |
+ | referrerInfo | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderDiscountRequest](#OrderDiscountRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | orderAmount | Double |  no  |  |
+ | currency | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderDiscountRuleBucket](#OrderDiscountRuleBucket)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | high | Double? |  yes  |  |
+ | low | Double? |  yes  |  |
+ | max | Double? |  yes  |  |
+ | value | Double? |  yes  |  |
+ | valueType | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DiscountProperties](#DiscountProperties)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | absolute | Double? |  yes  |  |
+ | currency | String? |  yes  |  |
+ | displayAbsolute | String? |  yes  |  |
+ | displayPercent | String? |  yes  |  |
+ | percent | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderDiscountResponse](#OrderDiscountResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | orderAmount | Double? |  yes  |  |
+ | points | Double? |  yes  |  |
+ | discount | [DiscountProperties](#DiscountProperties)? |  yes  |  |
+ | baseDiscount | [DiscountProperties](#DiscountProperties)? |  yes  |  |
+ | appliedRuleBucket | [OrderDiscountRuleBucket](#OrderDiscountRuleBucket)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [RedeemReferralCodeRequest](#RedeemReferralCodeRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | deviceId | String? |  yes  |  |
+ | referralCode | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [RedeemReferralCodeResponse](#RedeemReferralCodeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | redeemed | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
+ | referrerInfo | String? |  yes  |  |
+ | referrerId | String? |  yes  |  |
+ | points | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PointsHistoryResponse](#PointsHistoryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[PointsHistory](#PointsHistory)]? |  yes  | History is the list of points transaction. |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PointsHistory](#PointsHistory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | applicationId | String? |  yes  |  |
+ | claimed | Bool? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+ | expiresOn | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | points | Double? |  yes  |  |
+ | remainingPoints | Double? |  yes  |  |
+ | text1 | String? |  yes  |  |
+ | text2 | String? |  yes  |  |
+ | text3 | String? |  yes  |  |
+ | txnName | String? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | userId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | Int? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | hasPrevious | Bool? |  yes  |  |
+ | itemTotal | Int? |  yes  |  |
+ | nextId | String? |  yes  |  |
+ | size | Int? |  yes  |  |
+ | type | String? |  yes  |  |
 
 ---
 

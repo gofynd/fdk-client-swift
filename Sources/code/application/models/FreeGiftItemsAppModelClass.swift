@@ -9,42 +9,42 @@ public extension ApplicationClient {
     class FreeGiftItems: Codable {
         public var itemImagesUrl: [String]?
 
+        public var itemId: Int?
+
         public var itemSlug: String?
+
+        public var itemBrandName: String?
 
         public var itemName: String?
 
-        public var itemId: Int?
-
         public var itemPriceDetails: [String: Any]?
-
-        public var itemBrandName: String?
 
         public enum CodingKeys: String, CodingKey {
             case itemImagesUrl = "item_images_url"
 
+            case itemId = "item_id"
+
             case itemSlug = "item_slug"
+
+            case itemBrandName = "item_brand_name"
 
             case itemName = "item_name"
 
-            case itemId = "item_id"
-
             case itemPriceDetails = "item_price_details"
-
-            case itemBrandName = "item_brand_name"
         }
 
         public init(itemBrandName: String? = nil, itemId: Int? = nil, itemImagesUrl: [String]? = nil, itemName: String? = nil, itemPriceDetails: [String: Any]? = nil, itemSlug: String? = nil) {
             self.itemImagesUrl = itemImagesUrl
 
+            self.itemId = itemId
+
             self.itemSlug = itemSlug
+
+            self.itemBrandName = itemBrandName
 
             self.itemName = itemName
 
-            self.itemId = itemId
-
             self.itemPriceDetails = itemPriceDetails
-
-            self.itemBrandName = itemBrandName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -52,22 +52,6 @@ public extension ApplicationClient {
 
             do {
                 itemImagesUrl = try container.decode([String].self, forKey: .itemImagesUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemSlug = try container.decode(String.self, forKey: .itemSlug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemName = try container.decode(String.self, forKey: .itemName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                itemPriceDetails = try container.decode([String: Any].self, forKey: .itemPriceDetails)
+                itemSlug = try container.decode(String.self, forKey: .itemSlug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,6 +81,22 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                itemName = try container.decode(String.self, forKey: .itemName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemPriceDetails = try container.decode([String: Any].self, forKey: .itemPriceDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -104,15 +104,15 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(itemImagesUrl, forKey: .itemImagesUrl)
 
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
+
             try? container.encodeIfPresent(itemSlug, forKey: .itemSlug)
+
+            try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
 
             try? container.encodeIfPresent(itemName, forKey: .itemName)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-
             try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
-
-            try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
         }
     }
 }

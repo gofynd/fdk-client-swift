@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var price: Double?
 
-        public var unit: String?
-
         public var currencyCode: String?
+
+        public var unit: String?
 
         public enum CodingKeys: String, CodingKey {
             case currencySymbol = "currency_symbol"
 
             case price
 
-            case unit
-
             case currencyCode = "currency_code"
+
+            case unit
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, price: Double? = nil, unit: String? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.price = price
 
-            self.unit = unit
-
             self.currencyCode = currencyCode
+
+            self.unit = unit
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(price, forKey: .price)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
-
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+
+            try? container.encodeIfPresent(unit, forKey: .unit)
         }
     }
 }

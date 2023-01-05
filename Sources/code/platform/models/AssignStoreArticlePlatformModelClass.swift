@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var query: ArticleQuery?
 
-        public var meta: [String: Any]?
-
         public var groupId: String?
+
+        public var meta: [String: Any]?
 
         public var articleAssignment: ArticleAssignment?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case query
 
-            case meta
-
             case groupId = "group_id"
+
+            case meta
 
             case articleAssignment = "article_assignment"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.query = query
 
-            self.meta = meta
-
             self.groupId = groupId
+
+            self.meta = meta
 
             self.articleAssignment = articleAssignment
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                groupId = try container.decode(String.self, forKey: .groupId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                groupId = try container.decode(String.self, forKey: .groupId)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(query, forKey: .query)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(groupId, forKey: .groupId)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
         }

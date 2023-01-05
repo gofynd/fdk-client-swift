@@ -10,22 +10,22 @@ public extension PlatformClient {
     class DimensionResponse: Codable {
         public var isDefault: Bool
 
+        public var width: Double
+
         public var length: Double
 
         public var height: Double
-
-        public var width: Double
 
         public var unit: String
 
         public enum CodingKeys: String, CodingKey {
             case isDefault = "is_default"
 
+            case width
+
             case length
 
             case height
-
-            case width
 
             case unit
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
             self.isDefault = isDefault
 
+            self.width = width
+
             self.length = length
 
             self.height = height
-
-            self.width = width
 
             self.unit = unit
         }
@@ -47,11 +47,11 @@ public extension PlatformClient {
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
+            width = try container.decode(Double.self, forKey: .width)
+
             length = try container.decode(Double.self, forKey: .length)
 
             height = try container.decode(Double.self, forKey: .height)
-
-            width = try container.decode(Double.self, forKey: .width)
 
             unit = try container.decode(String.self, forKey: .unit)
         }
@@ -61,11 +61,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
+            try? container.encodeIfPresent(width, forKey: .width)
+
             try? container.encodeIfPresent(length, forKey: .length)
 
             try? container.encodeIfPresent(height, forKey: .height)
-
-            try? container.encodeIfPresent(width, forKey: .width)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
         }
