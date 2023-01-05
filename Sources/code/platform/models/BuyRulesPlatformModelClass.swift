@@ -4,11 +4,11 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: BuyRules
-         Used By: Order
+         Used By: Cart
      */
 
     class BuyRules: Codable {
-        public var itemCriteria: ItemCriterias?
+        public var itemCriteria: [String: Any]?
 
         public var cartConditions: [String: Any]?
 
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case cartConditions = "cart_conditions"
         }
 
-        public init(cartConditions: [String: Any]? = nil, itemCriteria: ItemCriterias? = nil) {
+        public init(cartConditions: [String: Any]? = nil, itemCriteria: [String: Any]? = nil) {
             self.itemCriteria = itemCriteria
 
             self.cartConditions = cartConditions
@@ -28,7 +28,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemCriteria = try container.decode(ItemCriterias.self, forKey: .itemCriteria)
+                itemCriteria = try container.decode([String: Any].self, forKey: .itemCriteria)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

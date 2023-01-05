@@ -15,8 +15,6 @@ public extension ApplicationClient {
 
         public var content: TicketContent?
 
-        public var ticketId: String
-
         public var category: String
 
         public var subCategory: String?
@@ -54,8 +52,6 @@ public extension ApplicationClient {
 
             case content
 
-            case ticketId = "ticket_id"
-
             case category
 
             case subCategory = "sub_category"
@@ -85,7 +81,7 @@ public extension ApplicationClient {
             case createdAt = "created_at"
         }
 
-        public init(assignedTo: [String: Any]? = nil, category: String, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, integration: [String: Any]? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: String? = nil, tags: [String]? = nil, ticketId: String, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
+        public init(assignedTo: [String: Any]? = nil, category: String, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, integration: [String: Any]? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: String? = nil, tags: [String]? = nil, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
             self.context = context
 
             self.createdOn = createdOn
@@ -93,8 +89,6 @@ public extension ApplicationClient {
             self.responseId = responseId
 
             self.content = content
-
-            self.ticketId = ticketId
 
             self.category = category
 
@@ -159,8 +153,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            ticketId = try container.decode(String.self, forKey: .ticketId)
 
             category = try container.decode(String.self, forKey: .category)
 
@@ -255,8 +247,6 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(responseId, forKey: .responseId)
 
             try? container.encodeIfPresent(content, forKey: .content)
-
-            try? container.encodeIfPresent(ticketId, forKey: .ticketId)
 
             try? container.encodeIfPresent(category, forKey: .category)
 
