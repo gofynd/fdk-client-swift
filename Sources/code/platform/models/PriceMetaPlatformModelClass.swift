@@ -8,7 +8,9 @@ public extension PlatformClient {
      */
 
     class PriceMeta: Codable {
-        public var tpNotes: [String: Any]?
+        public var effective: Double
+
+        public var marked: Double
 
         public var updatedAt: String?
 
@@ -16,12 +18,12 @@ public extension PlatformClient {
 
         public var currency: String
 
-        public var effective: Double
-
-        public var marked: Double
+        public var tpNotes: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case tpNotes = "tp_notes"
+            case effective
+
+            case marked
 
             case updatedAt = "updated_at"
 
@@ -29,13 +31,13 @@ public extension PlatformClient {
 
             case currency
 
-            case effective
-
-            case marked
+            case tpNotes = "tp_notes"
         }
 
         public init(currency: String, effective: Double, marked: Double, tpNotes: [String: Any]? = nil, transfer: Double, updatedAt: String? = nil) {
-            self.tpNotes = tpNotes
+            self.effective = effective
+
+            self.marked = marked
 
             self.updatedAt = updatedAt
 
@@ -43,21 +45,15 @@ public extension PlatformClient {
 
             self.currency = currency
 
-            self.effective = effective
-
-            self.marked = marked
+            self.tpNotes = tpNotes
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
+            effective = try container.decode(Double.self, forKey: .effective)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            marked = try container.decode(Double.self, forKey: .marked)
 
             do {
                 updatedAt = try container.decode(String.self, forKey: .updatedAt)
@@ -71,15 +67,21 @@ public extension PlatformClient {
 
             currency = try container.decode(String.self, forKey: .currency)
 
-            effective = try container.decode(Double.self, forKey: .effective)
+            do {
+                tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
 
-            marked = try container.decode(Double.self, forKey: .marked)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
+            try? container.encodeIfPresent(effective, forKey: .effective)
+
+            try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
@@ -87,9 +89,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
-
-            try? container.encodeIfPresent(marked, forKey: .marked)
+            try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
         }
     }
 }

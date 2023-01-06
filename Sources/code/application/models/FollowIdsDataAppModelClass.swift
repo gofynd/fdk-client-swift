@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class FollowIdsData: Codable {
         public var brands: [Int]?
 
-        public var products: [Int]?
-
         public var collections: [Int]?
+
+        public var products: [Int]?
 
         public enum CodingKeys: String, CodingKey {
             case brands
 
-            case products
-
             case collections
+
+            case products
         }
 
         public init(brands: [Int]? = nil, collections: [Int]? = nil, products: [Int]? = nil) {
             self.brands = brands
 
-            self.products = products
-
             self.collections = collections
+
+            self.products = products
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                products = try container.decode([Int].self, forKey: .products)
+                collections = try container.decode([Int].self, forKey: .collections)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                collections = try container.decode([Int].self, forKey: .collections)
+                products = try container.decode([Int].self, forKey: .products)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(brands, forKey: .brands)
 
-            try? container.encodeIfPresent(products, forKey: .products)
-
             try? container.encodeIfPresent(collections, forKey: .collections)
+
+            try? container.encodeIfPresent(products, forKey: .products)
         }
     }
 }
