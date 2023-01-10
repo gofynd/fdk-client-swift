@@ -8,33 +8,33 @@ public extension PlatformClient {
      */
 
     class StatuesRequest: Codable {
-        public var excludeBagsNextState: String?
+        public var status: String?
 
         public var shipments: [ShipmentsRequest]?
 
-        public var status: String?
+        public var excludeBagsNextState: String?
 
         public enum CodingKeys: String, CodingKey {
-            case excludeBagsNextState = "exclude_bags_next_state"
+            case status
 
             case shipments
 
-            case status
+            case excludeBagsNextState = "exclude_bags_next_state"
         }
 
         public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, status: String? = nil) {
-            self.excludeBagsNextState = excludeBagsNextState
+            self.status = status
 
             self.shipments = shipments
 
-            self.status = status
+            self.excludeBagsNextState = excludeBagsNextState
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,11 +61,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
         }
     }
 }

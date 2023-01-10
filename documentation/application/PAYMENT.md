@@ -3632,16 +3632,16 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | configType | String |  no  | Fynd or self payment gateway |
+ | merchantKey | String? |  yes  | Unique merchant key |
  | secret | String |  no  | Masked payment gateway api secret |
- | userId | String? |  yes  | Registered User id |
- | merchantId | String? |  yes  | Unique merchant id |
  | pin | String? |  yes  | Masked pin |
+ | userId | String? |  yes  | Registered User id |
+ | configType | String |  no  | Fynd or self payment gateway |
+ | merchantId | String? |  yes  | Unique merchant id |
+ | sdk | Bool? |  yes  | SDK |
+ | api | String? |  yes  | Payment gateway api endpoint |
  | verifyApi | String? |  yes  | Payment gateway verify payment api endpoint |
  | key | String |  no  | Payment gateway api key |
- | api | String? |  yes  | Payment gateway api endpoint |
- | merchantKey | String? |  yes  | Unique merchant key |
- | sdk | Bool? |  yes  | SDK |
 
 ---
 
@@ -3652,16 +3652,16 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | env | String |  no  | Environment i.e Live or Test |
- | payumoney | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
- | mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
- | rupifi | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
- | juspay | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
  | simpl | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
- | razorpay | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | rupifi | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
  | success | Bool |  no  |  |
+ | env | String |  no  | Environment i.e Live or Test |
  | stripe | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
  | ccavenue | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | payumoney | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | razorpay | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | juspay | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
 
 ---
 
@@ -3672,8 +3672,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String |  no  | Error human understandable description. |
  | code | String |  no  | Error descrption code. |
+ | description | String |  no  | Error human understandable description. |
 
 ---
 
@@ -3696,10 +3696,10 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | nameOnCard | String? |  yes  |  |
+ | cardId | String |  no  | Card token of payment gateway. |
  | nickname | String? |  yes  |  |
  | refresh | Bool? |  yes  | Refresh cache flag. |
- | cardId | String |  no  | Card token of payment gateway. |
- | nameOnCard | String? |  yes  |  |
 
 ---
 
@@ -3710,9 +3710,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [String: Any] |  no  | List of cards of customer. |
  | message | String? |  yes  | Human readable message. |
  | success | Bool |  no  | Response is successful or not. |
+ | data | [String: Any] |  no  | List of cards of customer. |
 
 ---
 
@@ -3723,9 +3723,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api | String? |  yes  | Payment gateway CARD api endpoint |
  | aggregator | String |  no  | Payment gateway name. |
  | customerId | String? |  yes  | Payment gateway customer id. |
+ | api | String? |  yes  | Payment gateway CARD api endpoint |
 
 ---
 
@@ -3749,23 +3749,23 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | cardReference | String? |  yes  | card_reference |
+ | cardBrandImage | String? |  yes  | card_brand_image |
+ | expired | Bool? |  yes  | expired |
+ | nickname | String? |  yes  | nickname |
+ | cardType | String? |  yes  | card_type |
  | cardToken | String? |  yes  | card_token |
+ | expMonth | Int? |  yes  | exp_month |
  | cardIsin | String? |  yes  | card_isin |
+ | cardName | String? |  yes  | card_name |
+ | cardIssuer | String? |  yes  | card_issuer |
+ | compliantWithTokenisationGuidelines | Bool? |  yes  | If card is tokenised or not |
  | cardBrand | String? |  yes  | card_brand |
+ | expYear | Int? |  yes  | exp_year |
+ | cardId | String? |  yes  | card_id |
  | cardFingerprint | String? |  yes  | card_fingerprint |
  | aggregatorName | String |  no  | aggregator_name |
  | cardNumber | String? |  yes  | card_number |
- | cardIssuer | String? |  yes  | card_issuer |
- | cardReference | String? |  yes  | card_reference |
- | cardName | String? |  yes  | card_name |
- | expired | Bool? |  yes  | expired |
- | expMonth | Int? |  yes  | exp_month |
- | compliantWithTokenisationGuidelines | Bool? |  yes  | If card is tokenised or not |
- | nickname | String? |  yes  | nickname |
- | cardBrandImage | String? |  yes  | card_brand_image |
- | expYear | Int? |  yes  | exp_year |
- | cardType | String? |  yes  | card_type |
- | cardId | String? |  yes  | card_id |
 
 ---
 
@@ -3776,9 +3776,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[Card](#Card)]? |  yes  | List of cards of customer. |
  | message | String |  no  | Human readable message. |
  | success | Bool |  no  | Response is successful or not. |
+ | data | [[Card](#Card)]? |  yes  | List of cards of customer. |
 
 ---
 
@@ -3812,14 +3812,14 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | transactionAmountInPaise | Int |  no  | Payable amount in paise |
+ | aggregator | String |  no  | Payment gateway name in camel case i.e Simpl, Rupifi |
  | deliveryAddress | [String: Any]? |  yes  | Extra meta fields. |
+ | billingAddress | [String: Any]? |  yes  | Extra meta fields. |
+ | merchantParams | [String: Any]? |  yes  | Extra meta fields. |
+ | phoneNumber | String |  no  | User mobile number without country code. |
  | payload | String? |  yes  | Hashed payload string. |
  | orderItems | [[String: Any]]? |  yes  | Extra meta fields. |
- | merchantParams | [String: Any]? |  yes  | Extra meta fields. |
- | aggregator | String |  no  | Payment gateway name in camel case i.e Simpl, Rupifi |
- | phoneNumber | String |  no  | User mobile number without country code. |
- | transactionAmountInPaise | Int |  no  | Payable amount in paise |
- | billingAddress | [String: Any]? |  yes  | Extra meta fields. |
 
 ---
 
@@ -3831,9 +3831,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | error | [String: Any]? |  yes  | error details |
- | data | [String: Any]? |  yes  | Payment gateway response data |
  | message | String |  no  | Error or success message. |
  | success | Bool |  no  | Response is successful or not |
+ | data | [String: Any]? |  yes  | Payment gateway response data |
 
 ---
 
@@ -3844,11 +3844,11 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | orderId | String |  no  | Unique order id. |
- | verified | Bool? |  yes  | Already Verified flag from payment gateway i.e Mswipe |
- | transactionToken | String? |  yes  | Transaction token of payment gateway. |
  | aggregator | String |  no  | Payment gateway name i.e Simpl, Mswipe |
  | amount | Int |  no  | Chargable amount of order. |
+ | transactionToken | String? |  yes  | Transaction token of payment gateway. |
+ | verified | Bool? |  yes  | Already Verified flag from payment gateway i.e Mswipe |
+ | orderId | String |  no  | Unique order id. |
 
 ---
 
@@ -3859,13 +3859,13 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | orderId | String |  no  | Unique order id. |
- | status | String |  no  | Status of charged payment. |
  | aggregator | String |  no  | Payment gateway name i.e Simpl, Mswipe |
+ | message | String |  no  | Human readable message. |
  | success | Bool |  no  | Response is successful or not. |
  | cartId | String? |  yes  | Cart id of customer |
+ | status | String |  no  | Status of charged payment. |
  | deliveryAddressId | String? |  yes  | Delivery adddress id of customer |
- | message | String |  no  | Human readable message. |
+ | orderId | String |  no  | Unique order id. |
 
 ---
 
@@ -3876,18 +3876,18 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | String |  no  | Currency code. |
- | razorpayPaymentId | String? |  yes  | Payment gateway payment id |
- | vpa | String? |  yes  | Customer vpa address |
- | contact | String |  no  | Customer valid mobile number |
- | email | String |  no  | Customer valid email |
- | customerId | String |  no  | Payment gateway customer id. |
- | orderId | String |  no  | Payment gateway order id |
- | aggregator | String |  no  | Payment gateway name |
- | timeout | Int? |  yes  | Payment polling timeout if not recieved response |
- | method | String |  no  | Payment method |
  | amount | Int |  no  | Payable amount. |
+ | aggregator | String |  no  | Payment gateway name |
+ | currency | String |  no  | Currency code. |
+ | customerId | String |  no  | Payment gateway customer id. |
+ | timeout | Int? |  yes  | Payment polling timeout if not recieved response |
+ | contact | String |  no  | Customer valid mobile number |
  | merchantOrderId | String |  no  | Unique fynd order id |
+ | method | String |  no  | Payment method |
+ | vpa | String? |  yes  | Customer vpa address |
+ | razorpayPaymentId | String? |  yes  | Payment gateway payment id |
+ | orderId | String |  no  | Payment gateway order id |
+ | email | String |  no  | Customer valid email |
 
 ---
 
@@ -3898,22 +3898,22 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | String? |  yes  | Currency code. |
- | razorpayPaymentId | String? |  yes  | Payment  id. |
- | vpa | String? |  yes  | Customer vpa address |
- | customerId | String? |  yes  | Payment gateway customer id. |
- | status | String? |  yes  | Status of payment. |
- | aggregatorOrderId | String? |  yes  | Payment order id |
- | bqrImage | String? |  yes  | Bharath qr image url. |
  | aggregator | String |  no  | Payment gateway name |
- | success | Bool |  no  | Response is successful or not. |
- | method | String |  no  | Payment method |
  | amount | Int? |  yes  | Payable amount. |
- | pollingUrl | String |  no  | Polling url. |
- | virtualId | String? |  yes  | Payment virtual address. |
+ | success | Bool |  no  | Response is successful or not. |
+ | currency | String? |  yes  | Currency code. |
+ | customerId | String? |  yes  | Payment gateway customer id. |
  | timeout | Int? |  yes  | timeout. |
  | merchantOrderId | String |  no  | order id |
+ | pollingUrl | String |  no  | Polling url. |
+ | status | String? |  yes  | Status of payment. |
+ | method | String |  no  | Payment method |
+ | vpa | String? |  yes  | Customer vpa address |
  | upiPollUrl | String? |  yes  | UPI poll url. |
+ | bqrImage | String? |  yes  | Bharath qr image url. |
+ | aggregatorOrderId | String? |  yes  | Payment order id |
+ | razorpayPaymentId | String? |  yes  | Payment  id. |
+ | virtualId | String? |  yes  | Payment virtual address. |
 
 ---
 
@@ -3924,17 +3924,17 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | String |  no  | Currency code. |
- | vpa | String |  no  | Customer vpa address |
- | contact | String |  no  | Customer valid mobile number |
- | email | String |  no  | Customer valid email |
- | customerId | String |  no  | Payment gateway customer id. |
- | orderId | String |  no  | Payment gateway order id |
- | status | String |  no  | Status of payment. |
  | aggregator | String |  no  | Payment gateway name |
- | method | String |  no  | Payment method |
  | amount | Int |  no  | Payable amount. |
+ | currency | String |  no  | Currency code. |
+ | customerId | String |  no  | Payment gateway customer id. |
+ | contact | String |  no  | Customer valid mobile number |
  | merchantOrderId | String |  no  | Unique fynd order id |
+ | status | String |  no  | Status of payment. |
+ | method | String |  no  | Payment method |
+ | vpa | String |  no  | Customer vpa address |
+ | orderId | String |  no  | Payment gateway order id |
+ | email | String |  no  | Customer valid email |
 
 ---
 
@@ -3945,23 +3945,11 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  | Response is successful or not |
+ | retry | Bool |  no  | Response is successful or not. |
+ | status | String |  no  | Payment status |
  | redirectUrl | String? |  yes  | Redirect url |
  | aggregatorName | String |  no  | Payment gateway name |
- | status | String |  no  | Payment status |
- | retry | Bool |  no  | Response is successful or not. |
- | success | Bool? |  yes  | Response is successful or not |
-
----
-
-
- 
- 
- #### [IntentAppErrorList](#IntentAppErrorList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | packageName | String? |  yes  | package_name |
- | code | String? |  yes  | code |
 
 ---
 
@@ -3984,10 +3972,22 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | displayName | String? |  yes  | display_name |
- | packageName | String? |  yes  | package_name |
  | code | String? |  yes  | code |
+ | packageName | String? |  yes  | package_name |
  | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | logos |
+ | displayName | String? |  yes  | display_name |
+
+---
+
+
+ 
+ 
+ #### [IntentAppErrorList](#IntentAppErrorList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | String? |  yes  | code |
+ | packageName | String? |  yes  | package_name |
 
 ---
 
@@ -3998,39 +3998,39 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cardFingerprint | String? |  yes  | card_fingerprint |
- | intentFlow | Bool? |  yes  | intent_flow |
- | aggregatorName | String |  no  | aggregator_name |
- | displayPriority | Int? |  yes  | Dispaly Priority |
- | cardIssuer | String? |  yes  | card_issuer |
- | cardReference | String? |  yes  | card_reference |
- | intentAppErrorDictList | [[IntentAppErrorList](#IntentAppErrorList)]? |  yes  | intent_app_error_dict_list |
- | retryCount | Int? |  yes  | retry_count |
- | timeout | Int? |  yes  | timeout |
- | expYear | Int? |  yes  | exp_year |
- | cardType | String? |  yes  | card_type |
- | fyndVpa | String? |  yes  | fynd_vpa |
- | cardToken | String? |  yes  | card_token |
- | cardIsin | String? |  yes  | card_isin |
- | displayName | String? |  yes  | display name |
  | cardBrandImage | String? |  yes  | card_brand_image |
- | code | String? |  yes  | code |
- | cardId | String? |  yes  | card_id |
- | cardBrand | String? |  yes  | card_brand |
- | name | String? |  yes  | name |
- | cardNumber | String? |  yes  | card_number |
- | codLimit | Double? |  yes  | cod limit |
- | compliantWithTokenisationGuidelines | Bool? |  yes  | If card is tokenised or not |
- | cardName | String? |  yes  | card_name |
  | expired | Bool? |  yes  | expired |
- | codLimitPerOrder | Double? |  yes  | Cod limit per order |
+ | intentFlow | Bool? |  yes  | intent_flow |
+ | name | String? |  yes  | name |
+ | code | String? |  yes  | code |
  | intentAppErrorList | [String]? |  yes  | intent_app_error_list |
- | merchantCode | String? |  yes  | merchant code |
+ | cardBrand | String? |  yes  | card_brand |
+ | cardFingerprint | String? |  yes  | card_fingerprint |
+ | compliantWithTokenisationGuidelines | Bool? |  yes  | If card is tokenised or not |
+ | displayName | String? |  yes  | display name |
+ | cardToken | String? |  yes  | card_token |
+ | codLimitPerOrder | Double? |  yes  | Cod limit per order |
  | intentApp | [[IntentApp](#IntentApp)]? |  yes  | intent_app |
+ | timeout | Int? |  yes  | timeout |
  | expMonth | Int? |  yes  | exp_month |
+ | cardIsin | String? |  yes  | card_isin |
+ | merchantCode | String? |  yes  | merchant code |
+ | expYear | Int? |  yes  | exp_year |
+ | intentAppErrorDictList | [[IntentAppErrorList](#IntentAppErrorList)]? |  yes  | intent_app_error_dict_list |
+ | cardName | String? |  yes  | card_name |
+ | cardReference | String? |  yes  | card_reference |
  | logoUrl | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | Logo |
+ | fyndVpa | String? |  yes  | fynd_vpa |
+ | cardIssuer | String? |  yes  | card_issuer |
+ | displayPriority | Int? |  yes  | Dispaly Priority |
+ | codLimit | Double? |  yes  | cod limit |
+ | cardId | String? |  yes  | card_id |
+ | aggregatorName | String |  no  | aggregator_name |
+ | cardNumber | String? |  yes  | card_number |
  | nickname | String? |  yes  | nickname |
+ | cardType | String? |  yes  | card_type |
  | remainingLimit | Double? |  yes  | Remaining limit |
+ | retryCount | Int? |  yes  | retry_count |
 
 ---
 
@@ -4041,15 +4041,15 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | anonymousEnable | Bool? |  yes  | Annonymous card flag |
  | saveCard | Bool? |  yes  | Card save or not |
+ | list | [[PaymentModeList](#PaymentModeList)]? |  yes  | Payment mode |
  | name | String |  no  | Payment mode name |
  | displayPriority | Int |  no  | Dispaly Priority |
+ | isPayByCardPl | Bool? |  yes  | This flag will be true in case of Payment link payment through card |
+ | addCardEnabled | Bool? |  yes  | Annonymous card flag |
  | aggregatorName | String? |  yes  | Dispaly Priority |
  | displayName | String |  no  | Payment mode display name |
- | anonymousEnable | Bool? |  yes  | Annonymous card flag |
- | isPayByCardPl | Bool? |  yes  | This flag will be true in case of Payment link payment through card |
- | list | [[PaymentModeList](#PaymentModeList)]? |  yes  | Payment mode |
- | addCardEnabled | Bool? |  yes  | Annonymous card flag |
 
 ---
 
@@ -4062,8 +4062,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
  | ---------- | ---- | -------- | ----------- |
  | paymentFlow | String? |  yes  | payment_flow |
  | data | [String: Any]? |  yes  | Data |
- | apiLink | String? |  yes  | api_link |
  | paymentFlowData | String? |  yes  | payment_flow_data |
+ | apiLink | String? |  yes  | api_link |
 
 ---
 
@@ -4074,19 +4074,19 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payubiz | [AggregatorRoute](#AggregatorRoute)? |  yes  | Payubiz |
- | mswipe | [AggregatorRoute](#AggregatorRoute)? |  yes  | mswipe |
- | fynd | [AggregatorRoute](#AggregatorRoute)? |  yes  | Fynd |
- | rupifi | [AggregatorRoute](#AggregatorRoute)? |  yes  | Rupifi |
- | jiopay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Jiopay |
- | juspay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Juspay |
  | simpl | [AggregatorRoute](#AggregatorRoute)? |  yes  | simpl |
- | upiRazorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | UPI_Razorpay |
- | razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Razorpay |
- | bqrRazorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | BQR_Razorpay |
+ | rupifi | [AggregatorRoute](#AggregatorRoute)? |  yes  | Rupifi |
+ | payubiz | [AggregatorRoute](#AggregatorRoute)? |  yes  | Payubiz |
  | stripe | [AggregatorRoute](#AggregatorRoute)? |  yes  | Stripe |
- | ccavenue | [AggregatorRoute](#AggregatorRoute)? |  yes  | Ccavenue |
  | epaylater | [AggregatorRoute](#AggregatorRoute)? |  yes  | Epaylater |
+ | jiopay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Jiopay |
+ | bqrRazorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | BQR_Razorpay |
+ | ccavenue | [AggregatorRoute](#AggregatorRoute)? |  yes  | Ccavenue |
+ | mswipe | [AggregatorRoute](#AggregatorRoute)? |  yes  | mswipe |
+ | upiRazorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | UPI_Razorpay |
+ | fynd | [AggregatorRoute](#AggregatorRoute)? |  yes  | Fynd |
+ | razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Razorpay |
+ | juspay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Juspay |
 
 ---
 
@@ -4109,8 +4109,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  | Response is successful or not |
  | paymentOptions | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  no  | payment_options |
+ | success | Bool |  no  | Response is successful or not |
 
 ---
 
@@ -4121,8 +4121,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | kycUrl | String? |  yes  | Rupifi KYC banner url. |
  | status | String? |  yes  | Rupifi KYC status |
+ | kycUrl | String? |  yes  | Rupifi KYC banner url. |
 
 ---
 
@@ -4133,8 +4133,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [RupifiBannerData](#RupifiBannerData) |  no  | Rupifi KYC banner details. |
  | success | Bool |  no  | Successful or not. |
+ | data | [RupifiBannerData](#RupifiBannerData) |  no  | Rupifi KYC banner details. |
 
 ---
 
@@ -4145,9 +4145,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  | ePayLater message |
  | display | Bool |  no  | Need to display banner or not |
  | status | String? |  yes  | Epaylater KYC status |
- | message | String? |  yes  | ePayLater message |
 
 ---
 
@@ -4158,8 +4158,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [EpaylaterBannerData](#EpaylaterBannerData) |  no  | Epaylater KYC banner details. |
  | success | Bool |  no  | Successful or not. |
+ | data | [EpaylaterBannerData](#EpaylaterBannerData) |  no  | Epaylater KYC banner details. |
 
 ---
 
@@ -4170,8 +4170,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | orderId | String |  no  | Unique order id |
  | requestType | String |  no  | Either resend or cancel |
+ | orderId | String |  no  | Unique order id |
 
 ---
 
@@ -4182,8 +4182,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | Bool |  no  | Link action status |
  | message | String |  no  | Message |
+ | status | Bool |  no  | Link action status |
 
 ---
 
@@ -4194,8 +4194,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [LinkStatus](#LinkStatus) |  no  | Data about link action status. |
  | success | Bool |  no  | Response is successful or not. |
+ | data | [LinkStatus](#LinkStatus) |  no  | Data about link action status. |
 
 ---
 
@@ -4206,11 +4206,11 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String |  no  |  Beneficiary Name |
- | displayName | String? |  yes  | Beneficiary Display Name |
  | logoLarge | String |  no  | Beneficiary large Logo |
- | id | Int |  no  |   |
+ | name | String |  no  |  Beneficiary Name |
  | logoSmall | String |  no  | Beneficiary small Logo |
+ | id | Int |  no  |   |
+ | displayName | String? |  yes  | Beneficiary Display Name |
 
 ---
 
@@ -4221,8 +4221,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | displayName | String |  no  | Beneficiary Mode Name |
  | items | [[TransferItemsDetails](#TransferItemsDetails)]? |  yes  | Beneficiary Mode Items |
+ | displayName | String |  no  | Beneficiary Mode Name |
 
 ---
 
@@ -4244,8 +4244,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | transferMode | String |  no  | Transfer Mode of the Beneficiary to be added |
  | enable | Bool |  no  | True for enabling the Transfer Mode |
+ | transferMode | String |  no  | Transfer Mode of the Beneficiary to be added |
 
 ---
 
@@ -4267,25 +4267,25 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mobile | String? |  yes  | MObile no of User |
- | isActive | Bool |  no  | Boolean Flag whether Beneficiary set or not |
- | modifiedOn | String |  no  | MOdification Date of Beneficiary |
  | ifscCode | String |  no  | Ifsc Code Of Account |
- | delightsUserName | String? |  yes  | User Id Who filled the Beneficiary  |
+ | createdOn | String |  no  | Creation Date of Beneficiary |
+ | address | String |  no  | Address of User |
+ | subtitle | String |  no  | SHort Title Of Account |
+ | branchName | String? |  yes  | Branch Name Of Account |
+ | isActive | Bool |  no  | Boolean Flag whether Beneficiary set or not |
  | displayName | String |  no  | Display Name Of Account |
- | accountHolder | String |  no  | Account Holder Name |
- | accountNo | String |  no  | Account Number |
- | bankName | String |  no  | Bank Name Of Account |
  | email | String |  no  | EMail of User |
  | transferMode | String |  no  | Transfer Mode Of Account |
- | subtitle | String |  no  | SHort Title Of Account |
  | beneficiaryId | String |  no  | Benenficiary Id |
  | comment | String? |  yes  | Remarks |
- | address | String |  no  | Address of User |
+ | mobile | String? |  yes  | MObile no of User |
+ | delightsUserName | String? |  yes  | User Id Who filled the Beneficiary  |
+ | bankName | String |  no  | Bank Name Of Account |
+ | accountHolder | String |  no  | Account Holder Name |
+ | accountNo | String |  no  | Account Number |
+ | modifiedOn | String |  no  | MOdification Date of Beneficiary |
  | id | Int |  no  |   |
- | createdOn | String |  no  | Creation Date of Beneficiary |
  | title | String |  no  | Title Of Account |
- | branchName | String? |  yes  | Branch Name Of Account |
 
 ---
 
@@ -4308,9 +4308,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String |  no  | Not Found |
  | code | String |  no  | Bad Request Data |
  | success | Bool |  no  | Response is successful or not |
+ | description | String |  no  | Not Found |
 
 ---
 
@@ -4321,9 +4321,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  | Response is successful or not |
  | bankName | String |  no  | Bank Name Of Account |
  | branchName | String |  no  | Branch Name Of Account |
- | success | Bool? |  yes  | Response is successful or not |
 
 ---
 
@@ -4334,9 +4334,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String |  no  | Error human understandable description. |
  | code | String |  no  | Error descrption code. |
  | success | Bool |  no  | Response is successful or not |
+ | description | String |  no  | Error human understandable description. |
 
 ---
 
@@ -4347,9 +4347,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | otp | String |  no  | Otp sent to the given Mobile No |
  | requestId | String |  no  | Request Id sent in  |
  | hashKey | String |  no  | Hash key of the beneficiary Id |
- | otp | String |  no  | Otp sent to the given Mobile No |
 
 ---
 
@@ -4372,9 +4372,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String |  no  | Wrong OTP Code |
  | isVerifiedFlag | Bool |  no  | Vefified flag. |
  | success | String |  no  | Response is successful or not |
+ | description | String |  no  | Wrong OTP Code |
 
 ---
 
@@ -4385,17 +4385,17 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | vpa | String? |  yes  |  |
- | bankName | String |  no  | Bank Name of the Account |
- | email | String |  no  | Email of the Account Holder |
- | mobile | String |  no  | Moblie Number of the User |
+ | ifscCode | String |  no  | Ifsc Code of the Account |
  | wallet | String? |  yes  |  |
+ | address | String? |  yes  | Address of the User |
+ | accountHolder | String |  no  | Name of the Account Holder |
+ | accountNo | String |  no  | Account NUmber of the Account Holder |
  | branchName | String |  no  | Branch Name of the Account |
  | comment | String? |  yes  | Remarks added by The user |
- | ifscCode | String |  no  | Ifsc Code of the Account |
- | accountHolder | String |  no  | Name of the Account Holder |
- | address | String? |  yes  | Address of the User |
- | accountNo | String |  no  | Account NUmber of the Account Holder |
+ | vpa | String? |  yes  |  |
+ | mobile | String |  no  | Moblie Number of the User |
+ | bankName | String |  no  | Bank Name of the Account |
+ | email | String |  no  | Email of the Account Holder |
 
 ---
 
@@ -4408,11 +4408,11 @@ Success. Returns the status of payment. Check the example shown below or refer `
  | ---------- | ---- | -------- | ----------- |
  | requestId | String? |  yes  |  |
  | shipmentId | String |  no  | Shipment Id of the respective Merchant Order Id |
- | transferMode | String |  no  | Transfer Mode of the Beneficiary to be added |
- | orderId | String |  no  | Merchant Order Id |
- | delights | Bool |  no  | True if  beneficiary to be added by delights or False if by User |
  | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  no  | Beneficiary bank details |
+ | transferMode | String |  no  | Transfer Mode of the Beneficiary to be added |
+ | delights | Bool |  no  | True if  beneficiary to be added by delights or False if by User |
  | otp | String? |  yes  |  |
+ | orderId | String |  no  | Merchant Order Id |
 
 ---
 
@@ -4423,10 +4423,10 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isVerifiedFlag | Bool? |  yes  |  |
- | data | [String: Any]? |  yes  | Refund account data. |
  | message | String |  no  | Response message |
  | success | Bool |  no  | Success or failure flag. |
+ | isVerifiedFlag | Bool? |  yes  |  |
+ | data | [String: Any]? |  yes  | Refund account data. |
 
 ---
 
@@ -4437,11 +4437,11 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bankName | String |  no  |  |
- | branchName | String |  no  |  |
  | ifscCode | String |  no  |  |
  | accountHolder | String |  no  |  |
  | accountNo | String |  no  |  |
+ | branchName | String |  no  |  |
+ | bankName | String |  no  |  |
 
 ---
 
@@ -4452,8 +4452,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | details | [BankDetailsForOTP](#BankDetailsForOTP) |  no  |  |
  | orderId | String |  no  |  |
+ | details | [BankDetailsForOTP](#BankDetailsForOTP) |  no  |  |
 
 ---
 
@@ -4476,9 +4476,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | requestId | String |  no  | request id  |
  | isVerifiedFlag | String |  no  | Boolean Flag whether OTP Validation is already done or not |
  | success | Bool? |  yes  | Response is successful or not |
+ | requestId | String |  no  | request id  |
 
 ---
 
@@ -4489,8 +4489,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | orderId | String |  no  | Merchant Order Id |
  | beneficiaryId | String |  no  | Beneficiary Hash Id of the beneficiary added |
+ | orderId | String |  no  | Merchant Order Id |
 
 ---
 
@@ -4513,15 +4513,15 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | amount | Double? |  yes  | Total value of order |
+ | message | String |  no  | Message |
+ | success | Bool |  no  | Successful or failure |
  | externalOrderId | String? |  yes  | Merchant order id |
+ | paymentLinkUrl | String? |  yes  | Url of payment link |
  | statusCode | Int |  no  | HTTP status code |
  | merchantName | String? |  yes  | Merchant name |
- | paymentLinkCurrentStatus | String? |  yes  | Status of payment link |
- | success | Bool |  no  | Successful or failure |
- | amount | Double? |  yes  | Total value of order |
- | paymentLinkUrl | String? |  yes  | Url of payment link |
  | pollingTimeout | Int? |  yes  | Polling request timeout |
- | message | String |  no  | Message |
+ | paymentLinkCurrentStatus | String? |  yes  | Status of payment link |
 
 ---
 
@@ -4532,14 +4532,14 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchantName | String? |  yes  | Name of merchant that created payment link |
+ | amount | Double? |  yes  | Amount paid |
  | expired | Bool? |  yes  | Payment link expired or not |
  | invalidId | Bool? |  yes  | Payment link id is valid or not |
+ | merchantName | String? |  yes  | Name of merchant that created payment link |
+ | merchantOrderId | String? |  yes  | Order id |
+ | cancelled | Bool? |  yes  | Payment link is cancelled or not |
  | msg | String? |  yes  | Message |
  | paymentTransactionId | String? |  yes  | Payment transaction id |
- | amount | Double? |  yes  | Amount paid |
- | cancelled | Bool? |  yes  | Payment link is cancelled or not |
- | merchantOrderId | String? |  yes  | Order id |
 
 ---
 
@@ -4564,11 +4564,11 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | String |  no  |  |
+ | amount | String |  no  |  |
  | checkoutMode | String |  no  |  |
  | cartId | String |  no  |  |
- | amount | String |  no  |  |
  | assignCardId | String? |  yes  |  |
+ | pincode | String |  no  |  |
 
 ---
 
@@ -4579,12 +4579,12 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | amount | Double |  no  | Total value of order |
  | externalOrderId | String |  no  | Merchant order id |
  | mobileNumber | String |  no  | Mobile number to which the payment link is to be sent |
- | email | String |  no  | Email to which the payment link is to be sent |
  | description | String? |  yes  | Merchant order id |
- | amount | Double |  no  | Total value of order |
  | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  no  | Meta |
+ | email | String |  no  | Email to which the payment link is to be sent |
 
 ---
 
@@ -4595,12 +4595,12 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statusCode | Int |  no  | HTTP status code |
- | paymentLinkId | String? |  yes  | Unique id of payment link |
+ | message | String |  no  | Message |
  | success | Bool |  no  | Successful or failure |
  | paymentLinkUrl | String? |  yes  | Url of payment link |
+ | statusCode | Int |  no  | HTTP status code |
+ | paymentLinkId | String? |  yes  | Unique id of payment link |
  | pollingTimeout | Int? |  yes  | Polling request timeout |
- | message | String |  no  | Message |
 
 ---
 
@@ -4622,9 +4622,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statusCode | Int |  no  | HTTP status code |
  | pollingTimeout | Int? |  yes  | Polling request timeout |
  | message | String |  no  | Message |
+ | statusCode | Int |  no  | HTTP status code |
  | success | Bool |  no  | Successful or failure |
 
 ---
@@ -4636,8 +4636,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statusCode | Int |  no  | HTTP status code |
  | message | String |  no  | Message |
+ | statusCode | Int |  no  | HTTP status code |
  | success | Bool |  no  | Successful or failure |
 
 ---
@@ -4649,16 +4649,16 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statusCode | Int? |  yes  | HTTP status code |
- | redirectUrl | String? |  yes  | Url to redirect to |
- | aggregatorName | String? |  yes  | Aggregator name |
- | paymentLinkId | String? |  yes  | Payment link id |
- | status | String? |  yes  | Status of payment link |
- | orderId | String? |  yes  | Fynd order id |
- | success | Bool? |  yes  | Successful or failure |
  | amount | Double? |  yes  | Amount |
  | message | String? |  yes  | Message |
+ | success | Bool? |  yes  | Successful or failure |
+ | paymentLinkId | String? |  yes  | Payment link id |
+ | statusCode | Int? |  yes  | HTTP status code |
+ | orderId | String? |  yes  | Fynd order id |
+ | status | String? |  yes  | Status of payment link |
  | httpStatus | Int? |  yes  | HTTP status code |
+ | redirectUrl | String? |  yes  | Url to redirect to |
+ | aggregatorName | String? |  yes  | Aggregator name |
 
 ---
 
@@ -4669,8 +4669,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchantCode | String |  no  | Merchant code |
  | paymentIdentifier | String |  no  | Payment identifier |
+ | merchantCode | String |  no  | Merchant code |
  | paymentGateway | String |  no  | Payment gateway name |
 
 ---
@@ -4683,8 +4683,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | name | String |  no  | Payment mode name |
- | mode | String |  no  | Payment mode |
  | meta | [PaymentMethodsMeta](#PaymentMethodsMeta) |  no  | Meta |
+ | mode | String |  no  | Payment mode |
 
 ---
 
@@ -4695,10 +4695,10 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentMethods | [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods) |  no  | Payment method details |
- | currency | String |  no  | Currency |
  | failureCallbackUrl | String |  no  | Failure page url |
+ | currency | String |  no  | Currency |
  | paymentLinkId | String |  no  | Unique id of payment link |
+ | paymentMethods | [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods) |  no  | Payment method details |
  | successCallbackUrl | String |  no  | Success  page url |
  | meta | [String: Any]? |  yes  | Meta |
 
@@ -4711,16 +4711,16 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | String? |  yes  | Currency |
- | contact | String? |  yes  | Mobile number |
- | email | String? |  yes  | Email |
- | customerId | String? |  yes  | Aggregator customer id |
- | orderId | String? |  yes  | Aggregator order id |
- | callbackUrl | String? |  yes  | Callback url for aggregator |
- | aggregator | String? |  yes  | Aggregator name |
- | method | String? |  yes  | Method |
  | amount | Double? |  yes  | Amount |
+ | aggregator | String? |  yes  | Aggregator name |
+ | currency | String? |  yes  | Currency |
+ | customerId | String? |  yes  | Aggregator customer id |
+ | contact | String? |  yes  | Mobile number |
  | merchantOrderId | String? |  yes  | Merchant order id |
+ | callbackUrl | String? |  yes  | Callback url for aggregator |
+ | method | String? |  yes  | Method |
+ | orderId | String? |  yes  | Aggregator order id |
+ | email | String? |  yes  | Email |
 
 ---
 
@@ -4731,13 +4731,13 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | String |  no  | Message |
+ | success | Bool |  no  | Successful or failure |
  | statusCode | Int |  no  | HTTP status code |
- | orderId | String? |  yes  | Merchant order id |
  | callbackUrl | String? |  yes  | Callback url for aggregator |
  | paymentConfirmUrl | String? |  yes  | Payment confirm url for aggregator |
- | success | Bool |  no  | Successful or failure |
  | data | [CreateOrderUserData](#CreateOrderUserData)? |  yes  |  |
- | message | String |  no  | Message |
+ | orderId | String? |  yes  | Merchant order id |
 
 ---
 
@@ -4748,8 +4748,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | String |  no  | Currency Code |
  | value | Double |  no  | Payment amount |
+ | currency | String |  no  | Currency Code |
  | formattedValue | String |  no  | Formated Amount with currency symbol |
 
 ---
@@ -4761,10 +4761,10 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchantCustomerRefId | String |  no  | Unique aggregator customer id |
  | balance | [BalanceDetails](#BalanceDetails)? |  yes  | Credit summary of user. |
- | status | String |  no  | Customer Credit status |
  | statusMessage | String |  no  | message to customer |
+ | status | String |  no  | Customer Credit status |
+ | merchantCustomerRefId | String |  no  | Unique aggregator customer id |
 
 ---
 
@@ -4775,8 +4775,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CreditSummary](#CreditSummary)? |  yes  | Credit summary of user. |
  | success | Bool |  no  | Payment confirmation updated or not. |
+ | data | [CreditSummary](#CreditSummary)? |  yes  | Credit summary of user. |
 
 ---
 
@@ -4787,8 +4787,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | Bool |  no  | Aggregator's Operation is successful or not. |
  | signupUrl | String |  no  | URL to which the user may redirect. |
+ | status | Bool |  no  | Aggregator's Operation is successful or not. |
 
 ---
 
@@ -4799,8 +4799,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [RedirectURL](#RedirectURL) |  no  | Redirect URL. |
  | success | Bool |  no  | Status updated or not. |
+ | data | [RedirectURL](#RedirectURL) |  no  | Redirect URL. |
 
 ---
 
@@ -4811,9 +4811,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | Bool |  no  | Operation is successful or not. |
- | isRegistered | Bool |  no  | User is registered with aggregator or not. |
  | signupUrl | String |  no  | URL to which the user may redirect. |
+ | isRegistered | Bool |  no  | User is registered with aggregator or not. |
+ | status | Bool |  no  | Operation is successful or not. |
 
 ---
 
@@ -4824,8 +4824,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CreditDetail](#CreditDetail) |  no  | Credit summary of user. |
  | success | Bool |  no  | Operation is successful or not. |
+ | data | [CreditDetail](#CreditDetail) |  no  | Credit summary of user. |
 
 ---
 
@@ -4836,34 +4836,13 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | addressline1 | String |  no  | Address Line 1 |
+ | state | String |  no  | State |
+ | landMark | String? |  yes  | Land Mark |
  | addressline2 | String? |  yes  | Address Line 2 |
  | pincode | String |  no  | Pincode |
- | landMark | String? |  yes  | Land Mark |
  | ownershipType | String? |  yes  | Address Owner Type |
  | city | String |  no  | City |
- | state | String |  no  | State |
-
----
-
-
- 
- 
- #### [BusinessDetails](#BusinessDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pan | String? |  yes  | Pan Number |
- | name | String? |  yes  | Business Name |
- | entityType | String? |  yes  | Busineess Entity Type |
- | businessOwnershipType | String? |  yes  | business Ownershipp type(e.g Rented) |
- | shopAndEstablishment | [String: Any]? |  yes  | Shop Establishment |
- | vintage | String? |  yes  | Vintage |
- | fda | String? |  yes  | Driver License |
- | gstin | String? |  yes  | GSTIN Number |
- | businessType | String? |  yes  | Business Type |
- | fssai | String? |  yes  | FDA License Number |
- | address | [KYCAddress](#KYCAddress)? |  yes  | Address details |
+ | addressline1 | String |  no  | Address Line 1 |
 
 ---
 
@@ -4874,22 +4853,43 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | lastName | String? |  yes  | Last Name |
+ | mobileVerified | Bool |  no  | Is Mobile Verified or not |
  | gender | String? |  yes  | Gender |
- | pan | String? |  yes  | Pan Number |
- | middleName | String? |  yes  | middle Name |
  | emailVerified | Bool |  no  | Is Email Verified or not |
- | email | String? |  yes  | Email |
- | firstName | String |  no  | First Name |
- | dob | String |  no  | DOB |
+ | passport | String? |  yes  | Passport |
  | phone | String |  no  | Email |
- | fathersName | String? |  yes  | Father's Name |
  | drivingLicense | String? |  yes  | Driver License |
+ | fathersName | String? |  yes  | Father's Name |
+ | firstName | String |  no  | First Name |
+ | lastName | String? |  yes  | Last Name |
  | addressAsPerId | [KYCAddress](#KYCAddress) |  no  | Address details |
  | mothersName | String? |  yes  | Mother's Name |
  | voterId | String? |  yes  | Voter ID Number |
- | mobileVerified | Bool |  no  | Is Mobile Verified or not |
- | passport | String? |  yes  | Passport |
+ | dob | String |  no  | DOB |
+ | middleName | String? |  yes  | middle Name |
+ | pan | String? |  yes  | Pan Number |
+ | email | String? |  yes  | Email |
+
+---
+
+
+ 
+ 
+ #### [BusinessDetails](#BusinessDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fssai | String? |  yes  | FDA License Number |
+ | address | [KYCAddress](#KYCAddress)? |  yes  | Address details |
+ | gstin | String? |  yes  | GSTIN Number |
+ | fda | String? |  yes  | Driver License |
+ | vintage | String? |  yes  | Vintage |
+ | shopAndEstablishment | [String: Any]? |  yes  | Shop Establishment |
+ | name | String? |  yes  | Business Name |
+ | businessType | String? |  yes  | Business Type |
+ | businessOwnershipType | String? |  yes  | business Ownershipp type(e.g Rented) |
+ | pan | String? |  yes  | Pan Number |
+ | entityType | String? |  yes  | Busineess Entity Type |
 
 ---
 
@@ -4900,13 +4900,13 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identificationNumber | String? |  yes  | IP |
  | deviceModel | String? |  yes  | Device Model |
- | osVersion | String? |  yes  | OS Version |
  | deviceMake | String? |  yes  | Device maker |
- | os | String? |  yes  | OS Name |
- | identifierType | String? |  yes  | Static value = ip |
  | deviceType | String? |  yes  | Device Type(E.g. Mobile) |
+ | identificationNumber | String? |  yes  | IP |
+ | identifierType | String? |  yes  | Static value = ip |
+ | osVersion | String? |  yes  | OS Version |
+ | os | String? |  yes  | OS Name |
 
 ---
 
@@ -4917,9 +4917,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | membershipId | String |  no  | merchant id |
  | name | String |  no  | Name of store |
  | dateOfJoining | String? |  yes  | Date of joining |
+ | membershipId | String |  no  | merchant id |
 
 ---
 
@@ -4930,12 +4930,12 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | businessInfo | [BusinessDetails](#BusinessDetails)? |  yes  | Business summary. |
+ | aggregator | String |  no  | Aggregator Name |
  | personalInfo | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails) |  no  | Credit summary of user. |
+ | mcc | String? |  yes  | Mcc |
+ | businessInfo | [BusinessDetails](#BusinessDetails)? |  yes  | Business summary. |
  | source | String |  no  | callbackURL |
  | device | [DeviceDetails](#DeviceDetails)? |  yes  | Device Details. |
- | aggregator | String |  no  | Aggregator Name |
- | mcc | String? |  yes  | Mcc |
  | marketplaceInfo | [MarketplaceInfo](#MarketplaceInfo)? |  yes  | Market Place info. |
 
 ---
@@ -4947,9 +4947,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | Bool |  no  | Operation Status |
- | session | [String: Any] |  no  | User Session |
  | redirectUrl | String |  no  | URL to which the user may redirect. |
+ | session | [String: Any] |  no  | User Session |
+ | status | Bool |  no  | Operation Status |
 
 ---
 
@@ -4960,8 +4960,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [OnboardSummary](#OnboardSummary) |  no  | Redirect URL. |
  | success | Bool |  no  | Status updated or not. |
+ | data | [OnboardSummary](#OnboardSummary) |  no  | Redirect URL. |
 
 ---
 

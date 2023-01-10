@@ -1,57 +1,58 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: Reasons
-         Used By: Order
+         Model: ProductVariants
+         Used By: Catalog
      */
-    class Reasons: Codable {
-        public var reasonText: String?
 
-        public var showTextArea: Bool?
+    class ProductVariants: Codable {
+        public var categoryUid: Int?
 
-        public var feedbackType: String?
+        public var uid: Int?
 
-        public var flow: String?
+        public var brandUid: Int?
 
-        public var reasonId: Int?
+        public var itemCode: String?
 
-        public var priority: Int?
+        public var media: [Media1]?
+
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case reasonText = "reason_text"
+            case categoryUid = "category_uid"
 
-            case showTextArea = "show_text_area"
+            case uid
 
-            case feedbackType = "feedback_type"
+            case brandUid = "brand_uid"
 
-            case flow
+            case itemCode = "item_code"
 
-            case reasonId = "reason_id"
+            case media
 
-            case priority
+            case name
         }
 
-        public init(feedbackType: String? = nil, flow: String? = nil, priority: Int? = nil, reasonId: Int? = nil, reasonText: String? = nil, showTextArea: Bool? = nil) {
-            self.reasonText = reasonText
+        public init(brandUid: Int? = nil, categoryUid: Int? = nil, itemCode: String? = nil, media: [Media1]? = nil, name: String? = nil, uid: Int? = nil) {
+            self.categoryUid = categoryUid
 
-            self.showTextArea = showTextArea
+            self.uid = uid
 
-            self.feedbackType = feedbackType
+            self.brandUid = brandUid
 
-            self.flow = flow
+            self.itemCode = itemCode
 
-            self.reasonId = reasonId
+            self.media = media
 
-            self.priority = priority
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                reasonText = try container.decode(String.self, forKey: .reasonText)
+                categoryUid = try container.decode(Int.self, forKey: .categoryUid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -59,7 +60,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                showTextArea = try container.decode(Bool.self, forKey: .showTextArea)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +68,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                feedbackType = try container.decode(String.self, forKey: .feedbackType)
+                brandUid = try container.decode(Int.self, forKey: .brandUid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +76,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                flow = try container.decode(String.self, forKey: .flow)
+                itemCode = try container.decode(String.self, forKey: .itemCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +84,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                reasonId = try container.decode(Int.self, forKey: .reasonId)
+                media = try container.decode([Media1].self, forKey: .media)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +92,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                priority = try container.decode(Int.self, forKey: .priority)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,17 +103,17 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(reasonText, forKey: .reasonText)
+            try? container.encodeIfPresent(categoryUid, forKey: .categoryUid)
 
-            try? container.encodeIfPresent(showTextArea, forKey: .showTextArea)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(feedbackType, forKey: .feedbackType)
+            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
 
-            try? container.encodeIfPresent(flow, forKey: .flow)
+            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
 
-            try? container.encodeIfPresent(reasonId, forKey: .reasonId)
+            try? container.encodeIfPresent(media, forKey: .media)
 
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

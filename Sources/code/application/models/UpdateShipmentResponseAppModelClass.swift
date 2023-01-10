@@ -3,39 +3,41 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: StatusesBody
+         Model: UpdateShipmentResponse
          Used By: Order
      */
-    class StatusesBody: Codable {
-        public var status: String?
+    class UpdateShipmentResponse: Codable {
+        public var status: Bool
 
-        public var shipments: [String: Any]?
+        public var message: [String]
+
+        public var finalState: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case shipments
+            case message
+
+            case finalState = "final_state"
         }
 
-        public init(shipments: [String: Any]? = nil, status: String? = nil) {
+        public init(finalState: [String: Any]? = nil, message: [String], status: Bool) {
             self.status = status
 
-            self.shipments = shipments
+            self.message = message
+
+            self.finalState = finalState
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                status = try container.decode(String.self, forKey: .status)
+            status = try container.decode(Bool.self, forKey: .status)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            message = try container.decode([String].self, forKey: .message)
 
             do {
-                shipments = try container.decode([String: Any].self, forKey: .shipments)
+                finalState = try container.decode([String: Any].self, forKey: .finalState)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +50,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
+            try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(finalState, forKey: .finalState)
         }
     }
 }

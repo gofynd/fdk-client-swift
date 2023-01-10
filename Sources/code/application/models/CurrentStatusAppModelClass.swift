@@ -7,18 +7,18 @@ public extension ApplicationClient {
          Used By: Order
      */
     class CurrentStatus: Codable {
-        public var updatedAt: String?
-
         public var status: String?
+
+        public var updatedAt: String?
 
         public var name: String?
 
         public var journeyType: String?
 
         public enum CodingKeys: String, CodingKey {
-            case updatedAt = "updated_at"
-
             case status
+
+            case updatedAt = "updated_at"
 
             case name
 
@@ -26,9 +26,9 @@ public extension ApplicationClient {
         }
 
         public init(journeyType: String? = nil, name: String? = nil, status: String? = nil, updatedAt: String? = nil) {
-            self.updatedAt = updatedAt
-
             self.status = status
+
+            self.updatedAt = updatedAt
 
             self.name = name
 
@@ -39,7 +39,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
             try? container.encodeIfPresent(name, forKey: .name)
 

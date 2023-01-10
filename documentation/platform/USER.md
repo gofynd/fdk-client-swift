@@ -2334,7 +2334,7 @@ Success. User Group details. `UserGroupResponseSchema` for more details.
  | deleteAccountDay | Int? |  yes  |  |
  | deleteAccountReasons | [[DeleteAccountReasons](#DeleteAccountReasons)]? |  yes  |  |
  | deleteAccountConsent | [String: Any]? |  yes  |  |
- | sessionTimeout | [String: Any]? |  yes  |  |
+ | sessionConfig | [String: Any]? |  yes  |  |
 
 ---
 
@@ -2551,7 +2551,7 @@ Success. User Group details. `UserGroupResponseSchema` for more details.
  | ---------- | ---- | -------- | ----------- |
  | duration | Int? |  yes  |  |
  | type | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
+ | isRolling | Bool? |  yes  |  |
 
 ---
 

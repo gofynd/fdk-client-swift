@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var type: String?
 
-        public var isActive: Bool?
+        public var isRolling: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case duration
 
             case type
 
-            case isActive = "is_active"
+            case isRolling = "is_rolling"
         }
 
-        public init(duration: Int? = nil, isActive: Bool? = nil, type: String? = nil) {
+        public init(duration: Int? = nil, isRolling: Bool? = nil, type: String? = nil) {
             self.duration = duration
 
             self.type = type
 
-            self.isActive = isActive
+            self.isRolling = isRolling
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                isRolling = try container.decode(Bool.self, forKey: .isRolling)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(isRolling, forKey: .isRolling)
         }
     }
 }

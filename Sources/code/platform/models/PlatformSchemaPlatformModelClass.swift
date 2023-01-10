@@ -56,7 +56,7 @@ public extension PlatformClient {
 
         public var deleteAccountConsent: [String: Any]?
 
-        public var sessionTimeout: [String: Any]?
+        public var sessionConfig: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case display
@@ -107,10 +107,10 @@ public extension PlatformClient {
 
             case deleteAccountConsent = "delete_account_consent"
 
-            case sessionTimeout = "session_timeout"
+            case sessionConfig = "session_config"
         }
 
-        public init(active: Bool? = nil, createdAt: String? = nil, deleteAccountConsent: [String: Any]? = nil, deleteAccountDay: Int? = nil, deleteAccountReasons: [DeleteAccountReasons]? = nil, desktopImage: String? = nil, display: String? = nil, flashCard: FlashCard? = nil, forgotPassword: Bool? = nil, login: Login? = nil, lookAndFeel: LookAndFeel? = nil, meta: MetaSchema? = nil, mobileImage: String? = nil, name: String? = nil, register: Bool? = nil, registerRequiredFields: RegisterRequiredFields? = nil, requiredFields: RequiredFields? = nil, sessionTimeout: [String: Any]? = nil, skipCaptcha: Bool? = nil, skipLogin: Bool? = nil, social: Social? = nil, socialTokens: SocialTokens? = nil, subtext: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(active: Bool? = nil, createdAt: String? = nil, deleteAccountConsent: [String: Any]? = nil, deleteAccountDay: Int? = nil, deleteAccountReasons: [DeleteAccountReasons]? = nil, desktopImage: String? = nil, display: String? = nil, flashCard: FlashCard? = nil, forgotPassword: Bool? = nil, login: Login? = nil, lookAndFeel: LookAndFeel? = nil, meta: MetaSchema? = nil, mobileImage: String? = nil, name: String? = nil, register: Bool? = nil, registerRequiredFields: RegisterRequiredFields? = nil, requiredFields: RequiredFields? = nil, sessionConfig: [String: Any]? = nil, skipCaptcha: Bool? = nil, skipLogin: Bool? = nil, social: Social? = nil, socialTokens: SocialTokens? = nil, subtext: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.display = display
 
             self.lookAndFeel = lookAndFeel
@@ -159,7 +159,7 @@ public extension PlatformClient {
 
             self.deleteAccountConsent = deleteAccountConsent
 
-            self.sessionTimeout = sessionTimeout
+            self.sessionConfig = sessionConfig
         }
 
         required public init(from decoder: Decoder) throws {
@@ -358,7 +358,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                sessionTimeout = try container.decode([String: Any].self, forKey: .sessionTimeout)
+                sessionConfig = try container.decode([String: Any].self, forKey: .sessionConfig)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -417,7 +417,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(deleteAccountConsent, forKey: .deleteAccountConsent)
 
-            try? container.encodeIfPresent(sessionTimeout, forKey: .sessionTimeout)
+            try? container.encodeIfPresent(sessionConfig, forKey: .sessionConfig)
         }
     }
 }

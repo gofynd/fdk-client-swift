@@ -872,7 +872,6 @@ public extension PlatformClient {
          * Description:
          **/
         public func sendSmsNinjaPlatform(
-            body: SendSmsPayload,
             onResponse: @escaping (_ response: OrderStatusResult?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
@@ -880,7 +879,7 @@ public extension PlatformClient {
                 method: "get",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/bag/state/transition",
                 query: nil,
-                body: body.dictionary,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in

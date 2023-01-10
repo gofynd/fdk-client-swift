@@ -10,18 +10,18 @@ public extension PlatformClient {
     class MultiTenderPaymentMethod: Codable {
         public var mode: String
 
-        public var meta: MultiTenderPaymentMeta?
-
         public var name: String?
+
+        public var meta: MultiTenderPaymentMeta?
 
         public var amount: Double
 
         public enum CodingKeys: String, CodingKey {
             case mode
 
-            case meta
-
             case name
+
+            case meta
 
             case amount
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
             self.mode = mode
 
-            self.meta = meta
-
             self.name = name
+
+            self.meta = meta
 
             self.amount = amount
         }
@@ -42,7 +42,7 @@ public extension PlatformClient {
             mode = try container.decode(String.self, forKey: .mode)
 
             do {
-                meta = try container.decode(MultiTenderPaymentMeta.self, forKey: .meta)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                meta = try container.decode(MultiTenderPaymentMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,9 +65,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(mode, forKey: .mode)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
         }

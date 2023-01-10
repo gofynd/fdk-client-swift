@@ -1,33 +1,34 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: BagReasons1
-         Used By: Order
+         Model: ProductVariantsResponse
+         Used By: Catalog
      */
-    class BagReasons1: Codable {
-        public var id: Int?
 
-        public var displayName: String?
+    class ProductVariantsResponse: Codable {
+        public var page: Page?
+
+        public var variants: [ProductVariants]?
 
         public enum CodingKeys: String, CodingKey {
-            case id
+            case page
 
-            case displayName = "display_name"
+            case variants
         }
 
-        public init(displayName: String? = nil, id: Int? = nil) {
-            self.id = id
+        public init(page: Page? = nil, variants: [ProductVariants]? = nil) {
+            self.page = page
 
-            self.displayName = displayName
+            self.variants = variants
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +36,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                variants = try container.decode([ProductVariants].self, forKey: .variants)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +47,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(variants, forKey: .variants)
         }
     }
 }
