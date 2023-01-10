@@ -10,50 +10,50 @@ public extension PlatformClient {
     class GenderDetail: Codable {
         public var filters: AttributeMasterFilter?
 
-        public var details: AttributeMasterDetails?
+        public var logo: String?
 
-        public var enabledForEndConsumer: Bool?
+        public var description: String?
 
         public var name: String?
 
         public var isNested: Bool?
 
+        public var slug: String?
+
         public var departments: [String]?
 
-        public var description: String?
-
-        public var meta: AttributeMasterMeta?
-
-        public var logo: String?
+        public var enabledForEndConsumer: Bool?
 
         public var id: String?
 
-        public var slug: String?
+        public var details: AttributeMasterDetails?
+
+        public var meta: AttributeMasterMeta?
 
         public var schema: AttributeMaster?
 
         public enum CodingKeys: String, CodingKey {
             case filters
 
-            case details
+            case logo
 
-            case enabledForEndConsumer = "enabled_for_end_consumer"
+            case description
 
             case name
 
             case isNested = "is_nested"
 
+            case slug
+
             case departments
 
-            case description
-
-            case meta
-
-            case logo
+            case enabledForEndConsumer = "enabled_for_end_consumer"
 
             case id
 
-            case slug
+            case details
+
+            case meta
 
             case schema
         }
@@ -61,25 +61,25 @@ public extension PlatformClient {
         public init(departments: [String]? = nil, description: String? = nil, details: AttributeMasterDetails? = nil, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter? = nil, id: String? = nil, isNested: Bool? = nil, logo: String? = nil, meta: AttributeMasterMeta? = nil, name: String? = nil, schema: AttributeMaster? = nil, slug: String? = nil) {
             self.filters = filters
 
-            self.details = details
+            self.logo = logo
 
-            self.enabledForEndConsumer = enabledForEndConsumer
+            self.description = description
 
             self.name = name
 
             self.isNested = isNested
 
+            self.slug = slug
+
             self.departments = departments
 
-            self.description = description
-
-            self.meta = meta
-
-            self.logo = logo
+            self.enabledForEndConsumer = enabledForEndConsumer
 
             self.id = id
 
-            self.slug = slug
+            self.details = details
+
+            self.meta = meta
 
             self.schema = schema
         }
@@ -96,7 +96,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                details = try container.decode(AttributeMasterDetails.self, forKey: .details)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +104,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                enabledForEndConsumer = try container.decode(Bool.self, forKey: .enabledForEndConsumer)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -128,6 +128,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 departments = try container.decode([String].self, forKey: .departments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -136,23 +144,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode(AttributeMasterMeta.self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                logo = try container.decode(String.self, forKey: .logo)
+                enabledForEndConsumer = try container.decode(Bool.self, forKey: .enabledForEndConsumer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -168,7 +160,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                details = try container.decode(AttributeMasterDetails.self, forKey: .details)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode(AttributeMasterMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -189,25 +189,25 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(details, forKey: .details)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(enabledForEndConsumer, forKey: .enabledForEndConsumer)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(isNested, forKey: .isNested)
 
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
             try? container.encodeIfPresent(departments, forKey: .departments)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(enabledForEndConsumer, forKey: .enabledForEndConsumer)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(details, forKey: .details)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(schema, forKey: .schema)
         }

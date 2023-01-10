@@ -10,15 +10,15 @@ public extension PlatformClient {
     class ShipmentsResponse: Codable {
         public var stackTrace: String?
 
-        public var identifier: String?
+        public var meta: [String: Any]?
 
         public var status: Int?
 
-        public var meta: [String: Any]?
-
-        public var message: String?
+        public var identifier: String?
 
         public var code: String?
+
+        public var message: String?
 
         public var finalState: [String: Any]?
 
@@ -27,15 +27,15 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case stackTrace = "stack_trace"
 
-            case identifier
+            case meta
 
             case status
 
-            case meta
-
-            case message
+            case identifier
 
             case code
+
+            case message
 
             case finalState = "final_state"
 
@@ -45,15 +45,15 @@ public extension PlatformClient {
         public init(code: String? = nil, exception: String? = nil, finalState: [String: Any]? = nil, identifier: String? = nil, message: String? = nil, meta: [String: Any]? = nil, stackTrace: String? = nil, status: Int? = nil) {
             self.stackTrace = stackTrace
 
-            self.identifier = identifier
+            self.meta = meta
 
             self.status = status
 
-            self.meta = meta
-
-            self.message = message
+            self.identifier = identifier
 
             self.code = code
+
+            self.message = message
 
             self.finalState = finalState
 
@@ -72,7 +72,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,15 +88,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                message = try container.decode(String.self, forKey: .message)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,6 +97,14 @@ public extension PlatformClient {
 
             do {
                 code = try container.decode(String.self, forKey: .code)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,15 +133,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(finalState, forKey: .finalState)
 

@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var height: Double
 
-        public var length: Double
-
         public var width: Double
+
+        public var length: Double
 
         public var unit: String
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case height
 
-            case length
-
             case width
+
+            case length
 
             case unit
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.height = height
 
-            self.length = length
-
             self.width = width
+
+            self.length = length
 
             self.unit = unit
         }
@@ -48,9 +48,9 @@ public extension ApplicationClient {
 
             height = try container.decode(Double.self, forKey: .height)
 
-            length = try container.decode(Double.self, forKey: .length)
-
             width = try container.decode(Double.self, forKey: .width)
+
+            length = try container.decode(Double.self, forKey: .length)
 
             unit = try container.decode(String.self, forKey: .unit)
         }
@@ -62,9 +62,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(height, forKey: .height)
 
-            try? container.encodeIfPresent(length, forKey: .length)
-
             try? container.encodeIfPresent(width, forKey: .width)
+
+            try? container.encodeIfPresent(length, forKey: .length)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
         }

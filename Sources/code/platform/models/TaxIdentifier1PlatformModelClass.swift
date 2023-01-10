@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class TaxIdentifier1: Codable {
-        public var hsnCode: String?
-
         public var reportingHsn: String?
+
+        public var hsnCode: String?
 
         public var hsnCodeId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case hsnCode = "hsn_code"
-
             case reportingHsn = "reporting_hsn"
+
+            case hsnCode = "hsn_code"
 
             case hsnCodeId = "hsn_code_id"
         }
 
         public init(hsnCode: String? = nil, hsnCodeId: String? = nil, reportingHsn: String? = nil) {
-            self.hsnCode = hsnCode
-
             self.reportingHsn = reportingHsn
+
+            self.hsnCode = hsnCode
 
             self.hsnCodeId = hsnCodeId
         }
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                hsnCode = try container.decode(String.self, forKey: .hsnCode)
+                reportingHsn = try container.decode(String.self, forKey: .reportingHsn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                reportingHsn = try container.decode(String.self, forKey: .reportingHsn)
+                hsnCode = try container.decode(String.self, forKey: .hsnCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,9 +61,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
-
             try? container.encodeIfPresent(reportingHsn, forKey: .reportingHsn)
+
+            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
 
             try? container.encodeIfPresent(hsnCodeId, forKey: .hsnCodeId)
         }

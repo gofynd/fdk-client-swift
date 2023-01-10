@@ -9,7 +9,7 @@ public extension ApplicationClient {
     class BagsForReorder: Codable {
         public var storeId: Int?
 
-        public var articleAssignment: BagsForReorderArticleAssignment?
+        public var itemSize: String?
 
         public var quantity: Int?
 
@@ -17,12 +17,12 @@ public extension ApplicationClient {
 
         public var sellerId: Int?
 
-        public var itemSize: String?
+        public var articleAssignment: BagsForReorderArticleAssignment?
 
         public enum CodingKeys: String, CodingKey {
             case storeId = "store_id"
 
-            case articleAssignment = "article_assignment"
+            case itemSize = "item_size"
 
             case quantity
 
@@ -30,13 +30,13 @@ public extension ApplicationClient {
 
             case sellerId = "seller_id"
 
-            case itemSize = "item_size"
+            case articleAssignment = "article_assignment"
         }
 
         public init(articleAssignment: BagsForReorderArticleAssignment? = nil, itemId: Int? = nil, itemSize: String? = nil, quantity: Int? = nil, sellerId: Int? = nil, storeId: Int? = nil) {
             self.storeId = storeId
 
-            self.articleAssignment = articleAssignment
+            self.itemSize = itemSize
 
             self.quantity = quantity
 
@@ -44,7 +44,7 @@ public extension ApplicationClient {
 
             self.sellerId = sellerId
 
-            self.itemSize = itemSize
+            self.articleAssignment = articleAssignment
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,7 +59,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                articleAssignment = try container.decode(BagsForReorderArticleAssignment.self, forKey: .articleAssignment)
+                itemSize = try container.decode(String.self, forKey: .itemSize)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                itemSize = try container.decode(String.self, forKey: .itemSize)
+                articleAssignment = try container.decode(BagsForReorderArticleAssignment.self, forKey: .articleAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +104,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
-            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
+            try? container.encodeIfPresent(itemSize, forKey: .itemSize)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
@@ -112,7 +112,7 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
-            try? container.encodeIfPresent(itemSize, forKey: .itemSize)
+            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
         }
     }
 }

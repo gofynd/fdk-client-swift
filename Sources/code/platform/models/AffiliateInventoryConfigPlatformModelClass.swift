@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var articleAssignment: AffiliateInventoryArticleAssignmentConfig?
 
-        public var inventory: AffiliateInventoryStoreConfig?
-
         public var logistics: AffiliateInventoryLogisticsConfig?
+
+        public var inventory: AffiliateInventoryStoreConfig?
 
         public var order: AffiliateInventoryOrderConfig?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case articleAssignment = "article_assignment"
 
-            case inventory
-
             case logistics
+
+            case inventory
 
             case order
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.articleAssignment = articleAssignment
 
-            self.inventory = inventory
-
             self.logistics = logistics
+
+            self.inventory = inventory
 
             self.order = order
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                inventory = try container.decode(AffiliateInventoryStoreConfig.self, forKey: .inventory)
+                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
+                inventory = try container.decode(AffiliateInventoryStoreConfig.self, forKey: .inventory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
-            try? container.encodeIfPresent(inventory, forKey: .inventory)
-
             try? container.encodeIfPresent(logistics, forKey: .logistics)
+
+            try? container.encodeIfPresent(inventory, forKey: .inventory)
 
             try? container.encodeIfPresent(order, forKey: .order)
         }

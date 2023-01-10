@@ -10,18 +10,18 @@ public extension PlatformClient {
     class UpdateShipmentLockPayload: Codable {
         public var entityType: String
 
-        public var action: String
-
         public var entities: [Entities]
+
+        public var action: String
 
         public var actionType: String
 
         public enum CodingKeys: String, CodingKey {
             case entityType = "entity_type"
 
-            case action
-
             case entities
+
+            case action
 
             case actionType = "action_type"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(action: String, actionType: String, entities: [Entities], entityType: String) {
             self.entityType = entityType
 
-            self.action = action
-
             self.entities = entities
+
+            self.action = action
 
             self.actionType = actionType
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             entityType = try container.decode(String.self, forKey: .entityType)
 
-            action = try container.decode(String.self, forKey: .action)
-
             entities = try container.decode([Entities].self, forKey: .entities)
+
+            action = try container.decode(String.self, forKey: .action)
 
             actionType = try container.decode(String.self, forKey: .actionType)
         }
@@ -53,9 +53,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(entityType, forKey: .entityType)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(entities, forKey: .entities)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(actionType, forKey: .actionType)
         }

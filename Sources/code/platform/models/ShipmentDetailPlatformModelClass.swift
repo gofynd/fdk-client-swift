@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var shipmentId: String?
 
-        public var status: String?
+        public var id: Int
 
         public var meta: Meta
 
-        public var id: Int
+        public var status: String?
 
         public var bagList: [Int]?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case shipmentId = "shipment_id"
 
-            case status
+            case id
 
             case meta
 
-            case id
+            case status
 
             case bagList = "bag_list"
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.shipmentId = shipmentId
 
-            self.status = status
+            self.id = id
 
             self.meta = meta
 
-            self.id = id
+            self.status = status
 
             self.bagList = bagList
         }
@@ -67,6 +67,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            id = try container.decode(Int.self, forKey: .id)
+
+            meta = try container.decode(Meta.self, forKey: .meta)
+
             do {
                 status = try container.decode(String.self, forKey: .status)
 
@@ -74,10 +78,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            meta = try container.decode(Meta.self, forKey: .meta)
-
-            id = try container.decode(Int.self, forKey: .id)
 
             do {
                 bagList = try container.decode([Int].self, forKey: .bagList)
@@ -95,11 +95,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(bagList, forKey: .bagList)
         }
