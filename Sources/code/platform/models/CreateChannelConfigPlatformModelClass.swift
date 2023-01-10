@@ -8,11 +8,11 @@ public extension PlatformClient {
      */
 
     class CreateChannelConfig: Codable {
+        public var locationReassignment: Bool?
+
         public var logoUrl: [String: Any]?
 
         public var dpConfiguration: DpConfiguration?
-
-        public var locationReassignment: Bool?
 
         public var shipmentAssignment: String?
 
@@ -21,11 +21,11 @@ public extension PlatformClient {
         public var paymentInfo: CreateChannelPaymentInfo?
 
         public enum CodingKeys: String, CodingKey {
+            case locationReassignment = "location_reassignment"
+
             case logoUrl = "logo_url"
 
             case dpConfiguration = "dp_configuration"
-
-            case locationReassignment = "location_reassignment"
 
             case shipmentAssignment = "shipment_assignment"
 
@@ -35,11 +35,11 @@ public extension PlatformClient {
         }
 
         public init(dpConfiguration: DpConfiguration? = nil, locationReassignment: Bool? = nil, lockStates: [String]? = nil, logoUrl: [String: Any]? = nil, paymentInfo: CreateChannelPaymentInfo? = nil, shipmentAssignment: String? = nil) {
+            self.locationReassignment = locationReassignment
+
             self.logoUrl = logoUrl
 
             self.dpConfiguration = dpConfiguration
-
-            self.locationReassignment = locationReassignment
 
             self.shipmentAssignment = shipmentAssignment
 
@@ -52,6 +52,14 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
+                locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 logoUrl = try container.decode([String: Any].self, forKey: .logoUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -61,14 +69,6 @@ public extension PlatformClient {
 
             do {
                 dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,11 +103,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
+
             try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
 
             try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
-
-            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
 
             try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
 

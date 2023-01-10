@@ -1309,6 +1309,19 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
  
  
+ #### [SendResetPasswordMobileRequestSchema](#SendResetPasswordMobileRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | countryCode | String? |  yes  |  |
+ | mobile | String? |  yes  |  |
+ | captchaCode | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [PasswordLoginRequestSchema](#PasswordLoginRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -1329,7 +1342,6 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | countryCode | String? |  yes  |  |
  | captchaCode | String? |  yes  |  |
  | mobile | String? |  yes  |  |
- | androidHash | String? |  yes  |  |
 
 ---
 
@@ -1766,7 +1778,6 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | String? |  yes  |  |
- | isDeleted | Bool? |  yes  |  |
 
 ---
 

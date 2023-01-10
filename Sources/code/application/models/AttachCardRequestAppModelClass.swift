@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class AttachCardRequest: Codable {
         public var refresh: Bool?
 
-        public var cardId: String
-
         public var nameOnCard: String?
 
         public var nickname: String?
 
+        public var cardId: String
+
         public enum CodingKeys: String, CodingKey {
             case refresh
-
-            case cardId = "card_id"
 
             case nameOnCard = "name_on_card"
 
             case nickname
+
+            case cardId = "card_id"
         }
 
         public init(cardId: String, nameOnCard: String? = nil, nickname: String? = nil, refresh: Bool? = nil) {
             self.refresh = refresh
 
-            self.cardId = cardId
-
             self.nameOnCard = nameOnCard
 
             self.nickname = nickname
+
+            self.cardId = cardId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -45,8 +45,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            cardId = try container.decode(String.self, forKey: .cardId)
 
             do {
                 nameOnCard = try container.decode(String.self, forKey: .nameOnCard)
@@ -63,6 +61,8 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            cardId = try container.decode(String.self, forKey: .cardId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -70,11 +70,11 @@ public extension ApplicationClient {
 
             try? container.encode(refresh, forKey: .refresh)
 
-            try? container.encode(cardId, forKey: .cardId)
-
             try? container.encodeIfPresent(nameOnCard, forKey: .nameOnCard)
 
             try? container.encodeIfPresent(nickname, forKey: .nickname)
+
+            try? container.encode(cardId, forKey: .cardId)
         }
     }
 }

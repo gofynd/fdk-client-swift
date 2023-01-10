@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var mode: String
 
-        public var name: String?
-
         public var meta: MultiTenderPaymentMeta?
+
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
             case mode
 
-            case name
-
             case meta
+
+            case name
         }
 
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.mode = mode
 
-            self.name = name
-
             self.meta = meta
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -44,7 +44,7 @@ public extension PlatformClient {
             mode = try container.decode(String.self, forKey: .mode)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                meta = try container.decode(MultiTenderPaymentMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,7 +52,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                meta = try container.decode(MultiTenderPaymentMeta.self, forKey: .meta)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,9 +67,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(mode, forKey: .mode)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

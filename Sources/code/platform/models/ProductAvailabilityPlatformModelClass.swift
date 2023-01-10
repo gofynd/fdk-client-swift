@@ -10,22 +10,22 @@ public extension PlatformClient {
     class ProductAvailability: Codable {
         public var otherStoreQuantity: Int?
 
-        public var outOfStock: Bool?
+        public var isValid: Bool?
 
         public var deliverable: Bool?
 
-        public var isValid: Bool?
+        public var outOfStock: Bool?
 
         public var sizes: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case otherStoreQuantity = "other_store_quantity"
 
-            case outOfStock = "out_of_stock"
+            case isValid = "is_valid"
 
             case deliverable
 
-            case isValid = "is_valid"
+            case outOfStock = "out_of_stock"
 
             case sizes
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(deliverable: Bool? = nil, isValid: Bool? = nil, otherStoreQuantity: Int? = nil, outOfStock: Bool? = nil, sizes: [String]? = nil) {
             self.otherStoreQuantity = otherStoreQuantity
 
-            self.outOfStock = outOfStock
+            self.isValid = isValid
 
             self.deliverable = deliverable
 
-            self.isValid = isValid
+            self.outOfStock = outOfStock
 
             self.sizes = sizes
         }
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
+                isValid = try container.decode(Bool.self, forKey: .isValid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isValid = try container.decode(Bool.self, forKey: .isValid)
+                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,11 +91,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
 
-            try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
+            try? container.encodeIfPresent(isValid, forKey: .isValid)
 
             try? container.encodeIfPresent(deliverable, forKey: .deliverable)
 
-            try? container.encodeIfPresent(isValid, forKey: .isValid)
+            try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
         }
