@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class ErrorResponse: Codable {
-        public var meta: [String: Any]?
+        public var error: String?
 
         public var status: Int?
 
@@ -16,10 +16,10 @@ public extension PlatformClient {
 
         public var code: String?
 
-        public var error: String?
+        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case meta
+            case error
 
             case status
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case code
 
-            case error
+            case meta
         }
 
         public init(code: String? = nil, error: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
-            self.meta = meta
+            self.error = error
 
             self.status = status
 
@@ -39,14 +39,14 @@ public extension PlatformClient {
 
             self.code = code
 
-            self.error = error
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                error = try container.decode(String.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                error = try container.decode(String.self, forKey: .error)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
@@ -97,7 +97,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

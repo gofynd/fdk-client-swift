@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class ValidateCustomerRequest: Codable {
         public var transactionAmountInPaise: Int
 
-        public var merchantParams: [String: Any]
-
         public var payload: String
+
+        public var merchantParams: [String: Any]
 
         public var phoneNumber: String
 
@@ -20,9 +20,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case transactionAmountInPaise = "transaction_amount_in_paise"
 
-            case merchantParams = "merchant_params"
-
             case payload
+
+            case merchantParams = "merchant_params"
 
             case phoneNumber = "phone_number"
 
@@ -32,9 +32,9 @@ public extension ApplicationClient {
         public init(aggregator: String, merchantParams: [String: Any], payload: String, phoneNumber: String, transactionAmountInPaise: Int) {
             self.transactionAmountInPaise = transactionAmountInPaise
 
-            self.merchantParams = merchantParams
-
             self.payload = payload
+
+            self.merchantParams = merchantParams
 
             self.phoneNumber = phoneNumber
 
@@ -46,9 +46,9 @@ public extension ApplicationClient {
 
             transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
 
-            merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
-
             payload = try container.decode(String.self, forKey: .payload)
+
+            merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
 
             phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
 
@@ -60,9 +60,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
 
-            try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
-
             try? container.encode(payload, forKey: .payload)
+
+            try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
 
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 

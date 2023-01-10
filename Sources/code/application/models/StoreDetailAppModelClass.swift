@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class StoreDetail: Codable {
         public var city: String?
 
-        public var id: Int?
+        public var name: String?
 
         public var code: String?
 
-        public var name: String?
+        public var id: Int?
 
         public enum CodingKeys: String, CodingKey {
             case city
 
-            case id
+            case name
 
             case code
 
-            case name
+            case id
         }
 
         public init(city: String? = nil, code: String? = nil, id: Int? = nil, name: String? = nil) {
             self.city = city
 
-            self.id = id
+            self.name = name
 
             self.code = code
 
-            self.name = name
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(city, forKey: .city)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class ApplicationItemResponse: Codable {
-        public var moq: MOQ?
-
         public var altText: [String: Any]?
+
+        public var moq: MOQ?
 
         public var seo: SEO?
 
         public enum CodingKeys: String, CodingKey {
-            case moq
-
             case altText = "alt_text"
+
+            case moq
 
             case seo
         }
 
         public init(altText: [String: Any]? = nil, moq: MOQ? = nil, seo: SEO? = nil) {
-            self.moq = moq
-
             self.altText = altText
+
+            self.moq = moq
 
             self.seo = seo
         }
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                moq = try container.decode(MOQ.self, forKey: .moq)
+                altText = try container.decode([String: Any].self, forKey: .altText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                altText = try container.decode([String: Any].self, forKey: .altText)
+                moq = try container.decode(MOQ.self, forKey: .moq)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,9 +61,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(moq, forKey: .moq)
-
             try? container.encodeIfPresent(altText, forKey: .altText)
+
+            try? container.encodeIfPresent(moq, forKey: .moq)
 
             try? container.encodeIfPresent(seo, forKey: .seo)
         }
