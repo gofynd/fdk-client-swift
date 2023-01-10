@@ -8,38 +8,30 @@ public extension PlatformClient {
      */
 
     class ProductsReasonsFilters: Codable {
-        public var lineNumber: Int?
-
         public var identifier: String?
 
         public var quantity: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case lineNumber = "line_number"
+        public var lineNumber: Int?
 
+        public enum CodingKeys: String, CodingKey {
             case identifier
 
             case quantity
+
+            case lineNumber = "line_number"
         }
 
         public init(identifier: String? = nil, lineNumber: Int? = nil, quantity: Int? = nil) {
-            self.lineNumber = lineNumber
-
             self.identifier = identifier
 
             self.quantity = quantity
+
+            self.lineNumber = lineNumber
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 identifier = try container.decode(String.self, forKey: .identifier)
@@ -56,16 +48,24 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
-
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
         }
     }
 }
