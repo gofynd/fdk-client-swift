@@ -8,50 +8,42 @@ public extension PlatformClient {
      */
 
     class AffiliateInventoryConfig: Codable {
-        public var payment: AffiliateInventoryPaymentConfig?
-
         public var articleAssignment: AffiliateInventoryArticleAssignmentConfig?
-
-        public var logistics: AffiliateInventoryLogisticsConfig?
-
-        public var inventory: AffiliateInventoryStoreConfig?
 
         public var order: AffiliateInventoryOrderConfig?
 
-        public enum CodingKeys: String, CodingKey {
-            case payment
+        public var payment: AffiliateInventoryPaymentConfig?
 
+        public var inventory: AffiliateInventoryStoreConfig?
+
+        public var logistics: AffiliateInventoryLogisticsConfig?
+
+        public enum CodingKeys: String, CodingKey {
             case articleAssignment = "article_assignment"
 
-            case logistics
+            case order
+
+            case payment
 
             case inventory
 
-            case order
+            case logistics
         }
 
         public init(articleAssignment: AffiliateInventoryArticleAssignmentConfig? = nil, inventory: AffiliateInventoryStoreConfig? = nil, logistics: AffiliateInventoryLogisticsConfig? = nil, order: AffiliateInventoryOrderConfig? = nil, payment: AffiliateInventoryPaymentConfig? = nil) {
-            self.payment = payment
-
             self.articleAssignment = articleAssignment
 
-            self.logistics = logistics
+            self.order = order
+
+            self.payment = payment
 
             self.inventory = inventory
 
-            self.order = order
+            self.logistics = logistics
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                payment = try container.decode(AffiliateInventoryPaymentConfig.self, forKey: .payment)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 articleAssignment = try container.decode(AffiliateInventoryArticleAssignmentConfig.self, forKey: .articleAssignment)
@@ -62,7 +54,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
+                order = try container.decode(AffiliateInventoryOrderConfig.self, forKey: .order)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                payment = try container.decode(AffiliateInventoryPaymentConfig.self, forKey: .payment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                order = try container.decode(AffiliateInventoryOrderConfig.self, forKey: .order)
+                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,15 +89,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(payment, forKey: .payment)
-
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
-            try? container.encodeIfPresent(logistics, forKey: .logistics)
+            try? container.encodeIfPresent(order, forKey: .order)
+
+            try? container.encodeIfPresent(payment, forKey: .payment)
 
             try? container.encodeIfPresent(inventory, forKey: .inventory)
 
-            try? container.encodeIfPresent(order, forKey: .order)
+            try? container.encodeIfPresent(logistics, forKey: .logistics)
         }
     }
 }

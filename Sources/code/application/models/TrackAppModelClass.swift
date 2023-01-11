@@ -11,15 +11,15 @@ public extension ApplicationClient {
 
         public var status: String?
 
-        public var accountName: String?
+        public var updatedTime: String?
+
+        public var shipmentType: String?
 
         public var updatedAt: String?
 
-        public var updatedTime: String?
-
         public var lastLocationRecievedAt: String?
 
-        public var shipmentType: String?
+        public var accountName: String?
 
         public var awb: String?
 
@@ -28,15 +28,15 @@ public extension ApplicationClient {
 
             case status
 
-            case accountName = "account_name"
+            case updatedTime = "updated_time"
+
+            case shipmentType = "shipment_type"
 
             case updatedAt = "updated_at"
 
-            case updatedTime = "updated_time"
-
             case lastLocationRecievedAt = "last_location_recieved_at"
 
-            case shipmentType = "shipment_type"
+            case accountName = "account_name"
 
             case awb
         }
@@ -46,15 +46,15 @@ public extension ApplicationClient {
 
             self.status = status
 
-            self.accountName = accountName
+            self.updatedTime = updatedTime
+
+            self.shipmentType = shipmentType
 
             self.updatedAt = updatedAt
 
-            self.updatedTime = updatedTime
-
             self.lastLocationRecievedAt = lastLocationRecievedAt
 
-            self.shipmentType = shipmentType
+            self.accountName = accountName
 
             self.awb = awb
         }
@@ -79,7 +79,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                accountName = try container.decode(String.self, forKey: .accountName)
+                updatedTime = try container.decode(String.self, forKey: .updatedTime)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shipmentType = try container.decode(String.self, forKey: .shipmentType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,14 +103,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                updatedTime = try container.decode(String.self, forKey: .updatedTime)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 lastLocationRecievedAt = try container.decode(String.self, forKey: .lastLocationRecievedAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -111,7 +111,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                shipmentType = try container.decode(String.self, forKey: .shipmentType)
+                accountName = try container.decode(String.self, forKey: .accountName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,15 +134,15 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(accountName, forKey: .accountName)
+            try? container.encodeIfPresent(updatedTime, forKey: .updatedTime)
+
+            try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
-            try? container.encodeIfPresent(updatedTime, forKey: .updatedTime)
-
             try? container.encodeIfPresent(lastLocationRecievedAt, forKey: .lastLocationRecievedAt)
 
-            try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
+            try? container.encodeIfPresent(accountName, forKey: .accountName)
 
             try? container.encodeIfPresent(awb, forKey: .awb)
         }

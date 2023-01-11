@@ -4843,10 +4843,10 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | String? |  yes  |  |
- | shipmentId | String? |  yes  |  |
- | message | String? |  yes  |  |
  | status | Int? |  yes  |  |
+ | error | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | shipmentId | String? |  yes  |  |
 
 ---
 
@@ -4868,9 +4868,9 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | errorTrace | String? |  yes  |  |
- | message | String |  no  |  |
  | status | Int |  no  |  |
+ | message | String |  no  |  |
+ | errorTrace | String? |  yes  |  |
 
 ---
 
@@ -4882,15 +4882,15 @@ Delivery Partner AWB status updates of the shipment!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | affiliateOrderId | String? |  yes  |  |
- | mongoArticleId | String? |  yes  |  |
- | setId | String? |  yes  |  |
- | affiliateBagId | String? |  yes  |  |
  | fyndOrderId | String? |  yes  |  |
- | itemId | String? |  yes  |  |
  | affiliateId | String? |  yes  |  |
- | storeId | Int |  no  |  |
- | reasonIds | [Int]? |  yes  |  |
+ | setId | String? |  yes  |  |
  | bagId | Int? |  yes  |  |
+ | itemId | String? |  yes  |  |
+ | storeId | Int |  no  |  |
+ | affiliateBagId | String? |  yes  |  |
+ | reasonIds | [Int]? |  yes  |  |
+ | mongoArticleId | String? |  yes  |  |
 
 ---
 
@@ -4913,12 +4913,12 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliateOrderId | String? |  yes  |  |
  | id | String? |  yes  |  |
+ | affiliateOrderId | String? |  yes  |  |
+ | affiliateShipmentId | String? |  yes  |  |
  | reasonText | String |  no  |  |
  | affiliateBagId | String? |  yes  |  |
  | affiliateId | String? |  yes  |  |
- | affiliateShipmentId | String? |  yes  |  |
 
 ---
 
@@ -4930,9 +4930,9 @@ Delivery Partner AWB status updates of the shipment!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | entityType | String |  no  |  |
- | entities | [[Entities](#Entities)] |  no  |  |
- | action | String |  no  |  |
  | actionType | String |  no  |  |
+ | action | String |  no  |  |
+ | entities | [[Entities](#Entities)] |  no  |  |
 
 ---
 
@@ -4943,10 +4943,10 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliateBagId | String? |  yes  |  |
- | affiliateOrderId | String? |  yes  |  |
  | isLocked | Bool? |  yes  |  |
+ | affiliateOrderId | String? |  yes  |  |
  | bagId | Int? |  yes  |  |
+ | affiliateBagId | String? |  yes  |  |
 
 ---
 
@@ -4957,8 +4957,8 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliateId | String? |  yes  |  |
  | affiliateShipmentId | String? |  yes  |  |
+ | affiliateId | String? |  yes  |  |
 
 ---
 
@@ -4969,15 +4969,15 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | lockStatus | Bool? |  yes  |  |
- | shipmentId | String? |  yes  |  |
- | isShipmentLocked | Bool? |  yes  |  |
  | bags | [[Bags](#Bags)]? |  yes  |  |
- | status | String? |  yes  |  |
- | isBagLocked | Bool? |  yes  |  |
- | affiliateId | String? |  yes  |  |
- | originalFilter | [OriginalFilter](#OriginalFilter)? |  yes  |  |
  | affiliateShipmentId | String? |  yes  |  |
+ | status | String? |  yes  |  |
+ | lockStatus | Bool? |  yes  |  |
+ | originalFilter | [OriginalFilter](#OriginalFilter)? |  yes  |  |
+ | isBagLocked | Bool? |  yes  |  |
+ | isShipmentLocked | Bool? |  yes  |  |
+ | affiliateId | String? |  yes  |  |
+ | shipmentId | String? |  yes  |  |
 
 ---
 
@@ -4988,9 +4988,9 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | checkResponse | [[CheckResponse](#CheckResponse)]? |  yes  |  |
  | success | Bool? |  yes  |  |
  | message | String? |  yes  |  |
+ | checkResponse | [[CheckResponse](#CheckResponse)]? |  yes  |  |
 
 ---
 
@@ -5002,15 +5002,15 @@ Delivery Partner AWB status updates of the shipment!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | logoUrl | String? |  yes  |  |
- | toDatetime | String? |  yes  |  |
  | id | Int |  no  |  |
- | companyId | Int? |  yes  |  |
- | platformId | String? |  yes  |  |
  | description | String? |  yes  |  |
- | title | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | fromDatetime | String? |  yes  |  |
+ | toDatetime | String? |  yes  |  |
  | platformName | String? |  yes  |  |
+ | companyId | Int? |  yes  |  |
+ | fromDatetime | String? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+ | platformId | String? |  yes  |  |
+ | title | String? |  yes  |  |
 
 ---
 
@@ -5044,21 +5044,8 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | callId | String |  no  |  |
  | status | Bool |  no  |  |
-
----
-
-
- 
- 
- #### [Products](#Products)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifier | String? |  yes  |  |
- | quantity | Int? |  yes  |  |
- | lineNumber | Int? |  yes  |  |
+ | callId | String |  no  |  |
 
 ---
 
@@ -5093,9 +5080,9 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | String? |  yes  |  |
- | quantity | Int? |  yes  |  |
  | lineNumber | Int? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | identifier | String? |  yes  |  |
 
 ---
 
@@ -5154,8 +5141,8 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | String? |  yes  |  |
  | lineNumber | Int? |  yes  |  |
+ | identifier | String? |  yes  |  |
 
 ---
 
@@ -5186,14 +5173,27 @@ Delivery Partner AWB status updates of the shipment!
 
  
  
+ #### [Products](#Products)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | lineNumber | Int? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | identifier | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [ShipmentsRequest](#ShipmentsRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | String |  no  |  |
- | products | [[Products](#Products)]? |  yes  |  |
  | reasons | [ReasonsData](#ReasonsData)? |  yes  |  |
  | dataUpdates | [DataUpdates](#DataUpdates)? |  yes  |  |
+ | products | [[Products](#Products)]? |  yes  |  |
+ | identifier | String |  no  |  |
 
 ---
 
@@ -5205,8 +5205,8 @@ Delivery Partner AWB status updates of the shipment!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | excludeBagsNextState | String? |  yes  |  |
- | shipments | [[ShipmentsRequest](#ShipmentsRequest)]? |  yes  |  |
  | status | String? |  yes  |  |
+ | shipments | [[ShipmentsRequest](#ShipmentsRequest)]? |  yes  |  |
 
 ---
 
@@ -5217,10 +5217,10 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statuses | [[StatuesRequest](#StatuesRequest)]? |  yes  |  |
- | task | Bool? |  yes  |  |
- | forceTransition | Bool? |  yes  |  |
  | lockAfterTransition | Bool? |  yes  |  |
+ | task | Bool? |  yes  |  |
+ | statuses | [[StatuesRequest](#StatuesRequest)]? |  yes  |  |
+ | forceTransition | Bool? |  yes  |  |
  | unlockBeforeTransition | Bool? |  yes  |  |
 
 ---
@@ -5232,14 +5232,14 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | status | Int? |  yes  |  |
+ | finalState | [String: Any]? |  yes  |  |
  | stackTrace | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
- | status | Int? |  yes  |  |
- | identifier | String? |  yes  |  |
- | code | String? |  yes  |  |
  | message | String? |  yes  |  |
- | finalState | [String: Any]? |  yes  |  |
+ | code | String? |  yes  |  |
  | exception | String? |  yes  |  |
+ | identifier | String? |  yes  |  |
 
 ---
 
@@ -5268,71 +5268,12 @@ Delivery Partner AWB status updates of the shipment!
 
  
  
- #### [AffiliateInventoryPaymentConfig](#AffiliateInventoryPaymentConfig)
+ #### [AffiliateStoreIdMapping](#AffiliateStoreIdMapping)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modeOfPayment | String? |  yes  |  |
- | source | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [AffiliateInventoryArticleAssignmentConfig](#AffiliateInventoryArticleAssignmentConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | postOrderReassignment | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [AffiliateInventoryLogisticsConfig](#AffiliateInventoryLogisticsConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dpAssignment | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [AffiliateInventoryStoreConfig](#AffiliateInventoryStoreConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | store | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [AffiliateInventoryOrderConfig](#AffiliateInventoryOrderConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | forceReassignment | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [AffiliateInventoryConfig](#AffiliateInventoryConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payment | [AffiliateInventoryPaymentConfig](#AffiliateInventoryPaymentConfig)? |  yes  |  |
- | articleAssignment | [AffiliateInventoryArticleAssignmentConfig](#AffiliateInventoryArticleAssignmentConfig)? |  yes  |  |
- | logistics | [AffiliateInventoryLogisticsConfig](#AffiliateInventoryLogisticsConfig)? |  yes  |  |
- | inventory | [AffiliateInventoryStoreConfig](#AffiliateInventoryStoreConfig)? |  yes  |  |
- | order | [AffiliateInventoryOrderConfig](#AffiliateInventoryOrderConfig)? |  yes  |  |
+ | storeId | Int |  no  |  |
+ | marketplaceStoreId | String |  no  |  |
 
 ---
 
@@ -5355,15 +5296,86 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | token | String |  no  |  |
- | owner | String |  no  |  |
- | name | String |  no  |  |
  | id | String |  no  |  |
- | secret | String |  no  |  |
- | meta | [[AffiliateAppConfigMeta](#AffiliateAppConfigMeta)]? |  yes  |  |
  | description | String? |  yes  |  |
+ | token | String |  no  |  |
+ | meta | [[AffiliateAppConfigMeta](#AffiliateAppConfigMeta)]? |  yes  |  |
+ | name | String |  no  |  |
+ | secret | String |  no  |  |
  | createdAt | String |  no  |  |
  | updatedAt | String |  no  |  |
+ | owner | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateInventoryArticleAssignmentConfig](#AffiliateInventoryArticleAssignmentConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | postOrderReassignment | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateInventoryOrderConfig](#AffiliateInventoryOrderConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | forceReassignment | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateInventoryPaymentConfig](#AffiliateInventoryPaymentConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | source | String? |  yes  |  |
+ | modeOfPayment | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateInventoryStoreConfig](#AffiliateInventoryStoreConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | store | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateInventoryLogisticsConfig](#AffiliateInventoryLogisticsConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dpAssignment | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateInventoryConfig](#AffiliateInventoryConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articleAssignment | [AffiliateInventoryArticleAssignmentConfig](#AffiliateInventoryArticleAssignmentConfig)? |  yes  |  |
+ | order | [AffiliateInventoryOrderConfig](#AffiliateInventoryOrderConfig)? |  yes  |  |
+ | payment | [AffiliateInventoryPaymentConfig](#AffiliateInventoryPaymentConfig)? |  yes  |  |
+ | inventory | [AffiliateInventoryStoreConfig](#AffiliateInventoryStoreConfig)? |  yes  |  |
+ | logistics | [AffiliateInventoryLogisticsConfig](#AffiliateInventoryLogisticsConfig)? |  yes  |  |
 
 ---
 
@@ -5374,8 +5386,8 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | inventory | [AffiliateInventoryConfig](#AffiliateInventoryConfig)? |  yes  |  |
  | app | [AffiliateAppConfig](#AffiliateAppConfig)? |  yes  |  |
+ | inventory | [AffiliateInventoryConfig](#AffiliateInventoryConfig)? |  yes  |  |
 
 ---
 
@@ -5386,21 +5398,9 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | token | String |  no  |  |
- | config | [AffiliateConfig](#AffiliateConfig)? |  yes  |  |
  | id | String |  no  |  |
-
----
-
-
- 
- 
- #### [AffiliateStoreIdMapping](#AffiliateStoreIdMapping)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | marketplaceStoreId | String |  no  |  |
- | storeId | Int |  no  |  |
+ | config | [AffiliateConfig](#AffiliateConfig)? |  yes  |  |
+ | token | String |  no  |  |
 
 ---
 
@@ -5411,12 +5411,103 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | articleLookup | String? |  yes  |  |
- | affiliate | [Affiliate](#Affiliate) |  no  |  |
+ | affiliateStoreIdMapping | [[AffiliateStoreIdMapping](#AffiliateStoreIdMapping)] |  no  |  |
  | createUser | Bool? |  yes  |  |
+ | affiliate | [Affiliate](#Affiliate) |  no  |  |
+ | articleLookup | String? |  yes  |  |
  | storeLookup | String? |  yes  |  |
  | bagEndState | String? |  yes  |  |
- | affiliateStoreIdMapping | [[AffiliateStoreIdMapping](#AffiliateStoreIdMapping)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MarketPlacePdf](#MarketPlacePdf)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | label | String? |  yes  |  |
+ | invoice | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateBag](#AffiliateBag)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sku | String |  no  |  |
+ | fyndStoreId | String |  no  |  |
+ | affiliateStoreId | String |  no  |  |
+ | unitPrice | Double |  no  |  |
+ | identifier | [String: Any] |  no  |  |
+ | amountPaid | Double |  no  |  |
+ | itemId | Int |  no  |  |
+ | storeId | Int |  no  |  |
+ | id | String |  no  |  |
+ | itemSize | String |  no  |  |
+ | transferPrice | Int |  no  |  |
+ | discount | Double |  no  |  |
+ | pdfLinks | [MarketPlacePdf](#MarketPlacePdf)? |  yes  |  |
+ | affiliateMeta | [String: Any] |  no  |  |
+ | priceEffective | Double |  no  |  |
+ | priceMarked | Double |  no  |  |
+ | modifiedOn | String |  no  |  |
+ | companyId | Int |  no  |  |
+ | hsnCodeId | String |  no  |  |
+ | deliveryCharge | Double |  no  |  |
+ | avlQty | Int |  no  |  |
+ | sellerIdentifier | String |  no  |  |
+ | quantity | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderUser](#OrderUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | String |  no  |  |
+ | address1 | String? |  yes  |  |
+ | phone | Int |  no  |  |
+ | state | String |  no  |  |
+ | firstName | String |  no  |  |
+ | email | String |  no  |  |
+ | lastName | String |  no  |  |
+ | city | String |  no  |  |
+ | mobile | Int |  no  |  |
+ | address2 | String? |  yes  |  |
+ | pincode | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserData](#UserData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shippingUser | [OrderUser](#OrderUser)? |  yes  |  |
+ | billingUser | [OrderUser](#OrderUser)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderPriority](#OrderPriority)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fulfilmentPriority | Int? |  yes  |  |
+ | affiliatePriorityCode | String? |  yes  |  |
+ | fulfilmentPriorityText | String? |  yes  |  |
 
 ---
 
@@ -5427,13 +5518,13 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | category | [String: Any] |  no  |  |
- | quantity | Int |  no  |  |
- | dimension | [String: Any] |  no  |  |
- | weight | [String: Any] |  no  |  |
  | id | String |  no  |  |
  | brandId | Int |  no  |  |
+ | weight | [String: Any] |  no  |  |
+ | dimension | [String: Any] |  no  |  |
  | attributes | [String: Any] |  no  |  |
+ | category | [String: Any] |  no  |  |
+ | quantity | Int |  no  |  |
 
 ---
 
@@ -5444,13 +5535,13 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | Int |  no  |  |
- | boxType | String? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | articles | [[ArticleDetails](#ArticleDetails)] |  no  |  |
- | fulfillmentId | Int |  no  |  |
- | dpId | Int? |  yes  |  |
  | affiliateShipmentId | String |  no  |  |
+ | shipments | Int |  no  |  |
+ | fulfillmentId | Int |  no  |  |
+ | articles | [[ArticleDetails](#ArticleDetails)] |  no  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | dpId | Int? |  yes  |  |
+ | boxType | String? |  yes  |  |
 
 ---
 
@@ -5461,9 +5552,9 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fulfillmentId | Int |  no  |  |
  | fulfillmentType | String |  no  |  |
  | articles | [[ArticleDetails](#ArticleDetails)] |  no  |  |
+ | fulfillmentId | Int |  no  |  |
 
 ---
 
@@ -5474,14 +5565,14 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | source | String |  no  |  |
- | shipment | [[ShipmentDetails](#ShipmentDetails)] |  no  |  |
- | paymentMode | String |  no  |  |
- | toPincode | String |  no  |  |
- | identifier | String |  no  |  |
- | action | String |  no  |  |
- | locationDetails | [LocationDetails](#LocationDetails)? |  yes  |  |
  | journey | String |  no  |  |
+ | source | String |  no  |  |
+ | action | String |  no  |  |
+ | paymentMode | String |  no  |  |
+ | shipment | [[ShipmentDetails](#ShipmentDetails)] |  no  |  |
+ | toPincode | String |  no  |  |
+ | locationDetails | [LocationDetails](#LocationDetails)? |  yes  |  |
+ | identifier | String |  no  |  |
 
 ---
 
@@ -5499,116 +5590,25 @@ Delivery Partner AWB status updates of the shipment!
 
  
  
- #### [MarketPlacePdf](#MarketPlacePdf)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | invoice | String? |  yes  |  |
- | label | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [AffiliateBag](#AffiliateBag)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | companyId | Int |  no  |  |
- | fyndStoreId | String |  no  |  |
- | itemSize | String |  no  |  |
- | amountPaid | Double |  no  |  |
- | priceMarked | Double |  no  |  |
- | pdfLinks | [MarketPlacePdf](#MarketPlacePdf)? |  yes  |  |
- | affiliateMeta | [String: Any] |  no  |  |
- | deliveryCharge | Double |  no  |  |
- | modifiedOn | String |  no  |  |
- | storeId | Int |  no  |  |
- | avlQty | Int |  no  |  |
- | identifier | [String: Any] |  no  |  |
- | priceEffective | Double |  no  |  |
- | discount | Double |  no  |  |
- | hsnCodeId | String |  no  |  |
- | sellerIdentifier | String |  no  |  |
- | unitPrice | Double |  no  |  |
- | quantity | Int |  no  |  |
- | sku | String |  no  |  |
- | itemId | Int |  no  |  |
- | affiliateStoreId | String |  no  |  |
- | transferPrice | Int |  no  |  |
- | id | String |  no  |  |
-
----
-
-
- 
- 
- #### [OrderUser](#OrderUser)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address1 | String? |  yes  |  |
- | pincode | String |  no  |  |
- | firstName | String |  no  |  |
- | city | String |  no  |  |
- | mobile | Int |  no  |  |
- | address2 | String? |  yes  |  |
- | lastName | String |  no  |  |
- | state | String |  no  |  |
- | country | String |  no  |  |
- | email | String |  no  |  |
- | phone | Int |  no  |  |
-
----
-
-
- 
- 
- #### [UserData](#UserData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | billingUser | [OrderUser](#OrderUser)? |  yes  |  |
- | shippingUser | [OrderUser](#OrderUser)? |  yes  |  |
-
----
-
-
- 
- 
- #### [OrderPriority](#OrderPriority)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | affiliatePriorityCode | String? |  yes  |  |
- | fulfilmentPriority | Int? |  yes  |  |
- | fulfilmentPriorityText | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [OrderInfo](#OrderInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment | [String: Any]? |  yes  |  |
- | affiliateOrderId | String? |  yes  |  |
- | shipment | [ShipmentData](#ShipmentData)? |  yes  |  |
- | deliveryCharges | Double |  no  |  |
- | paymentMode | String |  no  |  |
  | bags | [[AffiliateBag](#AffiliateBag)] |  no  |  |
- | items | [String: Any] |  no  |  |
- | coupon | String? |  yes  |  |
+ | affiliateOrderId | String? |  yes  |  |
  | codCharges | Double |  no  |  |
- | billingAddress | [OrderUser](#OrderUser) |  no  |  |
- | discount | Double |  no  |  |
  | user | [UserData](#UserData) |  no  |  |
- | orderValue | Double |  no  |  |
- | shippingAddress | [OrderUser](#OrderUser) |  no  |  |
  | orderPriority | [OrderPriority](#OrderPriority)? |  yes  |  |
+ | billingAddress | [OrderUser](#OrderUser) |  no  |  |
+ | shippingAddress | [OrderUser](#OrderUser) |  no  |  |
+ | payment | [String: Any]? |  yes  |  |
+ | paymentMode | String |  no  |  |
+ | orderValue | Double |  no  |  |
+ | shipment | [ShipmentData](#ShipmentData)? |  yes  |  |
+ | coupon | String? |  yes  |  |
+ | discount | Double |  no  |  |
+ | items | [String: Any] |  no  |  |
+ | deliveryCharges | Double |  no  |  |
 
 ---
 
@@ -5666,10 +5666,10 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | id | Int |  no  |  |
  | description | String |  no  |  |
  | displayText | String |  no  |  |
  | slug | String |  no  |  |
- | id | Int |  no  |  |
 
 ---
 
@@ -5691,16 +5691,16 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String |  no  |  |
+ | user | String |  no  |  |
  | l3Detail | String? |  yes  |  |
+ | type | String |  no  |  |
  | createdat | String |  no  |  |
+ | bagId | Int? |  yes  |  |
+ | message | String |  no  |  |
+ | l1Detail | String? |  yes  |  |
+ | l2Detail | String? |  yes  |  |
  | ticketId | String? |  yes  |  |
  | ticketUrl | String? |  yes  |  |
- | message | String |  no  |  |
- | user | String |  no  |  |
- | l2Detail | String? |  yes  |  |
- | l1Detail | String? |  yes  |  |
- | bagId | Int? |  yes  |  |
 
 ---
 
@@ -5734,15 +5734,15 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | customerName | String |  no  |  |
- | shipmentId | Int |  no  |  |
- | paymentMode | String |  no  |  |
  | orderId | String |  no  |  |
  | amountPaid | Int |  no  |  |
- | message | String |  no  |  |
  | countryCode | String |  no  |  |
  | brandName | String |  no  |  |
+ | paymentMode | String |  no  |  |
+ | customerName | String |  no  |  |
+ | message | String |  no  |  |
  | phoneNumber | Int |  no  |  |
+ | shipmentId | Int |  no  |  |
 
 ---
 
@@ -5753,9 +5753,21 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | String |  no  |  |
  | data | [SmsDataPayload](#SmsDataPayload)? |  yes  |  |
+ | slug | String |  no  |  |
  | bagId | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderDetails](#OrderDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fyndOrderId | String? |  yes  |  |
+ | createdAt | String? |  yes  |  |
 
 ---
 
@@ -5778,24 +5790,12 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | remarks | String? |  yes  |  |
- | shipmentId | String? |  yes  |  |
- | id | Int |  no  |  |
- | meta | [Meta](#Meta) |  no  |  |
  | status | String? |  yes  |  |
+ | id | Int |  no  |  |
+ | remarks | String? |  yes  |  |
  | bagList | [Int]? |  yes  |  |
-
----
-
-
- 
- 
- #### [OrderDetails](#OrderDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | fyndOrderId | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
+ | meta | [Meta](#Meta) |  no  |  |
+ | shipmentId | String? |  yes  |  |
 
 ---
 
@@ -5806,9 +5806,9 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipmentDetails | [[ShipmentDetail](#ShipmentDetail)]? |  yes  |  |
  | orderDetails | [OrderDetails](#OrderDetails) |  no  |  |
  | errors | [String]? |  yes  |  |
+ | shipmentDetails | [[ShipmentDetail](#ShipmentDetail)]? |  yes  |  |
 
 ---
 
@@ -5831,10 +5831,10 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | dpId | Int |  no  |  |
- | qcRequired | String |  no  |  |
- | shipmentIds | [String]? |  yes  |  |
  | orderType | String |  no  |  |
+ | dpId | Int |  no  |  |
+ | shipmentIds | [String]? |  yes  |  |
+ | qcRequired | String |  no  |  |
 
 ---
 
@@ -5853,36 +5853,29 @@ Delivery Partner AWB status updates of the shipment!
 
  
  
- #### [ShippingInfo](#ShippingInfo)
+ #### [PaymentMethod](#PaymentMethod)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slot | [[String: Any]]? |  yes  |  |
- | pincode | String |  no  |  |
- | alternateMobileNumber | String? |  yes  |  |
- | landmark | String? |  yes  |  |
- | externalCustomerCode | String? |  yes  |  |
- | countryCode | String? |  yes  |  |
- | stateCode | String? |  yes  |  |
- | lastName | String? |  yes  |  |
- | gender | String? |  yes  |  |
- | city | String |  no  |  |
- | customerCode | String? |  yes  |  |
- | alternateEmail | String? |  yes  |  |
- | addressType | String? |  yes  |  |
- | primaryEmail | String |  no  |  |
- | firstName | String |  no  |  |
- | geoLocation | [String: Any]? |  yes  |  |
- | shippingType | String? |  yes  |  |
- | floorNo | String? |  yes  |  |
- | state | String |  no  |  |
- | address1 | String |  no  |  |
- | primaryMobileNumber | String |  no  |  |
- | houseNo | String? |  yes  |  |
- | middleName | String? |  yes  |  |
- | title | String? |  yes  |  |
- | address2 | String? |  yes  |  |
- | country | String |  no  |  |
+ | refundBy | String |  no  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | mode | String |  no  |  |
+ | name | String |  no  |  |
+ | transactionData | [String: Any]? |  yes  |  |
+ | amount | Double |  no  |  |
+ | collectBy | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PaymentInfo](#PaymentInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | primaryMode | String |  no  |  |
+ | paymentMethods | [[PaymentMethod](#PaymentMethod)]? |  yes  |  |
 
 ---
 
@@ -5893,9 +5886,9 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | name | String |  no  |  |
  | breakup | [[String: Any]] |  no  |  |
  | amount | [String: Any] |  no  |  |
- | name | String |  no  |  |
  | rate | Double |  no  |  |
 
 ---
@@ -5909,37 +5902,9 @@ Delivery Partner AWB status updates of the shipment!
  | ---------- | ---- | -------- | ----------- |
  | type | String |  no  |  |
  | name | String |  no  |  |
- | tax | [Tax](#Tax)? |  yes  |  |
  | code | String? |  yes  |  |
  | amount | [String: Any] |  no  |  |
-
----
-
-
- 
- 
- #### [TaxInfo](#TaxInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | b2BGstinNumber | String? |  yes  |  |
- | gstin | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProcessingDates](#ProcessingDates)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | packByDate | String? |  yes  |  |
- | dpPickupSlot | [String: Any]? |  yes  |  |
- | customerPickupSlot | [String: Any]? |  yes  |  |
- | dispatchByDate | String? |  yes  |  |
- | dispatchAfterDate | String? |  yes  |  |
- | confirmByDate | String? |  yes  |  |
+ | tax | [Tax](#Tax)? |  yes  |  |
 
 ---
 
@@ -5950,12 +5915,28 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sellerIdentifier | String |  no  |  |
- | externalLineId | String? |  yes  |  |
- | charges | [[Charge](#Charge)] |  no  |  |
+ | customMessasge | String? |  yes  |  |
  | quantity | Int? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
- | customMessasge | String? |  yes  |  |
+ | sellerIdentifier | String |  no  |  |
+ | charges | [[Charge](#Charge)] |  no  |  |
+ | externalLineId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProcessingDates](#ProcessingDates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dispatchAfterDate | String? |  yes  |  |
+ | packByDate | String? |  yes  |  |
+ | confirmByDate | String? |  yes  |  |
+ | customerPickupSlot | [String: Any]? |  yes  |  |
+ | dispatchByDate | String? |  yes  |  |
+ | dpPickupSlot | [String: Any]? |  yes  |  |
 
 ---
 
@@ -5966,12 +5947,48 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | processingDates | [ProcessingDates](#ProcessingDates)? |  yes  |  |
+ | lineItems | [[LineItem](#LineItem)] |  no  |  |
  | meta | [String: Any]? |  yes  |  |
  | locationId | Int |  no  |  |
+ | processingDates | [ProcessingDates](#ProcessingDates)? |  yes  |  |
  | externalShipmentId | Double? |  yes  |  |
  | priority | Int? |  yes  |  |
- | lineItems | [[LineItem](#LineItem)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShippingInfo](#ShippingInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | String |  no  |  |
+ | address1 | String |  no  |  |
+ | gender | String? |  yes  |  |
+ | landmark | String? |  yes  |  |
+ | alternateMobileNumber | String? |  yes  |  |
+ | customerCode | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
+ | state | String |  no  |  |
+ | lastName | String? |  yes  |  |
+ | primaryEmail | String |  no  |  |
+ | slot | [[String: Any]]? |  yes  |  |
+ | city | String |  no  |  |
+ | shippingType | String? |  yes  |  |
+ | geoLocation | [String: Any]? |  yes  |  |
+ | address2 | String? |  yes  |  |
+ | alternateEmail | String? |  yes  |  |
+ | primaryMobileNumber | String |  no  |  |
+ | middleName | String? |  yes  |  |
+ | stateCode | String? |  yes  |  |
+ | title | String? |  yes  |  |
+ | externalCustomerCode | String? |  yes  |  |
+ | floorNo | String? |  yes  |  |
+ | firstName | String |  no  |  |
+ | houseNo | String? |  yes  |  |
+ | addressType | String? |  yes  |  |
+ | pincode | String |  no  |  |
 
 ---
 
@@ -5982,56 +5999,39 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | String |  no  |  |
- | alternateMobileNumber | String? |  yes  |  |
- | externalCustomerCode | String? |  yes  |  |
- | countryCode | String? |  yes  |  |
- | stateCode | String? |  yes  |  |
- | lastName | String? |  yes  |  |
- | gender | String? |  yes  |  |
- | city | String |  no  |  |
- | customerCode | String? |  yes  |  |
- | alternateEmail | String? |  yes  |  |
- | primaryEmail | String |  no  |  |
- | firstName | String |  no  |  |
- | floorNo | String? |  yes  |  |
- | state | String |  no  |  |
- | address1 | String |  no  |  |
- | primaryMobileNumber | String |  no  |  |
- | houseNo | String? |  yes  |  |
- | middleName | String? |  yes  |  |
- | title | String? |  yes  |  |
- | address2 | String? |  yes  |  |
  | country | String |  no  |  |
+ | address1 | String |  no  |  |
+ | gender | String? |  yes  |  |
+ | alternateMobileNumber | String? |  yes  |  |
+ | customerCode | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
+ | state | String |  no  |  |
+ | lastName | String? |  yes  |  |
+ | primaryEmail | String |  no  |  |
+ | city | String |  no  |  |
+ | address2 | String? |  yes  |  |
+ | alternateEmail | String? |  yes  |  |
+ | primaryMobileNumber | String |  no  |  |
+ | middleName | String? |  yes  |  |
+ | stateCode | String? |  yes  |  |
+ | title | String? |  yes  |  |
+ | externalCustomerCode | String? |  yes  |  |
+ | floorNo | String? |  yes  |  |
+ | firstName | String |  no  |  |
+ | houseNo | String? |  yes  |  |
+ | pincode | String |  no  |  |
 
 ---
 
 
  
  
- #### [PaymentMethod](#PaymentMethod)
+ #### [TaxInfo](#TaxInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mode | String |  no  |  |
- | name | String |  no  |  |
- | refundBy | String |  no  |  |
- | meta | [String: Any]? |  yes  |  |
- | collectBy | String |  no  |  |
- | transactionData | [String: Any]? |  yes  |  |
- | amount | Double |  no  |  |
-
----
-
-
- 
- 
- #### [PaymentInfo](#PaymentInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | paymentMethods | [[PaymentMethod](#PaymentMethod)]? |  yes  |  |
- | primaryMode | String |  no  |  |
+ | gstin | String? |  yes  |  |
+ | b2BGstinNumber | String? |  yes  |  |
 
 ---
 
@@ -6042,16 +6042,16 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shippingInfo | [ShippingInfo](#ShippingInfo) |  no  |  |
- | charges | [[Charge](#Charge)] |  no  |  |
- | currencyInfo | [String: Any]? |  yes  |  |
- | taxInfo | [TaxInfo](#TaxInfo)? |  yes  |  |
- | shipments | [[Shipment](#Shipment)] |  no  |  |
- | meta | [String: Any]? |  yes  |  |
- | billingInfo | [BillingInfo](#BillingInfo) |  no  |  |
- | externalCreationDate | String? |  yes  |  |
  | paymentInfo | [PaymentInfo](#PaymentInfo) |  no  |  |
+ | shipments | [[Shipment](#Shipment)] |  no  |  |
+ | shippingInfo | [ShippingInfo](#ShippingInfo) |  no  |  |
+ | currencyInfo | [String: Any]? |  yes  |  |
+ | billingInfo | [BillingInfo](#BillingInfo) |  no  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | externalCreationDate | String? |  yes  |  |
+ | taxInfo | [TaxInfo](#TaxInfo)? |  yes  |  |
  | externalOrderId | String? |  yes  |  |
+ | charges | [[Charge](#Charge)] |  no  |  |
 
 ---
 
@@ -6062,13 +6062,13 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | status | Int |  no  |  |
  | stackTrace | String? |  yes  |  |
+ | meta | String? |  yes  |  |
  | info | [String: Any]? |  yes  |  |
  | requestId | String? |  yes  |  |
- | meta | String? |  yes  |  |
- | status | Int |  no  |  |
- | code | String? |  yes  |  |
  | message | String |  no  |  |
+ | code | String? |  yes  |  |
  | exception | String? |  yes  |  |
 
 ---
@@ -6081,8 +6081,8 @@ Delivery Partner AWB status updates of the shipment!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | collectBy | String? |  yes  |  |
- | mode | String? |  yes  |  |
  | refundBy | String? |  yes  |  |
+ | mode | String? |  yes  |  |
 
 ---
 
@@ -6093,9 +6093,9 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | source | String? |  yes  |  |
  | modeOfPayment | String? |  yes  |  |
  | paymentMethods | [[PaymentMethods](#PaymentMethods)]? |  yes  |  |
- | source | String? |  yes  |  |
 
 ---
 
@@ -6117,12 +6117,12 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logoUrl | [String: Any]? |  yes  |  |
  | paymentInfo | [CreateChannelPaymentInfo](#CreateChannelPaymentInfo)? |  yes  |  |
- | dpConfiguration | [DpConfiguration](#DpConfiguration)? |  yes  |  |
- | lockStates | [String]? |  yes  |  |
- | locationReassignment | Bool? |  yes  |  |
+ | logoUrl | [String: Any]? |  yes  |  |
  | shipmentAssignment | String? |  yes  |  |
+ | locationReassignment | Bool? |  yes  |  |
+ | lockStates | [String]? |  yes  |  |
+ | dpConfiguration | [DpConfiguration](#DpConfiguration)? |  yes  |  |
 
 ---
 
@@ -6144,8 +6144,8 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isInserted | Bool? |  yes  |  |
  | isUpserted | Bool? |  yes  |  |
+ | isInserted | Bool? |  yes  |  |
  | acknowledged | Bool? |  yes  |  |
 
 ---
@@ -6214,10 +6214,10 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | startDate | String |  no  |  |
- | endDate | String |  no  |  |
- | mobile | Int |  no  |  |
  | orderDetails | [[FyndOrderIdList](#FyndOrderIdList)]? |  yes  |  |
+ | mobile | Int |  no  |  |
+ | endDate | String |  no  |  |
+ | startDate | String |  no  |  |
 
 ---
 
@@ -8359,16 +8359,16 @@ Delivery Partner AWB status updates of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | lastLocationRecievedAt | String? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | accountName | String? |  yes  |  |
- | shipmentType | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
- | updatedTime | String? |  yes  |  |
- | reason | String? |  yes  |  |
- | status | String? |  yes  |  |
- | rawStatus | String? |  yes  |  |
+ | shipmentType | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | lastLocationRecievedAt | String? |  yes  |  |
  | awb | String? |  yes  |  |
+ | rawStatus | String? |  yes  |  |
+ | status | String? |  yes  |  |
+ | accountName | String? |  yes  |  |
+ | reason | String? |  yes  |  |
+ | updatedTime | String? |  yes  |  |
 
 ---
 

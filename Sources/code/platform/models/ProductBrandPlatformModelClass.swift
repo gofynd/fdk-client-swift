@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var logo: Media1?
 
-        public var action: Action?
-
         public var uid: Int?
+
+        public var action: Action?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
             case logo
 
-            case action
-
             case uid
+
+            case action
         }
 
         public init(action: Action? = nil, logo: Media1? = nil, name: String? = nil, uid: Int? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.logo = logo
 
-            self.action = action
-
             self.uid = uid
+
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }
