@@ -10,8 +10,6 @@ public extension PlatformClient {
     class CategoryItems: Codable {
         public var uid: Int?
 
-        public var action: Action?
-
         public var banners: ImageUrls?
 
         public var slug: String?
@@ -20,10 +18,10 @@ public extension PlatformClient {
 
         public var name: String?
 
+        public var action: Action?
+
         public enum CodingKeys: String, CodingKey {
             case uid
-
-            case action
 
             case banners
 
@@ -32,12 +30,12 @@ public extension PlatformClient {
             case childs
 
             case name
+
+            case action
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [Child]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
             self.uid = uid
-
-            self.action = action
 
             self.banners = banners
 
@@ -46,6 +44,8 @@ public extension PlatformClient {
             self.childs = childs
 
             self.name = name
+
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,14 +53,6 @@ public extension PlatformClient {
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,14 +90,20 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                action = try container.decode(Action.self, forKey: .action)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
@@ -114,6 +112,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(childs, forKey: .childs)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }

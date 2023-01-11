@@ -8,11 +8,13 @@ public extension PlatformClient {
      */
 
     class ShipmentConfig: Codable {
+        public var identifier: String
+
         public var journey: String
 
-        public var source: String
+        public var locationDetails: LocationDetails?
 
-        public var action: String
+        public var source: String
 
         public var paymentMode: String
 
@@ -20,16 +22,16 @@ public extension PlatformClient {
 
         public var toPincode: String
 
-        public var locationDetails: LocationDetails?
-
-        public var identifier: String
+        public var action: String
 
         public enum CodingKeys: String, CodingKey {
+            case identifier
+
             case journey
 
-            case source
+            case locationDetails = "location_details"
 
-            case action
+            case source
 
             case paymentMode = "payment_mode"
 
@@ -37,17 +39,17 @@ public extension PlatformClient {
 
             case toPincode = "to_pincode"
 
-            case locationDetails = "location_details"
-
-            case identifier
+            case action
         }
 
         public init(action: String, identifier: String, journey: String, locationDetails: LocationDetails? = nil, paymentMode: String, shipment: [ShipmentDetails], source: String, toPincode: String) {
+            self.identifier = identifier
+
             self.journey = journey
 
-            self.source = source
+            self.locationDetails = locationDetails
 
-            self.action = action
+            self.source = source
 
             self.paymentMode = paymentMode
 
@@ -55,25 +57,15 @@ public extension PlatformClient {
 
             self.toPincode = toPincode
 
-            self.locationDetails = locationDetails
-
-            self.identifier = identifier
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            identifier = try container.decode(String.self, forKey: .identifier)
+
             journey = try container.decode(String.self, forKey: .journey)
-
-            source = try container.decode(String.self, forKey: .source)
-
-            action = try container.decode(String.self, forKey: .action)
-
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            shipment = try container.decode([ShipmentDetails].self, forKey: .shipment)
-
-            toPincode = try container.decode(String.self, forKey: .toPincode)
 
             do {
                 locationDetails = try container.decode(LocationDetails.self, forKey: .locationDetails)
@@ -83,17 +75,27 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            identifier = try container.decode(String.self, forKey: .identifier)
+            source = try container.decode(String.self, forKey: .source)
+
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            shipment = try container.decode([ShipmentDetails].self, forKey: .shipment)
+
+            toPincode = try container.decode(String.self, forKey: .toPincode)
+
+            action = try container.decode(String.self, forKey: .action)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
+
             try? container.encodeIfPresent(journey, forKey: .journey)
 
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(source, forKey: .source)
 
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
@@ -101,9 +103,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
-            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
-
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }

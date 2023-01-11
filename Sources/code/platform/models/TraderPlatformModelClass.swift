@@ -10,24 +10,24 @@ public extension PlatformClient {
     class Trader: Codable {
         public var type: String?
 
-        public var name: [String: Any]
-
         public var address: [String]?
+
+        public var name: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case name
-
             case address
+
+            case name
         }
 
         public init(address: [String]? = nil, name: [String: Any], type: String? = nil) {
             self.type = type
 
-            self.name = name
-
             self.address = address
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,8 +41,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode([String: Any].self, forKey: .name)
-
             do {
                 address = try container.decode([String].self, forKey: .address)
 
@@ -50,6 +48,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            name = try container.decode([String: Any].self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -57,9 +57,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

@@ -10,7 +10,7 @@ public extension PlatformClient {
     class SecondLevelChild: Codable {
         public var uid: Int?
 
-        public var action: Action?
+        public var customJson: [String: Any]?
 
         public var banners: ImageUrls?
 
@@ -18,14 +18,14 @@ public extension PlatformClient {
 
         public var childs: [ThirdLevelChild]?
 
-        public var customJson: [String: Any]?
-
         public var name: String?
+
+        public var action: Action?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
-            case action
+            case customJson = "_custom_json"
 
             case banners
 
@@ -33,15 +33,15 @@ public extension PlatformClient {
 
             case childs
 
-            case customJson = "_custom_json"
-
             case name
+
+            case action
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [ThirdLevelChild]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             self.uid = uid
 
-            self.action = action
+            self.customJson = customJson
 
             self.banners = banners
 
@@ -49,9 +49,9 @@ public extension PlatformClient {
 
             self.childs = childs
 
-            self.customJson = customJson
-
             self.name = name
+
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
@@ -66,7 +66,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +98,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,7 +106,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,7 +119,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
@@ -127,9 +127,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }

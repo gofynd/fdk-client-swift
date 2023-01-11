@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var affiliateOrderId: String?
 
-        public var affiliateShipmentId: String?
-
         public var reasonText: String
+
+        public var affiliateShipmentId: String?
 
         public var affiliateBagId: String?
 
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case affiliateOrderId = "affiliate_order_id"
 
-            case affiliateShipmentId = "affiliate_shipment_id"
-
             case reasonText = "reason_text"
+
+            case affiliateShipmentId = "affiliate_shipment_id"
 
             case affiliateBagId = "affiliate_bag_id"
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
 
             self.affiliateOrderId = affiliateOrderId
 
-            self.affiliateShipmentId = affiliateShipmentId
-
             self.reasonText = reasonText
+
+            self.affiliateShipmentId = affiliateShipmentId
 
             self.affiliateBagId = affiliateBagId
 
@@ -67,6 +67,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            reasonText = try container.decode(String.self, forKey: .reasonText)
+
             do {
                 affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
 
@@ -74,8 +76,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            reasonText = try container.decode(String.self, forKey: .reasonText)
 
             do {
                 affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
@@ -101,9 +101,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
 
-            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
-
             try? container.encodeIfPresent(reasonText, forKey: .reasonText)
+
+            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
 
             try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
