@@ -10,9 +10,9 @@ public extension PlatformClient {
     class BulkResponse: Codable {
         public var modifiedBy: UserInfo1?
 
-        public var isActive: Bool?
-
         public var createdBy: UserInfo1?
+
+        public var isActive: Bool?
 
         public var batchId: String
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case modifiedBy = "modified_by"
 
-            case isActive = "is_active"
-
             case createdBy = "created_by"
+
+            case isActive = "is_active"
 
             case batchId = "batch_id"
 
@@ -37,9 +37,9 @@ public extension PlatformClient {
         public init(batchId: String, createdBy: UserInfo1? = nil, createdOn: String, isActive: Bool? = nil, modifiedBy: UserInfo1? = nil, modifiedOn: String? = nil) {
             self.modifiedBy = modifiedBy
 
-            self.isActive = isActive
-
             self.createdBy = createdBy
+
+            self.isActive = isActive
 
             self.batchId = batchId
 
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                createdBy = try container.decode(UserInfo1.self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                createdBy = try container.decode(UserInfo1.self, forKey: .createdBy)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encode(modifiedBy, forKey: .modifiedBy)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 

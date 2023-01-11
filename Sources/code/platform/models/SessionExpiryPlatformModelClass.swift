@@ -1,39 +1,40 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: Timestamp
-         Used By: Order
+         Model: SessionExpiry
+         Used By: User
      */
-    class Timestamp: Codable {
-        public var showPromise: Bool?
 
-        public var min: String?
+    class SessionExpiry: Codable {
+        public var duration: Int?
 
-        public var max: String?
+        public var type: String?
+
+        public var isRolling: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case showPromise = "show_promise"
+            case duration
 
-            case min
+            case type
 
-            case max
+            case isRolling = "is_rolling"
         }
 
-        public init(max: String? = nil, min: String? = nil, showPromise: Bool? = nil) {
-            self.showPromise = showPromise
+        public init(duration: Int? = nil, isRolling: Bool? = nil, type: String? = nil) {
+            self.duration = duration
 
-            self.min = min
+            self.type = type
 
-            self.max = max
+            self.isRolling = isRolling
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                showPromise = try container.decode(Bool.self, forKey: .showPromise)
+                duration = try container.decode(Int.self, forKey: .duration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +42,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                min = try container.decode(String.self, forKey: .min)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +50,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                max = try container.decode(String.self, forKey: .max)
+                isRolling = try container.decode(Bool.self, forKey: .isRolling)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +61,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(showPromise, forKey: .showPromise)
+            try? container.encodeIfPresent(duration, forKey: .duration)
 
-            try? container.encodeIfPresent(min, forKey: .min)
+            try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encodeIfPresent(isRolling, forKey: .isRolling)
         }
     }
 }

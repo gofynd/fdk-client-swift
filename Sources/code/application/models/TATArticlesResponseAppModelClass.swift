@@ -11,13 +11,13 @@ public extension ApplicationClient {
 
         public var manufacturingTime: Int?
 
-        public var manufacturingTimeSeconds: Int?
+        public var manufacturingTimeUnit: String?
 
         public var promise: TATPromiseResponse?
 
         public var isCodAvailable: Bool?
 
-        public var manufacturingTimeUnit: String?
+        public var manufacturingTimeSeconds: Int?
 
         public var error: TATErrorSchemaResponse?
 
@@ -26,13 +26,13 @@ public extension ApplicationClient {
 
             case manufacturingTime = "manufacturing_time"
 
-            case manufacturingTimeSeconds = "_manufacturing_time_seconds"
+            case manufacturingTimeUnit = "manufacturing_time_unit"
 
             case promise
 
             case isCodAvailable = "is_cod_available"
 
-            case manufacturingTimeUnit = "manufacturing_time_unit"
+            case manufacturingTimeSeconds = "_manufacturing_time_seconds"
 
             case error
         }
@@ -42,13 +42,13 @@ public extension ApplicationClient {
 
             self.manufacturingTime = manufacturingTime
 
-            self.manufacturingTimeSeconds = manufacturingTimeSeconds
+            self.manufacturingTimeUnit = manufacturingTimeUnit
 
             self.promise = promise
 
             self.isCodAvailable = isCodAvailable
 
-            self.manufacturingTimeUnit = manufacturingTimeUnit
+            self.manufacturingTimeSeconds = manufacturingTimeSeconds
 
             self.error = error
         }
@@ -73,7 +73,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                manufacturingTimeSeconds = try container.decode(Int.self, forKey: .manufacturingTimeSeconds)
+                manufacturingTimeUnit = try container.decode(String.self, forKey: .manufacturingTimeUnit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                manufacturingTimeUnit = try container.decode(String.self, forKey: .manufacturingTimeUnit)
+                manufacturingTimeSeconds = try container.decode(Int.self, forKey: .manufacturingTimeSeconds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,13 +120,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(manufacturingTime, forKey: .manufacturingTime)
 
-            try? container.encodeIfPresent(manufacturingTimeSeconds, forKey: .manufacturingTimeSeconds)
+            try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
 
             try? container.encodeIfPresent(promise, forKey: .promise)
 
             try? container.encodeIfPresent(isCodAvailable, forKey: .isCodAvailable)
 
-            try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
+            try? container.encodeIfPresent(manufacturingTimeSeconds, forKey: .manufacturingTimeSeconds)
 
             try? container.encodeIfPresent(error, forKey: .error)
         }

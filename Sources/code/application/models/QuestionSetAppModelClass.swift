@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: EffectiveValues
+         Model: QuestionSet
          Used By: Order
      */
-    class EffectiveValues: Codable {
-        public var max: Double?
+    class QuestionSet: Codable {
+        public var displayName: String?
 
-        public var min: Double?
+        public var id: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case max
+            case displayName = "display_name"
 
-            case min
+            case id
         }
 
-        public init(max: Double? = nil, min: Double? = nil) {
-            self.max = max
+        public init(displayName: String? = nil, id: Int? = nil) {
+            self.displayName = displayName
 
-            self.min = min
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                max = try container.decode(Double.self, forKey: .max)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(min, forKey: .min)
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }
