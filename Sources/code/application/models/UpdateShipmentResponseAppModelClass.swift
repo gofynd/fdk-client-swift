@@ -7,30 +7,32 @@ public extension ApplicationClient {
          Used By: Order
      */
     class UpdateShipmentResponse: Codable {
+        public var status: Bool
+
         public var message: [String]
 
         public var finalState: [String: Any]?
 
-        public var status: Bool
-
         public enum CodingKeys: String, CodingKey {
+            case status
+
             case message
 
             case finalState = "final_state"
-
-            case status
         }
 
         public init(finalState: [String: Any]? = nil, message: [String], status: Bool) {
+            self.status = status
+
             self.message = message
 
             self.finalState = finalState
-
-            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            status = try container.decode(Bool.self, forKey: .status)
 
             message = try container.decode([String].self, forKey: .message)
 
@@ -41,18 +43,16 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            status = try container.decode(Bool.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(status, forKey: .status)
+
             try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(finalState, forKey: .finalState)
-
-            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

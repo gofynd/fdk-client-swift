@@ -7,11 +7,7 @@ public extension ApplicationClient {
          Used By: Order
      */
     class Bags: Codable {
-        public var deliveryDate: String?
-
-        public var appliedPromos: [AppliedPromos]?
-
-        public var currentStatus: CurrentStatus?
+        public var id: Int?
 
         public var parentPromoBags: [String: Any]?
 
@@ -19,28 +15,28 @@ public extension ApplicationClient {
 
         public var lineNumber: Int?
 
-        public var returnableDate: String?
-
-        public var prices: Prices?
-
-        public var item: Item?
-
         public var financialBreakup: [FinancialBreakup]?
-
-        public var canCancel: Bool?
-
-        public var id: Int?
-
-        public var canReturn: Bool?
 
         public var quantity: Int?
 
+        public var prices: Prices?
+
+        public var returnableDate: String?
+
+        public var canCancel: Bool?
+
+        public var appliedPromos: [AppliedPromos]?
+
+        public var canReturn: Bool?
+
+        public var currentStatus: CurrentStatus?
+
+        public var deliveryDate: String?
+
+        public var item: Item?
+
         public enum CodingKeys: String, CodingKey {
-            case deliveryDate = "delivery_date"
-
-            case appliedPromos = "applied_promos"
-
-            case currentStatus = "current_status"
+            case id
 
             case parentPromoBags = "parent_promo_bags"
 
@@ -48,29 +44,29 @@ public extension ApplicationClient {
 
             case lineNumber = "line_number"
 
-            case returnableDate = "returnable_date"
+            case financialBreakup = "financial_breakup"
+
+            case quantity
 
             case prices
 
-            case item
-
-            case financialBreakup = "financial_breakup"
+            case returnableDate = "returnable_date"
 
             case canCancel = "can_cancel"
 
-            case id
+            case appliedPromos = "applied_promos"
 
             case canReturn = "can_return"
 
-            case quantity
+            case currentStatus = "current_status"
+
+            case deliveryDate = "delivery_date"
+
+            case item
         }
 
         public init(appliedPromos: [AppliedPromos]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: CurrentStatus? = nil, deliveryDate: String? = nil, financialBreakup: [FinancialBreakup]? = nil, id: Int? = nil, item: Item? = nil, lineNumber: Int? = nil, parentPromoBags: [String: Any]? = nil, prices: Prices? = nil, quantity: Int? = nil, returnableDate: String? = nil, sellerIdentifier: String? = nil) {
-            self.deliveryDate = deliveryDate
-
-            self.appliedPromos = appliedPromos
-
-            self.currentStatus = currentStatus
+            self.id = id
 
             self.parentPromoBags = parentPromoBags
 
@@ -78,44 +74,32 @@ public extension ApplicationClient {
 
             self.lineNumber = lineNumber
 
-            self.returnableDate = returnableDate
+            self.financialBreakup = financialBreakup
+
+            self.quantity = quantity
 
             self.prices = prices
 
-            self.item = item
-
-            self.financialBreakup = financialBreakup
+            self.returnableDate = returnableDate
 
             self.canCancel = canCancel
 
-            self.id = id
+            self.appliedPromos = appliedPromos
 
             self.canReturn = canReturn
 
-            self.quantity = quantity
+            self.currentStatus = currentStatus
+
+            self.deliveryDate = deliveryDate
+
+            self.item = item
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                deliveryDate = try container.decode(String.self, forKey: .deliveryDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                appliedPromos = try container.decode([AppliedPromos].self, forKey: .appliedPromos)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currentStatus = try container.decode(CurrentStatus.self, forKey: .currentStatus)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,7 +131,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                returnableDate = try container.decode(String.self, forKey: .returnableDate)
+                financialBreakup = try container.decode([FinancialBreakup].self, forKey: .financialBreakup)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,15 +155,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                item = try container.decode(Item.self, forKey: .item)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                financialBreakup = try container.decode([FinancialBreakup].self, forKey: .financialBreakup)
+                returnableDate = try container.decode(String.self, forKey: .returnableDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +171,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                appliedPromos = try container.decode([AppliedPromos].self, forKey: .appliedPromos)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -203,7 +187,23 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                currentStatus = try container.decode(CurrentStatus.self, forKey: .currentStatus)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                deliveryDate = try container.decode(String.self, forKey: .deliveryDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                item = try container.decode(Item.self, forKey: .item)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -214,11 +214,7 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(deliveryDate, forKey: .deliveryDate)
-
-            try? container.encodeIfPresent(appliedPromos, forKey: .appliedPromos)
-
-            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(parentPromoBags, forKey: .parentPromoBags)
 
@@ -226,21 +222,25 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
 
-            try? container.encodeIfPresent(returnableDate, forKey: .returnableDate)
+            try? container.encodeIfPresent(financialBreakup, forKey: .financialBreakup)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(prices, forKey: .prices)
 
-            try? container.encodeIfPresent(item, forKey: .item)
-
-            try? container.encodeIfPresent(financialBreakup, forKey: .financialBreakup)
+            try? container.encodeIfPresent(returnableDate, forKey: .returnableDate)
 
             try? container.encodeIfPresent(canCancel, forKey: .canCancel)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(appliedPromos, forKey: .appliedPromos)
 
             try? container.encodeIfPresent(canReturn, forKey: .canReturn)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
+
+            try? container.encodeIfPresent(deliveryDate, forKey: .deliveryDate)
+
+            try? container.encodeIfPresent(item, forKey: .item)
         }
     }
 }

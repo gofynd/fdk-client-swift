@@ -10,30 +10,30 @@ public extension PlatformClient {
     class MetaDataListingFilterMetaResponse: Codable {
         public var units: [[String: Any]]?
 
+        public var key: String?
+
         public var filterTypes: [String]?
 
         public var display: String?
 
-        public var key: String?
-
         public enum CodingKeys: String, CodingKey {
             case units
+
+            case key
 
             case filterTypes = "filter_types"
 
             case display
-
-            case key
         }
 
         public init(display: String? = nil, filterTypes: [String]? = nil, key: String? = nil, units: [[String: Any]]? = nil) {
             self.units = units
 
+            self.key = key
+
             self.filterTypes = filterTypes
 
             self.display = display
-
-            self.key = key
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,6 +41,14 @@ public extension PlatformClient {
 
             do {
                 units = try container.decode([[String: Any]].self, forKey: .units)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,14 +70,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                key = try container.decode(String.self, forKey: .key)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -77,11 +77,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(units, forKey: .units)
 
+            try? container.encodeIfPresent(key, forKey: .key)
+
             try? container.encodeIfPresent(filterTypes, forKey: .filterTypes)
 
             try? container.encodeIfPresent(display, forKey: .display)
-
-            try? container.encodeIfPresent(key, forKey: .key)
         }
     }
 }
