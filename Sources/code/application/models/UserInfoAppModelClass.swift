@@ -7,18 +7,18 @@ public extension ApplicationClient {
          Used By: Order
      */
     class UserInfo: Codable {
-        public var gender: String?
-
         public var email: String?
+
+        public var gender: String?
 
         public var name: String?
 
         public var mobile: String?
 
         public enum CodingKeys: String, CodingKey {
-            case gender
-
             case email
+
+            case gender
 
             case name
 
@@ -26,9 +26,9 @@ public extension ApplicationClient {
         }
 
         public init(email: String? = nil, gender: String? = nil, mobile: String? = nil, name: String? = nil) {
-            self.gender = gender
-
             self.email = email
+
+            self.gender = gender
 
             self.name = name
 
@@ -39,7 +39,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                gender = try container.decode(String.self, forKey: .gender)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                gender = try container.decode(String.self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(gender, forKey: .gender)
-
             try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encodeIfPresent(gender, forKey: .gender)
 
             try? container.encodeIfPresent(name, forKey: .name)
 

@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: JioCodeUpsertPayload
-         Used By: Orders
+         Used By: Order
      */
 
     class JioCodeUpsertPayload: Codable {

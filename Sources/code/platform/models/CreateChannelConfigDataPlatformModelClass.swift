@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: CreateChannelConfigData
-         Used By: OrderManage
+         Used By: Order
      */
 
     class CreateChannelConfigData: Codable {

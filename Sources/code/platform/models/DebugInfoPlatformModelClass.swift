@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: DebugInfo
-         Used By: Orders
+         Used By: Order
      */
 
     class DebugInfo: Codable {

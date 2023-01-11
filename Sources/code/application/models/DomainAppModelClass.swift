@@ -17,6 +17,8 @@ public extension ApplicationClient {
 
         public var name: String?
 
+        public var isPredefined: Bool?
+
         public enum CodingKeys: String, CodingKey {
             case verified
 
@@ -27,9 +29,11 @@ public extension ApplicationClient {
             case id = "_id"
 
             case name
+
+            case isPredefined = "is_predefined"
         }
 
-        public init(isPrimary: Bool? = nil, isShortlink: Bool? = nil, name: String? = nil, verified: Bool? = nil, id: String? = nil) {
+        public init(isPredefined: Bool? = nil, isPrimary: Bool? = nil, isShortlink: Bool? = nil, name: String? = nil, verified: Bool? = nil, id: String? = nil) {
             self.verified = verified
 
             self.isPrimary = isPrimary
@@ -39,6 +43,8 @@ public extension ApplicationClient {
             self.id = id
 
             self.name = name
+
+            self.isPredefined = isPredefined
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,6 +89,14 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                isPredefined = try container.decode(Bool.self, forKey: .isPredefined)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,6 +111,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(isPredefined, forKey: .isPredefined)
         }
     }
 }

@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: ErrorDetail
-         Used By: OrderManage
+         Used By: Order
      */
 
     class ErrorDetail: Codable {

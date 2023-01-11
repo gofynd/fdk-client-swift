@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var subtitle: String?
 
-        public var remove: DisplayMetaDict?
+        public var auto: DisplayMetaDict?
 
         public var title: String?
 
-        public var auto: DisplayMetaDict?
+        public var remove: DisplayMetaDict?
 
         public var description: String?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case subtitle
 
-            case remove
+            case auto
 
             case title
 
-            case auto
+            case remove
 
             case description
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.subtitle = subtitle
 
-            self.remove = remove
+            self.auto = auto
 
             self.title = title
 
-            self.auto = auto
+            self.remove = remove
 
             self.description = description
         }
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                remove = try container.decode(DisplayMetaDict.self, forKey: .remove)
+                auto = try container.decode(DisplayMetaDict.self, forKey: .auto)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                auto = try container.decode(DisplayMetaDict.self, forKey: .auto)
+                remove = try container.decode(DisplayMetaDict.self, forKey: .remove)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,11 +107,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
-            try? container.encodeIfPresent(remove, forKey: .remove)
+            try? container.encodeIfPresent(auto, forKey: .auto)
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(auto, forKey: .auto)
+            try? container.encodeIfPresent(remove, forKey: .remove)
 
             try? container.encodeIfPresent(description, forKey: .description)
         }

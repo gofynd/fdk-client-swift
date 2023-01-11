@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: CreateChannelConifgErrorResponse
-         Used By: OrderManage
+         Used By: Order
      */
 
     class CreateChannelConifgErrorResponse: Codable {

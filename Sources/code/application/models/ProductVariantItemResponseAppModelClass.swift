@@ -13,17 +13,17 @@ public extension ApplicationClient {
 
         public var medias: [Media]?
 
-        public var value: String?
+        public var uid: Int?
 
         public var slug: String?
 
-        public var colorName: String?
-
-        public var name: String?
+        public var value: String?
 
         public var isAvailable: Bool?
 
-        public var uid: Int?
+        public var name: String?
+
+        public var colorName: String?
 
         public enum CodingKeys: String, CodingKey {
             case color
@@ -32,17 +32,17 @@ public extension ApplicationClient {
 
             case medias
 
-            case value
+            case uid
 
             case slug
 
-            case colorName = "color_name"
-
-            case name
+            case value
 
             case isAvailable = "is_available"
 
-            case uid
+            case name
+
+            case colorName = "color_name"
         }
 
         public init(action: ProductListingAction? = nil, color: String? = nil, colorName: String? = nil, isAvailable: Bool? = nil, medias: [Media]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, value: String? = nil) {
@@ -52,17 +52,17 @@ public extension ApplicationClient {
 
             self.medias = medias
 
-            self.value = value
+            self.uid = uid
 
             self.slug = slug
 
-            self.colorName = colorName
-
-            self.name = name
+            self.value = value
 
             self.isAvailable = isAvailable
 
-            self.uid = uid
+            self.name = name
+
+            self.colorName = colorName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -93,7 +93,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,15 +109,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                colorName = try container.decode(String.self, forKey: .colorName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,7 +125,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                colorName = try container.decode(String.self, forKey: .colorName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,17 +150,17 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(medias, forKey: .medias)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(colorName, forKey: .colorName)
-
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(colorName, forKey: .colorName)
         }
     }
 }

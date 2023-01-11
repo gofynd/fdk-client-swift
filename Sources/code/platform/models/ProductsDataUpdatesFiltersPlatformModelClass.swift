@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: ProductsDataUpdatesFilters
-         Used By: OrderManage
+         Used By: Order
      */
 
     class ProductsDataUpdatesFilters: Codable {

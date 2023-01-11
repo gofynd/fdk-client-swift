@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: UploadConsent
-         Used By: OrderManage
+         Used By: Order
      */
 
     class UploadConsent: Codable {

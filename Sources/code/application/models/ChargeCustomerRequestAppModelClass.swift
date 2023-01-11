@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var transactionToken: String?
 
-        public var amount: Int
-
         public var aggregator: String
+
+        public var amount: Int
 
         public var orderId: String
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case transactionToken = "transaction_token"
 
-            case amount
-
             case aggregator
+
+            case amount
 
             case orderId = "order_id"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.transactionToken = transactionToken
 
-            self.amount = amount
-
             self.aggregator = aggregator
+
+            self.amount = amount
 
             self.orderId = orderId
         }
@@ -60,9 +60,9 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            amount = try container.decode(Int.self, forKey: .amount)
-
             aggregator = try container.decode(String.self, forKey: .aggregator)
+
+            amount = try container.decode(Int.self, forKey: .amount)
 
             orderId = try container.decode(String.self, forKey: .orderId)
         }
@@ -74,9 +74,9 @@ public extension ApplicationClient {
 
             try? container.encode(transactionToken, forKey: .transactionToken)
 
-            try? container.encode(amount, forKey: .amount)
-
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encode(amount, forKey: .amount)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
         }

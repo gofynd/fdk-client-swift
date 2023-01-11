@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: DateRange
-         Used By: Orders
+         Used By: Order
      */
 
     class DateRange: Codable {

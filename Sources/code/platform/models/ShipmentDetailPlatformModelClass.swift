@@ -4,15 +4,15 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: ShipmentDetail
-         Used By: OrderManage
+         Used By: Order
      */
 
     class ShipmentDetail: Codable {
         public var shipmentId: String?
 
-        public var status: String?
-
         public var bagList: [Int]?
+
+        public var status: String?
 
         public var id: Int
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case shipmentId = "shipment_id"
 
-            case status
-
             case bagList = "bag_list"
+
+            case status
 
             case id
 
@@ -37,9 +37,9 @@ public extension PlatformClient {
         public init(bagList: [Int]? = nil, id: Int, meta: Meta, remarks: String? = nil, shipmentId: String? = nil, status: String? = nil) {
             self.shipmentId = shipmentId
 
-            self.status = status
-
             self.bagList = bagList
+
+            self.status = status
 
             self.id = id
 
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                bagList = try container.decode([Int].self, forKey: .bagList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                bagList = try container.decode([Int].self, forKey: .bagList)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(bagList, forKey: .bagList)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(id, forKey: .id)
 

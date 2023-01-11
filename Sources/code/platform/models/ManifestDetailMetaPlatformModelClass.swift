@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: ManifestDetailMeta
-         Used By: Orders
+         Used By: Order
      */
 
     class ManifestDetailMeta: Codable {

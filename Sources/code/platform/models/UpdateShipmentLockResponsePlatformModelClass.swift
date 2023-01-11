@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: UpdateShipmentLockResponse
-         Used By: OrderManage
+         Used By: Order
      */
 
     class UpdateShipmentLockResponse: Codable {

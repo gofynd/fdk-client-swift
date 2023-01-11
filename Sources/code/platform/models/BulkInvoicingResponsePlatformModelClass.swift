@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: BulkInvoicingResponse
-         Used By: Orders
+         Used By: Order
      */
 
     class BulkInvoicingResponse: Codable {

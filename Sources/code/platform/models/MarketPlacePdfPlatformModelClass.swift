@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: MarketPlacePdf
-         Used By: OrderManage
+         Used By: Order
      */
 
     class MarketPlacePdf: Codable {

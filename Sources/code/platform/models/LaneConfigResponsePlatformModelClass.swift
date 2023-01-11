@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: LaneConfigResponse
-         Used By: Orders
+         Used By: Order
      */
 
     class LaneConfigResponse: Codable {

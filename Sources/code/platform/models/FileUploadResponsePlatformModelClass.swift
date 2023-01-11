@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: FileUploadResponse
-         Used By: Orders
+         Used By: Order
      */
 
     class FileUploadResponse: Codable {

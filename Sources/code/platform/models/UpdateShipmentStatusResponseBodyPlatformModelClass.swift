@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: UpdateShipmentStatusResponseBody
-         Used By: OrderManage
+         Used By: Order
      */
 
     class UpdateShipmentStatusResponseBody: Codable {

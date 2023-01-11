@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: AffiliateInventoryPaymentConfig
-         Used By: OrderManage
+         Used By: Order
      */
 
     class AffiliateInventoryPaymentConfig: Codable {
