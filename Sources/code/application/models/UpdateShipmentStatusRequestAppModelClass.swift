@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var statuses: [StatuesRequest]?
 
-        public var forceTransition: Bool?
-
         public var task: Bool?
+
+        public var forceTransition: Bool?
 
         public var unlockBeforeTransition: Bool?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case statuses
 
-            case forceTransition = "force_transition"
-
             case task
+
+            case forceTransition = "force_transition"
 
             case unlockBeforeTransition = "unlock_before_transition"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.statuses = statuses
 
-            self.forceTransition = forceTransition
-
             self.task = task
+
+            self.forceTransition = forceTransition
 
             self.unlockBeforeTransition = unlockBeforeTransition
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
+                task = try container.decode(Bool.self, forKey: .task)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                task = try container.decode(Bool.self, forKey: .task)
+                forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(statuses, forKey: .statuses)
 
-            try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
-
             try? container.encodeIfPresent(task, forKey: .task)
+
+            try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
 
             try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
         }
