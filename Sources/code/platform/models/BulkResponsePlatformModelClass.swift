@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var batchId: String
 
-        public var modifiedOn: String?
+        public var createdOn: String
 
         public var createdBy: UserInfo1?
 
-        public var createdOn: String
+        public var modifiedOn: String?
 
         public var modifiedBy: UserInfo1?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case batchId = "batch_id"
 
-            case modifiedOn = "modified_on"
+            case createdOn = "created_on"
 
             case createdBy = "created_by"
 
-            case createdOn = "created_on"
+            case modifiedOn = "modified_on"
 
             case modifiedBy = "modified_by"
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.batchId = batchId
 
-            self.modifiedOn = modifiedOn
+            self.createdOn = createdOn
 
             self.createdBy = createdBy
 
-            self.createdOn = createdOn
+            self.modifiedOn = modifiedOn
 
             self.modifiedBy = modifiedBy
         }
@@ -61,13 +61,7 @@ public extension PlatformClient {
 
             batchId = try container.decode(String.self, forKey: .batchId)
 
-            do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            createdOn = try container.decode(String.self, forKey: .createdOn)
 
             do {
                 createdBy = try container.decode(UserInfo1.self, forKey: .createdBy)
@@ -77,7 +71,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            createdOn = try container.decode(String.self, forKey: .createdOn)
+            do {
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 modifiedBy = try container.decode(UserInfo1.self, forKey: .modifiedBy)
@@ -95,11 +95,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encode(modifiedBy, forKey: .modifiedBy)
         }
