@@ -9,48 +9,48 @@ public extension ApplicationClient {
     class ProductSize: Codable {
         public var sellerIdentifiers: [String]?
 
-        public var dimension: Dimension?
-
-        public var display: String?
+        public var weight: Weight?
 
         public var isAvailable: Bool?
+
+        public var dimension: Dimension?
 
         public var value: String?
 
         public var quantity: Int?
 
-        public var weight: Weight?
+        public var display: String?
 
         public enum CodingKeys: String, CodingKey {
             case sellerIdentifiers = "seller_identifiers"
 
-            case dimension
-
-            case display
+            case weight
 
             case isAvailable = "is_available"
+
+            case dimension
 
             case value
 
             case quantity
 
-            case weight
+            case display
         }
 
         public init(dimension: Dimension? = nil, display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, sellerIdentifiers: [String]? = nil, value: String? = nil, weight: Weight? = nil) {
             self.sellerIdentifiers = sellerIdentifiers
 
-            self.dimension = dimension
-
-            self.display = display
+            self.weight = weight
 
             self.isAvailable = isAvailable
+
+            self.dimension = dimension
 
             self.value = value
 
             self.quantity = quantity
 
-            self.weight = weight
+            self.display = display
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,15 +65,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                dimension = try container.decode(Dimension.self, forKey: .dimension)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                display = try container.decode(String.self, forKey: .display)
+                weight = try container.decode(Weight.self, forKey: .weight)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,6 +74,14 @@ public extension ApplicationClient {
 
             do {
                 isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dimension = try container.decode(Dimension.self, forKey: .dimension)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                weight = try container.decode(Weight.self, forKey: .weight)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,17 +118,17 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
 
-            try? container.encodeIfPresent(dimension, forKey: .dimension)
-
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(weight, forKey: .weight)
 
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+
+            try? container.encodeIfPresent(dimension, forKey: .dimension)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(weight, forKey: .weight)
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 }

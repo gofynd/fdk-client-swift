@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class CurrentStatus: Codable {
         public var name: String?
 
-        public var journeyType: String?
-
         public var status: String?
+
+        public var journeyType: String?
 
         public var updatedAt: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case journeyType = "journey_type"
-
             case status
+
+            case journeyType = "journey_type"
 
             case updatedAt = "updated_at"
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(journeyType: String? = nil, name: String? = nil, status: String? = nil, updatedAt: String? = nil) {
             self.name = name
 
-            self.journeyType = journeyType
-
             self.status = status
+
+            self.journeyType = journeyType
 
             self.updatedAt = updatedAt
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                journeyType = try container.decode(String.self, forKey: .journeyType)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                journeyType = try container.decode(String.self, forKey: .journeyType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
         }
