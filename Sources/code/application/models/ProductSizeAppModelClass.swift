@@ -11,13 +11,13 @@ public extension ApplicationClient {
 
         public var display: String?
 
-        public var dimension: Dimension?
-
         public var isAvailable: Bool?
 
         public var weight: Weight?
 
         public var value: String?
+
+        public var dimension: Dimension?
 
         public var sellerIdentifiers: [String]?
 
@@ -26,13 +26,13 @@ public extension ApplicationClient {
 
             case display
 
-            case dimension
-
             case isAvailable = "is_available"
 
             case weight
 
             case value
+
+            case dimension
 
             case sellerIdentifiers = "seller_identifiers"
         }
@@ -42,13 +42,13 @@ public extension ApplicationClient {
 
             self.display = display
 
-            self.dimension = dimension
-
             self.isAvailable = isAvailable
 
             self.weight = weight
 
             self.value = value
+
+            self.dimension = dimension
 
             self.sellerIdentifiers = sellerIdentifiers
         }
@@ -66,14 +66,6 @@ public extension ApplicationClient {
 
             do {
                 display = try container.decode(String.self, forKey: .display)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dimension = try container.decode(Dimension.self, forKey: .dimension)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,6 +97,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                dimension = try container.decode(Dimension.self, forKey: .dimension)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 sellerIdentifiers = try container.decode([String].self, forKey: .sellerIdentifiers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -120,13 +120,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(dimension, forKey: .dimension)
-
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
             try? container.encodeIfPresent(weight, forKey: .weight)
 
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(dimension, forKey: .dimension)
 
             try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
         }

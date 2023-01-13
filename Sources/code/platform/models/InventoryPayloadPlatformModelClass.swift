@@ -10,54 +10,54 @@ public extension PlatformClient {
     class InventoryPayload: Codable {
         public var storeId: Int
 
+        public var totalQuantity: Int?
+
         public var traceId: String?
-
-        public var tags: [String]?
-
-        public var priceEffective: Double?
-
-        public var expirationDate: String?
 
         public var priceMarked: Double?
 
-        public var totalQuantity: Int?
+        public var priceEffective: Double?
 
         public var sellerIdentifier: String
+
+        public var tags: [String]?
+
+        public var expirationDate: String?
 
         public enum CodingKeys: String, CodingKey {
             case storeId = "store_id"
 
+            case totalQuantity = "total_quantity"
+
             case traceId = "trace_id"
-
-            case tags
-
-            case priceEffective = "price_effective"
-
-            case expirationDate = "expiration_date"
 
             case priceMarked = "price_marked"
 
-            case totalQuantity = "total_quantity"
+            case priceEffective = "price_effective"
 
             case sellerIdentifier = "seller_identifier"
+
+            case tags
+
+            case expirationDate = "expiration_date"
         }
 
         public init(expirationDate: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeId: Int, tags: [String]? = nil, totalQuantity: Int? = nil, traceId: String? = nil) {
             self.storeId = storeId
 
+            self.totalQuantity = totalQuantity
+
             self.traceId = traceId
-
-            self.tags = tags
-
-            self.priceEffective = priceEffective
-
-            self.expirationDate = expirationDate
 
             self.priceMarked = priceMarked
 
-            self.totalQuantity = totalQuantity
+            self.priceEffective = priceEffective
 
             self.sellerIdentifier = sellerIdentifier
+
+            self.tags = tags
+
+            self.expirationDate = expirationDate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -66,31 +66,15 @@ public extension PlatformClient {
             storeId = try container.decode(Int.self, forKey: .storeId)
 
             do {
+                totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 traceId = try container.decode(String.self, forKey: .traceId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                tags = try container.decode([String].self, forKey: .tags)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                expirationDate = try container.decode(String.self, forKey: .expirationDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,7 +90,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
+                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -114,6 +98,22 @@ public extension PlatformClient {
             } catch {}
 
             sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+
+            do {
+                tags = try container.decode([String].self, forKey: .tags)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                expirationDate = try container.decode(String.self, forKey: .expirationDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -121,19 +121,19 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
+            try? container.encode(totalQuantity, forKey: .totalQuantity)
+
             try? container.encodeIfPresent(traceId, forKey: .traceId)
-
-            try? container.encode(tags, forKey: .tags)
-
-            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
-
-            try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
 
             try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
 
-            try? container.encode(totalQuantity, forKey: .totalQuantity)
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+
+            try? container.encode(tags, forKey: .tags)
+
+            try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
         }
     }
 }

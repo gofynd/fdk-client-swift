@@ -8,30 +8,30 @@ public extension PlatformClient {
      */
 
     class CartBreakup: Codable {
-        public var display: [DisplayBreakup]?
+        public var coupon: CouponBreakup?
 
         public var loyaltyPoints: LoyaltyPoints?
 
-        public var coupon: CouponBreakup?
+        public var display: [DisplayBreakup]?
 
         public var raw: RawBreakup?
 
         public enum CodingKeys: String, CodingKey {
-            case display
+            case coupon
 
             case loyaltyPoints = "loyalty_points"
 
-            case coupon
+            case display
 
             case raw
         }
 
         public init(coupon: CouponBreakup? = nil, display: [DisplayBreakup]? = nil, loyaltyPoints: LoyaltyPoints? = nil, raw: RawBreakup? = nil) {
-            self.display = display
+            self.coupon = coupon
 
             self.loyaltyPoints = loyaltyPoints
 
-            self.coupon = coupon
+            self.display = display
 
             self.raw = raw
         }
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                display = try container.decode([DisplayBreakup].self, forKey: .display)
+                coupon = try container.decode(CouponBreakup.self, forKey: .coupon)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                coupon = try container.decode(CouponBreakup.self, forKey: .coupon)
+                display = try container.decode([DisplayBreakup].self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,11 +75,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
 
             try? container.encodeIfPresent(loyaltyPoints, forKey: .loyaltyPoints)
 
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(raw, forKey: .raw)
         }

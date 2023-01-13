@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var configType: String
 
-        public var secret: String
-
         public var key: String
+
+        public var secret: String
 
         public var merchantSalt: String
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case configType = "config_type"
 
-            case secret
-
             case key
+
+            case secret
 
             case merchantSalt = "merchant_salt"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.configType = configType
 
-            self.secret = secret
-
             self.key = key
+
+            self.secret = secret
 
             self.merchantSalt = merchantSalt
         }
@@ -55,9 +55,9 @@ public extension PlatformClient {
 
             configType = try container.decode(String.self, forKey: .configType)
 
-            secret = try container.decode(String.self, forKey: .secret)
-
             key = try container.decode(String.self, forKey: .key)
+
+            secret = try container.decode(String.self, forKey: .secret)
 
             merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
         }
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(configType, forKey: .configType)
 
-            try? container.encodeIfPresent(secret, forKey: .secret)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(secret, forKey: .secret)
 
             try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
         }

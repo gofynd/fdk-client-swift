@@ -12,38 +12,38 @@ public extension PlatformClient {
 
         public var attributes: [AttributeDetailsGroup]?
 
-        public var templateSlugs: [String]?
+        public var slug: String
 
-        public var isActive: Bool
+        public var isDefault: Bool
+
+        public var templateSlugs: [String]?
 
         public var logo: String?
 
-        public var slug: String
-
-        public var name: String?
+        public var isActive: Bool
 
         public var appId: String
 
-        public var isDefault: Bool
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case priority
 
             case attributes
 
-            case templateSlugs = "template_slugs"
+            case slug
 
-            case isActive = "is_active"
+            case isDefault = "is_default"
+
+            case templateSlugs = "template_slugs"
 
             case logo
 
-            case slug
-
-            case name
+            case isActive = "is_active"
 
             case appId = "app_id"
 
-            case isDefault = "is_default"
+            case name
         }
 
         public init(appId: String, attributes: [AttributeDetailsGroup]? = nil, isActive: Bool, isDefault: Bool, logo: String? = nil, name: String? = nil, priority: Int, slug: String, templateSlugs: [String]? = nil) {
@@ -51,19 +51,19 @@ public extension PlatformClient {
 
             self.attributes = attributes
 
-            self.templateSlugs = templateSlugs
+            self.slug = slug
 
-            self.isActive = isActive
+            self.isDefault = isDefault
+
+            self.templateSlugs = templateSlugs
 
             self.logo = logo
 
-            self.slug = slug
-
-            self.name = name
+            self.isActive = isActive
 
             self.appId = appId
 
-            self.isDefault = isDefault
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -79,6 +79,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            slug = try container.decode(String.self, forKey: .slug)
+
+            isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
             do {
                 templateSlugs = try container.decode([String].self, forKey: .templateSlugs)
 
@@ -86,8 +90,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -97,7 +99,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            slug = try container.decode(String.self, forKey: .slug)
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            appId = try container.decode(String.self, forKey: .appId)
 
             do {
                 name = try container.decode(String.self, forKey: .name)
@@ -106,10 +110,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            appId = try container.decode(String.self, forKey: .appId)
-
-            isDefault = try container.decode(Bool.self, forKey: .isDefault)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -119,19 +119,19 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(attributes, forKey: .attributes)
 
-            try? container.encodeIfPresent(templateSlugs, forKey: .templateSlugs)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(templateSlugs, forKey: .templateSlugs)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

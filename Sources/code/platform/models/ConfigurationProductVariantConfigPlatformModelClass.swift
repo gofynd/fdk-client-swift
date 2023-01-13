@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var isActive: Bool
 
-        public var key: String
-
         public var size: ProductSize
+
+        public var key: String
 
         public var displayType: String
 
@@ -29,9 +29,9 @@ public extension PlatformClient {
 
             case isActive = "is_active"
 
-            case key
-
             case size
+
+            case key
 
             case displayType = "display_type"
 
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             self.isActive = isActive
 
-            self.key = key
-
             self.size = size
+
+            self.key = key
 
             self.displayType = displayType
 
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            key = try container.decode(String.self, forKey: .key)
-
             size = try container.decode(ProductSize.self, forKey: .size)
+
+            key = try container.decode(String.self, forKey: .key)
 
             displayType = try container.decode(String.self, forKey: .displayType)
 
@@ -87,9 +87,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
 

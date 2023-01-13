@@ -12,42 +12,42 @@ public extension PlatformClient {
 
         public var countryCode: String
 
-        public var type: String
+        public var reportingHsn: String
 
         public var description: String
 
         public var hsnCode: String
 
-        public var createdOn: String?
-
         public var modifiedOn: String?
 
         public var createdBy: [String: Any]?
 
+        public var createdOn: String?
+
         public var taxes: [TaxSlab]
 
-        public var reportingHsn: String
+        public var type: String
 
         public enum CodingKeys: String, CodingKey {
             case modifiedBy = "modified_by"
 
             case countryCode = "country_code"
 
-            case type
+            case reportingHsn = "reporting_hsn"
 
             case description
 
             case hsnCode = "hsn_code"
 
-            case createdOn = "created_on"
-
             case modifiedOn = "modified_on"
 
             case createdBy = "created_by"
 
+            case createdOn = "created_on"
+
             case taxes
 
-            case reportingHsn = "reporting_hsn"
+            case type
         }
 
         public init(countryCode: String, createdBy: [String: Any]? = nil, createdOn: String? = nil, description: String, hsnCode: String, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, reportingHsn: String, taxes: [TaxSlab], type: String) {
@@ -55,21 +55,21 @@ public extension PlatformClient {
 
             self.countryCode = countryCode
 
-            self.type = type
+            self.reportingHsn = reportingHsn
 
             self.description = description
 
             self.hsnCode = hsnCode
 
-            self.createdOn = createdOn
-
             self.modifiedOn = modifiedOn
 
             self.createdBy = createdBy
 
+            self.createdOn = createdOn
+
             self.taxes = taxes
 
-            self.reportingHsn = reportingHsn
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -85,19 +85,11 @@ public extension PlatformClient {
 
             countryCode = try container.decode(String.self, forKey: .countryCode)
 
-            type = try container.decode(String.self, forKey: .type)
+            reportingHsn = try container.decode(String.self, forKey: .reportingHsn)
 
             description = try container.decode(String.self, forKey: .description)
 
             hsnCode = try container.decode(String.self, forKey: .hsnCode)
-
-            do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
@@ -115,9 +107,17 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            do {
+                createdOn = try container.decode(String.self, forKey: .createdOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             taxes = try container.decode([TaxSlab].self, forKey: .taxes)
 
-            reportingHsn = try container.decode(String.self, forKey: .reportingHsn)
+            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -127,21 +127,21 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(reportingHsn, forKey: .reportingHsn)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
             try? container.encodeIfPresent(taxes, forKey: .taxes)
 
-            try? container.encodeIfPresent(reportingHsn, forKey: .reportingHsn)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

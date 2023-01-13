@@ -10,26 +10,26 @@ public extension PlatformClient {
     class PayoutRequest: Codable {
         public var isActive: Bool
 
-        public var transferType: String
+        public var users: [String: Any]
 
         public var aggregator: String
 
-        public var uniqueExternalId: String
+        public var transferType: String
 
-        public var users: [String: Any]
+        public var uniqueExternalId: String
 
         public var bankDetails: PayoutBankDetails
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case transferType = "transfer_type"
+            case users
 
             case aggregator
 
-            case uniqueExternalId = "unique_external_id"
+            case transferType = "transfer_type"
 
-            case users
+            case uniqueExternalId = "unique_external_id"
 
             case bankDetails = "bank_details"
         }
@@ -37,13 +37,13 @@ public extension PlatformClient {
         public init(aggregator: String, bankDetails: PayoutBankDetails, isActive: Bool, transferType: String, uniqueExternalId: String, users: [String: Any]) {
             self.isActive = isActive
 
-            self.transferType = transferType
+            self.users = users
 
             self.aggregator = aggregator
 
-            self.uniqueExternalId = uniqueExternalId
+            self.transferType = transferType
 
-            self.users = users
+            self.uniqueExternalId = uniqueExternalId
 
             self.bankDetails = bankDetails
         }
@@ -53,13 +53,13 @@ public extension PlatformClient {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            transferType = try container.decode(String.self, forKey: .transferType)
+            users = try container.decode([String: Any].self, forKey: .users)
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
-            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
+            transferType = try container.decode(String.self, forKey: .transferType)
 
-            users = try container.decode([String: Any].self, forKey: .users)
+            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
 
             bankDetails = try container.decode(PayoutBankDetails.self, forKey: .bankDetails)
         }
@@ -69,13 +69,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(transferType, forKey: .transferType)
+            try? container.encodeIfPresent(users, forKey: .users)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
+            try? container.encodeIfPresent(transferType, forKey: .transferType)
 
-            try? container.encodeIfPresent(users, forKey: .users)
+            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
 
             try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
         }
