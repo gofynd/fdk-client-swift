@@ -9,18 +9,20 @@ public extension ApplicationClient {
     class BrandDetailResponse: Codable {
         public var uid: Int?
 
+        public var description: String?
+
         public var customJson: [String: Any]?
 
         public var banners: ImageUrls?
 
         public var name: String?
 
-        public var description: String?
-
         public var logo: Media?
 
         public enum CodingKeys: String, CodingKey {
             case uid
+
+            case description
 
             case customJson = "_custom_json"
 
@@ -28,21 +30,19 @@ public extension ApplicationClient {
 
             case name
 
-            case description
-
             case logo
         }
 
         public init(banners: ImageUrls? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             self.uid = uid
 
+            self.description = description
+
             self.customJson = customJson
 
             self.banners = banners
 
             self.name = name
-
-            self.description = description
 
             self.logo = logo
         }
@@ -52,6 +52,14 @@ public extension ApplicationClient {
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,14 +91,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -104,13 +104,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
+            try? container.encodeIfPresent(description, forKey: .description)
+
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }
