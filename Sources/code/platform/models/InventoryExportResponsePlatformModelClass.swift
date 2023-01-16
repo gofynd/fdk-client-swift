@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var status: String?
 
-        public var sellerId: Int
-
         public var taskId: String
+
+        public var sellerId: Int
 
         public enum CodingKeys: String, CodingKey {
             case triggerOn = "trigger_on"
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case status
 
-            case sellerId = "seller_id"
-
             case taskId = "task_id"
+
+            case sellerId = "seller_id"
         }
 
         public init(requestParams: [String: Any]? = nil, sellerId: Int, status: String? = nil, taskId: String, triggerOn: String? = nil) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.status = status
 
-            self.sellerId = sellerId
-
             self.taskId = taskId
+
+            self.sellerId = sellerId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,9 +69,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            sellerId = try container.decode(Int.self, forKey: .sellerId)
-
             taskId = try container.decode(String.self, forKey: .taskId)
+
+            sellerId = try container.decode(Int.self, forKey: .sellerId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -83,9 +83,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
-
             try? container.encodeIfPresent(taskId, forKey: .taskId)
+
+            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
         }
     }
 }

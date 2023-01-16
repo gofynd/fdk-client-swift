@@ -13,11 +13,11 @@ public extension ApplicationClient {
 
         public var description: String?
 
+        public var amount: Double
+
         public var meta: CreatePaymentLinkMeta
 
         public var externalOrderId: String
-
-        public var amount: Double
 
         public enum CodingKeys: String, CodingKey {
             case email
@@ -26,11 +26,11 @@ public extension ApplicationClient {
 
             case description
 
+            case amount
+
             case meta
 
             case externalOrderId = "external_order_id"
-
-            case amount
         }
 
         public init(amount: Double, description: String? = nil, email: String, externalOrderId: String, meta: CreatePaymentLinkMeta, mobileNumber: String) {
@@ -40,11 +40,11 @@ public extension ApplicationClient {
 
             self.description = description
 
+            self.amount = amount
+
             self.meta = meta
 
             self.externalOrderId = externalOrderId
-
-            self.amount = amount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,11 +62,11 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            amount = try container.decode(Double.self, forKey: .amount)
+
             meta = try container.decode(CreatePaymentLinkMeta.self, forKey: .meta)
 
             externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
-
-            amount = try container.decode(Double.self, forKey: .amount)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -78,11 +78,11 @@ public extension ApplicationClient {
 
             try? container.encode(description, forKey: .description)
 
+            try? container.encodeIfPresent(amount, forKey: .amount)
+
             try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
-
-            try? container.encodeIfPresent(amount, forKey: .amount)
         }
     }
 }

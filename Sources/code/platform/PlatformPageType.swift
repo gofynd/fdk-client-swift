@@ -27,7 +27,6 @@ public extension PlatformClient {
         case productRequest = "product-request"
         case products
         case profile
-        case profileOrderShipment = "profile-order-shipment"
         case profileBasic = "profile-basic"
         case profileCompany = "profile-company"
         case profileEmails = "profile-emails"
@@ -121,7 +120,7 @@ public extension PlatformClient {
             case .external:
                 return "/external/"
             case .faq:
-                return "/faq"
+                return "/faq/:category"
             case .freshchat:
                 return "/freshchat"
             case .home:
@@ -146,8 +145,6 @@ public extension PlatformClient {
                 return "/products/"
             case .profile:
                 return "/profile"
-            case .profileOrderShipment:
-                return "/profile/orders/shipment/:shipmentid"
             case .profileBasic:
                 return "/profile/details"
             case .profileCompany:
@@ -245,8 +242,6 @@ public extension PlatformClient {
                 return "Products"
             case .profile:
                 return "Profile"
-            case .profileOrderShipment:
-                return "profile orders shipment"
             case .profileBasic:
                 return "Basic Profile"
             case .profileCompany:
@@ -319,7 +314,7 @@ public extension PlatformClient {
             case .external:
                 return []
             case .faq:
-                return []
+                return [(name: "category", required: false)]
             case .freshchat:
                 return []
             case .home:
@@ -344,8 +339,6 @@ public extension PlatformClient {
                 return []
             case .profile:
                 return []
-            case .profileOrderShipment:
-                return [(name: "shipmentid", required: true)]
             case .profileBasic:
                 return []
             case .profileCompany:
@@ -442,8 +435,6 @@ public extension PlatformClient {
             case .products:
                 return []
             case .profile:
-                return []
-            case .profileOrderShipment:
                 return []
             case .profileBasic:
                 return []
