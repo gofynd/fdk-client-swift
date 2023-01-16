@@ -10,18 +10,18 @@ public extension PlatformClient {
     class MetricsCount: Codable {
         public var value: Int
 
-        public var key: String
-
         public var text: String
+
+        public var key: String
 
         public var options: [Options]?
 
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case key
-
             case text
+
+            case key
 
             case options
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(key: String, options: [Options]? = nil, text: String, value: Int) {
             self.value = value
 
-            self.key = key
-
             self.text = text
+
+            self.key = key
 
             self.options = options
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             value = try container.decode(Int.self, forKey: .value)
 
-            key = try container.decode(String.self, forKey: .key)
-
             text = try container.decode(String.self, forKey: .text)
+
+            key = try container.decode(String.self, forKey: .key)
 
             do {
                 options = try container.decode([Options].self, forKey: .options)
@@ -59,9 +59,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(text, forKey: .text)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(options, forKey: .options)
         }

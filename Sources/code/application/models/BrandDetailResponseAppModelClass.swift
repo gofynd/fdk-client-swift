@@ -15,9 +15,9 @@ public extension ApplicationClient {
 
         public var banners: ImageUrls?
 
-        public var customJson: [String: Any]?
-
         public var uid: Int?
+
+        public var customJson: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case name
@@ -28,9 +28,9 @@ public extension ApplicationClient {
 
             case banners
 
-            case customJson = "_custom_json"
-
             case uid
+
+            case customJson = "_custom_json"
         }
 
         public init(banners: ImageUrls? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
@@ -42,9 +42,9 @@ public extension ApplicationClient {
 
             self.banners = banners
 
-            self.customJson = customJson
-
             self.uid = uid
+
+            self.customJson = customJson
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,9 +110,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
         }
     }
 }

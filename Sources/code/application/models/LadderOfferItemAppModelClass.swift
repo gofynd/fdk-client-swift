@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var minQuantity: Int?
 
-        public var type: String?
-
         public var margin: Int?
+
+        public var type: String?
 
         public var maxQuantity: Int?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case minQuantity = "min_quantity"
 
-            case type
-
             case margin
+
+            case type
 
             case maxQuantity = "max_quantity"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.minQuantity = minQuantity
 
-            self.type = type
-
             self.margin = margin
+
+            self.type = type
 
             self.maxQuantity = maxQuantity
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                margin = try container.decode(Int.self, forKey: .margin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                margin = try container.decode(Int.self, forKey: .margin)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(margin, forKey: .margin)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
         }

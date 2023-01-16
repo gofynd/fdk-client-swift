@@ -1,25 +1,24 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension ApplicationClient {
     /*
-         Model: ManifestDetailMeta
+         Model: ProductsReasons1
          Used By: Order
      */
+    class ProductsReasons1: Codable {
+        public var data: ProductsReasonsData1?
 
-    class ManifestDetailMeta: Codable {
-        public var totalShipmentPricesCount: ManifestDetailTotalShipmentPricesCount?
-
-        public var filters: ManifestFilter?
+        public var filters: [ProductsReasonsFilters1]?
 
         public enum CodingKeys: String, CodingKey {
-            case totalShipmentPricesCount = "total_shipment_prices_count"
+            case data
 
             case filters
         }
 
-        public init(filters: ManifestFilter? = nil, totalShipmentPricesCount: ManifestDetailTotalShipmentPricesCount? = nil) {
-            self.totalShipmentPricesCount = totalShipmentPricesCount
+        public init(data: ProductsReasonsData1? = nil, filters: [ProductsReasonsFilters1]? = nil) {
+            self.data = data
 
             self.filters = filters
         }
@@ -28,7 +27,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                totalShipmentPricesCount = try container.decode(ManifestDetailTotalShipmentPricesCount.self, forKey: .totalShipmentPricesCount)
+                data = try container.decode(ProductsReasonsData1.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +35,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                filters = try container.decode(ManifestFilter.self, forKey: .filters)
+                filters = try container.decode([ProductsReasonsFilters1].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +46,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(totalShipmentPricesCount, forKey: .totalShipmentPricesCount)
+            try? container.encodeIfPresent(data, forKey: .data)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
         }

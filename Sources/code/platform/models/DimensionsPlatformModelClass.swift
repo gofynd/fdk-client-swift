@@ -10,9 +10,9 @@ public extension PlatformClient {
     class Dimensions: Codable {
         public var length: Int?
 
-        public var unit: String?
-
         public var height: Int?
+
+        public var unit: String?
 
         public var isDefault: Bool?
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case length
 
-            case unit
-
             case height
+
+            case unit
 
             case isDefault = "is_default"
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(height: Int? = nil, isDefault: Bool? = nil, length: Int? = nil, unit: String? = nil, width: Int? = nil) {
             self.length = length
 
-            self.unit = unit
-
             self.height = height
+
+            self.unit = unit
 
             self.isDefault = isDefault
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                height = try container.decode(Int.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                height = try container.decode(Int.self, forKey: .height)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(length, forKey: .length)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
-
             try? container.encodeIfPresent(height, forKey: .height)
+
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 

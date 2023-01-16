@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: ApefaceApiError
+         Model: ReasonsData1
          Used By: Order
      */
-    class ApefaceApiError: Codable {
-        public var success: Bool?
+    class ReasonsData1: Codable {
+        public var products: [ProductsReasons1]?
 
-        public var message: String?
+        public var entities: [EntitiesReasons1]?
 
         public enum CodingKeys: String, CodingKey {
-            case success
+            case products
 
-            case message
+            case entities
         }
 
-        public init(message: String? = nil, success: Bool? = nil) {
-            self.success = success
+        public init(entities: [EntitiesReasons1]? = nil, products: [ProductsReasons1]? = nil) {
+            self.products = products
 
-            self.message = message
+            self.entities = entities
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                products = try container.decode([ProductsReasons1].self, forKey: .products)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                entities = try container.decode([EntitiesReasons1].self, forKey: .entities)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(products, forKey: .products)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(entities, forKey: .entities)
         }
     }
 }

@@ -1,34 +1,33 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension ApplicationClient {
     /*
-         Model: ManifestDetailTotalShipmentPricesCount
+         Model: DataUpdates1
          Used By: Order
      */
+    class DataUpdates1: Codable {
+        public var products: [ProductsDataUpdates]?
 
-    class ManifestDetailTotalShipmentPricesCount: Codable {
-        public var totalPrice: Double?
-
-        public var shipmentCount: Int?
+        public var entities: [EntitiesDataUpdates]?
 
         public enum CodingKeys: String, CodingKey {
-            case totalPrice = "total_price"
+            case products
 
-            case shipmentCount = "shipment_count"
+            case entities
         }
 
-        public init(shipmentCount: Int? = nil, totalPrice: Double? = nil) {
-            self.totalPrice = totalPrice
+        public init(entities: [EntitiesDataUpdates]? = nil, products: [ProductsDataUpdates]? = nil) {
+            self.products = products
 
-            self.shipmentCount = shipmentCount
+            self.entities = entities
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                totalPrice = try container.decode(Double.self, forKey: .totalPrice)
+                products = try container.decode([ProductsDataUpdates].self, forKey: .products)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +35,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
+                entities = try container.decode([EntitiesDataUpdates].self, forKey: .entities)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +46,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(totalPrice, forKey: .totalPrice)
+            try? container.encodeIfPresent(products, forKey: .products)
 
-            try? container.encodeIfPresent(shipmentCount, forKey: .shipmentCount)
+            try? container.encodeIfPresent(entities, forKey: .entities)
         }
     }
 }
