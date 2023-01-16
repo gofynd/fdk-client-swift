@@ -372,6 +372,7 @@ public extension PlatformClient {
             stage: String?,
             pageNo: Int?,
             pageSize: Int?,
+            locationIds: [Int]?,
 
             onResponse: @escaping (_ response: LocationListSerializer?, _ error: FDKError?) -> Void
         ) {
@@ -395,6 +396,10 @@ public extension PlatformClient {
 
             if let value = pageSize {
                 xQuery["page_size"] = value
+            }
+
+            if let value = locationIds {
+                xQuery["location_ids"] = value
             }
 
             PlatformAPIClient.execute(
@@ -435,7 +440,8 @@ public extension PlatformClient {
             storeType: String?,
             q: String?,
             stage: String?,
-            pageSize: Int?
+            pageSize: Int?,
+            locationIds: [Int]?
 
         ) -> Paginator<LocationListSerializer> {
             let pageSize = pageSize ?? 20
@@ -447,8 +453,9 @@ public extension PlatformClient {
                     stage: stage,
                     pageNo: paginator.pageNo,
 
-                    pageSize: paginator.pageSize
+                    pageSize: paginator.pageSize,
 
+                    locationIds: locationIds
                 ) { response, error in
                     if let response = response {
                         paginator.hasNext = response.page?.hasNext ?? false
@@ -602,6 +609,44 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ProfileSuccessResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Location Reassignment
+         * Description:
+         **/
+        public func getOptimalLocations(
+            body: AssignStoreRequestValidator,
+            onResponse: @escaping (_ response: AssignStoreResponseSerializer?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/reassign",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(AssignStoreResponseSerializer.self, from: data)
 
                         onResponse(response, nil)
                     } else {

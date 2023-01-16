@@ -3,38 +3,38 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: OrderQuantity
-         Used By: Catalog
+         Model: FeedbackForm
+         Used By: Lead
      */
 
-    class OrderQuantity: Codable {
-        public var isSet: Bool?
+    class FeedbackForm: Codable {
+        public var inputs: [String: Any]?
 
-        public var minimum: Int?
+        public var title: String?
 
-        public var maximum: Int?
+        public var timestamps: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case isSet = "is_set"
+            case inputs
 
-            case minimum
+            case title
 
-            case maximum
+            case timestamps
         }
 
-        public init(isSet: Bool? = nil, maximum: Int? = nil, minimum: Int? = nil) {
-            self.isSet = isSet
+        public init(inputs: [String: Any]? = nil, timestamps: [String: Any]? = nil, title: String? = nil) {
+            self.inputs = inputs
 
-            self.minimum = minimum
+            self.title = title
 
-            self.maximum = maximum
+            self.timestamps = timestamps
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isSet = try container.decode(Bool.self, forKey: .isSet)
+                inputs = try container.decode([String: Any].self, forKey: .inputs)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                minimum = try container.decode(Int.self, forKey: .minimum)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                maximum = try container.decode(Int.self, forKey: .maximum)
+                timestamps = try container.decode([String: Any].self, forKey: .timestamps)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,11 +61,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
+            try? container.encodeIfPresent(inputs, forKey: .inputs)
 
-            try? container.encodeIfPresent(minimum, forKey: .minimum)
+            try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(maximum, forKey: .maximum)
+            try? container.encodeIfPresent(timestamps, forKey: .timestamps)
         }
     }
 }

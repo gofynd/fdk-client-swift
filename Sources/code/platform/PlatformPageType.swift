@@ -45,6 +45,8 @@ public extension PlatformClient {
         case cartReview = "cart-review"
         case login
         case register
+        case shippingPolicy = "shipping-policy"
+        case returnPolicy = "return-policy"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -118,7 +120,7 @@ public extension PlatformClient {
             case .external:
                 return "/external/"
             case .faq:
-                return "/faq/:category"
+                return "/faq"
             case .freshchat:
                 return "/freshchat"
             case .home:
@@ -179,6 +181,10 @@ public extension PlatformClient {
                 return "/auth/login"
             case .register:
                 return "/auth/register"
+            case .shippingPolicy:
+                return "/shipping-policy"
+            case .returnPolicy:
+                return "/return-policy"
             }
         }
 
@@ -272,6 +278,10 @@ public extension PlatformClient {
                 return "Login"
             case .register:
                 return "Register"
+            case .shippingPolicy:
+                return "Shipping policy"
+            case .returnPolicy:
+                return "Return policy"
             }
         }
 
@@ -304,7 +314,7 @@ public extension PlatformClient {
             case .external:
                 return []
             case .faq:
-                return [(name: "category", required: false)]
+                return []
             case .freshchat:
                 return []
             case .home:
@@ -364,6 +374,10 @@ public extension PlatformClient {
             case .login:
                 return []
             case .register:
+                return []
+            case .shippingPolicy:
+                return []
+            case .returnPolicy:
                 return []
             }
         }
@@ -457,6 +471,10 @@ public extension PlatformClient {
             case .login:
                 return []
             case .register:
+                return []
+            case .shippingPolicy:
+                return []
+            case .returnPolicy:
                 return []
             }
         }

@@ -5,14 +5,14 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FDKClient'
-  s.version          = '0.1.26'
+  s.version          = '0.1.32'
   s.summary          = 'FDK Client SDK for Swift language'
 
   s.description      = 'FDK Client SDK for Swift language that can be used to make Apps or extensions.'
 
   s.homepage         = 'https://github.com/gofynd/fdk-client-swift'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Nikhil Manapure' => 'nikhilmanapure@gofynd.com' }
+  s.author           = { 'Shopsense Retail Technologies Limited' => 'shopsense@icloud.com' }
   s.source           = { :git => 'https://github.com/gofynd/fdk-client-swift.git', :tag => s.version.to_s }
 
   s.swift_versions = '4.0'
