@@ -8,42 +8,44 @@ public extension PlatformClient {
      */
 
     class Document: Codable {
-        public var legalName: String?
-
         public var value: String
 
-        public var url: String?
-
-        public var type: String
+        public var legalName: String?
 
         public var verified: Bool?
 
-        public enum CodingKeys: String, CodingKey {
-            case legalName = "legal_name"
+        public var type: String
 
+        public var url: String?
+
+        public enum CodingKeys: String, CodingKey {
             case value
 
-            case url
+            case legalName = "legal_name"
+
+            case verified
 
             case type
 
-            case verified
+            case url
         }
 
         public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
-            self.legalName = legalName
-
             self.value = value
 
-            self.url = url
+            self.legalName = legalName
+
+            self.verified = verified
 
             self.type = type
 
-            self.verified = verified
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            value = try container.decode(String.self, forKey: .value)
 
             do {
                 legalName = try container.decode(String.self, forKey: .legalName)
@@ -53,10 +55,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            value = try container.decode(String.self, forKey: .value)
-
             do {
-                url = try container.decode(String.self, forKey: .url)
+                verified = try container.decode(Bool.self, forKey: .verified)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -66,7 +66,7 @@ public extension PlatformClient {
             type = try container.decode(String.self, forKey: .type)
 
             do {
-                verified = try container.decode(Bool.self, forKey: .verified)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,15 +77,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(legalName, forKey: .legalName)
-
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(legalName, forKey: .legalName)
+
+            try? container.encodeIfPresent(verified, forKey: .verified)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(verified, forKey: .verified)
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }

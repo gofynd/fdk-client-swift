@@ -7,9 +7,9 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class Dimension: Codable {
-        public var isDefault: Bool
-
         public var height: Double
+
+        public var isDefault: Bool
 
         public var width: Double
 
@@ -18,9 +18,9 @@ public extension ApplicationClient {
         public var unit: String
 
         public enum CodingKeys: String, CodingKey {
-            case isDefault = "is_default"
-
             case height
+
+            case isDefault = "is_default"
 
             case width
 
@@ -30,9 +30,9 @@ public extension ApplicationClient {
         }
 
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
-            self.isDefault = isDefault
-
             self.height = height
+
+            self.isDefault = isDefault
 
             self.width = width
 
@@ -44,9 +44,9 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            isDefault = try container.decode(Bool.self, forKey: .isDefault)
-
             height = try container.decode(Double.self, forKey: .height)
+
+            isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
             width = try container.decode(Double.self, forKey: .width)
 
@@ -58,9 +58,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-
             try? container.encodeIfPresent(height, forKey: .height)
+
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
             try? container.encodeIfPresent(width, forKey: .width)
 
