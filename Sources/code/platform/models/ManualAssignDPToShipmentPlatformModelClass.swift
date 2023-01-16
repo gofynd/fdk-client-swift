@@ -10,18 +10,18 @@ public extension PlatformClient {
     class ManualAssignDPToShipment: Codable {
         public var shipmentIds: [String]?
 
-        public var dpId: Int
-
         public var qcRequired: String
+
+        public var dpId: Int
 
         public var orderType: String
 
         public enum CodingKeys: String, CodingKey {
             case shipmentIds = "shipment_ids"
 
-            case dpId = "dp_id"
-
             case qcRequired = "qc_required"
+
+            case dpId = "dp_id"
 
             case orderType = "order_type"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(dpId: Int, orderType: String, qcRequired: String, shipmentIds: [String]? = nil) {
             self.shipmentIds = shipmentIds
 
-            self.dpId = dpId
-
             self.qcRequired = qcRequired
+
+            self.dpId = dpId
 
             self.orderType = orderType
         }
@@ -47,9 +47,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            dpId = try container.decode(Int.self, forKey: .dpId)
-
             qcRequired = try container.decode(String.self, forKey: .qcRequired)
+
+            dpId = try container.decode(Int.self, forKey: .dpId)
 
             orderType = try container.decode(String.self, forKey: .orderType)
         }
@@ -59,9 +59,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(shipmentIds, forKey: .shipmentIds)
 
-            try? container.encodeIfPresent(dpId, forKey: .dpId)
-
             try? container.encodeIfPresent(qcRequired, forKey: .qcRequired)
+
+            try? container.encodeIfPresent(dpId, forKey: .dpId)
 
             try? container.encodeIfPresent(orderType, forKey: .orderType)
         }

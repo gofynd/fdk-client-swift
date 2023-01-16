@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: UpdateShipmentExternalRequest
+         Model: ShipmentStatusUpdateBody
          Used By: Order
      */
-    class UpdateShipmentExternalRequest: Codable {
+    class ShipmentStatusUpdateBody: Codable {
         public var statuses: [[String: Any]]
 
         public var forceTransition: Bool?

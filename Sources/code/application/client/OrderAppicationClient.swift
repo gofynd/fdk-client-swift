@@ -31,9 +31,9 @@ public extension ApplicationClient {
 
             ulrs["getShipmentReasons"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons")
 
-            ulrs["updateShipmentExternal"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/status")
+            ulrs["updateShipmentStatus"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/status")
 
-            ulrs["updateShipmentStatus"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status")
+            ulrs["updateShipmentStatus1"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status")
 
             ulrs["getOrders1"] = config.domain.appendAsPath("/service/application/order/v1.0/orders")
 
@@ -57,7 +57,7 @@ public extension ApplicationClient {
 
             ulrs["getShipmentReasons1"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/reasons")
 
-            ulrs["updateShipmentExternal1"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/status")
+            ulrs["updateShipmentStatus2"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/status")
 
             self.relativeUrls = ulrs
         }
@@ -587,12 +587,12 @@ public extension ApplicationClient {
          * Summary:
          * Description:
          **/
-        public func updateShipmentExternal(
+        public func updateShipmentStatus(
             shipmentId: Int,
-            body: UpdateShipmentExternalRequest,
-            onResponse: @escaping (_ response: UpdateShipmentResponse?, _ error: FDKError?) -> Void
+            body: ShipmentStatusUpdateBody,
+            onResponse: @escaping (_ response: ShipmentStatusUpdate?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["updateShipmentExternal"] ?? ""
+            var fullUrl = relativeUrls["updateShipmentStatus"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
 
@@ -612,7 +612,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(UpdateShipmentResponse.self, from: data)
+                        let response = Utility.decode(ShipmentStatusUpdate.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -630,12 +630,12 @@ public extension ApplicationClient {
          * Summary:
          * Description: updateShipmentStatus
          **/
-        public func updateShipmentStatus(
+        public func updateShipmentStatus1(
             shipmentId: String,
             body: UpdateShipmentStatusRequest,
             onResponse: @escaping (_ response: ShipmentApplicationStatusResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["updateShipmentStatus"] ?? ""
+            var fullUrl = relativeUrls["updateShipmentStatus1"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
 
@@ -1187,12 +1187,12 @@ public extension ApplicationClient {
          * Summary:
          * Description:
          **/
-        public func updateShipmentExternal1(
+        public func updateShipmentStatus2(
             shipmentId: Int,
-            body: UpdateShipmentExternalRequest,
-            onResponse: @escaping (_ response: UpdateShipmentResponse?, _ error: FDKError?) -> Void
+            body: ShipmentStatusUpdateBody,
+            onResponse: @escaping (_ response: ShipmentStatusUpdate?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["updateShipmentExternal1"] ?? ""
+            var fullUrl = relativeUrls["updateShipmentStatus2"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
 
@@ -1212,7 +1212,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(UpdateShipmentResponse.self, from: data)
+                        let response = Utility.decode(ShipmentStatusUpdate.self, from: data)
 
                         onResponse(response, nil)
                     } else {

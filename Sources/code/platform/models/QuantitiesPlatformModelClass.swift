@@ -10,30 +10,30 @@ public extension PlatformClient {
     class Quantities: Codable {
         public var notAvailable: QuantityBase?
 
-        public var damaged: QuantityBase?
-
         public var orderCommitted: QuantityBase?
 
         public var sellable: QuantityBase?
 
+        public var damaged: QuantityBase?
+
         public enum CodingKeys: String, CodingKey {
             case notAvailable = "not_available"
-
-            case damaged
 
             case orderCommitted = "order_committed"
 
             case sellable
+
+            case damaged
         }
 
         public init(damaged: QuantityBase? = nil, notAvailable: QuantityBase? = nil, orderCommitted: QuantityBase? = nil, sellable: QuantityBase? = nil) {
             self.notAvailable = notAvailable
 
-            self.damaged = damaged
-
             self.orderCommitted = orderCommitted
 
             self.sellable = sellable
+
+            self.damaged = damaged
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,14 +41,6 @@ public extension PlatformClient {
 
             do {
                 notAvailable = try container.decode(QuantityBase.self, forKey: .notAvailable)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                damaged = try container.decode(QuantityBase.self, forKey: .damaged)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,6 +62,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                damaged = try container.decode(QuantityBase.self, forKey: .damaged)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -77,11 +77,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(notAvailable, forKey: .notAvailable)
 
-            try? container.encodeIfPresent(damaged, forKey: .damaged)
-
             try? container.encodeIfPresent(orderCommitted, forKey: .orderCommitted)
 
             try? container.encodeIfPresent(sellable, forKey: .sellable)
+
+            try? container.encodeIfPresent(damaged, forKey: .damaged)
         }
     }
 }
