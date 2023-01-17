@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class DepartmentErrorResponse: Codable {
-        public var meta: [String: Any]?
+        public var errors: [String: Any]?
 
         public var message: String?
 
@@ -16,10 +16,10 @@ public extension PlatformClient {
 
         public var status: Int?
 
-        public var errors: [String: Any]?
+        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case meta
+            case errors
 
             case message
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case status
 
-            case errors
+            case meta
         }
 
         public init(code: String? = nil, errors: [String: Any]? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
-            self.meta = meta
+            self.errors = errors
 
             self.message = message
 
@@ -39,14 +39,14 @@ public extension PlatformClient {
 
             self.status = status
 
-            self.errors = errors
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                errors = try container.decode([String: Any].self, forKey: .errors)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                errors = try container.decode([String: Any].self, forKey: .errors)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(errors, forKey: .errors)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
@@ -97,7 +97,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(errors, forKey: .errors)
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

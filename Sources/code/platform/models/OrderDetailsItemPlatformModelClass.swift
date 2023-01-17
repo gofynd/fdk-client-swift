@@ -18,7 +18,7 @@ public extension PlatformClient {
 
         public var orderingStore: [String: Any]?
 
-        public var breakupValues: [PlatformBreakupValues]?
+        public var breakupValues: PlatformBreakupValues?
 
         public var id: String?
 
@@ -62,7 +62,7 @@ public extension PlatformClient {
             case paymentMethods = "payment_methods"
         }
 
-        public init(application: PlatformApplication? = nil, breakupValues: [PlatformBreakupValues]? = nil, channel: Channel? = nil, createdAt: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, fyndstoreEmp: [String: Any]? = nil, id: String? = nil, orderingStore: [String: Any]? = nil, payments: ItemsPayments? = nil, paymentMethods: [String: Any]? = nil, shipments: PlatformShipmentDetails? = nil, totalShipmentsInOrder: Int? = nil, user: PlatformOrderUserInfo? = nil) {
+        public init(application: PlatformApplication? = nil, breakupValues: PlatformBreakupValues? = nil, channel: Channel? = nil, createdAt: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, fyndstoreEmp: [String: Any]? = nil, id: String? = nil, orderingStore: [String: Any]? = nil, payments: ItemsPayments? = nil, paymentMethods: [String: Any]? = nil, shipments: PlatformShipmentDetails? = nil, totalShipmentsInOrder: Int? = nil, user: PlatformOrderUserInfo? = nil) {
             self.user = user
 
             self.deliveryAddress = deliveryAddress
@@ -134,7 +134,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                breakupValues = try container.decode([PlatformBreakupValues].self, forKey: .breakupValues)
+                breakupValues = try container.decode(PlatformBreakupValues.self, forKey: .breakupValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
