@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class PaymentGatewayConfig: Codable {
-        public var key: String
+        public var merchantSalt: String
 
         public var secret: String
 
@@ -16,10 +16,10 @@ public extension PlatformClient {
 
         public var configType: String
 
-        public var merchantSalt: String
+        public var key: String
 
         public enum CodingKeys: String, CodingKey {
-            case key
+            case merchantSalt = "merchant_salt"
 
             case secret
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case configType = "config_type"
 
-            case merchantSalt = "merchant_salt"
+            case key
         }
 
         public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
-            self.key = key
+            self.merchantSalt = merchantSalt
 
             self.secret = secret
 
@@ -39,13 +39,13 @@ public extension PlatformClient {
 
             self.configType = configType
 
-            self.merchantSalt = merchantSalt
+            self.key = key
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            key = try container.decode(String.self, forKey: .key)
+            merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
 
             secret = try container.decode(String.self, forKey: .secret)
 
@@ -59,13 +59,13 @@ public extension PlatformClient {
 
             configType = try container.decode(String.self, forKey: .configType)
 
-            merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
+            key = try container.decode(String.self, forKey: .key)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
 
             try? container.encodeIfPresent(secret, forKey: .secret)
 
@@ -73,7 +73,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(configType, forKey: .configType)
 
-            try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
+            try? container.encodeIfPresent(key, forKey: .key)
         }
     }
 }

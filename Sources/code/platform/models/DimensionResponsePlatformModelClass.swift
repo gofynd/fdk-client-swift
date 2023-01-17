@@ -10,22 +10,22 @@ public extension PlatformClient {
     class DimensionResponse: Codable {
         public var height: Double
 
-        public var width: Double
+        public var isDefault: Bool
 
         public var unit: String
 
-        public var isDefault: Bool
+        public var width: Double
 
         public var length: Double
 
         public enum CodingKeys: String, CodingKey {
             case height
 
-            case width
+            case isDefault = "is_default"
 
             case unit
 
-            case isDefault = "is_default"
+            case width
 
             case length
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
             self.height = height
 
-            self.width = width
+            self.isDefault = isDefault
 
             self.unit = unit
 
-            self.isDefault = isDefault
+            self.width = width
 
             self.length = length
         }
@@ -47,11 +47,11 @@ public extension PlatformClient {
 
             height = try container.decode(Double.self, forKey: .height)
 
-            width = try container.decode(Double.self, forKey: .width)
+            isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
             unit = try container.decode(String.self, forKey: .unit)
 
-            isDefault = try container.decode(Bool.self, forKey: .isDefault)
+            width = try container.decode(Double.self, forKey: .width)
 
             length = try container.decode(Double.self, forKey: .length)
         }
@@ -61,11 +61,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(height, forKey: .height)
 
-            try? container.encodeIfPresent(width, forKey: .width)
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+            try? container.encodeIfPresent(width, forKey: .width)
 
             try? container.encodeIfPresent(length, forKey: .length)
         }
