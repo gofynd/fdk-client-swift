@@ -8,48 +8,66 @@ public extension PlatformClient {
      */
 
     class OrderDetails: Codable {
-        public var fyndOrderId: String?
+        public var items: [OrderPicklistListing]
 
-        public var createdAt: String?
+        public var page: PlatformOrderPage
+
+        public var filters: Filters
+
+        public var nextOrderStatus: [String: Any]
+
+        public var appliedFilters: AppliedFilters
 
         public enum CodingKeys: String, CodingKey {
-            case fyndOrderId = "fynd_order_id"
+            case items
 
-            case createdAt = "created_at"
+            case page
+
+            case filters
+
+            case nextOrderStatus = "next_order_status"
+
+            case appliedFilters = "applied_filters"
         }
 
-        public init(createdAt: String? = nil, fyndOrderId: String? = nil) {
-            self.fyndOrderId = fyndOrderId
+        public init(appliedFilters: AppliedFilters, filters: Filters, items: [OrderPicklistListing], nextOrderStatus: [String: Any], page: PlatformOrderPage) {
+            self.items = items
 
-            self.createdAt = createdAt
+            self.page = page
+
+            self.filters = filters
+
+            self.nextOrderStatus = nextOrderStatus
+
+            self.appliedFilters = appliedFilters
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+            items = try container.decode([OrderPicklistListing].self, forKey: .items)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            page = try container.decode(PlatformOrderPage.self, forKey: .page)
 
-            do {
-                createdAt = try container.decode(String.self, forKey: .createdAt)
+            filters = try container.decode(Filters.self, forKey: .filters)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            nextOrderStatus = try container.decode([String: Any].self, forKey: .nextOrderStatus)
+
+            appliedFilters = try container.decode(AppliedFilters.self, forKey: .appliedFilters)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+            try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(nextOrderStatus, forKey: .nextOrderStatus)
+
+            try? container.encodeIfPresent(appliedFilters, forKey: .appliedFilters)
         }
     }
 }

@@ -10,7 +10,7 @@ public extension PlatformClient {
     class Options: Codable {
         public var text: String?
 
-        public var value: Int?
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
             case text
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case value
         }
 
-        public init(text: String? = nil, value: Int? = nil) {
+        public init(text: String? = nil, value: String? = nil) {
             self.text = text
 
             self.value = value
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(Int.self, forKey: .value)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
