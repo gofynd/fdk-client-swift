@@ -8,69 +8,69 @@ public extension PlatformClient {
      */
 
     class BulkActionDetailsResponse: Codable {
-        public var status: Bool?
+        public var uploadedBy: String?
 
-        public var failedRecords: [String]?
+        public var userId: String?
+
+        public var message: String?
 
         public var error: [String]?
 
-        public var userId: String?
+        public var data: [BulkActionDetailsDataField]?
+
+        public var failedRecords: [String]?
 
         public var uploadedOn: String?
 
         public var success: String?
 
-        public var data: [BulkActionDetailsDataField]?
-
-        public var uploadedBy: String?
-
-        public var message: String?
+        public var status: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case status
+            case uploadedBy = "uploaded_by"
 
-            case failedRecords = "failed_records"
+            case userId = "user_id"
+
+            case message
 
             case error
 
-            case userId = "user_id"
+            case data
+
+            case failedRecords = "failed_records"
 
             case uploadedOn = "uploaded_on"
 
             case success
 
-            case data
-
-            case uploadedBy = "uploaded_by"
-
-            case message
+            case status
         }
 
         public init(data: [BulkActionDetailsDataField]? = nil, error: [String]? = nil, failedRecords: [String]? = nil, message: String? = nil, status: Bool? = nil, success: String? = nil, uploadedBy: String? = nil, uploadedOn: String? = nil, userId: String? = nil) {
-            self.status = status
+            self.uploadedBy = uploadedBy
 
-            self.failedRecords = failedRecords
+            self.userId = userId
+
+            self.message = message
 
             self.error = error
 
-            self.userId = userId
+            self.data = data
+
+            self.failedRecords = failedRecords
 
             self.uploadedOn = uploadedOn
 
             self.success = success
 
-            self.data = data
-
-            self.uploadedBy = uploadedBy
-
-            self.message = message
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode(Bool.self, forKey: .status)
+                uploadedBy = try container.decode(String.self, forKey: .uploadedBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                failedRecords = try container.decode([String].self, forKey: .failedRecords)
+                userId = try container.decode(String.self, forKey: .userId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,7 +102,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                data = try container.decode([BulkActionDetailsDataField].self, forKey: .data)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                failedRecords = try container.decode([String].self, forKey: .failedRecords)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,23 +134,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                data = try container.decode([BulkActionDetailsDataField].self, forKey: .data)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uploadedBy = try container.decode(String.self, forKey: .uploadedBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                message = try container.decode(String.self, forKey: .message)
+                status = try container.decode(Bool.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -145,23 +145,23 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(uploadedBy, forKey: .uploadedBy)
 
-            try? container.encodeIfPresent(failedRecords, forKey: .failedRecords)
+            try? container.encodeIfPresent(userId, forKey: .userId)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
+            try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(failedRecords, forKey: .failedRecords)
 
             try? container.encodeIfPresent(uploadedOn, forKey: .uploadedOn)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
-            try? container.encodeIfPresent(uploadedBy, forKey: .uploadedBy)
-
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }
