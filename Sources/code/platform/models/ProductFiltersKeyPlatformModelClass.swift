@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var kind: String?
 
-        public var operators: [String]?
-
         public var name: String
+
+        public var operators: [String]?
 
         public var logo: String?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case kind
 
-            case operators
-
             case name
+
+            case operators
 
             case logo
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.kind = kind
 
-            self.operators = operators
-
             self.name = name
+
+            self.operators = operators
 
             self.logo = logo
         }
@@ -55,6 +55,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            name = try container.decode(String.self, forKey: .name)
+
             do {
                 operators = try container.decode([String].self, forKey: .operators)
 
@@ -62,8 +64,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -81,9 +81,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(kind, forKey: .kind)
 
-            try? container.encodeIfPresent(operators, forKey: .operators)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(operators, forKey: .operators)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }

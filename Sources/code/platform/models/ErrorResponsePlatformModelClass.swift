@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class ErrorResponse: Codable {
-        public var message: String?
-
         public var error: String?
+
+        public var message: String?
 
         public var meta: [String: Any]?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var status: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case message
-
             case error
+
+            case message
 
             case meta
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(code: String? = nil, error: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
-            self.message = message
-
             self.error = error
+
+            self.message = message
 
             self.meta = meta
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                error = try container.decode(String.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                error = try container.decode(String.self, forKey: .error)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
