@@ -10,24 +10,24 @@ public extension PlatformClient {
     class LockData: Codable {
         public var mto: Bool?
 
-        public var locked: Bool?
-
         public var lockMessage: String?
+
+        public var locked: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case mto
 
-            case locked
-
             case lockMessage = "lock_message"
+
+            case locked
         }
 
         public init(locked: Bool? = nil, lockMessage: String? = nil, mto: Bool? = nil) {
             self.mto = mto
 
-            self.locked = locked
-
             self.lockMessage = lockMessage
+
+            self.locked = locked
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                locked = try container.decode(Bool.self, forKey: .locked)
+                lockMessage = try container.decode(String.self, forKey: .lockMessage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                lockMessage = try container.decode(String.self, forKey: .lockMessage)
+                locked = try container.decode(Bool.self, forKey: .locked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(mto, forKey: .mto)
 
-            try? container.encodeIfPresent(locked, forKey: .locked)
-
             try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
+
+            try? container.encodeIfPresent(locked, forKey: .locked)
         }
     }
 }

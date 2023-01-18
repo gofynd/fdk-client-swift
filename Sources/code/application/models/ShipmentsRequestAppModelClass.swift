@@ -9,28 +9,28 @@ public extension ApplicationClient {
     class ShipmentsRequest: Codable {
         public var reasons: ReasonsData?
 
-        public var products: [Products]?
-
         public var identifier: String
 
-        public var dataUpdates: DataUpdates1?
+        public var products: [Products]?
+
+        public var dataUpdates: DataUpdates?
 
         public enum CodingKeys: String, CodingKey {
             case reasons
 
-            case products
-
             case identifier
+
+            case products
 
             case dataUpdates = "data_updates"
         }
 
-        public init(dataUpdates: DataUpdates1? = nil, identifier: String, products: [Products]? = nil, reasons: ReasonsData? = nil) {
+        public init(dataUpdates: DataUpdates? = nil, identifier: String, products: [Products]? = nil, reasons: ReasonsData? = nil) {
             self.reasons = reasons
 
-            self.products = products
-
             self.identifier = identifier
+
+            self.products = products
 
             self.dataUpdates = dataUpdates
         }
@@ -46,6 +46,8 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            identifier = try container.decode(String.self, forKey: .identifier)
+
             do {
                 products = try container.decode([Products].self, forKey: .products)
 
@@ -54,10 +56,8 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            identifier = try container.decode(String.self, forKey: .identifier)
-
             do {
-                dataUpdates = try container.decode(DataUpdates1.self, forKey: .dataUpdates)
+                dataUpdates = try container.decode(DataUpdates.self, forKey: .dataUpdates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,9 +70,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(reasons, forKey: .reasons)
 
-            try? container.encodeIfPresent(products, forKey: .products)
-
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(products, forKey: .products)
 
             try? container.encodeIfPresent(dataUpdates, forKey: .dataUpdates)
         }

@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var itemName: String?
 
-        public var itemBrandName: String?
+        public var itemId: Int?
 
         public var itemSlug: String?
 
-        public var itemId: Int?
+        public var itemBrandName: String?
 
         public var itemPriceDetails: [String: Any]?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case itemName = "item_name"
 
-            case itemBrandName = "item_brand_name"
+            case itemId = "item_id"
 
             case itemSlug = "item_slug"
 
-            case itemId = "item_id"
+            case itemBrandName = "item_brand_name"
 
             case itemPriceDetails = "item_price_details"
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.itemName = itemName
 
-            self.itemBrandName = itemBrandName
+            self.itemId = itemId
 
             self.itemSlug = itemSlug
 
-            self.itemId = itemId
+            self.itemBrandName = itemBrandName
 
             self.itemPriceDetails = itemPriceDetails
         }
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemBrandName = try container.decode(String.self, forKey: .itemBrandName)
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
+                itemBrandName = try container.decode(String.self, forKey: .itemBrandName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,11 +107,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(itemName, forKey: .itemName)
 
-            try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
             try? container.encodeIfPresent(itemSlug, forKey: .itemSlug)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
 
             try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
         }

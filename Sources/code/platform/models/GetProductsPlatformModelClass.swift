@@ -10,7 +10,11 @@ public extension PlatformClient {
     class GetProducts: Codable {
         public var maxQuantity: Int?
 
+        public var sizes: [Size]?
+
         public var productUid: Int?
+
+        public var autoSelect: Bool?
 
         public var allowRemove: Bool?
 
@@ -20,16 +24,16 @@ public extension PlatformClient {
 
         public var productDetails: LimitedProductData?
 
-        public var sizes: [Size]?
-
-        public var autoSelect: Bool?
-
         public var price: Price?
 
         public enum CodingKeys: String, CodingKey {
             case maxQuantity = "max_quantity"
 
+            case sizes
+
             case productUid = "product_uid"
+
+            case autoSelect = "auto_select"
 
             case allowRemove = "allow_remove"
 
@@ -39,17 +43,17 @@ public extension PlatformClient {
 
             case productDetails = "product_details"
 
-            case sizes
-
-            case autoSelect = "auto_select"
-
             case price
         }
 
         public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: Price? = nil, productDetails: LimitedProductData? = nil, productUid: Int? = nil, sizes: [Size]? = nil) {
             self.maxQuantity = maxQuantity
 
+            self.sizes = sizes
+
             self.productUid = productUid
+
+            self.autoSelect = autoSelect
 
             self.allowRemove = allowRemove
 
@@ -58,10 +62,6 @@ public extension PlatformClient {
             self.minQuantity = minQuantity
 
             self.productDetails = productDetails
-
-            self.sizes = sizes
-
-            self.autoSelect = autoSelect
 
             self.price = price
         }
@@ -78,7 +78,23 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                sizes = try container.decode([Size].self, forKey: .sizes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 productUid = try container.decode(Int.self, forKey: .productUid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                autoSelect = try container.decode(Bool.self, forKey: .autoSelect)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,22 +134,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                sizes = try container.decode([Size].self, forKey: .sizes)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                autoSelect = try container.decode(Bool.self, forKey: .autoSelect)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 price = try container.decode(Price.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -147,7 +147,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
 
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
+
             try? container.encodeIfPresent(productUid, forKey: .productUid)
+
+            try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
 
             try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
 
@@ -156,10 +160,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
 
             try? container.encodeIfPresent(productDetails, forKey: .productDetails)
-
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
-
-            try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
 
             try? container.encodeIfPresent(price, forKey: .price)
         }
