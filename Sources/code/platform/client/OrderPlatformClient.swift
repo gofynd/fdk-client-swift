@@ -151,22 +151,13 @@ public extension PlatformClient {
          * Description:
          **/
         public func getShipmentById(
-            channelShipmentId: String?,
-            shipmentId: String?,
+            channelShipmentId: String,
             orderingCompanyId: String?,
             requestByExt: String?,
 
             onResponse: @escaping (_ response: ShipmentInfoResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
-
-            if let value = channelShipmentId {
-                xQuery["channel_shipment_id"] = value
-            }
-
-            if let value = shipmentId {
-                xQuery["shipment_id"] = value
-            }
 
             if let value = orderingCompanyId {
                 xQuery["ordering_company_id"] = value
@@ -179,7 +170,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/shipment-details",
+                url: "/service/platform/orders/v1.0/company/\(companyId)/shipmentDetails/\(channelShipmentId)",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -2307,7 +2298,6 @@ public extension PlatformClient {
          * Description:
          **/
         public func sendSmsNinjaPlatform(
-            body: SendSmsPayload,
             onResponse: @escaping (_ response: OrderStatusResult?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
@@ -2315,7 +2305,7 @@ public extension PlatformClient {
                 method: "get",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/bag/state/transition",
                 query: nil,
-                body: body.dictionary,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in

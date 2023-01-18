@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var partial: Bool?
 
-        public var message: String?
-
         public var cart: CartDetailResponse?
+
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
             case partial
 
-            case message
-
             case cart
+
+            case message
         }
 
         public init(cart: CartDetailResponse? = nil, message: String? = nil, partial: Bool? = nil, success: Bool? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.partial = partial
 
-            self.message = message
-
             self.cart = cart
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                cart = try container.decode(CartDetailResponse.self, forKey: .cart)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                cart = try container.decode(CartDetailResponse.self, forKey: .cart)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(partial, forKey: .partial)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(cart, forKey: .cart)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

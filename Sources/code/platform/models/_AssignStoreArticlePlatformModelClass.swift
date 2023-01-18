@@ -3,50 +3,50 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ApplicationItemResponse
-         Used By: Catalog
+         Model: _AssignStoreArticle
+         Used By: CompanyProfile
      */
 
-    class ApplicationItemResponse: Codable {
-        public var seo: SEOData?
+    class _AssignStoreArticle: Codable {
+        public var query: _ArticleQuery?
 
-        public var altText: [String: Any]?
+        public var articleAssignment: _ArticleAssignment?
 
-        public var moq: MOQData?
+        public var meta: [String: Any]?
 
-        public var isGift: Bool?
+        public var groupId: String?
 
-        public var isCod: Bool?
+        public var quantity: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case seo
+            case query
 
-            case altText = "alt_text"
+            case articleAssignment = "article_assignment"
 
-            case moq
+            case meta
 
-            case isGift = "is_gift"
+            case groupId = "group_id"
 
-            case isCod = "is_cod"
+            case quantity
         }
 
-        public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: MOQData? = nil, seo: SEOData? = nil) {
-            self.seo = seo
+        public init(articleAssignment: _ArticleAssignment? = nil, groupId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, query: _ArticleQuery? = nil) {
+            self.query = query
 
-            self.altText = altText
+            self.articleAssignment = articleAssignment
 
-            self.moq = moq
+            self.meta = meta
 
-            self.isGift = isGift
+            self.groupId = groupId
 
-            self.isCod = isCod
+            self.quantity = quantity
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                seo = try container.decode(SEOData.self, forKey: .seo)
+                query = try container.decode(_ArticleQuery.self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                altText = try container.decode([String: Any].self, forKey: .altText)
+                articleAssignment = try container.decode(_ArticleAssignment.self, forKey: .articleAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                moq = try container.decode(MOQData.self, forKey: .moq)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isGift = try container.decode(Bool.self, forKey: .isGift)
+                groupId = try container.decode(String.self, forKey: .groupId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isCod = try container.decode(Bool.self, forKey: .isCod)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,15 +89,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(seo, forKey: .seo)
+            try? container.encodeIfPresent(query, forKey: .query)
 
-            try? container.encodeIfPresent(altText, forKey: .altText)
+            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
-            try? container.encodeIfPresent(moq, forKey: .moq)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(isGift, forKey: .isGift)
+            try? container.encodeIfPresent(groupId, forKey: .groupId)
 
-            try? container.encodeIfPresent(isCod, forKey: .isCod)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 }

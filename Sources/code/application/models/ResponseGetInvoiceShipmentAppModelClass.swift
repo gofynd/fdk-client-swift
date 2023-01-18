@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var presignedUrl: String
 
-        public var success: Bool
-
         public var shipmentId: String
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case presignedType = "presigned_type"
 
             case presignedUrl = "presigned_url"
 
-            case success
-
             case shipmentId = "shipment_id"
+
+            case success
         }
 
         public init(presignedType: String, presignedUrl: String, shipmentId: String, success: Bool) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.presignedUrl = presignedUrl
 
-            self.success = success
-
             self.shipmentId = shipmentId
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,9 +42,9 @@ public extension ApplicationClient {
 
             presignedUrl = try container.decode(String.self, forKey: .presignedUrl)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -54,9 +54,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(presignedUrl, forKey: .presignedUrl)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
