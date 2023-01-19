@@ -10,9 +10,9 @@ public extension PlatformClient {
     class UserSerializer: Codable {
         public var username: String?
 
-        public var id: String?
-
         public var contact: String?
+
+        public var id: String?
 
         public var userId: String?
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case username
 
-            case id = "_id"
-
             case contact
+
+            case id = "_id"
 
             case userId = "user_id"
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(contact: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
             self.username = username
 
-            self.id = id
-
             self.contact = contact
+
+            self.id = id
 
             self.userId = userId
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                contact = try container.decode(String.self, forKey: .contact)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                contact = try container.decode(String.self, forKey: .contact)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(contact, forKey: .contact)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 

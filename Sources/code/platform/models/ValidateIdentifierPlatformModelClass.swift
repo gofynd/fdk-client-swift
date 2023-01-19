@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ValidateIdentifier: Codable {
         public var primary: Bool?
 
-        public var gtinType: String
-
         public var gtinValue: String
+
+        public var gtinType: String
 
         public enum CodingKeys: String, CodingKey {
             case primary
 
-            case gtinType = "gtin_type"
-
             case gtinValue = "gtin_value"
+
+            case gtinType = "gtin_type"
         }
 
         public init(gtinType: String, gtinValue: String, primary: Bool? = nil) {
             self.primary = primary
 
-            self.gtinType = gtinType
-
             self.gtinValue = gtinValue
+
+            self.gtinType = gtinType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,9 +41,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            gtinType = try container.decode(String.self, forKey: .gtinType)
-
             gtinValue = try container.decode(String.self, forKey: .gtinValue)
+
+            gtinType = try container.decode(String.self, forKey: .gtinType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -51,9 +51,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(primary, forKey: .primary)
 
-            try? container.encodeIfPresent(gtinType, forKey: .gtinType)
-
             try? container.encodeIfPresent(gtinValue, forKey: .gtinValue)
+
+            try? container.encodeIfPresent(gtinType, forKey: .gtinType)
         }
     }
 }
