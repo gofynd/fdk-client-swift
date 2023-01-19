@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: EntitiesReasons
+         Model: MarkedValues
          Used By: Order
      */
-    class EntitiesReasons: Codable {
-        public var filters: [[String: Any]]?
+    class MarkedValues: Codable {
+        public var max: Double?
 
-        public var data: EntityReasonData?
+        public var min: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case filters
+            case max
 
-            case data
+            case min
         }
 
-        public init(data: EntityReasonData? = nil, filters: [[String: Any]]? = nil) {
-            self.filters = filters
+        public init(max: Double? = nil, min: Double? = nil) {
+            self.max = max
 
-            self.data = data
+            self.min = min
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                filters = try container.decode([[String: Any]].self, forKey: .filters)
+                max = try container.decode(Double.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                data = try container.decode(EntityReasonData.self, forKey: .data)
+                min = try container.decode(Double.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(max, forKey: .max)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(min, forKey: .min)
         }
     }
 }

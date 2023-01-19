@@ -1,33 +1,34 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: TimeStampData
-         Used By: Order
+         Model: BuyRules
+         Used By: Cart
      */
-    class TimeStampData: Codable {
-        public var min: String?
 
-        public var max: String?
+    class BuyRules: Codable {
+        public var cartConditions: [String: Any]?
+
+        public var itemCriteria: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case min
+            case cartConditions = "cart_conditions"
 
-            case max
+            case itemCriteria = "item_criteria"
         }
 
-        public init(max: String? = nil, min: String? = nil) {
-            self.min = min
+        public init(cartConditions: [String: Any]? = nil, itemCriteria: [String: Any]? = nil) {
+            self.cartConditions = cartConditions
 
-            self.max = max
+            self.itemCriteria = itemCriteria
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                min = try container.decode(String.self, forKey: .min)
+                cartConditions = try container.decode([String: Any].self, forKey: .cartConditions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +36,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                max = try container.decode(String.self, forKey: .max)
+                itemCriteria = try container.decode([String: Any].self, forKey: .itemCriteria)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +47,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(min, forKey: .min)
+            try? container.encodeIfPresent(cartConditions, forKey: .cartConditions)
 
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
         }
     }
 }

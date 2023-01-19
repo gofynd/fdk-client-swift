@@ -11,21 +11,21 @@ public extension ApplicationClient {
 
         public var contact: String
 
-        public var customerId: String
-
-        public var amount: Int
+        public var merchantOrderId: String
 
         public var method: String
 
-        public var aggregator: String
+        public var amount: Int
 
-        public var currency: String
+        public var aggregator: String
 
         public var status: String
 
+        public var customerId: String
+
         public var email: String
 
-        public var merchantOrderId: String
+        public var currency: String
 
         public var vpa: String
 
@@ -34,21 +34,21 @@ public extension ApplicationClient {
 
             case contact
 
-            case customerId = "customer_id"
-
-            case amount
+            case merchantOrderId = "merchant_order_id"
 
             case method
 
-            case aggregator
+            case amount
 
-            case currency
+            case aggregator
 
             case status
 
+            case customerId = "customer_id"
+
             case email
 
-            case merchantOrderId = "merchant_order_id"
+            case currency
 
             case vpa
         }
@@ -58,21 +58,21 @@ public extension ApplicationClient {
 
             self.contact = contact
 
-            self.customerId = customerId
-
-            self.amount = amount
+            self.merchantOrderId = merchantOrderId
 
             self.method = method
 
-            self.aggregator = aggregator
+            self.amount = amount
 
-            self.currency = currency
+            self.aggregator = aggregator
 
             self.status = status
 
+            self.customerId = customerId
+
             self.email = email
 
-            self.merchantOrderId = merchantOrderId
+            self.currency = currency
 
             self.vpa = vpa
         }
@@ -84,21 +84,21 @@ public extension ApplicationClient {
 
             contact = try container.decode(String.self, forKey: .contact)
 
-            customerId = try container.decode(String.self, forKey: .customerId)
-
-            amount = try container.decode(Int.self, forKey: .amount)
+            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
 
             method = try container.decode(String.self, forKey: .method)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
+            amount = try container.decode(Int.self, forKey: .amount)
 
-            currency = try container.decode(String.self, forKey: .currency)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             status = try container.decode(String.self, forKey: .status)
 
+            customerId = try container.decode(String.self, forKey: .customerId)
+
             email = try container.decode(String.self, forKey: .email)
 
-            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
+            currency = try container.decode(String.self, forKey: .currency)
 
             vpa = try container.decode(String.self, forKey: .vpa)
         }
@@ -110,21 +110,21 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(contact, forKey: .contact)
 
-            try? container.encodeIfPresent(customerId, forKey: .customerId)
-
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
 
             try? container.encodeIfPresent(method, forKey: .method)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encode(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
+            try? container.encodeIfPresent(customerId, forKey: .customerId)
+
             try? container.encodeIfPresent(email, forKey: .email)
 
-            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            try? container.encodeIfPresent(currency, forKey: .currency)
 
             try? container.encodeIfPresent(vpa, forKey: .vpa)
         }

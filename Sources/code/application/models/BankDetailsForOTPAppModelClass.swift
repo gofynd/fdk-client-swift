@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var ifscCode: String
 
-        public var accountNo: String
-
         public var accountHolder: String
 
         public var branchName: String
+
+        public var accountNo: String
 
         public enum CodingKeys: String, CodingKey {
             case bankName = "bank_name"
 
             case ifscCode = "ifsc_code"
 
-            case accountNo = "account_no"
-
             case accountHolder = "account_holder"
 
             case branchName = "branch_name"
+
+            case accountNo = "account_no"
         }
 
         public init(accountHolder: String, accountNo: String, bankName: String, branchName: String, ifscCode: String) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.ifscCode = ifscCode
 
-            self.accountNo = accountNo
-
             self.accountHolder = accountHolder
 
             self.branchName = branchName
+
+            self.accountNo = accountNo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,11 +48,11 @@ public extension ApplicationClient {
 
             ifscCode = try container.decode(String.self, forKey: .ifscCode)
 
-            accountNo = try container.decode(String.self, forKey: .accountNo)
-
             accountHolder = try container.decode(String.self, forKey: .accountHolder)
 
             branchName = try container.decode(String.self, forKey: .branchName)
+
+            accountNo = try container.decode(String.self, forKey: .accountNo)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,11 +62,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
 
-            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
-
             try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
 
             try? container.encodeIfPresent(branchName, forKey: .branchName)
+
+            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
         }
     }
 }

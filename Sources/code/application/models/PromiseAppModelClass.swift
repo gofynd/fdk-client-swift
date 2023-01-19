@@ -9,7 +9,7 @@ public extension ApplicationClient {
     class Promise: Codable {
         public var showPromise: Bool?
 
-        public var timestamp: TimeStampData?
+        public var timestamp: Timestamp?
 
         public enum CodingKeys: String, CodingKey {
             case showPromise = "show_promise"
@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case timestamp
         }
 
-        public init(showPromise: Bool? = nil, timestamp: TimeStampData? = nil) {
+        public init(showPromise: Bool? = nil, timestamp: Timestamp? = nil) {
             self.showPromise = showPromise
 
             self.timestamp = timestamp
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                timestamp = try container.decode(TimeStampData.self, forKey: .timestamp)
+                timestamp = try container.decode(Timestamp.self, forKey: .timestamp)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

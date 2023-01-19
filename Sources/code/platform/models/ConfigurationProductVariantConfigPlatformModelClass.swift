@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var isActive: Bool
 
+        public var priority: Int
+
         public var displayType: String
 
         public var logo: String?
 
         public var name: String
-
-        public var priority: Int
 
         public var size: ProductSize
 
@@ -27,13 +27,13 @@ public extension PlatformClient {
 
             case isActive = "is_active"
 
+            case priority
+
             case displayType = "display_type"
 
             case logo
 
             case name
-
-            case priority
 
             case size
         }
@@ -43,13 +43,13 @@ public extension PlatformClient {
 
             self.isActive = isActive
 
+            self.priority = priority
+
             self.displayType = displayType
 
             self.logo = logo
 
             self.name = name
-
-            self.priority = priority
 
             self.size = size
         }
@@ -60,6 +60,8 @@ public extension PlatformClient {
             key = try container.decode(String.self, forKey: .key)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            priority = try container.decode(Int.self, forKey: .priority)
 
             displayType = try container.decode(String.self, forKey: .displayType)
 
@@ -73,8 +75,6 @@ public extension PlatformClient {
 
             name = try container.decode(String.self, forKey: .name)
 
-            priority = try container.decode(Int.self, forKey: .priority)
-
             size = try container.decode(ProductSize.self, forKey: .size)
         }
 
@@ -85,13 +85,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
+            try? container.encodeIfPresent(priority, forKey: .priority)
+
             try? container.encodeIfPresent(displayType, forKey: .displayType)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(size, forKey: .size)
         }

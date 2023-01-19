@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: ProductsDataUpdatesFilters
+         Model: StatusesBody
          Used By: Order
      */
-    class ProductsDataUpdatesFilters: Codable {
-        public var lineNumber: Int?
+    class StatusesBody: Codable {
+        public var status: String?
 
-        public var identifier: String?
+        public var shipments: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case lineNumber = "line_number"
+            case status
 
-            case identifier
+            case shipments
         }
 
-        public init(identifier: String? = nil, lineNumber: Int? = nil) {
-            self.lineNumber = lineNumber
+        public init(shipments: [String: Any]? = nil, status: String? = nil) {
+            self.status = status
 
-            self.identifier = identifier
+            self.shipments = shipments
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                shipments = try container.decode([String: Any].self, forKey: .shipments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
+            try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
         }
     }
 }
