@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var displayType: String?
 
-        public var key: String?
-
         public var items: [ProductVariantItemResponse]?
+
+        public var key: String?
 
         public enum CodingKeys: String, CodingKey {
             case header
 
             case displayType = "display_type"
 
-            case key
-
             case items
+
+            case key
         }
 
         public init(displayType: String? = nil, header: String? = nil, items: [ProductVariantItemResponse]? = nil, key: String? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.displayType = displayType
 
-            self.key = key
-
             self.items = items
+
+            self.key = key
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(key, forKey: .key)
         }
     }
 }
