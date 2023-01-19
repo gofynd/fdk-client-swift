@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var currencyCode: String?
 
+        public var marked: Int?
+
         public var currencySymbol: String?
 
         public var effective: Int?
-
-        public var marked: Int?
 
         public enum CodingKeys: String, CodingKey {
             case offerPrice = "offer_price"
 
             case currencyCode = "currency_code"
 
+            case marked
+
             case currencySymbol = "currency_symbol"
 
             case effective
-
-            case marked
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, effective: Int? = nil, marked: Int? = nil, offerPrice: Double? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.currencyCode = currencyCode
 
+            self.marked = marked
+
             self.currencySymbol = currencySymbol
 
             self.effective = effective
-
-            self.marked = marked
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,6 +61,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                marked = try container.decode(Int.self, forKey: .marked)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -75,14 +83,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                marked = try container.decode(Int.self, forKey: .marked)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -92,11 +92,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
+            try? container.encodeIfPresent(marked, forKey: .marked)
+
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
-
-            try? container.encodeIfPresent(marked, forKey: .marked)
         }
     }
 }

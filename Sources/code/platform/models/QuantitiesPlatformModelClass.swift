@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class Quantities: Codable {
-        public var sellable: QuantityBase?
-
         public var damaged: QuantityBase?
+
+        public var sellable: QuantityBase?
 
         public var notAvailable: QuantityBase?
 
         public var orderCommitted: QuantityBase?
 
         public enum CodingKeys: String, CodingKey {
-            case sellable
-
             case damaged
+
+            case sellable
 
             case notAvailable = "not_available"
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(damaged: QuantityBase? = nil, notAvailable: QuantityBase? = nil, orderCommitted: QuantityBase? = nil, sellable: QuantityBase? = nil) {
-            self.sellable = sellable
-
             self.damaged = damaged
+
+            self.sellable = sellable
 
             self.notAvailable = notAvailable
 
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                sellable = try container.decode(QuantityBase.self, forKey: .sellable)
+                damaged = try container.decode(QuantityBase.self, forKey: .damaged)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                damaged = try container.decode(QuantityBase.self, forKey: .damaged)
+                sellable = try container.decode(QuantityBase.self, forKey: .sellable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,9 +75,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sellable, forKey: .sellable)
-
             try? container.encodeIfPresent(damaged, forKey: .damaged)
+
+            try? container.encodeIfPresent(sellable, forKey: .sellable)
 
             try? container.encodeIfPresent(notAvailable, forKey: .notAvailable)
 

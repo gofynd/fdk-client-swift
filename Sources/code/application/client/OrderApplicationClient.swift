@@ -564,13 +564,13 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary:
-         * Description:
+         * Summary: Update the shipment status
+         * Description: Use this API to update the status of a shipment using its shipment ID.
          **/
         public func updateShipmentStatus(
-            shipmentId: Int,
-            body: ShipmentStatusUpdateBody,
-            onResponse: @escaping (_ response: ShipmentStatusUpdate?, _ error: FDKError?) -> Void
+            shipmentId: String,
+            body: UpdateShipmentStatusRequest,
+            onResponse: @escaping (_ response: ShipmentApplicationStatusResponse?, _ error: FDKError?) -> Void
         ) {
             var fullUrl = relativeUrls["updateShipmentStatus"] ?? ""
 
@@ -592,7 +592,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(ShipmentStatusUpdate.self, from: data)
+                        let response = Utility.decode(ShipmentApplicationStatusResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
