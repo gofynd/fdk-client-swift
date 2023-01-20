@@ -10,9 +10,9 @@ public extension PlatformClient {
     class CreateChannelConfig: Codable {
         public var shipmentAssignment: String?
 
-        public var lockStates: [String]?
-
         public var logoUrl: [String: Any]?
+
+        public var lockStates: [String]?
 
         public var dpConfiguration: DpConfiguration?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case shipmentAssignment = "shipment_assignment"
 
-            case lockStates = "lock_states"
-
             case logoUrl = "logo_url"
+
+            case lockStates = "lock_states"
 
             case dpConfiguration = "dp_configuration"
 
@@ -37,9 +37,9 @@ public extension PlatformClient {
         public init(dpConfiguration: DpConfiguration? = nil, locationReassignment: Bool? = nil, lockStates: [String]? = nil, logoUrl: [String: Any]? = nil, paymentInfo: CreateChannelPaymentInfo? = nil, shipmentAssignment: String? = nil) {
             self.shipmentAssignment = shipmentAssignment
 
-            self.lockStates = lockStates
-
             self.logoUrl = logoUrl
+
+            self.lockStates = lockStates
 
             self.dpConfiguration = dpConfiguration
 
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                lockStates = try container.decode([String].self, forKey: .lockStates)
+                logoUrl = try container.decode([String: Any].self, forKey: .logoUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                logoUrl = try container.decode([String: Any].self, forKey: .logoUrl)
+                lockStates = try container.decode([String].self, forKey: .lockStates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,9 +105,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
 
-            try? container.encodeIfPresent(lockStates, forKey: .lockStates)
-
             try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
+
+            try? container.encodeIfPresent(lockStates, forKey: .lockStates)
 
             try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
 

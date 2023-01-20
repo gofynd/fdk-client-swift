@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var code: String?
 
-        public var tax: Tax?
-
         public var amount: [String: Any]
 
         public var name: String
+
+        public var tax: Tax?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
             case code
 
-            case tax
-
             case amount
 
             case name
+
+            case tax
         }
 
         public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax? = nil, type: String) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.code = code
 
-            self.tax = tax
-
             self.amount = amount
 
             self.name = name
+
+            self.tax = tax
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,6 +55,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            amount = try container.decode([String: Any].self, forKey: .amount)
+
+            name = try container.decode(String.self, forKey: .name)
+
             do {
                 tax = try container.decode(Tax.self, forKey: .tax)
 
@@ -62,10 +66,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            amount = try container.decode([String: Any].self, forKey: .amount)
-
-            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -75,11 +75,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(tax, forKey: .tax)
-
             try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(tax, forKey: .tax)
         }
     }
 }

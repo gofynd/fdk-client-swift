@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var unit: String?
 
-        public var isDefault: Bool?
-
         public var height: Int?
+
+        public var isDefault: Bool?
 
         public var width: Int?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case unit
 
-            case isDefault = "is_default"
-
             case height
+
+            case isDefault = "is_default"
 
             case width
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.unit = unit
 
-            self.isDefault = isDefault
-
             self.height = height
+
+            self.isDefault = isDefault
 
             self.width = width
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                height = try container.decode(Int.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                height = try container.decode(Int.self, forKey: .height)
+                isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-
             try? container.encodeIfPresent(height, forKey: .height)
+
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
             try? container.encodeIfPresent(width, forKey: .width)
         }
