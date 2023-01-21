@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var title: String?
 
-        public var definitions: [String: Any]?
-
         public var required: [String]?
+
+        public var definitions: [String: Any]?
 
         public var properties: Properties?
 
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case title
 
-            case definitions
-
             case required
+
+            case definitions
 
             case properties
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
 
             self.title = title
 
-            self.definitions = definitions
-
             self.required = required
+
+            self.definitions = definitions
 
             self.properties = properties
 
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                definitions = try container.decode([String: Any].self, forKey: .definitions)
+                required = try container.decode([String].self, forKey: .required)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                required = try container.decode([String].self, forKey: .required)
+                definitions = try container.decode([String: Any].self, forKey: .definitions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,9 +107,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(definitions, forKey: .definitions)
-
             try? container.encodeIfPresent(required, forKey: .required)
+
+            try? container.encodeIfPresent(definitions, forKey: .definitions)
 
             try? container.encodeIfPresent(properties, forKey: .properties)
 

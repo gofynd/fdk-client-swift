@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var lastName: String
 
-        public var firstName: String
-
         public var id: String
+
+        public var firstName: String
 
         public enum CodingKeys: String, CodingKey {
             case user
 
             case lastName = "last_name"
 
-            case firstName = "first_name"
-
             case id = "_id"
+
+            case firstName = "first_name"
         }
 
         public init(firstName: String, lastName: String, user: String, id: String) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.lastName = lastName
 
-            self.firstName = firstName
-
             self.id = id
+
+            self.firstName = firstName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,9 +42,9 @@ public extension ApplicationClient {
 
             lastName = try container.decode(String.self, forKey: .lastName)
 
-            firstName = try container.decode(String.self, forKey: .firstName)
-
             id = try container.decode(String.self, forKey: .id)
+
+            firstName = try container.decode(String.self, forKey: .firstName)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -54,9 +54,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
         }
     }
 }

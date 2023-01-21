@@ -18,6 +18,8 @@ public extension PlatformClient {
 
         public var answer: String?
 
+        public var tags: [String]?
+
         public enum CodingKeys: String, CodingKey {
             case slug
 
@@ -28,9 +30,11 @@ public extension PlatformClient {
             case question
 
             case answer
+
+            case tags
         }
 
-        public init(answer: String? = nil, application: String? = nil, question: String? = nil, slug: String? = nil, id: String? = nil) {
+        public init(answer: String? = nil, application: String? = nil, question: String? = nil, slug: String? = nil, tags: [String]? = nil, id: String? = nil) {
             self.slug = slug
 
             self.application = application
@@ -40,6 +44,8 @@ public extension PlatformClient {
             self.question = question
 
             self.answer = answer
+
+            self.tags = tags
         }
 
         required public init(from decoder: Decoder) throws {
@@ -84,6 +90,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                tags = try container.decode([String].self, forKey: .tags)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -98,6 +112,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(question, forKey: .question)
 
             try? container.encodeIfPresent(answer, forKey: .answer)
+
+            try? container.encodeIfPresent(tags, forKey: .tags)
         }
     }
 }

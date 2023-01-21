@@ -7,9 +7,9 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class ChargeCustomerRequest: Codable {
-        public var amount: Int
-
         public var transactionToken: String?
+
+        public var amount: Int
 
         public var verified: Bool?
 
@@ -18,9 +18,9 @@ public extension ApplicationClient {
         public var aggregator: String
 
         public enum CodingKeys: String, CodingKey {
-            case amount
-
             case transactionToken = "transaction_token"
+
+            case amount
 
             case verified
 
@@ -30,9 +30,9 @@ public extension ApplicationClient {
         }
 
         public init(aggregator: String, amount: Int, orderId: String, transactionToken: String? = nil, verified: Bool? = nil) {
-            self.amount = amount
-
             self.transactionToken = transactionToken
+
+            self.amount = amount
 
             self.verified = verified
 
@@ -44,8 +44,6 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            amount = try container.decode(Int.self, forKey: .amount)
-
             do {
                 transactionToken = try container.decode(String.self, forKey: .transactionToken)
 
@@ -53,6 +51,8 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            amount = try container.decode(Int.self, forKey: .amount)
 
             do {
                 verified = try container.decode(Bool.self, forKey: .verified)
@@ -70,9 +70,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(amount, forKey: .amount)
-
             try? container.encode(transactionToken, forKey: .transactionToken)
+
+            try? container.encode(amount, forKey: .amount)
 
             try? container.encode(verified, forKey: .verified)
 
