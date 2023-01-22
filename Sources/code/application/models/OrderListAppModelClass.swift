@@ -10,18 +10,18 @@ public extension ApplicationClient {
         
         public var filters: OrderFilters?
         
-        public var items: [OrderSchema]?
-        
         public var page: OrderPage?
+        
+        public var items: [OrderSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case filters = "filters"
             
-            case items = "items"
-            
             case page = "page"
+            
+            case items = "items"
             
         }
 
@@ -29,9 +29,9 @@ public extension ApplicationClient {
             
             self.filters = filters
             
-            self.items = items
-            
             self.page = page
+            
+            self.items = items
             
         }
 
@@ -41,18 +41,6 @@ public extension ApplicationClient {
             
             do {
                 filters = try container.decode(OrderFilters.self, forKey: .filters)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                items = try container.decode([OrderSchema].self, forKey: .items)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,6 +62,18 @@ public extension ApplicationClient {
             }
             
             
+            
+            do {
+                items = try container.decode([OrderSchema].self, forKey: .items)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -86,12 +86,12 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
-            
-            
-            
-            
             try? container.encodeIfPresent(page, forKey: .page)
+            
+            
+            
+            
+            try? container.encodeIfPresent(items, forKey: .items)
             
             
         }

@@ -8,24 +8,24 @@ public extension ApplicationClient {
     */
     class FulfillingCompany: Codable {
         
-        public var name: String?
-        
         public var id: Int?
+        
+        public var name: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case name = "name"
-            
             case id = "id"
+            
+            case name = "name"
             
         }
 
         public init(id: Int? = nil, name: String? = nil) {
             
-            self.name = name
-            
             self.id = id
+            
+            self.name = name
             
         }
 
@@ -34,7 +34,7 @@ public extension ApplicationClient {
             
             
             do {
-                name = try container.decode(String.self, forKey: .name)
+                id = try container.decode(Int.self, forKey: .id)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,7 +46,7 @@ public extension ApplicationClient {
             
             
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                name = try container.decode(String.self, forKey: .name)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,12 +63,12 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
             try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }

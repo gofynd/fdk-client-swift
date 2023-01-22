@@ -8,36 +8,36 @@ public extension ApplicationClient {
     */
     class ShipmentsRequest: Codable {
         
-        public var reasons: ReasonsData?
+        public var identifier: String
         
-        public var products: [Products]?
+        public var reasons: ReasonsData?
         
         public var dataUpdates: DataUpdates?
         
-        public var identifier: String
+        public var products: [Products]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case reasons = "reasons"
+            case identifier = "identifier"
             
-            case products = "products"
+            case reasons = "reasons"
             
             case dataUpdates = "data_updates"
             
-            case identifier = "identifier"
+            case products = "products"
             
         }
 
         public init(dataUpdates: DataUpdates? = nil, identifier: String, products: [Products]? = nil, reasons: ReasonsData? = nil) {
             
-            self.reasons = reasons
+            self.identifier = identifier
             
-            self.products = products
+            self.reasons = reasons
             
             self.dataUpdates = dataUpdates
             
-            self.identifier = identifier
+            self.products = products
             
         }
 
@@ -45,20 +45,13 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
+            identifier = try container.decode(String.self, forKey: .identifier)
+            
+            
+            
+            
             do {
                 reasons = try container.decode(ReasonsData.self, forKey: .reasons)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                products = try container.decode([Products].self, forKey: .products)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,8 +74,15 @@ public extension ApplicationClient {
             
             
             
-            identifier = try container.decode(String.self, forKey: .identifier)
+            do {
+                products = try container.decode([Products].self, forKey: .products)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }
@@ -92,12 +92,12 @@ public extension ApplicationClient {
             
             
             
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            
+            
+            
+            
             try? container.encodeIfPresent(reasons, forKey: .reasons)
-            
-            
-            
-            
-            try? container.encodeIfPresent(products, forKey: .products)
             
             
             
@@ -107,7 +107,7 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(products, forKey: .products)
             
             
         }

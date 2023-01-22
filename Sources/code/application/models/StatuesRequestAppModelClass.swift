@@ -8,30 +8,30 @@ public extension ApplicationClient {
     */
     class StatuesRequest: Codable {
         
-        public var shipments: [ShipmentsRequest]?
+        public var excludeBagsNextState: String?
         
         public var status: String?
         
-        public var excludeBagsNextState: String?
+        public var shipments: [ShipmentsRequest]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case shipments = "shipments"
+            case excludeBagsNextState = "exclude_bags_next_state"
             
             case status = "status"
             
-            case excludeBagsNextState = "exclude_bags_next_state"
+            case shipments = "shipments"
             
         }
 
         public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, status: String? = nil) {
             
-            self.shipments = shipments
+            self.excludeBagsNextState = excludeBagsNextState
             
             self.status = status
             
-            self.excludeBagsNextState = excludeBagsNextState
+            self.shipments = shipments
             
         }
 
@@ -40,7 +40,7 @@ public extension ApplicationClient {
             
             
             do {
-                shipments = try container.decode([ShipmentsRequest].self, forKey: .shipments)
+                excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension ApplicationClient {
             
             
             do {
-                excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
+                shipments = try container.decode([ShipmentsRequest].self, forKey: .shipments)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,7 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
+            try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
             
             
             
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
             
             
         }

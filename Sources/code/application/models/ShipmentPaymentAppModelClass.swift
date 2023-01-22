@@ -8,48 +8,48 @@ public extension ApplicationClient {
     */
     class ShipmentPayment: Codable {
         
-        public var status: String?
+        public var displayName: String?
         
         public var paymentMode: String?
         
         public var logo: String?
         
-        public var mop: String?
-        
         public var mode: String?
         
-        public var displayName: String?
+        public var mop: String?
+        
+        public var status: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case status = "status"
+            case displayName = "display_name"
             
             case paymentMode = "payment_mode"
             
             case logo = "logo"
             
-            case mop = "mop"
-            
             case mode = "mode"
             
-            case displayName = "display_name"
+            case mop = "mop"
+            
+            case status = "status"
             
         }
 
         public init(displayName: String? = nil, logo: String? = nil, mode: String? = nil, mop: String? = nil, paymentMode: String? = nil, status: String? = nil) {
             
-            self.status = status
+            self.displayName = displayName
             
             self.paymentMode = paymentMode
             
             self.logo = logo
             
-            self.mop = mop
-            
             self.mode = mode
             
-            self.displayName = displayName
+            self.mop = mop
+            
+            self.status = status
             
         }
 
@@ -58,7 +58,7 @@ public extension ApplicationClient {
             
             
             do {
-                status = try container.decode(String.self, forKey: .status)
+                displayName = try container.decode(String.self, forKey: .displayName)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,18 +94,6 @@ public extension ApplicationClient {
             
             
             do {
-                mop = try container.decode(String.self, forKey: .mop)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 mode = try container.decode(String.self, forKey: .mode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -118,7 +106,19 @@ public extension ApplicationClient {
             
             
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                mop = try container.decode(String.self, forKey: .mop)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                status = try container.decode(String.self, forKey: .status)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -135,7 +135,7 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
@@ -150,17 +150,17 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(mop, forKey: .mop)
-            
-            
-            
-            
             try? container.encodeIfPresent(mode, forKey: .mode)
             
             
             
             
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(mop, forKey: .mop)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }

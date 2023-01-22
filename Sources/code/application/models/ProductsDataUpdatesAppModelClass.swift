@@ -8,24 +8,24 @@ public extension ApplicationClient {
     */
     class ProductsDataUpdates: Codable {
         
-        public var data: [String: Any]?
-        
         public var filters: [ProductsDataUpdatesFilters]?
+        
+        public var data: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case data = "data"
-            
             case filters = "filters"
+            
+            case data = "data"
             
         }
 
         public init(data: [String: Any]? = nil, filters: [ProductsDataUpdatesFilters]? = nil) {
             
-            self.data = data
-            
             self.filters = filters
+            
+            self.data = data
             
         }
 
@@ -34,7 +34,7 @@ public extension ApplicationClient {
             
             
             do {
-                data = try container.decode([String: Any].self, forKey: .data)
+                filters = try container.decode([ProductsDataUpdatesFilters].self, forKey: .filters)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,7 +46,7 @@ public extension ApplicationClient {
             
             
             do {
-                filters = try container.decode([ProductsDataUpdatesFilters].self, forKey: .filters)
+                data = try container.decode([String: Any].self, forKey: .data)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,12 +63,12 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(data, forKey: .data)
-            
-            
-            
-            
             try? container.encodeIfPresent(filters, forKey: .filters)
+            
+            
+            
+            
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
         }

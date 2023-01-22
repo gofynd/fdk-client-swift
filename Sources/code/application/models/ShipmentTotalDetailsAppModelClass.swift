@@ -10,18 +10,18 @@ public extension ApplicationClient {
         
         public var pieces: Int?
         
-        public var sizes: Int?
-        
         public var totalPrice: Double?
+        
+        public var sizes: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case pieces = "pieces"
             
-            case sizes = "sizes"
-            
             case totalPrice = "total_price"
+            
+            case sizes = "sizes"
             
         }
 
@@ -29,9 +29,9 @@ public extension ApplicationClient {
             
             self.pieces = pieces
             
-            self.sizes = sizes
-            
             self.totalPrice = totalPrice
+            
+            self.sizes = sizes
             
         }
 
@@ -41,18 +41,6 @@ public extension ApplicationClient {
             
             do {
                 pieces = try container.decode(Int.self, forKey: .pieces)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                sizes = try container.decode(Int.self, forKey: .sizes)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,6 +62,18 @@ public extension ApplicationClient {
             }
             
             
+            
+            do {
+                sizes = try container.decode(Int.self, forKey: .sizes)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -86,12 +86,12 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
-            
-            
-            
-            
             try? container.encodeIfPresent(totalPrice, forKey: .totalPrice)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
             
             
         }

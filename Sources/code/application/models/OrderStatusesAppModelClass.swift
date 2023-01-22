@@ -8,30 +8,30 @@ public extension ApplicationClient {
     */
     class OrderStatuses: Codable {
         
-        public var display: String?
+        public var value: Int?
         
         public var isSelected: Bool?
         
-        public var value: Int?
+        public var display: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case display = "display"
+            case value = "value"
             
             case isSelected = "is_selected"
             
-            case value = "value"
+            case display = "display"
             
         }
 
         public init(display: String? = nil, isSelected: Bool? = nil, value: Int? = nil) {
             
-            self.display = display
+            self.value = value
             
             self.isSelected = isSelected
             
-            self.value = value
+            self.display = display
             
         }
 
@@ -40,7 +40,7 @@ public extension ApplicationClient {
             
             
             do {
-                display = try container.decode(String.self, forKey: .display)
+                value = try container.decode(Int.self, forKey: .value)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension ApplicationClient {
             
             
             do {
-                value = try container.decode(Int.self, forKey: .value)
+                display = try container.decode(String.self, forKey: .display)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,7 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
             
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(display, forKey: .display)
             
             
         }

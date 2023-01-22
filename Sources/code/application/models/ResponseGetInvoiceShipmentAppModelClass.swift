@@ -12,9 +12,9 @@ public extension ApplicationClient {
         
         public var shipmentId: String
         
-        public var presignedType: String
-        
         public var presignedUrl: String
+        
+        public var presignedType: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -23,9 +23,9 @@ public extension ApplicationClient {
             
             case shipmentId = "shipment_id"
             
-            case presignedType = "presigned_type"
-            
             case presignedUrl = "presigned_url"
+            
+            case presignedType = "presigned_type"
             
         }
 
@@ -35,9 +35,9 @@ public extension ApplicationClient {
             
             self.shipmentId = shipmentId
             
-            self.presignedType = presignedType
-            
             self.presignedUrl = presignedUrl
+            
+            self.presignedType = presignedType
             
         }
 
@@ -55,12 +55,12 @@ public extension ApplicationClient {
             
             
             
-            presignedType = try container.decode(String.self, forKey: .presignedType)
-            
-            
-            
-            
             presignedUrl = try container.decode(String.self, forKey: .presignedUrl)
+            
+            
+            
+            
+            presignedType = try container.decode(String.self, forKey: .presignedType)
             
             
             
@@ -81,12 +81,12 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(presignedType, forKey: .presignedType)
-            
-            
-            
-            
             try? container.encodeIfPresent(presignedUrl, forKey: .presignedUrl)
+            
+            
+            
+            
+            try? container.encodeIfPresent(presignedType, forKey: .presignedType)
             
             
         }

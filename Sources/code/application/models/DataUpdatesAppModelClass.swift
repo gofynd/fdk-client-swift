@@ -8,24 +8,24 @@ public extension ApplicationClient {
     */
     class DataUpdates: Codable {
         
-        public var products: [ProductsDataUpdates]?
-        
         public var entities: [EntitiesDataUpdates]?
+        
+        public var products: [ProductsDataUpdates]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case products = "products"
-            
             case entities = "entities"
+            
+            case products = "products"
             
         }
 
         public init(entities: [EntitiesDataUpdates]? = nil, products: [ProductsDataUpdates]? = nil) {
             
-            self.products = products
-            
             self.entities = entities
+            
+            self.products = products
             
         }
 
@@ -34,7 +34,7 @@ public extension ApplicationClient {
             
             
             do {
-                products = try container.decode([ProductsDataUpdates].self, forKey: .products)
+                entities = try container.decode([EntitiesDataUpdates].self, forKey: .entities)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,7 +46,7 @@ public extension ApplicationClient {
             
             
             do {
-                entities = try container.decode([EntitiesDataUpdates].self, forKey: .entities)
+                products = try container.decode([ProductsDataUpdates].self, forKey: .products)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,12 +63,12 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(products, forKey: .products)
-            
-            
-            
-            
             try? container.encodeIfPresent(entities, forKey: .entities)
+            
+            
+            
+            
+            try? container.encodeIfPresent(products, forKey: .products)
             
             
         }

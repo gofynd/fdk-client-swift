@@ -8,24 +8,24 @@ public extension ApplicationClient {
     */
     class ProductsDataUpdatesFilters: Codable {
         
-        public var lineNumber: Int?
-        
         public var identifier: String?
+        
+        public var lineNumber: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case lineNumber = "line_number"
-            
             case identifier = "identifier"
+            
+            case lineNumber = "line_number"
             
         }
 
         public init(identifier: String? = nil, lineNumber: Int? = nil) {
             
-            self.lineNumber = lineNumber
-            
             self.identifier = identifier
+            
+            self.lineNumber = lineNumber
             
         }
 
@@ -34,7 +34,7 @@ public extension ApplicationClient {
             
             
             do {
-                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
+                identifier = try container.decode(String.self, forKey: .identifier)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,7 +46,7 @@ public extension ApplicationClient {
             
             
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,12 +63,12 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
-            
-            
-            
-            
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+            
+            
+            
+            
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
             
             
         }

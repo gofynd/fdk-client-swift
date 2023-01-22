@@ -8,24 +8,24 @@ public extension ApplicationClient {
     */
     class ProductsReasons: Codable {
         
-        public var data: ProductsReasonsData?
-        
         public var filters: [ProductsReasonsFilters]?
+        
+        public var data: ProductsReasonsData?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case data = "data"
-            
             case filters = "filters"
+            
+            case data = "data"
             
         }
 
         public init(data: ProductsReasonsData? = nil, filters: [ProductsReasonsFilters]? = nil) {
             
-            self.data = data
-            
             self.filters = filters
+            
+            self.data = data
             
         }
 
@@ -34,7 +34,7 @@ public extension ApplicationClient {
             
             
             do {
-                data = try container.decode(ProductsReasonsData.self, forKey: .data)
+                filters = try container.decode([ProductsReasonsFilters].self, forKey: .filters)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,7 +46,7 @@ public extension ApplicationClient {
             
             
             do {
-                filters = try container.decode([ProductsReasonsFilters].self, forKey: .filters)
+                data = try container.decode(ProductsReasonsData.self, forKey: .data)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,12 +63,12 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(data, forKey: .data)
-            
-            
-            
-            
             try? container.encodeIfPresent(filters, forKey: .filters)
+            
+            
+            
+            
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
         }

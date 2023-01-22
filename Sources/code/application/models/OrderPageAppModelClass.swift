@@ -8,47 +8,71 @@ public extension ApplicationClient {
     */
     class OrderPage: Codable {
         
+        public var type: String?
+        
+        public var current: Int?
+        
         public var hasNext: Bool?
         
         public var itemTotal: Int?
         
-        public var type: String?
-        
         public var size: Int?
-        
-        public var current: Int?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case type = "type"
+            
+            case current = "current"
             
             case hasNext = "has_next"
             
             case itemTotal = "item_total"
             
-            case type = "type"
-            
             case size = "size"
-            
-            case current = "current"
             
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
             
+            self.type = type
+            
+            self.current = current
+            
             self.hasNext = hasNext
             
             self.itemTotal = itemTotal
             
-            self.type = type
-            
             self.size = size
-            
-            self.current = current
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+            do {
+                type = try container.decode(String.self, forKey: .type)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                current = try container.decode(Int.self, forKey: .current)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
             
             
             do {
@@ -76,31 +100,7 @@ public extension ApplicationClient {
             
             
             do {
-                type = try container.decode(String.self, forKey: .type)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 size = try container.decode(Int.self, forKey: .size)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                current = try container.decode(Int.self, forKey: .current)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,6 +117,16 @@ public extension ApplicationClient {
             
             
             
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(current, forKey: .current)
+            
+            
+            
+            
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
             
             
@@ -127,17 +137,7 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
             try? container.encodeIfPresent(size, forKey: .size)
-            
-            
-            
-            
-            try? container.encodeIfPresent(current, forKey: .current)
             
             
         }

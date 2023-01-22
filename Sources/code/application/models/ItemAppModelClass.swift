@@ -8,60 +8,60 @@ public extension ApplicationClient {
     */
     class Item: Codable {
         
-        public var name: String?
+        public var slugKey: String?
         
         public var brand: ItemBrand?
         
-        public var size: String?
-        
         public var sellerIdentifier: String?
+        
+        public var code: String?
+        
+        public var name: String?
+        
+        public var size: String?
         
         public var id: Double?
         
         public var image: [String]?
         
-        public var slugKey: String?
-        
-        public var code: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
-            case name = "name"
+            case slugKey = "slug_key"
             
             case brand = "brand"
             
-            case size = "size"
-            
             case sellerIdentifier = "seller_identifier"
+            
+            case code = "code"
+            
+            case name = "name"
+            
+            case size = "size"
             
             case id = "id"
             
             case image = "image"
             
-            case slugKey = "slug_key"
-            
-            case code = "code"
-            
         }
 
         public init(brand: ItemBrand? = nil, code: String? = nil, id: Double? = nil, image: [String]? = nil, name: String? = nil, sellerIdentifier: String? = nil, size: String? = nil, slugKey: String? = nil) {
             
-            self.name = name
+            self.slugKey = slugKey
             
             self.brand = brand
             
-            self.size = size
-            
             self.sellerIdentifier = sellerIdentifier
+            
+            self.code = code
+            
+            self.name = name
+            
+            self.size = size
             
             self.id = id
             
             self.image = image
-            
-            self.slugKey = slugKey
-            
-            self.code = code
             
         }
 
@@ -70,7 +70,7 @@ public extension ApplicationClient {
             
             
             do {
-                name = try container.decode(String.self, forKey: .name)
+                slugKey = try container.decode(String.self, forKey: .slugKey)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,7 +94,7 @@ public extension ApplicationClient {
             
             
             do {
-                size = try container.decode(String.self, forKey: .size)
+                sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,7 +106,31 @@ public extension ApplicationClient {
             
             
             do {
-                sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+                code = try container.decode(String.self, forKey: .code)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                name = try container.decode(String.self, forKey: .name)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                size = try container.decode(String.self, forKey: .size)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,30 +164,6 @@ public extension ApplicationClient {
             }
             
             
-            
-            do {
-                slugKey = try container.decode(String.self, forKey: .slugKey)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                code = try container.decode(String.self, forKey: .code)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -171,7 +171,7 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
             
             
             
@@ -181,12 +181,22 @@ public extension ApplicationClient {
             
             
             
-            try? container.encodeIfPresent(size, forKey: .size)
-            
-            
-            
-            
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+            
+            
+            
+            
+            try? container.encodeIfPresent(code, forKey: .code)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
             
@@ -197,16 +207,6 @@ public extension ApplicationClient {
             
             
             try? container.encodeIfPresent(image, forKey: .image)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
-            
-            
-            
-            
-            try? container.encodeIfPresent(code, forKey: .code)
             
             
         }
