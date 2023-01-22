@@ -21,7 +21,7 @@ public class PlatformConfig {
         self.extraHeaders = extraHeaders
         self.enableSSLPinning = enableSSLPinning
     }
-
+    
     public init?(companyId: String, apiKey: String, apiSecret: String, domain: String = "https://api.fynd.com", userAgent: String? = nil, language: String? = "en-IN", currency: String? = "INR", extraHeaders: [(key: String, value: String)] = [], enableSSLPinning: Bool = false) {
         self.companyId = companyId
         self.domain = domain

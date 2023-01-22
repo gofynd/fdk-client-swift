@@ -3,41 +3,63 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: Click2CallResponse
-         Used By: Order
-     */
+        Model: Click2CallResponse
+        Used By: Order
+    */
 
     class Click2CallResponse: Codable {
-        public var status: Bool
-
+        
+        
         public var callId: String
+        
+        public var status: Bool
+        
 
         public enum CodingKeys: String, CodingKey {
-            case status
-
+            
             case callId = "call_id"
+            
+            case status = "status"
+            
         }
 
         public init(callId: String, status: Bool) {
-            self.status = status
-
+            
             self.callId = callId
+            
+            self.status = status
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            status = try container.decode(Bool.self, forKey: .status)
-
-            callId = try container.decode(String.self, forKey: .callId)
+            
+            
+                callId = try container.decode(String.self, forKey: .callId)
+                
+            
+            
+            
+                status = try container.decode(Bool.self, forKey: .status)
+                
+            
+            
         }
-
+        
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(status, forKey: .status)
-
+            
+            
+            
             try? container.encodeIfPresent(callId, forKey: .callId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
+            
+            
         }
+        
     }
 }

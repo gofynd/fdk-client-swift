@@ -7,8 +7,7 @@ class PublicAPIClient {
                         extraHeaders: [(key: String, value: String)] = [],
                         body: [String: Any]?,
                         responseType: String = "application/json",
-                        onResponse: @escaping OnResponse)
-    {
+                        onResponse: @escaping OnResponse) {
         var headers = [
             (key: "x-fp-sdk-version", value: "0.1.31")
         ]
@@ -21,14 +20,14 @@ class PublicAPIClient {
             headers.append((key: "Accept-Language", value: language))
         }
         if let currency = config.currency {
-            headers.append((key: "x-currency-code", value: currency))
+            headers.append((key: "x-currency-code",value: currency))
         }
         AlmofireHelper.request(config.domain.appendAsPath(url),
-                               query: query,
-                               parameters: body,
-                               type: method,
-                               headers: headers,
-                               responseType: responseType,
-                               onResponse: onResponse)
+                                query: query,
+                                parameters: body,
+                                type: method,
+                                headers: headers,
+                                responseType: responseType,
+                                onResponse: onResponse)
     }
 }
