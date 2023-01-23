@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class CreateOrderUserRequest: Codable {
         public var meta: [String: Any]?
 
-        public var failureCallbackUrl: String
-
         public var currency: String
+
+        public var failureCallbackUrl: String
 
         public var paymentLinkId: String
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case meta
 
-            case failureCallbackUrl = "failure_callback_url"
-
             case currency
+
+            case failureCallbackUrl = "failure_callback_url"
 
             case paymentLinkId = "payment_link_id"
 
@@ -36,9 +36,9 @@ public extension ApplicationClient {
         public init(currency: String, failureCallbackUrl: String, meta: [String: Any]? = nil, paymentLinkId: String, paymentMethods: CreateOrderUserPaymentMethods, successCallbackUrl: String) {
             self.meta = meta
 
-            self.failureCallbackUrl = failureCallbackUrl
-
             self.currency = currency
+
+            self.failureCallbackUrl = failureCallbackUrl
 
             self.paymentLinkId = paymentLinkId
 
@@ -58,9 +58,9 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            failureCallbackUrl = try container.decode(String.self, forKey: .failureCallbackUrl)
-
             currency = try container.decode(String.self, forKey: .currency)
+
+            failureCallbackUrl = try container.decode(String.self, forKey: .failureCallbackUrl)
 
             paymentLinkId = try container.decode(String.self, forKey: .paymentLinkId)
 
@@ -74,9 +74,9 @@ public extension ApplicationClient {
 
             try? container.encode(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(failureCallbackUrl, forKey: .failureCallbackUrl)
-
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(failureCallbackUrl, forKey: .failureCallbackUrl)
 
             try? container.encodeIfPresent(paymentLinkId, forKey: .paymentLinkId)
 
