@@ -8,32 +8,30 @@ public extension PlatformClient {
      */
 
     class GetCollectionQueryOptionResponse: Codable {
-        public var operators: [String: String]
-
         public var filters: [ProductFilters]?
+
+        public var operators: [String: String]
 
         public var sortOn: [ProductSortOn]?
 
         public enum CodingKeys: String, CodingKey {
-            case operators
-
             case filters
+
+            case operators
 
             case sortOn = "sort_on"
         }
 
         public init(filters: [ProductFilters]? = nil, operators: [String: String], sortOn: [ProductSortOn]? = nil) {
-            self.operators = operators
-
             self.filters = filters
+
+            self.operators = operators
 
             self.sortOn = sortOn
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            operators = try container.decode([String: String].self, forKey: .operators)
 
             do {
                 filters = try container.decode([ProductFilters].self, forKey: .filters)
@@ -42,6 +40,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            operators = try container.decode([String: String].self, forKey: .operators)
 
             do {
                 sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
@@ -55,9 +55,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(operators, forKey: .operators)
-
             try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(operators, forKey: .operators)
 
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
         }
