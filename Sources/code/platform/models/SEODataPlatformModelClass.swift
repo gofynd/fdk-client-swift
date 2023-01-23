@@ -3,32 +3,32 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: RedirectionSchema
-         Used By: Content
+         Model: SEOData
+         Used By: Catalog
      */
 
-    class RedirectionSchema: Codable {
-        public var redirectFrom: String?
+    class SEOData: Codable {
+        public var description: [String: Any]?
 
-        public var redirectTo: String?
+        public var title: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case redirectFrom = "redirect_from"
+            case description
 
-            case redirectTo = "redirect_to"
+            case title
         }
 
-        public init(redirectFrom: String? = nil, redirectTo: String? = nil) {
-            self.redirectFrom = redirectFrom
+        public init(description: [String: Any]? = nil, title: [String: Any]? = nil) {
+            self.description = description
 
-            self.redirectTo = redirectTo
+            self.title = title
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                redirectFrom = try container.decode(String.self, forKey: .redirectFrom)
+                description = try container.decode([String: Any].self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                redirectTo = try container.decode(String.self, forKey: .redirectTo)
+                title = try container.decode([String: Any].self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(redirectFrom, forKey: .redirectFrom)
+            try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(redirectTo, forKey: .redirectTo)
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 }

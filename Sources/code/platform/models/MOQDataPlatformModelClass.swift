@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: MOQ
+         Model: MOQData
          Used By: Catalog
      */
 
-    class MOQ: Codable {
+    class MOQData: Codable {
         public var incrementUnit: Int?
 
         public var minimum: Int?

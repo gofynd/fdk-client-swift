@@ -8,72 +8,72 @@ public extension PlatformClient {
      */
 
     class BeneficiaryModeDetails: Codable {
-        public var address: String?
+        public var wallet: String?
 
         public var vpa: String?
 
-        public var wallet: String?
-
-        public var comment: String?
+        public var address: String?
 
         public var branchName: String
 
-        public var email: String
-
-        public var accountHolder: String
-
-        public var ifscCode: String
+        public var accountNo: String
 
         public var bankName: String
 
-        public var accountNo: String
+        public var accountHolder: String
+
+        public var comment: String?
+
+        public var email: String
+
+        public var ifscCode: String
 
         public var mobile: String
 
         public enum CodingKeys: String, CodingKey {
-            case address
+            case wallet
 
             case vpa
 
-            case wallet
-
-            case comment
+            case address
 
             case branchName = "branch_name"
 
-            case email
-
-            case accountHolder = "account_holder"
-
-            case ifscCode = "ifsc_code"
+            case accountNo = "account_no"
 
             case bankName = "bank_name"
 
-            case accountNo = "account_no"
+            case accountHolder = "account_holder"
+
+            case comment
+
+            case email
+
+            case ifscCode = "ifsc_code"
 
             case mobile
         }
 
         public init(accountHolder: String, accountNo: String, address: String? = nil, bankName: String, branchName: String, comment: String? = nil, email: String, ifscCode: String, mobile: String, vpa: String? = nil, wallet: String? = nil) {
-            self.address = address
+            self.wallet = wallet
 
             self.vpa = vpa
 
-            self.wallet = wallet
-
-            self.comment = comment
+            self.address = address
 
             self.branchName = branchName
 
-            self.email = email
-
-            self.accountHolder = accountHolder
-
-            self.ifscCode = ifscCode
+            self.accountNo = accountNo
 
             self.bankName = bankName
 
-            self.accountNo = accountNo
+            self.accountHolder = accountHolder
+
+            self.comment = comment
+
+            self.email = email
+
+            self.ifscCode = ifscCode
 
             self.mobile = mobile
         }
@@ -82,7 +82,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                address = try container.decode(String.self, forKey: .address)
+                wallet = try container.decode(String.self, forKey: .wallet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,12 +98,20 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                wallet = try container.decode(String.self, forKey: .wallet)
+                address = try container.decode(String.self, forKey: .address)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            branchName = try container.decode(String.self, forKey: .branchName)
+
+            accountNo = try container.decode(String.self, forKey: .accountNo)
+
+            bankName = try container.decode(String.self, forKey: .bankName)
+
+            accountHolder = try container.decode(String.self, forKey: .accountHolder)
 
             do {
                 comment = try container.decode(String.self, forKey: .comment)
@@ -113,17 +121,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            branchName = try container.decode(String.self, forKey: .branchName)
-
             email = try container.decode(String.self, forKey: .email)
 
-            accountHolder = try container.decode(String.self, forKey: .accountHolder)
-
             ifscCode = try container.decode(String.self, forKey: .ifscCode)
-
-            bankName = try container.decode(String.self, forKey: .bankName)
-
-            accountNo = try container.decode(String.self, forKey: .accountNo)
 
             mobile = try container.decode(String.self, forKey: .mobile)
         }
@@ -131,25 +131,25 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encode(wallet, forKey: .wallet)
 
             try? container.encode(vpa, forKey: .vpa)
 
-            try? container.encode(wallet, forKey: .wallet)
-
-            try? container.encodeIfPresent(comment, forKey: .comment)
+            try? container.encodeIfPresent(address, forKey: .address)
 
             try? container.encodeIfPresent(branchName, forKey: .branchName)
 
-            try? container.encodeIfPresent(email, forKey: .email)
-
-            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
-
-            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
+            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
 
             try? container.encodeIfPresent(bankName, forKey: .bankName)
 
-            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+
+            try? container.encodeIfPresent(comment, forKey: .comment)
+
+            try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
         }

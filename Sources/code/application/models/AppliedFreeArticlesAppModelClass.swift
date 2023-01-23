@@ -4,16 +4,16 @@ import Foundation
 public extension ApplicationClient {
     /*
          Model: AppliedFreeArticles
-         Used By: Order
+         Used By: Cart
      */
     class AppliedFreeArticles: Codable {
-        public var quantity: Double?
+        public var quantity: Int?
 
         public var articleId: String?
 
         public var parentItemIdentifier: String?
 
-        public var freeGiftItemDetails: [FreeGiftItemDetails]?
+        public var freeGiftItemDetails: FreeGiftItem?
 
         public enum CodingKeys: String, CodingKey {
             case quantity
@@ -25,7 +25,7 @@ public extension ApplicationClient {
             case freeGiftItemDetails = "free_gift_item_details"
         }
 
-        public init(articleId: String? = nil, freeGiftItemDetails: [FreeGiftItemDetails]? = nil, parentItemIdentifier: String? = nil, quantity: Double? = nil) {
+        public init(articleId: String? = nil, freeGiftItemDetails: FreeGiftItem? = nil, parentItemIdentifier: String? = nil, quantity: Int? = nil) {
             self.quantity = quantity
 
             self.articleId = articleId
@@ -39,7 +39,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                quantity = try container.decode(Double.self, forKey: .quantity)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                freeGiftItemDetails = try container.decode([FreeGiftItemDetails].self, forKey: .freeGiftItemDetails)
+                freeGiftItemDetails = try container.decode(FreeGiftItem.self, forKey: .freeGiftItemDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

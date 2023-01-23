@@ -3,38 +3,38 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ApplicationItemResponse
+         Model: ApplicationItemMOQ
          Used By: Catalog
      */
 
-    class ApplicationItemResponse: Codable {
-        public var altText: [String: Any]?
+    class ApplicationItemMOQ: Codable {
+        public var incrementUnit: Int?
 
-        public var moq: MOQ?
+        public var minimum: Int?
 
-        public var seo: SEO?
+        public var maximum: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case altText = "alt_text"
+            case incrementUnit = "increment_unit"
 
-            case moq
+            case minimum
 
-            case seo
+            case maximum
         }
 
-        public init(altText: [String: Any]? = nil, moq: MOQ? = nil, seo: SEO? = nil) {
-            self.altText = altText
+        public init(incrementUnit: Int? = nil, maximum: Int? = nil, minimum: Int? = nil) {
+            self.incrementUnit = incrementUnit
 
-            self.moq = moq
+            self.minimum = minimum
 
-            self.seo = seo
+            self.maximum = maximum
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                altText = try container.decode([String: Any].self, forKey: .altText)
+                incrementUnit = try container.decode(Int.self, forKey: .incrementUnit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                moq = try container.decode(MOQ.self, forKey: .moq)
+                minimum = try container.decode(Int.self, forKey: .minimum)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                seo = try container.decode(SEO.self, forKey: .seo)
+                maximum = try container.decode(Int.self, forKey: .maximum)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,11 +61,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(altText, forKey: .altText)
+            try? container.encodeIfPresent(incrementUnit, forKey: .incrementUnit)
 
-            try? container.encodeIfPresent(moq, forKey: .moq)
+            try? container.encodeIfPresent(minimum, forKey: .minimum)
 
-            try? container.encodeIfPresent(seo, forKey: .seo)
+            try? container.encodeIfPresent(maximum, forKey: .maximum)
         }
     }
 }
