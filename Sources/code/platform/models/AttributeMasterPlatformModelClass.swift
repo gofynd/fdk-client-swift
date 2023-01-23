@@ -16,9 +16,9 @@ public extension PlatformClient {
 
         public var type: String
 
-        public var range: AttributeSchemaRange?
-
         public var allowedValues: [String]?
+
+        public var range: AttributeSchemaRange?
 
         public enum CodingKeys: String, CodingKey {
             case multi
@@ -29,9 +29,9 @@ public extension PlatformClient {
 
             case type
 
-            case range
-
             case allowedValues = "allowed_values"
+
+            case range
         }
 
         public init(allowedValues: [String]? = nil, format: String? = nil, mandatory: Bool? = nil, multi: Bool? = nil, range: AttributeSchemaRange? = nil, type: String) {
@@ -43,9 +43,9 @@ public extension PlatformClient {
 
             self.type = type
 
-            self.range = range
-
             self.allowedValues = allowedValues
+
+            self.range = range
         }
 
         required public init(from decoder: Decoder) throws {
@@ -78,7 +78,7 @@ public extension PlatformClient {
             type = try container.decode(String.self, forKey: .type)
 
             do {
-                range = try container.decode(AttributeSchemaRange.self, forKey: .range)
+                allowedValues = try container.decode([String].self, forKey: .allowedValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                allowedValues = try container.decode([String].self, forKey: .allowedValues)
+                range = try container.decode(AttributeSchemaRange.self, forKey: .range)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,9 +105,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(range, forKey: .range)
-
             try? container.encodeIfPresent(allowedValues, forKey: .allowedValues)
+
+            try? container.encodeIfPresent(range, forKey: .range)
         }
     }
 }
