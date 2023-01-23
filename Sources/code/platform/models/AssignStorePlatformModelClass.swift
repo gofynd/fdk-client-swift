@@ -10,7 +10,7 @@ public extension PlatformClient {
     class AssignStore: Codable {
         public var companyId: Int?
 
-        public var storeIds: [Int]?
+        public var channelIdentifier: String?
 
         public var articles: [AssignStoreArticle]
 
@@ -20,12 +20,12 @@ public extension PlatformClient {
 
         public var channelType: String?
 
-        public var channelIdentifier: String?
+        public var storeIds: [Int]?
 
         public enum CodingKeys: String, CodingKey {
             case companyId = "company_id"
 
-            case storeIds = "store_ids"
+            case channelIdentifier = "channel_identifier"
 
             case articles
 
@@ -35,13 +35,13 @@ public extension PlatformClient {
 
             case channelType = "channel_type"
 
-            case channelIdentifier = "channel_identifier"
+            case storeIds = "store_ids"
         }
 
         public init(appId: String, articles: [AssignStoreArticle], channelIdentifier: String? = nil, channelType: String? = nil, companyId: Int? = nil, pincode: String, storeIds: [Int]? = nil) {
             self.companyId = companyId
 
-            self.storeIds = storeIds
+            self.channelIdentifier = channelIdentifier
 
             self.articles = articles
 
@@ -51,7 +51,7 @@ public extension PlatformClient {
 
             self.channelType = channelType
 
-            self.channelIdentifier = channelIdentifier
+            self.storeIds = storeIds
         }
 
         required public init(from decoder: Decoder) throws {
@@ -66,7 +66,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                storeIds = try container.decode([Int].self, forKey: .storeIds)
+                channelIdentifier = try container.decode(String.self, forKey: .channelIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +88,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                channelIdentifier = try container.decode(String.self, forKey: .channelIdentifier)
+                storeIds = try container.decode([Int].self, forKey: .storeIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,7 +101,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            try? container.encodeIfPresent(channelIdentifier, forKey: .channelIdentifier)
 
             try? container.encodeIfPresent(articles, forKey: .articles)
 
@@ -111,7 +111,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(channelType, forKey: .channelType)
 
-            try? container.encodeIfPresent(channelIdentifier, forKey: .channelIdentifier)
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
         }
     }
 }

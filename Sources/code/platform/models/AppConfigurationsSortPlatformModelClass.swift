@@ -10,7 +10,11 @@ public extension PlatformClient {
     class AppConfigurationsSort: Codable {
         public var key: String
 
+        public var name: String?
+
         public var priority: Int
+
+        public var logo: String?
 
         public var defaultKey: String
 
@@ -18,16 +22,16 @@ public extension PlatformClient {
 
         public var isDefault: Bool
 
-        public var name: String?
-
-        public var logo: String?
-
         public var isActive: Bool
 
         public enum CodingKeys: String, CodingKey {
             case key
 
+            case name
+
             case priority
+
+            case logo
 
             case defaultKey = "default_key"
 
@@ -35,27 +39,23 @@ public extension PlatformClient {
 
             case isDefault = "is_default"
 
-            case name
-
-            case logo
-
             case isActive = "is_active"
         }
 
         public init(appId: String, defaultKey: String, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
             self.key = key
 
+            self.name = name
+
             self.priority = priority
+
+            self.logo = logo
 
             self.defaultKey = defaultKey
 
             self.appId = appId
 
             self.isDefault = isDefault
-
-            self.name = name
-
-            self.logo = logo
 
             self.isActive = isActive
         }
@@ -65,14 +65,6 @@ public extension PlatformClient {
 
             key = try container.decode(String.self, forKey: .key)
 
-            priority = try container.decode(Int.self, forKey: .priority)
-
-            defaultKey = try container.decode(String.self, forKey: .defaultKey)
-
-            appId = try container.decode(String.self, forKey: .appId)
-
-            isDefault = try container.decode(Bool.self, forKey: .isDefault)
-
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -80,6 +72,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            priority = try container.decode(Int.self, forKey: .priority)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -89,6 +83,12 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            defaultKey = try container.decode(String.self, forKey: .defaultKey)
+
+            appId = try container.decode(String.self, forKey: .appId)
+
+            isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
             isActive = try container.decode(Bool.self, forKey: .isActive)
         }
 
@@ -97,17 +97,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(defaultKey, forKey: .defaultKey)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
         }

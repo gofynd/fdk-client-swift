@@ -8,30 +8,30 @@ public extension PlatformClient {
      */
 
     class ArticleStoreResponse: Codable {
-        public var storeType: String?
+        public var storeCode: String?
 
         public var uid: Int?
 
-        public var integrationType: StoreIntegrationType?
+        public var storeType: String?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case storeType = "store_type"
+            case storeCode = "store_code"
 
             case uid
 
-            case integrationType = "integration_type"
+            case storeType = "store_type"
 
             case name
         }
 
-        public init(integrationType: StoreIntegrationType? = nil, name: String? = nil, storeType: String? = nil, uid: Int? = nil) {
-            self.storeType = storeType
+        public init(name: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil) {
+            self.storeCode = storeCode
 
             self.uid = uid
 
-            self.integrationType = integrationType
+            self.storeType = storeType
 
             self.name = name
         }
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                storeType = try container.decode(String.self, forKey: .storeType)
+                storeCode = try container.decode(String.self, forKey: .storeCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                integrationType = try container.decode(StoreIntegrationType.self, forKey: .integrationType)
+                storeType = try container.decode(String.self, forKey: .storeType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,11 +75,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(storeType, forKey: .storeType)
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
+            try? container.encodeIfPresent(storeType, forKey: .storeType)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

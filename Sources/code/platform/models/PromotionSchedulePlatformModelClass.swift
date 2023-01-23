@@ -10,42 +10,42 @@ public extension PlatformClient {
     class PromotionSchedule: Codable {
         public var end: String?
 
+        public var start: String
+
+        public var published: Bool
+
         public var nextSchedule: [[String: Any]]?
 
         public var duration: Int?
 
-        public var published: Bool
-
         public var cron: String?
-
-        public var start: String
 
         public enum CodingKeys: String, CodingKey {
             case end
+
+            case start
+
+            case published
 
             case nextSchedule = "next_schedule"
 
             case duration
 
-            case published
-
             case cron
-
-            case start
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, published: Bool, start: String) {
             self.end = end
 
+            self.start = start
+
+            self.published = published
+
             self.nextSchedule = nextSchedule
 
             self.duration = duration
 
-            self.published = published
-
             self.cron = cron
-
-            self.start = start
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,6 +58,10 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            start = try container.decode(String.self, forKey: .start)
+
+            published = try container.decode(Bool.self, forKey: .published)
 
             do {
                 nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
@@ -75,8 +79,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            published = try container.decode(Bool.self, forKey: .published)
-
             do {
                 cron = try container.decode(String.self, forKey: .cron)
 
@@ -84,8 +86,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            start = try container.decode(String.self, forKey: .start)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -93,15 +93,15 @@ public extension PlatformClient {
 
             try? container.encode(end, forKey: .end)
 
+            try? container.encodeIfPresent(start, forKey: .start)
+
+            try? container.encodeIfPresent(published, forKey: .published)
+
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
 
             try? container.encode(duration, forKey: .duration)
 
-            try? container.encodeIfPresent(published, forKey: .published)
-
             try? container.encode(cron, forKey: .cron)
-
-            try? container.encodeIfPresent(start, forKey: .start)
         }
     }
 }
