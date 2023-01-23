@@ -3,213 +3,148 @@
 import Foundation
 public extension ApplicationClient {
     /*
-        Model: ErrorDescription
-        Used By: Payment
-    */
+         Model: ErrorDescription
+         Used By: Payment
+     */
     class ErrorDescription: Codable {
-        
         public var amount: Double?
-        
+
         public var expired: Bool?
-        
+
         public var invalidId: Bool?
-        
+
         public var merchantName: String?
-        
+
         public var merchantOrderId: String?
-        
+
         public var cancelled: Bool?
-        
+
         public var msg: String?
-        
+
         public var paymentTransactionId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case amount = "amount"
-            
-            case expired = "expired"
-            
+            case amount
+
+            case expired
+
             case invalidId = "invalid_id"
-            
+
             case merchantName = "merchant_name"
-            
+
             case merchantOrderId = "merchant_order_id"
-            
-            case cancelled = "cancelled"
-            
-            case msg = "msg"
-            
+
+            case cancelled
+
+            case msg
+
             case paymentTransactionId = "payment_transaction_id"
-            
         }
 
         public init(amount: Double? = nil, cancelled: Bool? = nil, expired: Bool? = nil, invalidId: Bool? = nil, merchantName: String? = nil, merchantOrderId: String? = nil, msg: String? = nil, paymentTransactionId: String? = nil) {
-            
             self.amount = amount
-            
+
             self.expired = expired
-            
+
             self.invalidId = invalidId
-            
+
             self.merchantName = merchantName
-            
+
             self.merchantOrderId = merchantOrderId
-            
+
             self.cancelled = cancelled
-            
+
             self.msg = msg
-            
+
             self.paymentTransactionId = paymentTransactionId
-            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
+
             do {
                 amount = try container.decode(Double.self, forKey: .amount)
-            
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
+            } catch {}
+
             do {
                 expired = try container.decode(Bool.self, forKey: .expired)
-            
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
+            } catch {}
+
             do {
                 invalidId = try container.decode(Bool.self, forKey: .invalidId)
-            
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
+            } catch {}
+
             do {
                 merchantName = try container.decode(String.self, forKey: .merchantName)
-            
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
+            } catch {}
+
             do {
                 merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
-            
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
+            } catch {}
+
             do {
                 cancelled = try container.decode(Bool.self, forKey: .cancelled)
-            
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
+            } catch {}
+
             do {
                 msg = try container.decode(String.self, forKey: .msg)
-            
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
+            } catch {}
+
             do {
                 paymentTransactionId = try container.decode(String.self, forKey: .paymentTransactionId)
-            
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
+            } catch {}
         }
-        
+
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
+
             try? container.encode(amount, forKey: .amount)
-            
-            
-            
-            
+
             try? container.encode(expired, forKey: .expired)
-            
-            
-            
-            
+
             try? container.encode(invalidId, forKey: .invalidId)
-            
-            
-            
-            
+
             try? container.encode(merchantName, forKey: .merchantName)
-            
-            
-            
-            
+
             try? container.encode(merchantOrderId, forKey: .merchantOrderId)
-            
-            
-            
-            
+
             try? container.encode(cancelled, forKey: .cancelled)
-            
-            
-            
-            
+
             try? container.encode(msg, forKey: .msg)
-            
-            
-            
-            
+
             try? container.encode(paymentTransactionId, forKey: .paymentTransactionId)
-            
-            
         }
-        
     }
 }

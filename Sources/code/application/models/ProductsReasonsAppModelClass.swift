@@ -3,75 +3,52 @@
 import Foundation
 public extension ApplicationClient {
     /*
-        Model: ProductsReasons
-        Used By: Order
-    */
+         Model: ProductsReasons
+         Used By: Order
+     */
     class ProductsReasons: Codable {
-        
         public var filters: [ProductsReasonsFilters]?
-        
+
         public var data: ProductsReasonsData?
-        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case filters = "filters"
-            
-            case data = "data"
-            
+            case filters
+
+            case data
         }
 
         public init(data: ProductsReasonsData? = nil, filters: [ProductsReasonsFilters]? = nil) {
-            
             self.filters = filters
-            
+
             self.data = data
-            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
+
             do {
                 filters = try container.decode([ProductsReasonsFilters].self, forKey: .filters)
-            
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
+            } catch {}
+
             do {
                 data = try container.decode(ProductsReasonsData.self, forKey: .data)
-            
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
+            } catch {}
         }
-        
+
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
+
             try? container.encodeIfPresent(filters, forKey: .filters)
-            
-            
-            
-            
+
             try? container.encodeIfPresent(data, forKey: .data)
-            
-            
         }
-        
     }
 }

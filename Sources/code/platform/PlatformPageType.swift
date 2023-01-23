@@ -1,52 +1,50 @@
 import Foundation
 public extension PlatformClient {
-
     enum PageType: String, Codable, CaseIterable {
-        
         case aboutUs = "about-us"
-        case addresses = "addresses"
-        case blog = "blog"
-        case brands = "brands"
-        case cards = "cards"
-        case cart = "cart"
-        case categories = "categories"
-        case brand = "brand"
-        case category = "category"
-        case collection = "collection"
-        case collections = "collections"
+        case addresses
+        case blog
+        case brands
+        case cards
+        case cart
+        case categories
+        case brand
+        case category
+        case collection
+        case collections
         case contactUs = "contact-us"
-        case external = "external"
-        case faq = "faq"
-        case freshchat = "freshchat"
-        case home = "home"
+        case external
+        case faq
+        case freshchat
+        case home
         case notificationSettings = "notification-settings"
-        case orders = "orders"
-        case page = "page"
-        case policy = "policy"
-        case product = "product"
+        case orders
+        case page
+        case policy
+        case product
         case productReviews = "product-reviews"
         case addProductReview = "add-product-review"
         case productRequest = "product-request"
-        case products = "products"
-        case profile = "profile"
+        case products
+        case profile
         case profileBasic = "profile-basic"
         case profileCompany = "profile-company"
         case profileEmails = "profile-emails"
         case profilePhones = "profile-phones"
         case rateUs = "rate-us"
         case referEarn = "refer-earn"
-        case settings = "settings"
+        case settings
         case sharedCart = "shared-cart"
-        case tnc = "tnc"
+        case tnc
         case trackOrder = "track-order"
-        case wishlist = "wishlist"
-        case sections = "sections"
-        case form = "form"
+        case wishlist
+        case sections
+        case form
         case cartDelivery = "cart-delivery"
         case cartPayment = "cart-payment"
         case cartReview = "cart-review"
-        case login = "login"
-        case register = "register"
+        case login
+        case register
         case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
 
@@ -63,8 +61,8 @@ public extension PlatformClient {
                 possibleLink = possibleLink.replacingOccurrences(of: "//", with: "/")
                 allPossible.append((type: type, link: possibleLink.trimmingCharacters(in: slash)))
             }
-            allPossible = allPossible.sorted{$0.link.count > $1.link.count}
-            var match = allPossible.first(where: {$0.link == path})
+            allPossible = allPossible.sorted { $0.link.count > $1.link.count }
+            var match = allPossible.first(where: { $0.link == path })
             for possible in allPossible {
                 if match != nil {
                     break
@@ -74,14 +72,14 @@ public extension PlatformClient {
                 if pathComp.count == typeComp.count {
                     var paramsCount = 0
                     var matchCount = 0
-                    for i in 0..<pathComp.count {
+                    for i in 0 ..< pathComp.count {
                         if typeComp[i].starts(with: ":") {
                             paramsCount += 1
                         } else if typeComp[i] == pathComp[i] {
                             matchCount += 1
                         }
                     }
-                    if (paramsCount + matchCount == pathComp.count) {
+                    if paramsCount + matchCount == pathComp.count {
                         match = possible
                     }
                 }
@@ -92,10 +90,9 @@ public extension PlatformClient {
                 return nil
             }
         }
-        
+
         public var link: String {
-            switch self { 
-            
+            switch self {
             case .aboutUs:
                 return "/about-us"
             case .addresses:
@@ -192,8 +189,7 @@ public extension PlatformClient {
         }
 
         public var name: String {
-            switch self { 
-            
+            switch self {
             case .aboutUs:
                 return "About Us"
             case .addresses:
@@ -290,8 +286,7 @@ public extension PlatformClient {
         }
 
         public var pathParams: [(name: String, required: Bool)] {
-            switch self { 
-            
+            switch self {
             case .aboutUs:
                 return []
             case .addresses:
@@ -388,8 +383,7 @@ public extension PlatformClient {
         }
 
         public var queryParams: [(name: String, required: Bool)] {
-            switch self { 
-            
+            switch self {
             case .aboutUs:
                 return []
             case .addresses:
@@ -485,5 +479,4 @@ public extension PlatformClient {
             }
         }
     }
-
 }

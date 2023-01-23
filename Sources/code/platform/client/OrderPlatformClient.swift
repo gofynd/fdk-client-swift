@@ -1,8 +1,7 @@
 import Foundation
 
-extension PlatformClient {
-
-    public class Order {        
+public extension PlatformClient {
+    class Order {
         var config: PlatformConfig
         var companyId: String
 
@@ -10,15 +9,12 @@ extension PlatformClient {
             self.config = config
             self.companyId = config.companyId
         }
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getShipments(
             lane: String?,
             searchType: String?,
@@ -39,147 +35,86 @@ extension PlatformClient {
             channelShipmentId: String?,
             channelOrderId: String?,
             customMeta: String?,
-            
+
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-if let value = lane {
-    
-    xQuery["lane"] = value
-    
-}
+            if let value = lane {
+                xQuery["lane"] = value
+            }
 
+            if let value = searchType {
+                xQuery["search_type"] = value
+            }
 
-if let value = searchType {
-    
-    xQuery["search_type"] = value
-    
-}
+            if let value = searchValue {
+                xQuery["search_value"] = value
+            }
 
+            if let value = searchId {
+                xQuery["search_id"] = value
+            }
 
-if let value = searchValue {
-    
-    xQuery["search_value"] = value
-    
-}
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
 
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
 
-if let value = searchId {
-    
-    xQuery["search_id"] = value
-    
-}
+            if let value = dpIds {
+                xQuery["dp_ids"] = value
+            }
 
+            if let value = orderingCompanyId {
+                xQuery["ordering_company_id"] = value
+            }
 
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
+            if let value = stores {
+                xQuery["stores"] = value
+            }
 
+            if let value = salesChannel {
+                xQuery["sales_channel"] = value
+            }
 
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
+            if let value = requestByExt {
+                xQuery["request_by_ext"] = value
+            }
 
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
 
-if let value = dpIds {
-    
-    xQuery["dp_ids"] = value
-    
-}
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
 
+            if let value = isPrioritySort {
+                xQuery["is_priority_sort"] = value
+            }
 
-if let value = orderingCompanyId {
-    
-    xQuery["ordering_company_id"] = value
-    
-}
+            if let value = excludeLockedShipments {
+                xQuery["exclude_locked_shipments"] = value
+            }
 
+            if let value = paymentMethods {
+                xQuery["payment_methods"] = value
+            }
 
-if let value = stores {
-    
-    xQuery["stores"] = value
-    
-}
+            if let value = channelShipmentId {
+                xQuery["channel_shipment_id"] = value
+            }
 
+            if let value = channelOrderId {
+                xQuery["channel_order_id"] = value
+            }
 
-if let value = salesChannel {
-    
-    xQuery["sales_channel"] = value
-    
-}
-
-
-if let value = requestByExt {
-    
-    xQuery["request_by_ext"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = isPrioritySort {
-    
-    xQuery["is_priority_sort"] = value
-    
-}
-
-
-if let value = excludeLockedShipments {
-    
-    xQuery["exclude_locked_shipments"] = value
-    
-}
-
-
-if let value = paymentMethods {
-    
-    xQuery["payment_methods"] = value
-    
-}
-
-
-if let value = channelShipmentId {
-    
-    xQuery["channel_shipment_id"] = value
-    
-}
-
-
-if let value = channelOrderId {
-    
-    xQuery["channel_order_id"] = value
-    
-}
-
-
-if let value = customMeta {
-    
-    xQuery["custom_meta"] = value
-    
-}
-
-
- 
-
+            if let value = customMeta {
+                xQuery["custom_meta"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -189,7 +124,7 @@ if let value = customMeta {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -197,54 +132,40 @@ if let value = customMeta {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(ShipmentInternalPlatformViewResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getShipmentById(
             channelShipmentId: String,
             orderingCompanyId: String?,
             requestByExt: String?,
-            
+
             onResponse: @escaping (_ response: ShipmentInfoResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-if let value = orderingCompanyId {
-    
-    xQuery["ordering_company_id"] = value
-    
-}
+            if let value = orderingCompanyId {
+                xQuery["ordering_company_id"] = value
+            }
 
-
-if let value = requestByExt {
-    
-    xQuery["request_by_ext"] = value
-    
-}
-
-
- 
-
+            if let value = requestByExt {
+                xQuery["request_by_ext"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -254,7 +175,7 @@ if let value = requestByExt {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -262,43 +183,32 @@ if let value = requestByExt {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(ShipmentInfoResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getOrderById(
             orderId: String,
-            
+
             onResponse: @escaping (_ response: ShipmentDetailsResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-
-    xQuery["order_id"] = orderId
-
-
-
- 
-
+            xQuery["order_id"] = orderId
 
             PlatformAPIClient.execute(
                 config: config,
@@ -308,7 +218,7 @@ var xQuery: [String: Any] = [:]
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -316,28 +226,24 @@ var xQuery: [String: Any] = [:]
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(ShipmentDetailsResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getLaneConfig(
             superLane: String?,
             groupEntity: String?,
@@ -348,77 +254,46 @@ var xQuery: [String: Any] = [:]
             salesChannel: String?,
             paymentMode: String?,
             bagStatus: String?,
-            
+
             onResponse: @escaping (_ response: LaneConfigResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-if let value = superLane {
-    
-    xQuery["super_lane"] = value
-    
-}
+            if let value = superLane {
+                xQuery["super_lane"] = value
+            }
 
+            if let value = groupEntity {
+                xQuery["group_entity"] = value
+            }
 
-if let value = groupEntity {
-    
-    xQuery["group_entity"] = value
-    
-}
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
 
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
 
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
+            if let value = dpIds {
+                xQuery["dp_ids"] = value
+            }
 
+            if let value = stores {
+                xQuery["stores"] = value
+            }
 
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
+            if let value = salesChannel {
+                xQuery["sales_channel"] = value
+            }
 
+            if let value = paymentMode {
+                xQuery["payment_mode"] = value
+            }
 
-if let value = dpIds {
-    
-    xQuery["dp_ids"] = value
-    
-}
-
-
-if let value = stores {
-    
-    xQuery["stores"] = value
-    
-}
-
-
-if let value = salesChannel {
-    
-    xQuery["sales_channel"] = value
-    
-}
-
-
-if let value = paymentMode {
-    
-    xQuery["payment_mode"] = value
-    
-}
-
-
-if let value = bagStatus {
-    
-    xQuery["bag_status"] = value
-    
-}
-
-
- 
-
+            if let value = bagStatus {
+                xQuery["bag_status"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -428,7 +303,7 @@ if let value = bagStatus {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -436,29 +311,24 @@ if let value = bagStatus {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(LaneConfigResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getOrders(
             lane: String?,
             searchType: String?,
@@ -472,98 +342,58 @@ if let value = bagStatus {
             pageSize: Int?,
             isPrioritySort: Bool?,
             customMeta: String?,
-            
+
             onResponse: @escaping (_ response: OrderListingResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-if let value = lane {
-    
-    xQuery["lane"] = value
-    
-}
+            if let value = lane {
+                xQuery["lane"] = value
+            }
 
+            if let value = searchType {
+                xQuery["search_type"] = value
+            }
 
-if let value = searchType {
-    
-    xQuery["search_type"] = value
-    
-}
+            if let value = searchValue {
+                xQuery["search_value"] = value
+            }
 
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
 
-if let value = searchValue {
-    
-    xQuery["search_value"] = value
-    
-}
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
 
+            if let value = dpIds {
+                xQuery["dp_ids"] = value
+            }
 
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
+            if let value = stores {
+                xQuery["stores"] = value
+            }
 
+            if let value = salesChannel {
+                xQuery["sales_channel"] = value
+            }
 
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
 
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
 
-if let value = dpIds {
-    
-    xQuery["dp_ids"] = value
-    
-}
+            if let value = isPrioritySort {
+                xQuery["is_priority_sort"] = value
+            }
 
-
-if let value = stores {
-    
-    xQuery["stores"] = value
-    
-}
-
-
-if let value = salesChannel {
-    
-    xQuery["sales_channel"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = isPrioritySort {
-    
-    xQuery["is_priority_sort"] = value
-    
-}
-
-
-if let value = customMeta {
-    
-    xQuery["custom_meta"] = value
-    
-}
-
-
- 
-
+            if let value = customMeta {
+                xQuery["custom_meta"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -573,7 +403,7 @@ if let value = customMeta {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -581,53 +411,39 @@ if let value = customMeta {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(OrderListingResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getMetricCount(
             fromDate: String?,
             toDate: String?,
-            
+
             onResponse: @escaping (_ response: MetricCountResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
 
-
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
-
-
- 
-
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -637,7 +453,7 @@ if let value = toDate {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -645,53 +461,37 @@ if let value = toDate {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(MetricCountResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getfilters(
             view: String,
             groupEntity: String?,
-            
+
             onResponse: @escaping (_ response: FiltersResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
+            xQuery["view"] = view
 
-    xQuery["view"] = view
-
-
-
-if let value = groupEntity {
-    
-    xQuery["group_entity"] = value
-    
-}
-
-
- 
-
+            if let value = groupEntity {
+                xQuery["group_entity"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -701,7 +501,7 @@ if let value = groupEntity {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -709,53 +509,39 @@ if let value = groupEntity {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(FiltersResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func createShipmentReport(
             fromDate: String?,
             toDate: String?,
-            
+
             onResponse: @escaping (_ response: Success?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
 
-
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
-
-
- 
-
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -765,7 +551,7 @@ if let value = toDate {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -773,53 +559,39 @@ if let value = toDate {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(Success.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getReportsShipmentListing(
             pageNo: Int?,
             pageSize: Int?,
-            
+
             onResponse: @escaping (_ response: OmsReports?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
 
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -829,7 +601,7 @@ if let value = pageSize {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -837,38 +609,28 @@ if let value = pageSize {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(OmsReports.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func upsertJioCode(
             body: JioCodeUpsertPayload,
             onResponse: @escaping (_ response: JioCodeUpsertResponse?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -877,7 +639,7 @@ if let value = pageSize {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -885,49 +647,35 @@ if let value = pageSize {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(JioCodeUpsertResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getBulkInvoice(
             batchId: String,
             docType: String,
-            
+
             onResponse: @escaping (_ response: BulkInvoicingResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
+            xQuery["batch_id"] = batchId
 
-    xQuery["batch_id"] = batchId
-
-
-
-
-    xQuery["doc_type"] = docType
-
-
-
- 
-
+            xQuery["doc_type"] = docType
 
             PlatformAPIClient.execute(
                 config: config,
@@ -937,7 +685,7 @@ var xQuery: [String: Any] = [:]
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -945,43 +693,32 @@ var xQuery: [String: Any] = [:]
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(BulkInvoicingResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getBulkInvoiceLabel(
             batchId: String,
-            
+
             onResponse: @escaping (_ response: BulkInvoiceLabelResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-
-    xQuery["batch_id"] = batchId
-
-
-
- 
-
+            xQuery["batch_id"] = batchId
 
             PlatformAPIClient.execute(
                 config: config,
@@ -991,7 +728,7 @@ var xQuery: [String: Any] = [:]
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -999,28 +736,24 @@ var xQuery: [String: Any] = [:]
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(BulkInvoiceLabelResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getBulkShipmentExcelFile(
             lane: String?,
             searchType: String?,
@@ -1036,112 +769,66 @@ var xQuery: [String: Any] = [:]
             pageSize: Int?,
             customerId: String?,
             isPrioritySort: Bool?,
-            
+
             onResponse: @escaping (_ response: FileResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-if let value = lane {
-    
-    xQuery["lane"] = value
-    
-}
+            if let value = lane {
+                xQuery["lane"] = value
+            }
 
+            if let value = searchType {
+                xQuery["search_type"] = value
+            }
 
-if let value = searchType {
-    
-    xQuery["search_type"] = value
-    
-}
+            if let value = searchId {
+                xQuery["search_id"] = value
+            }
 
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
 
-if let value = searchId {
-    
-    xQuery["search_id"] = value
-    
-}
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
 
+            if let value = dpIds {
+                xQuery["dp_ids"] = value
+            }
 
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
+            if let value = orderingCompanyId {
+                xQuery["ordering_company_id"] = value
+            }
 
+            if let value = stores {
+                xQuery["stores"] = value
+            }
 
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
+            if let value = salesChannel {
+                xQuery["sales_channel"] = value
+            }
 
+            if let value = requestByExt {
+                xQuery["request_by_ext"] = value
+            }
 
-if let value = dpIds {
-    
-    xQuery["dp_ids"] = value
-    
-}
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
 
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
 
-if let value = orderingCompanyId {
-    
-    xQuery["ordering_company_id"] = value
-    
-}
+            if let value = customerId {
+                xQuery["customer_id"] = value
+            }
 
-
-if let value = stores {
-    
-    xQuery["stores"] = value
-    
-}
-
-
-if let value = salesChannel {
-    
-    xQuery["sales_channel"] = value
-    
-}
-
-
-if let value = requestByExt {
-    
-    xQuery["request_by_ext"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = customerId {
-    
-    xQuery["customer_id"] = value
-    
-}
-
-
-if let value = isPrioritySort {
-    
-    xQuery["is_priority_sort"] = value
-    
-}
-
-
- 
-
+            if let value = isPrioritySort {
+                xQuery["is_priority_sort"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1151,7 +838,7 @@ if let value = isPrioritySort {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1159,28 +846,24 @@ if let value = isPrioritySort {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(FileResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getBulkList(
             lane: String?,
             searchType: String?,
@@ -1196,112 +879,66 @@ if let value = isPrioritySort {
             pageSize: Int?,
             customerId: String?,
             isPrioritySort: Bool?,
-            
+
             onResponse: @escaping (_ response: BulkListingResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-if let value = lane {
-    
-    xQuery["lane"] = value
-    
-}
+            if let value = lane {
+                xQuery["lane"] = value
+            }
 
+            if let value = searchType {
+                xQuery["search_type"] = value
+            }
 
-if let value = searchType {
-    
-    xQuery["search_type"] = value
-    
-}
+            if let value = searchId {
+                xQuery["search_id"] = value
+            }
 
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
 
-if let value = searchId {
-    
-    xQuery["search_id"] = value
-    
-}
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
 
+            if let value = dpIds {
+                xQuery["dp_ids"] = value
+            }
 
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
+            if let value = orderingCompanyId {
+                xQuery["ordering_company_id"] = value
+            }
 
+            if let value = stores {
+                xQuery["stores"] = value
+            }
 
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
+            if let value = salesChannel {
+                xQuery["sales_channel"] = value
+            }
 
+            if let value = requestByExt {
+                xQuery["request_by_ext"] = value
+            }
 
-if let value = dpIds {
-    
-    xQuery["dp_ids"] = value
-    
-}
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
 
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
 
-if let value = orderingCompanyId {
-    
-    xQuery["ordering_company_id"] = value
-    
-}
+            if let value = customerId {
+                xQuery["customer_id"] = value
+            }
 
-
-if let value = stores {
-    
-    xQuery["stores"] = value
-    
-}
-
-
-if let value = salesChannel {
-    
-    xQuery["sales_channel"] = value
-    
-}
-
-
-if let value = requestByExt {
-    
-    xQuery["request_by_ext"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = customerId {
-    
-    xQuery["customer_id"] = value
-    
-}
-
-
-if let value = isPrioritySort {
-    
-    xQuery["is_priority_sort"] = value
-    
-}
-
-
- 
-
+            if let value = isPrioritySort {
+                xQuery["is_priority_sort"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1311,7 +948,7 @@ if let value = isPrioritySort {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1319,28 +956,24 @@ if let value = isPrioritySort {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(BulkListingResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getManifestList(
             status: String?,
             storeId: Int?,
@@ -1349,63 +982,38 @@ if let value = isPrioritySort {
             searchValue: String?,
             fromDate: String?,
             toDate: String?,
-            
+
             onResponse: @escaping (_ response: GeneratedManifestResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-if let value = status {
-    
-    xQuery["status"] = value
-    
-}
+            if let value = status {
+                xQuery["status"] = value
+            }
 
+            if let value = storeId {
+                xQuery["store_id"] = value
+            }
 
-if let value = storeId {
-    
-    xQuery["store_id"] = value
-    
-}
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
 
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
 
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
+            if let value = searchValue {
+                xQuery["search_value"] = value
+            }
 
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
 
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = searchValue {
-    
-    xQuery["search_value"] = value
-    
-}
-
-
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
-
-
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
-
-
- 
-
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1415,7 +1023,7 @@ if let value = toDate {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1423,28 +1031,24 @@ if let value = toDate {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(GeneratedManifestResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getManifestDetailsWithShipments(
             manifestId: String,
             fromDate: String?,
@@ -1456,80 +1060,46 @@ if let value = toDate {
             dpIds: Int?,
             searchType: String?,
             searchValue: String?,
-            
+
             onResponse: @escaping (_ response: ManifestDetailResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
+            xQuery["manifest_id"] = manifestId
 
-    xQuery["manifest_id"] = manifestId
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
 
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
 
+            xQuery["store_id"] = storeId
 
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
+            if let value = page {
+                xQuery["page"] = value
+            }
 
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
 
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
+            if let value = lane {
+                xQuery["lane"] = value
+            }
 
+            if let value = dpIds {
+                xQuery["dp_ids"] = value
+            }
 
+            if let value = searchType {
+                xQuery["search_type"] = value
+            }
 
-    xQuery["store_id"] = storeId
-
-
-
-if let value = page {
-    
-    xQuery["page"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = lane {
-    
-    xQuery["lane"] = value
-    
-}
-
-
-if let value = dpIds {
-    
-    xQuery["dp_ids"] = value
-    
-}
-
-
-if let value = searchType {
-    
-    xQuery["search_type"] = value
-    
-}
-
-
-if let value = searchValue {
-    
-    xQuery["search_value"] = value
-    
-}
-
-
- 
-
+            if let value = searchValue {
+                xQuery["search_value"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1539,7 +1109,7 @@ if let value = searchValue {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1547,51 +1117,37 @@ if let value = searchValue {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(ManifestDetailResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getBulkActionFailedReport(
             batchId: String,
             reportType: String?,
-            
+
             onResponse: @escaping (_ response: FileResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
+            xQuery["batch_id"] = batchId
 
-    xQuery["batch_id"] = batchId
-
-
-
-if let value = reportType {
-    
-    xQuery["report_type"] = value
-    
-}
-
-
- 
-
+            if let value = reportType {
+                xQuery["report_type"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1601,7 +1157,7 @@ if let value = reportType {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1609,41 +1165,31 @@ if let value = reportType {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(FileResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: Get reasons behind full or partial cancellation of a shipment
-        * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
-        **/
+         *
+         * Summary: Get reasons behind full or partial cancellation of a shipment
+         * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+         **/
         public func getShipmentReasons(
             shipmentId: String,
             bagId: String,
             state: String,
-            
+
             onResponse: @escaping (_ response: PlatformShipmentReasonsResponse?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1652,7 +1198,7 @@ if let value = reportType {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1660,38 +1206,28 @@ if let value = reportType {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(PlatformShipmentReasonsResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: emits uuid to kafka topic.
-        * Description: Use this API to start processing Xlsx file.
-        **/
+         *
+         * Summary: emits uuid to kafka topic.
+         * Description: Use this API to start processing Xlsx file.
+         **/
         public func bulkActionProcessXlsxFile(
             body: BulkActionPayload,
             onResponse: @escaping (_ response: BulkActionResponse?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -1700,7 +1236,7 @@ if let value = reportType {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1708,39 +1244,29 @@ if let value = reportType {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(BulkActionResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: Returns failed, processing and successfully processed shipments.
-        * Description: Returns failed, processing and successfully processed shipments along with their counts and failed reasons.
-        **/
+         *
+         * Summary: Returns failed, processing and successfully processed shipments.
+         * Description: Returns failed, processing and successfully processed shipments along with their counts and failed reasons.
+         **/
         public func bulkActionDetails(
             batchId: String,
-            
+
             onResponse: @escaping (_ response: BulkActionDetailsResponse?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1749,7 +1275,7 @@ if let value = reportType {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1757,61 +1283,44 @@ if let value = reportType {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(BulkActionDetailsResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getBagById(
             bagId: String?,
             channelBagId: String?,
             channelId: String?,
-            
+
             onResponse: @escaping (_ response: BagDetailsPlatformResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-if let value = bagId {
-    
-    xQuery["bag_id"] = value
-    
-}
+            if let value = bagId {
+                xQuery["bag_id"] = value
+            }
 
+            if let value = channelBagId {
+                xQuery["channel_bag_id"] = value
+            }
 
-if let value = channelBagId {
-    
-    xQuery["channel_bag_id"] = value
-    
-}
-
-
-if let value = channelId {
-    
-    xQuery["channel_id"] = value
-    
-}
-
-
- 
-
+            if let value = channelId {
+                xQuery["channel_id"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1821,7 +1330,7 @@ if let value = channelId {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1829,28 +1338,24 @@ if let value = channelId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(BagDetailsPlatformResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getBags(
             bagIds: String?,
             shipmentIds: String?,
@@ -1861,77 +1366,46 @@ if let value = channelId {
             channelId: String?,
             pageNo: Int?,
             pageSize: Int?,
-            
+
             onResponse: @escaping (_ response: GetBagsPlatformResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-if let value = bagIds {
-    
-    xQuery["bag_ids"] = value
-    
-}
+            if let value = bagIds {
+                xQuery["bag_ids"] = value
+            }
 
+            if let value = shipmentIds {
+                xQuery["shipment_ids"] = value
+            }
 
-if let value = shipmentIds {
-    
-    xQuery["shipment_ids"] = value
-    
-}
+            if let value = orderIds {
+                xQuery["order_ids"] = value
+            }
 
+            if let value = channelBagIds {
+                xQuery["channel_bag_ids"] = value
+            }
 
-if let value = orderIds {
-    
-    xQuery["order_ids"] = value
-    
-}
+            if let value = channelShipmentIds {
+                xQuery["channel_shipment_ids"] = value
+            }
 
+            if let value = channelOrderIds {
+                xQuery["channel_order_ids"] = value
+            }
 
-if let value = channelBagIds {
-    
-    xQuery["channel_bag_ids"] = value
-    
-}
+            if let value = channelId {
+                xQuery["channel_id"] = value
+            }
 
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
 
-if let value = channelShipmentIds {
-    
-    xQuery["channel_shipment_ids"] = value
-    
-}
-
-
-if let value = channelOrderIds {
-    
-    xQuery["channel_order_ids"] = value
-    
-}
-
-
-if let value = channelId {
-    
-    xQuery["channel_id"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1941,7 +1415,7 @@ if let value = pageSize {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1949,38 +1423,28 @@ if let value = pageSize {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(GetBagsPlatformResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: Invalidate shipment Cache
-        **/
+         *
+         * Summary:
+         * Description: Invalidate shipment Cache
+         **/
         public func invalidateShipmentCache(
             body: InvalidateShipmentCachePayload,
             onResponse: @escaping (_ response: InvalidateShipmentCacheResponse?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -1989,7 +1453,7 @@ if let value = pageSize {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1997,38 +1461,28 @@ if let value = pageSize {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(InvalidateShipmentCacheResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: Reassign Location
-        **/
+         *
+         * Summary:
+         * Description: Reassign Location
+         **/
         public func reassignLocation(
             body: StoreReassign,
             onResponse: @escaping (_ response: StoreReassignResponse?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2037,7 +1491,7 @@ if let value = pageSize {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2045,38 +1499,28 @@ if let value = pageSize {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(StoreReassignResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: update shipment lock
-        **/
+         *
+         * Summary:
+         * Description: update shipment lock
+         **/
         public func updateShipmentLock(
             body: UpdateShipmentLockPayload,
             onResponse: @escaping (_ response: UpdateShipmentLockResponse?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2085,7 +1529,7 @@ if let value = pageSize {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2093,45 +1537,34 @@ if let value = pageSize {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(UpdateShipmentLockResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getAnnouncements(
             date: String?,
-            
+
             onResponse: @escaping (_ response: AnnouncementsResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-if let value = date {
-    
-    xQuery["date"] = value
-    
-}
-
-
- 
-
+            if let value = date {
+                xQuery["date"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -2141,7 +1574,7 @@ if let value = date {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2149,28 +1582,24 @@ if let value = date {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(AnnouncementsResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func updateAddress(
             shipmentId: String,
             name: String?,
@@ -2184,94 +1613,54 @@ if let value = date {
             city: String?,
             state: String?,
             country: String?,
-            
+
             onResponse: @escaping (_ response: BaseResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
+            xQuery["shipment_id"] = shipmentId
 
-    xQuery["shipment_id"] = shipmentId
+            if let value = name {
+                xQuery["name"] = value
+            }
 
+            if let value = address {
+                xQuery["address"] = value
+            }
 
+            if let value = addressType {
+                xQuery["address_type"] = value
+            }
 
-if let value = name {
-    
-    xQuery["name"] = value
-    
-}
+            if let value = pincode {
+                xQuery["pincode"] = value
+            }
 
+            if let value = phone {
+                xQuery["phone"] = value
+            }
 
-if let value = address {
-    
-    xQuery["address"] = value
-    
-}
+            if let value = email {
+                xQuery["email"] = value
+            }
 
+            if let value = landmark {
+                xQuery["landmark"] = value
+            }
 
-if let value = addressType {
-    
-    xQuery["address_type"] = value
-    
-}
+            xQuery["address_category"] = addressCategory
 
+            if let value = city {
+                xQuery["city"] = value
+            }
 
-if let value = pincode {
-    
-    xQuery["pincode"] = value
-    
-}
+            if let value = state {
+                xQuery["state"] = value
+            }
 
-
-if let value = phone {
-    
-    xQuery["phone"] = value
-    
-}
-
-
-if let value = email {
-    
-    xQuery["email"] = value
-    
-}
-
-
-if let value = landmark {
-    
-    xQuery["landmark"] = value
-    
-}
-
-
-
-    xQuery["address_category"] = addressCategory
-
-
-
-if let value = city {
-    
-    xQuery["city"] = value
-    
-}
-
-
-if let value = state {
-    
-    xQuery["state"] = value
-    
-}
-
-
-if let value = country {
-    
-    xQuery["country"] = value
-    
-}
-
-
- 
-
+            if let value = country {
+                xQuery["country"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -2281,7 +1670,7 @@ if let value = country {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2289,71 +1678,48 @@ if let value = country {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(BaseResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func click2Call(
             caller: String,
             receiver: String,
             bagId: String,
             callingTo: String?,
             callerId: String?,
-            
+
             onResponse: @escaping (_ response: Click2CallResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
+            xQuery["caller"] = caller
 
-    xQuery["caller"] = caller
+            xQuery["receiver"] = receiver
 
+            xQuery["bag_id"] = bagId
 
+            if let value = callingTo {
+                xQuery["calling_to"] = value
+            }
 
-
-    xQuery["receiver"] = receiver
-
-
-
-
-    xQuery["bag_id"] = bagId
-
-
-
-if let value = callingTo {
-    
-    xQuery["calling_to"] = value
-    
-}
-
-
-if let value = callerId {
-    
-    xQuery["caller_id"] = value
-    
-}
-
-
- 
-
+            if let value = callerId {
+                xQuery["caller_id"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -2363,7 +1729,7 @@ if let value = callerId {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2371,38 +1737,28 @@ if let value = callerId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(Click2CallResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: Update shipment status
-        **/
+         *
+         * Summary:
+         * Description: Update shipment status
+         **/
         public func updateShipmentStatus(
             body: UpdateShipmentStatusRequest,
             onResponse: @escaping (_ response: UpdateShipmentStatusResponseBody?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -2411,7 +1767,7 @@ if let value = callerId {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2419,38 +1775,28 @@ if let value = callerId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(UpdateShipmentStatusResponseBody.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func processManifest(
             body: CreateOrderPayload,
             onResponse: @escaping (_ response: CreateOrderResponse?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2459,7 +1805,7 @@ if let value = callerId {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2467,38 +1813,28 @@ if let value = callerId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(CreateOrderResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func dispatchManifest(
             body: DispatchManifest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2507,7 +1843,7 @@ if let value = callerId {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2515,38 +1851,27 @@ if let value = callerId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(SuccessResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getRoleBasedActions(
-            
             onResponse: @escaping (_ response: GetActionsResponse?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2555,7 +1880,7 @@ if let value = callerId {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2563,53 +1888,39 @@ if let value = callerId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(GetActionsResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func getShipmentHistory(
             shipmentId: Int?,
             bagId: Int?,
-            
+
             onResponse: @escaping (_ response: ShipmentHistoryResponse?, _ error: FDKError?) -> Void
         ) {
-            
-var xQuery: [String: Any] = [:] 
+            var xQuery: [String: Any] = [:]
 
-if let value = shipmentId {
-    
-    xQuery["shipment_id"] = value
-    
-}
+            if let value = shipmentId {
+                xQuery["shipment_id"] = value
+            }
 
-
-if let value = bagId {
-    
-    xQuery["bag_id"] = value
-    
-}
-
-
- 
-
+            if let value = bagId {
+                xQuery["bag_id"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -2619,7 +1930,7 @@ if let value = bagId {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2627,38 +1938,28 @@ if let value = bagId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(ShipmentHistoryResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func sendSmsNinja(
             body: SendSmsPayload,
             onResponse: @escaping (_ response: OrderStatusResult?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2667,7 +1968,7 @@ if let value = bagId {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2675,38 +1976,28 @@ if let value = bagId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(OrderStatusResult.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func platformManualAssignDPToShipment(
             body: ManualAssignDPToShipment,
             onResponse: @escaping (_ response: ManualAssignDPToShipmentResponse?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2715,7 +2006,7 @@ if let value = bagId {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2723,38 +2014,28 @@ if let value = bagId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(ManualAssignDPToShipmentResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func updatePackagingDimensions(
             body: CreateOrderPayload,
             onResponse: @escaping (_ response: CreateOrderResponse?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2763,7 +2044,7 @@ if let value = bagId {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2771,38 +2052,28 @@ if let value = bagId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(CreateOrderResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func createOrder(
             body: CreateOrderAPI,
             onResponse: @escaping (_ response: CreateOrderResponse?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2811,7 +2082,7 @@ if let value = bagId {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2819,38 +2090,27 @@ if let value = bagId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(CreateOrderResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: getChannelConfig
-        **/
+         *
+         * Summary:
+         * Description: getChannelConfig
+         **/
         public func getChannelConfig(
-            
             onResponse: @escaping (_ response: CreateChannelConfigData?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2859,7 +2119,7 @@ if let value = bagId {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2867,38 +2127,28 @@ if let value = bagId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(CreateChannelConfigData.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: createChannelConfig
-        **/
+         *
+         * Summary:
+         * Description: createChannelConfig
+         **/
         public func createChannelConfig(
             body: CreateChannelConfigData,
             onResponse: @escaping (_ response: CreateChannelConfigResponse?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2907,7 +2157,7 @@ if let value = bagId {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2915,38 +2165,28 @@ if let value = bagId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(CreateChannelConfigResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func uploadConsent(
             body: UploadConsent,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2955,7 +2195,7 @@ if let value = bagId {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2963,38 +2203,28 @@ if let value = bagId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(SuccessResponse.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func orderUpdate(
             body: PlatformOrderUpdate,
             onResponse: @escaping (_ response: ResponseDetail?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -3003,7 +2233,7 @@ if let value = bagId {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -3011,38 +2241,28 @@ if let value = bagId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(ResponseDetail.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func checkOrderStatus(
             body: OrderStatus,
             onResponse: @escaping (_ response: OrderStatusResult?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3051,7 +2271,7 @@ if let value = bagId {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -3059,38 +2279,27 @@ if let value = bagId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(OrderStatusResult.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
-        
-        
-        
+
         /**
-        *
-        * Summary: 
-        * Description: 
-        **/
+         *
+         * Summary:
+         * Description:
+         **/
         public func sendSmsNinjaPlatform(
-            
             onResponse: @escaping (_ response: OrderStatusResult?, _ error: FDKError?) -> Void
         ) {
-            
- 
-
- 
-
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3099,7 +2308,7 @@ if let value = bagId {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
+                onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -3107,19 +2316,17 @@ if let value = bagId {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        
                         let response = Utility.decode(OrderStatusResult.self, from: data)
-                        
+
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-            });
+                }
+            )
         }
-        
-        
     }
 }

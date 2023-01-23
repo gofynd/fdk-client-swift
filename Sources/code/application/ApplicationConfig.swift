@@ -10,7 +10,6 @@ public class ApplicationConfig {
     var locationDetails: LocationDetails?
     public var enableSSLPinning: Bool
 
-
     public init?(applicationId: String, applicationToken: String, domain: String = "https://api.fynd.com", userAgent: String? = nil, language: String? = "en-IN", currency: String? = "INR", extraHeaders: [(key: String, value: String)] = [], locationDetails: LocationDetails? = nil, enableSSLPinnig: Bool = false) {
         self.applicationId = applicationId
         self.applicationToken = applicationToken
@@ -22,10 +21,11 @@ public class ApplicationConfig {
         self.locationDetails = locationDetails
         self.enableSSLPinning = enableSSLPinnig
         let regex = try? NSRegularExpression(pattern: "^[0-9a-fA-F]{24}$",
-                options: [.caseInsensitive])
+                                             options: [.caseInsensitive])
 
-        if regex?.firstMatch(in: applicationId, options:[],
-        range: NSMakeRange(0, applicationId.utf16.count)) == nil {
+        if regex?.firstMatch(in: applicationId, options: [],
+                             range: NSMakeRange(0, applicationId.utf16.count)) == nil
+        {
             return nil
         }
     }
@@ -37,19 +37,20 @@ public extension ApplicationConfig {
         var country: String
         var city: String?
         var location: LatLong?
-        
+
         public init(pincode: String, country: String, city: String? = nil, latitude: String? = nil, longitude: String? = nil) {
             self.pincode = pincode
             self.country = country
             self.city = city
             if let lat = latitude,
-               let long = longitude {
+               let long = longitude
+            {
                 self.location = LatLong(longitude: long, latitude: lat)
             }
         }
     }
 
-    struct LatLong : Codable {
+    struct LatLong: Codable {
         var longitude: String
         var latitude: String
     }
