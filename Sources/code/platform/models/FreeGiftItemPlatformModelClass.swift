@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var itemImagesUrl: [String]?
 
+        public var itemPriceDetails: [String: Any]?
+
         public var itemSlug: String?
 
         public var itemName: String?
-
-        public var itemPriceDetails: [String: Any]?
 
         public var itemBrandName: String?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case itemImagesUrl = "item_images_url"
 
+            case itemPriceDetails = "item_price_details"
+
             case itemSlug = "item_slug"
 
             case itemName = "item_name"
-
-            case itemPriceDetails = "item_price_details"
 
             case itemBrandName = "item_brand_name"
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.itemImagesUrl = itemImagesUrl
 
+            self.itemPriceDetails = itemPriceDetails
+
             self.itemSlug = itemSlug
 
             self.itemName = itemName
-
-            self.itemPriceDetails = itemPriceDetails
 
             self.itemBrandName = itemBrandName
         }
@@ -68,6 +68,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                itemPriceDetails = try container.decode([String: Any].self, forKey: .itemPriceDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 itemSlug = try container.decode(String.self, forKey: .itemSlug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -77,14 +85,6 @@ public extension PlatformClient {
 
             do {
                 itemName = try container.decode(String.self, forKey: .itemName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemPriceDetails = try container.decode([String: Any].self, forKey: .itemPriceDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,11 +107,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(itemImagesUrl, forKey: .itemImagesUrl)
 
+            try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
+
             try? container.encodeIfPresent(itemSlug, forKey: .itemSlug)
 
             try? container.encodeIfPresent(itemName, forKey: .itemName)
-
-            try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
 
             try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
         }
