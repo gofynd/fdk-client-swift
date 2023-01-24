@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class PincodeDataResponse: Codable {
         public var name: String?
 
-        public var parents: [PincodeParentsResponse]?
-
-        public var uid: String?
+        public var error: PincodeErrorSchemaResponse
 
         public var meta: PincodeMetaResponse?
 
-        public var error: PincodeErrorSchemaResponse
+        public var uid: String?
 
         public var displayName: String?
+
+        public var parents: [PincodeParentsResponse]?
 
         public var subType: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case parents
-
-            case uid
+            case error
 
             case meta
 
-            case error
+            case uid
 
             case displayName = "display_name"
+
+            case parents
 
             case subType = "sub_type"
         }
@@ -40,15 +40,15 @@ public extension ApplicationClient {
         public init(displayName: String? = nil, error: PincodeErrorSchemaResponse, meta: PincodeMetaResponse? = nil, name: String? = nil, parents: [PincodeParentsResponse]? = nil, subType: String? = nil, uid: String? = nil) {
             self.name = name
 
-            self.parents = parents
-
-            self.uid = uid
+            self.error = error
 
             self.meta = meta
 
-            self.error = error
+            self.uid = uid
 
             self.displayName = displayName
+
+            self.parents = parents
 
             self.subType = subType
         }
@@ -64,8 +64,10 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            error = try container.decode(PincodeErrorSchemaResponse.self, forKey: .error)
+
             do {
-                parents = try container.decode([PincodeParentsResponse].self, forKey: .parents)
+                meta = try container.decode(PincodeMetaResponse.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,17 +83,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                meta = try container.decode(PincodeMetaResponse.self, forKey: .meta)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            error = try container.decode(PincodeErrorSchemaResponse.self, forKey: .error)
-
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                parents = try container.decode([PincodeParentsResponse].self, forKey: .parents)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,15 +112,15 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(parents, forKey: .parents)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(parents, forKey: .parents)
 
             try? container.encodeIfPresent(subType, forKey: .subType)
         }

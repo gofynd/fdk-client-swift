@@ -1,27 +1,28 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: ActionPageParams
-         Used By: Rewards
+         Model: ListALLSizes
+         Used By: Catalog
      */
-    class ActionPageParams: Codable {
-        public var slug: [String]?
+
+    class ListALLSizes: Codable {
+        public var allSizes: [AllSizes]?
 
         public enum CodingKeys: String, CodingKey {
-            case slug
+            case allSizes = "all_sizes"
         }
 
-        public init(slug: [String]? = nil) {
-            self.slug = slug
+        public init(allSizes: [AllSizes]? = nil) {
+            self.allSizes = allSizes
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                slug = try container.decode([String].self, forKey: .slug)
+                allSizes = try container.decode([AllSizes].self, forKey: .allSizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -32,7 +33,7 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(allSizes, forKey: .allSizes)
         }
     }
 }

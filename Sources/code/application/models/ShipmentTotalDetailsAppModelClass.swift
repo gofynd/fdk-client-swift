@@ -7,33 +7,33 @@ public extension ApplicationClient {
          Used By: Order
      */
     class ShipmentTotalDetails: Codable {
-        public var sizes: Int?
+        public var totalPrice: Double?
 
         public var pieces: Int?
 
-        public var totalPrice: Double?
+        public var sizes: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case sizes
+            case totalPrice = "total_price"
 
             case pieces
 
-            case totalPrice = "total_price"
+            case sizes
         }
 
         public init(pieces: Int? = nil, sizes: Int? = nil, totalPrice: Double? = nil) {
-            self.sizes = sizes
+            self.totalPrice = totalPrice
 
             self.pieces = pieces
 
-            self.totalPrice = totalPrice
+            self.sizes = sizes
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                sizes = try container.decode(Int.self, forKey: .sizes)
+                totalPrice = try container.decode(Double.self, forKey: .totalPrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                totalPrice = try container.decode(Double.self, forKey: .totalPrice)
+                sizes = try container.decode(Int.self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
+            try? container.encodeIfPresent(totalPrice, forKey: .totalPrice)
 
             try? container.encodeIfPresent(pieces, forKey: .pieces)
 
-            try? container.encodeIfPresent(totalPrice, forKey: .totalPrice)
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
         }
     }
 }
