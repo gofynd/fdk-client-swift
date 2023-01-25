@@ -10,30 +10,30 @@ public extension PlatformClient {
     class ApplicationItemMeta: Codable {
         public var customJson: [String: Any]?
 
+        public var moq: ApplicationItemMOQ?
+
+        public var isCod: Bool?
+
         public var seo: ApplicationItemSEO?
 
         public var isGift: Bool?
 
-        public var moq: ApplicationItemMOQ?
-
         public var customMeta: [MetaFields]?
-
-        public var isCod: Bool?
 
         public var altText: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case customJson = "_custom_json"
 
+            case moq
+
+            case isCod = "is_cod"
+
             case seo
 
             case isGift = "is_gift"
 
-            case moq
-
             case customMeta = "_custom_meta"
-
-            case isCod = "is_cod"
 
             case altText = "alt_text"
         }
@@ -41,15 +41,15 @@ public extension PlatformClient {
         public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: ApplicationItemMOQ? = nil, seo: ApplicationItemSEO? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
             self.customJson = customJson
 
+            self.moq = moq
+
+            self.isCod = isCod
+
             self.seo = seo
 
             self.isGift = isGift
 
-            self.moq = moq
-
             self.customMeta = customMeta
-
-            self.isCod = isCod
 
             self.altText = altText
         }
@@ -59,6 +59,22 @@ public extension PlatformClient {
 
             do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                moq = try container.decode(ApplicationItemMOQ.self, forKey: .moq)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isCod = try container.decode(Bool.self, forKey: .isCod)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,23 +98,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                moq = try container.decode(ApplicationItemMOQ.self, forKey: .moq)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 customMeta = try container.decode([MetaFields].self, forKey: .customMeta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isCod = try container.decode(Bool.self, forKey: .isCod)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,15 +119,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
+            try? container.encodeIfPresent(moq, forKey: .moq)
+
+            try? container.encodeIfPresent(isCod, forKey: .isCod)
+
             try? container.encodeIfPresent(seo, forKey: .seo)
 
             try? container.encodeIfPresent(isGift, forKey: .isGift)
 
-            try? container.encodeIfPresent(moq, forKey: .moq)
-
             try? container.encodeIfPresent(customMeta, forKey: .customMeta)
-
-            try? container.encodeIfPresent(isCod, forKey: .isCod)
 
             try? container.encodeIfPresent(altText, forKey: .altText)
         }

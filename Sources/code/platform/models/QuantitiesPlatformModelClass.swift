@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var sellable: QuantityBase?
 
-        public var orderCommitted: QuantityBase?
-
         public var notAvailable: QuantityBase?
+
+        public var orderCommitted: QuantityBase?
 
         public enum CodingKeys: String, CodingKey {
             case damaged
 
             case sellable
 
-            case orderCommitted = "order_committed"
-
             case notAvailable = "not_available"
+
+            case orderCommitted = "order_committed"
         }
 
         public init(damaged: QuantityBase? = nil, notAvailable: QuantityBase? = nil, orderCommitted: QuantityBase? = nil, sellable: QuantityBase? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.sellable = sellable
 
-            self.orderCommitted = orderCommitted
-
             self.notAvailable = notAvailable
+
+            self.orderCommitted = orderCommitted
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                orderCommitted = try container.decode(QuantityBase.self, forKey: .orderCommitted)
+                notAvailable = try container.decode(QuantityBase.self, forKey: .notAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                notAvailable = try container.decode(QuantityBase.self, forKey: .notAvailable)
+                orderCommitted = try container.decode(QuantityBase.self, forKey: .orderCommitted)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(sellable, forKey: .sellable)
 
-            try? container.encodeIfPresent(orderCommitted, forKey: .orderCommitted)
-
             try? container.encodeIfPresent(notAvailable, forKey: .notAvailable)
+
+            try? container.encodeIfPresent(orderCommitted, forKey: .orderCommitted)
         }
     }
 }

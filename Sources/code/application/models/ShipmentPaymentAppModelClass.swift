@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var mop: String?
 
-        public var mode: String?
-
         public var status: String?
+
+        public var mode: String?
 
         public var displayName: String?
 
@@ -26,9 +26,9 @@ public extension ApplicationClient {
 
             case mop
 
-            case mode
-
             case status
+
+            case mode
 
             case displayName = "display_name"
         }
@@ -40,9 +40,9 @@ public extension ApplicationClient {
 
             self.mop = mop
 
-            self.mode = mode
-
             self.status = status
+
+            self.mode = mode
 
             self.displayName = displayName
         }
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                mode = try container.decode(String.self, forKey: .mode)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                mode = try container.decode(String.self, forKey: .mode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(mop, forKey: .mop)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(mode, forKey: .mode)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
         }
