@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var value: String?
 
-        public var sellerIdentifiers: [String]?
-
         public var quantity: Int?
+
+        public var sellerIdentifiers: [String]?
 
         public var display: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case value
 
-            case sellerIdentifiers = "seller_identifiers"
-
             case quantity
+
+            case sellerIdentifiers = "seller_identifiers"
 
             case display
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.value = value
 
-            self.sellerIdentifiers = sellerIdentifiers
-
             self.quantity = quantity
+
+            self.sellerIdentifiers = sellerIdentifiers
 
             self.display = display
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sellerIdentifiers = try container.decode([String].self, forKey: .sellerIdentifiers)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                sellerIdentifiers = try container.decode([String].self, forKey: .sellerIdentifiers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
 
             try? container.encodeIfPresent(display, forKey: .display)
         }

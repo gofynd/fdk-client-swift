@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class ShipmentDetail: Codable {
-        public var remarks: String?
+        public var bagList: [Int]?
 
         public var id: Int
 
@@ -16,12 +16,12 @@ public extension PlatformClient {
 
         public var shipmentId: String?
 
-        public var bagList: [Int]?
+        public var remarks: String?
 
         public var meta: Meta
 
         public enum CodingKeys: String, CodingKey {
-            case remarks
+            case bagList = "bag_list"
 
             case id
 
@@ -29,13 +29,13 @@ public extension PlatformClient {
 
             case shipmentId = "shipment_id"
 
-            case bagList = "bag_list"
+            case remarks
 
             case meta
         }
 
         public init(bagList: [Int]? = nil, id: Int, meta: Meta, remarks: String? = nil, shipmentId: String? = nil, status: String? = nil) {
-            self.remarks = remarks
+            self.bagList = bagList
 
             self.id = id
 
@@ -43,7 +43,7 @@ public extension PlatformClient {
 
             self.shipmentId = shipmentId
 
-            self.bagList = bagList
+            self.remarks = remarks
 
             self.meta = meta
         }
@@ -52,7 +52,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                remarks = try container.decode(String.self, forKey: .remarks)
+                bagList = try container.decode([Int].self, forKey: .bagList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                bagList = try container.decode([Int].self, forKey: .bagList)
+                remarks = try container.decode(String.self, forKey: .remarks)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(remarks, forKey: .remarks)
+            try? container.encodeIfPresent(bagList, forKey: .bagList)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
@@ -99,7 +99,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(bagList, forKey: .bagList)
+            try? container.encodeIfPresent(remarks, forKey: .remarks)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
         }

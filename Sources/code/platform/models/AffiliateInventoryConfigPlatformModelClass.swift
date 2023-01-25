@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var inventory: AffiliateInventoryStoreConfig?
 
-        public var order: AffiliateInventoryOrderConfig?
-
         public var logistics: AffiliateInventoryLogisticsConfig?
+
+        public var order: AffiliateInventoryOrderConfig?
 
         public enum CodingKeys: String, CodingKey {
             case payment
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case inventory
 
-            case order
-
             case logistics
+
+            case order
         }
 
         public init(articleAssignment: AffiliateInventoryArticleAssignmentConfig? = nil, inventory: AffiliateInventoryStoreConfig? = nil, logistics: AffiliateInventoryLogisticsConfig? = nil, order: AffiliateInventoryOrderConfig? = nil, payment: AffiliateInventoryPaymentConfig? = nil) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.inventory = inventory
 
-            self.order = order
-
             self.logistics = logistics
+
+            self.order = order
         }
 
         required public init(from decoder: Decoder) throws {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                order = try container.decode(AffiliateInventoryOrderConfig.self, forKey: .order)
+                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
+                order = try container.decode(AffiliateInventoryOrderConfig.self, forKey: .order)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,9 +95,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(inventory, forKey: .inventory)
 
-            try? container.encodeIfPresent(order, forKey: .order)
-
             try? container.encodeIfPresent(logistics, forKey: .logistics)
+
+            try? container.encodeIfPresent(order, forKey: .order)
         }
     }
 }

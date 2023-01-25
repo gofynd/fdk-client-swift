@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var customJson: [String: Any]?
 
-        public var seo: ApplicationItemSEO?
-
-        public var isCod: Bool?
+        public var altText: [String: Any]?
 
         public var isGift: Bool?
 
-        public var altText: [String: Any]?
+        public var isCod: Bool?
+
+        public var seo: ApplicationItemSEO?
 
         public var moq: ApplicationItemMOQ?
 
@@ -27,13 +27,13 @@ public extension PlatformClient {
 
             case customJson = "_custom_json"
 
-            case seo
-
-            case isCod = "is_cod"
+            case altText = "alt_text"
 
             case isGift = "is_gift"
 
-            case altText = "alt_text"
+            case isCod = "is_cod"
+
+            case seo
 
             case moq
         }
@@ -43,13 +43,13 @@ public extension PlatformClient {
 
             self.customJson = customJson
 
-            self.seo = seo
-
-            self.isCod = isCod
+            self.altText = altText
 
             self.isGift = isGift
 
-            self.altText = altText
+            self.isCod = isCod
+
+            self.seo = seo
 
             self.moq = moq
         }
@@ -74,15 +74,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                seo = try container.decode(ApplicationItemSEO.self, forKey: .seo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isCod = try container.decode(Bool.self, forKey: .isCod)
+                altText = try container.decode([String: Any].self, forKey: .altText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +90,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                altText = try container.decode([String: Any].self, forKey: .altText)
+                isCod = try container.decode(Bool.self, forKey: .isCod)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                seo = try container.decode(ApplicationItemSEO.self, forKey: .seo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,13 +121,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(seo, forKey: .seo)
-
-            try? container.encodeIfPresent(isCod, forKey: .isCod)
+            try? container.encodeIfPresent(altText, forKey: .altText)
 
             try? container.encodeIfPresent(isGift, forKey: .isGift)
 
-            try? container.encodeIfPresent(altText, forKey: .altText)
+            try? container.encodeIfPresent(isCod, forKey: .isCod)
+
+            try? container.encodeIfPresent(seo, forKey: .seo)
 
             try? container.encodeIfPresent(moq, forKey: .moq)
         }
