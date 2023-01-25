@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class OrderList: Codable {
         public var filters: OrderFilters?
 
-        public var items: [OrderSchema]?
-
         public var page: OrderPage?
+
+        public var items: [OrderSchema]?
 
         public enum CodingKeys: String, CodingKey {
             case filters
 
-            case items
-
             case page
+
+            case items
         }
 
         public init(filters: OrderFilters? = nil, items: [OrderSchema]? = nil, page: OrderPage? = nil) {
             self.filters = filters
 
-            self.items = items
-
             self.page = page
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                items = try container.decode([OrderSchema].self, forKey: .items)
+                page = try container.decode(OrderPage.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                page = try container.decode(OrderPage.self, forKey: .page)
+                items = try container.decode([OrderSchema].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var orderCommitted: QuantityBase?
 
-        public var damaged: QuantityBase?
-
         public var notAvailable: QuantityBase?
+
+        public var damaged: QuantityBase?
 
         public enum CodingKeys: String, CodingKey {
             case sellable
 
             case orderCommitted = "order_committed"
 
-            case damaged
-
             case notAvailable = "not_available"
+
+            case damaged
         }
 
         public init(damaged: QuantityBase? = nil, notAvailable: QuantityBase? = nil, orderCommitted: QuantityBase? = nil, sellable: QuantityBase? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.orderCommitted = orderCommitted
 
-            self.damaged = damaged
-
             self.notAvailable = notAvailable
+
+            self.damaged = damaged
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                damaged = try container.decode(QuantityBase.self, forKey: .damaged)
+                notAvailable = try container.decode(QuantityBase.self, forKey: .notAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                notAvailable = try container.decode(QuantityBase.self, forKey: .notAvailable)
+                damaged = try container.decode(QuantityBase.self, forKey: .damaged)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(orderCommitted, forKey: .orderCommitted)
 
-            try? container.encodeIfPresent(damaged, forKey: .damaged)
-
             try? container.encodeIfPresent(notAvailable, forKey: .notAvailable)
+
+            try? container.encodeIfPresent(damaged, forKey: .damaged)
         }
     }
 }
