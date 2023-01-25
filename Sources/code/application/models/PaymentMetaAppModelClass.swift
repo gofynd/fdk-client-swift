@@ -3,37 +3,43 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: PaymentSelectionLock
+         Model: PaymentMeta
          Used By: Cart
      */
-    class PaymentSelectionLock: Codable {
-        public var enabled: Bool?
+    class PaymentMeta: Codable {
+        public var type: String?
 
-        public var defaultOptions: String?
+        public var paymentGateway: String?
 
         public var paymentIdentifier: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case enabled
+        public var merchantCode: String?
 
-            case defaultOptions = "default_options"
+        public enum CodingKeys: String, CodingKey {
+            case type
+
+            case paymentGateway = "payment_gateway"
 
             case paymentIdentifier = "payment_identifier"
+
+            case merchantCode = "merchant_code"
         }
 
-        public init(defaultOptions: String? = nil, enabled: Bool? = nil, paymentIdentifier: String? = nil) {
-            self.enabled = enabled
+        public init(merchantCode: String? = nil, paymentGateway: String? = nil, paymentIdentifier: String? = nil, type: String? = nil) {
+            self.type = type
 
-            self.defaultOptions = defaultOptions
+            self.paymentGateway = paymentGateway
 
             self.paymentIdentifier = paymentIdentifier
+
+            self.merchantCode = merchantCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                enabled = try container.decode(Bool.self, forKey: .enabled)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                defaultOptions = try container.decode(String.self, forKey: .defaultOptions)
+                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,16 +61,26 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                merchantCode = try container.decode(String.self, forKey: .merchantCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(defaultOptions, forKey: .defaultOptions)
+            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
 
-            try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
+            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
+
+            try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
         }
     }
 }

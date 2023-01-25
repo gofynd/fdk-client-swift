@@ -11,13 +11,13 @@ public extension ApplicationClient {
 
         public var headers: ColumnHeaders?
 
-        public var title: String?
-
         public var description: String?
 
-        public var image: String?
-
         public var unit: String?
+
+        public var title: String?
+
+        public var image: String?
 
         public var sizes: [SizeChartValues]?
 
@@ -26,13 +26,13 @@ public extension ApplicationClient {
 
             case headers
 
-            case title
-
             case description
 
-            case image
-
             case unit
+
+            case title
+
+            case image
 
             case sizes
         }
@@ -42,13 +42,13 @@ public extension ApplicationClient {
 
             self.headers = headers
 
-            self.title = title
-
             self.description = description
 
-            self.image = image
-
             self.unit = unit
+
+            self.title = title
+
+            self.image = image
 
             self.sizes = sizes
         }
@@ -73,14 +73,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -89,7 +81,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                image = try container.decode(String.self, forKey: .image)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +89,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                title = try container.decode(String.self, forKey: .title)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                image = try container.decode(String.self, forKey: .image)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,13 +120,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(headers, forKey: .headers)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(image, forKey: .image)
-
             try? container.encodeIfPresent(unit, forKey: .unit)
+
+            try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encodeIfPresent(image, forKey: .image)
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
         }
