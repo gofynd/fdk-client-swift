@@ -7,33 +7,33 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ApplicationStoreListing: Codable {
-        public var items: [AppStore]?
+        public var filters: [StoreDepartments]?
 
         public var page: Page?
 
-        public var filters: [StoreDepartments]?
+        public var items: [AppStore]?
 
         public enum CodingKeys: String, CodingKey {
-            case items
+            case filters
 
             case page
 
-            case filters
+            case items
         }
 
         public init(filters: [StoreDepartments]? = nil, items: [AppStore]? = nil, page: Page? = nil) {
-            self.items = items
+            self.filters = filters
 
             self.page = page
 
-            self.filters = filters
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([AppStore].self, forKey: .items)
+                filters = try container.decode([StoreDepartments].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                filters = try container.decode([StoreDepartments].self, forKey: .filters)
+                items = try container.decode([AppStore].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }
