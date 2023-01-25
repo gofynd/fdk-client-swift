@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: HistoryPretty
+         Model: PointsHistory
          Used By: Rewards
      */
 
-    class HistoryPretty: Codable {
+    class PointsHistory: Codable {
         public var id: String?
 
         public var applicationId: String?
@@ -17,6 +17,8 @@ public extension PlatformClient {
         public var createdAt: String?
 
         public var expiresOn: String?
+
+        public var meta: [String: Any]?
 
         public var points: Double?
 
@@ -45,6 +47,8 @@ public extension PlatformClient {
 
             case expiresOn = "expires_on"
 
+            case meta
+
             case points
 
             case remainingPoints = "remaining_points"
@@ -62,7 +66,7 @@ public extension PlatformClient {
             case userId = "user_id"
         }
 
-        public init(applicationId: String? = nil, claimed: Bool? = nil, createdAt: String? = nil, expiresOn: String? = nil, points: Double? = nil, remainingPoints: Double? = nil, text1: String? = nil, text2: String? = nil, text3: String? = nil, txnName: String? = nil, updatedAt: String? = nil, userId: String? = nil, id: String? = nil) {
+        public init(applicationId: String? = nil, claimed: Bool? = nil, createdAt: String? = nil, expiresOn: String? = nil, meta: [String: Any]? = nil, points: Double? = nil, remainingPoints: Double? = nil, text1: String? = nil, text2: String? = nil, text3: String? = nil, txnName: String? = nil, updatedAt: String? = nil, userId: String? = nil, id: String? = nil) {
             self.id = id
 
             self.applicationId = applicationId
@@ -72,6 +76,8 @@ public extension PlatformClient {
             self.createdAt = createdAt
 
             self.expiresOn = expiresOn
+
+            self.meta = meta
 
             self.points = points
 
@@ -127,6 +133,14 @@ public extension PlatformClient {
 
             do {
                 expiresOn = try container.decode(String.self, forKey: .expiresOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,6 +224,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(expiresOn, forKey: .expiresOn)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(points, forKey: .points)
 
