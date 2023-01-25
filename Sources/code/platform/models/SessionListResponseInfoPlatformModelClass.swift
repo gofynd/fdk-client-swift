@@ -1,51 +1,52 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: TrackingDetails
-         Used By: Order
+         Model: SessionListResponseInfo
+         Used By: User
      */
-    class TrackingDetails: Codable {
-        public var isCurrent: Bool?
 
-        public var time: String?
+    class SessionListResponseInfo: Codable {
+        public var sessionId: String?
 
-        public var trackingDetails: [NestedTrackingDetails]?
+        public var userAgent: String?
 
-        public var status: String?
+        public var ip: String?
 
-        public var isPassed: Bool?
+        public var domain: String?
+
+        public var expireIn: String?
 
         public enum CodingKeys: String, CodingKey {
-            case isCurrent = "is_current"
+            case sessionId = "session_id"
 
-            case time
+            case userAgent = "user_agent"
 
-            case trackingDetails = "tracking_details"
+            case ip
 
-            case status
+            case domain
 
-            case isPassed = "is_passed"
+            case expireIn = "expire_in"
         }
 
-        public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String? = nil, time: String? = nil, trackingDetails: [NestedTrackingDetails]? = nil) {
-            self.isCurrent = isCurrent
+        public init(domain: String? = nil, expireIn: String? = nil, ip: String? = nil, sessionId: String? = nil, userAgent: String? = nil) {
+            self.sessionId = sessionId
 
-            self.time = time
+            self.userAgent = userAgent
 
-            self.trackingDetails = trackingDetails
+            self.ip = ip
 
-            self.status = status
+            self.domain = domain
 
-            self.isPassed = isPassed
+            self.expireIn = expireIn
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isCurrent = try container.decode(Bool.self, forKey: .isCurrent)
+                sessionId = try container.decode(String.self, forKey: .sessionId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +54,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                time = try container.decode(String.self, forKey: .time)
+                userAgent = try container.decode(String.self, forKey: .userAgent)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +62,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                trackingDetails = try container.decode([NestedTrackingDetails].self, forKey: .trackingDetails)
+                ip = try container.decode(String.self, forKey: .ip)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +70,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                domain = try container.decode(String.self, forKey: .domain)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +78,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isPassed = try container.decode(Bool.self, forKey: .isPassed)
+                expireIn = try container.decode(String.self, forKey: .expireIn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,15 +89,15 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
+            try? container.encodeIfPresent(sessionId, forKey: .sessionId)
 
-            try? container.encodeIfPresent(time, forKey: .time)
+            try? container.encodeIfPresent(userAgent, forKey: .userAgent)
 
-            try? container.encodeIfPresent(trackingDetails, forKey: .trackingDetails)
+            try? container.encodeIfPresent(ip, forKey: .ip)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(domain, forKey: .domain)
 
-            try? container.encodeIfPresent(isPassed, forKey: .isPassed)
+            try? container.encodeIfPresent(expireIn, forKey: .expireIn)
         }
     }
 }

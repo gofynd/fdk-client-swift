@@ -14,6 +14,7 @@ Authentication Service
 * [unDeleteUser](#undeleteuser)
 * [updateUser](#updateuser)
 * [createUserSession](#createusersession)
+* [deleteSession](#deletesession)
 * [getActiveSessions](#getactivesessions)
 * [deleteActiveSessions](#deleteactivesessions)
 * [getPlatformConfig](#getplatformconfig)
@@ -660,8 +661,76 @@ Create user session
 ---
 
 
+#### deleteSession
+Delete a session for a user
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").user.deleteSession(id: id) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| id | String | yes | Session ID of a customer. |  
+
+
+
+Use this API to Delete a session of customers who have registered in the application.
+
+*Returned Response:*
+
+
+
+
+[SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
+
+Success. Refer `SessionDeleteResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      "sess:123",
+      "sess:456"
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getActiveSessions
-Get a list of all session for a user
+Get a list of all session with info for a user
 
 
 
@@ -682,7 +751,7 @@ client.application("<APPLICATION_ID>").user.getActiveSessions(id: id) { (respons
 
 
 
-Use this API to retrieve a list of session of customers who have registered in the application.
+Use this API to retrieve a list of session with info of customers who have registered in the application.
 
 *Returned Response:*
 
@@ -2010,7 +2079,7 @@ Success. User Group details. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [String]? |  yes  |  |
+ | items | [[SessionListResponseInfo](#SessionListResponseInfo)]? |  yes  |  |
 
 ---
 
@@ -2174,6 +2243,21 @@ Success. User Group details. `UserGroupResponseSchema` for more details.
  | debug | [AuthSuccessUserDebug](#AuthSuccessUserDebug)? |  yes  |  |
  | active | Bool? |  yes  |  |
  | emails | [AuthSuccessUserEmails](#AuthSuccessUserEmails)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SessionListResponseInfo](#SessionListResponseInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sessionId | String? |  yes  |  |
+ | userAgent | String? |  yes  |  |
+ | ip | String? |  yes  |  |
+ | domain | String? |  yes  |  |
+ | expireIn | String? |  yes  |  |
 
 ---
 

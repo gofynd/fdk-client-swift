@@ -1,52 +1,51 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension ApplicationClient {
     /*
-         Model: PriceArticle
-         Used By: Catalog
+         Model: SessionListResponseInfo
+         Used By: User
      */
+    class SessionListResponseInfo: Codable {
+        public var sessionId: String?
 
-    class PriceArticle: Codable {
-        public var currency: String?
+        public var userAgent: String?
 
-        public var transfer: Double?
+        public var ip: String?
 
-        public var tpNotes: [String: Any]?
+        public var domain: String?
 
-        public var effective: Double?
-
-        public var marked: Double?
+        public var expireIn: String?
 
         public enum CodingKeys: String, CodingKey {
-            case currency
+            case sessionId = "session_id"
 
-            case transfer
+            case userAgent = "user_agent"
 
-            case tpNotes = "tp_notes"
+            case ip
 
-            case effective
+            case domain
 
-            case marked
+            case expireIn = "expire_in"
         }
 
-        public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil, tpNotes: [String: Any]? = nil, transfer: Double? = nil) {
-            self.currency = currency
+        public init(domain: String? = nil, expireIn: String? = nil, ip: String? = nil, sessionId: String? = nil, userAgent: String? = nil) {
+            self.sessionId = sessionId
 
-            self.transfer = transfer
+            self.userAgent = userAgent
 
-            self.tpNotes = tpNotes
+            self.ip = ip
 
-            self.effective = effective
+            self.domain = domain
 
-            self.marked = marked
+            self.expireIn = expireIn
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                sessionId = try container.decode(String.self, forKey: .sessionId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +53,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                transfer = try container.decode(Double.self, forKey: .transfer)
+                userAgent = try container.decode(String.self, forKey: .userAgent)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +61,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
+                ip = try container.decode(String.self, forKey: .ip)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +69,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                effective = try container.decode(Double.self, forKey: .effective)
+                domain = try container.decode(String.self, forKey: .domain)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +77,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                marked = try container.decode(Double.self, forKey: .marked)
+                expireIn = try container.decode(String.self, forKey: .expireIn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,15 +88,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(sessionId, forKey: .sessionId)
 
-            try? container.encodeIfPresent(transfer, forKey: .transfer)
+            try? container.encodeIfPresent(userAgent, forKey: .userAgent)
 
-            try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
+            try? container.encodeIfPresent(ip, forKey: .ip)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
+            try? container.encodeIfPresent(domain, forKey: .domain)
 
-            try? container.encodeIfPresent(marked, forKey: .marked)
+            try? container.encodeIfPresent(expireIn, forKey: .expireIn)
         }
     }
 }
