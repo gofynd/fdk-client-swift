@@ -10,9 +10,9 @@ public extension PlatformClient {
     class SubLane: Codable {
         public var totalItems: Int?
 
-        public var index: Int?
-
         public var actions: [[String: Any]]?
+
+        public var index: Int?
 
         public var value: String?
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case totalItems = "total_items"
 
-            case index
-
             case actions
+
+            case index
 
             case value
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(actions: [[String: Any]]? = nil, index: Int? = nil, text: String? = nil, totalItems: Int? = nil, value: String? = nil) {
             self.totalItems = totalItems
 
-            self.index = index
-
             self.actions = actions
+
+            self.index = index
 
             self.value = value
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                index = try container.decode(Int.self, forKey: .index)
+                actions = try container.decode([[String: Any]].self, forKey: .actions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                actions = try container.decode([[String: Any]].self, forKey: .actions)
+                index = try container.decode(Int.self, forKey: .index)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(totalItems, forKey: .totalItems)
 
-            try? container.encodeIfPresent(index, forKey: .index)
-
             try? container.encodeIfPresent(actions, forKey: .actions)
+
+            try? container.encodeIfPresent(index, forKey: .index)
 
             try? container.encodeIfPresent(value, forKey: .value)
 

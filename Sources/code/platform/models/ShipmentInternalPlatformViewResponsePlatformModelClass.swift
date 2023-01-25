@@ -10,30 +10,30 @@ public extension PlatformClient {
     class ShipmentInternalPlatformViewResponse: Codable {
         public var page: [String: Any]?
 
-        public var filters: [FiltersInfo]?
+        public var items: [ShipmentItem]?
 
         public var appliedFilters: [String: Any]?
 
-        public var items: [ShipmentItem]?
+        public var filters: [FiltersInfo]?
 
         public enum CodingKeys: String, CodingKey {
             case page
 
-            case filters
+            case items
 
             case appliedFilters = "applied_filters"
 
-            case items
+            case filters
         }
 
         public init(appliedFilters: [String: Any]? = nil, filters: [FiltersInfo]? = nil, items: [ShipmentItem]? = nil, page: [String: Any]? = nil) {
             self.page = page
 
-            self.filters = filters
+            self.items = items
 
             self.appliedFilters = appliedFilters
 
-            self.items = items
+            self.filters = filters
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                filters = try container.decode([FiltersInfo].self, forKey: .filters)
+                items = try container.decode([ShipmentItem].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                items = try container.decode([ShipmentItem].self, forKey: .items)
+                filters = try container.decode([FiltersInfo].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,11 +77,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(appliedFilters, forKey: .appliedFilters)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(filters, forKey: .filters)
         }
     }
 }
