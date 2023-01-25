@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var query: [String: Any]?
 
-        public var type: String?
-
         public var url: String?
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case params
 
             case query
 
-            case type
-
             case url
+
+            case type
         }
 
         public init(params: [String: Any]? = nil, query: [String: Any]? = nil, type: String? = nil, url: String? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.query = query
 
-            self.type = type
-
             self.url = url
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(query, forKey: .query)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(url, forKey: .url)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
