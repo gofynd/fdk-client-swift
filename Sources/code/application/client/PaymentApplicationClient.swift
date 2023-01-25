@@ -831,7 +831,7 @@ public extension ApplicationClient {
          * Description: API to get Card info from PG
          **/
         public func cardDetails(
-            body: cardDetails,
+            body: cardDetailsRequest,
             onResponse: @escaping (_ response: cardDetailsResponse?, _ error: FDKError?) -> Void
         ) {
             let fullUrl = relativeUrls["cardDetails"] ?? ""
