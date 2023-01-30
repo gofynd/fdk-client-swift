@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var entityType: String
 
-        public var action: String
-
         public var entities: [Entities]
+
+        public var action: String
 
         public enum CodingKeys: String, CodingKey {
             case actionType = "action_type"
 
             case entityType = "entity_type"
 
-            case action
-
             case entities
+
+            case action
         }
 
         public init(action: String, actionType: String, entities: [Entities], entityType: String) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.entityType = entityType
 
-            self.action = action
-
             self.entities = entities
+
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,9 +43,9 @@ public extension PlatformClient {
 
             entityType = try container.decode(String.self, forKey: .entityType)
 
-            action = try container.decode(String.self, forKey: .action)
-
             entities = try container.decode([Entities].self, forKey: .entities)
+
+            action = try container.decode(String.self, forKey: .action)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -55,9 +55,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(entityType, forKey: .entityType)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(entities, forKey: .entities)
+
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }
