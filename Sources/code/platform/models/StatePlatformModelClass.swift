@@ -10,24 +10,24 @@ public extension PlatformClient {
     class State: Codable {
         public var isArchived: Bool?
 
-        public var isDisplay: Bool?
-
         public var isPublic: Bool?
+
+        public var isDisplay: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case isArchived = "is_archived"
 
-            case isDisplay = "is_display"
-
             case isPublic = "is_public"
+
+            case isDisplay = "is_display"
         }
 
         public init(isArchived: Bool? = nil, isDisplay: Bool? = nil, isPublic: Bool? = nil) {
             self.isArchived = isArchived
 
-            self.isDisplay = isDisplay
-
             self.isPublic = isPublic
+
+            self.isDisplay = isDisplay
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isDisplay = try container.decode(Bool.self, forKey: .isDisplay)
+                isPublic = try container.decode(Bool.self, forKey: .isPublic)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isPublic = try container.decode(Bool.self, forKey: .isPublic)
+                isDisplay = try container.decode(Bool.self, forKey: .isDisplay)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isArchived, forKey: .isArchived)
 
-            try? container.encodeIfPresent(isDisplay, forKey: .isDisplay)
-
             try? container.encodeIfPresent(isPublic, forKey: .isPublic)
+
+            try? container.encodeIfPresent(isDisplay, forKey: .isDisplay)
         }
     }
 }
