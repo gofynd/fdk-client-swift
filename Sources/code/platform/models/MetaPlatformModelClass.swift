@@ -4,37 +4,31 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: Meta
-         Used By: Catalog
+         Used By: Order
      */
 
     class Meta: Codable {
-        public var headers: [String: Any]?
+        public var kafkaEmissionStatus: Int?
 
-        public var unit: String?
-
-        public var values: [[String: Any]]?
+        public var stateManagerUsed: String?
 
         public enum CodingKeys: String, CodingKey {
-            case headers
+            case kafkaEmissionStatus = "kafka_emission_status"
 
-            case unit
-
-            case values
+            case stateManagerUsed = "state_manager_used"
         }
 
-        public init(headers: [String: Any]? = nil, unit: String? = nil, values: [[String: Any]]? = nil) {
-            self.headers = headers
+        public init(kafkaEmissionStatus: Int? = nil, stateManagerUsed: String? = nil) {
+            self.kafkaEmissionStatus = kafkaEmissionStatus
 
-            self.unit = unit
-
-            self.values = values
+            self.stateManagerUsed = stateManagerUsed
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                headers = try container.decode([String: Any].self, forKey: .headers)
+                kafkaEmissionStatus = try container.decode(Int.self, forKey: .kafkaEmissionStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,15 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                values = try container.decode([[String: Any]].self, forKey: .values)
+                stateManagerUsed = try container.decode(String.self, forKey: .stateManagerUsed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,11 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(headers, forKey: .headers)
+            try? container.encodeIfPresent(kafkaEmissionStatus, forKey: .kafkaEmissionStatus)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
-
-            try? container.encodeIfPresent(values, forKey: .values)
+            try? container.encodeIfPresent(stateManagerUsed, forKey: .stateManagerUsed)
         }
     }
 }
