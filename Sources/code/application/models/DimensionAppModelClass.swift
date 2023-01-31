@@ -9,22 +9,22 @@ public extension ApplicationClient {
     class Dimension: Codable {
         public var isDefault: Bool
 
+        public var width: Double
+
         public var height: Double
 
         public var length: Double
-
-        public var width: Double
 
         public var unit: String
 
         public enum CodingKeys: String, CodingKey {
             case isDefault = "is_default"
 
+            case width
+
             case height
 
             case length
-
-            case width
 
             case unit
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient {
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
             self.isDefault = isDefault
 
+            self.width = width
+
             self.height = height
 
             self.length = length
-
-            self.width = width
 
             self.unit = unit
         }
@@ -46,11 +46,11 @@ public extension ApplicationClient {
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
+            width = try container.decode(Double.self, forKey: .width)
+
             height = try container.decode(Double.self, forKey: .height)
 
             length = try container.decode(Double.self, forKey: .length)
-
-            width = try container.decode(Double.self, forKey: .width)
 
             unit = try container.decode(String.self, forKey: .unit)
         }
@@ -60,11 +60,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
+            try? container.encodeIfPresent(width, forKey: .width)
+
             try? container.encodeIfPresent(height, forKey: .height)
 
             try? container.encodeIfPresent(length, forKey: .length)
-
-            try? container.encodeIfPresent(width, forKey: .width)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
         }

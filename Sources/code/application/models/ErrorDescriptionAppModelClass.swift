@@ -17,11 +17,11 @@ public extension ApplicationClient {
 
         public var invalidId: Bool?
 
-        public var cancelled: Bool?
+        public var merchantName: String?
 
         public var expired: Bool?
 
-        public var merchantName: String?
+        public var cancelled: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case merchantOrderId = "merchant_order_id"
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             case invalidId = "invalid_id"
 
-            case cancelled
+            case merchantName = "merchant_name"
 
             case expired
 
-            case merchantName = "merchant_name"
+            case cancelled
         }
 
         public init(amount: Double? = nil, cancelled: Bool? = nil, expired: Bool? = nil, invalidId: Bool? = nil, merchantName: String? = nil, merchantOrderId: String? = nil, msg: String? = nil, paymentTransactionId: String? = nil) {
@@ -52,11 +52,11 @@ public extension ApplicationClient {
 
             self.invalidId = invalidId
 
-            self.cancelled = cancelled
+            self.merchantName = merchantName
 
             self.expired = expired
 
-            self.merchantName = merchantName
+            self.cancelled = cancelled
         }
 
         required public init(from decoder: Decoder) throws {
@@ -103,7 +103,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                cancelled = try container.decode(Bool.self, forKey: .cancelled)
+                merchantName = try container.decode(String.self, forKey: .merchantName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,7 +119,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                merchantName = try container.decode(String.self, forKey: .merchantName)
+                cancelled = try container.decode(Bool.self, forKey: .cancelled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,11 +140,11 @@ public extension ApplicationClient {
 
             try? container.encode(invalidId, forKey: .invalidId)
 
-            try? container.encode(cancelled, forKey: .cancelled)
+            try? container.encode(merchantName, forKey: .merchantName)
 
             try? container.encode(expired, forKey: .expired)
 
-            try? container.encode(merchantName, forKey: .merchantName)
+            try? container.encode(cancelled, forKey: .cancelled)
         }
     }
 }

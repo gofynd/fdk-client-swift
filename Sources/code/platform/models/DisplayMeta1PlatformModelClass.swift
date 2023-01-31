@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class DisplayMeta1: Codable {
-        public var name: String?
-
         public var offerLabel: String?
+
+        public var name: String?
 
         public var offerText: String?
 
         public var description: String?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
             case offerLabel = "offer_label"
+
+            case name
 
             case offerText = "offer_text"
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(description: String? = nil, name: String? = nil, offerLabel: String? = nil, offerText: String? = nil) {
-            self.name = name
-
             self.offerLabel = offerLabel
+
+            self.name = name
 
             self.offerText = offerText
 
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                offerLabel = try container.decode(String.self, forKey: .offerLabel)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                offerLabel = try container.decode(String.self, forKey: .offerLabel)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,9 +75,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(offerLabel, forKey: .offerLabel)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 
