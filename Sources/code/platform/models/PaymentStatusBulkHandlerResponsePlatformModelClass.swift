@@ -8,42 +8,84 @@ public extension PlatformClient {
      */
 
     class PaymentStatusBulkHandlerResponse: Codable {
-        public var merchantOrderId: String
+        public var data: [PaymentStatusObject]?
 
-        public var paymentObjectList: [PaymentObjectListSerializer]?
+        public var error: String?
+
+        public var count: Int?
+
+        public var status: Int
+
+        public var success: String
 
         public enum CodingKeys: String, CodingKey {
-            case merchantOrderId = "merchant_order_id"
+            case data
 
-            case paymentObjectList = "payment_object_list"
+            case error
+
+            case count
+
+            case status
+
+            case success
         }
 
-        public init(merchantOrderId: String, paymentObjectList: [PaymentObjectListSerializer]? = nil) {
-            self.merchantOrderId = merchantOrderId
+        public init(count: Int? = nil, data: [PaymentStatusObject]? = nil, error: String? = nil, status: Int, success: String) {
+            self.data = data
 
-            self.paymentObjectList = paymentObjectList
+            self.error = error
+
+            self.count = count
+
+            self.status = status
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
-
             do {
-                paymentObjectList = try container.decode([PaymentObjectListSerializer].self, forKey: .paymentObjectList)
+                data = try container.decode([PaymentStatusObject].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                error = try container.decode(String.self, forKey: .error)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                count = try container.decode(Int.self, forKey: .count)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            status = try container.decode(Int.self, forKey: .status)
+
+            success = try container.decode(String.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(paymentObjectList, forKey: .paymentObjectList)
+            try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(count, forKey: .count)
+
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
