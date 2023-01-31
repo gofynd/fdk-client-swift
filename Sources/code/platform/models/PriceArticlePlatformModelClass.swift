@@ -3,50 +3,50 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: AssignStoreArticle
+         Model: PriceArticle
          Used By: Catalog
      */
 
-    class AssignStoreArticle: Codable {
-        public var query: ArticleQuery?
+    class PriceArticle: Codable {
+        public var tpNotes: [String: Any]?
 
-        public var quantity: Int?
+        public var currency: String?
 
-        public var groupId: String?
+        public var marked: Double?
 
-        public var meta: [String: Any]?
+        public var transfer: Double?
 
-        public var articleAssignment: ArticleAssignment?
+        public var effective: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case query
+            case tpNotes = "tp_notes"
 
-            case quantity
+            case currency
 
-            case groupId = "group_id"
+            case marked
 
-            case meta
+            case transfer
 
-            case articleAssignment = "article_assignment"
+            case effective
         }
 
-        public init(articleAssignment: ArticleAssignment? = nil, groupId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, query: ArticleQuery? = nil) {
-            self.query = query
+        public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil, tpNotes: [String: Any]? = nil, transfer: Double? = nil) {
+            self.tpNotes = tpNotes
 
-            self.quantity = quantity
+            self.currency = currency
 
-            self.groupId = groupId
+            self.marked = marked
 
-            self.meta = meta
+            self.transfer = transfer
 
-            self.articleAssignment = articleAssignment
+            self.effective = effective
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                query = try container.decode(ArticleQuery.self, forKey: .query)
+                tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                groupId = try container.decode(String.self, forKey: .groupId)
+                marked = try container.decode(Double.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                transfer = try container.decode(Double.self, forKey: .transfer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                articleAssignment = try container.decode(ArticleAssignment.self, forKey: .articleAssignment)
+                effective = try container.decode(Double.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,15 +89,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(query, forKey: .query)
+            try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(groupId, forKey: .groupId)
+            try? container.encodeIfPresent(marked, forKey: .marked)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(transfer, forKey: .transfer)
 
-            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
+            try? container.encodeIfPresent(effective, forKey: .effective)
         }
     }
 }
