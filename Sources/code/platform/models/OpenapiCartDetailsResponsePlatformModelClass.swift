@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var items: [CartProductInfo]?
 
-        public var message: String?
-
         public var isValid: Bool?
+
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case breakupValues = "breakup_values"
 
             case items
 
-            case message
-
             case isValid = "is_valid"
+
+            case message
         }
 
         public init(breakupValues: CartBreakup? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, message: String? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.items = items
 
-            self.message = message
-
             self.isValid = isValid
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                isValid = try container.decode(Bool.self, forKey: .isValid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isValid = try container.decode(Bool.self, forKey: .isValid)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(isValid, forKey: .isValid)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

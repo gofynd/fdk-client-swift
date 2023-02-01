@@ -7,22 +7,22 @@ public extension ApplicationClient {
          Used By: Order
      */
     class FulfillingStore: Codable {
-        public var id: Int?
+        public var companyId: Int?
 
         public var code: String?
 
-        public var companyId: Int?
+        public var id: Int?
 
         public var companyName: String?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case id
+            case companyId = "company_id"
 
             case code
 
-            case companyId = "company_id"
+            case id
 
             case companyName = "company_name"
 
@@ -30,11 +30,11 @@ public extension ApplicationClient {
         }
 
         public init(code: String? = nil, companyId: Int? = nil, companyName: String? = nil, id: Int? = nil, name: String? = nil) {
-            self.id = id
+            self.companyId = companyId
 
             self.code = code
 
-            self.companyId = companyId
+            self.id = id
 
             self.companyName = companyName
 
@@ -45,7 +45,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,11 +88,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(companyName, forKey: .companyName)
 

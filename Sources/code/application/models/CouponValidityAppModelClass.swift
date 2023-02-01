@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class CouponValidity: Codable {
         public var valid: Bool?
 
-        public var title: String?
-
         public var discount: Double?
+
+        public var title: String?
 
         public var displayMessageEn: String?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case valid
 
-            case title
-
             case discount
+
+            case title
 
             case displayMessageEn = "display_message_en"
 
@@ -32,9 +32,9 @@ public extension ApplicationClient {
         public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, title: String? = nil, valid: Bool? = nil) {
             self.valid = valid
 
-            self.title = title
-
             self.discount = discount
+
+            self.title = title
 
             self.displayMessageEn = displayMessageEn
 
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                discount = try container.decode(Double.self, forKey: .discount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                discount = try container.decode(Double.self, forKey: .discount)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(valid, forKey: .valid)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encodeIfPresent(discount, forKey: .discount)
+
+            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encode(displayMessageEn, forKey: .displayMessageEn)
 
