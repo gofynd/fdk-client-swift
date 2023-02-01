@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class MultiTenderPaymentMeta: Codable {
-        public var paymentGateway: String?
-
         public var paymentId: String?
+
+        public var paymentGateway: String?
 
         public var currentStatus: String?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var extraMeta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case paymentGateway = "payment_gateway"
-
             case paymentId = "payment_id"
+
+            case paymentGateway = "payment_gateway"
 
             case currentStatus = "current_status"
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil) {
-            self.paymentGateway = paymentGateway
-
             self.paymentId = paymentId
+
+            self.paymentGateway = paymentGateway
 
             self.currentStatus = currentStatus
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
+                paymentId = try container.decode(String.self, forKey: .paymentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                paymentId = try container.decode(String.self, forKey: .paymentId)
+                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
-
             try? container.encodeIfPresent(paymentId, forKey: .paymentId)
+
+            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
 
             try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
 
