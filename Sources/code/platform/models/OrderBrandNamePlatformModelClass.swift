@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class OrderBrandName: Codable {
-        public var logo: String
-
         public var id: Int
+
+        public var logo: String
 
         public var brandName: String
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public var company: String
 
         public enum CodingKeys: String, CodingKey {
-            case logo
-
             case id
+
+            case logo
 
             case brandName = "brand_name"
 
@@ -35,9 +35,9 @@ public extension PlatformClient {
         }
 
         public init(brandName: String, company: String, createdOn: Int, id: Int, logo: String, modifiedOn: Int? = nil) {
-            self.logo = logo
-
             self.id = id
+
+            self.logo = logo
 
             self.brandName = brandName
 
@@ -51,9 +51,9 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            logo = try container.decode(String.self, forKey: .logo)
-
             id = try container.decode(Int.self, forKey: .id)
+
+            logo = try container.decode(String.self, forKey: .logo)
 
             brandName = try container.decode(String.self, forKey: .brandName)
 
@@ -73,9 +73,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
 

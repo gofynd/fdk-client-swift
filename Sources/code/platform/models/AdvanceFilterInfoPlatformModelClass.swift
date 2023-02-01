@@ -3,50 +3,50 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ManifestDetailItem
+         Model: AdvanceFilterInfo
          Used By: Order
      */
 
-    class ManifestDetailItem: Codable {
-        public var itemQty: Int?
+    class AdvanceFilterInfo: Codable {
+        public var returned: [FiltersInfo]?
 
-        public var invoiceId: String?
+        public var actionCentre: [FiltersInfo]?
 
-        public var awb: String?
+        public var processed: [FiltersInfo]?
 
-        public var orderId: String?
+        public var unfulfilled: [FiltersInfo]?
 
-        public var shipmentId: String?
+        public var filters: [FiltersInfo]?
 
         public enum CodingKeys: String, CodingKey {
-            case itemQty = "item_qty"
+            case returned
 
-            case invoiceId = "invoice_id"
+            case actionCentre = "action_centre"
 
-            case awb
+            case processed
 
-            case orderId = "order_id"
+            case unfulfilled
 
-            case shipmentId = "shipment_id"
+            case filters
         }
 
-        public init(awb: String? = nil, invoiceId: String? = nil, itemQty: Int? = nil, orderId: String? = nil, shipmentId: String? = nil) {
-            self.itemQty = itemQty
+        public init(actionCentre: [FiltersInfo]? = nil, filters: [FiltersInfo]? = nil, processed: [FiltersInfo]? = nil, returned: [FiltersInfo]? = nil, unfulfilled: [FiltersInfo]? = nil) {
+            self.returned = returned
 
-            self.invoiceId = invoiceId
+            self.actionCentre = actionCentre
 
-            self.awb = awb
+            self.processed = processed
 
-            self.orderId = orderId
+            self.unfulfilled = unfulfilled
 
-            self.shipmentId = shipmentId
+            self.filters = filters
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemQty = try container.decode(Int.self, forKey: .itemQty)
+                returned = try container.decode([FiltersInfo].self, forKey: .returned)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                invoiceId = try container.decode(String.self, forKey: .invoiceId)
+                actionCentre = try container.decode([FiltersInfo].self, forKey: .actionCentre)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                awb = try container.decode(String.self, forKey: .awb)
+                processed = try container.decode([FiltersInfo].self, forKey: .processed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                unfulfilled = try container.decode([FiltersInfo].self, forKey: .unfulfilled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                filters = try container.decode([FiltersInfo].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,15 +89,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemQty, forKey: .itemQty)
+            try? container.encodeIfPresent(returned, forKey: .returned)
 
-            try? container.encodeIfPresent(invoiceId, forKey: .invoiceId)
+            try? container.encodeIfPresent(actionCentre, forKey: .actionCentre)
 
-            try? container.encodeIfPresent(awb, forKey: .awb)
+            try? container.encodeIfPresent(processed, forKey: .processed)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(unfulfilled, forKey: .unfulfilled)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encodeIfPresent(filters, forKey: .filters)
         }
     }
 }

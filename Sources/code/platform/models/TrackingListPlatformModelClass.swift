@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class TrackingList: Codable {
-        public var isPassed: Bool?
-
         public var status: String
+
+        public var isPassed: Bool?
 
         public var time: String?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var text: String
 
         public enum CodingKeys: String, CodingKey {
-            case isPassed = "is_passed"
-
             case status
+
+            case isPassed = "is_passed"
 
             case time
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
-            self.isPassed = isPassed
-
             self.status = status
+
+            self.isPassed = isPassed
 
             self.time = time
 
@@ -45,6 +45,8 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            status = try container.decode(String.self, forKey: .status)
+
             do {
                 isPassed = try container.decode(Bool.self, forKey: .isPassed)
 
@@ -52,8 +54,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            status = try container.decode(String.self, forKey: .status)
 
             do {
                 time = try container.decode(String.self, forKey: .time)
@@ -77,9 +77,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isPassed, forKey: .isPassed)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(isPassed, forKey: .isPassed)
 
             try? container.encodeIfPresent(time, forKey: .time)
 

@@ -3112,7 +3112,7 @@ client.configuration.getApplications(pageNo: pageNo, pageSize: pageSize, q: q) {
 | -------- | ---- | -------- | ----------- | 
 | pageNo | Int? | no |  |   
 | pageSize | Int? | no |  |   
-| q | String? | no | Url encoded object used as mongodb query |  
+| q | String? | no | Search string to search saleschannel by name |  
 
 
 

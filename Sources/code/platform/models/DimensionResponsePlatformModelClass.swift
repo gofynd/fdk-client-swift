@@ -10,9 +10,9 @@ public extension PlatformClient {
     class DimensionResponse: Codable {
         public var unit: String
 
-        public var length: Double
-
         public var width: Double
+
+        public var length: Double
 
         public var height: Double
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case unit
 
-            case length
-
             case width
+
+            case length
 
             case height
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
             self.unit = unit
 
-            self.length = length
-
             self.width = width
+
+            self.length = length
 
             self.height = height
 
@@ -47,9 +47,9 @@ public extension PlatformClient {
 
             unit = try container.decode(String.self, forKey: .unit)
 
-            length = try container.decode(Double.self, forKey: .length)
-
             width = try container.decode(Double.self, forKey: .width)
+
+            length = try container.decode(Double.self, forKey: .length)
 
             height = try container.decode(Double.self, forKey: .height)
 
@@ -61,9 +61,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(length, forKey: .length)
-
             try? container.encodeIfPresent(width, forKey: .width)
+
+            try? container.encodeIfPresent(length, forKey: .length)
 
             try? container.encodeIfPresent(height, forKey: .height)
 

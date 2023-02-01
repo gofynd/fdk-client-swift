@@ -15,7 +15,7 @@ public extension ApplicationClient {
 
             ulrs["getPincodeZones"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/zones")
 
-            ulrs["upsertZoneControllerView"] = config.domain.appendAsPath("/service/application/logistics/v1.0/assign_stores")
+            ulrs["assignLocations"] = config.domain.appendAsPath("/service/application/logistics/v1.0/assign_stores")
 
             self.relativeUrls = ulrs
         }
@@ -154,17 +154,11 @@ public extension ApplicationClient {
          * Summary: GET zone from the Pincode.
          * Description: This API returns zone from the Pincode View.
          **/
-        public func upsertZoneControllerView(
-            companyId: Int,
-            applicationId: String,
+        public func assignLocations(
             body: AssignStoreRequest,
             onResponse: @escaping (_ response: AssignStoreResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["upsertZoneControllerView"] ?? ""
-
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "company_id" + "}", with: "\(companyId)")
-
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "application_id" + "}", with: "\(applicationId)")
+            let fullUrl = relativeUrls["assignLocations"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
