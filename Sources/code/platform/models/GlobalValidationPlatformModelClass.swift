@@ -8,11 +8,11 @@ public extension PlatformClient {
      */
 
     class GlobalValidation: Codable {
+        public var description: String?
+
         public var type: String?
 
         public var required: [String]?
-
-        public var description: String?
 
         public var definitions: [String: Any]?
 
@@ -21,11 +21,11 @@ public extension PlatformClient {
         public var properties: Properties?
 
         public enum CodingKeys: String, CodingKey {
+            case description
+
             case type
 
             case required
-
-            case description
 
             case definitions
 
@@ -35,11 +35,11 @@ public extension PlatformClient {
         }
 
         public init(definitions: [String: Any]? = nil, description: String? = nil, properties: Properties? = nil, required: [String]? = nil, title: String? = nil, type: String? = nil) {
+            self.description = description
+
             self.type = type
 
             self.required = required
-
-            self.description = description
 
             self.definitions = definitions
 
@@ -52,6 +52,14 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -61,14 +69,6 @@ public extension PlatformClient {
 
             do {
                 required = try container.decode([String].self, forKey: .required)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,11 +103,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(description, forKey: .description)
+
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(required, forKey: .required)
-
-            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(definitions, forKey: .definitions)
 

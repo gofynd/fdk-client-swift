@@ -9,22 +9,22 @@ public extension ApplicationClient {
     class UpdateShipmentStatusRequest: Codable {
         public var task: Bool?
 
-        public var lockAfterTransition: Bool?
+        public var statuses: [StatuesRequest]?
 
         public var unlockBeforeTransition: Bool?
 
-        public var statuses: [StatuesRequest]?
+        public var lockAfterTransition: Bool?
 
         public var forceTransition: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case task
 
-            case lockAfterTransition = "lock_after_transition"
+            case statuses
 
             case unlockBeforeTransition = "unlock_before_transition"
 
-            case statuses
+            case lockAfterTransition = "lock_after_transition"
 
             case forceTransition = "force_transition"
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient {
         public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
             self.task = task
 
-            self.lockAfterTransition = lockAfterTransition
+            self.statuses = statuses
 
             self.unlockBeforeTransition = unlockBeforeTransition
 
-            self.statuses = statuses
+            self.lockAfterTransition = lockAfterTransition
 
             self.forceTransition = forceTransition
         }
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
+                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
+                lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(task, forKey: .task)
 
-            try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
+            try? container.encodeIfPresent(statuses, forKey: .statuses)
 
             try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
 
-            try? container.encodeIfPresent(statuses, forKey: .statuses)
+            try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
 
             try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
         }
