@@ -10,24 +10,24 @@ public extension PlatformClient {
     class OrderStatusData: Codable {
         public var shipmentDetails: [ShipmentDetail]?
 
-        public var errors: [String]?
-
         public var orderDetails: OrderDetails
+
+        public var errors: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case shipmentDetails = "shipment_details"
 
-            case errors
-
             case orderDetails = "order_details"
+
+            case errors
         }
 
         public init(errors: [String]? = nil, orderDetails: OrderDetails, shipmentDetails: [ShipmentDetail]? = nil) {
             self.shipmentDetails = shipmentDetails
 
-            self.errors = errors
-
             self.orderDetails = orderDetails
+
+            self.errors = errors
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,6 +41,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            orderDetails = try container.decode(OrderDetails.self, forKey: .orderDetails)
+
             do {
                 errors = try container.decode([String].self, forKey: .errors)
 
@@ -48,8 +50,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            orderDetails = try container.decode(OrderDetails.self, forKey: .orderDetails)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -57,9 +57,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(shipmentDetails, forKey: .shipmentDetails)
 
-            try? container.encodeIfPresent(errors, forKey: .errors)
-
             try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
+
+            try? container.encodeIfPresent(errors, forKey: .errors)
         }
     }
 }

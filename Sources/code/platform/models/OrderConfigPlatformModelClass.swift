@@ -12,26 +12,26 @@ public extension PlatformClient {
 
         public var articleLookup: String?
 
-        public var affiliate: Affiliate
+        public var bagEndState: String?
 
         public var affiliateStoreIdMapping: [AffiliateStoreIdMapping]
 
-        public var bagEndState: String?
-
         public var storeLookup: String?
+
+        public var affiliate: Affiliate
 
         public enum CodingKeys: String, CodingKey {
             case createUser = "create_user"
 
             case articleLookup = "article_lookup"
 
-            case affiliate
+            case bagEndState = "bag_end_state"
 
             case affiliateStoreIdMapping = "affiliate_store_id_mapping"
 
-            case bagEndState = "bag_end_state"
-
             case storeLookup = "store_lookup"
+
+            case affiliate
         }
 
         public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, createUser: Bool? = nil, storeLookup: String? = nil) {
@@ -39,13 +39,13 @@ public extension PlatformClient {
 
             self.articleLookup = articleLookup
 
-            self.affiliate = affiliate
+            self.bagEndState = bagEndState
 
             self.affiliateStoreIdMapping = affiliateStoreIdMapping
 
-            self.bagEndState = bagEndState
-
             self.storeLookup = storeLookup
+
+            self.affiliate = affiliate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,10 +67,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
-
-            affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
-
             do {
                 bagEndState = try container.decode(String.self, forKey: .bagEndState)
 
@@ -79,6 +75,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
+
             do {
                 storeLookup = try container.decode(String.self, forKey: .storeLookup)
 
@@ -86,6 +84,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -95,13 +95,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(articleLookup, forKey: .articleLookup)
 
-            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
+            try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
 
             try? container.encodeIfPresent(affiliateStoreIdMapping, forKey: .affiliateStoreIdMapping)
 
-            try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
-
             try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
+
+            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
         }
     }
 }
