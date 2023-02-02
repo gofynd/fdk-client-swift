@@ -9,36 +9,36 @@ public extension ApplicationClient {
     class PaymentMethod: Codable {
         public var name: String?
 
-        public var mode: String
-
         public var paymentMeta: PaymentMeta
 
-        public var payment: String?
+        public var mode: String
 
-        public var amount: Int?
+        public var amount: Double?
+
+        public var payment: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case mode
-
             case paymentMeta = "payment_meta"
 
-            case payment
+            case mode
 
             case amount
+
+            case payment
         }
 
-        public init(amount: Int? = nil, mode: String, name: String? = nil, payment: String? = nil, paymentMeta: PaymentMeta) {
+        public init(amount: Double? = nil, mode: String, name: String? = nil, payment: String? = nil, paymentMeta: PaymentMeta) {
             self.name = name
-
-            self.mode = mode
 
             self.paymentMeta = paymentMeta
 
-            self.payment = payment
+            self.mode = mode
 
             self.amount = amount
+
+            self.payment = payment
         }
 
         required public init(from decoder: Decoder) throws {
@@ -52,12 +52,12 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            mode = try container.decode(String.self, forKey: .mode)
-
             paymentMeta = try container.decode(PaymentMeta.self, forKey: .paymentMeta)
 
+            mode = try container.decode(String.self, forKey: .mode)
+
             do {
-                payment = try container.decode(String.self, forKey: .payment)
+                amount = try container.decode(Double.self, forKey: .amount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                amount = try container.decode(Int.self, forKey: .amount)
+                payment = try container.decode(String.self, forKey: .payment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,13 +78,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
-
             try? container.encodeIfPresent(paymentMeta, forKey: .paymentMeta)
 
-            try? container.encodeIfPresent(payment, forKey: .payment)
+            try? container.encodeIfPresent(mode, forKey: .mode)
 
             try? container.encode(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(payment, forKey: .payment)
         }
     }
 }
