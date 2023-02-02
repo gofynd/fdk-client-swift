@@ -3,14 +3,14 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ProductPatch
+         Model: ProductCreateUpdateV2
          Used By: Catalog
      */
 
-    class ProductPatch: Codable {
-        public var productPublish: ProductPublish1?
+    class ProductCreateUpdateV2: Codable {
+        public var productPublish: ProductPublish?
 
-        public var departments: [Int]?
+        public var departments: [Int]
 
         public var multiSize: Bool?
 
@@ -18,19 +18,19 @@ public extension PlatformClient {
 
         public var productGroupTag: [String]?
 
-        public var brandUid: Int?
+        public var brandUid: Int
 
         public var action: String?
 
-        public var categorySlug: String?
+        public var categorySlug: String
 
         public var variantMedia: [String: Any]?
 
         public var customJson: [String: Any]?
 
-        public var teaserTag: TeaserTag1?
+        public var teaserTag: TeaserTag?
 
-        public var itemType: String?
+        public var itemType: String
 
         public var changeRequestId: [String: Any]?
 
@@ -42,33 +42,35 @@ public extension PlatformClient {
 
         public var tags: [String]?
 
-        public var countryOfOrigin: String?
+        public var countryOfOrigin: String
 
-        public var name: String?
+        public var name: [String: Any]
 
-        public var slug: String?
+        public var slug: String
 
-        public var templateTag: String?
+        public var templateTag: String
 
         public var isActive: Bool?
 
         public var noOfBoxes: Int?
 
-        public var returnConfig: ReturnConfig1?
+        public var returnConfig: ReturnConfig
 
         public var netQuantity: NetQuantity?
 
-        public var trader: [Trader1]?
+        public var trader: [Trader]
 
-        public var currency: String?
+        public var currency: String
 
-        public var itemCode: [String: Any]?
+        public var itemCode: [String: Any]
+
+        public var variantGroup: [String: Any]?
 
         public var isImageLessProduct: Bool?
 
-        public var companyId: Int?
+        public var companyId: Int
 
-        public var taxIdentifier: TaxIdentifier1?
+        public var taxIdentifier: TaxIdentifier
 
         public var description: String?
 
@@ -78,13 +80,15 @@ public extension PlatformClient {
 
         public var highlights: [String]?
 
-        public var media: [Media3]?
+        public var attributes: [String: Any]
+
+        public var media: [Media1]?
 
         public var isSet: Bool?
 
         public var requester: String?
 
-        public var customOrder: CustomOrder1?
+        public var customOrder: CustomOrder?
 
         public enum CodingKeys: String, CodingKey {
             case productPublish = "product_publish"
@@ -143,6 +147,8 @@ public extension PlatformClient {
 
             case itemCode = "item_code"
 
+            case variantGroup = "variant_group"
+
             case isImageLessProduct = "is_image_less_product"
 
             case companyId = "company_id"
@@ -157,6 +163,8 @@ public extension PlatformClient {
 
             case highlights
 
+            case attributes
+
             case media
 
             case isSet = "is_set"
@@ -166,7 +174,7 @@ public extension PlatformClient {
             case customOrder = "custom_order"
         }
 
-        public init(action: String? = nil, brandUid: Int? = nil, bulkJobId: String? = nil, categorySlug: String? = nil, changeRequestId: [String: Any]? = nil, companyId: Int? = nil, countryOfOrigin: String? = nil, currency: String? = nil, customOrder: CustomOrder1? = nil, departments: [Int]? = nil, description: String? = nil, highlights: [String]? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: [String: Any]? = nil, itemType: String? = nil, media: [Media3]? = nil, multiSize: Bool? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish1? = nil, requester: String? = nil, returnConfig: ReturnConfig1? = nil, shortDescription: String? = nil, sizeGuide: String? = nil, slug: String? = nil, tags: [String]? = nil, taxIdentifier: TaxIdentifier1? = nil, teaserTag: TeaserTag1? = nil, templateTag: String? = nil, trader: [Trader1]? = nil, uid: Int? = nil, variants: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(action: String? = nil, attributes: [String: Any], brandUid: Int, bulkJobId: String? = nil, categorySlug: String, changeRequestId: [String: Any]? = nil, companyId: Int, countryOfOrigin: String, currency: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, highlights: [String]? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: [String: Any], itemType: String, media: [Media1]? = nil, multiSize: Bool? = nil, name: [String: Any], netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish? = nil, requester: String? = nil, returnConfig: ReturnConfig, shortDescription: String? = nil, sizeGuide: String? = nil, slug: String, tags: [String]? = nil, taxIdentifier: TaxIdentifier, teaserTag: TeaserTag? = nil, templateTag: String, trader: [Trader], uid: Int? = nil, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             self.productPublish = productPublish
 
             self.departments = departments
@@ -223,6 +231,8 @@ public extension PlatformClient {
 
             self.itemCode = itemCode
 
+            self.variantGroup = variantGroup
+
             self.isImageLessProduct = isImageLessProduct
 
             self.companyId = companyId
@@ -237,6 +247,8 @@ public extension PlatformClient {
 
             self.highlights = highlights
 
+            self.attributes = attributes
+
             self.media = media
 
             self.isSet = isSet
@@ -250,20 +262,14 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                productPublish = try container.decode(ProductPublish1.self, forKey: .productPublish)
+                productPublish = try container.decode(ProductPublish.self, forKey: .productPublish)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                departments = try container.decode([Int].self, forKey: .departments)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            departments = try container.decode([Int].self, forKey: .departments)
 
             do {
                 multiSize = try container.decode(Bool.self, forKey: .multiSize)
@@ -289,13 +295,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                brandUid = try container.decode(Int.self, forKey: .brandUid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            brandUid = try container.decode(Int.self, forKey: .brandUid)
 
             do {
                 action = try container.decode(String.self, forKey: .action)
@@ -305,13 +305,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                categorySlug = try container.decode(String.self, forKey: .categorySlug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            categorySlug = try container.decode(String.self, forKey: .categorySlug)
 
             do {
                 variantMedia = try container.decode([String: Any].self, forKey: .variantMedia)
@@ -330,20 +324,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                teaserTag = try container.decode(TeaserTag1.self, forKey: .teaserTag)
+                teaserTag = try container.decode(TeaserTag.self, forKey: .teaserTag)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                itemType = try container.decode(String.self, forKey: .itemType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            itemType = try container.decode(String.self, forKey: .itemType)
 
             do {
                 changeRequestId = try container.decode([String: Any].self, forKey: .changeRequestId)
@@ -385,37 +373,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                countryOfOrigin = try container.decode(String.self, forKey: .countryOfOrigin)
+            countryOfOrigin = try container.decode(String.self, forKey: .countryOfOrigin)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            name = try container.decode([String: Any].self, forKey: .name)
 
-            do {
-                name = try container.decode(String.self, forKey: .name)
+            slug = try container.decode(String.self, forKey: .slug)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                templateTag = try container.decode(String.self, forKey: .templateTag)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            templateTag = try container.decode(String.self, forKey: .templateTag)
 
             do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -433,13 +397,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                returnConfig = try container.decode(ReturnConfig1.self, forKey: .returnConfig)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
 
             do {
                 netQuantity = try container.decode(NetQuantity.self, forKey: .netQuantity)
@@ -449,24 +407,14 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                trader = try container.decode([Trader1].self, forKey: .trader)
+            trader = try container.decode([Trader].self, forKey: .trader)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            currency = try container.decode(String.self, forKey: .currency)
+
+            itemCode = try container.decode([String: Any].self, forKey: .itemCode)
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemCode = try container.decode([String: Any].self, forKey: .itemCode)
+                variantGroup = try container.decode([String: Any].self, forKey: .variantGroup)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -481,21 +429,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+            companyId = try container.decode(Int.self, forKey: .companyId)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                taxIdentifier = try container.decode(TaxIdentifier1.self, forKey: .taxIdentifier)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            taxIdentifier = try container.decode(TaxIdentifier.self, forKey: .taxIdentifier)
 
             do {
                 description = try container.decode(String.self, forKey: .description)
@@ -529,8 +465,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            attributes = try container.decode([String: Any].self, forKey: .attributes)
+
             do {
-                media = try container.decode([Media3].self, forKey: .media)
+                media = try container.decode([Media1].self, forKey: .media)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -554,7 +492,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                customOrder = try container.decode(CustomOrder1.self, forKey: .customOrder)
+                customOrder = try container.decode(CustomOrder.self, forKey: .customOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -621,6 +559,8 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(itemCode, forKey: .itemCode)
 
+            try? container.encodeIfPresent(variantGroup, forKey: .variantGroup)
+
             try? container.encodeIfPresent(isImageLessProduct, forKey: .isImageLessProduct)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
@@ -634,6 +574,8 @@ public extension PlatformClient {
             try? container.encode(uid, forKey: .uid)
 
             try? container.encode(highlights, forKey: .highlights)
+
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
 
             try? container.encode(media, forKey: .media)
 
