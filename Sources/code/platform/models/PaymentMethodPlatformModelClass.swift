@@ -14,13 +14,13 @@ public extension PlatformClient {
 
         public var meta: [String: Any]?
 
-        public var mode: String
+        public var name: String
 
         public var refundBy: String
 
         public var amount: Double
 
-        public var name: String
+        public var mode: String
 
         public enum CodingKeys: String, CodingKey {
             case collectBy = "collect_by"
@@ -29,13 +29,13 @@ public extension PlatformClient {
 
             case meta
 
-            case mode
+            case name
 
             case refundBy = "refund_by"
 
             case amount
 
-            case name
+            case mode
         }
 
         public init(amount: Double, collectBy: String, meta: [String: Any]? = nil, mode: String, name: String, refundBy: String, transactionData: [String: Any]? = nil) {
@@ -45,13 +45,13 @@ public extension PlatformClient {
 
             self.meta = meta
 
-            self.mode = mode
+            self.name = name
 
             self.refundBy = refundBy
 
             self.amount = amount
 
-            self.name = name
+            self.mode = mode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -75,13 +75,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            mode = try container.decode(String.self, forKey: .mode)
+            name = try container.decode(String.self, forKey: .name)
 
             refundBy = try container.decode(String.self, forKey: .refundBy)
 
             amount = try container.decode(Double.self, forKey: .amount)
 
-            name = try container.decode(String.self, forKey: .name)
+            mode = try container.decode(String.self, forKey: .mode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -93,13 +93,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(refundBy, forKey: .refundBy)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(mode, forKey: .mode)
         }
     }
 }

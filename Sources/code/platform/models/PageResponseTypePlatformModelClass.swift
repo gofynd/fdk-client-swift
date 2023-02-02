@@ -10,18 +10,18 @@ public extension PlatformClient {
     class PageResponseType: Codable {
         public var current: Int
 
-        public var hasNext: Bool
-
         public var totalCount: Int
+
+        public var hasNext: Bool
 
         public var next: Int
 
         public enum CodingKeys: String, CodingKey {
             case current
 
-            case hasNext = "has_next"
-
             case totalCount = "total_count"
+
+            case hasNext = "has_next"
 
             case next
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(current: Int, hasNext: Bool, next: Int, totalCount: Int) {
             self.current = current
 
-            self.hasNext = hasNext
-
             self.totalCount = totalCount
+
+            self.hasNext = hasNext
 
             self.next = next
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             current = try container.decode(Int.self, forKey: .current)
 
-            hasNext = try container.decode(Bool.self, forKey: .hasNext)
-
             totalCount = try container.decode(Int.self, forKey: .totalCount)
+
+            hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             next = try container.decode(Int.self, forKey: .next)
         }
@@ -53,9 +53,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(current, forKey: .current)
 
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
-
             try? container.encodeIfPresent(totalCount, forKey: .totalCount)
+
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
             try? container.encodeIfPresent(next, forKey: .next)
         }
