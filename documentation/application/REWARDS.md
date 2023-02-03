@@ -8,7 +8,7 @@
 Earn and redeem reward points
 * [getOfferByName](#getofferbyname)
 * [catalogueOrder](#catalogueorder)
-* [getPointsHistory](#getpointshistory)
+* [getUserPointsHistory](#getuserpointshistory)
 * [getUserPoints](#getuserpoints)
 * [getUserReferralDetails](#getuserreferraldetails)
 * [getOrderDiscount](#getorderdiscount)
@@ -128,14 +128,14 @@ Success. Check example below or refer `CatalogueOrderResponse` for more details.
 ---
 
 
-#### getPointsHistory
+#### getUserPointsHistory
 Get all transactions of reward points
 
 
 
 
 ```swift
-rewards.getPointsHistory(pageId: pageId, pageSize: pageSize) { (response, error) in
+rewards.getUserPointsHistory(pageId: pageId, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```

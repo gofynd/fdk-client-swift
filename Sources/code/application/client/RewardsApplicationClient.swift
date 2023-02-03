@@ -13,7 +13,7 @@ public extension ApplicationClient {
 
             ulrs["catalogueOrder"] = config.domain.appendAsPath("/service/application/rewards/v1.0/catalogue/offer/order/")
 
-            ulrs["getPointsHistory"] = config.domain.appendAsPath("/service/application/rewards/v1.0/user/points/history/")
+            ulrs["getUserPointsHistory"] = config.domain.appendAsPath("/service/application/rewards/v1.0/user/points/history/")
 
             ulrs["getUserPoints"] = config.domain.appendAsPath("/service/application/rewards/v1.0/user/points/")
 
@@ -120,7 +120,7 @@ public extension ApplicationClient {
          * Summary: Get all transactions of reward points
          * Description: Use this API to get a list of points transactions.
          **/
-        public func getPointsHistory(
+        public func getUserPointsHistory(
             pageId: String?,
             pageSize: Int?,
 
@@ -136,7 +136,7 @@ public extension ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            let fullUrl = relativeUrls["getPointsHistory"] ?? ""
+            let fullUrl = relativeUrls["getUserPointsHistory"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -169,17 +169,17 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: get paginator for getPointsHistory
+         * Summary: get paginator for getUserPointsHistory
          * Description: fetch the next page by calling .next(...) function
          **/
-        public func getPointsHistoryPaginator(
+        public func getUserPointsHistoryPaginator(
             pageSize: Int?
 
         ) -> Paginator<PointsHistoryResponse> {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<PointsHistoryResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
-                self.getPointsHistory(
+                self.getUserPointsHistory(
                     pageId: paginator.pageId,
 
                     pageSize: paginator.pageSize

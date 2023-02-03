@@ -16,7 +16,7 @@ Earn and redeem reward points
 * [updateOfferByName](#updateofferbyname)
 * [updateUserStatus](#updateuserstatus)
 * [user](#user)
-* [getPointsHistory](#getpointshistory)
+* [getUserPointsHistory](#getuserpointshistory)
 
 
 
@@ -569,14 +569,14 @@ Success. Check example below or refer `UserRes` for more details.
 ---
 
 
-#### getPointsHistory
+#### getUserPointsHistory
 Get all transactions of reward points
 
 
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.getPointsHistory(userId: userId, pageId: pageId, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").rewards.getUserPointsHistory(userId: userId, pageId: pageId, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
