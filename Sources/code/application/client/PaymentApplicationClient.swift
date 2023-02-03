@@ -831,18 +831,28 @@ public extension ApplicationClient {
          * Description: API to get Card info from PG
          **/
         public func cardDetails(
-            body: cardDetailsRequest,
+            cardBin: String,
+            aggregator: String?,
+
             onResponse: @escaping (_ response: cardDetailsResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["cardDetails"] ?? ""
+            var xQuery: [String: Any] = [:]
+
+            if let value = aggregator {
+                xQuery["aggregator"] = value
+            }
+
+            var fullUrl = relativeUrls["cardDetails"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "card_bin" + "}", with: "\(cardBin)")
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "get",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders: [],
-                body: body.dictionary,
+                body: nil,
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {

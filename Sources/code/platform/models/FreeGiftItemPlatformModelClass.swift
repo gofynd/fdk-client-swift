@@ -10,9 +10,9 @@ public extension PlatformClient {
     class FreeGiftItem: Codable {
         public var itemSlug: String?
 
-        public var itemPriceDetails: [String: Any]?
-
         public var itemId: Int?
+
+        public var itemPriceDetails: [String: Any]?
 
         public var itemBrandName: String?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case itemSlug = "item_slug"
 
-            case itemPriceDetails = "item_price_details"
-
             case itemId = "item_id"
+
+            case itemPriceDetails = "item_price_details"
 
             case itemBrandName = "item_brand_name"
 
@@ -37,9 +37,9 @@ public extension PlatformClient {
         public init(itemBrandName: String? = nil, itemId: Int? = nil, itemImagesUrl: [String]? = nil, itemName: String? = nil, itemPriceDetails: [String: Any]? = nil, itemSlug: String? = nil) {
             self.itemSlug = itemSlug
 
-            self.itemPriceDetails = itemPriceDetails
-
             self.itemId = itemId
+
+            self.itemPriceDetails = itemPriceDetails
 
             self.itemBrandName = itemBrandName
 
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemPriceDetails = try container.decode([String: Any].self, forKey: .itemPriceDetails)
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
+                itemPriceDetails = try container.decode([String: Any].self, forKey: .itemPriceDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,9 +105,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(itemSlug, forKey: .itemSlug)
 
-            try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
-
             try? container.encodeIfPresent(itemId, forKey: .itemId)
+
+            try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
 
             try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
 

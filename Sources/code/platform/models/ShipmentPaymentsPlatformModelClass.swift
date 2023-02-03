@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ShipmentPayments: Codable {
         public var source: String?
 
-        public var logo: String?
-
         public var mode: String
+
+        public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
             case source
 
-            case logo
-
             case mode
+
+            case logo
         }
 
         public init(logo: String? = nil, mode: String, source: String? = nil) {
             self.source = source
 
-            self.logo = logo
-
             self.mode = mode
+
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,6 +41,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            mode = try container.decode(String.self, forKey: .mode)
+
             do {
                 logo = try container.decode(String.self, forKey: .logo)
 
@@ -48,8 +50,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            mode = try container.decode(String.self, forKey: .mode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -57,9 +57,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(source, forKey: .source)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(mode, forKey: .mode)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }
