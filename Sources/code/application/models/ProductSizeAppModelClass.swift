@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var quantity: Int?
 
-        public var sellerIdentifiers: [String]?
-
         public var isAvailable: Bool?
+
+        public var sellerIdentifiers: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case display
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case quantity
 
-            case sellerIdentifiers = "seller_identifiers"
-
             case isAvailable = "is_available"
+
+            case sellerIdentifiers = "seller_identifiers"
         }
 
         public init(display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, sellerIdentifiers: [String]? = nil, value: String? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient {
 
             self.quantity = quantity
 
-            self.sellerIdentifiers = sellerIdentifiers
-
             self.isAvailable = isAvailable
+
+            self.sellerIdentifiers = sellerIdentifiers
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sellerIdentifiers = try container.decode([String].self, forKey: .sellerIdentifiers)
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
+                sellerIdentifiers = try container.decode([String].self, forKey: .sellerIdentifiers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
-
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+
+            try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
         }
     }
 }
