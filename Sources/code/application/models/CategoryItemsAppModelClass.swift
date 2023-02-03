@@ -11,11 +11,11 @@ public extension ApplicationClient {
 
         public var slug: String
 
-        public var action: ProductListingAction
-
         public var uid: Int
 
         public var banners: CategoryBanner
+
+        public var action: ProductListingAction
 
         public var childs: [Child]?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient {
 
             case slug
 
-            case action
-
             case uid
 
             case banners
+
+            case action
 
             case childs
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient {
 
             self.slug = slug
 
-            self.action = action
-
             self.uid = uid
 
             self.banners = banners
+
+            self.action = action
 
             self.childs = childs
         }
@@ -54,11 +54,11 @@ public extension ApplicationClient {
 
             slug = try container.decode(String.self, forKey: .slug)
 
-            action = try container.decode(ProductListingAction.self, forKey: .action)
-
             uid = try container.decode(Int.self, forKey: .uid)
 
             banners = try container.decode(CategoryBanner.self, forKey: .banners)
+
+            action = try container.decode(ProductListingAction.self, forKey: .action)
 
             do {
                 childs = try container.decode([Child].self, forKey: .childs)
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
         }
