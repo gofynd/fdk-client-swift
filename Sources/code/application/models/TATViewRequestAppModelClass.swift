@@ -7,42 +7,48 @@ public extension ApplicationClient {
          Used By: Logistic
      */
     class TATViewRequest: Codable {
-        public var identifier: String?
+        public var journey: String?
+
+        public var paymentMode: String?
 
         public var source: String?
 
         public var toPincode: String?
 
-        public var journey: String?
-
         public var action: String?
+
+        public var identifier: String?
 
         public var locationDetails: [TATLocationDetailsRequest]?
 
         public enum CodingKeys: String, CodingKey {
-            case identifier
+            case journey
+
+            case paymentMode = "payment_mode"
 
             case source
 
             case toPincode = "to_pincode"
 
-            case journey
-
             case action
+
+            case identifier
 
             case locationDetails = "location_details"
         }
 
-        public init(action: String? = nil, identifier: String? = nil, journey: String? = nil, locationDetails: [TATLocationDetailsRequest]? = nil, source: String? = nil, toPincode: String? = nil) {
-            self.identifier = identifier
+        public init(action: String? = nil, identifier: String? = nil, journey: String? = nil, locationDetails: [TATLocationDetailsRequest]? = nil, paymentMode: String? = nil, source: String? = nil, toPincode: String? = nil) {
+            self.journey = journey
+
+            self.paymentMode = paymentMode
 
             self.source = source
 
             self.toPincode = toPincode
 
-            self.journey = journey
-
             self.action = action
+
+            self.identifier = identifier
 
             self.locationDetails = locationDetails
         }
@@ -51,7 +57,15 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                journey = try container.decode(String.self, forKey: .journey)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +89,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                journey = try container.decode(String.self, forKey: .journey)
+                action = try container.decode(String.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +97,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                action = try container.decode(String.self, forKey: .action)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,15 +116,17 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(journey, forKey: .journey)
+
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
             try? container.encodeIfPresent(source, forKey: .source)
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
-            try? container.encodeIfPresent(journey, forKey: .journey)
-
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
         }
