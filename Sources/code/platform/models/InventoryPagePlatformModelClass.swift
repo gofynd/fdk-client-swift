@@ -10,9 +10,9 @@ public extension PlatformClient {
     class InventoryPage: Codable {
         public var hasNext: Bool?
 
-        public var hasPrevious: Bool?
-
         public var itemTotal: Int
+
+        public var hasPrevious: Bool?
 
         public var type: String
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case hasNext = "has_next"
 
-            case hasPrevious = "has_previous"
-
             case itemTotal = "item_total"
+
+            case hasPrevious = "has_previous"
 
             case type
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int, nextId: String? = nil, type: String) {
             self.hasNext = hasNext
 
-            self.hasPrevious = hasPrevious
-
             self.itemTotal = itemTotal
+
+            self.hasPrevious = hasPrevious
 
             self.type = type
 
@@ -53,6 +53,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+
             do {
                 hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
 
@@ -60,8 +62,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             type = try container.decode(String.self, forKey: .type)
 
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
-
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
             try? container.encodeIfPresent(type, forKey: .type)
 

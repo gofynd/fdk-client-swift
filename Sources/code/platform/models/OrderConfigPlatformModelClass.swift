@@ -8,11 +8,11 @@ public extension PlatformClient {
      */
 
     class OrderConfig: Codable {
-        public var affiliateStoreIdMapping: [AffiliateStoreIdMapping]
-
         public var articleLookup: String?
 
         public var bagEndState: String?
+
+        public var affiliateStoreIdMapping: [AffiliateStoreIdMapping]
 
         public var createUser: Bool?
 
@@ -21,11 +21,11 @@ public extension PlatformClient {
         public var storeLookup: String?
 
         public enum CodingKeys: String, CodingKey {
-            case affiliateStoreIdMapping = "affiliate_store_id_mapping"
-
             case articleLookup = "article_lookup"
 
             case bagEndState = "bag_end_state"
+
+            case affiliateStoreIdMapping = "affiliate_store_id_mapping"
 
             case createUser = "create_user"
 
@@ -35,11 +35,11 @@ public extension PlatformClient {
         }
 
         public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, createUser: Bool? = nil, storeLookup: String? = nil) {
-            self.affiliateStoreIdMapping = affiliateStoreIdMapping
-
             self.articleLookup = articleLookup
 
             self.bagEndState = bagEndState
+
+            self.affiliateStoreIdMapping = affiliateStoreIdMapping
 
             self.createUser = createUser
 
@@ -50,8 +50,6 @@ public extension PlatformClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
 
             do {
                 articleLookup = try container.decode(String.self, forKey: .articleLookup)
@@ -68,6 +66,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
 
             do {
                 createUser = try container.decode(Bool.self, forKey: .createUser)
@@ -91,11 +91,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(affiliateStoreIdMapping, forKey: .affiliateStoreIdMapping)
-
             try? container.encodeIfPresent(articleLookup, forKey: .articleLookup)
 
             try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
+
+            try? container.encodeIfPresent(affiliateStoreIdMapping, forKey: .affiliateStoreIdMapping)
 
             try? container.encodeIfPresent(createUser, forKey: .createUser)
 

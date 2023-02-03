@@ -10,18 +10,18 @@ public extension PlatformClient {
     class Bags: Codable {
         public var affiliateOrderId: String?
 
-        public var bagId: Int?
-
         public var affiliateBagId: String?
+
+        public var bagId: Int?
 
         public var isLocked: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case affiliateOrderId = "affiliate_order_id"
 
-            case bagId = "bag_id"
-
             case affiliateBagId = "affiliate_bag_id"
+
+            case bagId = "bag_id"
 
             case isLocked = "is_locked"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(affiliateBagId: String? = nil, affiliateOrderId: String? = nil, bagId: Int? = nil, isLocked: Bool? = nil) {
             self.affiliateOrderId = affiliateOrderId
 
-            self.bagId = bagId
-
             self.affiliateBagId = affiliateBagId
+
+            self.bagId = bagId
 
             self.isLocked = isLocked
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                bagId = try container.decode(Int.self, forKey: .bagId)
+                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
+                bagId = try container.decode(Int.self, forKey: .bagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
 
-            try? container.encodeIfPresent(bagId, forKey: .bagId)
-
             try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
+
+            try? container.encodeIfPresent(bagId, forKey: .bagId)
 
             try? container.encodeIfPresent(isLocked, forKey: .isLocked)
         }
