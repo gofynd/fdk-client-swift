@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var checkoutMode: String
 
-        public var assignCardId: String?
-
         public var cartId: String
 
         public var pincode: String
+
+        public var assignCardId: String?
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
             case checkoutMode = "checkout_mode"
 
-            case assignCardId = "assign_card_id"
-
             case cartId = "cart_id"
 
             case pincode
+
+            case assignCardId = "assign_card_id"
         }
 
         public init(amount: String, assignCardId: String? = nil, cartId: String, checkoutMode: String, pincode: String) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.checkoutMode = checkoutMode
 
-            self.assignCardId = assignCardId
-
             self.cartId = cartId
 
             self.pincode = pincode
+
+            self.assignCardId = assignCardId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,6 +48,10 @@ public extension ApplicationClient {
 
             checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
+            cartId = try container.decode(String.self, forKey: .cartId)
+
+            pincode = try container.decode(String.self, forKey: .pincode)
+
             do {
                 assignCardId = try container.decode(String.self, forKey: .assignCardId)
 
@@ -55,10 +59,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            cartId = try container.decode(String.self, forKey: .cartId)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -68,11 +68,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
-            try? container.encode(assignCardId, forKey: .assignCardId)
-
             try? container.encodeIfPresent(cartId, forKey: .cartId)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encode(assignCardId, forKey: .assignCardId)
         }
     }
 }

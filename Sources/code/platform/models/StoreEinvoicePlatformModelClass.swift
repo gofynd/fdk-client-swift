@@ -10,18 +10,18 @@ public extension PlatformClient {
     class StoreEinvoice: Codable {
         public var enabled: Bool
 
-        public var user: String?
-
         public var username: String?
+
+        public var user: String?
 
         public var password: String?
 
         public enum CodingKeys: String, CodingKey {
             case enabled
 
-            case user
-
             case username
+
+            case user
 
             case password
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(enabled: Bool, password: String? = nil, user: String? = nil, username: String? = nil) {
             self.enabled = enabled
 
-            self.user = user
-
             self.username = username
+
+            self.user = user
 
             self.password = password
         }
@@ -42,7 +42,7 @@ public extension PlatformClient {
             enabled = try container.decode(Bool.self, forKey: .enabled)
 
             do {
-                user = try container.decode(String.self, forKey: .user)
+                username = try container.decode(String.self, forKey: .username)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                username = try container.decode(String.self, forKey: .username)
+                user = try container.decode(String.self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,9 +71,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(enabled, forKey: .enabled)
 
-            try? container.encodeIfPresent(user, forKey: .user)
-
             try? container.encodeIfPresent(username, forKey: .username)
+
+            try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(password, forKey: .password)
         }

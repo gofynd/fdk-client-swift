@@ -11,26 +11,26 @@ public extension ApplicationClient {
 
         public var priority: Int?
 
-        public var showTextArea: Bool?
-
-        public var reasonId: Int?
-
         public var flow: String?
 
         public var feedbackType: String?
+
+        public var reasonId: Int?
+
+        public var showTextArea: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case reasonText = "reason_text"
 
             case priority
 
-            case showTextArea = "show_text_area"
-
-            case reasonId = "reason_id"
-
             case flow
 
             case feedbackType = "feedback_type"
+
+            case reasonId = "reason_id"
+
+            case showTextArea = "show_text_area"
         }
 
         public init(feedbackType: String? = nil, flow: String? = nil, priority: Int? = nil, reasonId: Int? = nil, reasonText: String? = nil, showTextArea: Bool? = nil) {
@@ -38,13 +38,13 @@ public extension ApplicationClient {
 
             self.priority = priority
 
-            self.showTextArea = showTextArea
-
-            self.reasonId = reasonId
-
             self.flow = flow
 
             self.feedbackType = feedbackType
+
+            self.reasonId = reasonId
+
+            self.showTextArea = showTextArea
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,7 +67,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                showTextArea = try container.decode(Bool.self, forKey: .showTextArea)
+                flow = try container.decode(String.self, forKey: .flow)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                feedbackType = try container.decode(String.self, forKey: .feedbackType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,15 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                flow = try container.decode(String.self, forKey: .flow)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                feedbackType = try container.decode(String.self, forKey: .feedbackType)
+                showTextArea = try container.decode(Bool.self, forKey: .showTextArea)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,13 +106,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(showTextArea, forKey: .showTextArea)
-
-            try? container.encodeIfPresent(reasonId, forKey: .reasonId)
-
             try? container.encodeIfPresent(flow, forKey: .flow)
 
             try? container.encodeIfPresent(feedbackType, forKey: .feedbackType)
+
+            try? container.encodeIfPresent(reasonId, forKey: .reasonId)
+
+            try? container.encodeIfPresent(showTextArea, forKey: .showTextArea)
         }
     }
 }

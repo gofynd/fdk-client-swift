@@ -7,27 +7,27 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class RupifiBannerData: Codable {
-        public var status: String?
-
         public var kycUrl: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case status
+        public var status: String?
 
+        public enum CodingKeys: String, CodingKey {
             case kycUrl = "kyc_url"
+
+            case status
         }
 
         public init(kycUrl: String? = nil, status: String? = nil) {
-            self.status = status
-
             self.kycUrl = kycUrl
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                kycUrl = try container.decode(String.self, forKey: .kycUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                kycUrl = try container.decode(String.self, forKey: .kycUrl)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(kycUrl, forKey: .kycUrl)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }
