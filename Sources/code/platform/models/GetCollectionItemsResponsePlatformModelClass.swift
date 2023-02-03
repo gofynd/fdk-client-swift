@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var items: [ProductListingDetail]?
 
-        public var filters: [ProductFilters]?
-
         public var page: Page?
+
+        public var filters: [ProductFilters]?
 
         public enum CodingKeys: String, CodingKey {
             case sortOn = "sort_on"
 
             case items
 
-            case filters
-
             case page
+
+            case filters
         }
 
         public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, page: Page? = nil, sortOn: [ProductSortOn]? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.items = items
 
-            self.filters = filters
-
             self.page = page
+
+            self.filters = filters
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                filters = try container.decode([ProductFilters].self, forKey: .filters)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                page = try container.decode(Page.self, forKey: .page)
+                filters = try container.decode([ProductFilters].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
         }
     }
 }

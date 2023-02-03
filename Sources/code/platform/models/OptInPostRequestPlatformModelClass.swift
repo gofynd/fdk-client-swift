@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var enabled: Bool?
 
-        public var brandIds: [Int]?
-
         public var companyId: Int?
+
+        public var brandIds: [Int]?
 
         public var storeIds: [Int]?
 
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case enabled
 
-            case brandIds = "brand_ids"
-
             case companyId = "company_id"
+
+            case brandIds = "brand_ids"
 
             case storeIds = "store_ids"
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
 
             self.enabled = enabled
 
-            self.brandIds = brandIds
-
             self.companyId = companyId
+
+            self.brandIds = brandIds
 
             self.storeIds = storeIds
 
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                brandIds = try container.decode([Int].self, forKey: .brandIds)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                brandIds = try container.decode([Int].self, forKey: .brandIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(enabled, forKey: .enabled)
 
-            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
 
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 

@@ -10,18 +10,18 @@ public extension PlatformClient {
     class ActionInfo: Codable {
         public var description: String
 
-        public var slug: String
-
         public var displayText: String
+
+        public var slug: String
 
         public var id: Int
 
         public enum CodingKeys: String, CodingKey {
             case description
 
-            case slug
-
             case displayText = "display_text"
+
+            case slug
 
             case id
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(description: String, displayText: String, id: Int, slug: String) {
             self.description = description
 
-            self.slug = slug
-
             self.displayText = displayText
+
+            self.slug = slug
 
             self.id = id
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             description = try container.decode(String.self, forKey: .description)
 
-            slug = try container.decode(String.self, forKey: .slug)
-
             displayText = try container.decode(String.self, forKey: .displayText)
+
+            slug = try container.decode(String.self, forKey: .slug)
 
             id = try container.decode(Int.self, forKey: .id)
         }
@@ -53,9 +53,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
             try? container.encodeIfPresent(displayText, forKey: .displayText)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(id, forKey: .id)
         }

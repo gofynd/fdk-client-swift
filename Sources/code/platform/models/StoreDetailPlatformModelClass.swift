@@ -8,13 +8,13 @@ public extension PlatformClient {
      */
 
     class StoreDetail: Codable {
-        public var manager: [String: Any]?
+        public var documents: [[String: Any]]?
 
-        public var name: String?
+        public var address: [String: Any]?
 
         public var createdOn: String?
 
-        public var timing: [String: Any]?
+        public var storeCode: String?
 
         public var displayName: String?
 
@@ -22,26 +22,26 @@ public extension PlatformClient {
 
         public var storeType: String?
 
-        public var modifiedOn: String?
+        public var additionalContacts: [[String: Any]]?
+
+        public var name: String?
 
         public var companyId: Int?
 
-        public var storeCode: String?
+        public var modifiedOn: String?
 
-        public var documents: [[String: Any]]?
+        public var timing: [String: Any]?
 
-        public var additionalContacts: [[String: Any]]?
-
-        public var address: [String: Any]?
+        public var manager: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case manager
+            case documents
 
-            case name
+            case address
 
             case createdOn = "created_on"
 
-            case timing
+            case storeCode = "store_code"
 
             case displayName = "display_name"
 
@@ -49,27 +49,27 @@ public extension PlatformClient {
 
             case storeType = "store_type"
 
-            case modifiedOn = "modified_on"
+            case additionalContacts = "additional_contacts"
+
+            case name
 
             case companyId = "company_id"
 
-            case storeCode = "store_code"
+            case modifiedOn = "modified_on"
 
-            case documents
+            case timing
 
-            case additionalContacts = "additional_contacts"
-
-            case address
+            case manager
         }
 
         public init(additionalContacts: [[String: Any]]? = nil, address: [String: Any]? = nil, companyId: Int? = nil, createdOn: String? = nil, displayName: String? = nil, documents: [[String: Any]]? = nil, manager: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, storeCode: String? = nil, storeType: String? = nil, timing: [String: Any]? = nil, uid: Int? = nil) {
-            self.manager = manager
+            self.documents = documents
 
-            self.name = name
+            self.address = address
 
             self.createdOn = createdOn
 
-            self.timing = timing
+            self.storeCode = storeCode
 
             self.displayName = displayName
 
@@ -77,24 +77,24 @@ public extension PlatformClient {
 
             self.storeType = storeType
 
-            self.modifiedOn = modifiedOn
+            self.additionalContacts = additionalContacts
+
+            self.name = name
 
             self.companyId = companyId
 
-            self.storeCode = storeCode
+            self.modifiedOn = modifiedOn
 
-            self.documents = documents
+            self.timing = timing
 
-            self.additionalContacts = additionalContacts
-
-            self.address = address
+            self.manager = manager
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                manager = try container.decode([String: Any].self, forKey: .manager)
+                documents = try container.decode([[String: Any]].self, forKey: .documents)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,7 +102,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                address = try container.decode([String: Any].self, forKey: .address)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,7 +118,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                timing = try container.decode([String: Any].self, forKey: .timing)
+                storeCode = try container.decode(String.self, forKey: .storeCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                additionalContacts = try container.decode([[String: Any]].self, forKey: .additionalContacts)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -166,7 +174,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                storeCode = try container.decode(String.self, forKey: .storeCode)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -174,7 +182,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                documents = try container.decode([[String: Any]].self, forKey: .documents)
+                timing = try container.decode([String: Any].self, forKey: .timing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -182,15 +190,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                additionalContacts = try container.decode([[String: Any]].self, forKey: .additionalContacts)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address = try container.decode([String: Any].self, forKey: .address)
+                manager = try container.decode([String: Any].self, forKey: .manager)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -201,13 +201,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(manager, forKey: .manager)
+            try? container.encodeIfPresent(documents, forKey: .documents)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(address, forKey: .address)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(timing, forKey: .timing)
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
@@ -215,17 +215,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeType, forKey: .storeType)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(additionalContacts, forKey: .additionalContacts)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(documents, forKey: .documents)
+            try? container.encodeIfPresent(timing, forKey: .timing)
 
-            try? container.encodeIfPresent(additionalContacts, forKey: .additionalContacts)
-
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encodeIfPresent(manager, forKey: .manager)
         }
     }
 }

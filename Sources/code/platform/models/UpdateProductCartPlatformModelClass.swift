@@ -10,9 +10,9 @@ public extension PlatformClient {
     class UpdateProductCart: Codable {
         public var identifiers: CartProductIdentifer
 
-        public var itemIndex: Int?
+        public var articleId: String?
 
-        public var itemId: Int?
+        public var itemIndex: Int?
 
         public var itemSize: String?
 
@@ -20,16 +20,16 @@ public extension PlatformClient {
 
         public var extraMeta: [String: Any]?
 
-        public var quantity: Int?
+        public var itemId: Int?
 
-        public var articleId: String?
+        public var quantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case identifiers
 
-            case itemIndex = "item_index"
+            case articleId = "article_id"
 
-            case itemId = "item_id"
+            case itemIndex = "item_index"
 
             case itemSize = "item_size"
 
@@ -37,17 +37,17 @@ public extension PlatformClient {
 
             case extraMeta = "extra_meta"
 
-            case quantity
+            case itemId = "item_id"
 
-            case articleId = "article_id"
+            case quantity
         }
 
         public init(articleId: String? = nil, extraMeta: [String: Any]? = nil, identifiers: CartProductIdentifer, itemId: Int? = nil, itemIndex: Int? = nil, itemSize: String? = nil, parentItemIdentifiers: [String: Any]? = nil, quantity: Int? = nil) {
             self.identifiers = identifiers
 
-            self.itemIndex = itemIndex
+            self.articleId = articleId
 
-            self.itemId = itemId
+            self.itemIndex = itemIndex
 
             self.itemSize = itemSize
 
@@ -55,9 +55,9 @@ public extension PlatformClient {
 
             self.extraMeta = extraMeta
 
-            self.quantity = quantity
+            self.itemId = itemId
 
-            self.articleId = articleId
+            self.quantity = quantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -66,7 +66,7 @@ public extension PlatformClient {
             identifiers = try container.decode(CartProductIdentifer.self, forKey: .identifiers)
 
             do {
-                itemIndex = try container.decode(Int.self, forKey: .itemIndex)
+                articleId = try container.decode(String.self, forKey: .articleId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,7 +74,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
+                itemIndex = try container.decode(Int.self, forKey: .itemIndex)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,7 +106,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -114,7 +114,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                articleId = try container.decode(String.self, forKey: .articleId)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -127,9 +127,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(identifiers, forKey: .identifiers)
 
-            try? container.encodeIfPresent(itemIndex, forKey: .itemIndex)
+            try? container.encodeIfPresent(articleId, forKey: .articleId)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(itemIndex, forKey: .itemIndex)
 
             try? container.encodeIfPresent(itemSize, forKey: .itemSize)
 
@@ -137,9 +137,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(articleId, forKey: .articleId)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 }
