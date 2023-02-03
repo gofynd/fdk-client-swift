@@ -12,26 +12,26 @@ public extension PlatformClient {
 
         public var range: AttributeSchemaRange?
 
-        public var format: String?
-
         public var allowedValues: [String]?
+
+        public var mandatory: Bool?
 
         public var type: String
 
-        public var mandatory: Bool?
+        public var format: String?
 
         public enum CodingKeys: String, CodingKey {
             case multi
 
             case range
 
-            case format
-
             case allowedValues = "allowed_values"
+
+            case mandatory
 
             case type
 
-            case mandatory
+            case format
         }
 
         public init(allowedValues: [String]? = nil, format: String? = nil, mandatory: Bool? = nil, multi: Bool? = nil, range: AttributeSchemaRange? = nil, type: String) {
@@ -39,13 +39,13 @@ public extension PlatformClient {
 
             self.range = range
 
-            self.format = format
-
             self.allowedValues = allowedValues
+
+            self.mandatory = mandatory
 
             self.type = type
 
-            self.mandatory = mandatory
+            self.format = format
         }
 
         required public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                format = try container.decode(String.self, forKey: .format)
+                allowedValues = try container.decode([String].self, forKey: .allowedValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                allowedValues = try container.decode([String].self, forKey: .allowedValues)
+                mandatory = try container.decode(Bool.self, forKey: .mandatory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,7 @@ public extension PlatformClient {
             type = try container.decode(String.self, forKey: .type)
 
             do {
-                mandatory = try container.decode(Bool.self, forKey: .mandatory)
+                format = try container.decode(String.self, forKey: .format)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,13 +101,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(range, forKey: .range)
 
-            try? container.encodeIfPresent(format, forKey: .format)
-
             try? container.encodeIfPresent(allowedValues, forKey: .allowedValues)
+
+            try? container.encodeIfPresent(mandatory, forKey: .mandatory)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(mandatory, forKey: .mandatory)
+            try? container.encodeIfPresent(format, forKey: .format)
         }
     }
 }

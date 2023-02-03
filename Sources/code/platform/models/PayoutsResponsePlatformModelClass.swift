@@ -10,7 +10,7 @@ public extension PlatformClient {
     class PayoutsResponse: Codable {
         public var success: Bool
 
-        public var items: Payout
+        public var items: [Payout]
 
         public enum CodingKeys: String, CodingKey {
             case success
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case items
         }
 
-        public init(items: Payout, success: Bool) {
+        public init(items: [Payout], success: Bool) {
             self.success = success
 
             self.items = items
@@ -29,7 +29,7 @@ public extension PlatformClient {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            items = try container.decode(Payout.self, forKey: .items)
+            items = try container.decode([Payout].self, forKey: .items)
         }
 
         public func encode(to encoder: Encoder) throws {
