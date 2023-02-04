@@ -10,30 +10,30 @@ public extension PlatformClient {
     class BuyerDetails: Codable {
         public var city: String
 
-        public var state: String
-
         public var pincode: Int
 
-        public var address: String
+        public var state: String
 
         public var name: String
 
         public var ajioSiteId: String?
+
+        public var address: String
 
         public var gstin: String
 
         public enum CodingKeys: String, CodingKey {
             case city
 
-            case state
-
             case pincode
 
-            case address
+            case state
 
             case name
 
             case ajioSiteId = "ajio_site_id"
+
+            case address
 
             case gstin
         }
@@ -41,15 +41,15 @@ public extension PlatformClient {
         public init(address: String, ajioSiteId: String? = nil, city: String, gstin: String, name: String, pincode: Int, state: String) {
             self.city = city
 
-            self.state = state
-
             self.pincode = pincode
 
-            self.address = address
+            self.state = state
 
             self.name = name
 
             self.ajioSiteId = ajioSiteId
+
+            self.address = address
 
             self.gstin = gstin
         }
@@ -59,11 +59,9 @@ public extension PlatformClient {
 
             city = try container.decode(String.self, forKey: .city)
 
-            state = try container.decode(String.self, forKey: .state)
-
             pincode = try container.decode(Int.self, forKey: .pincode)
 
-            address = try container.decode(String.self, forKey: .address)
+            state = try container.decode(String.self, forKey: .state)
 
             name = try container.decode(String.self, forKey: .name)
 
@@ -75,6 +73,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            address = try container.decode(String.self, forKey: .address)
+
             gstin = try container.decode(String.self, forKey: .gstin)
         }
 
@@ -83,15 +83,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(city, forKey: .city)
 
-            try? container.encodeIfPresent(state, forKey: .state)
-
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encode(address, forKey: .address)
+            try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(ajioSiteId, forKey: .ajioSiteId)
+
+            try? container.encode(address, forKey: .address)
 
             try? container.encodeIfPresent(gstin, forKey: .gstin)
         }

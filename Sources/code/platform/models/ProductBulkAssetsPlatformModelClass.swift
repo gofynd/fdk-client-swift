@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ProductBulkAssets: Codable {
         public var companyId: Int?
 
-        public var url: String
-
         public var user: [String: Any]
+
+        public var url: String
 
         public enum CodingKeys: String, CodingKey {
             case companyId = "company_id"
 
-            case url
-
             case user
+
+            case url
         }
 
         public init(companyId: Int? = nil, url: String, user: [String: Any]) {
             self.companyId = companyId
 
-            self.url = url
-
             self.user = user
+
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,9 +41,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            url = try container.decode(String.self, forKey: .url)
-
             user = try container.decode([String: Any].self, forKey: .user)
+
+            url = try container.decode(String.self, forKey: .url)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -51,9 +51,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(user, forKey: .user)
+
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }

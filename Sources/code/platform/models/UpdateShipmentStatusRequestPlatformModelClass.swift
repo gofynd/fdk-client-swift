@@ -8,42 +8,66 @@ public extension PlatformClient {
      */
 
     class UpdateShipmentStatusRequest: Codable {
+        public var task: Bool?
+
+        public var forceTransition: Bool?
+
+        public var lockAfterTransition: Bool?
+
         public var statuses: [StatuesRequest]?
 
         public var unlockBeforeTransition: Bool?
 
-        public var forceTransition: Bool?
-
-        public var task: Bool?
-
-        public var lockAfterTransition: Bool?
-
         public enum CodingKeys: String, CodingKey {
-            case statuses
-
-            case unlockBeforeTransition = "unlock_before_transition"
+            case task
 
             case forceTransition = "force_transition"
 
-            case task
-
             case lockAfterTransition = "lock_after_transition"
+
+            case statuses
+
+            case unlockBeforeTransition = "unlock_before_transition"
         }
 
         public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
-            self.statuses = statuses
-
-            self.unlockBeforeTransition = unlockBeforeTransition
+            self.task = task
 
             self.forceTransition = forceTransition
 
-            self.task = task
-
             self.lockAfterTransition = lockAfterTransition
+
+            self.statuses = statuses
+
+            self.unlockBeforeTransition = unlockBeforeTransition
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                task = try container.decode(Bool.self, forKey: .task)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
@@ -60,44 +84,20 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                task = try container.decode(Bool.self, forKey: .task)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(statuses, forKey: .statuses)
-
-            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
+            try? container.encodeIfPresent(task, forKey: .task)
 
             try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
 
-            try? container.encodeIfPresent(task, forKey: .task)
-
             try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
+
+            try? container.encodeIfPresent(statuses, forKey: .statuses)
+
+            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
         }
     }
 }

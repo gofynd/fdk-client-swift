@@ -8,13 +8,11 @@ public extension PlatformClient {
      */
 
     class DPDetailsData: Codable {
-        public var gstTag: String?
+        public var pincode: String?
 
         public var id: String?
 
-        public var country: String?
-
-        public var pincode: String?
+        public var gstTag: String?
 
         public var name: String?
 
@@ -24,14 +22,14 @@ public extension PlatformClient {
 
         public var awbNo: String?
 
+        public var country: String?
+
         public enum CodingKeys: String, CodingKey {
-            case gstTag = "gst_tag"
+            case pincode
 
             case id
 
-            case country
-
-            case pincode
+            case gstTag = "gst_tag"
 
             case name
 
@@ -40,16 +38,16 @@ public extension PlatformClient {
             case ewayBillId = "eway_bill_id"
 
             case awbNo = "awb_no"
+
+            case country
         }
 
         public init(awbNo: String? = nil, country: String? = nil, ewayBillId: String? = nil, gstTag: String? = nil, id: String? = nil, name: String? = nil, pincode: String? = nil, trackUrl: String? = nil) {
-            self.gstTag = gstTag
+            self.pincode = pincode
 
             self.id = id
 
-            self.country = country
-
-            self.pincode = pincode
+            self.gstTag = gstTag
 
             self.name = name
 
@@ -58,13 +56,15 @@ public extension PlatformClient {
             self.ewayBillId = ewayBillId
 
             self.awbNo = awbNo
+
+            self.country = country
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                gstTag = try container.decode(String.self, forKey: .gstTag)
+                pincode = try container.decode(String.self, forKey: .pincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,15 +80,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                country = try container.decode(String.self, forKey: .country)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pincode = try container.decode(String.self, forKey: .pincode)
+                gstTag = try container.decode(String.self, forKey: .gstTag)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -126,18 +118,24 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                country = try container.decode(String.self, forKey: .country)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
@@ -146,6 +144,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(ewayBillId, forKey: .ewayBillId)
 
             try? container.encodeIfPresent(awbNo, forKey: .awbNo)
+
+            try? container.encodeIfPresent(country, forKey: .country)
         }
     }
 }

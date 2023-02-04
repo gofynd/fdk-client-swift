@@ -8,48 +8,48 @@ public extension PlatformClient {
      */
 
     class AssignStoreRequestValidator: Codable {
-        public var companyId: Int?
+        public var pincode: String?
 
         public var storeIds: [Int]?
 
         public var channelType: String?
 
-        public var channelIdentifier: String?
+        public var companyId: Int?
 
         public var articles: [_AssignStoreArticle]?
 
-        public var pincode: String?
+        public var channelIdentifier: String?
 
         public var appId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case companyId = "company_id"
+            case pincode
 
             case storeIds = "store_ids"
 
             case channelType = "channel_type"
 
-            case channelIdentifier = "channel_identifier"
+            case companyId = "company_id"
 
             case articles
 
-            case pincode
+            case channelIdentifier = "channel_identifier"
 
             case appId = "app_id"
         }
 
         public init(appId: String? = nil, articles: [_AssignStoreArticle]? = nil, channelIdentifier: String? = nil, channelType: String? = nil, companyId: Int? = nil, pincode: String? = nil, storeIds: [Int]? = nil) {
-            self.companyId = companyId
+            self.pincode = pincode
 
             self.storeIds = storeIds
 
             self.channelType = channelType
 
-            self.channelIdentifier = channelIdentifier
+            self.companyId = companyId
 
             self.articles = articles
 
-            self.pincode = pincode
+            self.channelIdentifier = channelIdentifier
 
             self.appId = appId
         }
@@ -58,7 +58,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                pincode = try container.decode(String.self, forKey: .pincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,7 +82,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                channelIdentifier = try container.decode(String.self, forKey: .channelIdentifier)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +98,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                pincode = try container.decode(String.self, forKey: .pincode)
+                channelIdentifier = try container.decode(String.self, forKey: .channelIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,17 +117,17 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
             try? container.encodeIfPresent(channelType, forKey: .channelType)
 
-            try? container.encodeIfPresent(channelIdentifier, forKey: .channelIdentifier)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(articles, forKey: .articles)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(channelIdentifier, forKey: .channelIdentifier)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
         }
