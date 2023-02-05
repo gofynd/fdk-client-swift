@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var brandId: Int?
 
-        public var totalArticle: Int?
-
         public var brandName: String?
+
+        public var totalArticle: Int?
 
         public enum CodingKeys: String, CodingKey {
             case companyId = "company_id"
 
             case brandId = "brand_id"
 
-            case totalArticle = "total_article"
-
             case brandName = "brand_name"
+
+            case totalArticle = "total_article"
         }
 
         public init(brandId: Int? = nil, brandName: String? = nil, companyId: Int? = nil, totalArticle: Int? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.brandId = brandId
 
-            self.totalArticle = totalArticle
-
             self.brandName = brandName
+
+            self.totalArticle = totalArticle
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                totalArticle = try container.decode(Int.self, forKey: .totalArticle)
+                brandName = try container.decode(String.self, forKey: .brandName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                brandName = try container.decode(String.self, forKey: .brandName)
+                totalArticle = try container.decode(Int.self, forKey: .totalArticle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(brandId, forKey: .brandId)
 
-            try? container.encodeIfPresent(totalArticle, forKey: .totalArticle)
-
             try? container.encodeIfPresent(brandName, forKey: .brandName)
+
+            try? container.encodeIfPresent(totalArticle, forKey: .totalArticle)
         }
     }
 }
