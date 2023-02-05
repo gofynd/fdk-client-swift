@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var rate: Double
 
-        public var name: String
-
         public var breakup: [[String: Any]]?
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
             case rate
 
-            case name
-
             case breakup
+
+            case name
         }
 
         public init(amount: [String: Any], breakup: [[String: Any]]? = nil, name: String, rate: Double) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.rate = rate
 
-            self.name = name
-
             self.breakup = breakup
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,8 +43,6 @@ public extension PlatformClient {
 
             rate = try container.decode(Double.self, forKey: .rate)
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
                 breakup = try container.decode([[String: Any]].self, forKey: .breakup)
 
@@ -52,6 +50,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -61,9 +61,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(rate, forKey: .rate)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(breakup, forKey: .breakup)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

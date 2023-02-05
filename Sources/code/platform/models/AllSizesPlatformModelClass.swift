@@ -10,15 +10,15 @@ public extension PlatformClient {
     class AllSizes: Codable {
         public var itemWeight: Double
 
+        public var identifiers: [ValidateIdentifier]?
+
+        public var itemWidth: Double
+
         public var itemLength: Double
 
         public var size: [String: Any]
 
         public var itemHeight: Double
-
-        public var identifiers: [ValidateIdentifier]?
-
-        public var itemWidth: Double
 
         public var itemDimensionsUnitOfMeasure: String
 
@@ -27,15 +27,15 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case itemWeight = "item_weight"
 
+            case identifiers
+
+            case itemWidth = "item_width"
+
             case itemLength = "item_length"
 
             case size
 
             case itemHeight = "item_height"
-
-            case identifiers
-
-            case itemWidth = "item_width"
 
             case itemDimensionsUnitOfMeasure = "item_dimensions_unit_of_measure"
 
@@ -45,15 +45,15 @@ public extension PlatformClient {
         public init(identifiers: [ValidateIdentifier]? = nil, itemDimensionsUnitOfMeasure: String, itemHeight: Double, itemLength: Double, itemWeight: Double, itemWeightUnitOfMeasure: [String: Any], itemWidth: Double, size: [String: Any]) {
             self.itemWeight = itemWeight
 
+            self.identifiers = identifiers
+
+            self.itemWidth = itemWidth
+
             self.itemLength = itemLength
 
             self.size = size
 
             self.itemHeight = itemHeight
-
-            self.identifiers = identifiers
-
-            self.itemWidth = itemWidth
 
             self.itemDimensionsUnitOfMeasure = itemDimensionsUnitOfMeasure
 
@@ -65,12 +65,6 @@ public extension PlatformClient {
 
             itemWeight = try container.decode(Double.self, forKey: .itemWeight)
 
-            itemLength = try container.decode(Double.self, forKey: .itemLength)
-
-            size = try container.decode([String: Any].self, forKey: .size)
-
-            itemHeight = try container.decode(Double.self, forKey: .itemHeight)
-
             do {
                 identifiers = try container.decode([ValidateIdentifier].self, forKey: .identifiers)
 
@@ -80,6 +74,12 @@ public extension PlatformClient {
             } catch {}
 
             itemWidth = try container.decode(Double.self, forKey: .itemWidth)
+
+            itemLength = try container.decode(Double.self, forKey: .itemLength)
+
+            size = try container.decode([String: Any].self, forKey: .size)
+
+            itemHeight = try container.decode(Double.self, forKey: .itemHeight)
 
             itemDimensionsUnitOfMeasure = try container.decode(String.self, forKey: .itemDimensionsUnitOfMeasure)
 
@@ -91,15 +91,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(itemWeight, forKey: .itemWeight)
 
+            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+
+            try? container.encodeIfPresent(itemWidth, forKey: .itemWidth)
+
             try? container.encodeIfPresent(itemLength, forKey: .itemLength)
 
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(itemHeight, forKey: .itemHeight)
-
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
-
-            try? container.encodeIfPresent(itemWidth, forKey: .itemWidth)
 
             try? container.encodeIfPresent(itemDimensionsUnitOfMeasure, forKey: .itemDimensionsUnitOfMeasure)
 
