@@ -10,22 +10,22 @@ public extension PlatformClient {
     class ShipmentStatusData: Codable {
         public var status: String?
 
+        public var bagList: [Int]?
+
         public var shipmentId: String?
 
         public var createdAt: String?
-
-        public var bagList: [Int]?
 
         public var id: Int?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
+            case bagList = "bag_list"
+
             case shipmentId = "shipment_id"
 
             case createdAt = "created_at"
-
-            case bagList = "bag_list"
 
             case id
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(bagList: [Int]? = nil, createdAt: String? = nil, id: Int? = nil, shipmentId: String? = nil, status: String? = nil) {
             self.status = status
 
+            self.bagList = bagList
+
             self.shipmentId = shipmentId
 
             self.createdAt = createdAt
-
-            self.bagList = bagList
 
             self.id = id
         }
@@ -47,6 +47,14 @@ public extension PlatformClient {
 
             do {
                 status = try container.decode(String.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                bagList = try container.decode([Int].self, forKey: .bagList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,14 +78,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                bagList = try container.decode([Int].self, forKey: .bagList)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -91,11 +91,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
+            try? container.encodeIfPresent(bagList, forKey: .bagList)
+
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encode(createdAt, forKey: .createdAt)
-
-            try? container.encodeIfPresent(bagList, forKey: .bagList)
 
             try? container.encodeIfPresent(id, forKey: .id)
         }
