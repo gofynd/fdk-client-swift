@@ -10,30 +10,30 @@ public extension PlatformClient {
     class SuperLane: Codable {
         public var text: String
 
-        public var value: String
+        public var options: [SubLane]?
 
         public var totalItems: Int?
 
-        public var options: [SubLane]?
+        public var value: String
 
         public enum CodingKeys: String, CodingKey {
             case text
 
-            case value
+            case options
 
             case totalItems = "total_items"
 
-            case options
+            case value
         }
 
         public init(options: [SubLane]? = nil, text: String, totalItems: Int? = nil, value: String) {
             self.text = text
 
-            self.value = value
+            self.options = options
 
             self.totalItems = totalItems
 
-            self.options = options
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,13 @@ public extension PlatformClient {
 
             text = try container.decode(String.self, forKey: .text)
 
-            value = try container.decode(String.self, forKey: .value)
+            do {
+                options = try container.decode([SubLane].self, forKey: .options)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 totalItems = try container.decode(Int.self, forKey: .totalItems)
@@ -51,13 +57,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                options = try container.decode([SubLane].self, forKey: .options)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            value = try container.decode(String.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -65,11 +65,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(options, forKey: .options)
 
             try? container.encodeIfPresent(totalItems, forKey: .totalItems)
 
-            try? container.encodeIfPresent(options, forKey: .options)
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }

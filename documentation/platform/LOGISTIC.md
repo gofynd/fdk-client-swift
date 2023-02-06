@@ -795,26 +795,26 @@ Response status_code
 
  
  
- #### [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)
+ #### [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String |  no  |  |
- | value | String |  no  |  |
- | message | String |  no  |  |
+ | serviceabilityType | String |  no  |  |
+ | channelId | String |  no  |  |
+ | channelType | String |  no  |  |
 
 ---
 
 
  
  
- #### [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)
+ #### [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channelType | String |  no  |  |
- | channelId | String |  no  |  |
- | serviceabilityType | String |  no  |  |
+ | type | String |  no  |  |
+ | message | String |  no  |  |
+ | value | String |  no  |  |
 
 ---
 
@@ -825,9 +825,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  |  |
- | error | [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)? |  yes  |  |
  | data | [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)? |  yes  |  |
+ | error | [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)? |  yes  |  |
+ | success | Bool |  no  |  |
 
 ---
 
@@ -850,11 +850,11 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | type | String |  no  |  |
+ | itemTotal | Int |  no  |  |
  | current | Int |  no  |  |
  | hasNext | Bool |  no  |  |
- | itemTotal | Int |  no  |  |
  | size | Int |  no  |  |
- | type | String |  no  |  |
 
 ---
 
@@ -866,8 +866,8 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | type | String? |  yes  |  |
- | value | String? |  yes  |  |
  | message | String? |  yes  |  |
+ | value | String? |  yes  |  |
 
 ---
 
@@ -879,8 +879,8 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | name | String |  no  |  |
- | subType | String |  no  |  |
  | uid | String |  no  |  |
+ | subType | String |  no  |  |
 
 ---
 
@@ -891,10 +891,53 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  |  |
  | page | [EntityRegionView_page](#EntityRegionView_page) |  no  |  |
  | error | [EntityRegionView_Error](#EntityRegionView_Error) |  no  |  |
  | data | [[EntityRegionView_Items](#EntityRegionView_Items)] |  no  |  |
+ | success | Bool |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ListViewProduct](#ListViewProduct)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String |  no  |  |
+ | count | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ListViewChannels](#ListViewChannels)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | channelId | String |  no  |  |
+ | channelType | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ListViewItems](#ListViewItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | storesCount | Int |  no  |  |
+ | isActive | Bool |  no  |  |
+ | product | [ListViewProduct](#ListViewProduct) |  no  |  |
+ | channels | [ListViewChannels](#ListViewChannels) |  no  |  |
+ | zoneId | String |  no  |  |
+ | companyId | Int |  no  |  |
+ | name | String |  no  |  |
+ | slug | String |  no  |  |
+ | pincodesCount | Int |  no  |  |
 
 ---
 
@@ -918,54 +961,11 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | itemTotal | Int |  no  |  |
  | current | Int |  no  |  |
  | hasNext | Bool |  no  |  |
- | itemTotal | Int |  no  |  |
  | size | Int |  no  |  |
  | type | String |  no  |  |
-
----
-
-
- 
- 
- #### [ListViewChannels](#ListViewChannels)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | channelType | String |  no  |  |
- | channelId | String |  no  |  |
-
----
-
-
- 
- 
- #### [ListViewProduct](#ListViewProduct)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | count | Int |  no  |  |
- | type | String |  no  |  |
-
----
-
-
- 
- 
- #### [ListViewItems](#ListViewItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | storesCount | Int |  no  |  |
- | companyId | Int |  no  |  |
- | name | String |  no  |  |
- | slug | String |  no  |  |
- | channels | [ListViewChannels](#ListViewChannels) |  no  |  |
- | zoneId | String |  no  |  |
- | pincodesCount | Int |  no  |  |
- | product | [ListViewProduct](#ListViewProduct) |  no  |  |
- | isActive | Bool |  no  |  |
 
 ---
 
@@ -976,9 +976,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | items | [[ListViewItems](#ListViewItems)] |  no  |  |
  | summary | [[ListViewSummary](#ListViewSummary)] |  no  |  |
  | page | [[ZoneDataItem](#ZoneDataItem)] |  no  |  |
- | items | [[ListViewItems](#ListViewItems)] |  no  |  |
 
 ---
 
@@ -989,11 +989,11 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | type | String |  no  |  |
+ | itemTotal | Int |  no  |  |
  | current | Int |  no  |  |
  | hasNext | Bool |  no  |  |
- | itemTotal | Int |  no  |  |
  | size | Int |  no  |  |
- | type | String |  no  |  |
 
 ---
 
@@ -1004,8 +1004,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [[CompanyStoreView_PageItems](#CompanyStoreView_PageItems)] |  no  |  |
  | items | [[String: Any]]? |  yes  |  |
+ | page | [[CompanyStoreView_PageItems](#CompanyStoreView_PageItems)] |  no  |  |
 
 ---
 
@@ -1016,8 +1016,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channelType | String |  no  |  |
  | channelId | String |  no  |  |
+ | channelType | String |  no  |  |
 
 ---
 
@@ -1040,9 +1040,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | [String]? |  yes  |  |
- | country | String |  no  |  |
  | state | [String]? |  yes  |  |
+ | country | String |  no  |  |
+ | pincode | [String]? |  yes  |  |
 
 ---
 
@@ -1120,8 +1120,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  |  |
  | statusCode | Int |  no  |  |
+ | success | Bool |  no  |  |
 
 ---
 
@@ -1164,9 +1164,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  |  |
  | zoneId | String |  no  |  |
  | statusCode | Int |  no  |  |
+ | success | Bool |  no  |  |
 
 ---
 
@@ -1177,8 +1177,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | String |  no  |  |
  | country | String |  no  |  |
+ | pincode | String |  no  |  |
 
 ---
 
@@ -1189,114 +1189,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | zones | [String] |  no  |  |
  | serviceabilityType | String |  no  |  |
-
----
-
-
- 
- 
- #### [PageResponse](#PageResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
- | itemTotal | Int? |  yes  |  |
- | size | Int? |  yes  |  |
- | type | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [EwayBillResponse](#EwayBillResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [EinvoiceResponse](#EinvoiceResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [GstCredentialsResponse](#GstCredentialsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | eWaybill | [EwayBillResponse](#EwayBillResponse)? |  yes  |  |
- | eInvoice | [EinvoiceResponse](#EinvoiceResponse)? |  yes  |  |
-
----
-
-
- 
- 
- #### [OpeningClosing](#OpeningClosing)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | minute | Int? |  yes  |  |
- | hour | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [TimmingResponse](#TimmingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | closing | [OpeningClosing](#OpeningClosing)? |  yes  |  |
- | open | Bool? |  yes  |  |
- | weekday | String? |  yes  |  |
- | opening | [OpeningClosing](#OpeningClosing)? |  yes  |  |
-
----
-
-
- 
- 
- #### [AddressResponse](#AddressResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | longitude | Double? |  yes  |  |
- | address1 | String? |  yes  |  |
- | address2 | String? |  yes  |  |
- | city | String? |  yes  |  |
- | country | String? |  yes  |  |
- | state | String? |  yes  |  |
- | latitude | Double? |  yes  |  |
- | pincode | Int? |  yes  |  |
- | landmark | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CreatedByResponse](#CreatedByResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | userId | String? |  yes  |  |
- | username | String? |  yes  |  |
+ | zones | [String] |  no  |  |
 
 ---
 
@@ -1315,26 +1209,146 @@ Response status_code
 
  
  
- #### [DocumentsResponse](#DocumentsResponse)
+ #### [ContactNumberResponse](#ContactNumberResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
- | value | String? |  yes  |  |
- | verified | Bool? |  yes  |  |
- | legalName | String? |  yes  |  |
+ | countryCode | Int? |  yes  |  |
+ | number | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [ContactNumberResponse](#ContactNumberResponse)
+ #### [IntegrationTypeResponse](#IntegrationTypeResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | number | String? |  yes  |  |
- | countryCode | Int? |  yes  |  |
+ | inventory | String? |  yes  |  |
+ | order | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Dp](#Dp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | rvpPriority | Int? |  yes  |  |
+ | internalAccountId | String? |  yes  |  |
+ | transportMode | String? |  yes  |  |
+ | areaCode | Int? |  yes  |  |
+ | paymentMode | String? |  yes  |  |
+ | externalAccountId | String? |  yes  |  |
+ | lmPriority | Int? |  yes  |  |
+ | assignDpFromSb | Bool? |  yes  |  |
+ | fmPriority | Int? |  yes  |  |
+ | operations | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LogisticsResponse](#LogisticsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | override | Bool? |  yes  |  |
+ | dp | [Dp](#Dp)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AddressResponse](#AddressResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | landmark | String? |  yes  |  |
+ | state | String? |  yes  |  |
+ | latitude | Double? |  yes  |  |
+ | address2 | String? |  yes  |  |
+ | country | String? |  yes  |  |
+ | pincode | Int? |  yes  |  |
+ | address1 | String? |  yes  |  |
+ | longitude | Double? |  yes  |  |
+ | city | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductReturnConfigResponse](#ProductReturnConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | onSameStore | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EinvoiceResponse](#EinvoiceResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EwayBillResponse](#EwayBillResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GstCredentialsResponse](#GstCredentialsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | eInvoice | [EinvoiceResponse](#EinvoiceResponse)? |  yes  |  |
+ | eWaybill | [EwayBillResponse](#EwayBillResponse)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OpeningClosing](#OpeningClosing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hour | Int? |  yes  |  |
+ | minute | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TimmingResponse](#TimmingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | opening | [OpeningClosing](#OpeningClosing)? |  yes  |  |
+ | open | Bool? |  yes  |  |
+ | closing | [OpeningClosing](#OpeningClosing)? |  yes  |  |
+ | weekday | String? |  yes  |  |
 
 ---
 
@@ -1345,8 +1359,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | number | String? |  yes  |  |
  | countryCode | Int? |  yes  |  |
+ | number | String? |  yes  |  |
 
 ---
 
@@ -1377,55 +1391,26 @@ Response status_code
 
  
  
- #### [Dp](#Dp)
+ #### [DocumentsResponse](#DocumentsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | operations | [String]? |  yes  |  |
- | fmPriority | Int? |  yes  |  |
- | paymentMode | String? |  yes  |  |
- | lmPriority | Int? |  yes  |  |
- | areaCode | Int? |  yes  |  |
- | transportMode | String? |  yes  |  |
- | externalAccountId | String? |  yes  |  |
- | assignDpFromSb | Bool? |  yes  |  |
- | rvpPriority | Int? |  yes  |  |
- | internalAccountId | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | verified | Bool? |  yes  |  |
+ | legalName | String? |  yes  |  |
+ | value | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [LogisticsResponse](#LogisticsResponse)
+ #### [CreatedByResponse](#CreatedByResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | override | Bool? |  yes  |  |
- | dp | [Dp](#Dp)? |  yes  |  |
-
----
-
-
- 
- 
- #### [IntegrationTypeResponse](#IntegrationTypeResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order | String? |  yes  |  |
- | inventory | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductReturnConfigResponse](#ProductReturnConfigResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | onSameStore | Bool? |  yes  |  |
+ | userId | String? |  yes  |  |
+ | username | String? |  yes  |  |
 
 ---
 
@@ -1436,34 +1421,49 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gstCredentials | [GstCredentialsResponse](#GstCredentialsResponse)? |  yes  |  |
- | uid | Int? |  yes  |  |
  | stage | String? |  yes  |  |
- | notificationEmails | [String]? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | timing | [[TimmingResponse](#TimmingResponse)]? |  yes  |  |
- | address | [AddressResponse](#AddressResponse)? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | createdBy | [CreatedByResponse](#CreatedByResponse)? |  yes  |  |
- | verifiedBy | [ModifiedByResponse](#ModifiedByResponse)? |  yes  |  |
- | companyId | Int? |  yes  |  |
- | documents | [[DocumentsResponse](#DocumentsResponse)]? |  yes  |  |
- | code | String? |  yes  |  |
- | contactNumbers | [[ContactNumberResponse](#ContactNumberResponse)]? |  yes  |  |
- | cls | String? |  yes  |  |
  | modifiedBy | [ModifiedByResponse](#ModifiedByResponse)? |  yes  |  |
- | company | Int? |  yes  |  |
+ | contactNumbers | [[ContactNumberResponse](#ContactNumberResponse)]? |  yes  |  |
  | storeType | String? |  yes  |  |
  | displayName | String? |  yes  |  |
- | name | String? |  yes  |  |
- | manager | [ManagerResponse](#ManagerResponse)? |  yes  |  |
- | warnings | [WarningsResponse](#WarningsResponse)? |  yes  |  |
- | logistics | [LogisticsResponse](#LogisticsResponse)? |  yes  |  |
- | subType | String? |  yes  |  |
- | createdOn | String? |  yes  |  |
  | integrationType | [IntegrationTypeResponse](#IntegrationTypeResponse)? |  yes  |  |
+ | logistics | [LogisticsResponse](#LogisticsResponse)? |  yes  |  |
+ | company | Int? |  yes  |  |
+ | verifiedBy | [ModifiedByResponse](#ModifiedByResponse)? |  yes  |  |
+ | address | [AddressResponse](#AddressResponse)? |  yes  |  |
+ | code | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | companyId | Int? |  yes  |  |
+ | cls | String? |  yes  |  |
  | productReturnConfig | [ProductReturnConfigResponse](#ProductReturnConfigResponse)? |  yes  |  |
+ | gstCredentials | [GstCredentialsResponse](#GstCredentialsResponse)? |  yes  |  |
+ | timing | [[TimmingResponse](#TimmingResponse)]? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | manager | [ManagerResponse](#ManagerResponse)? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
+ | subType | String? |  yes  |  |
+ | warnings | [WarningsResponse](#WarningsResponse)? |  yes  |  |
+ | documents | [[DocumentsResponse](#DocumentsResponse)]? |  yes  |  |
+ | createdBy | [CreatedByResponse](#CreatedByResponse)? |  yes  |  |
+ | name | String? |  yes  |  |
+ | notificationEmails | [String]? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PageResponse](#PageResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | itemTotal | Int? |  yes  |  |
+ | current | Int? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | size | Int? |  yes  |  |
 
 ---
 
@@ -1474,8 +1474,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [PageResponse](#PageResponse) |  no  |  |
  | items | [[ItemResponse](#ItemResponse)]? |  yes  |  |
+ | page | [PageResponse](#PageResponse) |  no  |  |
 
 ---
 

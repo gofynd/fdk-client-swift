@@ -10,9 +10,9 @@ public extension PlatformClient {
     class Dimensions: Codable {
         public var length: Int?
 
-        public var unit: String?
-
         public var isDefault: Bool?
+
+        public var unit: String?
 
         public var width: Int?
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case length
 
-            case unit
-
             case isDefault = "is_default"
+
+            case unit
 
             case width
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(height: Int? = nil, isDefault: Bool? = nil, length: Int? = nil, unit: String? = nil, width: Int? = nil) {
             self.length = length
 
-            self.unit = unit
-
             self.isDefault = isDefault
+
+            self.unit = unit
 
             self.width = width
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(length, forKey: .length)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
-
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
             try? container.encodeIfPresent(width, forKey: .width)
 
