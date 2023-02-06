@@ -9,7 +9,7 @@ public extension ApplicationClient {
     class DepartmentCategoryTree: Codable {
         public var items: [CategoryItems]?
 
-        public var department: String?
+        public var department: String
 
         public enum CodingKeys: String, CodingKey {
             case items
@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case department
         }
 
-        public init(department: String? = nil, items: [CategoryItems]? = nil) {
+        public init(department: String, items: [CategoryItems]? = nil) {
             self.items = items
 
             self.department = department
@@ -34,13 +34,7 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                department = try container.decode(String.self, forKey: .department)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            department = try container.decode(String.self, forKey: .department)
         }
 
         public func encode(to encoder: Encoder) throws {

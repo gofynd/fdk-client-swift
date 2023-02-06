@@ -4,12 +4,10 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: MultiTenderPaymentMeta
-         Used By: Cart
+         Used By: Payment
      */
 
     class MultiTenderPaymentMeta: Codable {
-        public var extraMeta: [String: Any]?
-
         public var paymentId: String?
 
         public var currentStatus: String?
@@ -18,9 +16,9 @@ public extension PlatformClient {
 
         public var orderId: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case extraMeta = "extra_meta"
+        public var extraMeta: [String: Any]?
 
+        public enum CodingKeys: String, CodingKey {
             case paymentId = "payment_id"
 
             case currentStatus = "current_status"
@@ -28,11 +26,11 @@ public extension PlatformClient {
             case paymentGateway = "payment_gateway"
 
             case orderId = "order_id"
+
+            case extraMeta = "extra_meta"
         }
 
         public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil) {
-            self.extraMeta = extraMeta
-
             self.paymentId = paymentId
 
             self.currentStatus = currentStatus
@@ -40,18 +38,12 @@ public extension PlatformClient {
             self.paymentGateway = paymentGateway
 
             self.orderId = orderId
+
+            self.extraMeta = extraMeta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 paymentId = try container.decode(String.self, forKey: .paymentId)
@@ -84,20 +76,28 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(paymentId, forKey: .paymentId)
+
+            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
+
+            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
+
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
+
             try? container.encode(extraMeta, forKey: .extraMeta)
-
-            try? container.encode(paymentId, forKey: .paymentId)
-
-            try? container.encode(currentStatus, forKey: .currentStatus)
-
-            try? container.encode(paymentGateway, forKey: .paymentGateway)
-
-            try? container.encode(orderId, forKey: .orderId)
         }
     }
 }

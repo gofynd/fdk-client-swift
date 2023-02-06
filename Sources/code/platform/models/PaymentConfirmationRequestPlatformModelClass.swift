@@ -10,7 +10,7 @@ public extension PlatformClient {
     class PaymentConfirmationRequest: Codable {
         public var orderId: String
 
-        public var paymentMethods: [PaymentConfirmationMode]
+        public var paymentMethods: [MultiTenderPaymentMethod]
 
         public enum CodingKeys: String, CodingKey {
             case orderId = "order_id"
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case paymentMethods = "payment_methods"
         }
 
-        public init(orderId: String, paymentMethods: [PaymentConfirmationMode]) {
+        public init(orderId: String, paymentMethods: [MultiTenderPaymentMethod]) {
             self.orderId = orderId
 
             self.paymentMethods = paymentMethods
@@ -29,7 +29,7 @@ public extension PlatformClient {
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
-            paymentMethods = try container.decode([PaymentConfirmationMode].self, forKey: .paymentMethods)
+            paymentMethods = try container.decode([MultiTenderPaymentMethod].self, forKey: .paymentMethods)
         }
 
         public func encode(to encoder: Encoder) throws {

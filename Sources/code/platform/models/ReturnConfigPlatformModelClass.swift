@@ -4,15 +4,15 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: ReturnConfig
-         Used By: Catalog
+         Used By: Order
      */
 
     class ReturnConfig: Codable {
-        public var time: Int
+        public var time: Int?
 
-        public var unit: String
+        public var unit: String?
 
-        public var returnable: Bool
+        public var returnable: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case time
@@ -22,7 +22,7 @@ public extension PlatformClient {
             case returnable
         }
 
-        public init(returnable: Bool, time: Int, unit: String) {
+        public init(returnable: Bool? = nil, time: Int? = nil, unit: String? = nil) {
             self.time = time
 
             self.unit = unit
@@ -33,11 +33,29 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            time = try container.decode(Int.self, forKey: .time)
+            do {
+                time = try container.decode(Int.self, forKey: .time)
 
-            unit = try container.decode(String.self, forKey: .unit)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            returnable = try container.decode(Bool.self, forKey: .returnable)
+            do {
+                unit = try container.decode(String.self, forKey: .unit)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                returnable = try container.decode(Bool.self, forKey: .returnable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
