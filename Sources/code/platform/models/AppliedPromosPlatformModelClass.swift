@@ -12,15 +12,15 @@ public extension PlatformClient {
 
         public var mrpPromotion: Bool?
 
+        public var promotionName: String?
+
         public var articleQuantity: Int?
 
-        public var promoId: String?
-
-        public var promotionName: String?
+        public var amount: Double?
 
         public var discountRules: [DiscountRules]?
 
-        public var amount: Double?
+        public var promoId: String?
 
         public var promotionType: String?
 
@@ -29,15 +29,15 @@ public extension PlatformClient {
 
             case mrpPromotion = "mrp_promotion"
 
+            case promotionName = "promotion_name"
+
             case articleQuantity = "article_quantity"
 
-            case promoId = "promo_id"
-
-            case promotionName = "promotion_name"
+            case amount
 
             case discountRules = "discount_rules"
 
-            case amount
+            case promoId = "promo_id"
 
             case promotionType = "promotion_type"
         }
@@ -47,15 +47,15 @@ public extension PlatformClient {
 
             self.mrpPromotion = mrpPromotion
 
+            self.promotionName = promotionName
+
             self.articleQuantity = articleQuantity
 
-            self.promoId = promoId
-
-            self.promotionName = promotionName
+            self.amount = amount
 
             self.discountRules = discountRules
 
-            self.amount = amount
+            self.promoId = promoId
 
             self.promotionType = promotionType
         }
@@ -80,6 +80,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                promotionName = try container.decode(String.self, forKey: .promotionName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -88,15 +96,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                promoId = try container.decode(String.self, forKey: .promoId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                promotionName = try container.decode(String.self, forKey: .promotionName)
+                amount = try container.decode(Double.self, forKey: .amount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                amount = try container.decode(Double.self, forKey: .amount)
+                promoId = try container.decode(String.self, forKey: .promoId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -135,15 +135,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
 
+            try? container.encodeIfPresent(promotionName, forKey: .promotionName)
+
             try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
 
-            try? container.encodeIfPresent(promoId, forKey: .promoId)
-
-            try? container.encodeIfPresent(promotionName, forKey: .promotionName)
+            try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(discountRules, forKey: .discountRules)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encodeIfPresent(promoId, forKey: .promoId)
 
             try? container.encodeIfPresent(promotionType, forKey: .promotionType)
         }

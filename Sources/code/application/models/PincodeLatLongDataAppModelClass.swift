@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: LocationDetailResponse
+         Model: PincodeLatLongData
          Used By: Logistic
      */
-    class LocationDetailResponse: Codable {
-        public var latitude: String?
+    class PincodeLatLongData: Codable {
+        public var coordinates: [String]?
 
-        public var longitude: String?
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
-            case latitude
+            case coordinates
 
-            case longitude
+            case type
         }
 
-        public init(latitude: String? = nil, longitude: String? = nil) {
-            self.latitude = latitude
+        public init(coordinates: [String]? = nil, type: String? = nil) {
+            self.coordinates = coordinates
 
-            self.longitude = longitude
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                latitude = try container.decode(String.self, forKey: .latitude)
+                coordinates = try container.decode([String].self, forKey: .coordinates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                longitude = try container.decode(String.self, forKey: .longitude)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(latitude, forKey: .latitude)
+            try? container.encodeIfPresent(coordinates, forKey: .coordinates)
 
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

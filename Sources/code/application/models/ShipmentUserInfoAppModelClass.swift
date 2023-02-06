@@ -7,18 +7,18 @@ public extension ApplicationClient {
          Used By: Order
      */
     class ShipmentUserInfo: Codable {
-        public var firstName: String?
-
         public var gender: String?
+
+        public var firstName: String?
 
         public var lastName: String?
 
         public var mobile: String?
 
         public enum CodingKeys: String, CodingKey {
-            case firstName = "first_name"
-
             case gender
+
+            case firstName = "first_name"
 
             case lastName = "last_name"
 
@@ -26,9 +26,9 @@ public extension ApplicationClient {
         }
 
         public init(firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: String? = nil) {
-            self.firstName = firstName
-
             self.gender = gender
+
+            self.firstName = firstName
 
             self.lastName = lastName
 
@@ -39,7 +39,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                firstName = try container.decode(String.self, forKey: .firstName)
+                gender = try container.decode(String.self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                gender = try container.decode(String.self, forKey: .gender)
+                firstName = try container.decode(String.self, forKey: .firstName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
-
             try? container.encodeIfPresent(gender, forKey: .gender)
+
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
 
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
