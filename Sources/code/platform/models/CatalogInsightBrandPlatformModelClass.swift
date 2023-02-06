@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var availableSizes: Int?
 
-        public var articleFreshness: Int?
-
         public var totalArticles: Int?
+
+        public var articleFreshness: Int?
 
         public var totalSizes: Int?
 
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case availableSizes = "available_sizes"
 
-            case articleFreshness = "article_freshness"
-
             case totalArticles = "total_articles"
+
+            case articleFreshness = "article_freshness"
 
             case totalSizes = "total_sizes"
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
 
             self.availableSizes = availableSizes
 
-            self.articleFreshness = articleFreshness
-
             self.totalArticles = totalArticles
+
+            self.articleFreshness = articleFreshness
 
             self.totalSizes = totalSizes
 
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                articleFreshness = try container.decode(Int.self, forKey: .articleFreshness)
+                totalArticles = try container.decode(Int.self, forKey: .totalArticles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                totalArticles = try container.decode(Int.self, forKey: .totalArticles)
+                articleFreshness = try container.decode(Int.self, forKey: .articleFreshness)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,9 +107,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
 
-            try? container.encodeIfPresent(articleFreshness, forKey: .articleFreshness)
-
             try? container.encodeIfPresent(totalArticles, forKey: .totalArticles)
+
+            try? container.encodeIfPresent(articleFreshness, forKey: .articleFreshness)
 
             try? container.encodeIfPresent(totalSizes, forKey: .totalSizes)
 

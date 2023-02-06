@@ -7,26 +7,26 @@ public extension ApplicationClient {
          Used By: Order
      */
     class ShipmentReason: Codable {
-        public var priority: Int?
+        public var feedbackType: String?
 
         public var reasonId: Int?
 
-        public var flow: String?
+        public var priority: Int?
 
-        public var feedbackType: String?
+        public var flow: String?
 
         public var reasonText: String?
 
         public var showTextArea: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case priority
+            case feedbackType = "feedback_type"
 
             case reasonId = "reason_id"
 
-            case flow
+            case priority
 
-            case feedbackType = "feedback_type"
+            case flow
 
             case reasonText = "reason_text"
 
@@ -34,13 +34,13 @@ public extension ApplicationClient {
         }
 
         public init(feedbackType: String? = nil, flow: String? = nil, priority: Int? = nil, reasonId: Int? = nil, reasonText: String? = nil, showTextArea: Bool? = nil) {
-            self.priority = priority
+            self.feedbackType = feedbackType
 
             self.reasonId = reasonId
 
-            self.flow = flow
+            self.priority = priority
 
-            self.feedbackType = feedbackType
+            self.flow = flow
 
             self.reasonText = reasonText
 
@@ -51,7 +51,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                priority = try container.decode(Int.self, forKey: .priority)
+                feedbackType = try container.decode(String.self, forKey: .feedbackType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                flow = try container.decode(String.self, forKey: .flow)
+                priority = try container.decode(Int.self, forKey: .priority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                feedbackType = try container.decode(String.self, forKey: .feedbackType)
+                flow = try container.decode(String.self, forKey: .flow)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,13 +102,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(feedbackType, forKey: .feedbackType)
 
             try? container.encodeIfPresent(reasonId, forKey: .reasonId)
 
-            try? container.encodeIfPresent(flow, forKey: .flow)
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(feedbackType, forKey: .feedbackType)
+            try? container.encodeIfPresent(flow, forKey: .flow)
 
             try? container.encodeIfPresent(reasonText, forKey: .reasonText)
 

@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var key: String
 
-        public var priority: Int
-
         public var logo: String?
+
+        public var priority: Int
 
         public var name: String?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case key
 
-            case priority
-
             case logo
+
+            case priority
 
             case name
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.key = key
 
-            self.priority = priority
-
             self.logo = logo
+
+            self.priority = priority
 
             self.name = name
         }
@@ -49,8 +49,6 @@ public extension PlatformClient {
 
             key = try container.decode(String.self, forKey: .key)
 
-            priority = try container.decode(Int.self, forKey: .priority)
-
             do {
                 logo = try container.decode(String.self, forKey: .logo)
 
@@ -58,6 +56,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            priority = try container.decode(Int.self, forKey: .priority)
 
             do {
                 name = try container.decode(String.self, forKey: .name)
@@ -75,9 +75,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(priority, forKey: .priority)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

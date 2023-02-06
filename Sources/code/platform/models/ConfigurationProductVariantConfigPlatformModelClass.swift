@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var key: String
 
-        public var size: ProductSize
-
-        public var priority: Int
+        public var displayType: String
 
         public var logo: String?
 
-        public var displayType: String
+        public var size: ProductSize
+
+        public var priority: Int
 
         public var name: String
 
@@ -27,13 +27,13 @@ public extension PlatformClient {
 
             case key
 
-            case size
-
-            case priority
+            case displayType = "display_type"
 
             case logo
 
-            case displayType = "display_type"
+            case size
+
+            case priority
 
             case name
         }
@@ -43,13 +43,13 @@ public extension PlatformClient {
 
             self.key = key
 
-            self.size = size
-
-            self.priority = priority
+            self.displayType = displayType
 
             self.logo = logo
 
-            self.displayType = displayType
+            self.size = size
+
+            self.priority = priority
 
             self.name = name
         }
@@ -61,9 +61,7 @@ public extension PlatformClient {
 
             key = try container.decode(String.self, forKey: .key)
 
-            size = try container.decode(ProductSize.self, forKey: .size)
-
-            priority = try container.decode(Int.self, forKey: .priority)
+            displayType = try container.decode(String.self, forKey: .displayType)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -73,7 +71,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            displayType = try container.decode(String.self, forKey: .displayType)
+            size = try container.decode(ProductSize.self, forKey: .size)
+
+            priority = try container.decode(Int.self, forKey: .priority)
 
             name = try container.decode(String.self, forKey: .name)
         }
@@ -85,13 +85,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(displayType, forKey: .displayType)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(displayType, forKey: .displayType)
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

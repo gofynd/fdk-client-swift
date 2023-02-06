@@ -10,9 +10,7 @@ public extension PlatformClient {
     class CreateUpdateAddressSerializer: Codable {
         public var longitude: Double
 
-        public var state: String
-
-        public var pincode: Int
+        public var countryCode: String?
 
         public var country: String
 
@@ -22,20 +20,20 @@ public extension PlatformClient {
 
         public var city: String
 
-        public var countryCode: String?
+        public var pincode: Int
 
-        public var address2: String?
+        public var state: String
 
         public var landmark: String?
+
+        public var address2: String?
 
         public var latitude: Double
 
         public enum CodingKeys: String, CodingKey {
             case longitude
 
-            case state
-
-            case pincode
+            case countryCode = "country_code"
 
             case country
 
@@ -45,11 +43,13 @@ public extension PlatformClient {
 
             case city
 
-            case countryCode = "country_code"
+            case pincode
 
-            case address2
+            case state
 
             case landmark
+
+            case address2
 
             case latitude
         }
@@ -57,9 +57,7 @@ public extension PlatformClient {
         public init(address1: String, address2: String? = nil, addressType: String, city: String, country: String, countryCode: String? = nil, landmark: String? = nil, latitude: Double, longitude: Double, pincode: Int, state: String) {
             self.longitude = longitude
 
-            self.state = state
-
-            self.pincode = pincode
+            self.countryCode = countryCode
 
             self.country = country
 
@@ -69,11 +67,13 @@ public extension PlatformClient {
 
             self.city = city
 
-            self.countryCode = countryCode
+            self.pincode = pincode
 
-            self.address2 = address2
+            self.state = state
 
             self.landmark = landmark
+
+            self.address2 = address2
 
             self.latitude = latitude
         }
@@ -83,9 +83,13 @@ public extension PlatformClient {
 
             longitude = try container.decode(Double.self, forKey: .longitude)
 
-            state = try container.decode(String.self, forKey: .state)
+            do {
+                countryCode = try container.decode(String.self, forKey: .countryCode)
 
-            pincode = try container.decode(Int.self, forKey: .pincode)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             country = try container.decode(String.self, forKey: .country)
 
@@ -95,8 +99,12 @@ public extension PlatformClient {
 
             city = try container.decode(String.self, forKey: .city)
 
+            pincode = try container.decode(Int.self, forKey: .pincode)
+
+            state = try container.decode(String.self, forKey: .state)
+
             do {
-                countryCode = try container.decode(String.self, forKey: .countryCode)
+                landmark = try container.decode(String.self, forKey: .landmark)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,14 +119,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                landmark = try container.decode(String.self, forKey: .landmark)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             latitude = try container.decode(Double.self, forKey: .latitude)
         }
 
@@ -127,9 +127,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(longitude, forKey: .longitude)
 
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
             try? container.encodeIfPresent(country, forKey: .country)
 
@@ -139,11 +137,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(city, forKey: .city)
 
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(address2, forKey: .address2)
+            try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(landmark, forKey: .landmark)
+
+            try? container.encodeIfPresent(address2, forKey: .address2)
 
             try? container.encodeIfPresent(latitude, forKey: .latitude)
         }
