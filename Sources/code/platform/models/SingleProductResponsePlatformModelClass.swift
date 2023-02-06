@@ -3,25 +3,31 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: GetSingleZoneDataViewResponse
-         Used By: Logistic
+         Model: SingleProductResponse
+         Used By: Catalog
      */
 
-    class GetSingleZoneDataViewResponse: Codable {
-        public var data: GetZoneDataViewItems
+    class SingleProductResponse: Codable {
+        public var data: Product?
 
         public enum CodingKeys: String, CodingKey {
             case data
         }
 
-        public init(data: GetZoneDataViewItems) {
+        public init(data: Product? = nil) {
             self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            data = try container.decode(GetZoneDataViewItems.self, forKey: .data)
+            do {
+                data = try container.decode(Product.self, forKey: .data)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {

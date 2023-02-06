@@ -8,13 +8,13 @@ public extension PlatformClient {
      */
 
     class ListALLSizes: Codable {
-        public var allSizes: [ALLSizes]?
+        public var allSizes: [AllSizes]?
 
         public enum CodingKeys: String, CodingKey {
             case allSizes = "all_sizes"
         }
 
-        public init(allSizes: [ALLSizes]? = nil) {
+        public init(allSizes: [AllSizes]? = nil) {
             self.allSizes = allSizes
         }
 
@@ -22,7 +22,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                allSizes = try container.decode([ALLSizes].self, forKey: .allSizes)
+                allSizes = try container.decode([AllSizes].self, forKey: .allSizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

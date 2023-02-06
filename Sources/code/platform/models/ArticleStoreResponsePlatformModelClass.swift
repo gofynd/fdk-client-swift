@@ -10,18 +10,18 @@ public extension PlatformClient {
     class ArticleStoreResponse: Codable {
         public var storeCode: String?
 
-        public var storeType: String?
-
         public var name: String?
+
+        public var storeType: String?
 
         public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
             case storeCode = "store_code"
 
-            case storeType = "store_type"
-
             case name
+
+            case storeType = "store_type"
 
             case uid
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(name: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil) {
             self.storeCode = storeCode
 
-            self.storeType = storeType
-
             self.name = name
+
+            self.storeType = storeType
 
             self.uid = uid
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                storeType = try container.decode(String.self, forKey: .storeType)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                storeType = try container.decode(String.self, forKey: .storeType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeCode, forKey: .storeCode)
 
-            try? container.encodeIfPresent(storeType, forKey: .storeType)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(storeType, forKey: .storeType)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }

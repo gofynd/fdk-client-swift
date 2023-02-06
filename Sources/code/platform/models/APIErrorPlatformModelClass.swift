@@ -3,50 +3,50 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ServiceabilityPageResponse
-         Used By: Logistic
+         Model: APIError
+         Used By: Partner
      */
 
-    class ServiceabilityPageResponse: Codable {
-        public var itemTotal: Int?
+    class APIError: Codable {
+        public var code: String?
 
-        public var current: Int?
+        public var message: String?
 
-        public var type: String?
+        public var info: String?
 
-        public var size: Int?
+        public var requestId: String?
 
-        public var hasNext: Bool?
+        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case itemTotal = "item_total"
+            case code
 
-            case current
+            case message
 
-            case type
+            case info
 
-            case size
+            case requestId = "request_id"
 
-            case hasNext = "has_next"
+            case meta
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
-            self.itemTotal = itemTotal
+        public init(code: String? = nil, info: String? = nil, message: String? = nil, meta: [String: Any]? = nil, requestId: String? = nil) {
+            self.code = code
 
-            self.current = current
+            self.message = message
 
-            self.type = type
+            self.info = info
 
-            self.size = size
+            self.requestId = requestId
 
-            self.hasNext = hasNext
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                current = try container.decode(Int.self, forKey: .current)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                info = try container.decode(String.self, forKey: .info)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                size = try container.decode(Int.self, forKey: .size)
+                requestId = try container.decode(String.self, forKey: .requestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,15 +89,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+            try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(current, forKey: .current)
+            try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(info, forKey: .info)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
 
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }
