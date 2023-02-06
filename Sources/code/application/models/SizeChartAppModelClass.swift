@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var headers: ColumnHeaders?
 
-        public var image: String?
-
         public var sizes: [SizeChartValues]?
+
+        public var image: String?
 
         public var sizeTip: String?
 
@@ -26,9 +26,9 @@ public extension ApplicationClient {
 
             case headers
 
-            case image
-
             case sizes
+
+            case image
 
             case sizeTip = "size_tip"
 
@@ -42,9 +42,9 @@ public extension ApplicationClient {
 
             self.headers = headers
 
-            self.image = image
-
             self.sizes = sizes
+
+            self.image = image
 
             self.sizeTip = sizeTip
 
@@ -73,7 +73,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                image = try container.decode(String.self, forKey: .image)
+                sizes = try container.decode([SizeChartValues].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sizes = try container.decode([SizeChartValues].self, forKey: .sizes)
+                image = try container.decode(String.self, forKey: .image)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,9 +120,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(headers, forKey: .headers)
 
-            try? container.encodeIfPresent(image, forKey: .image)
-
             try? container.encodeIfPresent(sizes, forKey: .sizes)
+
+            try? container.encodeIfPresent(image, forKey: .image)
 
             try? container.encodeIfPresent(sizeTip, forKey: .sizeTip)
 

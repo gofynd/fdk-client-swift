@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var greaterThan: Double?
 
-        public var equals: Double?
-
         public var greaterThanEquals: Double?
+
+        public var equals: Double?
 
         public var lessThan: Double?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case greaterThan = "greater_than"
 
-            case equals
-
             case greaterThanEquals = "greater_than_equals"
+
+            case equals
 
             case lessThan = "less_than"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.greaterThan = greaterThan
 
-            self.equals = equals
-
             self.greaterThanEquals = greaterThanEquals
+
+            self.equals = equals
 
             self.lessThan = lessThan
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                equals = try container.decode(Double.self, forKey: .equals)
+                greaterThanEquals = try container.decode(Double.self, forKey: .greaterThanEquals)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                greaterThanEquals = try container.decode(Double.self, forKey: .greaterThanEquals)
+                equals = try container.decode(Double.self, forKey: .equals)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(greaterThan, forKey: .greaterThan)
 
-            try? container.encodeIfPresent(equals, forKey: .equals)
-
             try? container.encodeIfPresent(greaterThanEquals, forKey: .greaterThanEquals)
+
+            try? container.encodeIfPresent(equals, forKey: .equals)
 
             try? container.encodeIfPresent(lessThan, forKey: .lessThan)
         }

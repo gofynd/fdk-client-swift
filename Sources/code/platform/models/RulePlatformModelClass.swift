@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var max: Double?
 
-        public var discountQty: Double?
-
         public var min: Double?
+
+        public var discountQty: Double?
 
         public enum CodingKeys: String, CodingKey {
             case value
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case max
 
-            case discountQty = "discount_qty"
-
             case min
+
+            case discountQty = "discount_qty"
         }
 
         public init(discountQty: Double? = nil, key: Double? = nil, max: Double? = nil, min: Double? = nil, value: Double? = nil) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.max = max
 
-            self.discountQty = discountQty
-
             self.min = min
+
+            self.discountQty = discountQty
         }
 
         required public init(from decoder: Decoder) throws {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                discountQty = try container.decode(Double.self, forKey: .discountQty)
+                min = try container.decode(Double.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
+                discountQty = try container.decode(Double.self, forKey: .discountQty)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,9 +95,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(max, forKey: .max)
 
-            try? container.encodeIfPresent(discountQty, forKey: .discountQty)
-
             try? container.encodeIfPresent(min, forKey: .min)
+
+            try? container.encodeIfPresent(discountQty, forKey: .discountQty)
         }
     }
 }

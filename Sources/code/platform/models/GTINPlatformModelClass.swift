@@ -10,7 +10,7 @@ public extension PlatformClient {
     class GTIN: Codable {
         public var primary: Bool?
 
-        public var gtinValue: String
+        public var gtinValue: [String: Any]
 
         public var gtinType: String
 
@@ -22,7 +22,7 @@ public extension PlatformClient {
             case gtinType = "gtin_type"
         }
 
-        public init(gtinType: String, gtinValue: String, primary: Bool? = nil) {
+        public init(gtinType: String, gtinValue: [String: Any], primary: Bool? = nil) {
             self.primary = primary
 
             self.gtinValue = gtinValue
@@ -41,7 +41,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            gtinValue = try container.decode(String.self, forKey: .gtinValue)
+            gtinValue = try container.decode([String: Any].self, forKey: .gtinValue)
 
             gtinType = try container.decode(String.self, forKey: .gtinType)
         }

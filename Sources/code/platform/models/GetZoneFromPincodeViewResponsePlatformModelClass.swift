@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class GetZoneFromPincodeViewResponse: Codable {
-        public var zones: [String]
+        public var zones: [GetZonesForZoneFromPincode]
 
         public var serviceabilityType: String
 
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case serviceabilityType = "serviceability_type"
         }
 
-        public init(serviceabilityType: String, zones: [String]) {
+        public init(serviceabilityType: String, zones: [GetZonesForZoneFromPincode]) {
             self.zones = zones
 
             self.serviceabilityType = serviceabilityType
@@ -27,7 +27,7 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            zones = try container.decode([String].self, forKey: .zones)
+            zones = try container.decode([GetZonesForZoneFromPincode].self, forKey: .zones)
 
             serviceabilityType = try container.decode(String.self, forKey: .serviceabilityType)
         }

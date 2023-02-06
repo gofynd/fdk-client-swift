@@ -4045,9 +4045,9 @@ public class PlatformClient {
             /**
              *
              * Summary: Save path based redirection rules
-             * Description: Use this API to add, update or delete path-based redirection rules
+             * Description: Use this API to add redirection rules
              **/
-            public func updatePathRedirectionRules(
+            public func addPathRedirectionRules(
                 body: PathMappingSchema,
                 onResponse: @escaping (_ response: PathMappingSchema?, _ error: FDKError?) -> Void
             ) {
@@ -4086,12 +4086,64 @@ public class PlatformClient {
              * Description: Use this API to get path based redirection rules.
              **/
             public func getPathRedirectionRules(
+                pageSize: Int?,
+                pageNo: Int?,
+
+                onResponse: @escaping (_ response: PathMappingSchema?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/path-mappings",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(PathMappingSchema.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Get path based redirection rule
+             * Description: Use this API to get path based redirection rule.
+             **/
+            public func getPathRedirectionRule(
+                pathId: String,
+
                 onResponse: @escaping (_ response: PathMappingSchema?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/path-mappings",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pathMappings/\(pathId)",
                     query: nil,
                     body: nil,
                     headers: [],
@@ -4105,6 +4157,84 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(PathMappingSchema.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Update path based redirection rules
+             * Description: Use this API to update redirection rules
+             **/
+            public func updatePathRedirectionRules(
+                pathId: String,
+                body: PathMappingSchema,
+                onResponse: @escaping (_ response: PathMappingSchema?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pathMappings/\(pathId)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(PathMappingSchema.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Delete path based redirection rules
+             * Description: Use this API to delete redirection rules
+             **/
+            public func deletePathRedirectionRules(
+                pathId: String,
+
+                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "delete",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pathMappings/\(pathId)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = data.dictionary
 
                             onResponse(response, nil)
                         } else {
@@ -8389,6 +8519,45 @@ public class PlatformClient {
 
             /**
              *
+             * Summary: Get company application product data.
+             * Description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent.
+             **/
+            public func getAppProduct(
+                itemId: String,
+
+                onResponse: @escaping (_ response: OwnerAppItemResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product/\(itemId)/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(OwnerAppItemResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
              * Summary: Update a single custom meta.
              * Description: This API helps to update data associated to a item custom meta.
              **/
@@ -8428,50 +8597,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get company application product data.
-             * Description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent.
-             **/
-            public func getAppProduct(
-                itemId: String,
-                sliceAttr: String,
-
-                onResponse: @escaping (_ response: ApplicationItemResponse?, _ error: FDKError?) -> Void
-            ) {
-                var xQuery: [String: Any] = [:]
-
-                xQuery["slice_attr"] = sliceAttr
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product/\(itemId)/",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(ApplicationItemResponse.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
              * Summary: Get configuration metadata details for catalog for admin panel
              * Description: Get the configuraion metadata details for catalog.
              **/
@@ -8490,7 +8615,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/metadata/",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/metadata/",
                     query: xQuery,
                     body: nil,
                     headers: [],
@@ -8529,7 +8654,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -8590,7 +8715,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups",
                     query: xQuery,
                     body: nil,
                     headers: [],
@@ -8630,7 +8755,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups/\(groupSlug)",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups/\(groupSlug)",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -8670,7 +8795,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups/\(groupSlug)",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups/\(groupSlug)",
                     query: nil,
                     body: nil,
                     headers: [],
@@ -8709,7 +8834,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -8765,7 +8890,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/",
                     query: xQuery,
                     body: nil,
                     headers: [],
@@ -8805,7 +8930,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/item/\(configId)/",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/item/\(configId)/",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -8845,7 +8970,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "delete",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/item/\(configId)/",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/item/\(configId)/",
                     query: nil,
                     body: nil,
                     headers: [],
@@ -8883,7 +9008,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration/filter/allow_single",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/product-configuration/filter/allow_single",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -8921,7 +9046,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration/sort/default_key",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/product-configuration/sort/default_key",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -10346,6 +10471,7 @@ public class PlatformClient {
              * Description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
              **/
             public func getApplicationCategoryListing(
+                departmentId: Int?,
                 pageNo: Int?,
                 pageSize: Int?,
                 q: String?,
@@ -10353,6 +10479,10 @@ public class PlatformClient {
                 onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
             ) {
                 var xQuery: [String: Any] = [:]
+
+                if let value = departmentId {
+                    xQuery["department_id"] = value
+                }
 
                 if let value = pageNo {
                     xQuery["page_no"] = value
@@ -10401,6 +10531,7 @@ public class PlatformClient {
              * Description: fetch the next page by calling .next(...) function
              **/
             public func getApplicationCategoryListingPaginator(
+                departmentId: Int?,
                 pageSize: Int?,
                 q: String?
 
@@ -10409,6 +10540,7 @@ public class PlatformClient {
                 let paginator = Paginator<BrandListingResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getApplicationCategoryListing(
+                        departmentId: departmentId,
                         pageNo: paginator.pageNo,
 
                         pageSize: paginator.pageSize,
@@ -10439,6 +10571,130 @@ public class PlatformClient {
                     config: config,
                     method: "patch",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/category/\(categoryUid)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SuccessResponse1.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: List all the departments for the application
+             * Description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the application departments. If successful, returns the list of departments specified in `ApplicationDepartmentListingResponse`
+             **/
+            public func getApplicationDepartmentListing(
+                pageNo: Int?,
+                pageSize: Int?,
+                q: String?,
+
+                onResponse: @escaping (_ response: ApplicationDepartmentListingResponse?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+
+                if let value = q {
+                    xQuery["q"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/department",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(ApplicationDepartmentListingResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: get paginator for getApplicationDepartmentListing
+             * Description: fetch the next page by calling .next(...) function
+             **/
+            public func getApplicationDepartmentListingPaginator(
+                pageSize: Int?,
+                q: String?
+
+            ) -> Paginator<ApplicationDepartmentListingResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<ApplicationDepartmentListingResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getApplicationDepartmentListing(
+                        pageNo: paginator.pageNo,
+
+                        pageSize: paginator.pageSize,
+
+                        q: q
+                    ) { response, error in
+                        if let response = response {
+                            paginator.hasNext = response.page.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+
+            /**
+             *
+             * Summary: Update a single custom json.
+             * Description: This API helps to update data associated to a item custom meta.
+             **/
+            public func updateAppDepartment(
+                departmentUid: String,
+                body: ApplicationDepartmentJson,
+                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "patch",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/department/\(departmentUid)",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -13902,6 +14158,44 @@ public class PlatformClient {
              * Summary: Zone configuration of application.
              * Description: This API returns serviceability config of the application.
              **/
+            public func postApplicationServiceability(
+                body: ApplicationServiceabilityConfig,
+                onResponse: @escaping (_ response: ApplicationServiceabilityConfigResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/logistics-internal/v1.0/company/\(companyId)/application/\(applicationId)/serviceability",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(ApplicationServiceabilityConfigResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Zone configuration of application.
+             * Description: This API returns serviceability config of the application.
+             **/
             public func getApplicationServiceability(
                 onResponse: @escaping (_ response: ApplicationServiceabilityConfigResponse?, _ error: FDKError?) -> Void
             ) {
@@ -13936,17 +14230,17 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Zone configuration of application.
-             * Description: This API returns serviceability config of the application.
+             * Summary: GET zone from the Pincode.
+             * Description: This API returns zone from the Pincode View.
              **/
-            public func postApplicationServiceability(
-                body: ApplicationServiceabilityConfig,
-                onResponse: @escaping (_ response: ApplicationServiceabilityConfigResponse?, _ error: FDKError?) -> Void
+            public func getZoneFromPincodeView(
+                body: GetZoneFromPincodeViewRequest,
+                onResponse: @escaping (_ response: GetZoneFromPincodeViewResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
-                    url: "/service/platform/logistics-internal/v1.0/company/\(companyId)/application/\(applicationId)/serviceability",
+                    url: "/service/platform/logistics-internal/v1.0/company/\(companyId)/application/\(applicationId)/zones",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -13959,7 +14253,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(ApplicationServiceabilityConfigResponse.self, from: data)
+                            let response = Utility.decode(GetZoneFromPincodeViewResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -14020,44 +14314,6 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(GetZoneFromApplicationIdViewResponse.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
-             * Summary: GET zone from the Pincode.
-             * Description: This API returns zone from the Pincode View.
-             **/
-            public func getZoneFromPincodeView(
-                body: GetZoneFromPincodeViewRequest,
-                onResponse: @escaping (_ response: GetZoneFromPincodeViewResponse?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/logistics-internal/v1.0/company/\(companyId)/application/\(applicationId)/zones",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(GetZoneFromPincodeViewResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {

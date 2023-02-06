@@ -12,7 +12,7 @@ public extension PlatformClient {
 
         public var type: String?
 
-        public var name: String?
+        public var name: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case address
@@ -22,7 +22,7 @@ public extension PlatformClient {
             case name
         }
 
-        public init(address: [String]? = nil, name: String? = nil, type: String? = nil) {
+        public init(address: [String]? = nil, name: [String: Any], type: String? = nil) {
             self.address = address
 
             self.type = type
@@ -49,13 +49,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            name = try container.decode([String: Any].self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {

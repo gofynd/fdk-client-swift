@@ -9,66 +9,66 @@ public extension ApplicationClient {
     class AggregatorConfigDetail: Codable {
         public var userId: String?
 
+        public var secret: String
+
         public var api: String?
 
         public var pin: String?
 
-        public var key: String
+        public var verifyApi: String?
 
         public var merchantKey: String?
 
-        public var verifyApi: String?
-
-        public var merchantId: String?
+        public var key: String
 
         public var sdk: Bool?
 
-        public var configType: String
+        public var merchantId: String?
 
-        public var secret: String
+        public var configType: String
 
         public enum CodingKeys: String, CodingKey {
             case userId = "user_id"
+
+            case secret
 
             case api
 
             case pin
 
-            case key
+            case verifyApi = "verify_api"
 
             case merchantKey = "merchant_key"
 
-            case verifyApi = "verify_api"
-
-            case merchantId = "merchant_id"
+            case key
 
             case sdk
 
-            case configType = "config_type"
+            case merchantId = "merchant_id"
 
-            case secret
+            case configType = "config_type"
         }
 
         public init(api: String? = nil, configType: String, key: String, merchantId: String? = nil, merchantKey: String? = nil, pin: String? = nil, sdk: Bool? = nil, secret: String, userId: String? = nil, verifyApi: String? = nil) {
             self.userId = userId
 
+            self.secret = secret
+
             self.api = api
 
             self.pin = pin
 
-            self.key = key
+            self.verifyApi = verifyApi
 
             self.merchantKey = merchantKey
 
-            self.verifyApi = verifyApi
-
-            self.merchantId = merchantId
+            self.key = key
 
             self.sdk = sdk
 
-            self.configType = configType
+            self.merchantId = merchantId
 
-            self.secret = secret
+            self.configType = configType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -81,6 +81,8 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            secret = try container.decode(String.self, forKey: .secret)
 
             do {
                 api = try container.decode(String.self, forKey: .api)
@@ -98,7 +100,13 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            key = try container.decode(String.self, forKey: .key)
+            do {
+                verifyApi = try container.decode(String.self, forKey: .verifyApi)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 merchantKey = try container.decode(String.self, forKey: .merchantKey)
@@ -108,8 +116,10 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            key = try container.decode(String.self, forKey: .key)
+
             do {
-                verifyApi = try container.decode(String.self, forKey: .verifyApi)
+                sdk = try container.decode(Bool.self, forKey: .sdk)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,17 +134,7 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                sdk = try container.decode(Bool.self, forKey: .sdk)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             configType = try container.decode(String.self, forKey: .configType)
-
-            secret = try container.decode(String.self, forKey: .secret)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -142,23 +142,23 @@ public extension ApplicationClient {
 
             try? container.encode(userId, forKey: .userId)
 
+            try? container.encodeIfPresent(secret, forKey: .secret)
+
             try? container.encode(api, forKey: .api)
 
             try? container.encode(pin, forKey: .pin)
 
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encode(verifyApi, forKey: .verifyApi)
 
             try? container.encode(merchantKey, forKey: .merchantKey)
 
-            try? container.encode(verifyApi, forKey: .verifyApi)
-
-            try? container.encode(merchantId, forKey: .merchantId)
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encode(sdk, forKey: .sdk)
 
-            try? container.encodeIfPresent(configType, forKey: .configType)
+            try? container.encode(merchantId, forKey: .merchantId)
 
-            try? container.encodeIfPresent(secret, forKey: .secret)
+            try? container.encodeIfPresent(configType, forKey: .configType)
         }
     }
 }

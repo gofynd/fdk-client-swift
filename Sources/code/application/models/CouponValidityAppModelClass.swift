@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var displayMessageEn: String?
 
-        public var code: String?
+        public var title: String?
 
         public var discount: Double?
 
-        public var title: String?
+        public var code: String?
 
         public enum CodingKeys: String, CodingKey {
             case valid
 
             case displayMessageEn = "display_message_en"
 
-            case code
+            case title
 
             case discount
 
-            case title
+            case code
         }
 
         public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, title: String? = nil, valid: Bool? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.displayMessageEn = displayMessageEn
 
-            self.code = code
+            self.title = title
 
             self.discount = discount
 
-            self.title = title
+            self.code = code
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension ApplicationClient {
 
             try? container.encode(displayMessageEn, forKey: .displayMessageEn)
 
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(discount, forKey: .discount)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encode(code, forKey: .code)
         }
     }
 }
