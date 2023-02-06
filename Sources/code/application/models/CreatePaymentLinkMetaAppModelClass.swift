@@ -7,8 +7,6 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class CreatePaymentLinkMeta: Codable {
-        public var amount: String
-
         public var assignCardId: String?
 
         public var cartId: String
@@ -17,9 +15,9 @@ public extension ApplicationClient {
 
         public var pincode: String
 
-        public enum CodingKeys: String, CodingKey {
-            case amount
+        public var amount: String
 
+        public enum CodingKeys: String, CodingKey {
             case assignCardId = "assign_card_id"
 
             case cartId = "cart_id"
@@ -27,11 +25,11 @@ public extension ApplicationClient {
             case checkoutMode = "checkout_mode"
 
             case pincode
+
+            case amount
         }
 
         public init(amount: String, assignCardId: String? = nil, cartId: String, checkoutMode: String, pincode: String) {
-            self.amount = amount
-
             self.assignCardId = assignCardId
 
             self.cartId = cartId
@@ -39,12 +37,12 @@ public extension ApplicationClient {
             self.checkoutMode = checkoutMode
 
             self.pincode = pincode
+
+            self.amount = amount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            amount = try container.decode(String.self, forKey: .amount)
 
             do {
                 assignCardId = try container.decode(String.self, forKey: .assignCardId)
@@ -59,12 +57,12 @@ public extension ApplicationClient {
             checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
             pincode = try container.decode(String.self, forKey: .pincode)
+
+            amount = try container.decode(String.self, forKey: .amount)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encode(assignCardId, forKey: .assignCardId)
 
@@ -73,6 +71,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
         }
     }
 }

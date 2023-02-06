@@ -10,66 +10,66 @@ public extension PlatformClient {
     class BulkInvoiceLabelResponse: Codable {
         public var storeCode: String?
 
+        public var invoice: [String: Any]?
+
+        public var data: [String: Any]?
+
         public var storeId: String?
 
         public var label: [String: Any]?
 
-        public var invoiceStatus: String?
-
-        public var companyId: String?
-
-        public var data: [String: Any]?
-
-        public var storeName: String?
-
         public var doInvoiceLabelGenerated: Bool
-
-        public var invoice: [String: Any]?
 
         public var batchId: String
 
+        public var companyId: String?
+
+        public var invoiceStatus: String?
+
+        public var storeName: String?
+
         public enum CodingKeys: String, CodingKey {
             case storeCode = "store_code"
+
+            case invoice
+
+            case data
 
             case storeId = "store_id"
 
             case label
 
-            case invoiceStatus = "invoice_status"
+            case doInvoiceLabelGenerated = "do_invoice_label_generated"
+
+            case batchId = "batch_id"
 
             case companyId = "company_id"
 
-            case data
+            case invoiceStatus = "invoice_status"
 
             case storeName = "store_name"
-
-            case doInvoiceLabelGenerated = "do_invoice_label_generated"
-
-            case invoice
-
-            case batchId = "batch_id"
         }
 
         public init(batchId: String, companyId: String? = nil, data: [String: Any]? = nil, doInvoiceLabelGenerated: Bool, invoice: [String: Any]? = nil, invoiceStatus: String? = nil, label: [String: Any]? = nil, storeCode: String? = nil, storeId: String? = nil, storeName: String? = nil) {
             self.storeCode = storeCode
 
+            self.invoice = invoice
+
+            self.data = data
+
             self.storeId = storeId
 
             self.label = label
 
-            self.invoiceStatus = invoiceStatus
+            self.doInvoiceLabelGenerated = doInvoiceLabelGenerated
+
+            self.batchId = batchId
 
             self.companyId = companyId
 
-            self.data = data
+            self.invoiceStatus = invoiceStatus
 
             self.storeName = storeName
-
-            self.doInvoiceLabelGenerated = doInvoiceLabelGenerated
-
-            self.invoice = invoice
-
-            self.batchId = batchId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -77,6 +77,22 @@ public extension PlatformClient {
 
             do {
                 storeCode = try container.decode(String.self, forKey: .storeCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                invoice = try container.decode([String: Any].self, forKey: .invoice)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                data = try container.decode([String: Any].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,13 +115,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                invoiceStatus = try container.decode(String.self, forKey: .invoiceStatus)
+            doInvoiceLabelGenerated = try container.decode(Bool.self, forKey: .doInvoiceLabelGenerated)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            batchId = try container.decode(String.self, forKey: .batchId)
 
             do {
                 companyId = try container.decode(String.self, forKey: .companyId)
@@ -116,7 +128,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                data = try container.decode([String: Any].self, forKey: .data)
+                invoiceStatus = try container.decode(String.self, forKey: .invoiceStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,18 +142,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            doInvoiceLabelGenerated = try container.decode(Bool.self, forKey: .doInvoiceLabelGenerated)
-
-            do {
-                invoice = try container.decode([String: Any].self, forKey: .invoice)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            batchId = try container.decode(String.self, forKey: .batchId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -149,23 +149,23 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeCode, forKey: .storeCode)
 
+            try? container.encodeIfPresent(invoice, forKey: .invoice)
+
+            try? container.encodeIfPresent(data, forKey: .data)
+
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
             try? container.encodeIfPresent(label, forKey: .label)
 
-            try? container.encodeIfPresent(invoiceStatus, forKey: .invoiceStatus)
+            try? container.encodeIfPresent(doInvoiceLabelGenerated, forKey: .doInvoiceLabelGenerated)
+
+            try? container.encodeIfPresent(batchId, forKey: .batchId)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(invoiceStatus, forKey: .invoiceStatus)
 
             try? container.encodeIfPresent(storeName, forKey: .storeName)
-
-            try? container.encodeIfPresent(doInvoiceLabelGenerated, forKey: .doInvoiceLabelGenerated)
-
-            try? container.encodeIfPresent(invoice, forKey: .invoice)
-
-            try? container.encodeIfPresent(batchId, forKey: .batchId)
         }
     }
 }

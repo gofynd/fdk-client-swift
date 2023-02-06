@@ -8,44 +8,42 @@ public extension PlatformClient {
      */
 
     class TrackingList: Codable {
-        public var status: String
-
         public var text: String
 
         public var isCurrent: Bool?
 
         public var isPassed: Bool?
 
+        public var status: String
+
         public var time: String?
 
         public enum CodingKeys: String, CodingKey {
-            case status
-
             case text
 
             case isCurrent = "is_current"
 
             case isPassed = "is_passed"
 
+            case status
+
             case time
         }
 
         public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
-            self.status = status
-
             self.text = text
 
             self.isCurrent = isCurrent
 
             self.isPassed = isPassed
 
+            self.status = status
+
             self.time = time
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            status = try container.decode(String.self, forKey: .status)
 
             text = try container.decode(String.self, forKey: .text)
 
@@ -65,6 +63,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            status = try container.decode(String.self, forKey: .status)
+
             do {
                 time = try container.decode(String.self, forKey: .time)
 
@@ -77,13 +77,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
 
             try? container.encodeIfPresent(isPassed, forKey: .isPassed)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(time, forKey: .time)
         }
