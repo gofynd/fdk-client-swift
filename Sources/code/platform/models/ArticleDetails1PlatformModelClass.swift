@@ -12,30 +12,30 @@ public extension PlatformClient {
 
         public var quantity: Int
 
-        public var weight: [String: Any]
+        public var category: [String: Any]
 
         public var brandId: Int
 
-        public var dimension: [String: Any]
-
-        public var category: [String: Any]
+        public var weight: [String: Any]
 
         public var attributes: [String: Any]
+
+        public var dimension: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case id = "_id"
 
             case quantity
 
-            case weight
+            case category
 
             case brandId = "brand_id"
 
-            case dimension
-
-            case category
+            case weight
 
             case attributes
+
+            case dimension
         }
 
         public init(attributes: [String: Any], brandId: Int, category: [String: Any], dimension: [String: Any], quantity: Int, weight: [String: Any], id: String) {
@@ -43,15 +43,15 @@ public extension PlatformClient {
 
             self.quantity = quantity
 
-            self.weight = weight
+            self.category = category
 
             self.brandId = brandId
 
-            self.dimension = dimension
-
-            self.category = category
+            self.weight = weight
 
             self.attributes = attributes
+
+            self.dimension = dimension
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,15 +61,15 @@ public extension PlatformClient {
 
             quantity = try container.decode(Int.self, forKey: .quantity)
 
-            weight = try container.decode([String: Any].self, forKey: .weight)
+            category = try container.decode([String: Any].self, forKey: .category)
 
             brandId = try container.decode(Int.self, forKey: .brandId)
 
-            dimension = try container.decode([String: Any].self, forKey: .dimension)
-
-            category = try container.decode([String: Any].self, forKey: .category)
+            weight = try container.decode([String: Any].self, forKey: .weight)
 
             attributes = try container.decode([String: Any].self, forKey: .attributes)
+
+            dimension = try container.decode([String: Any].self, forKey: .dimension)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -79,15 +79,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(weight, forKey: .weight)
+            try? container.encodeIfPresent(category, forKey: .category)
 
             try? container.encodeIfPresent(brandId, forKey: .brandId)
 
-            try? container.encodeIfPresent(dimension, forKey: .dimension)
-
-            try? container.encodeIfPresent(category, forKey: .category)
+            try? container.encodeIfPresent(weight, forKey: .weight)
 
             try? container.encodeIfPresent(attributes, forKey: .attributes)
+
+            try? container.encodeIfPresent(dimension, forKey: .dimension)
         }
     }
 }

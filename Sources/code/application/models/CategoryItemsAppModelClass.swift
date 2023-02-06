@@ -7,26 +7,26 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class CategoryItems: Codable {
-        public var name: String
-
-        public var childs: [Child]?
-
         public var slug: String
 
         public var action: ProductListingAction
+
+        public var childs: [Child]?
+
+        public var name: String
 
         public var uid: Int
 
         public var banners: CategoryBanner
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
-            case childs
-
             case slug
 
             case action
+
+            case childs
+
+            case name
 
             case uid
 
@@ -34,13 +34,13 @@ public extension ApplicationClient {
         }
 
         public init(action: ProductListingAction, banners: CategoryBanner, childs: [Child]? = nil, name: String, slug: String, uid: Int) {
-            self.name = name
-
-            self.childs = childs
-
             self.slug = slug
 
             self.action = action
+
+            self.childs = childs
+
+            self.name = name
 
             self.uid = uid
 
@@ -50,7 +50,9 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            name = try container.decode(String.self, forKey: .name)
+            slug = try container.decode(String.self, forKey: .slug)
+
+            action = try container.decode(ProductListingAction.self, forKey: .action)
 
             do {
                 childs = try container.decode([Child].self, forKey: .childs)
@@ -60,9 +62,7 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            slug = try container.decode(String.self, forKey: .slug)
-
-            action = try container.decode(ProductListingAction.self, forKey: .action)
+            name = try container.decode(String.self, forKey: .name)
 
             uid = try container.decode(Int.self, forKey: .uid)
 
@@ -72,13 +72,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(childs, forKey: .childs)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(childs, forKey: .childs)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 

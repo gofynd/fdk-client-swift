@@ -10,24 +10,24 @@ public extension PlatformClient {
     class CreateChannelPaymentInfo: Codable {
         public var paymentMethods: [PaymentMethods]?
 
-        public var modeOfPayment: String?
-
         public var source: String?
+
+        public var modeOfPayment: String?
 
         public enum CodingKeys: String, CodingKey {
             case paymentMethods = "payment_methods"
 
-            case modeOfPayment = "mode_of_payment"
-
             case source
+
+            case modeOfPayment = "mode_of_payment"
         }
 
         public init(modeOfPayment: String? = nil, paymentMethods: [PaymentMethods]? = nil, source: String? = nil) {
             self.paymentMethods = paymentMethods
 
-            self.modeOfPayment = modeOfPayment
-
             self.source = source
+
+            self.modeOfPayment = modeOfPayment
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
+                source = try container.decode(String.self, forKey: .source)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                source = try container.decode(String.self, forKey: .source)
+                modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
 
-            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
-
             try? container.encodeIfPresent(source, forKey: .source)
+
+            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
         }
     }
 }

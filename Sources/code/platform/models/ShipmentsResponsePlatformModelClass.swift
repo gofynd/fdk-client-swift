@@ -10,11 +10,11 @@ public extension PlatformClient {
     class ShipmentsResponse: Codable {
         public var status: Int?
 
-        public var meta: [String: Any]?
-
         public var code: String?
 
         public var stackTrace: String?
+
+        public var exception: String?
 
         public var message: String?
 
@@ -22,16 +22,16 @@ public extension PlatformClient {
 
         public var identifier: String?
 
-        public var exception: String?
+        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case meta
-
             case code
 
             case stackTrace = "stack_trace"
+
+            case exception
 
             case message
 
@@ -39,17 +39,17 @@ public extension PlatformClient {
 
             case identifier
 
-            case exception
+            case meta
         }
 
         public init(code: String? = nil, exception: String? = nil, finalState: [String: Any]? = nil, identifier: String? = nil, message: String? = nil, meta: [String: Any]? = nil, stackTrace: String? = nil, status: Int? = nil) {
             self.status = status
 
-            self.meta = meta
-
             self.code = code
 
             self.stackTrace = stackTrace
+
+            self.exception = exception
 
             self.message = message
 
@@ -57,7 +57,7 @@ public extension PlatformClient {
 
             self.identifier = identifier
 
-            self.exception = exception
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,14 +65,6 @@ public extension PlatformClient {
 
             do {
                 status = try container.decode(Int.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,6 +81,14 @@ public extension PlatformClient {
 
             do {
                 stackTrace = try container.decode(String.self, forKey: .stackTrace)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                exception = try container.decode(String.self, forKey: .exception)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                exception = try container.decode(String.self, forKey: .exception)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,11 +133,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
+
+            try? container.encodeIfPresent(exception, forKey: .exception)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
@@ -145,7 +145,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(exception, forKey: .exception)
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

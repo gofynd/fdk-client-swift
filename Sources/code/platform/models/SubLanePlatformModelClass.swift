@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var totalItems: Int?
 
-        public var value: String?
-
         public var actions: [[String: Any]]?
+
+        public var value: String?
 
         public var index: Int?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case totalItems = "total_items"
 
-            case value
-
             case actions
+
+            case value
 
             case index
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.totalItems = totalItems
 
-            self.value = value
-
             self.actions = actions
+
+            self.value = value
 
             self.index = index
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                actions = try container.decode([[String: Any]].self, forKey: .actions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                actions = try container.decode([[String: Any]].self, forKey: .actions)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(totalItems, forKey: .totalItems)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(actions, forKey: .actions)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(index, forKey: .index)
         }
