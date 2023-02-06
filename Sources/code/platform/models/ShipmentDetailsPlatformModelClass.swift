@@ -4,120 +4,108 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: ShipmentDetails
-         Used By: DocumentEngine
+         Used By: OrderManage
      */
 
     class ShipmentDetails: Codable {
-        public var shipmentNo: String
+        public var affiliateShipmentId: String
 
-        public var appointmentNo: String
+        public var shipments: Int
 
-        public var totalSku: String
+        public var meta: [String: Any]?
 
-        public var itemQty: String
+        public var fulfillmentId: Int
 
-        public var noOfBoxes: String
+        public var boxType: String?
 
-        public var shippingTo: String
+        public var articles: [ArticleDetails]
 
-        public var sellerName: String
-
-        public var gstinNumber: String
-
-        public var shippingAddress: ShippingToAddress
-
-        public var sellerAddress: SellerAddress
+        public var dpId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case shipmentNo = "shipment_no"
+            case affiliateShipmentId = "affiliate_shipment_id"
 
-            case appointmentNo = "appointment_no"
+            case shipments
 
-            case totalSku = "total_sku"
+            case meta
 
-            case itemQty = "item_qty"
+            case fulfillmentId = "fulfillment_id"
 
-            case noOfBoxes = "no_of_boxes"
+            case boxType = "box_type"
 
-            case shippingTo = "shipping_to"
+            case articles
 
-            case sellerName = "seller_name"
-
-            case gstinNumber = "gstin_number"
-
-            case shippingAddress = "shipping_address"
-
-            case sellerAddress = "seller_address"
+            case dpId = "dp_id"
         }
 
-        public init(appointmentNo: String, gstinNumber: String, itemQty: String, noOfBoxes: String, sellerAddress: SellerAddress, sellerName: String, shipmentNo: String, shippingAddress: ShippingToAddress, shippingTo: String, totalSku: String) {
-            self.shipmentNo = shipmentNo
+        public init(affiliateShipmentId: String, articles: [ArticleDetails], boxType: String? = nil, dpId: Int? = nil, fulfillmentId: Int, meta: [String: Any]? = nil, shipments: Int) {
+            self.affiliateShipmentId = affiliateShipmentId
 
-            self.appointmentNo = appointmentNo
+            self.shipments = shipments
 
-            self.totalSku = totalSku
+            self.meta = meta
 
-            self.itemQty = itemQty
+            self.fulfillmentId = fulfillmentId
 
-            self.noOfBoxes = noOfBoxes
+            self.boxType = boxType
 
-            self.shippingTo = shippingTo
+            self.articles = articles
 
-            self.sellerName = sellerName
-
-            self.gstinNumber = gstinNumber
-
-            self.shippingAddress = shippingAddress
-
-            self.sellerAddress = sellerAddress
+            self.dpId = dpId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            shipmentNo = try container.decode(String.self, forKey: .shipmentNo)
+            affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
 
-            appointmentNo = try container.decode(String.self, forKey: .appointmentNo)
+            shipments = try container.decode(Int.self, forKey: .shipments)
 
-            totalSku = try container.decode(String.self, forKey: .totalSku)
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
-            itemQty = try container.decode(String.self, forKey: .itemQty)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            noOfBoxes = try container.decode(String.self, forKey: .noOfBoxes)
+            fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
 
-            shippingTo = try container.decode(String.self, forKey: .shippingTo)
+            do {
+                boxType = try container.decode(String.self, forKey: .boxType)
 
-            sellerName = try container.decode(String.self, forKey: .sellerName)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            gstinNumber = try container.decode(String.self, forKey: .gstinNumber)
+            articles = try container.decode([ArticleDetails].self, forKey: .articles)
 
-            shippingAddress = try container.decode(ShippingToAddress.self, forKey: .shippingAddress)
+            do {
+                dpId = try container.decode(Int.self, forKey: .dpId)
 
-            sellerAddress = try container.decode(SellerAddress.self, forKey: .sellerAddress)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shipmentNo, forKey: .shipmentNo)
+            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
 
-            try? container.encodeIfPresent(appointmentNo, forKey: .appointmentNo)
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
 
-            try? container.encodeIfPresent(totalSku, forKey: .totalSku)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(itemQty, forKey: .itemQty)
+            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
 
-            try? container.encodeIfPresent(noOfBoxes, forKey: .noOfBoxes)
+            try? container.encode(boxType, forKey: .boxType)
 
-            try? container.encodeIfPresent(shippingTo, forKey: .shippingTo)
+            try? container.encodeIfPresent(articles, forKey: .articles)
 
-            try? container.encodeIfPresent(sellerName, forKey: .sellerName)
-
-            try? container.encodeIfPresent(gstinNumber, forKey: .gstinNumber)
-
-            try? container.encodeIfPresent(shippingAddress, forKey: .shippingAddress)
-
-            try? container.encodeIfPresent(sellerAddress, forKey: .sellerAddress)
+            try? container.encode(dpId, forKey: .dpId)
         }
     }
 }

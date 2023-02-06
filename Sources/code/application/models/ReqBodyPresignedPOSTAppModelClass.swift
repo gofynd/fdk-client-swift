@@ -11,16 +11,22 @@ public extension ApplicationClient {
 
         public var mediaType: [[String: Any]]
 
+        public var expiresIn: Int?
+
         public enum CodingKeys: String, CodingKey {
             case event
 
             case mediaType = "media_type"
+
+            case expiresIn = "expires_in"
         }
 
-        public init(event: String, mediaType: [[String: Any]]) {
+        public init(event: String, expiresIn: Int? = nil, mediaType: [[String: Any]]) {
             self.event = event
 
             self.mediaType = mediaType
+
+            self.expiresIn = expiresIn
         }
 
         required public init(from decoder: Decoder) throws {
@@ -29,6 +35,14 @@ public extension ApplicationClient {
             event = try container.decode(String.self, forKey: .event)
 
             mediaType = try container.decode([[String: Any]].self, forKey: .mediaType)
+
+            do {
+                expiresIn = try container.decode(Int.self, forKey: .expiresIn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -37,6 +51,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(event, forKey: .event)
 
             try? container.encodeIfPresent(mediaType, forKey: .mediaType)
+
+            try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
         }
     }
 }

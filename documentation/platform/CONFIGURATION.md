@@ -2736,21 +2736,24 @@ Success
       "verified": true,
       "name": "uniket.hostx0.de",
       "is_primary": true,
-      "is_shortlink": false
+      "is_shortlink": false,
+      "is_predefined": true
     },
     {
       "verified": true,
       "is_primary": false,
       "is_shortlink": true,
       "_id": "5f0858c5f86e00cd42dccc8d",
-      "name": "jd.hostx0.de"
+      "name": "jd.hostx0.de",
+      "is_predefined": true
     },
     {
       "verified": true,
       "is_primary": false,
       "is_shortlink": false,
       "_id": "6048497e87f5730423149190",
-      "name": "testdm.hostx0.de"
+      "name": "testdm.hostx0.de",
+      "is_predefined": true
     }
   ]
 }
@@ -4909,6 +4912,7 @@ Success
  | minCartValue | Double? |  yes  |  |
  | bulkCoupons | Bool? |  yes  |  |
  | revenueEngineCoupon | Bool? |  yes  |  |
+ | emptyCart | Bool? |  yes  | Enable/disable to allow adding cart items added before login to user's cart once user is logged in |
 
 ---
 
@@ -6571,6 +6575,7 @@ Success
  | isShortlink | Bool? |  yes  |  |
  | id | String? |  yes  |  |
  | name | String? |  yes  |  |
+ | isPredefined | Bool? |  yes  | Domain is hosting domain or not. |
 
 ---
 

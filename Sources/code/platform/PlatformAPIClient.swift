@@ -25,6 +25,8 @@ public enum PlatformAPIClient {
                 if let currency = config.currency {
                     finalHeaders.append((key: "x-currency-code", value: currency))
                 }
+                // CustomServerTrustManager.enableSSLPinning = config.enableSSLPinning
+                // CustomServerTrustManager.host.insert(URL(string: url)?.host ?? "")
 
                 AlmofireHelper.request(config.domain.appendAsPath(url),
                                        query: query,
