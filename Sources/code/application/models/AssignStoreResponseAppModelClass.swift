@@ -7,94 +7,110 @@ public extension ApplicationClient {
          Used By: Logistic
      */
     class AssignStoreResponse: Codable {
-        public var pageSize: Int
-
-        public var assignedStores: [[String: Any]]
-
-        public var articles: [[String: Any]]?
-
-        public var toPincode: String
-
-        public var pystormbreakerUuid: String
-
-        public var company: [String: Any]
-
         public var article: [String: Any]
 
         public var success: Bool
 
-        public var customerDetails: [String: Any]
+        public var pageSize: Int
 
-        public var error: [String: Any]
+        public var toPincode: String
+
+        public var company: [String: Any]
+
+        public var assignedStores: [[String: Any]]
 
         public var pageNo: Int
 
-        public var store: [String: Any]
-
         public var items: [String: Any]
 
+        public var pystormbreakerUuid: String
+
+        public var customerDetails: [String: Any]
+
+        public var articles: [[String: Any]]?
+
+        public var store: [String: Any]
+
+        public var error: [String: Any]
+
         public enum CodingKeys: String, CodingKey {
-            case pageSize = "page_size"
-
-            case assignedStores = "assigned_stores"
-
-            case articles
-
-            case toPincode = "to_pincode"
-
-            case pystormbreakerUuid = "pystormbreaker_uuid"
-
-            case company
-
             case article
 
             case success
 
-            case customerDetails = "customer_details"
+            case pageSize = "page_size"
 
-            case error
+            case toPincode = "to_pincode"
+
+            case company
+
+            case assignedStores = "assigned_stores"
 
             case pageNo = "page_no"
 
+            case items
+
+            case pystormbreakerUuid = "pystormbreaker_uuid"
+
+            case customerDetails = "customer_details"
+
+            case articles
+
             case store
 
-            case items
+            case error
         }
 
         public init(article: [String: Any], articles: [[String: Any]]? = nil, assignedStores: [[String: Any]], company: [String: Any], customerDetails: [String: Any], error: [String: Any], items: [String: Any], pageNo: Int, pageSize: Int, pystormbreakerUuid: String, store: [String: Any], success: Bool, toPincode: String) {
-            self.pageSize = pageSize
-
-            self.assignedStores = assignedStores
-
-            self.articles = articles
-
-            self.toPincode = toPincode
-
-            self.pystormbreakerUuid = pystormbreakerUuid
-
-            self.company = company
-
             self.article = article
 
             self.success = success
 
-            self.customerDetails = customerDetails
+            self.pageSize = pageSize
 
-            self.error = error
+            self.toPincode = toPincode
+
+            self.company = company
+
+            self.assignedStores = assignedStores
 
             self.pageNo = pageNo
 
+            self.items = items
+
+            self.pystormbreakerUuid = pystormbreakerUuid
+
+            self.customerDetails = customerDetails
+
+            self.articles = articles
+
             self.store = store
 
-            self.items = items
+            self.error = error
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            article = try container.decode([String: Any].self, forKey: .article)
+
+            success = try container.decode(Bool.self, forKey: .success)
+
             pageSize = try container.decode(Int.self, forKey: .pageSize)
 
+            toPincode = try container.decode(String.self, forKey: .toPincode)
+
+            company = try container.decode([String: Any].self, forKey: .company)
+
             assignedStores = try container.decode([[String: Any]].self, forKey: .assignedStores)
+
+            pageNo = try container.decode(Int.self, forKey: .pageNo)
+
+            items = try container.decode([String: Any].self, forKey: .items)
+
+            pystormbreakerUuid = try container.decode(String.self, forKey: .pystormbreakerUuid)
+
+            customerDetails = try container.decode([String: Any].self, forKey: .customerDetails)
 
             do {
                 articles = try container.decode([[String: Any]].self, forKey: .articles)
@@ -104,55 +120,39 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            toPincode = try container.decode(String.self, forKey: .toPincode)
-
-            pystormbreakerUuid = try container.decode(String.self, forKey: .pystormbreakerUuid)
-
-            company = try container.decode([String: Any].self, forKey: .company)
-
-            article = try container.decode([String: Any].self, forKey: .article)
-
-            success = try container.decode(Bool.self, forKey: .success)
-
-            customerDetails = try container.decode([String: Any].self, forKey: .customerDetails)
-
-            error = try container.decode([String: Any].self, forKey: .error)
-
-            pageNo = try container.decode(Int.self, forKey: .pageNo)
-
             store = try container.decode([String: Any].self, forKey: .store)
 
-            items = try container.decode([String: Any].self, forKey: .items)
+            error = try container.decode([String: Any].self, forKey: .error)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(pageSize, forKey: .pageSize)
-
-            try? container.encodeIfPresent(assignedStores, forKey: .assignedStores)
-
-            try? container.encodeIfPresent(articles, forKey: .articles)
-
-            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
-
-            try? container.encodeIfPresent(pystormbreakerUuid, forKey: .pystormbreakerUuid)
-
-            try? container.encodeIfPresent(company, forKey: .company)
-
             try? container.encodeIfPresent(article, forKey: .article)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(customerDetails, forKey: .customerDetails)
+            try? container.encodeIfPresent(pageSize, forKey: .pageSize)
 
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
+
+            try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(assignedStores, forKey: .assignedStores)
 
             try? container.encodeIfPresent(pageNo, forKey: .pageNo)
 
+            try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(pystormbreakerUuid, forKey: .pystormbreakerUuid)
+
+            try? container.encodeIfPresent(customerDetails, forKey: .customerDetails)
+
+            try? container.encodeIfPresent(articles, forKey: .articles)
+
             try? container.encodeIfPresent(store, forKey: .store)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(error, forKey: .error)
         }
     }
 }

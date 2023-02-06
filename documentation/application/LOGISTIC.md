@@ -9,7 +9,8 @@ Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logist
 * [getPincodeCity](#getpincodecity)
 * [getTatProduct](#gettatproduct)
 * [getPincodeZones](#getpincodezones)
-* [upsertZoneControllerView](#upsertzonecontrollerview)
+* [assignLocations](#assignlocations)
+* [getLocationDetails](#getlocationdetails)
 
 
 
@@ -370,14 +371,14 @@ Response status_code
 ---
 
 
-#### upsertZoneControllerView
+#### assignLocations
 GET zone from the Pincode.
 
 
 
 
 ```swift
-client.application("<APPLICATION_ID>").logistic.upsertZoneControllerView(body: body) { (response, error) in
+logistic.assignLocations(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -424,6 +425,112 @@ Response status_code
 ---
 
 
+#### getLocationDetails
+Get Location Details API
+
+
+
+
+```swift
+logistic.getLocationDetails(pincode: pincode) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pincode | String | yes | A `pincode` contains a specific address of a location. |  
+
+
+
+Get location data
+
+*Returned Response:*
+
+
+
+
+[LocationApiResponse](#LocationApiResponse)
+
+Get location data
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Location data found</i></summary>
+
+```json
+{
+  "value": {
+    "data": {
+      "sub_type": "pincode",
+      "name": "110115",
+      "city": "DELHI",
+      "country": "INDIA",
+      "pincode": "110115",
+      "location": {
+        "longitude": "",
+        "latitude": ""
+      }
+    },
+    "error": {
+      "type": null,
+      "value": null,
+      "message": null
+    },
+    "success": true,
+    "request_uuid": null,
+    "stormbreaker_uuid": "064900a7-12a6-44a4-8a1e-9a5c3ca740ad"
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Pincode not found</i></summary>
+
+```json
+{
+  "value": {
+    "data": {
+      "sub_type": "pincode",
+      "name": "999999"
+    },
+    "error": {
+      "type": "DoesNotExist",
+      "value": "999999",
+      "message": "pincode 999999 does not exist"
+    },
+    "success": false,
+    "request_uuid": null,
+    "stormbreaker_uuid": "b7145d6b-609b-4058-bb97-ca3da259090b"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -433,9 +540,21 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | String? |  yes  |  |
  | message | String? |  yes  |  |
+ | value | String? |  yes  |  |
  | type | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMetaResponse](#PincodeMetaResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | zone | String? |  yes  |  |
+ | internalZoneId | Int? |  yes  |  |
 
 ---
 
@@ -447,21 +566,9 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | uid | String? |  yes  |  |
- | subType | String? |  yes  |  |
- | displayName | String? |  yes  |  |
  | name | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [PincodeMetaResponse](#PincodeMetaResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | internalZoneId | Int? |  yes  |  |
- | zone | String? |  yes  |  |
+ | displayName | String? |  yes  |  |
+ | subType | String? |  yes  |  |
 
 ---
 
@@ -472,13 +579,13 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  no  |  |
+ | displayName | String? |  yes  |  |
+ | meta | [PincodeMetaResponse](#PincodeMetaResponse)? |  yes  |  |
  | uid | String? |  yes  |  |
  | parents | [[PincodeParentsResponse](#PincodeParentsResponse)]? |  yes  |  |
- | meta | [PincodeMetaResponse](#PincodeMetaResponse)? |  yes  |  |
  | subType | String? |  yes  |  |
- | displayName | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  no  |  |
 
 ---
 
@@ -489,9 +596,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  no  |  |
  | success | Bool |  no  |  |
  | data | [[PincodeDataResponse](#PincodeDataResponse)]? |  yes  |  |
- | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  no  |  |
 
 ---
 
@@ -502,8 +609,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | level | String? |  yes  |  |
  | id | Int? |  yes  |  |
+ | level | String? |  yes  |  |
 
 ---
 
@@ -527,9 +634,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fulfillmentId | Int? |  yes  |  |
  | fromPincode | String? |  yes  |  |
  | articles | [[TATArticlesRequest](#TATArticlesRequest)]? |  yes  |  |
+ | fulfillmentId | Int? |  yes  |  |
 
 ---
 
@@ -540,13 +647,26 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | journey | String? |  yes  |  |
- | paymentMode | String? |  yes  |  |
- | source | String? |  yes  |  |
- | toPincode | String? |  yes  |  |
  | action | String? |  yes  |  |
- | identifier | String? |  yes  |  |
+ | toPincode | String? |  yes  |  |
+ | source | String? |  yes  |  |
+ | paymentMode | String? |  yes  |  |
+ | journey | String? |  yes  |  |
  | locationDetails | [[TATLocationDetailsRequest](#TATLocationDetailsRequest)]? |  yes  |  |
+ | identifier | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TATErrorSchemaResponse](#TATErrorSchemaResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | value | String? |  yes  |  |
+ | type | String? |  yes  |  |
 
 ---
 
@@ -557,8 +677,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | Int? |  yes  |  |
  | min | Int? |  yes  |  |
+ | max | Int? |  yes  |  |
 
 ---
 
@@ -569,8 +689,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | String? |  yes  |  |
  | min | String? |  yes  |  |
+ | max | String? |  yes  |  |
 
 ---
 
@@ -589,30 +709,17 @@ Response status_code
 
  
  
- #### [TATErrorSchemaResponse](#TATErrorSchemaResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | String? |  yes  |  |
- | message | String? |  yes  |  |
- | type | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [TATArticlesResponse](#TATArticlesResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | manufacturingTime | Int? |  yes  |  |
- | manufacturingTimeSeconds | Int? |  yes  |  |
- | isCodAvailable | Bool? |  yes  |  |
- | promise | [TATPromiseResponse](#TATPromiseResponse)? |  yes  |  |
- | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse)? |  yes  |  |
- | manufacturingTimeUnit | String? |  yes  |  |
  | category | [TATCategoryRequest](#TATCategoryRequest)? |  yes  |  |
+ | manufacturingTimeUnit | String? |  yes  |  |
+ | isCodAvailable | Bool? |  yes  |  |
+ | manufacturingTimeSeconds | Int? |  yes  |  |
+ | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse)? |  yes  |  |
+ | manufacturingTime | Int? |  yes  |  |
+ | promise | [TATPromiseResponse](#TATPromiseResponse)? |  yes  |  |
 
 ---
 
@@ -623,9 +730,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fulfillmentId | Int? |  yes  |  |
  | fromPincode | String? |  yes  |  |
  | articles | [[TATArticlesResponse](#TATArticlesResponse)]? |  yes  |  |
+ | fulfillmentId | Int? |  yes  |  |
 
 ---
 
@@ -636,19 +743,19 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+ | action | String? |  yes  |  |
+ | toPincode | String? |  yes  |  |
+ | toCity | String? |  yes  |  |
+ | requestUuid | String? |  yes  |  |
+ | source | String? |  yes  |  |
+ | isCodAvailable | Bool? |  yes  |  |
+ | paymentMode | String? |  yes  |  |
  | stormbreakerUuid | String? |  yes  |  |
  | journey | String? |  yes  |  |
- | paymentMode | String? |  yes  |  |
- | source | String? |  yes  |  |
- | toPincode | String? |  yes  |  |
- | action | String? |  yes  |  |
- | toCity | String? |  yes  |  |
- | identifier | String? |  yes  |  |
- | success | Bool? |  yes  |  |
  | locationDetails | [[TATLocationDetailsResponse](#TATLocationDetailsResponse)]? |  yes  |  |
+ | identifier | String? |  yes  |  |
  | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse)? |  yes  |  |
- | requestUuid | String? |  yes  |  |
- | isCodAvailable | Bool? |  yes  |  |
 
 ---
 
@@ -659,8 +766,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | String |  no  |  |
  | country | String |  no  |  |
+ | pincode | String |  no  |  |
 
 ---
 
@@ -671,8 +778,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | zones | [String] |  no  |  |
  | serviceabilityType | String |  no  |  |
+ | zones | [String] |  no  |  |
 
 ---
 
@@ -683,15 +790,15 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pageSize | Int |  no  |  |
- | articles | [[String: Any]] |  no  |  |
- | toPincode | String |  no  |  |
  | applicationConfig | [String: Any] |  no  |  |
- | identifier | String |  no  |  |
+ | pageSize | Int |  no  |  |
+ | toPincode | String |  no  |  |
  | extensionConfig | [String: Any] |  no  |  |
- | customerDetails | [String: Any] |  no  |  |
  | pageNo | Int |  no  |  |
  | items | [String: Any] |  no  |  |
+ | identifier | String |  no  |  |
+ | customerDetails | [String: Any] |  no  |  |
+ | articles | [[String: Any]] |  no  |  |
 
 ---
 
@@ -702,19 +809,58 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pageSize | Int |  no  |  |
- | assignedStores | [[String: Any]] |  no  |  |
- | articles | [[String: Any]]? |  yes  |  |
- | toPincode | String |  no  |  |
- | pystormbreakerUuid | String |  no  |  |
- | company | [String: Any] |  no  |  |
  | article | [String: Any] |  no  |  |
  | success | Bool |  no  |  |
- | customerDetails | [String: Any] |  no  |  |
- | error | [String: Any] |  no  |  |
+ | pageSize | Int |  no  |  |
+ | toPincode | String |  no  |  |
+ | company | [String: Any] |  no  |  |
+ | assignedStores | [[String: Any]] |  no  |  |
  | pageNo | Int |  no  |  |
- | store | [String: Any] |  no  |  |
  | items | [String: Any] |  no  |  |
+ | pystormbreakerUuid | String |  no  |  |
+ | customerDetails | [String: Any] |  no  |  |
+ | articles | [[String: Any]]? |  yes  |  |
+ | store | [String: Any] |  no  |  |
+ | error | [String: Any] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationDetailResponse](#LocationDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | longitude | String? |  yes  |  |
+ | latitude | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationDataResponse](#LocationDataResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | location | [LocationDetailResponse](#LocationDetailResponse)? |  yes  |  |
+ | country | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | city | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationApiResponse](#LocationApiResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  no  |  |
+ | success | Bool |  no  |  |
+ | data | [LocationDataResponse](#LocationDataResponse) |  no  |  |
 
 ---
 

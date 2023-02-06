@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var forceTransition: Bool?
 
-        public var statuses: [StatuesRequest]?
-
         public var task: Bool?
+
+        public var statuses: [StatuesRequest]?
 
         public var lockAfterTransition: Bool?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case forceTransition = "force_transition"
 
-            case statuses
-
             case task
+
+            case statuses
 
             case lockAfterTransition = "lock_after_transition"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.forceTransition = forceTransition
 
-            self.statuses = statuses
-
             self.task = task
+
+            self.statuses = statuses
 
             self.lockAfterTransition = lockAfterTransition
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
+                task = try container.decode(Bool.self, forKey: .task)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                task = try container.decode(Bool.self, forKey: .task)
+                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
 
-            try? container.encodeIfPresent(statuses, forKey: .statuses)
-
             try? container.encodeIfPresent(task, forKey: .task)
+
+            try? container.encodeIfPresent(statuses, forKey: .statuses)
 
             try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
         }

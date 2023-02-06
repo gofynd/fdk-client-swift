@@ -12,26 +12,26 @@ public extension PlatformClient {
 
         public var format: String?
 
-        public var mandatory: Bool?
+        public var type: String
 
         public var allowedValues: [String]?
 
-        public var type: String
-
         public var range: AttributeSchemaRange?
+
+        public var mandatory: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case multi
 
             case format
 
-            case mandatory
+            case type
 
             case allowedValues = "allowed_values"
 
-            case type
-
             case range
+
+            case mandatory
         }
 
         public init(allowedValues: [String]? = nil, format: String? = nil, mandatory: Bool? = nil, multi: Bool? = nil, range: AttributeSchemaRange? = nil, type: String) {
@@ -39,13 +39,13 @@ public extension PlatformClient {
 
             self.format = format
 
-            self.mandatory = mandatory
+            self.type = type
 
             self.allowedValues = allowedValues
 
-            self.type = type
-
             self.range = range
+
+            self.mandatory = mandatory
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,13 +67,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                mandatory = try container.decode(Bool.self, forKey: .mandatory)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            type = try container.decode(String.self, forKey: .type)
 
             do {
                 allowedValues = try container.decode([String].self, forKey: .allowedValues)
@@ -83,10 +77,16 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            type = try container.decode(String.self, forKey: .type)
-
             do {
                 range = try container.decode(AttributeSchemaRange.self, forKey: .range)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                mandatory = try container.decode(Bool.self, forKey: .mandatory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,13 +101,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(format, forKey: .format)
 
-            try? container.encodeIfPresent(mandatory, forKey: .mandatory)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(allowedValues, forKey: .allowedValues)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(range, forKey: .range)
+
+            try? container.encodeIfPresent(mandatory, forKey: .mandatory)
         }
     }
 }

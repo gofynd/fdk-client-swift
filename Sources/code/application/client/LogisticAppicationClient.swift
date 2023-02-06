@@ -15,7 +15,9 @@ public extension ApplicationClient {
 
             ulrs["getPincodeZones"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/zones")
 
-            ulrs["upsertZoneControllerView"] = config.domain.appendAsPath("/service/application/logistics/v1.0/assign_stores")
+            ulrs["assignLocations"] = config.domain.appendAsPath("/service/application/logistics/v1.0/assign_stores")
+
+            ulrs["getLocationDetails"] = config.domain.appendAsPath("/service/application/logistics/v1.0/location/{pincode}")
 
             self.relativeUrls = ulrs
         }
@@ -154,17 +156,11 @@ public extension ApplicationClient {
          * Summary: GET zone from the Pincode.
          * Description: This API returns zone from the Pincode View.
          **/
-        public func upsertZoneControllerView(
-            companyId: Int,
-            applicationId: String,
+        public func assignLocations(
             body: AssignStoreRequest,
             onResponse: @escaping (_ response: AssignStoreResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["upsertZoneControllerView"] ?? ""
-
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "company_id" + "}", with: "\(companyId)")
-
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "application_id" + "}", with: "\(applicationId)")
+            let fullUrl = relativeUrls["assignLocations"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -183,6 +179,49 @@ public extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(AssignStoreResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Get Location Details API
+         * Description: Get location data
+         **/
+        public func getLocationDetails(
+            pincode: String,
+
+            onResponse: @escaping (_ response: LocationApiResponse?, _ error: FDKError?) -> Void
+        ) {
+            var fullUrl = relativeUrls["getLocationDetails"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "pincode" + "}", with: "\(pincode)")
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(LocationApiResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

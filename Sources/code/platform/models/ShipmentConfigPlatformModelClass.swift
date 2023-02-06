@@ -10,15 +10,15 @@ public extension PlatformClient {
     class ShipmentConfig: Codable {
         public var locationDetails: LocationDetails?
 
-        public var source: String
+        public var journey: String
 
         public var action: String
 
-        public var paymentMode: String
-
-        public var journey: String
+        public var source: String
 
         public var identifier: String
+
+        public var paymentMode: String
 
         public var toPincode: String
 
@@ -27,15 +27,15 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case locationDetails = "location_details"
 
-            case source
+            case journey
 
             case action
 
-            case paymentMode = "payment_mode"
-
-            case journey
+            case source
 
             case identifier
+
+            case paymentMode = "payment_mode"
 
             case toPincode = "to_pincode"
 
@@ -45,15 +45,15 @@ public extension PlatformClient {
         public init(action: String, identifier: String, journey: String, locationDetails: LocationDetails? = nil, paymentMode: String, shipment: [ShipmentDetails], source: String, toPincode: String) {
             self.locationDetails = locationDetails
 
-            self.source = source
+            self.journey = journey
 
             self.action = action
 
-            self.paymentMode = paymentMode
-
-            self.journey = journey
+            self.source = source
 
             self.identifier = identifier
+
+            self.paymentMode = paymentMode
 
             self.toPincode = toPincode
 
@@ -71,15 +71,15 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            source = try container.decode(String.self, forKey: .source)
+            journey = try container.decode(String.self, forKey: .journey)
 
             action = try container.decode(String.self, forKey: .action)
 
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            journey = try container.decode(String.self, forKey: .journey)
+            source = try container.decode(String.self, forKey: .source)
 
             identifier = try container.decode(String.self, forKey: .identifier)
+
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             toPincode = try container.decode(String.self, forKey: .toPincode)
 
@@ -91,15 +91,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
 
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encodeIfPresent(journey, forKey: .journey)
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-
-            try? container.encodeIfPresent(journey, forKey: .journey)
+            try? container.encodeIfPresent(source, forKey: .source)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 

@@ -10,15 +10,15 @@ public extension PlatformClient {
     class SmsDataPayload: Codable {
         public var phoneNumber: Int
 
-        public var message: String
-
-        public var brandName: String
+        public var amountPaid: Int
 
         public var customerName: String
 
-        public var amountPaid: Int
+        public var brandName: String
 
         public var orderId: String
+
+        public var message: String
 
         public var countryCode: String
 
@@ -29,15 +29,15 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case phoneNumber = "phone_number"
 
-            case message
-
-            case brandName = "brand_name"
+            case amountPaid = "amount_paid"
 
             case customerName = "customer_name"
 
-            case amountPaid = "amount_paid"
+            case brandName = "brand_name"
 
             case orderId = "order_id"
+
+            case message
 
             case countryCode = "country_code"
 
@@ -49,15 +49,15 @@ public extension PlatformClient {
         public init(amountPaid: Int, brandName: String, countryCode: String, customerName: String, message: String, orderId: String, paymentMode: String, phoneNumber: Int, shipmentId: Int) {
             self.phoneNumber = phoneNumber
 
-            self.message = message
-
-            self.brandName = brandName
+            self.amountPaid = amountPaid
 
             self.customerName = customerName
 
-            self.amountPaid = amountPaid
+            self.brandName = brandName
 
             self.orderId = orderId
+
+            self.message = message
 
             self.countryCode = countryCode
 
@@ -71,15 +71,15 @@ public extension PlatformClient {
 
             phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
 
-            message = try container.decode(String.self, forKey: .message)
-
-            brandName = try container.decode(String.self, forKey: .brandName)
+            amountPaid = try container.decode(Int.self, forKey: .amountPaid)
 
             customerName = try container.decode(String.self, forKey: .customerName)
 
-            amountPaid = try container.decode(Int.self, forKey: .amountPaid)
+            brandName = try container.decode(String.self, forKey: .brandName)
 
             orderId = try container.decode(String.self, forKey: .orderId)
+
+            message = try container.decode(String.self, forKey: .message)
 
             countryCode = try container.decode(String.self, forKey: .countryCode)
 
@@ -93,15 +93,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
-            try? container.encodeIfPresent(brandName, forKey: .brandName)
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
 
             try? container.encodeIfPresent(customerName, forKey: .customerName)
 
-            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
