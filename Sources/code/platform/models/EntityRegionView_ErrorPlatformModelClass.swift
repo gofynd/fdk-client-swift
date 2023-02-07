@@ -3,25 +3,31 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: RemoveProxyResponse
-         Used By: Partner
+         Model: EntityRegionView_Error
+         Used By: Logistic
      */
 
-    class RemoveProxyResponse: Codable {
+    class EntityRegionView_Error: Codable {
         public var message: String?
 
-        public var data: [String: Any]?
+        public var value: String?
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
-            case data
+            case value
+
+            case type
         }
 
-        public init(data: [String: Any]? = nil, message: String? = nil) {
+        public init(message: String? = nil, type: String? = nil, value: String? = nil) {
             self.message = message
 
-            self.data = data
+            self.value = value
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,7 +42,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                data = try container.decode([String: Any].self, forKey: .data)
+                value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

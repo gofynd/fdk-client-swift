@@ -35,6 +35,8 @@ public class PlatformClient {
 
     public let auditTrail: AuditTrail
 
+    public let logistic: Logistic
+
     public init(config: PlatformConfig) {
         self.config = config
 
@@ -67,6 +69,8 @@ public class PlatformClient {
         webhook = Webhook(config: config)
 
         auditTrail = AuditTrail(config: config)
+
+        logistic = Logistic(config: config)
     }
 
     public func applicationClient(id: String) -> ApplicationClient {
@@ -106,7 +110,7 @@ public class PlatformClient {
 
         public let analytics: Analytics
 
-        public let partner: Partner
+        public let logistic: Logistic
 
         public init(applicationId: String, config: PlatformConfig) {
             self.config = config
@@ -141,7 +145,7 @@ public class PlatformClient {
 
             analytics = Analytics(config: config, applicationId: applicationId)
 
-            partner = Partner(config: config, applicationId: applicationId)
+            logistic = Logistic(config: config, applicationId: applicationId)
         }
 
         public class Lead {
@@ -13790,7 +13794,7 @@ public class PlatformClient {
              * Summary: Get all transactions of reward points
              * Description: Use this API to get a list of points transactions.
              **/
-            public func getPointsHistory(
+            public func getUserPointsHistory(
                 userId: String,
                 pageId: String?,
                 pageSize: Int?,
@@ -13838,10 +13842,10 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: get paginator for getPointsHistory
+             * Summary: get paginator for getUserPointsHistory
              * Description: fetch the next page by calling .next(...) function
              **/
-            public func getPointsHistoryPaginator(
+            public func getUserPointsHistoryPaginator(
                 userId: String,
                 pageSize: Int?
 
@@ -13849,7 +13853,7 @@ public class PlatformClient {
                 let pageSize = pageSize ?? 20
                 let paginator = Paginator<HistoryRes>(pageSize: pageSize, type: "cursor")
                 paginator.onPage = {
-                    self.getPointsHistory(
+                    self.getUserPointsHistory(
                         userId: userId,
                         pageId: paginator.pageId,
 
@@ -14235,7 +14239,7 @@ public class PlatformClient {
             }
         }
 
-        public class Partner {
+        public class Logistic {
             var config: PlatformConfig
             var companyId: String
             var applicationId: String
@@ -14248,20 +14252,18 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Create proxy URL for the external URL
-             * Description: Use this API to generate proxy URL for the external URL
+             * Summary: Zone configuration of application.
+             * Description: This API returns serviceability config of the application.
              **/
-            public func addProxyPath(
-                extensionId: String,
-                body: AddProxyReq,
-                onResponse: @escaping (_ response: AddProxyResponse?, _ error: FDKError?) -> Void
+            public func getApplicationServiceability(
+                onResponse: @escaping (_ response: ApplicationServiceabilityConfigResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "post",
-                    url: "/service/platform/partners/v1.0/company/\(companyId)/application/\(applicationId)/proxy/\(extensionId)",
+                    method: "get",
+                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/serviceability",
                     query: nil,
-                    body: body.dictionary,
+                    body: nil,
                     headers: [],
                     responseType: "application/json",
                     onResponse: { responseData, error, responseCode in
@@ -14272,7 +14274,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(AddProxyResponse.self, from: data)
+                            let response = Utility.decode(ApplicationServiceabilityConfigResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -14287,21 +14289,19 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Remove proxy URL for the external URL
-             * Description: Use this API to remove the proxy URL which is already generated for the external URL
+             * Summary: GET zone from the Pincode.
+             * Description: This API returns zone from the Pincode View.
              **/
-            public func removeProxyPath(
-                extensionId: String,
-                attachedPath: String,
-
-                onResponse: @escaping (_ response: RemoveProxyResponse?, _ error: FDKError?) -> Void
+            public func upsertZoneControllerView(
+                body: GetZoneFromPincodeViewRequest,
+                onResponse: @escaping (_ response: GetZoneFromPincodeViewResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "delete",
-                    url: "/service/platform/partners/v1.0/company/\(companyId)/application/\(applicationId)/proxy/\(extensionId)/\(attachedPath)",
+                    method: "post",
+                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/zones",
                     query: nil,
-                    body: nil,
+                    body: body.dictionary,
                     headers: [],
                     responseType: "application/json",
                     onResponse: { responseData, error, responseCode in
@@ -14312,7 +14312,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(RemoveProxyResponse.self, from: data)
+                            let response = Utility.decode(GetZoneFromPincodeViewResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {

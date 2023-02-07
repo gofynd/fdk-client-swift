@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class SendOtpToCustomerResponse: Codable {
         public var resendTimer: Int?
 
-        public var message: String?
-
         public var requestId: String?
+
+        public var message: String?
 
         public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case resendTimer = "resend_timer"
 
-            case message
-
             case requestId = "request_id"
+
+            case message
 
             case success
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(message: String? = nil, requestId: String? = nil, resendTimer: Int? = nil, success: Bool? = nil) {
             self.resendTimer = resendTimer
 
-            self.message = message
-
             self.requestId = requestId
+
+            self.message = message
 
             self.success = success
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                requestId = try container.decode(String.self, forKey: .requestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                requestId = try container.decode(String.self, forKey: .requestId)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(requestId, forKey: .requestId)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }

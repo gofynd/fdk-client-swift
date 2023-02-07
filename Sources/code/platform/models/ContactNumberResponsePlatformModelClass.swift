@@ -3,32 +3,32 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: AddProxyReq
-         Used By: Partner
+         Model: ContactNumberResponse
+         Used By: Logistic
      */
 
-    class AddProxyReq: Codable {
-        public var attachedPath: String?
+    class ContactNumberResponse: Codable {
+        public var number: String?
 
-        public var proxyUrl: String?
+        public var countryCode: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case attachedPath = "attached_path"
+            case number
 
-            case proxyUrl = "proxy_url"
+            case countryCode = "country_code"
         }
 
-        public init(attachedPath: String? = nil, proxyUrl: String? = nil) {
-            self.attachedPath = attachedPath
+        public init(countryCode: Int? = nil, number: String? = nil) {
+            self.number = number
 
-            self.proxyUrl = proxyUrl
+            self.countryCode = countryCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                attachedPath = try container.decode(String.self, forKey: .attachedPath)
+                number = try container.decode(String.self, forKey: .number)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                proxyUrl = try container.decode(String.self, forKey: .proxyUrl)
+                countryCode = try container.decode(Int.self, forKey: .countryCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(attachedPath, forKey: .attachedPath)
+            try? container.encodeIfPresent(number, forKey: .number)
 
-            try? container.encodeIfPresent(proxyUrl, forKey: .proxyUrl)
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
         }
     }
 }

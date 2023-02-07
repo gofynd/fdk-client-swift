@@ -1001,7 +1001,8 @@ Success
     "data": {
       "pg_user_exists": true,
       "id": 2
-    }
+    },
+    "credit_balance": 500
   }
 }
 ```
@@ -1087,7 +1088,8 @@ Success
     "data": {
       "pg_user_exists": true,
       "id": 2
-    }
+    },
+    "credit_balance": 500
   }
 }
 ```
@@ -2292,6 +2294,7 @@ Success
  | email | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
  | modifiedAt | String? |  yes  |  |
+ | creditBalance | Double? |  yes  |  |
  | data | [String: Any]? |  yes  |  |
 
 ---
