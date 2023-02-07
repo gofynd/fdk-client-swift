@@ -10,72 +10,72 @@ public extension PlatformClient {
     class OrderUser: Codable {
         public var country: String
 
-        public var email: String
-
-        public var pincode: String
-
-        public var mobile: Int
+        public var firstName: String
 
         public var lastName: String
 
+        public var state: String
+
+        public var email: String
+
+        public var address2: String?
+
         public var phone: Int
 
-        public var address1: String?
+        public var mobile: Int
 
-        public var firstName: String
-
-        public var state: String
+        public var pincode: String
 
         public var city: String
 
-        public var address2: String?
+        public var address1: String?
 
         public enum CodingKeys: String, CodingKey {
             case country
 
-            case email
-
-            case pincode
-
-            case mobile
+            case firstName = "first_name"
 
             case lastName = "last_name"
 
+            case state
+
+            case email
+
+            case address2
+
             case phone
 
-            case address1
+            case mobile
 
-            case firstName = "first_name"
-
-            case state
+            case pincode
 
             case city
 
-            case address2
+            case address1
         }
 
         public init(address1: String? = nil, address2: String? = nil, city: String, country: String, email: String, firstName: String, lastName: String, mobile: Int, phone: Int, pincode: String, state: String) {
             self.country = country
 
-            self.email = email
-
-            self.pincode = pincode
-
-            self.mobile = mobile
+            self.firstName = firstName
 
             self.lastName = lastName
 
+            self.state = state
+
+            self.email = email
+
+            self.address2 = address2
+
             self.phone = phone
 
-            self.address1 = address1
+            self.mobile = mobile
 
-            self.firstName = firstName
-
-            self.state = state
+            self.pincode = pincode
 
             self.city = city
 
-            self.address2 = address2
+            self.address1 = address1
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,32 +83,32 @@ public extension PlatformClient {
 
             country = try container.decode(String.self, forKey: .country)
 
-            email = try container.decode(String.self, forKey: .email)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
-
-            mobile = try container.decode(Int.self, forKey: .mobile)
+            firstName = try container.decode(String.self, forKey: .firstName)
 
             lastName = try container.decode(String.self, forKey: .lastName)
 
-            phone = try container.decode(Int.self, forKey: .phone)
+            state = try container.decode(String.self, forKey: .state)
+
+            email = try container.decode(String.self, forKey: .email)
 
             do {
-                address1 = try container.decode(String.self, forKey: .address1)
+                address2 = try container.decode(String.self, forKey: .address2)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            firstName = try container.decode(String.self, forKey: .firstName)
+            phone = try container.decode(Int.self, forKey: .phone)
 
-            state = try container.decode(String.self, forKey: .state)
+            mobile = try container.decode(Int.self, forKey: .mobile)
+
+            pincode = try container.decode(String.self, forKey: .pincode)
 
             city = try container.decode(String.self, forKey: .city)
 
             do {
-                address2 = try container.decode(String.self, forKey: .address2)
+                address1 = try container.decode(String.self, forKey: .address1)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,25 +121,25 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(country, forKey: .country)
 
-            try? container.encodeIfPresent(email, forKey: .email)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
-            try? container.encodeIfPresent(mobile, forKey: .mobile)
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
 
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
+            try? container.encodeIfPresent(state, forKey: .state)
+
+            try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encode(address2, forKey: .address2)
+
             try? container.encodeIfPresent(phone, forKey: .phone)
 
-            try? container.encode(address1, forKey: .address1)
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
-
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(city, forKey: .city)
 
-            try? container.encode(address2, forKey: .address2)
+            try? container.encode(address1, forKey: .address1)
         }
     }
 }

@@ -10,9 +10,9 @@ public extension PlatformClient {
     class AdvanceFilterInfo: Codable {
         public var filters: [FiltersInfo]?
 
-        public var unfulfilled: [FiltersInfo]?
-
         public var returned: [FiltersInfo]?
+
+        public var unfulfilled: [FiltersInfo]?
 
         public var processed: [FiltersInfo]?
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case filters
 
-            case unfulfilled
-
             case returned
+
+            case unfulfilled
 
             case processed
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(actionCentre: [FiltersInfo]? = nil, filters: [FiltersInfo]? = nil, processed: [FiltersInfo]? = nil, returned: [FiltersInfo]? = nil, unfulfilled: [FiltersInfo]? = nil) {
             self.filters = filters
 
-            self.unfulfilled = unfulfilled
-
             self.returned = returned
+
+            self.unfulfilled = unfulfilled
 
             self.processed = processed
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                unfulfilled = try container.decode([FiltersInfo].self, forKey: .unfulfilled)
+                returned = try container.decode([FiltersInfo].self, forKey: .returned)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                returned = try container.decode([FiltersInfo].self, forKey: .returned)
+                unfulfilled = try container.decode([FiltersInfo].self, forKey: .unfulfilled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(unfulfilled, forKey: .unfulfilled)
-
             try? container.encodeIfPresent(returned, forKey: .returned)
+
+            try? container.encodeIfPresent(unfulfilled, forKey: .unfulfilled)
 
             try? container.encodeIfPresent(processed, forKey: .processed)
 

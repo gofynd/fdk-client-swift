@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: ProductSizePriceResponseV2
+         Model: ProductSizePriceResponseV3
          Used By: Catalog
      */
-    class ProductSizePriceResponseV2: Codable {
+    class ProductSizePriceResponseV3: Codable {
         public var pricePerPiece: ProductStockPriceV2?
 
         public var marketplaceAttributes: [MarketPlaceSttributesSchemaV2]?
@@ -42,6 +42,8 @@ public extension ApplicationClient {
         public var quantity: Int?
 
         public var longLat: [Double]?
+
+        public var isServiceable: Bool?
 
         public var pincode: Int?
 
@@ -86,6 +88,8 @@ public extension ApplicationClient {
 
             case longLat = "long_lat"
 
+            case isServiceable = "is_serviceable"
+
             case pincode
 
             case sellerCount = "seller_count"
@@ -93,7 +97,7 @@ public extension ApplicationClient {
             case price
         }
 
-        public init(articleAssignment: ArticleAssignmentV2? = nil, articleId: String? = nil, discount: String? = nil, groupedAttributes: [SellerGroupAttributes]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, itemType: String? = nil, longLat: [Double]? = nil, marketplaceAttributes: [MarketPlaceSttributesSchemaV2]? = nil, pincode: Int? = nil, price: ProductStockPriceV2? = nil, pricePerPiece: ProductStockPriceV2? = nil, pricePerUnit: ProductStockUnitPriceV2? = nil, quantity: Int? = nil, returnConfig: ReturnConfigSchemaV2? = nil, seller: SellerV2? = nil, sellerCount: Int? = nil, set: ProductSetV2? = nil, specialBadge: String? = nil, store: StoreV2? = nil, strategyWiseListing: [StrategyWiseListingSchemaV2]? = nil) {
+        public init(articleAssignment: ArticleAssignmentV2? = nil, articleId: String? = nil, discount: String? = nil, groupedAttributes: [SellerGroupAttributes]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, isServiceable: Bool? = nil, itemType: String? = nil, longLat: [Double]? = nil, marketplaceAttributes: [MarketPlaceSttributesSchemaV2]? = nil, pincode: Int? = nil, price: ProductStockPriceV2? = nil, pricePerPiece: ProductStockPriceV2? = nil, pricePerUnit: ProductStockUnitPriceV2? = nil, quantity: Int? = nil, returnConfig: ReturnConfigSchemaV2? = nil, seller: SellerV2? = nil, sellerCount: Int? = nil, set: ProductSetV2? = nil, specialBadge: String? = nil, store: StoreV2? = nil, strategyWiseListing: [StrategyWiseListingSchemaV2]? = nil) {
             self.pricePerPiece = pricePerPiece
 
             self.marketplaceAttributes = marketplaceAttributes
@@ -129,6 +133,8 @@ public extension ApplicationClient {
             self.quantity = quantity
 
             self.longLat = longLat
+
+            self.isServiceable = isServiceable
 
             self.pincode = pincode
 
@@ -285,6 +291,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                isServiceable = try container.decode(Bool.self, forKey: .isServiceable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 pincode = try container.decode(Int.self, forKey: .pincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -347,6 +361,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(longLat, forKey: .longLat)
+
+            try? container.encodeIfPresent(isServiceable, forKey: .isServiceable)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 

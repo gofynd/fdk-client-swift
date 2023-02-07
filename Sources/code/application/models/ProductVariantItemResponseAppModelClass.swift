@@ -9,42 +9,42 @@ public extension ApplicationClient {
     class ProductVariantItemResponse: Codable {
         public var isAvailable: Bool?
 
-        public var customMeta: [CustomMetaFields]?
-
-        public var uid: Int?
-
-        public var colorName: String?
-
-        public var color: String?
-
         public var action: ProductListingAction?
 
-        public var slug: String?
+        public var value: String?
 
         public var medias: [Media]?
 
-        public var value: String?
+        public var colorName: String?
+
+        public var uid: Int?
+
+        public var color: String?
+
+        public var customMeta: [CustomMetaFields]?
+
+        public var slug: String?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case isAvailable = "is_available"
 
-            case customMeta = "_custom_meta"
-
-            case uid
-
-            case colorName = "color_name"
-
-            case color
-
             case action
 
-            case slug
+            case value
 
             case medias
 
-            case value
+            case colorName = "color_name"
+
+            case uid
+
+            case color
+
+            case customMeta = "_custom_meta"
+
+            case slug
 
             case name
         }
@@ -52,21 +52,21 @@ public extension ApplicationClient {
         public init(action: ProductListingAction? = nil, color: String? = nil, colorName: String? = nil, isAvailable: Bool? = nil, medias: [Media]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, value: String? = nil, customMeta: [CustomMetaFields]? = nil) {
             self.isAvailable = isAvailable
 
-            self.customMeta = customMeta
-
-            self.uid = uid
-
-            self.colorName = colorName
-
-            self.color = color
-
             self.action = action
 
-            self.slug = slug
+            self.value = value
 
             self.medias = medias
 
-            self.value = value
+            self.colorName = colorName
+
+            self.uid = uid
+
+            self.color = color
+
+            self.customMeta = customMeta
+
+            self.slug = slug
 
             self.name = name
         }
@@ -83,38 +83,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                customMeta = try container.decode([CustomMetaFields].self, forKey: .customMeta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uid = try container.decode(Int.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                colorName = try container.decode(String.self, forKey: .colorName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                color = try container.decode(String.self, forKey: .color)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -123,7 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,7 +107,39 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                colorName = try container.decode(String.self, forKey: .colorName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                color = try container.decode(String.self, forKey: .color)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customMeta = try container.decode([CustomMetaFields].self, forKey: .customMeta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,21 +160,21 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
-            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(colorName, forKey: .colorName)
-
-            try? container.encodeIfPresent(color, forKey: .color)
-
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(medias, forKey: .medias)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(colorName, forKey: .colorName)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(color, forKey: .color)
+
+            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

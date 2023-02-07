@@ -12,26 +12,26 @@ public extension PlatformClient {
 
         public var transfer: Double
 
-        public var effective: Double
+        public var currency: String
 
         public var marked: Double
 
         public var updatedAt: String?
 
-        public var currency: String
+        public var effective: Double
 
         public enum CodingKeys: String, CodingKey {
             case tpNotes = "tp_notes"
 
             case transfer
 
-            case effective
+            case currency
 
             case marked
 
             case updatedAt = "updated_at"
 
-            case currency
+            case effective
         }
 
         public init(currency: String, effective: Double, marked: Double, tpNotes: [String: Any]? = nil, transfer: Double, updatedAt: String? = nil) {
@@ -39,13 +39,13 @@ public extension PlatformClient {
 
             self.transfer = transfer
 
-            self.effective = effective
+            self.currency = currency
 
             self.marked = marked
 
             self.updatedAt = updatedAt
 
-            self.currency = currency
+            self.effective = effective
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension PlatformClient {
 
             transfer = try container.decode(Double.self, forKey: .transfer)
 
-            effective = try container.decode(Double.self, forKey: .effective)
+            currency = try container.decode(String.self, forKey: .currency)
 
             marked = try container.decode(Double.self, forKey: .marked)
 
@@ -73,7 +73,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            currency = try container.decode(String.self, forKey: .currency)
+            effective = try container.decode(Double.self, forKey: .effective)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -83,13 +83,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(transfer, forKey: .transfer)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
+            try? container.encodeIfPresent(currency, forKey: .currency)
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(effective, forKey: .effective)
         }
     }
 }

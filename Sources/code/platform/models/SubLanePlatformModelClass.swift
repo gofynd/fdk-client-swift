@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var text: String?
 
-        public var value: String?
+        public var index: Int?
 
         public var actions: [[String: Any]]?
 
-        public var index: Int?
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
             case totalItems = "total_items"
 
             case text
 
-            case value
+            case index
 
             case actions
 
-            case index
+            case value
         }
 
         public init(actions: [[String: Any]]? = nil, index: Int? = nil, text: String? = nil, totalItems: Int? = nil, value: String? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.text = text
 
-            self.value = value
+            self.index = index
 
             self.actions = actions
 
-            self.index = index
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                index = try container.decode(Int.self, forKey: .index)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                index = try container.decode(Int.self, forKey: .index)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,11 +93,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(index, forKey: .index)
 
             try? container.encodeIfPresent(actions, forKey: .actions)
 
-            try? container.encodeIfPresent(index, forKey: .index)
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }

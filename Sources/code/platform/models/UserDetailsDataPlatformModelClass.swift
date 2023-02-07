@@ -10,54 +10,54 @@ public extension PlatformClient {
     class UserDetailsData: Codable {
         public var address: String
 
-        public var country: String
-
-        public var city: String
-
         public var email: String
-
-        public var state: String
 
         public var phone: String
 
-        public var name: String
+        public var country: String
+
+        public var state: String
 
         public var pincode: String
+
+        public var city: String
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case address
 
-            case country
-
-            case city
-
             case email
-
-            case state
 
             case phone
 
-            case name
+            case country
+
+            case state
 
             case pincode
+
+            case city
+
+            case name
         }
 
         public init(address: String, city: String, country: String, email: String, name: String, phone: String, pincode: String, state: String) {
             self.address = address
 
-            self.country = country
-
-            self.city = city
-
             self.email = email
-
-            self.state = state
 
             self.phone = phone
 
-            self.name = name
+            self.country = country
+
+            self.state = state
 
             self.pincode = pincode
+
+            self.city = city
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,19 +65,19 @@ public extension PlatformClient {
 
             address = try container.decode(String.self, forKey: .address)
 
-            country = try container.decode(String.self, forKey: .country)
-
-            city = try container.decode(String.self, forKey: .city)
-
             email = try container.decode(String.self, forKey: .email)
-
-            state = try container.decode(String.self, forKey: .state)
 
             phone = try container.decode(String.self, forKey: .phone)
 
-            name = try container.decode(String.self, forKey: .name)
+            country = try container.decode(String.self, forKey: .country)
+
+            state = try container.decode(String.self, forKey: .state)
 
             pincode = try container.decode(String.self, forKey: .pincode)
+
+            city = try container.decode(String.self, forKey: .city)
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -85,19 +85,19 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(address, forKey: .address)
 
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(city, forKey: .city)
-
             try? container.encodeIfPresent(email, forKey: .email)
-
-            try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(phone, forKey: .phone)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
