@@ -9,66 +9,66 @@ public extension ApplicationClient {
     class CreateOrderUserData: Codable {
         public var callbackUrl: String?
 
+        public var contact: String?
+
         public var email: String?
-
-        public var amount: Double?
-
-        public var method: String?
-
-        public var orderId: String?
-
-        public var aggregator: String?
-
-        public var customerId: String?
-
-        public var merchantOrderId: String?
 
         public var currency: String?
 
-        public var contact: String?
+        public var method: String?
+
+        public var customerId: String?
+
+        public var aggregator: String?
+
+        public var merchantOrderId: String?
+
+        public var amount: Double?
+
+        public var orderId: String?
 
         public enum CodingKeys: String, CodingKey {
             case callbackUrl = "callback_url"
 
+            case contact
+
             case email
-
-            case amount
-
-            case method
-
-            case orderId = "order_id"
-
-            case aggregator
-
-            case customerId = "customer_id"
-
-            case merchantOrderId = "merchant_order_id"
 
             case currency
 
-            case contact
+            case method
+
+            case customerId = "customer_id"
+
+            case aggregator
+
+            case merchantOrderId = "merchant_order_id"
+
+            case amount
+
+            case orderId = "order_id"
         }
 
         public init(aggregator: String? = nil, amount: Double? = nil, callbackUrl: String? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, email: String? = nil, merchantOrderId: String? = nil, method: String? = nil, orderId: String? = nil) {
             self.callbackUrl = callbackUrl
 
+            self.contact = contact
+
             self.email = email
-
-            self.amount = amount
-
-            self.method = method
-
-            self.orderId = orderId
-
-            self.aggregator = aggregator
-
-            self.customerId = customerId
-
-            self.merchantOrderId = merchantOrderId
 
             self.currency = currency
 
-            self.contact = contact
+            self.method = method
+
+            self.customerId = customerId
+
+            self.aggregator = aggregator
+
+            self.merchantOrderId = merchantOrderId
+
+            self.amount = amount
+
+            self.orderId = orderId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -76,6 +76,14 @@ public extension ApplicationClient {
 
             do {
                 callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                contact = try container.decode(String.self, forKey: .contact)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +99,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                amount = try container.decode(Double.self, forKey: .amount)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,7 +115,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                customerId = try container.decode(String.self, forKey: .customerId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -123,14 +131,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                customerId = try container.decode(String.self, forKey: .customerId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -139,7 +139,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                amount = try container.decode(Double.self, forKey: .amount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,7 +147,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                contact = try container.decode(String.self, forKey: .contact)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,23 +160,23 @@ public extension ApplicationClient {
 
             try? container.encode(callbackUrl, forKey: .callbackUrl)
 
+            try? container.encode(contact, forKey: .contact)
+
             try? container.encode(email, forKey: .email)
-
-            try? container.encode(amount, forKey: .amount)
-
-            try? container.encode(method, forKey: .method)
-
-            try? container.encode(orderId, forKey: .orderId)
-
-            try? container.encode(aggregator, forKey: .aggregator)
-
-            try? container.encode(customerId, forKey: .customerId)
-
-            try? container.encode(merchantOrderId, forKey: .merchantOrderId)
 
             try? container.encode(currency, forKey: .currency)
 
-            try? container.encode(contact, forKey: .contact)
+            try? container.encode(method, forKey: .method)
+
+            try? container.encode(customerId, forKey: .customerId)
+
+            try? container.encode(aggregator, forKey: .aggregator)
+
+            try? container.encode(merchantOrderId, forKey: .merchantOrderId)
+
+            try? container.encode(amount, forKey: .amount)
+
+            try? container.encode(orderId, forKey: .orderId)
         }
     }
 }

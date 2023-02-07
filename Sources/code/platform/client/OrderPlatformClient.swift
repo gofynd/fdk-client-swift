@@ -25,7 +25,7 @@ public extension PlatformClient {
             dpIds: String?,
             orderingCompanyId: String?,
             stores: String?,
-            salesChannel: String?,
+            salesChannels: String?,
             requestByExt: String?,
             pageNo: Int?,
             pageSize: Int?,
@@ -76,8 +76,8 @@ public extension PlatformClient {
                 xQuery["stores"] = value
             }
 
-            if let value = salesChannel {
-                xQuery["sales_channel"] = value
+            if let value = salesChannels {
+                xQuery["sales_channels"] = value
             }
 
             if let value = requestByExt {
@@ -346,7 +346,7 @@ public extension PlatformClient {
             toDate: String?,
             dpIds: String?,
             stores: String?,
-            salesChannel: String?,
+            salesChannels: String?,
             pageNo: Int?,
             pageSize: Int?,
             isPrioritySort: Bool?,
@@ -384,8 +384,8 @@ public extension PlatformClient {
                 xQuery["stores"] = value
             }
 
-            if let value = salesChannel {
-                xQuery["sales_channel"] = value
+            if let value = salesChannels {
+                xQuery["sales_channels"] = value
             }
 
             if let value = pageNo {
@@ -966,167 +966,6 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(BulkListingResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary:
-         * Description:
-         **/
-        public func getManifestList(
-            status: String?,
-            storeId: Int?,
-            pageNo: Int?,
-            pageSize: Int?,
-            searchValue: String?,
-            fromDate: String?,
-            toDate: String?,
-
-            onResponse: @escaping (_ response: GeneratedManifestResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = status {
-                xQuery["status"] = value
-            }
-
-            if let value = storeId {
-                xQuery["store_id"] = value
-            }
-
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-
-            if let value = searchValue {
-                xQuery["search_value"] = value
-            }
-
-            if let value = fromDate {
-                xQuery["from_date"] = value
-            }
-
-            if let value = toDate {
-                xQuery["to_date"] = value
-            }
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/generated-manifests",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(GeneratedManifestResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary:
-         * Description:
-         **/
-        public func getManifestDetailsWithShipments(
-            manifestId: String,
-            fromDate: String?,
-            toDate: String?,
-            storeId: Int,
-            page: Int?,
-            pageSize: Int?,
-            lane: String?,
-            dpIds: Int?,
-            searchType: String?,
-            searchValue: String?,
-
-            onResponse: @escaping (_ response: ManifestDetailResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            xQuery["manifest_id"] = manifestId
-
-            if let value = fromDate {
-                xQuery["from_date"] = value
-            }
-
-            if let value = toDate {
-                xQuery["to_date"] = value
-            }
-
-            xQuery["store_id"] = storeId
-
-            if let value = page {
-                xQuery["page"] = value
-            }
-
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-
-            if let value = lane {
-                xQuery["lane"] = value
-            }
-
-            if let value = dpIds {
-                xQuery["dp_ids"] = value
-            }
-
-            if let value = searchType {
-                xQuery["search_type"] = value
-            }
-
-            if let value = searchValue {
-                xQuery["search_value"] = value
-            }
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/manifest-details",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ManifestDetailResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

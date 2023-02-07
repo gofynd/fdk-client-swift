@@ -10,38 +10,38 @@ public extension PlatformClient {
     class OrderDetailsData: Codable {
         public var orderingChannelLogo: [String: Any]?
 
-        public var affiliateId: String?
-
         public var orderingChannel: String?
-
-        public var fyndOrderId: String
-
-        public var orderValue: String?
-
-        public var source: String?
 
         public var codCharges: String?
 
         public var orderDate: String?
+
+        public var orderValue: String?
+
+        public var fyndOrderId: String
+
+        public var affiliateId: String?
+
+        public var source: String?
 
         public var taxDetails: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case orderingChannelLogo = "ordering_channel_logo"
 
-            case affiliateId = "affiliate_id"
-
             case orderingChannel = "ordering_channel"
-
-            case fyndOrderId = "fynd_order_id"
-
-            case orderValue = "order_value"
-
-            case source
 
             case codCharges = "cod_charges"
 
             case orderDate = "order_date"
+
+            case orderValue = "order_value"
+
+            case fyndOrderId = "fynd_order_id"
+
+            case affiliateId = "affiliate_id"
+
+            case source
 
             case taxDetails = "tax_details"
         }
@@ -49,19 +49,19 @@ public extension PlatformClient {
         public init(affiliateId: String? = nil, codCharges: String? = nil, fyndOrderId: String, orderingChannel: String? = nil, orderingChannelLogo: [String: Any]? = nil, orderDate: String? = nil, orderValue: String? = nil, source: String? = nil, taxDetails: [String: Any]? = nil) {
             self.orderingChannelLogo = orderingChannelLogo
 
-            self.affiliateId = affiliateId
-
             self.orderingChannel = orderingChannel
-
-            self.fyndOrderId = fyndOrderId
-
-            self.orderValue = orderValue
-
-            self.source = source
 
             self.codCharges = codCharges
 
             self.orderDate = orderDate
+
+            self.orderValue = orderValue
+
+            self.fyndOrderId = fyndOrderId
+
+            self.affiliateId = affiliateId
+
+            self.source = source
 
             self.taxDetails = taxDetails
         }
@@ -78,33 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                affiliateId = try container.decode(String.self, forKey: .affiliateId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
-
-            do {
-                orderValue = try container.decode(String.self, forKey: .orderValue)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                source = try container.decode(String.self, forKey: .source)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -128,6 +102,32 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                orderValue = try container.decode(String.self, forKey: .orderValue)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
+            do {
+                affiliateId = try container.decode(String.self, forKey: .affiliateId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                source = try container.decode(String.self, forKey: .source)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 taxDetails = try container.decode([String: Any].self, forKey: .taxDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -141,19 +141,19 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(orderingChannelLogo, forKey: .orderingChannelLogo)
 
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
-
-            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
-
-            try? container.encodeIfPresent(orderValue, forKey: .orderValue)
-
-            try? container.encodeIfPresent(source, forKey: .source)
 
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
 
             try? container.encodeIfPresent(orderDate, forKey: .orderDate)
+
+            try? container.encodeIfPresent(orderValue, forKey: .orderValue)
+
+            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+
+            try? container.encodeIfPresent(source, forKey: .source)
 
             try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
         }

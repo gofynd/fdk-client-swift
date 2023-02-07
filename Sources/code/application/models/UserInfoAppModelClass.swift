@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class UserInfo: Codable {
         public var mobile: String?
 
-        public var gender: String?
-
         public var name: String?
+
+        public var gender: String?
 
         public var email: String?
 
         public enum CodingKeys: String, CodingKey {
             case mobile
 
-            case gender
-
             case name
+
+            case gender
 
             case email
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(email: String? = nil, gender: String? = nil, mobile: String? = nil, name: String? = nil) {
             self.mobile = mobile
 
-            self.gender = gender
-
             self.name = name
+
+            self.gender = gender
 
             self.email = email
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                gender = try container.decode(String.self, forKey: .gender)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                gender = try container.decode(String.self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encodeIfPresent(gender, forKey: .gender)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(gender, forKey: .gender)
 
             try? container.encodeIfPresent(email, forKey: .email)
         }

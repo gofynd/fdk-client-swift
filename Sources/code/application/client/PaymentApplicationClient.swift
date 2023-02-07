@@ -37,6 +37,10 @@ public extension ApplicationClient {
 
             ulrs["resendOrCancelPayment"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/resend_or_cancel")
 
+            ulrs["renderHTML"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/html/render/")
+
+            ulrs["validateVPA"] = config.domain.appendAsPath("/service/application/payment/v1.0/validate-vpa")
+
             ulrs["getActiveRefundTransferModes"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/transfer-mode")
 
             ulrs["enableOrDisableRefundTransferMode"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/transfer-mode")
@@ -727,6 +731,86 @@ public extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ResendOrCancelPaymentResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Convert base64 string to HTML form
+         * Description: Use this API to decode base64 html form to plain HTML string.
+         **/
+        public func renderHTML(
+            body: renderHTMLRequest,
+            onResponse: @escaping (_ response: renderHTMLResponse?, _ error: FDKError?) -> Void
+        ) {
+            let fullUrl = relativeUrls["renderHTML"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: body.dictionary,
+                responseType: "text/html",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(renderHTMLResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: API to Validate UPI ID
+         * Description: API to Validate UPI ID
+         **/
+        public func validateVPA(
+            body: ValidateVPARequest,
+            onResponse: @escaping (_ response: ValidateVPAResponse?, _ error: FDKError?) -> Void
+        ) {
+            let fullUrl = relativeUrls["validateVPA"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ValidateVPAResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
