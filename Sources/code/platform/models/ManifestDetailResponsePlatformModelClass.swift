@@ -10,18 +10,18 @@ public extension PlatformClient {
     class ManifestDetailResponse: Codable {
         public var page: ManifestPage?
 
-        public var manifestDetails: [ManifestDetail]?
-
         public var items: [ManifestDetailItem]?
+
+        public var manifestDetails: [ManifestDetail]?
 
         public var additionalShipmentCount: Int?
 
         public enum CodingKeys: String, CodingKey {
             case page
 
-            case manifestDetails = "manifest_details"
-
             case items
+
+            case manifestDetails = "manifest_details"
 
             case additionalShipmentCount = "additional_shipment_count"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(additionalShipmentCount: Int? = nil, items: [ManifestDetailItem]? = nil, manifestDetails: [ManifestDetail]? = nil, page: ManifestPage? = nil) {
             self.page = page
 
-            self.manifestDetails = manifestDetails
-
             self.items = items
+
+            self.manifestDetails = manifestDetails
 
             self.additionalShipmentCount = additionalShipmentCount
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                manifestDetails = try container.decode([ManifestDetail].self, forKey: .manifestDetails)
+                items = try container.decode([ManifestDetailItem].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                items = try container.decode([ManifestDetailItem].self, forKey: .items)
+                manifestDetails = try container.decode([ManifestDetail].self, forKey: .manifestDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(manifestDetails, forKey: .manifestDetails)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(manifestDetails, forKey: .manifestDetails)
 
             try? container.encodeIfPresent(additionalShipmentCount, forKey: .additionalShipmentCount)
         }

@@ -8,57 +8,57 @@ public extension PlatformClient {
      */
 
     class GeneratedManifestItem: Codable {
-        public var filters: ManifestFilter?
+        public var status: String?
 
         public var createdBy: String?
 
-        public var createdAt: String?
-
         public var manifestId: String?
+
+        public var createdAt: String?
 
         public var companyId: Int?
 
-        public var status: String?
-
         public var isActive: Bool?
 
+        public var filters: ManifestFilter?
+
         public enum CodingKeys: String, CodingKey {
-            case filters
+            case status
 
             case createdBy = "created_by"
 
-            case createdAt = "created_at"
-
             case manifestId = "manifest_id"
+
+            case createdAt = "created_at"
 
             case companyId = "company_id"
 
-            case status
-
             case isActive = "is_active"
+
+            case filters
         }
 
         public init(companyId: Int? = nil, createdAt: String? = nil, createdBy: String? = nil, filters: ManifestFilter? = nil, isActive: Bool? = nil, manifestId: String? = nil, status: String? = nil) {
-            self.filters = filters
+            self.status = status
 
             self.createdBy = createdBy
 
-            self.createdAt = createdAt
-
             self.manifestId = manifestId
+
+            self.createdAt = createdAt
 
             self.companyId = companyId
 
-            self.status = status
-
             self.isActive = isActive
+
+            self.filters = filters
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                filters = try container.decode(ManifestFilter.self, forKey: .filters)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,7 +74,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                createdAt = try container.decode(String.self, forKey: .createdAt)
+                manifestId = try container.decode(String.self, forKey: .manifestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,7 +82,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                manifestId = try container.decode(String.self, forKey: .manifestId)
+                createdAt = try container.decode(String.self, forKey: .createdAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +98,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,7 +106,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                filters = try container.decode(ManifestFilter.self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,19 +117,19 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-
             try? container.encodeIfPresent(manifestId, forKey: .manifestId)
+
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
         }
     }
 }

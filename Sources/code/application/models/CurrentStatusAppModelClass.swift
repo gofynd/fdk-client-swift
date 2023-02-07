@@ -7,39 +7,39 @@ public extension ApplicationClient {
          Used By: Order
      */
     class CurrentStatus: Codable {
-        public var status: String?
-
         public var name: String?
-
-        public var updatedAt: String?
 
         public var journeyType: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case status
+        public var updatedAt: String?
 
+        public var status: String?
+
+        public enum CodingKeys: String, CodingKey {
             case name
+
+            case journeyType = "journey_type"
 
             case updatedAt = "updated_at"
 
-            case journeyType = "journey_type"
+            case status
         }
 
         public init(journeyType: String? = nil, name: String? = nil, status: String? = nil, updatedAt: String? = nil) {
-            self.status = status
-
             self.name = name
+
+            self.journeyType = journeyType
 
             self.updatedAt = updatedAt
 
-            self.journeyType = journeyType
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                journeyType = try container.decode(String.self, forKey: .journeyType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                journeyType = try container.decode(String.self, forKey: .journeyType)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,13 +74,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
-            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }
