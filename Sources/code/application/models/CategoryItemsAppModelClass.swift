@@ -9,42 +9,42 @@ public extension ApplicationClient {
     class CategoryItems: Codable {
         public var name: String
 
+        public var slug: String
+
         public var banners: CategoryBanner
+
+        public var uid: Int
 
         public var action: ProductListingAction
 
         public var childs: [Child]?
 
-        public var slug: String
-
-        public var uid: Int
-
         public enum CodingKeys: String, CodingKey {
             case name
 
+            case slug
+
             case banners
+
+            case uid
 
             case action
 
             case childs
-
-            case slug
-
-            case uid
         }
 
         public init(action: ProductListingAction, banners: CategoryBanner, childs: [Child]? = nil, name: String, slug: String, uid: Int) {
             self.name = name
 
+            self.slug = slug
+
             self.banners = banners
+
+            self.uid = uid
 
             self.action = action
 
             self.childs = childs
-
-            self.slug = slug
-
-            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
@@ -52,7 +52,11 @@ public extension ApplicationClient {
 
             name = try container.decode(String.self, forKey: .name)
 
+            slug = try container.decode(String.self, forKey: .slug)
+
             banners = try container.decode(CategoryBanner.self, forKey: .banners)
+
+            uid = try container.decode(Int.self, forKey: .uid)
 
             action = try container.decode(ProductListingAction.self, forKey: .action)
 
@@ -63,10 +67,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            slug = try container.decode(String.self, forKey: .slug)
-
-            uid = try container.decode(Int.self, forKey: .uid)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -74,15 +74,15 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
             try? container.encodeIfPresent(banners, forKey: .banners)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

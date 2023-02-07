@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class TaxIdentifier1: Codable {
-        public var hsnCodeId: String?
-
         public var hsnCode: String?
+
+        public var hsnCodeId: String?
 
         public var reportingHsn: String?
 
         public enum CodingKeys: String, CodingKey {
-            case hsnCodeId = "hsn_code_id"
-
             case hsnCode = "hsn_code"
+
+            case hsnCodeId = "hsn_code_id"
 
             case reportingHsn = "reporting_hsn"
         }
 
         public init(hsnCode: String? = nil, hsnCodeId: String? = nil, reportingHsn: String? = nil) {
-            self.hsnCodeId = hsnCodeId
-
             self.hsnCode = hsnCode
+
+            self.hsnCodeId = hsnCodeId
 
             self.reportingHsn = reportingHsn
         }
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                hsnCodeId = try container.decode(String.self, forKey: .hsnCodeId)
+                hsnCode = try container.decode(String.self, forKey: .hsnCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                hsnCode = try container.decode(String.self, forKey: .hsnCode)
+                hsnCodeId = try container.decode(String.self, forKey: .hsnCodeId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,9 +61,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(hsnCodeId, forKey: .hsnCodeId)
-
             try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
+
+            try? container.encodeIfPresent(hsnCodeId, forKey: .hsnCodeId)
 
             try? container.encodeIfPresent(reportingHsn, forKey: .reportingHsn)
         }

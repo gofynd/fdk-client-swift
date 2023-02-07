@@ -8,30 +8,38 @@ public extension PlatformClient {
      */
 
     class Media1: Codable {
+        public var meta: [String: Any]?
+
         public var url: String
 
         public var type: String?
 
-        public var meta: [String: Any]?
-
         public enum CodingKeys: String, CodingKey {
+            case meta
+
             case url
 
             case type
-
-            case meta
         }
 
         public init(meta: [String: Any]? = nil, type: String? = nil, url: String) {
+            self.meta = meta
+
             self.url = url
 
             self.type = type
-
-            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             url = try container.decode(String.self, forKey: .url)
 
@@ -42,24 +50,16 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encode(meta, forKey: .meta)
+
             try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encode(type, forKey: .type)
-
-            try? container.encode(meta, forKey: .meta)
         }
     }
 }

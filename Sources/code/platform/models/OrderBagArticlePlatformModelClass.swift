@@ -10,24 +10,24 @@ public extension PlatformClient {
     class OrderBagArticle: Codable {
         public var identifiers: [String: Any]?
 
-        public var returnConfig: [String: Any]?
-
         public var uid: String?
+
+        public var returnConfig: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case identifiers
 
-            case returnConfig = "return_config"
-
             case uid
+
+            case returnConfig = "return_config"
         }
 
         public init(identifiers: [String: Any]? = nil, returnConfig: [String: Any]? = nil, uid: String? = nil) {
             self.identifiers = identifiers
 
-            self.returnConfig = returnConfig
-
             self.uid = uid
+
+            self.returnConfig = returnConfig
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                returnConfig = try container.decode([String: Any].self, forKey: .returnConfig)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                returnConfig = try container.decode([String: Any].self, forKey: .returnConfig)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(identifiers, forKey: .identifiers)
 
-            try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
         }
     }
 }

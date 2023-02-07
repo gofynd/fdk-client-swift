@@ -10,18 +10,18 @@ public extension PlatformClient {
     class SuperLane: Codable {
         public var value: String
 
-        public var options: [SubLane]?
-
         public var text: String
+
+        public var options: [SubLane]?
 
         public var totalItems: Int?
 
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case options
-
             case text
+
+            case options
 
             case totalItems = "total_items"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(options: [SubLane]? = nil, text: String, totalItems: Int? = nil, value: String) {
             self.value = value
 
-            self.options = options
-
             self.text = text
+
+            self.options = options
 
             self.totalItems = totalItems
         }
@@ -41,6 +41,8 @@ public extension PlatformClient {
 
             value = try container.decode(String.self, forKey: .value)
 
+            text = try container.decode(String.self, forKey: .text)
+
             do {
                 options = try container.decode([SubLane].self, forKey: .options)
 
@@ -48,8 +50,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            text = try container.decode(String.self, forKey: .text)
 
             do {
                 totalItems = try container.decode(Int.self, forKey: .totalItems)
@@ -65,9 +65,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(options, forKey: .options)
-
             try? container.encodeIfPresent(text, forKey: .text)
+
+            try? container.encodeIfPresent(options, forKey: .options)
 
             try? container.encodeIfPresent(totalItems, forKey: .totalItems)
         }

@@ -10,9 +10,9 @@ public extension PlatformClient {
     class ConfigurationListingSortConfig: Codable {
         public var logo: String?
 
-        public var key: String
-
         public var name: String?
+
+        public var key: String
 
         public var isActive: Bool
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case logo
 
-            case key
-
             case name
+
+            case key
 
             case isActive = "is_active"
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
             self.logo = logo
 
-            self.key = key
-
             self.name = name
+
+            self.key = key
 
             self.isActive = isActive
 
@@ -53,8 +53,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            key = try container.decode(String.self, forKey: .key)
-
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -62,6 +60,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            key = try container.decode(String.self, forKey: .key)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
@@ -73,9 +73,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 

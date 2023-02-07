@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ShipmentPayments: Codable {
         public var mode: String
 
-        public var logo: String?
-
         public var source: String?
+
+        public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
             case mode
 
-            case logo
-
             case source
+
+            case logo
         }
 
         public init(logo: String? = nil, mode: String, source: String? = nil) {
             self.mode = mode
 
-            self.logo = logo
-
             self.source = source
+
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,7 +36,7 @@ public extension PlatformClient {
             mode = try container.decode(String.self, forKey: .mode)
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                source = try container.decode(String.self, forKey: .source)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -44,7 +44,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                source = try container.decode(String.self, forKey: .source)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,9 +57,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(mode, forKey: .mode)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(source, forKey: .source)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }
