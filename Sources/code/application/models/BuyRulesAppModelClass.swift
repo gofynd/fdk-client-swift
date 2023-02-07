@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: EntitiesReasons
-         Used By: Order
+         Model: BuyRules
+         Used By: Cart
      */
-    class EntitiesReasons: Codable {
-        public var data: EntityReasonData?
+    class BuyRules: Codable {
+        public var itemCriteria: [String: Any]?
 
-        public var filters: [[String: Any]]?
+        public var cartConditions: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case data
+            case itemCriteria = "item_criteria"
 
-            case filters
+            case cartConditions = "cart_conditions"
         }
 
-        public init(data: EntityReasonData? = nil, filters: [[String: Any]]? = nil) {
-            self.data = data
+        public init(cartConditions: [String: Any]? = nil, itemCriteria: [String: Any]? = nil) {
+            self.itemCriteria = itemCriteria
 
-            self.filters = filters
+            self.cartConditions = cartConditions
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode(EntityReasonData.self, forKey: .data)
+                itemCriteria = try container.decode([String: Any].self, forKey: .itemCriteria)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                filters = try container.decode([[String: Any]].self, forKey: .filters)
+                cartConditions = try container.decode([String: Any].self, forKey: .cartConditions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(cartConditions, forKey: .cartConditions)
         }
     }
 }

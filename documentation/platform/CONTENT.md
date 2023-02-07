@@ -1328,7 +1328,7 @@ Use this to get all data loaders of an application
 
 [DataLoadersSchema](#DataLoadersSchema)
 
-Success. Refer `DataLoadersSchema` for more details.
+Success. Refer `DataLoaderResponseSchema` for more details.
 
 
 

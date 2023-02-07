@@ -3,43 +3,43 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: NestedTrackingDetails
+         Model: FreeGiftItemDetails
          Used By: Order
      */
-    class NestedTrackingDetails: Codable {
-        public var status: String?
+    class FreeGiftItemDetails: Codable {
+        public var itemId: String?
 
-        public var isPassed: Bool?
+        public var itemName: String?
 
-        public var isCurrent: Bool?
+        public var itemBrandName: String?
 
-        public var time: String?
+        public var itemPriceDetails: ItemPriceDetails?
 
         public enum CodingKeys: String, CodingKey {
-            case status
+            case itemId = "item_id"
 
-            case isPassed = "is_passed"
+            case itemName = "item_name"
 
-            case isCurrent = "is_current"
+            case itemBrandName = "item_brand_name"
 
-            case time
+            case itemPriceDetails = "item_price_details"
         }
 
-        public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String? = nil, time: String? = nil) {
-            self.status = status
+        public init(itemBrandName: String? = nil, itemId: String? = nil, itemName: String? = nil, itemPriceDetails: ItemPriceDetails? = nil) {
+            self.itemId = itemId
 
-            self.isPassed = isPassed
+            self.itemName = itemName
 
-            self.isCurrent = isCurrent
+            self.itemBrandName = itemBrandName
 
-            self.time = time
+            self.itemPriceDetails = itemPriceDetails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                itemId = try container.decode(String.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isPassed = try container.decode(Bool.self, forKey: .isPassed)
+                itemName = try container.decode(String.self, forKey: .itemName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isCurrent = try container.decode(Bool.self, forKey: .isCurrent)
+                itemBrandName = try container.decode(String.self, forKey: .itemBrandName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                time = try container.decode(String.self, forKey: .time)
+                itemPriceDetails = try container.decode(ItemPriceDetails.self, forKey: .itemPriceDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,13 +74,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(isPassed, forKey: .isPassed)
+            try? container.encodeIfPresent(itemName, forKey: .itemName)
 
-            try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
+            try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
 
-            try? container.encodeIfPresent(time, forKey: .time)
+            try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
         }
     }
 }

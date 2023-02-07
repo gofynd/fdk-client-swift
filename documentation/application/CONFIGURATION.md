@@ -248,19 +248,19 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "abc@test.com"
+          "email": "jalakvora@gofynd.com"
         },
         {
           "active": true,
           "primary": false,
           "verified": true,
-          "email": "abc@test.com"
+          "email": "jalakvora@fynd.com"
         },
         {
           "active": true,
           "primary": false,
           "verified": true,
-          "email": "abc@test.com"
+          "email": "jalakvora@uniket.store"
         }
       ],
       "phone_numbers": [
@@ -2207,7 +2207,6 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | isShortlink | Bool? |  yes  |  |
  | id | String? |  yes  |  |
  | name | String? |  yes  |  |
- | isPredefined | Bool? |  yes  | Domain is hosting domain or not. |
 
 ---
 

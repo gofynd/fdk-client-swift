@@ -230,7 +230,6 @@ Success
  | isShortlink | Bool? |  yes  |  |
  | id | String? |  yes  |  |
  | name | String? |  yes  |  |
- | isPredefined | Bool? |  yes  | Domain is hosting domain or not. |
 
 ---
 

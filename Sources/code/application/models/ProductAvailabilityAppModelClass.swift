@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class ProductAvailability: Codable {
         public var isValid: Bool?
 
-        public var deliverable: Bool?
-
         public var outOfStock: Bool?
+
+        public var deliverable: Bool?
 
         public var otherStoreQuantity: Int?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case isValid = "is_valid"
 
-            case deliverable
-
             case outOfStock = "out_of_stock"
+
+            case deliverable
 
             case otherStoreQuantity = "other_store_quantity"
 
@@ -32,9 +32,9 @@ public extension ApplicationClient {
         public init(deliverable: Bool? = nil, isValid: Bool? = nil, otherStoreQuantity: Int? = nil, outOfStock: Bool? = nil, sizes: [String]? = nil) {
             self.isValid = isValid
 
-            self.deliverable = deliverable
-
             self.outOfStock = outOfStock
+
+            self.deliverable = deliverable
 
             self.otherStoreQuantity = otherStoreQuantity
 
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                deliverable = try container.decode(Bool.self, forKey: .deliverable)
+                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
+                deliverable = try container.decode(Bool.self, forKey: .deliverable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(isValid, forKey: .isValid)
 
-            try? container.encodeIfPresent(deliverable, forKey: .deliverable)
-
             try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
+
+            try? container.encodeIfPresent(deliverable, forKey: .deliverable)
 
             try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
 
