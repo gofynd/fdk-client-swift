@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: NetQuantity1
+         Model: NetQuantityResponse
          Used By: Catalog
      */
 
-    class NetQuantity1: Codable {
+    class NetQuantityResponse: Codable {
         public var value: Double?
 
         public var unit: String?

@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class AddCartDetailResponse: Codable {
         public var message: String?
 
-        public var partial: Bool?
-
         public var success: Bool?
+
+        public var partial: Bool?
 
         public var cart: CartDetailResponse?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
-            case partial
-
             case success
+
+            case partial
 
             case cart
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(cart: CartDetailResponse? = nil, message: String? = nil, partial: Bool? = nil, success: Bool? = nil) {
             self.message = message
 
-            self.partial = partial
-
             self.success = success
+
+            self.partial = partial
 
             self.cart = cart
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                partial = try container.decode(Bool.self, forKey: .partial)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                partial = try container.decode(Bool.self, forKey: .partial)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(partial, forKey: .partial)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(partial, forKey: .partial)
 
             try? container.encodeIfPresent(cart, forKey: .cart)
         }
