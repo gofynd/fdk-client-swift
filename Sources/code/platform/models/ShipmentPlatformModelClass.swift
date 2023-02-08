@@ -12,26 +12,26 @@ public extension PlatformClient {
 
         public var locationId: Int
 
-        public var priority: Int?
-
         public var externalShipmentId: String?
 
         public var meta: [String: Any]?
 
         public var processingDates: ProcessingDates?
 
+        public var priority: Int?
+
         public enum CodingKeys: String, CodingKey {
             case lineItems = "line_items"
 
             case locationId = "location_id"
-
-            case priority
 
             case externalShipmentId = "external_shipment_id"
 
             case meta
 
             case processingDates = "processing_dates"
+
+            case priority
         }
 
         public init(externalShipmentId: String? = nil, lineItems: [LineItem], locationId: Int, meta: [String: Any]? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil) {
@@ -39,13 +39,13 @@ public extension PlatformClient {
 
             self.locationId = locationId
 
-            self.priority = priority
-
             self.externalShipmentId = externalShipmentId
 
             self.meta = meta
 
             self.processingDates = processingDates
+
+            self.priority = priority
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,14 +54,6 @@ public extension PlatformClient {
             lineItems = try container.decode([LineItem].self, forKey: .lineItems)
 
             locationId = try container.decode(Int.self, forKey: .locationId)
-
-            do {
-                priority = try container.decode(Int.self, forKey: .priority)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
@@ -86,6 +78,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                priority = try container.decode(Int.self, forKey: .priority)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -95,13 +95,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(locationId, forKey: .locationId)
 
-            try? container.encodeIfPresent(priority, forKey: .priority)
-
             try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(processingDates, forKey: .processingDates)
+
+            try? container.encodeIfPresent(priority, forKey: .priority)
         }
     }
 }
