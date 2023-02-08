@@ -7,173 +7,117 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class Card: Codable {
-        public var compliantWithTokenisationGuidelines: Bool?
-
-        public var cardNumber: String?
-
-        public var nickname: String?
-
-        public var expYear: Int?
-
-        public var cardName: String?
-
-        public var expired: Bool?
-
-        public var cardFingerprint: String?
-
-        public var cardType: String?
+        public var cardId: String?
 
         public var cardToken: String?
 
-        public var cardIssuer: String?
-
-        public var expMonth: Int?
-
-        public var cardIsin: String?
-
-        public var aggregatorName: String
+        public var compliantWithTokenisationGuidelines: Bool?
 
         public var cardReference: String?
 
-        public var cardBrandImage: String?
+        public var expMonth: Int?
+
+        public var cardName: String?
+
+        public var cardFingerprint: String?
+
+        public var cardIsin: String?
+
+        public var expired: Bool?
+
+        public var cardType: String?
+
+        public var expYear: Int?
 
         public var cardBrand: String?
 
-        public var cardId: String?
+        public var cardBrandImage: String?
+
+        public var cardNumber: String?
+
+        public var aggregatorName: String
+
+        public var cardIssuer: String?
+
+        public var nickname: String?
 
         public enum CodingKeys: String, CodingKey {
-            case compliantWithTokenisationGuidelines = "compliant_with_tokenisation_guidelines"
-
-            case cardNumber = "card_number"
-
-            case nickname
-
-            case expYear = "exp_year"
-
-            case cardName = "card_name"
-
-            case expired
-
-            case cardFingerprint = "card_fingerprint"
-
-            case cardType = "card_type"
+            case cardId = "card_id"
 
             case cardToken = "card_token"
 
-            case cardIssuer = "card_issuer"
-
-            case expMonth = "exp_month"
-
-            case cardIsin = "card_isin"
-
-            case aggregatorName = "aggregator_name"
+            case compliantWithTokenisationGuidelines = "compliant_with_tokenisation_guidelines"
 
             case cardReference = "card_reference"
 
-            case cardBrandImage = "card_brand_image"
+            case expMonth = "exp_month"
+
+            case cardName = "card_name"
+
+            case cardFingerprint = "card_fingerprint"
+
+            case cardIsin = "card_isin"
+
+            case expired
+
+            case cardType = "card_type"
+
+            case expYear = "exp_year"
 
             case cardBrand = "card_brand"
 
-            case cardId = "card_id"
+            case cardBrandImage = "card_brand_image"
+
+            case cardNumber = "card_number"
+
+            case aggregatorName = "aggregator_name"
+
+            case cardIssuer = "card_issuer"
+
+            case nickname
         }
 
         public init(aggregatorName: String, cardBrand: String? = nil, cardBrandImage: String? = nil, cardFingerprint: String? = nil, cardId: String? = nil, cardIsin: String? = nil, cardIssuer: String? = nil, cardName: String? = nil, cardNumber: String? = nil, cardReference: String? = nil, cardToken: String? = nil, cardType: String? = nil, compliantWithTokenisationGuidelines: Bool? = nil, expired: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, nickname: String? = nil) {
-            self.compliantWithTokenisationGuidelines = compliantWithTokenisationGuidelines
-
-            self.cardNumber = cardNumber
-
-            self.nickname = nickname
-
-            self.expYear = expYear
-
-            self.cardName = cardName
-
-            self.expired = expired
-
-            self.cardFingerprint = cardFingerprint
-
-            self.cardType = cardType
+            self.cardId = cardId
 
             self.cardToken = cardToken
 
-            self.cardIssuer = cardIssuer
-
-            self.expMonth = expMonth
-
-            self.cardIsin = cardIsin
-
-            self.aggregatorName = aggregatorName
+            self.compliantWithTokenisationGuidelines = compliantWithTokenisationGuidelines
 
             self.cardReference = cardReference
 
-            self.cardBrandImage = cardBrandImage
+            self.expMonth = expMonth
+
+            self.cardName = cardName
+
+            self.cardFingerprint = cardFingerprint
+
+            self.cardIsin = cardIsin
+
+            self.expired = expired
+
+            self.cardType = cardType
+
+            self.expYear = expYear
 
             self.cardBrand = cardBrand
 
-            self.cardId = cardId
+            self.cardBrandImage = cardBrandImage
+
+            self.cardNumber = cardNumber
+
+            self.aggregatorName = aggregatorName
+
+            self.cardIssuer = cardIssuer
+
+            self.nickname = nickname
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                compliantWithTokenisationGuidelines = try container.decode(Bool.self, forKey: .compliantWithTokenisationGuidelines)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cardNumber = try container.decode(String.self, forKey: .cardNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                nickname = try container.decode(String.self, forKey: .nickname)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                expYear = try container.decode(Int.self, forKey: .expYear)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cardName = try container.decode(String.self, forKey: .cardName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                expired = try container.decode(Bool.self, forKey: .expired)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cardFingerprint = try container.decode(String.self, forKey: .cardFingerprint)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cardType = try container.decode(String.self, forKey: .cardType)
+                cardId = try container.decode(String.self, forKey: .cardId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -189,7 +133,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                cardIssuer = try container.decode(String.self, forKey: .cardIssuer)
+                compliantWithTokenisationGuidelines = try container.decode(Bool.self, forKey: .compliantWithTokenisationGuidelines)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                cardReference = try container.decode(String.self, forKey: .cardReference)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -205,6 +157,22 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                cardName = try container.decode(String.self, forKey: .cardName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                cardFingerprint = try container.decode(String.self, forKey: .cardFingerprint)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 cardIsin = try container.decode(String.self, forKey: .cardIsin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -212,10 +180,8 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
-
             do {
-                cardReference = try container.decode(String.self, forKey: .cardReference)
+                expired = try container.decode(Bool.self, forKey: .expired)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -223,7 +189,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                cardBrandImage = try container.decode(String.self, forKey: .cardBrandImage)
+                cardType = try container.decode(String.self, forKey: .cardType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                expYear = try container.decode(Int.self, forKey: .expYear)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -239,7 +213,33 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                cardId = try container.decode(String.self, forKey: .cardId)
+                cardBrandImage = try container.decode(String.self, forKey: .cardBrandImage)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                cardNumber = try container.decode(String.self, forKey: .cardNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
+
+            do {
+                cardIssuer = try container.decode(String.self, forKey: .cardIssuer)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                nickname = try container.decode(String.self, forKey: .nickname)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -250,39 +250,39 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(compliantWithTokenisationGuidelines, forKey: .compliantWithTokenisationGuidelines)
-
-            try? container.encode(cardNumber, forKey: .cardNumber)
-
-            try? container.encode(nickname, forKey: .nickname)
-
-            try? container.encode(expYear, forKey: .expYear)
-
-            try? container.encode(cardName, forKey: .cardName)
-
-            try? container.encode(expired, forKey: .expired)
-
-            try? container.encode(cardFingerprint, forKey: .cardFingerprint)
-
-            try? container.encode(cardType, forKey: .cardType)
+            try? container.encode(cardId, forKey: .cardId)
 
             try? container.encode(cardToken, forKey: .cardToken)
 
-            try? container.encode(cardIssuer, forKey: .cardIssuer)
-
-            try? container.encode(expMonth, forKey: .expMonth)
-
-            try? container.encode(cardIsin, forKey: .cardIsin)
-
-            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+            try? container.encode(compliantWithTokenisationGuidelines, forKey: .compliantWithTokenisationGuidelines)
 
             try? container.encode(cardReference, forKey: .cardReference)
 
-            try? container.encode(cardBrandImage, forKey: .cardBrandImage)
+            try? container.encode(expMonth, forKey: .expMonth)
+
+            try? container.encode(cardName, forKey: .cardName)
+
+            try? container.encode(cardFingerprint, forKey: .cardFingerprint)
+
+            try? container.encode(cardIsin, forKey: .cardIsin)
+
+            try? container.encode(expired, forKey: .expired)
+
+            try? container.encode(cardType, forKey: .cardType)
+
+            try? container.encode(expYear, forKey: .expYear)
 
             try? container.encode(cardBrand, forKey: .cardBrand)
 
-            try? container.encode(cardId, forKey: .cardId)
+            try? container.encode(cardBrandImage, forKey: .cardBrandImage)
+
+            try? container.encode(cardNumber, forKey: .cardNumber)
+
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+
+            try? container.encode(cardIssuer, forKey: .cardIssuer)
+
+            try? container.encode(nickname, forKey: .nickname)
         }
     }
 }

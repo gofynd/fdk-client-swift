@@ -10,18 +10,18 @@ public extension PlatformClient {
     class CreateAutocompleteWordsResponse: Codable {
         public var appId: String?
 
-        public var words: [String]?
-
         public var customJson: [String: Any]?
+
+        public var words: [String]?
 
         public var results: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case appId = "app_id"
 
-            case words
-
             case customJson = "_custom_json"
+
+            case words
 
             case results
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(appId: String? = nil, results: [[String: Any]]? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
             self.appId = appId
 
-            self.words = words
-
             self.customJson = customJson
+
+            self.words = words
 
             self.results = results
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                words = try container.decode([String].self, forKey: .words)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                words = try container.decode([String].self, forKey: .words)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(words, forKey: .words)
-
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(words, forKey: .words)
 
             try? container.encodeIfPresent(results, forKey: .results)
         }

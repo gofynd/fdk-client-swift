@@ -10,30 +10,30 @@ public extension PlatformClient {
     class MultiTenderPaymentMethod: Codable {
         public var amount: Double
 
-        public var meta: MultiTenderPaymentMeta?
+        public var mode: String
 
         public var name: String?
 
-        public var mode: String
+        public var meta: MultiTenderPaymentMeta?
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
-            case meta
+            case mode
 
             case name
 
-            case mode
+            case meta
         }
 
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
             self.amount = amount
 
-            self.meta = meta
+            self.mode = mode
 
             self.name = name
 
-            self.mode = mode
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,13 +41,7 @@ public extension PlatformClient {
 
             amount = try container.decode(Double.self, forKey: .amount)
 
-            do {
-                meta = try container.decode(MultiTenderPaymentMeta.self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            mode = try container.decode(String.self, forKey: .mode)
 
             do {
                 name = try container.decode(String.self, forKey: .name)
@@ -57,7 +51,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            mode = try container.decode(String.self, forKey: .mode)
+            do {
+                meta = try container.decode(MultiTenderPaymentMeta.self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -65,11 +65,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(mode, forKey: .mode)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

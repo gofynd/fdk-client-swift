@@ -8,60 +8,60 @@ public extension PlatformClient {
      */
 
     class Restrictions1: Codable {
-        public var payments: [PromotionPaymentModes]?
-
-        public var anonymousUsers: Bool?
-
-        public var platforms: [String]?
-
         public var userRegistered: UserRegistered?
-
-        public var uses: UsesRestriction1
 
         public var userGroups: [Int]?
 
-        public var postOrder: PostOrder1?
+        public var anonymousUsers: Bool?
+
+        public var uses: UsesRestriction1
 
         public var userId: [String]?
+
+        public var payments: [PromotionPaymentModes]?
+
+        public var postOrder: PostOrder1?
+
+        public var platforms: [String]?
 
         public var orderQuantity: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case payments
-
-            case anonymousUsers = "anonymous_users"
-
-            case platforms
-
             case userRegistered = "user_registered"
-
-            case uses
 
             case userGroups = "user_groups"
 
-            case postOrder = "post_order"
+            case anonymousUsers = "anonymous_users"
+
+            case uses
 
             case userId = "user_id"
+
+            case payments
+
+            case postOrder = "post_order"
+
+            case platforms
 
             case orderQuantity = "order_quantity"
         }
 
         public init(anonymousUsers: Bool? = nil, orderQuantity: Int? = nil, payments: [PromotionPaymentModes]? = nil, platforms: [String]? = nil, postOrder: PostOrder1? = nil, userGroups: [Int]? = nil, userId: [String]? = nil, userRegistered: UserRegistered? = nil, uses: UsesRestriction1) {
-            self.payments = payments
-
-            self.anonymousUsers = anonymousUsers
-
-            self.platforms = platforms
-
             self.userRegistered = userRegistered
-
-            self.uses = uses
 
             self.userGroups = userGroups
 
-            self.postOrder = postOrder
+            self.anonymousUsers = anonymousUsers
+
+            self.uses = uses
 
             self.userId = userId
+
+            self.payments = payments
+
+            self.postOrder = postOrder
+
+            self.platforms = platforms
 
             self.orderQuantity = orderQuantity
         }
@@ -70,7 +70,15 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                payments = try container.decode([PromotionPaymentModes].self, forKey: .payments)
+                userRegistered = try container.decode(UserRegistered.self, forKey: .userRegistered)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                userGroups = try container.decode([Int].self, forKey: .userGroups)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,26 +93,18 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                platforms = try container.decode([String].self, forKey: .platforms)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                userRegistered = try container.decode(UserRegistered.self, forKey: .userRegistered)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             uses = try container.decode(UsesRestriction1.self, forKey: .uses)
 
             do {
-                userGroups = try container.decode([Int].self, forKey: .userGroups)
+                userId = try container.decode([String].self, forKey: .userId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                payments = try container.decode([PromotionPaymentModes].self, forKey: .payments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                userId = try container.decode([String].self, forKey: .userId)
+                platforms = try container.decode([String].self, forKey: .platforms)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,21 +139,21 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(payments, forKey: .payments)
-
-            try? container.encodeIfPresent(anonymousUsers, forKey: .anonymousUsers)
-
-            try? container.encodeIfPresent(platforms, forKey: .platforms)
-
             try? container.encode(userRegistered, forKey: .userRegistered)
-
-            try? container.encodeIfPresent(uses, forKey: .uses)
 
             try? container.encodeIfPresent(userGroups, forKey: .userGroups)
 
-            try? container.encodeIfPresent(postOrder, forKey: .postOrder)
+            try? container.encodeIfPresent(anonymousUsers, forKey: .anonymousUsers)
+
+            try? container.encodeIfPresent(uses, forKey: .uses)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
+
+            try? container.encodeIfPresent(payments, forKey: .payments)
+
+            try? container.encodeIfPresent(postOrder, forKey: .postOrder)
+
+            try? container.encodeIfPresent(platforms, forKey: .platforms)
 
             try? container.encodeIfPresent(orderQuantity, forKey: .orderQuantity)
         }
