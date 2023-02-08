@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var ewayBillId: String?
 
-        public var trackUrl: String?
-
-        public var id: String?
+        public var country: String?
 
         public var pincode: String?
 
-        public var country: String?
+        public var trackUrl: String?
+
+        public var id: String?
 
         public var awbNo: String?
 
@@ -29,13 +29,13 @@ public extension PlatformClient {
 
             case ewayBillId = "eway_bill_id"
 
-            case trackUrl = "track_url"
-
-            case id
+            case country
 
             case pincode
 
-            case country
+            case trackUrl = "track_url"
+
+            case id
 
             case awbNo = "awb_no"
 
@@ -47,13 +47,13 @@ public extension PlatformClient {
 
             self.ewayBillId = ewayBillId
 
-            self.trackUrl = trackUrl
-
-            self.id = id
+            self.country = country
 
             self.pincode = pincode
 
-            self.country = country
+            self.trackUrl = trackUrl
+
+            self.id = id
 
             self.awbNo = awbNo
 
@@ -80,15 +80,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                trackUrl = try container.decode(String.self, forKey: .trackUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                id = try container.decode(String.self, forKey: .id)
+                country = try container.decode(String.self, forKey: .country)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +96,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                country = try container.decode(String.self, forKey: .country)
+                trackUrl = try container.decode(String.self, forKey: .trackUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -135,13 +135,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(ewayBillId, forKey: .ewayBillId)
 
-            try? container.encodeIfPresent(trackUrl, forKey: .trackUrl)
-
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(country, forKey: .country)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(trackUrl, forKey: .trackUrl)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(awbNo, forKey: .awbNo)
 

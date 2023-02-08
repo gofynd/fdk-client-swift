@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ReturnConfig2: Codable {
         public var unit: String
 
-        public var time: Int
-
         public var returnable: Bool
+
+        public var time: Int
 
         public enum CodingKeys: String, CodingKey {
             case unit
 
-            case time
-
             case returnable
+
+            case time
         }
 
         public init(returnable: Bool, time: Int, unit: String) {
             self.unit = unit
 
-            self.time = time
-
             self.returnable = returnable
+
+            self.time = time
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             unit = try container.decode(String.self, forKey: .unit)
 
-            time = try container.decode(Int.self, forKey: .time)
-
             returnable = try container.decode(Bool.self, forKey: .returnable)
+
+            time = try container.decode(Int.self, forKey: .time)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(time, forKey: .time)
-
             try? container.encodeIfPresent(returnable, forKey: .returnable)
+
+            try? container.encodeIfPresent(time, forKey: .time)
         }
     }
 }

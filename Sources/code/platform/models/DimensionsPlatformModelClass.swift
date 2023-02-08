@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var length: Int?
 
+        public var height: Int?
+
         public var unit: String?
 
         public var isDefault: Bool?
-
-        public var height: Int?
 
         public enum CodingKeys: String, CodingKey {
             case width
 
             case length
 
+            case height
+
             case unit
 
             case isDefault = "is_default"
-
-            case height
         }
 
         public init(height: Int? = nil, isDefault: Bool? = nil, length: Int? = nil, unit: String? = nil, width: Int? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.length = length
 
+            self.height = height
+
             self.unit = unit
 
             self.isDefault = isDefault
-
-            self.height = height
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,6 +62,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                height = try container.decode(Int.self, forKey: .height)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,14 +84,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                height = try container.decode(Int.self, forKey: .height)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -93,11 +93,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(length, forKey: .length)
 
+            try? container.encodeIfPresent(height, forKey: .height)
+
             try? container.encodeIfPresent(unit, forKey: .unit)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-
-            try? container.encodeIfPresent(height, forKey: .height)
         }
     }
 }
