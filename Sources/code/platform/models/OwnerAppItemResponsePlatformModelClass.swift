@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var isGift: Bool?
 
-        public var seo: SEOData?
-
         public var isCod: Bool?
+
+        public var seo: SEOData?
 
         public enum CodingKeys: String, CodingKey {
             case moq
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case isGift = "is_gift"
 
-            case seo
-
             case isCod = "is_cod"
+
+            case seo
         }
 
         public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: MOQData? = nil, seo: SEOData? = nil) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.isGift = isGift
 
-            self.seo = seo
-
             self.isCod = isCod
+
+            self.seo = seo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                seo = try container.decode(SEOData.self, forKey: .seo)
+                isCod = try container.decode(Bool.self, forKey: .isCod)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isCod = try container.decode(Bool.self, forKey: .isCod)
+                seo = try container.decode(SEOData.self, forKey: .seo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,9 +95,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isGift, forKey: .isGift)
 
-            try? container.encodeIfPresent(seo, forKey: .seo)
-
             try? container.encodeIfPresent(isCod, forKey: .isCod)
+
+            try? container.encodeIfPresent(seo, forKey: .seo)
         }
     }
 }

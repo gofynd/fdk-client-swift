@@ -10,36 +10,36 @@ public extension PlatformClient {
     class ShipmentStatusData: Codable {
         public var status: String?
 
-        public var id: Int?
-
         public var bagList: [Int]?
 
         public var createdAt: String?
 
         public var shipmentId: String?
 
+        public var id: Int?
+
         public enum CodingKeys: String, CodingKey {
             case status
-
-            case id
 
             case bagList = "bag_list"
 
             case createdAt = "created_at"
 
             case shipmentId = "shipment_id"
+
+            case id
         }
 
         public init(bagList: [Int]? = nil, createdAt: String? = nil, id: Int? = nil, shipmentId: String? = nil, status: String? = nil) {
             self.status = status
-
-            self.id = id
 
             self.bagList = bagList
 
             self.createdAt = createdAt
 
             self.shipmentId = shipmentId
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,14 +47,6 @@ public extension PlatformClient {
 
             do {
                 status = try container.decode(String.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,6 +76,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                id = try container.decode(Int.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -91,13 +91,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(bagList, forKey: .bagList)
 
             try? container.encode(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

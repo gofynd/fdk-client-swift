@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class UpdateCartShipmentItem: Codable {
         public var quantity: Int?
 
-        public var articleUid: String
-
         public var shipmentType: String
+
+        public var articleUid: String
 
         public enum CodingKeys: String, CodingKey {
             case quantity
 
-            case articleUid = "article_uid"
-
             case shipmentType = "shipment_type"
+
+            case articleUid = "article_uid"
         }
 
         public init(articleUid: String, quantity: Int? = nil, shipmentType: String) {
             self.quantity = quantity
 
-            self.articleUid = articleUid
-
             self.shipmentType = shipmentType
+
+            self.articleUid = articleUid
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,9 +40,9 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            articleUid = try container.decode(String.self, forKey: .articleUid)
-
             shipmentType = try container.decode(String.self, forKey: .shipmentType)
+
+            articleUid = try container.decode(String.self, forKey: .articleUid)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -50,9 +50,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(articleUid, forKey: .articleUid)
-
             try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
+
+            try? container.encodeIfPresent(articleUid, forKey: .articleUid)
         }
     }
 }

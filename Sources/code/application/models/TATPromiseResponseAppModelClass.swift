@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: LogisticTimestamp
+         Model: TATPromiseResponse
          Used By: Logistic
      */
-    class LogisticTimestamp: Codable {
-        public var min: Int?
+    class TATPromiseResponse: Codable {
+        public var formatted: TATFormattedResponse?
 
-        public var max: Int?
+        public var timestamp: TATTimestampResponse?
 
         public enum CodingKeys: String, CodingKey {
-            case min
+            case formatted
 
-            case max
+            case timestamp
         }
 
-        public init(max: Int? = nil, min: Int? = nil) {
-            self.min = min
+        public init(formatted: TATFormattedResponse? = nil, timestamp: TATTimestampResponse? = nil) {
+            self.formatted = formatted
 
-            self.max = max
+            self.timestamp = timestamp
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                min = try container.decode(Int.self, forKey: .min)
+                formatted = try container.decode(TATFormattedResponse.self, forKey: .formatted)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                max = try container.decode(Int.self, forKey: .max)
+                timestamp = try container.decode(TATTimestampResponse.self, forKey: .timestamp)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(min, forKey: .min)
+            try? container.encodeIfPresent(formatted, forKey: .formatted)
 
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
         }
     }
 }

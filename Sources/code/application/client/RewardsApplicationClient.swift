@@ -13,13 +13,13 @@ public extension ApplicationClient {
 
             ulrs["catalogueOrder"] = config.domain.appendAsPath("/service/application/rewards/v1.0/catalogue/offer/order/")
 
-            ulrs["getUserPointsHistory"] = config.domain.appendAsPath("/service/application/rewards/v1.0/user/points/history/")
+            ulrs["getPointsHistory"] = config.domain.appendAsPath("/service/application/rewards/v1.0/user/points/history/")
 
-            ulrs["getUserPoints"] = config.domain.appendAsPath("/service/application/rewards/v1.0/user/points/")
+            ulrs["getPoints"] = config.domain.appendAsPath("/service/application/rewards/v1.0/user/points/")
 
-            ulrs["getUserReferralDetails"] = config.domain.appendAsPath("/service/application/rewards/v1.0/user/referral/")
+            ulrs["referral"] = config.domain.appendAsPath("/service/application/rewards/v1.0/user/referral/")
 
-            ulrs["getOrderDiscount"] = config.domain.appendAsPath("/service/application/rewards/v1.0/user/offer/order-discount/")
+            ulrs["orderDiscount"] = config.domain.appendAsPath("/service/application/rewards/v1.0/user/offer/order-discount/")
 
             ulrs["redeemReferralCode"] = config.domain.appendAsPath("/service/application/rewards/v1.0/user/referral/redeem/")
 
@@ -120,7 +120,7 @@ public extension ApplicationClient {
          * Summary: Get all transactions of reward points
          * Description: Use this API to get a list of points transactions.
          **/
-        public func getUserPointsHistory(
+        public func getPointsHistory(
             pageId: String?,
             pageSize: Int?,
 
@@ -136,7 +136,7 @@ public extension ApplicationClient {
                 xQuery["page_size"] = value
             }
 
-            let fullUrl = relativeUrls["getUserPointsHistory"] ?? ""
+            let fullUrl = relativeUrls["getPointsHistory"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -169,17 +169,17 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: get paginator for getUserPointsHistory
+         * Summary: get paginator for getPointsHistory
          * Description: fetch the next page by calling .next(...) function
          **/
-        public func getUserPointsHistoryPaginator(
+        public func getPointsHistoryPaginator(
             pageSize: Int?
 
         ) -> Paginator<PointsHistoryResponse> {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<PointsHistoryResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
-                self.getUserPointsHistory(
+                self.getPointsHistory(
                     pageId: paginator.pageId,
 
                     pageSize: paginator.pageSize
@@ -200,10 +200,10 @@ public extension ApplicationClient {
          * Summary: Get referral details of a user
          * Description: Use this API to retrieve total available points of a user for current application
          **/
-        public func getUserPoints(
+        public func getPoints(
             onResponse: @escaping (_ response: PointsResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getUserPoints"] ?? ""
+            let fullUrl = relativeUrls["getPoints"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -239,10 +239,10 @@ public extension ApplicationClient {
          * Summary: Get referral details of a user
          * Description: Use this API to retrieve the referral details a user has configured in the application.
          **/
-        public func getUserReferralDetails(
+        public func referral(
             onResponse: @escaping (_ response: ReferralDetailsResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getUserReferralDetails"] ?? ""
+            let fullUrl = relativeUrls["referral"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -278,11 +278,11 @@ public extension ApplicationClient {
          * Summary: Calculates the discount on order-amount
          * Description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
          **/
-        public func getOrderDiscount(
+        public func orderDiscount(
             body: OrderDiscountRequest,
             onResponse: @escaping (_ response: OrderDiscountResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["getOrderDiscount"] ?? ""
+            let fullUrl = relativeUrls["orderDiscount"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,

@@ -8,10 +8,10 @@
 Earn and redeem reward points
 * [getOfferByName](#getofferbyname)
 * [catalogueOrder](#catalogueorder)
-* [getUserPointsHistory](#getuserpointshistory)
-* [getUserPoints](#getuserpoints)
-* [getUserReferralDetails](#getuserreferraldetails)
-* [getOrderDiscount](#getorderdiscount)
+* [getPointsHistory](#getpointshistory)
+* [getPoints](#getpoints)
+* [referral](#referral)
+* [orderDiscount](#orderdiscount)
 * [redeemReferralCode](#redeemreferralcode)
 
 
@@ -128,14 +128,14 @@ Success. Check example below or refer `CatalogueOrderResponse` for more details.
 ---
 
 
-#### getUserPointsHistory
+#### getPointsHistory
 Get all transactions of reward points
 
 
 
 
 ```swift
-rewards.getUserPointsHistory(pageId: pageId, pageSize: pageSize) { (response, error) in
+rewards.getPointsHistory(pageId: pageId, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -184,14 +184,14 @@ Success. Check example below or refer `PointsHistoryResponse` for more details.
 ---
 
 
-#### getUserPoints
+#### getPoints
 Get referral details of a user
 
 
 
 
 ```swift
-rewards.getUserPoints() { (response, error) in
+rewards.getPoints() { (response, error) in
     // Use response
 }
 ```
@@ -234,14 +234,14 @@ Success. Check example below or refer `PointsResponse` for more details.
 ---
 
 
-#### getUserReferralDetails
+#### referral
 Get referral details of a user
 
 
 
 
 ```swift
-rewards.getUserReferralDetails() { (response, error) in
+rewards.referral() { (response, error) in
     // Use response
 }
 ```
@@ -284,14 +284,14 @@ Success. Check example below or refer `ReferralDetailsResponse` for more details
 ---
 
 
-#### getOrderDiscount
+#### orderDiscount
 Calculates the discount on order-amount
 
 
 
 
 ```swift
-rewards.getOrderDiscount(body: body) { (response, error) in
+rewards.orderDiscount(body: body) { (response, error) in
     // Use response
 }
 ```

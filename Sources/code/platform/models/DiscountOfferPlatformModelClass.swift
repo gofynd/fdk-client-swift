@@ -8,66 +8,66 @@ public extension PlatformClient {
      */
 
     class DiscountOffer: Codable {
-        public var minOfferQuantity: Int?
+        public var apportionDiscount: Bool?
 
         public var discountAmount: Double?
 
-        public var maxUsagePerTransaction: Int?
+        public var maxDiscountAmount: Double?
 
         public var code: String?
 
-        public var discountPercentage: Double?
+        public var minOfferQuantity: Int?
 
-        public var apportionDiscount: Bool?
-
-        public var maxOfferQuantity: Int?
+        public var maxUsagePerTransaction: Int?
 
         public var discountPrice: Double?
 
-        public var maxDiscountAmount: Double?
+        public var discountPercentage: Double?
+
+        public var maxOfferQuantity: Int?
 
         public var partialCanRet: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case minOfferQuantity = "min_offer_quantity"
+            case apportionDiscount = "apportion_discount"
 
             case discountAmount = "discount_amount"
 
-            case maxUsagePerTransaction = "max_usage_per_transaction"
+            case maxDiscountAmount = "max_discount_amount"
 
             case code
 
-            case discountPercentage = "discount_percentage"
+            case minOfferQuantity = "min_offer_quantity"
 
-            case apportionDiscount = "apportion_discount"
-
-            case maxOfferQuantity = "max_offer_quantity"
+            case maxUsagePerTransaction = "max_usage_per_transaction"
 
             case discountPrice = "discount_price"
 
-            case maxDiscountAmount = "max_discount_amount"
+            case discountPercentage = "discount_percentage"
+
+            case maxOfferQuantity = "max_offer_quantity"
 
             case partialCanRet = "partial_can_ret"
         }
 
         public init(apportionDiscount: Bool? = nil, code: String? = nil, discountAmount: Double? = nil, discountPercentage: Double? = nil, discountPrice: Double? = nil, maxDiscountAmount: Double? = nil, maxOfferQuantity: Int? = nil, maxUsagePerTransaction: Int? = nil, minOfferQuantity: Int? = nil, partialCanRet: Bool? = nil) {
-            self.minOfferQuantity = minOfferQuantity
+            self.apportionDiscount = apportionDiscount
 
             self.discountAmount = discountAmount
 
-            self.maxUsagePerTransaction = maxUsagePerTransaction
+            self.maxDiscountAmount = maxDiscountAmount
 
             self.code = code
 
-            self.discountPercentage = discountPercentage
+            self.minOfferQuantity = minOfferQuantity
 
-            self.apportionDiscount = apportionDiscount
-
-            self.maxOfferQuantity = maxOfferQuantity
+            self.maxUsagePerTransaction = maxUsagePerTransaction
 
             self.discountPrice = discountPrice
 
-            self.maxDiscountAmount = maxDiscountAmount
+            self.discountPercentage = discountPercentage
+
+            self.maxOfferQuantity = maxOfferQuantity
 
             self.partialCanRet = partialCanRet
         }
@@ -76,7 +76,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                minOfferQuantity = try container.decode(Int.self, forKey: .minOfferQuantity)
+                apportionDiscount = try container.decode(Bool.self, forKey: .apportionDiscount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,7 +92,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                maxUsagePerTransaction = try container.decode(Int.self, forKey: .maxUsagePerTransaction)
+                maxDiscountAmount = try container.decode(Double.self, forKey: .maxDiscountAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,7 +108,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                discountPercentage = try container.decode(Double.self, forKey: .discountPercentage)
+                minOfferQuantity = try container.decode(Int.self, forKey: .minOfferQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,15 +116,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                apportionDiscount = try container.decode(Bool.self, forKey: .apportionDiscount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                maxOfferQuantity = try container.decode(Int.self, forKey: .maxOfferQuantity)
+                maxUsagePerTransaction = try container.decode(Int.self, forKey: .maxUsagePerTransaction)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,7 +132,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                maxDiscountAmount = try container.decode(Double.self, forKey: .maxDiscountAmount)
+                discountPercentage = try container.decode(Double.self, forKey: .discountPercentage)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                maxOfferQuantity = try container.decode(Int.self, forKey: .maxOfferQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,23 +159,23 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(minOfferQuantity, forKey: .minOfferQuantity)
+            try? container.encodeIfPresent(apportionDiscount, forKey: .apportionDiscount)
 
             try? container.encodeIfPresent(discountAmount, forKey: .discountAmount)
 
-            try? container.encodeIfPresent(maxUsagePerTransaction, forKey: .maxUsagePerTransaction)
+            try? container.encodeIfPresent(maxDiscountAmount, forKey: .maxDiscountAmount)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(discountPercentage, forKey: .discountPercentage)
+            try? container.encodeIfPresent(minOfferQuantity, forKey: .minOfferQuantity)
 
-            try? container.encodeIfPresent(apportionDiscount, forKey: .apportionDiscount)
-
-            try? container.encodeIfPresent(maxOfferQuantity, forKey: .maxOfferQuantity)
+            try? container.encodeIfPresent(maxUsagePerTransaction, forKey: .maxUsagePerTransaction)
 
             try? container.encodeIfPresent(discountPrice, forKey: .discountPrice)
 
-            try? container.encodeIfPresent(maxDiscountAmount, forKey: .maxDiscountAmount)
+            try? container.encodeIfPresent(discountPercentage, forKey: .discountPercentage)
+
+            try? container.encodeIfPresent(maxOfferQuantity, forKey: .maxOfferQuantity)
 
             try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
         }

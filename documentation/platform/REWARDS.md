@@ -16,7 +16,7 @@ Earn and redeem reward points
 * [updateOfferByName](#updateofferbyname)
 * [updateUserStatus](#updateuserstatus)
 * [user](#user)
-* [getUserPointsHistory](#getuserpointshistory)
+* [getPointsHistory](#getpointshistory)
 
 
 
@@ -569,14 +569,14 @@ Success. Check example below or refer `UserRes` for more details.
 ---
 
 
-#### getUserPointsHistory
+#### getPointsHistory
 Get all transactions of reward points
 
 
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.getUserPointsHistory(userId: userId, pageId: pageId, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").rewards.getPointsHistory(pageId: pageId, pageSize: pageSize, userId: userId) { (response, error) in
     // Use response
 }
 ```
@@ -587,9 +587,9 @@ client.application("<APPLICATION_ID>").rewards.getUserPointsHistory(userId: user
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| userId | String | yes | user id |   
 | pageId | String? | no | PageID is the ID of the requested page. For first request it should be kept empty. |   
-| pageSize | Int? | no | The number of items to retrieve in each page. |  
+| pageSize | Int? | no | The number of items to retrieve in each page. |   
+| userId | String | yes | user id |  
 
 
 
