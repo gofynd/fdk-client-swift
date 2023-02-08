@@ -10,30 +10,32 @@ public extension PlatformClient {
     class ErrorResponse1: Codable {
         public var status: Int
 
-        public var errorTrace: String?
-
         public var message: String
+
+        public var errorTrace: String?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case errorTrace = "error_trace"
-
             case message
+
+            case errorTrace = "error_trace"
         }
 
         public init(errorTrace: String? = nil, message: String, status: Int) {
             self.status = status
 
-            self.errorTrace = errorTrace
-
             self.message = message
+
+            self.errorTrace = errorTrace
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             status = try container.decode(Int.self, forKey: .status)
+
+            message = try container.decode(String.self, forKey: .message)
 
             do {
                 errorTrace = try container.decode(String.self, forKey: .errorTrace)
@@ -42,8 +44,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -51,9 +51,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
         }
     }
 }

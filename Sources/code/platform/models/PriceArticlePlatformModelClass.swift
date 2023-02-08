@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var effective: Double?
 
+        public var transfer: Double?
+
         public var marked: Double?
 
         public var tpNotes: [String: Any]?
-
-        public var transfer: Double?
 
         public enum CodingKeys: String, CodingKey {
             case currency
 
             case effective
 
+            case transfer
+
             case marked
 
             case tpNotes = "tp_notes"
-
-            case transfer
         }
 
         public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil, tpNotes: [String: Any]? = nil, transfer: Double? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.effective = effective
 
+            self.transfer = transfer
+
             self.marked = marked
 
             self.tpNotes = tpNotes
-
-            self.transfer = transfer
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,6 +62,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                transfer = try container.decode(Double.self, forKey: .transfer)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 marked = try container.decode(Double.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,14 +84,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                transfer = try container.decode(Double.self, forKey: .transfer)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -93,11 +93,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
+            try? container.encodeIfPresent(transfer, forKey: .transfer)
+
             try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
-
-            try? container.encodeIfPresent(transfer, forKey: .transfer)
         }
     }
 }

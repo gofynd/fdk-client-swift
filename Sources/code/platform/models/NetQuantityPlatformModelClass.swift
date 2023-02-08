@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class NetQuantity: Codable {
-        public var unit: [String: Any]?
+        public var unit: String?
 
         public var value: Double?
 
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case value
         }
 
-        public init(unit: [String: Any]? = nil, value: Double? = nil) {
+        public init(unit: String? = nil, value: Double? = nil) {
             self.unit = unit
 
             self.value = value
@@ -28,7 +28,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                unit = try container.decode([String: Any].self, forKey: .unit)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

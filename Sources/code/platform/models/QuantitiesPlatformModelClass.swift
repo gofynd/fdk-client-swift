@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class Quantities: Codable {
-        public var damaged: QuantityBase?
-
         public var orderCommitted: QuantityBase?
+
+        public var damaged: QuantityBase?
 
         public var sellable: QuantityBase?
 
         public var notAvailable: QuantityBase?
 
         public enum CodingKeys: String, CodingKey {
-            case damaged
-
             case orderCommitted = "order_committed"
+
+            case damaged
 
             case sellable
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(damaged: QuantityBase? = nil, notAvailable: QuantityBase? = nil, orderCommitted: QuantityBase? = nil, sellable: QuantityBase? = nil) {
-            self.damaged = damaged
-
             self.orderCommitted = orderCommitted
+
+            self.damaged = damaged
 
             self.sellable = sellable
 
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                damaged = try container.decode(QuantityBase.self, forKey: .damaged)
+                orderCommitted = try container.decode(QuantityBase.self, forKey: .orderCommitted)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                orderCommitted = try container.decode(QuantityBase.self, forKey: .orderCommitted)
+                damaged = try container.decode(QuantityBase.self, forKey: .damaged)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,9 +75,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(damaged, forKey: .damaged)
-
             try? container.encodeIfPresent(orderCommitted, forKey: .orderCommitted)
+
+            try? container.encodeIfPresent(damaged, forKey: .damaged)
 
             try? container.encodeIfPresent(sellable, forKey: .sellable)
 
