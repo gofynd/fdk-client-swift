@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var isCurrent: Bool?
 
-        public var status: String?
-
         public var time: String?
+
+        public var status: String?
 
         public enum CodingKeys: String, CodingKey {
             case isPassed = "is_passed"
 
             case isCurrent = "is_current"
 
-            case status
-
             case time
+
+            case status
         }
 
         public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String? = nil, time: String? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.isCurrent = isCurrent
 
-            self.status = status
-
             self.time = time
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                time = try container.decode(String.self, forKey: .time)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                time = try container.decode(String.self, forKey: .time)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(time, forKey: .time)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }
