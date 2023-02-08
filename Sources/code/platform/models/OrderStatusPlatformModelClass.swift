@@ -10,18 +10,18 @@ public extension PlatformClient {
     class OrderStatus: Codable {
         public var orderDetails: [FyndOrderIdList]?
 
-        public var mobile: Int
-
         public var startDate: String
+
+        public var mobile: Int
 
         public var endDate: String
 
         public enum CodingKeys: String, CodingKey {
             case orderDetails = "order_details"
 
-            case mobile
-
             case startDate = "start_date"
+
+            case mobile
 
             case endDate = "end_date"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(endDate: String, mobile: Int, orderDetails: [FyndOrderIdList]? = nil, startDate: String) {
             self.orderDetails = orderDetails
 
-            self.mobile = mobile
-
             self.startDate = startDate
+
+            self.mobile = mobile
 
             self.endDate = endDate
         }
@@ -47,9 +47,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            mobile = try container.decode(Int.self, forKey: .mobile)
-
             startDate = try container.decode(String.self, forKey: .startDate)
+
+            mobile = try container.decode(Int.self, forKey: .mobile)
 
             endDate = try container.decode(String.self, forKey: .endDate)
         }
@@ -59,9 +59,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
 
-            try? container.encodeIfPresent(mobile, forKey: .mobile)
-
             try? container.encodeIfPresent(startDate, forKey: .startDate)
+
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
 
             try? container.encodeIfPresent(endDate, forKey: .endDate)
         }
