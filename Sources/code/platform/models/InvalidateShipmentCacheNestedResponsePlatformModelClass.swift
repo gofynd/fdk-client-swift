@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class InvalidateShipmentCacheNestedResponse: Codable {
-        public var error: String?
-
         public var shipmentId: String?
+
+        public var error: String?
 
         public var message: String?
 
         public var status: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case error
-
             case shipmentId = "shipment_id"
+
+            case error
 
             case message
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(error: String? = nil, message: String? = nil, shipmentId: String? = nil, status: Int? = nil) {
-            self.error = error
-
             self.shipmentId = shipmentId
+
+            self.error = error
 
             self.message = message
 
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                error = try container.decode(String.self, forKey: .error)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                error = try container.decode(String.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,9 +75,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(message, forKey: .message)
 

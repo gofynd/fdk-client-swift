@@ -7,69 +7,69 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductStockStatusItem: Codable {
-        public var size: String?
-
-        public var company: CompanyDetail?
-
-        public var identifier: [String: Any]?
-
         public var quantity: Int?
-
-        public var seller: Seller?
-
-        public var itemId: Int?
-
-        public var store: StoreDetail?
-
-        public var uid: String?
 
         public var price: ProductStockPrice?
 
-        public enum CodingKeys: String, CodingKey {
-            case size
+        public var size: String?
 
-            case company
+        public var identifier: [String: Any]?
+
+        public var itemId: Int?
+
+        public var seller: Seller?
+
+        public var company: CompanyDetail?
+
+        public var uid: String?
+
+        public var store: StoreDetail?
+
+        public enum CodingKeys: String, CodingKey {
+            case quantity
+
+            case price
+
+            case size
 
             case identifier
 
-            case quantity
+            case itemId = "item_id"
 
             case seller
 
-            case itemId = "item_id"
-
-            case store
+            case company
 
             case uid
 
-            case price
+            case store
         }
 
         public init(company: CompanyDetail? = nil, identifier: [String: Any]? = nil, itemId: Int? = nil, price: ProductStockPrice? = nil, quantity: Int? = nil, seller: Seller? = nil, size: String? = nil, store: StoreDetail? = nil, uid: String? = nil) {
-            self.size = size
+            self.quantity = quantity
 
-            self.company = company
+            self.price = price
+
+            self.size = size
 
             self.identifier = identifier
 
-            self.quantity = quantity
+            self.itemId = itemId
 
             self.seller = seller
 
-            self.itemId = itemId
-
-            self.store = store
+            self.company = company
 
             self.uid = uid
 
-            self.price = price
+            self.store = store
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                size = try container.decode(String.self, forKey: .size)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                company = try container.decode(CompanyDetail.self, forKey: .company)
+                price = try container.decode(ProductStockPrice.self, forKey: .price)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                size = try container.decode(String.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +101,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,15 +117,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                store = try container.decode(StoreDetail.self, forKey: .store)
+                company = try container.decode(CompanyDetail.self, forKey: .company)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,7 +133,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                price = try container.decode(ProductStockPrice.self, forKey: .price)
+                store = try container.decode(StoreDetail.self, forKey: .store)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -144,23 +144,23 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(company, forKey: .company)
+            try? container.encodeIfPresent(price, forKey: .price)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
             try? container.encodeIfPresent(seller, forKey: .seller)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-
-            try? container.encodeIfPresent(store, forKey: .store)
+            try? container.encodeIfPresent(company, forKey: .company)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(price, forKey: .price)
+            try? container.encodeIfPresent(store, forKey: .store)
         }
     }
 }
