@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var min: Double?
 
-        public var currencyCode: String?
-
         public var max: Double?
+
+        public var currencyCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case currencySymbol = "currency_symbol"
 
             case min
 
-            case currencyCode = "currency_code"
-
             case max
+
+            case currencyCode = "currency_code"
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.min = min
 
-            self.currencyCode = currencyCode
-
             self.max = max
+
+            self.currencyCode = currencyCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                max = try container.decode(Double.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                max = try container.decode(Double.self, forKey: .max)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(min, forKey: .min)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-
             try? container.encodeIfPresent(max, forKey: .max)
+
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
         }
     }
 }

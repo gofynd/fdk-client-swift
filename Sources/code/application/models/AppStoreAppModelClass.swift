@@ -11,13 +11,13 @@ public extension ApplicationClient {
 
         public var manager: StoreManagerSerializer?
 
-        public var name: String?
-
-        public var address: StoreAddressSerializer?
-
         public var uid: Int?
 
         public var departments: [StoreDepartments]?
+
+        public var name: String?
+
+        public var address: StoreAddressSerializer?
 
         public var contactNumbers: [SellerPhoneNumber]?
 
@@ -26,13 +26,13 @@ public extension ApplicationClient {
 
             case manager
 
-            case name
-
-            case address
-
             case uid
 
             case departments
+
+            case name
+
+            case address
 
             case contactNumbers = "contact_numbers"
         }
@@ -42,13 +42,13 @@ public extension ApplicationClient {
 
             self.manager = manager
 
-            self.name = name
-
-            self.address = address
-
             self.uid = uid
 
             self.departments = departments
+
+            self.name = name
+
+            self.address = address
 
             self.contactNumbers = contactNumbers
         }
@@ -73,22 +73,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -98,6 +82,22 @@ public extension ApplicationClient {
 
             do {
                 departments = try container.decode([StoreDepartments].self, forKey: .departments)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,13 +120,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(manager, forKey: .manager)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(address, forKey: .address)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(departments, forKey: .departments)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(address, forKey: .address)
 
             try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
         }

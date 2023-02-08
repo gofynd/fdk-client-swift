@@ -11,11 +11,11 @@ public extension ApplicationClient {
 
         public var logo: Media?
 
-        public var name: String?
-
         public var banners: ImageUrls?
 
         public var uid: Int?
+
+        public var name: String?
 
         public var customJson: [String: Any]?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient {
 
             case logo
 
-            case name
-
             case banners
 
             case uid
+
+            case name
 
             case customJson = "_custom_json"
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient {
 
             self.logo = logo
 
-            self.name = name
-
             self.banners = banners
 
             self.uid = uid
+
+            self.name = name
 
             self.customJson = customJson
         }
@@ -67,14 +67,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 banners = try container.decode(ImageUrls.self, forKey: .banners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -84,6 +76,14 @@ public extension ApplicationClient {
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(banners, forKey: .banners)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
         }

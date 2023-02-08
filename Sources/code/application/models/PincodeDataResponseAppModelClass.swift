@@ -9,7 +9,9 @@ public extension ApplicationClient {
     class PincodeDataResponse: Codable {
         public var latLong: PincodeLatLongData?
 
-        public var error: PincodeErrorSchemaResponse
+        public var uid: String?
+
+        public var displayName: String?
 
         public var name: String?
 
@@ -17,16 +19,16 @@ public extension ApplicationClient {
 
         public var subType: String?
 
+        public var error: PincodeErrorSchemaResponse
+
         public var meta: PincodeMetaResponse?
-
-        public var uid: String?
-
-        public var displayName: String?
 
         public enum CodingKeys: String, CodingKey {
             case latLong = "lat_long"
 
-            case error
+            case uid
+
+            case displayName = "display_name"
 
             case name
 
@@ -34,17 +36,17 @@ public extension ApplicationClient {
 
             case subType = "sub_type"
 
+            case error
+
             case meta
-
-            case uid
-
-            case displayName = "display_name"
         }
 
         public init(displayName: String? = nil, error: PincodeErrorSchemaResponse, latLong: PincodeLatLongData? = nil, meta: PincodeMetaResponse? = nil, name: String? = nil, parents: [PincodeParentsResponse]? = nil, subType: String? = nil, uid: String? = nil) {
             self.latLong = latLong
 
-            self.error = error
+            self.uid = uid
+
+            self.displayName = displayName
 
             self.name = name
 
@@ -52,11 +54,9 @@ public extension ApplicationClient {
 
             self.subType = subType
 
+            self.error = error
+
             self.meta = meta
-
-            self.uid = uid
-
-            self.displayName = displayName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -70,7 +70,21 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            error = try container.decode(PincodeErrorSchemaResponse.self, forKey: .error)
+            do {
+                uid = try container.decode(String.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                displayName = try container.decode(String.self, forKey: .displayName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 name = try container.decode(String.self, forKey: .name)
@@ -96,24 +110,10 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            error = try container.decode(PincodeErrorSchemaResponse.self, forKey: .error)
+
             do {
                 meta = try container.decode(PincodeMetaResponse.self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uid = try container.decode(String.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -126,7 +126,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(latLong, forKey: .latLong)
 
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
@@ -134,11 +136,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(subType, forKey: .subType)
 
+            try? container.encodeIfPresent(error, forKey: .error)
+
             try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
         }
     }
 }
