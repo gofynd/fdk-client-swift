@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var affiliateBagId: String?
 
-        public var bagId: Int?
-
         public var isLocked: Bool?
+
+        public var bagId: Int?
 
         public enum CodingKeys: String, CodingKey {
             case affiliateOrderId = "affiliate_order_id"
 
             case affiliateBagId = "affiliate_bag_id"
 
-            case bagId = "bag_id"
-
             case isLocked = "is_locked"
+
+            case bagId = "bag_id"
         }
 
         public init(affiliateBagId: String? = nil, affiliateOrderId: String? = nil, bagId: Int? = nil, isLocked: Bool? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.affiliateBagId = affiliateBagId
 
-            self.bagId = bagId
-
             self.isLocked = isLocked
+
+            self.bagId = bagId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                bagId = try container.decode(Int.self, forKey: .bagId)
+                isLocked = try container.decode(Bool.self, forKey: .isLocked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isLocked = try container.decode(Bool.self, forKey: .isLocked)
+                bagId = try container.decode(Int.self, forKey: .bagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
-            try? container.encodeIfPresent(bagId, forKey: .bagId)
-
             try? container.encodeIfPresent(isLocked, forKey: .isLocked)
+
+            try? container.encodeIfPresent(bagId, forKey: .bagId)
         }
     }
 }

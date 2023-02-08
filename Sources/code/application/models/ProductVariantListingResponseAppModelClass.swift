@@ -11,22 +11,22 @@ public extension ApplicationClient {
 
         public var key: String?
 
-        public var header: String?
+        public var items: [ProductVariantItemResponse]?
 
         public var total: Int?
 
-        public var items: [ProductVariantItemResponse]?
+        public var header: String?
 
         public enum CodingKeys: String, CodingKey {
             case displayType = "display_type"
 
             case key
 
-            case header
+            case items
 
             case total
 
-            case items
+            case header
         }
 
         public init(displayType: String? = nil, header: String? = nil, items: [ProductVariantItemResponse]? = nil, key: String? = nil, total: Int? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient {
 
             self.key = key
 
-            self.header = header
+            self.items = items
 
             self.total = total
 
-            self.items = items
+            self.header = header
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                header = try container.decode(String.self, forKey: .header)
+                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
+                header = try container.decode(String.self, forKey: .header)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(header, forKey: .header)
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(total, forKey: .total)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(header, forKey: .header)
         }
     }
 }

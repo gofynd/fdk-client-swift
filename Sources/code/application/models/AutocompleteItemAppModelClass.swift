@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var action: ProductListingAction?
 
-        public var type: String?
-
         public var logo: Media?
+
+        public var type: String?
 
         public var customJson: [String: Any]?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case action
 
-            case type
-
             case logo
+
+            case type
 
             case customJson = "_custom_json"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.action = action
 
-            self.type = type
-
             self.logo = logo
+
+            self.type = type
 
             self.customJson = customJson
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
         }

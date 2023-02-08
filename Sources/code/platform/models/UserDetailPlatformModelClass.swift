@@ -8,30 +8,30 @@ public extension PlatformClient {
      */
 
     class UserDetail: Codable {
-        public var superUser: Bool?
+        public var contact: String?
 
         public var userId: String
 
-        public var contact: String?
+        public var superUser: Bool?
 
         public var username: String
 
         public enum CodingKeys: String, CodingKey {
-            case superUser = "super_user"
+            case contact
 
             case userId = "user_id"
 
-            case contact
+            case superUser = "super_user"
 
             case username
         }
 
         public init(contact: String? = nil, superUser: Bool? = nil, username: String, userId: String) {
-            self.superUser = superUser
+            self.contact = contact
 
             self.userId = userId
 
-            self.contact = contact
+            self.superUser = superUser
 
             self.username = username
         }
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                superUser = try container.decode(Bool.self, forKey: .superUser)
+                contact = try container.decode(String.self, forKey: .contact)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             userId = try container.decode(String.self, forKey: .userId)
 
             do {
-                contact = try container.decode(String.self, forKey: .contact)
+                superUser = try container.decode(Bool.self, forKey: .superUser)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,11 +63,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(superUser, forKey: .superUser)
+            try? container.encodeIfPresent(contact, forKey: .contact)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(contact, forKey: .contact)
+            try? container.encodeIfPresent(superUser, forKey: .superUser)
 
             try? container.encodeIfPresent(username, forKey: .username)
         }

@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class Media: Codable {
         public var meta: Meta?
 
-        public var alt: String?
-
         public var type: String?
+
+        public var alt: String?
 
         public var url: String?
 
         public enum CodingKeys: String, CodingKey {
             case meta
 
-            case alt
-
             case type
+
+            case alt
 
             case url
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(alt: String? = nil, meta: Meta? = nil, type: String? = nil, url: String? = nil) {
             self.meta = meta
 
-            self.alt = alt
-
             self.type = type
+
+            self.alt = alt
 
             self.url = url
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                alt = try container.decode(String.self, forKey: .alt)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                alt = try container.decode(String.self, forKey: .alt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(alt, forKey: .alt)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(alt, forKey: .alt)
 
             try? container.encodeIfPresent(url, forKey: .url)
         }

@@ -10,22 +10,22 @@ public extension PlatformClient {
     class UpdateShipmentStatusRequest: Codable {
         public var lockAfterTransition: Bool?
 
+        public var unlockBeforeTransition: Bool?
+
         public var task: Bool?
 
         public var forceTransition: Bool?
-
-        public var unlockBeforeTransition: Bool?
 
         public var statuses: [StatuesRequest]?
 
         public enum CodingKeys: String, CodingKey {
             case lockAfterTransition = "lock_after_transition"
 
+            case unlockBeforeTransition = "unlock_before_transition"
+
             case task
 
             case forceTransition = "force_transition"
-
-            case unlockBeforeTransition = "unlock_before_transition"
 
             case statuses
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
             self.lockAfterTransition = lockAfterTransition
 
+            self.unlockBeforeTransition = unlockBeforeTransition
+
             self.task = task
 
             self.forceTransition = forceTransition
-
-            self.unlockBeforeTransition = unlockBeforeTransition
 
             self.statuses = statuses
         }
@@ -47,6 +47,14 @@ public extension PlatformClient {
 
             do {
                 lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,14 +78,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -91,11 +91,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
 
+            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
+
             try? container.encodeIfPresent(task, forKey: .task)
 
             try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
-
-            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
 
             try? container.encodeIfPresent(statuses, forKey: .statuses)
         }

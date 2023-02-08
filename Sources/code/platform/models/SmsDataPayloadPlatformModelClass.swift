@@ -12,38 +12,38 @@ public extension PlatformClient {
 
         public var customerName: String
 
-        public var amountPaid: Int
+        public var orderId: String
 
         public var shipmentId: Int
 
-        public var brandName: String
+        public var amountPaid: Int
 
-        public var message: String
+        public var brandName: String
 
         public var phoneNumber: Int
 
-        public var paymentMode: String
+        public var message: String
 
-        public var orderId: String
+        public var paymentMode: String
 
         public enum CodingKeys: String, CodingKey {
             case countryCode = "country_code"
 
             case customerName = "customer_name"
 
-            case amountPaid = "amount_paid"
+            case orderId = "order_id"
 
             case shipmentId = "shipment_id"
 
-            case brandName = "brand_name"
+            case amountPaid = "amount_paid"
 
-            case message
+            case brandName = "brand_name"
 
             case phoneNumber = "phone_number"
 
-            case paymentMode = "payment_mode"
+            case message
 
-            case orderId = "order_id"
+            case paymentMode = "payment_mode"
         }
 
         public init(amountPaid: Int, brandName: String, countryCode: String, customerName: String, message: String, orderId: String, paymentMode: String, phoneNumber: Int, shipmentId: Int) {
@@ -51,19 +51,19 @@ public extension PlatformClient {
 
             self.customerName = customerName
 
-            self.amountPaid = amountPaid
+            self.orderId = orderId
 
             self.shipmentId = shipmentId
 
-            self.brandName = brandName
+            self.amountPaid = amountPaid
 
-            self.message = message
+            self.brandName = brandName
 
             self.phoneNumber = phoneNumber
 
-            self.paymentMode = paymentMode
+            self.message = message
 
-            self.orderId = orderId
+            self.paymentMode = paymentMode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -73,19 +73,19 @@ public extension PlatformClient {
 
             customerName = try container.decode(String.self, forKey: .customerName)
 
-            amountPaid = try container.decode(Int.self, forKey: .amountPaid)
+            orderId = try container.decode(String.self, forKey: .orderId)
 
             shipmentId = try container.decode(Int.self, forKey: .shipmentId)
 
-            brandName = try container.decode(String.self, forKey: .brandName)
+            amountPaid = try container.decode(Int.self, forKey: .amountPaid)
 
-            message = try container.decode(String.self, forKey: .message)
+            brandName = try container.decode(String.self, forKey: .brandName)
 
             phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
 
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+            message = try container.decode(String.self, forKey: .message)
 
-            orderId = try container.decode(String.self, forKey: .orderId)
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -95,19 +95,19 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(customerName, forKey: .customerName)
 
-            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(brandName, forKey: .brandName)
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
 
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
         }
     }
 }
