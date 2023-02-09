@@ -10,9 +10,9 @@ public extension PlatformClient {
     class OwnerAppItemResponse: Codable {
         public var isGift: Bool?
 
-        public var seo: SEOData?
-
         public var altText: [String: Any]?
+
+        public var seo: SEOData?
 
         public var isCod: Bool?
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case isGift = "is_gift"
 
-            case seo
-
             case altText = "alt_text"
+
+            case seo
 
             case isCod = "is_cod"
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: MOQData? = nil, seo: SEOData? = nil) {
             self.isGift = isGift
 
-            self.seo = seo
-
             self.altText = altText
+
+            self.seo = seo
 
             self.isCod = isCod
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                seo = try container.decode(SEOData.self, forKey: .seo)
+                altText = try container.decode([String: Any].self, forKey: .altText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                altText = try container.decode([String: Any].self, forKey: .altText)
+                seo = try container.decode(SEOData.self, forKey: .seo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isGift, forKey: .isGift)
 
-            try? container.encodeIfPresent(seo, forKey: .seo)
-
             try? container.encodeIfPresent(altText, forKey: .altText)
+
+            try? container.encodeIfPresent(seo, forKey: .seo)
 
             try? container.encodeIfPresent(isCod, forKey: .isCod)
 

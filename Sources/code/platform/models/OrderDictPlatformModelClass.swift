@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var orderDate: String
 
-        public var meta: OrderMeta?
-
         public var shipmentCount: Int
+
+        public var meta: OrderMeta?
 
         public enum CodingKeys: String, CodingKey {
             case paymentMethods = "payment_methods"
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case orderDate = "order_date"
 
-            case meta
-
             case shipmentCount = "shipment_count"
+
+            case meta
         }
 
         public init(fyndOrderId: String, meta: OrderMeta? = nil, orderDate: String, paymentMethods: [String: Any]? = nil, shipmentCount: Int) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.orderDate = orderDate
 
-            self.meta = meta
-
             self.shipmentCount = shipmentCount
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,6 +57,8 @@ public extension PlatformClient {
 
             orderDate = try container.decode(String.self, forKey: .orderDate)
 
+            shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
+
             do {
                 meta = try container.decode(OrderMeta.self, forKey: .meta)
 
@@ -64,8 +66,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(orderDate, forKey: .orderDate)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(shipmentCount, forKey: .shipmentCount)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }
