@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var success: Bool?
 
-        public var items: [PlatformOrderItems]?
-
         public var message: String?
+
+        public var items: [PlatformOrderItems]?
 
         public var totalCount: Int?
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case success
 
-            case items
-
             case message
+
+            case items
 
             case totalCount = "total_count"
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             self.success = success
 
-            self.items = items
-
             self.message = message
+
+            self.items = items
 
             self.totalCount = totalCount
         }
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                items = try container.decode([PlatformOrderItems].self, forKey: .items)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                items = try container.decode([PlatformOrderItems].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,9 +109,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(totalCount, forKey: .totalCount)
         }
