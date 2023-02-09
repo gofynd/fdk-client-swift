@@ -34,6 +34,7 @@ public enum PlatformAPIClient {
                                        type: method,
                                        headers: finalHeaders,
                                        responseType: responseType,
+                                       session: config.session,
                                        onResponse: onResponse)
             } else {
                 onResponse(nil, NSError(domain: "No Token", code: 0, userInfo: nil), 0)

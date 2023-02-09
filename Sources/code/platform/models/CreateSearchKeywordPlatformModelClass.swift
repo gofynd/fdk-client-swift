@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var appId: String?
 
-        public var isActive: Bool?
-
         public var words: [String]?
+
+        public var isActive: Bool?
 
         public var customJson: [String: Any]?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case appId = "app_id"
 
-            case isActive = "is_active"
-
             case words
+
+            case isActive = "is_active"
 
             case customJson = "_custom_json"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.appId = appId
 
-            self.isActive = isActive
-
             self.words = words
+
+            self.isActive = isActive
 
             self.customJson = customJson
         }
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                words = try container.decode([String].self, forKey: .words)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                words = try container.decode([String].self, forKey: .words)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -87,9 +87,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(words, forKey: .words)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
         }

@@ -1,4 +1,6 @@
+import Alamofire
 import Foundation
+
 class ApplicationAPIClient {
     static func execute(config: ApplicationConfig,
                         method: String,
@@ -33,6 +35,7 @@ class ApplicationAPIClient {
                                type: method,
                                headers: headers,
                                responseType: responseType,
+                               session: config.session,
                                onResponse: onResponse)
     }
 }
