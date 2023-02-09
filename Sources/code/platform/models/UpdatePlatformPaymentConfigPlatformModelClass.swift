@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var codAmountLimit: Int?
 
+        public var methods: [String: Any]
+
         public var anonymousCod: Bool?
 
         public var codCharges: Int?
-
-        public var methods: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case paymentSelectionLock = "payment_selection_lock"
 
             case codAmountLimit = "cod_amount_limit"
 
+            case methods
+
             case anonymousCod = "anonymous_cod"
 
             case codCharges = "cod_charges"
-
-            case methods
         }
 
         public init(anonymousCod: Bool? = nil, codAmountLimit: Int? = nil, codCharges: Int? = nil, methods: [String: Any], paymentSelectionLock: [String: Any]? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.codAmountLimit = codAmountLimit
 
+            self.methods = methods
+
             self.anonymousCod = anonymousCod
 
             self.codCharges = codCharges
-
-            self.methods = methods
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,6 +61,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            methods = try container.decode([String: Any].self, forKey: .methods)
+
             do {
                 anonymousCod = try container.decode(Bool.self, forKey: .anonymousCod)
 
@@ -76,8 +78,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            methods = try container.decode([String: Any].self, forKey: .methods)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -87,11 +87,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(codAmountLimit, forKey: .codAmountLimit)
 
+            try? container.encode(methods, forKey: .methods)
+
             try? container.encodeIfPresent(anonymousCod, forKey: .anonymousCod)
 
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
-
-            try? container.encode(methods, forKey: .methods)
         }
     }
 }

@@ -10,36 +10,36 @@ public extension PlatformClient {
     class OrderDict: Codable {
         public var paymentMethods: [String: Any]?
 
-        public var fyndOrderId: String
-
         public var orderDate: String
 
-        public var shipmentCount: Int
-
         public var meta: OrderMeta?
+
+        public var fyndOrderId: String
+
+        public var shipmentCount: Int
 
         public enum CodingKeys: String, CodingKey {
             case paymentMethods = "payment_methods"
 
-            case fyndOrderId = "fynd_order_id"
-
             case orderDate = "order_date"
 
-            case shipmentCount = "shipment_count"
-
             case meta
+
+            case fyndOrderId = "fynd_order_id"
+
+            case shipmentCount = "shipment_count"
         }
 
         public init(fyndOrderId: String, meta: OrderMeta? = nil, orderDate: String, paymentMethods: [String: Any]? = nil, shipmentCount: Int) {
             self.paymentMethods = paymentMethods
 
-            self.fyndOrderId = fyndOrderId
-
             self.orderDate = orderDate
 
-            self.shipmentCount = shipmentCount
-
             self.meta = meta
+
+            self.fyndOrderId = fyndOrderId
+
+            self.shipmentCount = shipmentCount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,11 +53,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
-
             orderDate = try container.decode(String.self, forKey: .orderDate)
-
-            shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
 
             do {
                 meta = try container.decode(OrderMeta.self, forKey: .meta)
@@ -66,6 +62,10 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
+            shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -73,13 +73,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
 
-            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
-
             try? container.encodeIfPresent(orderDate, forKey: .orderDate)
 
-            try? container.encodeIfPresent(shipmentCount, forKey: .shipmentCount)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+
+            try? container.encodeIfPresent(shipmentCount, forKey: .shipmentCount)
         }
     }
 }

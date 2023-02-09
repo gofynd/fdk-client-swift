@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var storeType: String?
 
-        public var uid: Int?
-
         public var storeCode: String?
+
+        public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
             case storeType = "store_type"
 
-            case uid
-
             case storeCode = "store_code"
+
+            case uid
         }
 
         public init(name: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.storeType = storeType
 
-            self.uid = uid
-
             self.storeCode = storeCode
+
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                storeCode = try container.decode(String.self, forKey: .storeCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                storeCode = try container.decode(String.self, forKey: .storeCode)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeType, forKey: .storeType)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

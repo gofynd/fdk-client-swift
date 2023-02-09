@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class PincodeErrorSchemaResponse: Codable {
         public var type: String?
 
-        public var message: String?
-
         public var value: String?
+
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case message
-
             case value
+
+            case message
         }
 
         public init(message: String? = nil, type: String? = nil, value: String? = nil) {
             self.type = type
 
-            self.message = message
-
             self.value = value
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient {
 
             try? container.encode(type, forKey: .type)
 
-            try? container.encode(message, forKey: .message)
-
             try? container.encode(value, forKey: .value)
+
+            try? container.encode(message, forKey: .message)
         }
     }
 }

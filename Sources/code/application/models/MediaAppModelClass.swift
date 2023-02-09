@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class Media: Codable {
         public var type: String?
 
+        public var alt: String?
+
         public var meta: Meta?
 
         public var url: String?
 
-        public var alt: String?
-
         public enum CodingKeys: String, CodingKey {
             case type
+
+            case alt
 
             case meta
 
             case url
-
-            case alt
         }
 
         public init(alt: String? = nil, meta: Meta? = nil, type: String? = nil, url: String? = nil) {
             self.type = type
 
+            self.alt = alt
+
             self.meta = meta
 
             self.url = url
-
-            self.alt = alt
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,6 +40,14 @@ public extension ApplicationClient {
 
             do {
                 type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                alt = try container.decode(String.self, forKey: .alt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,14 +69,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                alt = try container.decode(String.self, forKey: .alt)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
+            try? container.encodeIfPresent(alt, forKey: .alt)
+
             try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(url, forKey: .url)
-
-            try? container.encodeIfPresent(alt, forKey: .alt)
         }
     }
 }

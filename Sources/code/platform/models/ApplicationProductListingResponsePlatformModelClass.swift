@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var filters: [ProductFilters]?
 
-        public var sortOn: [ProductSortOn]?
-
         public var page: Page
+
+        public var sortOn: [ProductSortOn]?
 
         public var items: [ProductListingDetail]?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case filters
 
-            case sortOn = "sort_on"
-
             case page
+
+            case sortOn = "sort_on"
 
             case items
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.filters = filters
 
-            self.sortOn = sortOn
-
             self.page = page
+
+            self.sortOn = sortOn
 
             self.items = items
         }
@@ -61,6 +61,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            page = try container.decode(Page.self, forKey: .page)
+
             do {
                 sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
 
@@ -68,8 +70,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            page = try container.decode(Page.self, forKey: .page)
 
             do {
                 items = try container.decode([ProductListingDetail].self, forKey: .items)
@@ -87,9 +87,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
 
             try? container.encodeIfPresent(items, forKey: .items)
         }

@@ -13,7 +13,7 @@ public extension ApplicationClient {
 
             ulrs["getTatProduct"] = config.domain.appendAsPath("/service/application/logistics/v1.0/")
 
-            ulrs["getEntityList"] = config.domain.appendAsPath("/service/application/logistics/v1.0/entity-list")
+            ulrs["getAllCountries"] = config.domain.appendAsPath("/service/application/logistics/v1.0/country-list")
 
             ulrs["getPincodeZones"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/zones")
 
@@ -118,34 +118,21 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Get Entity List
-         * Description: Get Entity List
+         * Summary: Get Country List
+         * Description: Get all countries
          **/
-        public func getEntityList(
-            page: String?,
-            limit: String?,
-            body: EntityListRequest,
-            onResponse: @escaping (_ response: EntityListResponse?, _ error: FDKError?) -> Void
+        public func getAllCountries(
+            onResponse: @escaping (_ response: CountryListResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = page {
-                xQuery["page"] = value
-            }
-
-            if let value = limit {
-                xQuery["limit"] = value
-            }
-
-            let fullUrl = relativeUrls["getEntityList"] ?? ""
+            let fullUrl = relativeUrls["getAllCountries"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "get",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders: [],
-                body: body.dictionary,
+                body: nil,
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
                     if let _ = error, let data = responseData {
@@ -155,7 +142,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(EntityListResponse.self, from: data)
+                        let response = Utility.decode(CountryListResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

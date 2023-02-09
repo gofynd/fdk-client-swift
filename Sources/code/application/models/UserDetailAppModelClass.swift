@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var userId: String
 
-        public var contact: String?
-
         public var username: String
+
+        public var contact: String?
 
         public enum CodingKeys: String, CodingKey {
             case superUser = "super_user"
 
             case userId = "user_id"
 
-            case contact
-
             case username
+
+            case contact
         }
 
         public init(contact: String? = nil, superUser: Bool? = nil, username: String, userId: String) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.userId = userId
 
-            self.contact = contact
-
             self.username = username
+
+            self.contact = contact
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,6 +48,8 @@ public extension ApplicationClient {
 
             userId = try container.decode(String.self, forKey: .userId)
 
+            username = try container.decode(String.self, forKey: .username)
+
             do {
                 contact = try container.decode(String.self, forKey: .contact)
 
@@ -55,8 +57,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            username = try container.decode(String.self, forKey: .username)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,9 +66,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(contact, forKey: .contact)
-
             try? container.encodeIfPresent(username, forKey: .username)
+
+            try? container.encodeIfPresent(contact, forKey: .contact)
         }
     }
 }
