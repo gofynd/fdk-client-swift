@@ -8,6 +8,8 @@ public extension PlatformClient {
      */
 
     class ShipmentStatus: Codable {
+        public var title: String
+
         public var actualStatus: String
 
         public var status: String
@@ -16,9 +18,9 @@ public extension PlatformClient {
 
         public var opsStatus: String
 
-        public var title: String
-
         public enum CodingKeys: String, CodingKey {
+            case title
+
             case actualStatus = "actual_status"
 
             case status
@@ -26,11 +28,11 @@ public extension PlatformClient {
             case hexCode = "hex_code"
 
             case opsStatus = "ops_status"
-
-            case title
         }
 
         public init(actualStatus: String, hexCode: String, opsStatus: String, status: String, title: String) {
+            self.title = title
+
             self.actualStatus = actualStatus
 
             self.status = status
@@ -38,12 +40,12 @@ public extension PlatformClient {
             self.hexCode = hexCode
 
             self.opsStatus = opsStatus
-
-            self.title = title
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            title = try container.decode(String.self, forKey: .title)
 
             actualStatus = try container.decode(String.self, forKey: .actualStatus)
 
@@ -52,12 +54,12 @@ public extension PlatformClient {
             hexCode = try container.decode(String.self, forKey: .hexCode)
 
             opsStatus = try container.decode(String.self, forKey: .opsStatus)
-
-            title = try container.decode(String.self, forKey: .title)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(actualStatus, forKey: .actualStatus)
 
@@ -66,8 +68,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(hexCode, forKey: .hexCode)
 
             try? container.encodeIfPresent(opsStatus, forKey: .opsStatus)
-
-            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 }
