@@ -8,136 +8,130 @@ public extension PlatformClient {
      */
 
     class OrderBeneficiaryDetails: Codable {
-        public var accountNo: String
+        public var accountHolder: String
 
         public var address: String
-
-        public var bankName: String
-
-        public var ifscCode: String
-
-        public var displayName: String
 
         public var comment: String?
 
         public var beneficiaryId: String
 
-        public var accountHolder: String
+        public var transferMode: String
 
-        public var subtitle: String
+        public var bankName: String
 
-        public var title: String
-
-        public var modifiedOn: String
+        public var id: Int
 
         public var mobile: String?
 
         public var delightsUserName: String?
 
+        public var accountNo: String
+
+        public var displayName: String
+
         public var branchName: String?
 
-        public var id: Int
+        public var subtitle: String
 
-        public var transferMode: String
-
-        public var isActive: Bool
-
-        public var createdOn: String
+        public var ifscCode: String
 
         public var email: String
 
+        public var createdOn: String
+
+        public var title: String
+
+        public var isActive: Bool
+
+        public var modifiedOn: String
+
         public enum CodingKeys: String, CodingKey {
-            case accountNo = "account_no"
+            case accountHolder = "account_holder"
 
             case address
-
-            case bankName = "bank_name"
-
-            case ifscCode = "ifsc_code"
-
-            case displayName = "display_name"
 
             case comment
 
             case beneficiaryId = "beneficiary_id"
 
-            case accountHolder = "account_holder"
+            case transferMode = "transfer_mode"
 
-            case subtitle
+            case bankName = "bank_name"
 
-            case title
-
-            case modifiedOn = "modified_on"
+            case id
 
             case mobile
 
             case delightsUserName = "delights_user_name"
 
+            case accountNo = "account_no"
+
+            case displayName = "display_name"
+
             case branchName = "branch_name"
 
-            case id
+            case subtitle
 
-            case transferMode = "transfer_mode"
+            case ifscCode = "ifsc_code"
 
-            case isActive = "is_active"
+            case email
 
             case createdOn = "created_on"
 
-            case email
+            case title
+
+            case isActive = "is_active"
+
+            case modifiedOn = "modified_on"
         }
 
         public init(accountHolder: String, accountNo: String, address: String, bankName: String, beneficiaryId: String, branchName: String? = nil, comment: String? = nil, createdOn: String, delightsUserName: String? = nil, displayName: String, email: String, id: Int, ifscCode: String, isActive: Bool, mobile: String? = nil, modifiedOn: String, subtitle: String, title: String, transferMode: String) {
-            self.accountNo = accountNo
+            self.accountHolder = accountHolder
 
             self.address = address
-
-            self.bankName = bankName
-
-            self.ifscCode = ifscCode
-
-            self.displayName = displayName
 
             self.comment = comment
 
             self.beneficiaryId = beneficiaryId
 
-            self.accountHolder = accountHolder
+            self.transferMode = transferMode
 
-            self.subtitle = subtitle
+            self.bankName = bankName
 
-            self.title = title
-
-            self.modifiedOn = modifiedOn
+            self.id = id
 
             self.mobile = mobile
 
             self.delightsUserName = delightsUserName
 
+            self.accountNo = accountNo
+
+            self.displayName = displayName
+
             self.branchName = branchName
 
-            self.id = id
+            self.subtitle = subtitle
 
-            self.transferMode = transferMode
+            self.ifscCode = ifscCode
 
-            self.isActive = isActive
+            self.email = email
 
             self.createdOn = createdOn
 
-            self.email = email
+            self.title = title
+
+            self.isActive = isActive
+
+            self.modifiedOn = modifiedOn
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            accountNo = try container.decode(String.self, forKey: .accountNo)
+            accountHolder = try container.decode(String.self, forKey: .accountHolder)
 
             address = try container.decode(String.self, forKey: .address)
-
-            bankName = try container.decode(String.self, forKey: .bankName)
-
-            ifscCode = try container.decode(String.self, forKey: .ifscCode)
-
-            displayName = try container.decode(String.self, forKey: .displayName)
 
             do {
                 comment = try container.decode(String.self, forKey: .comment)
@@ -149,13 +143,11 @@ public extension PlatformClient {
 
             beneficiaryId = try container.decode(String.self, forKey: .beneficiaryId)
 
-            accountHolder = try container.decode(String.self, forKey: .accountHolder)
+            transferMode = try container.decode(String.self, forKey: .transferMode)
 
-            subtitle = try container.decode(String.self, forKey: .subtitle)
+            bankName = try container.decode(String.self, forKey: .bankName)
 
-            title = try container.decode(String.self, forKey: .title)
-
-            modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+            id = try container.decode(Int.self, forKey: .id)
 
             do {
                 mobile = try container.decode(String.self, forKey: .mobile)
@@ -173,6 +165,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            accountNo = try container.decode(String.self, forKey: .accountNo)
+
+            displayName = try container.decode(String.self, forKey: .displayName)
+
             do {
                 branchName = try container.decode(String.self, forKey: .branchName)
 
@@ -181,57 +177,61 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            id = try container.decode(Int.self, forKey: .id)
+            subtitle = try container.decode(String.self, forKey: .subtitle)
 
-            transferMode = try container.decode(String.self, forKey: .transferMode)
+            ifscCode = try container.decode(String.self, forKey: .ifscCode)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
+            email = try container.decode(String.self, forKey: .email)
 
             createdOn = try container.decode(String.self, forKey: .createdOn)
 
-            email = try container.decode(String.self, forKey: .email)
+            title = try container.decode(String.self, forKey: .title)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
 
             try? container.encodeIfPresent(address, forKey: .address)
-
-            try? container.encodeIfPresent(bankName, forKey: .bankName)
-
-            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
-
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(comment, forKey: .comment)
 
             try? container.encodeIfPresent(beneficiaryId, forKey: .beneficiaryId)
 
-            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+            try? container.encodeIfPresent(transferMode, forKey: .transferMode)
 
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+            try? container.encodeIfPresent(bankName, forKey: .bankName)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
             try? container.encode(delightsUserName, forKey: .delightsUserName)
 
+            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
+
             try? container.encodeIfPresent(branchName, forKey: .branchName)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
-            try? container.encodeIfPresent(transferMode, forKey: .transferMode)
+            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
         }
     }
 }

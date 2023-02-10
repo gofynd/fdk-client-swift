@@ -15,9 +15,9 @@ public extension ApplicationClient {
 
         public var reasons: [BagReasons]?
 
-        public var meta: BagReasonMeta?
-
         public var displayName: String?
+
+        public var meta: BagReasonMeta?
 
         public enum CodingKeys: String, CodingKey {
             case questionSet = "question_set"
@@ -28,9 +28,9 @@ public extension ApplicationClient {
 
             case reasons
 
-            case meta
-
             case displayName = "display_name"
+
+            case meta
         }
 
         public init(displayName: String? = nil, id: Int? = nil, meta: BagReasonMeta? = nil, qcType: [String]? = nil, questionSet: [QuestionSet]? = nil, reasons: [BagReasons]? = nil) {
@@ -42,9 +42,9 @@ public extension ApplicationClient {
 
             self.reasons = reasons
 
-            self.meta = meta
-
             self.displayName = displayName
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                meta = try container.decode(BagReasonMeta.self, forKey: .meta)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                meta = try container.decode(BagReasonMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,9 +110,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(reasons, forKey: .reasons)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var offer: DiscountOffer
 
-        public var discountType: String
-
         public var itemCriteria: ItemCriteria
+
+        public var discountType: String
 
         public enum CodingKeys: String, CodingKey {
             case buyCondition = "buy_condition"
 
             case offer
 
-            case discountType = "discount_type"
-
             case itemCriteria = "item_criteria"
+
+            case discountType = "discount_type"
         }
 
         public init(buyCondition: String, discountType: String, itemCriteria: ItemCriteria, offer: DiscountOffer) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.offer = offer
 
-            self.discountType = discountType
-
             self.itemCriteria = itemCriteria
+
+            self.discountType = discountType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,9 +43,9 @@ public extension PlatformClient {
 
             offer = try container.decode(DiscountOffer.self, forKey: .offer)
 
-            discountType = try container.decode(String.self, forKey: .discountType)
-
             itemCriteria = try container.decode(ItemCriteria.self, forKey: .itemCriteria)
+
+            discountType = try container.decode(String.self, forKey: .discountType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -55,9 +55,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(offer, forKey: .offer)
 
-            try? container.encodeIfPresent(discountType, forKey: .discountType)
-
             try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
+
+            try? container.encodeIfPresent(discountType, forKey: .discountType)
         }
     }
 }

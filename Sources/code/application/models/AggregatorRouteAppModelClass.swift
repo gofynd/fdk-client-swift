@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var paymentFlowData: String?
 
-        public var paymentFlow: String?
-
         public var data: [String: Any]?
+
+        public var paymentFlow: String?
 
         public enum CodingKeys: String, CodingKey {
             case apiLink = "api_link"
 
             case paymentFlowData = "payment_flow_data"
 
-            case paymentFlow = "payment_flow"
-
             case data
+
+            case paymentFlow = "payment_flow"
         }
 
         public init(apiLink: String? = nil, data: [String: Any]? = nil, paymentFlow: String? = nil, paymentFlowData: String? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.paymentFlowData = paymentFlowData
 
-            self.paymentFlow = paymentFlow
-
             self.data = data
+
+            self.paymentFlow = paymentFlow
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                paymentFlow = try container.decode(String.self, forKey: .paymentFlow)
+                data = try container.decode([String: Any].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                data = try container.decode([String: Any].self, forKey: .data)
+                paymentFlow = try container.decode(String.self, forKey: .paymentFlow)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient {
 
             try? container.encode(paymentFlowData, forKey: .paymentFlowData)
 
-            try? container.encode(paymentFlow, forKey: .paymentFlow)
-
             try? container.encode(data, forKey: .data)
+
+            try? container.encode(paymentFlow, forKey: .paymentFlow)
         }
     }
 }

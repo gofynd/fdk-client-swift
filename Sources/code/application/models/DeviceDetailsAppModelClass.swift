@@ -9,13 +9,13 @@ public extension ApplicationClient {
     class DeviceDetails: Codable {
         public var deviceModel: String?
 
-        public var identifierType: String?
+        public var deviceMake: String?
 
         public var osVersion: String?
 
-        public var deviceType: String?
+        public var identifierType: String?
 
-        public var deviceMake: String?
+        public var deviceType: String?
 
         public var identificationNumber: String?
 
@@ -24,13 +24,13 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case deviceModel = "device_model"
 
-            case identifierType = "identifier_type"
+            case deviceMake = "device_make"
 
             case osVersion = "os_version"
 
-            case deviceType = "device_type"
+            case identifierType = "identifier_type"
 
-            case deviceMake = "device_make"
+            case deviceType = "device_type"
 
             case identificationNumber = "identification_number"
 
@@ -40,13 +40,13 @@ public extension ApplicationClient {
         public init(deviceMake: String? = nil, deviceModel: String? = nil, deviceType: String? = nil, identificationNumber: String? = nil, identifierType: String? = nil, os: String? = nil, osVersion: String? = nil) {
             self.deviceModel = deviceModel
 
-            self.identifierType = identifierType
+            self.deviceMake = deviceMake
 
             self.osVersion = osVersion
 
-            self.deviceType = deviceType
+            self.identifierType = identifierType
 
-            self.deviceMake = deviceMake
+            self.deviceType = deviceType
 
             self.identificationNumber = identificationNumber
 
@@ -65,7 +65,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                identifierType = try container.decode(String.self, forKey: .identifierType)
+                deviceMake = try container.decode(String.self, forKey: .deviceMake)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                deviceType = try container.decode(String.self, forKey: .deviceType)
+                identifierType = try container.decode(String.self, forKey: .identifierType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                deviceMake = try container.decode(String.self, forKey: .deviceMake)
+                deviceType = try container.decode(String.self, forKey: .deviceType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,13 +118,13 @@ public extension ApplicationClient {
 
             try? container.encode(deviceModel, forKey: .deviceModel)
 
-            try? container.encode(identifierType, forKey: .identifierType)
+            try? container.encode(deviceMake, forKey: .deviceMake)
 
             try? container.encode(osVersion, forKey: .osVersion)
 
-            try? container.encode(deviceType, forKey: .deviceType)
+            try? container.encode(identifierType, forKey: .identifierType)
 
-            try? container.encode(deviceMake, forKey: .deviceMake)
+            try? container.encode(deviceType, forKey: .deviceType)
 
             try? container.encode(identificationNumber, forKey: .identificationNumber)
 

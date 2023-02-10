@@ -12,34 +12,34 @@ public extension PlatformClient {
 
         public var meta: String?
 
-        public var stackTrace: String?
-
-        public var code: String?
+        public var message: String
 
         public var info: [String: Any]?
 
-        public var message: String
+        public var code: String?
+
+        public var status: Int
 
         public var requestId: String?
 
-        public var status: Int
+        public var stackTrace: String?
 
         public enum CodingKeys: String, CodingKey {
             case exception
 
             case meta
 
-            case stackTrace = "stack_trace"
-
-            case code
+            case message
 
             case info
 
-            case message
+            case code
+
+            case status
 
             case requestId = "request_id"
 
-            case status
+            case stackTrace = "stack_trace"
         }
 
         public init(code: String? = nil, exception: String? = nil, info: [String: Any]? = nil, message: String, meta: String? = nil, requestId: String? = nil, stackTrace: String? = nil, status: Int) {
@@ -47,17 +47,17 @@ public extension PlatformClient {
 
             self.meta = meta
 
-            self.stackTrace = stackTrace
-
-            self.code = code
+            self.message = message
 
             self.info = info
 
-            self.message = message
+            self.code = code
+
+            self.status = status
 
             self.requestId = requestId
 
-            self.status = status
+            self.stackTrace = stackTrace
         }
 
         required public init(from decoder: Decoder) throws {
@@ -79,8 +79,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            message = try container.decode(String.self, forKey: .message)
+
             do {
-                stackTrace = try container.decode(String.self, forKey: .stackTrace)
+                info = try container.decode([String: Any].self, forKey: .info)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,15 +97,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                info = try container.decode([String: Any].self, forKey: .info)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            message = try container.decode(String.self, forKey: .message)
+            status = try container.decode(Int.self, forKey: .status)
 
             do {
                 requestId = try container.decode(String.self, forKey: .requestId)
@@ -113,7 +107,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            status = try container.decode(Int.self, forKey: .status)
+            do {
+                stackTrace = try container.decode(String.self, forKey: .stackTrace)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -123,17 +123,17 @@ public extension PlatformClient {
 
             try? container.encode(meta, forKey: .meta)
 
-            try? container.encode(stackTrace, forKey: .stackTrace)
-
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encode(info, forKey: .info)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encode(code, forKey: .code)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encode(requestId, forKey: .requestId)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(stackTrace, forKey: .stackTrace)
         }
     }
 }
