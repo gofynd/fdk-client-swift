@@ -10,24 +10,24 @@ public extension PlatformClient {
     class TaxIdentifier1: Codable {
         public var reportingHsn: String?
 
-        public var hsnCode: String?
-
         public var hsnCodeId: String?
+
+        public var hsnCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case reportingHsn = "reporting_hsn"
 
-            case hsnCode = "hsn_code"
-
             case hsnCodeId = "hsn_code_id"
+
+            case hsnCode = "hsn_code"
         }
 
         public init(hsnCode: String? = nil, hsnCodeId: String? = nil, reportingHsn: String? = nil) {
             self.reportingHsn = reportingHsn
 
-            self.hsnCode = hsnCode
-
             self.hsnCodeId = hsnCodeId
+
+            self.hsnCode = hsnCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                hsnCode = try container.decode(String.self, forKey: .hsnCode)
+                hsnCodeId = try container.decode(String.self, forKey: .hsnCodeId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                hsnCodeId = try container.decode(String.self, forKey: .hsnCodeId)
+                hsnCode = try container.decode(String.self, forKey: .hsnCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(reportingHsn, forKey: .reportingHsn)
 
-            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
-
             try? container.encodeIfPresent(hsnCodeId, forKey: .hsnCodeId)
+
+            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
         }
     }
 }

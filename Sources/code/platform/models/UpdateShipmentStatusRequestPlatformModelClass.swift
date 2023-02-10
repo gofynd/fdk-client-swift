@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class UpdateShipmentStatusRequest: Codable {
-        public var lockAfterTransition: Bool?
-
         public var statuses: [StatuesRequest]?
+
+        public var lockAfterTransition: Bool?
 
         public var task: Bool?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var unlockBeforeTransition: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case lockAfterTransition = "lock_after_transition"
-
             case statuses
+
+            case lockAfterTransition = "lock_after_transition"
 
             case task
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
-            self.lockAfterTransition = lockAfterTransition
-
             self.statuses = statuses
+
+            self.lockAfterTransition = lockAfterTransition
 
             self.task = task
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
+                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
+                lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
-
             try? container.encodeIfPresent(statuses, forKey: .statuses)
+
+            try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
 
             try? container.encodeIfPresent(task, forKey: .task)
 
