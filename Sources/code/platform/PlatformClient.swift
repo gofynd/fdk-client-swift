@@ -14819,8 +14819,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Add proxy path for external url
-             * Description: Add proxy path for external url
+             * Summary: Create proxy URL for the external URL
+             * Description: Use this API to generate proxy URL for the external URL
              **/
             public func addProxyPath(
                 extensionId: String,
@@ -14858,8 +14858,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Remove proxy path for external url
-             * Description: Remove proxy path for external url
+             * Summary: Remove proxy URL for the external URL
+             * Description: Use this API to remove the proxy URL which is already generated for the external URL
              **/
             public func removeProxyPath(
                 extensionId: String,
