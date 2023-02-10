@@ -8,23 +8,19 @@ public extension PlatformClient {
      */
 
     class OrderBrandName: Codable {
-        public var company: String?
-
-        public var logo: String
-
         public var brandName: String
 
-        public var modifiedOn: Int?
+        public var modifiedOn: String?
 
         public var id: Int
 
-        public var createdOn: Int
+        public var createdOn: String
+
+        public var logo: String
+
+        public var company: String?
 
         public enum CodingKeys: String, CodingKey {
-            case company
-
-            case logo
-
             case brandName = "brand_name"
 
             case modifiedOn = "modified_on"
@@ -32,13 +28,13 @@ public extension PlatformClient {
             case id
 
             case createdOn = "created_on"
+
+            case logo
+
+            case company
         }
 
-        public init(brandName: String, company: String? = nil, createdOn: Int, id: Int, logo: String, modifiedOn: Int? = nil) {
-            self.company = company
-
-            self.logo = logo
-
+        public init(brandName: String, company: String? = nil, createdOn: String, id: Int, logo: String, modifiedOn: String? = nil) {
             self.brandName = brandName
 
             self.modifiedOn = modifiedOn
@@ -46,25 +42,19 @@ public extension PlatformClient {
             self.id = id
 
             self.createdOn = createdOn
+
+            self.logo = logo
+
+            self.company = company
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                company = try container.decode(String.self, forKey: .company)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            logo = try container.decode(String.self, forKey: .logo)
-
             brandName = try container.decode(String.self, forKey: .brandName)
 
             do {
-                modifiedOn = try container.decode(Int.self, forKey: .modifiedOn)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,15 +63,21 @@ public extension PlatformClient {
 
             id = try container.decode(Int.self, forKey: .id)
 
-            createdOn = try container.decode(Int.self, forKey: .createdOn)
+            createdOn = try container.decode(String.self, forKey: .createdOn)
+
+            logo = try container.decode(String.self, forKey: .logo)
+
+            do {
+                company = try container.decode(String.self, forKey: .company)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(company, forKey: .company)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
 
@@ -90,6 +86,10 @@ public extension PlatformClient {
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(company, forKey: .company)
         }
     }
 }
