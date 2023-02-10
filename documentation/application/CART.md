@@ -45,7 +45,7 @@ Fetch all items added to the cart
 
 
 ```swift
-cart.getCart(id: id, i: i, b: b, assignCardId: assignCardId, areaCode: areaCode, buyNow: buyNow) { (response, error) in
+cart.getCart(id: id, i: i, b: b, assignCardId: assignCardId, buyNow: buyNow) { (response, error) in
     // Use response
 }
 ```
@@ -60,7 +60,6 @@ cart.getCart(id: id, i: i, b: b, assignCardId: assignCardId, areaCode: areaCode,
 | i | Bool? | no |  |   
 | b | Bool? | no |  |   
 | assignCardId | Int? | no |  |   
-| areaCode | String? | no |  |   
 | buyNow | Bool? | no |  |  
 
 
@@ -87,1031 +86,169 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
   "items": [
     {
       "bulk_offer": {},
-      "message": "",
-      "delivery_promise": {
-        "timestamp": {
-          "min": 1646257339,
-          "max": 1646689339
-        },
-        "formatted": {
-          "min": "03 Mar, Thursday",
-          "max": "08 Mar, Tuesday"
-        }
-      },
-      "key": "75251393_L",
-      "price": {
-        "base": {
-          "add_on": 1099,
-          "marked": 1099,
-          "effective": 1099,
-          "selling": 1099,
-          "currency_code": "INR",
-          "currency_symbol": "₹"
-        },
-        "converted": {
-          "add_on": 1099,
-          "marked": 1099,
-          "effective": 1099,
-          "selling": 1099,
-          "currency_code": "INR",
-          "currency_symbol": "₹"
-        }
-      },
-      "discount": "",
+      "discount": "67% OFF",
       "article": {
         "type": "article",
-        "uid": "6388b1136e440e76ba0e5af2",
-        "size": "L",
-        "product_group_tags": null,
+        "uid": "604_902_SSTC60401_636BLUE_1",
+        "size": "1",
         "seller": {
-          "uid": 37,
-          "name": "SPYKAR LIFESTYLES PRIVATE LIMITED"
+          "uid": 604,
+          "name": "SHRI SHANTINATH TRADING COMPANY"
         },
         "store": {
-          "uid": 10514,
-          "name": "SPYKAR KALHER BHIWANDI WAREHOUSE"
+          "uid": 4579,
+          "name": "Gandhi Nagar"
         },
-        "quantity": 599,
+        "quantity": 108,
         "price": {
           "base": {
-            "marked": 1099,
-            "effective": 1099,
-            "selling": 1099,
-            "currency_code": "INR",
-            "currency_symbol": "₹"
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
           },
           "converted": {
-            "marked": 1099,
-            "effective": 1099,
-            "selling": 1099,
-            "currency_code": "INR",
-            "currency_symbol": "INR"
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
           }
-        },
-        "extra_meta": {}
+        }
+      },
+      "coupon_message": "",
+      "key": "707569_1",
+      "availability": {
+        "sizes": [
+          "1",
+          "8",
+          "7",
+          "2",
+          "9",
+          "5",
+          "3",
+          "6"
+        ],
+        "other_store_quantity": 107,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
       },
       "product": {
         "type": "product",
-        "uid": 75251393,
-        "name": "Spykar Brown Leather Belts",
-        "slug": "spykar-olive-leather-belts-jej4kndn5s",
+        "uid": 707569,
+        "name": "Blue and Gold Printed Ethnic Set",
+        "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
         "brand": {
-          "uid": 56,
-          "name": "Spykar"
+          "uid": 902,
+          "name": ""
         },
         "categories": [
           {
-            "uid": 202,
-            "name": "Duffles"
+            "uid": 525,
+            "name": ""
           }
         ],
-        "attributes": {
-          "item_code": "SPYMBLCORE013Olive",
-          "color": "Olive",
-          "gender": [
-            "Men"
-          ],
-          "style": "SPY-MBL-CORE-013",
-          "occasion": "Casual",
-          "season": "Summer-2021",
-          "material": "Leather",
-          "primary_color": "Green",
-          "currency": "INR",
-          "media": [
-            {
-              "type": "image",
-              "url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/Zm-mKqN5b5-SPY-MBL-ON-S1714-OLIVE-04.jpg"
-            },
-            {
-              "type": "image",
-              "url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/vOmcjZkXxv-SPY-MBL-ON-S1714-OLIVE-02.jpg"
-            },
-            {
-              "type": "image",
-              "url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/aEB7WMysfs-SPY-MBL-ON-S1714-OLIVE-03.jpg"
-            },
-            {
-              "type": "image",
-              "url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/xP78kUZL6M-SPY-MBL-ON-S1714-OLIVE-01.jpg"
-            }
-          ],
-          "name": "Spykar Brown Leather Belts",
-          "brand_name": "Spykar",
-          "primary_color_hex": "2BD892"
-        },
         "images": [
           {
             "aspect_ratio": "16:25",
-            "url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/Zm-mKqN5b5-SPY-MBL-ON-S1714-OLIVE-04.jpg",
-            "secure_url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/Zm-mKqN5b5-SPY-MBL-ON-S1714-OLIVE-04.jpg"
-          },
-          {
-            "aspect_ratio": "16:25",
-            "url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/vOmcjZkXxv-SPY-MBL-ON-S1714-OLIVE-02.jpg",
-            "secure_url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/vOmcjZkXxv-SPY-MBL-ON-S1714-OLIVE-02.jpg"
-          },
-          {
-            "aspect_ratio": "16:25",
-            "url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/aEB7WMysfs-SPY-MBL-ON-S1714-OLIVE-03.jpg",
-            "secure_url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/aEB7WMysfs-SPY-MBL-ON-S1714-OLIVE-03.jpg"
-          },
-          {
-            "aspect_ratio": "16:25",
-            "url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/xP78kUZL6M-SPY-MBL-ON-S1714-OLIVE-01.jpg",
-            "secure_url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/xP78kUZL6M-SPY-MBL-ON-S1714-OLIVE-01.jpg"
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
           }
         ],
         "action": {
           "type": "product",
-          "url": "https://api.fyndx1.de/platform/content/v1/products/spykar-olive-leather-belts-jej4kndn5s/",
+          "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
           "query": {
             "product_slug": [
-              "spykar-olive-leather-belts-jej4kndn5s"
+              "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
             ]
           }
-        },
-        "item_code": "SPYMBLCORE013Olive",
-        "_custom_json": {},
-        "net_quantity": {
-          "unit": "cm",
-          "value": 109
         }
       },
-      "coupon_message": "",
-      "parent_item_identifiers": {
-        "identifier": null,
-        "parent_item_size": null,
-        "parent_item_id": null
-      },
-      "promotions_applied": [
-        {
-          "promo_id": "6380a896012cc2dda62f6682",
-          "amount": 1000,
-          "article_quantity": 1,
-          "mrp_promotion": false,
-          "promotion_type": "percentage",
-          "buy_rules": [
-            {
-              "item_criteria": {},
-              "cart_conditions": {
-                "cart_quantity": {
-                  "greater_than_equals": 1
-                }
-              }
-            }
-          ],
-          "discount_rules": [
-            {
-              "item_criteria": {
-                "buy_rules": [
-                  "rule#1"
-                ]
-              },
-              "matched_buy_rules": [
-                "rule#1"
-              ],
-              "offer": {
-                "discount_percentage": 100,
-                "max_discount_amount": 1000
-              },
-              "raw_offer": {
-                "buy_condition": "( rule#1 )",
-                "discount_type": "percentage",
-                "item_criteria": {
-                  "buy_rules": [
-                    "rule#1"
-                  ]
-                },
-                "offer": {
-                  "discount_percentage": 100,
-                  "max_discount_amount": 1000
-                }
-              }
-            }
-          ],
-          "promotion_name": "sadad",
-          "promotion_group": "product",
-          "offer_text": "sadad"
-        }
-      ],
-      "quantity": 1,
-      "promo_meta": {},
-      "moq": {
-        "minimum": 1
-      },
-      "identifiers": {
-        "identifier": "axe4piIIR5Sk4EocrRNYeA"
-      },
-      "is_set": false,
-      "price_per_unit": {
+      "price": {
         "base": {
-          "marked": 1099,
-          "effective": 1099,
-          "selling_price": 1099,
-          "currency_code": "INR",
-          "currency_symbol": "₹"
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
         },
         "converted": {
-          "marked": 1099,
-          "effective": 1099,
-          "selling_price": 1099,
-          "currency_code": "INR",
-          "currency_symbol": "₹"
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
         }
       },
-      "availability": {
-        "sizes": [
-          "L"
-        ],
-        "other_store_quantity": 1,
-        "out_of_stock": false,
-        "deliverable": true,
-        "is_valid": true,
-        "available_sizes": [
-          {
-            "is_available": true,
-            "display": "L",
-            "value": "L"
-          }
-        ]
-      }
+      "message": "",
+      "quantity": 1
     }
   ],
-  "cart_id": 433453,
-  "uid": "433453",
-  "id": "63bd1860f46211103683ab18",
-  "coupon": {
-    "coupon_code": "",
-    "coupon_type": "cart",
-    "is_applied": false,
-    "is_valid": false,
-    "message": "Sorry! Invalid coupon",
-    "coupon_id": null,
-    "discount": 0,
-    "cashback_amount": 0,
-    "cashback_message_primary": "",
-    "cashback_message_secondary": "",
-    "coupon_title": "",
-    "coupon_subtitle": "",
-    "coupon_description": "",
-    "minimum_cart_value": 0,
-    "maximum_discount_value": 0,
-    "coupon_value": 0
-  },
+  "buy_now": false,
+  "cart_id": 54,
+  "uid": "54",
   "breakup_values": {
-    "display": [
-      {
-        "display": "MRP Total",
-        "key": "mrp_total",
-        "original": 1099,
-        "attr": "mrp_total",
-        "value": 1099,
-        "currency_code": "INR",
-        "currency_symbol": "₹",
-        "message": []
-      },
-      {
-        "display": "Subtotal",
-        "key": "subtotal",
-        "original": 1099,
-        "attr": "subtotal",
-        "value": 1099,
-        "currency_code": "INR",
-        "currency_symbol": "₹",
-        "message": []
-      },
-      {
-        "display": "Promotion",
-        "key": "promotion",
-        "original": -1000,
-        "attr": "promotion",
-        "value": -1000,
-        "currency_code": "INR",
-        "currency_symbol": "₹",
-        "message": []
-      },
-      {
-        "display": "Total",
-        "key": "total",
-        "original": 99,
-        "attr": "total",
-        "value": 99,
-        "currency_code": "INR",
-        "currency_symbol": "₹",
-        "message": []
-      }
-    ],
     "raw": {
-      "sub_total": 1099,
-      "subtotal": 1099,
-      "coupon": 0,
-      "promotion": -1000,
-      "delivery_charge": 0,
-      "you_saved": 0,
-      "fynd_cash": 0,
       "cod_charge": 0,
-      "total": 99,
-      "gst_charges": 4.71,
-      "vog": 94.29,
       "convenience_fee": 0,
-      "mrp_total": 1099,
-      "discount": 0
-    },
-    "loyalty_points": {
-      "total": 0,
-      "applicable": 0,
-      "is_applied": false,
-      "description": "Your cashback, reward points, and refund amount get credited to Fynd Cash which can be redeemed while placing an order.",
-      "message": "No Fynd Cash Applied"
+      "coupon": 0,
+      "delivery_charge": 0,
+      "discount": -2000,
+      "fynd_cash": 0,
+      "gst_charges": 47.57,
+      "mrp_total": 2999,
+      "subtotal": 999,
+      "total": 999,
+      "vog": 951.43,
+      "you_saved": 0
     },
     "coupon": {
       "type": "cash",
-      "coupon_type": "cart",
       "code": "",
       "uid": null,
       "value": 0,
       "is_applied": false,
-      "message": "Sorry! Invalid coupon",
-      "title": "",
-      "sub_title": "",
-      "description": "",
-      "minimum_cart_value": 0,
-      "maximum_discount_value": 0,
-      "coupon_value": 0
-    }
-  },
-  "free_gift_items": [],
-  "delivery_charge_info": "",
-  "notification": {},
-  "message": "",
-  "delivery_promise": {
-    "timestamp": {
-      "min": 1646257339,
-      "max": 1646689339
+      "message": "Sorry! Invalid Coupon"
     },
-    "formatted": {
-      "min": "03 Mar, Thursday",
-      "max": "08 Mar, Tuesday"
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 2999,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Discount",
+        "key": "discount",
+        "value": -2000,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 999,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 999,
+        "currency_code": "INR"
+      }
+    ],
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
     }
   },
-  "applied_promo_details": [
-    {
-      "application_id": "000000000000000000000001",
-      "apply_all_offers": false,
-      "apply_exclusive": null,
-      "buy_article_dict": {
-        "rule#1": {
-          "6388b1136e440e76ba0e5af2_0": {
-            "amount_paid": 0,
-            "applicable_credits": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 0,
-              "floor_value": 0,
-              "source_currency_code": "FC",
-              "source_currency_symbol": "",
-              "source_value": 0,
-              "value": 0
-            },
-            "article_assign_status": true,
-            "article_assignment": {
-              "level": "multi-companies",
-              "strategy": "optimal"
-            },
-            "article_error": {
-              "type": null,
-              "value": null,
-              "message": null
-            },
-            "article_id": "6388b1136e440e76ba0e5af2",
-            "article_index": "0",
-            "article_meta": {
-              "article_id": "6388b1136e440e76ba0e5af2",
-              "bulk_margin": 0,
-              "bulk_discount": {
-                "conversion_rate": 1,
-                "currency_code": "INR",
-                "currency_symbol": "₹",
-                "floor_source_value": 0,
-                "floor_value": 0,
-                "source_currency_code": "INR",
-                "source_currency_symbol": "₹",
-                "source_value": 0,
-                "value": 0
-              },
-              "bulk_coupon_code": null,
-              "country_of_origin": "India",
-              "dimension": {
-                "width": 2,
-                "length": 4,
-                "is_default": true,
-                "height": 7,
-                "unit": "cm"
-              },
-              "fragile": false,
-              "manufacturer": {
-                "name": "SPYKAR LIFESTYLES PRIVATE LIMITED",
-                "is_default": true,
-                "address": "LOTUS CORPORATE PARK, 19TH FLOOR, A WING, JAY COACH JUNCTION, OFF. WESTERN EXPRESS HIGHWAY, GOREGAON (EAST), MUMBAI- 400 063, None, MAHARASHTRA, MUMBAI"
-              },
-              "weight": {
-                "shipping": 200,
-                "is_default": true,
-                "unit": "gram"
-              },
-              "raw_meta": {
-                "fynd_identifier": "10514_8907966510647",
-                "is_set_article": false,
-                "set_quantity": 1
-              },
-              "is_set": false,
-              "set": {},
-              "identifier": {
-                "ean": "8907966510647"
-              },
-              "hsn_code": null,
-              "hsn_code_id": "625fbd91faeed8b3df6ec353",
-              "raw_price": {
-                "effective": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 1099,
-                  "floor_value": 1099,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 1099,
-                  "value": 1099
-                },
-                "marked": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 1099,
-                  "floor_value": 1099,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 1099,
-                  "value": 1099
-                },
-                "transfer": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 0,
-                  "floor_value": 0,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 0,
-                  "value": 0
-                }
-              },
-              "seller_identifier": "8907966510647",
-              "_custom_json": {},
-              "tags": [],
-              "return_config": {
-                "returnable": false,
-                "time": 0,
-                "unit": "days"
-              }
-            },
-            "attributes": {
-              "item_code": "SPYMBLCORE013Olive",
-              "color": "Olive",
-              "gender": [
-                "Men"
-              ],
-              "style": "SPY-MBL-CORE-013",
-              "occasion": "Casual",
-              "season": "Summer-2021",
-              "material": "Leather",
-              "primary_color": "Green",
-              "currency": "INR",
-              "media": [
-                {
-                  "type": "image",
-                  "url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/Zm-mKqN5b5-SPY-MBL-ON-S1714-OLIVE-04.jpg"
-                },
-                {
-                  "type": "image",
-                  "url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/vOmcjZkXxv-SPY-MBL-ON-S1714-OLIVE-02.jpg"
-                },
-                {
-                  "type": "image",
-                  "url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/aEB7WMysfs-SPY-MBL-ON-S1714-OLIVE-03.jpg"
-                },
-                {
-                  "type": "image",
-                  "url": "https://hdn-1.fynd.com/products/pictures/item/free/original/8907966514645/xP78kUZL6M-SPY-MBL-ON-S1714-OLIVE-01.jpg"
-                }
-              ],
-              "name": "Spykar Brown Leather Belts",
-              "brand_name": "Spykar",
-              "primary_color_hex": "2BD892"
-            },
-            "avl_qty": 599,
-            "brand_id": 56,
-            "bulk_coupon_applied": false,
-            "bulk_coupon_code": null,
-            "bulk_discount": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 0,
-              "floor_value": 0,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 0,
-              "value": 0
-            },
-            "bulk_margin": 0,
-            "cancellation_allowed": true,
-            "cashback": {
-              "amount": {
-                "conversion_rate": 1,
-                "currency_code": "INR",
-                "currency_symbol": "₹",
-                "floor_source_value": 0,
-                "floor_value": 0,
-                "source_currency_code": "FC",
-                "source_currency_symbol": "",
-                "source_value": 0,
-                "value": 0
-              }
-            },
-            "category_id": [
-              202
-            ],
-            "cod_charges": {
-              "amount": {
-                "conversion_rate": 1,
-                "currency_code": "INR",
-                "currency_symbol": "₹",
-                "floor_source_value": 0,
-                "floor_value": 0,
-                "source_currency_code": "INR",
-                "source_currency_symbol": "₹",
-                "source_value": 0,
-                "value": 0
-              }
-            },
-            "company_id": 37,
-            "company_info": {
-              "company_id": 37,
-              "c_name": "SPYKAR LIFESTYLES PRIVATE LIMITED",
-              "c_taxes": null
-            },
-            "company_taxes": null,
-            "coupon": {
-              "amount": {
-                "conversion_rate": 1,
-                "currency_code": "INR",
-                "currency_symbol": "₹",
-                "floor_source_value": 0,
-                "floor_value": 0,
-                "source_currency_code": "INR",
-                "source_currency_symbol": "₹",
-                "source_value": 0,
-                "value": 0
-              },
-              "article_count": 0,
-              "cancellation_allowed": true,
-              "return_allowed": true
-            },
-            "custom_meta": {},
-            "data": {},
-            "delivery_charges": {
-              "amount": {
-                "conversion_rate": 1,
-                "currency_code": "INR",
-                "currency_symbol": "₹",
-                "floor_source_value": 0,
-                "floor_value": 0,
-                "source_currency_code": "INR",
-                "source_currency_symbol": "₹",
-                "source_value": 0,
-                "value": 0
-              }
-            },
-            "delivery_error_msg": "",
-            "delivery_promise": {
-              "timestamp": {
-                "min": 1646257339,
-                "max": 1646689339
-              },
-              "formatted": {
-                "min": "03 Mar, Thursday",
-                "max": "08 Mar, Tuesday"
-              }
-            },
-            "departments": [
-              99
-            ],
-            "discount": 0,
-            "discount_applied": {},
-            "dt_currency": "INR",
-            "dt_currency_symbol": "₹",
-            "esp_modified": false,
-            "extra_meta": {},
-            "float_amount_paid": 0,
-            "free_gift_items_meta": {},
-            "group_id": "",
-            "gst_amount": 4.71,
-            "gst_tax_percentage": 5,
-            "hsn_code": null,
-            "hsn_code_id": "625fbd91faeed8b3df6ec353",
-            "identifiers": {
-              "identifier": "axe4piIIR5Sk4EocrRNYeA"
-            },
-            "image_nature": "standard",
-            "include": true,
-            "is_valid": true,
-            "item_id": 75251393,
-            "item_size": "L",
-            "item_tags": [],
-            "last_update_at": 1673336897,
-            "meta": {},
-            "net_price": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 99,
-              "floor_value": 99,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 99,
-              "value": 99
-            },
-            "old_price": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 1099,
-              "floor_value": 1099,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 1099,
-              "value": 1099
-            },
-            "original_price_effective": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 1099,
-              "floor_value": 1099,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 1099,
-              "value": 1099
-            },
-            "original_unit_price": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 1099,
-              "floor_value": 1099,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 1099,
-              "value": 1099
-            },
-            "parent_item_identifiers": {
-              "identifier": null,
-              "parent_item_size": null,
-              "parent_item_id": null
-            },
-            "pickup_stores": [],
-            "price": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 1099,
-              "floor_value": 1099,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 1099,
-              "value": 1099
-            },
-            "price_effective": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 1099,
-              "floor_value": 1099,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 1099,
-              "value": 1099
-            },
-            "price_marked": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 1099,
-              "floor_value": 1099,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 1099,
-              "value": 1099
-            },
-            "promotions": {
-              "amount": {
-                "conversion_rate": 1,
-                "currency_code": "INR",
-                "currency_symbol": "₹",
-                "floor_source_value": 0,
-                "floor_value": 0,
-                "source_currency_code": "INR",
-                "source_currency_symbol": "₹",
-                "source_value": 0,
-                "value": 0
-              },
-              "applied": [
-                {
-                  "amount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 1000,
-                    "floor_value": 1000,
-                    "source_currency_code": "INR",
-                    "source_currency_symbol": "₹",
-                    "source_value": 1000,
-                    "value": 1000
-                  },
-                  "applied_discounts": [
-                    {
-                      "type": "percentage",
-                      "value": 100
-                    }
-                  ],
-                  "applied_free_articles": [],
-                  "apply_exclusive": null,
-                  "article_quantity": 1,
-                  "buy_rules": [
-                    {
-                      "all_items": true,
-                      "cart_conditions": {
-                        "cart_quantity": {
-                          "greater_than_equals": 1
-                        }
-                      },
-                      "item_criteria": {},
-                      "mrp_promo": false,
-                      "slug": "rule#1"
-                    }
-                  ],
-                  "cancellation_allowed": true,
-                  "discount_rules": [
-                    {
-                      "all_items": null,
-                      "buy_condition": "( rule#1 )",
-                      "item_criteria": {
-                        "buy_rules": [
-                          "rule#1"
-                        ]
-                      },
-                      "matched_buy_rules": [
-                        "rule#1"
-                      ],
-                      "offer": {
-                        "discount_percentage": 100,
-                        "max_discount_amount": 1000
-                      },
-                      "raw_offer": {
-                        "buy_condition": "( rule#1 )",
-                        "discount_type": "percentage",
-                        "item_criteria": {
-                          "buy_rules": [
-                            "rule#1"
-                          ]
-                        },
-                        "offer": {
-                          "discount_percentage": 100,
-                          "max_discount_amount": 1000
-                        }
-                      },
-                      "type": "percentage"
-                    }
-                  ],
-                  "mrp_promo": false,
-                  "offer_text": "sadad",
-                  "payable_category": "seller",
-                  "promo_code": null,
-                  "promo_id": "6380a896012cc2dda62f6682",
-                  "promo_type": "percentage",
-                  "promotion_group": "product",
-                  "return_allowed": true
-                }
-              ],
-              "apply_exclusive": null,
-              "available": [],
-              "cancellation_allowed": true,
-              "exclusive_promo_applied": false,
-              "mrp_promo_applied": false,
-              "return_allowed": true
-            },
-            "quantity": 1,
-            "quantity_assign_status": false,
-            "referral_credits": {
-              "amount": {
-                "conversion_rate": 1,
-                "currency_code": "INR",
-                "currency_symbol": "₹",
-                "floor_source_value": 0,
-                "floor_value": 0,
-                "source_currency_code": "FC",
-                "source_currency_symbol": "",
-                "source_value": 0,
-                "value": 0
-              }
-            },
-            "reload_data_only": true,
-            "return_allowed": false,
-            "sc_currency": "INR",
-            "sc_currency_symbol": "₹",
-            "selling_price": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 1099,
-              "floor_value": 1099,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 1099,
-              "value": 1099
-            },
-            "service_item_meta": {
-              "product_group_tags": null,
-              "products": null
-            },
-            "size_level_total_qty": 1,
-            "sizes": [
-              "M",
-              "L",
-              "XL",
-              "2XL"
-            ],
-            "split_article_id": "6388b1136e440e76ba0e5af2_0",
-            "split_index": 0,
-            "store_id": 10514,
-            "store_info": {
-              "store_id": 10514,
-              "s_city": "THANE",
-              "store_name": "SPYKAR KALHER BHIWANDI WAREHOUSE",
-              "store_type": "warehouse",
-              "store_pincode": 421302,
-              "latitude": 19.0759837,
-              "longitude": 72.8776559
-            },
-            "tags": [],
-            "total_gst_amount": 4.71,
-            "total_value_of_good": 94.29,
-            "transfer_price": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 0,
-              "floor_value": 0,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 0,
-              "value": 0
-            },
-            "unit_price": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 99,
-              "floor_value": 99,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 99,
-              "value": 99
-            },
-            "valid_inventory": true,
-            "value_of_good": 94.29
-          }
-        }
-      },
-      "buy_rules": [
-        {
-          "all_items": true,
-          "cart_conditions": {
-            "cart_quantity": {
-              "greater_than_equals": 1
-            }
-          },
-          "item_criteria": {},
-          "mrp_promo": false,
-          "slug": "rule#1"
-        }
-      ],
-      "buy_rules_map": {
-        "rule#1": {
-          "cart_quantity": {
-            "greater_than_equals": 1
-          },
-          "all_items": true
-        }
-      },
-      "calculate_on": "esp",
-      "cancellation_allowed": true,
-      "code": null,
-      "discount": 1000,
-      "discount_rules": [
-        {
-          "all_items": null,
-          "buy_condition": "( rule#1 )",
-          "item_criteria": {
-            "buy_rules": [
-              "rule#1"
-            ]
-          },
-          "matched_buy_rules": [
-            "rule#1"
-          ],
-          "offer": {
-            "discount_percentage": 100,
-            "max_discount_amount": 1000
-          },
-          "raw_offer": {
-            "buy_condition": "( rule#1 )",
-            "discount_type": "percentage",
-            "item_criteria": {
-              "buy_rules": [
-                "rule#1"
-              ]
-            },
-            "offer": {
-              "discount_percentage": 100,
-              "max_discount_amount": 1000
-            }
-          },
-          "type": "percentage"
-        }
-      ],
-      "id": "6380a896012cc2dda62f6682",
-      "mrp_promo": false,
-      "offer_text": "sadad",
-      "payable_category": "seller",
-      "priority": 1,
-      "promo_group": "product",
-      "remaining_allowed_qty": null,
-      "restrictions": {
-        "user_registered": {
-          "end": null,
-          "start": null
-        },
-        "user_groups": [],
-        "user_id": [],
-        "anonymous_users": true,
-        "payments": [],
-        "platforms": [
-          "web",
-          "android",
-          "ios"
-        ],
-        "uses": {
-          "remaining": {
-            "total": 0,
-            "user": 0
-          },
-          "maximum": {
-            "total": 0,
-            "user": 0
-          }
-        },
-        "post_order": {
-          "cancellation_allowed": true,
-          "return_allowed": true
-        }
-      },
-      "return_allowed": true,
-      "stackable": true,
-      "type": "percentage",
-      "usage_meta": null
-    }
-  ],
+  "delivery_charge_info": "",
   "coupon_text": "View all offers",
-  "buy_now": false,
   "gstin": null,
-  "comment": "",
   "checkout_mode": "self",
-  "payment_selection_lock": {
-    "enabled": false,
-    "default_options": "",
-    "payment_identifier": ""
-  },
   "restrict_checkout": false,
   "is_valid": true,
-  "success": true,
-  "currency": {
-    "code": "INR",
-    "symbol": "₹"
-  },
-  "last_modified": "Tue, 10 Jan 2023 07:48:56 GMT"
+  "last_modified": "Tue, 03 Sep 2019 05:35:59 GMT"
 }
 ```
 </details>
@@ -3627,7 +2764,7 @@ Fetch address
 
 
 ```swift
-cart.getAddresses(cartId: cartId, buyNow: buyNow, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault) { (response, error) in
+cart.getAddresses(cartId: cartId, buyNow: buyNow, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault, userId: userId) { (response, error) in
     // Use response
 }
 ```
@@ -3643,7 +2780,8 @@ cart.getAddresses(cartId: cartId, buyNow: buyNow, mobileNo: mobileNo, checkoutMo
 | mobileNo | String? | no |  |   
 | checkoutMode | String? | no |  |   
 | tags | String? | no |  |   
-| isDefault | Bool? | no |  |  
+| isDefault | Bool? | no |  |   
+| userId | String? | no |  |  
 
 
 
@@ -3677,6 +2815,7 @@ Success. Returns an Address object containing a list of address saved in the acc
       "state": "Maharashtra",
       "meta": {},
       "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+      "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
       "country_code": "IND",
       "country_phone_code": "91",
       "phone": 9915347757,
@@ -3925,7 +3064,7 @@ Remove address associated with an account
 
 
 ```swift
-cart.removeAddress(id: id) { (response, error) in
+cart.removeAddress(id: id, userId: userId) { (response, error) in
     // Use response
 }
 ```
@@ -3936,7 +3075,8 @@ cart.removeAddress(id: id) { (response, error) in
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String | yes | ID allotted to the selected address |  
+| id | String | yes | ID allotted to the selected address |   
+| userId | String? | no | Option to delete address for the provided user_id. |  
 
 
 
@@ -3983,7 +3123,7 @@ Select an address from available addresses
 
 
 ```swift
-cart.selectAddress(cartId: cartId, buyNow: buyNow, i: i, b: b, body: body) { (response, error) in
+cart.selectAddress(cartId: cartId, buyNow: buyNow, i: i, b: b, userId: userId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3997,7 +3137,8 @@ cart.selectAddress(cartId: cartId, buyNow: buyNow, i: i, b: b, body: body) { (re
 | cartId | String? | no |  |   
 | buyNow | Bool? | no |  |   
 | i | Bool? | no |  |   
-| b | Bool? | no |  |  
+| b | Bool? | no |  |   
+| userId | String? | no |  |  
 | body | SelectCartAddressRequest | yes | Request body |
 
 
@@ -7574,126 +6715,12 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  
  
- #### [PaymentSelectionLock](#PaymentSelectionLock)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | defaultOptions | String? |  yes  |  |
- | enabled | Bool? |  yes  |  |
- | paymentIdentifier | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartCurrency](#CartCurrency)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | String? |  yes  | Currency code defined by ISO 4217:2015 |
- | symbol | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [RawBreakup](#RawBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | convenienceFee | Double? |  yes  |  |
- | coupon | Double? |  yes  |  |
- | mrpTotal | Double? |  yes  |  |
- | total | Double? |  yes  |  |
- | youSaved | Double? |  yes  |  |
- | codCharge | Double? |  yes  |  |
- | deliveryCharge | Double? |  yes  |  |
- | discount | Double? |  yes  |  |
- | vog | Double? |  yes  |  |
- | subtotal | Double? |  yes  |  |
- | gstCharges | Double? |  yes  |  |
- | fyndCash | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [DisplayBreakup](#DisplayBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | String? |  yes  |  |
- | currencySymbol | String? |  yes  |  |
- | currencyCode | String? |  yes  |  |
- | message | [String]? |  yes  |  |
- | value | Double? |  yes  |  |
- | key | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CouponBreakup](#CouponBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | maxDiscountValue | Double? |  yes  |  |
- | uid | String? |  yes  |  |
- | minimumCartValue | Double? |  yes  |  |
- | couponType | String? |  yes  |  |
- | isApplied | Bool? |  yes  |  |
- | description | String? |  yes  |  |
- | code | String? |  yes  |  |
- | type | String? |  yes  |  |
- | subTitle | String? |  yes  |  |
- | title | String? |  yes  |  |
- | message | String? |  yes  |  |
- | value | Double? |  yes  |  |
- | couponValue | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [LoyaltyPoints](#LoyaltyPoints)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  |  |
- | total | Double? |  yes  |  |
- | applicable | Double? |  yes  |  |
- | isApplied | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartBreakup](#CartBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
- | display | [[DisplayBreakup](#DisplayBreakup)]? |  yes  |  |
- | coupon | [CouponBreakup](#CouponBreakup)? |  yes  |  |
- | loyaltyPoints | [LoyaltyPoints](#LoyaltyPoints)? |  yes  |  |
-
----
-
-
- 
- 
  #### [PromiseFormatted](#PromiseFormatted)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | String? |  yes  |  |
  | min | String? |  yes  |  |
+ | max | String? |  yes  |  |
 
 ---
 
@@ -7704,8 +6731,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | Double? |  yes  |  |
  | min | Double? |  yes  |  |
+ | max | Double? |  yes  |  |
 
 ---
 
@@ -7724,11 +6751,301 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  
  
+ #### [CartCurrency](#CartCurrency)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | String? |  yes  | Currency code defined by ISO 4217:2015 |
+ | symbol | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LoyaltyPoints](#LoyaltyPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | String? |  yes  |  |
+ | applicable | Double? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+ | total | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponBreakup](#CouponBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | couponType | String? |  yes  |  |
+ | minimumCartValue | Double? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+ | description | String? |  yes  |  |
+ | maxDiscountValue | Double? |  yes  |  |
+ | value | Double? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | subTitle | String? |  yes  |  |
+ | title | String? |  yes  |  |
+ | couponValue | Double? |  yes  |  |
+ | message | String? |  yes  |  |
+ | code | String? |  yes  |  |
+ | type | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [RawBreakup](#RawBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | deliveryCharge | Double? |  yes  |  |
+ | discount | Double? |  yes  |  |
+ | codCharge | Double? |  yes  |  |
+ | total | Double? |  yes  |  |
+ | gstCharges | Double? |  yes  |  |
+ | coupon | Double? |  yes  |  |
+ | subtotal | Double? |  yes  |  |
+ | fyndCash | Double? |  yes  |  |
+ | convenienceFee | Double? |  yes  |  |
+ | youSaved | Double? |  yes  |  |
+ | mrpTotal | Double? |  yes  |  |
+ | vog | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayBreakup](#DisplayBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | String? |  yes  |  |
+ | value | Double? |  yes  |  |
+ | display | String? |  yes  |  |
+ | message | [String]? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartBreakup](#CartBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | loyaltyPoints | [LoyaltyPoints](#LoyaltyPoints)? |  yes  |  |
+ | coupon | [CouponBreakup](#CouponBreakup)? |  yes  |  |
+ | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
+ | display | [[DisplayBreakup](#DisplayBreakup)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPrice](#ProductPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | addOn | Double? |  yes  |  |
+ | marked | Double? |  yes  |  |
+ | selling | Double? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+ | effective | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPriceInfo](#ProductPriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | converted | [ProductPrice](#ProductPrice)? |  yes  |  |
+ | base | [ProductPrice](#ProductPrice)? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [CartProductIdentifer](#CartProductIdentifer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | identifier | String? |  yes  | Article idenfier generated by cart |
+
+---
+
+
+ 
+ 
+ #### [BasePrice](#BasePrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currencyCode | String? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+ | marked | Double? |  yes  |  |
+ | effective | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticlePriceInfo](#ArticlePriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | converted | [BasePrice](#BasePrice)? |  yes  |  |
+ | base | [BasePrice](#BasePrice)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BaseInfo](#BaseInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | Int? |  yes  |  |
+ | name | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductArticle](#ProductArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
+ | parentItemIdentifiers | [String: Any]? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | store | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | productGroupTags | [String]? |  yes  |  |
+ | size | String? |  yes  |  |
+ | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
+ | type | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductAvailability](#ProductAvailability)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isValid | Bool? |  yes  |  |
+ | otherStoreQuantity | Int? |  yes  |  |
+ | outOfStock | Bool? |  yes  |  |
+ | deliverable | Bool? |  yes  |  |
+ | sizes | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PromoMeta](#PromoMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FreeGiftItem](#FreeGiftItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | itemPriceDetails | [String: Any]? |  yes  | item price details |
+ | itemBrandName | String? |  yes  | item brand name |
+ | itemName | String? |  yes  | Item name |
+ | itemId | Int? |  yes  | Item id |
+ | itemImagesUrl | [String]? |  yes  | item images URL |
+ | itemSlug | String? |  yes  | item slug |
+
+---
+
+
+ 
+ 
+ #### [AppliedFreeArticles](#AppliedFreeArticles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | quantity | Int? |  yes  | Free article quantity |
+ | parentItemIdentifier | String? |  yes  | Parent item identifier for free article |
+ | freeGiftItemDetails | [FreeGiftItem](#FreeGiftItem)? |  yes  | Free gift items details |
+ | articleId | String? |  yes  | free article id |
+
+---
+
+
+ 
+ 
+ #### [BuyRules](#BuyRules)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | itemCriteria | [String: Any]? |  yes  | Item criteria of promotion |
+ | cartConditions | [String: Any]? |  yes  | Cart conditions details for promotion |
+
+---
+
+
+ 
+ 
+ #### [DiscountRulesApp](#DiscountRulesApp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | offer | [String: Any]? |  yes  | offer for promotion |
+ | itemCriteria | [String: Any]? |  yes  | Item criteria of promotion |
+ | rawOffer | [String: Any]? |  yes  | raw offer details for promotion |
+ | matchedBuyRules | [String]? |  yes  | Matched buy rules for promotion |
+
+---
+
+
+ 
+ 
+ #### [AppliedPromotion](#AppliedPromotion)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | promotionType | String? |  yes  | Promotion type of current promotion |
+ | promotionName | String? |  yes  | Promotion name of current promotion |
+ | appliedFreeArticles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  | Applied free article for free gift item promotions |
+ | promoId | String? |  yes  | Promotion id |
+ | articleQuantity | Int? |  yes  | Quantity of article on which promotion is applicable |
+ | buyRules | [[BuyRules](#BuyRules)]? |  yes  | Buy rules for promotions |
+ | discountRules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
+ | promotionGroup | String? |  yes  | Promotion group for the promotion |
+ | amount | Double? |  yes  | Per unit discount amount applied with current promotion |
+ | mrpPromotion | Bool? |  yes  | If applied promotion is applied on product MRP or ESP |
+ | offerText | String? |  yes  | Offer text of current promotion |
 
 ---
 
@@ -7741,6 +7058,31 @@ Success. Returns a object containing the applicable ladder price offers (if exis
  | ---------- | ---- | -------- | ----------- |
  | unit | String? |  yes  |  |
  | value | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryInfo](#CategoryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | Int? |  yes  | Product Category Id |
+ | name | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductImage](#ProductImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aspectRatio | String? |  yes  |  |
+ | url | String? |  yes  |  |
+ | secureUrl | String? |  yes  |  |
 
 ---
 
@@ -7763,45 +7105,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | query | [ActionQuery](#ActionQuery)? |  yes  |  |
- | url | String? |  yes  |  |
  | type | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductImage](#ProductImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | secureUrl | String? |  yes  |  |
  | url | String? |  yes  |  |
- | aspectRatio | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [BaseInfo](#BaseInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | uid | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [CategoryInfo](#CategoryInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | uid | Int? |  yes  | Product Category Id |
 
 ---
 
@@ -7812,192 +7117,15 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | String? |  yes  | Unique product url name generated via product name and other meta data |
- | uid | Int? |  yes  |  |
- | netQuantity | [NetQuantity](#NetQuantity)? |  yes  |  |
- | type | String? |  yes  |  |
  | name | String? |  yes  |  |
- | action | [ProductAction](#ProductAction)? |  yes  |  |
- | images | [[ProductImage](#ProductImage)]? |  yes  |  |
  | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
- | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [BasePrice](#BasePrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currencySymbol | String? |  yes  |  |
- | effective | Double? |  yes  |  |
- | marked | Double? |  yes  |  |
- | currencyCode | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ArticlePriceInfo](#ArticlePriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | base | [BasePrice](#BasePrice)? |  yes  |  |
- | converted | [BasePrice](#BasePrice)? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductArticle](#ProductArticle)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | parentItemIdentifiers | [String: Any]? |  yes  |  |
- | uid | String? |  yes  |  |
- | productGroupTags | [String]? |  yes  |  |
- | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | store | [BaseInfo](#BaseInfo)? |  yes  |  |
- | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
+ | netQuantity | [NetQuantity](#NetQuantity)? |  yes  |  |
+ | uid | Int? |  yes  |  |
  | type | String? |  yes  |  |
- | size | String? |  yes  |  |
- | quantity | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [PromoMeta](#PromoMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductAvailability](#ProductAvailability)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sizes | [String]? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | outOfStock | Bool? |  yes  |  |
- | deliverable | Bool? |  yes  |  |
- | otherStoreQuantity | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductPrice](#ProductPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currencySymbol | String? |  yes  |  |
- | effective | Double? |  yes  |  |
- | selling | Double? |  yes  |  |
- | addOn | Double? |  yes  |  |
- | currencyCode | String? |  yes  |  |
- | marked | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductPriceInfo](#ProductPriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | base | [ProductPrice](#ProductPrice)? |  yes  |  |
- | converted | [ProductPrice](#ProductPrice)? |  yes  |  |
-
----
-
-
- 
- 
- #### [BuyRules](#BuyRules)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cartConditions | [String: Any]? |  yes  | Cart conditions details for promotion |
- | itemCriteria | [String: Any]? |  yes  | Item criteria of promotion |
-
----
-
-
- 
- 
- #### [FreeGiftItem](#FreeGiftItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | itemImagesUrl | [String]? |  yes  | item images URL |
- | itemName | String? |  yes  | Item name |
- | itemPriceDetails | [String: Any]? |  yes  | item price details |
- | itemSlug | String? |  yes  | item slug |
- | itemBrandName | String? |  yes  | item brand name |
- | itemId | Int? |  yes  | Item id |
-
----
-
-
- 
- 
- #### [AppliedFreeArticles](#AppliedFreeArticles)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | freeGiftItemDetails | [FreeGiftItem](#FreeGiftItem)? |  yes  | Free gift items details |
- | parentItemIdentifier | String? |  yes  | Parent item identifier for free article |
- | quantity | Int? |  yes  | Free article quantity |
- | articleId | String? |  yes  | free article id |
-
----
-
-
- 
- 
- #### [DiscountRulesApp](#DiscountRulesApp)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | rawOffer | [String: Any]? |  yes  | raw offer details for promotion |
- | matchedBuyRules | [String]? |  yes  | Matched buy rules for promotion |
- | offer | [String: Any]? |  yes  | offer for promotion |
- | itemCriteria | [String: Any]? |  yes  | Item criteria of promotion |
-
----
-
-
- 
- 
- #### [AppliedPromotion](#AppliedPromotion)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | promotionType | String? |  yes  | Promotion type of current promotion |
- | promotionName | String? |  yes  | Promotion name of current promotion |
- | buyRules | [[BuyRules](#BuyRules)]? |  yes  | Buy rules for promotions |
- | appliedFreeArticles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  | Applied free article for free gift item promotions |
- | mrpPromotion | Bool? |  yes  | If applied promotion is applied on product MRP or ESP |
- | amount | Double? |  yes  | Per unit discount amount applied with current promotion |
- | promoId | String? |  yes  | Promotion id |
- | articleQuantity | Int? |  yes  | Quantity of article on which promotion is applicable |
- | discountRules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
- | offerText | String? |  yes  | Offer text of current promotion |
- | promotionGroup | String? |  yes  | Promotion group for the promotion |
+ | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
+ | images | [[ProductImage](#ProductImage)]? |  yes  |  |
+ | action | [ProductAction](#ProductAction)? |  yes  |  |
+ | slug | String? |  yes  | Unique product url name generated via product name and other meta data |
 
 ---
 
@@ -8008,22 +7136,35 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | parentItemIdentifiers | [String: Any]? |  yes  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
- | product | [CartProduct](#CartProduct)? |  yes  |  |
- | article | [ProductArticle](#ProductArticle)? |  yes  |  |
- | promoMeta | [PromoMeta](#PromoMeta)? |  yes  |  |
- | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
- | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
- | isSet | Bool? |  yes  |  |
- | couponMessage | String? |  yes  |  |
- | discount | String? |  yes  |  |
- | quantity | Int? |  yes  |  |
  | pricePerUnit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | discount | String? |  yes  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | parentItemIdentifiers | [String: Any]? |  yes  |  |
+ | key | String? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
+ | article | [ProductArticle](#ProductArticle)? |  yes  |  |
+ | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
+ | promoMeta | [PromoMeta](#PromoMeta)? |  yes  |  |
  | promotionsApplied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | message | String? |  yes  |  |
  | bulkOffer | [String: Any]? |  yes  |  |
- | key | String? |  yes  |  |
+ | couponMessage | String? |  yes  |  |
+ | product | [CartProduct](#CartProduct)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PaymentSelectionLock](#PaymentSelectionLock)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  |  |
+ | defaultOptions | String? |  yes  |  |
+ | paymentIdentifier | String? |  yes  |  |
 
 ---
 
@@ -8034,22 +7175,22 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | buyNow | Bool? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | lastModified | String? |  yes  |  |
- | comment | String? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | couponText | String? |  yes  |  |
- | gstin | String? |  yes  |  |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | id | String? |  yes  |  |
  | restrictCheckout | Bool? |  yes  |  |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | gstin | String? |  yes  |  |
  | deliveryChargeInfo | String? |  yes  |  |
- | message | String? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | buyNow | Bool? |  yes  |  |
+ | lastModified | String? |  yes  |  |
  | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | id | String? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | message | String? |  yes  |  |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
 
 ---
 
@@ -8060,18 +7201,18 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | parentItemIdentifiers | [String: Any]? |  yes  |  |
- | display | String? |  yes  |  |
  | storeId | Int? |  yes  |  |
- | productGroupTags | [String]? |  yes  |  |
- | sellerId | Int? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | pos | Bool? |  yes  |  |
- | itemId | Int? |  yes  |  |
- | quantity | Int? |  yes  |  |
- | itemSize | String? |  yes  |  |
- | articleId | String? |  yes  |  |
  | articleAssignment | [String: Any]? |  yes  |  |
+ | parentItemIdentifiers | [String: Any]? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | productGroupTags | [String]? |  yes  |  |
+ | itemId | Int? |  yes  |  |
+ | display | String? |  yes  |  |
+ | itemSize | String? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
+ | sellerId | Int? |  yes  |  |
+ | articleId | String? |  yes  |  |
+ | pos | Bool? |  yes  |  |
 
 ---
 
@@ -8093,10 +7234,10 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | partial | Bool? |  yes  | When adding multiple items check if all added. True if only few are added. |
- | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
  | message | String? |  yes  |  |
  | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
+ | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
+ | partial | Bool? |  yes  | When adding multiple items check if all added. True if only few are added. |
 
 ---
 
@@ -8107,13 +7248,13 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | parentItemIdentifiers | [String: Any]? |  yes  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | itemId | Int? |  yes  |  |
- | itemIndex | Int? |  yes  |  |
  | quantity | Int? |  yes  |  |
+ | parentItemIdentifiers | [String: Any]? |  yes  |  |
+ | itemIndex | Int? |  yes  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
+ | itemId | Int? |  yes  |  |
  | itemSize | String? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
  | articleId | String? |  yes  |  |
 
 ---
@@ -8137,9 +7278,9 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
  | message | String? |  yes  |  |
  | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
+ | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
 
 ---
 
@@ -8157,37 +7298,37 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  
  
- #### [Coupon](#Coupon)
+ #### [PageCoupon](#PageCoupon)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | maxDiscountValue | Double? |  yes  |  |
- | couponType | String? |  yes  |  |
- | couponCode | String? |  yes  |  |
- | description | String? |  yes  |  |
- | isApplied | Bool? |  yes  |  |
- | isApplicable | Bool? |  yes  |  |
- | expiresOn | String? |  yes  |  |
- | subTitle | String? |  yes  |  |
- | title | String? |  yes  |  |
- | message | String? |  yes  |  |
- | minimumCartValue | Double? |  yes  |  |
- | couponValue | Double? |  yes  |  |
+ | totalItemCount | Int? |  yes  |  |
+ | total | Int? |  yes  |  |
+ | hasPrevious | Bool? |  yes  |  |
+ | current | Int? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
 
 ---
 
 
  
  
- #### [PageCoupon](#PageCoupon)
+ #### [Coupon](#Coupon)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | hasPrevious | Bool? |  yes  |  |
- | total | Int? |  yes  |  |
- | totalItemCount | Int? |  yes  |  |
- | current | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
+ | couponType | String? |  yes  |  |
+ | minimumCartValue | Double? |  yes  |  |
+ | description | String? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+ | maxDiscountValue | Double? |  yes  |  |
+ | couponCode | String? |  yes  |  |
+ | subTitle | String? |  yes  |  |
+ | isApplicable | Bool? |  yes  |  |
+ | title | String? |  yes  |  |
+ | couponValue | Double? |  yes  |  |
+ | message | String? |  yes  |  |
+ | expiresOn | String? |  yes  |  |
 
 ---
 
@@ -8198,8 +7339,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | availableCouponList | [[Coupon](#Coupon)]? |  yes  |  |
  | page | [PageCoupon](#PageCoupon)? |  yes  |  |
+ | availableCouponList | [[Coupon](#Coupon)]? |  yes  |  |
 
 ---
 
@@ -8221,11 +7362,11 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currencySymbol | String? |  yes  | Currency symbol for currency |
  | bulkEffective | Double? |  yes  | Discounted per unit price for current offer object |
- | effective | Int? |  yes  | Current per unit price of product after existing deductions |
- | currencyCode | String? |  yes  | Currency code for all amounts |
  | marked | Int? |  yes  | Original price of product |
+ | currencyCode | String? |  yes  | Currency code for all amounts |
+ | currencySymbol | String? |  yes  | Currency symbol for currency |
+ | effective | Int? |  yes  | Current per unit price of product after existing deductions |
 
 ---
 
@@ -8236,13 +7377,13 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | autoApplied | Bool? |  yes  | Whether offer discount is auto applied in cart |
- | price | [OfferPrice](#OfferPrice)? |  yes  |  |
- | total | Double? |  yes  | Total price of offer quantity with discount |
- | type | String? |  yes  | Offer type |
- | quantity | Int? |  yes  | Quantity on which offer is applicable |
- | best | Bool? |  yes  | Is true for best offer from all offers present for all sellers |
  | margin | Int? |  yes  | Percentage value of discount |
+ | price | [OfferPrice](#OfferPrice)? |  yes  |  |
+ | quantity | Int? |  yes  | Quantity on which offer is applicable |
+ | total | Double? |  yes  | Total price of offer quantity with discount |
+ | best | Bool? |  yes  | Is true for best offer from all offers present for all sellers |
+ | type | String? |  yes  | Offer type |
+ | autoApplied | Bool? |  yes  | Whether offer discount is auto applied in cart |
 
 ---
 
@@ -8253,8 +7394,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
  | uid | Int? |  yes  | Seller id |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -8299,8 +7440,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | latitude | Double? |  yes  |  |
  | longitude | Double? |  yes  |  |
+ | latitude | Double? |  yes  |  |
 
 ---
 
@@ -8311,29 +7452,29 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
  | geoLocation | [GeoLocation](#GeoLocation)? |  yes  |  |
- | phone | String? |  yes  |  |
- | countryPhoneCode | String? |  yes  |  |
- | userId | String? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | countryCode | String? |  yes  |  |
+ | country | String? |  yes  |  |
  | isDefaultAddress | Bool? |  yes  |  |
+ | areaCode | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | address | String? |  yes  |  |
+ | areaCodeSlug | String? |  yes  |  |
+ | landmark | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
  | isActive | Bool? |  yes  |  |
+ | userId | String? |  yes  |  |
+ | tags | [String]? |  yes  |  |
  | email | String? |  yes  |  |
- | addressType | String? |  yes  |  |
- | state | String? |  yes  |  |
- | landmark | String? |  yes  |  |
- | address | String? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | country | String? |  yes  |  |
- | areaCode | String? |  yes  |  |
- | city | String? |  yes  |  |
- | id | String? |  yes  |  |
- | areaCodeSlug | String? |  yes  |  |
- | name | String? |  yes  |  |
  | googleMapPoint | [String: Any]? |  yes  |  |
+ | addressType | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | phone | String? |  yes  |  |
+ | countryPhoneCode | String? |  yes  |  |
+ | city | String? |  yes  |  |
  | area | String? |  yes  |  |
+ | state | String? |  yes  |  |
 
 ---
 
@@ -8355,9 +7496,9 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
- | id | String? |  yes  |  |
  | isDefaultAddress | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -8369,8 +7510,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | Bool? |  yes  |  |
- | id | String? |  yes  |  |
  | isDefaultAddress | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
  | isUpdated | Bool? |  yes  |  |
 
 ---
@@ -8382,8 +7523,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
  | isDeleted | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -8394,9 +7535,9 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | cartId | String? |  yes  |  |
  | id | String? |  yes  |  |
  | billingAddressId | String? |  yes  |  |
- | cartId | String? |  yes  |  |
 
 ---
 
@@ -8407,12 +7548,12 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchantCode | String? |  yes  |  |
- | id | String? |  yes  |  |
  | paymentMode | String? |  yes  |  |
- | paymentIdentifier | String? |  yes  |  |
  | aggregatorName | String? |  yes  |  |
+ | id | String? |  yes  |  |
  | addressId | String? |  yes  |  |
+ | paymentIdentifier | String? |  yes  |  |
+ | merchantCode | String? |  yes  |  |
 
 ---
 
@@ -8423,11 +7564,11 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String? |  yes  |  |
  | discount | Double? |  yes  |  |
- | displayMessageEn | String? |  yes  |  |
- | title | String? |  yes  |  |
  | valid | Bool? |  yes  |  |
+ | title | String? |  yes  |  |
+ | code | String? |  yes  |  |
+ | displayMessageEn | String? |  yes  |  |
 
 ---
 
@@ -8438,8 +7579,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | couponValidity | [CouponValidity](#CouponValidity)? |  yes  |  |
  | message | String? |  yes  |  |
+ | couponValidity | [CouponValidity](#CouponValidity)? |  yes  |  |
  | success | Bool |  no  |  |
 
 ---
@@ -8451,16 +7592,16 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | boxType | String? |  yes  |  |
- | fulfillmentType | String? |  yes  |  |
- | dpId | String? |  yes  |  |
+ | promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | orderType | String? |  yes  |  |
  | shipments | Int? |  yes  |  |
- | promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | dpId | String? |  yes  |  |
+ | fulfillmentType | String? |  yes  |  |
  | dpOptions | [String: Any]? |  yes  |  |
  | shipmentType | String? |  yes  |  |
- | fulfillmentId | Int? |  yes  |  |
+ | boxType | String? |  yes  |  |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | fulfillmentId | Int? |  yes  |  |
 
 ---
 
@@ -8471,25 +7612,25 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | String? |  yes  |  |
- | lastModified | String? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | couponText | String? |  yes  |  |
- | gstin | String? |  yes  |  |
- | id | String? |  yes  |  |
  | restrictCheckout | Bool? |  yes  |  |
- | error | Bool? |  yes  |  |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | cartId | Int? |  yes  |  |
- | buyNow | Bool? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | comment | String? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | shipments | [[ShipmentResponse](#ShipmentResponse)]? |  yes  |  |
- | deliveryChargeInfo | String? |  yes  |  |
+ | buyNow | Bool? |  yes  |  |
+ | error | Bool? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | id | String? |  yes  |  |
+ | comment | String? |  yes  |  |
  | message | String? |  yes  |  |
+ | gstin | String? |  yes  |  |
+ | deliveryChargeInfo | String? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | lastModified | String? |  yes  |  |
  | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | cartId | Int? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
 
 ---
 
@@ -8512,10 +7653,10 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | user | String |  no  |  |
+ | lastName | String |  no  |  |
  | id | String |  no  |  |
  | firstName | String |  no  |  |
- | lastName | String |  no  |  |
- | user | String |  no  |  |
 
 ---
 
@@ -8526,22 +7667,22 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | billingAddressId | String? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | paymentIdentifier | String? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | merchantCode | String? |  yes  |  |
- | deliveryAddress | [String: Any]? |  yes  |  |
- | aggregator | String? |  yes  |  |
  | customMeta | [[CartCheckoutCustomMeta](#CartCheckoutCustomMeta)]? |  yes  |  |
- | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
- | paymentParams | [String: Any]? |  yes  |  |
- | orderingStore | Int? |  yes  |  |
- | addressId | String? |  yes  |  |
- | billingAddress | [String: Any]? |  yes  |  |
- | callbackUrl | String? |  yes  |  |
- | paymentAutoConfirm | Bool? |  yes  |  |
+ | aggregator | String? |  yes  |  |
  | paymentMode | String |  no  |  |
+ | callbackUrl | String? |  yes  |  |
+ | billingAddressId | String? |  yes  |  |
+ | paymentAutoConfirm | Bool? |  yes  |  |
+ | deliveryAddress | [String: Any]? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | billingAddress | [String: Any]? |  yes  |  |
+ | paymentParams | [String: Any]? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
+ | addressId | String? |  yes  |  |
+ | paymentIdentifier | String? |  yes  |  |
+ | merchantCode | String? |  yes  |  |
+ | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
+ | orderingStore | Int? |  yes  |  |
 
 ---
 
@@ -8552,35 +7693,35 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | codMessage | String? |  yes  |  |
+ | buyNow | Bool? |  yes  |  |
+ | errorMessage | String? |  yes  |  |
+ | deliveryChargeOrderValue | Int? |  yes  |  |
+ | storeEmps | [[String: Any]]? |  yes  |  |
+ | id | String? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | orderId | String? |  yes  |  |
+ | gstin | String? |  yes  |  |
+ | storeCode | String? |  yes  |  |
  | lastModified | String? |  yes  |  |
  | cartId | Int? |  yes  |  |
- | codCharges | Int? |  yes  |  |
- | storeEmps | [[String: Any]]? |  yes  |  |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | storeCode | String? |  yes  |  |
- | deliveryCharges | Int? |  yes  |  |
- | errorMessage | String? |  yes  |  |
- | orderId | String? |  yes  |  |
- | deliveryChargeInfo | String? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | restrictCheckout | Bool? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
  | message | String? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | deliveryCharges | Int? |  yes  |  |
+ | deliveryChargeInfo | String? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | codAvailable | Bool? |  yes  |  |
+ | success | Bool? |  yes  |  |
  | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | userType | String? |  yes  |  |
- | uid | String? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | couponText | String? |  yes  |  |
- | gstin | String? |  yes  |  |
- | success | Bool? |  yes  |  |
- | id | String? |  yes  |  |
- | restrictCheckout | Bool? |  yes  |  |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | buyNow | Bool? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | comment | String? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | codAvailable | Bool? |  yes  |  |
- | deliveryChargeOrderValue | Int? |  yes  |  |
- | codMessage | String? |  yes  |  |
+ | codCharges | Int? |  yes  |  |
 
 ---
 
@@ -8593,12 +7734,12 @@ Success. Returns a object containing the applicable ladder price offers (if exis
  | ---------- | ---- | -------- | ----------- |
  | paymentConfirmUrl | String? |  yes  |  |
  | appInterceptUrl | String? |  yes  |  |
- | success | Bool? |  yes  |  |
  | orderId | String? |  yes  |  |
- | data | [String: Any]? |  yes  |  |
- | message | String? |  yes  |  |
- | cart | [CheckCart](#CheckCart)? |  yes  |  |
  | callbackUrl | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
+ | data | [String: Any]? |  yes  |  |
+ | cart | [CheckCart](#CheckCart)? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -8609,10 +7750,10 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pickUpCustomerDetails | [String: Any]? |  yes  | Customer contact details for customer pickup at store |
- | gstin | String? |  yes  |  |
  | checkoutMode | String? |  yes  |  |
+ | gstin | String? |  yes  |  |
  | comment | String? |  yes  |  |
+ | pickUpCustomerDetails | [String: Any]? |  yes  | Customer contact details for customer pickup at store |
 
 ---
 
@@ -8669,11 +7810,11 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | source | [String: Any]? |  yes  | Share link device and other source information |
- | meta | [String: Any]? |  yes  | Meta data sent while generating share cart link |
  | token | String? |  yes  | Short link id |
+ | meta | [String: Any]? |  yes  | Meta data sent while generating share cart link |
  | user | [String: Any]? |  yes  | User details of who generated share link |
  | createdOn | String? |  yes  |  |
+ | source | [String: Any]? |  yes  | Share link device and other source information |
 
 ---
 
@@ -8684,25 +7825,25 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | buyNow | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | gstin | String? |  yes  |  |
  | lastModified | String? |  yes  |  |
  | cartId | Int? |  yes  |  |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | deliveryChargeInfo | String? |  yes  |  |
- | message | String? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | uid | String? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | couponText | String? |  yes  |  |
- | gstin | String? |  yes  |  |
- | id | String? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
  | restrictCheckout | Bool? |  yes  |  |
  | sharedCartDetails | [SharedCartDetails](#SharedCartDetails)? |  yes  |  |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | message | String? |  yes  |  |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | buyNow | Bool? |  yes  |  |
+ | deliveryChargeInfo | String? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | comment | String? |  yes  |  |
- | isValid | Bool? |  yes  |  |
 
 ---
 
@@ -8725,12 +7866,12 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | itemImagesUrl | [String]? |  yes  | item images URL |
- | itemName | String? |  yes  | Item name |
  | itemPriceDetails | [String: Any]? |  yes  | item price details |
- | itemSlug | String? |  yes  | item slug |
  | itemBrandName | String? |  yes  | item brand name |
+ | itemName | String? |  yes  | Item name |
  | itemId | Int? |  yes  | Item id |
+ | itemImagesUrl | [String]? |  yes  | item images URL |
+ | itemSlug | String? |  yes  | item slug |
 
 ---
 
@@ -8741,14 +7882,14 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | validTill | String? |  yes  | Datetime ISOString for promotion end date |
- | freeGiftItems | [[FreeGiftItems](#FreeGiftItems)]? |  yes  | Details of free gift items |
- | buyRules | [String: Any]? |  yes  | Buy rules of promotions |
  | description | String? |  yes  | Offer details including T&C |
- | discountRules | [[String: Any]]? |  yes  | Discount rules of promotions |
- | id | String? |  yes  | Promotion id |
- | offerText | String? |  yes  | Offer title |
+ | buyRules | [String: Any]? |  yes  | Buy rules of promotions |
  | promotionGroup | String? |  yes  | Group of promotion belongs to |
+ | discountRules | [[String: Any]]? |  yes  | Discount rules of promotions |
+ | validTill | String? |  yes  | Datetime ISOString for promotion end date |
+ | id | String? |  yes  | Promotion id |
+ | freeGiftItems | [[FreeGiftItems](#FreeGiftItems)]? |  yes  | Details of free gift items |
+ | offerText | String? |  yes  | Offer title |
 
 ---
 
@@ -8778,56 +7919,6 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  
  
- #### [LadderPrice](#LadderPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currencySymbol | String? |  yes  | Currency symbol for currency |
- | effective | Int? |  yes  | Current per unit price of product after existing deductions |
- | offerPrice | Double? |  yes  | Discounted per unit price for current offer object |
- | currencyCode | String? |  yes  | Currency code for all amounts |
- | marked | Int? |  yes  | Original price of product |
-
----
-
-
- 
- 
- #### [LadderOfferItem](#LadderOfferItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | minQuantity | Int? |  yes  | Minimum quantity from which offer is applicable |
- | maxQuantity | Int? |  yes  | Minimum quantity upto which offer is applicable. If not present that offer is applicable on all quantities |
- | price | [LadderPrice](#LadderPrice)? |  yes  |  |
- | type | String? |  yes  | Offer type |
- | margin | Int? |  yes  | Percentage value of discount |
-
----
-
-
- 
- 
- #### [LadderPriceOffer](#LadderPriceOffer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | validTill | String? |  yes  | Datetime ISOString for promotion end date |
- | freeGiftItems | [[FreeGiftItems](#FreeGiftItems)]? |  yes  | Details of free gift items |
- | buyRules | [String: Any]? |  yes  | Buy rules of promotions |
- | description | String? |  yes  | Offer details including T&C |
- | discountRules | [[String: Any]]? |  yes  | Discount rules of promotions |
- | calculateOn | String? |  yes  | If this ladder offer is to be calculated on MRP or ESP price |
- | id | String? |  yes  | Promotion id |
- | offerText | String? |  yes  | Offer title |
- | promotionGroup | String? |  yes  | Group of promotion belongs to |
- | offerPrices | [[LadderOfferItem](#LadderOfferItem)]? |  yes  |  |
-
----
-
-
- 
- 
  #### [CurrencyInfo](#CurrencyInfo)
 
  | Properties | Type | Nullable | Description |
@@ -8840,12 +7931,62 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  
  
+ #### [LadderPrice](#LadderPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | offerPrice | Double? |  yes  | Discounted per unit price for current offer object |
+ | marked | Int? |  yes  | Original price of product |
+ | currencyCode | String? |  yes  | Currency code for all amounts |
+ | currencySymbol | String? |  yes  | Currency symbol for currency |
+ | effective | Int? |  yes  | Current per unit price of product after existing deductions |
+
+---
+
+
+ 
+ 
+ #### [LadderOfferItem](#LadderOfferItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | margin | Int? |  yes  | Percentage value of discount |
+ | price | [LadderPrice](#LadderPrice)? |  yes  |  |
+ | maxQuantity | Int? |  yes  | Minimum quantity upto which offer is applicable. If not present that offer is applicable on all quantities |
+ | type | String? |  yes  | Offer type |
+ | minQuantity | Int? |  yes  | Minimum quantity from which offer is applicable |
+
+---
+
+
+ 
+ 
+ #### [LadderPriceOffer](#LadderPriceOffer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | String? |  yes  | Offer details including T&C |
+ | offerPrices | [[LadderOfferItem](#LadderOfferItem)]? |  yes  |  |
+ | buyRules | [String: Any]? |  yes  | Buy rules of promotions |
+ | calculateOn | String? |  yes  | If this ladder offer is to be calculated on MRP or ESP price |
+ | promotionGroup | String? |  yes  | Group of promotion belongs to |
+ | discountRules | [[String: Any]]? |  yes  | Discount rules of promotions |
+ | validTill | String? |  yes  | Datetime ISOString for promotion end date |
+ | id | String? |  yes  | Promotion id |
+ | freeGiftItems | [[FreeGiftItems](#FreeGiftItems)]? |  yes  | Details of free gift items |
+ | offerText | String? |  yes  | Offer title |
+
+---
+
+
+ 
+ 
  #### [LadderPriceOffers](#LadderPriceOffers)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | availableOffers | [[LadderPriceOffer](#LadderPriceOffer)]? |  yes  |  |
  | currency | [CurrencyInfo](#CurrencyInfo)? |  yes  |  |
+ | availableOffers | [[LadderPriceOffer](#LadderPriceOffer)]? |  yes  |  |
 
 ---
 

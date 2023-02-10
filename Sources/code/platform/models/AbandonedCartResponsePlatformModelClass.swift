@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class AbandonedCartResponse: Codable {
-        public var result: [String: Any]?
-
         public var page: Page?
+
+        public var result: [String: Any]?
 
         public var message: String?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var items: [AbandonedCart]?
 
         public enum CodingKeys: String, CodingKey {
-            case result
-
             case page
+
+            case result
 
             case message
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(items: [AbandonedCart]? = nil, message: String? = nil, page: Page? = nil, result: [String: Any]? = nil, success: Bool? = nil) {
-            self.result = result
-
             self.page = page
+
+            self.result = result
 
             self.message = message
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                result = try container.decode([String: Any].self, forKey: .result)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                page = try container.decode(Page.self, forKey: .page)
+                result = try container.decode([String: Any].self, forKey: .result)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(result, forKey: .result)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(result, forKey: .result)
 
             try? container.encodeIfPresent(message, forKey: .message)
 

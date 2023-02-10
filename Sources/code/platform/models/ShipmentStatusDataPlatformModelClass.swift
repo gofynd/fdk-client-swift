@@ -12,34 +12,34 @@ public extension PlatformClient {
 
         public var id: Int?
 
-        public var status: String?
+        public var bagList: [String]?
 
         public var shipmentId: String?
 
-        public var bagList: [Int]?
+        public var status: String?
 
         public enum CodingKeys: String, CodingKey {
             case createdAt = "created_at"
 
             case id
 
-            case status
+            case bagList = "bag_list"
 
             case shipmentId = "shipment_id"
 
-            case bagList = "bag_list"
+            case status
         }
 
-        public init(bagList: [Int]? = nil, createdAt: String? = nil, id: Int? = nil, shipmentId: String? = nil, status: String? = nil) {
+        public init(bagList: [String]? = nil, createdAt: String? = nil, id: Int? = nil, shipmentId: String? = nil, status: String? = nil) {
             self.createdAt = createdAt
 
             self.id = id
 
-            self.status = status
+            self.bagList = bagList
 
             self.shipmentId = shipmentId
 
-            self.bagList = bagList
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                bagList = try container.decode([String].self, forKey: .bagList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                bagList = try container.decode([Int].self, forKey: .bagList)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,11 +93,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(bagList, forKey: .bagList)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(bagList, forKey: .bagList)
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }
