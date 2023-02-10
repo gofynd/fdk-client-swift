@@ -2313,6 +2313,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | appType | String? |  yes  |  |
  | mobileLogo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | domain | [Domain](#Domain)? |  yes  |  |
+ | slug | String? |  yes  |  |
 
 ---
 
@@ -2537,7 +2538,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | ---------- | ---- | -------- | ----------- |
  | loc | String? |  yes  |  |
  | addressLine | [String]? |  yes  |  |
- | phone | [InformationPhone](#InformationPhone)? |  yes  |  |
+ | phone | [[InformationPhone](#InformationPhone)]? |  yes  |  |
  | city | String? |  yes  |  |
  | country | String? |  yes  |  |
  | pincode | Int? |  yes  |  |
@@ -2747,6 +2748,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | domain | [Domain](#Domain)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
  | id | String? |  yes  |  |
+ | slug | String? |  yes  |  |
 
 ---
 
