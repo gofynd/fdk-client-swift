@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var articleAssignment: AffiliateInventoryArticleAssignmentConfig?
 
-        public var order: AffiliateInventoryOrderConfig?
-
         public var payment: AffiliateInventoryPaymentConfig?
+
+        public var order: AffiliateInventoryOrderConfig?
 
         public var inventory: AffiliateInventoryStoreConfig?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case articleAssignment = "article_assignment"
 
-            case order
-
             case payment
+
+            case order
 
             case inventory
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.articleAssignment = articleAssignment
 
-            self.order = order
-
             self.payment = payment
+
+            self.order = order
 
             self.inventory = inventory
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                order = try container.decode(AffiliateInventoryOrderConfig.self, forKey: .order)
+                payment = try container.decode(AffiliateInventoryPaymentConfig.self, forKey: .payment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                payment = try container.decode(AffiliateInventoryPaymentConfig.self, forKey: .payment)
+                order = try container.decode(AffiliateInventoryOrderConfig.self, forKey: .order)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
-            try? container.encodeIfPresent(order, forKey: .order)
-
             try? container.encodeIfPresent(payment, forKey: .payment)
+
+            try? container.encodeIfPresent(order, forKey: .order)
 
             try? container.encodeIfPresent(inventory, forKey: .inventory)
         }

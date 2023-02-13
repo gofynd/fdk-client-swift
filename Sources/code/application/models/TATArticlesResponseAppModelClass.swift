@@ -7,57 +7,57 @@ public extension ApplicationClient {
          Used By: Logistic
      */
     class TATArticlesResponse: Codable {
-        public var manufacturingTimeSeconds: Int?
-
         public var promise: TATPromiseResponse?
-
-        public var isCodAvailable: Bool?
-
-        public var error: TATErrorSchemaResponse?
-
-        public var manufacturingTime: Int?
-
-        public var manufacturingTimeUnit: String?
 
         public var category: TATCategoryRequest?
 
-        public enum CodingKeys: String, CodingKey {
-            case manufacturingTimeSeconds = "_manufacturing_time_seconds"
+        public var isCodAvailable: Bool?
 
+        public var manufacturingTimeUnit: String?
+
+        public var manufacturingTimeSeconds: Int?
+
+        public var manufacturingTime: Int?
+
+        public var error: TATErrorSchemaResponse?
+
+        public enum CodingKeys: String, CodingKey {
             case promise
+
+            case category
 
             case isCodAvailable = "is_cod_available"
 
-            case error
+            case manufacturingTimeUnit = "manufacturing_time_unit"
+
+            case manufacturingTimeSeconds = "_manufacturing_time_seconds"
 
             case manufacturingTime = "manufacturing_time"
 
-            case manufacturingTimeUnit = "manufacturing_time_unit"
-
-            case category
+            case error
         }
 
         public init(category: TATCategoryRequest? = nil, error: TATErrorSchemaResponse? = nil, isCodAvailable: Bool? = nil, manufacturingTime: Int? = nil, manufacturingTimeUnit: String? = nil, promise: TATPromiseResponse? = nil, manufacturingTimeSeconds: Int? = nil) {
-            self.manufacturingTimeSeconds = manufacturingTimeSeconds
-
             self.promise = promise
+
+            self.category = category
 
             self.isCodAvailable = isCodAvailable
 
-            self.error = error
+            self.manufacturingTimeUnit = manufacturingTimeUnit
+
+            self.manufacturingTimeSeconds = manufacturingTimeSeconds
 
             self.manufacturingTime = manufacturingTime
 
-            self.manufacturingTimeUnit = manufacturingTimeUnit
-
-            self.category = category
+            self.error = error
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                manufacturingTimeSeconds = try container.decode(Int.self, forKey: .manufacturingTimeSeconds)
+                promise = try container.decode(TATPromiseResponse.self, forKey: .promise)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                promise = try container.decode(TATPromiseResponse.self, forKey: .promise)
+                category = try container.decode(TATCategoryRequest.self, forKey: .category)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                error = try container.decode(TATErrorSchemaResponse.self, forKey: .error)
+                manufacturingTimeUnit = try container.decode(String.self, forKey: .manufacturingTimeUnit)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                manufacturingTimeSeconds = try container.decode(Int.self, forKey: .manufacturingTimeSeconds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,15 +105,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                manufacturingTimeUnit = try container.decode(String.self, forKey: .manufacturingTimeUnit)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                category = try container.decode(TATCategoryRequest.self, forKey: .category)
+                error = try container.decode(TATErrorSchemaResponse.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,19 +116,19 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(manufacturingTimeSeconds, forKey: .manufacturingTimeSeconds)
-
             try? container.encodeIfPresent(promise, forKey: .promise)
+
+            try? container.encodeIfPresent(category, forKey: .category)
 
             try? container.encodeIfPresent(isCodAvailable, forKey: .isCodAvailable)
 
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
+
+            try? container.encodeIfPresent(manufacturingTimeSeconds, forKey: .manufacturingTimeSeconds)
 
             try? container.encodeIfPresent(manufacturingTime, forKey: .manufacturingTime)
 
-            try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
-
-            try? container.encodeIfPresent(category, forKey: .category)
+            try? container.encodeIfPresent(error, forKey: .error)
         }
     }
 }

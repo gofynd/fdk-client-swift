@@ -9,36 +9,36 @@ public extension ApplicationClient {
     class AutocompleteItem: Codable {
         public var type: String?
 
-        public var display: String?
-
-        public var action: ProductListingAction?
+        public var customJson: [String: Any]?
 
         public var logo: Media?
 
-        public var customJson: [String: Any]?
+        public var action: ProductListingAction?
+
+        public var display: String?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case display
-
-            case action
+            case customJson = "_custom_json"
 
             case logo
 
-            case customJson = "_custom_json"
+            case action
+
+            case display
         }
 
         public init(action: ProductListingAction? = nil, display: String? = nil, logo: Media? = nil, type: String? = nil, customJson: [String: Any]? = nil) {
             self.type = type
 
-            self.display = display
-
-            self.action = action
+            self.customJson = customJson
 
             self.logo = logo
 
-            self.customJson = customJson
+            self.action = action
+
+            self.display = display
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,15 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +69,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 }
