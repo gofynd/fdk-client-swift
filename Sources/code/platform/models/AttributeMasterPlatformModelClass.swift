@@ -8,11 +8,11 @@ public extension PlatformClient {
      */
 
     class AttributeMaster: Codable {
+        public var multi: Bool?
+
         public var type: String
 
         public var mandatory: Bool?
-
-        public var multi: Bool?
 
         public var range: AttributeSchemaRange?
 
@@ -21,11 +21,11 @@ public extension PlatformClient {
         public var format: String?
 
         public enum CodingKeys: String, CodingKey {
+            case multi
+
             case type
 
             case mandatory
-
-            case multi
 
             case range
 
@@ -35,11 +35,11 @@ public extension PlatformClient {
         }
 
         public init(allowedValues: [String]? = nil, format: String? = nil, mandatory: Bool? = nil, multi: Bool? = nil, range: AttributeSchemaRange? = nil, type: String) {
+            self.multi = multi
+
             self.type = type
 
             self.mandatory = mandatory
-
-            self.multi = multi
 
             self.range = range
 
@@ -51,18 +51,18 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            type = try container.decode(String.self, forKey: .type)
-
             do {
-                mandatory = try container.decode(Bool.self, forKey: .mandatory)
+                multi = try container.decode(Bool.self, forKey: .multi)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            type = try container.decode(String.self, forKey: .type)
+
             do {
-                multi = try container.decode(Bool.self, forKey: .multi)
+                mandatory = try container.decode(Bool.self, forKey: .mandatory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,11 +97,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(multi, forKey: .multi)
+
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(mandatory, forKey: .mandatory)
-
-            try? container.encodeIfPresent(multi, forKey: .multi)
 
             try? container.encodeIfPresent(range, forKey: .range)
 

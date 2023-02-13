@@ -1,33 +1,34 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: LogisticMeta
-         Used By: Logistic
+         Model: GiveawayAudience
+         Used By: Rewards
      */
-    class LogisticMeta: Codable {
-        public var zone: String?
 
-        public var deliverables: [[String: Any]]?
+    class GiveawayAudience: Codable {
+        public var audienceId: String?
+
+        public var currentCount: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case zone
+            case audienceId = "audience_id"
 
-            case deliverables
+            case currentCount = "current_count"
         }
 
-        public init(deliverables: [[String: Any]]? = nil, zone: String? = nil) {
-            self.zone = zone
+        public init(audienceId: String? = nil, currentCount: Double? = nil) {
+            self.audienceId = audienceId
 
-            self.deliverables = deliverables
+            self.currentCount = currentCount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                zone = try container.decode(String.self, forKey: .zone)
+                audienceId = try container.decode(String.self, forKey: .audienceId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +36,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                deliverables = try container.decode([[String: Any]].self, forKey: .deliverables)
+                currentCount = try container.decode(Double.self, forKey: .currentCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +47,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(zone, forKey: .zone)
+            try? container.encodeIfPresent(audienceId, forKey: .audienceId)
 
-            try? container.encodeIfPresent(deliverables, forKey: .deliverables)
+            try? container.encodeIfPresent(currentCount, forKey: .currentCount)
         }
     }
 }

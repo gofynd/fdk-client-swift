@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: LogisticResponseCategory
+         Model: TATPromiseResponse
          Used By: Logistic
      */
-    class LogisticResponseCategory: Codable {
-        public var id: Int?
+    class TATPromiseResponse: Codable {
+        public var timestamp: TATTimestampResponse?
 
-        public var level: String?
+        public var formatted: TATFormattedResponse?
 
         public enum CodingKeys: String, CodingKey {
-            case id
+            case timestamp
 
-            case level
+            case formatted
         }
 
-        public init(id: Int? = nil, level: String? = nil) {
-            self.id = id
+        public init(formatted: TATFormattedResponse? = nil, timestamp: TATTimestampResponse? = nil) {
+            self.timestamp = timestamp
 
-            self.level = level
+            self.formatted = formatted
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                timestamp = try container.decode(TATTimestampResponse.self, forKey: .timestamp)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                level = try container.decode(String.self, forKey: .level)
+                formatted = try container.decode(TATFormattedResponse.self, forKey: .formatted)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
 
-            try? container.encodeIfPresent(level, forKey: .level)
+            try? container.encodeIfPresent(formatted, forKey: .formatted)
         }
     }
 }

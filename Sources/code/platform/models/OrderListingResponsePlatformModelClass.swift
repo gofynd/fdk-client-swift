@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var page: Page?
 
-        public var success: Bool?
-
         public var lane: String?
+
+        public var success: Bool?
 
         public var message: String?
 
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case page
 
-            case success
-
             case lane
+
+            case success
 
             case message
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
 
             self.page = page
 
-            self.success = success
-
             self.lane = lane
+
+            self.success = success
 
             self.message = message
 
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                lane = try container.decode(String.self, forKey: .lane)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                lane = try container.decode(String.self, forKey: .lane)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,9 +107,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(lane, forKey: .lane)
+
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(message, forKey: .message)
 

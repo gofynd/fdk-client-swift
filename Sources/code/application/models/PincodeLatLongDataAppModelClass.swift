@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: LogisticTimestamp
+         Model: PincodeLatLongData
          Used By: Logistic
      */
-    class LogisticTimestamp: Codable {
-        public var min: Int?
+    class PincodeLatLongData: Codable {
+        public var coordinates: [String]?
 
-        public var max: Int?
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
-            case min
+            case coordinates
 
-            case max
+            case type
         }
 
-        public init(max: Int? = nil, min: Int? = nil) {
-            self.min = min
+        public init(coordinates: [String]? = nil, type: String? = nil) {
+            self.coordinates = coordinates
 
-            self.max = max
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                min = try container.decode(Int.self, forKey: .min)
+                coordinates = try container.decode([String].self, forKey: .coordinates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                max = try container.decode(Int.self, forKey: .max)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(min, forKey: .min)
+            try? container.encodeIfPresent(coordinates, forKey: .coordinates)
 
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var startDate: String
 
-        public var orderDetails: [FyndOrderIdList]?
-
         public var mobile: Int
+
+        public var orderDetails: [FyndOrderIdList]?
 
         public enum CodingKeys: String, CodingKey {
             case endDate = "end_date"
 
             case startDate = "start_date"
 
-            case orderDetails = "order_details"
-
             case mobile
+
+            case orderDetails = "order_details"
         }
 
         public init(endDate: String, mobile: Int, orderDetails: [FyndOrderIdList]? = nil, startDate: String) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.startDate = startDate
 
-            self.orderDetails = orderDetails
-
             self.mobile = mobile
+
+            self.orderDetails = orderDetails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,6 +43,8 @@ public extension PlatformClient {
 
             startDate = try container.decode(String.self, forKey: .startDate)
 
+            mobile = try container.decode(Int.self, forKey: .mobile)
+
             do {
                 orderDetails = try container.decode([FyndOrderIdList].self, forKey: .orderDetails)
 
@@ -50,8 +52,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            mobile = try container.decode(Int.self, forKey: .mobile)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -61,9 +61,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(startDate, forKey: .startDate)
 
-            try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
-
             try? container.encodeIfPresent(mobile, forKey: .mobile)
+
+            try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
         }
     }
 }

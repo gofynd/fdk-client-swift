@@ -41,7 +41,7 @@ public extension ApplicationClient {
 
             ulrs["validateVPA"] = config.domain.appendAsPath("/service/application/payment/v1.0/validate-vpa")
 
-            ulrs["cardDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/cards/info")
+            ulrs["cardDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/cards/info/{card_bin}")
 
             ulrs["getActiveRefundTransferModes"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/transfer-mode")
 

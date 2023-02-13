@@ -10,22 +10,22 @@ public extension PlatformClient {
     class BagReturnableCancelableStatus: Codable {
         public var canBeCancelled: Bool
 
+        public var isReturnable: Bool
+
         public var isCustomerReturnAllowed: Bool
 
         public var isActive: Bool
-
-        public var isReturnable: Bool
 
         public var enableTracking: Bool
 
         public enum CodingKeys: String, CodingKey {
             case canBeCancelled = "can_be_cancelled"
 
+            case isReturnable = "is_returnable"
+
             case isCustomerReturnAllowed = "is_customer_return_allowed"
 
             case isActive = "is_active"
-
-            case isReturnable = "is_returnable"
 
             case enableTracking = "enable_tracking"
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(canBeCancelled: Bool, enableTracking: Bool, isActive: Bool, isCustomerReturnAllowed: Bool, isReturnable: Bool) {
             self.canBeCancelled = canBeCancelled
 
+            self.isReturnable = isReturnable
+
             self.isCustomerReturnAllowed = isCustomerReturnAllowed
 
             self.isActive = isActive
-
-            self.isReturnable = isReturnable
 
             self.enableTracking = enableTracking
         }
@@ -47,11 +47,11 @@ public extension PlatformClient {
 
             canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
 
+            isReturnable = try container.decode(Bool.self, forKey: .isReturnable)
+
             isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            isReturnable = try container.decode(Bool.self, forKey: .isReturnable)
 
             enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
         }
@@ -61,11 +61,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
 
+            try? container.encodeIfPresent(isReturnable, forKey: .isReturnable)
+
             try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(isReturnable, forKey: .isReturnable)
 
             try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
         }

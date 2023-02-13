@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: LogisticRequestCategory
+         Model: PincodeMetaResponse
          Used By: Logistic
      */
-    class LogisticRequestCategory: Codable {
-        public var id: Int?
+    class PincodeMetaResponse: Codable {
+        public var internalZoneId: Int?
 
-        public var level: String?
+        public var zone: String?
 
         public enum CodingKeys: String, CodingKey {
-            case id
+            case internalZoneId = "internal_zone_id"
 
-            case level
+            case zone
         }
 
-        public init(id: Int? = nil, level: String? = nil) {
-            self.id = id
+        public init(internalZoneId: Int? = nil, zone: String? = nil) {
+            self.internalZoneId = internalZoneId
 
-            self.level = level
+            self.zone = zone
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                internalZoneId = try container.decode(Int.self, forKey: .internalZoneId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                level = try container.decode(String.self, forKey: .level)
+                zone = try container.decode(String.self, forKey: .zone)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(internalZoneId, forKey: .internalZoneId)
 
-            try? container.encodeIfPresent(level, forKey: .level)
+            try? container.encodeIfPresent(zone, forKey: .zone)
         }
     }
 }
