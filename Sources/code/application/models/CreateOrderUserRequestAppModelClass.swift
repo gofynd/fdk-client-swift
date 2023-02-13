@@ -11,11 +11,11 @@ public extension ApplicationClient {
 
         public var successCallbackUrl: String
 
-        public var failureCallbackUrl: String
-
         public var meta: [String: Any]?
 
         public var paymentMethods: CreateOrderUserPaymentMethods
+
+        public var failureCallbackUrl: String
 
         public var currency: String
 
@@ -24,11 +24,11 @@ public extension ApplicationClient {
 
             case successCallbackUrl = "success_callback_url"
 
-            case failureCallbackUrl = "failure_callback_url"
-
             case meta
 
             case paymentMethods = "payment_methods"
+
+            case failureCallbackUrl = "failure_callback_url"
 
             case currency
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient {
 
             self.successCallbackUrl = successCallbackUrl
 
-            self.failureCallbackUrl = failureCallbackUrl
-
             self.meta = meta
 
             self.paymentMethods = paymentMethods
+
+            self.failureCallbackUrl = failureCallbackUrl
 
             self.currency = currency
         }
@@ -54,8 +54,6 @@ public extension ApplicationClient {
 
             successCallbackUrl = try container.decode(String.self, forKey: .successCallbackUrl)
 
-            failureCallbackUrl = try container.decode(String.self, forKey: .failureCallbackUrl)
-
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
 
@@ -65,6 +63,8 @@ public extension ApplicationClient {
             } catch {}
 
             paymentMethods = try container.decode(CreateOrderUserPaymentMethods.self, forKey: .paymentMethods)
+
+            failureCallbackUrl = try container.decode(String.self, forKey: .failureCallbackUrl)
 
             currency = try container.decode(String.self, forKey: .currency)
         }
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(successCallbackUrl, forKey: .successCallbackUrl)
 
-            try? container.encodeIfPresent(failureCallbackUrl, forKey: .failureCallbackUrl)
-
             try? container.encode(meta, forKey: .meta)
 
             try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+
+            try? container.encodeIfPresent(failureCallbackUrl, forKey: .failureCallbackUrl)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
         }

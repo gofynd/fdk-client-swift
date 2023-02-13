@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var groupId: String?
 
-        public var meta: [String: Any]?
-
         public var articleAssignment: _ArticleAssignment?
+
+        public var meta: [String: Any]?
 
         public var quantity: Int?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case groupId = "group_id"
 
-            case meta
-
             case articleAssignment = "article_assignment"
+
+            case meta
 
             case quantity
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.groupId = groupId
 
-            self.meta = meta
-
             self.articleAssignment = articleAssignment
+
+            self.meta = meta
 
             self.quantity = quantity
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                articleAssignment = try container.decode(_ArticleAssignment.self, forKey: .articleAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                articleAssignment = try container.decode(_ArticleAssignment.self, forKey: .articleAssignment)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(groupId, forKey: .groupId)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
         }

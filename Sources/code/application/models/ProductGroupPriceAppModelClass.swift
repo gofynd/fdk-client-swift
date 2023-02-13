@@ -7,9 +7,9 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductGroupPrice: Codable {
-        public var currency: [String: Any]?
-
         public var minEffective: Double?
+
+        public var currency: [String: Any]?
 
         public var maxMarked: Double?
 
@@ -18,9 +18,9 @@ public extension ApplicationClient {
         public var minMarked: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case currency
-
             case minEffective = "min_effective"
+
+            case currency
 
             case maxMarked = "max_marked"
 
@@ -30,9 +30,9 @@ public extension ApplicationClient {
         }
 
         public init(currency: [String: Any]? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
-            self.currency = currency
-
             self.minEffective = minEffective
+
+            self.currency = currency
 
             self.maxMarked = maxMarked
 
@@ -45,7 +45,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                currency = try container.decode([String: Any].self, forKey: .currency)
+                minEffective = try container.decode(Double.self, forKey: .minEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                minEffective = try container.decode(Double.self, forKey: .minEffective)
+                currency = try container.decode([String: Any].self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,9 +88,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
-
             try? container.encodeIfPresent(minEffective, forKey: .minEffective)
+
+            try? container.encodeIfPresent(currency, forKey: .currency)
 
             try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
 

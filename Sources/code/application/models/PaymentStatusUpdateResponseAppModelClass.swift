@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class PaymentStatusUpdateResponse: Codable {
         public var success: Bool?
 
-        public var redirectUrl: String?
-
         public var status: String
+
+        public var redirectUrl: String?
 
         public var retry: Bool
 
@@ -20,9 +20,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case redirectUrl = "redirect_url"
-
             case status
+
+            case redirectUrl = "redirect_url"
 
             case retry
 
@@ -32,9 +32,9 @@ public extension ApplicationClient {
         public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool, status: String, success: Bool? = nil) {
             self.success = success
 
-            self.redirectUrl = redirectUrl
-
             self.status = status
+
+            self.redirectUrl = redirectUrl
 
             self.retry = retry
 
@@ -52,6 +52,8 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            status = try container.decode(String.self, forKey: .status)
+
             do {
                 redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
 
@@ -59,8 +61,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            status = try container.decode(String.self, forKey: .status)
 
             retry = try container.decode(Bool.self, forKey: .retry)
 
@@ -72,9 +72,9 @@ public extension ApplicationClient {
 
             try? container.encode(success, forKey: .success)
 
-            try? container.encode(redirectUrl, forKey: .redirectUrl)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encode(redirectUrl, forKey: .redirectUrl)
 
             try? container.encodeIfPresent(retry, forKey: .retry)
 
