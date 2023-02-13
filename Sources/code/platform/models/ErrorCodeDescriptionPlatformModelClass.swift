@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ErrorCodeDescription: Codable {
         public var description: String
 
-        public var success: Bool
-
         public var code: String
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case description
 
-            case success
-
             case code
+
+            case success
         }
 
         public init(code: String, description: String, success: Bool) {
             self.description = description
 
-            self.success = success
-
             self.code = code
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             description = try container.decode(String.self, forKey: .description)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             code = try container.decode(String.self, forKey: .code)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

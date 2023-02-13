@@ -14,11 +14,11 @@ public extension PlatformClient {
 
         public var edcSerialNo: String?
 
+        public var isActive: Bool?
+
         public var appId: String?
 
         public var deviceTag: String?
-
-        public var isActive: Bool?
 
         public var storeId: Int?
 
@@ -29,11 +29,11 @@ public extension PlatformClient {
 
             case edcSerialNo = "edc_serial_no"
 
+            case isActive = "is_active"
+
             case appId = "app_id"
 
             case deviceTag = "device_tag"
-
-            case isActive = "is_active"
 
             case storeId = "store_id"
         }
@@ -45,11 +45,11 @@ public extension PlatformClient {
 
             self.edcSerialNo = edcSerialNo
 
+            self.isActive = isActive
+
             self.appId = appId
 
             self.deviceTag = deviceTag
-
-            self.isActive = isActive
 
             self.storeId = storeId
         }
@@ -82,6 +82,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 appId = try container.decode(String.self, forKey: .appId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -91,14 +99,6 @@ public extension PlatformClient {
 
             do {
                 deviceTag = try container.decode(String.self, forKey: .deviceTag)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -123,11 +123,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(edcSerialNo, forKey: .edcSerialNo)
 
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
             try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(deviceTag, forKey: .deviceTag)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
         }

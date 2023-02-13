@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var edcSerialNo: String
 
-        public var deviceTag: String
-
         public var isActive: String
+
+        public var deviceTag: String
 
         public var storeId: Int
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case edcSerialNo = "edc_serial_no"
 
-            case deviceTag = "device_tag"
-
             case isActive = "is_active"
+
+            case deviceTag = "device_tag"
 
             case storeId = "store_id"
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             self.edcSerialNo = edcSerialNo
 
-            self.deviceTag = deviceTag
-
             self.isActive = isActive
+
+            self.deviceTag = deviceTag
 
             self.storeId = storeId
         }
@@ -57,9 +57,9 @@ public extension PlatformClient {
 
             edcSerialNo = try container.decode(String.self, forKey: .edcSerialNo)
 
-            deviceTag = try container.decode(String.self, forKey: .deviceTag)
-
             isActive = try container.decode(String.self, forKey: .isActive)
+
+            deviceTag = try container.decode(String.self, forKey: .deviceTag)
 
             storeId = try container.decode(Int.self, forKey: .storeId)
         }
@@ -73,9 +73,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(edcSerialNo, forKey: .edcSerialNo)
 
-            try? container.encodeIfPresent(deviceTag, forKey: .deviceTag)
-
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(deviceTag, forKey: .deviceTag)
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
         }
