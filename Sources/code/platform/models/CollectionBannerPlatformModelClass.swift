@@ -8,36 +8,36 @@ public extension PlatformClient {
      */
 
     class CollectionBanner: Codable {
-        public var landscape: CollectionImage
-
         public var portrait: CollectionImage
 
-        public enum CodingKeys: String, CodingKey {
-            case landscape
+        public var landscape: CollectionImage
 
+        public enum CodingKeys: String, CodingKey {
             case portrait
+
+            case landscape
         }
 
         public init(landscape: CollectionImage, portrait: CollectionImage) {
-            self.landscape = landscape
-
             self.portrait = portrait
+
+            self.landscape = landscape
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            landscape = try container.decode(CollectionImage.self, forKey: .landscape)
-
             portrait = try container.decode(CollectionImage.self, forKey: .portrait)
+
+            landscape = try container.decode(CollectionImage.self, forKey: .landscape)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(landscape, forKey: .landscape)
-
             try? container.encodeIfPresent(portrait, forKey: .portrait)
+
+            try? container.encodeIfPresent(landscape, forKey: .landscape)
         }
     }
 }
