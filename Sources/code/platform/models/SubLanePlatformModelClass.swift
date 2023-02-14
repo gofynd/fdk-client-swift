@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var value: String?
 
-        public var totalItems: Int?
-
         public var actions: [[String: Any]]?
+
+        public var totalItems: Int?
 
         public enum CodingKeys: String, CodingKey {
             case text
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case value
 
-            case totalItems = "total_items"
-
             case actions
+
+            case totalItems = "total_items"
         }
 
         public init(actions: [[String: Any]]? = nil, index: Int? = nil, text: String? = nil, totalItems: Int? = nil, value: String? = nil) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.value = value
 
-            self.totalItems = totalItems
-
             self.actions = actions
+
+            self.totalItems = totalItems
         }
 
         required public init(from decoder: Decoder) throws {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                totalItems = try container.decode(Int.self, forKey: .totalItems)
+                actions = try container.decode([[String: Any]].self, forKey: .actions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                actions = try container.decode([[String: Any]].self, forKey: .actions)
+                totalItems = try container.decode(Int.self, forKey: .totalItems)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,9 +95,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
-
             try? container.encodeIfPresent(actions, forKey: .actions)
+
+            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
         }
     }
 }

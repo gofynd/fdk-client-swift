@@ -35,8 +35,6 @@ public class PlatformClient {
 
     public let auditTrail: AuditTrail
 
-    public let logistic: Logistic
-
     public init(config: PlatformConfig) {
         self.config = config
 
@@ -69,8 +67,6 @@ public class PlatformClient {
         webhook = Webhook(config: config)
 
         auditTrail = AuditTrail(config: config)
-
-        logistic = Logistic(config: config)
     }
 
     public func applicationClient(id: String) -> ApplicationClient {
@@ -83,6 +79,8 @@ public class PlatformClient {
         var applicationId: String
 
         public let lead: Lead
+
+        public let feedback: Feedback
 
         public let theme: Theme
 
@@ -110,7 +108,7 @@ public class PlatformClient {
 
         public let analytics: Analytics
 
-        public let logistic: Logistic
+        public let partner: Partner
 
         public init(applicationId: String, config: PlatformConfig) {
             self.config = config
@@ -118,6 +116,8 @@ public class PlatformClient {
             self.applicationId = applicationId
 
             lead = Lead(config: config, applicationId: applicationId)
+
+            feedback = Feedback(config: config, applicationId: applicationId)
 
             theme = Theme(config: config, applicationId: applicationId)
 
@@ -145,7 +145,7 @@ public class PlatformClient {
 
             analytics = Analytics(config: config, applicationId: applicationId)
 
-            logistic = Logistic(config: config, applicationId: applicationId)
+            partner = Partner(config: config, applicationId: applicationId)
         }
 
         public class Lead {
@@ -681,6 +681,579 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(CloseVideoRoomResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+        }
+
+        public class Feedback {
+            var config: PlatformConfig
+            var companyId: String
+            var applicationId: String
+
+            init(config: PlatformConfig, applicationId: String) {
+                self.config = config
+                self.companyId = config.companyId
+                self.applicationId = applicationId
+            }
+
+            /**
+             *
+             * Summary: Get list of attribute data
+             * Description: Provides a list of all attribute data.
+             **/
+            public func getAttributes(
+                pageNo: Int?,
+                pageSize: Int?,
+
+                onResponse: @escaping (_ response: FeedbackAttributes?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/attributes/",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(FeedbackAttributes.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: get paginator for getAttributes
+             * Description: fetch the next page by calling .next(...) function
+             **/
+            public func getAttributesPaginator(
+                pageSize: Int?
+
+            ) -> Paginator<FeedbackAttributes> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<FeedbackAttributes>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getAttributes(
+                        pageNo: paginator.pageNo,
+
+                        pageSize: paginator.pageSize
+
+                    ) { response, error in
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+
+            /**
+             *
+             * Summary: Get list of customer reviews [admin]
+             * Description: The endpoint provides a list of customer reviews based on entity and provided filters
+             **/
+            public func getCustomerReviews(
+                id: String?,
+                entityId: String?,
+                entityType: String?,
+                userId: String?,
+                media: String?,
+                rating: [Double]?,
+                attributeRating: [String]?,
+                facets: Bool?,
+                sort: String?,
+                next: String?,
+                start: String?,
+                limit: String?,
+                count: String?,
+                pageId: String?,
+                pageSize: Int?,
+
+                onResponse: @escaping (_ response: GetReviewResponse?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = id {
+                    xQuery["id"] = value
+                }
+
+                if let value = entityId {
+                    xQuery["entity_id"] = value
+                }
+
+                if let value = entityType {
+                    xQuery["entity_type"] = value
+                }
+
+                if let value = userId {
+                    xQuery["user_id"] = value
+                }
+
+                if let value = media {
+                    xQuery["media"] = value
+                }
+
+                if let value = rating {
+                    xQuery["rating"] = value
+                }
+
+                if let value = attributeRating {
+                    xQuery["attribute_rating"] = value
+                }
+
+                if let value = facets {
+                    xQuery["facets"] = value
+                }
+
+                if let value = sort {
+                    xQuery["sort"] = value
+                }
+
+                if let value = next {
+                    xQuery["next"] = value
+                }
+
+                if let value = start {
+                    xQuery["start"] = value
+                }
+
+                if let value = limit {
+                    xQuery["limit"] = value
+                }
+
+                if let value = count {
+                    xQuery["count"] = value
+                }
+
+                if let value = pageId {
+                    xQuery["page_id"] = value
+                }
+
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/reviews/",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(GetReviewResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: get paginator for getCustomerReviews
+             * Description: fetch the next page by calling .next(...) function
+             **/
+            public func getCustomerReviewsPaginator(
+                id: String?,
+                entityId: String?,
+                entityType: String?,
+                userId: String?,
+                media: String?,
+                rating: [Double]?,
+                attributeRating: [String]?,
+                facets: Bool?,
+                sort: String?,
+                next: String?,
+                start: String?,
+                limit: String?,
+                count: String?,
+                pageSize: Int?
+
+            ) -> Paginator<GetReviewResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<GetReviewResponse>(pageSize: pageSize, type: "cursor")
+                paginator.onPage = {
+                    self.getCustomerReviews(
+                        id: id,
+                        entityId: entityId,
+                        entityType: entityType,
+                        userId: userId,
+                        media: media,
+                        rating: rating,
+                        attributeRating: attributeRating,
+                        facets: facets,
+                        sort: sort,
+                        next: next,
+                        start: start,
+                        limit: limit,
+                        count: count,
+                        pageId: paginator.pageId,
+
+                        pageSize: paginator.pageSize
+
+                    ) { response, error in
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageId = response.page?.nextId
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+
+            /**
+             *
+             * Summary: update approve details
+             * Description: The is used to update approve details like status and description text
+             **/
+            public func updateApprove(
+                reviewId: String,
+                body: ApproveRequest,
+                onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/reviews/\(reviewId)/approve/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(UpdateResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: get history details
+             * Description: The is used to get the history details like status and description text
+             **/
+            public func getHistory(
+                reviewId: String,
+
+                onResponse: @escaping (_ response: [ActivityDump]?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/reviews/\(reviewId)/history/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode([ActivityDump].self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Get list of templates
+             * Description: Get all templates of application
+             **/
+            public func getApplicationTemplates(
+                pageId: String?,
+                pageSize: Int?,
+
+                onResponse: @escaping (_ response: TemplateGetResponse?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = pageId {
+                    xQuery["page_id"] = value
+                }
+
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/templates/",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(TemplateGetResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: get paginator for getApplicationTemplates
+             * Description: fetch the next page by calling .next(...) function
+             **/
+            public func getApplicationTemplatesPaginator(
+                pageSize: Int?
+
+            ) -> Paginator<TemplateGetResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<TemplateGetResponse>(pageSize: pageSize, type: "cursor")
+                paginator.onPage = {
+                    self.getApplicationTemplates(
+                        pageId: paginator.pageId,
+
+                        pageSize: paginator.pageSize
+
+                    ) { response, error in
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageId = response.page?.nextId
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+
+            /**
+                         *
+                         * Summary: Create a new template
+                         * Description: Create a new template for review with following data:
+             - Enable media, rating and review
+             - Rating - active/inactive/selected rate choices, attributes, text on rate, comment for each rate, type
+             - Review - header, title, description, image and video meta, enable votes
+                         **/
+            public func createTemplate(
+                body: TemplateRequestList,
+                onResponse: @escaping (_ response: InsertResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/templates/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(InsertResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Get a template by ID
+             * Description: Get the template for product or l3 type by ID
+             **/
+            public func getTemplateById(
+                id: String,
+
+                onResponse: @escaping (_ response: Template?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/templates/\(id)/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(Template.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Update a template's status
+             * Description: Update existing template status, active/archive
+             **/
+            public func updateTemplate(
+                id: String,
+                body: UpdateTemplateRequest,
+                onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/templates/\(id)/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(UpdateResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Update a template's status
+             * Description: Update existing template status, active/archive
+             **/
+            public func updateTemplateStatus(
+                id: String,
+                body: UpdateTemplateStatusRequest,
+                onResponse: @escaping (_ response: UpdateResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "patch",
+                    url: "/service/platform/feedback/v1.0/company/\(companyId)/application/\(applicationId)/templates/\(id)/status/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(UpdateResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -15079,7 +15652,7 @@ public class PlatformClient {
             }
         }
 
-        public class Logistic {
+        public class Partner {
             var config: PlatformConfig
             var companyId: String
             var applicationId: String
@@ -15092,18 +15665,20 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Zone configuration of application.
-             * Description: This API returns serviceability config of the application.
+             * Summary: Create proxy URL for the external URL
+             * Description: Use this API to generate proxy URL for the external URL
              **/
-            public func getApplicationServiceability(
-                onResponse: @escaping (_ response: ApplicationServiceabilityConfigResponse?, _ error: FDKError?) -> Void
+            public func addProxyPath(
+                extensionId: String,
+                body: AddProxyReq,
+                onResponse: @escaping (_ response: AddProxyResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "get",
-                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/serviceability",
+                    method: "post",
+                    url: "/service/platform/partners/v1.0/company/\(companyId)/application/\(applicationId)/proxy/\(extensionId)",
                     query: nil,
-                    body: nil,
+                    body: body.dictionary,
                     headers: [],
                     responseType: "application/json",
                     onResponse: { responseData, error, responseCode in
@@ -15114,7 +15689,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(ApplicationServiceabilityConfigResponse.self, from: data)
+                            let response = Utility.decode(AddProxyResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -15129,19 +15704,21 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: GET zone from the Pincode.
-             * Description: This API returns zone from the Pincode View.
+             * Summary: Remove proxy URL for the external URL
+             * Description: Use this API to remove the proxy URL which is already generated for the external URL
              **/
-            public func upsertZoneControllerView(
-                body: GetZoneFromPincodeViewRequest,
-                onResponse: @escaping (_ response: GetZoneFromPincodeViewResponse?, _ error: FDKError?) -> Void
+            public func removeProxyPath(
+                extensionId: String,
+                attachedPath: String,
+
+                onResponse: @escaping (_ response: RemoveProxyResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "post",
-                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/zones",
+                    method: "delete",
+                    url: "/service/platform/partners/v1.0/company/\(companyId)/application/\(applicationId)/proxy/\(extensionId)/\(attachedPath)",
                     query: nil,
-                    body: body.dictionary,
+                    body: nil,
                     headers: [],
                     responseType: "application/json",
                     onResponse: { responseData, error, responseCode in
@@ -15152,7 +15729,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(GetZoneFromPincodeViewResponse.self, from: data)
+                            let response = Utility.decode(RemoveProxyResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {

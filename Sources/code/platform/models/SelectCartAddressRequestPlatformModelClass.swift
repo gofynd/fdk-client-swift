@@ -10,24 +10,24 @@ public extension PlatformClient {
     class SelectCartAddressRequest: Codable {
         public var cartId: String?
 
-        public var id: String?
-
         public var billingAddressId: String?
+
+        public var id: String?
 
         public enum CodingKeys: String, CodingKey {
             case cartId = "cart_id"
 
-            case id
-
             case billingAddressId = "billing_address_id"
+
+            case id
         }
 
         public init(billingAddressId: String? = nil, cartId: String? = nil, id: String? = nil) {
             self.cartId = cartId
 
-            self.id = id
-
             self.billingAddressId = billingAddressId
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(cartId, forKey: .cartId)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

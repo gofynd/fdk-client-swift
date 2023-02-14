@@ -9,8 +9,6 @@ public extension ApplicationClient {
     class FreeGiftItem: Codable {
         public var itemId: Int?
 
-        public var itemImagesUrl: [String]?
-
         public var itemPriceDetails: [String: Any]?
 
         public var itemName: String?
@@ -19,10 +17,10 @@ public extension ApplicationClient {
 
         public var itemBrandName: String?
 
+        public var itemImagesUrl: [String]?
+
         public enum CodingKeys: String, CodingKey {
             case itemId = "item_id"
-
-            case itemImagesUrl = "item_images_url"
 
             case itemPriceDetails = "item_price_details"
 
@@ -31,12 +29,12 @@ public extension ApplicationClient {
             case itemSlug = "item_slug"
 
             case itemBrandName = "item_brand_name"
+
+            case itemImagesUrl = "item_images_url"
         }
 
         public init(itemBrandName: String? = nil, itemId: Int? = nil, itemImagesUrl: [String]? = nil, itemName: String? = nil, itemPriceDetails: [String: Any]? = nil, itemSlug: String? = nil) {
             self.itemId = itemId
-
-            self.itemImagesUrl = itemImagesUrl
 
             self.itemPriceDetails = itemPriceDetails
 
@@ -45,6 +43,8 @@ public extension ApplicationClient {
             self.itemSlug = itemSlug
 
             self.itemBrandName = itemBrandName
+
+            self.itemImagesUrl = itemImagesUrl
         }
 
         required public init(from decoder: Decoder) throws {
@@ -52,14 +52,6 @@ public extension ApplicationClient {
 
             do {
                 itemId = try container.decode(Int.self, forKey: .itemId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemImagesUrl = try container.decode([String].self, forKey: .itemImagesUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,14 +89,20 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                itemImagesUrl = try container.decode([String].self, forKey: .itemImagesUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
-
-            try? container.encodeIfPresent(itemImagesUrl, forKey: .itemImagesUrl)
 
             try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
 
@@ -113,6 +111,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(itemSlug, forKey: .itemSlug)
 
             try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
+
+            try? container.encodeIfPresent(itemImagesUrl, forKey: .itemImagesUrl)
         }
     }
 }
