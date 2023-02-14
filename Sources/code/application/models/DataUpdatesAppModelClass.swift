@@ -9,7 +9,7 @@ public extension ApplicationClient {
     class DataUpdates: Codable {
         public var entities: [EntitiesDataUpdates]?
 
-        public var products: [ProductsDataUpdates1]?
+        public var products: [ProductsDataUpdates]?
 
         public enum CodingKeys: String, CodingKey {
             case entities
@@ -17,7 +17,7 @@ public extension ApplicationClient {
             case products
         }
 
-        public init(entities: [EntitiesDataUpdates]? = nil, products: [ProductsDataUpdates1]? = nil) {
+        public init(entities: [EntitiesDataUpdates]? = nil, products: [ProductsDataUpdates]? = nil) {
             self.entities = entities
 
             self.products = products
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                products = try container.decode([ProductsDataUpdates1].self, forKey: .products)
+                products = try container.decode([ProductsDataUpdates].self, forKey: .products)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

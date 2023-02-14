@@ -1,4 +1,6 @@
+import Alamofire
 import Foundation
+
 public class ApplicationConfig {
     var applicationId: String
     var applicationToken: String
@@ -8,9 +10,9 @@ public class ApplicationConfig {
     var language: String?
     var extraHeaders: [(key: String, value: String)] = []
     var locationDetails: LocationDetails?
-    public var enableSSLPinning: Bool
+    public var session: Alamofire.Session
 
-    public init?(applicationId: String, applicationToken: String, domain: String = "https://api.fynd.com", userAgent: String? = nil, language: String? = "en-IN", currency: String? = "INR", extraHeaders: [(key: String, value: String)] = [], locationDetails: LocationDetails? = nil, enableSSLPinnig: Bool = false) {
+    public init?(applicationId: String, applicationToken: String, domain: String = "https://api.fynd.com", userAgent: String? = nil, language: String? = "en-IN", currency: String? = "INR", extraHeaders: [(key: String, value: String)] = [], locationDetails: LocationDetails? = nil, session: Alamofire.Session = AF) {
         self.applicationId = applicationId
         self.applicationToken = applicationToken
         self.domain = domain
@@ -19,7 +21,7 @@ public class ApplicationConfig {
         self.currency = currency
         self.extraHeaders = extraHeaders
         self.locationDetails = locationDetails
-        self.enableSSLPinning = enableSSLPinnig
+        self.session = session
         let regex = try? NSRegularExpression(pattern: "^[0-9a-fA-F]{24}$",
                                              options: [.caseInsensitive])
 

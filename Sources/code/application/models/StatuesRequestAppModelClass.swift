@@ -9,7 +9,7 @@ public extension ApplicationClient {
     class StatuesRequest: Codable {
         public var status: String?
 
-        public var shipments: [ShipmentsRequest1]?
+        public var shipments: [ShipmentsRequest]?
 
         public var excludeBagsNextState: String?
 
@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case excludeBagsNextState = "exclude_bags_next_state"
         }
 
-        public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest1]? = nil, status: String? = nil) {
+        public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, status: String? = nil) {
             self.status = status
 
             self.shipments = shipments
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                shipments = try container.decode([ShipmentsRequest1].self, forKey: .shipments)
+                shipments = try container.decode([ShipmentsRequest].self, forKey: .shipments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

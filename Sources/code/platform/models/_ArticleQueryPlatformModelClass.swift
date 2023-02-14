@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class _ArticleQuery: Codable {
-        public var itemId: Int?
-
         public var ignoredStores: [Int]?
+
+        public var itemId: Int?
 
         public var size: String?
 
         public enum CodingKeys: String, CodingKey {
-            case itemId = "item_id"
-
             case ignoredStores = "ignored_stores"
+
+            case itemId = "item_id"
 
             case size
         }
 
         public init(ignoredStores: [Int]? = nil, itemId: Int? = nil, size: String? = nil) {
-            self.itemId = itemId
-
             self.ignoredStores = ignoredStores
+
+            self.itemId = itemId
 
             self.size = size
         }
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
+                ignoredStores = try container.decode([Int].self, forKey: .ignoredStores)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                ignoredStores = try container.decode([Int].self, forKey: .ignoredStores)
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,9 +61,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-
             try? container.encodeIfPresent(ignoredStores, forKey: .ignoredStores)
+
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
             try? container.encodeIfPresent(size, forKey: .size)
         }
