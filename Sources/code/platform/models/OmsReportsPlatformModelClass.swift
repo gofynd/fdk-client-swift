@@ -8,85 +8,69 @@ public extension PlatformClient {
      */
 
     class OmsReports: Codable {
-        public var requestDetails: [String: Any]?
-
-        public var reportCreatedAt: String?
-
-        public var s3Key: String?
+        public var reportType: String?
 
         public var reportRequestedAt: String?
 
-        public var displayName: String?
+        public var reportId: String?
 
         public var reportName: String?
 
         public var status: String?
 
-        public var reportType: String?
+        public var displayName: String?
 
-        public var reportId: String?
+        public var requestDetails: [String: Any]?
+
+        public var s3Key: String?
+
+        public var reportCreatedAt: String?
 
         public enum CodingKeys: String, CodingKey {
-            case requestDetails = "request_details"
-
-            case reportCreatedAt = "report_created_at"
-
-            case s3Key = "s3_key"
+            case reportType = "report_type"
 
             case reportRequestedAt = "report_requested_at"
 
-            case displayName = "display_name"
+            case reportId = "report_id"
 
             case reportName = "report_name"
 
             case status
 
-            case reportType = "report_type"
+            case displayName = "display_name"
 
-            case reportId = "report_id"
+            case requestDetails = "request_details"
+
+            case s3Key = "s3_key"
+
+            case reportCreatedAt = "report_created_at"
         }
 
         public init(displayName: String? = nil, reportCreatedAt: String? = nil, reportId: String? = nil, reportName: String? = nil, reportRequestedAt: String? = nil, reportType: String? = nil, requestDetails: [String: Any]? = nil, s3Key: String? = nil, status: String? = nil) {
-            self.requestDetails = requestDetails
-
-            self.reportCreatedAt = reportCreatedAt
-
-            self.s3Key = s3Key
+            self.reportType = reportType
 
             self.reportRequestedAt = reportRequestedAt
 
-            self.displayName = displayName
+            self.reportId = reportId
 
             self.reportName = reportName
 
             self.status = status
 
-            self.reportType = reportType
+            self.displayName = displayName
 
-            self.reportId = reportId
+            self.requestDetails = requestDetails
+
+            self.s3Key = s3Key
+
+            self.reportCreatedAt = reportCreatedAt
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                requestDetails = try container.decode([String: Any].self, forKey: .requestDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                reportCreatedAt = try container.decode(String.self, forKey: .reportCreatedAt)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                s3Key = try container.decode(String.self, forKey: .s3Key)
+                reportType = try container.decode(String.self, forKey: .reportType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,7 +86,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                reportId = try container.decode(String.self, forKey: .reportId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -126,7 +110,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                reportType = try container.decode(String.self, forKey: .reportType)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +118,23 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                reportId = try container.decode(String.self, forKey: .reportId)
+                requestDetails = try container.decode([String: Any].self, forKey: .requestDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                s3Key = try container.decode(String.self, forKey: .s3Key)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                reportCreatedAt = try container.decode(String.self, forKey: .reportCreatedAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -145,23 +145,23 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(requestDetails, forKey: .requestDetails)
-
-            try? container.encode(reportCreatedAt, forKey: .reportCreatedAt)
-
-            try? container.encodeIfPresent(s3Key, forKey: .s3Key)
+            try? container.encodeIfPresent(reportType, forKey: .reportType)
 
             try? container.encode(reportRequestedAt, forKey: .reportRequestedAt)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(reportId, forKey: .reportId)
 
             try? container.encodeIfPresent(reportName, forKey: .reportName)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(reportType, forKey: .reportType)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(reportId, forKey: .reportId)
+            try? container.encodeIfPresent(requestDetails, forKey: .requestDetails)
+
+            try? container.encodeIfPresent(s3Key, forKey: .s3Key)
+
+            try? container.encode(reportCreatedAt, forKey: .reportCreatedAt)
         }
     }
 }

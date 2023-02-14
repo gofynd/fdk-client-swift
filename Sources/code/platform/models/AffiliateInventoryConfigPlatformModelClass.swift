@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class AffiliateInventoryConfig: Codable {
-        public var order: AffiliateInventoryOrderConfig?
-
         public var inventory: AffiliateInventoryStoreConfig?
+
+        public var order: AffiliateInventoryOrderConfig?
 
         public var articleAssignment: AffiliateInventoryArticleAssignmentConfig?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var logistics: AffiliateInventoryLogisticsConfig?
 
         public enum CodingKeys: String, CodingKey {
-            case order
-
             case inventory
+
+            case order
 
             case articleAssignment = "article_assignment"
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(articleAssignment: AffiliateInventoryArticleAssignmentConfig? = nil, inventory: AffiliateInventoryStoreConfig? = nil, logistics: AffiliateInventoryLogisticsConfig? = nil, order: AffiliateInventoryOrderConfig? = nil, payment: AffiliateInventoryPaymentConfig? = nil) {
-            self.order = order
-
             self.inventory = inventory
+
+            self.order = order
 
             self.articleAssignment = articleAssignment
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                order = try container.decode(AffiliateInventoryOrderConfig.self, forKey: .order)
+                inventory = try container.decode(AffiliateInventoryStoreConfig.self, forKey: .inventory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                inventory = try container.decode(AffiliateInventoryStoreConfig.self, forKey: .inventory)
+                order = try container.decode(AffiliateInventoryOrderConfig.self, forKey: .order)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(order, forKey: .order)
-
             try? container.encodeIfPresent(inventory, forKey: .inventory)
+
+            try? container.encodeIfPresent(order, forKey: .order)
 
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
