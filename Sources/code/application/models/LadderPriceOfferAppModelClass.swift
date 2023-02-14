@@ -13,11 +13,11 @@ public extension ApplicationClient {
 
         public var promotionGroup: String?
 
-        public var validTill: String?
+        public var description: String?
 
         public var offerText: String?
 
-        public var description: String?
+        public var validTill: String?
 
         public enum CodingKeys: String, CodingKey {
             case offerPrices = "offer_prices"
@@ -26,11 +26,11 @@ public extension ApplicationClient {
 
             case promotionGroup = "promotion_group"
 
-            case validTill = "valid_till"
+            case description
 
             case offerText = "offer_text"
 
-            case description
+            case validTill = "valid_till"
         }
 
         public init(description: String? = nil, id: String? = nil, offerPrices: [LadderOfferItem]? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
@@ -40,11 +40,11 @@ public extension ApplicationClient {
 
             self.promotionGroup = promotionGroup
 
-            self.validTill = validTill
+            self.description = description
 
             self.offerText = offerText
 
-            self.description = description
+            self.validTill = validTill
         }
 
         required public init(from decoder: Decoder) throws {
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                validTill = try container.decode(String.self, forKey: .validTill)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                validTill = try container.decode(String.self, forKey: .validTill)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,11 +108,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
 
-            try? container.encodeIfPresent(validTill, forKey: .validTill)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(validTill, forKey: .validTill)
         }
     }
 }

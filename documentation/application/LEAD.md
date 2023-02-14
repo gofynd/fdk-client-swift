@@ -1432,7 +1432,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | String |  no  | Success message for form submission |
- | ticket | [Ticket](#Ticket)? |  yes  | Ticket created on form submission |
+ | ticket | [Ticket](#Ticket) |  no  | Ticket created on form submission |
 
 ---
 
@@ -1778,7 +1778,7 @@ Success
  | createdOn | [CreatedOn](#CreatedOn)? |  yes  | Details of company and application realated to the ticket |
  | responseId | String? |  yes  | Details of company and application realated to the ticket |
  | content | [TicketContent](#TicketContent)? |  yes  | Ticket conetent details |
- | category | [TicketCategory](#TicketCategory) |  no  | Category assigned to the ticket |
+ | category | String |  no  | Category assigned to the ticket |
  | subCategory | String? |  yes  | Sub-category assigned to the ticket |
  | source | [TicketSourceEnum](#TicketSourceEnum) |  no  | Denotes if the ticket was created at company or application level |
  | status | [Status](#Status) |  no  | Denotes in what state is the ticket |

@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class ReferralDetailsResponse: Codable {
         public var referral: Offer?
 
+        public var referrerInfo: String?
+
         public var share: ShareMessages?
 
         public var user: ReferralDetailsUser?
 
-        public var referrerInfo: String?
-
         public enum CodingKeys: String, CodingKey {
             case referral
+
+            case referrerInfo = "referrer_info"
 
             case share
 
             case user
-
-            case referrerInfo = "referrer_info"
         }
 
         public init(referral: Offer? = nil, referrerInfo: String? = nil, share: ShareMessages? = nil, user: ReferralDetailsUser? = nil) {
             self.referral = referral
 
+            self.referrerInfo = referrerInfo
+
             self.share = share
 
             self.user = user
-
-            self.referrerInfo = referrerInfo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,6 +40,14 @@ public extension ApplicationClient {
 
             do {
                 referral = try container.decode(Offer.self, forKey: .referral)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                referrerInfo = try container.decode(String.self, forKey: .referrerInfo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,14 +69,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                referrerInfo = try container.decode(String.self, forKey: .referrerInfo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(referral, forKey: .referral)
 
+            try? container.encodeIfPresent(referrerInfo, forKey: .referrerInfo)
+
             try? container.encodeIfPresent(share, forKey: .share)
 
             try? container.encodeIfPresent(user, forKey: .user)
-
-            try? container.encodeIfPresent(referrerInfo, forKey: .referrerInfo)
         }
     }
 }

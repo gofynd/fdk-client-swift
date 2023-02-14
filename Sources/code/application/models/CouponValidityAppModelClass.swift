@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var discount: Double?
 
-        public var title: String?
-
         public var valid: Bool?
+
+        public var title: String?
 
         public var displayMessageEn: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case discount
 
-            case title
-
             case valid
+
+            case title
 
             case displayMessageEn = "display_message_en"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.discount = discount
 
-            self.title = title
-
             self.valid = valid
+
+            self.title = title
 
             self.displayMessageEn = displayMessageEn
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                valid = try container.decode(Bool.self, forKey: .valid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                valid = try container.decode(Bool.self, forKey: .valid)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(discount, forKey: .discount)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encodeIfPresent(valid, forKey: .valid)
+
+            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encode(displayMessageEn, forKey: .displayMessageEn)
         }
