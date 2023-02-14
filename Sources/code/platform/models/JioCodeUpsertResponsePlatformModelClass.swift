@@ -8,6 +8,8 @@ public extension PlatformClient {
      */
 
     class JioCodeUpsertResponse: Codable {
+        public var data: [[String: Any]]?
+
         public var error: [NestedErrorSchemaDataSet]?
 
         public var success: Bool?
@@ -16,9 +18,9 @@ public extension PlatformClient {
 
         public var identifier: String?
 
-        public var data: [[String: Any]]?
-
         public enum CodingKeys: String, CodingKey {
+            case data
+
             case error
 
             case success
@@ -26,11 +28,11 @@ public extension PlatformClient {
             case traceId = "trace_id"
 
             case identifier
-
-            case data
         }
 
         public init(data: [[String: Any]]? = nil, error: [NestedErrorSchemaDataSet]? = nil, identifier: String? = nil, success: Bool? = nil, traceId: String? = nil) {
+            self.data = data
+
             self.error = error
 
             self.success = success
@@ -38,12 +40,18 @@ public extension PlatformClient {
             self.traceId = traceId
 
             self.identifier = identifier
-
-            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                data = try container.decode([[String: Any]].self, forKey: .data)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 error = try container.decode([NestedErrorSchemaDataSet].self, forKey: .error)
@@ -76,18 +84,12 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                data = try container.decode([[String: Any]].self, forKey: .data)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(data, forKey: .data)
 
             try? container.encodeIfPresent(error, forKey: .error)
 
@@ -96,8 +98,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(traceId, forKey: .traceId)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
-
-            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

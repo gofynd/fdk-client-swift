@@ -10,34 +10,34 @@ public extension PlatformClient {
     class UserDetailsData: Codable {
         public var state: String
 
-        public var city: String
+        public var email: String?
 
-        public var pincode: String
+        public var city: String
 
         public var name: String
 
         public var phone: String
 
-        public var email: String?
-
         public var address: String
+
+        public var pincode: String
 
         public var country: String
 
         public enum CodingKeys: String, CodingKey {
             case state
 
-            case city
+            case email
 
-            case pincode
+            case city
 
             case name
 
             case phone
 
-            case email
-
             case address
+
+            case pincode
 
             case country
         }
@@ -45,17 +45,17 @@ public extension PlatformClient {
         public init(address: String, city: String, country: String, email: String? = nil, name: String, phone: String, pincode: String, state: String) {
             self.state = state
 
-            self.city = city
+            self.email = email
 
-            self.pincode = pincode
+            self.city = city
 
             self.name = name
 
             self.phone = phone
 
-            self.email = email
-
             self.address = address
+
+            self.pincode = pincode
 
             self.country = country
         }
@@ -65,14 +65,6 @@ public extension PlatformClient {
 
             state = try container.decode(String.self, forKey: .state)
 
-            city = try container.decode(String.self, forKey: .city)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
-
-            name = try container.decode(String.self, forKey: .name)
-
-            phone = try container.decode(String.self, forKey: .phone)
-
             do {
                 email = try container.decode(String.self, forKey: .email)
 
@@ -81,7 +73,15 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            city = try container.decode(String.self, forKey: .city)
+
+            name = try container.decode(String.self, forKey: .name)
+
+            phone = try container.decode(String.self, forKey: .phone)
+
             address = try container.decode(String.self, forKey: .address)
+
+            pincode = try container.decode(String.self, forKey: .pincode)
 
             country = try container.decode(String.self, forKey: .country)
         }
@@ -91,17 +91,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(state, forKey: .state)
 
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encodeIfPresent(email, forKey: .email)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(city, forKey: .city)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(phone, forKey: .phone)
 
-            try? container.encodeIfPresent(email, forKey: .email)
-
             try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(country, forKey: .country)
         }

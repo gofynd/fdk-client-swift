@@ -8,9 +8,7 @@ public extension PlatformClient {
      */
 
     class MetricsSerializer: Codable {
-        public var companyDocuments: DocumentsObj?
-
-        public var stage: String?
+        public var brand: DocumentsObj?
 
         public var product: DocumentsObj?
 
@@ -18,14 +16,14 @@ public extension PlatformClient {
 
         public var store: DocumentsObj?
 
-        public var brand: DocumentsObj?
+        public var companyDocuments: DocumentsObj?
+
+        public var stage: String?
 
         public var storeDocuments: DocumentsObj?
 
         public enum CodingKeys: String, CodingKey {
-            case companyDocuments = "company_documents"
-
-            case stage
+            case brand
 
             case product
 
@@ -33,15 +31,15 @@ public extension PlatformClient {
 
             case store
 
-            case brand
+            case companyDocuments = "company_documents"
+
+            case stage
 
             case storeDocuments = "store_documents"
         }
 
         public init(brand: DocumentsObj? = nil, companyDocuments: DocumentsObj? = nil, product: DocumentsObj? = nil, stage: String? = nil, store: DocumentsObj? = nil, storeDocuments: DocumentsObj? = nil, uid: Int? = nil) {
-            self.companyDocuments = companyDocuments
-
-            self.stage = stage
+            self.brand = brand
 
             self.product = product
 
@@ -49,7 +47,9 @@ public extension PlatformClient {
 
             self.store = store
 
-            self.brand = brand
+            self.companyDocuments = companyDocuments
+
+            self.stage = stage
 
             self.storeDocuments = storeDocuments
         }
@@ -58,15 +58,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                companyDocuments = try container.decode(DocumentsObj.self, forKey: .companyDocuments)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                stage = try container.decode(String.self, forKey: .stage)
+                brand = try container.decode(DocumentsObj.self, forKey: .brand)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +90,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                brand = try container.decode(DocumentsObj.self, forKey: .brand)
+                companyDocuments = try container.decode(DocumentsObj.self, forKey: .companyDocuments)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                stage = try container.decode(String.self, forKey: .stage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,9 +117,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(companyDocuments, forKey: .companyDocuments)
-
-            try? container.encodeIfPresent(stage, forKey: .stage)
+            try? container.encodeIfPresent(brand, forKey: .brand)
 
             try? container.encodeIfPresent(product, forKey: .product)
 
@@ -127,7 +125,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(store, forKey: .store)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
+            try? container.encodeIfPresent(companyDocuments, forKey: .companyDocuments)
+
+            try? container.encodeIfPresent(stage, forKey: .stage)
 
             try? container.encodeIfPresent(storeDocuments, forKey: .storeDocuments)
         }

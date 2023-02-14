@@ -12,30 +12,30 @@ public extension PlatformClient {
 
         public var city: String
 
-        public var pincode: Int
-
         public var name: String
+
+        public var address: String
+
+        public var pincode: Int
 
         public var gstin: String
 
         public var ajioSiteId: String?
-
-        public var address: String
 
         public enum CodingKeys: String, CodingKey {
             case state
 
             case city
 
-            case pincode
-
             case name
+
+            case address
+
+            case pincode
 
             case gstin
 
             case ajioSiteId = "ajio_site_id"
-
-            case address
         }
 
         public init(address: String, ajioSiteId: String? = nil, city: String, gstin: String, name: String, pincode: Int, state: String) {
@@ -43,15 +43,15 @@ public extension PlatformClient {
 
             self.city = city
 
-            self.pincode = pincode
-
             self.name = name
+
+            self.address = address
+
+            self.pincode = pincode
 
             self.gstin = gstin
 
             self.ajioSiteId = ajioSiteId
-
-            self.address = address
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,9 +61,11 @@ public extension PlatformClient {
 
             city = try container.decode(String.self, forKey: .city)
 
-            pincode = try container.decode(Int.self, forKey: .pincode)
-
             name = try container.decode(String.self, forKey: .name)
+
+            address = try container.decode(String.self, forKey: .address)
+
+            pincode = try container.decode(Int.self, forKey: .pincode)
 
             gstin = try container.decode(String.self, forKey: .gstin)
 
@@ -74,8 +76,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            address = try container.decode(String.self, forKey: .address)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -85,15 +85,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(city, forKey: .city)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encode(address, forKey: .address)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(gstin, forKey: .gstin)
 
             try? container.encodeIfPresent(ajioSiteId, forKey: .ajioSiteId)
-
-            try? container.encode(address, forKey: .address)
         }
     }
 }

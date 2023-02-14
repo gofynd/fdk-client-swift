@@ -14,11 +14,11 @@ public extension PlatformClient {
 
         public var category: [String: Any]
 
-        public var brandId: Int
-
         public var dimension: [String: Any]
 
         public var quantity: Int
+
+        public var brandId: Int
 
         public var attributes: [String: Any]
 
@@ -29,11 +29,11 @@ public extension PlatformClient {
 
             case category
 
-            case brandId = "brand_id"
-
             case dimension
 
             case quantity
+
+            case brandId = "brand_id"
 
             case attributes
         }
@@ -45,11 +45,11 @@ public extension PlatformClient {
 
             self.category = category
 
-            self.brandId = brandId
-
             self.dimension = dimension
 
             self.quantity = quantity
+
+            self.brandId = brandId
 
             self.attributes = attributes
         }
@@ -63,11 +63,11 @@ public extension PlatformClient {
 
             category = try container.decode([String: Any].self, forKey: .category)
 
-            brandId = try container.decode(Int.self, forKey: .brandId)
-
             dimension = try container.decode([String: Any].self, forKey: .dimension)
 
             quantity = try container.decode(Int.self, forKey: .quantity)
+
+            brandId = try container.decode(Int.self, forKey: .brandId)
 
             attributes = try container.decode([String: Any].self, forKey: .attributes)
         }
@@ -81,11 +81,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(category, forKey: .category)
 
-            try? container.encodeIfPresent(brandId, forKey: .brandId)
-
             try? container.encodeIfPresent(dimension, forKey: .dimension)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
 
             try? container.encodeIfPresent(attributes, forKey: .attributes)
         }

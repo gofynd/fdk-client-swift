@@ -7,54 +7,54 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class CartCheckoutResponse: Codable {
-        public var callbackUrl: String?
+        public var paymentConfirmUrl: String?
 
         public var message: String?
 
         public var data: [String: Any]?
 
+        public var callbackUrl: String?
+
+        public var orderId: String?
+
         public var cart: CheckCart?
 
         public var appInterceptUrl: String?
 
-        public var orderId: String?
-
-        public var paymentConfirmUrl: String?
-
         public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case callbackUrl = "callback_url"
+            case paymentConfirmUrl = "payment_confirm_url"
 
             case message
 
             case data
 
-            case cart
-
-            case appInterceptUrl = "app_intercept_url"
+            case callbackUrl = "callback_url"
 
             case orderId = "order_id"
 
-            case paymentConfirmUrl = "payment_confirm_url"
+            case cart
+
+            case appInterceptUrl = "app_intercept_url"
 
             case success
         }
 
         public init(appInterceptUrl: String? = nil, callbackUrl: String? = nil, cart: CheckCart? = nil, data: [String: Any]? = nil, message: String? = nil, orderId: String? = nil, paymentConfirmUrl: String? = nil, success: Bool? = nil) {
-            self.callbackUrl = callbackUrl
+            self.paymentConfirmUrl = paymentConfirmUrl
 
             self.message = message
 
             self.data = data
 
-            self.cart = cart
-
-            self.appInterceptUrl = appInterceptUrl
+            self.callbackUrl = callbackUrl
 
             self.orderId = orderId
 
-            self.paymentConfirmUrl = paymentConfirmUrl
+            self.cart = cart
+
+            self.appInterceptUrl = appInterceptUrl
 
             self.success = success
         }
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+                paymentConfirmUrl = try container.decode(String.self, forKey: .paymentConfirmUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -87,15 +87,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                cart = try container.decode(CheckCart.self, forKey: .cart)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                appInterceptUrl = try container.decode(String.self, forKey: .appInterceptUrl)
+                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,7 +103,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                paymentConfirmUrl = try container.decode(String.self, forKey: .paymentConfirmUrl)
+                cart = try container.decode(CheckCart.self, forKey: .cart)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                appInterceptUrl = try container.decode(String.self, forKey: .appInterceptUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,19 +130,19 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
+            try? container.encodeIfPresent(paymentConfirmUrl, forKey: .paymentConfirmUrl)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(cart, forKey: .cart)
-
-            try? container.encodeIfPresent(appInterceptUrl, forKey: .appInterceptUrl)
+            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encodeIfPresent(paymentConfirmUrl, forKey: .paymentConfirmUrl)
+            try? container.encodeIfPresent(cart, forKey: .cart)
+
+            try? container.encodeIfPresent(appInterceptUrl, forKey: .appInterceptUrl)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }
