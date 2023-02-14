@@ -8,33 +8,33 @@ public extension PlatformClient {
      */
 
     class SelectCartAddressRequest: Codable {
-        public var billingAddressId: String?
+        public var cartId: String?
 
         public var id: String?
 
-        public var cartId: String?
+        public var billingAddressId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case billingAddressId = "billing_address_id"
+            case cartId = "cart_id"
 
             case id
 
-            case cartId = "cart_id"
+            case billingAddressId = "billing_address_id"
         }
 
         public init(billingAddressId: String? = nil, cartId: String? = nil, id: String? = nil) {
-            self.billingAddressId = billingAddressId
+            self.cartId = cartId
 
             self.id = id
 
-            self.cartId = cartId
+            self.billingAddressId = billingAddressId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
+                cartId = try container.decode(String.self, forKey: .cartId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                cartId = try container.decode(String.self, forKey: .cartId)
+                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,11 +61,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
+            try? container.encodeIfPresent(cartId, forKey: .cartId)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(cartId, forKey: .cartId)
+            try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
         }
     }
 }

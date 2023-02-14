@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ServiceabilityErrorResponse
+         Model: ServiceabilityrErrorResponse
          Used By: Logistic
      */
 
-    class ServiceabilityErrorResponse: Codable {
+    class ServiceabilityrErrorResponse: Codable {
         public var type: String
 
         public var value: String

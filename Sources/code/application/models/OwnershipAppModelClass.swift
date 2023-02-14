@@ -1,34 +1,33 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension ApplicationClient {
     /*
-         Model: NetQuantity1
-         Used By: Catalog
+         Model: Ownership
+         Used By: Cart
      */
+    class Ownership: Codable {
+        public var payableCategory: String?
 
-    class NetQuantity1: Codable {
-        public var unit: [String: Any]?
-
-        public var value: Double?
+        public var payableBy: String?
 
         public enum CodingKeys: String, CodingKey {
-            case unit
+            case payableCategory = "payable_category"
 
-            case value
+            case payableBy = "payable_by"
         }
 
-        public init(unit: [String: Any]? = nil, value: Double? = nil) {
-            self.unit = unit
+        public init(payableBy: String? = nil, payableCategory: String? = nil) {
+            self.payableCategory = payableCategory
 
-            self.value = value
+            self.payableBy = payableBy
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                unit = try container.decode([String: Any].self, forKey: .unit)
+                payableCategory = try container.decode(String.self, forKey: .payableCategory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +35,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                payableBy = try container.decode(String.self, forKey: .payableBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +46,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encodeIfPresent(payableCategory, forKey: .payableCategory)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(payableBy, forKey: .payableBy)
         }
     }
 }

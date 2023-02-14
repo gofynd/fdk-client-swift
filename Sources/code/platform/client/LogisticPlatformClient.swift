@@ -119,79 +119,12 @@ public extension PlatformClient {
          * Description: This API returns Company Store View of the application.
          **/
         public func getCompanyStoreView(
-            pageNumber: Int?,
-            pageSize: Int?,
-            zoneId: String?,
-            enabled: String?,
-            q: String?,
-
             onResponse: @escaping (_ response: CompanyStoreView_Response?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = pageNumber {
-                xQuery["page_number"] = value
-            }
-
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-
-            if let value = zoneId {
-                xQuery["zone_id"] = value
-            }
-
-            if let value = enabled {
-                xQuery["enabled"] = value
-            }
-
-            if let value = q {
-                xQuery["q"] = value
-            }
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/all-stores",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CompanyStoreView_Response.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Zone Data View of application.
-         * Description: This API returns Zone Data View of the application.
-         **/
-        public func getZoneDataView(
-            zoneId: String,
-
-            onResponse: @escaping (_ response: GetSingleZoneDataViewResponse?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/zone/\(zoneId)",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -204,7 +137,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(GetSingleZoneDataViewResponse.self, from: data)
+                        let response = Utility.decode(CompanyStoreView_Response.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -244,6 +177,45 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ZoneSuccessResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Zone Data View of application.
+         * Description: This API returns Zone Data View of the application.
+         **/
+        public func getZoneDataView(
+            zoneId: String,
+
+            onResponse: @escaping (_ response: GetSingleZoneDataViewResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/zone/\(zoneId)",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetSingleZoneDataViewResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

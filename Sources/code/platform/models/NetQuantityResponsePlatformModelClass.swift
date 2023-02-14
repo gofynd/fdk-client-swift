@@ -3,38 +3,32 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ReturnConfig4
+         Model: NetQuantityResponse
          Used By: Catalog
      */
 
-    class ReturnConfig4: Codable {
-        public var returnable: Bool?
+    class NetQuantityResponse: Codable {
+        public var value: Double?
 
         public var unit: String?
 
-        public var time: Int?
-
         public enum CodingKeys: String, CodingKey {
-            case returnable
+            case value
 
             case unit
-
-            case time
         }
 
-        public init(returnable: Bool? = nil, time: Int? = nil, unit: String? = nil) {
-            self.returnable = returnable
+        public init(unit: String? = nil, value: Double? = nil) {
+            self.value = value
 
             self.unit = unit
-
-            self.time = time
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                returnable = try container.decode(Bool.self, forKey: .returnable)
+                value = try container.decode(Double.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,24 +42,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                time = try container.decode(Int.self, forKey: .time)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(returnable, forKey: .returnable)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
-
-            try? container.encodeIfPresent(time, forKey: .time)
         }
     }
 }

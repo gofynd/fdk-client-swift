@@ -7,30 +7,30 @@ public extension ApplicationClient {
          Used By: Order
      */
     class CurrentStatus: Codable {
-        public var name: String?
+        public var journeyType: String?
 
         public var updatedAt: String?
 
-        public var journeyType: String?
+        public var name: String?
 
         public var status: String?
 
         public enum CodingKeys: String, CodingKey {
-            case name
+            case journeyType = "journey_type"
 
             case updatedAt = "updated_at"
 
-            case journeyType = "journey_type"
+            case name
 
             case status
         }
 
         public init(journeyType: String? = nil, name: String? = nil, status: String? = nil, updatedAt: String? = nil) {
-            self.name = name
+            self.journeyType = journeyType
 
             self.updatedAt = updatedAt
 
-            self.journeyType = journeyType
+            self.name = name
 
             self.status = status
         }
@@ -39,7 +39,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                journeyType = try container.decode(String.self, forKey: .journeyType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                journeyType = try container.decode(String.self, forKey: .journeyType)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,11 +74,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
-            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(status, forKey: .status)
         }

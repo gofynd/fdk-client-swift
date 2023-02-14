@@ -12,34 +12,34 @@ public extension PlatformClient {
 
         public var journey: String
 
-        public var paymentMode: String
-
         public var action: String
-
-        public var locationDetails: LocationDetails?
-
-        public var source: String
 
         public var toPincode: String
 
+        public var source: String
+
         public var identifier: String
+
+        public var paymentMode: String
+
+        public var locationDetails: LocationDetails?
 
         public enum CodingKeys: String, CodingKey {
             case shipment
 
             case journey
 
-            case paymentMode = "payment_mode"
-
             case action
-
-            case locationDetails = "location_details"
-
-            case source
 
             case toPincode = "to_pincode"
 
+            case source
+
             case identifier
+
+            case paymentMode = "payment_mode"
+
+            case locationDetails = "location_details"
         }
 
         public init(action: String, identifier: String, journey: String, locationDetails: LocationDetails? = nil, paymentMode: String, shipment: [ShipmentDetails], source: String, toPincode: String) {
@@ -47,17 +47,17 @@ public extension PlatformClient {
 
             self.journey = journey
 
-            self.paymentMode = paymentMode
-
             self.action = action
-
-            self.locationDetails = locationDetails
-
-            self.source = source
 
             self.toPincode = toPincode
 
+            self.source = source
+
             self.identifier = identifier
+
+            self.paymentMode = paymentMode
+
+            self.locationDetails = locationDetails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,9 +67,15 @@ public extension PlatformClient {
 
             journey = try container.decode(String.self, forKey: .journey)
 
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
             action = try container.decode(String.self, forKey: .action)
+
+            toPincode = try container.decode(String.self, forKey: .toPincode)
+
+            source = try container.decode(String.self, forKey: .source)
+
+            identifier = try container.decode(String.self, forKey: .identifier)
+
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             do {
                 locationDetails = try container.decode(LocationDetails.self, forKey: .locationDetails)
@@ -78,12 +84,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            source = try container.decode(String.self, forKey: .source)
-
-            toPincode = try container.decode(String.self, forKey: .toPincode)
-
-            identifier = try container.decode(String.self, forKey: .identifier)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -93,17 +93,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(journey, forKey: .journey)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-
             try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
-
-            try? container.encodeIfPresent(source, forKey: .source)
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
+            try? container.encodeIfPresent(source, forKey: .source)
+
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
+            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
         }
     }
 }

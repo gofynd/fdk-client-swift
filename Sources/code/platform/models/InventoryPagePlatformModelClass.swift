@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var hasPrevious: Bool?
 
-        public var itemTotal: Int
-
         public var hasNext: Bool?
+
+        public var itemTotal: Int
 
         public var nextId: String?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case hasPrevious = "has_previous"
 
-            case itemTotal = "item_total"
-
             case hasNext = "has_next"
+
+            case itemTotal = "item_total"
 
             case nextId = "next_id"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.hasPrevious = hasPrevious
 
-            self.itemTotal = itemTotal
-
             self.hasNext = hasNext
+
+            self.itemTotal = itemTotal
 
             self.nextId = nextId
         }
@@ -55,8 +55,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-
             do {
                 hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
@@ -64,6 +62,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             do {
                 nextId = try container.decode(String.self, forKey: .nextId)
@@ -81,9 +81,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
             try? container.encodeIfPresent(nextId, forKey: .nextId)
         }

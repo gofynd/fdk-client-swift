@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var status: String?
 
-        public var time: String?
-
         public var isCurrent: Bool?
+
+        public var time: String?
 
         public var trackingDetails: [NestedTrackingDetails]?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case status
 
-            case time
-
             case isCurrent = "is_current"
+
+            case time
 
             case trackingDetails = "tracking_details"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.status = status
 
-            self.time = time
-
             self.isCurrent = isCurrent
+
+            self.time = time
 
             self.trackingDetails = trackingDetails
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                time = try container.decode(String.self, forKey: .time)
+                isCurrent = try container.decode(Bool.self, forKey: .isCurrent)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isCurrent = try container.decode(Bool.self, forKey: .isCurrent)
+                time = try container.decode(String.self, forKey: .time)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(time, forKey: .time)
-
             try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
+
+            try? container.encodeIfPresent(time, forKey: .time)
 
             try? container.encodeIfPresent(trackingDetails, forKey: .trackingDetails)
         }
