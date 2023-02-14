@@ -10,8 +10,6 @@ public extension PlatformClient {
     class EntityConfiguration: Codable {
         public var configId: String?
 
-        public var configType: String
-
         public var listing: GetCatalogConfigurationDetailsSchemaListing?
 
         public var appId: String
@@ -20,10 +18,10 @@ public extension PlatformClient {
 
         public var product: GetCatalogConfigurationDetailsProduct?
 
+        public var configType: String
+
         public enum CodingKeys: String, CodingKey {
             case configId = "config_id"
-
-            case configType = "config_type"
 
             case listing
 
@@ -32,12 +30,12 @@ public extension PlatformClient {
             case id
 
             case product
+
+            case configType = "config_type"
         }
 
         public init(appId: String, configId: String? = nil, configType: String, id: String? = nil, listing: GetCatalogConfigurationDetailsSchemaListing? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
             self.configId = configId
-
-            self.configType = configType
 
             self.listing = listing
 
@@ -46,6 +44,8 @@ public extension PlatformClient {
             self.id = id
 
             self.product = product
+
+            self.configType = configType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,8 +58,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            configType = try container.decode(String.self, forKey: .configType)
 
             do {
                 listing = try container.decode(GetCatalogConfigurationDetailsSchemaListing.self, forKey: .listing)
@@ -86,14 +84,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            configType = try container.decode(String.self, forKey: .configType)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(configId, forKey: .configId)
-
-            try? container.encodeIfPresent(configType, forKey: .configType)
 
             try? container.encodeIfPresent(listing, forKey: .listing)
 
@@ -102,6 +100,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(product, forKey: .product)
+
+            try? container.encodeIfPresent(configType, forKey: .configType)
         }
     }
 }

@@ -8,27 +8,27 @@ public extension PlatformClient {
      */
 
     class MarketPlacePdf: Codable {
-        public var invoice: String?
-
         public var label: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case invoice
+        public var invoice: String?
 
+        public enum CodingKeys: String, CodingKey {
             case label
+
+            case invoice
         }
 
         public init(invoice: String? = nil, label: String? = nil) {
-            self.invoice = invoice
-
             self.label = label
+
+            self.invoice = invoice
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                invoice = try container.decode(String.self, forKey: .invoice)
+                label = try container.decode(String.self, forKey: .label)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                label = try container.decode(String.self, forKey: .label)
+                invoice = try container.decode(String.self, forKey: .invoice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(invoice, forKey: .invoice)
-
             try? container.encode(label, forKey: .label)
+
+            try? container.encode(invoice, forKey: .invoice)
         }
     }
 }
