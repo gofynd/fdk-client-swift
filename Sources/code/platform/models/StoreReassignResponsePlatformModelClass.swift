@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: StoreReassignResponse
-         Used By: OrderManage
+         Used By: Order
      */
 
     class StoreReassignResponse: Codable {

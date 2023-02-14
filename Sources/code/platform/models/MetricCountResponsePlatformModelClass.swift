@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: MetricCountResponse
-         Used By: Orders
+         Used By: Order
      */
 
     class MetricCountResponse: Codable {

@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: DiscountRules
-         Used By: Orders
+         Used By: Order
      */
 
     class DiscountRules: Codable {

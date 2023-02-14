@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: PlatformOrderUpdate
-         Used By: OrderManage
+         Used By: Order
      */
 
     class PlatformOrderUpdate: Codable {

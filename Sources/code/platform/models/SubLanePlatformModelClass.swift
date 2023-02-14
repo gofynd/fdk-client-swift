@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: SubLane
-         Used By: Orders
+         Used By: Order
      */
 
     class SubLane: Codable {

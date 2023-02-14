@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: BagStatusHistory
-         Used By: Orders
+         Used By: Order
      */
 
     class BagStatusHistory: Codable {

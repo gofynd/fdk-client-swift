@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: ManifestDetailTotalShipmentPricesCount
-         Used By: Orders
+         Used By: Order
      */
 
     class ManifestDetailTotalShipmentPricesCount: Codable {

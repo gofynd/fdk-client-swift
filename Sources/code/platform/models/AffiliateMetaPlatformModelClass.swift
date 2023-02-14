@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: AffiliateMeta
-         Used By: Orders
+         Used By: Order
      */
 
     class AffiliateMeta: Codable {

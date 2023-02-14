@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: ManualAssignDPToShipmentResponse
-         Used By: OrderManage
+         Used By: Order
      */
 
     class ManualAssignDPToShipmentResponse: Codable {

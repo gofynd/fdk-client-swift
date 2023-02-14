@@ -7,45 +7,45 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class ProductBrand: Codable {
-        public var action: ProductListingAction?
+        public var logo: Media?
 
-        public var name: String?
+        public var action: ProductListingAction?
 
         public var uid: Int?
 
         public var description: String?
 
-        public var logo: Media?
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case action
+            case logo
 
-            case name
+            case action
 
             case uid
 
             case description
 
-            case logo
+            case name
         }
 
         public init(action: ProductListingAction? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
-            self.action = action
+            self.logo = logo
 
-            self.name = name
+            self.action = action
 
             self.uid = uid
 
             self.description = description
 
-            self.logo = logo
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,15 +88,15 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

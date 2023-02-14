@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: DispatchManifest
-         Used By: OrderManage
+         Used By: Order
      */
 
     class DispatchManifest: Codable {

@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: PaymentModeInfo
-         Used By: Orders
+         Used By: Order
      */
 
     class PaymentModeInfo: Codable {

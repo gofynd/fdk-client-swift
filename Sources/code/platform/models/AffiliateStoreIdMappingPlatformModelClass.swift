@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: AffiliateStoreIdMapping
-         Used By: OrderManage
+         Used By: Order
      */
 
     class AffiliateStoreIdMapping: Codable {

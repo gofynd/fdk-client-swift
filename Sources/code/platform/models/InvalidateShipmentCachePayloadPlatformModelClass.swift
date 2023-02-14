@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: InvalidateShipmentCachePayload
-         Used By: OrderManage
+         Used By: Order
      */
 
     class InvalidateShipmentCachePayload: Codable {

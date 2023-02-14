@@ -4,43 +4,43 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: InvalidateShipmentCacheNestedResponse
-         Used By: OrderManage
+         Used By: Order
      */
 
     class InvalidateShipmentCacheNestedResponse: Codable {
-        public var shipmentId: String?
+        public var status: Int?
 
         public var error: String?
 
-        public var status: Int?
-
         public var message: String?
 
+        public var shipmentId: String?
+
         public enum CodingKeys: String, CodingKey {
-            case shipmentId = "shipment_id"
+            case status
 
             case error
 
-            case status
-
             case message
+
+            case shipmentId = "shipment_id"
         }
 
         public init(error: String? = nil, message: String? = nil, shipmentId: String? = nil, status: Int? = nil) {
-            self.shipmentId = shipmentId
+            self.status = status
 
             self.error = error
 
-            self.status = status
-
             self.message = message
+
+            self.shipmentId = shipmentId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,13 +75,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
         }
     }
 }

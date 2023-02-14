@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: ManifestPage
-         Used By: Orders
+         Used By: Order
      */
 
     class ManifestPage: Codable {

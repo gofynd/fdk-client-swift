@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: Page1
-         Used By: Orders
+         Used By: Order
      */
 
     class Page1: Codable {

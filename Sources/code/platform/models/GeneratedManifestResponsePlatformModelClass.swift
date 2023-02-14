@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: GeneratedManifestResponse
-         Used By: Orders
+         Used By: Order
      */
 
     class GeneratedManifestResponse: Codable {

@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: EntityReasonData
-         Used By: OrderManage
+         Used By: Order
      */
 
     class EntityReasonData: Codable {

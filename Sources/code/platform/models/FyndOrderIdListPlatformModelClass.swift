@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: FyndOrderIdList
-         Used By: OrderManage
+         Used By: Order
      */
 
     class FyndOrderIdList: Codable {

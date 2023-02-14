@@ -8,6 +8,8 @@ public extension PlatformClient {
      */
 
     class ConfigurationListingSortConfig: Codable {
+        public var logo: String?
+
         public var priority: Int
 
         public var name: String?
@@ -16,9 +18,9 @@ public extension PlatformClient {
 
         public var isActive: Bool
 
-        public var logo: String?
-
         public enum CodingKeys: String, CodingKey {
+            case logo
+
             case priority
 
             case name
@@ -26,11 +28,11 @@ public extension PlatformClient {
             case key
 
             case isActive = "is_active"
-
-            case logo
         }
 
         public init(isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
+            self.logo = logo
+
             self.priority = priority
 
             self.name = name
@@ -38,12 +40,18 @@ public extension PlatformClient {
             self.key = key
 
             self.isActive = isActive
-
-            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                logo = try container.decode(String.self, forKey: .logo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             priority = try container.decode(Int.self, forKey: .priority)
 
@@ -58,18 +66,12 @@ public extension PlatformClient {
             key = try container.decode(String.self, forKey: .key)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            do {
-                logo = try container.decode(String.self, forKey: .logo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
@@ -78,8 +80,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }

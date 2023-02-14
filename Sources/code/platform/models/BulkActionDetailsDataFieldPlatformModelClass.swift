@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: BulkActionDetailsDataField
-         Used By: Orders
+         Used By: Order
      */
 
     class BulkActionDetailsDataField: Codable {

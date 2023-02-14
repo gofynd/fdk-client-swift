@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: PDFLinks
-         Used By: Orders
+         Used By: Order
      */
 
     class PDFLinks: Codable {

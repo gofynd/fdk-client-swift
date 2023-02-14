@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: bulkListingData
-         Used By: Orders
+         Used By: Order
      */
 
     class bulkListingData: Codable {

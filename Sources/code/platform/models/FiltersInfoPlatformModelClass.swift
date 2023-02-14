@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: FiltersInfo
-         Used By: Orders
+         Used By: Order
      */
 
     class FiltersInfo: Codable {

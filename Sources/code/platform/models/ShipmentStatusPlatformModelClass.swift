@@ -4,7 +4,7 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: ShipmentStatus
-         Used By: Orders
+         Used By: Order
      */
 
     class ShipmentStatus: Codable {
