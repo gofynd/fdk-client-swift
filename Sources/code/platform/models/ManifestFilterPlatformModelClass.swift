@@ -10,9 +10,7 @@ public extension PlatformClient {
     class ManifestFilter: Codable {
         public var dpIds: String?
 
-        public var dpName: String?
-
-        public var stores: String?
+        public var lane: String?
 
         public var salesChannels: String?
 
@@ -20,16 +18,16 @@ public extension PlatformClient {
 
         public var salesChannelName: String?
 
-        public var lane: String?
-
         public var storeName: String?
+
+        public var stores: String?
+
+        public var dpName: String?
 
         public enum CodingKeys: String, CodingKey {
             case dpIds = "dp_ids"
 
-            case dpName = "dp_name"
-
-            case stores
+            case lane
 
             case salesChannels = "sales_channels"
 
@@ -37,17 +35,17 @@ public extension PlatformClient {
 
             case salesChannelName = "sales_channel_name"
 
-            case lane
-
             case storeName = "store_name"
+
+            case stores
+
+            case dpName = "dp_name"
         }
 
         public init(dateRange: DateRange? = nil, dpIds: String? = nil, dpName: String? = nil, lane: String? = nil, salesChannels: String? = nil, salesChannelName: String? = nil, stores: String? = nil, storeName: String? = nil) {
             self.dpIds = dpIds
 
-            self.dpName = dpName
-
-            self.stores = stores
+            self.lane = lane
 
             self.salesChannels = salesChannels
 
@@ -55,9 +53,11 @@ public extension PlatformClient {
 
             self.salesChannelName = salesChannelName
 
-            self.lane = lane
-
             self.storeName = storeName
+
+            self.stores = stores
+
+            self.dpName = dpName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -72,15 +72,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                dpName = try container.decode(String.self, forKey: .dpName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                stores = try container.decode(String.self, forKey: .stores)
+                lane = try container.decode(String.self, forKey: .lane)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +104,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                lane = try container.decode(String.self, forKey: .lane)
+                storeName = try container.decode(String.self, forKey: .storeName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +112,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                storeName = try container.decode(String.self, forKey: .storeName)
+                stores = try container.decode(String.self, forKey: .stores)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dpName = try container.decode(String.self, forKey: .dpName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(dpIds, forKey: .dpIds)
 
-            try? container.encodeIfPresent(dpName, forKey: .dpName)
-
-            try? container.encodeIfPresent(stores, forKey: .stores)
+            try? container.encodeIfPresent(lane, forKey: .lane)
 
             try? container.encodeIfPresent(salesChannels, forKey: .salesChannels)
 
@@ -143,9 +141,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(salesChannelName, forKey: .salesChannelName)
 
-            try? container.encodeIfPresent(lane, forKey: .lane)
-
             try? container.encodeIfPresent(storeName, forKey: .storeName)
+
+            try? container.encodeIfPresent(stores, forKey: .stores)
+
+            try? container.encodeIfPresent(dpName, forKey: .dpName)
         }
     }
 }

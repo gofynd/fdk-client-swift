@@ -9,28 +9,34 @@ public extension ApplicationClient {
     class CartMetaRequest: Codable {
         public var pickUpCustomerDetails: [String: Any]?
 
+        public var comment: String?
+
         public var checkoutMode: String?
 
-        public var comment: String?
+        public var giftDetails: ArticleGiftDetail?
 
         public var gstin: String?
 
         public enum CodingKeys: String, CodingKey {
             case pickUpCustomerDetails = "pick_up_customer_details"
 
+            case comment
+
             case checkoutMode = "checkout_mode"
 
-            case comment
+            case giftDetails = "gift_details"
 
             case gstin
         }
 
-        public init(checkoutMode: String? = nil, comment: String? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
+        public init(checkoutMode: String? = nil, comment: String? = nil, giftDetails: ArticleGiftDetail? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
             self.pickUpCustomerDetails = pickUpCustomerDetails
+
+            self.comment = comment
 
             self.checkoutMode = checkoutMode
 
-            self.comment = comment
+            self.giftDetails = giftDetails
 
             self.gstin = gstin
         }
@@ -47,6 +53,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                comment = try container.decode(String.self, forKey: .comment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -55,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                comment = try container.decode(String.self, forKey: .comment)
+                giftDetails = try container.decode(ArticleGiftDetail.self, forKey: .giftDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +90,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
 
+            try? container.encodeIfPresent(comment, forKey: .comment)
+
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
-            try? container.encodeIfPresent(comment, forKey: .comment)
+            try? container.encodeIfPresent(giftDetails, forKey: .giftDetails)
 
             try? container.encodeIfPresent(gstin, forKey: .gstin)
         }
