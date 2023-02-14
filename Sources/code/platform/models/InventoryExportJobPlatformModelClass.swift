@@ -14,11 +14,11 @@ public extension PlatformClient {
 
         public var status: String?
 
-        public var url: String?
-
         public var triggerOn: String?
 
         public var sellerId: Int
+
+        public var url: String?
 
         public var completedOn: String?
 
@@ -29,11 +29,11 @@ public extension PlatformClient {
 
             case status
 
-            case url
-
             case triggerOn = "trigger_on"
 
             case sellerId = "seller_id"
+
+            case url
 
             case completedOn = "completed_on"
         }
@@ -45,11 +45,11 @@ public extension PlatformClient {
 
             self.status = status
 
-            self.url = url
-
             self.triggerOn = triggerOn
 
             self.sellerId = sellerId
+
+            self.url = url
 
             self.completedOn = completedOn
         }
@@ -76,14 +76,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 triggerOn = try container.decode(String.self, forKey: .triggerOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -92,6 +84,14 @@ public extension PlatformClient {
             } catch {}
 
             sellerId = try container.decode(Int.self, forKey: .sellerId)
+
+            do {
+                url = try container.decode(String.self, forKey: .url)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 completedOn = try container.decode(String.self, forKey: .completedOn)
@@ -111,11 +111,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
+            try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(completedOn, forKey: .completedOn)
         }

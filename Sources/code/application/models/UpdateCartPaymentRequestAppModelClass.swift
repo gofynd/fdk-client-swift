@@ -11,11 +11,11 @@ public extension ApplicationClient {
 
         public var paymentIdentifier: String?
 
-        public var paymentMode: String?
+        public var id: String?
 
         public var merchantCode: String?
 
-        public var id: String?
+        public var paymentMode: String?
 
         public var aggregatorName: String?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient {
 
             case paymentIdentifier = "payment_identifier"
 
-            case paymentMode = "payment_mode"
+            case id
 
             case merchantCode = "merchant_code"
 
-            case id
+            case paymentMode = "payment_mode"
 
             case aggregatorName = "aggregator_name"
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient {
 
             self.paymentIdentifier = paymentIdentifier
 
-            self.paymentMode = paymentMode
+            self.id = id
 
             self.merchantCode = merchantCode
 
-            self.id = id
+            self.paymentMode = paymentMode
 
             self.aggregatorName = aggregatorName
         }
@@ -67,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                paymentMode = try container.decode(String.self, forKey: .paymentMode)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient {
 
             try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
         }
