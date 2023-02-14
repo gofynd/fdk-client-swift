@@ -8,8 +8,6 @@ public extension PlatformClient {
      */
 
     class UpdateShipmentStatusRequest: Codable {
-        public var lockAfterTransition: Bool?
-
         public var unlockBeforeTransition: Bool?
 
         public var task: Bool?
@@ -18,9 +16,9 @@ public extension PlatformClient {
 
         public var statuses: [StatuesRequest]?
 
-        public enum CodingKeys: String, CodingKey {
-            case lockAfterTransition = "lock_after_transition"
+        public var lockAfterTransition: Bool?
 
+        public enum CodingKeys: String, CodingKey {
             case unlockBeforeTransition = "unlock_before_transition"
 
             case task
@@ -28,11 +26,11 @@ public extension PlatformClient {
             case forceTransition = "force_transition"
 
             case statuses
+
+            case lockAfterTransition = "lock_after_transition"
         }
 
         public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
-            self.lockAfterTransition = lockAfterTransition
-
             self.unlockBeforeTransition = unlockBeforeTransition
 
             self.task = task
@@ -40,18 +38,12 @@ public extension PlatformClient {
             self.forceTransition = forceTransition
 
             self.statuses = statuses
+
+            self.lockAfterTransition = lockAfterTransition
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
@@ -84,12 +76,18 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
 
             try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
 
@@ -98,6 +96,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
 
             try? container.encodeIfPresent(statuses, forKey: .statuses)
+
+            try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
         }
     }
 }

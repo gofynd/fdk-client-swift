@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var hasNext: Bool?
 
-        public var type: String?
-
         public var size: Int?
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case current
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case hasNext = "has_next"
 
-            case type
-
             case size
+
+            case type
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient {
 
             self.hasNext = hasNext
 
-            self.type = type
-
             self.size = size
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                size = try container.decode(Int.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                size = try container.decode(Int.self, forKey: .size)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
