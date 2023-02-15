@@ -12,26 +12,26 @@ public extension PlatformClient {
 
         public var currencySymbol: String?
 
-        public var selling: Double?
-
-        public var currencyCode: String?
+        public var addOn: Double?
 
         public var effective: Double?
 
-        public var addOn: Double?
+        public var selling: Double?
+
+        public var currencyCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case marked
 
             case currencySymbol = "currency_symbol"
 
-            case selling
-
-            case currencyCode = "currency_code"
+            case addOn = "add_on"
 
             case effective
 
-            case addOn = "add_on"
+            case selling
+
+            case currencyCode = "currency_code"
         }
 
         public init(addOn: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Double? = nil, marked: Double? = nil, selling: Double? = nil) {
@@ -39,13 +39,13 @@ public extension PlatformClient {
 
             self.currencySymbol = currencySymbol
 
-            self.selling = selling
-
-            self.currencyCode = currencyCode
+            self.addOn = addOn
 
             self.effective = effective
 
-            self.addOn = addOn
+            self.selling = selling
+
+            self.currencyCode = currencyCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -68,15 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                selling = try container.decode(Double.self, forKey: .selling)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                addOn = try container.decode(Double.self, forKey: .addOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,7 +84,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                addOn = try container.decode(Double.self, forKey: .addOn)
+                selling = try container.decode(Double.self, forKey: .selling)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,13 +107,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(selling, forKey: .selling)
-
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            try? container.encodeIfPresent(addOn, forKey: .addOn)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
-            try? container.encodeIfPresent(addOn, forKey: .addOn)
+            try? container.encodeIfPresent(selling, forKey: .selling)
+
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
         }
     }
 }

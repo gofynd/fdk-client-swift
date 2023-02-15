@@ -10,9 +10,9 @@ public extension PlatformClient {
     class ShipmentStatusData: Codable {
         public var createdAt: String?
 
-        public var shipmentId: String?
-
         public var bagList: [String]?
+
+        public var shipmentId: String?
 
         public var id: Int?
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case createdAt = "created_at"
 
-            case shipmentId = "shipment_id"
-
             case bagList = "bag_list"
+
+            case shipmentId = "shipment_id"
 
             case id
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(bagList: [String]? = nil, createdAt: String? = nil, id: Int? = nil, shipmentId: String? = nil, status: String? = nil) {
             self.createdAt = createdAt
 
-            self.shipmentId = shipmentId
-
             self.bagList = bagList
+
+            self.shipmentId = shipmentId
 
             self.id = id
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                bagList = try container.decode([String].self, forKey: .bagList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                bagList = try container.decode([String].self, forKey: .bagList)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient {
 
             try? container.encode(createdAt, forKey: .createdAt)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
             try? container.encodeIfPresent(bagList, forKey: .bagList)
+
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
