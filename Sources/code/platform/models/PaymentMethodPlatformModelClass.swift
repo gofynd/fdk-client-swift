@@ -16,11 +16,11 @@ public extension PlatformClient {
 
         public var collectBy: String
 
+        public var meta: [String: Any]?
+
         public var refundBy: String
 
         public var mode: String
-
-        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case name
@@ -31,11 +31,11 @@ public extension PlatformClient {
 
             case collectBy = "collect_by"
 
+            case meta
+
             case refundBy = "refund_by"
 
             case mode
-
-            case meta
         }
 
         public init(amount: Double, collectBy: String, meta: [String: Any]? = nil, mode: String, name: String, refundBy: String, transactionData: [String: Any]? = nil) {
@@ -47,11 +47,11 @@ public extension PlatformClient {
 
             self.collectBy = collectBy
 
+            self.meta = meta
+
             self.refundBy = refundBy
 
             self.mode = mode
-
-            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,10 +71,6 @@ public extension PlatformClient {
 
             collectBy = try container.decode(String.self, forKey: .collectBy)
 
-            refundBy = try container.decode(String.self, forKey: .refundBy)
-
-            mode = try container.decode(String.self, forKey: .mode)
-
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
 
@@ -82,6 +78,10 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            refundBy = try container.decode(String.self, forKey: .refundBy)
+
+            mode = try container.decode(String.self, forKey: .mode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -95,11 +95,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(collectBy, forKey: .collectBy)
 
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
             try? container.encodeIfPresent(refundBy, forKey: .refundBy)
 
             try? container.encodeIfPresent(mode, forKey: .mode)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

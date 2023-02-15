@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var valueOfGood: Double
 
-        public var gstinCode: String
-
         public var gstFee: Double
+
+        public var gstinCode: String
 
         public var brandCalculatedAmount: Double
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case valueOfGood = "value_of_good"
 
-            case gstinCode = "gstin_code"
-
             case gstFee = "gst_fee"
+
+            case gstinCode = "gstin_code"
 
             case brandCalculatedAmount = "brand_calculated_amount"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.valueOfGood = valueOfGood
 
-            self.gstinCode = gstinCode
-
             self.gstFee = gstFee
+
+            self.gstinCode = gstinCode
 
             self.brandCalculatedAmount = brandCalculatedAmount
         }
@@ -49,9 +49,9 @@ public extension PlatformClient {
 
             valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
 
-            gstinCode = try container.decode(String.self, forKey: .gstinCode)
-
             gstFee = try container.decode(Double.self, forKey: .gstFee)
+
+            gstinCode = try container.decode(String.self, forKey: .gstinCode)
 
             brandCalculatedAmount = try container.decode(Double.self, forKey: .brandCalculatedAmount)
         }
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
 
-            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
-
             try? container.encodeIfPresent(gstFee, forKey: .gstFee)
+
+            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
 
             try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
         }

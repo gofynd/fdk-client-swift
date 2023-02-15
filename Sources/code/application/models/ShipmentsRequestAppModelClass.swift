@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var dataUpdates: DataUpdates?
 
-        public var reasons: ReasonsData?
-
         public var identifier: String
+
+        public var reasons: ReasonsData?
 
         public enum CodingKeys: String, CodingKey {
             case products
 
             case dataUpdates = "data_updates"
 
-            case reasons
-
             case identifier
+
+            case reasons
         }
 
         public init(dataUpdates: DataUpdates? = nil, identifier: String, products: [Products]? = nil, reasons: ReasonsData? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.dataUpdates = dataUpdates
 
-            self.reasons = reasons
-
             self.identifier = identifier
+
+            self.reasons = reasons
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,6 +54,8 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            identifier = try container.decode(String.self, forKey: .identifier)
+
             do {
                 reasons = try container.decode(ReasonsData.self, forKey: .reasons)
 
@@ -61,8 +63,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            identifier = try container.decode(String.self, forKey: .identifier)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -72,9 +72,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(dataUpdates, forKey: .dataUpdates)
 
-            try? container.encodeIfPresent(reasons, forKey: .reasons)
-
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(reasons, forKey: .reasons)
         }
     }
 }
