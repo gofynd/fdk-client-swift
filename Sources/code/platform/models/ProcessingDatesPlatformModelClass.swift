@@ -10,26 +10,26 @@ public extension PlatformClient {
     class ProcessingDates: Codable {
         public var dpPickupSlot: [String: Any]?
 
-        public var confirmByDate: String?
+        public var packByDate: String?
 
         public var customerPickupSlot: [String: Any]?
 
-        public var dispatchByDate: String?
+        public var confirmByDate: String?
 
-        public var packByDate: String?
+        public var dispatchByDate: String?
 
         public var dispatchAfterDate: String?
 
         public enum CodingKeys: String, CodingKey {
             case dpPickupSlot = "dp_pickup_slot"
 
-            case confirmByDate = "confirm_by_date"
+            case packByDate = "pack_by_date"
 
             case customerPickupSlot = "customer_pickup_slot"
 
-            case dispatchByDate = "dispatch_by_date"
+            case confirmByDate = "confirm_by_date"
 
-            case packByDate = "pack_by_date"
+            case dispatchByDate = "dispatch_by_date"
 
             case dispatchAfterDate = "dispatch_after_date"
         }
@@ -37,13 +37,13 @@ public extension PlatformClient {
         public init(confirmByDate: String? = nil, customerPickupSlot: [String: Any]? = nil, dispatchAfterDate: String? = nil, dispatchByDate: String? = nil, dpPickupSlot: [String: Any]? = nil, packByDate: String? = nil) {
             self.dpPickupSlot = dpPickupSlot
 
-            self.confirmByDate = confirmByDate
+            self.packByDate = packByDate
 
             self.customerPickupSlot = customerPickupSlot
 
-            self.dispatchByDate = dispatchByDate
+            self.confirmByDate = confirmByDate
 
-            self.packByDate = packByDate
+            self.dispatchByDate = dispatchByDate
 
             self.dispatchAfterDate = dispatchAfterDate
         }
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                confirmByDate = try container.decode(String.self, forKey: .confirmByDate)
+                packByDate = try container.decode(String.self, forKey: .packByDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                dispatchByDate = try container.decode(String.self, forKey: .dispatchByDate)
+                confirmByDate = try container.decode(String.self, forKey: .confirmByDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                packByDate = try container.decode(String.self, forKey: .packByDate)
+                dispatchByDate = try container.decode(String.self, forKey: .dispatchByDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,13 +105,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(dpPickupSlot, forKey: .dpPickupSlot)
 
-            try? container.encodeIfPresent(confirmByDate, forKey: .confirmByDate)
+            try? container.encodeIfPresent(packByDate, forKey: .packByDate)
 
             try? container.encodeIfPresent(customerPickupSlot, forKey: .customerPickupSlot)
 
-            try? container.encodeIfPresent(dispatchByDate, forKey: .dispatchByDate)
+            try? container.encodeIfPresent(confirmByDate, forKey: .confirmByDate)
 
-            try? container.encodeIfPresent(packByDate, forKey: .packByDate)
+            try? container.encodeIfPresent(dispatchByDate, forKey: .dispatchByDate)
 
             try? container.encodeIfPresent(dispatchAfterDate, forKey: .dispatchAfterDate)
         }

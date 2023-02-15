@@ -8,217 +8,129 @@ public extension PlatformClient {
      */
 
     class bulkListingData: Codable {
-        public var failed: Int?
-
-        public var successful: Int?
-
-        public var processing: Int?
-
-        public var failedShipments: [[String: Any]]?
-
         public var batchId: String?
-
-        public var successfulShipments: [[String: Any]]?
-
-        public var storeName: String?
-
-        public var excelUrl: String?
-
-        public var processingShipments: [String]?
-
-        public var uploadedOn: String?
-
-        public var storeId: Int?
-
-        public var companyId: Int?
 
         public var userName: String?
 
-        public var userId: String?
-
-        public var total: Int?
+        public var storeId: Int?
 
         public var storeCode: String?
 
-        public var status: String?
+        public var companyId: Int?
+
+        public var storeName: String?
+
+        public var processingShipments: [String]?
+
+        public var failed: Int?
+
+        public var successfulShipments: [[String: Any]]?
+
+        public var failedShipments: [[String: Any]]?
+
+        public var total: Int?
+
+        public var userId: String?
+
+        public var excelUrl: String?
+
+        public var uploadedOn: String?
+
+        public var processing: Int?
 
         public var fileName: String?
 
         public var id: String?
 
+        public var successful: Int?
+
+        public var status: String?
+
         public enum CodingKeys: String, CodingKey {
-            case failed
-
-            case successful
-
-            case processing
-
-            case failedShipments = "failed_shipments"
-
             case batchId = "batch_id"
-
-            case successfulShipments = "successful_shipments"
-
-            case storeName = "store_name"
-
-            case excelUrl = "excel_url"
-
-            case processingShipments = "processing_shipments"
-
-            case uploadedOn = "uploaded_on"
-
-            case storeId = "store_id"
-
-            case companyId = "company_id"
 
             case userName = "user_name"
 
-            case userId = "user_id"
-
-            case total
+            case storeId = "store_id"
 
             case storeCode = "store_code"
 
-            case status
+            case companyId = "company_id"
+
+            case storeName = "store_name"
+
+            case processingShipments = "processing_shipments"
+
+            case failed
+
+            case successfulShipments = "successful_shipments"
+
+            case failedShipments = "failed_shipments"
+
+            case total
+
+            case userId = "user_id"
+
+            case excelUrl = "excel_url"
+
+            case uploadedOn = "uploaded_on"
+
+            case processing
 
             case fileName = "file_name"
 
             case id
+
+            case successful
+
+            case status
         }
 
         public init(batchId: String? = nil, companyId: Int? = nil, excelUrl: String? = nil, failed: Int? = nil, failedShipments: [[String: Any]]? = nil, fileName: String? = nil, id: String? = nil, processing: Int? = nil, processingShipments: [String]? = nil, status: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil, successful: Int? = nil, successfulShipments: [[String: Any]]? = nil, total: Int? = nil, uploadedOn: String? = nil, userId: String? = nil, userName: String? = nil) {
-            self.failed = failed
-
-            self.successful = successful
-
-            self.processing = processing
-
-            self.failedShipments = failedShipments
-
             self.batchId = batchId
-
-            self.successfulShipments = successfulShipments
-
-            self.storeName = storeName
-
-            self.excelUrl = excelUrl
-
-            self.processingShipments = processingShipments
-
-            self.uploadedOn = uploadedOn
-
-            self.storeId = storeId
-
-            self.companyId = companyId
 
             self.userName = userName
 
-            self.userId = userId
-
-            self.total = total
+            self.storeId = storeId
 
             self.storeCode = storeCode
 
-            self.status = status
+            self.companyId = companyId
+
+            self.storeName = storeName
+
+            self.processingShipments = processingShipments
+
+            self.failed = failed
+
+            self.successfulShipments = successfulShipments
+
+            self.failedShipments = failedShipments
+
+            self.total = total
+
+            self.userId = userId
+
+            self.excelUrl = excelUrl
+
+            self.uploadedOn = uploadedOn
+
+            self.processing = processing
 
             self.fileName = fileName
 
             self.id = id
+
+            self.successful = successful
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                failed = try container.decode(Int.self, forKey: .failed)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                successful = try container.decode(Int.self, forKey: .successful)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                processing = try container.decode(Int.self, forKey: .processing)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                failedShipments = try container.decode([[String: Any]].self, forKey: .failedShipments)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 batchId = try container.decode(String.self, forKey: .batchId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                successfulShipments = try container.decode([[String: Any]].self, forKey: .successfulShipments)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                storeName = try container.decode(String.self, forKey: .storeName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                excelUrl = try container.decode(String.self, forKey: .excelUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                processingShipments = try container.decode([String].self, forKey: .processingShipments)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uploadedOn = try container.decode(String.self, forKey: .uploadedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                storeId = try container.decode(Int.self, forKey: .storeId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -234,15 +146,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                total = try container.decode(Int.self, forKey: .total)
+                storeId = try container.decode(Int.self, forKey: .storeId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -258,7 +162,87 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                companyId = try container.decode(Int.self, forKey: .companyId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                storeName = try container.decode(String.self, forKey: .storeName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                processingShipments = try container.decode([String].self, forKey: .processingShipments)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                failed = try container.decode(Int.self, forKey: .failed)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                successfulShipments = try container.decode([[String: Any]].self, forKey: .successfulShipments)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                failedShipments = try container.decode([[String: Any]].self, forKey: .failedShipments)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                total = try container.decode(Int.self, forKey: .total)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                userId = try container.decode(String.self, forKey: .userId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                excelUrl = try container.decode(String.self, forKey: .excelUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uploadedOn = try container.decode(String.self, forKey: .uploadedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                processing = try container.decode(Int.self, forKey: .processing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -280,48 +264,64 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                successful = try container.decode(Int.self, forKey: .successful)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                status = try container.decode(String.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(failed, forKey: .failed)
-
-            try? container.encodeIfPresent(successful, forKey: .successful)
-
-            try? container.encodeIfPresent(processing, forKey: .processing)
-
-            try? container.encodeIfPresent(failedShipments, forKey: .failedShipments)
-
             try? container.encodeIfPresent(batchId, forKey: .batchId)
-
-            try? container.encodeIfPresent(successfulShipments, forKey: .successfulShipments)
-
-            try? container.encodeIfPresent(storeName, forKey: .storeName)
-
-            try? container.encodeIfPresent(excelUrl, forKey: .excelUrl)
-
-            try? container.encodeIfPresent(processingShipments, forKey: .processingShipments)
-
-            try? container.encodeIfPresent(uploadedOn, forKey: .uploadedOn)
-
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(userName, forKey: .userName)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
-            try? container.encodeIfPresent(total, forKey: .total)
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
 
             try? container.encodeIfPresent(storeCode, forKey: .storeCode)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(storeName, forKey: .storeName)
+
+            try? container.encodeIfPresent(processingShipments, forKey: .processingShipments)
+
+            try? container.encodeIfPresent(failed, forKey: .failed)
+
+            try? container.encodeIfPresent(successfulShipments, forKey: .successfulShipments)
+
+            try? container.encodeIfPresent(failedShipments, forKey: .failedShipments)
+
+            try? container.encodeIfPresent(total, forKey: .total)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
+
+            try? container.encodeIfPresent(excelUrl, forKey: .excelUrl)
+
+            try? container.encodeIfPresent(uploadedOn, forKey: .uploadedOn)
+
+            try? container.encodeIfPresent(processing, forKey: .processing)
 
             try? container.encodeIfPresent(fileName, forKey: .fileName)
 
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(successful, forKey: .successful)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

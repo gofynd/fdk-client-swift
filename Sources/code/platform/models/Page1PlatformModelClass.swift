@@ -8,22 +8,22 @@ public extension PlatformClient {
      */
 
     class Page1: Codable {
-        public var pageType: String
+        public var itemTotal: Int
 
         public var current: Int
 
-        public var itemTotal: Int
+        public var pageType: String
 
         public var size: Int
 
         public var hasNext: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case pageType = "page_type"
+            case itemTotal = "item_total"
 
             case current
 
-            case itemTotal = "item_total"
+            case pageType = "page_type"
 
             case size
 
@@ -31,11 +31,11 @@ public extension PlatformClient {
         }
 
         public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
-            self.pageType = pageType
+            self.itemTotal = itemTotal
 
             self.current = current
 
-            self.itemTotal = itemTotal
+            self.pageType = pageType
 
             self.size = size
 
@@ -45,11 +45,11 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            pageType = try container.decode(String.self, forKey: .pageType)
+            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             current = try container.decode(Int.self, forKey: .current)
 
-            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+            pageType = try container.decode(String.self, forKey: .pageType)
 
             size = try container.decode(Int.self, forKey: .size)
 
@@ -59,11 +59,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(pageType, forKey: .pageType)
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
             try? container.encodeIfPresent(current, forKey: .current)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+            try? container.encodeIfPresent(pageType, forKey: .pageType)
 
             try? container.encodeIfPresent(size, forKey: .size)
 
