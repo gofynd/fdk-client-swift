@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class PaymentMethods: Codable {
-        public var collectBy: String?
-
         public var refundBy: String?
+
+        public var collectBy: String?
 
         public var mode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case collectBy = "collect_by"
-
             case refundBy = "refund_by"
+
+            case collectBy = "collect_by"
 
             case mode
         }
 
         public init(collectBy: String? = nil, mode: String? = nil, refundBy: String? = nil) {
-            self.collectBy = collectBy
-
             self.refundBy = refundBy
+
+            self.collectBy = collectBy
 
             self.mode = mode
         }
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                collectBy = try container.decode(String.self, forKey: .collectBy)
+                refundBy = try container.decode(String.self, forKey: .refundBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                refundBy = try container.decode(String.self, forKey: .refundBy)
+                collectBy = try container.decode(String.self, forKey: .collectBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,9 +61,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(collectBy, forKey: .collectBy)
-
             try? container.encodeIfPresent(refundBy, forKey: .refundBy)
+
+            try? container.encodeIfPresent(collectBy, forKey: .collectBy)
 
             try? container.encodeIfPresent(mode, forKey: .mode)
         }
