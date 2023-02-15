@@ -10,30 +10,30 @@ public extension PlatformClient {
     class QuantitiesArticle: Codable {
         public var orderCommitted: Quantity?
 
-        public var notAvailable: Quantity?
+        public var sellable: Quantity?
 
         public var damaged: Quantity?
 
-        public var sellable: Quantity?
+        public var notAvailable: Quantity?
 
         public enum CodingKeys: String, CodingKey {
             case orderCommitted = "order_committed"
 
-            case notAvailable = "not_available"
+            case sellable
 
             case damaged
 
-            case sellable
+            case notAvailable = "not_available"
         }
 
         public init(damaged: Quantity? = nil, notAvailable: Quantity? = nil, orderCommitted: Quantity? = nil, sellable: Quantity? = nil) {
             self.orderCommitted = orderCommitted
 
-            self.notAvailable = notAvailable
+            self.sellable = sellable
 
             self.damaged = damaged
 
-            self.sellable = sellable
+            self.notAvailable = notAvailable
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                notAvailable = try container.decode(Quantity.self, forKey: .notAvailable)
+                sellable = try container.decode(Quantity.self, forKey: .sellable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                sellable = try container.decode(Quantity.self, forKey: .sellable)
+                notAvailable = try container.decode(Quantity.self, forKey: .notAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,11 +77,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(orderCommitted, forKey: .orderCommitted)
 
-            try? container.encodeIfPresent(notAvailable, forKey: .notAvailable)
+            try? container.encodeIfPresent(sellable, forKey: .sellable)
 
             try? container.encodeIfPresent(damaged, forKey: .damaged)
 
-            try? container.encodeIfPresent(sellable, forKey: .sellable)
+            try? container.encodeIfPresent(notAvailable, forKey: .notAvailable)
         }
     }
 }

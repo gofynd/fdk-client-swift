@@ -8,7 +8,11 @@ public extension PlatformClient {
      */
 
     class ApplicationItemMeta: Codable {
-        public var isCod: Bool?
+        public var customJson: [String: Any]?
+
+        public var isGift: Bool?
+
+        public var altText: [String: Any]?
 
         public var customMeta: [MetaFields]?
 
@@ -16,14 +20,14 @@ public extension PlatformClient {
 
         public var seo: ApplicationItemSEO?
 
-        public var altText: [String: Any]?
-
-        public var isGift: Bool?
-
-        public var customJson: [String: Any]?
+        public var isCod: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case isCod = "is_cod"
+            case customJson = "_custom_json"
+
+            case isGift = "is_gift"
+
+            case altText = "alt_text"
 
             case customMeta = "_custom_meta"
 
@@ -31,15 +35,15 @@ public extension PlatformClient {
 
             case seo
 
-            case altText = "alt_text"
-
-            case isGift = "is_gift"
-
-            case customJson = "_custom_json"
+            case isCod = "is_cod"
         }
 
         public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: ApplicationItemMOQ? = nil, seo: ApplicationItemSEO? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
-            self.isCod = isCod
+            self.customJson = customJson
+
+            self.isGift = isGift
+
+            self.altText = altText
 
             self.customMeta = customMeta
 
@@ -47,18 +51,30 @@ public extension PlatformClient {
 
             self.seo = seo
 
-            self.altText = altText
-
-            self.isGift = isGift
-
-            self.customJson = customJson
+            self.isCod = isCod
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isCod = try container.decode(Bool.self, forKey: .isCod)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isGift = try container.decode(Bool.self, forKey: .isGift)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                altText = try container.decode([String: Any].self, forKey: .altText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,23 +106,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                altText = try container.decode([String: Any].self, forKey: .altText)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isGift = try container.decode(Bool.self, forKey: .isGift)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                isCod = try container.decode(Bool.self, forKey: .isCod)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,7 +117,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isCod, forKey: .isCod)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(isGift, forKey: .isGift)
+
+            try? container.encodeIfPresent(altText, forKey: .altText)
 
             try? container.encodeIfPresent(customMeta, forKey: .customMeta)
 
@@ -125,11 +129,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(seo, forKey: .seo)
 
-            try? container.encodeIfPresent(altText, forKey: .altText)
-
-            try? container.encodeIfPresent(isGift, forKey: .isGift)
-
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(isCod, forKey: .isCod)
         }
     }
 }
