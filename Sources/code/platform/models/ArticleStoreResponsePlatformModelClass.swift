@@ -8,44 +8,36 @@ public extension PlatformClient {
      */
 
     class ArticleStoreResponse: Codable {
-        public var name: String?
-
         public var uid: Int?
 
         public var storeCode: String?
 
+        public var name: String?
+
         public var storeType: String?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
             case uid
 
             case storeCode = "store_code"
+
+            case name
 
             case storeType = "store_type"
         }
 
         public init(name: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil) {
-            self.name = name
-
             self.uid = uid
 
             self.storeCode = storeCode
+
+            self.name = name
 
             self.storeType = storeType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
@@ -64,6 +56,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 storeType = try container.decode(String.self, forKey: .storeType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -75,11 +75,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(storeType, forKey: .storeType)
         }

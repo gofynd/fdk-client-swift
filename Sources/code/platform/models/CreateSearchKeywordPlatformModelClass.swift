@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var words: [String]?
 
-        public var appId: String?
-
         public var isActive: Bool?
 
         public var result: SearchKeywordResult
+
+        public var appId: String?
 
         public enum CodingKeys: String, CodingKey {
             case customJson = "_custom_json"
 
             case words
 
-            case appId = "app_id"
-
             case isActive = "is_active"
 
             case result
+
+            case appId = "app_id"
         }
 
         public init(appId: String? = nil, isActive: Bool? = nil, result: SearchKeywordResult, words: [String]? = nil, customJson: [String: Any]? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.words = words
 
-            self.appId = appId
-
             self.isActive = isActive
 
             self.result = result
+
+            self.appId = appId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,14 +62,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                appId = try container.decode(String.self, forKey: .appId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -78,6 +70,14 @@ public extension PlatformClient {
             } catch {}
 
             result = try container.decode(SearchKeywordResult.self, forKey: .result)
+
+            do {
+                appId = try container.decode(String.self, forKey: .appId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -87,11 +87,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(words, forKey: .words)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(result, forKey: .result)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
         }
     }
 }

@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class ProductAvailability: Codable {
-        public var deliverable: Bool?
-
         public var isValid: Bool?
+
+        public var deliverable: Bool?
 
         public var sizes: [String]?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var outOfStock: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case deliverable
-
             case isValid = "is_valid"
+
+            case deliverable
 
             case sizes
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(deliverable: Bool? = nil, isValid: Bool? = nil, otherStoreQuantity: Int? = nil, outOfStock: Bool? = nil, sizes: [String]? = nil) {
-            self.deliverable = deliverable
-
             self.isValid = isValid
+
+            self.deliverable = deliverable
 
             self.sizes = sizes
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                deliverable = try container.decode(Bool.self, forKey: .deliverable)
+                isValid = try container.decode(Bool.self, forKey: .isValid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isValid = try container.decode(Bool.self, forKey: .isValid)
+                deliverable = try container.decode(Bool.self, forKey: .deliverable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(deliverable, forKey: .deliverable)
-
             try? container.encodeIfPresent(isValid, forKey: .isValid)
+
+            try? container.encodeIfPresent(deliverable, forKey: .deliverable)
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
 
