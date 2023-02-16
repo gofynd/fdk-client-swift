@@ -10,22 +10,22 @@ public extension PlatformClient {
     class OrderDict: Codable {
         public var paymentMethods: [String: Any]?
 
-        public var orderDate: String
-
         public var meta: OrderMeta?
 
         public var fyndOrderId: String
+
+        public var orderDate: String
 
         public var prices: Prices?
 
         public enum CodingKeys: String, CodingKey {
             case paymentMethods = "payment_methods"
 
-            case orderDate = "order_date"
-
             case meta
 
             case fyndOrderId = "fynd_order_id"
+
+            case orderDate = "order_date"
 
             case prices
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(fyndOrderId: String, meta: OrderMeta? = nil, orderDate: String, paymentMethods: [String: Any]? = nil, prices: Prices? = nil) {
             self.paymentMethods = paymentMethods
 
-            self.orderDate = orderDate
-
             self.meta = meta
 
             self.fyndOrderId = fyndOrderId
+
+            self.orderDate = orderDate
 
             self.prices = prices
         }
@@ -53,8 +53,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            orderDate = try container.decode(String.self, forKey: .orderDate)
-
             do {
                 meta = try container.decode(OrderMeta.self, forKey: .meta)
 
@@ -64,6 +62,8 @@ public extension PlatformClient {
             } catch {}
 
             fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
+            orderDate = try container.decode(String.self, forKey: .orderDate)
 
             do {
                 prices = try container.decode(Prices.self, forKey: .prices)
@@ -79,11 +79,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
 
-            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
-
             try? container.encode(meta, forKey: .meta)
 
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+
+            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
 
             try? container.encodeIfPresent(prices, forKey: .prices)
         }

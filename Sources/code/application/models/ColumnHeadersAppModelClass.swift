@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var col1: ColumnHeader?
 
-        public var col6: ColumnHeader?
-
         public var col3: ColumnHeader?
+
+        public var col6: ColumnHeader?
 
         public var col2: ColumnHeader?
 
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case col1 = "col_1"
 
-            case col6 = "col_6"
-
             case col3 = "col_3"
+
+            case col6 = "col_6"
 
             case col2 = "col_2"
 
@@ -38,9 +38,9 @@ public extension ApplicationClient {
 
             self.col1 = col1
 
-            self.col6 = col6
-
             self.col3 = col3
+
+            self.col6 = col6
 
             self.col2 = col2
 
@@ -67,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                col6 = try container.decode(ColumnHeader.self, forKey: .col6)
+                col3 = try container.decode(ColumnHeader.self, forKey: .col3)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                col3 = try container.decode(ColumnHeader.self, forKey: .col3)
+                col6 = try container.decode(ColumnHeader.self, forKey: .col6)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,9 +106,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(col1, forKey: .col1)
 
-            try? container.encodeIfPresent(col6, forKey: .col6)
-
             try? container.encodeIfPresent(col3, forKey: .col3)
+
+            try? container.encodeIfPresent(col6, forKey: .col6)
 
             try? container.encodeIfPresent(col2, forKey: .col2)
 
