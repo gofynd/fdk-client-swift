@@ -10,48 +10,48 @@ public extension PlatformClient {
     class InventoryExportAdvanceOption: Codable {
         public var type: String
 
+        public var toDate: String?
+
         public var quantity: InventoryExportQuantityFilter?
+
+        public var notification: Bool?
 
         public var fromDate: String?
 
         public var storeIds: [Int]?
 
-        public var toDate: String?
-
         public var brandIds: [Int]?
-
-        public var notification: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
+            case toDate = "to_date"
+
             case quantity
+
+            case notification
 
             case fromDate = "from_date"
 
             case storeIds = "store_ids"
 
-            case toDate = "to_date"
-
             case brandIds = "brand_ids"
-
-            case notification
         }
 
         public init(brandIds: [Int]? = nil, fromDate: String? = nil, notification: Bool? = nil, quantity: InventoryExportQuantityFilter? = nil, storeIds: [Int]? = nil, toDate: String? = nil, type: String) {
             self.type = type
 
+            self.toDate = toDate
+
             self.quantity = quantity
+
+            self.notification = notification
 
             self.fromDate = fromDate
 
             self.storeIds = storeIds
 
-            self.toDate = toDate
-
             self.brandIds = brandIds
-
-            self.notification = notification
         }
 
         required public init(from decoder: Decoder) throws {
@@ -60,7 +60,23 @@ public extension PlatformClient {
             type = try container.decode(String.self, forKey: .type)
 
             do {
+                toDate = try container.decode(String.self, forKey: .toDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 quantity = try container.decode(InventoryExportQuantityFilter.self, forKey: .quantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                notification = try container.decode(Bool.self, forKey: .notification)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,23 +100,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                toDate = try container.decode(String.self, forKey: .toDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 brandIds = try container.decode([Int].self, forKey: .brandIds)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                notification = try container.decode(Bool.self, forKey: .notification)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -113,17 +113,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
+            try? container.encode(toDate, forKey: .toDate)
+
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(notification, forKey: .notification)
 
             try? container.encode(fromDate, forKey: .fromDate)
 
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
-            try? container.encode(toDate, forKey: .toDate)
-
             try? container.encodeIfPresent(brandIds, forKey: .brandIds)
-
-            try? container.encodeIfPresent(notification, forKey: .notification)
         }
     }
 }

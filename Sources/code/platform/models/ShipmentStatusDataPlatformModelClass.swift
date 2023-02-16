@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class ShipmentStatusData: Codable {
-        public var id: Int?
+        public var shipmentId: String?
 
         public var bagList: [String]?
 
@@ -16,10 +16,10 @@ public extension PlatformClient {
 
         public var status: String?
 
-        public var shipmentId: String?
+        public var id: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case id
+            case shipmentId = "shipment_id"
 
             case bagList = "bag_list"
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case status
 
-            case shipmentId = "shipment_id"
+            case id
         }
 
         public init(bagList: [String]? = nil, createdAt: String? = nil, id: Int? = nil, shipmentId: String? = nil, status: String? = nil) {
-            self.id = id
+            self.shipmentId = shipmentId
 
             self.bagList = bagList
 
@@ -39,14 +39,14 @@ public extension PlatformClient {
 
             self.status = status
 
-            self.shipmentId = shipmentId
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(bagList, forKey: .bagList)
 
@@ -97,7 +97,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }
