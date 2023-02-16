@@ -10,9 +10,9 @@ public extension PlatformClient {
     class OpenApiCartServiceabilityResponse: Codable {
         public var items: [CartProductInfo]?
 
-        public var isValid: Bool?
-
         public var deliveryPromise: ShipmentPromise?
+
+        public var isValid: Bool?
 
         public var message: String?
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case items
 
-            case isValid = "is_valid"
-
             case deliveryPromise = "delivery_promise"
+
+            case isValid = "is_valid"
 
             case message
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(breakupValues: CartBreakup? = nil, deliveryPromise: ShipmentPromise? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, message: String? = nil) {
             self.items = items
 
-            self.isValid = isValid
-
             self.deliveryPromise = deliveryPromise
+
+            self.isValid = isValid
 
             self.message = message
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isValid = try container.decode(Bool.self, forKey: .isValid)
+                deliveryPromise = try container.decode(ShipmentPromise.self, forKey: .deliveryPromise)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                deliveryPromise = try container.decode(ShipmentPromise.self, forKey: .deliveryPromise)
+                isValid = try container.decode(Bool.self, forKey: .isValid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(isValid, forKey: .isValid)
-
             try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
+
+            try? container.encodeIfPresent(isValid, forKey: .isValid)
 
             try? container.encodeIfPresent(message, forKey: .message)
 

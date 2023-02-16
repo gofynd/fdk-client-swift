@@ -10,24 +10,24 @@ public extension PlatformClient {
     class HolidaySchemaSerializer: Codable {
         public var title: String
 
-        public var date: HolidayDateSerializer
-
         public var holidayType: String
+
+        public var date: HolidayDateSerializer
 
         public enum CodingKeys: String, CodingKey {
             case title
 
-            case date
-
             case holidayType = "holiday_type"
+
+            case date
         }
 
         public init(date: HolidayDateSerializer, holidayType: String, title: String) {
             self.title = title
 
-            self.date = date
-
             self.holidayType = holidayType
+
+            self.date = date
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             title = try container.decode(String.self, forKey: .title)
 
-            date = try container.decode(HolidayDateSerializer.self, forKey: .date)
-
             holidayType = try container.decode(String.self, forKey: .holidayType)
+
+            date = try container.decode(HolidayDateSerializer.self, forKey: .date)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(date, forKey: .date)
-
             try? container.encodeIfPresent(holidayType, forKey: .holidayType)
+
+            try? container.encodeIfPresent(date, forKey: .date)
         }
     }
 }

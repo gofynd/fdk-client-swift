@@ -7,8 +7,6 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class CreatePaymentLinkResponse: Codable {
-        public var statusCode: Int
-
         public var pollingTimeout: Int?
 
         public var message: String
@@ -19,9 +17,9 @@ public extension ApplicationClient {
 
         public var paymentLinkId: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case statusCode = "status_code"
+        public var statusCode: Int
 
+        public enum CodingKeys: String, CodingKey {
             case pollingTimeout = "polling_timeout"
 
             case message
@@ -31,11 +29,11 @@ public extension ApplicationClient {
             case paymentLinkUrl = "payment_link_url"
 
             case paymentLinkId = "payment_link_id"
+
+            case statusCode = "status_code"
         }
 
         public init(message: String, paymentLinkId: String? = nil, paymentLinkUrl: String? = nil, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
-            self.statusCode = statusCode
-
             self.pollingTimeout = pollingTimeout
 
             self.message = message
@@ -45,12 +43,12 @@ public extension ApplicationClient {
             self.paymentLinkUrl = paymentLinkUrl
 
             self.paymentLinkId = paymentLinkId
+
+            self.statusCode = statusCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            statusCode = try container.decode(Int.self, forKey: .statusCode)
 
             do {
                 pollingTimeout = try container.decode(Int.self, forKey: .pollingTimeout)
@@ -79,12 +77,12 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
             try? container.encode(pollingTimeout, forKey: .pollingTimeout)
 
@@ -95,6 +93,8 @@ public extension ApplicationClient {
             try? container.encode(paymentLinkUrl, forKey: .paymentLinkUrl)
 
             try? container.encode(paymentLinkId, forKey: .paymentLinkId)
+
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
         }
     }
 }
