@@ -12,17 +12,17 @@ public extension PlatformClient {
 
         public var id: String
 
+        public var token: String
+
+        public var secret: String
+
         public var description: String?
 
         public var updatedAt: String
 
-        public var createdAt: String
-
-        public var secret: String
-
-        public var token: String
-
         public var owner: String
+
+        public var createdAt: String
 
         public var name: String
 
@@ -31,17 +31,17 @@ public extension PlatformClient {
 
             case id
 
+            case token
+
+            case secret
+
             case description
 
             case updatedAt = "updated_at"
 
-            case createdAt = "created_at"
-
-            case secret
-
-            case token
-
             case owner
+
+            case createdAt = "created_at"
 
             case name
         }
@@ -51,17 +51,17 @@ public extension PlatformClient {
 
             self.id = id
 
+            self.token = token
+
+            self.secret = secret
+
             self.description = description
 
             self.updatedAt = updatedAt
 
-            self.createdAt = createdAt
-
-            self.secret = secret
-
-            self.token = token
-
             self.owner = owner
+
+            self.createdAt = createdAt
 
             self.name = name
         }
@@ -79,6 +79,10 @@ public extension PlatformClient {
 
             id = try container.decode(String.self, forKey: .id)
 
+            token = try container.decode(String.self, forKey: .token)
+
+            secret = try container.decode(String.self, forKey: .secret)
+
             do {
                 description = try container.decode(String.self, forKey: .description)
 
@@ -89,13 +93,9 @@ public extension PlatformClient {
 
             updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
-            createdAt = try container.decode(String.self, forKey: .createdAt)
-
-            secret = try container.decode(String.self, forKey: .secret)
-
-            token = try container.decode(String.self, forKey: .token)
-
             owner = try container.decode(String.self, forKey: .owner)
+
+            createdAt = try container.decode(String.self, forKey: .createdAt)
 
             name = try container.decode(String.self, forKey: .name)
         }
@@ -107,17 +107,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
+            try? container.encodeIfPresent(token, forKey: .token)
+
+            try? container.encodeIfPresent(secret, forKey: .secret)
+
             try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-
-            try? container.encodeIfPresent(secret, forKey: .secret)
-
-            try? container.encodeIfPresent(token, forKey: .token)
-
             try? container.encodeIfPresent(owner, forKey: .owner)
+
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
