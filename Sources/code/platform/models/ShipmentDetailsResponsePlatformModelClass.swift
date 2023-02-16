@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ShipmentDetailsResponse: Codable {
         public var order: OrderDict?
 
-        public var success: Bool
-
         public var shipments: [PlatformShipment]?
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case order
 
-            case success
-
             case shipments
+
+            case success
         }
 
         public init(order: OrderDict? = nil, shipments: [PlatformShipment]? = nil, success: Bool) {
             self.order = order
 
-            self.success = success
-
             self.shipments = shipments
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,8 +41,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             do {
                 shipments = try container.decode([PlatformShipment].self, forKey: .shipments)
 
@@ -50,6 +48,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -57,9 +57,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(order, forKey: .order)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(shipments, forKey: .shipments)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

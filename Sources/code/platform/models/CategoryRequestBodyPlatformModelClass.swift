@@ -10,72 +10,72 @@ public extension PlatformClient {
     class CategoryRequestBody: Codable {
         public var isActive: Bool
 
-        public var tryouts: [String]?
+        public var name: String
+
+        public var media: Media2?
+
+        public var level: Int
+
+        public var synonyms: [String]?
 
         public var departments: [Int]
 
         public var hierarchy: [Hierarchy]?
 
-        public var slug: String?
-
-        public var level: Int
-
         public var priority: Int?
 
         public var marketplaces: CategoryMapping?
 
-        public var name: String
+        public var tryouts: [String]?
 
-        public var media: Media2?
-
-        public var synonyms: [String]?
+        public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
-
-            case tryouts
-
-            case departments
-
-            case hierarchy
-
-            case slug
-
-            case level
-
-            case priority
-
-            case marketplaces
 
             case name
 
             case media
 
+            case level
+
             case synonyms
+
+            case departments
+
+            case hierarchy
+
+            case priority
+
+            case marketplaces
+
+            case tryouts
+
+            case slug
         }
 
         public init(departments: [Int], hierarchy: [Hierarchy]? = nil, isActive: Bool, level: Int, marketplaces: CategoryMapping? = nil, media: Media2? = nil, name: String, priority: Int? = nil, slug: String? = nil, synonyms: [String]? = nil, tryouts: [String]? = nil) {
             self.isActive = isActive
 
-            self.tryouts = tryouts
+            self.name = name
+
+            self.media = media
+
+            self.level = level
+
+            self.synonyms = synonyms
 
             self.departments = departments
 
             self.hierarchy = hierarchy
 
-            self.slug = slug
-
-            self.level = level
-
             self.priority = priority
 
             self.marketplaces = marketplaces
 
-            self.name = name
+            self.tryouts = tryouts
 
-            self.media = media
-
-            self.synonyms = synonyms
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,8 +83,20 @@ public extension PlatformClient {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
+            name = try container.decode(String.self, forKey: .name)
+
             do {
-                tryouts = try container.decode([String].self, forKey: .tryouts)
+                media = try container.decode(Media2.self, forKey: .media)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            level = try container.decode(Int.self, forKey: .level)
+
+            do {
+                synonyms = try container.decode([String].self, forKey: .synonyms)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,16 +114,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            level = try container.decode(Int.self, forKey: .level)
-
-            do {
                 priority = try container.decode(Int.self, forKey: .priority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -127,10 +129,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
-                media = try container.decode(Media2.self, forKey: .media)
+                tryouts = try container.decode([String].self, forKey: .tryouts)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -138,7 +138,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                synonyms = try container.decode([String].self, forKey: .synonyms)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -151,25 +151,25 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(tryouts, forKey: .tryouts)
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(media, forKey: .media)
+
+            try? container.encodeIfPresent(level, forKey: .level)
+
+            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
 
             try? container.encodeIfPresent(departments, forKey: .departments)
 
             try? container.encodeIfPresent(hierarchy, forKey: .hierarchy)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(level, forKey: .level)
-
             try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(marketplaces, forKey: .marketplaces)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(tryouts, forKey: .tryouts)
 
-            try? container.encodeIfPresent(media, forKey: .media)
-
-            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }
