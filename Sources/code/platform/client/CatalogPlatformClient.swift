@@ -1752,17 +1752,17 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Edit a product.
-         * Description: This API allows to edit product.
+         * Summary: Patch a product.
+         * Description: This API allows to patch product.
          **/
-        public func editProduct(
+        public func patchProduct(
             itemId: Int,
-            body: ProductCreateUpdateSchemaV2,
+            body: ProductCreateUpdate,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "patch",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
                 query: nil,
                 body: body.dictionary,
@@ -1791,17 +1791,17 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Patch a product.
-         * Description: This API allows to patch product.
+         * Summary: Edit a product.
+         * Description: This API allows to edit product.
          **/
-        public func patchProduct(
+        public func editProduct(
             itemId: Int,
-            body: ProductCreateUpdate,
+            body: ProductCreateUpdateSchemaV2,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "patch",
+                method: "put",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
                 query: nil,
                 body: body.dictionary,

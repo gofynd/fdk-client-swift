@@ -1,13 +1,13 @@
 
 
 import Foundation
-public extension PlatformClient {
+public extension PublicClient {
     /*
-         Model: Application
+         Model: ApplicationData
          Used By: Configuration
      */
 
-    class Application: Codable {
+    class ApplicationData: Codable {
         public var website: ApplicationWebsite?
 
         public var cors: ApplicationCors?

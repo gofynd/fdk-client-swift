@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class PriceArticle: Codable {
-        public var effective: Double?
-
         public var tpNotes: [String: Any]?
+
+        public var effective: Double?
 
         public var marked: Double?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var currency: String?
 
         public enum CodingKeys: String, CodingKey {
-            case effective
-
             case tpNotes = "tp_notes"
+
+            case effective
 
             case marked
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil, tpNotes: [String: Any]? = nil, transfer: Double? = nil) {
-            self.effective = effective
-
             self.tpNotes = tpNotes
+
+            self.effective = effective
 
             self.marked = marked
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                effective = try container.decode(Double.self, forKey: .effective)
+                tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
+                effective = try container.decode(Double.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
-
             try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
+
+            try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 

@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var page: Page
 
-        public var items: [ProductListingDetail]?
+        public var sortOn: [ProductSortOn]?
 
         public var filters: [ProductFilters]?
 
-        public var sortOn: [ProductSortOn]?
+        public var items: [ProductListingDetail]?
 
         public enum CodingKeys: String, CodingKey {
             case operators
 
             case page
 
-            case items
+            case sortOn = "sort_on"
 
             case filters
 
-            case sortOn = "sort_on"
+            case items
         }
 
         public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, operators: [String: Any]? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.page = page
 
-            self.items = items
+            self.sortOn = sortOn
 
             self.filters = filters
 
-            self.sortOn = sortOn
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             page = try container.decode(Page.self, forKey: .page)
 
             do {
-                items = try container.decode([ProductListingDetail].self, forKey: .items)
+                sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,7 +72,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
+                items = try container.decode([ProductListingDetail].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -87,11 +87,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

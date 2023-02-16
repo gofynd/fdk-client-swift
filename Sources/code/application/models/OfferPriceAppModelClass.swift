@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var marked: Int?
 
-        public var bulkEffective: Double?
-
         public var currencyCode: String?
+
+        public var bulkEffective: Double?
 
         public var effective: Int?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case marked
 
-            case bulkEffective = "bulk_effective"
-
             case currencyCode = "currency_code"
+
+            case bulkEffective = "bulk_effective"
 
             case effective
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.marked = marked
 
-            self.bulkEffective = bulkEffective
-
             self.currencyCode = currencyCode
+
+            self.bulkEffective = bulkEffective
 
             self.effective = effective
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                bulkEffective = try container.decode(Double.self, forKey: .bulkEffective)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                bulkEffective = try container.decode(Double.self, forKey: .bulkEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 
-            try? container.encodeIfPresent(bulkEffective, forKey: .bulkEffective)
-
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+
+            try? container.encodeIfPresent(bulkEffective, forKey: .bulkEffective)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
         }
