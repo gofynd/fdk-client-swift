@@ -3,26 +3,26 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: AndroidPathReq
+         Model: SetConfigurationRes
          Used By: Rewards
      */
 
-    class AndroidPathReq: Codable {
-        public var paths: [String]?
+    class SetConfigurationRes: Codable {
+        public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case paths
+            case success
         }
 
-        public init(paths: [String]? = nil) {
-            self.paths = paths
+        public init(success: Bool? = nil) {
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                paths = try container.decode([String].self, forKey: .paths)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -33,7 +33,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(paths, forKey: .paths)
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

@@ -8,50 +8,48 @@ public extension PlatformClient {
      */
 
     class OrderBrandName: Codable {
-        public var id: Int
-
         public var brandName: String
 
         public var logo: String
 
         public var modifiedOn: String?
 
-        public var createdOn: String
+        public var id: Int
 
         public var company: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case id
+        public var createdOn: String
 
+        public enum CodingKeys: String, CodingKey {
             case brandName = "brand_name"
 
             case logo
 
             case modifiedOn = "modified_on"
 
-            case createdOn = "created_on"
+            case id
 
             case company
+
+            case createdOn = "created_on"
         }
 
         public init(brandName: String, company: String? = nil, createdOn: String, id: Int, logo: String, modifiedOn: String? = nil) {
-            self.id = id
-
             self.brandName = brandName
 
             self.logo = logo
 
             self.modifiedOn = modifiedOn
 
-            self.createdOn = createdOn
+            self.id = id
 
             self.company = company
+
+            self.createdOn = createdOn
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            id = try container.decode(Int.self, forKey: .id)
 
             brandName = try container.decode(String.self, forKey: .brandName)
 
@@ -65,7 +63,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            createdOn = try container.decode(String.self, forKey: .createdOn)
+            id = try container.decode(Int.self, forKey: .id)
 
             do {
                 company = try container.decode(String.self, forKey: .company)
@@ -74,12 +72,12 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            createdOn = try container.decode(String.self, forKey: .createdOn)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
 
@@ -87,9 +85,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
         }
     }
 }

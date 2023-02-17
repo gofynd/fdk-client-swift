@@ -8,6 +8,10 @@ public extension PlatformClient {
      */
 
     class ApplicationDepartment: Codable {
+        public var appId: String
+
+        public var uid: Int
+
         public var isActive: Bool?
 
         public var name: String?
@@ -16,11 +20,11 @@ public extension PlatformClient {
 
         public var customJson: [String: Any]?
 
-        public var appId: String
-
-        public var uid: Int
-
         public enum CodingKeys: String, CodingKey {
+            case appId = "app_id"
+
+            case uid
+
             case isActive = "is_active"
 
             case name
@@ -28,13 +32,13 @@ public extension PlatformClient {
             case logo
 
             case customJson = "_custom_json"
-
-            case appId = "app_id"
-
-            case uid
         }
 
         public init(appId: String, isActive: Bool? = nil, logo: String? = nil, name: String? = nil, uid: Int, customJson: [String: Any]? = nil) {
+            self.appId = appId
+
+            self.uid = uid
+
             self.isActive = isActive
 
             self.name = name
@@ -42,14 +46,14 @@ public extension PlatformClient {
             self.logo = logo
 
             self.customJson = customJson
-
-            self.appId = appId
-
-            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            appId = try container.decode(String.self, forKey: .appId)
+
+            uid = try container.decode(Int.self, forKey: .uid)
 
             do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -82,14 +86,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            appId = try container.decode(String.self, forKey: .appId)
-
-            uid = try container.decode(Int.self, forKey: .uid)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
@@ -98,10 +102,6 @@ public extension PlatformClient {
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

@@ -16,13 +16,13 @@ public extension PlatformClient {
 
         public var exception: String?
 
-        public var requestId: String?
-
         public var status: Int
 
-        public var message: String
-
         public var code: String?
+
+        public var requestId: String?
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case info
@@ -33,13 +33,13 @@ public extension PlatformClient {
 
             case exception
 
-            case requestId = "request_id"
-
             case status
 
-            case message
-
             case code
+
+            case requestId = "request_id"
+
+            case message
         }
 
         public init(code: String? = nil, exception: String? = nil, info: [String: Any]? = nil, message: String, meta: String? = nil, requestId: String? = nil, stackTrace: String? = nil, status: Int) {
@@ -51,13 +51,13 @@ public extension PlatformClient {
 
             self.exception = exception
 
-            self.requestId = requestId
-
             self.status = status
 
-            self.message = message
-
             self.code = code
+
+            self.requestId = requestId
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -95,17 +95,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                requestId = try container.decode(String.self, forKey: .requestId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             status = try container.decode(Int.self, forKey: .status)
-
-            message = try container.decode(String.self, forKey: .message)
 
             do {
                 code = try container.decode(String.self, forKey: .code)
@@ -114,6 +104,16 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                requestId = try container.decode(String.self, forKey: .requestId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -127,13 +127,13 @@ public extension PlatformClient {
 
             try? container.encode(exception, forKey: .exception)
 
-            try? container.encode(requestId, forKey: .requestId)
-
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encode(code, forKey: .code)
+
+            try? container.encode(requestId, forKey: .requestId)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

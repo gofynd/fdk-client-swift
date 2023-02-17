@@ -8,9 +8,11 @@ public extension PlatformClient {
      */
 
     class InventoryExportResponse: Codable {
-        public var requestParams: [String: Any]?
+        public var taskId: String
 
-        public var id: String?
+        public var status: String?
+
+        public var requestParams: [String: Any]?
 
         public var triggerOn: String?
 
@@ -18,14 +20,14 @@ public extension PlatformClient {
 
         public var sellerId: Int
 
-        public var status: String?
-
-        public var taskId: String
+        public var id: String?
 
         public enum CodingKeys: String, CodingKey {
-            case requestParams = "request_params"
+            case taskId = "task_id"
 
-            case id = "_id"
+            case status
+
+            case requestParams = "request_params"
 
             case triggerOn = "trigger_on"
 
@@ -33,15 +35,15 @@ public extension PlatformClient {
 
             case sellerId = "seller_id"
 
-            case status
-
-            case taskId = "task_id"
+            case id = "_id"
         }
 
         public init(createdOn: String? = nil, requestParams: [String: Any]? = nil, sellerId: Int, status: String? = nil, taskId: String, triggerOn: String? = nil, id: String? = nil) {
-            self.requestParams = requestParams
+            self.taskId = taskId
 
-            self.id = id
+            self.status = status
+
+            self.requestParams = requestParams
 
             self.triggerOn = triggerOn
 
@@ -49,16 +51,16 @@ public extension PlatformClient {
 
             self.sellerId = sellerId
 
-            self.status = status
-
-            self.taskId = taskId
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            taskId = try container.decode(String.self, forKey: .taskId)
+
             do {
-                requestParams = try container.decode([String: Any].self, forKey: .requestParams)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -66,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                requestParams = try container.decode([String: Any].self, forKey: .requestParams)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,22 +94,22 @@ public extension PlatformClient {
             sellerId = try container.decode(Int.self, forKey: .sellerId)
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            taskId = try container.decode(String.self, forKey: .taskId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(requestParams, forKey: .requestParams)
+            try? container.encodeIfPresent(taskId, forKey: .taskId)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(requestParams, forKey: .requestParams)
 
             try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
 
@@ -115,9 +117,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(taskId, forKey: .taskId)
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

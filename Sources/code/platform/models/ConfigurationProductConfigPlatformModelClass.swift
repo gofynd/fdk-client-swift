@@ -16,11 +16,11 @@ public extension PlatformClient {
 
         public var key: String
 
+        public var subtitle: String?
+
         public var size: ProductSize?
 
         public var priority: Int
-
-        public var subtitle: String?
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
@@ -31,11 +31,11 @@ public extension PlatformClient {
 
             case key
 
+            case subtitle
+
             case size
 
             case priority
-
-            case subtitle
         }
 
         public init(isActive: Bool, key: String, logo: String? = nil, priority: Int, size: ProductSize? = nil, subtitle: String? = nil, title: String? = nil) {
@@ -47,11 +47,11 @@ public extension PlatformClient {
 
             self.key = key
 
+            self.subtitle = subtitle
+
             self.size = size
 
             self.priority = priority
-
-            self.subtitle = subtitle
         }
 
         required public init(from decoder: Decoder) throws {
@@ -78,6 +78,14 @@ public extension PlatformClient {
             key = try container.decode(String.self, forKey: .key)
 
             do {
+                subtitle = try container.decode(String.self, forKey: .subtitle)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 size = try container.decode(ProductSize.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -86,14 +94,6 @@ public extension PlatformClient {
             } catch {}
 
             priority = try container.decode(Int.self, forKey: .priority)
-
-            do {
-                subtitle = try container.decode(String.self, forKey: .subtitle)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -107,11 +107,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
-
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
         }
     }
 }

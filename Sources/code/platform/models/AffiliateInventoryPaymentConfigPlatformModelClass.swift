@@ -8,27 +8,27 @@ public extension PlatformClient {
      */
 
     class AffiliateInventoryPaymentConfig: Codable {
-        public var modeOfPayment: String?
-
         public var source: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case modeOfPayment = "mode_of_payment"
+        public var modeOfPayment: String?
 
+        public enum CodingKeys: String, CodingKey {
             case source
+
+            case modeOfPayment = "mode_of_payment"
         }
 
         public init(modeOfPayment: String? = nil, source: String? = nil) {
-            self.modeOfPayment = modeOfPayment
-
             self.source = source
+
+            self.modeOfPayment = modeOfPayment
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
+                source = try container.decode(String.self, forKey: .source)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                source = try container.decode(String.self, forKey: .source)
+                modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
-
             try? container.encodeIfPresent(source, forKey: .source)
+
+            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
         }
     }
 }

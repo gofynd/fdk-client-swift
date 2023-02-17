@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var name: String
 
-        public var displayType: String
-
         public var logo: String?
 
         public var key: String
+
+        public var displayType: String
 
         public var size: ProductSize
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case name
 
-            case displayType = "display_type"
-
             case logo
 
             case key
+
+            case displayType = "display_type"
 
             case size
 
@@ -43,11 +43,11 @@ public extension PlatformClient {
 
             self.name = name
 
-            self.displayType = displayType
-
             self.logo = logo
 
             self.key = key
+
+            self.displayType = displayType
 
             self.size = size
 
@@ -61,8 +61,6 @@ public extension PlatformClient {
 
             name = try container.decode(String.self, forKey: .name)
 
-            displayType = try container.decode(String.self, forKey: .displayType)
-
             do {
                 logo = try container.decode(String.self, forKey: .logo)
 
@@ -72,6 +70,8 @@ public extension PlatformClient {
             } catch {}
 
             key = try container.decode(String.self, forKey: .key)
+
+            displayType = try container.decode(String.self, forKey: .displayType)
 
             size = try container.decode(ProductSize.self, forKey: .size)
 
@@ -85,11 +85,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(displayType, forKey: .displayType)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(displayType, forKey: .displayType)
 
             try? container.encodeIfPresent(size, forKey: .size)
 

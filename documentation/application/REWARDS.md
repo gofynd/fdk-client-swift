@@ -549,6 +549,7 @@ Success. Check example below or refer `RedeemReferralCodeResponse` for more deta
  | share | [ShareMessages](#ShareMessages)? |  yes  |  |
  | user | [ReferralDetailsUser](#ReferralDetailsUser)? |  yes  |  |
  | referrerInfo | String? |  yes  |  |
+ | termsConditionsLink | String? |  yes  |  |
 
 ---
 

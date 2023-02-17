@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class BagConfigs: Codable {
-        public var isReturnable: Bool
-
         public var isCustomerReturnAllowed: Bool
+
+        public var isReturnable: Bool
 
         public var canBeCancelled: Bool
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public var allowForceReturn: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case isReturnable = "is_returnable"
-
             case isCustomerReturnAllowed = "is_customer_return_allowed"
+
+            case isReturnable = "is_returnable"
 
             case canBeCancelled = "can_be_cancelled"
 
@@ -35,9 +35,9 @@ public extension PlatformClient {
         }
 
         public init(allowForceReturn: Bool, canBeCancelled: Bool, enableTracking: Bool, isActive: Bool, isCustomerReturnAllowed: Bool, isReturnable: Bool) {
-            self.isReturnable = isReturnable
-
             self.isCustomerReturnAllowed = isCustomerReturnAllowed
+
+            self.isReturnable = isReturnable
 
             self.canBeCancelled = canBeCancelled
 
@@ -51,9 +51,9 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            isReturnable = try container.decode(Bool.self, forKey: .isReturnable)
-
             isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
+
+            isReturnable = try container.decode(Bool.self, forKey: .isReturnable)
 
             canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
 
@@ -67,9 +67,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isReturnable, forKey: .isReturnable)
-
             try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
+
+            try? container.encodeIfPresent(isReturnable, forKey: .isReturnable)
 
             try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
 
