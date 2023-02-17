@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var status: String
 
-        public var balance: BalanceDetails?
-
         public var statusMessage: String
+
+        public var balance: BalanceDetails?
 
         public enum CodingKeys: String, CodingKey {
             case merchantCustomerRefId = "merchant_customer_ref_id"
 
             case status
 
-            case balance
-
             case statusMessage = "status_message"
+
+            case balance
         }
 
         public init(balance: BalanceDetails? = nil, merchantCustomerRefId: String, status: String, statusMessage: String) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.status = status
 
-            self.balance = balance
-
             self.statusMessage = statusMessage
+
+            self.balance = balance
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,6 +42,8 @@ public extension ApplicationClient {
 
             status = try container.decode(String.self, forKey: .status)
 
+            statusMessage = try container.decode(String.self, forKey: .statusMessage)
+
             do {
                 balance = try container.decode(BalanceDetails.self, forKey: .balance)
 
@@ -49,8 +51,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            statusMessage = try container.decode(String.self, forKey: .statusMessage)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -60,9 +60,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(balance, forKey: .balance)
-
             try? container.encodeIfPresent(statusMessage, forKey: .statusMessage)
+
+            try? container.encodeIfPresent(balance, forKey: .balance)
         }
     }
 }

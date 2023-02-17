@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class AttachCardRequest: Codable {
         public var refresh: Bool?
 
-        public var nameOnCard: String?
-
         public var cardId: String
+
+        public var nameOnCard: String?
 
         public var nickname: String?
 
         public enum CodingKeys: String, CodingKey {
             case refresh
 
-            case nameOnCard = "name_on_card"
-
             case cardId = "card_id"
+
+            case nameOnCard = "name_on_card"
 
             case nickname
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(cardId: String, nameOnCard: String? = nil, nickname: String? = nil, refresh: Bool? = nil) {
             self.refresh = refresh
 
-            self.nameOnCard = nameOnCard
-
             self.cardId = cardId
+
+            self.nameOnCard = nameOnCard
 
             self.nickname = nickname
         }
@@ -46,6 +46,8 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            cardId = try container.decode(String.self, forKey: .cardId)
+
             do {
                 nameOnCard = try container.decode(String.self, forKey: .nameOnCard)
 
@@ -53,8 +55,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            cardId = try container.decode(String.self, forKey: .cardId)
 
             do {
                 nickname = try container.decode(String.self, forKey: .nickname)
@@ -70,9 +70,9 @@ public extension ApplicationClient {
 
             try? container.encode(refresh, forKey: .refresh)
 
-            try? container.encodeIfPresent(nameOnCard, forKey: .nameOnCard)
-
             try? container.encode(cardId, forKey: .cardId)
+
+            try? container.encodeIfPresent(nameOnCard, forKey: .nameOnCard)
 
             try? container.encodeIfPresent(nickname, forKey: .nickname)
         }
