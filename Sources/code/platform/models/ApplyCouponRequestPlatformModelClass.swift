@@ -3,31 +3,31 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: UpdateCartShipmentRequest
+         Model: ApplyCouponRequest
          Used By: Cart
      */
 
-    class UpdateCartShipmentRequest: Codable {
-        public var shipments: [UpdateCartShipmentItem]
+    class ApplyCouponRequest: Codable {
+        public var couponCode: String
 
         public enum CodingKeys: String, CodingKey {
-            case shipments
+            case couponCode = "coupon_code"
         }
 
-        public init(shipments: [UpdateCartShipmentItem]) {
-            self.shipments = shipments
+        public init(couponCode: String) {
+            self.couponCode = couponCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            shipments = try container.decode([UpdateCartShipmentItem].self, forKey: .shipments)
+            couponCode = try container.decode(String.self, forKey: .couponCode)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
+            try? container.encodeIfPresent(couponCode, forKey: .couponCode)
         }
     }
 }

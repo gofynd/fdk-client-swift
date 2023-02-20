@@ -672,7 +672,6 @@ public extension ApplicationClient {
             checkoutMode: String?,
             tags: String?,
             isDefault: Bool?,
-            userId: String?,
 
             onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
         ) {
@@ -700,10 +699,6 @@ public extension ApplicationClient {
 
             if let value = isDefault {
                 xQuery["is_default"] = value
-            }
-
-            if let value = userId {
-                xQuery["user_id"] = value
             }
 
             let fullUrl = relativeUrls["getAddresses"] ?? ""
@@ -902,16 +897,9 @@ public extension ApplicationClient {
          **/
         public func removeAddress(
             id: String,
-            userId: String?,
 
             onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = userId {
-                xQuery["user_id"] = value
-            }
-
             var fullUrl = relativeUrls["removeAddress"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
@@ -920,7 +908,7 @@ public extension ApplicationClient {
                 config: config,
                 method: "delete",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders: [],
                 body: nil,
                 responseType: "application/json",
@@ -955,7 +943,6 @@ public extension ApplicationClient {
             buyNow: Bool?,
             i: Bool?,
             b: Bool?,
-            userId: String?,
             body: SelectCartAddressRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -975,10 +962,6 @@ public extension ApplicationClient {
 
             if let value = b {
                 xQuery["b"] = value
-            }
-
-            if let value = userId {
-                xQuery["user_id"] = value
             }
 
             let fullUrl = relativeUrls["selectAddress"] ?? ""

@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class GetCollectionQueryOptionResponse: Codable {
-        public var sortOn: [ProductSortOn]?
-
         public var filters: [ProductFilters]?
+
+        public var sortOn: [ProductSortOn]?
 
         public var operators: [String: String]
 
         public enum CodingKeys: String, CodingKey {
-            case sortOn = "sort_on"
-
             case filters
+
+            case sortOn = "sort_on"
 
             case operators
         }
 
         public init(filters: [ProductFilters]? = nil, operators: [String: String], sortOn: [ProductSortOn]? = nil) {
-            self.sortOn = sortOn
-
             self.filters = filters
+
+            self.sortOn = sortOn
 
             self.operators = operators
         }
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
+                filters = try container.decode([ProductFilters].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                filters = try container.decode([ProductFilters].self, forKey: .filters)
+                sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,9 +55,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
-
             try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
 
             try? container.encodeIfPresent(operators, forKey: .operators)
         }

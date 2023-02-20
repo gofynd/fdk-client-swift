@@ -10,24 +10,24 @@ public extension PlatformClient {
     class PlatformBreakupValues: Codable {
         public var name: String?
 
-        public var value: String?
-
         public var display: String?
+
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case value
-
             case display
+
+            case value
         }
 
         public init(display: String? = nil, name: String? = nil, value: String? = nil) {
             self.name = name
 
-            self.value = value
-
             self.display = display
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }

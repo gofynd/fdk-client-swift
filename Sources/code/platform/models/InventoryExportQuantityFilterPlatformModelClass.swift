@@ -8,17 +8,23 @@ public extension PlatformClient {
      */
 
     class InventoryExportQuantityFilter: Codable {
+        public var operators: String
+
         public var max: Int?
 
         public var min: Int?
 
         public enum CodingKeys: String, CodingKey {
+            case operators
+
             case max
 
             case min
         }
 
-        public init(max: Int? = nil, min: Int? = nil) {
+        public init(max: Int? = nil, min: Int? = nil, operators: String) {
+            self.operators = operators
+
             self.max = max
 
             self.min = min
@@ -26,6 +32,8 @@ public extension PlatformClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            operators = try container.decode(String.self, forKey: .operators)
 
             do {
                 max = try container.decode(Int.self, forKey: .max)
@@ -46,6 +54,8 @@ public extension PlatformClient {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(operators, forKey: .operators)
 
             try? container.encodeIfPresent(max, forKey: .max)
 

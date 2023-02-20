@@ -17,8 +17,8 @@ Earn and redeem reward points
 * [updateUserStatus](#updateuserstatus)
 * [user](#user)
 * [getUserPointsHistory](#getuserpointshistory)
-* [getAndroidPaths](#getandroidpaths)
-* [updateAndroidPaths](#updateandroidpaths)
+* [getRewardsConfiguration](#getrewardsconfiguration)
+* [setRewardsConfiguration](#setrewardsconfiguration)
 
 
 
@@ -628,14 +628,14 @@ Success. Check example below or refer `HistoryRes` for more details.
 ---
 
 
-#### getAndroidPaths
+#### getRewardsConfiguration
 Get all valid android paths
 
 
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.getAndroidPaths() { (response, error) in
+client.application("<APPLICATION_ID>").rewards.getRewardsConfiguration() { (response, error) in
     // Use response
 }
 ```
@@ -678,14 +678,14 @@ Success. Refer `ConfigurationRes` for more details.
 ---
 
 
-#### updateAndroidPaths
+#### setRewardsConfiguration
 Updates the collection with given android paths.
 
 
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.updateAndroidPaths(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").rewards.setRewardsConfiguration(body: body) { (response, error) in
     // Use response
 }
 ```
