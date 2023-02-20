@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: LogisticTimestamp
+         Model: TATTimestampResponse
          Used By: Logistic
      */
-    class LogisticTimestamp: Codable {
+    class TATTimestampResponse: Codable {
         public var min: Int?
 
         public var max: Int?

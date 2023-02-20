@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var value: String
 
-        public var options: [SubLane]?
-
         public var text: String
+
+        public var options: [SubLane]?
 
         public enum CodingKeys: String, CodingKey {
             case totalItems = "total_items"
 
             case value
 
-            case options
-
             case text
+
+            case options
         }
 
         public init(options: [SubLane]? = nil, text: String, totalItems: Int? = nil, value: String) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.value = value
 
-            self.options = options
-
             self.text = text
+
+            self.options = options
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,6 +49,8 @@ public extension PlatformClient {
 
             value = try container.decode(String.self, forKey: .value)
 
+            text = try container.decode(String.self, forKey: .text)
+
             do {
                 options = try container.decode([SubLane].self, forKey: .options)
 
@@ -56,8 +58,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            text = try container.decode(String.self, forKey: .text)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -67,9 +67,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(options, forKey: .options)
-
             try? container.encodeIfPresent(text, forKey: .text)
+
+            try? container.encodeIfPresent(options, forKey: .options)
         }
     }
 }

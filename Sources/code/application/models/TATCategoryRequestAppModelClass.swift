@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: LogisticMeta
+         Model: TATCategoryRequest
          Used By: Logistic
      */
-    class LogisticMeta: Codable {
-        public var zone: String?
+    class TATCategoryRequest: Codable {
+        public var id: Int?
 
-        public var deliverables: [[String: Any]]?
+        public var level: String?
 
         public enum CodingKeys: String, CodingKey {
-            case zone
+            case id
 
-            case deliverables
+            case level
         }
 
-        public init(deliverables: [[String: Any]]? = nil, zone: String? = nil) {
-            self.zone = zone
+        public init(id: Int? = nil, level: String? = nil) {
+            self.id = id
 
-            self.deliverables = deliverables
+            self.level = level
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                zone = try container.decode(String.self, forKey: .zone)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                deliverables = try container.decode([[String: Any]].self, forKey: .deliverables)
+                level = try container.decode(String.self, forKey: .level)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(zone, forKey: .zone)
+            try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(deliverables, forKey: .deliverables)
+            try? container.encodeIfPresent(level, forKey: .level)
         }
     }
 }

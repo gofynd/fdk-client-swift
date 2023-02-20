@@ -3,15 +3,15 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: TatReqProductArticles
+         Model: TATArticlesRequest
          Used By: Logistic
      */
-    class TatReqProductArticles: Codable {
+    class TATArticlesRequest: Codable {
         public var manufacturingTime: Int?
 
         public var manufacturingTimeUnit: String?
 
-        public var category: LogisticRequestCategory?
+        public var category: TATCategoryRequest?
 
         public enum CodingKeys: String, CodingKey {
             case manufacturingTime = "manufacturing_time"
@@ -21,7 +21,7 @@ public extension ApplicationClient {
             case category
         }
 
-        public init(category: LogisticRequestCategory? = nil, manufacturingTime: Int? = nil, manufacturingTimeUnit: String? = nil) {
+        public init(category: TATCategoryRequest? = nil, manufacturingTime: Int? = nil, manufacturingTimeUnit: String? = nil) {
             self.manufacturingTime = manufacturingTime
 
             self.manufacturingTimeUnit = manufacturingTimeUnit
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                category = try container.decode(LogisticRequestCategory.self, forKey: .category)
+                category = try container.decode(TATCategoryRequest.self, forKey: .category)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
