@@ -8,76 +8,66 @@ public extension PlatformClient {
      */
 
     class EdcDevice: Codable {
-        public var deviceTag: String
+        public var merchantStorePosCode: String?
 
         public var applicationId: String
 
         public var storeId: Int
 
-        public var terminalUniqueIdentifier: String
+        public var deviceTag: String
 
         public var aggregatorId: Int
 
-        public var merchantStorePosCode: String?
+        public var terminalSerialNo: String
 
         public var isActive: String
 
-        public var terminalSerialNo: String
+        public var terminalUniqueIdentifier: String
 
         public var edcDeviceSerialNo: String
 
         public enum CodingKeys: String, CodingKey {
-            case deviceTag = "device_tag"
+            case merchantStorePosCode = "merchant_store_pos_code"
 
             case applicationId = "application_id"
 
             case storeId = "store_id"
 
-            case terminalUniqueIdentifier = "terminal_unique_identifier"
+            case deviceTag = "device_tag"
 
             case aggregatorId = "aggregator_id"
 
-            case merchantStorePosCode = "merchant_store_pos_code"
+            case terminalSerialNo = "terminal_serial_no"
 
             case isActive = "is_active"
 
-            case terminalSerialNo = "terminal_serial_no"
+            case terminalUniqueIdentifier = "terminal_unique_identifier"
 
             case edcDeviceSerialNo = "edc_device_serial_no"
         }
 
         public init(aggregatorId: Int, applicationId: String, deviceTag: String, edcDeviceSerialNo: String, isActive: String, merchantStorePosCode: String? = nil, storeId: Int, terminalSerialNo: String, terminalUniqueIdentifier: String) {
-            self.deviceTag = deviceTag
+            self.merchantStorePosCode = merchantStorePosCode
 
             self.applicationId = applicationId
 
             self.storeId = storeId
 
-            self.terminalUniqueIdentifier = terminalUniqueIdentifier
+            self.deviceTag = deviceTag
 
             self.aggregatorId = aggregatorId
 
-            self.merchantStorePosCode = merchantStorePosCode
+            self.terminalSerialNo = terminalSerialNo
 
             self.isActive = isActive
 
-            self.terminalSerialNo = terminalSerialNo
+            self.terminalUniqueIdentifier = terminalUniqueIdentifier
 
             self.edcDeviceSerialNo = edcDeviceSerialNo
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            deviceTag = try container.decode(String.self, forKey: .deviceTag)
-
-            applicationId = try container.decode(String.self, forKey: .applicationId)
-
-            storeId = try container.decode(Int.self, forKey: .storeId)
-
-            terminalUniqueIdentifier = try container.decode(String.self, forKey: .terminalUniqueIdentifier)
-
-            aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
 
             do {
                 merchantStorePosCode = try container.decode(String.self, forKey: .merchantStorePosCode)
@@ -87,9 +77,19 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isActive = try container.decode(String.self, forKey: .isActive)
+            applicationId = try container.decode(String.self, forKey: .applicationId)
+
+            storeId = try container.decode(Int.self, forKey: .storeId)
+
+            deviceTag = try container.decode(String.self, forKey: .deviceTag)
+
+            aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
 
             terminalSerialNo = try container.decode(String.self, forKey: .terminalSerialNo)
+
+            isActive = try container.decode(String.self, forKey: .isActive)
+
+            terminalUniqueIdentifier = try container.decode(String.self, forKey: .terminalUniqueIdentifier)
 
             edcDeviceSerialNo = try container.decode(String.self, forKey: .edcDeviceSerialNo)
         }
@@ -97,21 +97,21 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(deviceTag, forKey: .deviceTag)
+            try? container.encode(merchantStorePosCode, forKey: .merchantStorePosCode)
 
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
-            try? container.encodeIfPresent(terminalUniqueIdentifier, forKey: .terminalUniqueIdentifier)
+            try? container.encodeIfPresent(deviceTag, forKey: .deviceTag)
 
             try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
 
-            try? container.encode(merchantStorePosCode, forKey: .merchantStorePosCode)
+            try? container.encodeIfPresent(terminalSerialNo, forKey: .terminalSerialNo)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(terminalSerialNo, forKey: .terminalSerialNo)
+            try? container.encodeIfPresent(terminalUniqueIdentifier, forKey: .terminalUniqueIdentifier)
 
             try? container.encodeIfPresent(edcDeviceSerialNo, forKey: .edcDeviceSerialNo)
         }

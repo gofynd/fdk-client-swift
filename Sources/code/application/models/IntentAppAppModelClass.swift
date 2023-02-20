@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var code: String?
 
-        public var logos: PaymentModeLogo?
-
         public var packageName: String?
+
+        public var logos: PaymentModeLogo?
 
         public enum CodingKeys: String, CodingKey {
             case displayName = "display_name"
 
             case code
 
-            case logos
-
             case packageName = "package_name"
+
+            case logos
         }
 
         public init(code: String? = nil, displayName: String? = nil, logos: PaymentModeLogo? = nil, packageName: String? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.code = code
 
-            self.logos = logos
-
             self.packageName = packageName
+
+            self.logos = logos
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                logos = try container.decode(PaymentModeLogo.self, forKey: .logos)
+                packageName = try container.decode(String.self, forKey: .packageName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                packageName = try container.decode(String.self, forKey: .packageName)
+                logos = try container.decode(PaymentModeLogo.self, forKey: .logos)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient {
 
             try? container.encode(code, forKey: .code)
 
-            try? container.encode(logos, forKey: .logos)
-
             try? container.encode(packageName, forKey: .packageName)
+
+            try? container.encode(logos, forKey: .logos)
         }
     }
 }

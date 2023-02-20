@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var items: [PlatformOrderItems]?
 
-        public var success: Bool?
+        public var message: String?
 
         public var totalCount: Int?
 
-        public var message: String?
+        public var success: Bool?
 
         public var lane: String?
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case items
 
-            case success
+            case message
 
             case totalCount = "total_count"
 
-            case message
+            case success
 
             case lane
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.items = items
 
-            self.success = success
+            self.message = message
 
             self.totalCount = totalCount
 
-            self.message = message
+            self.success = success
 
             self.lane = lane
         }
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,11 +107,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(totalCount, forKey: .totalCount)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(lane, forKey: .lane)
         }

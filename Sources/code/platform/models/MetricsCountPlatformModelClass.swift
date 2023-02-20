@@ -10,40 +10,36 @@ public extension PlatformClient {
     class MetricsCount: Codable {
         public var key: String
 
+        public var options: [Options]?
+
         public var text: String
 
         public var value: Int
 
-        public var options: [Options]?
-
         public enum CodingKeys: String, CodingKey {
             case key
+
+            case options
 
             case text
 
             case value
-
-            case options
         }
 
         public init(key: String, options: [Options]? = nil, text: String, value: Int) {
             self.key = key
 
+            self.options = options
+
             self.text = text
 
             self.value = value
-
-            self.options = options
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             key = try container.decode(String.self, forKey: .key)
-
-            text = try container.decode(String.self, forKey: .text)
-
-            value = try container.decode(Int.self, forKey: .value)
 
             do {
                 options = try container.decode([Options].self, forKey: .options)
@@ -52,6 +48,10 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            text = try container.decode(String.self, forKey: .text)
+
+            value = try container.decode(Int.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -59,11 +59,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
+            try? container.encodeIfPresent(options, forKey: .options)
+
             try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(value, forKey: .value)
-
-            try? container.encodeIfPresent(options, forKey: .options)
         }
     }
 }

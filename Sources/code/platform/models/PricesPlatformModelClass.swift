@@ -12,9 +12,21 @@ public extension PlatformClient {
 
         public var deliveryCharge: Double?
 
+        public var cashback: Double?
+
         public var discount: Double?
 
-        public var cashback: Double?
+        public var amountPaidRoundoff: Double?
+
+        public var refundAmount: Double?
+
+        public var priceMarked: Double?
+
+        public var couponValue: Double?
+
+        public var cashbackApplied: Double?
+
+        public var promotionEffectiveDiscount: Double?
 
         public var fyndCredits: Double?
 
@@ -24,19 +36,7 @@ public extension PlatformClient {
 
         public var valueOfGood: Double?
 
-        public var refundAmount: Double?
-
-        public var promotionEffectiveDiscount: Double?
-
-        public var amountPaidRoundoff: Double?
-
-        public var couponValue: Double?
-
         public var amountPaid: Double?
-
-        public var cashbackApplied: Double?
-
-        public var priceMarked: Double?
 
         public var taxCollectedAtSource: Double?
 
@@ -45,9 +45,21 @@ public extension PlatformClient {
 
             case deliveryCharge = "delivery_charge"
 
+            case cashback
+
             case discount
 
-            case cashback
+            case amountPaidRoundoff = "amount_paid_roundoff"
+
+            case refundAmount = "refund_amount"
+
+            case priceMarked = "price_marked"
+
+            case couponValue = "coupon_value"
+
+            case cashbackApplied = "cashback_applied"
+
+            case promotionEffectiveDiscount = "promotion_effective_discount"
 
             case fyndCredits = "fynd_credits"
 
@@ -57,19 +69,7 @@ public extension PlatformClient {
 
             case valueOfGood = "value_of_good"
 
-            case refundAmount = "refund_amount"
-
-            case promotionEffectiveDiscount = "promotion_effective_discount"
-
-            case amountPaidRoundoff = "amount_paid_roundoff"
-
-            case couponValue = "coupon_value"
-
             case amountPaid = "amount_paid"
-
-            case cashbackApplied = "cashback_applied"
-
-            case priceMarked = "price_marked"
 
             case taxCollectedAtSource = "tax_collected_at_source"
         }
@@ -79,9 +79,21 @@ public extension PlatformClient {
 
             self.deliveryCharge = deliveryCharge
 
+            self.cashback = cashback
+
             self.discount = discount
 
-            self.cashback = cashback
+            self.amountPaidRoundoff = amountPaidRoundoff
+
+            self.refundAmount = refundAmount
+
+            self.priceMarked = priceMarked
+
+            self.couponValue = couponValue
+
+            self.cashbackApplied = cashbackApplied
+
+            self.promotionEffectiveDiscount = promotionEffectiveDiscount
 
             self.fyndCredits = fyndCredits
 
@@ -91,19 +103,7 @@ public extension PlatformClient {
 
             self.valueOfGood = valueOfGood
 
-            self.refundAmount = refundAmount
-
-            self.promotionEffectiveDiscount = promotionEffectiveDiscount
-
-            self.amountPaidRoundoff = amountPaidRoundoff
-
-            self.couponValue = couponValue
-
             self.amountPaid = amountPaid
-
-            self.cashbackApplied = cashbackApplied
-
-            self.priceMarked = priceMarked
 
             self.taxCollectedAtSource = taxCollectedAtSource
         }
@@ -128,6 +128,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                cashback = try container.decode(Double.self, forKey: .cashback)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 discount = try container.decode(Double.self, forKey: .discount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -136,7 +144,47 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                cashback = try container.decode(Double.self, forKey: .cashback)
+                amountPaidRoundoff = try container.decode(Double.self, forKey: .amountPaidRoundoff)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                refundAmount = try container.decode(Double.self, forKey: .refundAmount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                priceMarked = try container.decode(Double.self, forKey: .priceMarked)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                couponValue = try container.decode(Double.self, forKey: .couponValue)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                cashbackApplied = try container.decode(Double.self, forKey: .cashbackApplied)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                promotionEffectiveDiscount = try container.decode(Double.self, forKey: .promotionEffectiveDiscount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -176,55 +224,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                refundAmount = try container.decode(Double.self, forKey: .refundAmount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                promotionEffectiveDiscount = try container.decode(Double.self, forKey: .promotionEffectiveDiscount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                amountPaidRoundoff = try container.decode(Double.self, forKey: .amountPaidRoundoff)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                couponValue = try container.decode(Double.self, forKey: .couponValue)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 amountPaid = try container.decode(Double.self, forKey: .amountPaid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cashbackApplied = try container.decode(Double.self, forKey: .cashbackApplied)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                priceMarked = try container.decode(Double.self, forKey: .priceMarked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -247,9 +247,21 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
 
+            try? container.encodeIfPresent(cashback, forKey: .cashback)
+
             try? container.encodeIfPresent(discount, forKey: .discount)
 
-            try? container.encodeIfPresent(cashback, forKey: .cashback)
+            try? container.encodeIfPresent(amountPaidRoundoff, forKey: .amountPaidRoundoff)
+
+            try? container.encodeIfPresent(refundAmount, forKey: .refundAmount)
+
+            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+
+            try? container.encodeIfPresent(couponValue, forKey: .couponValue)
+
+            try? container.encodeIfPresent(cashbackApplied, forKey: .cashbackApplied)
+
+            try? container.encodeIfPresent(promotionEffectiveDiscount, forKey: .promotionEffectiveDiscount)
 
             try? container.encodeIfPresent(fyndCredits, forKey: .fyndCredits)
 
@@ -259,19 +271,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
 
-            try? container.encodeIfPresent(refundAmount, forKey: .refundAmount)
-
-            try? container.encodeIfPresent(promotionEffectiveDiscount, forKey: .promotionEffectiveDiscount)
-
-            try? container.encodeIfPresent(amountPaidRoundoff, forKey: .amountPaidRoundoff)
-
-            try? container.encodeIfPresent(couponValue, forKey: .couponValue)
-
             try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
-
-            try? container.encodeIfPresent(cashbackApplied, forKey: .cashbackApplied)
-
-            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
 
             try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
         }

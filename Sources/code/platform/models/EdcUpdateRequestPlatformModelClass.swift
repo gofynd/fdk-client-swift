@@ -8,51 +8,51 @@ public extension PlatformClient {
      */
 
     class EdcUpdateRequest: Codable {
-        public var deviceTag: String?
+        public var storeId: Int?
 
-        public var aggregatorId: Int?
+        public var deviceTag: String?
 
         public var merchantStorePosCode: String?
 
-        public var isActive: String?
+        public var aggregatorId: Int?
 
         public var terminalSerialNo: String
 
-        public var storeId: Int?
+        public var isActive: String?
 
         public enum CodingKeys: String, CodingKey {
-            case deviceTag = "device_tag"
+            case storeId = "store_id"
 
-            case aggregatorId = "aggregator_id"
+            case deviceTag = "device_tag"
 
             case merchantStorePosCode = "merchant_store_pos_code"
 
-            case isActive = "is_active"
+            case aggregatorId = "aggregator_id"
 
             case terminalSerialNo = "terminal_serial_no"
 
-            case storeId = "store_id"
+            case isActive = "is_active"
         }
 
         public init(aggregatorId: Int? = nil, deviceTag: String? = nil, isActive: String? = nil, merchantStorePosCode: String? = nil, storeId: Int? = nil, terminalSerialNo: String) {
-            self.deviceTag = deviceTag
+            self.storeId = storeId
 
-            self.aggregatorId = aggregatorId
+            self.deviceTag = deviceTag
 
             self.merchantStorePosCode = merchantStorePosCode
 
-            self.isActive = isActive
+            self.aggregatorId = aggregatorId
 
             self.terminalSerialNo = terminalSerialNo
 
-            self.storeId = storeId
+            self.isActive = isActive
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                deviceTag = try container.decode(String.self, forKey: .deviceTag)
+                storeId = try container.decode(Int.self, forKey: .storeId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
+                deviceTag = try container.decode(String.self, forKey: .deviceTag)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isActive = try container.decode(String.self, forKey: .isActive)
+                aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,7 @@ public extension PlatformClient {
             terminalSerialNo = try container.decode(String.self, forKey: .terminalSerialNo)
 
             do {
-                storeId = try container.decode(Int.self, forKey: .storeId)
+                isActive = try container.decode(String.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,17 +97,17 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(deviceTag, forKey: .deviceTag)
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
 
-            try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
+            try? container.encode(deviceTag, forKey: .deviceTag)
 
             try? container.encodeIfPresent(merchantStorePosCode, forKey: .merchantStorePosCode)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
 
             try? container.encodeIfPresent(terminalSerialNo, forKey: .terminalSerialNo)
 
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
     }
 }
