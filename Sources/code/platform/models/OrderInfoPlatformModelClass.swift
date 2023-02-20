@@ -8,112 +8,120 @@ public extension PlatformClient {
      */
 
     class OrderInfo: Codable {
-        public var payment: [String: Any]?
+        public var codCharges: Double
 
-        public var discount: Double
+        public var user: UserData
 
-        public var orderPriority: OrderPriority?
-
-        public var billingAddress: OrderUser
-
-        public var deliveryCharges: Double
+        public var affiliateOrderId: String?
 
         public var paymentMode: String
 
+        public var discount: Double
+
+        public var billingAddress: OrderUser
+
+        public var orderPriority: OrderPriority?
+
         public var orderValue: Double
 
-        public var coupon: String?
+        public var deliveryCharges: Double
+
+        public var payment: [String: Any]?
 
         public var shipment: ShipmentData?
 
-        public var affiliateOrderId: String?
+        public var coupon: String?
 
         public var bags: [AffiliateBag]
 
         public var items: [String: Any]
 
-        public var codCharges: Double
-
         public var shippingAddress: OrderUser
 
-        public var user: UserData
-
         public enum CodingKeys: String, CodingKey {
-            case payment
+            case codCharges = "cod_charges"
 
-            case discount
+            case user
 
-            case orderPriority = "order_priority"
-
-            case billingAddress = "billing_address"
-
-            case deliveryCharges = "delivery_charges"
+            case affiliateOrderId = "affiliate_order_id"
 
             case paymentMode = "payment_mode"
 
+            case discount
+
+            case billingAddress = "billing_address"
+
+            case orderPriority = "order_priority"
+
             case orderValue = "order_value"
 
-            case coupon
+            case deliveryCharges = "delivery_charges"
+
+            case payment
 
             case shipment
 
-            case affiliateOrderId = "affiliate_order_id"
+            case coupon
 
             case bags
 
             case items
 
-            case codCharges = "cod_charges"
-
             case shippingAddress = "shipping_address"
-
-            case user
         }
 
         public init(affiliateOrderId: String? = nil, bags: [AffiliateBag], billingAddress: OrderUser, codCharges: Double, coupon: String? = nil, deliveryCharges: Double, discount: Double, items: [String: Any], orderPriority: OrderPriority? = nil, orderValue: Double, payment: [String: Any]? = nil, paymentMode: String, shipment: ShipmentData? = nil, shippingAddress: OrderUser, user: UserData) {
-            self.payment = payment
+            self.codCharges = codCharges
 
-            self.discount = discount
+            self.user = user
 
-            self.orderPriority = orderPriority
-
-            self.billingAddress = billingAddress
-
-            self.deliveryCharges = deliveryCharges
+            self.affiliateOrderId = affiliateOrderId
 
             self.paymentMode = paymentMode
 
+            self.discount = discount
+
+            self.billingAddress = billingAddress
+
+            self.orderPriority = orderPriority
+
             self.orderValue = orderValue
 
-            self.coupon = coupon
+            self.deliveryCharges = deliveryCharges
+
+            self.payment = payment
 
             self.shipment = shipment
 
-            self.affiliateOrderId = affiliateOrderId
+            self.coupon = coupon
 
             self.bags = bags
 
             self.items = items
 
-            self.codCharges = codCharges
-
             self.shippingAddress = shippingAddress
-
-            self.user = user
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            codCharges = try container.decode(Double.self, forKey: .codCharges)
+
+            user = try container.decode(UserData.self, forKey: .user)
+
             do {
-                payment = try container.decode([String: Any].self, forKey: .payment)
+                affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
             discount = try container.decode(Double.self, forKey: .discount)
+
+            billingAddress = try container.decode(OrderUser.self, forKey: .billingAddress)
 
             do {
                 orderPriority = try container.decode(OrderPriority.self, forKey: .orderPriority)
@@ -123,16 +131,12 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            billingAddress = try container.decode(OrderUser.self, forKey: .billingAddress)
+            orderValue = try container.decode(Double.self, forKey: .orderValue)
 
             deliveryCharges = try container.decode(Double.self, forKey: .deliveryCharges)
 
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            orderValue = try container.decode(Double.self, forKey: .orderValue)
-
             do {
-                coupon = try container.decode(String.self, forKey: .coupon)
+                payment = try container.decode([String: Any].self, forKey: .payment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,7 +152,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
+                coupon = try container.decode(String.self, forKey: .coupon)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,45 +163,41 @@ public extension PlatformClient {
 
             items = try container.decode([String: Any].self, forKey: .items)
 
-            codCharges = try container.decode(Double.self, forKey: .codCharges)
-
             shippingAddress = try container.decode(OrderUser.self, forKey: .shippingAddress)
-
-            user = try container.decode(UserData.self, forKey: .user)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(payment, forKey: .payment)
+            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
 
-            try? container.encodeIfPresent(discount, forKey: .discount)
+            try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(orderPriority, forKey: .orderPriority)
-
-            try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
-
-            try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
+            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
 
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
+            try? container.encodeIfPresent(discount, forKey: .discount)
+
+            try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
+
+            try? container.encodeIfPresent(orderPriority, forKey: .orderPriority)
+
             try? container.encodeIfPresent(orderValue, forKey: .orderValue)
 
-            try? container.encode(coupon, forKey: .coupon)
+            try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
+
+            try? container.encodeIfPresent(payment, forKey: .payment)
 
             try? container.encodeIfPresent(shipment, forKey: .shipment)
 
-            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
+            try? container.encode(coupon, forKey: .coupon)
 
             try? container.encodeIfPresent(bags, forKey: .bags)
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
-
             try? container.encodeIfPresent(shippingAddress, forKey: .shippingAddress)
-
-            try? container.encodeIfPresent(user, forKey: .user)
         }
     }
 }

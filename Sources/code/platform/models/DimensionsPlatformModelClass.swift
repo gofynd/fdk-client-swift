@@ -8,36 +8,36 @@ public extension PlatformClient {
      */
 
     class Dimensions: Codable {
-        public var length: Int?
-
         public var width: Int?
+
+        public var height: Int?
 
         public var isDefault: Bool?
 
-        public var height: Int?
+        public var length: Int?
 
         public var unit: String?
 
         public enum CodingKeys: String, CodingKey {
-            case length
-
             case width
+
+            case height
 
             case isDefault = "is_default"
 
-            case height
+            case length
 
             case unit
         }
 
         public init(height: Int? = nil, isDefault: Bool? = nil, length: Int? = nil, unit: String? = nil, width: Int? = nil) {
-            self.length = length
-
             self.width = width
+
+            self.height = height
 
             self.isDefault = isDefault
 
-            self.height = height
+            self.length = length
 
             self.unit = unit
         }
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                length = try container.decode(Int.self, forKey: .length)
+                width = try container.decode(Int.self, forKey: .width)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                width = try container.decode(Int.self, forKey: .width)
+                height = try container.decode(Int.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                height = try container.decode(Int.self, forKey: .height)
+                length = try container.decode(Int.self, forKey: .length)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,13 +89,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(length, forKey: .length)
-
             try? container.encodeIfPresent(width, forKey: .width)
+
+            try? container.encodeIfPresent(height, forKey: .height)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(height, forKey: .height)
+            try? container.encodeIfPresent(length, forKey: .length)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
         }

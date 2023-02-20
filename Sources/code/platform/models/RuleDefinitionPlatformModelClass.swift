@@ -12,15 +12,15 @@ public extension PlatformClient {
 
         public var type: String
 
-        public var calculateOn: String
+        public var currencyCode: String?
 
-        public var scope: [String]?
+        public var calculateOn: String
 
         public var applicableOn: String
 
         public var isExact: Bool?
 
-        public var currencyCode: String?
+        public var scope: [String]?
 
         public var valueType: String
 
@@ -29,15 +29,15 @@ public extension PlatformClient {
 
             case type
 
-            case calculateOn = "calculate_on"
+            case currencyCode = "currency_code"
 
-            case scope
+            case calculateOn = "calculate_on"
 
             case applicableOn = "applicable_on"
 
             case isExact = "is_exact"
 
-            case currencyCode = "currency_code"
+            case scope
 
             case valueType = "value_type"
         }
@@ -47,15 +47,15 @@ public extension PlatformClient {
 
             self.type = type
 
-            self.calculateOn = calculateOn
+            self.currencyCode = currencyCode
 
-            self.scope = scope
+            self.calculateOn = calculateOn
 
             self.applicableOn = applicableOn
 
             self.isExact = isExact
 
-            self.currencyCode = currencyCode
+            self.scope = scope
 
             self.valueType = valueType
         }
@@ -73,15 +73,15 @@ public extension PlatformClient {
 
             type = try container.decode(String.self, forKey: .type)
 
-            calculateOn = try container.decode(String.self, forKey: .calculateOn)
-
             do {
-                scope = try container.decode([String].self, forKey: .scope)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            calculateOn = try container.decode(String.self, forKey: .calculateOn)
 
             applicableOn = try container.decode(String.self, forKey: .applicableOn)
 
@@ -94,7 +94,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                scope = try container.decode([String].self, forKey: .scope)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,15 +111,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(calculateOn, forKey: .calculateOn)
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
-            try? container.encodeIfPresent(scope, forKey: .scope)
+            try? container.encodeIfPresent(calculateOn, forKey: .calculateOn)
 
             try? container.encodeIfPresent(applicableOn, forKey: .applicableOn)
 
             try? container.encodeIfPresent(isExact, forKey: .isExact)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            try? container.encodeIfPresent(scope, forKey: .scope)
 
             try? container.encodeIfPresent(valueType, forKey: .valueType)
         }

@@ -3,31 +3,31 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: CartItem
+         Model: UpdateCartShipmentItem
          Used By: Cart
      */
 
-    class CartItem: Codable {
+    class UpdateCartShipmentItem: Codable {
         public var quantity: Int?
 
-        public var productId: String
+        public var shipmentType: String
 
-        public var size: String
+        public var articleUid: String
 
         public enum CodingKeys: String, CodingKey {
             case quantity
 
-            case productId = "product_id"
+            case shipmentType = "shipment_type"
 
-            case size
+            case articleUid = "article_uid"
         }
 
-        public init(productId: String, quantity: Int? = nil, size: String) {
+        public init(articleUid: String, quantity: Int? = nil, shipmentType: String) {
             self.quantity = quantity
 
-            self.productId = productId
+            self.shipmentType = shipmentType
 
-            self.size = size
+            self.articleUid = articleUid
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,9 +41,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            productId = try container.decode(String.self, forKey: .productId)
+            shipmentType = try container.decode(String.self, forKey: .shipmentType)
 
-            size = try container.decode(String.self, forKey: .size)
+            articleUid = try container.decode(String.self, forKey: .articleUid)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -51,9 +51,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(productId, forKey: .productId)
+            try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(articleUid, forKey: .articleUid)
         }
     }
 }
