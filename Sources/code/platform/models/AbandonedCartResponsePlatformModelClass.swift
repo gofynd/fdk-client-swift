@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var items: [AbandonedCart]?
 
-        public var page: Page?
-
         public var message: String?
+
+        public var page: Page?
 
         public var result: [String: Any]?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case items
 
-            case page
-
             case message
+
+            case page
 
             case result
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.items = items
 
-            self.page = page
-
             self.message = message
+
+            self.page = page
 
             self.result = result
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                page = try container.decode(Page.self, forKey: .page)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(result, forKey: .result)
         }

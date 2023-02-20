@@ -7,26 +7,26 @@ public extension ApplicationClient {
          Used By: Logistic
      */
     class TATViewRequest: Codable {
-        public var journey: String?
-
         public var identifier: String?
+
+        public var action: String?
 
         public var toPincode: String?
 
-        public var action: String?
+        public var journey: String?
 
         public var locationDetails: [TATLocationDetailsRequest]?
 
         public var source: String?
 
         public enum CodingKeys: String, CodingKey {
-            case journey
-
             case identifier
+
+            case action
 
             case toPincode = "to_pincode"
 
-            case action
+            case journey
 
             case locationDetails = "location_details"
 
@@ -34,13 +34,13 @@ public extension ApplicationClient {
         }
 
         public init(action: String? = nil, identifier: String? = nil, journey: String? = nil, locationDetails: [TATLocationDetailsRequest]? = nil, source: String? = nil, toPincode: String? = nil) {
-            self.journey = journey
-
             self.identifier = identifier
+
+            self.action = action
 
             self.toPincode = toPincode
 
-            self.action = action
+            self.journey = journey
 
             self.locationDetails = locationDetails
 
@@ -51,7 +51,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                journey = try container.decode(String.self, forKey: .journey)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -59,7 +59,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                action = try container.decode(String.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                action = try container.decode(String.self, forKey: .action)
+                journey = try container.decode(String.self, forKey: .journey)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,13 +102,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(journey, forKey: .journey)
-
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(journey, forKey: .journey)
 
             try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
 

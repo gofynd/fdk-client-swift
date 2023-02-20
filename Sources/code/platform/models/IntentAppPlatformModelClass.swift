@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var displayName: String?
 
-        public var logos: PaymentModeLogo?
-
         public var outage: [String: Any]?
 
         public var packageName: String?
+
+        public var logos: PaymentModeLogo?
 
         public enum CodingKeys: String, CodingKey {
             case code
 
             case displayName = "display_name"
 
-            case logos
-
             case outage
 
             case packageName = "package_name"
+
+            case logos
         }
 
         public init(code: String? = nil, displayName: String? = nil, logos: PaymentModeLogo? = nil, outage: [String: Any]? = nil, packageName: String? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.displayName = displayName
 
-            self.logos = logos
-
             self.outage = outage
 
             self.packageName = packageName
+
+            self.logos = logos
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,14 +62,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                logos = try container.decode(PaymentModeLogo.self, forKey: .logos)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 outage = try container.decode([String: Any].self, forKey: .outage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -84,6 +76,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                logos = try container.decode(PaymentModeLogo.self, forKey: .logos)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -93,11 +93,11 @@ public extension PlatformClient {
 
             try? container.encode(displayName, forKey: .displayName)
 
-            try? container.encode(logos, forKey: .logos)
-
             try? container.encode(outage, forKey: .outage)
 
             try? container.encode(packageName, forKey: .packageName)
+
+            try? container.encode(logos, forKey: .logos)
         }
     }
 }

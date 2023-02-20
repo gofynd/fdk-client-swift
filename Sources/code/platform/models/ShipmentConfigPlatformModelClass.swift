@@ -8,6 +8,10 @@ public extension PlatformClient {
      */
 
     class ShipmentConfig: Codable {
+        public var locationDetails: LocationDetails?
+
+        public var source: String
+
         public var toPincode: String
 
         public var identifier: String
@@ -16,15 +20,15 @@ public extension PlatformClient {
 
         public var action: String
 
-        public var source: String
+        public var journey: String
 
         public var paymentMode: String
 
-        public var journey: String
-
-        public var locationDetails: LocationDetails?
-
         public enum CodingKeys: String, CodingKey {
+            case locationDetails = "location_details"
+
+            case source
+
             case toPincode = "to_pincode"
 
             case identifier
@@ -33,16 +37,16 @@ public extension PlatformClient {
 
             case action
 
-            case source
-
-            case paymentMode = "payment_mode"
-
             case journey
 
-            case locationDetails = "location_details"
+            case paymentMode = "payment_mode"
         }
 
         public init(action: String, identifier: String, journey: String, locationDetails: LocationDetails? = nil, paymentMode: String, shipment: [ShipmentDetails], source: String, toPincode: String) {
+            self.locationDetails = locationDetails
+
+            self.source = source
+
             self.toPincode = toPincode
 
             self.identifier = identifier
@@ -51,17 +55,23 @@ public extension PlatformClient {
 
             self.action = action
 
-            self.source = source
-
-            self.paymentMode = paymentMode
-
             self.journey = journey
 
-            self.locationDetails = locationDetails
+            self.paymentMode = paymentMode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                locationDetails = try container.decode(LocationDetails.self, forKey: .locationDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            source = try container.decode(String.self, forKey: .source)
 
             toPincode = try container.decode(String.self, forKey: .toPincode)
 
@@ -71,23 +81,17 @@ public extension PlatformClient {
 
             action = try container.decode(String.self, forKey: .action)
 
-            source = try container.decode(String.self, forKey: .source)
-
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
             journey = try container.decode(String.self, forKey: .journey)
 
-            do {
-                locationDetails = try container.decode(LocationDetails.self, forKey: .locationDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
+
+            try? container.encodeIfPresent(source, forKey: .source)
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
@@ -97,13 +101,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(source, forKey: .source)
-
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-
             try? container.encodeIfPresent(journey, forKey: .journey)
 
-            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
         }
     }
 }
