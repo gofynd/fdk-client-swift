@@ -10,26 +10,26 @@ public extension PlatformClient {
     class ManifestPage: Codable {
         public var hasPrevious: Bool?
 
-        public var total: Int?
-
         public var current: String?
+
+        public var hasNext: Bool?
 
         public var type: String?
 
-        public var hasNext: Bool?
+        public var total: Int?
 
         public var size: String?
 
         public enum CodingKeys: String, CodingKey {
             case hasPrevious = "has_previous"
 
-            case total
-
             case current
+
+            case hasNext = "has_next"
 
             case type
 
-            case hasNext = "has_next"
+            case total
 
             case size
         }
@@ -37,13 +37,13 @@ public extension PlatformClient {
         public init(current: String? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, size: String? = nil, total: Int? = nil, type: String? = nil) {
             self.hasPrevious = hasPrevious
 
-            self.total = total
-
             self.current = current
+
+            self.hasNext = hasNext
 
             self.type = type
 
-            self.hasNext = hasNext
+            self.total = total
 
             self.size = size
         }
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                total = try container.decode(Int.self, forKey: .total)
+                current = try container.decode(String.self, forKey: .current)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                current = try container.decode(String.self, forKey: .current)
+                hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                total = try container.decode(Int.self, forKey: .total)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,13 +105,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
-            try? container.encodeIfPresent(total, forKey: .total)
-
             try? container.encodeIfPresent(current, forKey: .current)
+
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(total, forKey: .total)
 
             try? container.encodeIfPresent(size, forKey: .size)
         }

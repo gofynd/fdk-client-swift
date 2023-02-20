@@ -15,11 +15,11 @@ public extension ApplicationClient {
 
         public var display: String?
 
-        public var weight: Weight?
+        public var quantity: Int?
 
         public var value: String?
 
-        public var quantity: Int?
+        public var weight: Weight?
 
         public enum CodingKeys: String, CodingKey {
             case sellerIdentifiers = "seller_identifiers"
@@ -30,11 +30,11 @@ public extension ApplicationClient {
 
             case display
 
-            case weight
+            case quantity
 
             case value
 
-            case quantity
+            case weight
         }
 
         public init(dimension: Dimension? = nil, display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, sellerIdentifiers: [String]? = nil, value: String? = nil, weight: Weight? = nil) {
@@ -46,11 +46,11 @@ public extension ApplicationClient {
 
             self.display = display
 
-            self.weight = weight
+            self.quantity = quantity
 
             self.value = value
 
-            self.quantity = quantity
+            self.weight = weight
         }
 
         required public init(from decoder: Decoder) throws {
@@ -89,7 +89,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                weight = try container.decode(Weight.self, forKey: .weight)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                weight = try container.decode(Weight.self, forKey: .weight)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,11 +124,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(weight, forKey: .weight)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(weight, forKey: .weight)
         }
     }
 }

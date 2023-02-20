@@ -10,18 +10,18 @@ public extension PlatformClient {
     class CartBreakup: Codable {
         public var coupon: CouponBreakup?
 
-        public var display: [DisplayBreakup]?
-
         public var loyaltyPoints: LoyaltyPoints?
+
+        public var display: [DisplayBreakup]?
 
         public var raw: RawBreakup?
 
         public enum CodingKeys: String, CodingKey {
             case coupon
 
-            case display
-
             case loyaltyPoints = "loyalty_points"
+
+            case display
 
             case raw
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(coupon: CouponBreakup? = nil, display: [DisplayBreakup]? = nil, loyaltyPoints: LoyaltyPoints? = nil, raw: RawBreakup? = nil) {
             self.coupon = coupon
 
-            self.display = display
-
             self.loyaltyPoints = loyaltyPoints
+
+            self.display = display
 
             self.raw = raw
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                display = try container.decode([DisplayBreakup].self, forKey: .display)
+                loyaltyPoints = try container.decode(LoyaltyPoints.self, forKey: .loyaltyPoints)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                loyaltyPoints = try container.decode(LoyaltyPoints.self, forKey: .loyaltyPoints)
+                display = try container.decode([DisplayBreakup].self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(coupon, forKey: .coupon)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(loyaltyPoints, forKey: .loyaltyPoints)
+
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(raw, forKey: .raw)
         }

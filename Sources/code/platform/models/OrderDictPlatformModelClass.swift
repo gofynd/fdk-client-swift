@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var orderDate: String
 
-        public var shipmentCount: Int
-
         public var fyndOrderId: String
+
+        public var shipmentCount: Int
 
         public enum CodingKeys: String, CodingKey {
             case prices
 
             case orderDate = "order_date"
 
-            case shipmentCount = "shipment_count"
-
             case fyndOrderId = "fynd_order_id"
+
+            case shipmentCount = "shipment_count"
         }
 
         public init(fyndOrderId: String, orderDate: String, prices: Prices? = nil, shipmentCount: Int) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.orderDate = orderDate
 
-            self.shipmentCount = shipmentCount
-
             self.fyndOrderId = fyndOrderId
+
+            self.shipmentCount = shipmentCount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,9 +49,9 @@ public extension PlatformClient {
 
             orderDate = try container.decode(String.self, forKey: .orderDate)
 
-            shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
-
             fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
+            shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -61,9 +61,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(orderDate, forKey: .orderDate)
 
-            try? container.encodeIfPresent(shipmentCount, forKey: .shipmentCount)
-
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+
+            try? container.encodeIfPresent(shipmentCount, forKey: .shipmentCount)
         }
     }
 }

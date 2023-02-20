@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class InventoryPage: Codable {
-        public var nextId: String?
-
         public var type: String
+
+        public var nextId: String?
 
         public var itemTotal: Int
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var hasPrevious: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case nextId = "next_id"
-
             case type
+
+            case nextId = "next_id"
 
             case itemTotal = "item_total"
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int, nextId: String? = nil, type: String) {
-            self.nextId = nextId
-
             self.type = type
+
+            self.nextId = nextId
 
             self.itemTotal = itemTotal
 
@@ -45,6 +45,8 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            type = try container.decode(String.self, forKey: .type)
+
             do {
                 nextId = try container.decode(String.self, forKey: .nextId)
 
@@ -52,8 +54,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            type = try container.decode(String.self, forKey: .type)
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
@@ -77,9 +77,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(nextId, forKey: .nextId)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(nextId, forKey: .nextId)
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
