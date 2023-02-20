@@ -10,30 +10,30 @@ public extension PlatformClient {
     class ShipmentDetailsResponse: Codable {
         public var success: Bool
 
-        public var order: OrderDict?
+        public var customMeta: [[String: Any]]?
 
         public var shipments: [PlatformShipment]?
 
-        public var customMeta: [[String: Any]]?
+        public var order: OrderDict?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case order
+            case customMeta = "custom_meta"
 
             case shipments
 
-            case customMeta = "custom_meta"
+            case order
         }
 
         public init(customMeta: [[String: Any]]? = nil, order: OrderDict? = nil, shipments: [PlatformShipment]? = nil, success: Bool) {
             self.success = success
 
-            self.order = order
+            self.customMeta = customMeta
 
             self.shipments = shipments
 
-            self.customMeta = customMeta
+            self.order = order
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                order = try container.decode(OrderDict.self, forKey: .order)
+                customMeta = try container.decode([[String: Any]].self, forKey: .customMeta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,7 +58,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                customMeta = try container.decode([[String: Any]].self, forKey: .customMeta)
+                order = try container.decode(OrderDict.self, forKey: .order)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,11 +71,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(order, forKey: .order)
+            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
 
-            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
+            try? container.encodeIfPresent(order, forKey: .order)
         }
     }
 }

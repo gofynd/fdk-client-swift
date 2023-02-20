@@ -8,54 +8,62 @@ public extension PlatformClient {
      */
 
     class GeneratedManifestItem: Codable {
+        public var isActive: Bool?
+
         public var status: String?
 
         public var createdAt: String?
 
-        public var isActive: Bool?
+        public var createdBy: String?
 
         public var manifestId: String?
 
         public var filters: ManifestFilter?
 
-        public var createdBy: String?
-
         public var companyId: Int?
 
         public enum CodingKeys: String, CodingKey {
+            case isActive = "is_active"
+
             case status
 
             case createdAt = "created_at"
 
-            case isActive = "is_active"
+            case createdBy = "created_by"
 
             case manifestId = "manifest_id"
 
             case filters
 
-            case createdBy = "created_by"
-
             case companyId = "company_id"
         }
 
         public init(companyId: Int? = nil, createdAt: String? = nil, createdBy: String? = nil, filters: ManifestFilter? = nil, isActive: Bool? = nil, manifestId: String? = nil, status: String? = nil) {
+            self.isActive = isActive
+
             self.status = status
 
             self.createdAt = createdAt
 
-            self.isActive = isActive
+            self.createdBy = createdBy
 
             self.manifestId = manifestId
 
             self.filters = filters
-
-            self.createdBy = createdBy
 
             self.companyId = companyId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 status = try container.decode(String.self, forKey: .status)
@@ -74,7 +82,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                createdBy = try container.decode(String.self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,14 +106,6 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                createdBy = try container.decode(String.self, forKey: .createdBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -117,17 +117,17 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
             try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(manifestId, forKey: .manifestId)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
-
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
