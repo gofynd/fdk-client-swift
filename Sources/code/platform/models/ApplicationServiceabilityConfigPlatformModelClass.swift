@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ApplicationServiceabilityConfig: Codable {
         public var channelId: String
 
-        public var channelType: String
-
         public var serviceabilityType: String
+
+        public var channelType: String
 
         public enum CodingKeys: String, CodingKey {
             case channelId = "channel_id"
 
-            case channelType = "channel_type"
-
             case serviceabilityType = "serviceability_type"
+
+            case channelType = "channel_type"
         }
 
         public init(channelId: String, channelType: String, serviceabilityType: String) {
             self.channelId = channelId
 
-            self.channelType = channelType
-
             self.serviceabilityType = serviceabilityType
+
+            self.channelType = channelType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             channelId = try container.decode(String.self, forKey: .channelId)
 
-            channelType = try container.decode(String.self, forKey: .channelType)
-
             serviceabilityType = try container.decode(String.self, forKey: .serviceabilityType)
+
+            channelType = try container.decode(String.self, forKey: .channelType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(channelId, forKey: .channelId)
 
-            try? container.encodeIfPresent(channelType, forKey: .channelType)
-
             try? container.encodeIfPresent(serviceabilityType, forKey: .serviceabilityType)
+
+            try? container.encodeIfPresent(channelType, forKey: .channelType)
         }
     }
 }

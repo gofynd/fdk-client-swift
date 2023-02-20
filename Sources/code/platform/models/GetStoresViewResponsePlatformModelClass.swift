@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class GetStoresViewResponse: Codable {
-        public var page: PageResponse
+        public var page: ServiceabilityPageResponse
 
         public var items: [ItemResponse]?
 
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case items
         }
 
-        public init(items: [ItemResponse]? = nil, page: PageResponse) {
+        public init(items: [ItemResponse]? = nil, page: ServiceabilityPageResponse) {
             self.page = page
 
             self.items = items
@@ -27,7 +27,7 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            page = try container.decode(PageResponse.self, forKey: .page)
+            page = try container.decode(ServiceabilityPageResponse.self, forKey: .page)
 
             do {
                 items = try container.decode([ItemResponse].self, forKey: .items)
