@@ -10,11 +10,11 @@ public extension PlatformClient {
     class PaymentGatewayConfigResponse: Codable {
         public var success: Bool
 
-        public var created: Bool
-
         public var aggregators: [[String: Any]]?
 
         public var displayFields: [String]
+
+        public var created: Bool
 
         public var excludedFields: [String]
 
@@ -23,11 +23,11 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case created
-
             case aggregators
 
             case displayFields = "display_fields"
+
+            case created
 
             case excludedFields = "excluded_fields"
 
@@ -37,11 +37,11 @@ public extension PlatformClient {
         public init(aggregators: [[String: Any]]? = nil, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
             self.success = success
 
-            self.created = created
-
             self.aggregators = aggregators
 
             self.displayFields = displayFields
+
+            self.created = created
 
             self.excludedFields = excludedFields
 
@@ -53,8 +53,6 @@ public extension PlatformClient {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            created = try container.decode(Bool.self, forKey: .created)
-
             do {
                 aggregators = try container.decode([[String: Any]].self, forKey: .aggregators)
 
@@ -64,6 +62,8 @@ public extension PlatformClient {
             } catch {}
 
             displayFields = try container.decode([String].self, forKey: .displayFields)
+
+            created = try container.decode(Bool.self, forKey: .created)
 
             excludedFields = try container.decode([String].self, forKey: .excludedFields)
 
@@ -75,11 +75,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(created, forKey: .created)
-
             try? container.encodeIfPresent(aggregators, forKey: .aggregators)
 
             try? container.encodeIfPresent(displayFields, forKey: .displayFields)
+
+            try? container.encodeIfPresent(created, forKey: .created)
 
             try? container.encodeIfPresent(excludedFields, forKey: .excludedFields)
 

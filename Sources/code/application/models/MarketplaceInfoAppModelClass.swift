@@ -9,30 +9,32 @@ public extension ApplicationClient {
     class MarketplaceInfo: Codable {
         public var name: String
 
-        public var dateOfJoining: String?
-
         public var membershipId: String
+
+        public var dateOfJoining: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case dateOfJoining = "date_of_joining"
-
             case membershipId = "membership_id"
+
+            case dateOfJoining = "date_of_joining"
         }
 
         public init(dateOfJoining: String? = nil, membershipId: String, name: String) {
             self.name = name
 
-            self.dateOfJoining = dateOfJoining
-
             self.membershipId = membershipId
+
+            self.dateOfJoining = dateOfJoining
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             name = try container.decode(String.self, forKey: .name)
+
+            membershipId = try container.decode(String.self, forKey: .membershipId)
 
             do {
                 dateOfJoining = try container.decode(String.self, forKey: .dateOfJoining)
@@ -41,8 +43,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            membershipId = try container.decode(String.self, forKey: .membershipId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -50,9 +50,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encode(dateOfJoining, forKey: .dateOfJoining)
-
             try? container.encodeIfPresent(membershipId, forKey: .membershipId)
+
+            try? container.encode(dateOfJoining, forKey: .dateOfJoining)
         }
     }
 }
