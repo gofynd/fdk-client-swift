@@ -10,36 +10,36 @@ public extension PlatformClient {
     class ShipmentStatus: Codable {
         public var status: String
 
-        public var title: String
-
         public var hexCode: String
+
+        public var actualStatus: String
 
         public var opsStatus: String
 
-        public var actualStatus: String
+        public var title: String
 
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case title
-
             case hexCode = "hex_code"
+
+            case actualStatus = "actual_status"
 
             case opsStatus = "ops_status"
 
-            case actualStatus = "actual_status"
+            case title
         }
 
         public init(actualStatus: String, hexCode: String, opsStatus: String, status: String, title: String) {
             self.status = status
 
-            self.title = title
-
             self.hexCode = hexCode
+
+            self.actualStatus = actualStatus
 
             self.opsStatus = opsStatus
 
-            self.actualStatus = actualStatus
+            self.title = title
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,13 +47,13 @@ public extension PlatformClient {
 
             status = try container.decode(String.self, forKey: .status)
 
-            title = try container.decode(String.self, forKey: .title)
-
             hexCode = try container.decode(String.self, forKey: .hexCode)
+
+            actualStatus = try container.decode(String.self, forKey: .actualStatus)
 
             opsStatus = try container.decode(String.self, forKey: .opsStatus)
 
-            actualStatus = try container.decode(String.self, forKey: .actualStatus)
+            title = try container.decode(String.self, forKey: .title)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -61,13 +61,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encodeIfPresent(hexCode, forKey: .hexCode)
+
+            try? container.encodeIfPresent(actualStatus, forKey: .actualStatus)
 
             try? container.encodeIfPresent(opsStatus, forKey: .opsStatus)
 
-            try? container.encodeIfPresent(actualStatus, forKey: .actualStatus)
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 }

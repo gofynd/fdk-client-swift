@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var companyName: String?
 
-        public var companyId: Int?
-
         public var id: Int?
+
+        public var companyId: Int?
 
         public enum CodingKeys: String, CodingKey {
             case code
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case companyName = "company_name"
 
-            case companyId = "company_id"
-
             case id
+
+            case companyId = "company_id"
         }
 
         public init(code: String? = nil, companyId: Int? = nil, companyName: String? = nil, id: Int? = nil, name: String? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient {
 
             self.companyName = companyName
 
-            self.companyId = companyId
-
             self.id = id
+
+            self.companyId = companyId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(companyName, forKey: .companyName)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
     }
 }

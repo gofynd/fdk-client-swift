@@ -119,41 +119,13 @@ public extension PlatformClient {
          * Description: This API returns Company Store View of the application.
          **/
         public func getCompanyStoreView(
-            pageNumber: Int?,
-            pageSize: Int?,
-            zoneId: String?,
-            enabled: String?,
-            q: String?,
-
             onResponse: @escaping (_ response: CompanyStoreView_Response?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = pageNumber {
-                xQuery["page_number"] = value
-            }
-
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-
-            if let value = zoneId {
-                xQuery["zone_id"] = value
-            }
-
-            if let value = enabled {
-                xQuery["enabled"] = value
-            }
-
-            if let value = q {
-                xQuery["q"] = value
-            }
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/all-stores",
-                query: xQuery,
+                query: nil,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
@@ -259,7 +231,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Insertion of zone in database.
-         * Description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{company_id}/zone/`
+         * Description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{}/zone/`
          **/
         public func insertZoneControllerView(
             body: ZoneRequest,
