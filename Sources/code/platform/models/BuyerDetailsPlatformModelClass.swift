@@ -8,30 +8,30 @@ public extension PlatformClient {
      */
 
     class BuyerDetails: Codable {
-        public var ajioSiteId: String?
-
-        public var gstin: String
-
         public var address: String
 
         public var pincode: Int
 
         public var name: String
 
+        public var ajioSiteId: String?
+
+        public var gstin: String
+
         public var state: String
 
         public var city: String
 
         public enum CodingKeys: String, CodingKey {
-            case ajioSiteId = "ajio_site_id"
-
-            case gstin
-
             case address
 
             case pincode
 
             case name
+
+            case ajioSiteId = "ajio_site_id"
+
+            case gstin
 
             case state
 
@@ -39,15 +39,15 @@ public extension PlatformClient {
         }
 
         public init(address: String, ajioSiteId: String? = nil, city: String, gstin: String, name: String, pincode: Int, state: String) {
-            self.ajioSiteId = ajioSiteId
-
-            self.gstin = gstin
-
             self.address = address
 
             self.pincode = pincode
 
             self.name = name
+
+            self.ajioSiteId = ajioSiteId
+
+            self.gstin = gstin
 
             self.state = state
 
@@ -56,6 +56,12 @@ public extension PlatformClient {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            address = try container.decode(String.self, forKey: .address)
+
+            pincode = try container.decode(Int.self, forKey: .pincode)
+
+            name = try container.decode(String.self, forKey: .name)
 
             do {
                 ajioSiteId = try container.decode(String.self, forKey: .ajioSiteId)
@@ -67,12 +73,6 @@ public extension PlatformClient {
 
             gstin = try container.decode(String.self, forKey: .gstin)
 
-            address = try container.decode(String.self, forKey: .address)
-
-            pincode = try container.decode(Int.self, forKey: .pincode)
-
-            name = try container.decode(String.self, forKey: .name)
-
             state = try container.decode(String.self, forKey: .state)
 
             city = try container.decode(String.self, forKey: .city)
@@ -81,15 +81,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(ajioSiteId, forKey: .ajioSiteId)
-
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
-
             try? container.encode(address, forKey: .address)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(ajioSiteId, forKey: .ajioSiteId)
+
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
 
             try? container.encodeIfPresent(state, forKey: .state)
 

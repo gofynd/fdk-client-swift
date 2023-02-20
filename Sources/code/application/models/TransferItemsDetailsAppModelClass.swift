@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var displayName: String?
 
-        public var logoLarge: String
-
         public var id: Int
+
+        public var logoLarge: String
 
         public var name: String
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case displayName = "display_name"
 
-            case logoLarge = "logo_large"
-
             case id
+
+            case logoLarge = "logo_large"
 
             case name
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.displayName = displayName
 
-            self.logoLarge = logoLarge
-
             self.id = id
+
+            self.logoLarge = logoLarge
 
             self.name = name
         }
@@ -54,9 +54,9 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            logoLarge = try container.decode(String.self, forKey: .logoLarge)
-
             id = try container.decode(Int.self, forKey: .id)
+
+            logoLarge = try container.decode(String.self, forKey: .logoLarge)
 
             name = try container.decode(String.self, forKey: .name)
         }
@@ -68,9 +68,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

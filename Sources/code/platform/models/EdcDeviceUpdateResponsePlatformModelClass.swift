@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: EdcDeviceAddUpdateResponse
+         Model: EdcDeviceUpdateResponse
          Used By: Payment
      */
 
-    class EdcDeviceAddUpdateResponse: Codable {
+    class EdcDeviceUpdateResponse: Codable {
         public var success: Bool
 
         public enum CodingKeys: String, CodingKey {

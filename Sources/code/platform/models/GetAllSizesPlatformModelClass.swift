@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ListALLSizes
+         Model: GetAllSizes
          Used By: Catalog
      */
 
-    class ListALLSizes: Codable {
+    class GetAllSizes: Codable {
         public var allSizes: [AllSizes]?
 
         public enum CodingKeys: String, CodingKey {

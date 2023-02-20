@@ -10,9 +10,9 @@ public extension PlatformClient {
     class CODdata: Codable {
         public var userId: String
 
-        public var isActive: Bool
-
         public var remainingLimit: Int
+
+        public var isActive: Bool
 
         public var limit: Int
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case userId = "user_id"
 
-            case isActive = "is_active"
-
             case remainingLimit = "remaining_limit"
+
+            case isActive = "is_active"
 
             case limit
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(isActive: Bool, limit: Int, remainingLimit: Int, usages: Int, userId: String) {
             self.userId = userId
 
-            self.isActive = isActive
-
             self.remainingLimit = remainingLimit
+
+            self.isActive = isActive
 
             self.limit = limit
 
@@ -47,9 +47,9 @@ public extension PlatformClient {
 
             userId = try container.decode(String.self, forKey: .userId)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
             remainingLimit = try container.decode(Int.self, forKey: .remainingLimit)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             limit = try container.decode(Int.self, forKey: .limit)
 
@@ -61,9 +61,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(remainingLimit, forKey: .remainingLimit)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(limit, forKey: .limit)
 

@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var ifscCode: String
 
-        public var accountNo: String
-
         public var accountHolder: String
+
+        public var accountNo: String
 
         public var branchName: String
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case ifscCode = "ifsc_code"
 
-            case accountNo = "account_no"
-
             case accountHolder = "account_holder"
+
+            case accountNo = "account_no"
 
             case branchName = "branch_name"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.ifscCode = ifscCode
 
-            self.accountNo = accountNo
-
             self.accountHolder = accountHolder
+
+            self.accountNo = accountNo
 
             self.branchName = branchName
         }
@@ -49,9 +49,9 @@ public extension PlatformClient {
 
             ifscCode = try container.decode(String.self, forKey: .ifscCode)
 
-            accountNo = try container.decode(String.self, forKey: .accountNo)
-
             accountHolder = try container.decode(String.self, forKey: .accountHolder)
+
+            accountNo = try container.decode(String.self, forKey: .accountNo)
 
             branchName = try container.decode(String.self, forKey: .branchName)
         }
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
 
-            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
-
             try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+
+            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
 
             try? container.encodeIfPresent(branchName, forKey: .branchName)
         }

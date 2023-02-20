@@ -8,102 +8,76 @@ public extension PlatformClient {
      */
 
     class EdcDevice: Codable {
-        public var terminalSerialNo: String?
+        public var deviceTag: String
 
-        public var appId: String?
+        public var applicationId: String
 
-        public var isActive: Bool?
+        public var storeId: Int
 
-        public var deviceTag: String?
+        public var terminalUniqueIdentifier: String
 
-        public var storeId: Int?
-
-        public var edcSerialNo: String?
+        public var aggregatorId: Int
 
         public var merchantStorePosCode: String?
 
+        public var isActive: String
+
+        public var terminalSerialNo: String
+
+        public var edcDeviceSerialNo: String
+
         public enum CodingKeys: String, CodingKey {
-            case terminalSerialNo = "terminal_serial_no"
-
-            case appId = "app_id"
-
-            case isActive = "is_active"
-
             case deviceTag = "device_tag"
+
+            case applicationId = "application_id"
 
             case storeId = "store_id"
 
-            case edcSerialNo = "edc_serial_no"
+            case terminalUniqueIdentifier = "terminal_unique_identifier"
+
+            case aggregatorId = "aggregator_id"
 
             case merchantStorePosCode = "merchant_store_pos_code"
+
+            case isActive = "is_active"
+
+            case terminalSerialNo = "terminal_serial_no"
+
+            case edcDeviceSerialNo = "edc_device_serial_no"
         }
 
-        public init(appId: String? = nil, deviceTag: String? = nil, edcSerialNo: String? = nil, isActive: Bool? = nil, merchantStorePosCode: String? = nil, storeId: Int? = nil, terminalSerialNo: String? = nil) {
-            self.terminalSerialNo = terminalSerialNo
-
-            self.appId = appId
-
-            self.isActive = isActive
-
+        public init(aggregatorId: Int, applicationId: String, deviceTag: String, edcDeviceSerialNo: String, isActive: String, merchantStorePosCode: String? = nil, storeId: Int, terminalSerialNo: String, terminalUniqueIdentifier: String) {
             self.deviceTag = deviceTag
+
+            self.applicationId = applicationId
 
             self.storeId = storeId
 
-            self.edcSerialNo = edcSerialNo
+            self.terminalUniqueIdentifier = terminalUniqueIdentifier
+
+            self.aggregatorId = aggregatorId
 
             self.merchantStorePosCode = merchantStorePosCode
+
+            self.isActive = isActive
+
+            self.terminalSerialNo = terminalSerialNo
+
+            self.edcDeviceSerialNo = edcDeviceSerialNo
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                terminalSerialNo = try container.decode(String.self, forKey: .terminalSerialNo)
+            deviceTag = try container.decode(String.self, forKey: .deviceTag)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            applicationId = try container.decode(String.self, forKey: .applicationId)
 
-            do {
-                appId = try container.decode(String.self, forKey: .appId)
+            storeId = try container.decode(Int.self, forKey: .storeId)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            terminalUniqueIdentifier = try container.decode(String.self, forKey: .terminalUniqueIdentifier)
 
-            do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                deviceTag = try container.decode(String.self, forKey: .deviceTag)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                storeId = try container.decode(Int.self, forKey: .storeId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                edcSerialNo = try container.decode(String.self, forKey: .edcSerialNo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
 
             do {
                 merchantStorePosCode = try container.decode(String.self, forKey: .merchantStorePosCode)
@@ -112,24 +86,34 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            isActive = try container.decode(String.self, forKey: .isActive)
+
+            terminalSerialNo = try container.decode(String.self, forKey: .terminalSerialNo)
+
+            edcDeviceSerialNo = try container.decode(String.self, forKey: .edcDeviceSerialNo)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(terminalSerialNo, forKey: .terminalSerialNo)
-
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(deviceTag, forKey: .deviceTag)
+
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
-            try? container.encodeIfPresent(edcSerialNo, forKey: .edcSerialNo)
+            try? container.encodeIfPresent(terminalUniqueIdentifier, forKey: .terminalUniqueIdentifier)
 
-            try? container.encodeIfPresent(merchantStorePosCode, forKey: .merchantStorePosCode)
+            try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
+
+            try? container.encode(merchantStorePosCode, forKey: .merchantStorePosCode)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(terminalSerialNo, forKey: .terminalSerialNo)
+
+            try? container.encodeIfPresent(edcDeviceSerialNo, forKey: .edcDeviceSerialNo)
         }
     }
 }

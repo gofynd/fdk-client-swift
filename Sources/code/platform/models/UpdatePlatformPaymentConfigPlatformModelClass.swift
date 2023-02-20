@@ -8,36 +8,36 @@ public extension PlatformClient {
      */
 
     class UpdatePlatformPaymentConfig: Codable {
-        public var paymentSelectionLock: [String: Any]?
+        public var codCharges: Int?
 
         public var anonymousCod: Bool?
 
-        public var codAmountLimit: Int?
+        public var paymentSelectionLock: [String: Any]?
 
-        public var codCharges: Int?
+        public var codAmountLimit: Int?
 
         public var methods: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
-            case paymentSelectionLock = "payment_selection_lock"
+            case codCharges = "cod_charges"
 
             case anonymousCod = "anonymous_cod"
 
-            case codAmountLimit = "cod_amount_limit"
+            case paymentSelectionLock = "payment_selection_lock"
 
-            case codCharges = "cod_charges"
+            case codAmountLimit = "cod_amount_limit"
 
             case methods
         }
 
         public init(anonymousCod: Bool? = nil, codAmountLimit: Int? = nil, codCharges: Int? = nil, methods: [String: Any], paymentSelectionLock: [String: Any]? = nil) {
-            self.paymentSelectionLock = paymentSelectionLock
+            self.codCharges = codCharges
 
             self.anonymousCod = anonymousCod
 
-            self.codAmountLimit = codAmountLimit
+            self.paymentSelectionLock = paymentSelectionLock
 
-            self.codCharges = codCharges
+            self.codAmountLimit = codAmountLimit
 
             self.methods = methods
         }
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                paymentSelectionLock = try container.decode([String: Any].self, forKey: .paymentSelectionLock)
+                codCharges = try container.decode(Int.self, forKey: .codCharges)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                codAmountLimit = try container.decode(Int.self, forKey: .codAmountLimit)
+                paymentSelectionLock = try container.decode([String: Any].self, forKey: .paymentSelectionLock)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                codCharges = try container.decode(Int.self, forKey: .codCharges)
+                codAmountLimit = try container.decode(Int.self, forKey: .codAmountLimit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,13 +83,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(paymentSelectionLock, forKey: .paymentSelectionLock)
+            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
 
             try? container.encodeIfPresent(anonymousCod, forKey: .anonymousCod)
 
-            try? container.encodeIfPresent(codAmountLimit, forKey: .codAmountLimit)
+            try? container.encodeIfPresent(paymentSelectionLock, forKey: .paymentSelectionLock)
 
-            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
+            try? container.encodeIfPresent(codAmountLimit, forKey: .codAmountLimit)
 
             try? container.encode(methods, forKey: .methods)
         }
