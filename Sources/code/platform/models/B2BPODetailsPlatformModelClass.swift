@@ -8,11 +8,11 @@ public extension PlatformClient {
      */
 
     class B2BPODetails: Codable {
-        public var poTaxAmount: Double?
-
         public var poLineAmount: Double?
 
         public var partialCanRet: Bool?
+
+        public var poTaxAmount: Double?
 
         public var totalGstPercentage: Double?
 
@@ -21,11 +21,11 @@ public extension PlatformClient {
         public var dockerNumber: String?
 
         public enum CodingKeys: String, CodingKey {
-            case poTaxAmount = "po_tax_amount"
-
             case poLineAmount = "po_line_amount"
 
             case partialCanRet = "partial_can_ret"
+
+            case poTaxAmount = "po_tax_amount"
 
             case totalGstPercentage = "total_gst_percentage"
 
@@ -35,11 +35,11 @@ public extension PlatformClient {
         }
 
         public init(dockerNumber: String? = nil, itemBasePrice: Double? = nil, partialCanRet: Bool? = nil, poLineAmount: Double? = nil, poTaxAmount: Double? = nil, totalGstPercentage: Double? = nil) {
-            self.poTaxAmount = poTaxAmount
-
             self.poLineAmount = poLineAmount
 
             self.partialCanRet = partialCanRet
+
+            self.poTaxAmount = poTaxAmount
 
             self.totalGstPercentage = totalGstPercentage
 
@@ -52,14 +52,6 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                poTaxAmount = try container.decode(Double.self, forKey: .poTaxAmount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 poLineAmount = try container.decode(Double.self, forKey: .poLineAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -69,6 +61,14 @@ public extension PlatformClient {
 
             do {
                 partialCanRet = try container.decode(Bool.self, forKey: .partialCanRet)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                poTaxAmount = try container.decode(Double.self, forKey: .poTaxAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,11 +103,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(poTaxAmount, forKey: .poTaxAmount)
-
             try? container.encodeIfPresent(poLineAmount, forKey: .poLineAmount)
 
             try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
+
+            try? container.encodeIfPresent(poTaxAmount, forKey: .poTaxAmount)
 
             try? container.encodeIfPresent(totalGstPercentage, forKey: .totalGstPercentage)
 
