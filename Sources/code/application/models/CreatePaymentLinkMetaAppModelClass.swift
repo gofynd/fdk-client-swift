@@ -9,22 +9,22 @@ public extension ApplicationClient {
     class CreatePaymentLinkMeta: Codable {
         public var amount: String
 
+        public var pincode: String
+
         public var assignCardId: String?
 
         public var cartId: String
-
-        public var pincode: String
 
         public var checkoutMode: String
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
+            case pincode
+
             case assignCardId = "assign_card_id"
 
             case cartId = "cart_id"
-
-            case pincode
 
             case checkoutMode = "checkout_mode"
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient {
         public init(amount: String, assignCardId: String? = nil, cartId: String, checkoutMode: String, pincode: String) {
             self.amount = amount
 
+            self.pincode = pincode
+
             self.assignCardId = assignCardId
 
             self.cartId = cartId
-
-            self.pincode = pincode
 
             self.checkoutMode = checkoutMode
         }
@@ -45,6 +45,8 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             amount = try container.decode(String.self, forKey: .amount)
+
+            pincode = try container.decode(String.self, forKey: .pincode)
 
             do {
                 assignCardId = try container.decode(String.self, forKey: .assignCardId)
@@ -56,8 +58,6 @@ public extension ApplicationClient {
 
             cartId = try container.decode(String.self, forKey: .cartId)
 
-            pincode = try container.decode(String.self, forKey: .pincode)
-
             checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
         }
 
@@ -66,11 +66,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
             try? container.encode(assignCardId, forKey: .assignCardId)
 
             try? container.encodeIfPresent(cartId, forKey: .cartId)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
         }

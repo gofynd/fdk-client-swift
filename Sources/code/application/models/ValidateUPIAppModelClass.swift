@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class ValidateUPI: Codable {
         public var upiVpa: String
 
-        public var customerName: String
-
         public var status: String
+
+        public var customerName: String
 
         public var isValid: Bool
 
         public enum CodingKeys: String, CodingKey {
             case upiVpa = "upi_vpa"
 
-            case customerName = "customer_name"
-
             case status
+
+            case customerName = "customer_name"
 
             case isValid = "is_valid"
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(customerName: String, isValid: Bool, status: String, upiVpa: String) {
             self.upiVpa = upiVpa
 
-            self.customerName = customerName
-
             self.status = status
+
+            self.customerName = customerName
 
             self.isValid = isValid
         }
@@ -40,9 +40,9 @@ public extension ApplicationClient {
 
             upiVpa = try container.decode(String.self, forKey: .upiVpa)
 
-            customerName = try container.decode(String.self, forKey: .customerName)
-
             status = try container.decode(String.self, forKey: .status)
+
+            customerName = try container.decode(String.self, forKey: .customerName)
 
             isValid = try container.decode(Bool.self, forKey: .isValid)
         }
@@ -52,9 +52,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(upiVpa, forKey: .upiVpa)
 
-            try? container.encodeIfPresent(customerName, forKey: .customerName)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(customerName, forKey: .customerName)
 
             try? container.encodeIfPresent(isValid, forKey: .isValid)
         }

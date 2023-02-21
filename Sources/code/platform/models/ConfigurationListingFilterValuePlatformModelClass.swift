@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class ConfigurationListingFilterValue: Codable {
-        public var sort: String?
+        public var condition: String?
 
         public var bucketPoints: [ConfigurationBucketPoints]?
 
@@ -16,12 +16,12 @@ public extension PlatformClient {
 
         public var map: [String: Any]?
 
-        public var condition: String?
+        public var sort: String?
 
         public var mapValues: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
-            case sort
+            case condition
 
             case bucketPoints = "bucket_points"
 
@@ -29,13 +29,13 @@ public extension PlatformClient {
 
             case map
 
-            case condition
+            case sort
 
             case mapValues = "map_values"
         }
 
         public init(bucketPoints: [ConfigurationBucketPoints]? = nil, condition: String? = nil, map: [String: Any]? = nil, mapValues: [[String: Any]]? = nil, sort: String? = nil, value: String? = nil) {
-            self.sort = sort
+            self.condition = condition
 
             self.bucketPoints = bucketPoints
 
@@ -43,7 +43,7 @@ public extension PlatformClient {
 
             self.map = map
 
-            self.condition = condition
+            self.sort = sort
 
             self.mapValues = mapValues
         }
@@ -52,7 +52,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                sort = try container.decode(String.self, forKey: .sort)
+                condition = try container.decode(String.self, forKey: .condition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                condition = try container.decode(String.self, forKey: .condition)
+                sort = try container.decode(String.self, forKey: .sort)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,7 +103,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sort, forKey: .sort)
+            try? container.encodeIfPresent(condition, forKey: .condition)
 
             try? container.encodeIfPresent(bucketPoints, forKey: .bucketPoints)
 
@@ -111,7 +111,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(map, forKey: .map)
 
-            try? container.encodeIfPresent(condition, forKey: .condition)
+            try? container.encodeIfPresent(sort, forKey: .sort)
 
             try? container.encodeIfPresent(mapValues, forKey: .mapValues)
         }
