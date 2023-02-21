@@ -10,9 +10,9 @@ public extension PlatformClient {
     class ShipmentStatus: Codable {
         public var actualStatus: String
 
-        public var hexCode: String
-
         public var title: String
+
+        public var hexCode: String
 
         public var opsStatus: String
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case actualStatus = "actual_status"
 
-            case hexCode = "hex_code"
-
             case title
+
+            case hexCode = "hex_code"
 
             case opsStatus = "ops_status"
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(actualStatus: String, hexCode: String, opsStatus: String, status: String, title: String) {
             self.actualStatus = actualStatus
 
-            self.hexCode = hexCode
-
             self.title = title
+
+            self.hexCode = hexCode
 
             self.opsStatus = opsStatus
 
@@ -47,9 +47,9 @@ public extension PlatformClient {
 
             actualStatus = try container.decode(String.self, forKey: .actualStatus)
 
-            hexCode = try container.decode(String.self, forKey: .hexCode)
-
             title = try container.decode(String.self, forKey: .title)
+
+            hexCode = try container.decode(String.self, forKey: .hexCode)
 
             opsStatus = try container.decode(String.self, forKey: .opsStatus)
 
@@ -61,9 +61,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(actualStatus, forKey: .actualStatus)
 
-            try? container.encodeIfPresent(hexCode, forKey: .hexCode)
-
             try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encodeIfPresent(hexCode, forKey: .hexCode)
 
             try? container.encodeIfPresent(opsStatus, forKey: .opsStatus)
 

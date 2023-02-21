@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class GetAutocompleteWordsData: Codable {
-        public var uid: String?
+        public var results: [[String: Any]]?
 
         public var customJson: [String: Any]?
 
@@ -16,10 +16,10 @@ public extension PlatformClient {
 
         public var words: [String]?
 
-        public var results: [[String: Any]]?
+        public var uid: String?
 
         public enum CodingKeys: String, CodingKey {
-            case uid
+            case results
 
             case customJson = "_custom_json"
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case words
 
-            case results
+            case uid
         }
 
         public init(appId: String? = nil, results: [[String: Any]]? = nil, uid: String? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
-            self.uid = uid
+            self.results = results
 
             self.customJson = customJson
 
@@ -39,14 +39,14 @@ public extension PlatformClient {
 
             self.words = words
 
-            self.results = results
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                results = try container.decode([[String: Any]].self, forKey: .results)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                results = try container.decode([[String: Any]].self, forKey: .results)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(results, forKey: .results)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
@@ -97,7 +97,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(words, forKey: .words)
 
-            try? container.encodeIfPresent(results, forKey: .results)
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

@@ -11,13 +11,13 @@ public extension ApplicationClient {
 
         public var sizes: [SizeChartValues]?
 
+        public var headers: ColumnHeaders?
+
         public var sizeTip: String?
 
         public var image: String?
 
         public var title: String?
-
-        public var headers: ColumnHeaders?
 
         public var description: String?
 
@@ -26,13 +26,13 @@ public extension ApplicationClient {
 
             case sizes
 
+            case headers
+
             case sizeTip = "size_tip"
 
             case image
 
             case title
-
-            case headers
 
             case description
         }
@@ -42,13 +42,13 @@ public extension ApplicationClient {
 
             self.sizes = sizes
 
+            self.headers = headers
+
             self.sizeTip = sizeTip
 
             self.image = image
 
             self.title = title
-
-            self.headers = headers
 
             self.description = description
         }
@@ -66,6 +66,14 @@ public extension ApplicationClient {
 
             do {
                 sizes = try container.decode([SizeChartValues].self, forKey: .sizes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                headers = try container.decode(ColumnHeaders.self, forKey: .headers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,14 +105,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                headers = try container.decode(ColumnHeaders.self, forKey: .headers)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -120,13 +120,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
 
+            try? container.encodeIfPresent(headers, forKey: .headers)
+
             try? container.encodeIfPresent(sizeTip, forKey: .sizeTip)
 
             try? container.encodeIfPresent(image, forKey: .image)
 
             try? container.encodeIfPresent(title, forKey: .title)
-
-            try? container.encodeIfPresent(headers, forKey: .headers)
 
             try? container.encodeIfPresent(description, forKey: .description)
         }

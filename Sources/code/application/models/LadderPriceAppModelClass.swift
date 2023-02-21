@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var effective: Int?
 
-        public var offerPrice: Double?
-
         public var marked: Int?
+
+        public var offerPrice: Double?
 
         public enum CodingKeys: String, CodingKey {
             case currencySymbol = "currency_symbol"
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case effective
 
-            case offerPrice = "offer_price"
-
             case marked
+
+            case offerPrice = "offer_price"
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, effective: Int? = nil, marked: Int? = nil, offerPrice: Double? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient {
 
             self.effective = effective
 
-            self.offerPrice = offerPrice
-
             self.marked = marked
+
+            self.offerPrice = offerPrice
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                offerPrice = try container.decode(Double.self, forKey: .offerPrice)
+                marked = try container.decode(Int.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                marked = try container.decode(Int.self, forKey: .marked)
+                offerPrice = try container.decode(Double.self, forKey: .offerPrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
-            try? container.encodeIfPresent(offerPrice, forKey: .offerPrice)
-
             try? container.encodeIfPresent(marked, forKey: .marked)
+
+            try? container.encodeIfPresent(offerPrice, forKey: .offerPrice)
         }
     }
 }

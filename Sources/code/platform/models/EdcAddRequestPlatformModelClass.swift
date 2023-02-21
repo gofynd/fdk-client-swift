@@ -8,44 +8,42 @@ public extension PlatformClient {
      */
 
     class EdcAddRequest: Codable {
-        public var aggregatorId: Int
-
         public var terminalSerialNo: String
 
         public var storeId: Int?
 
-        public var edcSerialNo: String
-
         public var deviceTag: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case aggregatorId = "aggregator_id"
+        public var aggregatorId: Int
 
+        public var edcSerialNo: String
+
+        public enum CodingKeys: String, CodingKey {
             case terminalSerialNo = "terminal_serial_no"
 
             case storeId = "store_id"
 
-            case edcSerialNo = "edc_serial_no"
-
             case deviceTag = "device_tag"
+
+            case aggregatorId = "aggregator_id"
+
+            case edcSerialNo = "edc_serial_no"
         }
 
         public init(aggregatorId: Int, deviceTag: String? = nil, edcSerialNo: String, storeId: Int? = nil, terminalSerialNo: String) {
-            self.aggregatorId = aggregatorId
-
             self.terminalSerialNo = terminalSerialNo
 
             self.storeId = storeId
 
-            self.edcSerialNo = edcSerialNo
-
             self.deviceTag = deviceTag
+
+            self.aggregatorId = aggregatorId
+
+            self.edcSerialNo = edcSerialNo
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
 
             terminalSerialNo = try container.decode(String.self, forKey: .terminalSerialNo)
 
@@ -57,8 +55,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            edcSerialNo = try container.decode(String.self, forKey: .edcSerialNo)
-
             do {
                 deviceTag = try container.decode(String.self, forKey: .deviceTag)
 
@@ -66,20 +62,24 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
+
+            edcSerialNo = try container.decode(String.self, forKey: .edcSerialNo)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
-
             try? container.encodeIfPresent(terminalSerialNo, forKey: .terminalSerialNo)
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
-            try? container.encodeIfPresent(edcSerialNo, forKey: .edcSerialNo)
-
             try? container.encode(deviceTag, forKey: .deviceTag)
+
+            try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
+
+            try? container.encodeIfPresent(edcSerialNo, forKey: .edcSerialNo)
         }
     }
 }

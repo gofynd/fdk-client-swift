@@ -11,11 +11,11 @@ public extension ApplicationClient {
 
         public var currencyCode: String?
 
+        public var message: [String]?
+
         public var display: String?
 
         public var key: String?
-
-        public var message: [String]?
 
         public var value: Double?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient {
 
             case currencyCode = "currency_code"
 
+            case message
+
             case display
 
             case key
-
-            case message
 
             case value
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient {
 
             self.currencyCode = currencyCode
 
+            self.message = message
+
             self.display = display
 
             self.key = key
-
-            self.message = message
 
             self.value = value
         }
@@ -67,6 +67,14 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                message = try container.decode([String].self, forKey: .message)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,14 +84,6 @@ public extension ApplicationClient {
 
             do {
                 key = try container.decode(String.self, forKey: .key)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                message = try container.decode([String].self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
+            try? container.encodeIfPresent(message, forKey: .message)
+
             try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(key, forKey: .key)
-
-            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(value, forKey: .value)
         }

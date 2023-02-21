@@ -8,30 +8,30 @@ public extension PlatformClient {
      */
 
     class QuantitiesArticle: Codable {
-        public var notAvailable: Quantity?
+        public var orderCommitted: Quantity?
 
         public var damaged: Quantity?
 
-        public var orderCommitted: Quantity?
+        public var notAvailable: Quantity?
 
         public var sellable: Quantity?
 
         public enum CodingKeys: String, CodingKey {
-            case notAvailable = "not_available"
+            case orderCommitted = "order_committed"
 
             case damaged
 
-            case orderCommitted = "order_committed"
+            case notAvailable = "not_available"
 
             case sellable
         }
 
         public init(damaged: Quantity? = nil, notAvailable: Quantity? = nil, orderCommitted: Quantity? = nil, sellable: Quantity? = nil) {
-            self.notAvailable = notAvailable
+            self.orderCommitted = orderCommitted
 
             self.damaged = damaged
 
-            self.orderCommitted = orderCommitted
+            self.notAvailable = notAvailable
 
             self.sellable = sellable
         }
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                notAvailable = try container.decode(Quantity.self, forKey: .notAvailable)
+                orderCommitted = try container.decode(Quantity.self, forKey: .orderCommitted)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                orderCommitted = try container.decode(Quantity.self, forKey: .orderCommitted)
+                notAvailable = try container.decode(Quantity.self, forKey: .notAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,11 +75,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(notAvailable, forKey: .notAvailable)
+            try? container.encodeIfPresent(orderCommitted, forKey: .orderCommitted)
 
             try? container.encodeIfPresent(damaged, forKey: .damaged)
 
-            try? container.encodeIfPresent(orderCommitted, forKey: .orderCommitted)
+            try? container.encodeIfPresent(notAvailable, forKey: .notAvailable)
 
             try? container.encodeIfPresent(sellable, forKey: .sellable)
         }
