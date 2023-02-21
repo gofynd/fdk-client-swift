@@ -8,35 +8,33 @@ public extension PlatformClient {
      */
 
     class ShipmentPayments: Codable {
-        public var mode: String
-
-        public var source: String?
+        public var mode: String?
 
         public var logo: String?
+
+        public var source: String?
 
         public enum CodingKeys: String, CodingKey {
             case mode
 
-            case source
-
             case logo
+
+            case source
         }
 
-        public init(logo: String? = nil, mode: String, source: String? = nil) {
+        public init(logo: String? = nil, mode: String? = nil, source: String? = nil) {
             self.mode = mode
 
-            self.source = source
-
             self.logo = logo
+
+            self.source = source
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            mode = try container.decode(String.self, forKey: .mode)
-
             do {
-                source = try container.decode(String.self, forKey: .source)
+                mode = try container.decode(String.self, forKey: .mode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,6 +48,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                source = try container.decode(String.self, forKey: .source)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -57,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(mode, forKey: .mode)
 
-            try? container.encodeIfPresent(source, forKey: .source)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(source, forKey: .source)
         }
     }
 }

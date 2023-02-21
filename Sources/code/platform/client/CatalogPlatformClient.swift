@@ -1662,19 +1662,31 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Delete a product.
-         * Description: This API allows to delete product.
+         * Summary: Get a single product.
+         * Description: This API helps to get data associated to a particular product.
          **/
-        public func deleteProduct(
+        public func getProduct(
             itemId: Int,
+            brandUid: Int?,
+            itemCode: String?,
 
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SingleProductResponse?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = brandUid {
+                xQuery["brand_uid"] = value
+            }
+
+            if let value = itemCode {
+                xQuery["item_code"] = value
+            }
+
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "get",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
-                query: nil,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
@@ -1686,7 +1698,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(SingleProductResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1740,31 +1752,19 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get a single product.
-         * Description: This API helps to get data associated to a particular product.
+         * Summary: Delete a product.
+         * Description: This API allows to delete product.
          **/
-        public func getProduct(
+        public func deleteProduct(
             itemId: Int,
-            brandUid: Int?,
-            itemCode: String?,
 
-            onResponse: @escaping (_ response: SingleProductResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = brandUid {
-                xQuery["brand_uid"] = value
-            }
-
-            if let value = itemCode {
-                xQuery["item_code"] = value
-            }
-
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "delete",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
-                query: xQuery,
+                query: nil,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
@@ -1776,7 +1776,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SingleProductResponse.self, from: data)
+                        let response = Utility.decode(SuccessResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
