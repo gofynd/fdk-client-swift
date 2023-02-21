@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class UserDetail: Codable {
         public var superUser: Bool?
 
-        public var userId: String
-
         public var username: String
+
+        public var userId: String
 
         public var contact: String?
 
         public enum CodingKeys: String, CodingKey {
             case superUser = "super_user"
 
-            case userId = "user_id"
-
             case username
+
+            case userId = "user_id"
 
             case contact
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(contact: String? = nil, superUser: Bool? = nil, username: String, userId: String) {
             self.superUser = superUser
 
-            self.userId = userId
-
             self.username = username
+
+            self.userId = userId
 
             self.contact = contact
         }
@@ -46,9 +46,9 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            userId = try container.decode(String.self, forKey: .userId)
-
             username = try container.decode(String.self, forKey: .username)
+
+            userId = try container.decode(String.self, forKey: .userId)
 
             do {
                 contact = try container.decode(String.self, forKey: .contact)
@@ -64,9 +64,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(superUser, forKey: .superUser)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(username, forKey: .username)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(contact, forKey: .contact)
         }

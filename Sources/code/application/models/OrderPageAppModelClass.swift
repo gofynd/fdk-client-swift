@@ -7,22 +7,22 @@ public extension ApplicationClient {
          Used By: Order
      */
     class OrderPage: Codable {
-        public var itemTotal: Int?
+        public var type: String?
 
         public var size: Int?
 
-        public var type: String?
+        public var itemTotal: Int?
 
         public var hasNext: Bool?
 
         public var current: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case itemTotal = "item_total"
+            case type
 
             case size
 
-            case type
+            case itemTotal = "item_total"
 
             case hasNext = "has_next"
 
@@ -30,11 +30,11 @@ public extension ApplicationClient {
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
-            self.itemTotal = itemTotal
+            self.type = type
 
             self.size = size
 
-            self.type = type
+            self.itemTotal = itemTotal
 
             self.hasNext = hasNext
 
@@ -45,7 +45,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,11 +88,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 

@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class AttributeDetail: Codable {
         public var key: String?
 
-        public var description: String?
-
         public var logo: String?
 
         public var display: String?
 
+        public var description: String?
+
         public enum CodingKeys: String, CodingKey {
             case key
-
-            case description
 
             case logo
 
             case display
+
+            case description
         }
 
         public init(description: String? = nil, display: String? = nil, key: String? = nil, logo: String? = nil) {
             self.key = key
 
-            self.description = description
-
             self.logo = logo
 
             self.display = display
+
+            self.description = description
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,14 +40,6 @@ public extension ApplicationClient {
 
             do {
                 key = try container.decode(String.self, forKey: .key)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,6 +61,14 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(description, forKey: .description)
         }
     }
 }
