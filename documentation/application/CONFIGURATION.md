@@ -2744,12 +2744,12 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String |  no  | Name of the sales channel. It is required. |
- | description | String |  no  | It gives a detailed information about the sales channel. It is required. |
- | logo | [SecureUrl](#SecureUrl) |  no  |  |
- | mobileLogo | [SecureUrl](#SecureUrl) |  no  |  |
- | favicon | [SecureUrl](#SecureUrl) |  no  |  |
- | banner | [SecureUrl](#SecureUrl) |  no  |  |
+ | name | String? |  yes  | Name of the sales channel. It is required. |
+ | description | String? |  yes  | It gives a detailed information about the sales channel. It is required. |
+ | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | mobileLogo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
  | domain | [Domain](#Domain)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
  | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel details |

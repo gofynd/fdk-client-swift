@@ -7,17 +7,17 @@ public extension ApplicationClient {
          Used By: Configuration
      */
     class ApplicationDetail: Codable {
-        public var name: String
+        public var name: String?
 
-        public var description: String
+        public var description: String?
 
-        public var logo: SecureUrl
+        public var logo: SecureUrl?
 
-        public var mobileLogo: SecureUrl
+        public var mobileLogo: SecureUrl?
 
-        public var favicon: SecureUrl
+        public var favicon: SecureUrl?
 
-        public var banner: SecureUrl
+        public var banner: SecureUrl?
 
         public var domain: Domain?
 
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             case slug
         }
 
-        public init(banner: SecureUrl, description: String, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl, logo: SecureUrl, mobileLogo: SecureUrl, name: String, slug: String? = nil, id: String? = nil) {
+        public init(banner: SecureUrl? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, logo: SecureUrl? = nil, mobileLogo: SecureUrl? = nil, name: String? = nil, slug: String? = nil, id: String? = nil) {
             self.name = name
 
             self.description = description
@@ -74,17 +74,53 @@ public extension ApplicationClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            name = try container.decode(String.self, forKey: .name)
+            do {
+                name = try container.decode(String.self, forKey: .name)
 
-            description = try container.decode(String.self, forKey: .description)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            logo = try container.decode(SecureUrl.self, forKey: .logo)
+            do {
+                description = try container.decode(String.self, forKey: .description)
 
-            mobileLogo = try container.decode(SecureUrl.self, forKey: .mobileLogo)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            favicon = try container.decode(SecureUrl.self, forKey: .favicon)
+            do {
+                logo = try container.decode(SecureUrl.self, forKey: .logo)
 
-            banner = try container.decode(SecureUrl.self, forKey: .banner)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                mobileLogo = try container.decode(SecureUrl.self, forKey: .mobileLogo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                favicon = try container.decode(SecureUrl.self, forKey: .favicon)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                banner = try container.decode(SecureUrl.self, forKey: .banner)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 domain = try container.decode(Domain.self, forKey: .domain)

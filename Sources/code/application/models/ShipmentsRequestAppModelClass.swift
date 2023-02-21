@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class ShipmentsRequest: Codable {
         public var identifier: String
 
-        public var products: [Products]?
+        public var dataUpdates: DataUpdates?
 
         public var reasons: ReasonsData?
 
-        public var dataUpdates: DataUpdates?
+        public var products: [Products]?
 
         public enum CodingKeys: String, CodingKey {
             case identifier
 
-            case products
+            case dataUpdates = "data_updates"
 
             case reasons
 
-            case dataUpdates = "data_updates"
+            case products
         }
 
         public init(dataUpdates: DataUpdates? = nil, identifier: String, products: [Products]? = nil, reasons: ReasonsData? = nil) {
             self.identifier = identifier
 
-            self.products = products
+            self.dataUpdates = dataUpdates
 
             self.reasons = reasons
 
-            self.dataUpdates = dataUpdates
+            self.products = products
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             identifier = try container.decode(String.self, forKey: .identifier)
 
             do {
-                products = try container.decode([Products].self, forKey: .products)
+                dataUpdates = try container.decode(DataUpdates.self, forKey: .dataUpdates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                dataUpdates = try container.decode(DataUpdates.self, forKey: .dataUpdates)
+                products = try container.decode([Products].self, forKey: .products)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,11 +70,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(products, forKey: .products)
+            try? container.encodeIfPresent(dataUpdates, forKey: .dataUpdates)
 
             try? container.encodeIfPresent(reasons, forKey: .reasons)
 
-            try? container.encodeIfPresent(dataUpdates, forKey: .dataUpdates)
+            try? container.encodeIfPresent(products, forKey: .products)
         }
     }
 }
