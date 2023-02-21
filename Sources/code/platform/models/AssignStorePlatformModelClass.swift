@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var appId: String
 
-        public var channelIdentifier: String?
-
-        public var storeIds: [Int]?
+        public var pincode: String
 
         public var articles: [AssignStoreArticle]
 
-        public var pincode: String
+        public var channelIdentifier: String?
+
+        public var storeIds: [Int]?
 
         public var channelType: String?
 
@@ -27,13 +27,13 @@ public extension PlatformClient {
 
             case appId = "app_id"
 
-            case channelIdentifier = "channel_identifier"
-
-            case storeIds = "store_ids"
+            case pincode
 
             case articles
 
-            case pincode
+            case channelIdentifier = "channel_identifier"
+
+            case storeIds = "store_ids"
 
             case channelType = "channel_type"
         }
@@ -43,13 +43,13 @@ public extension PlatformClient {
 
             self.appId = appId
 
-            self.channelIdentifier = channelIdentifier
-
-            self.storeIds = storeIds
+            self.pincode = pincode
 
             self.articles = articles
 
-            self.pincode = pincode
+            self.channelIdentifier = channelIdentifier
+
+            self.storeIds = storeIds
 
             self.channelType = channelType
         }
@@ -67,6 +67,10 @@ public extension PlatformClient {
 
             appId = try container.decode(String.self, forKey: .appId)
 
+            pincode = try container.decode(String.self, forKey: .pincode)
+
+            articles = try container.decode([AssignStoreArticle].self, forKey: .articles)
+
             do {
                 channelIdentifier = try container.decode(String.self, forKey: .channelIdentifier)
 
@@ -82,10 +86,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            articles = try container.decode([AssignStoreArticle].self, forKey: .articles)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
 
             do {
                 channelType = try container.decode(String.self, forKey: .channelType)
@@ -103,13 +103,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(channelIdentifier, forKey: .channelIdentifier)
-
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(articles, forKey: .articles)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(channelIdentifier, forKey: .channelIdentifier)
+
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
             try? container.encodeIfPresent(channelType, forKey: .channelType)
         }

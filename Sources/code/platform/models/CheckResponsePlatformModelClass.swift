@@ -8,9 +8,7 @@ public extension PlatformClient {
      */
 
     class CheckResponse: Codable {
-        public var affiliateId: String?
-
-        public var affiliateShipmentId: String?
+        public var isShipmentLocked: Bool?
 
         public var bags: [Bags]?
 
@@ -18,7 +16,9 @@ public extension PlatformClient {
 
         public var shipmentId: String?
 
-        public var isShipmentLocked: Bool?
+        public var affiliateShipmentId: String?
+
+        public var affiliateId: String?
 
         public var isBagLocked: Bool?
 
@@ -27,9 +27,7 @@ public extension PlatformClient {
         public var originalFilter: OriginalFilter?
 
         public enum CodingKeys: String, CodingKey {
-            case affiliateId = "affiliate_id"
-
-            case affiliateShipmentId = "affiliate_shipment_id"
+            case isShipmentLocked = "is_shipment_locked"
 
             case bags
 
@@ -37,7 +35,9 @@ public extension PlatformClient {
 
             case shipmentId = "shipment_id"
 
-            case isShipmentLocked = "is_shipment_locked"
+            case affiliateShipmentId = "affiliate_shipment_id"
+
+            case affiliateId = "affiliate_id"
 
             case isBagLocked = "is_bag_locked"
 
@@ -47,9 +47,7 @@ public extension PlatformClient {
         }
 
         public init(affiliateId: String? = nil, affiliateShipmentId: String? = nil, bags: [Bags]? = nil, isBagLocked: Bool? = nil, isShipmentLocked: Bool? = nil, lockStatus: Bool? = nil, originalFilter: OriginalFilter? = nil, shipmentId: String? = nil, status: String? = nil) {
-            self.affiliateId = affiliateId
-
-            self.affiliateShipmentId = affiliateShipmentId
+            self.isShipmentLocked = isShipmentLocked
 
             self.bags = bags
 
@@ -57,7 +55,9 @@ public extension PlatformClient {
 
             self.shipmentId = shipmentId
 
-            self.isShipmentLocked = isShipmentLocked
+            self.affiliateShipmentId = affiliateShipmentId
+
+            self.affiliateId = affiliateId
 
             self.isBagLocked = isBagLocked
 
@@ -70,15 +70,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                affiliateId = try container.decode(String.self, forKey: .affiliateId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
+                isShipmentLocked = try container.decode(Bool.self, forKey: .isShipmentLocked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,7 +102,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isShipmentLocked = try container.decode(Bool.self, forKey: .isShipmentLocked)
+                affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -145,9 +145,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-
-            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
+            try? container.encodeIfPresent(isShipmentLocked, forKey: .isShipmentLocked)
 
             try? container.encodeIfPresent(bags, forKey: .bags)
 
@@ -155,7 +153,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(isShipmentLocked, forKey: .isShipmentLocked)
+            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
+
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
 
             try? container.encodeIfPresent(isBagLocked, forKey: .isBagLocked)
 

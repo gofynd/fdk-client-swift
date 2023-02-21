@@ -8,10 +8,6 @@ public extension PlatformClient {
      */
 
     class ShipmentDetail: Codable {
-        public var id: Int
-
-        public var meta: Meta
-
         public var shipmentId: String?
 
         public var bagList: [Int]?
@@ -20,11 +16,11 @@ public extension PlatformClient {
 
         public var remarks: String?
 
+        public var meta: Meta
+
+        public var id: Int
+
         public enum CodingKeys: String, CodingKey {
-            case id
-
-            case meta
-
             case shipmentId = "shipment_id"
 
             case bagList = "bag_list"
@@ -32,13 +28,13 @@ public extension PlatformClient {
             case status
 
             case remarks
+
+            case meta
+
+            case id
         }
 
         public init(bagList: [Int]? = nil, id: Int, meta: Meta, remarks: String? = nil, shipmentId: String? = nil, status: String? = nil) {
-            self.id = id
-
-            self.meta = meta
-
             self.shipmentId = shipmentId
 
             self.bagList = bagList
@@ -46,14 +42,14 @@ public extension PlatformClient {
             self.status = status
 
             self.remarks = remarks
+
+            self.meta = meta
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            id = try container.decode(Int.self, forKey: .id)
-
-            meta = try container.decode(Meta.self, forKey: .meta)
 
             do {
                 shipmentId = try container.decode(String.self, forKey: .shipmentId)
@@ -86,14 +82,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            meta = try container.decode(Meta.self, forKey: .meta)
+
+            id = try container.decode(Int.self, forKey: .id)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
@@ -102,6 +98,10 @@ public extension PlatformClient {
             try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(remarks, forKey: .remarks)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

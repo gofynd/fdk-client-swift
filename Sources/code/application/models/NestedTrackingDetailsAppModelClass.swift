@@ -3,43 +3,43 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: FreeGiftItemDetails
+         Model: NestedTrackingDetails
          Used By: Order
      */
-    class FreeGiftItemDetails: Codable {
-        public var itemId: String?
+    class NestedTrackingDetails: Codable {
+        public var time: String?
 
-        public var itemName: String?
+        public var isCurrent: Bool?
 
-        public var itemBrandName: String?
+        public var isPassed: Bool?
 
-        public var itemPriceDetails: ItemPriceDetails?
+        public var status: String?
 
         public enum CodingKeys: String, CodingKey {
-            case itemId = "item_id"
+            case time
 
-            case itemName = "item_name"
+            case isCurrent = "is_current"
 
-            case itemBrandName = "item_brand_name"
+            case isPassed = "is_passed"
 
-            case itemPriceDetails = "item_price_details"
+            case status
         }
 
-        public init(itemBrandName: String? = nil, itemId: String? = nil, itemName: String? = nil, itemPriceDetails: ItemPriceDetails? = nil) {
-            self.itemId = itemId
+        public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String? = nil, time: String? = nil) {
+            self.time = time
 
-            self.itemName = itemName
+            self.isCurrent = isCurrent
 
-            self.itemBrandName = itemBrandName
+            self.isPassed = isPassed
 
-            self.itemPriceDetails = itemPriceDetails
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemId = try container.decode(String.self, forKey: .itemId)
+                time = try container.decode(String.self, forKey: .time)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                itemName = try container.decode(String.self, forKey: .itemName)
+                isCurrent = try container.decode(Bool.self, forKey: .isCurrent)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                itemBrandName = try container.decode(String.self, forKey: .itemBrandName)
+                isPassed = try container.decode(Bool.self, forKey: .isPassed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                itemPriceDetails = try container.decode(ItemPriceDetails.self, forKey: .itemPriceDetails)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,13 +74,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(time, forKey: .time)
 
-            try? container.encodeIfPresent(itemName, forKey: .itemName)
+            try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
 
-            try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
+            try? container.encodeIfPresent(isPassed, forKey: .isPassed)
 
-            try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }
