@@ -15096,17 +15096,25 @@ public class PlatformClient {
              * Description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
              **/
             public func getShipments(
+                pickAtStoreUid: Int?,
+                orderingStoreId: Int?,
                 p: Bool?,
                 id: String?,
-                buyNow: Bool?,
                 addressId: String?,
                 areaCode: String?,
-                orderingStoreId: Int?,
                 orderType: String?,
 
                 onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
             ) {
                 var xQuery: [String: Any] = [:]
+
+                if let value = pickAtStoreUid {
+                    xQuery["pick_at_store_uid"] = value
+                }
+
+                if let value = orderingStoreId {
+                    xQuery["ordering_store_id"] = value
+                }
 
                 if let value = p {
                     xQuery["p"] = value
@@ -15114,10 +15122,6 @@ public class PlatformClient {
 
                 if let value = id {
                     xQuery["id"] = value
-                }
-
-                if let value = buyNow {
-                    xQuery["buy_now"] = value
                 }
 
                 if let value = addressId {
@@ -15128,10 +15132,6 @@ public class PlatformClient {
                     xQuery["area_code"] = value
                 }
 
-                if let value = orderingStoreId {
-                    xQuery["ordering_store_id"] = value
-                }
-
                 if let value = orderType {
                     xQuery["order_type"] = value
                 }
@@ -15140,71 +15140,6 @@ public class PlatformClient {
                     config: config,
                     method: "get",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/shipment",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(CartShipmentsResponse.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
-             * Summary: Get delivery date and options before checkout
-             * Description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
-             **/
-            public func getShipmentDelivery(
-                i: Bool?,
-                p: Bool?,
-                id: String?,
-                addressId: String?,
-                orderType: String?,
-
-                onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
-            ) {
-                var xQuery: [String: Any] = [:]
-
-                if let value = i {
-                    xQuery["i"] = value
-                }
-
-                if let value = p {
-                    xQuery["p"] = value
-                }
-
-                if let value = id {
-                    xQuery["id"] = value
-                }
-
-                if let value = addressId {
-                    xQuery["address_id"] = value
-                }
-
-                if let value = orderType {
-                    xQuery["order_type"] = value
-                }
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/shipments/delivery",
                     query: xQuery,
                     body: nil,
                     headers: [],
@@ -15269,7 +15204,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "put",
-                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/shipments/delivery",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/shipment",
                     query: xQuery,
                     body: body.dictionary,
                     headers: [],
