@@ -8,62 +8,60 @@ public extension PlatformClient {
      */
 
     class AttributeDetailsGroup: Codable {
-        public var name: String
-
         public var unit: String?
-
-        public var key: String?
-
-        public var priority: Int
-
-        public var logo: String?
-
-        public var isActive: Bool
-
-        public var slug: String?
 
         public var displayType: String
 
-        public enum CodingKeys: String, CodingKey {
-            case name
+        public var isActive: Bool
 
+        public var key: String?
+
+        public var name: String
+
+        public var logo: String?
+
+        public var priority: Int
+
+        public var slug: String?
+
+        public enum CodingKeys: String, CodingKey {
             case unit
 
-            case key
-
-            case priority
-
-            case logo
+            case displayType = "display_type"
 
             case isActive = "is_active"
 
-            case slug
+            case key
 
-            case displayType = "display_type"
+            case name
+
+            case logo
+
+            case priority
+
+            case slug
         }
 
         public init(displayType: String, isActive: Bool, key: String? = nil, logo: String? = nil, name: String, priority: Int, slug: String? = nil, unit: String? = nil) {
-            self.name = name
-
             self.unit = unit
 
-            self.key = key
-
-            self.priority = priority
-
-            self.logo = logo
+            self.displayType = displayType
 
             self.isActive = isActive
 
-            self.slug = slug
+            self.key = key
 
-            self.displayType = displayType
+            self.name = name
+
+            self.logo = logo
+
+            self.priority = priority
+
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 unit = try container.decode(String.self, forKey: .unit)
@@ -73,6 +71,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            displayType = try container.decode(String.self, forKey: .displayType)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
             do {
                 key = try container.decode(String.self, forKey: .key)
 
@@ -81,7 +83,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            priority = try container.decode(Int.self, forKey: .priority)
+            name = try container.decode(String.self, forKey: .name)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -91,7 +93,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
+            priority = try container.decode(Int.self, forKey: .priority)
 
             do {
                 slug = try container.decode(String.self, forKey: .slug)
@@ -100,28 +102,26 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            displayType = try container.decode(String.self, forKey: .displayType)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(displayType, forKey: .displayType)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(displayType, forKey: .displayType)
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }

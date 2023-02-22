@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var action: Action?
 
-        public var banners: ImageUrls?
-
         public var slug: String?
+
+        public var banners: ImageUrls?
 
         public var childs: [Child]?
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case action
 
-            case banners
-
             case slug
+
+            case banners
 
             case childs
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             self.action = action
 
-            self.banners = banners
-
             self.slug = slug
+
+            self.banners = banners
 
             self.childs = childs
         }
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                banners = try container.decode(ImageUrls.self, forKey: .banners)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                banners = try container.decode(ImageUrls.self, forKey: .banners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,9 +109,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(banners, forKey: .banners)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(banners, forKey: .banners)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
         }

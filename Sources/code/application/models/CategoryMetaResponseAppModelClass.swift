@@ -7,18 +7,18 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class CategoryMetaResponse: Codable {
-        public var logo: Media?
-
         public var banners: ImageUrls?
+
+        public var logo: Media?
 
         public var uid: Int?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case logo
-
             case banners
+
+            case logo
 
             case uid
 
@@ -26,9 +26,9 @@ public extension ApplicationClient {
         }
 
         public init(banners: ImageUrls? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
-            self.logo = logo
-
             self.banners = banners
+
+            self.logo = logo
 
             self.uid = uid
 
@@ -39,7 +39,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                banners = try container.decode(ImageUrls.self, forKey: .banners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                banners = try container.decode(ImageUrls.self, forKey: .banners)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(banners, forKey: .banners)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 

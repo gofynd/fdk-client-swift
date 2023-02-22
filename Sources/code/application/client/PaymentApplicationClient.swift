@@ -102,7 +102,6 @@ public extension ApplicationClient {
          * Description: Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
          **/
         public func getAggregatorsConfig(
-            xApiToken: String?,
             refresh: Bool?,
 
             onResponse: @escaping (_ response: AggregatorsConfigDetailResponse?, _ error: FDKError?) -> Void
@@ -113,12 +112,6 @@ public extension ApplicationClient {
                 xQuery["refresh"] = value
             }
 
-            var xHeaders: [(key: String, value: String)] = []
-
-            if let value = xApiToken {
-                xHeaders.append((key: "x-api-token", value: value))
-            }
-
             let fullUrl = relativeUrls["getAggregatorsConfig"] ?? ""
 
             ApplicationAPIClient.execute(
@@ -126,7 +119,7 @@ public extension ApplicationClient {
                 method: "get",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders: xHeaders,
+                extraHeaders: [],
                 body: nil,
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
