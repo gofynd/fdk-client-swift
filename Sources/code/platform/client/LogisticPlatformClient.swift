@@ -259,7 +259,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Insertion of zone in database.
-         * Description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{company_id}/zone/`
+         * Description: This API returns response of insertion of zone in mongo database.<br />Correction- `zone_id` in the path must be removed.<br /> path is `/service/platform/logistics-internal/v1.0/company/{company_id}/zone/`
          **/
         public func insertZoneControllerView(
             body: ZoneRequest,

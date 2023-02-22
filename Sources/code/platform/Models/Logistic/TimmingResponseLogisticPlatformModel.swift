@@ -9,18 +9,18 @@ public extension PlatformClient.Logistic {
      */
 
     class TimmingResponse: Codable {
-        public var closing: OpeningClosing?
-
         public var weekday: String?
+
+        public var closing: OpeningClosing?
 
         public var open: Bool?
 
         public var opening: OpeningClosing?
 
         public enum CodingKeys: String, CodingKey {
-            case closing
-
             case weekday
+
+            case closing
 
             case open
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Logistic {
         }
 
         public init(closing: OpeningClosing? = nil, open: Bool? = nil, opening: OpeningClosing? = nil, weekday: String? = nil) {
-            self.closing = closing
-
             self.weekday = weekday
+
+            self.closing = closing
 
             self.open = open
 
@@ -41,7 +41,7 @@ public extension PlatformClient.Logistic {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                closing = try container.decode(OpeningClosing.self, forKey: .closing)
+                weekday = try container.decode(String.self, forKey: .weekday)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Logistic {
             } catch {}
 
             do {
-                weekday = try container.decode(String.self, forKey: .weekday)
+                closing = try container.decode(OpeningClosing.self, forKey: .closing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension PlatformClient.Logistic {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(closing, forKey: .closing)
-
             try? container.encodeIfPresent(weekday, forKey: .weekday)
+
+            try? container.encodeIfPresent(closing, forKey: .closing)
 
             try? container.encodeIfPresent(open, forKey: .open)
 
@@ -94,18 +94,18 @@ public extension PlatformClient.ApplicationClient.Logistic {
      */
 
     class TimmingResponse: Codable {
-        public var closing: OpeningClosing?
-
         public var weekday: String?
+
+        public var closing: OpeningClosing?
 
         public var open: Bool?
 
         public var opening: OpeningClosing?
 
         public enum CodingKeys: String, CodingKey {
-            case closing
-
             case weekday
+
+            case closing
 
             case open
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Logistic {
         }
 
         public init(closing: OpeningClosing? = nil, open: Bool? = nil, opening: OpeningClosing? = nil, weekday: String? = nil) {
-            self.closing = closing
-
             self.weekday = weekday
+
+            self.closing = closing
 
             self.open = open
 
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Logistic {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                closing = try container.decode(OpeningClosing.self, forKey: .closing)
+                weekday = try container.decode(String.self, forKey: .weekday)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Logistic {
             } catch {}
 
             do {
-                weekday = try container.decode(String.self, forKey: .weekday)
+                closing = try container.decode(OpeningClosing.self, forKey: .closing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Logistic {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(closing, forKey: .closing)
-
             try? container.encodeIfPresent(weekday, forKey: .weekday)
+
+            try? container.encodeIfPresent(closing, forKey: .closing)
 
             try? container.encodeIfPresent(open, forKey: .open)
 
