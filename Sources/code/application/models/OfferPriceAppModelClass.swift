@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var currencyCode: String?
 
-        public var effective: Int?
-
         public var marked: Int?
+
+        public var effective: Int?
 
         public var bulkEffective: Double?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case currencyCode = "currency_code"
 
-            case effective
-
             case marked
+
+            case effective
 
             case bulkEffective = "bulk_effective"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.currencyCode = currencyCode
 
-            self.effective = effective
-
             self.marked = marked
+
+            self.effective = effective
 
             self.bulkEffective = bulkEffective
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                effective = try container.decode(Int.self, forKey: .effective)
+                marked = try container.decode(Int.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                marked = try container.decode(Int.self, forKey: .marked)
+                effective = try container.decode(Int.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
-
             try? container.encodeIfPresent(marked, forKey: .marked)
+
+            try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(bulkEffective, forKey: .bulkEffective)
         }

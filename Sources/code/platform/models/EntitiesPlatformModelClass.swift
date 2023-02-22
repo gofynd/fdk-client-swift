@@ -10,42 +10,42 @@ public extension PlatformClient {
     class Entities: Codable {
         public var id: String?
 
-        public var affiliateBagId: String?
-
         public var reasonText: String
 
         public var affiliateOrderId: String?
 
-        public var affiliateId: String?
+        public var affiliateBagId: String?
 
         public var affiliateShipmentId: String?
 
+        public var affiliateId: String?
+
         public enum CodingKeys: String, CodingKey {
             case id
-
-            case affiliateBagId = "affiliate_bag_id"
 
             case reasonText = "reason_text"
 
             case affiliateOrderId = "affiliate_order_id"
 
-            case affiliateId = "affiliate_id"
+            case affiliateBagId = "affiliate_bag_id"
 
             case affiliateShipmentId = "affiliate_shipment_id"
+
+            case affiliateId = "affiliate_id"
         }
 
         public init(affiliateBagId: String? = nil, affiliateId: String? = nil, affiliateOrderId: String? = nil, affiliateShipmentId: String? = nil, id: String? = nil, reasonText: String) {
             self.id = id
 
-            self.affiliateBagId = affiliateBagId
-
             self.reasonText = reasonText
 
             self.affiliateOrderId = affiliateOrderId
 
-            self.affiliateId = affiliateId
+            self.affiliateBagId = affiliateBagId
 
             self.affiliateShipmentId = affiliateShipmentId
+
+            self.affiliateId = affiliateId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,14 +53,6 @@ public extension PlatformClient {
 
             do {
                 id = try container.decode(String.self, forKey: .id)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                affiliateId = try container.decode(String.self, forKey: .affiliateId)
+                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,6 +84,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                affiliateId = try container.decode(String.self, forKey: .affiliateId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -99,15 +99,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
-
             try? container.encodeIfPresent(reasonText, forKey: .reasonText)
 
             try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
 
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
             try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
+
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
         }
     }
 }

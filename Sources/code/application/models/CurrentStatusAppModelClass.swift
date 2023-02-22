@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var name: String?
 
-        public var journeyType: String?
-
         public var status: String?
+
+        public var journeyType: String?
 
         public enum CodingKeys: String, CodingKey {
             case updatedAt = "updated_at"
 
             case name
 
-            case journeyType = "journey_type"
-
             case status
+
+            case journeyType = "journey_type"
         }
 
         public init(journeyType: String? = nil, name: String? = nil, status: String? = nil, updatedAt: String? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.name = name
 
-            self.journeyType = journeyType
-
             self.status = status
+
+            self.journeyType = journeyType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                journeyType = try container.decode(String.self, forKey: .journeyType)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                journeyType = try container.decode(String.self, forKey: .journeyType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
         }
     }
 }

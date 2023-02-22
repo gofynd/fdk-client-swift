@@ -7,9 +7,9 @@ public extension ApplicationClient {
          Used By: Cart
      */
     class CouponValidity: Codable {
-        public var displayMessageEn: String?
-
         public var discount: Double?
+
+        public var displayMessageEn: String?
 
         public var code: String?
 
@@ -18,9 +18,9 @@ public extension ApplicationClient {
         public var title: String?
 
         public enum CodingKeys: String, CodingKey {
-            case displayMessageEn = "display_message_en"
-
             case discount
+
+            case displayMessageEn = "display_message_en"
 
             case code
 
@@ -30,9 +30,9 @@ public extension ApplicationClient {
         }
 
         public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, title: String? = nil, valid: Bool? = nil) {
-            self.displayMessageEn = displayMessageEn
-
             self.discount = discount
+
+            self.displayMessageEn = displayMessageEn
 
             self.code = code
 
@@ -45,7 +45,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                displayMessageEn = try container.decode(String.self, forKey: .displayMessageEn)
+                discount = try container.decode(Double.self, forKey: .discount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                discount = try container.decode(Double.self, forKey: .discount)
+                displayMessageEn = try container.decode(String.self, forKey: .displayMessageEn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,9 +88,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(displayMessageEn, forKey: .displayMessageEn)
-
             try? container.encodeIfPresent(discount, forKey: .discount)
+
+            try? container.encode(displayMessageEn, forKey: .displayMessageEn)
 
             try? container.encode(code, forKey: .code)
 

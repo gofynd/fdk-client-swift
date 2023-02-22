@@ -10,42 +10,42 @@ public extension PlatformClient {
     class OrderListingResponse: Codable {
         public var totalCount: Int?
 
-        public var message: String?
-
-        public var success: Bool?
+        public var lane: String?
 
         public var page: Page?
 
-        public var items: [PlatformOrderItems]?
+        public var success: Bool?
 
-        public var lane: String?
+        public var message: String?
+
+        public var items: [PlatformOrderItems]?
 
         public enum CodingKeys: String, CodingKey {
             case totalCount = "total_count"
 
-            case message
-
-            case success
+            case lane
 
             case page
 
-            case items
+            case success
 
-            case lane
+            case message
+
+            case items
         }
 
         public init(items: [PlatformOrderItems]? = nil, lane: String? = nil, message: String? = nil, page: Page? = nil, success: Bool? = nil, totalCount: Int? = nil) {
             self.totalCount = totalCount
 
-            self.message = message
-
-            self.success = success
+            self.lane = lane
 
             self.page = page
 
-            self.items = items
+            self.success = success
 
-            self.lane = lane
+            self.message = message
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -60,15 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                success = try container.decode(Bool.self, forKey: .success)
+                lane = try container.decode(String.self, forKey: .lane)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                items = try container.decode([PlatformOrderItems].self, forKey: .items)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,7 +84,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                lane = try container.decode(String.self, forKey: .lane)
+                message = try container.decode(String.self, forKey: .message)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                items = try container.decode([PlatformOrderItems].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,15 +105,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(totalCount, forKey: .totalCount)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(lane, forKey: .lane)
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(lane, forKey: .lane)
+            try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }
