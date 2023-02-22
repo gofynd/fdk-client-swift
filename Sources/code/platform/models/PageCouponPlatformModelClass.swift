@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var total: Int?
 
-        public var hasPrevious: Bool?
-
         public var current: Int?
+
+        public var hasPrevious: Bool?
 
         public var totalItemCount: Int?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case total
 
-            case hasPrevious = "has_previous"
-
             case current
+
+            case hasPrevious = "has_previous"
 
             case totalItemCount = "total_item_count"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.total = total
 
-            self.hasPrevious = hasPrevious
-
             self.current = current
+
+            self.hasPrevious = hasPrevious
 
             self.totalItemCount = totalItemCount
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+                current = try container.decode(Int.self, forKey: .current)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                current = try container.decode(Int.self, forKey: .current)
+                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(total, forKey: .total)
 
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
-
             try? container.encodeIfPresent(current, forKey: .current)
+
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
             try? container.encodeIfPresent(totalItemCount, forKey: .totalItemCount)
         }

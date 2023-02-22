@@ -1785,20 +1785,20 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Delete a product.
-         * Description: This API allows to delete product.
+         * Summary: Patch a product.
+         * Description: This API allows to patch product.
          **/
-        public func deleteProduct(
+        public func patchProduct(
             itemId: Int,
-
+            body: ProductPatch,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "patch",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/",
                 query: nil,
-                body: nil,
+                body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -1824,20 +1824,20 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Patch a product.
-         * Description: This API allows to patch product.
+         * Summary: Delete a product.
+         * Description: This API allows to delete product.
          **/
-        public func patchProduct(
+        public func deleteProduct(
             itemId: Int,
-            body: ProductPatch,
+
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "patch",
+                method: "delete",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/",
                 query: nil,
-                body: body.dictionary,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in

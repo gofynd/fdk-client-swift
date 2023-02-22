@@ -1,45 +1,46 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: CurrentStatus
+         Model: GeneratePosOrderReceiptResponse
          Used By: Order
      */
-    class CurrentStatus: Codable {
-        public var updatedAt: String?
 
-        public var name: String?
+    class GeneratePosOrderReceiptResponse: Codable {
+        public var success: Bool?
 
-        public var journeyType: String?
+        public var invoiceReceipt: String?
 
-        public var status: String?
+        public var paymentReceipt: String?
+
+        public var orderId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case updatedAt = "updated_at"
+            case success
 
-            case name
+            case invoiceReceipt = "invoice_receipt"
 
-            case journeyType = "journey_type"
+            case paymentReceipt = "payment_receipt"
 
-            case status
+            case orderId = "order_id"
         }
 
-        public init(journeyType: String? = nil, name: String? = nil, status: String? = nil, updatedAt: String? = nil) {
-            self.updatedAt = updatedAt
+        public init(invoiceReceipt: String? = nil, orderId: String? = nil, paymentReceipt: String? = nil, success: Bool? = nil) {
+            self.success = success
 
-            self.name = name
+            self.invoiceReceipt = invoiceReceipt
 
-            self.journeyType = journeyType
+            self.paymentReceipt = paymentReceipt
 
-            self.status = status
+            self.orderId = orderId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +48,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                invoiceReceipt = try container.decode(String.self, forKey: .invoiceReceipt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +56,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                journeyType = try container.decode(String.self, forKey: .journeyType)
+                paymentReceipt = try container.decode(String.self, forKey: .paymentReceipt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +64,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,13 +75,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(invoiceReceipt, forKey: .invoiceReceipt)
 
-            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
+            try? container.encodeIfPresent(paymentReceipt, forKey: .paymentReceipt)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
         }
     }
 }

@@ -14055,6 +14055,8 @@ public class PlatformClient {
                 buyNow: Bool?,
                 addressId: String?,
                 areaCode: String?,
+                orderingStoreId: Int?,
+                orderType: String?,
 
                 onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
             ) {
@@ -14078,6 +14080,14 @@ public class PlatformClient {
 
                 if let value = areaCode {
                     xQuery["area_code"] = value
+                }
+
+                if let value = orderingStoreId {
+                    xQuery["ordering_store_id"] = value
+                }
+
+                if let value = orderType {
+                    xQuery["order_type"] = value
                 }
 
                 PlatformAPIClient.execute(

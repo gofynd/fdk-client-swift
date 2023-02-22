@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class SendOtpToCustomerResponse: Codable {
         public var message: String?
 
-        public var resendTimer: Int?
-
         public var success: Bool?
 
         public var requestId: String?
 
+        public var resendTimer: Int?
+
         public enum CodingKeys: String, CodingKey {
             case message
-
-            case resendTimer = "resend_timer"
 
             case success
 
             case requestId = "request_id"
+
+            case resendTimer = "resend_timer"
         }
 
         public init(message: String? = nil, requestId: String? = nil, resendTimer: Int? = nil, success: Bool? = nil) {
             self.message = message
 
-            self.resendTimer = resendTimer
-
             self.success = success
 
             self.requestId = requestId
+
+            self.resendTimer = resendTimer
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,14 +40,6 @@ public extension ApplicationClient {
 
             do {
                 message = try container.decode(String.self, forKey: .message)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                resendTimer = try container.decode(Int.self, forKey: .resendTimer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,6 +61,14 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                resendTimer = try container.decode(Int.self, forKey: .resendTimer)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
-
             try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(requestId, forKey: .requestId)
+
+            try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
         }
     }
 }

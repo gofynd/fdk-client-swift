@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var itemTotal: Int
 
-        public var pageType: String
+        public var size: Int
 
         public var hasNext: Bool
 
-        public var size: Int
+        public var pageType: String
 
         public enum CodingKeys: String, CodingKey {
             case current
 
             case itemTotal = "item_total"
 
-            case pageType = "page_type"
+            case size
 
             case hasNext = "has_next"
 
-            case size
+            case pageType = "page_type"
         }
 
         public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.itemTotal = itemTotal
 
-            self.pageType = pageType
+            self.size = size
 
             self.hasNext = hasNext
 
-            self.size = size
+            self.pageType = pageType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,11 +49,11 @@ public extension PlatformClient {
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
-            pageType = try container.decode(String.self, forKey: .pageType)
+            size = try container.decode(Int.self, forKey: .size)
 
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
-            size = try container.decode(Int.self, forKey: .size)
+            pageType = try container.decode(String.self, forKey: .pageType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -63,11 +63,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(pageType, forKey: .pageType)
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(pageType, forKey: .pageType)
         }
     }
 }
