@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class Size: Codable {
         public var quantity: Int?
 
+        public var isAvailable: Bool?
+
         public var value: [String: Any]?
 
         public var display: [String: Any]?
 
-        public var isAvailable: Bool?
-
         public enum CodingKeys: String, CodingKey {
             case quantity
+
+            case isAvailable = "is_available"
 
             case value
 
             case display
-
-            case isAvailable = "is_available"
         }
 
         public init(display: [String: Any]? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, value: [String: Any]? = nil) {
             self.quantity = quantity
 
+            self.isAvailable = isAvailable
+
             self.value = value
 
             self.display = display
-
-            self.isAvailable = isAvailable
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,6 +40,14 @@ public extension ApplicationClient {
 
             do {
                 quantity = try container.decode(Int.self, forKey: .quantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,14 +69,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
+            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+
             try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(display, forKey: .display)
-
-            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
         }
     }
 }

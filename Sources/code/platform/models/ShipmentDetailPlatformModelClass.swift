@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var bagList: [Int]?
 
+        public var shipmentId: String?
+
         public var remarks: String?
 
         public var status: String?
-
-        public var shipmentId: String?
 
         public var meta: Meta
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case bagList = "bag_list"
 
+            case shipmentId = "shipment_id"
+
             case remarks
 
             case status
-
-            case shipmentId = "shipment_id"
 
             case meta
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.bagList = bagList
 
+            self.shipmentId = shipmentId
+
             self.remarks = remarks
 
             self.status = status
-
-            self.shipmentId = shipmentId
 
             self.meta = meta
         }
@@ -55,6 +55,14 @@ public extension PlatformClient {
 
             do {
                 bagList = try container.decode([Int].self, forKey: .bagList)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,14 +85,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             meta = try container.decode(Meta.self, forKey: .meta)
         }
 
@@ -95,11 +95,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(bagList, forKey: .bagList)
 
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
             try? container.encodeIfPresent(remarks, forKey: .remarks)
 
             try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
         }

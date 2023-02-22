@@ -10,30 +10,30 @@ public extension PlatformClient {
     class Reason: Codable {
         public var questionSet: [QuestionSet]?
 
-        public var qcType: [String]?
+        public var displayName: String?
 
         public var id: Int?
 
-        public var displayName: String?
+        public var qcType: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case questionSet = "question_set"
 
-            case qcType = "qc_type"
+            case displayName = "display_name"
 
             case id
 
-            case displayName = "display_name"
+            case qcType = "qc_type"
         }
 
         public init(displayName: String? = nil, id: Int? = nil, qcType: [String]? = nil, questionSet: [QuestionSet]? = nil) {
             self.questionSet = questionSet
 
-            self.qcType = qcType
+            self.displayName = displayName
 
             self.id = id
 
-            self.displayName = displayName
+            self.qcType = qcType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                qcType = try container.decode([String].self, forKey: .qcType)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                qcType = try container.decode([String].self, forKey: .qcType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,11 +77,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(questionSet, forKey: .questionSet)
 
-            try? container.encodeIfPresent(qcType, forKey: .qcType)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(qcType, forKey: .qcType)
         }
     }
 }

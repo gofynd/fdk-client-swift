@@ -10,22 +10,22 @@ public extension PlatformClient {
     class Document: Codable {
         public var verified: Bool
 
-        public var value: String
+        public var url: String?
 
         public var dsType: String
 
-        public var url: String?
+        public var value: String
 
         public var legalName: String
 
         public enum CodingKeys: String, CodingKey {
             case verified
 
-            case value
+            case url
 
             case dsType = "ds_type"
 
-            case url
+            case value
 
             case legalName = "legal_name"
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
             self.verified = verified
 
-            self.value = value
+            self.url = url
 
             self.dsType = dsType
 
-            self.url = url
+            self.value = value
 
             self.legalName = legalName
         }
@@ -47,10 +47,6 @@ public extension PlatformClient {
 
             verified = try container.decode(Bool.self, forKey: .verified)
 
-            value = try container.decode(String.self, forKey: .value)
-
-            dsType = try container.decode(String.self, forKey: .dsType)
-
             do {
                 url = try container.decode(String.self, forKey: .url)
 
@@ -58,6 +54,10 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            dsType = try container.decode(String.self, forKey: .dsType)
+
+            value = try container.decode(String.self, forKey: .value)
 
             legalName = try container.decode(String.self, forKey: .legalName)
         }
@@ -67,11 +67,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(verified, forKey: .verified)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(dsType, forKey: .dsType)
 
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
         }
