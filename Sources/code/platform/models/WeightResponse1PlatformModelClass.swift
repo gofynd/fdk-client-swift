@@ -1,33 +1,34 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: LogisticResponseCategory
-         Used By: Logistic
+         Model: WeightResponse1
+         Used By: Catalog
      */
-    class LogisticResponseCategory: Codable {
-        public var id: Int?
 
-        public var level: String?
+    class WeightResponse1: Codable {
+        public var unit: String?
+
+        public var shipping: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case id
+            case unit
 
-            case level
+            case shipping
         }
 
-        public init(id: Int? = nil, level: String? = nil) {
-            self.id = id
+        public init(shipping: Double? = nil, unit: String? = nil) {
+            self.unit = unit
 
-            self.level = level
+            self.shipping = shipping
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +36,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                level = try container.decode(String.self, forKey: .level)
+                shipping = try container.decode(Double.self, forKey: .shipping)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +47,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(level, forKey: .level)
+            try? container.encodeIfPresent(shipping, forKey: .shipping)
         }
     }
 }

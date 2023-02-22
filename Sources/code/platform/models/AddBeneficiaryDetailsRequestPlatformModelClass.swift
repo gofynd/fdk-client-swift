@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class AddBeneficiaryDetailsRequest: Codable {
-        public var details: BeneficiaryModeDetails
-
         public var shipmentId: String
+
+        public var details: BeneficiaryModeDetails
 
         public var otp: String?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
         public var requestId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case details
-
             case shipmentId = "shipment_id"
+
+            case details
 
             case otp
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
         }
 
         public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String? = nil, requestId: String? = nil, shipmentId: String, transferMode: String) {
-            self.details = details
-
             self.shipmentId = shipmentId
+
+            self.details = details
 
             self.otp = otp
 
@@ -57,9 +57,9 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
-
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
 
             do {
                 otp = try container.decode(String.self, forKey: .otp)
@@ -87,9 +87,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(details, forKey: .details)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(details, forKey: .details)
 
             try? container.encodeIfPresent(otp, forKey: .otp)
 

@@ -13,19 +13,19 @@ public extension ApplicationClient {
 
         public var amount: Int
 
-        public var method: String
-
         public var contact: String
 
         public var vpa: String
 
-        public var merchantOrderId: String
+        public var method: String
 
-        public var status: String
+        public var aggregator: String
 
         public var currency: String
 
-        public var aggregator: String
+        public var status: String
+
+        public var merchantOrderId: String
 
         public var customerId: String
 
@@ -36,19 +36,19 @@ public extension ApplicationClient {
 
             case amount
 
-            case method
-
             case contact
 
             case vpa
 
-            case merchantOrderId = "merchant_order_id"
+            case method
 
-            case status
+            case aggregator
 
             case currency
 
-            case aggregator
+            case status
+
+            case merchantOrderId = "merchant_order_id"
 
             case customerId = "customer_id"
         }
@@ -60,19 +60,19 @@ public extension ApplicationClient {
 
             self.amount = amount
 
-            self.method = method
-
             self.contact = contact
 
             self.vpa = vpa
 
-            self.merchantOrderId = merchantOrderId
+            self.method = method
 
-            self.status = status
+            self.aggregator = aggregator
 
             self.currency = currency
 
-            self.aggregator = aggregator
+            self.status = status
+
+            self.merchantOrderId = merchantOrderId
 
             self.customerId = customerId
         }
@@ -86,19 +86,19 @@ public extension ApplicationClient {
 
             amount = try container.decode(Int.self, forKey: .amount)
 
-            method = try container.decode(String.self, forKey: .method)
-
             contact = try container.decode(String.self, forKey: .contact)
 
             vpa = try container.decode(String.self, forKey: .vpa)
 
-            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
+            method = try container.decode(String.self, forKey: .method)
 
-            status = try container.decode(String.self, forKey: .status)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             currency = try container.decode(String.self, forKey: .currency)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
+            status = try container.decode(String.self, forKey: .status)
+
+            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
 
             customerId = try container.decode(String.self, forKey: .customerId)
         }
@@ -112,19 +112,19 @@ public extension ApplicationClient {
 
             try? container.encode(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(method, forKey: .method)
-
             try? container.encodeIfPresent(contact, forKey: .contact)
 
             try? container.encodeIfPresent(vpa, forKey: .vpa)
 
-            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            try? container.encodeIfPresent(method, forKey: .method)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
 
             try? container.encodeIfPresent(customerId, forKey: .customerId)
         }

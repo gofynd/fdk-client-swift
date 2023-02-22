@@ -1,33 +1,34 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: LogisticPromise
-         Used By: Logistic
+         Model: GetInventoriesResponse
+         Used By: Catalog
      */
-    class LogisticPromise: Codable {
-        public var timestamp: LogisticTimestamp?
 
-        public var formatted: Formatted?
+    class GetInventoriesResponse: Codable {
+        public var page: Page?
+
+        public var items: [GetInventories]?
 
         public enum CodingKeys: String, CodingKey {
-            case timestamp
+            case page
 
-            case formatted
+            case items
         }
 
-        public init(formatted: Formatted? = nil, timestamp: LogisticTimestamp? = nil) {
-            self.timestamp = timestamp
+        public init(items: [GetInventories]? = nil, page: Page? = nil) {
+            self.page = page
 
-            self.formatted = formatted
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                timestamp = try container.decode(LogisticTimestamp.self, forKey: .timestamp)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +36,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                formatted = try container.decode(Formatted.self, forKey: .formatted)
+                items = try container.decode([GetInventories].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +47,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
+            try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(formatted, forKey: .formatted)
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

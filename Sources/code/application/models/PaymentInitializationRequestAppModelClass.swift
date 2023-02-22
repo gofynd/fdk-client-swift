@@ -11,23 +11,23 @@ public extension ApplicationClient {
 
         public var orderId: String
 
+        public var timeout: Int?
+
         public var amount: Int
 
         public var razorpayPaymentId: String?
-
-        public var method: String
 
         public var contact: String
 
         public var vpa: String?
 
-        public var merchantOrderId: String
+        public var method: String
 
-        public var timeout: Int?
+        public var aggregator: String
 
         public var currency: String
 
-        public var aggregator: String
+        public var merchantOrderId: String
 
         public var customerId: String
 
@@ -36,23 +36,23 @@ public extension ApplicationClient {
 
             case orderId = "order_id"
 
+            case timeout
+
             case amount
 
             case razorpayPaymentId = "razorpay_payment_id"
-
-            case method
 
             case contact
 
             case vpa
 
-            case merchantOrderId = "merchant_order_id"
+            case method
 
-            case timeout
+            case aggregator
 
             case currency
 
-            case aggregator
+            case merchantOrderId = "merchant_order_id"
 
             case customerId = "customer_id"
         }
@@ -62,23 +62,23 @@ public extension ApplicationClient {
 
             self.orderId = orderId
 
+            self.timeout = timeout
+
             self.amount = amount
 
             self.razorpayPaymentId = razorpayPaymentId
-
-            self.method = method
 
             self.contact = contact
 
             self.vpa = vpa
 
-            self.merchantOrderId = merchantOrderId
+            self.method = method
 
-            self.timeout = timeout
+            self.aggregator = aggregator
 
             self.currency = currency
 
-            self.aggregator = aggregator
+            self.merchantOrderId = merchantOrderId
 
             self.customerId = customerId
         }
@@ -90,6 +90,14 @@ public extension ApplicationClient {
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
+            do {
+                timeout = try container.decode(Int.self, forKey: .timeout)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             amount = try container.decode(Int.self, forKey: .amount)
 
             do {
@@ -99,8 +107,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            method = try container.decode(String.self, forKey: .method)
 
             contact = try container.decode(String.self, forKey: .contact)
 
@@ -112,19 +118,13 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
+            method = try container.decode(String.self, forKey: .method)
 
-            do {
-                timeout = try container.decode(Int.self, forKey: .timeout)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             currency = try container.decode(String.self, forKey: .currency)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
+            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
 
             customerId = try container.decode(String.self, forKey: .customerId)
         }
@@ -136,23 +136,23 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
+            try? container.encode(timeout, forKey: .timeout)
+
             try? container.encode(amount, forKey: .amount)
 
             try? container.encode(razorpayPaymentId, forKey: .razorpayPaymentId)
-
-            try? container.encodeIfPresent(method, forKey: .method)
 
             try? container.encodeIfPresent(contact, forKey: .contact)
 
             try? container.encode(vpa, forKey: .vpa)
 
-            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            try? container.encodeIfPresent(method, forKey: .method)
 
-            try? container.encode(timeout, forKey: .timeout)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
 
             try? container.encodeIfPresent(customerId, forKey: .customerId)
         }

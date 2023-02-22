@@ -3,37 +3,37 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: TatProductArticles
+         Model: TATLocationDetailsResponse
          Used By: Logistic
      */
-    class TatProductArticles: Codable {
-        public var error: [String: Any]?
+    class TATLocationDetailsResponse: Codable {
+        public var fromPincode: String?
 
-        public var category: LogisticResponseCategory?
+        public var articles: [TATArticlesResponse]?
 
-        public var promise: LogisticPromise?
+        public var fulfillmentId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case error
+            case fromPincode = "from_pincode"
 
-            case category
+            case articles
 
-            case promise
+            case fulfillmentId = "fulfillment_id"
         }
 
-        public init(category: LogisticResponseCategory? = nil, error: [String: Any]? = nil, promise: LogisticPromise? = nil) {
-            self.error = error
+        public init(articles: [TATArticlesResponse]? = nil, fromPincode: String? = nil, fulfillmentId: Int? = nil) {
+            self.fromPincode = fromPincode
 
-            self.category = category
+            self.articles = articles
 
-            self.promise = promise
+            self.fulfillmentId = fulfillmentId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                error = try container.decode([String: Any].self, forKey: .error)
+                fromPincode = try container.decode(String.self, forKey: .fromPincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                category = try container.decode(LogisticResponseCategory.self, forKey: .category)
+                articles = try container.decode([TATArticlesResponse].self, forKey: .articles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                promise = try container.decode(LogisticPromise.self, forKey: .promise)
+                fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(fromPincode, forKey: .fromPincode)
 
-            try? container.encodeIfPresent(category, forKey: .category)
+            try? container.encodeIfPresent(articles, forKey: .articles)
 
-            try? container.encodeIfPresent(promise, forKey: .promise)
+            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
         }
     }
 }
