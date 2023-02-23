@@ -10,7 +10,7 @@ public extension PlatformClient {
     class GetZoneFromPincodeViewResponse: Codable {
         public var serviceabilityType: String
 
-        public var zones: [GetZonesForZoneFromPincode]
+        public var zones: [String]
 
         public enum CodingKeys: String, CodingKey {
             case serviceabilityType = "serviceability_type"
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case zones
         }
 
-        public init(serviceabilityType: String, zones: [GetZonesForZoneFromPincode]) {
+        public init(serviceabilityType: String, zones: [String]) {
             self.serviceabilityType = serviceabilityType
 
             self.zones = zones
@@ -29,7 +29,7 @@ public extension PlatformClient {
 
             serviceabilityType = try container.decode(String.self, forKey: .serviceabilityType)
 
-            zones = try container.decode([GetZonesForZoneFromPincode].self, forKey: .zones)
+            zones = try container.decode([String].self, forKey: .zones)
         }
 
         public func encode(to encoder: Encoder) throws {

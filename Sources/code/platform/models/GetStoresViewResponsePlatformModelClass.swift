@@ -3,14 +3,14 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: GetZoneFromApplicationIdViewResponse
+         Model: GetStoresViewResponse
          Used By: Serviceability
      */
 
-    class GetZoneFromApplicationIdViewResponse: Codable {
-        public var items: [ListViewItems]
+    class GetStoresViewResponse: Codable {
+        public var items: [ItemResponse]?
 
-        public var page: [ZoneDataItem]
+        public var page: PageResponse
 
         public enum CodingKeys: String, CodingKey {
             case items
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [ListViewItems], page: [ZoneDataItem]) {
+        public init(items: [ItemResponse]? = nil, page: PageResponse) {
             self.items = items
 
             self.page = page
@@ -27,9 +27,15 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            items = try container.decode([ListViewItems].self, forKey: .items)
+            do {
+                items = try container.decode([ItemResponse].self, forKey: .items)
 
-            page = try container.decode([ZoneDataItem].self, forKey: .page)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            page = try container.decode(PageResponse.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {

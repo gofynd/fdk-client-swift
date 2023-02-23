@@ -3,29 +3,29 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: ServiceabilityErrorResponse
+         Model: ServiceabilityrErrorResponse
          Used By: Serviceability
      */
 
-    class ServiceabilityErrorResponse: Codable {
-        public var value: String
-
+    class ServiceabilityrErrorResponse: Codable {
         public var type: String
+
+        public var value: String
 
         public var message: String
 
         public enum CodingKeys: String, CodingKey {
-            case value
-
             case type
+
+            case value
 
             case message
         }
 
         public init(message: String, type: String, value: String) {
-            self.value = value
-
             self.type = type
+
+            self.value = value
 
             self.message = message
         }
@@ -33,9 +33,9 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            value = try container.decode(String.self, forKey: .value)
-
             type = try container.decode(String.self, forKey: .type)
+
+            value = try container.decode(String.self, forKey: .value)
 
             message = try container.decode(String.self, forKey: .message)
         }
@@ -43,9 +43,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(message, forKey: .message)
         }

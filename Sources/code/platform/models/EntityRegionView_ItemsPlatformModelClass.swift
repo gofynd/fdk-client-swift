@@ -3,11 +3,11 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: EntityRegionViewItems
+         Model: EntityRegionView_Items
          Used By: Serviceability
      */
 
-    class EntityRegionViewItems: Codable {
+    class EntityRegionView_Items: Codable {
         public var uid: String
 
         public var name: String

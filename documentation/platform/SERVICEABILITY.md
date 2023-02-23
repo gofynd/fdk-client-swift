@@ -6,87 +6,24 @@
 
 ## Serviceability Methods
 Logistics Configuration API's allows you to configure zone, application logistics and many more useful features. 
-* [postApplicationServiceability](#postapplicationserviceability)
 * [getApplicationServiceability](#getapplicationserviceability)
 * [getEntityRegionView](#getentityregionview)
 * [getListView](#getlistview)
 * [getCompanyStoreView](#getcompanystoreview)
-* [getZoneDataView](#getzonedataview)
 * [updateZoneControllerView](#updatezonecontrollerview)
+* [getZoneDataView](#getzonedataview)
+* [insertZoneControllerView](#insertzonecontrollerview)
 * [upsertZoneControllerView](#upsertzonecontrollerview)
-* [getZoneFromPincodeView](#getzonefrompincodeview)
-* [getZonesFromApplicationIdView](#getzonesfromapplicationidview)
-* [getZoneListView](#getzonelistview)
+* [getStore](#getstore)
+* [getAllStores](#getallstores)
+* [updatePincodeMopView](#updatepincodemopview)
+* [updatePincodeBulkView](#updatepincodebulkview)
+* [updatePincodeCoDListing](#updatepincodecodlisting)
+* [updatePincodeAuditHistory](#updatepincodeaudithistory)
 
 
 
 ## Methods with example and description
-
-
-#### postApplicationServiceability
-Zone configuration of application.
-
-
-
-
-```swift
-client.application("<APPLICATION_ID>").serviceability.postApplicationServiceability(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | ApplicationServiceabilityConfig | yes | Request body |
-
-
-This API returns serviceability config of the application.
-
-*Returned Response:*
-
-
-
-
-[ApplicationServiceabilityConfigResponse](#ApplicationServiceabilityConfigResponse)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "error": {
-    "type": null,
-    "value": null,
-    "message": null
-  },
-  "success": true,
-  "data": {
-    "channel_id": "5d656121a81320c2e6ee2a72",
-    "channel_type": "application",
-    "serviceability_type": "all"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 #### getApplicationServiceability
@@ -169,7 +106,7 @@ client.serviceability.getEntityRegionView(body: body) { (response, error) in
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
-| body | EntityRegionViewRequest | yes | Request body |
+| body | EntityRegionView_Request | yes | Request body |
 
 
 This API returns response for Entity Region View.
@@ -179,7 +116,7 @@ This API returns response for Entity Region View.
 
 
 
-[EntityRegionViewResponse](#EntityRegionViewResponse)
+[EntityRegionView_Response](#EntityRegionView_Response)
 
 Response status_code
 
@@ -212,7 +149,7 @@ Zone List of application.
 
 
 ```swift
-client.serviceability.getListView(pageNumber: pageNumber, pageNo: pageNo, pageSize: pageSize, name: name, isActive: isActive, channelIds: channelIds, q: q, zoneId: zoneId) { (response, error) in
+client.serviceability.getListView(pageNumber: pageNumber, pageSize: pageSize, name: name, isActive: isActive, channelIds: channelIds) { (response, error) in
     // Use response
 }
 ```
@@ -224,13 +161,10 @@ client.serviceability.getListView(pageNumber: pageNumber, pageNo: pageNo, pageSi
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | pageNumber | Int? | no | index of the item to start returning with |   
-| pageNo | Int? | no | index of the item to start returning with |   
 | pageSize | Int? | no | determines the items to be displayed in a page |   
 | name | String? | no | Name of particular zone in the seller account |   
 | isActive | Bool? | no | status of  zone whether active or inactive |   
-| channelIds | String? | no | zones associated with the given channel ids' |   
-| q | String? | no | search with name as a free text |   
-| zoneId | [String]? | no | list of zones to query for |  
+| channelIds | String? | no | zones associated with the given channel ids' |  
 
 
 
@@ -317,61 +251,6 @@ Get Company Store View Data
 ---
 
 
-#### getZoneDataView
-Zone Data View of application.
-
-
-
-
-```swift
-client.serviceability.getZoneDataView(zoneId: zoneId) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| zoneId | String | yes | A `zone_id` is a unique identifier for a particular zone. |  
-
-
-
-This API returns Zone Data View of the application.
-
-*Returned Response:*
-
-
-
-
-[GetSingleZoneDataViewResponse](#GetSingleZoneDataViewResponse)
-
-Get Application Zone Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateZoneControllerView
 Updation of zone collections in database.
 
@@ -427,14 +306,69 @@ Response status_code
 ---
 
 
-#### upsertZoneControllerView
+#### getZoneDataView
+Zone Data View of application.
+
+
+
+
+```swift
+client.serviceability.getZoneDataView(zoneId: zoneId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| zoneId | String | yes | A `zone_id` is a unique identifier for a particular zone. |  
+
+
+
+This API returns Zone Data View of the application.
+
+*Returned Response:*
+
+
+
+
+[GetSingleZoneDataViewResponse](#GetSingleZoneDataViewResponse)
+
+Get Application Zone Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### insertZoneControllerView
 Insertion of zone in database.
 
 
 
 
 ```swift
-client.serviceability.upsertZoneControllerView(body: body) { (response, error) in
+client.serviceability.insertZoneControllerView(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -448,7 +382,7 @@ client.serviceability.upsertZoneControllerView(body: body) { (response, error) i
 | body | ZoneRequest | yes | Request body |
 
 
-This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{company_id}/zone/`
+This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{}/zone/`
 
 *Returned Response:*
 
@@ -481,14 +415,14 @@ Response status_code
 ---
 
 
-#### getZoneFromPincodeView
+#### upsertZoneControllerView
 GET zone from the Pincode.
 
 
 
 
 ```swift
-client.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView(country: country, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").serviceability.upsertZoneControllerView(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -498,8 +432,7 @@ client.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView(cou
 
 
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| country | String? | no | A `country` has to be capitalized. |  
+| -------- | ---- | -------- | ----------- |
 | body | GetZoneFromPincodeViewRequest | yes | Request body |
 
 
@@ -536,14 +469,14 @@ Response status_code
 ---
 
 
-#### getZonesFromApplicationIdView
-GET zones from the application_id.
+#### getStore
+GET stores data
 
 
 
 
 ```swift
-client.application("<APPLICATION_ID>").serviceability.getZonesFromApplicationIdView(pageNo: pageNo, pageSize: pageSize, zoneId: zoneId, q: q) { (response, error) in
+client.serviceability.getStore(storeUid: storeUid) { (response, error) in
     // Use response
 }
 ```
@@ -554,23 +487,279 @@ client.application("<APPLICATION_ID>").serviceability.getZonesFromApplicationIdV
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| pageNo | Int? | no | index of the item to start returning with |   
-| pageSize | Int? | no | determines the items to be displayed in a page |   
-| zoneId | [String]? | no | list of zones to query for |   
-| q | String? | no | search with name as a free text |  
+| storeUid | Int | yes | A `store_uid` contains a specific ID of a store. |  
 
 
 
-This API returns zones from the application_id View.
+This API returns stores data.
 
 *Returned Response:*
 
 
 
 
-[GetZoneFromApplicationIdViewResponse](#GetZoneFromApplicationIdViewResponse)
+[GetStoresViewResponse](#GetStoresViewResponse)
 
-List of zones for the given application_id
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "uid": 2,
+      "_cls": "Store",
+      "address": {
+        "city": "MUMBAI",
+        "country": "INDIA",
+        "address2": "",
+        "address1": "POLARIS 2ND FLOOR, ANDHERI",
+        "landmark": "",
+        "state": "MAHARASHTRA",
+        "pincode": 400001,
+        "longitude": 72.8776559,
+        "latitude": 19.0759837
+      },
+      "code": "HS-a0c85",
+      "company_id": 2,
+      "contact_numbers": [
+        {
+          "country_code": 91,
+          "number": "9096686804"
+        }
+      ],
+      "created_by": {
+        "user_id": "605e8e86493f54a9ccaa47be",
+        "username": "parvezshaikh_gofynd_com_07710"
+      },
+      "created_on": "2021-08-07T06:21:25.293000",
+      "display_name": "Test",
+      "documents": [
+        {
+          "type": "gst",
+          "verified": true,
+          "value": "27AALCA0442L1ZM",
+          "legal_name": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED"
+        }
+      ],
+      "gst_credentials": {
+        "e_waybill": {
+          "enabled": false
+        },
+        "e_invoice": {
+          "enabled": false
+        }
+      },
+      "integration_type": {
+        "order": "pulse",
+        "inventory": "pulse"
+      },
+      "logistics": {
+        "dp": {
+          "1": {
+            "fm_priority": 1,
+            "lm_priority": 1,
+            "rvp_priority": 1,
+            "payment_mode": "all",
+            "operations": [
+              "inter_city"
+            ],
+            "area_code": null,
+            "assign_dp_from_sb": true,
+            "transport_mode": "air",
+            "external_account_id": null,
+            "internal_account_id": "1"
+          },
+          "19": {
+            "fm_priority": 2,
+            "lm_priority": 2,
+            "rvp_priority": 2,
+            "payment_mode": "all",
+            "operations": "inter_city",
+            "area_code": null,
+            "assign_dp_from_sb": true,
+            "transport_mode": "air",
+            "external_account_id": null,
+            "internal_account_id": "19"
+          }
+        },
+        "override": false
+      },
+      "manager": {
+        "name": "Parvez Shaikh",
+        "mobile_no": {
+          "country_code": 91,
+          "number": "9096686804"
+        },
+        "email": "parvezshaikh@gofynd.com"
+      },
+      "modified_by": {
+        "user_id": "38ac93a8a5495305fc794e76",
+        "username": "919594495254_32111"
+      },
+      "modified_on": "2021-08-17T14:18:10.788000",
+      "name": "Test",
+      "notification_emails": [
+        "parvezshaikh@gofynd.com"
+      ],
+      "product_return_config": {
+        "on_same_store": true
+      },
+      "stage": "verified",
+      "store_type": "high_street",
+      "sub_type": "store",
+      "timing": [
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "monday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "tuesday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "wednesday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "thursday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "friday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "saturday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "sunday"
+        }
+      ],
+      "verified_by": {
+        "user_id": "0",
+        "username": "Silverbolt"
+      },
+      "verified_on": "2022-03-23T13:35:46.869000",
+      "warnings": {
+        "store_address": "Address: Address seems to be inappropriate this might affect the delivery."
+      },
+      "_custom_json": {},
+      "company": 2
+    }
+  ],
+  "page": {
+    "type": "number",
+    "size": 2,
+    "current": 1,
+    "has_next": true,
+    "item_total": 3276
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAllStores
+GET stores data
+
+
+
+
+```swift
+client.serviceability.getAllStores() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+This API returns stores data.
+
+*Returned Response:*
+
+
+
+
+[GetStoresViewResponse](#GetStoresViewResponse)
+
+Response status_code
 
 
 
@@ -594,14 +783,14 @@ List of zones for the given application_id
 ---
 
 
-#### getZoneListView
-Zone List of application.
+#### updatePincodeMopView
+PincodeView update of MOP.
 
 
 
 
 ```swift
-client.serviceability.getZoneListView(pageNumber: pageNumber, pageNo: pageNo, pageSize: pageSize, name: name, isActive: isActive, channelIds: channelIds, q: q, zoneId: zoneId) { (response, error) in
+client.application("<APPLICATION_ID>").serviceability.updatePincodeMopView(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -611,28 +800,185 @@ client.serviceability.getZoneListView(pageNumber: pageNumber, pageNo: pageNo, pa
 
 
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| pageNumber | Int? | no | index of the item to start returning with |   
-| pageNo | Int? | no | index of the item to start returning with |   
-| pageSize | Int? | no | determines the items to be displayed in a page |   
-| name | String? | no | Name of particular zone in the seller account |   
-| isActive | Bool? | no | status of  zone whether active or inactive |   
-| channelIds | String? | no | zones associated with the given channel ids' |   
-| q | String? | no | search with name as a free text |   
-| zoneId | [String]? | no | list of zones to query for |  
+| -------- | ---- | -------- | ----------- |
+| body | PincodeMopData | yes | Request body |
 
 
-
-This API returns Zone List View of the application.
+This API updates Pincode method of payment.
 
 *Returned Response:*
 
 
 
 
-[ListViewResponse](#ListViewResponse)
+[PincodeMOPresponse](#PincodeMOPresponse)
 
-Zone List of application in descending order of their last modified date.
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePincodeBulkView
+Bulk Update of pincode in the application.
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PincodeMopBulkData | yes | Request body |
+
+
+This API constructs bulk write operations to update the MOP data for each pincode in the payload.
+
+*Returned Response:*
+
+
+
+
+[PincodeBulkViewResponse](#PincodeBulkViewResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "batch_id": "string",
+  "s3_url": "string"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePincodeCoDListing
+Pincode count view of application.
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PincodeCodStatusListingRequest | yes | Request body |
+
+
+This API returns count of active pincode.
+
+*Returned Response:*
+
+
+
+
+[PincodeCodStatusListingResponse](#PincodeCodStatusListingResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePincodeAuditHistory
+Auditlog configuration of application.
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PincodeMopUpdateAuditHistoryRequest | yes | Request body |
+
+
+This API returns Audit logs of Pincode.
+
+*Returned Response:*
+
+
+
+
+[PincodeMopUpdateAuditHistoryResponseData](#PincodeMopUpdateAuditHistoryResponseData)
+
+Response Data
 
 
 
@@ -661,23 +1007,12 @@ Zone List of application in descending order of their last modified date.
 
  
  
- #### [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)
+ #### [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | serviceabilityType | String |  no  |  |
-
----
-
-
- 
- 
- #### [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | String |  no  |  |
  | type | String |  no  |  |
+ | value | String |  no  |  |
  | message | String |  no  |  |
 
 ---
@@ -685,13 +1020,13 @@ Zone List of application in descending order of their last modified date.
 
  
  
- #### [ApplicationServiceabilityResponse](#ApplicationServiceabilityResponse)
+ #### [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | serviceabilityType | String |  no  |  |
  | channelType | String |  no  |  |
  | channelId | String |  no  |  |
+ | serviceabilityType | String |  no  |  |
 
 ---
 
@@ -702,16 +1037,16 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)? |  yes  |  |
+ | error | [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)? |  yes  |  |
  | success | Bool |  no  |  |
- | data | [ApplicationServiceabilityResponse](#ApplicationServiceabilityResponse)? |  yes  |  |
+ | data | [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)? |  yes  |  |
 
 ---
 
 
  
  
- #### [EntityRegionViewRequest](#EntityRegionViewRequest)
+ #### [EntityRegionView_Request](#EntityRegionView_Request)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -723,7 +1058,20 @@ Zone List of application in descending order of their last modified date.
 
  
  
- #### [EntityRegionViewItems](#EntityRegionViewItems)
+ #### [EntityRegionView_Error](#EntityRegionView_Error)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | value | String? |  yes  |  |
+ | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityRegionView_Items](#EntityRegionView_Items)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -736,55 +1084,29 @@ Zone List of application in descending order of their last modified date.
 
  
  
- #### [EntityRegionViewError](#EntityRegionViewError)
+ #### [EntityRegionView_page](#EntityRegionView_page)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | String? |  yes  |  |
- | type | String? |  yes  |  |
- | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [EntityRegionViewPage](#EntityRegionViewPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | size | Int |  no  |  |
- | itemTotal | Int |  no  |  |
- | type | String |  no  |  |
  | current | Int |  no  |  |
+ | itemTotal | Int |  no  |  |
+ | size | Int |  no  |  |
  | hasNext | Bool |  no  |  |
+ | type | String |  no  |  |
 
 ---
 
 
  
  
- #### [EntityRegionViewResponse](#EntityRegionViewResponse)
+ #### [EntityRegionView_Response](#EntityRegionView_Response)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[EntityRegionViewItems](#EntityRegionViewItems)] |  no  |  |
- | error | [EntityRegionViewError](#EntityRegionViewError) |  no  |  |
+ | error | [EntityRegionView_Error](#EntityRegionView_Error) |  no  |  |
+ | data | [[EntityRegionView_Items](#EntityRegionView_Items)] |  no  |  |
  | success | Bool |  no  |  |
- | page | [EntityRegionViewPage](#EntityRegionViewPage) |  no  |  |
-
----
-
-
- 
- 
- #### [ListViewSummary](#ListViewSummary)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | totalPincodesServed | Int |  no  |  |
- | totalZones | Int |  no  |  |
- | totalActiveZones | Int |  no  |  |
+ | page | [EntityRegionView_page](#EntityRegionView_page) |  no  |  |
 
 ---
 
@@ -795,8 +1117,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | count | Int |  no  |  |
  | type | String |  no  |  |
+ | count | Int |  no  |  |
 
 ---
 
@@ -819,15 +1141,28 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | companyId | Int |  no  |  |
- | product | [ListViewProduct](#ListViewProduct) |  no  |  |
- | name | String |  no  |  |
- | slug | String |  no  |  |
  | zoneId | String |  no  |  |
+ | isActive | Bool |  no  |  |
+ | product | [ListViewProduct](#ListViewProduct) |  no  |  |
+ | companyId | Int |  no  |  |
+ | slug | String |  no  |  |
+ | name | String |  no  |  |
  | storesCount | Int |  no  |  |
  | channels | [ListViewChannels](#ListViewChannels) |  no  |  |
- | isActive | Bool |  no  |  |
  | pincodesCount | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ListViewSummary](#ListViewSummary)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | totalActiveZones | Int |  no  |  |
+ | totalZones | Int |  no  |  |
+ | totalPincodesServed | Int |  no  |  |
 
 ---
 
@@ -838,9 +1173,9 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size | Int |  no  |  |
- | itemTotal | Int |  no  |  |
  | current | Int |  no  |  |
+ | itemTotal | Int |  no  |  |
+ | size | Int |  no  |  |
  | hasNext | Bool |  no  |  |
  | type | String |  no  |  |
 
@@ -853,8 +1188,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | summary | [[ListViewSummary](#ListViewSummary)] |  no  |  |
  | items | [[ListViewItems](#ListViewItems)] |  no  |  |
+ | summary | [[ListViewSummary](#ListViewSummary)] |  no  |  |
  | page | [[ZoneDataItem](#ZoneDataItem)] |  no  |  |
 
 ---
@@ -866,11 +1201,11 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size | Int |  no  |  |
- | itemTotal | Int |  no  |  |
- | type | String |  no  |  |
  | current | Int |  no  |  |
+ | itemTotal | Int |  no  |  |
+ | size | Int |  no  |  |
  | hasNext | Bool |  no  |  |
+ | type | String |  no  |  |
 
 ---
 
@@ -905,8 +1240,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tags | [String] |  no  |  |
  | type | String |  no  |  |
+ | tags | [String] |  no  |  |
 
 ---
 
@@ -917,9 +1252,54 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country | String |  no  |  |
  | state | [String]? |  yes  |  |
  | pincode | [String]? |  yes  |  |
+ | country | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateZoneData](#UpdateZoneData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | zoneId | String |  no  |  |
+ | name | String |  no  |  |
+ | slug | String |  no  |  |
+ | companyId | Int |  no  |  |
+ | isActive | Bool |  no  |  |
+ | channels | [[GetZoneDataViewChannels](#GetZoneDataViewChannels)] |  no  |  |
+ | product | [ZoneProductTypes](#ZoneProductTypes) |  no  |  |
+ | storeIds | [Int] |  no  |  |
+ | regionType | String |  no  |  |
+ | mapping | [[ZoneMappingType](#ZoneMappingType)] |  no  |  |
+ | assignmentPreference | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ZoneUpdateRequest](#ZoneUpdateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [UpdateZoneData](#UpdateZoneData) |  no  |  |
+ | identifier | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ZoneSuccessResponse](#ZoneSuccessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
+ | statusCode | Int |  no  |  |
 
 ---
 
@@ -960,51 +1340,6 @@ Zone List of application in descending order of their last modified date.
 
  
  
- #### [UpdateZoneData](#UpdateZoneData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | zoneId | String |  no  |  |
- | name | String |  no  |  |
- | slug | String |  no  |  |
- | companyId | Int |  no  |  |
- | isActive | Bool |  no  |  |
- | channels | [[GetZoneDataViewChannels](#GetZoneDataViewChannels)] |  no  |  |
- | product | [ZoneProductTypes](#ZoneProductTypes) |  no  |  |
- | storeIds | [Int] |  no  |  |
- | regionType | String |  no  |  |
- | mapping | [[ZoneMappingType](#ZoneMappingType)] |  no  |  |
- | assignmentPreference | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ZoneUpdateRequest](#ZoneUpdateRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifier | String |  no  |  |
- | data | [UpdateZoneData](#UpdateZoneData) |  no  |  |
-
----
-
-
- 
- 
- #### [ZoneSuccessResponse](#ZoneSuccessResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | statusCode | Int |  no  |  |
- | success | Bool |  no  |  |
-
----
-
-
- 
- 
  #### [CreateZoneData](#CreateZoneData)
 
  | Properties | Type | Nullable | Description |
@@ -1029,8 +1364,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | String |  no  |  |
  | data | [CreateZoneData](#CreateZoneData) |  no  |  |
+ | identifier | String |  no  |  |
 
 ---
 
@@ -1041,9 +1376,9 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statusCode | Int |  no  |  |
- | success | Bool |  no  |  |
  | zoneId | String |  no  |  |
+ | success | Bool |  no  |  |
+ | statusCode | Int |  no  |  |
 
 ---
 
@@ -1054,23 +1389,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country | String |  no  |  |
  | pincode | String |  no  |  |
-
----
-
-
- 
- 
- #### [GetZonesForZoneFromPincode](#GetZonesForZoneFromPincode)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | storeIds | [Int] |  no  |  |
- | tags | [String] |  no  |  |
- | type | String |  no  |  |
- | zoneId | String |  no  |  |
- | assignmentPreference | String |  no  |  |
+ | country | String |  no  |  |
 
 ---
 
@@ -1082,19 +1402,489 @@ Zone List of application in descending order of their last modified date.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | serviceabilityType | String |  no  |  |
- | zones | [[GetZonesForZoneFromPincode](#GetZonesForZoneFromPincode)] |  no  |  |
+ | zones | [String] |  no  |  |
 
 ---
 
 
  
  
- #### [GetZoneFromApplicationIdViewResponse](#GetZoneFromApplicationIdViewResponse)
+ #### [ModifiedByResponse](#ModifiedByResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ListViewItems](#ListViewItems)] |  no  |  |
- | page | [[ZoneDataItem](#ZoneDataItem)] |  no  |  |
+ | username | String? |  yes  |  |
+ | userId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ContactNumberResponse](#ContactNumberResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | number | String? |  yes  |  |
+ | countryCode | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreatedByResponse](#CreatedByResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | username | String? |  yes  |  |
+ | userId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [IntegrationTypeResponse](#IntegrationTypeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | inventory | String? |  yes  |  |
+ | order | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DocumentsResponse](#DocumentsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | verified | Bool? |  yes  |  |
+ | type | String? |  yes  |  |
+ | value | String? |  yes  |  |
+ | legalName | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [MobileNo](#MobileNo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | number | String? |  yes  |  |
+ | countryCode | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ManagerResponse](#ManagerResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | mobileNo | [MobileNo](#MobileNo)? |  yes  |  |
+ | email | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AddressResponse](#AddressResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | longitude | Double? |  yes  |  |
+ | state | String? |  yes  |  |
+ | pincode | Int? |  yes  |  |
+ | latitude | Double? |  yes  |  |
+ | country | String? |  yes  |  |
+ | landmark | String? |  yes  |  |
+ | address1 | String? |  yes  |  |
+ | city | String? |  yes  |  |
+ | address2 | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductReturnConfigResponse](#ProductReturnConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | onSameStore | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EwayBillResponse](#EwayBillResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EinvoiceResponse](#EinvoiceResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GstCredentialsResponse](#GstCredentialsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | eWaybill | [EwayBillResponse](#EwayBillResponse)? |  yes  |  |
+ | eInvoice | [EinvoiceResponse](#EinvoiceResponse)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Dp](#Dp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fmPriority | Int? |  yes  |  |
+ | internalAccountId | String? |  yes  |  |
+ | areaCode | Int? |  yes  |  |
+ | paymentMode | String? |  yes  |  |
+ | lmPriority | Int? |  yes  |  |
+ | assignDpFromSb | Bool? |  yes  |  |
+ | rvpPriority | Int? |  yes  |  |
+ | externalAccountId | String? |  yes  |  |
+ | operations | [String]? |  yes  |  |
+ | transportMode | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LogisticsResponse](#LogisticsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dp | [Dp](#Dp)? |  yes  |  |
+ | override | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OpeningClosing](#OpeningClosing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hour | Int? |  yes  |  |
+ | minute | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TimmingResponse](#TimmingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | weekday | String? |  yes  |  |
+ | open | Bool? |  yes  |  |
+ | opening | [OpeningClosing](#OpeningClosing)? |  yes  |  |
+ | closing | [OpeningClosing](#OpeningClosing)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [WarningsResponse](#WarningsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | storeAddress | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ItemResponse](#ItemResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | verifiedBy | [ModifiedByResponse](#ModifiedByResponse)? |  yes  |  |
+ | contactNumbers | [[ContactNumberResponse](#ContactNumberResponse)]? |  yes  |  |
+ | notificationEmails | [String]? |  yes  |  |
+ | createdBy | [CreatedByResponse](#CreatedByResponse)? |  yes  |  |
+ | companyId | Int? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | cls | String? |  yes  |  |
+ | integrationType | [IntegrationTypeResponse](#IntegrationTypeResponse)? |  yes  |  |
+ | documents | [[DocumentsResponse](#DocumentsResponse)]? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | name | String? |  yes  |  |
+ | company | Int? |  yes  |  |
+ | manager | [ManagerResponse](#ManagerResponse)? |  yes  |  |
+ | address | [AddressResponse](#AddressResponse)? |  yes  |  |
+ | code | String? |  yes  |  |
+ | productReturnConfig | [ProductReturnConfigResponse](#ProductReturnConfigResponse)? |  yes  |  |
+ | gstCredentials | [GstCredentialsResponse](#GstCredentialsResponse)? |  yes  |  |
+ | storeType | String? |  yes  |  |
+ | logistics | [LogisticsResponse](#LogisticsResponse)? |  yes  |  |
+ | timing | [[TimmingResponse](#TimmingResponse)]? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
+ | warnings | [WarningsResponse](#WarningsResponse)? |  yes  |  |
+ | displayName | String? |  yes  |  |
+ | modifiedBy | [ModifiedByResponse](#ModifiedByResponse)? |  yes  |  |
+ | subType | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PageResponse](#PageResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | Int? |  yes  |  |
+ | itemTotal | Int? |  yes  |  |
+ | size | Int? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | type | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetStoresViewResponse](#GetStoresViewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ItemResponse](#ItemResponse)]? |  yes  |  |
+ | page | [PageResponse](#PageResponse) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMopData](#PincodeMopData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pincodes | [Int] |  no  |  |
+ | country | String |  no  |  |
+ | action | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMopUpdateResponse](#PincodeMopUpdateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pincode | Int |  no  |  |
+ | channelId | String |  no  |  |
+ | country | String |  no  |  |
+ | isActive | Bool |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMOPresponse](#PincodeMOPresponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
+ | statusCode | Int |  no  |  |
+ | batchId | String |  no  |  |
+ | country | String |  no  |  |
+ | action | String |  no  |  |
+ | pincodes | [Int]? |  yes  |  |
+ | updatedPincodes | [[PincodeMopUpdateResponse](#PincodeMopUpdateResponse)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMopBulkData](#PincodeMopBulkData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | batchId | String |  no  |  |
+ | s3Url | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeBulkViewResponse](#PincodeBulkViewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | batchId | String |  no  |  |
+ | s3Url | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeCodStatusListingRequest](#PincodeCodStatusListingRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | String? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | pincode | Int? |  yes  |  |
+ | currentPageNumber | Int? |  yes  |  |
+ | pageSize | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeCodStatusListingResponse](#PincodeCodStatusListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | String |  no  |  |
+ | data | [[PincodeCodStatusListingResponse](#PincodeCodStatusListingResponse)] |  no  |  |
+ | success | Bool |  no  |  |
+ | errors | [[Error](#Error)]? |  yes  |  |
+ | page | [PincodeCodStatusListingPage](#PincodeCodStatusListingPage) |  no  |  |
+ | summary | [PincodeCodStatusListingSummary](#PincodeCodStatusListingSummary) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Error](#Error)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | value | String? |  yes  |  |
+ | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeCodStatusListingPage](#PincodeCodStatusListingPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currentPageNumber | Int |  no  |  |
+ | itemTotal | Int |  no  |  |
+ | size | Int |  no  |  |
+ | hasNext | Bool |  no  |  |
+ | type | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeCodStatusListingSummary](#PincodeCodStatusListingSummary)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | totalActivePincodes | Int |  no  |  |
+ | totalInactivePincodes | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMopUpdateAuditHistoryRequest](#PincodeMopUpdateAuditHistoryRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entityType | String |  no  |  |
+ | fileName | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMopUpdateAuditHistoryPaging](#PincodeMopUpdateAuditHistoryPaging)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | size | Int? |  yes  |  |
+ | current | Int? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | itemTotal | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMopUpdateAuditHistoryResponse](#PincodeMopUpdateAuditHistoryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | batchId | String? |  yes  |  |
+ | entityType | String? |  yes  |  |
+ | errorFileS3Url | String? |  yes  |  |
+ | s3Url | String? |  yes  |  |
+ | fileName | String? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | updatedBy | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMopUpdateAuditHistoryResponseData](#PincodeMopUpdateAuditHistoryResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entityType | String? |  yes  |  |
+ | page | [PincodeMopUpdateAuditHistoryPaging](#PincodeMopUpdateAuditHistoryPaging) |  no  |  |
+ | data | [[PincodeMopUpdateAuditHistoryResponse](#PincodeMopUpdateAuditHistoryResponse)] |  no  |  |
 
 ---
 

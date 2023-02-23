@@ -8,11 +8,11 @@ public extension PlatformClient {
      */
 
     class ApplicationServiceabilityConfigResponse: Codable {
-        public var error: ServiceabilityErrorResponse?
+        public var error: ServiceabilityrErrorResponse?
 
         public var success: Bool
 
-        public var data: ApplicationServiceabilityResponse?
+        public var data: ApplicationServiceabilityConfig?
 
         public enum CodingKeys: String, CodingKey {
             case error
@@ -22,7 +22,7 @@ public extension PlatformClient {
             case data
         }
 
-        public init(data: ApplicationServiceabilityResponse? = nil, error: ServiceabilityErrorResponse? = nil, success: Bool) {
+        public init(data: ApplicationServiceabilityConfig? = nil, error: ServiceabilityrErrorResponse? = nil, success: Bool) {
             self.error = error
 
             self.success = success
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                error = try container.decode(ServiceabilityErrorResponse.self, forKey: .error)
+                error = try container.decode(ServiceabilityrErrorResponse.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -44,7 +44,7 @@ public extension PlatformClient {
             success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                data = try container.decode(ApplicationServiceabilityResponse.self, forKey: .data)
+                data = try container.decode(ApplicationServiceabilityConfig.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
