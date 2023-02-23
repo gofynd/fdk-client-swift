@@ -12,26 +12,26 @@ public extension PlatformClient {
 
         public var map: [String: Any]?
 
-        public var value: String?
-
-        public var mapValues: [[String: Any]]?
-
         public var sort: String?
 
         public var condition: String?
+
+        public var mapValues: [[String: Any]]?
+
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
             case bucketPoints = "bucket_points"
 
             case map
 
-            case value
-
-            case mapValues = "map_values"
-
             case sort
 
             case condition
+
+            case mapValues = "map_values"
+
+            case value
         }
 
         public init(bucketPoints: [ConfigurationBucketPoints]? = nil, condition: String? = nil, map: [String: Any]? = nil, mapValues: [[String: Any]]? = nil, sort: String? = nil, value: String? = nil) {
@@ -39,13 +39,13 @@ public extension PlatformClient {
 
             self.map = map
 
-            self.value = value
-
-            self.mapValues = mapValues
-
             self.sort = sort
 
             self.condition = condition
+
+            self.mapValues = mapValues
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -68,7 +68,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                sort = try container.decode(String.self, forKey: .sort)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                condition = try container.decode(String.self, forKey: .condition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,15 +92,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                sort = try container.decode(String.self, forKey: .sort)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                condition = try container.decode(String.self, forKey: .condition)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,13 +107,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(map, forKey: .map)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
-            try? container.encodeIfPresent(mapValues, forKey: .mapValues)
-
             try? container.encodeIfPresent(sort, forKey: .sort)
 
             try? container.encodeIfPresent(condition, forKey: .condition)
+
+            try? container.encodeIfPresent(mapValues, forKey: .mapValues)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
