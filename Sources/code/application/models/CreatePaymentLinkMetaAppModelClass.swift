@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var amount: String
 
-        public var assignCardId: String?
-
         public var cartId: String
+
+        public var assignCardId: String?
 
         public var pincode: String
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case amount
 
-            case assignCardId = "assign_card_id"
-
             case cartId = "cart_id"
+
+            case assignCardId = "assign_card_id"
 
             case pincode
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.amount = amount
 
-            self.assignCardId = assignCardId
-
             self.cartId = cartId
+
+            self.assignCardId = assignCardId
 
             self.pincode = pincode
         }
@@ -48,6 +48,8 @@ public extension ApplicationClient {
 
             amount = try container.decode(String.self, forKey: .amount)
 
+            cartId = try container.decode(String.self, forKey: .cartId)
+
             do {
                 assignCardId = try container.decode(String.self, forKey: .assignCardId)
 
@@ -55,8 +57,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            cartId = try container.decode(String.self, forKey: .cartId)
 
             pincode = try container.decode(String.self, forKey: .pincode)
         }
@@ -68,9 +68,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encode(assignCardId, forKey: .assignCardId)
-
             try? container.encodeIfPresent(cartId, forKey: .cartId)
+
+            try? container.encode(assignCardId, forKey: .assignCardId)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
         }

@@ -8,40 +8,36 @@ public extension PlatformClient {
      */
 
     class Tax: Codable {
-        public var name: String
+        public var breakup: [[String: Any]]?
 
         public var rate: Double
 
-        public var breakup: [[String: Any]]?
-
         public var amount: [String: Any]
 
+        public var name: String
+
         public enum CodingKeys: String, CodingKey {
-            case name
+            case breakup
 
             case rate
 
-            case breakup
-
             case amount
+
+            case name
         }
 
         public init(amount: [String: Any], breakup: [[String: Any]]? = nil, name: String, rate: Double) {
-            self.name = name
+            self.breakup = breakup
 
             self.rate = rate
 
-            self.breakup = breakup
-
             self.amount = amount
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            name = try container.decode(String.self, forKey: .name)
-
-            rate = try container.decode(Double.self, forKey: .rate)
 
             do {
                 breakup = try container.decode([[String: Any]].self, forKey: .breakup)
@@ -51,19 +47,23 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            rate = try container.decode(Double.self, forKey: .rate)
+
             amount = try container.decode([String: Any].self, forKey: .amount)
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(breakup, forKey: .breakup)
 
             try? container.encodeIfPresent(rate, forKey: .rate)
 
-            try? container.encodeIfPresent(breakup, forKey: .breakup)
-
             try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

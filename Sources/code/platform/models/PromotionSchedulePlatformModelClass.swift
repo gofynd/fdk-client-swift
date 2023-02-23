@@ -12,26 +12,26 @@ public extension PlatformClient {
 
         public var cron: String?
 
-        public var published: Bool
+        public var start: String
 
         public var nextSchedule: [[String: Any]]?
 
-        public var start: String
-
         public var duration: Int?
+
+        public var published: Bool
 
         public enum CodingKeys: String, CodingKey {
             case end
 
             case cron
 
-            case published
+            case start
 
             case nextSchedule = "next_schedule"
 
-            case start
-
             case duration
+
+            case published
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, published: Bool, start: String) {
@@ -39,13 +39,13 @@ public extension PlatformClient {
 
             self.cron = cron
 
-            self.published = published
+            self.start = start
 
             self.nextSchedule = nextSchedule
 
-            self.start = start
-
             self.duration = duration
+
+            self.published = published
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,7 +67,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            published = try container.decode(Bool.self, forKey: .published)
+            start = try container.decode(String.self, forKey: .start)
 
             do {
                 nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
@@ -77,8 +77,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            start = try container.decode(String.self, forKey: .start)
-
             do {
                 duration = try container.decode(Int.self, forKey: .duration)
 
@@ -86,6 +84,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            published = try container.decode(Bool.self, forKey: .published)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -95,13 +95,13 @@ public extension PlatformClient {
 
             try? container.encode(cron, forKey: .cron)
 
-            try? container.encodeIfPresent(published, forKey: .published)
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
 
-            try? container.encodeIfPresent(start, forKey: .start)
-
             try? container.encode(duration, forKey: .duration)
+
+            try? container.encodeIfPresent(published, forKey: .published)
         }
     }
 }

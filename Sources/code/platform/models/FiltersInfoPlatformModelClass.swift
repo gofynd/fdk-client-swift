@@ -10,30 +10,30 @@ public extension PlatformClient {
     class FiltersInfo: Codable {
         public var options: [FilterInfoOption]?
 
+        public var value: String
+
         public var text: String
 
         public var type: String
 
-        public var value: String
-
         public enum CodingKeys: String, CodingKey {
             case options
+
+            case value
 
             case text
 
             case type
-
-            case value
         }
 
         public init(options: [FilterInfoOption]? = nil, text: String, type: String, value: String) {
             self.options = options
 
+            self.value = value
+
             self.text = text
 
             self.type = type
-
-            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,11 +47,11 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            value = try container.decode(String.self, forKey: .value)
+
             text = try container.decode(String.self, forKey: .text)
 
             type = try container.decode(String.self, forKey: .type)
-
-            value = try container.decode(String.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -59,11 +59,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(options, forKey: .options)
 
+            try? container.encodeIfPresent(value, forKey: .value)
+
             try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(type, forKey: .type)
-
-            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
