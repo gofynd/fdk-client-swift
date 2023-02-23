@@ -8,9 +8,11 @@ public extension PlatformClient {
      */
 
     class AnnouncementResponse: Codable {
+        public var platformId: String?
+
         public var companyId: Int?
 
-        public var platformName: String?
+        public var description: String?
 
         public var logoUrl: String?
 
@@ -20,18 +22,18 @@ public extension PlatformClient {
 
         public var toDatetime: String?
 
-        public var platformId: String?
-
-        public var description: String?
+        public var platformName: String?
 
         public var createdAt: String?
 
         public var id: Int
 
         public enum CodingKeys: String, CodingKey {
+            case platformId = "platform_id"
+
             case companyId = "company_id"
 
-            case platformName = "platform_name"
+            case description
 
             case logoUrl = "logo_url"
 
@@ -41,9 +43,7 @@ public extension PlatformClient {
 
             case toDatetime = "to_datetime"
 
-            case platformId = "platform_id"
-
-            case description
+            case platformName = "platform_name"
 
             case createdAt = "created_at"
 
@@ -51,9 +51,11 @@ public extension PlatformClient {
         }
 
         public init(companyId: Int? = nil, createdAt: String? = nil, description: String? = nil, fromDatetime: String? = nil, id: Int, logoUrl: String? = nil, platformId: String? = nil, platformName: String? = nil, title: String? = nil, toDatetime: String? = nil) {
+            self.platformId = platformId
+
             self.companyId = companyId
 
-            self.platformName = platformName
+            self.description = description
 
             self.logoUrl = logoUrl
 
@@ -63,9 +65,7 @@ public extension PlatformClient {
 
             self.toDatetime = toDatetime
 
-            self.platformId = platformId
-
-            self.description = description
+            self.platformName = platformName
 
             self.createdAt = createdAt
 
@@ -76,6 +76,14 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
+                platformId = try container.decode(String.self, forKey: .platformId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -84,7 +92,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                platformName = try container.decode(String.self, forKey: .platformName)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,15 +132,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                platformId = try container.decode(String.self, forKey: .platformId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                description = try container.decode(String.self, forKey: .description)
+                platformName = try container.decode(String.self, forKey: .platformName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,9 +153,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(platformId, forKey: .platformId)
+
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(platformName, forKey: .platformName)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
 
@@ -165,9 +167,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(toDatetime, forKey: .toDatetime)
 
-            try? container.encodeIfPresent(platformId, forKey: .platformId)
-
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(platformName, forKey: .platformName)
 
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 

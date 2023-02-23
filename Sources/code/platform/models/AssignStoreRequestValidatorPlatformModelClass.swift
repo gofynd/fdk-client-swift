@@ -10,9 +10,9 @@ public extension PlatformClient {
     class AssignStoreRequestValidator: Codable {
         public var storeIds: [Int]?
 
-        public var companyId: Int?
-
         public var pincode: String?
+
+        public var companyId: Int?
 
         public var appId: String?
 
@@ -25,9 +25,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case storeIds = "store_ids"
 
-            case companyId = "company_id"
-
             case pincode
+
+            case companyId = "company_id"
 
             case appId = "app_id"
 
@@ -41,9 +41,9 @@ public extension PlatformClient {
         public init(appId: String? = nil, articles: [_AssignStoreArticle]? = nil, channelIdentifier: String? = nil, channelType: String? = nil, companyId: Int? = nil, pincode: String? = nil, storeIds: [Int]? = nil) {
             self.storeIds = storeIds
 
-            self.companyId = companyId
-
             self.pincode = pincode
+
+            self.companyId = companyId
 
             self.appId = appId
 
@@ -66,7 +66,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                pincode = try container.decode(String.self, forKey: .pincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,7 +74,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                pincode = try container.decode(String.self, forKey: .pincode)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,9 +119,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 

@@ -10,18 +10,18 @@ public extension PlatformClient {
     class BulkListingResponse: Codable {
         public var success: Bool?
 
-        public var error: String?
-
         public var data: [bulkListingData]?
+
+        public var error: String?
 
         public var page: BulkListingPage?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case error
-
             case data
+
+            case error
 
             case page
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(data: [bulkListingData]? = nil, error: String? = nil, page: BulkListingPage? = nil, success: Bool? = nil) {
             self.success = success
 
-            self.error = error
-
             self.data = data
+
+            self.error = error
 
             self.page = page
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                error = try container.decode(String.self, forKey: .error)
+                data = try container.decode([bulkListingData].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                data = try container.decode([bulkListingData].self, forKey: .data)
+                error = try container.decode(String.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(page, forKey: .page)
         }

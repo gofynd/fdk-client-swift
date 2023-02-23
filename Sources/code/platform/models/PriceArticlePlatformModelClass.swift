@@ -10,9 +10,9 @@ public extension PlatformClient {
     class PriceArticle: Codable {
         public var effective: Double?
 
-        public var currency: String?
-
         public var marked: Double?
+
+        public var currency: String?
 
         public var transfer: Double?
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case effective
 
-            case currency
-
             case marked
+
+            case currency
 
             case transfer
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil, tpNotes: [String: Any]? = nil, transfer: Double? = nil) {
             self.effective = effective
 
-            self.currency = currency
-
             self.marked = marked
+
+            self.currency = currency
 
             self.transfer = transfer
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                marked = try container.decode(Double.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                marked = try container.decode(Double.self, forKey: .marked)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
-
             try? container.encodeIfPresent(marked, forKey: .marked)
+
+            try? container.encodeIfPresent(currency, forKey: .currency)
 
             try? container.encodeIfPresent(transfer, forKey: .transfer)
 

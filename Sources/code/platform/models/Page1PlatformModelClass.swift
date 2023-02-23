@@ -10,22 +10,22 @@ public extension PlatformClient {
     class Page1: Codable {
         public var itemTotal: Int
 
-        public var size: Int
-
         public var current: Int
 
         public var pageType: String
+
+        public var size: Int
 
         public var hasNext: Bool
 
         public enum CodingKeys: String, CodingKey {
             case itemTotal = "item_total"
 
-            case size
-
             case current
 
             case pageType = "page_type"
+
+            case size
 
             case hasNext = "has_next"
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
             self.itemTotal = itemTotal
 
-            self.size = size
-
             self.current = current
 
             self.pageType = pageType
+
+            self.size = size
 
             self.hasNext = hasNext
         }
@@ -47,11 +47,11 @@ public extension PlatformClient {
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
-            size = try container.decode(Int.self, forKey: .size)
-
             current = try container.decode(Int.self, forKey: .current)
 
             pageType = try container.decode(String.self, forKey: .pageType)
+
+            size = try container.decode(Int.self, forKey: .size)
 
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
         }
@@ -61,11 +61,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
             try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(pageType, forKey: .pageType)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
         }

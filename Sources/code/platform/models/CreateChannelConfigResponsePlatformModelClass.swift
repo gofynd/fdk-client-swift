@@ -10,24 +10,24 @@ public extension PlatformClient {
     class CreateChannelConfigResponse: Codable {
         public var isUpserted: Bool?
 
-        public var acknowledged: Bool?
-
         public var isInserted: Bool?
+
+        public var acknowledged: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case isUpserted = "is_upserted"
 
-            case acknowledged
-
             case isInserted = "is_inserted"
+
+            case acknowledged
         }
 
         public init(acknowledged: Bool? = nil, isInserted: Bool? = nil, isUpserted: Bool? = nil) {
             self.isUpserted = isUpserted
 
-            self.acknowledged = acknowledged
-
             self.isInserted = isInserted
+
+            self.acknowledged = acknowledged
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                acknowledged = try container.decode(Bool.self, forKey: .acknowledged)
+                isInserted = try container.decode(Bool.self, forKey: .isInserted)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isInserted = try container.decode(Bool.self, forKey: .isInserted)
+                acknowledged = try container.decode(Bool.self, forKey: .acknowledged)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isUpserted, forKey: .isUpserted)
 
-            try? container.encodeIfPresent(acknowledged, forKey: .acknowledged)
-
             try? container.encodeIfPresent(isInserted, forKey: .isInserted)
+
+            try? container.encodeIfPresent(acknowledged, forKey: .acknowledged)
         }
     }
 }

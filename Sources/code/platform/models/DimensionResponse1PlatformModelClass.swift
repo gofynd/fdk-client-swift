@@ -10,30 +10,30 @@ public extension PlatformClient {
     class DimensionResponse1: Codable {
         public var width: Double?
 
+        public var unit: String?
+
         public var length: Double?
 
         public var height: Double?
 
-        public var unit: String?
-
         public enum CodingKeys: String, CodingKey {
             case width
+
+            case unit
 
             case length
 
             case height
-
-            case unit
         }
 
         public init(height: Double? = nil, length: Double? = nil, unit: String? = nil, width: Double? = nil) {
             self.width = width
 
+            self.unit = unit
+
             self.length = length
 
             self.height = height
-
-            self.unit = unit
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,6 +41,14 @@ public extension PlatformClient {
 
             do {
                 width = try container.decode(Double.self, forKey: .width)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,14 +70,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                unit = try container.decode(String.self, forKey: .unit)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -77,11 +77,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(width, forKey: .width)
 
+            try? container.encodeIfPresent(unit, forKey: .unit)
+
             try? container.encodeIfPresent(length, forKey: .length)
 
             try? container.encodeIfPresent(height, forKey: .height)
-
-            try? container.encodeIfPresent(unit, forKey: .unit)
         }
     }
 }
