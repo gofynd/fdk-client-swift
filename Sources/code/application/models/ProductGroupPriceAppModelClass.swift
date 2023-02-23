@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var maxEffective: Double?
 
-        public var minEffective: Double?
-
         public var maxMarked: Double?
+
+        public var minEffective: Double?
 
         public var currency: [String: Any]?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case maxEffective = "max_effective"
 
-            case minEffective = "min_effective"
-
             case maxMarked = "max_marked"
+
+            case minEffective = "min_effective"
 
             case currency
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.maxEffective = maxEffective
 
-            self.minEffective = minEffective
-
             self.maxMarked = maxMarked
+
+            self.minEffective = minEffective
 
             self.currency = currency
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                minEffective = try container.decode(Double.self, forKey: .minEffective)
+                maxMarked = try container.decode(Double.self, forKey: .maxMarked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                maxMarked = try container.decode(Double.self, forKey: .maxMarked)
+                minEffective = try container.decode(Double.self, forKey: .minEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(maxEffective, forKey: .maxEffective)
 
-            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
-
             try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
+
+            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
         }
