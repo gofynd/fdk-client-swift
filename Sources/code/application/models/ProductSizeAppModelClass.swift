@@ -9,48 +9,48 @@ public extension ApplicationClient {
     class ProductSize: Codable {
         public var isAvailable: Bool?
 
-        public var value: String?
-
-        public var quantity: Int?
-
         public var display: String?
+
+        public var value: String?
 
         public var weight: Weight?
 
+        public var sellerIdentifiers: [String]?
+
         public var dimension: Dimension?
 
-        public var sellerIdentifiers: [String]?
+        public var quantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case isAvailable = "is_available"
 
-            case value
-
-            case quantity
-
             case display
+
+            case value
 
             case weight
 
+            case sellerIdentifiers = "seller_identifiers"
+
             case dimension
 
-            case sellerIdentifiers = "seller_identifiers"
+            case quantity
         }
 
         public init(dimension: Dimension? = nil, display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, sellerIdentifiers: [String]? = nil, value: String? = nil, weight: Weight? = nil) {
             self.isAvailable = isAvailable
 
-            self.value = value
-
-            self.quantity = quantity
-
             self.display = display
+
+            self.value = value
 
             self.weight = weight
 
+            self.sellerIdentifiers = sellerIdentifiers
+
             self.dimension = dimension
 
-            self.sellerIdentifiers = sellerIdentifiers
+            self.quantity = quantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,22 +58,6 @@ public extension ApplicationClient {
 
             do {
                 isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                value = try container.decode(String.self, forKey: .value)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +73,23 @@ public extension ApplicationClient {
             } catch {}
 
             do {
+                value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 weight = try container.decode(Weight.self, forKey: .weight)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sellerIdentifiers = try container.decode([String].self, forKey: .sellerIdentifiers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                sellerIdentifiers = try container.decode([String].self, forKey: .sellerIdentifiers)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,17 +118,17 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(weight, forKey: .weight)
 
+            try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
+
             try? container.encodeIfPresent(dimension, forKey: .dimension)
 
-            try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 }

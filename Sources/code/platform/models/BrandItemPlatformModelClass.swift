@@ -12,11 +12,7 @@ public extension PlatformClient {
 
         public var uid: Int?
 
-        public var discount: String?
-
         public var banners: ImageUrls?
-
-        public var departments: [String]?
 
         public var slug: String?
 
@@ -24,22 +20,26 @@ public extension PlatformClient {
 
         public var action: Action?
 
+        public var departments: [String]?
+
+        public var discount: String?
+
         public enum CodingKeys: String, CodingKey {
             case name
 
             case uid
 
-            case discount
-
             case banners
-
-            case departments
 
             case slug
 
             case logo
 
             case action
+
+            case departments
+
+            case discount
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, departments: [String]? = nil, discount: String? = nil, logo: Media? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
@@ -47,17 +47,17 @@ public extension PlatformClient {
 
             self.uid = uid
 
-            self.discount = discount
-
             self.banners = banners
-
-            self.departments = departments
 
             self.slug = slug
 
             self.logo = logo
 
             self.action = action
+
+            self.departments = departments
+
+            self.discount = discount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -80,23 +80,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                discount = try container.decode(String.self, forKey: .discount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 banners = try container.decode(ImageUrls.self, forKey: .banners)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                departments = try container.decode([String].self, forKey: .departments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -126,6 +110,22 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                departments = try container.decode([String].self, forKey: .departments)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                discount = try container.decode(String.self, forKey: .discount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -135,17 +135,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(discount, forKey: .discount)
-
             try? container.encodeIfPresent(banners, forKey: .banners)
-
-            try? container.encodeIfPresent(departments, forKey: .departments)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(departments, forKey: .departments)
+
+            try? container.encodeIfPresent(discount, forKey: .discount)
         }
     }
 }

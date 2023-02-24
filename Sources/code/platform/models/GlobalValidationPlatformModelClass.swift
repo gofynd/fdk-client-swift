@@ -10,11 +10,11 @@ public extension PlatformClient {
     class GlobalValidation: Codable {
         public var required: [String]?
 
-        public var definitions: [String: Any]?
+        public var description: String?
 
         public var type: String?
 
-        public var description: String?
+        public var definitions: [String: Any]?
 
         public var title: String?
 
@@ -23,11 +23,11 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case required
 
-            case definitions
+            case description
 
             case type
 
-            case description
+            case definitions
 
             case title
 
@@ -37,11 +37,11 @@ public extension PlatformClient {
         public init(definitions: [String: Any]? = nil, description: String? = nil, properties: Properties? = nil, required: [String]? = nil, title: String? = nil, type: String? = nil) {
             self.required = required
 
-            self.definitions = definitions
+            self.description = description
 
             self.type = type
 
-            self.description = description
+            self.definitions = definitions
 
             self.title = title
 
@@ -60,7 +60,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                definitions = try container.decode([String: Any].self, forKey: .definitions)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                definitions = try container.decode([String: Any].self, forKey: .definitions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,11 +105,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(required, forKey: .required)
 
-            try? container.encodeIfPresent(definitions, forKey: .definitions)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(definitions, forKey: .definitions)
 
             try? container.encodeIfPresent(title, forKey: .title)
 

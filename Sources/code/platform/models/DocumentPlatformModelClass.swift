@@ -10,9 +10,9 @@ public extension PlatformClient {
     class Document: Codable {
         public var verified: Bool
 
-        public var value: String
-
         public var url: String?
+
+        public var value: String
 
         public var dsType: String
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case verified
 
-            case value
-
             case url
+
+            case value
 
             case dsType = "ds_type"
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
             self.verified = verified
 
-            self.value = value
-
             self.url = url
+
+            self.value = value
 
             self.dsType = dsType
 
@@ -47,8 +47,6 @@ public extension PlatformClient {
 
             verified = try container.decode(Bool.self, forKey: .verified)
 
-            value = try container.decode(String.self, forKey: .value)
-
             do {
                 url = try container.decode(String.self, forKey: .url)
 
@@ -56,6 +54,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            value = try container.decode(String.self, forKey: .value)
 
             dsType = try container.decode(String.self, forKey: .dsType)
 
@@ -67,9 +67,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(verified, forKey: .verified)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(url, forKey: .url)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(dsType, forKey: .dsType)
 
