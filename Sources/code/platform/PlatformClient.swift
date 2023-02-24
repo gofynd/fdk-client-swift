@@ -14397,7 +14397,7 @@ public class PlatformClient {
              **/
             public func updateCartUser(
                 id: String?,
-
+                body: UpdateUserCartMapping,
                 onResponse: @escaping (_ response: UserCartMappingResponse?, _ error: FDKError?) -> Void
             ) {
                 var xQuery: [String: Any] = [:]
@@ -14411,7 +14411,7 @@ public class PlatformClient {
                     method: "put",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/update-user",
                     query: xQuery,
-                    body: nil,
+                    body: body.dictionary,
                     headers: [],
                     responseType: "application/json",
                     onResponse: { responseData, error, responseCode in
@@ -14509,6 +14509,7 @@ public class PlatformClient {
                 i: Bool?,
                 b: Bool?,
                 buyNow: Bool?,
+                id: String?,
                 body: AddCartRequest,
                 onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
             ) {
@@ -14524,6 +14525,10 @@ public class PlatformClient {
 
                 if let value = buyNow {
                     xQuery["buy_now"] = value
+                }
+
+                if let value = id {
+                    xQuery["id"] = value
                 }
 
                 PlatformAPIClient.execute(
@@ -15312,7 +15317,7 @@ public class PlatformClient {
             public func updateCartMeta(
                 id: String?,
                 buyNow: Bool?,
-                body: CartMetaRequest,
+                body: PlatformCartMetaRequest,
                 onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
             ) {
                 var xQuery: [String: Any] = [:]

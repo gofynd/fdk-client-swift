@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class Dimensions: Codable {
-        public var length: Int?
+        public var height: Int?
 
         public var unit: String?
 
@@ -16,10 +16,10 @@ public extension PlatformClient {
 
         public var width: Int?
 
-        public var height: Int?
+        public var length: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case length
+            case height
 
             case unit
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case width
 
-            case height
+            case length
         }
 
         public init(height: Int? = nil, isDefault: Bool? = nil, length: Int? = nil, unit: String? = nil, width: Int? = nil) {
-            self.length = length
+            self.height = height
 
             self.unit = unit
 
@@ -39,14 +39,14 @@ public extension PlatformClient {
 
             self.width = width
 
-            self.height = height
+            self.length = length
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                length = try container.decode(Int.self, forKey: .length)
+                height = try container.decode(Int.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                height = try container.decode(Int.self, forKey: .height)
+                length = try container.decode(Int.self, forKey: .length)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(length, forKey: .length)
+            try? container.encodeIfPresent(height, forKey: .height)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
 
@@ -97,7 +97,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(width, forKey: .width)
 
-            try? container.encodeIfPresent(height, forKey: .height)
+            try? container.encodeIfPresent(length, forKey: .length)
         }
     }
 }
