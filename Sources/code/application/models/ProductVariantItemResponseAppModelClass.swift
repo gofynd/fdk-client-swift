@@ -9,38 +9,38 @@ public extension ApplicationClient {
     class ProductVariantItemResponse: Codable {
         public var color: String?
 
-        public var name: String?
+        public var colorName: String?
 
-        public var action: ProductListingAction?
+        public var name: String?
 
         public var value: String?
 
-        public var slug: String?
+        public var action: ProductListingAction?
 
         public var medias: [Media]?
 
-        public var colorName: String?
-
         public var isAvailable: Bool?
+
+        public var slug: String?
 
         public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
             case color
 
-            case name
+            case colorName = "color_name"
 
-            case action
+            case name
 
             case value
 
-            case slug
+            case action
 
             case medias
 
-            case colorName = "color_name"
-
             case isAvailable = "is_available"
+
+            case slug
 
             case uid
         }
@@ -48,19 +48,19 @@ public extension ApplicationClient {
         public init(action: ProductListingAction? = nil, color: String? = nil, colorName: String? = nil, isAvailable: Bool? = nil, medias: [Media]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, value: String? = nil) {
             self.color = color
 
-            self.name = name
+            self.colorName = colorName
 
-            self.action = action
+            self.name = name
 
             self.value = value
 
-            self.slug = slug
+            self.action = action
 
             self.medias = medias
 
-            self.colorName = colorName
-
             self.isAvailable = isAvailable
+
+            self.slug = slug
 
             self.uid = uid
         }
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                colorName = try container.decode(String.self, forKey: .colorName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,7 +101,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,7 +117,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                colorName = try container.decode(String.self, forKey: .colorName)
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,7 +125,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,19 +146,19 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(color, forKey: .color)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(colorName, forKey: .colorName)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(medias, forKey: .medias)
 
-            try? container.encodeIfPresent(colorName, forKey: .colorName)
-
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }

@@ -8,38 +8,30 @@ public extension PlatformClient {
      */
 
     class ManagerResponse: Codable {
-        public var name: String?
-
         public var mobileNo: MobileNo?
 
         public var email: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case name
+        public var name: String?
 
+        public enum CodingKeys: String, CodingKey {
             case mobileNo = "mobile_no"
 
             case email
+
+            case name
         }
 
         public init(email: String? = nil, mobileNo: MobileNo? = nil, name: String? = nil) {
-            self.name = name
-
             self.mobileNo = mobileNo
 
             self.email = email
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 mobileNo = try container.decode(MobileNo.self, forKey: .mobileNo)
@@ -56,16 +48,24 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(mobileNo, forKey: .mobileNo)
 
             try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
