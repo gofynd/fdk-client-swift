@@ -8,27 +8,27 @@ public extension PlatformClient {
      */
 
     class ManifestDetailTotalShipmentPricesCount: Codable {
-        public var shipmentCount: Int?
-
         public var totalPrice: Double?
 
-        public enum CodingKeys: String, CodingKey {
-            case shipmentCount = "shipment_count"
+        public var shipmentCount: Int?
 
+        public enum CodingKeys: String, CodingKey {
             case totalPrice = "total_price"
+
+            case shipmentCount = "shipment_count"
         }
 
         public init(shipmentCount: Int? = nil, totalPrice: Double? = nil) {
-            self.shipmentCount = shipmentCount
-
             self.totalPrice = totalPrice
+
+            self.shipmentCount = shipmentCount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
+                totalPrice = try container.decode(Double.self, forKey: .totalPrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                totalPrice = try container.decode(Double.self, forKey: .totalPrice)
+                shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shipmentCount, forKey: .shipmentCount)
-
             try? container.encodeIfPresent(totalPrice, forKey: .totalPrice)
+
+            try? container.encodeIfPresent(shipmentCount, forKey: .shipmentCount)
         }
     }
 }

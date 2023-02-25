@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var sizes: [InventoryJobPayload]
 
-        public var batchId: String
-
         public var companyId: Int
+
+        public var batchId: String
 
         public enum CodingKeys: String, CodingKey {
             case user
 
             case sizes
 
-            case batchId = "batch_id"
-
             case companyId = "company_id"
+
+            case batchId = "batch_id"
         }
 
         public init(batchId: String, companyId: Int, sizes: [InventoryJobPayload], user: [String: Any]? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.sizes = sizes
 
-            self.batchId = batchId
-
             self.companyId = companyId
+
+            self.batchId = batchId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,9 +49,9 @@ public extension PlatformClient {
 
             sizes = try container.decode([InventoryJobPayload].self, forKey: .sizes)
 
-            batchId = try container.decode(String.self, forKey: .batchId)
-
             companyId = try container.decode(Int.self, forKey: .companyId)
+
+            batchId = try container.decode(String.self, forKey: .batchId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -61,9 +61,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
 
-            try? container.encodeIfPresent(batchId, forKey: .batchId)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(batchId, forKey: .batchId)
         }
     }
 }

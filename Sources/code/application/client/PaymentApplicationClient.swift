@@ -41,7 +41,7 @@ public extension ApplicationClient {
 
             ulrs["validateVPA"] = config.domain.appendAsPath("/service/application/payment/v1.0/validate-vpa")
 
-            ulrs["cardDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/cards/info/{card_bin}")
+            ulrs["cardDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/cards/info/{card_info}")
 
             ulrs["getActiveRefundTransferModes"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/transfer-mode")
 
@@ -831,7 +831,7 @@ public extension ApplicationClient {
          * Description: API to get Card info from PG
          **/
         public func cardDetails(
-            cardBin: String,
+            cardInfo: String,
             aggregator: String?,
 
             onResponse: @escaping (_ response: cardDetailsResponse?, _ error: FDKError?) -> Void
@@ -844,7 +844,7 @@ public extension ApplicationClient {
 
             var fullUrl = relativeUrls["cardDetails"] ?? ""
 
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "card_bin" + "}", with: "\(cardBin)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "card_info" + "}", with: "\(cardInfo)")
 
             ApplicationAPIClient.execute(
                 config: config,

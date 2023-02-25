@@ -10,11 +10,9 @@ public extension PlatformClient {
     class ManifestFilter: Codable {
         public var dpName: String?
 
-        public var salesChannels: String?
+        public var dateRange: DateRange?
 
         public var salesChannelName: String?
-
-        public var dateRange: DateRange?
 
         public var storeName: String?
 
@@ -22,16 +20,16 @@ public extension PlatformClient {
 
         public var stores: String?
 
+        public var salesChannels: String?
+
         public var lane: String?
 
         public enum CodingKeys: String, CodingKey {
             case dpName = "dp_name"
 
-            case salesChannels = "sales_channels"
+            case dateRange = "date_range"
 
             case salesChannelName = "sales_channel_name"
-
-            case dateRange = "date_range"
 
             case storeName = "store_name"
 
@@ -39,23 +37,25 @@ public extension PlatformClient {
 
             case stores
 
+            case salesChannels = "sales_channels"
+
             case lane
         }
 
         public init(dateRange: DateRange? = nil, dpIds: String? = nil, dpName: String? = nil, lane: String? = nil, salesChannels: String? = nil, salesChannelName: String? = nil, stores: String? = nil, storeName: String? = nil) {
             self.dpName = dpName
 
-            self.salesChannels = salesChannels
+            self.dateRange = dateRange
 
             self.salesChannelName = salesChannelName
-
-            self.dateRange = dateRange
 
             self.storeName = storeName
 
             self.dpIds = dpIds
 
             self.stores = stores
+
+            self.salesChannels = salesChannels
 
             self.lane = lane
         }
@@ -72,7 +72,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                salesChannels = try container.decode(String.self, forKey: .salesChannels)
+                dateRange = try container.decode(DateRange.self, forKey: .dateRange)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,14 +81,6 @@ public extension PlatformClient {
 
             do {
                 salesChannelName = try container.decode(String.self, forKey: .salesChannelName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dateRange = try container.decode(DateRange.self, forKey: .dateRange)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,6 +112,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                salesChannels = try container.decode(String.self, forKey: .salesChannels)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 lane = try container.decode(String.self, forKey: .lane)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -133,17 +133,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(dpName, forKey: .dpName)
 
-            try? container.encodeIfPresent(salesChannels, forKey: .salesChannels)
+            try? container.encodeIfPresent(dateRange, forKey: .dateRange)
 
             try? container.encodeIfPresent(salesChannelName, forKey: .salesChannelName)
-
-            try? container.encodeIfPresent(dateRange, forKey: .dateRange)
 
             try? container.encodeIfPresent(storeName, forKey: .storeName)
 
             try? container.encodeIfPresent(dpIds, forKey: .dpIds)
 
             try? container.encodeIfPresent(stores, forKey: .stores)
+
+            try? container.encodeIfPresent(salesChannels, forKey: .salesChannels)
 
             try? container.encodeIfPresent(lane, forKey: .lane)
         }

@@ -8,21 +8,21 @@ public extension PlatformClient {
      */
 
     class CreateOrderAPI: Codable {
-        public var externalOrderId: String?
+        public var shippingInfo: ShippingInfo
 
-        public var billingInfo: BillingInfo
+        public var externalOrderId: String?
 
         public var meta: [String: Any]?
 
-        public var shippingInfo: ShippingInfo
+        public var billingInfo: BillingInfo
+
+        public var paymentInfo: PaymentInfo
 
         public var applicationId: String?
 
-        public var externalCreationDate: String?
-
         public var currencyInfo: [String: Any]
 
-        public var paymentInfo: PaymentInfo
+        public var externalCreationDate: String?
 
         public var shipments: [Shipment]
 
@@ -31,21 +31,21 @@ public extension PlatformClient {
         public var charges: [Charge]
 
         public enum CodingKeys: String, CodingKey {
-            case externalOrderId = "external_order_id"
+            case shippingInfo = "shipping_info"
 
-            case billingInfo = "billing_info"
+            case externalOrderId = "external_order_id"
 
             case meta
 
-            case shippingInfo = "shipping_info"
+            case billingInfo = "billing_info"
+
+            case paymentInfo = "payment_info"
 
             case applicationId = "application_id"
 
-            case externalCreationDate = "external_creation_date"
-
             case currencyInfo = "currency_info"
 
-            case paymentInfo = "payment_info"
+            case externalCreationDate = "external_creation_date"
 
             case shipments
 
@@ -55,21 +55,21 @@ public extension PlatformClient {
         }
 
         public init(applicationId: String? = nil, billingInfo: BillingInfo, charges: [Charge], currencyInfo: [String: Any], externalCreationDate: String? = nil, externalOrderId: String? = nil, meta: [String: Any]? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil) {
-            self.externalOrderId = externalOrderId
+            self.shippingInfo = shippingInfo
 
-            self.billingInfo = billingInfo
+            self.externalOrderId = externalOrderId
 
             self.meta = meta
 
-            self.shippingInfo = shippingInfo
+            self.billingInfo = billingInfo
+
+            self.paymentInfo = paymentInfo
 
             self.applicationId = applicationId
 
-            self.externalCreationDate = externalCreationDate
-
             self.currencyInfo = currencyInfo
 
-            self.paymentInfo = paymentInfo
+            self.externalCreationDate = externalCreationDate
 
             self.shipments = shipments
 
@@ -81,6 +81,8 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            shippingInfo = try container.decode(ShippingInfo.self, forKey: .shippingInfo)
+
             do {
                 externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
 
@@ -88,8 +90,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            billingInfo = try container.decode(BillingInfo.self, forKey: .billingInfo)
 
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
@@ -99,7 +99,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            shippingInfo = try container.decode(ShippingInfo.self, forKey: .shippingInfo)
+            billingInfo = try container.decode(BillingInfo.self, forKey: .billingInfo)
+
+            paymentInfo = try container.decode(PaymentInfo.self, forKey: .paymentInfo)
 
             do {
                 applicationId = try container.decode(String.self, forKey: .applicationId)
@@ -109,6 +111,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            currencyInfo = try container.decode([String: Any].self, forKey: .currencyInfo)
+
             do {
                 externalCreationDate = try container.decode(String.self, forKey: .externalCreationDate)
 
@@ -116,10 +120,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            currencyInfo = try container.decode([String: Any].self, forKey: .currencyInfo)
-
-            paymentInfo = try container.decode(PaymentInfo.self, forKey: .paymentInfo)
 
             shipments = try container.decode([Shipment].self, forKey: .shipments)
 
@@ -137,21 +137,21 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
+            try? container.encodeIfPresent(shippingInfo, forKey: .shippingInfo)
 
-            try? container.encodeIfPresent(billingInfo, forKey: .billingInfo)
+            try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(shippingInfo, forKey: .shippingInfo)
+            try? container.encodeIfPresent(billingInfo, forKey: .billingInfo)
+
+            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
 
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
 
-            try? container.encodeIfPresent(externalCreationDate, forKey: .externalCreationDate)
-
             try? container.encodeIfPresent(currencyInfo, forKey: .currencyInfo)
 
-            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
+            try? container.encodeIfPresent(externalCreationDate, forKey: .externalCreationDate)
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
 

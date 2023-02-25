@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var verified: Bool
 
-        public var value: String
-
         public var legalName: String
+
+        public var value: String
 
         public var url: String?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case verified
 
-            case value
-
             case legalName = "legal_name"
+
+            case value
 
             case url
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.verified = verified
 
-            self.value = value
-
             self.legalName = legalName
+
+            self.value = value
 
             self.url = url
         }
@@ -49,9 +49,9 @@ public extension PlatformClient {
 
             verified = try container.decode(Bool.self, forKey: .verified)
 
-            value = try container.decode(String.self, forKey: .value)
-
             legalName = try container.decode(String.self, forKey: .legalName)
+
+            value = try container.decode(String.self, forKey: .value)
 
             do {
                 url = try container.decode(String.self, forKey: .url)
@@ -69,9 +69,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(verified, forKey: .verified)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(legalName, forKey: .legalName)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(url, forKey: .url)
         }

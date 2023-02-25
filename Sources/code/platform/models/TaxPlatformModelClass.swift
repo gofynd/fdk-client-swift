@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var amount: [String: Any]
 
-        public var taxExempt: Bool
-
         public var name: String
+
+        public var taxExempt: Bool
 
         public enum CodingKeys: String, CodingKey {
             case breakup
 
             case amount
 
-            case taxExempt = "tax_exempt"
-
             case name
+
+            case taxExempt = "tax_exempt"
         }
 
         public init(amount: [String: Any], breakup: [[String: Any]], name: String, taxExempt: Bool) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.amount = amount
 
-            self.taxExempt = taxExempt
-
             self.name = name
+
+            self.taxExempt = taxExempt
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,9 +43,9 @@ public extension PlatformClient {
 
             amount = try container.decode([String: Any].self, forKey: .amount)
 
-            taxExempt = try container.decode(Bool.self, forKey: .taxExempt)
-
             name = try container.decode(String.self, forKey: .name)
+
+            taxExempt = try container.decode(Bool.self, forKey: .taxExempt)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -55,9 +55,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(taxExempt, forKey: .taxExempt)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(taxExempt, forKey: .taxExempt)
         }
     }
 }

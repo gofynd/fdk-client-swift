@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class IntentApp: Codable {
         public var displayName: String?
 
-        public var packageName: String?
-
         public var outage: [String: Any]?
+
+        public var packageName: String?
 
         public var logos: PaymentModeLogo?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case displayName = "display_name"
 
-            case packageName = "package_name"
-
             case outage
+
+            case packageName = "package_name"
 
             case logos
 
@@ -32,9 +32,9 @@ public extension ApplicationClient {
         public init(code: String? = nil, displayName: String? = nil, logos: PaymentModeLogo? = nil, outage: [String: Any]? = nil, packageName: String? = nil) {
             self.displayName = displayName
 
-            self.packageName = packageName
-
             self.outage = outage
+
+            self.packageName = packageName
 
             self.logos = logos
 
@@ -53,7 +53,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                packageName = try container.decode(String.self, forKey: .packageName)
+                outage = try container.decode([String: Any].self, forKey: .outage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                outage = try container.decode([String: Any].self, forKey: .outage)
+                packageName = try container.decode(String.self, forKey: .packageName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension ApplicationClient {
 
             try? container.encode(displayName, forKey: .displayName)
 
-            try? container.encode(packageName, forKey: .packageName)
-
             try? container.encode(outage, forKey: .outage)
+
+            try? container.encode(packageName, forKey: .packageName)
 
             try? container.encode(logos, forKey: .logos)
 
