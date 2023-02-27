@@ -8,8 +8,6 @@ public extension PlatformClient {
      */
 
     class AffiliateInventoryConfig: Codable {
-        public var logistics: AffiliateInventoryLogisticsConfig?
-
         public var payment: AffiliateInventoryPaymentConfig?
 
         public var articleAssignment: AffiliateInventoryArticleAssignmentConfig?
@@ -18,9 +16,9 @@ public extension PlatformClient {
 
         public var order: AffiliateInventoryOrderConfig?
 
-        public enum CodingKeys: String, CodingKey {
-            case logistics
+        public var logistics: AffiliateInventoryLogisticsConfig?
 
+        public enum CodingKeys: String, CodingKey {
             case payment
 
             case articleAssignment = "article_assignment"
@@ -28,11 +26,11 @@ public extension PlatformClient {
             case inventory
 
             case order
+
+            case logistics
         }
 
         public init(articleAssignment: AffiliateInventoryArticleAssignmentConfig? = nil, inventory: AffiliateInventoryStoreConfig? = nil, logistics: AffiliateInventoryLogisticsConfig? = nil, order: AffiliateInventoryOrderConfig? = nil, payment: AffiliateInventoryPaymentConfig? = nil) {
-            self.logistics = logistics
-
             self.payment = payment
 
             self.articleAssignment = articleAssignment
@@ -40,18 +38,12 @@ public extension PlatformClient {
             self.inventory = inventory
 
             self.order = order
+
+            self.logistics = logistics
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 payment = try container.decode(AffiliateInventoryPaymentConfig.self, forKey: .payment)
@@ -84,12 +76,18 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(logistics, forKey: .logistics)
 
             try? container.encodeIfPresent(payment, forKey: .payment)
 
@@ -98,6 +96,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(inventory, forKey: .inventory)
 
             try? container.encodeIfPresent(order, forKey: .order)
+
+            try? container.encodeIfPresent(logistics, forKey: .logistics)
         }
     }
 }

@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var index: Int?
 
-        public var totalItems: Int?
-
         public var value: String?
+
+        public var totalItems: Int?
 
         public enum CodingKeys: String, CodingKey {
             case text
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case index
 
-            case totalItems = "total_items"
-
             case value
+
+            case totalItems = "total_items"
         }
 
         public init(actions: [[String: Any]]? = nil, index: Int? = nil, text: String? = nil, totalItems: Int? = nil, value: String? = nil) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.index = index
 
-            self.totalItems = totalItems
-
             self.value = value
+
+            self.totalItems = totalItems
         }
 
         required public init(from decoder: Decoder) throws {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                totalItems = try container.decode(Int.self, forKey: .totalItems)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                totalItems = try container.decode(Int.self, forKey: .totalItems)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,9 +95,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(index, forKey: .index)
 
-            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
         }
     }
 }
