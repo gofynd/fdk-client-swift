@@ -4,32 +4,32 @@ import Foundation
 
 public extension PlatformClient.ApplicationClient.Cart {
     /*
-         Model: GeoLocation1
+         Model: DeleteCartDetailResponse
          Used By: Cart
      */
 
-    class GeoLocation1: Codable {
-        public var longitude: Double?
+    class DeleteCartDetailResponse: Codable {
+        public var message: String?
 
-        public var latitude: Double?
+        public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case longitude
+            case message
 
-            case latitude
+            case success
         }
 
-        public init(latitude: Double? = nil, longitude: Double? = nil) {
-            self.longitude = longitude
+        public init(message: String? = nil, success: Bool? = nil) {
+            self.message = message
 
-            self.latitude = latitude
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                longitude = try container.decode(Double.self, forKey: .longitude)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                latitude = try container.decode(Double.self, forKey: .latitude)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
+            try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(latitude, forKey: .latitude)
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

@@ -11,24 +11,24 @@ public extension PlatformClient.Logistic {
     class EntityRegionView_Items: Codable {
         public var uid: String
 
-        public var name: String
-
         public var subType: String
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
-            case name
-
             case subType = "sub_type"
+
+            case name
         }
 
         public init(name: String, subType: String, uid: String) {
             self.uid = uid
 
-            self.name = name
-
             self.subType = subType
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Logistic {
 
             uid = try container.decode(String.self, forKey: .uid)
 
-            name = try container.decode(String.self, forKey: .name)
-
             subType = try container.decode(String.self, forKey: .subType)
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Logistic {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(subType, forKey: .subType)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Logistic {
     class EntityRegionView_Items: Codable {
         public var uid: String
 
-        public var name: String
-
         public var subType: String
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
-            case name
-
             case subType = "sub_type"
+
+            case name
         }
 
         public init(name: String, subType: String, uid: String) {
             self.uid = uid
 
-            self.name = name
-
             self.subType = subType
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Logistic {
 
             uid = try container.decode(String.self, forKey: .uid)
 
-            name = try container.decode(String.self, forKey: .name)
-
             subType = try container.decode(String.self, forKey: .subType)
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(subType, forKey: .subType)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

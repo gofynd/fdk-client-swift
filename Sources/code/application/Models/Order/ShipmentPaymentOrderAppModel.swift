@@ -11,11 +11,11 @@ public extension ApplicationClient.Order {
 
         public var logo: String?
 
+        public var status: String?
+
         public var paymentMode: String?
 
         public var displayName: String?
-
-        public var status: String?
 
         public var mop: String?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient.Order {
 
             case logo
 
+            case status
+
             case paymentMode = "payment_mode"
 
             case displayName = "display_name"
-
-            case status
 
             case mop
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient.Order {
 
             self.logo = logo
 
+            self.status = status
+
             self.paymentMode = paymentMode
 
             self.displayName = displayName
-
-            self.status = status
 
             self.mop = mop
         }
@@ -67,6 +67,14 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
+                status = try container.decode(String.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,14 +84,6 @@ public extension ApplicationClient.Order {
 
             do {
                 displayName = try container.decode(String.self, forKey: .displayName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
+            try? container.encodeIfPresent(status, forKey: .status)
+
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
-
-            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(mop, forKey: .mop)
         }

@@ -4,18 +4,18 @@ import Foundation
 
 public extension PlatformClient.ApplicationClient.Cart {
     /*
-         Model: GetAddressesResponse
+         Model: PlatformGetAddressesResponse
          Used By: Cart
      */
 
-    class GetAddressesResponse: Codable {
-        public var address: [Address]?
+    class PlatformGetAddressesResponse: Codable {
+        public var address: [PlatformAddress]?
 
         public enum CodingKeys: String, CodingKey {
             case address
         }
 
-        public init(address: [Address]? = nil) {
+        public init(address: [PlatformAddress]? = nil) {
             self.address = address
         }
 
@@ -23,7 +23,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                address = try container.decode([Address].self, forKey: .address)
+                address = try container.decode([PlatformAddress].self, forKey: .address)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

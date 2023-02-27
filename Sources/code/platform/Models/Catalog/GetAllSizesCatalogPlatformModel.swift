@@ -4,11 +4,11 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-         Model: ListALLSizes
+         Model: GetAllSizes
          Used By: Catalog
      */
 
-    class ListALLSizes: Codable {
+    class GetAllSizes: Codable {
         public var allSizes: [AllSizes]?
 
         public enum CodingKeys: String, CodingKey {
@@ -41,11 +41,11 @@ public extension PlatformClient.Catalog {
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-         Model: ListALLSizes
+         Model: GetAllSizes
          Used By: Catalog
      */
 
-    class ListALLSizes: Codable {
+    class GetAllSizes: Codable {
         public var allSizes: [AllSizes]?
 
         public enum CodingKeys: String, CodingKey {
