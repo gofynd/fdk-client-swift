@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class TransferItemsDetails: Codable {
         public var logoSmall: String
 
-        public var id: Int
-
         public var name: String
+
+        public var id: Int
 
         public var displayName: String?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case logoSmall = "logo_small"
 
-            case id
-
             case name
+
+            case id
 
             case displayName = "display_name"
 
@@ -32,9 +32,9 @@ public extension ApplicationClient {
         public init(displayName: String? = nil, id: Int, logoLarge: String, logoSmall: String, name: String) {
             self.logoSmall = logoSmall
 
-            self.id = id
-
             self.name = name
+
+            self.id = id
 
             self.displayName = displayName
 
@@ -46,9 +46,9 @@ public extension ApplicationClient {
 
             logoSmall = try container.decode(String.self, forKey: .logoSmall)
 
-            id = try container.decode(Int.self, forKey: .id)
-
             name = try container.decode(String.self, forKey: .name)
+
+            id = try container.decode(Int.self, forKey: .id)
 
             do {
                 displayName = try container.decode(String.self, forKey: .displayName)
@@ -66,9 +66,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 

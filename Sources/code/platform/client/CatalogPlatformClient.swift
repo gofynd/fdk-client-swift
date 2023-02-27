@@ -187,6 +187,7 @@ public extension PlatformClient {
             tag: String?,
             pageNo: Int?,
             pageSize: Int?,
+            brandId: Int?,
 
             onResponse: @escaping (_ response: ListSizeGuide?, _ error: FDKError?) -> Void
         ) {
@@ -210,6 +211,10 @@ public extension PlatformClient {
 
             if let value = pageSize {
                 xQuery["page_size"] = value
+            }
+
+            if let value = brandId {
+                xQuery["brand_id"] = value
             }
 
             PlatformAPIClient.execute(
@@ -762,6 +767,7 @@ public extension PlatformClient {
             name: String?,
             search: String?,
             isActive: Bool?,
+            itemType: String?,
 
             onResponse: @escaping (_ response: DepartmentsResponse?, _ error: FDKError?) -> Void
         ) {
@@ -785,6 +791,10 @@ public extension PlatformClient {
 
             if let value = isActive {
                 xQuery["is_active"] = value
+            }
+
+            if let value = itemType {
+                xQuery["item_type"] = value
             }
 
             PlatformAPIClient.execute(
@@ -1182,13 +1192,36 @@ public extension PlatformClient {
          * Description: Can view details including trigger data, task id , etc.
          **/
         public func listProductTemplateExportDetails(
+            status: String?,
+            fromDate: String?,
+            toDate: String?,
+            q: String?,
+
             onResponse: @escaping (_ response: ProductDownloadsResponse?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = status {
+                xQuery["status"] = value
+            }
+
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
+
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
+
+            if let value = q {
+                xQuery["q"] = value
+            }
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/downloads/",
-                query: nil,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
@@ -1220,12 +1253,22 @@ public extension PlatformClient {
          **/
         public func listTemplateBrandTypeValues(
             filter: String,
+            templateTag: String?,
+            itemType: String?,
 
             onResponse: @escaping (_ response: ProductConfigurationDownloads?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
             xQuery["filter"] = filter
+
+            if let value = templateTag {
+                xQuery["template_tag"] = value
+            }
+
+            if let value = itemType {
+                xQuery["item_type"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,
@@ -2719,13 +2762,36 @@ public extension PlatformClient {
          * Description: This API helps to get Inventory export history.
          **/
         public func getInventoryExport(
+            status: String?,
+            fromDate: String?,
+            toDate: String?,
+            q: String?,
+
             onResponse: @escaping (_ response: InventoryExportJob?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = status {
+                xQuery["status"] = value
+            }
+
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
+
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
+
+            if let value = q {
+                xQuery["q"] = value
+            }
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/download/",
-                query: nil,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 responseType: "application/json",

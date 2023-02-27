@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var status: String
 
-        public var redirectUrl: String?
-
         public var retry: Bool
+
+        public var redirectUrl: String?
 
         public var success: Bool?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case status
 
-            case redirectUrl = "redirect_url"
-
             case retry
+
+            case redirectUrl = "redirect_url"
 
             case success
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.status = status
 
-            self.redirectUrl = redirectUrl
-
             self.retry = retry
+
+            self.redirectUrl = redirectUrl
 
             self.success = success
         }
@@ -49,6 +49,8 @@ public extension PlatformClient {
 
             status = try container.decode(String.self, forKey: .status)
 
+            retry = try container.decode(Bool.self, forKey: .retry)
+
             do {
                 redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
 
@@ -56,8 +58,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            retry = try container.decode(Bool.self, forKey: .retry)
 
             do {
                 success = try container.decode(Bool.self, forKey: .success)
@@ -75,9 +75,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encode(redirectUrl, forKey: .redirectUrl)
-
             try? container.encodeIfPresent(retry, forKey: .retry)
+
+            try? container.encode(redirectUrl, forKey: .redirectUrl)
 
             try? container.encode(success, forKey: .success)
         }

@@ -10,18 +10,18 @@ public extension PlatformClient {
     class StatisticsData: Codable {
         public var activeDeviceCount: Int
 
-        public var storeCount: Int
-
         public var inactiveDeviceCount: Int
+
+        public var storeCount: Int
 
         public var filterOptions: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case activeDeviceCount = "active_device_count"
 
-            case storeCount = "store_count"
-
             case inactiveDeviceCount = "inactive_device_count"
+
+            case storeCount = "store_count"
 
             case filterOptions = "filter_options"
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(activeDeviceCount: Int, filterOptions: [String: Any], inactiveDeviceCount: Int, storeCount: Int) {
             self.activeDeviceCount = activeDeviceCount
 
-            self.storeCount = storeCount
-
             self.inactiveDeviceCount = inactiveDeviceCount
+
+            self.storeCount = storeCount
 
             self.filterOptions = filterOptions
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             activeDeviceCount = try container.decode(Int.self, forKey: .activeDeviceCount)
 
-            storeCount = try container.decode(Int.self, forKey: .storeCount)
-
             inactiveDeviceCount = try container.decode(Int.self, forKey: .inactiveDeviceCount)
+
+            storeCount = try container.decode(Int.self, forKey: .storeCount)
 
             filterOptions = try container.decode([String: Any].self, forKey: .filterOptions)
         }
@@ -53,9 +53,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(activeDeviceCount, forKey: .activeDeviceCount)
 
-            try? container.encodeIfPresent(storeCount, forKey: .storeCount)
-
             try? container.encodeIfPresent(inactiveDeviceCount, forKey: .inactiveDeviceCount)
+
+            try? container.encodeIfPresent(storeCount, forKey: .storeCount)
 
             try? container.encodeIfPresent(filterOptions, forKey: .filterOptions)
         }

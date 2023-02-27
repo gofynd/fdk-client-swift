@@ -10,9 +10,7 @@ public extension PlatformClient {
     class PaymentStatusUpdateRequest: Codable {
         public var vpa: String?
 
-        public var status: String
-
-        public var merchantOrderId: String
+        public var email: String
 
         public var amount: Int
 
@@ -20,13 +18,15 @@ public extension PlatformClient {
 
         public var method: String
 
-        public var deviceId: String?
+        public var orderId: String
+
+        public var status: String
 
         public var contact: String
 
-        public var email: String
+        public var merchantOrderId: String
 
-        public var orderId: String
+        public var deviceId: String?
 
         public var currency: String
 
@@ -35,9 +35,7 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case vpa
 
-            case status
-
-            case merchantOrderId = "merchant_order_id"
+            case email
 
             case amount
 
@@ -45,13 +43,15 @@ public extension PlatformClient {
 
             case method
 
-            case deviceId = "device_id"
+            case orderId = "order_id"
+
+            case status
 
             case contact
 
-            case email
+            case merchantOrderId = "merchant_order_id"
 
-            case orderId = "order_id"
+            case deviceId = "device_id"
 
             case currency
 
@@ -61,9 +61,7 @@ public extension PlatformClient {
         public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, deviceId: String? = nil, email: String, merchantOrderId: String, method: String, orderId: String, status: String, vpa: String? = nil) {
             self.vpa = vpa
 
-            self.status = status
-
-            self.merchantOrderId = merchantOrderId
+            self.email = email
 
             self.amount = amount
 
@@ -71,13 +69,15 @@ public extension PlatformClient {
 
             self.method = method
 
-            self.deviceId = deviceId
+            self.orderId = orderId
+
+            self.status = status
 
             self.contact = contact
 
-            self.email = email
+            self.merchantOrderId = merchantOrderId
 
-            self.orderId = orderId
+            self.deviceId = deviceId
 
             self.currency = currency
 
@@ -95,15 +95,21 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            status = try container.decode(String.self, forKey: .status)
-
-            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
+            email = try container.decode(String.self, forKey: .email)
 
             amount = try container.decode(Int.self, forKey: .amount)
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
             method = try container.decode(String.self, forKey: .method)
+
+            orderId = try container.decode(String.self, forKey: .orderId)
+
+            status = try container.decode(String.self, forKey: .status)
+
+            contact = try container.decode(String.self, forKey: .contact)
+
+            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
 
             do {
                 deviceId = try container.decode(String.self, forKey: .deviceId)
@@ -112,12 +118,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            contact = try container.decode(String.self, forKey: .contact)
-
-            email = try container.decode(String.self, forKey: .email)
-
-            orderId = try container.decode(String.self, forKey: .orderId)
 
             currency = try container.decode(String.self, forKey: .currency)
 
@@ -129,9 +129,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(vpa, forKey: .vpa)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encode(amount, forKey: .amount)
 
@@ -139,13 +137,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(method, forKey: .method)
 
-            try? container.encode(deviceId, forKey: .deviceId)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(contact, forKey: .contact)
 
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encode(deviceId, forKey: .deviceId)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 

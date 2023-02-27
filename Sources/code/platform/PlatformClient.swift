@@ -8255,8 +8255,8 @@ public class PlatformClient {
              * Summary: get some information about the store and edc device
              * Description: Use this API to get info of devices linked to a particular app.
              **/
-            public func edcAggregatorsList(
-                onResponse: @escaping (_ response: EdcAggregatorListResponse?, _ error: FDKError?) -> Void
+            public func edcAggregatorsAndModelList(
+                onResponse: @escaping (_ response: EdcAggregatorAndModelListResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
@@ -8274,7 +8274,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(EdcAggregatorListResponse.self, from: data)
+                            let response = Utility.decode(EdcAggregatorAndModelListResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -14359,7 +14359,7 @@ public class PlatformClient {
              * Description: Get all carts for the store os user which is created for customer
              **/
             public func getCartList(
-                onResponse: @escaping (_ response: CartList?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: MultiCartResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
@@ -14377,7 +14377,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(CartList.self, from: data)
+                            let response = Utility.decode(MultiCartResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -14608,6 +14608,51 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(UpdateCartDetailResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Delete cart once user made successful checkout
+             * Description: Use this API to delete the cart.
+             **/
+            public func deleteCart(
+                id: Int?,
+
+                onResponse: @escaping (_ response: DeleteCartDetailResponse?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = id {
+                    xQuery["id"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/cart_archive",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(DeleteCartDetailResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -15362,17 +15407,17 @@ public class PlatformClient {
             /**
              *
              * Summary: Checkout all items in the cart
-             * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+             * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
              **/
             public func checkoutCart(
-                buyNow: Bool?,
+                id: String?,
                 body: PlatformCartCheckoutDetailRequest,
                 onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
             ) {
                 var xQuery: [String: Any] = [:]
 
-                if let value = buyNow {
-                    xQuery["buy_now"] = value
+                if let value = id {
+                    xQuery["id"] = value
                 }
 
                 PlatformAPIClient.execute(
