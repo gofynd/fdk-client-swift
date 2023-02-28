@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var isCustomerReturnAllowed: Bool
 
-        public var isActive: Bool
-
         public var enableTracking: Bool
+
+        public var isActive: Bool
 
         public var isReturnable: Bool
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case isCustomerReturnAllowed = "is_customer_return_allowed"
 
-            case isActive = "is_active"
-
             case enableTracking = "enable_tracking"
+
+            case isActive = "is_active"
 
             case isReturnable = "is_returnable"
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.isCustomerReturnAllowed = isCustomerReturnAllowed
 
-            self.isActive = isActive
-
             self.enableTracking = enableTracking
+
+            self.isActive = isActive
 
             self.isReturnable = isReturnable
         }
@@ -49,9 +49,9 @@ public extension PlatformClient {
 
             isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
             enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             isReturnable = try container.decode(Bool.self, forKey: .isReturnable)
         }
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(isReturnable, forKey: .isReturnable)
         }

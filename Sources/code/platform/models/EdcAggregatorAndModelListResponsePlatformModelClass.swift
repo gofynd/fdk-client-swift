@@ -10,24 +10,18 @@ public extension PlatformClient {
     class EdcAggregatorAndModelListResponse: Codable {
         public var success: Bool
 
-        public var edcModels: [String: Any]
-
-        public var aggregators: [String: Any]
+        public var data: [EdcModelData]
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case edcModels = "edc_models"
-
-            case aggregators
+            case data
         }
 
-        public init(aggregators: [String: Any], edcModels: [String: Any], success: Bool) {
+        public init(data: [EdcModelData], success: Bool) {
             self.success = success
 
-            self.edcModels = edcModels
-
-            self.aggregators = aggregators
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +29,7 @@ public extension PlatformClient {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            edcModels = try container.decode([String: Any].self, forKey: .edcModels)
-
-            aggregators = try container.decode([String: Any].self, forKey: .aggregators)
+            data = try container.decode([EdcModelData].self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +37,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(edcModels, forKey: .edcModels)
-
-            try? container.encodeIfPresent(aggregators, forKey: .aggregators)
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

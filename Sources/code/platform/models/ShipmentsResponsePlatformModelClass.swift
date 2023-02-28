@@ -8,6 +8,10 @@ public extension PlatformClient {
      */
 
     class ShipmentsResponse: Codable {
+        public var status: Int?
+
+        public var exception: String?
+
         public var message: String?
 
         public var identifier: String?
@@ -18,13 +22,13 @@ public extension PlatformClient {
 
         public var meta: [String: Any]?
 
-        public var exception: String?
-
         public var stackTrace: String?
 
-        public var status: Int?
-
         public enum CodingKeys: String, CodingKey {
+            case status
+
+            case exception
+
             case message
 
             case identifier
@@ -35,14 +39,14 @@ public extension PlatformClient {
 
             case meta
 
-            case exception
-
             case stackTrace = "stack_trace"
-
-            case status
         }
 
         public init(code: String? = nil, exception: String? = nil, finalState: [String: Any]? = nil, identifier: String? = nil, message: String? = nil, meta: [String: Any]? = nil, stackTrace: String? = nil, status: Int? = nil) {
+            self.status = status
+
+            self.exception = exception
+
             self.message = message
 
             self.identifier = identifier
@@ -53,15 +57,27 @@ public extension PlatformClient {
 
             self.meta = meta
 
-            self.exception = exception
-
             self.stackTrace = stackTrace
-
-            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                status = try container.decode(Int.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                exception = try container.decode(String.self, forKey: .exception)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 message = try container.decode(String.self, forKey: .message)
@@ -104,23 +120,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                exception = try container.decode(String.self, forKey: .exception)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 stackTrace = try container.decode(String.self, forKey: .stackTrace)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,6 +130,10 @@ public extension PlatformClient {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(exception, forKey: .exception)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
@@ -141,11 +145,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(exception, forKey: .exception)
-
             try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
-
-            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

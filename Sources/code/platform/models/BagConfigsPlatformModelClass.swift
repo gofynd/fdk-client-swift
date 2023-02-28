@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var isCustomerReturnAllowed: Bool
 
+        public var enableTracking: Bool
+
         public var isActive: Bool
 
         public var allowForceReturn: Bool
-
-        public var enableTracking: Bool
 
         public var isReturnable: Bool
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case isCustomerReturnAllowed = "is_customer_return_allowed"
 
+            case enableTracking = "enable_tracking"
+
             case isActive = "is_active"
 
             case allowForceReturn = "allow_force_return"
-
-            case enableTracking = "enable_tracking"
 
             case isReturnable = "is_returnable"
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.isCustomerReturnAllowed = isCustomerReturnAllowed
 
+            self.enableTracking = enableTracking
+
             self.isActive = isActive
 
             self.allowForceReturn = allowForceReturn
-
-            self.enableTracking = enableTracking
 
             self.isReturnable = isReturnable
         }
@@ -55,11 +55,11 @@ public extension PlatformClient {
 
             isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
 
+            enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
+
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
             allowForceReturn = try container.decode(Bool.self, forKey: .allowForceReturn)
-
-            enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
 
             isReturnable = try container.decode(Bool.self, forKey: .isReturnable)
         }
@@ -71,11 +71,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
 
+            try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
+
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(allowForceReturn, forKey: .allowForceReturn)
-
-            try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
 
             try? container.encodeIfPresent(isReturnable, forKey: .isReturnable)
         }

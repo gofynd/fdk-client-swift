@@ -8,56 +8,36 @@ public extension PlatformClient {
      */
 
     class StatisticsData: Codable {
-        public var activeDeviceCount: Int
-
         public var inactiveDeviceCount: Int
 
-        public var storeCount: Int
-
-        public var filterOptions: [String: Any]
+        public var activeDeviceCount: Int
 
         public enum CodingKeys: String, CodingKey {
-            case activeDeviceCount = "active_device_count"
-
             case inactiveDeviceCount = "inactive_device_count"
 
-            case storeCount = "store_count"
-
-            case filterOptions = "filter_options"
+            case activeDeviceCount = "active_device_count"
         }
 
-        public init(activeDeviceCount: Int, filterOptions: [String: Any], inactiveDeviceCount: Int, storeCount: Int) {
-            self.activeDeviceCount = activeDeviceCount
-
+        public init(activeDeviceCount: Int, inactiveDeviceCount: Int) {
             self.inactiveDeviceCount = inactiveDeviceCount
 
-            self.storeCount = storeCount
-
-            self.filterOptions = filterOptions
+            self.activeDeviceCount = activeDeviceCount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            activeDeviceCount = try container.decode(Int.self, forKey: .activeDeviceCount)
-
             inactiveDeviceCount = try container.decode(Int.self, forKey: .inactiveDeviceCount)
 
-            storeCount = try container.decode(Int.self, forKey: .storeCount)
-
-            filterOptions = try container.decode([String: Any].self, forKey: .filterOptions)
+            activeDeviceCount = try container.decode(Int.self, forKey: .activeDeviceCount)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(activeDeviceCount, forKey: .activeDeviceCount)
-
             try? container.encodeIfPresent(inactiveDeviceCount, forKey: .inactiveDeviceCount)
 
-            try? container.encodeIfPresent(storeCount, forKey: .storeCount)
-
-            try? container.encodeIfPresent(filterOptions, forKey: .filterOptions)
+            try? container.encodeIfPresent(activeDeviceCount, forKey: .activeDeviceCount)
         }
     }
 }

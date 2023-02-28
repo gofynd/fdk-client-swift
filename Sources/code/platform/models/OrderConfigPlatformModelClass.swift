@@ -16,9 +16,9 @@ public extension PlatformClient {
 
         public var storeLookup: String?
 
-        public var articleLookup: String?
-
         public var affiliateStoreIdMapping: [AffiliateStoreIdMapping]
+
+        public var articleLookup: String?
 
         public enum CodingKeys: String, CodingKey {
             case bagEndState = "bag_end_state"
@@ -29,9 +29,9 @@ public extension PlatformClient {
 
             case storeLookup = "store_lookup"
 
-            case articleLookup = "article_lookup"
-
             case affiliateStoreIdMapping = "affiliate_store_id_mapping"
+
+            case articleLookup = "article_lookup"
         }
 
         public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, createUser: Bool? = nil, storeLookup: String? = nil) {
@@ -43,9 +43,9 @@ public extension PlatformClient {
 
             self.storeLookup = storeLookup
 
-            self.articleLookup = articleLookup
-
             self.affiliateStoreIdMapping = affiliateStoreIdMapping
+
+            self.articleLookup = articleLookup
         }
 
         required public init(from decoder: Decoder) throws {
@@ -77,6 +77,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
+
             do {
                 articleLookup = try container.decode(String.self, forKey: .articleLookup)
 
@@ -84,8 +86,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -99,9 +99,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
 
-            try? container.encodeIfPresent(articleLookup, forKey: .articleLookup)
-
             try? container.encodeIfPresent(affiliateStoreIdMapping, forKey: .affiliateStoreIdMapping)
+
+            try? container.encodeIfPresent(articleLookup, forKey: .articleLookup)
         }
     }
 }
