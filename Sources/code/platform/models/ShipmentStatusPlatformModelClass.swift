@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class ShipmentStatus: Codable {
-        public var status: String
+        public var actualStatus: String
 
         public var opsStatus: String
 
@@ -16,10 +16,10 @@ public extension PlatformClient {
 
         public var title: String
 
-        public var actualStatus: String
+        public var status: String
 
         public enum CodingKeys: String, CodingKey {
-            case status
+            case actualStatus = "actual_status"
 
             case opsStatus = "ops_status"
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case title
 
-            case actualStatus = "actual_status"
+            case status
         }
 
         public init(actualStatus: String, hexCode: String, opsStatus: String, status: String, title: String) {
-            self.status = status
+            self.actualStatus = actualStatus
 
             self.opsStatus = opsStatus
 
@@ -39,13 +39,13 @@ public extension PlatformClient {
 
             self.title = title
 
-            self.actualStatus = actualStatus
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            status = try container.decode(String.self, forKey: .status)
+            actualStatus = try container.decode(String.self, forKey: .actualStatus)
 
             opsStatus = try container.decode(String.self, forKey: .opsStatus)
 
@@ -53,13 +53,13 @@ public extension PlatformClient {
 
             title = try container.decode(String.self, forKey: .title)
 
-            actualStatus = try container.decode(String.self, forKey: .actualStatus)
+            status = try container.decode(String.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(actualStatus, forKey: .actualStatus)
 
             try? container.encodeIfPresent(opsStatus, forKey: .opsStatus)
 
@@ -67,7 +67,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(actualStatus, forKey: .actualStatus)
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

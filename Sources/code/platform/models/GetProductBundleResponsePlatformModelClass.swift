@@ -8,83 +8,75 @@ public extension PlatformClient {
      */
 
     class GetProductBundleResponse: Codable {
-        public var slug: String?
-
-        public var logo: String?
+        public var pageVisibility: [String]?
 
         public var products: [GetProducts]?
 
-        public var meta: [String: Any]?
-
-        public var sameStoreAssignment: Bool?
-
-        public var pageVisibility: [String]?
-
         public var companyId: Int?
-
-        public var name: String?
-
-        public var isActive: Bool?
 
         public var choice: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case slug
+        public var sameStoreAssignment: Bool?
 
-            case logo
+        public var meta: [String: Any]?
+
+        public var isActive: Bool?
+
+        public var slug: String?
+
+        public var name: String?
+
+        public var logo: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case pageVisibility = "page_visibility"
 
             case products
 
-            case meta
+            case companyId = "company_id"
+
+            case choice
 
             case sameStoreAssignment = "same_store_assignment"
 
-            case pageVisibility = "page_visibility"
-
-            case companyId = "company_id"
-
-            case name
+            case meta
 
             case isActive = "is_active"
 
-            case choice
+            case slug
+
+            case name
+
+            case logo
         }
 
         public init(choice: String? = nil, companyId: Int? = nil, isActive: Bool? = nil, logo: String? = nil, meta: [String: Any]? = nil, name: String? = nil, pageVisibility: [String]? = nil, products: [GetProducts]? = nil, sameStoreAssignment: Bool? = nil, slug: String? = nil) {
-            self.slug = slug
-
-            self.logo = logo
+            self.pageVisibility = pageVisibility
 
             self.products = products
 
-            self.meta = meta
+            self.companyId = companyId
+
+            self.choice = choice
 
             self.sameStoreAssignment = sameStoreAssignment
 
-            self.pageVisibility = pageVisibility
-
-            self.companyId = companyId
-
-            self.name = name
+            self.meta = meta
 
             self.isActive = isActive
 
-            self.choice = choice
+            self.slug = slug
+
+            self.name = name
+
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                logo = try container.decode(String.self, forKey: .logo)
+                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -100,7 +92,15 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                companyId = try container.decode(Int.self, forKey: .companyId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                choice = try container.decode(String.self, forKey: .choice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,23 +116,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,7 +132,23 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                choice = try container.decode(String.self, forKey: .choice)
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,25 +159,25 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
 
             try? container.encodeIfPresent(products, forKey: .products)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(choice, forKey: .choice)
 
             try? container.encodeIfPresent(sameStoreAssignment, forKey: .sameStoreAssignment)
 
-            try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(choice, forKey: .choice)
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }

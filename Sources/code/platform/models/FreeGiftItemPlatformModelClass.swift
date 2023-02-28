@@ -8,26 +8,26 @@ public extension PlatformClient {
      */
 
     class FreeGiftItem: Codable {
-        public var itemName: String?
-
-        public var itemBrandName: String?
-
         public var itemId: Int?
 
+        public var itemName: String?
+
         public var itemPriceDetails: [String: Any]?
+
+        public var itemBrandName: String?
 
         public var itemSlug: String?
 
         public var itemImagesUrl: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case itemName = "item_name"
-
-            case itemBrandName = "item_brand_name"
-
             case itemId = "item_id"
 
+            case itemName = "item_name"
+
             case itemPriceDetails = "item_price_details"
+
+            case itemBrandName = "item_brand_name"
 
             case itemSlug = "item_slug"
 
@@ -35,13 +35,13 @@ public extension PlatformClient {
         }
 
         public init(itemBrandName: String? = nil, itemId: Int? = nil, itemImagesUrl: [String]? = nil, itemName: String? = nil, itemPriceDetails: [String: Any]? = nil, itemSlug: String? = nil) {
-            self.itemName = itemName
-
-            self.itemBrandName = itemBrandName
-
             self.itemId = itemId
 
+            self.itemName = itemName
+
             self.itemPriceDetails = itemPriceDetails
+
+            self.itemBrandName = itemBrandName
 
             self.itemSlug = itemSlug
 
@@ -52,22 +52,6 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemName = try container.decode(String.self, forKey: .itemName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemBrandName = try container.decode(String.self, forKey: .itemBrandName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,7 +60,23 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                itemName = try container.decode(String.self, forKey: .itemName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 itemPriceDetails = try container.decode([String: Any].self, forKey: .itemPriceDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemBrandName = try container.decode(String.self, forKey: .itemBrandName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,13 +103,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemName, forKey: .itemName)
-
-            try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
-
             try? container.encodeIfPresent(itemId, forKey: .itemId)
 
+            try? container.encodeIfPresent(itemName, forKey: .itemName)
+
             try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
+
+            try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
 
             try? container.encodeIfPresent(itemSlug, forKey: .itemSlug)
 

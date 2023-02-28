@@ -13,13 +13,13 @@ public extension ApplicationClient {
 
         public var orderId: String
 
-        public var shipmentId: String
-
-        public var delights: Bool
+        public var details: BeneficiaryModeDetails
 
         public var requestId: String?
 
-        public var details: BeneficiaryModeDetails
+        public var delights: Bool
+
+        public var shipmentId: String
 
         public enum CodingKeys: String, CodingKey {
             case transferMode = "transfer_mode"
@@ -28,13 +28,13 @@ public extension ApplicationClient {
 
             case orderId = "order_id"
 
-            case shipmentId = "shipment_id"
-
-            case delights
+            case details
 
             case requestId = "request_id"
 
-            case details
+            case delights
+
+            case shipmentId = "shipment_id"
         }
 
         public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String? = nil, requestId: String? = nil, shipmentId: String, transferMode: String) {
@@ -44,13 +44,13 @@ public extension ApplicationClient {
 
             self.orderId = orderId
 
-            self.shipmentId = shipmentId
-
-            self.delights = delights
+            self.details = details
 
             self.requestId = requestId
 
-            self.details = details
+            self.delights = delights
+
+            self.shipmentId = shipmentId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -68,9 +68,7 @@ public extension ApplicationClient {
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
-            delights = try container.decode(Bool.self, forKey: .delights)
+            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
 
             do {
                 requestId = try container.decode(String.self, forKey: .requestId)
@@ -80,7 +78,9 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
+            delights = try container.decode(Bool.self, forKey: .delights)
+
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -92,13 +92,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
-            try? container.encodeIfPresent(delights, forKey: .delights)
+            try? container.encodeIfPresent(details, forKey: .details)
 
             try? container.encodeIfPresent(requestId, forKey: .requestId)
 
-            try? container.encodeIfPresent(details, forKey: .details)
+            try? container.encodeIfPresent(delights, forKey: .delights)
+
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
         }
     }
 }
