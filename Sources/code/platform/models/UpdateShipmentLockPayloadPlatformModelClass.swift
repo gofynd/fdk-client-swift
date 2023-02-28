@@ -10,30 +10,30 @@ public extension PlatformClient {
     class UpdateShipmentLockPayload: Codable {
         public var entities: [Entities]
 
-        public var action: String
+        public var actionType: String
 
         public var entityType: String
 
-        public var actionType: String
+        public var action: String
 
         public enum CodingKeys: String, CodingKey {
             case entities
 
-            case action
+            case actionType = "action_type"
 
             case entityType = "entity_type"
 
-            case actionType = "action_type"
+            case action
         }
 
         public init(action: String, actionType: String, entities: [Entities], entityType: String) {
             self.entities = entities
 
-            self.action = action
+            self.actionType = actionType
 
             self.entityType = entityType
 
-            self.actionType = actionType
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,11 +41,11 @@ public extension PlatformClient {
 
             entities = try container.decode([Entities].self, forKey: .entities)
 
-            action = try container.decode(String.self, forKey: .action)
+            actionType = try container.decode(String.self, forKey: .actionType)
 
             entityType = try container.decode(String.self, forKey: .entityType)
 
-            actionType = try container.decode(String.self, forKey: .actionType)
+            action = try container.decode(String.self, forKey: .action)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -53,11 +53,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(entities, forKey: .entities)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(actionType, forKey: .actionType)
 
             try? container.encodeIfPresent(entityType, forKey: .entityType)
 
-            try? container.encodeIfPresent(actionType, forKey: .actionType)
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }

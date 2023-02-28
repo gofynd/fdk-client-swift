@@ -12,34 +12,34 @@ public extension PlatformClient {
 
         public var completedOn: String?
 
+        public var type: String
+
         public var notificationEmails: [String]?
 
         public var status: String?
 
-        public var taskId: String
+        public var filters: InventoryExportAdvanceOption?
 
         public var sellerId: Int
 
-        public var type: String
-
-        public var filters: InventoryExportAdvanceOption?
+        public var taskId: String
 
         public enum CodingKeys: String, CodingKey {
             case url
 
             case completedOn = "completed_on"
 
+            case type
+
             case notificationEmails = "notification_emails"
 
             case status
 
-            case taskId = "task_id"
+            case filters
 
             case sellerId = "seller_id"
 
-            case type
-
-            case filters
+            case taskId = "task_id"
         }
 
         public init(completedOn: String? = nil, filters: InventoryExportAdvanceOption? = nil, notificationEmails: [String]? = nil, sellerId: Int, status: String? = nil, taskId: String, type: String, url: String? = nil) {
@@ -47,17 +47,17 @@ public extension PlatformClient {
 
             self.completedOn = completedOn
 
+            self.type = type
+
             self.notificationEmails = notificationEmails
 
             self.status = status
 
-            self.taskId = taskId
+            self.filters = filters
 
             self.sellerId = sellerId
 
-            self.type = type
-
-            self.filters = filters
+            self.taskId = taskId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -79,6 +79,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            type = try container.decode(String.self, forKey: .type)
+
             do {
                 notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
@@ -95,12 +97,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            taskId = try container.decode(String.self, forKey: .taskId)
-
-            sellerId = try container.decode(Int.self, forKey: .sellerId)
-
-            type = try container.decode(String.self, forKey: .type)
-
             do {
                 filters = try container.decode(InventoryExportAdvanceOption.self, forKey: .filters)
 
@@ -108,6 +104,10 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            sellerId = try container.decode(Int.self, forKey: .sellerId)
+
+            taskId = try container.decode(String.self, forKey: .taskId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -117,17 +117,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(completedOn, forKey: .completedOn)
 
+            try? container.encodeIfPresent(type, forKey: .type)
+
             try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(taskId, forKey: .taskId)
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(taskId, forKey: .taskId)
         }
     }
 }

@@ -10,30 +10,30 @@ public extension PlatformClient {
     class InventoryExportRequest: Codable {
         public var notificationEmails: [String]?
 
-        public var type: String?
-
         public var filters: InventoryExportFilter
 
         public var data: [String]?
 
+        public var type: String?
+
         public enum CodingKeys: String, CodingKey {
             case notificationEmails = "notification_emails"
-
-            case type
 
             case filters
 
             case data
+
+            case type
         }
 
         public init(data: [String]? = nil, filters: InventoryExportFilter, notificationEmails: [String]? = nil, type: String? = nil) {
             self.notificationEmails = notificationEmails
 
-            self.type = type
-
             self.filters = filters
 
             self.data = data
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,14 +41,6 @@ public extension PlatformClient {
 
             do {
                 notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,6 +56,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -71,11 +71,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
-            try? container.encode(type, forKey: .type)
-
             try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encode(type, forKey: .type)
         }
     }
 }

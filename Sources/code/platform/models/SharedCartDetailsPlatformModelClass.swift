@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var createdOn: String?
 
-        public var source: [String: Any]?
-
         public var user: [String: Any]?
+
+        public var source: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case token
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case createdOn = "created_on"
 
-            case source
-
             case user
+
+            case source
         }
 
         public init(createdOn: String? = nil, meta: [String: Any]? = nil, source: [String: Any]? = nil, token: String? = nil, user: [String: Any]? = nil) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.createdOn = createdOn
 
-            self.source = source
-
             self.user = user
+
+            self.source = source
         }
 
         required public init(from decoder: Decoder) throws {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                source = try container.decode([String: Any].self, forKey: .source)
+                user = try container.decode([String: Any].self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                user = try container.decode([String: Any].self, forKey: .user)
+                source = try container.decode([String: Any].self, forKey: .source)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,9 +95,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(source, forKey: .source)
-
             try? container.encodeIfPresent(user, forKey: .user)
+
+            try? container.encodeIfPresent(source, forKey: .source)
         }
     }
 }
