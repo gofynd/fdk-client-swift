@@ -12,30 +12,30 @@ public extension PlatformClient {
 
         public var acknowledgeDate: String?
 
-        public var irn: String?
-
-        public var acknowledgeNo: Int?
-
         public var signedQrCode: String?
+
+        public var signedInvoice: String?
+
+        public var irn: String?
 
         public var errorMessage: String?
 
-        public var signedInvoice: String?
+        public var acknowledgeNo: Int?
 
         public enum CodingKeys: String, CodingKey {
             case errorCode = "error_code"
 
             case acknowledgeDate = "acknowledge_date"
 
-            case irn
-
-            case acknowledgeNo = "acknowledge_no"
-
             case signedQrCode = "signed_qr_code"
+
+            case signedInvoice = "signed_invoice"
+
+            case irn
 
             case errorMessage = "error_message"
 
-            case signedInvoice = "signed_invoice"
+            case acknowledgeNo = "acknowledge_no"
         }
 
         public init(acknowledgeDate: String? = nil, acknowledgeNo: Int? = nil, errorCode: String? = nil, errorMessage: String? = nil, irn: String? = nil, signedInvoice: String? = nil, signedQrCode: String? = nil) {
@@ -43,15 +43,15 @@ public extension PlatformClient {
 
             self.acknowledgeDate = acknowledgeDate
 
-            self.irn = irn
-
-            self.acknowledgeNo = acknowledgeNo
-
             self.signedQrCode = signedQrCode
+
+            self.signedInvoice = signedInvoice
+
+            self.irn = irn
 
             self.errorMessage = errorMessage
 
-            self.signedInvoice = signedInvoice
+            self.acknowledgeNo = acknowledgeNo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -74,23 +74,23 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                irn = try container.decode(String.self, forKey: .irn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                acknowledgeNo = try container.decode(Int.self, forKey: .acknowledgeNo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 signedQrCode = try container.decode(String.self, forKey: .signedQrCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                signedInvoice = try container.decode(String.self, forKey: .signedInvoice)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                irn = try container.decode(String.self, forKey: .irn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,7 +106,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                signedInvoice = try container.decode(String.self, forKey: .signedInvoice)
+                acknowledgeNo = try container.decode(Int.self, forKey: .acknowledgeNo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,15 +121,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(acknowledgeDate, forKey: .acknowledgeDate)
 
-            try? container.encodeIfPresent(irn, forKey: .irn)
-
-            try? container.encodeIfPresent(acknowledgeNo, forKey: .acknowledgeNo)
-
             try? container.encodeIfPresent(signedQrCode, forKey: .signedQrCode)
+
+            try? container.encodeIfPresent(signedInvoice, forKey: .signedInvoice)
+
+            try? container.encodeIfPresent(irn, forKey: .irn)
 
             try? container.encodeIfPresent(errorMessage, forKey: .errorMessage)
 
-            try? container.encodeIfPresent(signedInvoice, forKey: .signedInvoice)
+            try? container.encodeIfPresent(acknowledgeNo, forKey: .acknowledgeNo)
         }
     }
 }

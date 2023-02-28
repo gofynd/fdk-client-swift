@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class PlatformCartMetaRequest: Codable {
-        public var checkoutMode: String?
-
         public var panNo: String?
+
+        public var checkoutMode: String?
 
         public var gstin: String?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var comment: String?
 
         public enum CodingKeys: String, CodingKey {
-            case checkoutMode = "checkout_mode"
-
             case panNo = "pan_no"
+
+            case checkoutMode = "checkout_mode"
 
             case gstin
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(checkoutMode: String? = nil, comment: String? = nil, gstin: String? = nil, panNo: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
-            self.checkoutMode = checkoutMode
-
             self.panNo = panNo
+
+            self.checkoutMode = checkoutMode
 
             self.gstin = gstin
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
+                panNo = try container.decode(String.self, forKey: .panNo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                panNo = try container.decode(String.self, forKey: .panNo)
+                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
-
             try? container.encodeIfPresent(panNo, forKey: .panNo)
+
+            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
             try? container.encodeIfPresent(gstin, forKey: .gstin)
 

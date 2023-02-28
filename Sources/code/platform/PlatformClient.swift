@@ -14662,7 +14662,7 @@ public class PlatformClient {
              * Description: Use this API to delete the cart.
              **/
             public func deleteCart(
-                id: Int?,
+                id: String?,
 
                 onResponse: @escaping (_ response: DeleteCartDetailResponse?, _ error: FDKError?) -> Void
             ) {
