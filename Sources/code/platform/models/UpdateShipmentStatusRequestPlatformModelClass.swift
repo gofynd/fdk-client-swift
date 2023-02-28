@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var forceTransition: Bool?
 
-        public var task: Bool?
-
         public var lockAfterTransition: Bool?
+
+        public var task: Bool?
 
         public var statuses: [StatuesRequest]?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case forceTransition = "force_transition"
 
-            case task
-
             case lockAfterTransition = "lock_after_transition"
+
+            case task
 
             case statuses
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.forceTransition = forceTransition
 
-            self.task = task
-
             self.lockAfterTransition = lockAfterTransition
+
+            self.task = task
 
             self.statuses = statuses
         }
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                task = try container.decode(Bool.self, forKey: .task)
+                lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
+                task = try container.decode(Bool.self, forKey: .task)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,9 +93,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
 
-            try? container.encodeIfPresent(task, forKey: .task)
-
             try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
+
+            try? container.encodeIfPresent(task, forKey: .task)
 
             try? container.encodeIfPresent(statuses, forKey: .statuses)
         }

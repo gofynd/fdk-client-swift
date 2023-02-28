@@ -10,22 +10,22 @@ public extension PlatformClient {
     class Document: Codable {
         public var dsType: String
 
-        public var verified: Bool
+        public var legalName: String
 
         public var url: String?
 
-        public var legalName: String
+        public var verified: Bool
 
         public var value: String
 
         public enum CodingKeys: String, CodingKey {
             case dsType = "ds_type"
 
-            case verified
+            case legalName = "legal_name"
 
             case url
 
-            case legalName = "legal_name"
+            case verified
 
             case value
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
             self.dsType = dsType
 
-            self.verified = verified
+            self.legalName = legalName
 
             self.url = url
 
-            self.legalName = legalName
+            self.verified = verified
 
             self.value = value
         }
@@ -47,7 +47,7 @@ public extension PlatformClient {
 
             dsType = try container.decode(String.self, forKey: .dsType)
 
-            verified = try container.decode(Bool.self, forKey: .verified)
+            legalName = try container.decode(String.self, forKey: .legalName)
 
             do {
                 url = try container.decode(String.self, forKey: .url)
@@ -57,7 +57,7 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            legalName = try container.decode(String.self, forKey: .legalName)
+            verified = try container.decode(Bool.self, forKey: .verified)
 
             value = try container.decode(String.self, forKey: .value)
         }
@@ -67,11 +67,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(dsType, forKey: .dsType)
 
-            try? container.encodeIfPresent(verified, forKey: .verified)
+            try? container.encodeIfPresent(legalName, forKey: .legalName)
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(legalName, forKey: .legalName)
+            try? container.encodeIfPresent(verified, forKey: .verified)
 
             try? container.encodeIfPresent(value, forKey: .value)
         }

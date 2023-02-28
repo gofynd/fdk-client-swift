@@ -41,7 +41,7 @@ public extension ApplicationClient {
 
             ulrs["validateVPA"] = config.domain.appendAsPath("/service/application/payment/v1.0/validate-vpa")
 
-            ulrs["cardDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/cards/info")
+            ulrs["cardDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/cards/info/{card_info}")
 
             ulrs["getActiveRefundTransferModes"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/transfer-mode")
 
@@ -831,10 +831,10 @@ public extension ApplicationClient {
          * Description: API to get Card info from PG
          **/
         public func cardDetails(
-            cardBin: String,
+            cardInfo: String,
             aggregator: String?,
 
-            onResponse: @escaping (_ response: cardDetailsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CardDetailsResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -844,7 +844,7 @@ public extension ApplicationClient {
 
             var fullUrl = relativeUrls["cardDetails"] ?? ""
 
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "card_bin" + "}", with: "\(cardBin)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "card_info" + "}", with: "\(cardInfo)")
 
             ApplicationAPIClient.execute(
                 config: config,
@@ -862,7 +862,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(cardDetailsResponse.self, from: data)
+                        let response = Utility.decode(CardDetailsResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

@@ -8,45 +8,45 @@ public extension PlatformClient {
      */
 
     class OwnerAppItemResponse: Codable {
-        public var moq: MOQData?
+        public var seo: SEOData?
 
         public var altText: [String: Any]?
 
         public var isGift: Bool?
 
+        public var moq: MOQData?
+
         public var isCod: Bool?
 
-        public var seo: SEOData?
-
         public enum CodingKeys: String, CodingKey {
-            case moq
+            case seo
 
             case altText = "alt_text"
 
             case isGift = "is_gift"
 
-            case isCod = "is_cod"
+            case moq
 
-            case seo
+            case isCod = "is_cod"
         }
 
         public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: MOQData? = nil, seo: SEOData? = nil) {
-            self.moq = moq
+            self.seo = seo
 
             self.altText = altText
 
             self.isGift = isGift
 
-            self.isCod = isCod
+            self.moq = moq
 
-            self.seo = seo
+            self.isCod = isCod
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                moq = try container.decode(MOQData.self, forKey: .moq)
+                seo = try container.decode(SEOData.self, forKey: .seo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isCod = try container.decode(Bool.self, forKey: .isCod)
+                moq = try container.decode(MOQData.self, forKey: .moq)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                seo = try container.decode(SEOData.self, forKey: .seo)
+                isCod = try container.decode(Bool.self, forKey: .isCod)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,15 +89,15 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(moq, forKey: .moq)
+            try? container.encodeIfPresent(seo, forKey: .seo)
 
             try? container.encodeIfPresent(altText, forKey: .altText)
 
             try? container.encodeIfPresent(isGift, forKey: .isGift)
 
-            try? container.encodeIfPresent(isCod, forKey: .isCod)
+            try? container.encodeIfPresent(moq, forKey: .moq)
 
-            try? container.encodeIfPresent(seo, forKey: .seo)
+            try? container.encodeIfPresent(isCod, forKey: .isCod)
         }
     }
 }

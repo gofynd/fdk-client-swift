@@ -1,15 +1,16 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: cardDetailsResponse
+         Model: getPaymentCodeResponse
          Used By: Payment
      */
-    class cardDetailsResponse: Codable {
+
+    class getPaymentCodeResponse: Codable {
         public var success: Bool
 
-        public var data: CardDetails
+        public var data: GetPaymentCode
 
         public enum CodingKeys: String, CodingKey {
             case success
@@ -17,7 +18,7 @@ public extension ApplicationClient {
             case data
         }
 
-        public init(data: CardDetails, success: Bool) {
+        public init(data: GetPaymentCode, success: Bool) {
             self.success = success
 
             self.data = data
@@ -28,7 +29,7 @@ public extension ApplicationClient {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            data = try container.decode(CardDetails.self, forKey: .data)
+            data = try container.decode(GetPaymentCode.self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {

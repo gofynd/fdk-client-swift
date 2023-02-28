@@ -1068,6 +1068,7 @@ public extension ApplicationClient {
             iin: String?,
             network: String?,
             type: String?,
+            cardId: String?,
 
             onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
@@ -1111,6 +1112,10 @@ public extension ApplicationClient {
 
             if let value = type {
                 xQuery["type"] = value
+            }
+
+            if let value = cardId {
+                xQuery["card_id"] = value
             }
 
             let fullUrl = relativeUrls["validateCouponForPayment"] ?? ""

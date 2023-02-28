@@ -8,80 +8,72 @@ public extension PlatformClient {
      */
 
     class PlatformTrack: Codable {
-        public var accountName: String?
-
         public var lastLocationRecievedAt: String?
 
-        public var status: String?
-
-        public var shipmentType: String?
-
-        public var reason: String?
+        public var accountName: String?
 
         public var awb: String?
 
-        public var updatedTime: String?
+        public var reason: String?
 
-        public var rawStatus: String?
+        public var status: String?
 
         public var updatedAt: String?
 
         public var meta: [String: Any]?
 
-        public enum CodingKeys: String, CodingKey {
-            case accountName = "account_name"
+        public var updatedTime: String?
 
+        public var shipmentType: String?
+
+        public var rawStatus: String?
+
+        public enum CodingKeys: String, CodingKey {
             case lastLocationRecievedAt = "last_location_recieved_at"
 
-            case status
-
-            case shipmentType = "shipment_type"
-
-            case reason
+            case accountName = "account_name"
 
             case awb
 
-            case updatedTime = "updated_time"
+            case reason
 
-            case rawStatus = "raw_status"
+            case status
 
             case updatedAt = "updated_at"
 
             case meta
+
+            case updatedTime = "updated_time"
+
+            case shipmentType = "shipment_type"
+
+            case rawStatus = "raw_status"
         }
 
         public init(accountName: String? = nil, awb: String? = nil, lastLocationRecievedAt: String? = nil, meta: [String: Any]? = nil, rawStatus: String? = nil, reason: String? = nil, shipmentType: String? = nil, status: String? = nil, updatedAt: String? = nil, updatedTime: String? = nil) {
-            self.accountName = accountName
-
             self.lastLocationRecievedAt = lastLocationRecievedAt
 
-            self.status = status
-
-            self.shipmentType = shipmentType
-
-            self.reason = reason
+            self.accountName = accountName
 
             self.awb = awb
 
-            self.updatedTime = updatedTime
+            self.reason = reason
 
-            self.rawStatus = rawStatus
+            self.status = status
 
             self.updatedAt = updatedAt
 
             self.meta = meta
+
+            self.updatedTime = updatedTime
+
+            self.shipmentType = shipmentType
+
+            self.rawStatus = rawStatus
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                accountName = try container.decode(String.self, forKey: .accountName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 lastLocationRecievedAt = try container.decode(String.self, forKey: .lastLocationRecievedAt)
@@ -92,23 +84,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                shipmentType = try container.decode(String.self, forKey: .shipmentType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                reason = try container.decode(String.self, forKey: .reason)
+                accountName = try container.decode(String.self, forKey: .accountName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,7 +100,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                updatedTime = try container.decode(String.self, forKey: .updatedTime)
+                reason = try container.decode(String.self, forKey: .reason)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,7 +108,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                rawStatus = try container.decode(String.self, forKey: .rawStatus)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -154,30 +130,54 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                updatedTime = try container.decode(String.self, forKey: .updatedTime)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shipmentType = try container.decode(String.self, forKey: .shipmentType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                rawStatus = try container.decode(String.self, forKey: .rawStatus)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(accountName, forKey: .accountName)
-
             try? container.encodeIfPresent(lastLocationRecievedAt, forKey: .lastLocationRecievedAt)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
-
-            try? container.encodeIfPresent(reason, forKey: .reason)
+            try? container.encodeIfPresent(accountName, forKey: .accountName)
 
             try? container.encodeIfPresent(awb, forKey: .awb)
 
-            try? container.encodeIfPresent(updatedTime, forKey: .updatedTime)
+            try? container.encodeIfPresent(reason, forKey: .reason)
 
-            try? container.encodeIfPresent(rawStatus, forKey: .rawStatus)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(updatedTime, forKey: .updatedTime)
+
+            try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
+
+            try? container.encodeIfPresent(rawStatus, forKey: .rawStatus)
         }
     }
 }

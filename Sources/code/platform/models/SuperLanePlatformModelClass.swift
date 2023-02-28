@@ -10,30 +10,30 @@ public extension PlatformClient {
     class SuperLane: Codable {
         public var totalItems: Int?
 
+        public var text: String
+
         public var options: [SubLane]?
 
         public var value: String
 
-        public var text: String
-
         public enum CodingKeys: String, CodingKey {
             case totalItems = "total_items"
+
+            case text
 
             case options
 
             case value
-
-            case text
         }
 
         public init(options: [SubLane]? = nil, text: String, totalItems: Int? = nil, value: String) {
             self.totalItems = totalItems
 
+            self.text = text
+
             self.options = options
 
             self.value = value
-
-            self.text = text
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,6 +47,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            text = try container.decode(String.self, forKey: .text)
+
             do {
                 options = try container.decode([SubLane].self, forKey: .options)
 
@@ -56,8 +58,6 @@ public extension PlatformClient {
             } catch {}
 
             value = try container.decode(String.self, forKey: .value)
-
-            text = try container.decode(String.self, forKey: .text)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -65,11 +65,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(totalItems, forKey: .totalItems)
 
+            try? container.encodeIfPresent(text, forKey: .text)
+
             try? container.encodeIfPresent(options, forKey: .options)
 
             try? container.encodeIfPresent(value, forKey: .value)
-
-            try? container.encodeIfPresent(text, forKey: .text)
         }
     }
 }
