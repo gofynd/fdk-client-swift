@@ -10,30 +10,30 @@ public extension PlatformClient {
     class InventoryExportRequest: Codable {
         public var type: String?
 
+        public var filters: InventoryExportFilter
+
         public var notificationEmails: [String]?
 
         public var data: [String]?
 
-        public var filters: InventoryExportFilter
-
         public enum CodingKeys: String, CodingKey {
             case type
+
+            case filters
 
             case notificationEmails = "notification_emails"
 
             case data
-
-            case filters
         }
 
         public init(data: [String]? = nil, filters: InventoryExportFilter, notificationEmails: [String]? = nil, type: String? = nil) {
             self.type = type
 
+            self.filters = filters
+
             self.notificationEmails = notificationEmails
 
             self.data = data
-
-            self.filters = filters
         }
 
         required public init(from decoder: Decoder) throws {
@@ -46,6 +46,8 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            filters = try container.decode(InventoryExportFilter.self, forKey: .filters)
 
             do {
                 notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
@@ -62,8 +64,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            filters = try container.decode(InventoryExportFilter.self, forKey: .filters)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -71,11 +71,11 @@ public extension PlatformClient {
 
             try? container.encode(type, forKey: .type)
 
+            try? container.encodeIfPresent(filters, forKey: .filters)
+
             try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
             try? container.encodeIfPresent(data, forKey: .data)
-
-            try? container.encodeIfPresent(filters, forKey: .filters)
         }
     }
 }

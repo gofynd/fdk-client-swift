@@ -11,7 +11,7 @@ public extension ApplicationClient {
 
         public var cancelled: Bool?
 
-        public var merchantName: String?
+        public var msg: String?
 
         public var merchantOrderId: String?
 
@@ -21,14 +21,14 @@ public extension ApplicationClient {
 
         public var amount: Double?
 
-        public var msg: String?
+        public var merchantName: String?
 
         public enum CodingKeys: String, CodingKey {
             case paymentTransactionId = "payment_transaction_id"
 
             case cancelled
 
-            case merchantName = "merchant_name"
+            case msg
 
             case merchantOrderId = "merchant_order_id"
 
@@ -38,7 +38,7 @@ public extension ApplicationClient {
 
             case amount
 
-            case msg
+            case merchantName = "merchant_name"
         }
 
         public init(amount: Double? = nil, cancelled: Bool? = nil, expired: Bool? = nil, invalidId: Bool? = nil, merchantName: String? = nil, merchantOrderId: String? = nil, msg: String? = nil, paymentTransactionId: String? = nil) {
@@ -46,7 +46,7 @@ public extension ApplicationClient {
 
             self.cancelled = cancelled
 
-            self.merchantName = merchantName
+            self.msg = msg
 
             self.merchantOrderId = merchantOrderId
 
@@ -56,7 +56,7 @@ public extension ApplicationClient {
 
             self.amount = amount
 
-            self.msg = msg
+            self.merchantName = merchantName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -79,7 +79,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                merchantName = try container.decode(String.self, forKey: .merchantName)
+                msg = try container.decode(String.self, forKey: .msg)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,7 +119,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                msg = try container.decode(String.self, forKey: .msg)
+                merchantName = try container.decode(String.self, forKey: .merchantName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension ApplicationClient {
 
             try? container.encode(cancelled, forKey: .cancelled)
 
-            try? container.encode(merchantName, forKey: .merchantName)
+            try? container.encode(msg, forKey: .msg)
 
             try? container.encode(merchantOrderId, forKey: .merchantOrderId)
 
@@ -144,7 +144,7 @@ public extension ApplicationClient {
 
             try? container.encode(amount, forKey: .amount)
 
-            try? container.encode(msg, forKey: .msg)
+            try? container.encode(merchantName, forKey: .merchantName)
         }
     }
 }

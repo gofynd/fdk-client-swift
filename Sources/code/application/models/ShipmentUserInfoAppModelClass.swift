@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class ShipmentUserInfo: Codable {
         public var firstName: String?
 
-        public var gender: String?
-
         public var lastName: String?
+
+        public var gender: String?
 
         public var mobile: String?
 
         public enum CodingKeys: String, CodingKey {
             case firstName = "first_name"
 
-            case gender
-
             case lastName = "last_name"
+
+            case gender
 
             case mobile
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: String? = nil) {
             self.firstName = firstName
 
-            self.gender = gender
-
             self.lastName = lastName
+
+            self.gender = gender
 
             self.mobile = mobile
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                gender = try container.decode(String.self, forKey: .gender)
+                lastName = try container.decode(String.self, forKey: .lastName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                lastName = try container.decode(String.self, forKey: .lastName)
+                gender = try container.decode(String.self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(firstName, forKey: .firstName)
 
-            try? container.encodeIfPresent(gender, forKey: .gender)
-
             try? container.encodeIfPresent(lastName, forKey: .lastName)
+
+            try? container.encodeIfPresent(gender, forKey: .gender)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
         }

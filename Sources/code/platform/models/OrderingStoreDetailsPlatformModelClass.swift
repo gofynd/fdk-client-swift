@@ -3,20 +3,18 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: FulfillingStore
+         Model: OrderingStoreDetails
          Used By: Order
      */
 
-    class FulfillingStore: Codable {
+    class OrderingStoreDetails: Codable {
         public var address: String
 
         public var storeName: String
 
         public var contactPerson: String
 
-        public var id: Int
-
-        public var phone: String
+        public var id: String
 
         public var pincode: String
 
@@ -24,9 +22,9 @@ public extension PlatformClient {
 
         public var state: String
 
-        public var fulfillmentChannel: String
-
         public var code: String
+
+        public var phone: String
 
         public var meta: [String: Any]
 
@@ -41,24 +39,22 @@ public extension PlatformClient {
 
             case id
 
-            case phone
-
             case pincode
 
             case country
 
             case state
 
-            case fulfillmentChannel = "fulfillment_channel"
-
             case code
+
+            case phone
 
             case meta
 
             case city
         }
 
-        public init(address: String, city: String, code: String, contactPerson: String, country: String, fulfillmentChannel: String, id: Int, meta: [String: Any], phone: String, pincode: String, state: String, storeName: String) {
+        public init(address: String, city: String, code: String, contactPerson: String, country: String, id: String, meta: [String: Any], phone: String, pincode: String, state: String, storeName: String) {
             self.address = address
 
             self.storeName = storeName
@@ -67,17 +63,15 @@ public extension PlatformClient {
 
             self.id = id
 
-            self.phone = phone
-
             self.pincode = pincode
 
             self.country = country
 
             self.state = state
 
-            self.fulfillmentChannel = fulfillmentChannel
-
             self.code = code
+
+            self.phone = phone
 
             self.meta = meta
 
@@ -93,9 +87,7 @@ public extension PlatformClient {
 
             contactPerson = try container.decode(String.self, forKey: .contactPerson)
 
-            id = try container.decode(Int.self, forKey: .id)
-
-            phone = try container.decode(String.self, forKey: .phone)
+            id = try container.decode(String.self, forKey: .id)
 
             pincode = try container.decode(String.self, forKey: .pincode)
 
@@ -103,9 +95,9 @@ public extension PlatformClient {
 
             state = try container.decode(String.self, forKey: .state)
 
-            fulfillmentChannel = try container.decode(String.self, forKey: .fulfillmentChannel)
-
             code = try container.decode(String.self, forKey: .code)
+
+            phone = try container.decode(String.self, forKey: .phone)
 
             meta = try container.decode([String: Any].self, forKey: .meta)
 
@@ -123,17 +115,15 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(phone, forKey: .phone)
-
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(country, forKey: .country)
 
             try? container.encodeIfPresent(state, forKey: .state)
 
-            try? container.encodeIfPresent(fulfillmentChannel, forKey: .fulfillmentChannel)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(phone, forKey: .phone)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 

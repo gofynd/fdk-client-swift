@@ -341,6 +341,10 @@ public extension PlatformClient {
         public func getOrders(
             lane: String?,
             searchType: String?,
+            bagStatus: String?,
+            timeToDispatch: String?,
+            paymentMethods: String?,
+            tags: String?,
             searchValue: String?,
             fromDate: String?,
             toDate: String?,
@@ -362,6 +366,22 @@ public extension PlatformClient {
 
             if let value = searchType {
                 xQuery["search_type"] = value
+            }
+
+            if let value = bagStatus {
+                xQuery["bag_status"] = value
+            }
+
+            if let value = timeToDispatch {
+                xQuery["time_to_dispatch"] = value
+            }
+
+            if let value = paymentMethods {
+                xQuery["payment_methods"] = value
+            }
+
+            if let value = tags {
+                xQuery["tags"] = value
             }
 
             if let value = searchValue {

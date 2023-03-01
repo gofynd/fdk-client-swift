@@ -1705,19 +1705,31 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Delete a product.
-         * Description: This API allows to delete product.
+         * Summary: Get a single product.
+         * Description: This API helps to get data associated to a particular product.
          **/
-        public func deleteProduct(
+        public func getProduct(
             itemId: Int,
+            brandUid: Int?,
+            itemCode: String?,
 
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SingleProductResponse?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = brandUid {
+                xQuery["brand_uid"] = value
+            }
+
+            if let value = itemCode {
+                xQuery["item_code"] = value
+            }
+
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "get",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
-                query: nil,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
@@ -1729,7 +1741,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(SingleProductResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1783,57 +1795,6 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get a single product.
-         * Description: This API helps to get data associated to a particular product.
-         **/
-        public func getProduct(
-            itemId: Int,
-            brandUid: Int?,
-            itemCode: String?,
-
-            onResponse: @escaping (_ response: SingleProductResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = brandUid {
-                xQuery["brand_uid"] = value
-            }
-
-            if let value = itemCode {
-                xQuery["item_code"] = value
-            }
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(SingleProductResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
          * Summary: Edit a product.
          * Description: This API allows to edit product.
          **/
@@ -1848,6 +1809,45 @@ public extension PlatformClient {
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
                 query: nil,
                 body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Delete a product.
+         * Description: This API allows to delete product.
+         **/
+        public func deleteProduct(
+            itemId: Int,
+
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "delete",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
+                query: nil,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in

@@ -10,24 +10,24 @@ public extension PlatformClient {
     class EdcModelData: Codable {
         public var aggregator: String
 
-        public var aggregatorId: Int
-
         public var models: [String]
+
+        public var aggregatorId: Int
 
         public enum CodingKeys: String, CodingKey {
             case aggregator
 
-            case aggregatorId = "aggregator_id"
-
             case models
+
+            case aggregatorId = "aggregator_id"
         }
 
         public init(aggregator: String, aggregatorId: Int, models: [String]) {
             self.aggregator = aggregator
 
-            self.aggregatorId = aggregatorId
-
             self.models = models
+
+            self.aggregatorId = aggregatorId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
-            aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
-
             models = try container.decode([String].self, forKey: .models)
+
+            aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
-
             try? container.encodeIfPresent(models, forKey: .models)
+
+            try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
         }
     }
 }

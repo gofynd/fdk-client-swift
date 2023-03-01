@@ -9,9 +9,9 @@ public extension ApplicationClient {
     class TransferItemsDetails: Codable {
         public var logoSmall: String
 
-        public var logoLarge: String
-
         public var displayName: String?
+
+        public var logoLarge: String
 
         public var id: Int
 
@@ -20,9 +20,9 @@ public extension ApplicationClient {
         public enum CodingKeys: String, CodingKey {
             case logoSmall = "logo_small"
 
-            case logoLarge = "logo_large"
-
             case displayName = "display_name"
+
+            case logoLarge = "logo_large"
 
             case id
 
@@ -32,9 +32,9 @@ public extension ApplicationClient {
         public init(displayName: String? = nil, id: Int, logoLarge: String, logoSmall: String, name: String) {
             self.logoSmall = logoSmall
 
-            self.logoLarge = logoLarge
-
             self.displayName = displayName
+
+            self.logoLarge = logoLarge
 
             self.id = id
 
@@ -46,8 +46,6 @@ public extension ApplicationClient {
 
             logoSmall = try container.decode(String.self, forKey: .logoSmall)
 
-            logoLarge = try container.decode(String.self, forKey: .logoLarge)
-
             do {
                 displayName = try container.decode(String.self, forKey: .displayName)
 
@@ -55,6 +53,8 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            logoLarge = try container.decode(String.self, forKey: .logoLarge)
 
             id = try container.decode(Int.self, forKey: .id)
 
@@ -66,9 +66,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
 
-            try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
-
             try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
 
             try? container.encodeIfPresent(id, forKey: .id)
 

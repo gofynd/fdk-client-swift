@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var anonymousCod: Bool?
 
-        public var codAmountLimit: Int?
-
         public var methods: [String: Any]
+
+        public var codAmountLimit: Int?
 
         public enum CodingKeys: String, CodingKey {
             case paymentSelectionLock = "payment_selection_lock"
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case anonymousCod = "anonymous_cod"
 
-            case codAmountLimit = "cod_amount_limit"
-
             case methods
+
+            case codAmountLimit = "cod_amount_limit"
         }
 
         public init(anonymousCod: Bool? = nil, codAmountLimit: Int? = nil, codCharges: Int? = nil, methods: [String: Any], paymentSelectionLock: [String: Any]? = nil) {
@@ -37,9 +37,9 @@ public extension PlatformClient {
 
             self.anonymousCod = anonymousCod
 
-            self.codAmountLimit = codAmountLimit
-
             self.methods = methods
+
+            self.codAmountLimit = codAmountLimit
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,6 +69,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            methods = try container.decode([String: Any].self, forKey: .methods)
+
             do {
                 codAmountLimit = try container.decode(Int.self, forKey: .codAmountLimit)
 
@@ -76,8 +78,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            methods = try container.decode([String: Any].self, forKey: .methods)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -89,9 +89,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(anonymousCod, forKey: .anonymousCod)
 
-            try? container.encodeIfPresent(codAmountLimit, forKey: .codAmountLimit)
-
             try? container.encode(methods, forKey: .methods)
+
+            try? container.encodeIfPresent(codAmountLimit, forKey: .codAmountLimit)
         }
     }
 }
