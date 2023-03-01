@@ -8,36 +8,36 @@ public extension PlatformClient {
      */
 
     class StatisticsData: Codable {
-        public var activeDeviceCount: Int
-
         public var inactiveDeviceCount: Int
 
-        public enum CodingKeys: String, CodingKey {
-            case activeDeviceCount = "active_device_count"
+        public var activeDeviceCount: Int
 
+        public enum CodingKeys: String, CodingKey {
             case inactiveDeviceCount = "inactive_device_count"
+
+            case activeDeviceCount = "active_device_count"
         }
 
         public init(activeDeviceCount: Int, inactiveDeviceCount: Int) {
-            self.activeDeviceCount = activeDeviceCount
-
             self.inactiveDeviceCount = inactiveDeviceCount
+
+            self.activeDeviceCount = activeDeviceCount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            activeDeviceCount = try container.decode(Int.self, forKey: .activeDeviceCount)
-
             inactiveDeviceCount = try container.decode(Int.self, forKey: .inactiveDeviceCount)
+
+            activeDeviceCount = try container.decode(Int.self, forKey: .activeDeviceCount)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(activeDeviceCount, forKey: .activeDeviceCount)
-
             try? container.encodeIfPresent(inactiveDeviceCount, forKey: .inactiveDeviceCount)
+
+            try? container.encodeIfPresent(activeDeviceCount, forKey: .activeDeviceCount)
         }
     }
 }

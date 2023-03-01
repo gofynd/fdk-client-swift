@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var title: String?
 
+        public var size: ProductSize?
+
         public var isActive: Bool
 
         public var key: String
-
-        public var size: ProductSize?
 
         public var logo: String?
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case title
 
+            case size
+
             case isActive = "is_active"
 
             case key
-
-            case size
 
             case logo
 
@@ -43,11 +43,11 @@ public extension PlatformClient {
 
             self.title = title
 
+            self.size = size
+
             self.isActive = isActive
 
             self.key = key
-
-            self.size = size
 
             self.logo = logo
 
@@ -67,10 +67,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            key = try container.decode(String.self, forKey: .key)
-
             do {
                 size = try container.decode(ProductSize.self, forKey: .size)
 
@@ -78,6 +74,10 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            key = try container.decode(String.self, forKey: .key)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -103,11 +103,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(title, forKey: .title)
 
+            try? container.encodeIfPresent(size, forKey: .size)
+
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(key, forKey: .key)
-
-            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 

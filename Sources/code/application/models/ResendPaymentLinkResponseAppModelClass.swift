@@ -11,18 +11,18 @@ public extension ApplicationClient {
 
         public var statusCode: Int
 
-        public var message: String
-
         public var success: Bool
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case pollingTimeout = "polling_timeout"
 
             case statusCode = "status_code"
 
-            case message
-
             case success
+
+            case message
         }
 
         public init(message: String, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
@@ -30,9 +30,9 @@ public extension ApplicationClient {
 
             self.statusCode = statusCode
 
-            self.message = message
-
             self.success = success
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,9 +48,9 @@ public extension ApplicationClient {
 
             statusCode = try container.decode(Int.self, forKey: .statusCode)
 
-            message = try container.decode(String.self, forKey: .message)
-
             success = try container.decode(Bool.self, forKey: .success)
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -60,9 +60,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

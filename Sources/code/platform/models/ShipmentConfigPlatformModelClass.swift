@@ -8,62 +8,60 @@ public extension PlatformClient {
      */
 
     class ShipmentConfig: Codable {
-        public var identifier: String
-
         public var locationDetails: LocationDetails?
 
         public var toPincode: String
 
-        public var source: String
-
         public var paymentMode: String
-
-        public var journey: String
-
-        public var shipment: [ShipmentDetails]
 
         public var action: String
 
-        public enum CodingKeys: String, CodingKey {
-            case identifier
+        public var journey: String
 
+        public var identifier: String
+
+        public var source: String
+
+        public var shipment: [ShipmentDetails]
+
+        public enum CodingKeys: String, CodingKey {
             case locationDetails = "location_details"
 
             case toPincode = "to_pincode"
 
-            case source
-
             case paymentMode = "payment_mode"
+
+            case action
 
             case journey
 
-            case shipment
+            case identifier
 
-            case action
+            case source
+
+            case shipment
         }
 
         public init(action: String, identifier: String, journey: String, locationDetails: LocationDetails? = nil, paymentMode: String, shipment: [ShipmentDetails], source: String, toPincode: String) {
-            self.identifier = identifier
-
             self.locationDetails = locationDetails
 
             self.toPincode = toPincode
 
-            self.source = source
-
             self.paymentMode = paymentMode
+
+            self.action = action
 
             self.journey = journey
 
-            self.shipment = shipment
+            self.identifier = identifier
 
-            self.action = action
+            self.source = source
+
+            self.shipment = shipment
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            identifier = try container.decode(String.self, forKey: .identifier)
 
             do {
                 locationDetails = try container.decode(LocationDetails.self, forKey: .locationDetails)
@@ -75,35 +73,37 @@ public extension PlatformClient {
 
             toPincode = try container.decode(String.self, forKey: .toPincode)
 
-            source = try container.decode(String.self, forKey: .source)
-
             paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            action = try container.decode(String.self, forKey: .action)
 
             journey = try container.decode(String.self, forKey: .journey)
 
-            shipment = try container.decode([ShipmentDetails].self, forKey: .shipment)
+            identifier = try container.decode(String.self, forKey: .identifier)
 
-            action = try container.decode(String.self, forKey: .action)
+            source = try container.decode(String.self, forKey: .source)
+
+            shipment = try container.decode([ShipmentDetails].self, forKey: .shipment)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
-
             try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
-            try? container.encodeIfPresent(source, forKey: .source)
-
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(journey, forKey: .journey)
 
-            try? container.encodeIfPresent(shipment, forKey: .shipment)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(source, forKey: .source)
+
+            try? container.encodeIfPresent(shipment, forKey: .shipment)
         }
     }
 }
