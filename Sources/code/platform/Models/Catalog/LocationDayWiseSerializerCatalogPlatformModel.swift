@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var weekday: String
 
-        public var closing: LocationTimingSerializer?
-
         public var opening: LocationTimingSerializer?
+
+        public var closing: LocationTimingSerializer?
 
         public enum CodingKeys: String, CodingKey {
             case open
 
             case weekday
 
-            case closing
-
             case opening
+
+            case closing
         }
 
         public init(closing: LocationTimingSerializer? = nil, open: Bool, opening: LocationTimingSerializer? = nil, weekday: String) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.weekday = weekday
 
-            self.closing = closing
-
             self.opening = opening
+
+            self.closing = closing
         }
 
         required public init(from decoder: Decoder) throws {
@@ -45,7 +45,7 @@ public extension PlatformClient.Catalog {
             weekday = try container.decode(String.self, forKey: .weekday)
 
             do {
-                closing = try container.decode(LocationTimingSerializer.self, forKey: .closing)
+                opening = try container.decode(LocationTimingSerializer.self, forKey: .opening)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +53,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                opening = try container.decode(LocationTimingSerializer.self, forKey: .opening)
+                closing = try container.decode(LocationTimingSerializer.self, forKey: .closing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,9 +68,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(weekday, forKey: .weekday)
 
-            try? container.encodeIfPresent(closing, forKey: .closing)
-
             try? container.encodeIfPresent(opening, forKey: .opening)
+
+            try? container.encodeIfPresent(closing, forKey: .closing)
         }
     }
 }
@@ -86,18 +86,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var weekday: String
 
-        public var closing: LocationTimingSerializer?
-
         public var opening: LocationTimingSerializer?
+
+        public var closing: LocationTimingSerializer?
 
         public enum CodingKeys: String, CodingKey {
             case open
 
             case weekday
 
-            case closing
-
             case opening
+
+            case closing
         }
 
         public init(closing: LocationTimingSerializer? = nil, open: Bool, opening: LocationTimingSerializer? = nil, weekday: String) {
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.weekday = weekday
 
-            self.closing = closing
-
             self.opening = opening
+
+            self.closing = closing
         }
 
         required public init(from decoder: Decoder) throws {
@@ -118,7 +118,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             weekday = try container.decode(String.self, forKey: .weekday)
 
             do {
-                closing = try container.decode(LocationTimingSerializer.self, forKey: .closing)
+                opening = try container.decode(LocationTimingSerializer.self, forKey: .opening)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                opening = try container.decode(LocationTimingSerializer.self, forKey: .opening)
+                closing = try container.decode(LocationTimingSerializer.self, forKey: .closing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,9 +141,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(weekday, forKey: .weekday)
 
-            try? container.encodeIfPresent(closing, forKey: .closing)
-
             try? container.encodeIfPresent(opening, forKey: .opening)
+
+            try? container.encodeIfPresent(closing, forKey: .closing)
         }
     }
 }

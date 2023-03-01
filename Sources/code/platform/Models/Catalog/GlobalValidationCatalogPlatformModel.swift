@@ -15,11 +15,11 @@ public extension PlatformClient.Catalog {
 
         public var properties: Properties?
 
-        public var title: String?
+        public var definitions: [String: Any]?
 
         public var type: String?
 
-        public var definitions: [String: Any]?
+        public var title: String?
 
         public enum CodingKeys: String, CodingKey {
             case description
@@ -28,11 +28,11 @@ public extension PlatformClient.Catalog {
 
             case properties
 
-            case title
+            case definitions
 
             case type
 
-            case definitions
+            case title
         }
 
         public init(definitions: [String: Any]? = nil, description: String? = nil, properties: Properties? = nil, required: [String]? = nil, title: String? = nil, type: String? = nil) {
@@ -42,11 +42,11 @@ public extension PlatformClient.Catalog {
 
             self.properties = properties
 
-            self.title = title
+            self.definitions = definitions
 
             self.type = type
 
-            self.definitions = definitions
+            self.title = title
         }
 
         required public init(from decoder: Decoder) throws {
@@ -77,7 +77,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                definitions = try container.decode([String: Any].self, forKey: .definitions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                definitions = try container.decode([String: Any].self, forKey: .definitions)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,11 +110,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(properties, forKey: .properties)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(definitions, forKey: .definitions)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(definitions, forKey: .definitions)
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 }
@@ -132,11 +132,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var properties: Properties?
 
-        public var title: String?
+        public var definitions: [String: Any]?
 
         public var type: String?
 
-        public var definitions: [String: Any]?
+        public var title: String?
 
         public enum CodingKeys: String, CodingKey {
             case description
@@ -145,11 +145,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case properties
 
-            case title
+            case definitions
 
             case type
 
-            case definitions
+            case title
         }
 
         public init(definitions: [String: Any]? = nil, description: String? = nil, properties: Properties? = nil, required: [String]? = nil, title: String? = nil, type: String? = nil) {
@@ -159,11 +159,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.properties = properties
 
-            self.title = title
+            self.definitions = definitions
 
             self.type = type
 
-            self.definitions = definitions
+            self.title = title
         }
 
         required public init(from decoder: Decoder) throws {
@@ -194,7 +194,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                definitions = try container.decode([String: Any].self, forKey: .definitions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                definitions = try container.decode([String: Any].self, forKey: .definitions)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -227,11 +227,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(properties, forKey: .properties)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(definitions, forKey: .definitions)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(definitions, forKey: .definitions)
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 }
