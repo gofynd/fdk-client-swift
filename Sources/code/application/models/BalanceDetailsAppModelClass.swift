@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class BalanceDetails: Codable {
         public var currency: String
 
-        public var value: Double
-
         public var formattedValue: String
+
+        public var value: Double
 
         public enum CodingKeys: String, CodingKey {
             case currency
 
-            case value
-
             case formattedValue = "formatted_value"
+
+            case value
         }
 
         public init(currency: String, formattedValue: String, value: Double) {
             self.currency = currency
 
-            self.value = value
-
             self.formattedValue = formattedValue
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             currency = try container.decode(String.self, forKey: .currency)
 
-            value = try container.decode(Double.self, forKey: .value)
-
             formattedValue = try container.decode(String.self, forKey: .formattedValue)
+
+            value = try container.decode(Double.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -44,9 +44,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(formattedValue, forKey: .formattedValue)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }

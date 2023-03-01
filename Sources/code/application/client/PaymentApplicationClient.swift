@@ -834,7 +834,7 @@ public extension ApplicationClient {
             cardInfo: String,
             aggregator: String?,
 
-            onResponse: @escaping (_ response: cardDetailsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CardDetailsResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -862,7 +862,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(cardDetailsResponse.self, from: data)
+                        let response = Utility.decode(CardDetailsResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
