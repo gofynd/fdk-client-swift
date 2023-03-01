@@ -9,8 +9,6 @@ public extension PlatformClient.Catalog {
      */
 
     class InventoryPayload: Codable {
-        public var storeId: Int
-
         public var tags: [String]?
 
         public var expirationDate: String?
@@ -25,9 +23,9 @@ public extension PlatformClient.Catalog {
 
         public var sellerIdentifier: String
 
-        public enum CodingKeys: String, CodingKey {
-            case storeId = "store_id"
+        public var storeId: Int
 
+        public enum CodingKeys: String, CodingKey {
             case tags
 
             case expirationDate = "expiration_date"
@@ -41,11 +39,11 @@ public extension PlatformClient.Catalog {
             case priceEffective = "price_effective"
 
             case sellerIdentifier = "seller_identifier"
+
+            case storeId = "store_id"
         }
 
         public init(expirationDate: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeId: Int, tags: [String]? = nil, totalQuantity: Int? = nil, traceId: String? = nil) {
-            self.storeId = storeId
-
             self.tags = tags
 
             self.expirationDate = expirationDate
@@ -59,12 +57,12 @@ public extension PlatformClient.Catalog {
             self.priceEffective = priceEffective
 
             self.sellerIdentifier = sellerIdentifier
+
+            self.storeId = storeId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            storeId = try container.decode(Int.self, forKey: .storeId)
 
             do {
                 tags = try container.decode([String].self, forKey: .tags)
@@ -115,12 +113,12 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+
+            storeId = try container.decode(Int.self, forKey: .storeId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
 
             try? container.encode(tags, forKey: .tags)
 
@@ -135,6 +133,8 @@ public extension PlatformClient.Catalog {
             try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
         }
     }
 }
@@ -146,8 +146,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class InventoryPayload: Codable {
-        public var storeId: Int
-
         public var tags: [String]?
 
         public var expirationDate: String?
@@ -162,9 +160,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var sellerIdentifier: String
 
-        public enum CodingKeys: String, CodingKey {
-            case storeId = "store_id"
+        public var storeId: Int
 
+        public enum CodingKeys: String, CodingKey {
             case tags
 
             case expirationDate = "expiration_date"
@@ -178,11 +176,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case priceEffective = "price_effective"
 
             case sellerIdentifier = "seller_identifier"
+
+            case storeId = "store_id"
         }
 
         public init(expirationDate: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeId: Int, tags: [String]? = nil, totalQuantity: Int? = nil, traceId: String? = nil) {
-            self.storeId = storeId
-
             self.tags = tags
 
             self.expirationDate = expirationDate
@@ -196,12 +194,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.priceEffective = priceEffective
 
             self.sellerIdentifier = sellerIdentifier
+
+            self.storeId = storeId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            storeId = try container.decode(Int.self, forKey: .storeId)
 
             do {
                 tags = try container.decode([String].self, forKey: .tags)
@@ -252,12 +250,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+
+            storeId = try container.decode(Int.self, forKey: .storeId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
 
             try? container.encode(tags, forKey: .tags)
 
@@ -272,6 +270,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
         }
     }
 }

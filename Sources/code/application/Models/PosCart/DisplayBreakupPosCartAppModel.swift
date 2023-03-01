@@ -11,11 +11,11 @@ public extension ApplicationClient.PosCart {
 
         public var message: [String]?
 
+        public var currencySymbol: String?
+
         public var display: String?
 
         public var currencyCode: String?
-
-        public var currencySymbol: String?
 
         public var key: String?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient.PosCart {
 
             case message
 
+            case currencySymbol = "currency_symbol"
+
             case display
 
             case currencyCode = "currency_code"
-
-            case currencySymbol = "currency_symbol"
 
             case key
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient.PosCart {
 
             self.message = message
 
+            self.currencySymbol = currencySymbol
+
             self.display = display
 
             self.currencyCode = currencyCode
-
-            self.currencySymbol = currencySymbol
 
             self.key = key
         }
@@ -67,6 +67,14 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,14 +84,6 @@ public extension ApplicationClient.PosCart {
 
             do {
                 currencyCode = try container.decode(String.self, forKey: .currencyCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+
             try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
             try? container.encodeIfPresent(key, forKey: .key)
         }

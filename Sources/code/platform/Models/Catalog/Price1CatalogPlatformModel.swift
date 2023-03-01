@@ -9,18 +9,18 @@ public extension PlatformClient.Catalog {
      */
 
     class Price1: Codable {
-        public var min: Double?
-
         public var max: Double?
+
+        public var min: Double?
 
         public var currencyCode: String?
 
         public var currencySymbol: String?
 
         public enum CodingKeys: String, CodingKey {
-            case min
-
             case max
+
+            case min
 
             case currencyCode = "currency_code"
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Catalog {
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
-            self.min = min
-
             self.max = max
+
+            self.min = min
 
             self.currencyCode = currencyCode
 
@@ -41,7 +41,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
+                max = try container.decode(Double.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                max = try container.decode(Double.self, forKey: .max)
+                min = try container.decode(Double.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(min, forKey: .min)
-
             try? container.encodeIfPresent(max, forKey: .max)
+
+            try? container.encodeIfPresent(min, forKey: .min)
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
@@ -94,18 +94,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class Price1: Codable {
-        public var min: Double?
-
         public var max: Double?
+
+        public var min: Double?
 
         public var currencyCode: String?
 
         public var currencySymbol: String?
 
         public enum CodingKeys: String, CodingKey {
-            case min
-
             case max
+
+            case min
 
             case currencyCode = "currency_code"
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
-            self.min = min
-
             self.max = max
+
+            self.min = min
 
             self.currencyCode = currencyCode
 
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
+                max = try container.decode(Double.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                max = try container.decode(Double.self, forKey: .max)
+                min = try container.decode(Double.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(min, forKey: .min)
-
             try? container.encodeIfPresent(max, forKey: .max)
+
+            try? container.encodeIfPresent(min, forKey: .min)
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 

@@ -13,11 +13,11 @@ public extension PlatformClient.Order {
 
         public var affiliateBagId: String?
 
-        public var affiliateOrderId: String?
+        public var affiliateShipmentId: String?
 
         public var id: String?
 
-        public var affiliateShipmentId: String?
+        public var affiliateOrderId: String?
 
         public var affiliateId: String?
 
@@ -26,11 +26,11 @@ public extension PlatformClient.Order {
 
             case affiliateBagId = "affiliate_bag_id"
 
-            case affiliateOrderId = "affiliate_order_id"
+            case affiliateShipmentId = "affiliate_shipment_id"
 
             case id
 
-            case affiliateShipmentId = "affiliate_shipment_id"
+            case affiliateOrderId = "affiliate_order_id"
 
             case affiliateId = "affiliate_id"
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.Order {
 
             self.affiliateBagId = affiliateBagId
 
-            self.affiliateOrderId = affiliateOrderId
+            self.affiliateShipmentId = affiliateShipmentId
 
             self.id = id
 
-            self.affiliateShipmentId = affiliateShipmentId
+            self.affiliateOrderId = affiliateOrderId
 
             self.affiliateId = affiliateId
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
+                affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
+                affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,11 +102,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
-            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
+            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
+            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
 
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
         }
@@ -124,11 +124,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var affiliateBagId: String?
 
-        public var affiliateOrderId: String?
+        public var affiliateShipmentId: String?
 
         public var id: String?
 
-        public var affiliateShipmentId: String?
+        public var affiliateOrderId: String?
 
         public var affiliateId: String?
 
@@ -137,11 +137,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case affiliateBagId = "affiliate_bag_id"
 
-            case affiliateOrderId = "affiliate_order_id"
+            case affiliateShipmentId = "affiliate_shipment_id"
 
             case id
 
-            case affiliateShipmentId = "affiliate_shipment_id"
+            case affiliateOrderId = "affiliate_order_id"
 
             case affiliateId = "affiliate_id"
         }
@@ -151,11 +151,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.affiliateBagId = affiliateBagId
 
-            self.affiliateOrderId = affiliateOrderId
+            self.affiliateShipmentId = affiliateShipmentId
 
             self.id = id
 
-            self.affiliateShipmentId = affiliateShipmentId
+            self.affiliateOrderId = affiliateOrderId
 
             self.affiliateId = affiliateId
         }
@@ -174,7 +174,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
+                affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -190,7 +190,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
+                affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -213,11 +213,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
-            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
+            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
+            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
 
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
         }

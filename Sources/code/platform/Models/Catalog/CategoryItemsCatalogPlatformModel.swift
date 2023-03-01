@@ -13,11 +13,11 @@ public extension PlatformClient.Catalog {
 
         public var uid: Int?
 
-        public var action: Action?
-
         public var name: String?
 
         public var banners: ImageUrls?
+
+        public var action: Action?
 
         public var childs: [Child]?
 
@@ -26,11 +26,11 @@ public extension PlatformClient.Catalog {
 
             case uid
 
-            case action
-
             case name
 
             case banners
+
+            case action
 
             case childs
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.Catalog {
 
             self.uid = uid
 
-            self.action = action
-
             self.name = name
 
             self.banners = banners
+
+            self.action = action
 
             self.childs = childs
         }
@@ -69,14 +69,6 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -86,6 +78,14 @@ public extension PlatformClient.Catalog {
 
             do {
                 banners = try container.decode(ImageUrls.self, forKey: .banners)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,11 +108,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
         }
@@ -130,11 +130,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var uid: Int?
 
-        public var action: Action?
-
         public var name: String?
 
         public var banners: ImageUrls?
+
+        public var action: Action?
 
         public var childs: [Child]?
 
@@ -143,11 +143,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case uid
 
-            case action
-
             case name
 
             case banners
+
+            case action
 
             case childs
         }
@@ -157,11 +157,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.uid = uid
 
-            self.action = action
-
             self.name = name
 
             self.banners = banners
+
+            self.action = action
 
             self.childs = childs
         }
@@ -186,14 +186,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -203,6 +195,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 banners = try container.decode(ImageUrls.self, forKey: .banners)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,11 +225,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
         }

@@ -7,13 +7,13 @@ public extension ApplicationClient.Common {
          Used By: Common
      */
     class Locations: Codable {
-        public var items: [[String: Any]]?
+        public var items: [LocationDetails]?
 
         public enum CodingKeys: String, CodingKey {
             case items
         }
 
-        public init(items: [[String: Any]]? = nil) {
+        public init(items: [LocationDetails]? = nil) {
             self.items = items
         }
 
@@ -21,7 +21,7 @@ public extension ApplicationClient.Common {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([[String: Any]].self, forKey: .items)
+                items = try container.decode([LocationDetails].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
