@@ -10,18 +10,18 @@ public extension PlatformClient {
     class DimensionResponse1: Codable {
         public var width: Double?
 
-        public var unit: String?
-
         public var length: Double?
+
+        public var unit: String?
 
         public var height: Double?
 
         public enum CodingKeys: String, CodingKey {
             case width
 
-            case unit
-
             case length
+
+            case unit
 
             case height
         }
@@ -29,9 +29,9 @@ public extension PlatformClient {
         public init(height: Double? = nil, length: Double? = nil, unit: String? = nil, width: Double? = nil) {
             self.width = width
 
-            self.unit = unit
-
             self.length = length
+
+            self.unit = unit
 
             self.height = height
         }
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                length = try container.decode(Double.self, forKey: .length)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                length = try container.decode(Double.self, forKey: .length)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,9 +77,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(width, forKey: .width)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
-
             try? container.encodeIfPresent(length, forKey: .length)
+
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
             try? container.encodeIfPresent(height, forKey: .height)
         }

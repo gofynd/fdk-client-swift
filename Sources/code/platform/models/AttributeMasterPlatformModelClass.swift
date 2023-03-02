@@ -14,9 +14,9 @@ public extension PlatformClient {
 
         public var range: AttributeSchemaRange?
 
-        public var allowedValues: [String]?
-
         public var format: String?
+
+        public var allowedValues: [String]?
 
         public var multi: Bool?
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
 
             case range
 
-            case allowedValues = "allowed_values"
-
             case format
+
+            case allowedValues = "allowed_values"
 
             case multi
         }
@@ -41,9 +41,9 @@ public extension PlatformClient {
 
             self.range = range
 
-            self.allowedValues = allowedValues
-
             self.format = format
+
+            self.allowedValues = allowedValues
 
             self.multi = multi
         }
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                allowedValues = try container.decode([String].self, forKey: .allowedValues)
+                format = try container.decode(String.self, forKey: .format)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                format = try container.decode(String.self, forKey: .format)
+                allowedValues = try container.decode([String].self, forKey: .allowedValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,9 +103,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(range, forKey: .range)
 
-            try? container.encodeIfPresent(allowedValues, forKey: .allowedValues)
-
             try? container.encodeIfPresent(format, forKey: .format)
+
+            try? container.encodeIfPresent(allowedValues, forKey: .allowedValues)
 
             try? container.encodeIfPresent(multi, forKey: .multi)
         }

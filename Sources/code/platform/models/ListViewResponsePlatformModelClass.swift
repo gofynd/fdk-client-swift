@@ -10,24 +10,24 @@ public extension PlatformClient {
     class ListViewResponse: Codable {
         public var summary: [ListViewSummary]
 
-        public var page: [ZoneDataItem]
-
         public var items: [ListViewItems]
+
+        public var page: [ZoneDataItem]
 
         public enum CodingKeys: String, CodingKey {
             case summary
 
-            case page
-
             case items
+
+            case page
         }
 
         public init(items: [ListViewItems], page: [ZoneDataItem], summary: [ListViewSummary]) {
             self.summary = summary
 
-            self.page = page
-
             self.items = items
+
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             summary = try container.decode([ListViewSummary].self, forKey: .summary)
 
-            page = try container.decode([ZoneDataItem].self, forKey: .page)
-
             items = try container.decode([ListViewItems].self, forKey: .items)
+
+            page = try container.decode([ZoneDataItem].self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(summary, forKey: .summary)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }
