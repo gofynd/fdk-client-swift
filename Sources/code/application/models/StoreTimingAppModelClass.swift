@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class StoreTiming: Codable {
         public var opening: Time?
 
-        public var open: Bool?
-
         public var weekday: String?
+
+        public var open: Bool?
 
         public var closing: Time?
 
         public enum CodingKeys: String, CodingKey {
             case opening
 
-            case open
-
             case weekday
+
+            case open
 
             case closing
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(closing: Time? = nil, open: Bool? = nil, opening: Time? = nil, weekday: String? = nil) {
             self.opening = opening
 
-            self.open = open
-
             self.weekday = weekday
+
+            self.open = open
 
             self.closing = closing
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                open = try container.decode(Bool.self, forKey: .open)
+                weekday = try container.decode(String.self, forKey: .weekday)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                weekday = try container.decode(String.self, forKey: .weekday)
+                open = try container.decode(Bool.self, forKey: .open)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(opening, forKey: .opening)
 
-            try? container.encodeIfPresent(open, forKey: .open)
-
             try? container.encodeIfPresent(weekday, forKey: .weekday)
+
+            try? container.encodeIfPresent(open, forKey: .open)
 
             try? container.encodeIfPresent(closing, forKey: .closing)
         }

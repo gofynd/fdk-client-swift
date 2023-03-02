@@ -14,11 +14,11 @@ public extension PlatformClient {
 
         public var locationId: Int
 
-        public var meta: [String: Any]?
+        public var priority: Int?
 
         public var lineItems: [LineItem]
 
-        public var priority: Int?
+        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case processingDates = "processing_dates"
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case locationId = "location_id"
 
-            case meta
+            case priority
 
             case lineItems = "line_items"
 
-            case priority
+            case meta
         }
 
         public init(externalShipmentId: Double? = nil, lineItems: [LineItem], locationId: Int, meta: [String: Any]? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil) {
@@ -41,11 +41,11 @@ public extension PlatformClient {
 
             self.locationId = locationId
 
-            self.meta = meta
+            self.priority = priority
 
             self.lineItems = lineItems
 
-            self.priority = priority
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -70,7 +70,7 @@ public extension PlatformClient {
             locationId = try container.decode(Int.self, forKey: .locationId)
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                priority = try container.decode(Int.self, forKey: .priority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,7 +80,7 @@ public extension PlatformClient {
             lineItems = try container.decode([LineItem].self, forKey: .lineItems)
 
             do {
-                priority = try container.decode(Int.self, forKey: .priority)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,11 +97,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(locationId, forKey: .locationId)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(lineItems, forKey: .lineItems)
 
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }
