@@ -12,11 +12,11 @@ public extension PlatformClient {
 
         public var autoAddToCart: Bool?
 
-        public var productUid: Int
-
         public var allowRemove: Bool?
 
         public var minQuantity: Int
+
+        public var productUid: Int
 
         public var maxQuantity: Int
 
@@ -25,11 +25,11 @@ public extension PlatformClient {
 
             case autoAddToCart = "auto_add_to_cart"
 
-            case productUid = "product_uid"
-
             case allowRemove = "allow_remove"
 
             case minQuantity = "min_quantity"
+
+            case productUid = "product_uid"
 
             case maxQuantity = "max_quantity"
         }
@@ -39,11 +39,11 @@ public extension PlatformClient {
 
             self.autoAddToCart = autoAddToCart
 
-            self.productUid = productUid
-
             self.allowRemove = allowRemove
 
             self.minQuantity = minQuantity
+
+            self.productUid = productUid
 
             self.maxQuantity = maxQuantity
         }
@@ -67,8 +67,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            productUid = try container.decode(Int.self, forKey: .productUid)
-
             do {
                 allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
 
@@ -78,6 +76,8 @@ public extension PlatformClient {
             } catch {}
 
             minQuantity = try container.decode(Int.self, forKey: .minQuantity)
+
+            productUid = try container.decode(Int.self, forKey: .productUid)
 
             maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
         }
@@ -89,11 +89,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
 
-            try? container.encodeIfPresent(productUid, forKey: .productUid)
-
             try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
 
             try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
+
+            try? container.encodeIfPresent(productUid, forKey: .productUid)
 
             try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
         }
