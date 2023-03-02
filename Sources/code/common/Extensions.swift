@@ -137,7 +137,7 @@ public extension Dictionary {
         var queryStrings: [String] = []
         self.keys.forEach { key in
             guard let keyString = key as? String else { return }
-            var valueString: String?
+            var valueString: String? = nil
             if let values = self[key] as? [Any] {
                 valueString = values.map { "\($0)" }.joined(separator: "||")
             } else if let valueOfKey = self[key] {

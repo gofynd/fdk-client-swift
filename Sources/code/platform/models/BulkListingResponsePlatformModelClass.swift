@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var success: Bool?
 
-        public var error: String?
-
         public var page: BulkListingPage?
+
+        public var error: String?
 
         public enum CodingKeys: String, CodingKey {
             case data
 
             case success
 
-            case error
-
             case page
+
+            case error
         }
 
         public init(data: [bulkListingData]? = nil, error: String? = nil, page: BulkListingPage? = nil, success: Bool? = nil) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.success = success
 
-            self.error = error
-
             self.page = page
+
+            self.error = error
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,7 +56,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                error = try container.decode(String.self, forKey: .error)
+                page = try container.decode(BulkListingPage.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                page = try container.decode(BulkListingPage.self, forKey: .page)
+                error = try container.decode(String.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,9 +79,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(error, forKey: .error)
         }
     }
 }

@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var hasNext: Bool
 
+        public var current: Int
+
         public var size: Int
 
         public var itemTotal: Int
-
-        public var current: Int
 
         public enum CodingKeys: String, CodingKey {
             case pageType = "page_type"
 
             case hasNext = "has_next"
 
+            case current
+
             case size
 
             case itemTotal = "item_total"
-
-            case current
         }
 
         public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.hasNext = hasNext
 
+            self.current = current
+
             self.size = size
 
             self.itemTotal = itemTotal
-
-            self.current = current
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,11 +49,11 @@ public extension PlatformClient {
 
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
+            current = try container.decode(Int.self, forKey: .current)
+
             size = try container.decode(Int.self, forKey: .size)
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-
-            current = try container.decode(Int.self, forKey: .current)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -63,11 +63,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
+            try? container.encodeIfPresent(current, forKey: .current)
+
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-
-            try? container.encodeIfPresent(current, forKey: .current)
         }
     }
 }

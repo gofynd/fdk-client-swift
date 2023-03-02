@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var currencyCode: String?
 
+        public var calculateOn: String
+
         public var scope: [String]?
 
         public var applicableOn: String
 
         public var valueType: String
-
-        public var calculateOn: String
 
         public var autoApply: Bool?
 
@@ -29,13 +29,13 @@ public extension PlatformClient {
 
             case currencyCode = "currency_code"
 
+            case calculateOn = "calculate_on"
+
             case scope
 
             case applicableOn = "applicable_on"
 
             case valueType = "value_type"
-
-            case calculateOn = "calculate_on"
 
             case autoApply = "auto_apply"
 
@@ -47,13 +47,13 @@ public extension PlatformClient {
 
             self.currencyCode = currencyCode
 
+            self.calculateOn = calculateOn
+
             self.scope = scope
 
             self.applicableOn = applicableOn
 
             self.valueType = valueType
-
-            self.calculateOn = calculateOn
 
             self.autoApply = autoApply
 
@@ -73,6 +73,8 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            calculateOn = try container.decode(String.self, forKey: .calculateOn)
+
             do {
                 scope = try container.decode([String].self, forKey: .scope)
 
@@ -84,8 +86,6 @@ public extension PlatformClient {
             applicableOn = try container.decode(String.self, forKey: .applicableOn)
 
             valueType = try container.decode(String.self, forKey: .valueType)
-
-            calculateOn = try container.decode(String.self, forKey: .calculateOn)
 
             do {
                 autoApply = try container.decode(Bool.self, forKey: .autoApply)
@@ -111,13 +111,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
+            try? container.encodeIfPresent(calculateOn, forKey: .calculateOn)
+
             try? container.encodeIfPresent(scope, forKey: .scope)
 
             try? container.encodeIfPresent(applicableOn, forKey: .applicableOn)
 
             try? container.encodeIfPresent(valueType, forKey: .valueType)
-
-            try? container.encodeIfPresent(calculateOn, forKey: .calculateOn)
 
             try? container.encodeIfPresent(autoApply, forKey: .autoApply)
 
