@@ -14,13 +14,13 @@ public extension PlatformClient {
 
         public var pincode: String?
 
-        public var gstTag: String?
+        public var name: String?
 
-        public var country: String?
+        public var gstTag: String?
 
         public var trackUrl: String?
 
-        public var name: String?
+        public var country: String?
 
         public var id: Int?
 
@@ -31,13 +31,13 @@ public extension PlatformClient {
 
             case pincode
 
-            case gstTag = "gst_tag"
+            case name
 
-            case country
+            case gstTag = "gst_tag"
 
             case trackUrl = "track_url"
 
-            case name
+            case country
 
             case id
         }
@@ -49,13 +49,13 @@ public extension PlatformClient {
 
             self.pincode = pincode
 
-            self.gstTag = gstTag
+            self.name = name
 
-            self.country = country
+            self.gstTag = gstTag
 
             self.trackUrl = trackUrl
 
-            self.name = name
+            self.country = country
 
             self.id = id
         }
@@ -88,7 +88,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                gstTag = try container.decode(String.self, forKey: .gstTag)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,7 +96,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                country = try container.decode(String.self, forKey: .country)
+                gstTag = try container.decode(String.self, forKey: .gstTag)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                country = try container.decode(String.self, forKey: .country)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -137,13 +137,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
 
             try? container.encode(trackUrl, forKey: .trackUrl)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(country, forKey: .country)
 
             try? container.encodeIfPresent(id, forKey: .id)
         }

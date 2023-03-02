@@ -14357,14 +14357,21 @@ public class PlatformClient {
             public func updateCartWithSharedItems(
                 token: String,
                 action: String,
+                cartId: String?,
 
                 onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
             ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = cartId {
+                    xQuery["cart_id"] = value
+                }
+
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/shareCart/\(token)/\(action)",
-                    query: nil,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     responseType: "application/json",

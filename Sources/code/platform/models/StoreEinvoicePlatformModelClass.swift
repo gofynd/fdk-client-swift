@@ -8,41 +8,39 @@ public extension PlatformClient {
      */
 
     class StoreEinvoice: Codable {
+        public var user: String?
+
+        public var password: String?
+
         public var enabled: Bool
 
         public var username: String?
 
-        public var password: String?
-
-        public var user: String?
-
         public enum CodingKeys: String, CodingKey {
-            case enabled
-
-            case username
+            case user
 
             case password
 
-            case user
+            case enabled
+
+            case username
         }
 
         public init(enabled: Bool, password: String? = nil, user: String? = nil, username: String? = nil) {
-            self.enabled = enabled
-
-            self.username = username
+            self.user = user
 
             self.password = password
 
-            self.user = user
+            self.enabled = enabled
+
+            self.username = username
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            enabled = try container.decode(Bool.self, forKey: .enabled)
-
             do {
-                username = try container.decode(String.self, forKey: .username)
+                user = try container.decode(String.self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,8 +55,10 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            enabled = try container.decode(Bool.self, forKey: .enabled)
+
             do {
-                user = try container.decode(String.self, forKey: .user)
+                username = try container.decode(String.self, forKey: .username)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,13 +69,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
-
-            try? container.encodeIfPresent(username, forKey: .username)
+            try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(password, forKey: .password)
 
-            try? container.encodeIfPresent(user, forKey: .user)
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
+
+            try? container.encodeIfPresent(username, forKey: .username)
         }
     }
 }

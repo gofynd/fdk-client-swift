@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class BulkListingResponse: Codable {
-        public var error: String?
-
         public var success: Bool?
+
+        public var error: String?
 
         public var page: BulkListingPage?
 
         public var data: [bulkListingData]?
 
         public enum CodingKeys: String, CodingKey {
-            case error
-
             case success
+
+            case error
 
             case page
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(data: [bulkListingData]? = nil, error: String? = nil, page: BulkListingPage? = nil, success: Bool? = nil) {
-            self.error = error
-
             self.success = success
+
+            self.error = error
 
             self.page = page
 
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                error = try container.decode(String.self, forKey: .error)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                error = try container.decode(String.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,9 +75,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(page, forKey: .page)
 
