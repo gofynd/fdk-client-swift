@@ -3,37 +3,37 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: Products
+         Model: ItemPriceDetails
          Used By: Order
      */
-    class Products: Codable {
-        public var identifier: String?
+    class ItemPriceDetails: Codable {
+        public var currency: String?
 
-        public var lineNumber: Int?
+        public var marked: MarkedValues?
 
-        public var quantity: Int?
+        public var effective: EffectiveValues?
 
         public enum CodingKeys: String, CodingKey {
-            case identifier
+            case currency
 
-            case lineNumber = "line_number"
+            case marked
 
-            case quantity
+            case effective
         }
 
-        public init(identifier: String? = nil, lineNumber: Int? = nil, quantity: Int? = nil) {
-            self.identifier = identifier
+        public init(currency: String? = nil, effective: EffectiveValues? = nil, marked: MarkedValues? = nil) {
+            self.currency = currency
 
-            self.lineNumber = lineNumber
+            self.marked = marked
 
-            self.quantity = quantity
+            self.effective = effective
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
+                marked = try container.decode(MarkedValues.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                effective = try container.decode(EffectiveValues.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
+            try? container.encodeIfPresent(marked, forKey: .marked)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(effective, forKey: .effective)
         }
     }
 }

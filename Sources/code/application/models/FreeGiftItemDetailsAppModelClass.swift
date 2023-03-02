@@ -3,43 +3,43 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: SendOtpToCustomerResponse
+         Model: FreeGiftItemDetails
          Used By: Order
      */
-    class SendOtpToCustomerResponse: Codable {
-        public var requestId: String?
+    class FreeGiftItemDetails: Codable {
+        public var itemId: String?
 
-        public var resendTimer: Int?
+        public var itemName: String?
 
-        public var message: String?
+        public var itemBrandName: String?
 
-        public var success: Bool?
+        public var itemPriceDetails: ItemPriceDetails?
 
         public enum CodingKeys: String, CodingKey {
-            case requestId = "request_id"
+            case itemId = "item_id"
 
-            case resendTimer = "resend_timer"
+            case itemName = "item_name"
 
-            case message
+            case itemBrandName = "item_brand_name"
 
-            case success
+            case itemPriceDetails = "item_price_details"
         }
 
-        public init(message: String? = nil, requestId: String? = nil, resendTimer: Int? = nil, success: Bool? = nil) {
-            self.requestId = requestId
+        public init(itemBrandName: String? = nil, itemId: String? = nil, itemName: String? = nil, itemPriceDetails: ItemPriceDetails? = nil) {
+            self.itemId = itemId
 
-            self.resendTimer = resendTimer
+            self.itemName = itemName
 
-            self.message = message
+            self.itemBrandName = itemBrandName
 
-            self.success = success
+            self.itemPriceDetails = itemPriceDetails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                requestId = try container.decode(String.self, forKey: .requestId)
+                itemId = try container.decode(String.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                resendTimer = try container.decode(Int.self, forKey: .resendTimer)
+                itemName = try container.decode(String.self, forKey: .itemName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                itemBrandName = try container.decode(String.self, forKey: .itemBrandName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                itemPriceDetails = try container.decode(ItemPriceDetails.self, forKey: .itemPriceDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,13 +74,13 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(requestId, forKey: .requestId)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
+            try? container.encodeIfPresent(itemName, forKey: .itemName)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
         }
     }
 }

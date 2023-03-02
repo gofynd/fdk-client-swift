@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: ProductsDataUpdates
+         Model: StatusesBody
          Used By: Order
      */
-    class ProductsDataUpdates: Codable {
-        public var filters: [ProductsDataUpdatesFilters]?
+    class StatusesBody: Codable {
+        public var status: String?
 
-        public var data: [String: Any]?
+        public var shipments: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case filters
+            case status
 
-            case data
+            case shipments
         }
 
-        public init(data: [String: Any]? = nil, filters: [ProductsDataUpdatesFilters]? = nil) {
-            self.filters = filters
+        public init(shipments: [String: Any]? = nil, status: String? = nil) {
+            self.status = status
 
-            self.data = data
+            self.shipments = shipments
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                filters = try container.decode([ProductsDataUpdatesFilters].self, forKey: .filters)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                data = try container.decode([String: Any].self, forKey: .data)
+                shipments = try container.decode([String: Any].self, forKey: .shipments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
         }
     }
 }

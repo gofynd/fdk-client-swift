@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: VerifyOtp
+         Model: EffectiveValues
          Used By: Order
      */
-    class VerifyOtp: Codable {
-        public var otpCode: String?
+    class EffectiveValues: Codable {
+        public var max: Double?
 
-        public var requestId: String?
+        public var min: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case otpCode = "otp_code"
+            case max
 
-            case requestId = "request_id"
+            case min
         }
 
-        public init(otpCode: String? = nil, requestId: String? = nil) {
-            self.otpCode = otpCode
+        public init(max: Double? = nil, min: Double? = nil) {
+            self.max = max
 
-            self.requestId = requestId
+            self.min = min
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                otpCode = try container.decode(String.self, forKey: .otpCode)
+                max = try container.decode(Double.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                requestId = try container.decode(String.self, forKey: .requestId)
+                min = try container.decode(Double.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(otpCode, forKey: .otpCode)
+            try? container.encodeIfPresent(max, forKey: .max)
 
-            try? container.encodeIfPresent(requestId, forKey: .requestId)
+            try? container.encodeIfPresent(min, forKey: .min)
         }
     }
 }
