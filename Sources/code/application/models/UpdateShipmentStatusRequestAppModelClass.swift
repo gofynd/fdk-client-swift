@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var task: Bool?
 
-        public var statuses: [StatuesRequest]?
-
         public var forceTransition: Bool?
+
+        public var statuses: [StatuesRequest]?
 
         public var lockAfterTransition: Bool?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case task
 
-            case statuses
-
             case forceTransition = "force_transition"
+
+            case statuses
 
             case lockAfterTransition = "lock_after_transition"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.task = task
 
-            self.statuses = statuses
-
             self.forceTransition = forceTransition
+
+            self.statuses = statuses
 
             self.lockAfterTransition = lockAfterTransition
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
+                forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                forceTransition = try container.decode(Bool.self, forKey: .forceTransition)
+                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(task, forKey: .task)
 
-            try? container.encodeIfPresent(statuses, forKey: .statuses)
-
             try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
+
+            try? container.encodeIfPresent(statuses, forKey: .statuses)
 
             try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
         }

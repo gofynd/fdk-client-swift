@@ -8,69 +8,59 @@ public extension PlatformClient {
      */
 
     class InventoryExportResponse: Codable {
-        public var status: String?
-
-        public var sellerId: Int
-
         public var taskId: String
 
-        public var requestParams: [String: Any]?
+        public var status: String?
 
         public var createdOn: String?
 
         public var id: String?
 
+        public var sellerId: Int
+
         public var triggerOn: String?
 
+        public var requestParams: [String: Any]?
+
         public enum CodingKeys: String, CodingKey {
-            case status
-
-            case sellerId = "seller_id"
-
             case taskId = "task_id"
 
-            case requestParams = "request_params"
+            case status
 
             case createdOn = "created_on"
 
             case id = "_id"
 
+            case sellerId = "seller_id"
+
             case triggerOn = "trigger_on"
+
+            case requestParams = "request_params"
         }
 
         public init(createdOn: String? = nil, requestParams: [String: Any]? = nil, sellerId: Int, status: String? = nil, taskId: String, triggerOn: String? = nil, id: String? = nil) {
-            self.status = status
-
-            self.sellerId = sellerId
-
             self.taskId = taskId
 
-            self.requestParams = requestParams
+            self.status = status
 
             self.createdOn = createdOn
 
             self.id = id
 
+            self.sellerId = sellerId
+
             self.triggerOn = triggerOn
+
+            self.requestParams = requestParams
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                status = try container.decode(String.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            sellerId = try container.decode(Int.self, forKey: .sellerId)
-
             taskId = try container.decode(String.self, forKey: .taskId)
 
             do {
-                requestParams = try container.decode([String: Any].self, forKey: .requestParams)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,8 +83,18 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            sellerId = try container.decode(Int.self, forKey: .sellerId)
+
             do {
                 triggerOn = try container.decode(String.self, forKey: .triggerOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                requestParams = try container.decode([String: Any].self, forKey: .requestParams)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,19 +105,19 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
-
             try? container.encodeIfPresent(taskId, forKey: .taskId)
 
-            try? container.encodeIfPresent(requestParams, forKey: .requestParams)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
+            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
             try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
+
+            try? container.encodeIfPresent(requestParams, forKey: .requestParams)
         }
     }
 }

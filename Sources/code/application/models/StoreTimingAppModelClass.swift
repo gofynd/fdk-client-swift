@@ -7,18 +7,18 @@ public extension ApplicationClient {
          Used By: Catalog
      */
     class StoreTiming: Codable {
-        public var weekday: String?
-
         public var opening: Time?
+
+        public var weekday: String?
 
         public var closing: Time?
 
         public var open: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case weekday
-
             case opening
+
+            case weekday
 
             case closing
 
@@ -26,9 +26,9 @@ public extension ApplicationClient {
         }
 
         public init(closing: Time? = nil, open: Bool? = nil, opening: Time? = nil, weekday: String? = nil) {
-            self.weekday = weekday
-
             self.opening = opening
+
+            self.weekday = weekday
 
             self.closing = closing
 
@@ -39,7 +39,7 @@ public extension ApplicationClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                weekday = try container.decode(String.self, forKey: .weekday)
+                opening = try container.decode(Time.self, forKey: .opening)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                opening = try container.decode(Time.self, forKey: .opening)
+                weekday = try container.decode(String.self, forKey: .weekday)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(weekday, forKey: .weekday)
-
             try? container.encodeIfPresent(opening, forKey: .opening)
+
+            try? container.encodeIfPresent(weekday, forKey: .weekday)
 
             try? container.encodeIfPresent(closing, forKey: .closing)
 

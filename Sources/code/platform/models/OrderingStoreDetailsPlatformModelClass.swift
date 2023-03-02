@@ -8,19 +8,17 @@ public extension PlatformClient {
      */
 
     class OrderingStoreDetails: Codable {
-        public var id: String
+        public var code: String
 
-        public var address: String
+        public var state: String
+
+        public var pincode: String
+
+        public var meta: [String: Any]
 
         public var city: String
 
         public var country: String
-
-        public var pincode: String
-
-        public var state: String
-
-        public var meta: [String: Any]
 
         public var phone: String
 
@@ -28,22 +26,22 @@ public extension PlatformClient {
 
         public var contactPerson: String
 
-        public var code: String
+        public var address: String
+
+        public var id: Int
 
         public enum CodingKeys: String, CodingKey {
-            case id
+            case code
 
-            case address
+            case state
+
+            case pincode
+
+            case meta
 
             case city
 
             case country
-
-            case pincode
-
-            case state
-
-            case meta
 
             case phone
 
@@ -51,23 +49,23 @@ public extension PlatformClient {
 
             case contactPerson = "contact_person"
 
-            case code
+            case address
+
+            case id
         }
 
-        public init(address: String, city: String, code: String, contactPerson: String, country: String, id: String, meta: [String: Any], phone: String, pincode: String, state: String, storeName: String) {
-            self.id = id
+        public init(address: String, city: String, code: String, contactPerson: String, country: String, id: Int, meta: [String: Any], phone: String, pincode: String, state: String, storeName: String) {
+            self.code = code
 
-            self.address = address
+            self.state = state
+
+            self.pincode = pincode
+
+            self.meta = meta
 
             self.city = city
 
             self.country = country
-
-            self.pincode = pincode
-
-            self.state = state
-
-            self.meta = meta
 
             self.phone = phone
 
@@ -75,25 +73,25 @@ public extension PlatformClient {
 
             self.contactPerson = contactPerson
 
-            self.code = code
+            self.address = address
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            id = try container.decode(String.self, forKey: .id)
+            code = try container.decode(String.self, forKey: .code)
 
-            address = try container.decode(String.self, forKey: .address)
+            state = try container.decode(String.self, forKey: .state)
+
+            pincode = try container.decode(String.self, forKey: .pincode)
+
+            meta = try container.decode([String: Any].self, forKey: .meta)
 
             city = try container.decode(String.self, forKey: .city)
 
             country = try container.decode(String.self, forKey: .country)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
-
-            state = try container.decode(String.self, forKey: .state)
-
-            meta = try container.decode([String: Any].self, forKey: .meta)
 
             phone = try container.decode(String.self, forKey: .phone)
 
@@ -101,25 +99,25 @@ public extension PlatformClient {
 
             contactPerson = try container.decode(String.self, forKey: .contactPerson)
 
-            code = try container.decode(String.self, forKey: .code)
+            address = try container.decode(String.self, forKey: .address)
+
+            id = try container.decode(Int.self, forKey: .id)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encodeIfPresent(state, forKey: .state)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(city, forKey: .city)
 
             try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(phone, forKey: .phone)
 
@@ -127,7 +125,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
 
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }
