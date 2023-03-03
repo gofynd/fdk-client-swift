@@ -9,101 +9,93 @@ public extension PlatformClient.Order {
      */
 
     class Brand: Codable {
-        public var scriptLastRan: String?
-
-        public var pickupLocation: String?
+        public var creditNoteExpiryDays: Int?
 
         public var company: String
 
+        public var isVirtualInvoice: Bool?
+
+        public var brandId: Int
+
         public var startDate: String?
 
-        public var creditNoteExpiryDays: Int?
+        public var creditNoteAllowed: Bool?
 
-        public var isVirtualInvoice: Bool?
+        public var scriptLastRan: String?
 
         public var createdOn: Int?
 
         public var modifiedOn: Int?
 
-        public var invoicePrefix: String?
+        public var pickupLocation: String?
 
         public var logo: String?
 
-        public var brandId: Int
+        public var invoicePrefix: String?
 
         public var brandName: String
 
-        public var creditNoteAllowed: Bool?
-
         public enum CodingKeys: String, CodingKey {
-            case scriptLastRan = "script_last_ran"
-
-            case pickupLocation = "pickup_location"
+            case creditNoteExpiryDays = "credit_note_expiry_days"
 
             case company
 
+            case isVirtualInvoice = "is_virtual_invoice"
+
+            case brandId = "brand_id"
+
             case startDate = "start_date"
 
-            case creditNoteExpiryDays = "credit_note_expiry_days"
+            case creditNoteAllowed = "credit_note_allowed"
 
-            case isVirtualInvoice = "is_virtual_invoice"
+            case scriptLastRan = "script_last_ran"
 
             case createdOn = "created_on"
 
             case modifiedOn = "modified_on"
 
-            case invoicePrefix = "invoice_prefix"
+            case pickupLocation = "pickup_location"
 
             case logo
 
-            case brandId = "brand_id"
+            case invoicePrefix = "invoice_prefix"
 
             case brandName = "brand_name"
-
-            case creditNoteAllowed = "credit_note_allowed"
         }
 
         public init(brandId: Int, brandName: String, company: String, createdOn: Int? = nil, creditNoteAllowed: Bool? = nil, creditNoteExpiryDays: Int? = nil, invoicePrefix: String? = nil, isVirtualInvoice: Bool? = nil, logo: String? = nil, modifiedOn: Int? = nil, pickupLocation: String? = nil, scriptLastRan: String? = nil, startDate: String? = nil) {
-            self.scriptLastRan = scriptLastRan
-
-            self.pickupLocation = pickupLocation
+            self.creditNoteExpiryDays = creditNoteExpiryDays
 
             self.company = company
 
+            self.isVirtualInvoice = isVirtualInvoice
+
+            self.brandId = brandId
+
             self.startDate = startDate
 
-            self.creditNoteExpiryDays = creditNoteExpiryDays
+            self.creditNoteAllowed = creditNoteAllowed
 
-            self.isVirtualInvoice = isVirtualInvoice
+            self.scriptLastRan = scriptLastRan
 
             self.createdOn = createdOn
 
             self.modifiedOn = modifiedOn
 
-            self.invoicePrefix = invoicePrefix
+            self.pickupLocation = pickupLocation
 
             self.logo = logo
 
-            self.brandId = brandId
+            self.invoicePrefix = invoicePrefix
 
             self.brandName = brandName
-
-            self.creditNoteAllowed = creditNoteAllowed
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                scriptLastRan = try container.decode(String.self, forKey: .scriptLastRan)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pickupLocation = try container.decode(String.self, forKey: .pickupLocation)
+                creditNoteExpiryDays = try container.decode(Int.self, forKey: .creditNoteExpiryDays)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,6 +103,16 @@ public extension PlatformClient.Order {
             } catch {}
 
             company = try container.decode(String.self, forKey: .company)
+
+            do {
+                isVirtualInvoice = try container.decode(Bool.self, forKey: .isVirtualInvoice)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            brandId = try container.decode(Int.self, forKey: .brandId)
 
             do {
                 startDate = try container.decode(String.self, forKey: .startDate)
@@ -121,7 +123,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                creditNoteExpiryDays = try container.decode(Int.self, forKey: .creditNoteExpiryDays)
+                creditNoteAllowed = try container.decode(Bool.self, forKey: .creditNoteAllowed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +131,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                isVirtualInvoice = try container.decode(Bool.self, forKey: .isVirtualInvoice)
+                scriptLastRan = try container.decode(String.self, forKey: .scriptLastRan)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,7 +155,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                invoicePrefix = try container.decode(String.self, forKey: .invoicePrefix)
+                pickupLocation = try container.decode(String.self, forKey: .pickupLocation)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -168,47 +170,45 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            brandId = try container.decode(Int.self, forKey: .brandId)
-
-            brandName = try container.decode(String.self, forKey: .brandName)
-
             do {
-                creditNoteAllowed = try container.decode(Bool.self, forKey: .creditNoteAllowed)
+                invoicePrefix = try container.decode(String.self, forKey: .invoicePrefix)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            brandName = try container.decode(String.self, forKey: .brandName)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(scriptLastRan, forKey: .scriptLastRan)
-
-            try? container.encode(pickupLocation, forKey: .pickupLocation)
+            try? container.encode(creditNoteExpiryDays, forKey: .creditNoteExpiryDays)
 
             try? container.encodeIfPresent(company, forKey: .company)
 
+            try? container.encode(isVirtualInvoice, forKey: .isVirtualInvoice)
+
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
+
             try? container.encode(startDate, forKey: .startDate)
 
-            try? container.encode(creditNoteExpiryDays, forKey: .creditNoteExpiryDays)
+            try? container.encodeIfPresent(creditNoteAllowed, forKey: .creditNoteAllowed)
 
-            try? container.encode(isVirtualInvoice, forKey: .isVirtualInvoice)
+            try? container.encode(scriptLastRan, forKey: .scriptLastRan)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encode(invoicePrefix, forKey: .invoicePrefix)
+            try? container.encode(pickupLocation, forKey: .pickupLocation)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(brandId, forKey: .brandId)
+            try? container.encode(invoicePrefix, forKey: .invoicePrefix)
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
-
-            try? container.encodeIfPresent(creditNoteAllowed, forKey: .creditNoteAllowed)
         }
     }
 }
@@ -220,101 +220,93 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Brand: Codable {
-        public var scriptLastRan: String?
-
-        public var pickupLocation: String?
+        public var creditNoteExpiryDays: Int?
 
         public var company: String
 
+        public var isVirtualInvoice: Bool?
+
+        public var brandId: Int
+
         public var startDate: String?
 
-        public var creditNoteExpiryDays: Int?
+        public var creditNoteAllowed: Bool?
 
-        public var isVirtualInvoice: Bool?
+        public var scriptLastRan: String?
 
         public var createdOn: Int?
 
         public var modifiedOn: Int?
 
-        public var invoicePrefix: String?
+        public var pickupLocation: String?
 
         public var logo: String?
 
-        public var brandId: Int
+        public var invoicePrefix: String?
 
         public var brandName: String
 
-        public var creditNoteAllowed: Bool?
-
         public enum CodingKeys: String, CodingKey {
-            case scriptLastRan = "script_last_ran"
-
-            case pickupLocation = "pickup_location"
+            case creditNoteExpiryDays = "credit_note_expiry_days"
 
             case company
 
+            case isVirtualInvoice = "is_virtual_invoice"
+
+            case brandId = "brand_id"
+
             case startDate = "start_date"
 
-            case creditNoteExpiryDays = "credit_note_expiry_days"
+            case creditNoteAllowed = "credit_note_allowed"
 
-            case isVirtualInvoice = "is_virtual_invoice"
+            case scriptLastRan = "script_last_ran"
 
             case createdOn = "created_on"
 
             case modifiedOn = "modified_on"
 
-            case invoicePrefix = "invoice_prefix"
+            case pickupLocation = "pickup_location"
 
             case logo
 
-            case brandId = "brand_id"
+            case invoicePrefix = "invoice_prefix"
 
             case brandName = "brand_name"
-
-            case creditNoteAllowed = "credit_note_allowed"
         }
 
         public init(brandId: Int, brandName: String, company: String, createdOn: Int? = nil, creditNoteAllowed: Bool? = nil, creditNoteExpiryDays: Int? = nil, invoicePrefix: String? = nil, isVirtualInvoice: Bool? = nil, logo: String? = nil, modifiedOn: Int? = nil, pickupLocation: String? = nil, scriptLastRan: String? = nil, startDate: String? = nil) {
-            self.scriptLastRan = scriptLastRan
-
-            self.pickupLocation = pickupLocation
+            self.creditNoteExpiryDays = creditNoteExpiryDays
 
             self.company = company
 
+            self.isVirtualInvoice = isVirtualInvoice
+
+            self.brandId = brandId
+
             self.startDate = startDate
 
-            self.creditNoteExpiryDays = creditNoteExpiryDays
+            self.creditNoteAllowed = creditNoteAllowed
 
-            self.isVirtualInvoice = isVirtualInvoice
+            self.scriptLastRan = scriptLastRan
 
             self.createdOn = createdOn
 
             self.modifiedOn = modifiedOn
 
-            self.invoicePrefix = invoicePrefix
+            self.pickupLocation = pickupLocation
 
             self.logo = logo
 
-            self.brandId = brandId
+            self.invoicePrefix = invoicePrefix
 
             self.brandName = brandName
-
-            self.creditNoteAllowed = creditNoteAllowed
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                scriptLastRan = try container.decode(String.self, forKey: .scriptLastRan)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pickupLocation = try container.decode(String.self, forKey: .pickupLocation)
+                creditNoteExpiryDays = try container.decode(Int.self, forKey: .creditNoteExpiryDays)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -322,6 +314,16 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             company = try container.decode(String.self, forKey: .company)
+
+            do {
+                isVirtualInvoice = try container.decode(Bool.self, forKey: .isVirtualInvoice)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            brandId = try container.decode(Int.self, forKey: .brandId)
 
             do {
                 startDate = try container.decode(String.self, forKey: .startDate)
@@ -332,7 +334,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                creditNoteExpiryDays = try container.decode(Int.self, forKey: .creditNoteExpiryDays)
+                creditNoteAllowed = try container.decode(Bool.self, forKey: .creditNoteAllowed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -340,7 +342,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                isVirtualInvoice = try container.decode(Bool.self, forKey: .isVirtualInvoice)
+                scriptLastRan = try container.decode(String.self, forKey: .scriptLastRan)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -364,7 +366,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                invoicePrefix = try container.decode(String.self, forKey: .invoicePrefix)
+                pickupLocation = try container.decode(String.self, forKey: .pickupLocation)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -379,47 +381,45 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            brandId = try container.decode(Int.self, forKey: .brandId)
-
-            brandName = try container.decode(String.self, forKey: .brandName)
-
             do {
-                creditNoteAllowed = try container.decode(Bool.self, forKey: .creditNoteAllowed)
+                invoicePrefix = try container.decode(String.self, forKey: .invoicePrefix)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            brandName = try container.decode(String.self, forKey: .brandName)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(scriptLastRan, forKey: .scriptLastRan)
-
-            try? container.encode(pickupLocation, forKey: .pickupLocation)
+            try? container.encode(creditNoteExpiryDays, forKey: .creditNoteExpiryDays)
 
             try? container.encodeIfPresent(company, forKey: .company)
 
+            try? container.encode(isVirtualInvoice, forKey: .isVirtualInvoice)
+
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
+
             try? container.encode(startDate, forKey: .startDate)
 
-            try? container.encode(creditNoteExpiryDays, forKey: .creditNoteExpiryDays)
+            try? container.encodeIfPresent(creditNoteAllowed, forKey: .creditNoteAllowed)
 
-            try? container.encode(isVirtualInvoice, forKey: .isVirtualInvoice)
+            try? container.encode(scriptLastRan, forKey: .scriptLastRan)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encode(invoicePrefix, forKey: .invoicePrefix)
+            try? container.encode(pickupLocation, forKey: .pickupLocation)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(brandId, forKey: .brandId)
+            try? container.encode(invoicePrefix, forKey: .invoicePrefix)
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
-
-            try? container.encodeIfPresent(creditNoteAllowed, forKey: .creditNoteAllowed)
         }
     }
 }
