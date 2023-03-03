@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: LogisticPromise
-         Used By: Logistic
+         Model: GiftDetail
+         Used By: Cart
      */
-    class LogisticPromise: Codable {
-        public var timestamp: LogisticTimestamp?
+    class GiftDetail: Codable {
+        public var giftMessage: String?
 
-        public var formatted: Formatted?
+        public var isGiftApplied: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case timestamp
+            case giftMessage = "gift_message"
 
-            case formatted
+            case isGiftApplied = "is_gift_applied"
         }
 
-        public init(formatted: Formatted? = nil, timestamp: LogisticTimestamp? = nil) {
-            self.timestamp = timestamp
+        public init(giftMessage: String? = nil, isGiftApplied: Bool? = nil) {
+            self.giftMessage = giftMessage
 
-            self.formatted = formatted
+            self.isGiftApplied = isGiftApplied
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                timestamp = try container.decode(LogisticTimestamp.self, forKey: .timestamp)
+                giftMessage = try container.decode(String.self, forKey: .giftMessage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                formatted = try container.decode(Formatted.self, forKey: .formatted)
+                isGiftApplied = try container.decode(Bool.self, forKey: .isGiftApplied)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
+            try? container.encodeIfPresent(giftMessage, forKey: .giftMessage)
 
-            try? container.encodeIfPresent(formatted, forKey: .formatted)
+            try? container.encodeIfPresent(isGiftApplied, forKey: .isGiftApplied)
         }
     }
 }

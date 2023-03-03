@@ -10,24 +10,24 @@ public extension PlatformClient {
     class StatuesRequest: Codable {
         public var shipments: [ShipmentsRequest]?
 
-        public var status: String?
-
         public var excludeBagsNextState: String?
+
+        public var status: String?
 
         public enum CodingKeys: String, CodingKey {
             case shipments
 
-            case status
-
             case excludeBagsNextState = "exclude_bags_next_state"
+
+            case status
         }
 
         public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, status: String? = nil) {
             self.shipments = shipments
 
-            self.status = status
-
             self.excludeBagsNextState = excludeBagsNextState
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,9 +63,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

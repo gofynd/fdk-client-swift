@@ -12,22 +12,22 @@ public extension PlatformClient {
 
         public var orderId: String?
 
+        public var shipmentId: String?
+
         public var awb: String?
 
         public var invoiceId: String?
-
-        public var shipmentId: String?
 
         public enum CodingKeys: String, CodingKey {
             case itemQty = "item_qty"
 
             case orderId = "order_id"
 
+            case shipmentId = "shipment_id"
+
             case awb
 
             case invoiceId = "invoice_id"
-
-            case shipmentId = "shipment_id"
         }
 
         public init(awb: String? = nil, invoiceId: String? = nil, itemQty: Int? = nil, orderId: String? = nil, shipmentId: String? = nil) {
@@ -35,11 +35,11 @@ public extension PlatformClient {
 
             self.orderId = orderId
 
+            self.shipmentId = shipmentId
+
             self.awb = awb
 
             self.invoiceId = invoiceId
-
-            self.shipmentId = shipmentId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,6 +62,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 awb = try container.decode(String.self, forKey: .awb)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,14 +84,6 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -93,11 +93,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
             try? container.encodeIfPresent(awb, forKey: .awb)
 
             try? container.encodeIfPresent(invoiceId, forKey: .invoiceId)
-
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
         }
     }
 }
