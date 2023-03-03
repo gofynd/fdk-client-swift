@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var url: String?
 
-        public var type: String?
-
         public var query: [String: Any]?
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case params
 
             case url
 
-            case type
-
             case query
+
+            case type
         }
 
         public init(params: [String: Any]? = nil, query: [String: Any]? = nil, type: String? = nil, url: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.url = url
 
-            self.type = type
-
             self.query = query
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                query = try container.decode([String: Any].self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                query = try container.decode([String: Any].self, forKey: .query)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(query, forKey: .query)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var url: String?
 
-        public var type: String?
-
         public var query: [String: Any]?
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case params
 
             case url
 
-            case type
-
             case query
+
+            case type
         }
 
         public init(params: [String: Any]? = nil, query: [String: Any]? = nil, type: String? = nil, url: String? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.url = url
 
-            self.type = type
-
             self.query = query
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                query = try container.decode([String: Any].self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                query = try container.decode([String: Any].self, forKey: .query)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(query, forKey: .query)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

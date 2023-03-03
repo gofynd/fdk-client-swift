@@ -9,13 +9,13 @@ public extension PlatformClient.Order {
      */
 
     class Meta: Codable {
-        public var dimension: [String: Any]?
+        public var dimension: Dimensions?
 
         public enum CodingKeys: String, CodingKey {
             case dimension
         }
 
-        public init(dimension: [String: Any]? = nil) {
+        public init(dimension: Dimensions? = nil) {
             self.dimension = dimension
         }
 
@@ -23,7 +23,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                dimension = try container.decode([String: Any].self, forKey: .dimension)
+                dimension = try container.decode(Dimensions.self, forKey: .dimension)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,13 +46,13 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Meta: Codable {
-        public var dimension: [String: Any]?
+        public var dimension: Dimensions?
 
         public enum CodingKeys: String, CodingKey {
             case dimension
         }
 
-        public init(dimension: [String: Any]? = nil) {
+        public init(dimension: Dimensions? = nil) {
             self.dimension = dimension
         }
 
@@ -60,7 +60,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                dimension = try container.decode([String: Any].self, forKey: .dimension)
+                dimension = try container.decode(Dimensions.self, forKey: .dimension)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

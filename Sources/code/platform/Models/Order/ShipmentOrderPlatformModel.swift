@@ -15,9 +15,9 @@ public extension PlatformClient.Order {
 
         public var processingDates: ProcessingDates?
 
-        public var meta: [String: Any]?
-
         public var externalShipmentId: String?
+
+        public var meta: [String: Any]?
 
         public var locationId: Int
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Order {
 
             case processingDates = "processing_dates"
 
-            case meta
-
             case externalShipmentId = "external_shipment_id"
+
+            case meta
 
             case locationId = "location_id"
         }
@@ -42,9 +42,9 @@ public extension PlatformClient.Order {
 
             self.processingDates = processingDates
 
-            self.meta = meta
-
             self.externalShipmentId = externalShipmentId
+
+            self.meta = meta
 
             self.locationId = locationId
         }
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,9 +98,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(processingDates, forKey: .processingDates)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(locationId, forKey: .locationId)
         }
@@ -120,9 +120,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var processingDates: ProcessingDates?
 
-        public var meta: [String: Any]?
-
         public var externalShipmentId: String?
+
+        public var meta: [String: Any]?
 
         public var locationId: Int
 
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case processingDates = "processing_dates"
 
-            case meta
-
             case externalShipmentId = "external_shipment_id"
+
+            case meta
 
             case locationId = "location_id"
         }
@@ -147,9 +147,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.processingDates = processingDates
 
-            self.meta = meta
-
             self.externalShipmentId = externalShipmentId
+
+            self.meta = meta
 
             self.locationId = locationId
         }
@@ -176,7 +176,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -184,7 +184,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -203,9 +203,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(processingDates, forKey: .processingDates)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(locationId, forKey: .locationId)
         }
