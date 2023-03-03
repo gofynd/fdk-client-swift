@@ -9,9 +9,9 @@ public extension PlatformClient.Order {
      */
 
     class ShipmentStatusData: Codable {
-        public var shipmentId: String?
-
         public var status: String?
+
+        public var shipmentId: String?
 
         public var id: Int?
 
@@ -20,9 +20,9 @@ public extension PlatformClient.Order {
         public var createdAt: String?
 
         public enum CodingKeys: String, CodingKey {
-            case shipmentId = "shipment_id"
-
             case status
+
+            case shipmentId = "shipment_id"
 
             case id
 
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
         }
 
         public init(bagList: [String]? = nil, createdAt: String? = nil, id: Int? = nil, shipmentId: String? = nil, status: String? = nil) {
-            self.shipmentId = shipmentId
-
             self.status = status
+
+            self.shipmentId = shipmentId
 
             self.id = id
 
@@ -47,7 +47,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
@@ -110,9 +110,9 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ShipmentStatusData: Codable {
-        public var shipmentId: String?
-
         public var status: String?
+
+        public var shipmentId: String?
 
         public var id: Int?
 
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public var createdAt: String?
 
         public enum CodingKeys: String, CodingKey {
-            case shipmentId = "shipment_id"
-
             case status
+
+            case shipmentId = "shipment_id"
 
             case id
 
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(bagList: [String]? = nil, createdAt: String? = nil, id: Int? = nil, shipmentId: String? = nil, status: String? = nil) {
-            self.shipmentId = shipmentId
-
             self.status = status
+
+            self.shipmentId = shipmentId
 
             self.id = id
 
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,9 +191,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(id, forKey: .id)
 

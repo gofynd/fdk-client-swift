@@ -11,9 +11,9 @@ public extension ApplicationClient.Cart {
 
         public var lastName: String
 
-        public var id: String
-
         public var firstName: String
+
+        public var id: String
 
         public var employeeCode: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Cart {
 
             case lastName = "last_name"
 
-            case id = "_id"
-
             case firstName = "first_name"
+
+            case id = "_id"
 
             case employeeCode = "employee_code"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Cart {
 
             self.lastName = lastName
 
-            self.id = id
-
             self.firstName = firstName
+
+            self.id = id
 
             self.employeeCode = employeeCode
         }
@@ -48,9 +48,9 @@ public extension ApplicationClient.Cart {
 
             lastName = try container.decode(String.self, forKey: .lastName)
 
-            id = try container.decode(String.self, forKey: .id)
-
             firstName = try container.decode(String.self, forKey: .firstName)
+
+            id = try container.decode(String.self, forKey: .id)
 
             do {
                 employeeCode = try container.decode(String.self, forKey: .employeeCode)
@@ -68,9 +68,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(firstName, forKey: .firstName)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
         }

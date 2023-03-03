@@ -11,54 +11,54 @@ public extension PlatformClient.Order {
     class ShipmentsResponse: Codable {
         public var status: Int?
 
-        public var stackTrace: String?
+        public var meta: [String: Any]?
+
+        public var message: String?
 
         public var identifier: String?
 
-        public var exception: String?
-
-        public var code: String?
-
-        public var meta: [String: Any]?
-
         public var finalState: [String: Any]?
 
-        public var message: String?
+        public var exception: String?
+
+        public var stackTrace: String?
+
+        public var code: String?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case stackTrace = "stack_trace"
+            case meta
+
+            case message
 
             case identifier
 
-            case exception
-
-            case code
-
-            case meta
-
             case finalState = "final_state"
 
-            case message
+            case exception
+
+            case stackTrace = "stack_trace"
+
+            case code
         }
 
         public init(code: String? = nil, exception: String? = nil, finalState: [String: Any]? = nil, identifier: String? = nil, message: String? = nil, meta: [String: Any]? = nil, stackTrace: String? = nil, status: Int? = nil) {
             self.status = status
 
-            self.stackTrace = stackTrace
+            self.meta = meta
+
+            self.message = message
 
             self.identifier = identifier
 
-            self.exception = exception
-
-            self.code = code
-
-            self.meta = meta
-
             self.finalState = finalState
 
-            self.message = message
+            self.exception = exception
+
+            self.stackTrace = stackTrace
+
+            self.code = code
         }
 
         required public init(from decoder: Decoder) throws {
@@ -66,38 +66,6 @@ public extension PlatformClient.Order {
 
             do {
                 status = try container.decode(Int.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                stackTrace = try container.decode(String.self, forKey: .stackTrace)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                identifier = try container.decode(String.self, forKey: .identifier)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                exception = try container.decode(String.self, forKey: .exception)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -113,6 +81,22 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                message = try container.decode(String.self, forKey: .message)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                identifier = try container.decode(String.self, forKey: .identifier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 finalState = try container.decode([String: Any].self, forKey: .finalState)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -121,7 +105,23 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                exception = try container.decode(String.self, forKey: .exception)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                stackTrace = try container.decode(String.self, forKey: .stackTrace)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,19 +134,19 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(exception, forKey: .exception)
-
-            try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(finalState, forKey: .finalState)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(exception, forKey: .exception)
+
+            try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
+
+            try? container.encodeIfPresent(code, forKey: .code)
         }
     }
 }
@@ -160,54 +160,54 @@ public extension PlatformClient.ApplicationClient.Order {
     class ShipmentsResponse: Codable {
         public var status: Int?
 
-        public var stackTrace: String?
+        public var meta: [String: Any]?
+
+        public var message: String?
 
         public var identifier: String?
 
-        public var exception: String?
-
-        public var code: String?
-
-        public var meta: [String: Any]?
-
         public var finalState: [String: Any]?
 
-        public var message: String?
+        public var exception: String?
+
+        public var stackTrace: String?
+
+        public var code: String?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case stackTrace = "stack_trace"
+            case meta
+
+            case message
 
             case identifier
 
-            case exception
-
-            case code
-
-            case meta
-
             case finalState = "final_state"
 
-            case message
+            case exception
+
+            case stackTrace = "stack_trace"
+
+            case code
         }
 
         public init(code: String? = nil, exception: String? = nil, finalState: [String: Any]? = nil, identifier: String? = nil, message: String? = nil, meta: [String: Any]? = nil, stackTrace: String? = nil, status: Int? = nil) {
             self.status = status
 
-            self.stackTrace = stackTrace
+            self.meta = meta
+
+            self.message = message
 
             self.identifier = identifier
 
-            self.exception = exception
-
-            self.code = code
-
-            self.meta = meta
-
             self.finalState = finalState
 
-            self.message = message
+            self.exception = exception
+
+            self.stackTrace = stackTrace
+
+            self.code = code
         }
 
         required public init(from decoder: Decoder) throws {
@@ -215,38 +215,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 status = try container.decode(Int.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                stackTrace = try container.decode(String.self, forKey: .stackTrace)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                identifier = try container.decode(String.self, forKey: .identifier)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                exception = try container.decode(String.self, forKey: .exception)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -262,6 +230,22 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                message = try container.decode(String.self, forKey: .message)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                identifier = try container.decode(String.self, forKey: .identifier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 finalState = try container.decode([String: Any].self, forKey: .finalState)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -270,7 +254,23 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                exception = try container.decode(String.self, forKey: .exception)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                stackTrace = try container.decode(String.self, forKey: .stackTrace)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -283,19 +283,19 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(exception, forKey: .exception)
-
-            try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(finalState, forKey: .finalState)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(exception, forKey: .exception)
+
+            try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
+
+            try? container.encodeIfPresent(code, forKey: .code)
         }
     }
 }

@@ -151,6 +151,10 @@ public extension PlatformClient.ApplicationClient.Lead {
 
 public extension PlatformClient.ApplicationClient.Content {}
 
+public extension PlatformClient.Catalog {}
+
+public extension PlatformClient.ApplicationClient.Catalog {}
+
 public extension PlatformClient.Webhook {
     /*
          Enum: SubscriberStatus

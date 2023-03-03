@@ -13,11 +13,7 @@ public extension ApplicationClient {
 
             ulrs["getTatProduct"] = config.domain.appendAsPath("/service/application/logistics/v1.0/")
 
-            ulrs["getEntityList"] = config.domain.appendAsPath("/service/application/logistics/v1.0/entity-list")
-
             ulrs["getPincodeZones"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/zones")
-
-            ulrs["assignLocations"] = config.domain.appendAsPath("/service/application/logistics/v1.0/assign_stores")
 
             self.relativeUrls = ulrs
         }
@@ -35,16 +31,9 @@ public extension ApplicationClient {
          **/
         public func getPincodeCity(
             pincode: String,
-            countryCode: String?,
 
             onResponse: @escaping (_ response: PincodeApiResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = countryCode {
-                xQuery["country_code"] = value
-            }
-
             var fullUrl = relativeUrls["getPincodeCity"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "pincode" + "}", with: "\(pincode)")
@@ -53,7 +42,7 @@ public extension ApplicationClient {
                 config: config,
                 method: "get",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders: [],
                 body: nil,
                 responseType: "application/json",
@@ -120,58 +109,6 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Get Entity List
-         * Description: Get Entity List
-         **/
-        public func getEntityList(
-            page: String?,
-            limit: String?,
-            body: EntityListRequest,
-            onResponse: @escaping (_ response: EntityListResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = page {
-                xQuery["page"] = value
-            }
-
-            if let value = limit {
-                xQuery["limit"] = value
-            }
-
-            let fullUrl = relativeUrls["getEntityList"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(EntityListResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
          * Summary: GET zone from the Pincode.
          * Description: This API returns zone from the Pincode View.
          **/
@@ -198,46 +135,6 @@ public extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(GetZoneFromPincodeViewResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: GET zone from the Pincode.
-         * Description: This API returns zone from the Pincode View.
-         **/
-        public func assignLocations(
-            body: AssignStoreRequest,
-            onResponse: @escaping (_ response: AssignStoreResponse?, _ error: FDKError?) -> Void
-        ) {
-            let fullUrl = relativeUrls["assignLocations"] ?? ""
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "post",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(AssignStoreResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

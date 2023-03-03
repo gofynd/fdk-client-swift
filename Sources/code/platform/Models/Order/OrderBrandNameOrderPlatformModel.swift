@@ -9,26 +9,26 @@ public extension PlatformClient.Order {
      */
 
     class OrderBrandName: Codable {
-        public var id: Int
-
         public var modifiedOn: String?
 
         public var brandName: String
 
         public var company: String
 
+        public var id: Int
+
         public var createdOn: String
 
         public var logo: String
 
         public enum CodingKeys: String, CodingKey {
-            case id
-
             case modifiedOn = "modified_on"
 
             case brandName = "brand_name"
 
             case company
+
+            case id
 
             case createdOn = "created_on"
 
@@ -36,13 +36,13 @@ public extension PlatformClient.Order {
         }
 
         public init(brandName: String, company: String, createdOn: String, id: Int, logo: String, modifiedOn: String? = nil) {
-            self.id = id
-
             self.modifiedOn = modifiedOn
 
             self.brandName = brandName
 
             self.company = company
+
+            self.id = id
 
             self.createdOn = createdOn
 
@@ -51,8 +51,6 @@ public extension PlatformClient.Order {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            id = try container.decode(Int.self, forKey: .id)
 
             do {
                 modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
@@ -66,6 +64,8 @@ public extension PlatformClient.Order {
 
             company = try container.decode(String.self, forKey: .company)
 
+            id = try container.decode(Int.self, forKey: .id)
+
             createdOn = try container.decode(String.self, forKey: .createdOn)
 
             logo = try container.decode(String.self, forKey: .logo)
@@ -74,13 +74,13 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
 
             try? container.encode(company, forKey: .company)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
@@ -96,26 +96,26 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class OrderBrandName: Codable {
-        public var id: Int
-
         public var modifiedOn: String?
 
         public var brandName: String
 
         public var company: String
 
+        public var id: Int
+
         public var createdOn: String
 
         public var logo: String
 
         public enum CodingKeys: String, CodingKey {
-            case id
-
             case modifiedOn = "modified_on"
 
             case brandName = "brand_name"
 
             case company
+
+            case id
 
             case createdOn = "created_on"
 
@@ -123,13 +123,13 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(brandName: String, company: String, createdOn: String, id: Int, logo: String, modifiedOn: String? = nil) {
-            self.id = id
-
             self.modifiedOn = modifiedOn
 
             self.brandName = brandName
 
             self.company = company
+
+            self.id = id
 
             self.createdOn = createdOn
 
@@ -138,8 +138,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            id = try container.decode(Int.self, forKey: .id)
 
             do {
                 modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
@@ -153,6 +151,8 @@ public extension PlatformClient.ApplicationClient.Order {
 
             company = try container.decode(String.self, forKey: .company)
 
+            id = try container.decode(Int.self, forKey: .id)
+
             createdOn = try container.decode(String.self, forKey: .createdOn)
 
             logo = try container.decode(String.self, forKey: .logo)
@@ -161,13 +161,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
 
             try? container.encode(company, forKey: .company)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
