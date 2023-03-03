@@ -11,6 +11,8 @@ public extension ApplicationClient {
 
         public var gstin: String?
 
+        public var deliverySlots: [String: Any]?
+
         public var checkoutMode: String?
 
         public var comment: String?
@@ -20,15 +22,19 @@ public extension ApplicationClient {
 
             case gstin
 
+            case deliverySlots = "delivery_slots"
+
             case checkoutMode = "checkout_mode"
 
             case comment
         }
 
-        public init(checkoutMode: String? = nil, comment: String? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
+        public init(checkoutMode: String? = nil, comment: String? = nil, deliverySlots: [String: Any]? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
             self.pickUpCustomerDetails = pickUpCustomerDetails
 
             self.gstin = gstin
+
+            self.deliverySlots = deliverySlots
 
             self.checkoutMode = checkoutMode
 
@@ -48,6 +54,14 @@ public extension ApplicationClient {
 
             do {
                 gstin = try container.decode(String.self, forKey: .gstin)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                deliverySlots = try container.decode([String: Any].self, forKey: .deliverySlots)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,6 +91,8 @@ public extension ApplicationClient {
             try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
 
             try? container.encodeIfPresent(gstin, forKey: .gstin)
+
+            try? container.encodeIfPresent(deliverySlots, forKey: .deliverySlots)
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
