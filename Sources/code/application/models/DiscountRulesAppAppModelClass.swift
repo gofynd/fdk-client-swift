@@ -9,30 +9,30 @@ public extension ApplicationClient {
     class DiscountRulesApp: Codable {
         public var rawOffer: [String: Any]?
 
-        public var matchedBuyRules: [String]?
+        public var offer: [String: Any]?
 
         public var itemCriteria: [String: Any]?
 
-        public var offer: [String: Any]?
+        public var matchedBuyRules: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case rawOffer = "raw_offer"
 
-            case matchedBuyRules = "matched_buy_rules"
+            case offer
 
             case itemCriteria = "item_criteria"
 
-            case offer
+            case matchedBuyRules = "matched_buy_rules"
         }
 
         public init(itemCriteria: [String: Any]? = nil, matchedBuyRules: [String]? = nil, offer: [String: Any]? = nil, rawOffer: [String: Any]? = nil) {
             self.rawOffer = rawOffer
 
-            self.matchedBuyRules = matchedBuyRules
+            self.offer = offer
 
             self.itemCriteria = itemCriteria
 
-            self.offer = offer
+            self.matchedBuyRules = matchedBuyRules
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +47,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                matchedBuyRules = try container.decode([String].self, forKey: .matchedBuyRules)
+                offer = try container.decode([String: Any].self, forKey: .offer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                offer = try container.decode([String: Any].self, forKey: .offer)
+                matchedBuyRules = try container.decode([String].self, forKey: .matchedBuyRules)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(rawOffer, forKey: .rawOffer)
 
-            try? container.encodeIfPresent(matchedBuyRules, forKey: .matchedBuyRules)
+            try? container.encodeIfPresent(offer, forKey: .offer)
 
             try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
 
-            try? container.encodeIfPresent(offer, forKey: .offer)
+            try? container.encodeIfPresent(matchedBuyRules, forKey: .matchedBuyRules)
         }
     }
 }
