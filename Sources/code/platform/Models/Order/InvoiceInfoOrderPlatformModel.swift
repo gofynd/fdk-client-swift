@@ -4,50 +4,50 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-         Model: JioCodeUpsertResponse
+         Model: InvoiceInfo
          Used By: Order
      */
 
-    class JioCodeUpsertResponse: Codable {
-        public var data: [[String: Any]]?
+    class InvoiceInfo: Codable {
+        public var storeInvoiceId: String?
 
-        public var error: [NestedErrorSchemaDataSet]?
+        public var creditNoteId: String?
 
-        public var traceId: String?
+        public var updatedDate: String?
 
-        public var identifier: String?
+        public var labelUrl: String?
 
-        public var success: Bool?
+        public var invoiceUrl: String?
 
         public enum CodingKeys: String, CodingKey {
-            case data
+            case storeInvoiceId = "store_invoice_id"
 
-            case error
+            case creditNoteId = "credit_note_id"
 
-            case traceId = "trace_id"
+            case updatedDate = "updated_date"
 
-            case identifier
+            case labelUrl = "label_url"
 
-            case success
+            case invoiceUrl = "invoice_url"
         }
 
-        public init(data: [[String: Any]]? = nil, error: [NestedErrorSchemaDataSet]? = nil, identifier: String? = nil, success: Bool? = nil, traceId: String? = nil) {
-            self.data = data
+        public init(creditNoteId: String? = nil, invoiceUrl: String? = nil, labelUrl: String? = nil, storeInvoiceId: String? = nil, updatedDate: String? = nil) {
+            self.storeInvoiceId = storeInvoiceId
 
-            self.error = error
+            self.creditNoteId = creditNoteId
 
-            self.traceId = traceId
+            self.updatedDate = updatedDate
 
-            self.identifier = identifier
+            self.labelUrl = labelUrl
 
-            self.success = success
+            self.invoiceUrl = invoiceUrl
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode([[String: Any]].self, forKey: .data)
+                storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                error = try container.decode([NestedErrorSchemaDataSet].self, forKey: .error)
+                creditNoteId = try container.decode(String.self, forKey: .creditNoteId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                traceId = try container.decode(String.self, forKey: .traceId)
+                updatedDate = try container.decode(String.self, forKey: .updatedDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                labelUrl = try container.decode(String.self, forKey: .labelUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                invoiceUrl = try container.decode(String.self, forKey: .invoiceUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,65 +90,65 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
 
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(creditNoteId, forKey: .creditNoteId)
 
-            try? container.encodeIfPresent(traceId, forKey: .traceId)
+            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: JioCodeUpsertResponse
+         Model: InvoiceInfo
          Used By: Order
      */
 
-    class JioCodeUpsertResponse: Codable {
-        public var data: [[String: Any]]?
+    class InvoiceInfo: Codable {
+        public var storeInvoiceId: String?
 
-        public var error: [NestedErrorSchemaDataSet]?
+        public var creditNoteId: String?
 
-        public var traceId: String?
+        public var updatedDate: String?
 
-        public var identifier: String?
+        public var labelUrl: String?
 
-        public var success: Bool?
+        public var invoiceUrl: String?
 
         public enum CodingKeys: String, CodingKey {
-            case data
+            case storeInvoiceId = "store_invoice_id"
 
-            case error
+            case creditNoteId = "credit_note_id"
 
-            case traceId = "trace_id"
+            case updatedDate = "updated_date"
 
-            case identifier
+            case labelUrl = "label_url"
 
-            case success
+            case invoiceUrl = "invoice_url"
         }
 
-        public init(data: [[String: Any]]? = nil, error: [NestedErrorSchemaDataSet]? = nil, identifier: String? = nil, success: Bool? = nil, traceId: String? = nil) {
-            self.data = data
+        public init(creditNoteId: String? = nil, invoiceUrl: String? = nil, labelUrl: String? = nil, storeInvoiceId: String? = nil, updatedDate: String? = nil) {
+            self.storeInvoiceId = storeInvoiceId
 
-            self.error = error
+            self.creditNoteId = creditNoteId
 
-            self.traceId = traceId
+            self.updatedDate = updatedDate
 
-            self.identifier = identifier
+            self.labelUrl = labelUrl
 
-            self.success = success
+            self.invoiceUrl = invoiceUrl
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode([[String: Any]].self, forKey: .data)
+                storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                error = try container.decode([NestedErrorSchemaDataSet].self, forKey: .error)
+                creditNoteId = try container.decode(String.self, forKey: .creditNoteId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                traceId = try container.decode(String.self, forKey: .traceId)
+                updatedDate = try container.decode(String.self, forKey: .updatedDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                labelUrl = try container.decode(String.self, forKey: .labelUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                invoiceUrl = try container.decode(String.self, forKey: .invoiceUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,15 +191,15 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
 
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(creditNoteId, forKey: .creditNoteId)
 
-            try? container.encodeIfPresent(traceId, forKey: .traceId)
+            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
         }
     }
 }
