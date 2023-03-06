@@ -10,22 +10,22 @@ public extension PlatformClient {
     class _AssignStoreArticle: Codable {
         public var articleAssignment: _ArticleAssignment?
 
-        public var quantity: Int?
+        public var query: _ArticleQuery?
 
         public var meta: [String: Any]?
 
-        public var query: _ArticleQuery?
+        public var quantity: Int?
 
         public var groupId: String?
 
         public enum CodingKeys: String, CodingKey {
             case articleAssignment = "article_assignment"
 
-            case quantity
+            case query
 
             case meta
 
-            case query
+            case quantity
 
             case groupId = "group_id"
         }
@@ -33,11 +33,11 @@ public extension PlatformClient {
         public init(articleAssignment: _ArticleAssignment? = nil, groupId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, query: _ArticleQuery? = nil) {
             self.articleAssignment = articleAssignment
 
-            self.quantity = quantity
+            self.query = query
 
             self.meta = meta
 
-            self.query = query
+            self.quantity = quantity
 
             self.groupId = groupId
         }
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                query = try container.decode(_ArticleQuery.self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +70,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                query = try container.decode(_ArticleQuery.self, forKey: .query)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,11 +91,11 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(query, forKey: .query)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(query, forKey: .query)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(groupId, forKey: .groupId)
         }

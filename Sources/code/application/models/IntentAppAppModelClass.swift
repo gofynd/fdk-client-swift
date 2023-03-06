@@ -7,8 +7,6 @@ public extension ApplicationClient {
          Used By: Payment
      */
     class IntentApp: Codable {
-        public var logos: PaymentModeLogo?
-
         public var code: String?
 
         public var displayName: String?
@@ -17,9 +15,9 @@ public extension ApplicationClient {
 
         public var packageName: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case logos
+        public var logos: PaymentModeLogo?
 
+        public enum CodingKeys: String, CodingKey {
             case code
 
             case displayName = "display_name"
@@ -27,11 +25,11 @@ public extension ApplicationClient {
             case outage
 
             case packageName = "package_name"
+
+            case logos
         }
 
         public init(code: String? = nil, displayName: String? = nil, logos: PaymentModeLogo? = nil, outage: [String: Any]? = nil, packageName: String? = nil) {
-            self.logos = logos
-
             self.code = code
 
             self.displayName = displayName
@@ -39,18 +37,12 @@ public extension ApplicationClient {
             self.outage = outage
 
             self.packageName = packageName
+
+            self.logos = logos
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                logos = try container.decode(PaymentModeLogo.self, forKey: .logos)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 code = try container.decode(String.self, forKey: .code)
@@ -83,12 +75,18 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                logos = try container.decode(PaymentModeLogo.self, forKey: .logos)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encode(logos, forKey: .logos)
 
             try? container.encode(code, forKey: .code)
 
@@ -97,6 +95,8 @@ public extension ApplicationClient {
             try? container.encode(outage, forKey: .outage)
 
             try? container.encode(packageName, forKey: .packageName)
+
+            try? container.encode(logos, forKey: .logos)
         }
     }
 }

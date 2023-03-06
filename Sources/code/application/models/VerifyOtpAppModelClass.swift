@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient {
     /*
-         Model: EffectiveValues
+         Model: VerifyOtp
          Used By: Order
      */
-    class EffectiveValues: Codable {
-        public var max: Double?
+    class VerifyOtp: Codable {
+        public var otpCode: String?
 
-        public var min: Double?
+        public var requestId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case max
+            case otpCode = "otp_code"
 
-            case min
+            case requestId = "request_id"
         }
 
-        public init(max: Double? = nil, min: Double? = nil) {
-            self.max = max
+        public init(otpCode: String? = nil, requestId: String? = nil) {
+            self.otpCode = otpCode
 
-            self.min = min
+            self.requestId = requestId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                max = try container.decode(Double.self, forKey: .max)
+                otpCode = try container.decode(String.self, forKey: .otpCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
+                requestId = try container.decode(String.self, forKey: .requestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encodeIfPresent(otpCode, forKey: .otpCode)
 
-            try? container.encodeIfPresent(min, forKey: .min)
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
         }
     }
 }
