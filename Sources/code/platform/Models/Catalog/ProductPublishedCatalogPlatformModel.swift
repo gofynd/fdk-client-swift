@@ -11,7 +11,7 @@ public extension PlatformClient.Catalog {
     class ProductPublished: Codable {
         public var isSet: Bool?
 
-        public var productOnlineDate: String?
+        public var productOnlineDate: Int?
 
         public enum CodingKeys: String, CodingKey {
             case isSet = "is_set"
@@ -19,7 +19,7 @@ public extension PlatformClient.Catalog {
             case productOnlineDate = "product_online_date"
         }
 
-        public init(isSet: Bool? = nil, productOnlineDate: String? = nil) {
+        public init(isSet: Bool? = nil, productOnlineDate: Int? = nil) {
             self.isSet = isSet
 
             self.productOnlineDate = productOnlineDate
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                productOnlineDate = try container.decode(String.self, forKey: .productOnlineDate)
+                productOnlineDate = try container.decode(Int.self, forKey: .productOnlineDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductPublished: Codable {
         public var isSet: Bool?
 
-        public var productOnlineDate: String?
+        public var productOnlineDate: Int?
 
         public enum CodingKeys: String, CodingKey {
             case isSet = "is_set"
@@ -72,7 +72,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case productOnlineDate = "product_online_date"
         }
 
-        public init(isSet: Bool? = nil, productOnlineDate: String? = nil) {
+        public init(isSet: Bool? = nil, productOnlineDate: Int? = nil) {
             self.isSet = isSet
 
             self.productOnlineDate = productOnlineDate
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                productOnlineDate = try container.decode(String.self, forKey: .productOnlineDate)
+                productOnlineDate = try container.decode(Int.self, forKey: .productOnlineDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

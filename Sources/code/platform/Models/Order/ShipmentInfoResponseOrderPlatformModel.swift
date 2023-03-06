@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class ShipmentInfoResponse: Codable {
         public var message: String?
 
-        public var shipments: [PlatformShipment]?
-
         public var success: Bool
+
+        public var shipments: [PlatformShipment]?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
-            case shipments
-
             case success
+
+            case shipments
         }
 
         public init(message: String? = nil, shipments: [PlatformShipment]? = nil, success: Bool) {
             self.message = message
 
-            self.shipments = shipments
-
             self.success = success
+
+            self.shipments = shipments
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,6 +42,8 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            success = try container.decode(Bool.self, forKey: .success)
+
             do {
                 shipments = try container.decode([PlatformShipment].self, forKey: .shipments)
 
@@ -49,8 +51,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -58,9 +58,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
         }
     }
 }
@@ -74,24 +74,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class ShipmentInfoResponse: Codable {
         public var message: String?
 
-        public var shipments: [PlatformShipment]?
-
         public var success: Bool
+
+        public var shipments: [PlatformShipment]?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
-            case shipments
-
             case success
+
+            case shipments
         }
 
         public init(message: String? = nil, shipments: [PlatformShipment]? = nil, success: Bool) {
             self.message = message
 
-            self.shipments = shipments
-
             self.success = success
+
+            self.shipments = shipments
         }
 
         required public init(from decoder: Decoder) throws {
@@ -105,6 +105,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            success = try container.decode(Bool.self, forKey: .success)
+
             do {
                 shipments = try container.decode([PlatformShipment].self, forKey: .shipments)
 
@@ -112,8 +114,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
         }
     }
 }

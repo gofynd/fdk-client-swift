@@ -9,93 +9,93 @@ public extension PlatformClient.Order {
      */
 
     class CurrentStatus: Codable {
-        public var deliveryAwbNumber: String?
+        public var shipmentId: String?
 
-        public var kafkaSync: Bool?
+        public var updatedAt: String?
 
-        public var updatedAt: Int?
+        public var currentStatusId: Int
 
         public var createdAt: String?
 
         public var deliveryPartnerId: Int?
 
-        public var bagStateMapper: BagStateMapper?
-
-        public var currentStatusId: Int
-
-        public var stateType: String?
-
-        public var storeId: Int?
-
-        public var shipmentId: String?
-
-        public var stateId: Int?
-
-        public var bagId: Int?
+        public var kafkaSync: Bool?
 
         public var status: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case deliveryAwbNumber = "delivery_awb_number"
+        public var bagId: Int?
 
-            case kafkaSync = "kafka_sync"
+        public var stateId: Int?
+
+        public var bagStateMapper: BagStateMapper?
+
+        public var deliveryAwbNumber: String?
+
+        public var storeId: Int?
+
+        public var stateType: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case shipmentId = "shipment_id"
 
             case updatedAt = "updated_at"
+
+            case currentStatusId = "current_status_id"
 
             case createdAt = "created_at"
 
             case deliveryPartnerId = "delivery_partner_id"
 
-            case bagStateMapper = "bag_state_mapper"
+            case kafkaSync = "kafka_sync"
 
-            case currentStatusId = "current_status_id"
-
-            case stateType = "state_type"
-
-            case storeId = "store_id"
-
-            case shipmentId = "shipment_id"
-
-            case stateId = "state_id"
+            case status
 
             case bagId = "bag_id"
 
-            case status
+            case stateId = "state_id"
+
+            case bagStateMapper = "bag_state_mapper"
+
+            case deliveryAwbNumber = "delivery_awb_number"
+
+            case storeId = "store_id"
+
+            case stateType = "state_type"
         }
 
-        public init(bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, createdAt: String? = nil, currentStatusId: Int, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, kafkaSync: Bool? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String? = nil, storeId: Int? = nil, updatedAt: Int? = nil) {
-            self.deliveryAwbNumber = deliveryAwbNumber
-
-            self.kafkaSync = kafkaSync
+        public init(bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, createdAt: String? = nil, currentStatusId: Int, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, kafkaSync: Bool? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String? = nil, storeId: Int? = nil, updatedAt: String? = nil) {
+            self.shipmentId = shipmentId
 
             self.updatedAt = updatedAt
+
+            self.currentStatusId = currentStatusId
 
             self.createdAt = createdAt
 
             self.deliveryPartnerId = deliveryPartnerId
 
-            self.bagStateMapper = bagStateMapper
+            self.kafkaSync = kafkaSync
 
-            self.currentStatusId = currentStatusId
-
-            self.stateType = stateType
-
-            self.storeId = storeId
-
-            self.shipmentId = shipmentId
-
-            self.stateId = stateId
+            self.status = status
 
             self.bagId = bagId
 
-            self.status = status
+            self.stateId = stateId
+
+            self.bagStateMapper = bagStateMapper
+
+            self.deliveryAwbNumber = deliveryAwbNumber
+
+            self.storeId = storeId
+
+            self.stateType = stateType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                deliveryAwbNumber = try container.decode(String.self, forKey: .deliveryAwbNumber)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,20 +103,14 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                kafkaSync = try container.decode(Bool.self, forKey: .kafkaSync)
+                updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                updatedAt = try container.decode(Int.self, forKey: .updatedAt)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            currentStatusId = try container.decode(Int.self, forKey: .currentStatusId)
 
             do {
                 createdAt = try container.decode(String.self, forKey: .createdAt)
@@ -135,17 +129,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                bagStateMapper = try container.decode(BagStateMapper.self, forKey: .bagStateMapper)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            currentStatusId = try container.decode(Int.self, forKey: .currentStatusId)
-
-            do {
-                stateType = try container.decode(String.self, forKey: .stateType)
+                kafkaSync = try container.decode(Bool.self, forKey: .kafkaSync)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,23 +137,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                storeId = try container.decode(Int.self, forKey: .storeId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                stateId = try container.decode(Int.self, forKey: .stateId)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -185,7 +153,39 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                stateId = try container.decode(Int.self, forKey: .stateId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                bagStateMapper = try container.decode(BagStateMapper.self, forKey: .bagStateMapper)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                deliveryAwbNumber = try container.decode(String.self, forKey: .deliveryAwbNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                storeId = try container.decode(Int.self, forKey: .storeId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                stateType = try container.decode(String.self, forKey: .stateType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -196,31 +196,31 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(deliveryAwbNumber, forKey: .deliveryAwbNumber)
-
-            try? container.encodeIfPresent(kafkaSync, forKey: .kafkaSync)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(currentStatusId, forKey: .currentStatusId)
 
             try? container.encode(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(deliveryPartnerId, forKey: .deliveryPartnerId)
 
-            try? container.encodeIfPresent(bagStateMapper, forKey: .bagStateMapper)
+            try? container.encodeIfPresent(kafkaSync, forKey: .kafkaSync)
 
-            try? container.encodeIfPresent(currentStatusId, forKey: .currentStatusId)
-
-            try? container.encodeIfPresent(stateType, forKey: .stateType)
-
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
-
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
-            try? container.encodeIfPresent(stateId, forKey: .stateId)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(bagId, forKey: .bagId)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(stateId, forKey: .stateId)
+
+            try? container.encodeIfPresent(bagStateMapper, forKey: .bagStateMapper)
+
+            try? container.encodeIfPresent(deliveryAwbNumber, forKey: .deliveryAwbNumber)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
+
+            try? container.encodeIfPresent(stateType, forKey: .stateType)
         }
     }
 }
@@ -232,93 +232,93 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class CurrentStatus: Codable {
-        public var deliveryAwbNumber: String?
+        public var shipmentId: String?
 
-        public var kafkaSync: Bool?
+        public var updatedAt: String?
 
-        public var updatedAt: Int?
+        public var currentStatusId: Int
 
         public var createdAt: String?
 
         public var deliveryPartnerId: Int?
 
-        public var bagStateMapper: BagStateMapper?
-
-        public var currentStatusId: Int
-
-        public var stateType: String?
-
-        public var storeId: Int?
-
-        public var shipmentId: String?
-
-        public var stateId: Int?
-
-        public var bagId: Int?
+        public var kafkaSync: Bool?
 
         public var status: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case deliveryAwbNumber = "delivery_awb_number"
+        public var bagId: Int?
 
-            case kafkaSync = "kafka_sync"
+        public var stateId: Int?
+
+        public var bagStateMapper: BagStateMapper?
+
+        public var deliveryAwbNumber: String?
+
+        public var storeId: Int?
+
+        public var stateType: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case shipmentId = "shipment_id"
 
             case updatedAt = "updated_at"
+
+            case currentStatusId = "current_status_id"
 
             case createdAt = "created_at"
 
             case deliveryPartnerId = "delivery_partner_id"
 
-            case bagStateMapper = "bag_state_mapper"
+            case kafkaSync = "kafka_sync"
 
-            case currentStatusId = "current_status_id"
-
-            case stateType = "state_type"
-
-            case storeId = "store_id"
-
-            case shipmentId = "shipment_id"
-
-            case stateId = "state_id"
+            case status
 
             case bagId = "bag_id"
 
-            case status
+            case stateId = "state_id"
+
+            case bagStateMapper = "bag_state_mapper"
+
+            case deliveryAwbNumber = "delivery_awb_number"
+
+            case storeId = "store_id"
+
+            case stateType = "state_type"
         }
 
-        public init(bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, createdAt: String? = nil, currentStatusId: Int, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, kafkaSync: Bool? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String? = nil, storeId: Int? = nil, updatedAt: Int? = nil) {
-            self.deliveryAwbNumber = deliveryAwbNumber
-
-            self.kafkaSync = kafkaSync
+        public init(bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, createdAt: String? = nil, currentStatusId: Int, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, kafkaSync: Bool? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String? = nil, storeId: Int? = nil, updatedAt: String? = nil) {
+            self.shipmentId = shipmentId
 
             self.updatedAt = updatedAt
+
+            self.currentStatusId = currentStatusId
 
             self.createdAt = createdAt
 
             self.deliveryPartnerId = deliveryPartnerId
 
-            self.bagStateMapper = bagStateMapper
+            self.kafkaSync = kafkaSync
 
-            self.currentStatusId = currentStatusId
-
-            self.stateType = stateType
-
-            self.storeId = storeId
-
-            self.shipmentId = shipmentId
-
-            self.stateId = stateId
+            self.status = status
 
             self.bagId = bagId
 
-            self.status = status
+            self.stateId = stateId
+
+            self.bagStateMapper = bagStateMapper
+
+            self.deliveryAwbNumber = deliveryAwbNumber
+
+            self.storeId = storeId
+
+            self.stateType = stateType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                deliveryAwbNumber = try container.decode(String.self, forKey: .deliveryAwbNumber)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -326,20 +326,14 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                kafkaSync = try container.decode(Bool.self, forKey: .kafkaSync)
+                updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                updatedAt = try container.decode(Int.self, forKey: .updatedAt)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            currentStatusId = try container.decode(Int.self, forKey: .currentStatusId)
 
             do {
                 createdAt = try container.decode(String.self, forKey: .createdAt)
@@ -358,17 +352,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                bagStateMapper = try container.decode(BagStateMapper.self, forKey: .bagStateMapper)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            currentStatusId = try container.decode(Int.self, forKey: .currentStatusId)
-
-            do {
-                stateType = try container.decode(String.self, forKey: .stateType)
+                kafkaSync = try container.decode(Bool.self, forKey: .kafkaSync)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -376,23 +360,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                storeId = try container.decode(Int.self, forKey: .storeId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                stateId = try container.decode(Int.self, forKey: .stateId)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -408,7 +376,39 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                stateId = try container.decode(Int.self, forKey: .stateId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                bagStateMapper = try container.decode(BagStateMapper.self, forKey: .bagStateMapper)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                deliveryAwbNumber = try container.decode(String.self, forKey: .deliveryAwbNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                storeId = try container.decode(Int.self, forKey: .storeId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                stateType = try container.decode(String.self, forKey: .stateType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -419,31 +419,31 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(deliveryAwbNumber, forKey: .deliveryAwbNumber)
-
-            try? container.encodeIfPresent(kafkaSync, forKey: .kafkaSync)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(currentStatusId, forKey: .currentStatusId)
 
             try? container.encode(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(deliveryPartnerId, forKey: .deliveryPartnerId)
 
-            try? container.encodeIfPresent(bagStateMapper, forKey: .bagStateMapper)
+            try? container.encodeIfPresent(kafkaSync, forKey: .kafkaSync)
 
-            try? container.encodeIfPresent(currentStatusId, forKey: .currentStatusId)
-
-            try? container.encodeIfPresent(stateType, forKey: .stateType)
-
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
-
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
-            try? container.encodeIfPresent(stateId, forKey: .stateId)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(bagId, forKey: .bagId)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(stateId, forKey: .stateId)
+
+            try? container.encodeIfPresent(bagStateMapper, forKey: .bagStateMapper)
+
+            try? container.encodeIfPresent(deliveryAwbNumber, forKey: .deliveryAwbNumber)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
+
+            try? container.encodeIfPresent(stateType, forKey: .stateType)
         }
     }
 }

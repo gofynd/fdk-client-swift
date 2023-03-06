@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var traceId: String?
 
-        public var error: [NestedErrorSchemaDataSet]?
-
         public var identifier: String?
+
+        public var error: [NestedErrorSchemaDataSet]?
 
         public var success: Bool?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case traceId = "trace_id"
 
-            case error
-
             case identifier
+
+            case error
 
             case success
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.traceId = traceId
 
-            self.error = error
-
             self.identifier = identifier
+
+            self.error = error
 
             self.success = success
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                error = try container.decode([NestedErrorSchemaDataSet].self, forKey: .error)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                error = try container.decode([NestedErrorSchemaDataSet].self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(traceId, forKey: .traceId)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var traceId: String?
 
-        public var error: [NestedErrorSchemaDataSet]?
-
         public var identifier: String?
+
+        public var error: [NestedErrorSchemaDataSet]?
 
         public var success: Bool?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case traceId = "trace_id"
 
-            case error
-
             case identifier
+
+            case error
 
             case success
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.traceId = traceId
 
-            self.error = error
-
             self.identifier = identifier
+
+            self.error = error
 
             self.success = success
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                error = try container.decode([NestedErrorSchemaDataSet].self, forKey: .error)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                error = try container.decode([NestedErrorSchemaDataSet].self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(traceId, forKey: .traceId)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }

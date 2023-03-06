@@ -13,11 +13,11 @@ public extension PlatformClient.Order {
 
         public var isActive: Bool
 
-        public var canBeCancelled: Bool
+        public var isCustomerReturnAllowed: Bool
 
         public var allowForceReturn: Bool
 
-        public var isCustomerReturnAllowed: Bool
+        public var canBeCancelled: Bool
 
         public var isReturnable: Bool
 
@@ -26,11 +26,11 @@ public extension PlatformClient.Order {
 
             case isActive = "is_active"
 
-            case canBeCancelled = "can_be_cancelled"
+            case isCustomerReturnAllowed = "is_customer_return_allowed"
 
             case allowForceReturn = "allow_force_return"
 
-            case isCustomerReturnAllowed = "is_customer_return_allowed"
+            case canBeCancelled = "can_be_cancelled"
 
             case isReturnable = "is_returnable"
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.Order {
 
             self.isActive = isActive
 
-            self.canBeCancelled = canBeCancelled
+            self.isCustomerReturnAllowed = isCustomerReturnAllowed
 
             self.allowForceReturn = allowForceReturn
 
-            self.isCustomerReturnAllowed = isCustomerReturnAllowed
+            self.canBeCancelled = canBeCancelled
 
             self.isReturnable = isReturnable
         }
@@ -56,11 +56,11 @@ public extension PlatformClient.Order {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
+            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
 
             allowForceReturn = try container.decode(Bool.self, forKey: .allowForceReturn)
 
-            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
+            canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
 
             isReturnable = try container.decode(Bool.self, forKey: .isReturnable)
         }
@@ -72,11 +72,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
+            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
 
             try? container.encodeIfPresent(allowForceReturn, forKey: .allowForceReturn)
 
-            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
+            try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
 
             try? container.encodeIfPresent(isReturnable, forKey: .isReturnable)
         }
@@ -94,11 +94,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var isActive: Bool
 
-        public var canBeCancelled: Bool
+        public var isCustomerReturnAllowed: Bool
 
         public var allowForceReturn: Bool
 
-        public var isCustomerReturnAllowed: Bool
+        public var canBeCancelled: Bool
 
         public var isReturnable: Bool
 
@@ -107,11 +107,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case isActive = "is_active"
 
-            case canBeCancelled = "can_be_cancelled"
+            case isCustomerReturnAllowed = "is_customer_return_allowed"
 
             case allowForceReturn = "allow_force_return"
 
-            case isCustomerReturnAllowed = "is_customer_return_allowed"
+            case canBeCancelled = "can_be_cancelled"
 
             case isReturnable = "is_returnable"
         }
@@ -121,11 +121,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.isActive = isActive
 
-            self.canBeCancelled = canBeCancelled
+            self.isCustomerReturnAllowed = isCustomerReturnAllowed
 
             self.allowForceReturn = allowForceReturn
 
-            self.isCustomerReturnAllowed = isCustomerReturnAllowed
+            self.canBeCancelled = canBeCancelled
 
             self.isReturnable = isReturnable
         }
@@ -137,11 +137,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
+            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
 
             allowForceReturn = try container.decode(Bool.self, forKey: .allowForceReturn)
 
-            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
+            canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
 
             isReturnable = try container.decode(Bool.self, forKey: .isReturnable)
         }
@@ -153,11 +153,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
+            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
 
             try? container.encodeIfPresent(allowForceReturn, forKey: .allowForceReturn)
 
-            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
+            try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
 
             try? container.encodeIfPresent(isReturnable, forKey: .isReturnable)
         }

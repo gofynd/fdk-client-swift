@@ -11,26 +11,26 @@ public extension ApplicationClient.Order {
 
         public var reasons: [BagReasons]?
 
-        public var qcType: [String]?
+        public var displayName: String?
 
         public var questionSet: [QuestionSet]?
 
         public var meta: BagReasonMeta?
 
-        public var displayName: String?
+        public var qcType: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case id
 
             case reasons
 
-            case qcType = "qc_type"
+            case displayName = "display_name"
 
             case questionSet = "question_set"
 
             case meta
 
-            case displayName = "display_name"
+            case qcType = "qc_type"
         }
 
         public init(displayName: String? = nil, id: Int? = nil, meta: BagReasonMeta? = nil, qcType: [String]? = nil, questionSet: [QuestionSet]? = nil, reasons: [BagReasons]? = nil) {
@@ -38,13 +38,13 @@ public extension ApplicationClient.Order {
 
             self.reasons = reasons
 
-            self.qcType = qcType
+            self.displayName = displayName
 
             self.questionSet = questionSet
 
             self.meta = meta
 
-            self.displayName = displayName
+            self.qcType = qcType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,7 +67,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                qcType = try container.decode([String].self, forKey: .qcType)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                qcType = try container.decode([String].self, forKey: .qcType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,13 +106,13 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(reasons, forKey: .reasons)
 
-            try? container.encodeIfPresent(qcType, forKey: .qcType)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(questionSet, forKey: .questionSet)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(qcType, forKey: .qcType)
         }
     }
 }

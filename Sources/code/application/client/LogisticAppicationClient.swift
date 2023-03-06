@@ -15,7 +15,7 @@ public extension ApplicationClient {
 
             ulrs["getPincodeZones"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/zones")
 
-            ulrs["reassignStore"] = config.domain.appendAsPath("/service/application/logistics/v1.0/reassign_stores")
+            ulrs["getOptimalLocations"] = config.domain.appendAsPath("/service/application/logistics/v1.0/reassign_stores")
 
             self.relativeUrls = ulrs
         }
@@ -154,11 +154,11 @@ public extension ApplicationClient {
          * Summary: GET zone from the Pincode.
          * Description: This API returns zone from the Pincode View.
          **/
-        public func reassignStore(
+        public func getOptimalLocations(
             body: ReAssignStoreRequest,
             onResponse: @escaping (_ response: ReAssignStoreResponse?, _ error: FDKError?) -> Void
         ) {
-            let fullUrl = relativeUrls["reassignStore"] ?? ""
+            let fullUrl = relativeUrls["getOptimalLocations"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,

@@ -82,6 +82,7 @@ public extension ApplicationClient {
             i: Bool?,
             b: Bool?,
             assignCardId: Int?,
+            areaCode: String?,
             buyNow: Bool?,
 
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
@@ -102,6 +103,10 @@ public extension ApplicationClient {
 
             if let value = assignCardId {
                 xQuery["assign_card_id"] = value
+            }
+
+            if let value = areaCode {
+                xQuery["area_code"] = value
             }
 
             if let value = buyNow {

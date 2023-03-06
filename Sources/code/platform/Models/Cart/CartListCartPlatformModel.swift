@@ -15,9 +15,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var createdOn: String?
 
-        public var cartValue: String?
-
         public var itemCounts: String?
+
+        public var cartValue: String?
 
         public enum CodingKeys: String, CodingKey {
             case userId = "user_id"
@@ -26,9 +26,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case createdOn = "created_on"
 
-            case cartValue = "cart_value"
-
             case itemCounts = "item_counts"
+
+            case cartValue = "cart_value"
         }
 
         public init(cartId: String? = nil, cartValue: String? = nil, createdOn: String? = nil, itemCounts: String? = nil, userId: String? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.createdOn = createdOn
 
-            self.cartValue = cartValue
-
             self.itemCounts = itemCounts
+
+            self.cartValue = cartValue
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                cartValue = try container.decode(String.self, forKey: .cartValue)
+                itemCounts = try container.decode(String.self, forKey: .itemCounts)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                itemCounts = try container.decode(String.self, forKey: .itemCounts)
+                cartValue = try container.decode(String.self, forKey: .cartValue)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,9 +96,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(cartValue, forKey: .cartValue)
-
             try? container.encodeIfPresent(itemCounts, forKey: .itemCounts)
+
+            try? container.encodeIfPresent(cartValue, forKey: .cartValue)
         }
     }
 }
