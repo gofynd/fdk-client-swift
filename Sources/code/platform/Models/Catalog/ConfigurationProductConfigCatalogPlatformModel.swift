@@ -15,13 +15,13 @@ public extension PlatformClient.Catalog {
 
         public var isActive: Bool
 
-        public var subtitle: String?
+        public var priority: Int
 
         public var key: String
 
-        public var size: ProductSize?
+        public var subtitle: String?
 
-        public var priority: Int
+        public var size: ProductSize?
 
         public enum CodingKeys: String, CodingKey {
             case logo
@@ -30,13 +30,13 @@ public extension PlatformClient.Catalog {
 
             case isActive = "is_active"
 
-            case subtitle
+            case priority
 
             case key
 
-            case size
+            case subtitle
 
-            case priority
+            case size
         }
 
         public init(isActive: Bool, key: String, logo: String? = nil, priority: Int, size: ProductSize? = nil, subtitle: String? = nil, title: String? = nil) {
@@ -46,13 +46,13 @@ public extension PlatformClient.Catalog {
 
             self.isActive = isActive
 
-            self.subtitle = subtitle
+            self.priority = priority
 
             self.key = key
 
-            self.size = size
+            self.subtitle = subtitle
 
-            self.priority = priority
+            self.size = size
         }
 
         required public init(from decoder: Decoder) throws {
@@ -76,6 +76,10 @@ public extension PlatformClient.Catalog {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
+            priority = try container.decode(Int.self, forKey: .priority)
+
+            key = try container.decode(String.self, forKey: .key)
+
             do {
                 subtitle = try container.decode(String.self, forKey: .subtitle)
 
@@ -84,8 +88,6 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            key = try container.decode(String.self, forKey: .key)
-
             do {
                 size = try container.decode(ProductSize.self, forKey: .size)
 
@@ -93,8 +95,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            priority = try container.decode(Int.self, forKey: .priority)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -106,13 +106,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(size, forKey: .size)
         }
     }
 }
@@ -130,13 +130,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var isActive: Bool
 
-        public var subtitle: String?
+        public var priority: Int
 
         public var key: String
 
-        public var size: ProductSize?
+        public var subtitle: String?
 
-        public var priority: Int
+        public var size: ProductSize?
 
         public enum CodingKeys: String, CodingKey {
             case logo
@@ -145,13 +145,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case isActive = "is_active"
 
-            case subtitle
+            case priority
 
             case key
 
-            case size
+            case subtitle
 
-            case priority
+            case size
         }
 
         public init(isActive: Bool, key: String, logo: String? = nil, priority: Int, size: ProductSize? = nil, subtitle: String? = nil, title: String? = nil) {
@@ -161,13 +161,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.isActive = isActive
 
-            self.subtitle = subtitle
+            self.priority = priority
 
             self.key = key
 
-            self.size = size
+            self.subtitle = subtitle
 
-            self.priority = priority
+            self.size = size
         }
 
         required public init(from decoder: Decoder) throws {
@@ -191,6 +191,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
+            priority = try container.decode(Int.self, forKey: .priority)
+
+            key = try container.decode(String.self, forKey: .key)
+
             do {
                 subtitle = try container.decode(String.self, forKey: .subtitle)
 
@@ -199,8 +203,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            key = try container.decode(String.self, forKey: .key)
-
             do {
                 size = try container.decode(ProductSize.self, forKey: .size)
 
@@ -208,8 +210,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            priority = try container.decode(Int.self, forKey: .priority)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -221,13 +221,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(size, forKey: .size)
         }
     }
 }

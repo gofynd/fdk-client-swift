@@ -9,18 +9,18 @@ public extension ApplicationClient.Order {
     class AppliedFreeArticles: Codable {
         public var freeGiftItemDetails: [String: Any]?
 
-        public var quantity: Double?
-
         public var articleId: String?
+
+        public var quantity: Double?
 
         public var parentItemIdentifier: String?
 
         public enum CodingKeys: String, CodingKey {
             case freeGiftItemDetails = "free_gift_item_details"
 
-            case quantity
-
             case articleId = "article_id"
+
+            case quantity
 
             case parentItemIdentifier = "parent_item_identifier"
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Order {
         public init(articleId: String? = nil, freeGiftItemDetails: [String: Any]? = nil, parentItemIdentifier: String? = nil, quantity: Double? = nil) {
             self.freeGiftItemDetails = freeGiftItemDetails
 
-            self.quantity = quantity
-
             self.articleId = articleId
+
+            self.quantity = quantity
 
             self.parentItemIdentifier = parentItemIdentifier
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                quantity = try container.decode(Double.self, forKey: .quantity)
+                articleId = try container.decode(String.self, forKey: .articleId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                articleId = try container.decode(String.self, forKey: .articleId)
+                quantity = try container.decode(Double.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(freeGiftItemDetails, forKey: .freeGiftItemDetails)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
             try? container.encodeIfPresent(articleId, forKey: .articleId)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(parentItemIdentifier, forKey: .parentItemIdentifier)
         }

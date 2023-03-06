@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var uid: String?
 
-        public var userId: String?
-
         public var contact: String?
+
+        public var userId: String?
 
         public var username: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case uid
 
-            case userId = "user_id"
-
             case contact
+
+            case userId = "user_id"
 
             case username
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.uid = uid
 
-            self.userId = userId
-
             self.contact = contact
+
+            self.userId = userId
 
             self.username = username
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                contact = try container.decode(String.self, forKey: .contact)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                contact = try container.decode(String.self, forKey: .contact)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(contact, forKey: .contact)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(username, forKey: .username)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var uid: String?
 
-        public var userId: String?
-
         public var contact: String?
+
+        public var userId: String?
 
         public var username: String?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case uid
 
-            case userId = "user_id"
-
             case contact
+
+            case userId = "user_id"
 
             case username
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.uid = uid
 
-            self.userId = userId
-
             self.contact = contact
+
+            self.userId = userId
 
             self.username = username
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                contact = try container.decode(String.self, forKey: .contact)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                contact = try container.decode(String.self, forKey: .contact)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(contact, forKey: .contact)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(username, forKey: .username)
         }

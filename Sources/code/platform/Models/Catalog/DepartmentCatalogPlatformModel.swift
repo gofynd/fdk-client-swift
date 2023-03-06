@@ -11,9 +11,9 @@ public extension PlatformClient.Catalog {
     class Department: Codable {
         public var logo: Media?
 
-        public var name: String?
-
         public var priorityOrder: Int?
+
+        public var name: String?
 
         public var uid: Int?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case logo
 
-            case name
-
             case priorityOrder = "priority_order"
+
+            case name
 
             case uid
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Catalog {
         public init(logo: Media? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, uid: Int? = nil) {
             self.logo = logo
 
-            self.name = name
-
             self.priorityOrder = priorityOrder
+
+            self.name = name
 
             self.uid = uid
 
@@ -55,7 +55,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
@@ -112,9 +112,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class Department: Codable {
         public var logo: Media?
 
-        public var name: String?
-
         public var priorityOrder: Int?
+
+        public var name: String?
 
         public var uid: Int?
 
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case logo
 
-            case name
-
             case priorityOrder = "priority_order"
+
+            case name
 
             case uid
 
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(logo: Media? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, uid: Int? = nil) {
             self.logo = logo
 
-            self.name = name
-
             self.priorityOrder = priorityOrder
+
+            self.name = name
 
             self.uid = uid
 
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,9 +193,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
