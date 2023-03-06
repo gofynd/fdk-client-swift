@@ -9,24 +9,24 @@ public extension PlatformClient.Order {
      */
 
     class ErrorResponse1: Codable {
-        public var message: String
-
         public var status: Int
+
+        public var message: String
 
         public var errorTrace: String?
 
         public enum CodingKeys: String, CodingKey {
-            case message
-
             case status
+
+            case message
 
             case errorTrace = "error_trace"
         }
 
         public init(errorTrace: String? = nil, message: String, status: Int) {
-            self.message = message
-
             self.status = status
+
+            self.message = message
 
             self.errorTrace = errorTrace
         }
@@ -34,9 +34,9 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            message = try container.decode(String.self, forKey: .message)
-
             status = try container.decode(Int.self, forKey: .status)
+
+            message = try container.decode(String.self, forKey: .message)
 
             do {
                 errorTrace = try container.decode(String.self, forKey: .errorTrace)
@@ -50,9 +50,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
         }
@@ -66,24 +66,24 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ErrorResponse1: Codable {
-        public var message: String
-
         public var status: Int
+
+        public var message: String
 
         public var errorTrace: String?
 
         public enum CodingKeys: String, CodingKey {
-            case message
-
             case status
+
+            case message
 
             case errorTrace = "error_trace"
         }
 
         public init(errorTrace: String? = nil, message: String, status: Int) {
-            self.message = message
-
             self.status = status
+
+            self.message = message
 
             self.errorTrace = errorTrace
         }
@@ -91,9 +91,9 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            message = try container.decode(String.self, forKey: .message)
-
             status = try container.decode(Int.self, forKey: .status)
+
+            message = try container.decode(String.self, forKey: .message)
 
             do {
                 errorTrace = try container.decode(String.self, forKey: .errorTrace)
@@ -107,9 +107,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
         }

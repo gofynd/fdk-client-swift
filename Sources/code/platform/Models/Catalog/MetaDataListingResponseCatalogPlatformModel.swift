@@ -9,36 +9,36 @@ public extension PlatformClient.Catalog {
      */
 
     class MetaDataListingResponse: Codable {
-        public var sort: MetaDataListingSortResponse
-
         public var filter: MetaDataListingFilterResponse
 
-        public enum CodingKeys: String, CodingKey {
-            case sort
+        public var sort: MetaDataListingSortResponse
 
+        public enum CodingKeys: String, CodingKey {
             case filter
+
+            case sort
         }
 
         public init(filter: MetaDataListingFilterResponse, sort: MetaDataListingSortResponse) {
-            self.sort = sort
-
             self.filter = filter
+
+            self.sort = sort
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            sort = try container.decode(MetaDataListingSortResponse.self, forKey: .sort)
-
             filter = try container.decode(MetaDataListingFilterResponse.self, forKey: .filter)
+
+            sort = try container.decode(MetaDataListingSortResponse.self, forKey: .sort)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sort, forKey: .sort)
-
             try? container.encodeIfPresent(filter, forKey: .filter)
+
+            try? container.encodeIfPresent(sort, forKey: .sort)
         }
     }
 }
@@ -50,36 +50,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class MetaDataListingResponse: Codable {
-        public var sort: MetaDataListingSortResponse
-
         public var filter: MetaDataListingFilterResponse
 
-        public enum CodingKeys: String, CodingKey {
-            case sort
+        public var sort: MetaDataListingSortResponse
 
+        public enum CodingKeys: String, CodingKey {
             case filter
+
+            case sort
         }
 
         public init(filter: MetaDataListingFilterResponse, sort: MetaDataListingSortResponse) {
-            self.sort = sort
-
             self.filter = filter
+
+            self.sort = sort
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            sort = try container.decode(MetaDataListingSortResponse.self, forKey: .sort)
-
             filter = try container.decode(MetaDataListingFilterResponse.self, forKey: .filter)
+
+            sort = try container.decode(MetaDataListingSortResponse.self, forKey: .sort)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sort, forKey: .sort)
-
             try? container.encodeIfPresent(filter, forKey: .filter)
+
+            try? container.encodeIfPresent(sort, forKey: .sort)
         }
     }
 }

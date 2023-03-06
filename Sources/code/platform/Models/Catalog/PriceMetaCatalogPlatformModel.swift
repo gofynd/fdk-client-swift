@@ -9,50 +9,48 @@ public extension PlatformClient.Catalog {
      */
 
     class PriceMeta: Codable {
-        public var marked: Double
-
         public var transfer: Double
 
         public var updatedAt: String?
 
         public var tpNotes: [String: Any]?
 
-        public var effective: Double
+        public var marked: Double
 
         public var currency: String
 
-        public enum CodingKeys: String, CodingKey {
-            case marked
+        public var effective: Double
 
+        public enum CodingKeys: String, CodingKey {
             case transfer
 
             case updatedAt = "updated_at"
 
             case tpNotes = "tp_notes"
 
-            case effective
+            case marked
 
             case currency
+
+            case effective
         }
 
         public init(currency: String, effective: Double, marked: Double, tpNotes: [String: Any]? = nil, transfer: Double, updatedAt: String? = nil) {
-            self.marked = marked
-
             self.transfer = transfer
 
             self.updatedAt = updatedAt
 
             self.tpNotes = tpNotes
 
-            self.effective = effective
+            self.marked = marked
 
             self.currency = currency
+
+            self.effective = effective
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            marked = try container.decode(Double.self, forKey: .marked)
 
             transfer = try container.decode(Double.self, forKey: .transfer)
 
@@ -72,15 +70,15 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            effective = try container.decode(Double.self, forKey: .effective)
+            marked = try container.decode(Double.self, forKey: .marked)
 
             currency = try container.decode(String.self, forKey: .currency)
+
+            effective = try container.decode(Double.self, forKey: .effective)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(transfer, forKey: .transfer)
 
@@ -88,9 +86,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
+            try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(effective, forKey: .effective)
         }
     }
 }
@@ -102,50 +102,48 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class PriceMeta: Codable {
-        public var marked: Double
-
         public var transfer: Double
 
         public var updatedAt: String?
 
         public var tpNotes: [String: Any]?
 
-        public var effective: Double
+        public var marked: Double
 
         public var currency: String
 
-        public enum CodingKeys: String, CodingKey {
-            case marked
+        public var effective: Double
 
+        public enum CodingKeys: String, CodingKey {
             case transfer
 
             case updatedAt = "updated_at"
 
             case tpNotes = "tp_notes"
 
-            case effective
+            case marked
 
             case currency
+
+            case effective
         }
 
         public init(currency: String, effective: Double, marked: Double, tpNotes: [String: Any]? = nil, transfer: Double, updatedAt: String? = nil) {
-            self.marked = marked
-
             self.transfer = transfer
 
             self.updatedAt = updatedAt
 
             self.tpNotes = tpNotes
 
-            self.effective = effective
+            self.marked = marked
 
             self.currency = currency
+
+            self.effective = effective
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            marked = try container.decode(Double.self, forKey: .marked)
 
             transfer = try container.decode(Double.self, forKey: .transfer)
 
@@ -165,15 +163,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            effective = try container.decode(Double.self, forKey: .effective)
+            marked = try container.decode(Double.self, forKey: .marked)
 
             currency = try container.decode(String.self, forKey: .currency)
+
+            effective = try container.decode(Double.self, forKey: .effective)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(transfer, forKey: .transfer)
 
@@ -181,9 +179,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
+            try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(effective, forKey: .effective)
         }
     }
 }
