@@ -11,18 +11,18 @@ public extension ApplicationClient.Catalog {
 
         public var logo: String?
 
-        public var name: String
-
         public var kind: String?
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case display
 
             case logo
 
-            case name
-
             case kind
+
+            case name
         }
 
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Catalog {
 
             self.logo = logo
 
-            self.name = name
-
             self.kind = kind
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,8 +48,6 @@ public extension ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
                 kind = try container.decode(String.self, forKey: .kind)
 
@@ -57,6 +55,8 @@ public extension ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,9 +66,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(kind, forKey: .kind)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

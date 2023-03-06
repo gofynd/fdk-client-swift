@@ -9,22 +9,22 @@ public extension ApplicationClient.Payment {
     class CreatePaymentLinkMeta: Codable {
         public var amount: String
 
+        public var assignCardId: String?
+
         public var pincode: String
 
         public var checkoutMode: String
-
-        public var assignCardId: String?
 
         public var cartId: String
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
+            case assignCardId = "assign_card_id"
+
             case pincode
 
             case checkoutMode = "checkout_mode"
-
-            case assignCardId = "assign_card_id"
 
             case cartId = "cart_id"
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Payment {
         public init(amount: String, assignCardId: String? = nil, cartId: String, checkoutMode: String, pincode: String) {
             self.amount = amount
 
+            self.assignCardId = assignCardId
+
             self.pincode = pincode
 
             self.checkoutMode = checkoutMode
-
-            self.assignCardId = assignCardId
 
             self.cartId = cartId
         }
@@ -46,10 +46,6 @@ public extension ApplicationClient.Payment {
 
             amount = try container.decode(String.self, forKey: .amount)
 
-            pincode = try container.decode(String.self, forKey: .pincode)
-
-            checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
-
             do {
                 assignCardId = try container.decode(String.self, forKey: .assignCardId)
 
@@ -57,6 +53,10 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            pincode = try container.decode(String.self, forKey: .pincode)
+
+            checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
             cartId = try container.decode(String.self, forKey: .cartId)
         }
@@ -66,11 +66,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
+            try? container.encode(assignCardId, forKey: .assignCardId)
+
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
-
-            try? container.encode(assignCardId, forKey: .assignCardId)
 
             try? container.encodeIfPresent(cartId, forKey: .cartId)
         }

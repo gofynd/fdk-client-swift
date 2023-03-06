@@ -9,7 +9,13 @@ public extension PlatformClient.Order {
      */
 
     class ShipmentConfig: Codable {
+        public var journey: String
+
         public var paymentMode: String
+
+        public var shipment: [ShipmentDetails]
+
+        public var identifier: String
 
         public var locationDetails: LocationDetails?
 
@@ -17,16 +23,16 @@ public extension PlatformClient.Order {
 
         public var toPincode: String
 
-        public var shipment: [ShipmentDetails]
-
-        public var identifier: String
-
         public var action: String
 
-        public var journey: String
-
         public enum CodingKeys: String, CodingKey {
+            case journey
+
             case paymentMode = "payment_mode"
+
+            case shipment
+
+            case identifier
 
             case locationDetails = "location_details"
 
@@ -34,17 +40,17 @@ public extension PlatformClient.Order {
 
             case toPincode = "to_pincode"
 
-            case shipment
-
-            case identifier
-
             case action
-
-            case journey
         }
 
         public init(action: String, identifier: String, journey: String, locationDetails: LocationDetails? = nil, paymentMode: String, shipment: [ShipmentDetails], source: String, toPincode: String) {
+            self.journey = journey
+
             self.paymentMode = paymentMode
+
+            self.shipment = shipment
+
+            self.identifier = identifier
 
             self.locationDetails = locationDetails
 
@@ -52,19 +58,19 @@ public extension PlatformClient.Order {
 
             self.toPincode = toPincode
 
-            self.shipment = shipment
-
-            self.identifier = identifier
-
             self.action = action
-
-            self.journey = journey
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            journey = try container.decode(String.self, forKey: .journey)
+
             paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            shipment = try container.decode([ShipmentDetails].self, forKey: .shipment)
+
+            identifier = try container.decode(String.self, forKey: .identifier)
 
             do {
                 locationDetails = try container.decode(LocationDetails.self, forKey: .locationDetails)
@@ -78,19 +84,19 @@ public extension PlatformClient.Order {
 
             toPincode = try container.decode(String.self, forKey: .toPincode)
 
-            shipment = try container.decode([ShipmentDetails].self, forKey: .shipment)
-
-            identifier = try container.decode(String.self, forKey: .identifier)
-
             action = try container.decode(String.self, forKey: .action)
-
-            journey = try container.decode(String.self, forKey: .journey)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(journey, forKey: .journey)
+
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
+            try? container.encodeIfPresent(shipment, forKey: .shipment)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
 
@@ -98,13 +104,7 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
-            try? container.encodeIfPresent(shipment, forKey: .shipment)
-
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
-
             try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(journey, forKey: .journey)
         }
     }
 }
@@ -116,7 +116,13 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ShipmentConfig: Codable {
+        public var journey: String
+
         public var paymentMode: String
+
+        public var shipment: [ShipmentDetails]
+
+        public var identifier: String
 
         public var locationDetails: LocationDetails?
 
@@ -124,16 +130,16 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var toPincode: String
 
-        public var shipment: [ShipmentDetails]
-
-        public var identifier: String
-
         public var action: String
 
-        public var journey: String
-
         public enum CodingKeys: String, CodingKey {
+            case journey
+
             case paymentMode = "payment_mode"
+
+            case shipment
+
+            case identifier
 
             case locationDetails = "location_details"
 
@@ -141,17 +147,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case toPincode = "to_pincode"
 
-            case shipment
-
-            case identifier
-
             case action
-
-            case journey
         }
 
         public init(action: String, identifier: String, journey: String, locationDetails: LocationDetails? = nil, paymentMode: String, shipment: [ShipmentDetails], source: String, toPincode: String) {
+            self.journey = journey
+
             self.paymentMode = paymentMode
+
+            self.shipment = shipment
+
+            self.identifier = identifier
 
             self.locationDetails = locationDetails
 
@@ -159,19 +165,19 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.toPincode = toPincode
 
-            self.shipment = shipment
-
-            self.identifier = identifier
-
             self.action = action
-
-            self.journey = journey
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            journey = try container.decode(String.self, forKey: .journey)
+
             paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            shipment = try container.decode([ShipmentDetails].self, forKey: .shipment)
+
+            identifier = try container.decode(String.self, forKey: .identifier)
 
             do {
                 locationDetails = try container.decode(LocationDetails.self, forKey: .locationDetails)
@@ -185,19 +191,19 @@ public extension PlatformClient.ApplicationClient.Order {
 
             toPincode = try container.decode(String.self, forKey: .toPincode)
 
-            shipment = try container.decode([ShipmentDetails].self, forKey: .shipment)
-
-            identifier = try container.decode(String.self, forKey: .identifier)
-
             action = try container.decode(String.self, forKey: .action)
-
-            journey = try container.decode(String.self, forKey: .journey)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(journey, forKey: .journey)
+
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
+            try? container.encodeIfPresent(shipment, forKey: .shipment)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
 
@@ -205,13 +211,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
-            try? container.encodeIfPresent(shipment, forKey: .shipment)
-
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
-
             try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(journey, forKey: .journey)
         }
     }
 }
