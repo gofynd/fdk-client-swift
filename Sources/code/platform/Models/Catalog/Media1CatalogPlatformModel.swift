@@ -56,11 +56,11 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encode(type, forKey: .type)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
@@ -119,11 +119,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encode(type, forKey: .type)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

@@ -9,22 +9,22 @@ public extension ApplicationClient.Cart {
     class OfferPrice: Codable {
         public var marked: Int?
 
-        public var currencyCode: String?
+        public var bulkEffective: Double?
 
         public var effective: Int?
 
-        public var bulkEffective: Double?
+        public var currencyCode: String?
 
         public var currencySymbol: String?
 
         public enum CodingKeys: String, CodingKey {
             case marked
 
-            case currencyCode = "currency_code"
+            case bulkEffective = "bulk_effective"
 
             case effective
 
-            case bulkEffective = "bulk_effective"
+            case currencyCode = "currency_code"
 
             case currencySymbol = "currency_symbol"
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Cart {
         public init(bulkEffective: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Int? = nil, marked: Int? = nil) {
             self.marked = marked
 
-            self.currencyCode = currencyCode
+            self.bulkEffective = bulkEffective
 
             self.effective = effective
 
-            self.bulkEffective = bulkEffective
+            self.currencyCode = currencyCode
 
             self.currencySymbol = currencySymbol
         }
@@ -53,7 +53,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                bulkEffective = try container.decode(Double.self, forKey: .bulkEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                bulkEffective = try container.decode(Double.self, forKey: .bulkEffective)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            try? container.encodeIfPresent(bulkEffective, forKey: .bulkEffective)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
-            try? container.encodeIfPresent(bulkEffective, forKey: .bulkEffective)
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
         }

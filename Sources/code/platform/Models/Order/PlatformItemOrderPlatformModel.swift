@@ -9,21 +9,17 @@ public extension PlatformClient.Order {
      */
 
     class PlatformItem: Codable {
+        public var canCancel: Bool?
+
         public var id: Int?
-
-        public var l3Category: Int?
-
-        public var code: String?
-
-        public var images: [String]?
 
         public var image: [String]?
 
-        public var departmentId: Int?
-
-        public var color: String?
+        public var l3Category: Int?
 
         public var l3CategoryName: String?
+
+        public var departmentId: Int?
 
         public var name: String?
 
@@ -33,24 +29,24 @@ public extension PlatformClient.Order {
 
         public var size: String?
 
-        public var canCancel: Bool?
+        public var code: String?
+
+        public var images: [String]?
+
+        public var color: String?
 
         public enum CodingKeys: String, CodingKey {
+            case canCancel = "can_cancel"
+
             case id
-
-            case l3Category = "l3_category"
-
-            case code
-
-            case images
 
             case image
 
-            case departmentId = "department_id"
-
-            case color
+            case l3Category = "l3_category"
 
             case l3CategoryName = "l3_category_name"
+
+            case departmentId = "department_id"
 
             case name
 
@@ -60,25 +56,25 @@ public extension PlatformClient.Order {
 
             case size
 
-            case canCancel = "can_cancel"
+            case code
+
+            case images
+
+            case color
         }
 
         public init(canCancel: Bool? = nil, canReturn: Bool? = nil, code: String? = nil, color: String? = nil, departmentId: Int? = nil, id: Int? = nil, image: [String]? = nil, images: [String]? = nil, l1Category: [String]? = nil, l3Category: Int? = nil, l3CategoryName: String? = nil, name: String? = nil, size: String? = nil) {
+            self.canCancel = canCancel
+
             self.id = id
-
-            self.l3Category = l3Category
-
-            self.code = code
-
-            self.images = images
 
             self.image = image
 
-            self.departmentId = departmentId
-
-            self.color = color
+            self.l3Category = l3Category
 
             self.l3CategoryName = l3CategoryName
+
+            self.departmentId = departmentId
 
             self.name = name
 
@@ -88,38 +84,26 @@ public extension PlatformClient.Order {
 
             self.size = size
 
-            self.canCancel = canCancel
+            self.code = code
+
+            self.images = images
+
+            self.color = color
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
+                canCancel = try container.decode(Bool.self, forKey: .canCancel)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 id = try container.decode(Int.self, forKey: .id)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                l3Category = try container.decode(Int.self, forKey: .l3Category)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                code = try container.decode(String.self, forKey: .code)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                images = try container.decode([String].self, forKey: .images)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -135,15 +119,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                departmentId = try container.decode(Int.self, forKey: .departmentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                color = try container.decode(String.self, forKey: .color)
+                l3Category = try container.decode(Int.self, forKey: .l3Category)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -152,6 +128,14 @@ public extension PlatformClient.Order {
 
             do {
                 l3CategoryName = try container.decode(String.self, forKey: .l3CategoryName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                departmentId = try container.decode(Int.self, forKey: .departmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,7 +175,23 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                canCancel = try container.decode(Bool.self, forKey: .canCancel)
+                code = try container.decode(String.self, forKey: .code)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                images = try container.decode([String].self, forKey: .images)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                color = try container.decode(String.self, forKey: .color)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,21 +202,17 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
+
             try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
-
-            try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(images, forKey: .images)
 
             try? container.encodeIfPresent(image, forKey: .image)
 
-            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
-
-            try? container.encode(color, forKey: .color)
+            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
 
             try? container.encodeIfPresent(l3CategoryName, forKey: .l3CategoryName)
+
+            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
@@ -226,7 +222,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
+            try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(images, forKey: .images)
+
+            try? container.encode(color, forKey: .color)
         }
     }
 }
@@ -238,21 +238,17 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class PlatformItem: Codable {
+        public var canCancel: Bool?
+
         public var id: Int?
-
-        public var l3Category: Int?
-
-        public var code: String?
-
-        public var images: [String]?
 
         public var image: [String]?
 
-        public var departmentId: Int?
-
-        public var color: String?
+        public var l3Category: Int?
 
         public var l3CategoryName: String?
+
+        public var departmentId: Int?
 
         public var name: String?
 
@@ -262,24 +258,24 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var size: String?
 
-        public var canCancel: Bool?
+        public var code: String?
+
+        public var images: [String]?
+
+        public var color: String?
 
         public enum CodingKeys: String, CodingKey {
+            case canCancel = "can_cancel"
+
             case id
-
-            case l3Category = "l3_category"
-
-            case code
-
-            case images
 
             case image
 
-            case departmentId = "department_id"
-
-            case color
+            case l3Category = "l3_category"
 
             case l3CategoryName = "l3_category_name"
+
+            case departmentId = "department_id"
 
             case name
 
@@ -289,25 +285,25 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case size
 
-            case canCancel = "can_cancel"
+            case code
+
+            case images
+
+            case color
         }
 
         public init(canCancel: Bool? = nil, canReturn: Bool? = nil, code: String? = nil, color: String? = nil, departmentId: Int? = nil, id: Int? = nil, image: [String]? = nil, images: [String]? = nil, l1Category: [String]? = nil, l3Category: Int? = nil, l3CategoryName: String? = nil, name: String? = nil, size: String? = nil) {
+            self.canCancel = canCancel
+
             self.id = id
-
-            self.l3Category = l3Category
-
-            self.code = code
-
-            self.images = images
 
             self.image = image
 
-            self.departmentId = departmentId
-
-            self.color = color
+            self.l3Category = l3Category
 
             self.l3CategoryName = l3CategoryName
+
+            self.departmentId = departmentId
 
             self.name = name
 
@@ -317,38 +313,26 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.size = size
 
-            self.canCancel = canCancel
+            self.code = code
+
+            self.images = images
+
+            self.color = color
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
+                canCancel = try container.decode(Bool.self, forKey: .canCancel)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 id = try container.decode(Int.self, forKey: .id)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                l3Category = try container.decode(Int.self, forKey: .l3Category)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                code = try container.decode(String.self, forKey: .code)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                images = try container.decode([String].self, forKey: .images)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -364,15 +348,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                departmentId = try container.decode(Int.self, forKey: .departmentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                color = try container.decode(String.self, forKey: .color)
+                l3Category = try container.decode(Int.self, forKey: .l3Category)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -381,6 +357,14 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 l3CategoryName = try container.decode(String.self, forKey: .l3CategoryName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                departmentId = try container.decode(Int.self, forKey: .departmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -420,7 +404,23 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                canCancel = try container.decode(Bool.self, forKey: .canCancel)
+                code = try container.decode(String.self, forKey: .code)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                images = try container.decode([String].self, forKey: .images)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                color = try container.decode(String.self, forKey: .color)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -431,21 +431,17 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
+
             try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
-
-            try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(images, forKey: .images)
 
             try? container.encodeIfPresent(image, forKey: .image)
 
-            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
-
-            try? container.encode(color, forKey: .color)
+            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
 
             try? container.encodeIfPresent(l3CategoryName, forKey: .l3CategoryName)
+
+            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
@@ -455,7 +451,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
+            try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(images, forKey: .images)
+
+            try? container.encode(color, forKey: .color)
         }
     }
 }

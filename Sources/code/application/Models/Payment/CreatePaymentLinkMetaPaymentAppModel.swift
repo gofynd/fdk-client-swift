@@ -11,9 +11,9 @@ public extension ApplicationClient.Payment {
 
         public var assignCardId: String?
 
-        public var pincode: String
-
         public var checkoutMode: String
+
+        public var pincode: String
 
         public var cartId: String
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Payment {
 
             case assignCardId = "assign_card_id"
 
-            case pincode
-
             case checkoutMode = "checkout_mode"
+
+            case pincode
 
             case cartId = "cart_id"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Payment {
 
             self.assignCardId = assignCardId
 
-            self.pincode = pincode
-
             self.checkoutMode = checkoutMode
+
+            self.pincode = pincode
 
             self.cartId = cartId
         }
@@ -54,9 +54,9 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            pincode = try container.decode(String.self, forKey: .pincode)
-
             checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
+
+            pincode = try container.decode(String.self, forKey: .pincode)
 
             cartId = try container.decode(String.self, forKey: .cartId)
         }
@@ -68,9 +68,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(assignCardId, forKey: .assignCardId)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(cartId, forKey: .cartId)
         }

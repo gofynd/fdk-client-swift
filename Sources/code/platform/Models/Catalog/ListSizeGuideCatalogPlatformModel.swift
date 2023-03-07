@@ -9,7 +9,7 @@ public extension PlatformClient.Catalog {
      */
 
     class ListSizeGuide: Codable {
-        public var items: [GetMultiSizeGuide]?
+        public var items: [[String: Any]]?
 
         public var page: [String: Any]?
 
@@ -19,7 +19,7 @@ public extension PlatformClient.Catalog {
             case page
         }
 
-        public init(items: [GetMultiSizeGuide]? = nil, page: [String: Any]? = nil) {
+        public init(items: [[String: Any]]? = nil, page: [String: Any]? = nil) {
             self.items = items
 
             self.page = page
@@ -29,7 +29,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([GetMultiSizeGuide].self, forKey: .items)
+                items = try container.decode([[String: Any]].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ListSizeGuide: Codable {
-        public var items: [GetMultiSizeGuide]?
+        public var items: [[String: Any]]?
 
         public var page: [String: Any]?
 
@@ -72,7 +72,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case page
         }
 
-        public init(items: [GetMultiSizeGuide]? = nil, page: [String: Any]? = nil) {
+        public init(items: [[String: Any]]? = nil, page: [String: Any]? = nil) {
             self.items = items
 
             self.page = page
@@ -82,7 +82,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([GetMultiSizeGuide].self, forKey: .items)
+                items = try container.decode([[String: Any]].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -11,22 +11,22 @@ public extension ApplicationClient.Payment {
 
         public var verified: Bool?
 
-        public var aggregator: String
+        public var transactionToken: String?
 
         public var orderId: String
 
-        public var transactionToken: String?
+        public var aggregator: String
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
             case verified
 
-            case aggregator
+            case transactionToken = "transaction_token"
 
             case orderId = "order_id"
 
-            case transactionToken = "transaction_token"
+            case aggregator
         }
 
         public init(aggregator: String, amount: Int, orderId: String, transactionToken: String? = nil, verified: Bool? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Payment {
 
             self.verified = verified
 
-            self.aggregator = aggregator
+            self.transactionToken = transactionToken
 
             self.orderId = orderId
 
-            self.transactionToken = transactionToken
+            self.aggregator = aggregator
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,10 +54,6 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
-            orderId = try container.decode(String.self, forKey: .orderId)
-
             do {
                 transactionToken = try container.decode(String.self, forKey: .transactionToken)
 
@@ -65,6 +61,10 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            orderId = try container.decode(String.self, forKey: .orderId)
+
+            aggregator = try container.decode(String.self, forKey: .aggregator)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -74,11 +74,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(verified, forKey: .verified)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encode(transactionToken, forKey: .transactionToken)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encode(transactionToken, forKey: .transactionToken)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
         }
     }
 }
