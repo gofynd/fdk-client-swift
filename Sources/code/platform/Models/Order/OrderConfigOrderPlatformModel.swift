@@ -11,26 +11,26 @@ public extension PlatformClient.Order {
     class OrderConfig: Codable {
         public var createUser: Bool?
 
-        public var affiliate: Affiliate
+        public var articleLookup: String?
 
         public var bagEndState: String?
 
         public var storeLookup: String?
 
-        public var articleLookup: String?
+        public var affiliate: Affiliate
 
         public var affiliateStoreIdMapping: [AffiliateStoreIdMapping]
 
         public enum CodingKeys: String, CodingKey {
             case createUser = "create_user"
 
-            case affiliate
+            case articleLookup = "article_lookup"
 
             case bagEndState = "bag_end_state"
 
             case storeLookup = "store_lookup"
 
-            case articleLookup = "article_lookup"
+            case affiliate
 
             case affiliateStoreIdMapping = "affiliate_store_id_mapping"
         }
@@ -38,13 +38,13 @@ public extension PlatformClient.Order {
         public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, createUser: Bool? = nil, storeLookup: String? = nil) {
             self.createUser = createUser
 
-            self.affiliate = affiliate
+            self.articleLookup = articleLookup
 
             self.bagEndState = bagEndState
 
             self.storeLookup = storeLookup
 
-            self.articleLookup = articleLookup
+            self.affiliate = affiliate
 
             self.affiliateStoreIdMapping = affiliateStoreIdMapping
         }
@@ -60,7 +60,13 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
+            do {
+                articleLookup = try container.decode(String.self, forKey: .articleLookup)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 bagEndState = try container.decode(String.self, forKey: .bagEndState)
@@ -78,13 +84,7 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                articleLookup = try container.decode(String.self, forKey: .articleLookup)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
 
             affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
         }
@@ -94,13 +94,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(createUser, forKey: .createUser)
 
-            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
+            try? container.encodeIfPresent(articleLookup, forKey: .articleLookup)
 
             try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
 
             try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
 
-            try? container.encodeIfPresent(articleLookup, forKey: .articleLookup)
+            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
 
             try? container.encodeIfPresent(affiliateStoreIdMapping, forKey: .affiliateStoreIdMapping)
         }
@@ -116,26 +116,26 @@ public extension PlatformClient.ApplicationClient.Order {
     class OrderConfig: Codable {
         public var createUser: Bool?
 
-        public var affiliate: Affiliate
+        public var articleLookup: String?
 
         public var bagEndState: String?
 
         public var storeLookup: String?
 
-        public var articleLookup: String?
+        public var affiliate: Affiliate
 
         public var affiliateStoreIdMapping: [AffiliateStoreIdMapping]
 
         public enum CodingKeys: String, CodingKey {
             case createUser = "create_user"
 
-            case affiliate
+            case articleLookup = "article_lookup"
 
             case bagEndState = "bag_end_state"
 
             case storeLookup = "store_lookup"
 
-            case articleLookup = "article_lookup"
+            case affiliate
 
             case affiliateStoreIdMapping = "affiliate_store_id_mapping"
         }
@@ -143,13 +143,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, createUser: Bool? = nil, storeLookup: String? = nil) {
             self.createUser = createUser
 
-            self.affiliate = affiliate
+            self.articleLookup = articleLookup
 
             self.bagEndState = bagEndState
 
             self.storeLookup = storeLookup
 
-            self.articleLookup = articleLookup
+            self.affiliate = affiliate
 
             self.affiliateStoreIdMapping = affiliateStoreIdMapping
         }
@@ -165,7 +165,13 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
+            do {
+                articleLookup = try container.decode(String.self, forKey: .articleLookup)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 bagEndState = try container.decode(String.self, forKey: .bagEndState)
@@ -183,13 +189,7 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                articleLookup = try container.decode(String.self, forKey: .articleLookup)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
 
             affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
         }
@@ -199,13 +199,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(createUser, forKey: .createUser)
 
-            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
+            try? container.encodeIfPresent(articleLookup, forKey: .articleLookup)
 
             try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
 
             try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
 
-            try? container.encodeIfPresent(articleLookup, forKey: .articleLookup)
+            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
 
             try? container.encodeIfPresent(affiliateStoreIdMapping, forKey: .affiliateStoreIdMapping)
         }
