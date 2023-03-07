@@ -9,6 +9,8 @@ public extension PlatformClient.Catalog {
      */
 
     class InventoryPage: Codable {
+        public var type: String
+
         public var hasNext: Bool?
 
         public var nextId: String?
@@ -17,9 +19,9 @@ public extension PlatformClient.Catalog {
 
         public var itemTotal: Int
 
-        public var type: String
-
         public enum CodingKeys: String, CodingKey {
+            case type
+
             case hasNext = "has_next"
 
             case nextId = "next_id"
@@ -27,11 +29,11 @@ public extension PlatformClient.Catalog {
             case hasPrevious = "has_previous"
 
             case itemTotal = "item_total"
-
-            case type
         }
 
         public init(hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int, nextId: String? = nil, type: String) {
+            self.type = type
+
             self.hasNext = hasNext
 
             self.nextId = nextId
@@ -39,12 +41,12 @@ public extension PlatformClient.Catalog {
             self.hasPrevious = hasPrevious
 
             self.itemTotal = itemTotal
-
-            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            type = try container.decode(String.self, forKey: .type)
 
             do {
                 hasNext = try container.decode(Bool.self, forKey: .hasNext)
@@ -71,12 +73,12 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-
-            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
@@ -85,8 +87,6 @@ public extension PlatformClient.Catalog {
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-
-            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
@@ -98,6 +98,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class InventoryPage: Codable {
+        public var type: String
+
         public var hasNext: Bool?
 
         public var nextId: String?
@@ -106,9 +108,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var itemTotal: Int
 
-        public var type: String
-
         public enum CodingKeys: String, CodingKey {
+            case type
+
             case hasNext = "has_next"
 
             case nextId = "next_id"
@@ -116,11 +118,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case hasPrevious = "has_previous"
 
             case itemTotal = "item_total"
-
-            case type
         }
 
         public init(hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int, nextId: String? = nil, type: String) {
+            self.type = type
+
             self.hasNext = hasNext
 
             self.nextId = nextId
@@ -128,12 +130,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.hasPrevious = hasPrevious
 
             self.itemTotal = itemTotal
-
-            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            type = try container.decode(String.self, forKey: .type)
 
             do {
                 hasNext = try container.decode(Bool.self, forKey: .hasNext)
@@ -160,12 +162,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-
-            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
@@ -174,8 +176,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-
-            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

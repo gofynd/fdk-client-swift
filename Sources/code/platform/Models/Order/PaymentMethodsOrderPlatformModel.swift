@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class PaymentMethods: Codable {
         public var collectBy: String?
 
-        public var mode: String?
-
         public var refundBy: String?
+
+        public var mode: String?
 
         public enum CodingKeys: String, CodingKey {
             case collectBy = "collect_by"
 
-            case mode
-
             case refundBy = "refund_by"
+
+            case mode
         }
 
         public init(collectBy: String? = nil, mode: String? = nil, refundBy: String? = nil) {
             self.collectBy = collectBy
 
-            self.mode = mode
-
             self.refundBy = refundBy
+
+            self.mode = mode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                mode = try container.decode(String.self, forKey: .mode)
+                refundBy = try container.decode(String.self, forKey: .refundBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                refundBy = try container.decode(String.self, forKey: .refundBy)
+                mode = try container.decode(String.self, forKey: .mode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(collectBy, forKey: .collectBy)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
-
             try? container.encodeIfPresent(refundBy, forKey: .refundBy)
+
+            try? container.encodeIfPresent(mode, forKey: .mode)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class PaymentMethods: Codable {
         public var collectBy: String?
 
-        public var mode: String?
-
         public var refundBy: String?
+
+        public var mode: String?
 
         public enum CodingKeys: String, CodingKey {
             case collectBy = "collect_by"
 
-            case mode
-
             case refundBy = "refund_by"
+
+            case mode
         }
 
         public init(collectBy: String? = nil, mode: String? = nil, refundBy: String? = nil) {
             self.collectBy = collectBy
 
-            self.mode = mode
-
             self.refundBy = refundBy
+
+            self.mode = mode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                mode = try container.decode(String.self, forKey: .mode)
+                refundBy = try container.decode(String.self, forKey: .refundBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                refundBy = try container.decode(String.self, forKey: .refundBy)
+                mode = try container.decode(String.self, forKey: .mode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(collectBy, forKey: .collectBy)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
-
             try? container.encodeIfPresent(refundBy, forKey: .refundBy)
+
+            try? container.encodeIfPresent(mode, forKey: .mode)
         }
     }
 }
