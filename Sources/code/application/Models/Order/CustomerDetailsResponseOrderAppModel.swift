@@ -9,9 +9,9 @@ public extension ApplicationClient.Order {
     class CustomerDetailsResponse: Codable {
         public var phone: String?
 
-        public var orderId: String?
-
         public var shipmentId: String?
+
+        public var orderId: String?
 
         public var name: String?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             case phone
 
-            case orderId = "order_id"
-
             case shipmentId = "shipment_id"
+
+            case orderId = "order_id"
 
             case name
 
@@ -32,9 +32,9 @@ public extension ApplicationClient.Order {
         public init(country: String? = nil, name: String? = nil, orderId: String? = nil, phone: String? = nil, shipmentId: String? = nil) {
             self.phone = phone
 
-            self.orderId = orderId
-
             self.shipmentId = shipmentId
+
+            self.orderId = orderId
 
             self.name = name
 
@@ -53,7 +53,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(phone, forKey: .phone)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(name, forKey: .name)
 

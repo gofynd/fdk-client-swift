@@ -11,13 +11,13 @@ public extension PlatformClient.Catalog {
     class InventoryExportJob: Codable {
         public var status: String?
 
-        public var requestParams: [String: Any]?
-
-        public var taskId: String
+        public var url: String?
 
         public var triggerOn: String?
 
-        public var url: String?
+        public var requestParams: [String: Any]?
+
+        public var taskId: String
 
         public var sellerId: Int
 
@@ -26,13 +26,13 @@ public extension PlatformClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case requestParams = "request_params"
-
-            case taskId = "task_id"
+            case url
 
             case triggerOn = "trigger_on"
 
-            case url
+            case requestParams = "request_params"
+
+            case taskId = "task_id"
 
             case sellerId = "seller_id"
 
@@ -42,13 +42,13 @@ public extension PlatformClient.Catalog {
         public init(completedOn: String? = nil, requestParams: [String: Any]? = nil, sellerId: Int, status: String? = nil, taskId: String, triggerOn: String? = nil, url: String? = nil) {
             self.status = status
 
-            self.requestParams = requestParams
-
-            self.taskId = taskId
+            self.url = url
 
             self.triggerOn = triggerOn
 
-            self.url = url
+            self.requestParams = requestParams
+
+            self.taskId = taskId
 
             self.sellerId = sellerId
 
@@ -67,14 +67,12 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                requestParams = try container.decode([String: Any].self, forKey: .requestParams)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            taskId = try container.decode(String.self, forKey: .taskId)
 
             do {
                 triggerOn = try container.decode(String.self, forKey: .triggerOn)
@@ -85,12 +83,14 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                requestParams = try container.decode([String: Any].self, forKey: .requestParams)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            taskId = try container.decode(String.self, forKey: .taskId)
 
             sellerId = try container.decode(Int.self, forKey: .sellerId)
 
@@ -108,13 +108,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(requestParams, forKey: .requestParams)
-
-            try? container.encodeIfPresent(taskId, forKey: .taskId)
+            try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
 
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(requestParams, forKey: .requestParams)
+
+            try? container.encodeIfPresent(taskId, forKey: .taskId)
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
@@ -132,13 +132,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class InventoryExportJob: Codable {
         public var status: String?
 
-        public var requestParams: [String: Any]?
-
-        public var taskId: String
+        public var url: String?
 
         public var triggerOn: String?
 
-        public var url: String?
+        public var requestParams: [String: Any]?
+
+        public var taskId: String
 
         public var sellerId: Int
 
@@ -147,13 +147,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case requestParams = "request_params"
-
-            case taskId = "task_id"
+            case url
 
             case triggerOn = "trigger_on"
 
-            case url
+            case requestParams = "request_params"
+
+            case taskId = "task_id"
 
             case sellerId = "seller_id"
 
@@ -163,13 +163,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(completedOn: String? = nil, requestParams: [String: Any]? = nil, sellerId: Int, status: String? = nil, taskId: String, triggerOn: String? = nil, url: String? = nil) {
             self.status = status
 
-            self.requestParams = requestParams
-
-            self.taskId = taskId
+            self.url = url
 
             self.triggerOn = triggerOn
 
-            self.url = url
+            self.requestParams = requestParams
+
+            self.taskId = taskId
 
             self.sellerId = sellerId
 
@@ -188,14 +188,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                requestParams = try container.decode([String: Any].self, forKey: .requestParams)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            taskId = try container.decode(String.self, forKey: .taskId)
 
             do {
                 triggerOn = try container.decode(String.self, forKey: .triggerOn)
@@ -206,12 +204,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                requestParams = try container.decode([String: Any].self, forKey: .requestParams)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            taskId = try container.decode(String.self, forKey: .taskId)
 
             sellerId = try container.decode(Int.self, forKey: .sellerId)
 
@@ -229,13 +229,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(requestParams, forKey: .requestParams)
-
-            try? container.encodeIfPresent(taskId, forKey: .taskId)
+            try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
 
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(requestParams, forKey: .requestParams)
+
+            try? container.encodeIfPresent(taskId, forKey: .taskId)
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 

@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var length: Int?
 
-        public var height: Int?
-
         public var unit: String?
+
+        public var height: Int?
 
         public var width: Int?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case length
 
-            case height
-
             case unit
+
+            case height
 
             case width
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.length = length
 
-            self.height = height
-
             self.unit = unit
+
+            self.height = height
 
             self.width = width
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                height = try container.decode(Int.self, forKey: .height)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                height = try container.decode(Int.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(length, forKey: .length)
 
-            try? container.encodeIfPresent(height, forKey: .height)
-
             try? container.encodeIfPresent(unit, forKey: .unit)
+
+            try? container.encodeIfPresent(height, forKey: .height)
 
             try? container.encodeIfPresent(width, forKey: .width)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var length: Int?
 
-        public var height: Int?
-
         public var unit: String?
+
+        public var height: Int?
 
         public var width: Int?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case length
 
-            case height
-
             case unit
+
+            case height
 
             case width
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.length = length
 
-            self.height = height
-
             self.unit = unit
+
+            self.height = height
 
             self.width = width
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                height = try container.decode(Int.self, forKey: .height)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                height = try container.decode(Int.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(length, forKey: .length)
 
-            try? container.encodeIfPresent(height, forKey: .height)
-
             try? container.encodeIfPresent(unit, forKey: .unit)
+
+            try? container.encodeIfPresent(height, forKey: .height)
 
             try? container.encodeIfPresent(width, forKey: .width)
         }

@@ -9,126 +9,144 @@ public extension PlatformClient.Order {
      */
 
     class ShipmentItem: Codable {
-        public var sla: [String: Any]?
-
-        public var createdAt: String
-
-        public var id: String
-
-        public var fulfillingStore: ShipmentItemFulFillingStore?
+        public var user: UserDataInfo?
 
         public var shipmentCreatedAt: Int
 
-        public var company: [String: Any]?
-
-        public var shipmentStatus: ShipmentStatus?
-
-        public var application: [String: Any]?
-
-        public var channel: [String: Any]?
-
-        public var prices: Prices?
-
-        public var paymentModeInfo: PaymentModeInfo?
-
-        public var paymentMethods: [String: Any]?
+        public var totalBagsCount: Int
 
         public var bags: [BagUnit]?
 
-        public var totalShipmentsInOrder: Int
-
-        public var user: UserDataInfo?
+        public var paymentMethods: [String: Any]?
 
         public var fulfillingCentre: String
 
-        public var totalBagsCount: Int
+        public var fulfillingStore: ShipmentItemFulFillingStore?
+
+        public var createdAt: String
+
+        public var application: [String: Any]?
+
+        public var id: String
+
+        public var prices: Prices?
+
+        public var shipmentStatus: ShipmentStatus?
+
+        public var sla: [String: Any]?
+
+        public var paymentModeInfo: PaymentModeInfo?
+
+        public var company: [String: Any]?
+
+        public var channel: [String: Any]?
+
+        public var totalShipmentsInOrder: Int
 
         public enum CodingKeys: String, CodingKey {
-            case sla
-
-            case createdAt = "created_at"
-
-            case id
-
-            case fulfillingStore = "fulfilling_store"
+            case user
 
             case shipmentCreatedAt = "shipment_created_at"
 
-            case company
-
-            case shipmentStatus = "shipment_status"
-
-            case application
-
-            case channel
-
-            case prices
-
-            case paymentModeInfo = "payment_mode_info"
-
-            case paymentMethods = "payment_methods"
+            case totalBagsCount = "total_bags_count"
 
             case bags
 
-            case totalShipmentsInOrder = "total_shipments_in_order"
-
-            case user
+            case paymentMethods = "payment_methods"
 
             case fulfillingCentre = "fulfilling_centre"
 
-            case totalBagsCount = "total_bags_count"
+            case fulfillingStore = "fulfilling_store"
+
+            case createdAt = "created_at"
+
+            case application
+
+            case id
+
+            case prices
+
+            case shipmentStatus = "shipment_status"
+
+            case sla
+
+            case paymentModeInfo = "payment_mode_info"
+
+            case company
+
+            case channel
+
+            case totalShipmentsInOrder = "total_shipments_in_order"
         }
 
         public init(application: [String: Any]? = nil, bags: [BagUnit]? = nil, channel: [String: Any]? = nil, company: [String: Any]? = nil, createdAt: String, fulfillingCentre: String, fulfillingStore: ShipmentItemFulFillingStore? = nil, id: String, paymentMethods: [String: Any]? = nil, paymentModeInfo: PaymentModeInfo? = nil, prices: Prices? = nil, shipmentCreatedAt: Int, shipmentStatus: ShipmentStatus? = nil, sla: [String: Any]? = nil, totalBagsCount: Int, totalShipmentsInOrder: Int, user: UserDataInfo? = nil) {
-            self.sla = sla
-
-            self.createdAt = createdAt
-
-            self.id = id
-
-            self.fulfillingStore = fulfillingStore
+            self.user = user
 
             self.shipmentCreatedAt = shipmentCreatedAt
 
-            self.company = company
-
-            self.shipmentStatus = shipmentStatus
-
-            self.application = application
-
-            self.channel = channel
-
-            self.prices = prices
-
-            self.paymentModeInfo = paymentModeInfo
-
-            self.paymentMethods = paymentMethods
+            self.totalBagsCount = totalBagsCount
 
             self.bags = bags
 
-            self.totalShipmentsInOrder = totalShipmentsInOrder
-
-            self.user = user
+            self.paymentMethods = paymentMethods
 
             self.fulfillingCentre = fulfillingCentre
 
-            self.totalBagsCount = totalBagsCount
+            self.fulfillingStore = fulfillingStore
+
+            self.createdAt = createdAt
+
+            self.application = application
+
+            self.id = id
+
+            self.prices = prices
+
+            self.shipmentStatus = shipmentStatus
+
+            self.sla = sla
+
+            self.paymentModeInfo = paymentModeInfo
+
+            self.company = company
+
+            self.channel = channel
+
+            self.totalShipmentsInOrder = totalShipmentsInOrder
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                sla = try container.decode([String: Any].self, forKey: .sla)
+                user = try container.decode(UserDataInfo.self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            createdAt = try container.decode(String.self, forKey: .createdAt)
+            shipmentCreatedAt = try container.decode(Int.self, forKey: .shipmentCreatedAt)
 
-            id = try container.decode(String.self, forKey: .id)
+            totalBagsCount = try container.decode(Int.self, forKey: .totalBagsCount)
+
+            do {
+                bags = try container.decode([BagUnit].self, forKey: .bags)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            fulfillingCentre = try container.decode(String.self, forKey: .fulfillingCentre)
 
             do {
                 fulfillingStore = try container.decode(ShipmentItemFulFillingStore.self, forKey: .fulfillingStore)
@@ -138,10 +156,20 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            shipmentCreatedAt = try container.decode(Int.self, forKey: .shipmentCreatedAt)
+            createdAt = try container.decode(String.self, forKey: .createdAt)
 
             do {
-                company = try container.decode([String: Any].self, forKey: .company)
+                application = try container.decode([String: Any].self, forKey: .application)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            id = try container.decode(String.self, forKey: .id)
+
+            do {
+                prices = try container.decode(Prices.self, forKey: .prices)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -157,23 +185,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                application = try container.decode([String: Any].self, forKey: .application)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                channel = try container.decode([String: Any].self, forKey: .channel)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                prices = try container.decode(Prices.self, forKey: .prices)
+                sla = try container.decode([String: Any].self, forKey: .sla)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -189,7 +201,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
+                company = try container.decode([String: Any].self, forKey: .company)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -197,7 +209,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                bags = try container.decode([BagUnit].self, forKey: .bags)
+                channel = try container.decode([String: Any].self, forKey: .channel)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -205,56 +217,44 @@ public extension PlatformClient.Order {
             } catch {}
 
             totalShipmentsInOrder = try container.decode(Int.self, forKey: .totalShipmentsInOrder)
-
-            do {
-                user = try container.decode(UserDataInfo.self, forKey: .user)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            fulfillingCentre = try container.decode(String.self, forKey: .fulfillingCentre)
-
-            totalBagsCount = try container.decode(Int.self, forKey: .totalBagsCount)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sla, forKey: .sla)
-
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(fulfillingStore, forKey: .fulfillingStore)
+            try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(shipmentCreatedAt, forKey: .shipmentCreatedAt)
 
-            try? container.encodeIfPresent(company, forKey: .company)
-
-            try? container.encodeIfPresent(shipmentStatus, forKey: .shipmentStatus)
-
-            try? container.encodeIfPresent(application, forKey: .application)
-
-            try? container.encodeIfPresent(channel, forKey: .channel)
-
-            try? container.encodeIfPresent(prices, forKey: .prices)
-
-            try? container.encodeIfPresent(paymentModeInfo, forKey: .paymentModeInfo)
-
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+            try? container.encodeIfPresent(totalBagsCount, forKey: .totalBagsCount)
 
             try? container.encodeIfPresent(bags, forKey: .bags)
 
-            try? container.encodeIfPresent(totalShipmentsInOrder, forKey: .totalShipmentsInOrder)
-
-            try? container.encodeIfPresent(user, forKey: .user)
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
 
             try? container.encodeIfPresent(fulfillingCentre, forKey: .fulfillingCentre)
 
-            try? container.encodeIfPresent(totalBagsCount, forKey: .totalBagsCount)
+            try? container.encodeIfPresent(fulfillingStore, forKey: .fulfillingStore)
+
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+
+            try? container.encodeIfPresent(application, forKey: .application)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(prices, forKey: .prices)
+
+            try? container.encodeIfPresent(shipmentStatus, forKey: .shipmentStatus)
+
+            try? container.encodeIfPresent(sla, forKey: .sla)
+
+            try? container.encodeIfPresent(paymentModeInfo, forKey: .paymentModeInfo)
+
+            try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(channel, forKey: .channel)
+
+            try? container.encodeIfPresent(totalShipmentsInOrder, forKey: .totalShipmentsInOrder)
         }
     }
 }
@@ -266,126 +266,144 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ShipmentItem: Codable {
-        public var sla: [String: Any]?
-
-        public var createdAt: String
-
-        public var id: String
-
-        public var fulfillingStore: ShipmentItemFulFillingStore?
+        public var user: UserDataInfo?
 
         public var shipmentCreatedAt: Int
 
-        public var company: [String: Any]?
-
-        public var shipmentStatus: ShipmentStatus?
-
-        public var application: [String: Any]?
-
-        public var channel: [String: Any]?
-
-        public var prices: Prices?
-
-        public var paymentModeInfo: PaymentModeInfo?
-
-        public var paymentMethods: [String: Any]?
+        public var totalBagsCount: Int
 
         public var bags: [BagUnit]?
 
-        public var totalShipmentsInOrder: Int
-
-        public var user: UserDataInfo?
+        public var paymentMethods: [String: Any]?
 
         public var fulfillingCentre: String
 
-        public var totalBagsCount: Int
+        public var fulfillingStore: ShipmentItemFulFillingStore?
+
+        public var createdAt: String
+
+        public var application: [String: Any]?
+
+        public var id: String
+
+        public var prices: Prices?
+
+        public var shipmentStatus: ShipmentStatus?
+
+        public var sla: [String: Any]?
+
+        public var paymentModeInfo: PaymentModeInfo?
+
+        public var company: [String: Any]?
+
+        public var channel: [String: Any]?
+
+        public var totalShipmentsInOrder: Int
 
         public enum CodingKeys: String, CodingKey {
-            case sla
-
-            case createdAt = "created_at"
-
-            case id
-
-            case fulfillingStore = "fulfilling_store"
+            case user
 
             case shipmentCreatedAt = "shipment_created_at"
 
-            case company
-
-            case shipmentStatus = "shipment_status"
-
-            case application
-
-            case channel
-
-            case prices
-
-            case paymentModeInfo = "payment_mode_info"
-
-            case paymentMethods = "payment_methods"
+            case totalBagsCount = "total_bags_count"
 
             case bags
 
-            case totalShipmentsInOrder = "total_shipments_in_order"
-
-            case user
+            case paymentMethods = "payment_methods"
 
             case fulfillingCentre = "fulfilling_centre"
 
-            case totalBagsCount = "total_bags_count"
+            case fulfillingStore = "fulfilling_store"
+
+            case createdAt = "created_at"
+
+            case application
+
+            case id
+
+            case prices
+
+            case shipmentStatus = "shipment_status"
+
+            case sla
+
+            case paymentModeInfo = "payment_mode_info"
+
+            case company
+
+            case channel
+
+            case totalShipmentsInOrder = "total_shipments_in_order"
         }
 
         public init(application: [String: Any]? = nil, bags: [BagUnit]? = nil, channel: [String: Any]? = nil, company: [String: Any]? = nil, createdAt: String, fulfillingCentre: String, fulfillingStore: ShipmentItemFulFillingStore? = nil, id: String, paymentMethods: [String: Any]? = nil, paymentModeInfo: PaymentModeInfo? = nil, prices: Prices? = nil, shipmentCreatedAt: Int, shipmentStatus: ShipmentStatus? = nil, sla: [String: Any]? = nil, totalBagsCount: Int, totalShipmentsInOrder: Int, user: UserDataInfo? = nil) {
-            self.sla = sla
-
-            self.createdAt = createdAt
-
-            self.id = id
-
-            self.fulfillingStore = fulfillingStore
+            self.user = user
 
             self.shipmentCreatedAt = shipmentCreatedAt
 
-            self.company = company
-
-            self.shipmentStatus = shipmentStatus
-
-            self.application = application
-
-            self.channel = channel
-
-            self.prices = prices
-
-            self.paymentModeInfo = paymentModeInfo
-
-            self.paymentMethods = paymentMethods
+            self.totalBagsCount = totalBagsCount
 
             self.bags = bags
 
-            self.totalShipmentsInOrder = totalShipmentsInOrder
-
-            self.user = user
+            self.paymentMethods = paymentMethods
 
             self.fulfillingCentre = fulfillingCentre
 
-            self.totalBagsCount = totalBagsCount
+            self.fulfillingStore = fulfillingStore
+
+            self.createdAt = createdAt
+
+            self.application = application
+
+            self.id = id
+
+            self.prices = prices
+
+            self.shipmentStatus = shipmentStatus
+
+            self.sla = sla
+
+            self.paymentModeInfo = paymentModeInfo
+
+            self.company = company
+
+            self.channel = channel
+
+            self.totalShipmentsInOrder = totalShipmentsInOrder
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                sla = try container.decode([String: Any].self, forKey: .sla)
+                user = try container.decode(UserDataInfo.self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            createdAt = try container.decode(String.self, forKey: .createdAt)
+            shipmentCreatedAt = try container.decode(Int.self, forKey: .shipmentCreatedAt)
 
-            id = try container.decode(String.self, forKey: .id)
+            totalBagsCount = try container.decode(Int.self, forKey: .totalBagsCount)
+
+            do {
+                bags = try container.decode([BagUnit].self, forKey: .bags)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            fulfillingCentre = try container.decode(String.self, forKey: .fulfillingCentre)
 
             do {
                 fulfillingStore = try container.decode(ShipmentItemFulFillingStore.self, forKey: .fulfillingStore)
@@ -395,10 +413,20 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            shipmentCreatedAt = try container.decode(Int.self, forKey: .shipmentCreatedAt)
+            createdAt = try container.decode(String.self, forKey: .createdAt)
 
             do {
-                company = try container.decode([String: Any].self, forKey: .company)
+                application = try container.decode([String: Any].self, forKey: .application)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            id = try container.decode(String.self, forKey: .id)
+
+            do {
+                prices = try container.decode(Prices.self, forKey: .prices)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -414,23 +442,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                application = try container.decode([String: Any].self, forKey: .application)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                channel = try container.decode([String: Any].self, forKey: .channel)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                prices = try container.decode(Prices.self, forKey: .prices)
+                sla = try container.decode([String: Any].self, forKey: .sla)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -446,7 +458,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
+                company = try container.decode([String: Any].self, forKey: .company)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -454,7 +466,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                bags = try container.decode([BagUnit].self, forKey: .bags)
+                channel = try container.decode([String: Any].self, forKey: .channel)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -462,56 +474,44 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             totalShipmentsInOrder = try container.decode(Int.self, forKey: .totalShipmentsInOrder)
-
-            do {
-                user = try container.decode(UserDataInfo.self, forKey: .user)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            fulfillingCentre = try container.decode(String.self, forKey: .fulfillingCentre)
-
-            totalBagsCount = try container.decode(Int.self, forKey: .totalBagsCount)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sla, forKey: .sla)
-
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(fulfillingStore, forKey: .fulfillingStore)
+            try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(shipmentCreatedAt, forKey: .shipmentCreatedAt)
 
-            try? container.encodeIfPresent(company, forKey: .company)
-
-            try? container.encodeIfPresent(shipmentStatus, forKey: .shipmentStatus)
-
-            try? container.encodeIfPresent(application, forKey: .application)
-
-            try? container.encodeIfPresent(channel, forKey: .channel)
-
-            try? container.encodeIfPresent(prices, forKey: .prices)
-
-            try? container.encodeIfPresent(paymentModeInfo, forKey: .paymentModeInfo)
-
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+            try? container.encodeIfPresent(totalBagsCount, forKey: .totalBagsCount)
 
             try? container.encodeIfPresent(bags, forKey: .bags)
 
-            try? container.encodeIfPresent(totalShipmentsInOrder, forKey: .totalShipmentsInOrder)
-
-            try? container.encodeIfPresent(user, forKey: .user)
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
 
             try? container.encodeIfPresent(fulfillingCentre, forKey: .fulfillingCentre)
 
-            try? container.encodeIfPresent(totalBagsCount, forKey: .totalBagsCount)
+            try? container.encodeIfPresent(fulfillingStore, forKey: .fulfillingStore)
+
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+
+            try? container.encodeIfPresent(application, forKey: .application)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(prices, forKey: .prices)
+
+            try? container.encodeIfPresent(shipmentStatus, forKey: .shipmentStatus)
+
+            try? container.encodeIfPresent(sla, forKey: .sla)
+
+            try? container.encodeIfPresent(paymentModeInfo, forKey: .paymentModeInfo)
+
+            try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(channel, forKey: .channel)
+
+            try? container.encodeIfPresent(totalShipmentsInOrder, forKey: .totalShipmentsInOrder)
         }
     }
 }
