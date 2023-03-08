@@ -9,24 +9,24 @@ public extension PlatformClient.Catalog {
      */
 
     class UserDetail1: Codable {
-        public var userId: String?
-
         public var fullName: String?
+
+        public var userId: String?
 
         public var username: String?
 
         public enum CodingKeys: String, CodingKey {
-            case userId = "user_id"
-
             case fullName = "full_name"
+
+            case userId = "user_id"
 
             case username
         }
 
         public init(fullName: String? = nil, username: String? = nil, userId: String? = nil) {
-            self.userId = userId
-
             self.fullName = fullName
+
+            self.userId = userId
 
             self.username = username
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                fullName = try container.decode(String.self, forKey: .fullName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                fullName = try container.decode(String.self, forKey: .fullName)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(fullName, forKey: .fullName)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(username, forKey: .username)
         }
@@ -78,24 +78,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class UserDetail1: Codable {
-        public var userId: String?
-
         public var fullName: String?
+
+        public var userId: String?
 
         public var username: String?
 
         public enum CodingKeys: String, CodingKey {
-            case userId = "user_id"
-
             case fullName = "full_name"
+
+            case userId = "user_id"
 
             case username
         }
 
         public init(fullName: String? = nil, username: String? = nil, userId: String? = nil) {
-            self.userId = userId
-
             self.fullName = fullName
+
+            self.userId = userId
 
             self.username = username
         }
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                fullName = try container.decode(String.self, forKey: .fullName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                fullName = try container.decode(String.self, forKey: .fullName)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(fullName, forKey: .fullName)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(username, forKey: .username)
         }

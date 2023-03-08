@@ -1,33 +1,33 @@
 
 
 import Foundation
-public extension ApplicationClient.Logistic {
+public extension ApplicationClient.DocumentEngine {
     /*
-         Model: PincodeLatLongData
-         Used By: Logistic
+         Model: invoiceParameter
+         Used By: DocumentEngine
      */
-    class PincodeLatLongData: Codable {
-        public var type: String?
+    class invoiceParameter: Codable {
+        public var documentType: String?
 
-        public var coordinates: [String]?
+        public var expiresIn: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case type
+            case documentType = "document_type"
 
-            case coordinates
+            case expiresIn = "expires_in"
         }
 
-        public init(coordinates: [String]? = nil, type: String? = nil) {
-            self.type = type
+        public init(documentType: String? = nil, expiresIn: Int? = nil) {
+            self.documentType = documentType
 
-            self.coordinates = coordinates
+            self.expiresIn = expiresIn
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                documentType = try container.decode(String.self, forKey: .documentType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                coordinates = try container.decode([String].self, forKey: .coordinates)
+                expiresIn = try container.decode(Int.self, forKey: .expiresIn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient.Logistic {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(documentType, forKey: .documentType)
 
-            try? container.encodeIfPresent(coordinates, forKey: .coordinates)
+            try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
         }
     }
 }

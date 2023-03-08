@@ -11,30 +11,30 @@ public extension PlatformClient.ApplicationClient.Cart {
     class UpdateAddressResponse: Codable {
         public var success: Bool?
 
-        public var isUpdated: Bool?
-
         public var isDefaultAddress: Bool?
 
         public var id: String?
 
+        public var isUpdated: Bool?
+
         public enum CodingKeys: String, CodingKey {
             case success
-
-            case isUpdated = "is_updated"
 
             case isDefaultAddress = "is_default_address"
 
             case id
+
+            case isUpdated = "is_updated"
         }
 
         public init(id: String? = nil, isDefaultAddress: Bool? = nil, isUpdated: Bool? = nil, success: Bool? = nil) {
             self.success = success
 
-            self.isUpdated = isUpdated
-
             self.isDefaultAddress = isDefaultAddress
 
             self.id = id
+
+            self.isUpdated = isUpdated
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,14 +42,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 success = try container.decode(Bool.self, forKey: .success)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isUpdated = try container.decode(Bool.self, forKey: .isUpdated)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,6 +63,14 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                isUpdated = try container.decode(Bool.self, forKey: .isUpdated)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -78,11 +78,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(isUpdated, forKey: .isUpdated)
-
             try? container.encodeIfPresent(isDefaultAddress, forKey: .isDefaultAddress)
 
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(isUpdated, forKey: .isUpdated)
         }
     }
 }
