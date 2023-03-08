@@ -1,26 +1,21 @@
 
 
 import Foundation
-public extension ApplicationClient {
+public extension PlatformClient {
     /*
-         Model: LogisticRequestCategory
-         Used By: Logistic
+         Model: CompanyMeta1
+         Used By: Catalog
      */
-    class LogisticRequestCategory: Codable {
-        public var id: Int?
 
-        public var level: String?
+    class CompanyMeta1: Codable {
+        public var id: Int?
 
         public enum CodingKeys: String, CodingKey {
             case id
-
-            case level
         }
 
-        public init(id: Int? = nil, level: String? = nil) {
+        public init(id: Int? = nil) {
             self.id = id
-
-            self.level = level
         }
 
         required public init(from decoder: Decoder) throws {
@@ -33,22 +28,12 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                level = try container.decode(String.self, forKey: .level)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(level, forKey: .level)
         }
     }
 }

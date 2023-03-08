@@ -6,16 +6,16 @@
 
 ## Serviceability Methods
 Logistics Configuration API's allows you to configure zone, application logistics and many more useful features. 
-* [postApplicationServiceability](#postapplicationserviceability)
 * [getApplicationServiceability](#getapplicationserviceability)
+* [postApplicationServiceability](#postapplicationserviceability)
 * [getEntityRegionView](#getentityregionview)
 * [getListView](#getlistview)
 * [getCompanyStoreView](#getcompanystoreview)
 * [getZoneDataView](#getzonedataview)
 * [updateZoneControllerView](#updatezonecontrollerview)
 * [upsertZoneControllerView](#upsertzonecontrollerview)
-* [getZoneFromPincodeView](#getzonefrompincodeview)
 * [getZonesFromApplicationIdView](#getzonesfromapplicationidview)
+* [getZoneFromPincodeView](#getzonefrompincodeview)
 * [getZoneListView](#getzonelistview)
 
 
@@ -23,14 +23,14 @@ Logistics Configuration API's allows you to configure zone, application logistic
 ## Methods with example and description
 
 
-#### postApplicationServiceability
+#### getApplicationServiceability
 Zone configuration of application.
 
 
 
 
 ```swift
-client.application("<APPLICATION_ID>").serviceability.postApplicationServiceability(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").serviceability.getApplicationServiceability() { (response, error) in
     // Use response
 }
 ```
@@ -38,10 +38,6 @@ client.application("<APPLICATION_ID>").serviceability.postApplicationServiceabil
 
 
 
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | ApplicationServiceabilityConfig | yes | Request body |
 
 
 This API returns serviceability config of the application.
@@ -89,14 +85,14 @@ Response Data
 ---
 
 
-#### getApplicationServiceability
+#### postApplicationServiceability
 Zone configuration of application.
 
 
 
 
 ```swift
-client.application("<APPLICATION_ID>").serviceability.getApplicationServiceability() { (response, error) in
+client.application("<APPLICATION_ID>").serviceability.postApplicationServiceability(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -104,6 +100,10 @@ client.application("<APPLICATION_ID>").serviceability.getApplicationServiceabili
 
 
 
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | ApplicationServiceabilityConfig | yes | Request body |
 
 
 This API returns serviceability config of the application.
@@ -481,60 +481,6 @@ Response status_code
 ---
 
 
-#### getZoneFromPincodeView
-GET zone from the Pincode.
-
-
-
-
-```swift
-client.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | GetZoneFromPincodeViewRequest | yes | Request body |
-
-
-This API returns zone from the Pincode View.
-
-*Returned Response:*
-
-
-
-
-[GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getZonesFromApplicationIdView
 GET zones from the application_id.
 
@@ -570,6 +516,61 @@ This API returns zones from the application_id View.
 [GetZoneFromApplicationIdViewResponse](#GetZoneFromApplicationIdViewResponse)
 
 List of zones for the given application_id
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getZoneFromPincodeView
+GET zone from the Pincode.
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView(country: country, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| country | String? | no | A `country` has to be capitalized. |  
+| body | GetZoneFromPincodeViewRequest | yes | Request body |
+
+
+This API returns zone from the Pincode View.
+
+*Returned Response:*
+
+
+
+
+[GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
+
+Response status_code
 
 
 
@@ -660,24 +661,13 @@ Zone List of application in descending order of their last modified date.
 
  
  
- #### [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | serviceabilityType | String |  no  |  |
-
----
-
-
- 
- 
  #### [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | String |  no  |  |
- | type | String |  no  |  |
  | message | String |  no  |  |
+ | type | String |  no  |  |
+ | value | String |  no  |  |
 
 ---
 
@@ -688,8 +678,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channelType | String |  no  |  |
  | channelId | String |  no  |  |
+ | channelType | String |  no  |  |
  | serviceabilityType | String |  no  |  |
 
 ---
@@ -702,8 +692,19 @@ Zone List of application in descending order of their last modified date.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | error | [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)? |  yes  |  |
- | success | Bool |  no  |  |
  | data | [ApplicationServiceabilityResponse](#ApplicationServiceabilityResponse)? |  yes  |  |
+ | success | Bool |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | serviceabilityType | String |  no  |  |
 
 ---
 
@@ -726,22 +727,9 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | String? |  yes  |  |
- | type | String? |  yes  |  |
  | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [EntityRegionViewItems](#EntityRegionViewItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | subType | String |  no  |  |
- | name | String |  no  |  |
- | uid | String |  no  |  |
+ | type | String? |  yes  |  |
+ | value | String? |  yes  |  |
 
 ---
 
@@ -752,11 +740,24 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | itemTotal | Int |  no  |  |
- | type | String |  no  |  |
- | hasNext | Bool |  no  |  |
  | current | Int |  no  |  |
+ | itemTotal | Int |  no  |  |
+ | hasNext | Bool |  no  |  |
  | size | Int |  no  |  |
+ | type | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityRegionViewItems](#EntityRegionViewItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | String |  no  |  |
+ | subType | String |  no  |  |
+ | name | String |  no  |  |
 
 ---
 
@@ -769,8 +770,21 @@ Zone List of application in descending order of their last modified date.
  | ---------- | ---- | -------- | ----------- |
  | error | [EntityRegionViewError](#EntityRegionViewError) |  no  |  |
  | success | Bool |  no  |  |
- | data | [[EntityRegionViewItems](#EntityRegionViewItems)] |  no  |  |
  | page | [EntityRegionViewPage](#EntityRegionViewPage) |  no  |  |
+ | data | [[EntityRegionViewItems](#EntityRegionViewItems)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ListViewSummary](#ListViewSummary)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | totalZones | Int |  no  |  |
+ | totalActiveZones | Int |  no  |  |
+ | totalPincodesServed | Int |  no  |  |
 
 ---
 
@@ -781,10 +795,10 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String |  no  |  |
+ | current | Int |  no  |  |
  | itemTotal | Int |  no  |  |
  | hasNext | Bool |  no  |  |
- | current | Int |  no  |  |
+ | type | String |  no  |  |
  | size | Int |  no  |  |
 
 ---
@@ -796,8 +810,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channelType | String |  no  |  |
  | channelId | String |  no  |  |
+ | channelType | String |  no  |  |
 
 ---
 
@@ -808,8 +822,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String |  no  |  |
  | count | Int |  no  |  |
+ | type | String |  no  |  |
 
 ---
 
@@ -820,28 +834,15 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isActive | Bool |  no  |  |
- | pincodesCount | Int |  no  |  |
  | zoneId | String |  no  |  |
+ | pincodesCount | Int |  no  |  |
+ | storesCount | Int |  no  |  |
+ | companyId | Int |  no  |  |
  | name | String |  no  |  |
+ | isActive | Bool |  no  |  |
  | channels | [ListViewChannels](#ListViewChannels) |  no  |  |
  | product | [ListViewProduct](#ListViewProduct) |  no  |  |
  | slug | String |  no  |  |
- | companyId | Int |  no  |  |
- | storesCount | Int |  no  |  |
-
----
-
-
- 
- 
- #### [ListViewSummary](#ListViewSummary)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | totalActiveZones | Int |  no  |  |
- | totalPincodesServed | Int |  no  |  |
- | totalZones | Int |  no  |  |
 
 ---
 
@@ -852,9 +853,9 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | summary | [[ListViewSummary](#ListViewSummary)] |  no  |  |
  | page | [[ZoneDataItem](#ZoneDataItem)] |  no  |  |
  | items | [[ListViewItems](#ListViewItems)] |  no  |  |
- | summary | [[ListViewSummary](#ListViewSummary)] |  no  |  |
 
 ---
 
@@ -865,11 +866,11 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | itemTotal | Int |  no  |  |
- | type | String |  no  |  |
- | hasNext | Bool |  no  |  |
  | current | Int |  no  |  |
+ | itemTotal | Int |  no  |  |
+ | hasNext | Bool |  no  |  |
  | size | Int |  no  |  |
+ | type | String |  no  |  |
 
 ---
 
@@ -892,8 +893,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channelType | String |  no  |  |
  | channelId | String |  no  |  |
+ | channelType | String |  no  |  |
 
 ---
 
@@ -904,8 +905,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tags | [String] |  no  |  |
  | type | String |  no  |  |
+ | tags | [String] |  no  |  |
 
 ---
 
@@ -916,9 +917,9 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | state | [String]? |  yes  |  |
  | country | String |  no  |  |
  | pincode | [String]? |  yes  |  |
+ | state | [String]? |  yes  |  |
 
 ---
 
@@ -984,8 +985,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [UpdateZoneData](#UpdateZoneData) |  no  |  |
  | identifier | String |  no  |  |
+ | data | [UpdateZoneData](#UpdateZoneData) |  no  |  |
 
 ---
 
@@ -996,8 +997,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statusCode | Int |  no  |  |
  | success | Bool |  no  |  |
+ | statusCode | Int |  no  |  |
 
 ---
 
@@ -1028,8 +1029,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CreateZoneData](#CreateZoneData) |  no  |  |
  | identifier | String |  no  |  |
+ | data | [CreateZoneData](#CreateZoneData) |  no  |  |
 
 ---
 
@@ -1040,9 +1041,21 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statusCode | Int |  no  |  |
  | zoneId | String |  no  |  |
  | success | Bool |  no  |  |
+ | statusCode | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetZoneFromApplicationIdViewResponse](#GetZoneFromApplicationIdViewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [[ZoneDataItem](#ZoneDataItem)] |  no  |  |
+ | items | [[ListViewItems](#ListViewItems)] |  no  |  |
 
 ---
 
@@ -1065,11 +1078,11 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | assignmentPreference | String |  no  |  |
  | zoneId | String |  no  |  |
+ | assignmentPreference | String |  no  |  |
  | storeIds | [Int] |  no  |  |
- | tags | [String] |  no  |  |
  | type | String |  no  |  |
+ | tags | [String] |  no  |  |
 
 ---
 
@@ -1082,18 +1095,6 @@ Zone List of application in descending order of their last modified date.
  | ---------- | ---- | -------- | ----------- |
  | zones | [[GetZonesForZoneFromPincode](#GetZonesForZoneFromPincode)] |  no  |  |
  | serviceabilityType | String |  no  |  |
-
----
-
-
- 
- 
- #### [GetZoneFromApplicationIdViewResponse](#GetZoneFromApplicationIdViewResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [[ZoneDataItem](#ZoneDataItem)] |  no  |  |
- | items | [[ListViewItems](#ListViewItems)] |  no  |  |
 
 ---
 
