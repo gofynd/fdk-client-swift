@@ -9,36 +9,36 @@ public extension PlatformClient.Catalog {
      */
 
     class ErrorResponse: Codable {
-        public var message: String?
+        public var code: String?
 
         public var meta: [String: Any]?
 
         public var status: Int?
 
-        public var code: String?
+        public var message: String?
 
         public var error: String?
 
         public enum CodingKeys: String, CodingKey {
-            case message
+            case code
 
             case meta
 
             case status
 
-            case code
+            case message
 
             case error
         }
 
         public init(code: String? = nil, error: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
-            self.message = message
+            self.code = code
 
             self.meta = meta
 
             self.status = status
 
-            self.code = code
+            self.message = message
 
             self.error = error
         }
@@ -47,7 +47,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(error, forKey: .error)
         }
@@ -110,36 +110,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ErrorResponse: Codable {
-        public var message: String?
+        public var code: String?
 
         public var meta: [String: Any]?
 
         public var status: Int?
 
-        public var code: String?
+        public var message: String?
 
         public var error: String?
 
         public enum CodingKeys: String, CodingKey {
-            case message
+            case code
 
             case meta
 
             case status
 
-            case code
+            case message
 
             case error
         }
 
         public init(code: String? = nil, error: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
-            self.message = message
+            self.code = code
 
             self.meta = meta
 
             self.status = status
 
-            self.code = code
+            self.message = message
 
             self.error = error
         }
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,13 +191,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(error, forKey: .error)
         }

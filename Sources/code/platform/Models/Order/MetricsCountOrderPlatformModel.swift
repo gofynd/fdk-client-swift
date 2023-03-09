@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var text: String
 
-        public var options: [Options]?
-
         public var key: String
+
+        public var options: [Options]?
 
         public enum CodingKeys: String, CodingKey {
             case value
 
             case text
 
-            case options
-
             case key
+
+            case options
         }
 
         public init(key: String, options: [Options]? = nil, text: String, value: Int) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.text = text
 
-            self.options = options
-
             self.key = key
+
+            self.options = options
         }
 
         required public init(from decoder: Decoder) throws {
@@ -44,6 +44,8 @@ public extension PlatformClient.Order {
 
             text = try container.decode(String.self, forKey: .text)
 
+            key = try container.decode(String.self, forKey: .key)
+
             do {
                 options = try container.decode([Options].self, forKey: .options)
 
@@ -51,8 +53,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            key = try container.decode(String.self, forKey: .key)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,9 +62,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(options, forKey: .options)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(options, forKey: .options)
         }
     }
 }
@@ -80,18 +80,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var text: String
 
-        public var options: [Options]?
-
         public var key: String
+
+        public var options: [Options]?
 
         public enum CodingKeys: String, CodingKey {
             case value
 
             case text
 
-            case options
-
             case key
+
+            case options
         }
 
         public init(key: String, options: [Options]? = nil, text: String, value: Int) {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.text = text
 
-            self.options = options
-
             self.key = key
+
+            self.options = options
         }
 
         required public init(from decoder: Decoder) throws {
@@ -111,6 +111,8 @@ public extension PlatformClient.ApplicationClient.Order {
 
             text = try container.decode(String.self, forKey: .text)
 
+            key = try container.decode(String.self, forKey: .key)
+
             do {
                 options = try container.decode([Options].self, forKey: .options)
 
@@ -118,8 +120,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            key = try container.decode(String.self, forKey: .key)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(options, forKey: .options)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(options, forKey: .options)
         }
     }
 }
