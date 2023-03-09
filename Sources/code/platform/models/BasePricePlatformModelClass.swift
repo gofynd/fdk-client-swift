@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class BasePrice: Codable {
-        public var effective: Double?
-
         public var currencySymbol: String?
+
+        public var effective: Double?
 
         public var marked: Double?
 
         public var currencyCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case effective
-
             case currencySymbol = "currency_symbol"
+
+            case effective
 
             case marked
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, effective: Double? = nil, marked: Double? = nil) {
-            self.effective = effective
-
             self.currencySymbol = currencySymbol
+
+            self.effective = effective
 
             self.marked = marked
 
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                effective = try container.decode(Double.self, forKey: .effective)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+                effective = try container.decode(Double.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,9 +75,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
-
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+
+            try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 
