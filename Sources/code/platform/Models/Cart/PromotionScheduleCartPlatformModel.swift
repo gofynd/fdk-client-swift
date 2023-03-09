@@ -9,50 +9,50 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class PromotionSchedule: Codable {
-        public var published: Bool
+        public var start: String
 
         public var end: String?
 
-        public var start: String
+        public var duration: Int?
+
+        public var published: Bool
 
         public var nextSchedule: [[String: Any]]?
 
         public var cron: String?
 
-        public var duration: Int?
-
         public enum CodingKeys: String, CodingKey {
-            case published
+            case start
 
             case end
 
-            case start
+            case duration
+
+            case published
 
             case nextSchedule = "next_schedule"
 
             case cron
-
-            case duration
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, published: Bool, start: String) {
-            self.published = published
+            self.start = start
 
             self.end = end
 
-            self.start = start
+            self.duration = duration
+
+            self.published = published
 
             self.nextSchedule = nextSchedule
 
             self.cron = cron
-
-            self.duration = duration
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            published = try container.decode(Bool.self, forKey: .published)
+            start = try container.decode(String.self, forKey: .start)
 
             do {
                 end = try container.decode(String.self, forKey: .end)
@@ -62,7 +62,15 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            start = try container.decode(String.self, forKey: .start)
+            do {
+                duration = try container.decode(Int.self, forKey: .duration)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            published = try container.decode(Bool.self, forKey: .published)
 
             do {
                 nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
@@ -79,30 +87,22 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                duration = try container.decode(Int.self, forKey: .duration)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(published, forKey: .published)
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encode(end, forKey: .end)
 
-            try? container.encodeIfPresent(start, forKey: .start)
+            try? container.encode(duration, forKey: .duration)
+
+            try? container.encodeIfPresent(published, forKey: .published)
 
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
 
             try? container.encode(cron, forKey: .cron)
-
-            try? container.encode(duration, forKey: .duration)
         }
     }
 }

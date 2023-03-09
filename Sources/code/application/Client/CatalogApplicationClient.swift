@@ -49,9 +49,9 @@ public extension ApplicationClient {
 
             ulrs["getFollowedListing"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/")
 
-            ulrs["followById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/")
-
             ulrs["unfollowById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/")
+
+            ulrs["followById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/")
 
             ulrs["getFollowerCountById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/")
 
@@ -65,9 +65,9 @@ public extension ApplicationClient {
 
             ulrs["getProductBundlesBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/product-grouping/")
 
-            ulrs["getProductPriceBySlug"] = config.domain.appendAsPath("/service/application/catalog/v2.0/products/{slug}/sizes/{size}/price/")
+            ulrs["getProductPriceBySlug"] = config.domain.appendAsPath("/service/application/catalog/v3.0/products/{slug}/sizes/{size}/price/")
 
-            ulrs["getProductSellersBySlug"] = config.domain.appendAsPath("/service/application/catalog/v2.0/products/{slug}/sizes/{size}/sellers/")
+            ulrs["getProductSellersBySlug"] = config.domain.appendAsPath("/service/application/catalog/v3.0/products/{slug}/sizes/{size}/sellers/")
 
             self.relativeUrls = ulrs
         }
@@ -1333,16 +1333,16 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Follow an entity (product/brand/collection)
-         * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+         * Summary: Unfollow an entity (product/brand/collection)
+         * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
          **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
 
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["followById"] ?? ""
+            var fullUrl = relativeUrls["unfollowById"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
 
@@ -1350,7 +1350,7 @@ public extension ApplicationClient {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: fullUrl,
                 query: nil,
                 extraHeaders: [],
@@ -1379,16 +1379,16 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Unfollow an entity (product/brand/collection)
-         * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+         * Summary: Follow an entity (product/brand/collection)
+         * Description: Follow a particular entity such as product, brand, collection specified by its ID.
          **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
 
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["unfollowById"] ?? ""
+            var fullUrl = relativeUrls["followById"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
 
@@ -1396,7 +1396,7 @@ public extension ApplicationClient {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: fullUrl,
                 query: nil,
                 extraHeaders: [],
@@ -1853,7 +1853,7 @@ public extension ApplicationClient {
             pincode: String?,
             moq: Int?,
 
-            onResponse: @escaping (_ response: ProductSizePriceResponseV2?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductSizePriceResponseV3?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -1891,7 +1891,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(ProductSizePriceResponseV2.self, from: data)
+                        let response = Utility.decode(ProductSizePriceResponseV3.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1917,7 +1917,7 @@ public extension ApplicationClient {
             pageNo: Int?,
             pageSize: Int?,
 
-            onResponse: @escaping (_ response: ProductSizeSellersResponseV2?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductSizeSellersResponseV3?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -1959,7 +1959,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(ProductSizeSellersResponseV2.self, from: data)
+                        let response = Utility.decode(ProductSizeSellersResponseV3.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1984,9 +1984,9 @@ public extension ApplicationClient {
             strategy: String?,
             pageSize: Int?
 
-        ) -> Paginator<ProductSizeSellersResponseV2> {
+        ) -> Paginator<ProductSizeSellersResponseV3> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<ProductSizeSellersResponseV2>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<ProductSizeSellersResponseV3>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getProductSellersBySlug(
                     slug: slug,

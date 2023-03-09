@@ -11,22 +11,22 @@ public extension ApplicationClient.PosCart {
 
         public var firstName: String
 
+        public var user: String
+
         public var employeeCode: String?
 
         public var id: String
-
-        public var user: String
 
         public enum CodingKeys: String, CodingKey {
             case lastName = "last_name"
 
             case firstName = "first_name"
 
+            case user
+
             case employeeCode = "employee_code"
 
             case id = "_id"
-
-            case user
         }
 
         public init(employeeCode: String? = nil, firstName: String, lastName: String, user: String, id: String) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.PosCart {
 
             self.firstName = firstName
 
+            self.user = user
+
             self.employeeCode = employeeCode
 
             self.id = id
-
-            self.user = user
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,6 +47,8 @@ public extension ApplicationClient.PosCart {
             lastName = try container.decode(String.self, forKey: .lastName)
 
             firstName = try container.decode(String.self, forKey: .firstName)
+
+            user = try container.decode(String.self, forKey: .user)
 
             do {
                 employeeCode = try container.decode(String.self, forKey: .employeeCode)
@@ -57,8 +59,6 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             id = try container.decode(String.self, forKey: .id)
-
-            user = try container.decode(String.self, forKey: .user)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -68,11 +68,11 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(firstName, forKey: .firstName)
 
+            try? container.encodeIfPresent(user, forKey: .user)
+
             try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
 
             try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(user, forKey: .user)
         }
     }
 }

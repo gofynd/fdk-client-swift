@@ -36,8 +36,6 @@ public class ApplicationClient {
 
     public let logistic: Logistic
 
-    public let documentEngine: DocumentEngine
-
     public init(config: ApplicationConfig) {
         self.config = config
 
@@ -72,8 +70,6 @@ public class ApplicationClient {
         posCart = PosCart(config: config)
 
         logistic = Logistic(config: config)
-
-        documentEngine = DocumentEngine(config: config)
     }
 
     public func setLocationDetails(details: ApplicationConfig.LocationDetails?) {

@@ -9,27 +9,27 @@ public extension PlatformClient.CompanyProfile {
      */
 
     class DocumentsObj: Codable {
-        public var verified: Int?
-
         public var pending: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case verified
+        public var verified: Int?
 
+        public enum CodingKeys: String, CodingKey {
             case pending
+
+            case verified
         }
 
         public init(pending: Int? = nil, verified: Int? = nil) {
-            self.verified = verified
-
             self.pending = pending
+
+            self.verified = verified
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                verified = try container.decode(Int.self, forKey: .verified)
+                pending = try container.decode(Int.self, forKey: .pending)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                pending = try container.decode(Int.self, forKey: .pending)
+                verified = try container.decode(Int.self, forKey: .verified)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.CompanyProfile {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(verified, forKey: .verified)
-
             try? container.encodeIfPresent(pending, forKey: .pending)
+
+            try? container.encodeIfPresent(verified, forKey: .verified)
         }
     }
 }

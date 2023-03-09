@@ -13,22 +13,22 @@ public extension PlatformClient.Catalog {
 
         public var groupId: String?
 
+        public var meta: [String: Any]?
+
         public var quantity: Int?
 
         public var query: ArticleQuery?
-
-        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case articleAssignment = "article_assignment"
 
             case groupId = "group_id"
 
+            case meta
+
             case quantity
 
             case query
-
-            case meta
         }
 
         public init(articleAssignment: ArticleAssignment? = nil, groupId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, query: ArticleQuery? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Catalog {
 
             self.groupId = groupId
 
+            self.meta = meta
+
             self.quantity = quantity
 
             self.query = query
-
-            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,6 +63,14 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -77,14 +85,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -94,11 +94,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(groupId, forKey: .groupId)
 
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(query, forKey: .query)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }
@@ -114,22 +114,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var groupId: String?
 
+        public var meta: [String: Any]?
+
         public var quantity: Int?
 
         public var query: ArticleQuery?
-
-        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case articleAssignment = "article_assignment"
 
             case groupId = "group_id"
 
+            case meta
+
             case quantity
 
             case query
-
-            case meta
         }
 
         public init(articleAssignment: ArticleAssignment? = nil, groupId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, query: ArticleQuery? = nil) {
@@ -137,11 +137,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.groupId = groupId
 
+            self.meta = meta
+
             self.quantity = quantity
 
             self.query = query
-
-            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -164,6 +164,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -178,14 +186,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -195,11 +195,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(groupId, forKey: .groupId)
 
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(query, forKey: .query)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

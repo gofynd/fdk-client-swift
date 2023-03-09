@@ -13,9 +13,7 @@ public extension PlatformClient.Order {
 
         public var couponCode: String?
 
-        public var dueDate: String?
-
-        public var isPriority: Bool?
+        public var boxType: String?
 
         public var channelShipmentId: String?
 
@@ -23,22 +21,22 @@ public extension PlatformClient.Order {
 
         public var sizeLevelTotalQty: Int?
 
-        public var employeeDiscount: Double?
-
-        public var quantity: Int?
-
         public var orderItemId: String?
 
-        public var boxType: String?
+        public var dueDate: String?
+
+        public var employeeDiscount: Double?
+
+        public var isPriority: Bool?
+
+        public var quantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case channelOrderId = "channel_order_id"
 
             case couponCode = "coupon_code"
 
-            case dueDate = "due_date"
-
-            case isPriority = "is_priority"
+            case boxType = "box_type"
 
             case channelShipmentId = "channel_shipment_id"
 
@@ -46,13 +44,15 @@ public extension PlatformClient.Order {
 
             case sizeLevelTotalQty = "size_level_total_qty"
 
-            case employeeDiscount = "employee_discount"
-
-            case quantity
-
             case orderItemId = "order_item_id"
 
-            case boxType = "box_type"
+            case dueDate = "due_date"
+
+            case employeeDiscount = "employee_discount"
+
+            case isPriority = "is_priority"
+
+            case quantity
         }
 
         public init(boxType: String? = nil, channelOrderId: String? = nil, channelShipmentId: String? = nil, couponCode: String? = nil, dueDate: String? = nil, employeeDiscount: Double? = nil, isPriority: Bool? = nil, loyaltyDiscount: Double? = nil, orderItemId: String? = nil, quantity: Int? = nil, sizeLevelTotalQty: Int? = nil) {
@@ -60,9 +60,7 @@ public extension PlatformClient.Order {
 
             self.couponCode = couponCode
 
-            self.dueDate = dueDate
-
-            self.isPriority = isPriority
+            self.boxType = boxType
 
             self.channelShipmentId = channelShipmentId
 
@@ -70,13 +68,15 @@ public extension PlatformClient.Order {
 
             self.sizeLevelTotalQty = sizeLevelTotalQty
 
-            self.employeeDiscount = employeeDiscount
-
-            self.quantity = quantity
-
             self.orderItemId = orderItemId
 
-            self.boxType = boxType
+            self.dueDate = dueDate
+
+            self.employeeDiscount = employeeDiscount
+
+            self.isPriority = isPriority
+
+            self.quantity = quantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -99,15 +99,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                dueDate = try container.decode(String.self, forKey: .dueDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isPriority = try container.decode(Bool.self, forKey: .isPriority)
+                boxType = try container.decode(String.self, forKey: .boxType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,22 +131,6 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                employeeDiscount = try container.decode(Double.self, forKey: .employeeDiscount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 orderItemId = try container.decode(String.self, forKey: .orderItemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -163,7 +139,31 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                boxType = try container.decode(String.self, forKey: .boxType)
+                dueDate = try container.decode(String.self, forKey: .dueDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                employeeDiscount = try container.decode(Double.self, forKey: .employeeDiscount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isPriority = try container.decode(Bool.self, forKey: .isPriority)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -178,9 +178,7 @@ public extension PlatformClient.Order {
 
             try? container.encode(couponCode, forKey: .couponCode)
 
-            try? container.encode(dueDate, forKey: .dueDate)
-
-            try? container.encodeIfPresent(isPriority, forKey: .isPriority)
+            try? container.encode(boxType, forKey: .boxType)
 
             try? container.encode(channelShipmentId, forKey: .channelShipmentId)
 
@@ -188,13 +186,15 @@ public extension PlatformClient.Order {
 
             try? container.encode(sizeLevelTotalQty, forKey: .sizeLevelTotalQty)
 
-            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
             try? container.encodeIfPresent(orderItemId, forKey: .orderItemId)
 
-            try? container.encode(boxType, forKey: .boxType)
+            try? container.encode(dueDate, forKey: .dueDate)
+
+            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
+
+            try? container.encodeIfPresent(isPriority, forKey: .isPriority)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 }
@@ -210,9 +210,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var couponCode: String?
 
-        public var dueDate: String?
-
-        public var isPriority: Bool?
+        public var boxType: String?
 
         public var channelShipmentId: String?
 
@@ -220,22 +218,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var sizeLevelTotalQty: Int?
 
-        public var employeeDiscount: Double?
-
-        public var quantity: Int?
-
         public var orderItemId: String?
 
-        public var boxType: String?
+        public var dueDate: String?
+
+        public var employeeDiscount: Double?
+
+        public var isPriority: Bool?
+
+        public var quantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case channelOrderId = "channel_order_id"
 
             case couponCode = "coupon_code"
 
-            case dueDate = "due_date"
-
-            case isPriority = "is_priority"
+            case boxType = "box_type"
 
             case channelShipmentId = "channel_shipment_id"
 
@@ -243,13 +241,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case sizeLevelTotalQty = "size_level_total_qty"
 
-            case employeeDiscount = "employee_discount"
-
-            case quantity
-
             case orderItemId = "order_item_id"
 
-            case boxType = "box_type"
+            case dueDate = "due_date"
+
+            case employeeDiscount = "employee_discount"
+
+            case isPriority = "is_priority"
+
+            case quantity
         }
 
         public init(boxType: String? = nil, channelOrderId: String? = nil, channelShipmentId: String? = nil, couponCode: String? = nil, dueDate: String? = nil, employeeDiscount: Double? = nil, isPriority: Bool? = nil, loyaltyDiscount: Double? = nil, orderItemId: String? = nil, quantity: Int? = nil, sizeLevelTotalQty: Int? = nil) {
@@ -257,9 +257,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.couponCode = couponCode
 
-            self.dueDate = dueDate
-
-            self.isPriority = isPriority
+            self.boxType = boxType
 
             self.channelShipmentId = channelShipmentId
 
@@ -267,13 +265,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.sizeLevelTotalQty = sizeLevelTotalQty
 
-            self.employeeDiscount = employeeDiscount
-
-            self.quantity = quantity
-
             self.orderItemId = orderItemId
 
-            self.boxType = boxType
+            self.dueDate = dueDate
+
+            self.employeeDiscount = employeeDiscount
+
+            self.isPriority = isPriority
+
+            self.quantity = quantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -296,15 +296,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                dueDate = try container.decode(String.self, forKey: .dueDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isPriority = try container.decode(Bool.self, forKey: .isPriority)
+                boxType = try container.decode(String.self, forKey: .boxType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -336,22 +328,6 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                employeeDiscount = try container.decode(Double.self, forKey: .employeeDiscount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 orderItemId = try container.decode(String.self, forKey: .orderItemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -360,7 +336,31 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                boxType = try container.decode(String.self, forKey: .boxType)
+                dueDate = try container.decode(String.self, forKey: .dueDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                employeeDiscount = try container.decode(Double.self, forKey: .employeeDiscount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isPriority = try container.decode(Bool.self, forKey: .isPriority)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -375,9 +375,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encode(couponCode, forKey: .couponCode)
 
-            try? container.encode(dueDate, forKey: .dueDate)
-
-            try? container.encodeIfPresent(isPriority, forKey: .isPriority)
+            try? container.encode(boxType, forKey: .boxType)
 
             try? container.encode(channelShipmentId, forKey: .channelShipmentId)
 
@@ -385,13 +383,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encode(sizeLevelTotalQty, forKey: .sizeLevelTotalQty)
 
-            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
             try? container.encodeIfPresent(orderItemId, forKey: .orderItemId)
 
-            try? container.encode(boxType, forKey: .boxType)
+            try? container.encode(dueDate, forKey: .dueDate)
+
+            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
+
+            try? container.encodeIfPresent(isPriority, forKey: .isPriority)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 }
