@@ -11,72 +11,72 @@ public extension PlatformClient.CompanyProfile {
     class CreateUpdateAddressSerializer: Codable {
         public var address2: String?
 
-        public var country: String
-
-        public var pincode: Int
+        public var longitude: Double
 
         public var countryCode: String?
 
-        public var state: String
+        public var landmark: String?
+
+        public var pincode: Int
 
         public var latitude: Double
 
-        public var landmark: String?
+        public var state: String
 
-        public var addressType: String
+        public var city: String
 
         public var address1: String
 
-        public var longitude: Double
+        public var addressType: String
 
-        public var city: String
+        public var country: String
 
         public enum CodingKeys: String, CodingKey {
             case address2
 
-            case country
-
-            case pincode
+            case longitude
 
             case countryCode = "country_code"
 
-            case state
+            case landmark
+
+            case pincode
 
             case latitude
 
-            case landmark
+            case state
 
-            case addressType = "address_type"
+            case city
 
             case address1
 
-            case longitude
+            case addressType = "address_type"
 
-            case city
+            case country
         }
 
         public init(address1: String, address2: String? = nil, addressType: String, city: String, country: String, countryCode: String? = nil, landmark: String? = nil, latitude: Double, longitude: Double, pincode: Int, state: String) {
             self.address2 = address2
 
-            self.country = country
-
-            self.pincode = pincode
+            self.longitude = longitude
 
             self.countryCode = countryCode
 
-            self.state = state
+            self.landmark = landmark
+
+            self.pincode = pincode
 
             self.latitude = latitude
 
-            self.landmark = landmark
+            self.state = state
 
-            self.addressType = addressType
+            self.city = city
 
             self.address1 = address1
 
-            self.longitude = longitude
+            self.addressType = addressType
 
-            self.city = city
+            self.country = country
         }
 
         required public init(from decoder: Decoder) throws {
@@ -90,9 +90,7 @@ public extension PlatformClient.CompanyProfile {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            country = try container.decode(String.self, forKey: .country)
-
-            pincode = try container.decode(Int.self, forKey: .pincode)
+            longitude = try container.decode(Double.self, forKey: .longitude)
 
             do {
                 countryCode = try container.decode(String.self, forKey: .countryCode)
@@ -102,10 +100,6 @@ public extension PlatformClient.CompanyProfile {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            state = try container.decode(String.self, forKey: .state)
-
-            latitude = try container.decode(Double.self, forKey: .latitude)
-
             do {
                 landmark = try container.decode(String.self, forKey: .landmark)
 
@@ -114,13 +108,19 @@ public extension PlatformClient.CompanyProfile {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            addressType = try container.decode(String.self, forKey: .addressType)
+            pincode = try container.decode(Int.self, forKey: .pincode)
+
+            latitude = try container.decode(Double.self, forKey: .latitude)
+
+            state = try container.decode(String.self, forKey: .state)
+
+            city = try container.decode(String.self, forKey: .city)
 
             address1 = try container.decode(String.self, forKey: .address1)
 
-            longitude = try container.decode(Double.self, forKey: .longitude)
+            addressType = try container.decode(String.self, forKey: .addressType)
 
-            city = try container.decode(String.self, forKey: .city)
+            country = try container.decode(String.self, forKey: .country)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -128,25 +128,25 @@ public extension PlatformClient.CompanyProfile {
 
             try? container.encodeIfPresent(address2, forKey: .address2)
 
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(latitude, forKey: .latitude)
 
-            try? container.encodeIfPresent(landmark, forKey: .landmark)
+            try? container.encodeIfPresent(state, forKey: .state)
 
-            try? container.encodeIfPresent(addressType, forKey: .addressType)
+            try? container.encodeIfPresent(city, forKey: .city)
 
             try? container.encodeIfPresent(address1, forKey: .address1)
 
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
 
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encodeIfPresent(country, forKey: .country)
         }
     }
 }

@@ -4,32 +4,32 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-         Model: ProductPublish1
+         Model: InventoryPartialExportRequest
          Used By: Catalog
      */
 
-    class ProductPublish1: Codable {
-        public var isSet: Bool?
+    class InventoryPartialExportRequest: Codable {
+        public var notificationEmails: [String]?
 
-        public var productOnlineDate: String?
+        public var status: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case isSet = "is_set"
+            case notificationEmails = "notification_emails"
 
-            case productOnlineDate = "product_online_date"
+            case status
         }
 
-        public init(isSet: Bool? = nil, productOnlineDate: String? = nil) {
-            self.isSet = isSet
+        public init(notificationEmails: [String]? = nil, status: [String: Any]? = nil) {
+            self.notificationEmails = notificationEmails
 
-            self.productOnlineDate = productOnlineDate
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isSet = try container.decode(Bool.self, forKey: .isSet)
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                productOnlineDate = try container.decode(String.self, forKey: .productOnlineDate)
+                status = try container.decode([String: Any].self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
-            try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-         Model: ProductPublish1
+         Model: InventoryPartialExportRequest
          Used By: Catalog
      */
 
-    class ProductPublish1: Codable {
-        public var isSet: Bool?
+    class InventoryPartialExportRequest: Codable {
+        public var notificationEmails: [String]?
 
-        public var productOnlineDate: String?
+        public var status: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case isSet = "is_set"
+            case notificationEmails = "notification_emails"
 
-            case productOnlineDate = "product_online_date"
+            case status
         }
 
-        public init(isSet: Bool? = nil, productOnlineDate: String? = nil) {
-            self.isSet = isSet
+        public init(notificationEmails: [String]? = nil, status: [String: Any]? = nil) {
+            self.notificationEmails = notificationEmails
 
-            self.productOnlineDate = productOnlineDate
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isSet = try container.decode(Bool.self, forKey: .isSet)
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                productOnlineDate = try container.decode(String.self, forKey: .productOnlineDate)
+                status = try container.decode([String: Any].self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
-            try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

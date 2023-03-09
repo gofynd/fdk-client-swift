@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var amount: [String: Any]
 
-        public var breakup: [[String: Any]]?
-
         public var name: String
+
+        public var breakup: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case rate
 
             case amount
 
-            case breakup
-
             case name
+
+            case breakup
         }
 
         public init(amount: [String: Any], breakup: [[String: Any]]? = nil, name: String, rate: Double) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.amount = amount
 
-            self.breakup = breakup
-
             self.name = name
+
+            self.breakup = breakup
         }
 
         required public init(from decoder: Decoder) throws {
@@ -44,6 +44,8 @@ public extension PlatformClient.Order {
 
             amount = try container.decode([String: Any].self, forKey: .amount)
 
+            name = try container.decode(String.self, forKey: .name)
+
             do {
                 breakup = try container.decode([[String: Any]].self, forKey: .breakup)
 
@@ -51,8 +53,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,9 +62,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(breakup, forKey: .breakup)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(breakup, forKey: .breakup)
         }
     }
 }
@@ -80,18 +80,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var amount: [String: Any]
 
-        public var breakup: [[String: Any]]?
-
         public var name: String
+
+        public var breakup: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case rate
 
             case amount
 
-            case breakup
-
             case name
+
+            case breakup
         }
 
         public init(amount: [String: Any], breakup: [[String: Any]]? = nil, name: String, rate: Double) {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.amount = amount
 
-            self.breakup = breakup
-
             self.name = name
+
+            self.breakup = breakup
         }
 
         required public init(from decoder: Decoder) throws {
@@ -111,6 +111,8 @@ public extension PlatformClient.ApplicationClient.Order {
 
             amount = try container.decode([String: Any].self, forKey: .amount)
 
+            name = try container.decode(String.self, forKey: .name)
+
             do {
                 breakup = try container.decode([[String: Any]].self, forKey: .breakup)
 
@@ -118,8 +120,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(breakup, forKey: .breakup)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(breakup, forKey: .breakup)
         }
     }
 }

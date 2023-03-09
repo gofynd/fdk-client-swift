@@ -9,13 +9,13 @@ public extension PlatformClient.Catalog {
      */
 
     class SingleProductResponse: Codable {
-        public var data: ProductSchemaV2?
+        public var data: Product?
 
         public enum CodingKeys: String, CodingKey {
             case data
         }
 
-        public init(data: ProductSchemaV2? = nil) {
+        public init(data: Product? = nil) {
             self.data = data
         }
 
@@ -23,7 +23,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode(ProductSchemaV2.self, forKey: .data)
+                data = try container.decode(Product.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,13 +46,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class SingleProductResponse: Codable {
-        public var data: ProductSchemaV2?
+        public var data: Product?
 
         public enum CodingKeys: String, CodingKey {
             case data
         }
 
-        public init(data: ProductSchemaV2? = nil) {
+        public init(data: Product? = nil) {
             self.data = data
         }
 
@@ -60,7 +60,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode(ProductSchemaV2.self, forKey: .data)
+                data = try container.decode(Product.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
