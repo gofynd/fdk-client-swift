@@ -11,17 +11,17 @@ public extension ApplicationClient.Catalog {
 
         public var seller: Seller?
 
-        public var price: ProductStockPrice?
+        public var quantity: Int?
 
         public var company: CompanyDetail?
+
+        public var price: ProductStockPrice?
+
+        public var identifier: [String: Any]?
 
         public var size: String?
 
         public var itemId: Int?
-
-        public var identifier: [String: Any]?
-
-        public var quantity: Int?
 
         public var store: StoreDetail?
 
@@ -30,17 +30,17 @@ public extension ApplicationClient.Catalog {
 
             case seller
 
-            case price
+            case quantity
 
             case company
+
+            case price
+
+            case identifier
 
             case size
 
             case itemId = "item_id"
-
-            case identifier
-
-            case quantity
 
             case store
         }
@@ -50,17 +50,17 @@ public extension ApplicationClient.Catalog {
 
             self.seller = seller
 
-            self.price = price
+            self.quantity = quantity
 
             self.company = company
+
+            self.price = price
+
+            self.identifier = identifier
 
             self.size = size
 
             self.itemId = itemId
-
-            self.identifier = identifier
-
-            self.quantity = quantity
 
             self.store = store
         }
@@ -85,7 +85,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                price = try container.decode(ProductStockPrice.self, forKey: .price)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,6 +94,22 @@ public extension ApplicationClient.Catalog {
 
             do {
                 company = try container.decode(CompanyDetail.self, forKey: .company)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                price = try container.decode(ProductStockPrice.self, forKey: .price)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                identifier = try container.decode([String: Any].self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,22 +133,6 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                identifier = try container.decode([String: Any].self, forKey: .identifier)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 store = try container.decode(StoreDetail.self, forKey: .store)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -148,17 +148,17 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(seller, forKey: .seller)
 
-            try? container.encodeIfPresent(price, forKey: .price)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(price, forKey: .price)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
-
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(store, forKey: .store)
         }

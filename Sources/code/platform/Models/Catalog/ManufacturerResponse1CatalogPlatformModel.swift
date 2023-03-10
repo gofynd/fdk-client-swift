@@ -9,38 +9,30 @@ public extension PlatformClient.Catalog {
      */
 
     class ManufacturerResponse1: Codable {
-        public var name: String?
-
         public var address: String?
 
         public var isDefault: Bool?
 
-        public enum CodingKeys: String, CodingKey {
-            case name
+        public var name: String?
 
+        public enum CodingKeys: String, CodingKey {
             case address
 
             case isDefault = "is_default"
+
+            case name
         }
 
         public init(address: String? = nil, isDefault: Bool? = nil, name: String? = nil) {
-            self.name = name
-
             self.address = address
 
             self.isDefault = isDefault
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 address = try container.decode(String.self, forKey: .address)
@@ -57,16 +49,24 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(address, forKey: .address)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -78,38 +78,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ManufacturerResponse1: Codable {
-        public var name: String?
-
         public var address: String?
 
         public var isDefault: Bool?
 
-        public enum CodingKeys: String, CodingKey {
-            case name
+        public var name: String?
 
+        public enum CodingKeys: String, CodingKey {
             case address
 
             case isDefault = "is_default"
+
+            case name
         }
 
         public init(address: String? = nil, isDefault: Bool? = nil, name: String? = nil) {
-            self.name = name
-
             self.address = address
 
             self.isDefault = isDefault
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 address = try container.decode(String.self, forKey: .address)
@@ -126,16 +118,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(address, forKey: .address)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

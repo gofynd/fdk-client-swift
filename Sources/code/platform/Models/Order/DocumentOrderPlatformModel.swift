@@ -15,9 +15,9 @@ public extension PlatformClient.Order {
 
         public var legalName: String
 
-        public var url: String?
-
         public var verified: Bool
+
+        public var url: String?
 
         public enum CodingKeys: String, CodingKey {
             case dsType = "ds_type"
@@ -26,9 +26,9 @@ public extension PlatformClient.Order {
 
             case legalName = "legal_name"
 
-            case url
-
             case verified
+
+            case url
         }
 
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Order {
 
             self.legalName = legalName
 
-            self.url = url
-
             self.verified = verified
+
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
@@ -52,6 +52,8 @@ public extension PlatformClient.Order {
 
             legalName = try container.decode(String.self, forKey: .legalName)
 
+            verified = try container.decode(Bool.self, forKey: .verified)
+
             do {
                 url = try container.decode(String.self, forKey: .url)
 
@@ -59,8 +61,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            verified = try container.decode(Bool.self, forKey: .verified)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -72,9 +72,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(verified, forKey: .verified)
+
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }
@@ -92,9 +92,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var legalName: String
 
-        public var url: String?
-
         public var verified: Bool
+
+        public var url: String?
 
         public enum CodingKeys: String, CodingKey {
             case dsType = "ds_type"
@@ -103,9 +103,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case legalName = "legal_name"
 
-            case url
-
             case verified
+
+            case url
         }
 
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.legalName = legalName
 
-            self.url = url
-
             self.verified = verified
+
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
@@ -129,6 +129,8 @@ public extension PlatformClient.ApplicationClient.Order {
 
             legalName = try container.decode(String.self, forKey: .legalName)
 
+            verified = try container.decode(Bool.self, forKey: .verified)
+
             do {
                 url = try container.decode(String.self, forKey: .url)
 
@@ -136,8 +138,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            verified = try container.decode(Bool.self, forKey: .verified)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -149,9 +149,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(verified, forKey: .verified)
+
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }
