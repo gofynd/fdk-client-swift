@@ -11,24 +11,24 @@ public extension PlatformClient.Payment {
     class UpdatePayoutResponse: Codable {
         public var isActive: Bool
 
-        public var success: Bool
-
         public var isDefault: Bool
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case success
-
             case isDefault = "is_default"
+
+            case success
         }
 
         public init(isActive: Bool, isDefault: Bool, success: Bool) {
             self.isActive = isActive
 
-            self.success = success
-
             self.isDefault = isDefault
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Payment {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Payment {
     class UpdatePayoutResponse: Codable {
         public var isActive: Bool
 
-        public var success: Bool
-
         public var isDefault: Bool
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case success
-
             case isDefault = "is_default"
+
+            case success
         }
 
         public init(isActive: Bool, isDefault: Bool, success: Bool) {
             self.isActive = isActive
 
-            self.success = success
-
             self.isDefault = isDefault
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

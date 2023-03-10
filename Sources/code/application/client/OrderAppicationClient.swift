@@ -250,9 +250,16 @@ public extension ApplicationClient {
          **/
         public func getInvoiceByShipmentId(
             shipmentId: String,
+            documentType: String?,
 
             onResponse: @escaping (_ response: ResponseGetInvoiceShipment?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = documentType {
+                xQuery["document_type"] = value
+            }
+
             var fullUrl = relativeUrls["getInvoiceByShipmentId"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
@@ -261,7 +268,7 @@ public extension ApplicationClient {
                 config: config,
                 method: "get",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders: [],
                 body: nil,
                 responseType: "application/json",
