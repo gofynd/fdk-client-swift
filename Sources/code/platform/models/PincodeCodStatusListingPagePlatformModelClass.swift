@@ -10,36 +10,36 @@ public extension PlatformClient {
     class PincodeCodStatusListingPage: Codable {
         public var itemTotal: Int
 
-        public var type: String
+        public var size: Int
 
-        public var currentPageNumber: Int
+        public var type: String
 
         public var hasNext: Bool
 
-        public var size: Int
+        public var currentPageNumber: Int
 
         public enum CodingKeys: String, CodingKey {
             case itemTotal = "item_total"
 
-            case type
+            case size
 
-            case currentPageNumber = "current_page_number"
+            case type
 
             case hasNext = "has_next"
 
-            case size
+            case currentPageNumber = "current_page_number"
         }
 
         public init(currentPageNumber: Int, hasNext: Bool, itemTotal: Int, size: Int, type: String) {
             self.itemTotal = itemTotal
 
-            self.type = type
+            self.size = size
 
-            self.currentPageNumber = currentPageNumber
+            self.type = type
 
             self.hasNext = hasNext
 
-            self.size = size
+            self.currentPageNumber = currentPageNumber
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,13 +47,13 @@ public extension PlatformClient {
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
-            type = try container.decode(String.self, forKey: .type)
+            size = try container.decode(Int.self, forKey: .size)
 
-            currentPageNumber = try container.decode(Int.self, forKey: .currentPageNumber)
+            type = try container.decode(String.self, forKey: .type)
 
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
-            size = try container.decode(Int.self, forKey: .size)
+            currentPageNumber = try container.decode(Int.self, forKey: .currentPageNumber)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -61,13 +61,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(currentPageNumber, forKey: .currentPageNumber)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(currentPageNumber, forKey: .currentPageNumber)
         }
     }
 }
