@@ -9,26 +9,26 @@ public extension ApplicationClient {
     class TATViewRequest: Codable {
         public var identifier: String?
 
-        public var journey: String?
+        public var source: String?
 
-        public var toPincode: String?
+        public var journey: String?
 
         public var locationDetails: [TATLocationDetailsRequest]?
 
-        public var source: String?
+        public var toPincode: String?
 
         public var action: String?
 
         public enum CodingKeys: String, CodingKey {
             case identifier
 
-            case journey
+            case source
 
-            case toPincode = "to_pincode"
+            case journey
 
             case locationDetails = "location_details"
 
-            case source
+            case toPincode = "to_pincode"
 
             case action
         }
@@ -36,13 +36,13 @@ public extension ApplicationClient {
         public init(action: String? = nil, identifier: String? = nil, journey: String? = nil, locationDetails: [TATLocationDetailsRequest]? = nil, source: String? = nil, toPincode: String? = nil) {
             self.identifier = identifier
 
-            self.journey = journey
+            self.source = source
 
-            self.toPincode = toPincode
+            self.journey = journey
 
             self.locationDetails = locationDetails
 
-            self.source = source
+            self.toPincode = toPincode
 
             self.action = action
         }
@@ -59,7 +59,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                journey = try container.decode(String.self, forKey: .journey)
+                source = try container.decode(String.self, forKey: .source)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +67,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                toPincode = try container.decode(String.self, forKey: .toPincode)
+                journey = try container.decode(String.self, forKey: .journey)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                source = try container.decode(String.self, forKey: .source)
+                toPincode = try container.decode(String.self, forKey: .toPincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,13 +104,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(journey, forKey: .journey)
+            try? container.encodeIfPresent(source, forKey: .source)
 
-            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
+            try? container.encodeIfPresent(journey, forKey: .journey)
 
             try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
 
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
             try? container.encodeIfPresent(action, forKey: .action)
         }

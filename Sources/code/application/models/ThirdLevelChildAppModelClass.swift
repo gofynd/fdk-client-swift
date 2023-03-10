@@ -13,13 +13,13 @@ public extension ApplicationClient {
 
         public var customJson: [String: Any]?
 
-        public var slug: String?
+        public var action: ProductListingAction?
 
-        public var childs: [[String: Any]]?
+        public var slug: String?
 
         public var uid: Int?
 
-        public var action: ProductListingAction?
+        public var childs: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case banners
@@ -28,13 +28,13 @@ public extension ApplicationClient {
 
             case customJson = "_custom_json"
 
-            case slug
+            case action
 
-            case childs
+            case slug
 
             case uid
 
-            case action
+            case childs
         }
 
         public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [[String: Any]]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
@@ -44,13 +44,13 @@ public extension ApplicationClient {
 
             self.customJson = customJson
 
-            self.slug = slug
+            self.action = action
 
-            self.childs = childs
+            self.slug = slug
 
             self.uid = uid
 
-            self.action = action
+            self.childs = childs
         }
 
         required public init(from decoder: Decoder) throws {
@@ -81,7 +81,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                childs = try container.decode([[String: Any]].self, forKey: .childs)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                childs = try container.decode([[String: Any]].self, forKey: .childs)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,13 +122,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(childs, forKey: .childs)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(childs, forKey: .childs)
         }
     }
 }
