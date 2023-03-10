@@ -15,9 +15,9 @@ public extension PlatformClient.Catalog {
 
         public var isActive: Bool?
 
-        public var words: [String]?
-
         public var customJson: [String: Any]?
+
+        public var words: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case result
@@ -26,9 +26,9 @@ public extension PlatformClient.Catalog {
 
             case isActive = "is_active"
 
-            case words
-
             case customJson = "_custom_json"
+
+            case words
         }
 
         public init(appId: String? = nil, isActive: Bool? = nil, result: SearchKeywordResult, words: [String]? = nil, customJson: [String: Any]? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Catalog {
 
             self.isActive = isActive
 
-            self.words = words
-
             self.customJson = customJson
+
+            self.words = words
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                words = try container.decode([String].self, forKey: .words)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,7 +73,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                words = try container.decode([String].self, forKey: .words)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(words, forKey: .words)
-
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(words, forKey: .words)
         }
     }
 }
@@ -110,9 +110,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var isActive: Bool?
 
-        public var words: [String]?
-
         public var customJson: [String: Any]?
+
+        public var words: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case result
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case isActive = "is_active"
 
-            case words
-
             case customJson = "_custom_json"
+
+            case words
         }
 
         public init(appId: String? = nil, isActive: Bool? = nil, result: SearchKeywordResult, words: [String]? = nil, customJson: [String: Any]? = nil) {
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.isActive = isActive
 
-            self.words = words
-
             self.customJson = customJson
+
+            self.words = words
         }
 
         required public init(from decoder: Decoder) throws {
@@ -160,7 +160,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                words = try container.decode([String].self, forKey: .words)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -168,7 +168,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                words = try container.decode([String].self, forKey: .words)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -185,9 +185,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(words, forKey: .words)
-
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(words, forKey: .words)
         }
     }
 }

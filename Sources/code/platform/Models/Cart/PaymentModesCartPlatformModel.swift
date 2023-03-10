@@ -11,30 +11,30 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PaymentModes: Codable {
         public var types: [String]?
 
-        public var codes: [String]?
+        public var networks: [String]?
 
         public var uses: PaymentAllowValue?
 
-        public var networks: [String]?
+        public var codes: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case types
 
-            case codes
+            case networks
 
             case uses
 
-            case networks
+            case codes
         }
 
         public init(codes: [String]? = nil, networks: [String]? = nil, types: [String]? = nil, uses: PaymentAllowValue? = nil) {
             self.types = types
 
-            self.codes = codes
+            self.networks = networks
 
             self.uses = uses
 
-            self.networks = networks
+            self.codes = codes
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                codes = try container.decode([String].self, forKey: .codes)
+                networks = try container.decode([String].self, forKey: .networks)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                networks = try container.decode([String].self, forKey: .networks)
+                codes = try container.decode([String].self, forKey: .codes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,11 +78,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(types, forKey: .types)
 
-            try? container.encodeIfPresent(codes, forKey: .codes)
+            try? container.encodeIfPresent(networks, forKey: .networks)
 
             try? container.encodeIfPresent(uses, forKey: .uses)
 
-            try? container.encodeIfPresent(networks, forKey: .networks)
+            try? container.encodeIfPresent(codes, forKey: .codes)
         }
     }
 }

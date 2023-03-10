@@ -7,11 +7,13 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class Track: Codable {
+        public var updatedTime: String?
+
+        public var updatedAt: String?
+
         public var status: String?
 
         public var lastLocationRecievedAt: String?
-
-        public var updatedAt: String?
 
         public var awb: String?
 
@@ -21,14 +23,14 @@ public extension ApplicationClient.Order {
 
         public var accountName: String?
 
-        public var updatedTime: String?
-
         public enum CodingKeys: String, CodingKey {
+            case updatedTime = "updated_time"
+
+            case updatedAt = "updated_at"
+
             case status
 
             case lastLocationRecievedAt = "last_location_recieved_at"
-
-            case updatedAt = "updated_at"
 
             case awb
 
@@ -37,16 +39,16 @@ public extension ApplicationClient.Order {
             case reason
 
             case accountName = "account_name"
-
-            case updatedTime = "updated_time"
         }
 
         public init(accountName: String? = nil, awb: String? = nil, lastLocationRecievedAt: String? = nil, reason: String? = nil, shipmentType: String? = nil, status: String? = nil, updatedAt: String? = nil, updatedTime: String? = nil) {
+            self.updatedTime = updatedTime
+
+            self.updatedAt = updatedAt
+
             self.status = status
 
             self.lastLocationRecievedAt = lastLocationRecievedAt
-
-            self.updatedAt = updatedAt
 
             self.awb = awb
 
@@ -55,12 +57,26 @@ public extension ApplicationClient.Order {
             self.reason = reason
 
             self.accountName = accountName
-
-            self.updatedTime = updatedTime
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                updatedTime = try container.decode(String.self, forKey: .updatedTime)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                updatedAt = try container.decode(String.self, forKey: .updatedAt)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 status = try container.decode(String.self, forKey: .status)
@@ -72,14 +88,6 @@ public extension ApplicationClient.Order {
 
             do {
                 lastLocationRecievedAt = try container.decode(String.self, forKey: .lastLocationRecievedAt)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,24 +125,18 @@ public extension ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                updatedTime = try container.decode(String.self, forKey: .updatedTime)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(updatedTime, forKey: .updatedTime)
+
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+
             try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(lastLocationRecievedAt, forKey: .lastLocationRecievedAt)
-
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
             try? container.encodeIfPresent(awb, forKey: .awb)
 
@@ -143,8 +145,6 @@ public extension ApplicationClient.Order {
             try? container.encodeIfPresent(reason, forKey: .reason)
 
             try? container.encodeIfPresent(accountName, forKey: .accountName)
-
-            try? container.encodeIfPresent(updatedTime, forKey: .updatedTime)
         }
     }
 }
