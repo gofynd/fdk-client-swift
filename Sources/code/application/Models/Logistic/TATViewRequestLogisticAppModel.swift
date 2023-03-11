@@ -11,26 +11,26 @@ public extension ApplicationClient.Logistic {
 
         public var source: String?
 
-        public var toPincode: String?
-
         public var identifier: String?
 
         public var locationDetails: [TATLocationDetailsRequest]?
 
         public var journey: String?
 
+        public var toPincode: String?
+
         public enum CodingKeys: String, CodingKey {
             case action
 
             case source
-
-            case toPincode = "to_pincode"
 
             case identifier
 
             case locationDetails = "location_details"
 
             case journey
+
+            case toPincode = "to_pincode"
         }
 
         public init(action: String? = nil, identifier: String? = nil, journey: String? = nil, locationDetails: [TATLocationDetailsRequest]? = nil, source: String? = nil, toPincode: String? = nil) {
@@ -38,13 +38,13 @@ public extension ApplicationClient.Logistic {
 
             self.source = source
 
-            self.toPincode = toPincode
-
             self.identifier = identifier
 
             self.locationDetails = locationDetails
 
             self.journey = journey
+
+            self.toPincode = toPincode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -60,14 +60,6 @@ public extension ApplicationClient.Logistic {
 
             do {
                 source = try container.decode(String.self, forKey: .source)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                toPincode = try container.decode(String.self, forKey: .toPincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,6 +89,14 @@ public extension ApplicationClient.Logistic {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                toPincode = try container.decode(String.self, forKey: .toPincode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -106,13 +106,13 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(source, forKey: .source)
 
-            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
-
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
 
             try? container.encodeIfPresent(journey, forKey: .journey)
+
+            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
         }
     }
 }

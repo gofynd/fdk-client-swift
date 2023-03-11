@@ -13,7 +13,7 @@ public extension ApplicationClient {
 
             ulrs["getTatProduct"] = config.domain.appendAsPath("/service/application/logistics/v1.0/")
 
-            ulrs["getAllCountries"] = config.domain.appendAsPath("/service/application/logistics/v1.0/country-list/company/{company_id}/application/{application_id}")
+            ulrs["getAllCountries"] = config.domain.appendAsPath("/service/application/logistics/v1.0/country-list")
 
             ulrs["getPincodeZones"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/zones")
 
@@ -122,16 +122,9 @@ public extension ApplicationClient {
          * Description: Get all countries
          **/
         public func getAllCountries(
-            companyId: String,
-            applicationId: String,
-
             onResponse: @escaping (_ response: CountryListResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["getAllCountries"] ?? ""
-
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "company_id" + "}", with: "\(companyId)")
-
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "application_id" + "}", with: "\(applicationId)")
+            let fullUrl = relativeUrls["getAllCountries"] ?? ""
 
             ApplicationAPIClient.execute(
                 config: config,
