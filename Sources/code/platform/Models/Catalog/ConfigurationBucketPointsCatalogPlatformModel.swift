@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class ConfigurationBucketPoints: Codable {
         public var end: Double?
 
-        public var display: String?
-
         public var start: Double?
+
+        public var display: String?
 
         public enum CodingKeys: String, CodingKey {
             case end
 
-            case display
-
             case start
+
+            case display
         }
 
         public init(display: String? = nil, end: Double? = nil, start: Double? = nil) {
             self.end = end
 
-            self.display = display
-
             self.start = start
+
+            self.display = display
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                start = try container.decode(Double.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                start = try container.decode(Double.self, forKey: .start)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(end, forKey: .end)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(start, forKey: .start)
+
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ConfigurationBucketPoints: Codable {
         public var end: Double?
 
-        public var display: String?
-
         public var start: Double?
+
+        public var display: String?
 
         public enum CodingKeys: String, CodingKey {
             case end
 
-            case display
-
             case start
+
+            case display
         }
 
         public init(display: String? = nil, end: Double? = nil, start: Double? = nil) {
             self.end = end
 
-            self.display = display
-
             self.start = start
+
+            self.display = display
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                start = try container.decode(Double.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                start = try container.decode(Double.self, forKey: .start)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(end, forKey: .end)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(start, forKey: .start)
+
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 }

@@ -11,9 +11,9 @@ public extension PlatformClient.Catalog {
     class CreateSearchKeyword: Codable {
         public var appId: String?
 
-        public var customJson: [String: Any]?
-
         public var result: SearchKeywordResult
+
+        public var customJson: [String: Any]?
 
         public var words: [String]?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case appId = "app_id"
 
-            case customJson = "_custom_json"
-
             case result
+
+            case customJson = "_custom_json"
 
             case words
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Catalog {
         public init(appId: String? = nil, isActive: Bool? = nil, result: SearchKeywordResult, words: [String]? = nil, customJson: [String: Any]? = nil) {
             self.appId = appId
 
-            self.customJson = customJson
-
             self.result = result
+
+            self.customJson = customJson
 
             self.words = words
 
@@ -54,6 +54,8 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            result = try container.decode(SearchKeywordResult.self, forKey: .result)
+
             do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
 
@@ -61,8 +63,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            result = try container.decode(SearchKeywordResult.self, forKey: .result)
 
             do {
                 words = try container.decode([String].self, forKey: .words)
@@ -86,9 +86,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
             try? container.encodeIfPresent(result, forKey: .result)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(words, forKey: .words)
 
@@ -106,9 +106,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CreateSearchKeyword: Codable {
         public var appId: String?
 
-        public var customJson: [String: Any]?
-
         public var result: SearchKeywordResult
+
+        public var customJson: [String: Any]?
 
         public var words: [String]?
 
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case appId = "app_id"
 
-            case customJson = "_custom_json"
-
             case result
+
+            case customJson = "_custom_json"
 
             case words
 
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(appId: String? = nil, isActive: Bool? = nil, result: SearchKeywordResult, words: [String]? = nil, customJson: [String: Any]? = nil) {
             self.appId = appId
 
-            self.customJson = customJson
-
             self.result = result
+
+            self.customJson = customJson
 
             self.words = words
 
@@ -149,6 +149,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            result = try container.decode(SearchKeywordResult.self, forKey: .result)
+
             do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
 
@@ -156,8 +158,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            result = try container.decode(SearchKeywordResult.self, forKey: .result)
 
             do {
                 words = try container.decode([String].self, forKey: .words)
@@ -181,9 +181,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
             try? container.encodeIfPresent(result, forKey: .result)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(words, forKey: .words)
 

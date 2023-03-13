@@ -9,24 +9,24 @@ public extension ApplicationClient.PosCart {
     class PaymentCouponValidate: Codable {
         public var couponValidity: CouponValidity?
 
-        public var success: Bool
-
         public var message: String?
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case couponValidity = "coupon_validity"
 
-            case success
-
             case message
+
+            case success
         }
 
         public init(couponValidity: CouponValidity? = nil, message: String? = nil, success: Bool) {
             self.couponValidity = couponValidity
 
-            self.success = success
-
             self.message = message
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,8 +40,6 @@ public extension ApplicationClient.PosCart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             do {
                 message = try container.decode(String.self, forKey: .message)
 
@@ -49,6 +47,8 @@ public extension ApplicationClient.PosCart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -56,9 +56,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(couponValidity, forKey: .couponValidity)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
