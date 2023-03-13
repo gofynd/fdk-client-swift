@@ -11,9 +11,9 @@ public extension PlatformClient.Catalog {
     class ConfigurationListingSortConfig: Codable {
         public var priority: Int
 
-        public var key: String
-
         public var name: String?
+
+        public var key: String
 
         public var isActive: Bool
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case priority
 
-            case key
-
             case name
+
+            case key
 
             case isActive = "is_active"
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Catalog {
         public init(isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
             self.priority = priority
 
-            self.key = key
-
             self.name = name
+
+            self.key = key
 
             self.isActive = isActive
 
@@ -48,8 +48,6 @@ public extension PlatformClient.Catalog {
 
             priority = try container.decode(Int.self, forKey: .priority)
 
-            key = try container.decode(String.self, forKey: .key)
-
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -57,6 +55,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            key = try container.decode(String.self, forKey: .key)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
@@ -74,9 +74,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
@@ -94,9 +94,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ConfigurationListingSortConfig: Codable {
         public var priority: Int
 
-        public var key: String
-
         public var name: String?
+
+        public var key: String
 
         public var isActive: Bool
 
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case priority
 
-            case key
-
             case name
+
+            case key
 
             case isActive = "is_active"
 
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
             self.priority = priority
 
-            self.key = key
-
             self.name = name
+
+            self.key = key
 
             self.isActive = isActive
 
@@ -131,8 +131,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             priority = try container.decode(Int.self, forKey: .priority)
 
-            key = try container.decode(String.self, forKey: .key)
-
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -140,6 +138,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            key = try container.decode(String.self, forKey: .key)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
@@ -157,9 +157,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 

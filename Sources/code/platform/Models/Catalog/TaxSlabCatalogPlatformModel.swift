@@ -11,36 +11,40 @@ public extension PlatformClient.Catalog {
     class TaxSlab: Codable {
         public var effectiveDate: String
 
-        public var cess: Double?
-
         public var threshold: Double
 
         public var rate: Double
 
+        public var cess: Double?
+
         public enum CodingKeys: String, CodingKey {
             case effectiveDate = "effective_date"
-
-            case cess
 
             case threshold
 
             case rate
+
+            case cess
         }
 
         public init(cess: Double? = nil, effectiveDate: String, rate: Double, threshold: Double) {
             self.effectiveDate = effectiveDate
 
-            self.cess = cess
-
             self.threshold = threshold
 
             self.rate = rate
+
+            self.cess = cess
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
+
+            threshold = try container.decode(Double.self, forKey: .threshold)
+
+            rate = try container.decode(Double.self, forKey: .rate)
 
             do {
                 cess = try container.decode(Double.self, forKey: .cess)
@@ -49,10 +53,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            threshold = try container.decode(Double.self, forKey: .threshold)
-
-            rate = try container.decode(Double.self, forKey: .rate)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -60,11 +60,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
 
-            try? container.encodeIfPresent(cess, forKey: .cess)
-
             try? container.encodeIfPresent(threshold, forKey: .threshold)
 
             try? container.encodeIfPresent(rate, forKey: .rate)
+
+            try? container.encodeIfPresent(cess, forKey: .cess)
         }
     }
 }
@@ -78,36 +78,40 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class TaxSlab: Codable {
         public var effectiveDate: String
 
-        public var cess: Double?
-
         public var threshold: Double
 
         public var rate: Double
 
+        public var cess: Double?
+
         public enum CodingKeys: String, CodingKey {
             case effectiveDate = "effective_date"
-
-            case cess
 
             case threshold
 
             case rate
+
+            case cess
         }
 
         public init(cess: Double? = nil, effectiveDate: String, rate: Double, threshold: Double) {
             self.effectiveDate = effectiveDate
 
-            self.cess = cess
-
             self.threshold = threshold
 
             self.rate = rate
+
+            self.cess = cess
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
+
+            threshold = try container.decode(Double.self, forKey: .threshold)
+
+            rate = try container.decode(Double.self, forKey: .rate)
 
             do {
                 cess = try container.decode(Double.self, forKey: .cess)
@@ -116,10 +120,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            threshold = try container.decode(Double.self, forKey: .threshold)
-
-            rate = try container.decode(Double.self, forKey: .rate)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -127,11 +127,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
 
-            try? container.encodeIfPresent(cess, forKey: .cess)
-
             try? container.encodeIfPresent(threshold, forKey: .threshold)
 
             try? container.encodeIfPresent(rate, forKey: .rate)
+
+            try? container.encodeIfPresent(cess, forKey: .cess)
         }
     }
 }

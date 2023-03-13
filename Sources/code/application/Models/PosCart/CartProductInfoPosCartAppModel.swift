@@ -9,102 +9,102 @@ public extension ApplicationClient.PosCart {
     class CartProductInfo: Codable {
         public var quantity: Int?
 
-        public var discount: String?
-
         public var couponMessage: String?
+
+        public var pricePerUnit: ProductPriceInfo?
+
+        public var bulkOffer: [String: Any]?
+
+        public var availability: ProductAvailability?
 
         public var parentItemIdentifiers: [String: Any]?
 
         public var article: ProductArticle?
 
-        public var promoMeta: PromoMeta?
-
-        public var pricePerUnit: ProductPriceInfo?
-
         public var price: ProductPriceInfo?
-
-        public var promotionsApplied: [AppliedPromotion]?
-
-        public var product: CartProduct?
-
-        public var availability: ProductAvailability?
-
-        public var identifiers: CartProductIdentifer
-
-        public var isSet: Bool?
-
-        public var message: String?
 
         public var key: String?
 
-        public var bulkOffer: [String: Any]?
+        public var promoMeta: PromoMeta?
+
+        public var message: String?
+
+        public var product: CartProduct?
+
+        public var identifiers: CartProductIdentifer
+
+        public var discount: String?
+
+        public var isSet: Bool?
+
+        public var promotionsApplied: [AppliedPromotion]?
 
         public enum CodingKeys: String, CodingKey {
             case quantity
 
-            case discount
-
             case couponMessage = "coupon_message"
+
+            case pricePerUnit = "price_per_unit"
+
+            case bulkOffer = "bulk_offer"
+
+            case availability
 
             case parentItemIdentifiers = "parent_item_identifiers"
 
             case article
 
-            case promoMeta = "promo_meta"
-
-            case pricePerUnit = "price_per_unit"
-
             case price
-
-            case promotionsApplied = "promotions_applied"
-
-            case product
-
-            case availability
-
-            case identifiers
-
-            case isSet = "is_set"
-
-            case message
 
             case key
 
-            case bulkOffer = "bulk_offer"
+            case promoMeta = "promo_meta"
+
+            case message
+
+            case product
+
+            case identifiers
+
+            case discount
+
+            case isSet = "is_set"
+
+            case promotionsApplied = "promotions_applied"
         }
 
         public init(article: ProductArticle? = nil, availability: ProductAvailability? = nil, bulkOffer: [String: Any]? = nil, couponMessage: String? = nil, discount: String? = nil, identifiers: CartProductIdentifer, isSet: Bool? = nil, key: String? = nil, message: String? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ProductPriceInfo? = nil, pricePerUnit: ProductPriceInfo? = nil, product: CartProduct? = nil, promotionsApplied: [AppliedPromotion]? = nil, promoMeta: PromoMeta? = nil, quantity: Int? = nil) {
             self.quantity = quantity
 
-            self.discount = discount
-
             self.couponMessage = couponMessage
+
+            self.pricePerUnit = pricePerUnit
+
+            self.bulkOffer = bulkOffer
+
+            self.availability = availability
 
             self.parentItemIdentifiers = parentItemIdentifiers
 
             self.article = article
 
-            self.promoMeta = promoMeta
-
-            self.pricePerUnit = pricePerUnit
-
             self.price = price
-
-            self.promotionsApplied = promotionsApplied
-
-            self.product = product
-
-            self.availability = availability
-
-            self.identifiers = identifiers
-
-            self.isSet = isSet
-
-            self.message = message
 
             self.key = key
 
-            self.bulkOffer = bulkOffer
+            self.promoMeta = promoMeta
+
+            self.message = message
+
+            self.product = product
+
+            self.identifiers = identifiers
+
+            self.discount = discount
+
+            self.isSet = isSet
+
+            self.promotionsApplied = promotionsApplied
         }
 
         required public init(from decoder: Decoder) throws {
@@ -119,7 +119,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                discount = try container.decode(String.self, forKey: .discount)
+                couponMessage = try container.decode(String.self, forKey: .couponMessage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -127,7 +127,23 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                couponMessage = try container.decode(String.self, forKey: .couponMessage)
+                pricePerUnit = try container.decode(ProductPriceInfo.self, forKey: .pricePerUnit)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                bulkOffer = try container.decode([String: Any].self, forKey: .bulkOffer)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                availability = try container.decode(ProductAvailability.self, forKey: .availability)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -151,65 +167,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                promoMeta = try container.decode(PromoMeta.self, forKey: .promoMeta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pricePerUnit = try container.decode(ProductPriceInfo.self, forKey: .pricePerUnit)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 price = try container.decode(ProductPriceInfo.self, forKey: .price)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                promotionsApplied = try container.decode([AppliedPromotion].self, forKey: .promotionsApplied)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                product = try container.decode(CartProduct.self, forKey: .product)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                availability = try container.decode(ProductAvailability.self, forKey: .availability)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            identifiers = try container.decode(CartProductIdentifer.self, forKey: .identifiers)
-
-            do {
-                isSet = try container.decode(Bool.self, forKey: .isSet)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,7 +183,49 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                bulkOffer = try container.decode([String: Any].self, forKey: .bulkOffer)
+                promoMeta = try container.decode(PromoMeta.self, forKey: .promoMeta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                message = try container.decode(String.self, forKey: .message)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                product = try container.decode(CartProduct.self, forKey: .product)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            identifiers = try container.decode(CartProductIdentifer.self, forKey: .identifiers)
+
+            do {
+                discount = try container.decode(String.self, forKey: .discount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isSet = try container.decode(Bool.self, forKey: .isSet)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                promotionsApplied = try container.decode([AppliedPromotion].self, forKey: .promotionsApplied)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -238,35 +238,35 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(discount, forKey: .discount)
-
             try? container.encodeIfPresent(couponMessage, forKey: .couponMessage)
+
+            try? container.encodeIfPresent(pricePerUnit, forKey: .pricePerUnit)
+
+            try? container.encodeIfPresent(bulkOffer, forKey: .bulkOffer)
+
+            try? container.encodeIfPresent(availability, forKey: .availability)
 
             try? container.encodeIfPresent(parentItemIdentifiers, forKey: .parentItemIdentifiers)
 
             try? container.encodeIfPresent(article, forKey: .article)
 
-            try? container.encodeIfPresent(promoMeta, forKey: .promoMeta)
-
-            try? container.encodeIfPresent(pricePerUnit, forKey: .pricePerUnit)
-
             try? container.encodeIfPresent(price, forKey: .price)
-
-            try? container.encodeIfPresent(promotionsApplied, forKey: .promotionsApplied)
-
-            try? container.encodeIfPresent(product, forKey: .product)
-
-            try? container.encodeIfPresent(availability, forKey: .availability)
-
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
-
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
-
-            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(bulkOffer, forKey: .bulkOffer)
+            try? container.encodeIfPresent(promoMeta, forKey: .promoMeta)
+
+            try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(product, forKey: .product)
+
+            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+
+            try? container.encodeIfPresent(discount, forKey: .discount)
+
+            try? container.encodeIfPresent(isSet, forKey: .isSet)
+
+            try? container.encodeIfPresent(promotionsApplied, forKey: .promotionsApplied)
         }
     }
 }

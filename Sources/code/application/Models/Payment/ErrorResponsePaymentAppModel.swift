@@ -7,36 +7,40 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class ErrorResponse: Codable {
-        public var error: ErrorDescription?
-
         public var statusCode: Int
 
         public var message: String
 
+        public var error: ErrorDescription?
+
         public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case error
-
             case statusCode = "status_code"
 
             case message
+
+            case error
 
             case success
         }
 
         public init(error: ErrorDescription? = nil, message: String, statusCode: Int, success: Bool) {
-            self.error = error
-
             self.statusCode = statusCode
 
             self.message = message
+
+            self.error = error
 
             self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
+
+            message = try container.decode(String.self, forKey: .message)
 
             do {
                 error = try container.decode(ErrorDescription.self, forKey: .error)
@@ -46,21 +50,17 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            statusCode = try container.decode(Int.self, forKey: .statusCode)
-
-            message = try container.decode(String.self, forKey: .message)
-
             success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(error, forKey: .error)
-
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encode(error, forKey: .error)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }

@@ -11,9 +11,9 @@ public extension ApplicationClient.Catalog {
 
         public var uid: Int
 
-        public var childs: [Child]?
-
         public var slug: String
+
+        public var childs: [Child]?
 
         public var name: String
 
@@ -24,9 +24,9 @@ public extension ApplicationClient.Catalog {
 
             case uid
 
-            case childs
-
             case slug
+
+            case childs
 
             case name
 
@@ -38,9 +38,9 @@ public extension ApplicationClient.Catalog {
 
             self.uid = uid
 
-            self.childs = childs
-
             self.slug = slug
+
+            self.childs = childs
 
             self.name = name
 
@@ -54,6 +54,8 @@ public extension ApplicationClient.Catalog {
 
             uid = try container.decode(Int.self, forKey: .uid)
 
+            slug = try container.decode(String.self, forKey: .slug)
+
             do {
                 childs = try container.decode([Child].self, forKey: .childs)
 
@@ -61,8 +63,6 @@ public extension ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            slug = try container.decode(String.self, forKey: .slug)
 
             name = try container.decode(String.self, forKey: .name)
 
@@ -76,9 +76,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(childs, forKey: .childs)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(childs, forKey: .childs)
 
             try? container.encodeIfPresent(name, forKey: .name)
 

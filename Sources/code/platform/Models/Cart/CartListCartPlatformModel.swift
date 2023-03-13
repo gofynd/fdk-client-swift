@@ -9,45 +9,45 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class CartList: Codable {
-        public var itemCounts: String?
-
         public var cartId: String?
-
-        public var createdOn: String?
-
-        public var userId: String?
 
         public var cartValue: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case itemCounts = "item_counts"
+        public var createdOn: String?
 
+        public var itemCounts: String?
+
+        public var userId: String?
+
+        public enum CodingKeys: String, CodingKey {
             case cartId = "cart_id"
+
+            case cartValue = "cart_value"
 
             case createdOn = "created_on"
 
-            case userId = "user_id"
+            case itemCounts = "item_counts"
 
-            case cartValue = "cart_value"
+            case userId = "user_id"
         }
 
         public init(cartId: String? = nil, cartValue: String? = nil, createdOn: String? = nil, itemCounts: String? = nil, userId: String? = nil) {
-            self.itemCounts = itemCounts
-
             self.cartId = cartId
+
+            self.cartValue = cartValue
 
             self.createdOn = createdOn
 
-            self.userId = userId
+            self.itemCounts = itemCounts
 
-            self.cartValue = cartValue
+            self.userId = userId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemCounts = try container.decode(String.self, forKey: .itemCounts)
+                cartId = try container.decode(String.self, forKey: .cartId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                cartId = try container.decode(String.self, forKey: .cartId)
+                cartValue = try container.decode(String.self, forKey: .cartValue)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                itemCounts = try container.decode(String.self, forKey: .itemCounts)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                cartValue = try container.decode(String.self, forKey: .cartValue)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,15 +90,15 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemCounts, forKey: .itemCounts)
-
             try? container.encodeIfPresent(cartId, forKey: .cartId)
+
+            try? container.encodeIfPresent(cartValue, forKey: .cartValue)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
+            try? container.encodeIfPresent(itemCounts, forKey: .itemCounts)
 
-            try? container.encodeIfPresent(cartValue, forKey: .cartValue)
+            try? container.encodeIfPresent(userId, forKey: .userId)
         }
     }
 }
