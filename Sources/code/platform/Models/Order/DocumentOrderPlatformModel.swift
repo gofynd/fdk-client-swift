@@ -9,9 +9,9 @@ public extension PlatformClient.Order {
      */
 
     class Document: Codable {
-        public var url: String?
-
         public var legalName: String
+
+        public var url: String?
 
         public var value: String
 
@@ -20,9 +20,9 @@ public extension PlatformClient.Order {
         public var verified: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case url
-
             case legalName = "legal_name"
+
+            case url
 
             case value
 
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
         }
 
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
-            self.url = url
-
             self.legalName = legalName
+
+            self.url = url
 
             self.value = value
 
@@ -46,6 +46,8 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            legalName = try container.decode(String.self, forKey: .legalName)
+
             do {
                 url = try container.decode(String.self, forKey: .url)
 
@@ -53,8 +55,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            legalName = try container.decode(String.self, forKey: .legalName)
 
             value = try container.decode(String.self, forKey: .value)
 
@@ -66,9 +66,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(legalName, forKey: .legalName)
+
+            try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
@@ -86,9 +86,9 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Document: Codable {
-        public var url: String?
-
         public var legalName: String
+
+        public var url: String?
 
         public var value: String
 
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public var verified: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case url
-
             case legalName = "legal_name"
+
+            case url
 
             case value
 
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
-            self.url = url
-
             self.legalName = legalName
+
+            self.url = url
 
             self.value = value
 
@@ -123,6 +123,8 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            legalName = try container.decode(String.self, forKey: .legalName)
+
             do {
                 url = try container.decode(String.self, forKey: .url)
 
@@ -130,8 +132,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            legalName = try container.decode(String.self, forKey: .legalName)
 
             value = try container.decode(String.self, forKey: .value)
 
@@ -143,9 +143,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(legalName, forKey: .legalName)
+
+            try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(value, forKey: .value)
 

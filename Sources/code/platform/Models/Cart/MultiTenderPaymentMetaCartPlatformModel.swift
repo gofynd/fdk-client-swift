@@ -11,9 +11,9 @@ public extension PlatformClient.ApplicationClient.Cart {
     class MultiTenderPaymentMeta: Codable {
         public var paymentGateway: String?
 
-        public var currentStatus: String?
-
         public var paymentId: String?
+
+        public var currentStatus: String?
 
         public var orderId: String?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public enum CodingKeys: String, CodingKey {
             case paymentGateway = "payment_gateway"
 
-            case currentStatus = "current_status"
-
             case paymentId = "payment_id"
+
+            case currentStatus = "current_status"
 
             case orderId = "order_id"
 
@@ -34,9 +34,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil) {
             self.paymentGateway = paymentGateway
 
-            self.currentStatus = currentStatus
-
             self.paymentId = paymentId
+
+            self.currentStatus = currentStatus
 
             self.orderId = orderId
 
@@ -55,7 +55,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                currentStatus = try container.decode(String.self, forKey: .currentStatus)
+                paymentId = try container.decode(String.self, forKey: .paymentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                paymentId = try container.decode(String.self, forKey: .paymentId)
+                currentStatus = try container.decode(String.self, forKey: .currentStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encode(paymentGateway, forKey: .paymentGateway)
 
-            try? container.encode(currentStatus, forKey: .currentStatus)
-
             try? container.encode(paymentId, forKey: .paymentId)
+
+            try? container.encode(currentStatus, forKey: .currentStatus)
 
             try? container.encode(orderId, forKey: .orderId)
 

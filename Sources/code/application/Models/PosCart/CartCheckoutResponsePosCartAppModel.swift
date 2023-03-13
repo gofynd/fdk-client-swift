@@ -11,34 +11,34 @@ public extension ApplicationClient.PosCart {
 
         public var success: Bool?
 
-        public var appInterceptUrl: String?
-
-        public var paymentConfirmUrl: String?
+        public var cart: CheckCart?
 
         public var message: String?
 
         public var orderId: String?
 
-        public var callbackUrl: String?
+        public var paymentConfirmUrl: String?
 
-        public var cart: CheckCart?
+        public var appInterceptUrl: String?
+
+        public var callbackUrl: String?
 
         public enum CodingKeys: String, CodingKey {
             case data
 
             case success
 
-            case appInterceptUrl = "app_intercept_url"
-
-            case paymentConfirmUrl = "payment_confirm_url"
+            case cart
 
             case message
 
             case orderId = "order_id"
 
-            case callbackUrl = "callback_url"
+            case paymentConfirmUrl = "payment_confirm_url"
 
-            case cart
+            case appInterceptUrl = "app_intercept_url"
+
+            case callbackUrl = "callback_url"
         }
 
         public init(appInterceptUrl: String? = nil, callbackUrl: String? = nil, cart: CheckCart? = nil, data: [String: Any]? = nil, message: String? = nil, orderId: String? = nil, paymentConfirmUrl: String? = nil, success: Bool? = nil) {
@@ -46,17 +46,17 @@ public extension ApplicationClient.PosCart {
 
             self.success = success
 
-            self.appInterceptUrl = appInterceptUrl
-
-            self.paymentConfirmUrl = paymentConfirmUrl
+            self.cart = cart
 
             self.message = message
 
             self.orderId = orderId
 
-            self.callbackUrl = callbackUrl
+            self.paymentConfirmUrl = paymentConfirmUrl
 
-            self.cart = cart
+            self.appInterceptUrl = appInterceptUrl
+
+            self.callbackUrl = callbackUrl
         }
 
         required public init(from decoder: Decoder) throws {
@@ -79,15 +79,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                appInterceptUrl = try container.decode(String.self, forKey: .appInterceptUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                paymentConfirmUrl = try container.decode(String.self, forKey: .paymentConfirmUrl)
+                cart = try container.decode(CheckCart.self, forKey: .cart)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,7 +103,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+                paymentConfirmUrl = try container.decode(String.self, forKey: .paymentConfirmUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,7 +111,15 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                cart = try container.decode(CheckCart.self, forKey: .cart)
+                appInterceptUrl = try container.decode(String.self, forKey: .appInterceptUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,17 +134,17 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(appInterceptUrl, forKey: .appInterceptUrl)
-
-            try? container.encodeIfPresent(paymentConfirmUrl, forKey: .paymentConfirmUrl)
+            try? container.encodeIfPresent(cart, forKey: .cart)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
+            try? container.encodeIfPresent(paymentConfirmUrl, forKey: .paymentConfirmUrl)
 
-            try? container.encodeIfPresent(cart, forKey: .cart)
+            try? container.encodeIfPresent(appInterceptUrl, forKey: .appInterceptUrl)
+
+            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
         }
     }
 }

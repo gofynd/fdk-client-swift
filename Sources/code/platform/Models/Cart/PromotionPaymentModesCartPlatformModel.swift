@@ -9,24 +9,24 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class PromotionPaymentModes: Codable {
-        public var uses: PaymentAllowValue1?
-
         public var codes: [String]?
+
+        public var uses: PaymentAllowValue1?
 
         public var type: String
 
         public enum CodingKeys: String, CodingKey {
-            case uses
-
             case codes
+
+            case uses
 
             case type
         }
 
         public init(codes: [String]? = nil, type: String, uses: PaymentAllowValue1? = nil) {
-            self.uses = uses
-
             self.codes = codes
+
+            self.uses = uses
 
             self.type = type
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uses = try container.decode(PaymentAllowValue1.self, forKey: .uses)
+                codes = try container.decode([String].self, forKey: .codes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                codes = try container.decode([String].self, forKey: .codes)
+                uses = try container.decode(PaymentAllowValue1.self, forKey: .uses)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,9 +56,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uses, forKey: .uses)
-
             try? container.encodeIfPresent(codes, forKey: .codes)
+
+            try? container.encodeIfPresent(uses, forKey: .uses)
 
             try? container.encodeIfPresent(type, forKey: .type)
         }

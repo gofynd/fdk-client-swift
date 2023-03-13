@@ -11,32 +11,30 @@ public extension PlatformClient.Catalog {
     class ValidateIdentifier: Codable {
         public var gtinValue: String
 
-        public var gtinType: String
-
         public var primary: Bool?
+
+        public var gtinType: String
 
         public enum CodingKeys: String, CodingKey {
             case gtinValue = "gtin_value"
 
-            case gtinType = "gtin_type"
-
             case primary
+
+            case gtinType = "gtin_type"
         }
 
         public init(gtinType: String, gtinValue: String, primary: Bool? = nil) {
             self.gtinValue = gtinValue
 
-            self.gtinType = gtinType
-
             self.primary = primary
+
+            self.gtinType = gtinType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             gtinValue = try container.decode(String.self, forKey: .gtinValue)
-
-            gtinType = try container.decode(String.self, forKey: .gtinType)
 
             do {
                 primary = try container.decode(Bool.self, forKey: .primary)
@@ -45,6 +43,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            gtinType = try container.decode(String.self, forKey: .gtinType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(gtinValue, forKey: .gtinValue)
 
-            try? container.encodeIfPresent(gtinType, forKey: .gtinType)
-
             try? container.encodeIfPresent(primary, forKey: .primary)
+
+            try? container.encodeIfPresent(gtinType, forKey: .gtinType)
         }
     }
 }
@@ -68,32 +68,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ValidateIdentifier: Codable {
         public var gtinValue: String
 
-        public var gtinType: String
-
         public var primary: Bool?
+
+        public var gtinType: String
 
         public enum CodingKeys: String, CodingKey {
             case gtinValue = "gtin_value"
 
-            case gtinType = "gtin_type"
-
             case primary
+
+            case gtinType = "gtin_type"
         }
 
         public init(gtinType: String, gtinValue: String, primary: Bool? = nil) {
             self.gtinValue = gtinValue
 
-            self.gtinType = gtinType
-
             self.primary = primary
+
+            self.gtinType = gtinType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             gtinValue = try container.decode(String.self, forKey: .gtinValue)
-
-            gtinType = try container.decode(String.self, forKey: .gtinType)
 
             do {
                 primary = try container.decode(Bool.self, forKey: .primary)
@@ -102,6 +100,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            gtinType = try container.decode(String.self, forKey: .gtinType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(gtinValue, forKey: .gtinValue)
 
-            try? container.encodeIfPresent(gtinType, forKey: .gtinType)
-
             try? container.encodeIfPresent(primary, forKey: .primary)
+
+            try? container.encodeIfPresent(gtinType, forKey: .gtinType)
         }
     }
 }

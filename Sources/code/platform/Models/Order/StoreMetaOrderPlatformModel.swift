@@ -9,9 +9,9 @@ public extension PlatformClient.Order {
      */
 
     class StoreMeta: Codable {
-        public var displayName: String
+        public var einvoicePortalDetails: EInvoicePortalDetails?
 
-        public var additionalContactDetails: [String: Any]?
+        public var documents: StoreDocuments?
 
         public var gstCredentials: StoreGstCredentials
 
@@ -19,22 +19,22 @@ public extension PlatformClient.Order {
 
         public var productReturnConfig: [String: Any]?
 
-        public var gstNumber: String?
-
-        public var timing: [[String: Any]]?
-
-        public var documents: StoreDocuments?
+        public var displayName: String
 
         public var ewaybillPortalDetails: [String: Any]?
 
         public var notificationEmails: [String]?
 
-        public var einvoicePortalDetails: EInvoicePortalDetails?
+        public var additionalContactDetails: [String: Any]?
+
+        public var gstNumber: String?
+
+        public var timing: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
-            case displayName = "display_name"
+            case einvoicePortalDetails = "einvoice_portal_details"
 
-            case additionalContactDetails = "additional_contact_details"
+            case documents
 
             case gstCredentials = "gst_credentials"
 
@@ -42,23 +42,23 @@ public extension PlatformClient.Order {
 
             case productReturnConfig = "product_return_config"
 
-            case gstNumber = "gst_number"
-
-            case timing
-
-            case documents
+            case displayName = "display_name"
 
             case ewaybillPortalDetails = "ewaybill_portal_details"
 
             case notificationEmails = "notification_emails"
 
-            case einvoicePortalDetails = "einvoice_portal_details"
+            case additionalContactDetails = "additional_contact_details"
+
+            case gstNumber = "gst_number"
+
+            case timing
         }
 
         public init(additionalContactDetails: [String: Any]? = nil, displayName: String, documents: StoreDocuments? = nil, einvoicePortalDetails: EInvoicePortalDetails? = nil, ewaybillPortalDetails: [String: Any]? = nil, gstCredentials: StoreGstCredentials, gstNumber: String? = nil, notificationEmails: [String]? = nil, productReturnConfig: [String: Any]? = nil, stage: String, timing: [[String: Any]]? = nil) {
-            self.displayName = displayName
+            self.einvoicePortalDetails = einvoicePortalDetails
 
-            self.additionalContactDetails = additionalContactDetails
+            self.documents = documents
 
             self.gstCredentials = gstCredentials
 
@@ -66,26 +66,32 @@ public extension PlatformClient.Order {
 
             self.productReturnConfig = productReturnConfig
 
-            self.gstNumber = gstNumber
-
-            self.timing = timing
-
-            self.documents = documents
+            self.displayName = displayName
 
             self.ewaybillPortalDetails = ewaybillPortalDetails
 
             self.notificationEmails = notificationEmails
 
-            self.einvoicePortalDetails = einvoicePortalDetails
+            self.additionalContactDetails = additionalContactDetails
+
+            self.gstNumber = gstNumber
+
+            self.timing = timing
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            displayName = try container.decode(String.self, forKey: .displayName)
+            do {
+                einvoicePortalDetails = try container.decode(EInvoicePortalDetails.self, forKey: .einvoicePortalDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
-                additionalContactDetails = try container.decode([String: Any].self, forKey: .additionalContactDetails)
+                documents = try container.decode(StoreDocuments.self, forKey: .documents)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,6 +104,32 @@ public extension PlatformClient.Order {
 
             do {
                 productReturnConfig = try container.decode([String: Any].self, forKey: .productReturnConfig)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            displayName = try container.decode(String.self, forKey: .displayName)
+
+            do {
+                ewaybillPortalDetails = try container.decode([String: Any].self, forKey: .ewaybillPortalDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                additionalContactDetails = try container.decode([String: Any].self, forKey: .additionalContactDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,46 +151,14 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                documents = try container.decode(StoreDocuments.self, forKey: .documents)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                ewaybillPortalDetails = try container.decode([String: Any].self, forKey: .ewaybillPortalDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                einvoicePortalDetails = try container.decode(EInvoicePortalDetails.self, forKey: .einvoicePortalDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(einvoicePortalDetails, forKey: .einvoicePortalDetails)
 
-            try? container.encodeIfPresent(additionalContactDetails, forKey: .additionalContactDetails)
+            try? container.encodeIfPresent(documents, forKey: .documents)
 
             try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
 
@@ -166,17 +166,17 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
 
-            try? container.encodeIfPresent(gstNumber, forKey: .gstNumber)
-
-            try? container.encodeIfPresent(timing, forKey: .timing)
-
-            try? container.encodeIfPresent(documents, forKey: .documents)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(ewaybillPortalDetails, forKey: .ewaybillPortalDetails)
 
             try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
-            try? container.encodeIfPresent(einvoicePortalDetails, forKey: .einvoicePortalDetails)
+            try? container.encodeIfPresent(additionalContactDetails, forKey: .additionalContactDetails)
+
+            try? container.encodeIfPresent(gstNumber, forKey: .gstNumber)
+
+            try? container.encodeIfPresent(timing, forKey: .timing)
         }
     }
 }
@@ -188,9 +188,9 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class StoreMeta: Codable {
-        public var displayName: String
+        public var einvoicePortalDetails: EInvoicePortalDetails?
 
-        public var additionalContactDetails: [String: Any]?
+        public var documents: StoreDocuments?
 
         public var gstCredentials: StoreGstCredentials
 
@@ -198,22 +198,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var productReturnConfig: [String: Any]?
 
-        public var gstNumber: String?
-
-        public var timing: [[String: Any]]?
-
-        public var documents: StoreDocuments?
+        public var displayName: String
 
         public var ewaybillPortalDetails: [String: Any]?
 
         public var notificationEmails: [String]?
 
-        public var einvoicePortalDetails: EInvoicePortalDetails?
+        public var additionalContactDetails: [String: Any]?
+
+        public var gstNumber: String?
+
+        public var timing: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
-            case displayName = "display_name"
+            case einvoicePortalDetails = "einvoice_portal_details"
 
-            case additionalContactDetails = "additional_contact_details"
+            case documents
 
             case gstCredentials = "gst_credentials"
 
@@ -221,23 +221,23 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case productReturnConfig = "product_return_config"
 
-            case gstNumber = "gst_number"
-
-            case timing
-
-            case documents
+            case displayName = "display_name"
 
             case ewaybillPortalDetails = "ewaybill_portal_details"
 
             case notificationEmails = "notification_emails"
 
-            case einvoicePortalDetails = "einvoice_portal_details"
+            case additionalContactDetails = "additional_contact_details"
+
+            case gstNumber = "gst_number"
+
+            case timing
         }
 
         public init(additionalContactDetails: [String: Any]? = nil, displayName: String, documents: StoreDocuments? = nil, einvoicePortalDetails: EInvoicePortalDetails? = nil, ewaybillPortalDetails: [String: Any]? = nil, gstCredentials: StoreGstCredentials, gstNumber: String? = nil, notificationEmails: [String]? = nil, productReturnConfig: [String: Any]? = nil, stage: String, timing: [[String: Any]]? = nil) {
-            self.displayName = displayName
+            self.einvoicePortalDetails = einvoicePortalDetails
 
-            self.additionalContactDetails = additionalContactDetails
+            self.documents = documents
 
             self.gstCredentials = gstCredentials
 
@@ -245,26 +245,32 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.productReturnConfig = productReturnConfig
 
-            self.gstNumber = gstNumber
-
-            self.timing = timing
-
-            self.documents = documents
+            self.displayName = displayName
 
             self.ewaybillPortalDetails = ewaybillPortalDetails
 
             self.notificationEmails = notificationEmails
 
-            self.einvoicePortalDetails = einvoicePortalDetails
+            self.additionalContactDetails = additionalContactDetails
+
+            self.gstNumber = gstNumber
+
+            self.timing = timing
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            displayName = try container.decode(String.self, forKey: .displayName)
+            do {
+                einvoicePortalDetails = try container.decode(EInvoicePortalDetails.self, forKey: .einvoicePortalDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
-                additionalContactDetails = try container.decode([String: Any].self, forKey: .additionalContactDetails)
+                documents = try container.decode(StoreDocuments.self, forKey: .documents)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -277,6 +283,32 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 productReturnConfig = try container.decode([String: Any].self, forKey: .productReturnConfig)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            displayName = try container.decode(String.self, forKey: .displayName)
+
+            do {
+                ewaybillPortalDetails = try container.decode([String: Any].self, forKey: .ewaybillPortalDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                additionalContactDetails = try container.decode([String: Any].self, forKey: .additionalContactDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -298,46 +330,14 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                documents = try container.decode(StoreDocuments.self, forKey: .documents)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                ewaybillPortalDetails = try container.decode([String: Any].self, forKey: .ewaybillPortalDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                einvoicePortalDetails = try container.decode(EInvoicePortalDetails.self, forKey: .einvoicePortalDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(einvoicePortalDetails, forKey: .einvoicePortalDetails)
 
-            try? container.encodeIfPresent(additionalContactDetails, forKey: .additionalContactDetails)
+            try? container.encodeIfPresent(documents, forKey: .documents)
 
             try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
 
@@ -345,17 +345,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
 
-            try? container.encodeIfPresent(gstNumber, forKey: .gstNumber)
-
-            try? container.encodeIfPresent(timing, forKey: .timing)
-
-            try? container.encodeIfPresent(documents, forKey: .documents)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(ewaybillPortalDetails, forKey: .ewaybillPortalDetails)
 
             try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
-            try? container.encodeIfPresent(einvoicePortalDetails, forKey: .einvoicePortalDetails)
+            try? container.encodeIfPresent(additionalContactDetails, forKey: .additionalContactDetails)
+
+            try? container.encodeIfPresent(gstNumber, forKey: .gstNumber)
+
+            try? container.encodeIfPresent(timing, forKey: .timing)
         }
     }
 }

@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var name: String
 
-        public var rate: Double
-
         public var amount: [String: Any]
+
+        public var rate: Double
 
         public enum CodingKeys: String, CodingKey {
             case breakup
 
             case name
 
-            case rate
-
             case amount
+
+            case rate
         }
 
         public init(amount: [String: Any], breakup: [[String: Any]]? = nil, name: String, rate: Double) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.name = name
 
-            self.rate = rate
-
             self.amount = amount
+
+            self.rate = rate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,9 +50,9 @@ public extension PlatformClient.Order {
 
             name = try container.decode(String.self, forKey: .name)
 
-            rate = try container.decode(Double.self, forKey: .rate)
-
             amount = try container.decode([String: Any].self, forKey: .amount)
+
+            rate = try container.decode(Double.self, forKey: .rate)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,9 +62,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(rate, forKey: .rate)
-
             try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(rate, forKey: .rate)
         }
     }
 }
@@ -80,18 +80,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var name: String
 
-        public var rate: Double
-
         public var amount: [String: Any]
+
+        public var rate: Double
 
         public enum CodingKeys: String, CodingKey {
             case breakup
 
             case name
 
-            case rate
-
             case amount
+
+            case rate
         }
 
         public init(amount: [String: Any], breakup: [[String: Any]]? = nil, name: String, rate: Double) {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.name = name
 
-            self.rate = rate
-
             self.amount = amount
+
+            self.rate = rate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             name = try container.decode(String.self, forKey: .name)
 
-            rate = try container.decode(Double.self, forKey: .rate)
-
             amount = try container.decode([String: Any].self, forKey: .amount)
+
+            rate = try container.decode(Double.self, forKey: .rate)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(rate, forKey: .rate)
-
             try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(rate, forKey: .rate)
         }
     }
 }

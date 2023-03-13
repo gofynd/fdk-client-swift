@@ -12,6 +12,44 @@ public extension PlatformClient {
 
         /**
          *
+         * Summary: Create Product Bundle
+         * Description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+         **/
+        public func createProductBundle(
+            body: ProductBundleRequest,
+            onResponse: @escaping (_ response: GetProductBundleCreateResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/product-bundle/",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(GetProductBundleCreateResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
          * Summary: List all Product Bundles
          * Description: Get all product bundles for a particular company
          **/
@@ -62,17 +100,18 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Create Product Bundle
-         * Description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+         * Summary: Update a Product Bundle
+         * Description: Update a Product Bundle by its id. On successful request, returns the updated product bundle
          **/
-        public func createProductBundle(
-            body: ProductBundleRequest,
+        public func updateProductBundle(
+            id: String,
+            body: ProductBundleUpdateRequest,
             onResponse: @escaping (_ response: GetProductBundleCreateResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/product-bundle/",
+                method: "put",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/productBundle/\(id)/",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -139,18 +178,17 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Update a Product Bundle
-         * Description: Update a Product Bundle by its id. On successful request, returns the updated product bundle
+         * Summary: Create a size guide.
+         * Description: This API allows to create a size guide associated to a brand.
          **/
-        public func updateProductBundle(
-            id: String,
-            body: ProductBundleUpdateRequest,
-            onResponse: @escaping (_ response: GetProductBundleCreateResponse?, _ error: FDKError?) -> Void
+        public func createSizeGuide(
+            body: ValidateSizeGuide,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/productBundle/\(id)/",
+                method: "post",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -163,7 +201,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(GetProductBundleCreateResponse.self, from: data)
+                        let response = Utility.decode(SuccessResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -243,17 +281,18 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Create a size guide.
-         * Description: This API allows to create a size guide associated to a brand.
+         * Summary: Edit a size guide.
+         * Description: This API allows to edit a size guide.
          **/
-        public func createSizeGuide(
+        public func updateSizeGuide(
+            id: String,
             body: ValidateSizeGuide,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide",
+                method: "put",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide/\(id)/",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -306,45 +345,6 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(SizeGuideResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Edit a size guide.
-         * Description: This API allows to edit a size guide.
-         **/
-        public func updateSizeGuide(
-            id: String,
-            body: ValidateSizeGuide,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide/\(id)/",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -753,6 +753,44 @@ public extension PlatformClient {
 
         /**
          *
+         * Summary: Create the department.
+         * Description: Create departments using the API.
+         **/
+        public func createDepartments(
+            body: DepartmentCreateUpdate,
+            onResponse: @escaping (_ response: DepartmentCreateResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/departments/",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(DepartmentCreateResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
          * Summary: List all Departments.
          * Description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
          **/
@@ -823,17 +861,18 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Create the department.
-         * Description: Create departments using the API.
+         * Summary: Update the department by their uid.
+         * Description: Update the department by their uid using this API.
          **/
-        public func createDepartments(
+        public func updateDepartment(
+            uid: String,
             body: DepartmentCreateUpdate,
-            onResponse: @escaping (_ response: DepartmentCreateResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: DepartmentModel?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/departments/",
+                method: "put",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/departments/\(uid)/",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -846,7 +885,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(DepartmentCreateResponse.self, from: data)
+                        let response = Utility.decode(DepartmentModel.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -886,45 +925,6 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(DepartmentsResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Update the department by their uid.
-         * Description: Update the department by their uid using this API.
-         **/
-        public func updateDepartment(
-            uid: String,
-            body: DepartmentCreateUpdate,
-            onResponse: @escaping (_ response: DepartmentModel?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/departments/\(uid)/",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(DepartmentModel.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1220,6 +1220,44 @@ public extension PlatformClient {
 
         /**
          *
+         * Summary: Create a product export job.
+         * Description: This API helps to create a Inventory export job.
+         **/
+        public func createProductExportJob(
+            body: ProductTemplateDownloadsExport,
+            onResponse: @escaping (_ response: ProductDownloadsResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/downloads/",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ProductDownloadsResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
          * Summary: Allows you to list all product templates export list details
          * Description: Can view details including trigger data, task id , etc.
          **/
@@ -1280,17 +1318,18 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Create a product export job.
-         * Description: This API helps to create a Inventory export job.
+         * Summary: Update Product export job.
+         * Description: This API helps to update a Product export job.
          **/
-        public func createProductExportJob(
-            body: ProductTemplateDownloadsExport,
+        public func updateProductExportJob(
+            jobId: String,
+            body: ProductPartialExportRequest,
             onResponse: @escaping (_ response: ProductDownloadsResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/downloads/",
+                method: "put",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/downloads/\(jobId)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -1357,45 +1396,6 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Update Product export job.
-         * Description: This API helps to update a Product export job.
-         **/
-        public func updateProductExportJob(
-            jobId: String,
-            body: ProductPartialExportRequest,
-            onResponse: @escaping (_ response: ProductDownloadsResponse?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/downloads/\(jobId)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ProductDownloadsResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
          * Summary: Allows you to list all values for Templates, Brands or Type
          * Description: The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
          **/
@@ -1435,6 +1435,44 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ProductConfigurationDownloads.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Create product categories
+         * Description: This API lets user create product categories
+         **/
+        public func createCategories(
+            body: CategoryRequestBody,
+            onResponse: @escaping (_ response: CategoryCreateResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/category/",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CategoryCreateResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1514,17 +1552,18 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Create product categories
-         * Description: This API lets user create product categories
+         * Summary: Update product categories
+         * Description: Update a product category using this apu
          **/
-        public func createCategories(
+        public func updateCategory(
+            uid: String,
             body: CategoryRequestBody,
-            onResponse: @escaping (_ response: CategoryCreateResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CategoryUpdateResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/category/",
+                method: "put",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/category/\(uid)/",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -1537,7 +1576,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CategoryCreateResponse.self, from: data)
+                        let response = Utility.decode(CategoryUpdateResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1591,18 +1630,17 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Update product categories
-         * Description: Update a product category using this apu
+         * Summary: Create a product.
+         * Description: This API allows to create product.
          **/
-        public func updateCategory(
-            uid: String,
-            body: CategoryRequestBody,
-            onResponse: @escaping (_ response: CategoryUpdateResponse?, _ error: FDKError?) -> Void
+        public func createProduct(
+            body: ProductCreateUpdateSchemaV2,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/category/\(uid)/",
+                method: "post",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -1615,7 +1653,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CategoryUpdateResponse.self, from: data)
+                        let response = Utility.decode(SuccessResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1701,44 +1739,6 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ProductListingResponseV2.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Create a product.
-         * Description: This API allows to create product.
-         **/
-        public func createProduct(
-            body: ProductCreateUpdateSchemaV2,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1853,32 +1853,20 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get a single product.
-         * Description: This API helps to get data associated to a particular product.
+         * Summary: Edit a product.
+         * Description: This API allows to edit product.
          **/
-        public func getProduct(
+        public func editProduct(
             itemId: Int,
-            brandUid: Int?,
-            itemCode: String?,
-
-            onResponse: @escaping (_ response: SingleProductResponse?, _ error: FDKError?) -> Void
+            body: ProductCreateUpdateSchemaV2,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = brandUid {
-                xQuery["brand_uid"] = value
-            }
-
-            if let value = itemCode {
-                xQuery["item_code"] = value
-            }
-
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "put",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
-                query: xQuery,
-                body: nil,
+                query: nil,
+                body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -1889,7 +1877,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SingleProductResponse.self, from: data)
+                        let response = Utility.decode(SuccessResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1943,20 +1931,32 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Edit a product.
-         * Description: This API allows to edit product.
+         * Summary: Get a single product.
+         * Description: This API helps to get data associated to a particular product.
          **/
-        public func editProduct(
+        public func getProduct(
             itemId: Int,
-            body: ProductCreateUpdateSchemaV2,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            brandUid: Int?,
+            itemCode: String?,
+
+            onResponse: @escaping (_ response: SingleProductResponse?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = brandUid {
+                xQuery["brand_uid"] = value
+            }
+
+            if let value = itemCode {
+                xQuery["item_code"] = value
+            }
+
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "get",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
-                query: nil,
-                body: body.dictionary,
+                query: xQuery,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -1967,7 +1967,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(SingleProductResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -2114,6 +2114,44 @@ public extension PlatformClient {
 
         /**
          *
+         * Summary: Create a Bulk product to upload job.
+         * Description: This API helps to create a bulk products upload job.
+         **/
+        public func createBulkProductUploadJob(
+            body: BulkJob,
+            onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/bulk",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(BulkResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
          * Summary: Get a list of all bulk product upload jobs.
          * Description: This API helps to get bulk product upload jobs data.
          **/
@@ -2155,44 +2193,6 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ProductBulkRequestList.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Create a Bulk product to upload job.
-         * Description: This API helps to create a bulk products upload job.
-         **/
-        public func createBulkProductUploadJob(
-            body: BulkJob,
-            onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/bulk",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(BulkResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -2253,20 +2253,20 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Delete Bulk product job.
-         * Description: This API allows to delete bulk product job associated with company.
+         * Summary: Create products in bulk associated with given batch Id.
+         * Description: This API helps to create products in bulk push to kafka for approval/creation.
          **/
-        public func deleteProductBulkJob(
-            batchId: Int,
-
+        public func createProductsInBulk(
+            batchId: String,
+            body: BulkProductRequest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/bulk/\(batchId)",
                 query: nil,
-                body: nil,
+                body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -2292,20 +2292,20 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Create products in bulk associated with given batch Id.
-         * Description: This API helps to create products in bulk push to kafka for approval/creation.
+         * Summary: Delete Bulk product job.
+         * Description: This API allows to delete bulk product job associated with company.
          **/
-        public func createProductsInBulk(
-            batchId: String,
-            body: BulkProductRequest,
+        public func deleteProductBulkJob(
+            batchId: Int,
+
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/bulk/\(batchId)",
                 query: nil,
-                body: body.dictionary,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -2354,6 +2354,44 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ProductTagsViewResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Create a Bulk asset upload Job.
+         * Description: This API helps to create a bulk asset upload job.
+         **/
+        public func createProductAssetsInBulk(
+            body: ProductBulkAssets,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/assets/bulk/",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SuccessResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -2418,44 +2456,6 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Create a Bulk asset upload Job.
-         * Description: This API helps to create a bulk asset upload job.
-         **/
-        public func createProductAssetsInBulk(
-            body: ProductBulkAssets,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/assets/bulk/",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
          * Summary: Delete a Size associated with product.
          * Description: This API allows to delete size associated with product.
          **/
@@ -2482,6 +2482,46 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ProductSizeDeleteResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Add Inventory for particular size and store.
+         * Description: This API allows add Inventory for particular size and store.
+         **/
+        public func addInventory(
+            itemId: Int,
+            size: String,
+            body: InventoryRequest,
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SuccessResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -2544,46 +2584,6 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(InventoryResponsePaginated.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Add Inventory for particular size and store.
-         * Description: This API allows add Inventory for particular size and store.
-         **/
-        public func addInventory(
-            itemId: Int,
-            size: String,
-            body: InventoryRequest,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -2781,56 +2781,6 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get a list of all bulk Inventory upload jobs.
-         * Description: This API helps to get bulk Inventory upload jobs data.
-         **/
-        public func getInventoryBulkUploadHistory(
-            pageNo: Int?,
-            pageSize: Int?,
-
-            onResponse: @escaping (_ response: BulkInventoryGet?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(BulkInventoryGet.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
          * Summary: Create a Bulk Inventory upload Job.
          * Description: This API helps to create a bulk Inventory upload job.
          **/
@@ -2869,19 +2819,30 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Delete Bulk Inventory job.
-         * Description: This API allows to delete bulk Inventory job associated with company.
+         * Summary: Get a list of all bulk Inventory upload jobs.
+         * Description: This API helps to get bulk Inventory upload jobs data.
          **/
-        public func deleteBulkInventoryJob(
-            batchId: String,
+        public func getInventoryBulkUploadHistory(
+            pageNo: Int?,
+            pageSize: Int?,
 
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BulkInventoryGet?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/\(batchId)/",
-                query: nil,
+                method: "get",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/",
+                query: xQuery,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
@@ -2893,7 +2854,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(BulkInventoryGet.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -2947,6 +2908,83 @@ public extension PlatformClient {
 
         /**
          *
+         * Summary: Delete Bulk Inventory job.
+         * Description: This API allows to delete bulk Inventory job associated with company.
+         **/
+        public func deleteBulkInventoryJob(
+            batchId: String,
+
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "delete",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/\(batchId)/",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Create a Inventory export Job.
+         * Description: This API helps to create a Inventory export job.
+         **/
+        public func createInventoryExportJob(
+            body: InventoryExportRequest,
+            onResponse: @escaping (_ response: InventoryExportResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/download/",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(InventoryExportResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
          * Summary: Get Inventory export history.
          * Description: This API helps to get Inventory export history.
          **/
@@ -2984,17 +3022,17 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Create a Inventory export Job.
+         * Summary: Create an inventory export job.
          * Description: This API helps to create a Inventory export job.
          **/
-        public func createInventoryExportJob(
-            body: InventoryExportRequest,
+        public func createInventoryExport(
+            body: InventoryCreateRequest,
             onResponse: @escaping (_ response: InventoryExportResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/download/",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/inventory/download/",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -3082,17 +3120,18 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Create an inventory export job.
-         * Description: This API helps to create a Inventory export job.
+         * Summary: Update the status and the notification email of the running export jobs.
+         * Description: This API helps to update the status and the notification email of the running export jobs.
          **/
-        public func createInventoryExport(
-            body: InventoryCreateRequest,
-            onResponse: @escaping (_ response: InventoryExportResponse?, _ error: FDKError?) -> Void
+        public func updateInventoryExportJob(
+            jobId: String,
+            body: InventoryPartialExportRequest,
+            onResponse: @escaping (_ response: InventoryExportCreateResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/inventory/download/",
+                method: "put",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/inventory/download/\(jobId)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -3105,7 +3144,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(InventoryExportResponse.self, from: data)
+                        let response = Utility.decode(InventoryExportCreateResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -3145,45 +3184,6 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(InventoryJobDetailResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Update the status and the notification email of the running export jobs.
-         * Description: This API helps to update the status and the notification email of the running export jobs.
-         **/
-        public func updateInventoryExportJob(
-            jobId: String,
-            body: InventoryPartialExportRequest,
-            onResponse: @escaping (_ response: InventoryExportCreateResponse?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/inventory/download/\(jobId)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(InventoryExportCreateResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -3246,46 +3246,6 @@ public extension PlatformClient {
          * Summary: Add Inventory for particular size and store.
          * Description: This API allows add Inventory for particular size and store.
          **/
-        public func deleteRealtimeInventory(
-            itemId: Int,
-            sellerIdentifier: String,
-            body: InventoryRequestSchemaV2,
-            onResponse: @escaping (_ response: InventoryUpdateResponse?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "delete",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/inventory/\(sellerIdentifier)/",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(InventoryUpdateResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Add Inventory for particular size and store.
-         * Description: This API allows add Inventory for particular size and store.
-         **/
         public func updateRealtimeInventory(
             itemId: Int,
             sellerIdentifier: String,
@@ -3309,6 +3269,46 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(SuccessResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Add Inventory for particular size and store.
+         * Description: This API allows add Inventory for particular size and store.
+         **/
+        public func deleteRealtimeInventory(
+            itemId: Int,
+            sellerIdentifier: String,
+            body: InventoryRequestSchemaV2,
+            onResponse: @escaping (_ response: InventoryUpdateResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "delete",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/inventory/\(sellerIdentifier)/",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(InventoryUpdateResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -3361,20 +3361,20 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Fetch Hsn Code.
-         * Description: Fetch Hsn Code.
+         * Summary: Update Hsn Code.
+         * Description: Update Hsn Code.
          **/
-        public func getHsnCode(
+        public func updateHsnCode(
             id: String,
-
+            body: HsnUpsert,
             onResponse: @escaping (_ response: HsnCode?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "put",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/\(id)/",
                 query: nil,
-                body: nil,
+                body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -3400,20 +3400,20 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Update Hsn Code.
-         * Description: Update Hsn Code.
+         * Summary: Fetch Hsn Code.
+         * Description: Fetch Hsn Code.
          **/
-        public func updateHsnCode(
+        public func getHsnCode(
             id: String,
-            body: HsnUpsert,
+
             onResponse: @escaping (_ response: HsnCode?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "get",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/\(id)/",
                 query: nil,
-                body: body.dictionary,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in

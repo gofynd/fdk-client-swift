@@ -9,27 +9,27 @@ public extension PlatformClient.Catalog {
      */
 
     class InventoryPartialExportRequest: Codable {
-        public var notificationEmails: [String]?
-
         public var status: [String: Any]?
 
-        public enum CodingKeys: String, CodingKey {
-            case notificationEmails = "notification_emails"
+        public var notificationEmails: [String]?
 
+        public enum CodingKeys: String, CodingKey {
             case status
+
+            case notificationEmails = "notification_emails"
         }
 
         public init(notificationEmails: [String]? = nil, status: [String: Any]? = nil) {
-            self.notificationEmails = notificationEmails
-
             self.status = status
+
+            self.notificationEmails = notificationEmails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
+                status = try container.decode([String: Any].self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                status = try container.decode([String: Any].self, forKey: .status)
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
         }
     }
 }
@@ -62,27 +62,27 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class InventoryPartialExportRequest: Codable {
-        public var notificationEmails: [String]?
-
         public var status: [String: Any]?
 
-        public enum CodingKeys: String, CodingKey {
-            case notificationEmails = "notification_emails"
+        public var notificationEmails: [String]?
 
+        public enum CodingKeys: String, CodingKey {
             case status
+
+            case notificationEmails = "notification_emails"
         }
 
         public init(notificationEmails: [String]? = nil, status: [String: Any]? = nil) {
-            self.notificationEmails = notificationEmails
-
             self.status = status
+
+            self.notificationEmails = notificationEmails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
+                status = try container.decode([String: Any].self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                status = try container.decode([String: Any].self, forKey: .status)
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
         }
     }
 }

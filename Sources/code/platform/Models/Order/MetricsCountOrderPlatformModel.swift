@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class MetricsCount: Codable {
         public var text: String
 
-        public var key: String
-
         public var value: Int
+
+        public var key: String
 
         public var options: [Options]?
 
         public enum CodingKeys: String, CodingKey {
             case text
 
-            case key
-
             case value
+
+            case key
 
             case options
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(key: String, options: [Options]? = nil, text: String, value: Int) {
             self.text = text
 
-            self.key = key
-
             self.value = value
+
+            self.key = key
 
             self.options = options
         }
@@ -42,9 +42,9 @@ public extension PlatformClient.Order {
 
             text = try container.decode(String.self, forKey: .text)
 
-            key = try container.decode(String.self, forKey: .key)
-
             value = try container.decode(Int.self, forKey: .value)
+
+            key = try container.decode(String.self, forKey: .key)
 
             do {
                 options = try container.decode([Options].self, forKey: .options)
@@ -60,9 +60,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(options, forKey: .options)
         }
@@ -78,18 +78,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class MetricsCount: Codable {
         public var text: String
 
-        public var key: String
-
         public var value: Int
+
+        public var key: String
 
         public var options: [Options]?
 
         public enum CodingKeys: String, CodingKey {
             case text
 
-            case key
-
             case value
+
+            case key
 
             case options
         }
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(key: String, options: [Options]? = nil, text: String, value: Int) {
             self.text = text
 
-            self.key = key
-
             self.value = value
+
+            self.key = key
 
             self.options = options
         }
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             text = try container.decode(String.self, forKey: .text)
 
-            key = try container.decode(String.self, forKey: .key)
-
             value = try container.decode(Int.self, forKey: .value)
+
+            key = try container.decode(String.self, forKey: .key)
 
             do {
                 options = try container.decode([Options].self, forKey: .options)
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(options, forKey: .options)
         }
