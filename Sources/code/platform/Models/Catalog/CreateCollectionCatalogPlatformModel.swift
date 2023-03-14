@@ -9,209 +9,167 @@ public extension PlatformClient.Catalog {
      */
 
     class CreateCollection: Codable {
-        public var query: [CollectionQuery]?
-
-        public var createdBy: UserInfo?
-
-        public var tags: [String]?
-
         public var type: String
 
-        public var description: String?
-
-        public var slug: String
-
-        public var seo: SeoDetail?
-
-        public var priority: Int?
+        public var tags: [String]?
 
         public var allowFacets: Bool?
 
         public var badge: CollectionBadge?
 
-        public var allowSort: Bool?
+        public var logo: CollectionImage
 
-        public var isActive: Bool?
-
-        public var meta: [String: Any]?
+        public var createdBy: UserInfo?
 
         public var published: Bool?
 
-        public var logo: CollectionImage
+        public var schedule: CollectionSchedule?
+
+        public var banners: CollectionBanner
+
+        public var description: String?
+
+        public var sortOn: String?
+
+        public var appId: String
+
+        public var query: [CollectionQuery]?
+
+        public var isActive: Bool?
 
         public var customJson: [String: Any]?
 
         public var localeLanguage: [String: Any]?
 
-        public var banners: CollectionBanner
+        public var slug: String
 
-        public var modifiedBy: UserInfo?
+        public var allowSort: Bool?
 
-        public var visibleFacetsKeys: [String]?
+        public var meta: [String: Any]?
 
-        public var schedule: CollectionSchedule?
-
-        public var name: String
-
-        public var appId: String
-
-        public var sortOn: String?
+        public var priority: Int?
 
         public var isVisible: Bool?
 
+        public var modifiedBy: UserInfo?
+
+        public var seo: SeoDetail?
+
+        public var name: String
+
+        public var visibleFacetsKeys: [String]?
+
         public enum CodingKeys: String, CodingKey {
-            case query
-
-            case createdBy = "created_by"
-
-            case tags
-
             case type
 
-            case description
-
-            case slug
-
-            case seo
-
-            case priority
+            case tags
 
             case allowFacets = "allow_facets"
 
             case badge
 
-            case allowSort = "allow_sort"
+            case logo
 
-            case isActive = "is_active"
-
-            case meta
+            case createdBy = "created_by"
 
             case published
 
-            case logo
+            case schedule = "_schedule"
+
+            case banners
+
+            case description
+
+            case sortOn = "sort_on"
+
+            case appId = "app_id"
+
+            case query
+
+            case isActive = "is_active"
 
             case customJson = "_custom_json"
 
             case localeLanguage = "_locale_language"
 
-            case banners
+            case slug
+
+            case allowSort = "allow_sort"
+
+            case meta
+
+            case priority
+
+            case isVisible = "is_visible"
 
             case modifiedBy = "modified_by"
 
-            case visibleFacetsKeys = "visible_facets_keys"
-
-            case schedule = "_schedule"
+            case seo
 
             case name
 
-            case appId = "app_id"
-
-            case sortOn = "sort_on"
-
-            case isVisible = "is_visible"
+            case visibleFacetsKeys = "visible_facets_keys"
         }
 
         public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String, badge: CollectionBadge? = nil, banners: CollectionBanner, createdBy: UserInfo? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: CollectionImage, meta: [String: Any]? = nil, modifiedBy: UserInfo? = nil, name: String, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String, sortOn: String? = nil, tags: [String]? = nil, type: String, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
-            self.query = query
-
-            self.createdBy = createdBy
-
-            self.tags = tags
-
             self.type = type
 
-            self.description = description
-
-            self.slug = slug
-
-            self.seo = seo
-
-            self.priority = priority
+            self.tags = tags
 
             self.allowFacets = allowFacets
 
             self.badge = badge
 
-            self.allowSort = allowSort
+            self.logo = logo
 
-            self.isActive = isActive
-
-            self.meta = meta
+            self.createdBy = createdBy
 
             self.published = published
 
-            self.logo = logo
+            self.schedule = schedule
+
+            self.banners = banners
+
+            self.description = description
+
+            self.sortOn = sortOn
+
+            self.appId = appId
+
+            self.query = query
+
+            self.isActive = isActive
 
             self.customJson = customJson
 
             self.localeLanguage = localeLanguage
 
-            self.banners = banners
+            self.slug = slug
+
+            self.allowSort = allowSort
+
+            self.meta = meta
+
+            self.priority = priority
+
+            self.isVisible = isVisible
 
             self.modifiedBy = modifiedBy
 
-            self.visibleFacetsKeys = visibleFacetsKeys
-
-            self.schedule = schedule
+            self.seo = seo
 
             self.name = name
 
-            self.appId = appId
-
-            self.sortOn = sortOn
-
-            self.isVisible = isVisible
+            self.visibleFacetsKeys = visibleFacetsKeys
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                query = try container.decode([CollectionQuery].self, forKey: .query)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                tags = try container.decode([String].self, forKey: .tags)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             type = try container.decode(String.self, forKey: .type)
 
             do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            slug = try container.decode(String.self, forKey: .slug)
-
-            do {
-                seo = try container.decode(SeoDetail.self, forKey: .seo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                priority = try container.decode(Int.self, forKey: .priority)
+                tags = try container.decode([String].self, forKey: .tags)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -234,24 +192,10 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                allowSort = try container.decode(Bool.self, forKey: .allowSort)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            logo = try container.decode(CollectionImage.self, forKey: .logo)
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -266,7 +210,49 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            logo = try container.decode(CollectionImage.self, forKey: .logo)
+            do {
+                schedule = try container.decode(CollectionSchedule.self, forKey: .schedule)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            banners = try container.decode(CollectionBanner.self, forKey: .banners)
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sortOn = try container.decode(String.self, forKey: .sortOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            appId = try container.decode(String.self, forKey: .appId)
+
+            do {
+                query = try container.decode([CollectionQuery].self, forKey: .query)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
@@ -284,10 +270,10 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            banners = try container.decode(CollectionBanner.self, forKey: .banners)
+            slug = try container.decode(String.self, forKey: .slug)
 
             do {
-                modifiedBy = try container.decode(UserInfo.self, forKey: .modifiedBy)
+                allowSort = try container.decode(Bool.self, forKey: .allowSort)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -295,7 +281,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -303,19 +289,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                schedule = try container.decode(CollectionSchedule.self, forKey: .schedule)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            name = try container.decode(String.self, forKey: .name)
-
-            appId = try container.decode(String.self, forKey: .appId)
-
-            do {
-                sortOn = try container.decode(String.self, forKey: .sortOn)
+                priority = try container.decode(Int.self, forKey: .priority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -329,60 +303,86 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                modifiedBy = try container.decode(UserInfo.self, forKey: .modifiedBy)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                seo = try container.decode(SeoDetail.self, forKey: .seo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
+
+            do {
+                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(query, forKey: .query)
-
-            try? container.encode(createdBy, forKey: .createdBy)
-
-            try? container.encodeIfPresent(tags, forKey: .tags)
-
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(seo, forKey: .seo)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(tags, forKey: .tags)
 
             try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
 
             try? container.encodeIfPresent(badge, forKey: .badge)
 
-            try? container.encodeIfPresent(allowSort, forKey: .allowSort)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encode(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(published, forKey: .published)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+
+            try? container.encodeIfPresent(banners, forKey: .banners)
+
+            try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
+
+            try? container.encodeIfPresent(query, forKey: .query)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
 
-            try? container.encodeIfPresent(banners, forKey: .banners)
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(allowSort, forKey: .allowSort)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(isVisible, forKey: .isVisible)
 
             try? container.encode(modifiedBy, forKey: .modifiedBy)
 
-            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
-
-            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            try? container.encodeIfPresent(seo, forKey: .seo)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
-            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
-
-            try? container.encodeIfPresent(isVisible, forKey: .isVisible)
+            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
         }
     }
 }
@@ -394,209 +394,167 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class CreateCollection: Codable {
-        public var query: [CollectionQuery]?
-
-        public var createdBy: UserInfo?
-
-        public var tags: [String]?
-
         public var type: String
 
-        public var description: String?
-
-        public var slug: String
-
-        public var seo: SeoDetail?
-
-        public var priority: Int?
+        public var tags: [String]?
 
         public var allowFacets: Bool?
 
         public var badge: CollectionBadge?
 
-        public var allowSort: Bool?
+        public var logo: CollectionImage
 
-        public var isActive: Bool?
-
-        public var meta: [String: Any]?
+        public var createdBy: UserInfo?
 
         public var published: Bool?
 
-        public var logo: CollectionImage
+        public var schedule: CollectionSchedule?
+
+        public var banners: CollectionBanner
+
+        public var description: String?
+
+        public var sortOn: String?
+
+        public var appId: String
+
+        public var query: [CollectionQuery]?
+
+        public var isActive: Bool?
 
         public var customJson: [String: Any]?
 
         public var localeLanguage: [String: Any]?
 
-        public var banners: CollectionBanner
+        public var slug: String
 
-        public var modifiedBy: UserInfo?
+        public var allowSort: Bool?
 
-        public var visibleFacetsKeys: [String]?
+        public var meta: [String: Any]?
 
-        public var schedule: CollectionSchedule?
-
-        public var name: String
-
-        public var appId: String
-
-        public var sortOn: String?
+        public var priority: Int?
 
         public var isVisible: Bool?
 
+        public var modifiedBy: UserInfo?
+
+        public var seo: SeoDetail?
+
+        public var name: String
+
+        public var visibleFacetsKeys: [String]?
+
         public enum CodingKeys: String, CodingKey {
-            case query
-
-            case createdBy = "created_by"
-
-            case tags
-
             case type
 
-            case description
-
-            case slug
-
-            case seo
-
-            case priority
+            case tags
 
             case allowFacets = "allow_facets"
 
             case badge
 
-            case allowSort = "allow_sort"
+            case logo
 
-            case isActive = "is_active"
-
-            case meta
+            case createdBy = "created_by"
 
             case published
 
-            case logo
+            case schedule = "_schedule"
+
+            case banners
+
+            case description
+
+            case sortOn = "sort_on"
+
+            case appId = "app_id"
+
+            case query
+
+            case isActive = "is_active"
 
             case customJson = "_custom_json"
 
             case localeLanguage = "_locale_language"
 
-            case banners
+            case slug
+
+            case allowSort = "allow_sort"
+
+            case meta
+
+            case priority
+
+            case isVisible = "is_visible"
 
             case modifiedBy = "modified_by"
 
-            case visibleFacetsKeys = "visible_facets_keys"
-
-            case schedule = "_schedule"
+            case seo
 
             case name
 
-            case appId = "app_id"
-
-            case sortOn = "sort_on"
-
-            case isVisible = "is_visible"
+            case visibleFacetsKeys = "visible_facets_keys"
         }
 
         public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String, badge: CollectionBadge? = nil, banners: CollectionBanner, createdBy: UserInfo? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: CollectionImage, meta: [String: Any]? = nil, modifiedBy: UserInfo? = nil, name: String, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String, sortOn: String? = nil, tags: [String]? = nil, type: String, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
-            self.query = query
-
-            self.createdBy = createdBy
-
-            self.tags = tags
-
             self.type = type
 
-            self.description = description
-
-            self.slug = slug
-
-            self.seo = seo
-
-            self.priority = priority
+            self.tags = tags
 
             self.allowFacets = allowFacets
 
             self.badge = badge
 
-            self.allowSort = allowSort
+            self.logo = logo
 
-            self.isActive = isActive
-
-            self.meta = meta
+            self.createdBy = createdBy
 
             self.published = published
 
-            self.logo = logo
+            self.schedule = schedule
+
+            self.banners = banners
+
+            self.description = description
+
+            self.sortOn = sortOn
+
+            self.appId = appId
+
+            self.query = query
+
+            self.isActive = isActive
 
             self.customJson = customJson
 
             self.localeLanguage = localeLanguage
 
-            self.banners = banners
+            self.slug = slug
+
+            self.allowSort = allowSort
+
+            self.meta = meta
+
+            self.priority = priority
+
+            self.isVisible = isVisible
 
             self.modifiedBy = modifiedBy
 
-            self.visibleFacetsKeys = visibleFacetsKeys
-
-            self.schedule = schedule
+            self.seo = seo
 
             self.name = name
 
-            self.appId = appId
-
-            self.sortOn = sortOn
-
-            self.isVisible = isVisible
+            self.visibleFacetsKeys = visibleFacetsKeys
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                query = try container.decode([CollectionQuery].self, forKey: .query)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                tags = try container.decode([String].self, forKey: .tags)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             type = try container.decode(String.self, forKey: .type)
 
             do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            slug = try container.decode(String.self, forKey: .slug)
-
-            do {
-                seo = try container.decode(SeoDetail.self, forKey: .seo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                priority = try container.decode(Int.self, forKey: .priority)
+                tags = try container.decode([String].self, forKey: .tags)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -619,24 +577,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                allowSort = try container.decode(Bool.self, forKey: .allowSort)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            logo = try container.decode(CollectionImage.self, forKey: .logo)
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -651,7 +595,49 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            logo = try container.decode(CollectionImage.self, forKey: .logo)
+            do {
+                schedule = try container.decode(CollectionSchedule.self, forKey: .schedule)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            banners = try container.decode(CollectionBanner.self, forKey: .banners)
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sortOn = try container.decode(String.self, forKey: .sortOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            appId = try container.decode(String.self, forKey: .appId)
+
+            do {
+                query = try container.decode([CollectionQuery].self, forKey: .query)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
@@ -669,10 +655,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            banners = try container.decode(CollectionBanner.self, forKey: .banners)
+            slug = try container.decode(String.self, forKey: .slug)
 
             do {
-                modifiedBy = try container.decode(UserInfo.self, forKey: .modifiedBy)
+                allowSort = try container.decode(Bool.self, forKey: .allowSort)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -680,7 +666,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -688,19 +674,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                schedule = try container.decode(CollectionSchedule.self, forKey: .schedule)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            name = try container.decode(String.self, forKey: .name)
-
-            appId = try container.decode(String.self, forKey: .appId)
-
-            do {
-                sortOn = try container.decode(String.self, forKey: .sortOn)
+                priority = try container.decode(Int.self, forKey: .priority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -714,60 +688,86 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                modifiedBy = try container.decode(UserInfo.self, forKey: .modifiedBy)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                seo = try container.decode(SeoDetail.self, forKey: .seo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
+
+            do {
+                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(query, forKey: .query)
-
-            try? container.encode(createdBy, forKey: .createdBy)
-
-            try? container.encodeIfPresent(tags, forKey: .tags)
-
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(seo, forKey: .seo)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(tags, forKey: .tags)
 
             try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
 
             try? container.encodeIfPresent(badge, forKey: .badge)
 
-            try? container.encodeIfPresent(allowSort, forKey: .allowSort)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encode(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(published, forKey: .published)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+
+            try? container.encodeIfPresent(banners, forKey: .banners)
+
+            try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
+
+            try? container.encodeIfPresent(query, forKey: .query)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
 
-            try? container.encodeIfPresent(banners, forKey: .banners)
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(allowSort, forKey: .allowSort)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(isVisible, forKey: .isVisible)
 
             try? container.encode(modifiedBy, forKey: .modifiedBy)
 
-            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
-
-            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            try? container.encodeIfPresent(seo, forKey: .seo)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
-            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
-
-            try? container.encodeIfPresent(isVisible, forKey: .isVisible)
+            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
         }
     }
 }

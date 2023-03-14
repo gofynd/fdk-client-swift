@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var endDate: String
 
-        public var mobile: Int
-
         public var startDate: String
+
+        public var mobile: Int
 
         public enum CodingKeys: String, CodingKey {
             case orderDetails = "order_details"
 
             case endDate = "end_date"
 
-            case mobile
-
             case startDate = "start_date"
+
+            case mobile
         }
 
         public init(endDate: String, mobile: Int, orderDetails: [FyndOrderIdList]? = nil, startDate: String) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.endDate = endDate
 
-            self.mobile = mobile
-
             self.startDate = startDate
+
+            self.mobile = mobile
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,9 +50,9 @@ public extension PlatformClient.Order {
 
             endDate = try container.decode(String.self, forKey: .endDate)
 
-            mobile = try container.decode(Int.self, forKey: .mobile)
-
             startDate = try container.decode(String.self, forKey: .startDate)
+
+            mobile = try container.decode(Int.self, forKey: .mobile)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,9 +62,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(endDate, forKey: .endDate)
 
-            try? container.encodeIfPresent(mobile, forKey: .mobile)
-
             try? container.encodeIfPresent(startDate, forKey: .startDate)
+
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
         }
     }
 }
@@ -80,18 +80,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var endDate: String
 
-        public var mobile: Int
-
         public var startDate: String
+
+        public var mobile: Int
 
         public enum CodingKeys: String, CodingKey {
             case orderDetails = "order_details"
 
             case endDate = "end_date"
 
-            case mobile
-
             case startDate = "start_date"
+
+            case mobile
         }
 
         public init(endDate: String, mobile: Int, orderDetails: [FyndOrderIdList]? = nil, startDate: String) {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.endDate = endDate
 
-            self.mobile = mobile
-
             self.startDate = startDate
+
+            self.mobile = mobile
         }
 
         required public init(from decoder: Decoder) throws {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             endDate = try container.decode(String.self, forKey: .endDate)
 
-            mobile = try container.decode(Int.self, forKey: .mobile)
-
             startDate = try container.decode(String.self, forKey: .startDate)
+
+            mobile = try container.decode(Int.self, forKey: .mobile)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(endDate, forKey: .endDate)
 
-            try? container.encodeIfPresent(mobile, forKey: .mobile)
-
             try? container.encodeIfPresent(startDate, forKey: .startDate)
+
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
         }
     }
 }

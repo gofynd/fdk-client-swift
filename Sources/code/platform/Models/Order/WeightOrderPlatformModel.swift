@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class Weight: Codable {
         public var isDefault: Bool?
 
-        public var shipping: Int?
-
         public var unit: String?
+
+        public var shipping: Int?
 
         public enum CodingKeys: String, CodingKey {
             case isDefault = "is_default"
 
-            case shipping
-
             case unit
+
+            case shipping
         }
 
         public init(isDefault: Bool? = nil, shipping: Int? = nil, unit: String? = nil) {
             self.isDefault = isDefault
 
-            self.shipping = shipping
-
             self.unit = unit
+
+            self.shipping = shipping
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                shipping = try container.decode(Int.self, forKey: .shipping)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                shipping = try container.decode(Int.self, forKey: .shipping)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(shipping, forKey: .shipping)
-
             try? container.encodeIfPresent(unit, forKey: .unit)
+
+            try? container.encodeIfPresent(shipping, forKey: .shipping)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class Weight: Codable {
         public var isDefault: Bool?
 
-        public var shipping: Int?
-
         public var unit: String?
+
+        public var shipping: Int?
 
         public enum CodingKeys: String, CodingKey {
             case isDefault = "is_default"
 
-            case shipping
-
             case unit
+
+            case shipping
         }
 
         public init(isDefault: Bool? = nil, shipping: Int? = nil, unit: String? = nil) {
             self.isDefault = isDefault
 
-            self.shipping = shipping
-
             self.unit = unit
+
+            self.shipping = shipping
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                shipping = try container.decode(Int.self, forKey: .shipping)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                shipping = try container.decode(Int.self, forKey: .shipping)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(shipping, forKey: .shipping)
-
             try? container.encodeIfPresent(unit, forKey: .unit)
+
+            try? container.encodeIfPresent(shipping, forKey: .shipping)
         }
     }
 }
