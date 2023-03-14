@@ -11,18 +11,18 @@ public extension PlatformClient.Catalog {
     class PageResponseType: Codable {
         public var next: Int
 
-        public var totalCount: Int
-
         public var hasNext: Bool
+
+        public var totalCount: Int
 
         public var current: Int
 
         public enum CodingKeys: String, CodingKey {
             case next
 
-            case totalCount = "total_count"
-
             case hasNext = "has_next"
+
+            case totalCount = "total_count"
 
             case current
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
         public init(current: Int, hasNext: Bool, next: Int, totalCount: Int) {
             self.next = next
 
-            self.totalCount = totalCount
-
             self.hasNext = hasNext
+
+            self.totalCount = totalCount
 
             self.current = current
         }
@@ -42,9 +42,9 @@ public extension PlatformClient.Catalog {
 
             next = try container.decode(Int.self, forKey: .next)
 
-            totalCount = try container.decode(Int.self, forKey: .totalCount)
-
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
+
+            totalCount = try container.decode(Int.self, forKey: .totalCount)
 
             current = try container.decode(Int.self, forKey: .current)
         }
@@ -54,9 +54,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(next, forKey: .next)
 
-            try? container.encodeIfPresent(totalCount, forKey: .totalCount)
-
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(totalCount, forKey: .totalCount)
 
             try? container.encodeIfPresent(current, forKey: .current)
         }
@@ -72,18 +72,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class PageResponseType: Codable {
         public var next: Int
 
-        public var totalCount: Int
-
         public var hasNext: Bool
+
+        public var totalCount: Int
 
         public var current: Int
 
         public enum CodingKeys: String, CodingKey {
             case next
 
-            case totalCount = "total_count"
-
             case hasNext = "has_next"
+
+            case totalCount = "total_count"
 
             case current
         }
@@ -91,9 +91,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(current: Int, hasNext: Bool, next: Int, totalCount: Int) {
             self.next = next
 
-            self.totalCount = totalCount
-
             self.hasNext = hasNext
+
+            self.totalCount = totalCount
 
             self.current = current
         }
@@ -103,9 +103,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             next = try container.decode(Int.self, forKey: .next)
 
-            totalCount = try container.decode(Int.self, forKey: .totalCount)
-
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
+
+            totalCount = try container.decode(Int.self, forKey: .totalCount)
 
             current = try container.decode(Int.self, forKey: .current)
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(next, forKey: .next)
 
-            try? container.encodeIfPresent(totalCount, forKey: .totalCount)
-
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(totalCount, forKey: .totalCount)
 
             try? container.encodeIfPresent(current, forKey: .current)
         }

@@ -4179,6 +4179,37 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | gender | String? |  yes  |  |
  | externalId | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
+ | phoneNumbers | [[UserPhoneNumbers](#UserPhoneNumbers)]? |  yes  |  |
+ | emails | [[UserEmails](#UserEmails)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserEmails](#UserEmails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | Bool? |  yes  |  |
+ | primary | Bool? |  yes  |  |
+ | verified | Bool? |  yes  |  |
+ | email | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserPhoneNumbers](#UserPhoneNumbers)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | Bool? |  yes  |  |
+ | primary | Bool? |  yes  |  |
+ | verified | Bool? |  yes  |  |
+ | phone | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
 
 ---
 

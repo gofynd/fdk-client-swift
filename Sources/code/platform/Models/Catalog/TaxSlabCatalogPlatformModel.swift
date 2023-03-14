@@ -11,36 +11,38 @@ public extension PlatformClient.Catalog {
     class TaxSlab: Codable {
         public var rate: Double
 
+        public var threshold: Double
+
         public var cess: Double?
 
         public var effectiveDate: String
 
-        public var threshold: Double
-
         public enum CodingKeys: String, CodingKey {
             case rate
+
+            case threshold
 
             case cess
 
             case effectiveDate = "effective_date"
-
-            case threshold
         }
 
         public init(cess: Double? = nil, effectiveDate: String, rate: Double, threshold: Double) {
             self.rate = rate
 
+            self.threshold = threshold
+
             self.cess = cess
 
             self.effectiveDate = effectiveDate
-
-            self.threshold = threshold
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             rate = try container.decode(Double.self, forKey: .rate)
+
+            threshold = try container.decode(Double.self, forKey: .threshold)
 
             do {
                 cess = try container.decode(Double.self, forKey: .cess)
@@ -51,8 +53,6 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
-
-            threshold = try container.decode(Double.self, forKey: .threshold)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -60,11 +60,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(rate, forKey: .rate)
 
+            try? container.encodeIfPresent(threshold, forKey: .threshold)
+
             try? container.encodeIfPresent(cess, forKey: .cess)
 
             try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
-
-            try? container.encodeIfPresent(threshold, forKey: .threshold)
         }
     }
 }
@@ -78,36 +78,38 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class TaxSlab: Codable {
         public var rate: Double
 
+        public var threshold: Double
+
         public var cess: Double?
 
         public var effectiveDate: String
 
-        public var threshold: Double
-
         public enum CodingKeys: String, CodingKey {
             case rate
+
+            case threshold
 
             case cess
 
             case effectiveDate = "effective_date"
-
-            case threshold
         }
 
         public init(cess: Double? = nil, effectiveDate: String, rate: Double, threshold: Double) {
             self.rate = rate
 
+            self.threshold = threshold
+
             self.cess = cess
 
             self.effectiveDate = effectiveDate
-
-            self.threshold = threshold
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             rate = try container.decode(Double.self, forKey: .rate)
+
+            threshold = try container.decode(Double.self, forKey: .threshold)
 
             do {
                 cess = try container.decode(Double.self, forKey: .cess)
@@ -118,8 +120,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
-
-            threshold = try container.decode(Double.self, forKey: .threshold)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -127,11 +127,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(rate, forKey: .rate)
 
+            try? container.encodeIfPresent(threshold, forKey: .threshold)
+
             try? container.encodeIfPresent(cess, forKey: .cess)
 
             try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
-
-            try? container.encodeIfPresent(threshold, forKey: .threshold)
         }
     }
 }
