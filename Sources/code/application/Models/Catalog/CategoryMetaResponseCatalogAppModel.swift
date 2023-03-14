@@ -11,9 +11,9 @@ public extension ApplicationClient.Catalog {
 
         public var banners: ImageUrls?
 
-        public var uid: Int?
-
         public var name: String?
+
+        public var uid: Int?
 
         public var logo: Media?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Catalog {
 
             case banners
 
-            case uid
-
             case name
+
+            case uid
 
             case logo
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Catalog {
 
             self.banners = banners
 
-            self.uid = uid
-
             self.name = name
+
+            self.uid = uid
 
             self.logo = logo
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }
