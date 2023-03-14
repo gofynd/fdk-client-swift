@@ -11,24 +11,24 @@ public extension PlatformClient.Serviceability {
     class ZoneResponse: Codable {
         public var statusCode: Int
 
-        public var zoneId: String
-
         public var success: Bool
+
+        public var zoneId: String
 
         public enum CodingKeys: String, CodingKey {
             case statusCode = "status_code"
 
-            case zoneId = "zone_id"
-
             case success
+
+            case zoneId = "zone_id"
         }
 
         public init(statusCode: Int, success: Bool, zoneId: String) {
             self.statusCode = statusCode
 
-            self.zoneId = zoneId
-
             self.success = success
+
+            self.zoneId = zoneId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Serviceability {
 
             statusCode = try container.decode(Int.self, forKey: .statusCode)
 
-            zoneId = try container.decode(String.self, forKey: .zoneId)
-
             success = try container.decode(Bool.self, forKey: .success)
+
+            zoneId = try container.decode(String.self, forKey: .zoneId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
-            try? container.encodeIfPresent(zoneId, forKey: .zoneId)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(zoneId, forKey: .zoneId)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ZoneResponse: Codable {
         public var statusCode: Int
 
-        public var zoneId: String
-
         public var success: Bool
+
+        public var zoneId: String
 
         public enum CodingKeys: String, CodingKey {
             case statusCode = "status_code"
 
-            case zoneId = "zone_id"
-
             case success
+
+            case zoneId = "zone_id"
         }
 
         public init(statusCode: Int, success: Bool, zoneId: String) {
             self.statusCode = statusCode
 
-            self.zoneId = zoneId
-
             self.success = success
+
+            self.zoneId = zoneId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             statusCode = try container.decode(Int.self, forKey: .statusCode)
 
-            zoneId = try container.decode(String.self, forKey: .zoneId)
-
             success = try container.decode(Bool.self, forKey: .success)
+
+            zoneId = try container.decode(String.self, forKey: .zoneId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
-            try? container.encodeIfPresent(zoneId, forKey: .zoneId)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(zoneId, forKey: .zoneId)
         }
     }
 }
