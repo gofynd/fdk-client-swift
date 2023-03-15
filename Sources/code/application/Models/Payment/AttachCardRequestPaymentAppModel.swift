@@ -11,18 +11,18 @@ public extension ApplicationClient.Payment {
 
         public var nameOnCard: String?
 
-        public var nickname: String?
-
         public var cardId: String
+
+        public var nickname: String?
 
         public enum CodingKeys: String, CodingKey {
             case refresh
 
             case nameOnCard = "name_on_card"
 
-            case nickname
-
             case cardId = "card_id"
+
+            case nickname
         }
 
         public init(cardId: String, nameOnCard: String? = nil, nickname: String? = nil, refresh: Bool? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Payment {
 
             self.nameOnCard = nameOnCard
 
-            self.nickname = nickname
-
             self.cardId = cardId
+
+            self.nickname = nickname
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,6 +54,8 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            cardId = try container.decode(String.self, forKey: .cardId)
+
             do {
                 nickname = try container.decode(String.self, forKey: .nickname)
 
@@ -61,8 +63,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            cardId = try container.decode(String.self, forKey: .cardId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -72,9 +72,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(nameOnCard, forKey: .nameOnCard)
 
-            try? container.encodeIfPresent(nickname, forKey: .nickname)
-
             try? container.encode(cardId, forKey: .cardId)
+
+            try? container.encodeIfPresent(nickname, forKey: .nickname)
         }
     }
 }

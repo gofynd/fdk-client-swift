@@ -13,18 +13,18 @@ public extension PlatformClient.Payment {
 
         public var name: String?
 
-        public var amount: Double
-
         public var mode: String
+
+        public var amount: Double
 
         public enum CodingKeys: String, CodingKey {
             case meta
 
             case name
 
-            case amount
-
             case mode
+
+            case amount
         }
 
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Payment {
 
             self.name = name
 
-            self.amount = amount
-
             self.mode = mode
+
+            self.amount = amount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,9 +56,9 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            amount = try container.decode(Double.self, forKey: .amount)
-
             mode = try container.decode(String.self, forKey: .mode)
+
+            amount = try container.decode(Double.self, forKey: .amount)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -68,9 +68,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(mode, forKey: .mode)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
         }
     }
 }
@@ -86,18 +86,18 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var name: String?
 
-        public var amount: Double
-
         public var mode: String
+
+        public var amount: Double
 
         public enum CodingKeys: String, CodingKey {
             case meta
 
             case name
 
-            case amount
-
             case mode
+
+            case amount
         }
 
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.name = name
 
-            self.amount = amount
-
             self.mode = mode
+
+            self.amount = amount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            amount = try container.decode(Double.self, forKey: .amount)
-
             mode = try container.decode(String.self, forKey: .mode)
+
+            amount = try container.decode(Double.self, forKey: .amount)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -141,9 +141,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(mode, forKey: .mode)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
         }
     }
 }

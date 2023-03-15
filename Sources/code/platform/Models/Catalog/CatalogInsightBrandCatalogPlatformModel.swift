@@ -9,8 +9,6 @@ public extension PlatformClient.Catalog {
      */
 
     class CatalogInsightBrand: Codable {
-        public var totalSizes: Int?
-
         public var availableSizes: Int?
 
         public var articleFreshness: Int?
@@ -19,11 +17,11 @@ public extension PlatformClient.Catalog {
 
         public var availableArticles: Int?
 
+        public var totalSizes: Int?
+
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case totalSizes = "total_sizes"
-
             case availableSizes = "available_sizes"
 
             case articleFreshness = "article_freshness"
@@ -32,12 +30,12 @@ public extension PlatformClient.Catalog {
 
             case availableArticles = "available_articles"
 
+            case totalSizes = "total_sizes"
+
             case name
         }
 
         public init(articleFreshness: Int? = nil, availableArticles: Int? = nil, availableSizes: Int? = nil, name: String? = nil, totalArticles: Int? = nil, totalSizes: Int? = nil) {
-            self.totalSizes = totalSizes
-
             self.availableSizes = availableSizes
 
             self.articleFreshness = articleFreshness
@@ -46,19 +44,13 @@ public extension PlatformClient.Catalog {
 
             self.availableArticles = availableArticles
 
+            self.totalSizes = totalSizes
+
             self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                totalSizes = try container.decode(Int.self, forKey: .totalSizes)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 availableSizes = try container.decode(Int.self, forKey: .availableSizes)
@@ -93,6 +85,14 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
+                totalSizes = try container.decode(Int.self, forKey: .totalSizes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -104,8 +104,6 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(totalSizes, forKey: .totalSizes)
-
             try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
 
             try? container.encodeIfPresent(articleFreshness, forKey: .articleFreshness)
@@ -113,6 +111,8 @@ public extension PlatformClient.Catalog {
             try? container.encodeIfPresent(totalArticles, forKey: .totalArticles)
 
             try? container.encodeIfPresent(availableArticles, forKey: .availableArticles)
+
+            try? container.encodeIfPresent(totalSizes, forKey: .totalSizes)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
@@ -126,8 +126,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class CatalogInsightBrand: Codable {
-        public var totalSizes: Int?
-
         public var availableSizes: Int?
 
         public var articleFreshness: Int?
@@ -136,11 +134,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var availableArticles: Int?
 
+        public var totalSizes: Int?
+
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case totalSizes = "total_sizes"
-
             case availableSizes = "available_sizes"
 
             case articleFreshness = "article_freshness"
@@ -149,12 +147,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case availableArticles = "available_articles"
 
+            case totalSizes = "total_sizes"
+
             case name
         }
 
         public init(articleFreshness: Int? = nil, availableArticles: Int? = nil, availableSizes: Int? = nil, name: String? = nil, totalArticles: Int? = nil, totalSizes: Int? = nil) {
-            self.totalSizes = totalSizes
-
             self.availableSizes = availableSizes
 
             self.articleFreshness = articleFreshness
@@ -163,19 +161,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.availableArticles = availableArticles
 
+            self.totalSizes = totalSizes
+
             self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                totalSizes = try container.decode(Int.self, forKey: .totalSizes)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 availableSizes = try container.decode(Int.self, forKey: .availableSizes)
@@ -210,6 +202,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
+                totalSizes = try container.decode(Int.self, forKey: .totalSizes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -221,8 +221,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(totalSizes, forKey: .totalSizes)
-
             try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
 
             try? container.encodeIfPresent(articleFreshness, forKey: .articleFreshness)
@@ -230,6 +228,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             try? container.encodeIfPresent(totalArticles, forKey: .totalArticles)
 
             try? container.encodeIfPresent(availableArticles, forKey: .availableArticles)
+
+            try? container.encodeIfPresent(totalSizes, forKey: .totalSizes)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

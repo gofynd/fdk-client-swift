@@ -9,7 +9,7 @@ public extension PlatformClient.Catalog {
      */
 
     class InventoryPartialExportRequest: Codable {
-        public var status: [String: Any]?
+        public var status: String?
 
         public var notificationEmails: [String]?
 
@@ -19,7 +19,7 @@ public extension PlatformClient.Catalog {
             case notificationEmails = "notification_emails"
         }
 
-        public init(notificationEmails: [String]? = nil, status: [String: Any]? = nil) {
+        public init(notificationEmails: [String]? = nil, status: String? = nil) {
             self.status = status
 
             self.notificationEmails = notificationEmails
@@ -29,7 +29,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode([String: Any].self, forKey: .status)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class InventoryPartialExportRequest: Codable {
-        public var status: [String: Any]?
+        public var status: String?
 
         public var notificationEmails: [String]?
 
@@ -72,7 +72,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case notificationEmails = "notification_emails"
         }
 
-        public init(notificationEmails: [String]? = nil, status: [String: Any]? = nil) {
+        public init(notificationEmails: [String]? = nil, status: String? = nil) {
             self.status = status
 
             self.notificationEmails = notificationEmails
@@ -82,7 +82,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode([String: Any].self, forKey: .status)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
