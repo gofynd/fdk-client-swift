@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class FilterInfoOption: Codable {
         public var text: String
 
-        public var value: String?
-
         public var name: String?
+
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
             case text
 
-            case value
-
             case name
+
+            case value
         }
 
         public init(name: String? = nil, text: String, value: String? = nil) {
             self.text = text
 
-            self.value = value
-
             self.name = name
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             text = try container.decode(String.self, forKey: .text)
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -45,7 +45,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,9 +58,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
@@ -74,24 +74,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class FilterInfoOption: Codable {
         public var text: String
 
-        public var value: String?
-
         public var name: String?
+
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
             case text
 
-            case value
-
             case name
+
+            case value
         }
 
         public init(name: String? = nil, text: String, value: String? = nil) {
             self.text = text
 
-            self.value = value
-
             self.name = name
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -100,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Order {
             text = try container.decode(String.self, forKey: .text)
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,7 +108,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }

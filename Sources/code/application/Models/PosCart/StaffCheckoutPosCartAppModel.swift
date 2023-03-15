@@ -9,46 +9,42 @@ public extension ApplicationClient.PosCart {
     class StaffCheckout: Codable {
         public var user: String
 
-        public var id: String
-
-        public var firstName: String
-
         public var lastName: String
 
         public var employeeCode: String?
 
+        public var id: String
+
+        public var firstName: String
+
         public enum CodingKeys: String, CodingKey {
             case user
-
-            case id = "_id"
-
-            case firstName = "first_name"
 
             case lastName = "last_name"
 
             case employeeCode = "employee_code"
+
+            case id = "_id"
+
+            case firstName = "first_name"
         }
 
         public init(employeeCode: String? = nil, firstName: String, lastName: String, user: String, id: String) {
             self.user = user
 
-            self.id = id
-
-            self.firstName = firstName
-
             self.lastName = lastName
 
             self.employeeCode = employeeCode
+
+            self.id = id
+
+            self.firstName = firstName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             user = try container.decode(String.self, forKey: .user)
-
-            id = try container.decode(String.self, forKey: .id)
-
-            firstName = try container.decode(String.self, forKey: .firstName)
 
             lastName = try container.decode(String.self, forKey: .lastName)
 
@@ -59,6 +55,10 @@ public extension ApplicationClient.PosCart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            id = try container.decode(String.self, forKey: .id)
+
+            firstName = try container.decode(String.self, forKey: .firstName)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,13 +66,13 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
-
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
             try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
         }
     }
 }

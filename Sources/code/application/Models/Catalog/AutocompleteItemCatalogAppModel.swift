@@ -11,9 +11,9 @@ public extension ApplicationClient.Catalog {
 
         public var type: String?
 
-        public var customJson: [String: Any]?
-
         public var display: String?
+
+        public var customJson: [String: Any]?
 
         public var logo: Media?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Catalog {
 
             case type
 
-            case customJson = "_custom_json"
-
             case display
+
+            case customJson = "_custom_json"
 
             case logo
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Catalog {
 
             self.type = type
 
-            self.customJson = customJson
-
             self.display = display
+
+            self.customJson = customJson
 
             self.logo = logo
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }

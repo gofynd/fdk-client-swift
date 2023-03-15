@@ -11,38 +11,38 @@ public extension PlatformClient.ApplicationClient.Cart {
     class UpdateProductCart: Codable {
         public var customJson: [String: Any]?
 
+        public var parentItemIdentifiers: [String: Any]?
+
         public var extraMeta: [String: Any]?
 
         public var itemIndex: Int?
 
-        public var itemSize: String?
-
-        public var identifiers: CartProductIdentifer
-
         public var quantity: Int?
+
+        public var itemSize: String?
 
         public var itemId: Int?
 
-        public var parentItemIdentifiers: [String: Any]?
+        public var identifiers: CartProductIdentifer
 
         public var articleId: String?
 
         public enum CodingKeys: String, CodingKey {
             case customJson = "_custom_json"
 
+            case parentItemIdentifiers = "parent_item_identifiers"
+
             case extraMeta = "extra_meta"
 
             case itemIndex = "item_index"
 
-            case itemSize = "item_size"
-
-            case identifiers
-
             case quantity
+
+            case itemSize = "item_size"
 
             case itemId = "item_id"
 
-            case parentItemIdentifiers = "parent_item_identifiers"
+            case identifiers
 
             case articleId = "article_id"
         }
@@ -50,19 +50,19 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(articleId: String? = nil, extraMeta: [String: Any]? = nil, identifiers: CartProductIdentifer, itemId: Int? = nil, itemIndex: Int? = nil, itemSize: String? = nil, parentItemIdentifiers: [String: Any]? = nil, quantity: Int? = nil, customJson: [String: Any]? = nil) {
             self.customJson = customJson
 
+            self.parentItemIdentifiers = parentItemIdentifiers
+
             self.extraMeta = extraMeta
 
             self.itemIndex = itemIndex
 
-            self.itemSize = itemSize
-
-            self.identifiers = identifiers
-
             self.quantity = quantity
+
+            self.itemSize = itemSize
 
             self.itemId = itemId
 
-            self.parentItemIdentifiers = parentItemIdentifiers
+            self.identifiers = identifiers
 
             self.articleId = articleId
         }
@@ -72,6 +72,14 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                parentItemIdentifiers = try container.decode([String: Any].self, forKey: .parentItemIdentifiers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,17 +103,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                itemSize = try container.decode(String.self, forKey: .itemSize)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            identifiers = try container.decode(CartProductIdentifer.self, forKey: .identifiers)
-
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                itemSize = try container.decode(String.self, forKey: .itemSize)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,13 +126,7 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                parentItemIdentifiers = try container.decode([String: Any].self, forKey: .parentItemIdentifiers)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            identifiers = try container.decode(CartProductIdentifer.self, forKey: .identifiers)
 
             do {
                 articleId = try container.decode(String.self, forKey: .articleId)
@@ -142,19 +142,19 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
+            try? container.encodeIfPresent(parentItemIdentifiers, forKey: .parentItemIdentifiers)
+
             try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
 
             try? container.encodeIfPresent(itemIndex, forKey: .itemIndex)
 
-            try? container.encodeIfPresent(itemSize, forKey: .itemSize)
-
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(itemSize, forKey: .itemSize)
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(parentItemIdentifiers, forKey: .parentItemIdentifiers)
+            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
 
             try? container.encodeIfPresent(articleId, forKey: .articleId)
         }

@@ -9,36 +9,36 @@ public extension PlatformClient.Order {
      */
 
     class AdvanceFilterInfo: Codable {
-        public var unfulfilled: [FiltersInfo]?
+        public var processed: [FiltersInfo]?
 
-        public var filters: [FiltersInfo]?
+        public var unfulfilled: [FiltersInfo]?
 
         public var actionCentre: [FiltersInfo]?
 
-        public var processed: [FiltersInfo]?
+        public var filters: [FiltersInfo]?
 
         public var returned: [FiltersInfo]?
 
         public enum CodingKeys: String, CodingKey {
-            case unfulfilled
+            case processed
 
-            case filters
+            case unfulfilled
 
             case actionCentre = "action_centre"
 
-            case processed
+            case filters
 
             case returned
         }
 
         public init(actionCentre: [FiltersInfo]? = nil, filters: [FiltersInfo]? = nil, processed: [FiltersInfo]? = nil, returned: [FiltersInfo]? = nil, unfulfilled: [FiltersInfo]? = nil) {
-            self.unfulfilled = unfulfilled
+            self.processed = processed
 
-            self.filters = filters
+            self.unfulfilled = unfulfilled
 
             self.actionCentre = actionCentre
 
-            self.processed = processed
+            self.filters = filters
 
             self.returned = returned
         }
@@ -47,7 +47,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                unfulfilled = try container.decode([FiltersInfo].self, forKey: .unfulfilled)
+                processed = try container.decode([FiltersInfo].self, forKey: .processed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                filters = try container.decode([FiltersInfo].self, forKey: .filters)
+                unfulfilled = try container.decode([FiltersInfo].self, forKey: .unfulfilled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                processed = try container.decode([FiltersInfo].self, forKey: .processed)
+                filters = try container.decode([FiltersInfo].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(unfulfilled, forKey: .unfulfilled)
+            try? container.encodeIfPresent(processed, forKey: .processed)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(unfulfilled, forKey: .unfulfilled)
 
             try? container.encodeIfPresent(actionCentre, forKey: .actionCentre)
 
-            try? container.encodeIfPresent(processed, forKey: .processed)
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(returned, forKey: .returned)
         }
@@ -110,36 +110,36 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class AdvanceFilterInfo: Codable {
-        public var unfulfilled: [FiltersInfo]?
+        public var processed: [FiltersInfo]?
 
-        public var filters: [FiltersInfo]?
+        public var unfulfilled: [FiltersInfo]?
 
         public var actionCentre: [FiltersInfo]?
 
-        public var processed: [FiltersInfo]?
+        public var filters: [FiltersInfo]?
 
         public var returned: [FiltersInfo]?
 
         public enum CodingKeys: String, CodingKey {
-            case unfulfilled
+            case processed
 
-            case filters
+            case unfulfilled
 
             case actionCentre = "action_centre"
 
-            case processed
+            case filters
 
             case returned
         }
 
         public init(actionCentre: [FiltersInfo]? = nil, filters: [FiltersInfo]? = nil, processed: [FiltersInfo]? = nil, returned: [FiltersInfo]? = nil, unfulfilled: [FiltersInfo]? = nil) {
-            self.unfulfilled = unfulfilled
+            self.processed = processed
 
-            self.filters = filters
+            self.unfulfilled = unfulfilled
 
             self.actionCentre = actionCentre
 
-            self.processed = processed
+            self.filters = filters
 
             self.returned = returned
         }
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                unfulfilled = try container.decode([FiltersInfo].self, forKey: .unfulfilled)
+                processed = try container.decode([FiltersInfo].self, forKey: .processed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                filters = try container.decode([FiltersInfo].self, forKey: .filters)
+                unfulfilled = try container.decode([FiltersInfo].self, forKey: .unfulfilled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                processed = try container.decode([FiltersInfo].self, forKey: .processed)
+                filters = try container.decode([FiltersInfo].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,13 +191,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(unfulfilled, forKey: .unfulfilled)
+            try? container.encodeIfPresent(processed, forKey: .processed)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(unfulfilled, forKey: .unfulfilled)
 
             try? container.encodeIfPresent(actionCentre, forKey: .actionCentre)
 
-            try? container.encodeIfPresent(processed, forKey: .processed)
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(returned, forKey: .returned)
         }
