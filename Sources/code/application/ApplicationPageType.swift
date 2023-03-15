@@ -1,6 +1,5 @@
 import Foundation
-
-public extension ApplicationClient.Content {
+public extension ApplicationClient {
     enum PageType: String, Codable, CaseIterable {
         case aboutUs = "about-us"
         case addresses

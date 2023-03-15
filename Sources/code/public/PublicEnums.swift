@@ -1,9 +1,6 @@
 
 import Foundation
-
-public extension PublicClient.Configuration {}
-
-public extension PublicClient.Webhook {
+public extension PublicClient {
     /*
          Enum: SubscriberStatus
          Used By: Webhook
@@ -16,5 +13,3 @@ public extension PublicClient.Webhook {
         case blocked
     }
 }
-
-public extension PublicClient.Inventory {}
