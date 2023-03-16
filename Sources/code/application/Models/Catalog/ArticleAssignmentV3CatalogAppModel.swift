@@ -1,33 +1,33 @@
 
 
 import Foundation
-public extension ApplicationClient.User {
+public extension ApplicationClient.Catalog {
     /*
-         Model: Debug
-         Used By: User
+         Model: ArticleAssignmentV3
+         Used By: Catalog
      */
-    class Debug: Codable {
-        public var source: String?
+    class ArticleAssignmentV3: Codable {
+        public var strategy: String?
 
-        public var platform: String?
+        public var level: String?
 
         public enum CodingKeys: String, CodingKey {
-            case source
+            case strategy
 
-            case platform
+            case level
         }
 
-        public init(platform: String? = nil, source: String? = nil) {
-            self.source = source
+        public init(level: String? = nil, strategy: String? = nil) {
+            self.strategy = strategy
 
-            self.platform = platform
+            self.level = level
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                source = try container.decode(String.self, forKey: .source)
+                strategy = try container.decode(String.self, forKey: .strategy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient.User {
             } catch {}
 
             do {
-                platform = try container.decode(String.self, forKey: .platform)
+                level = try container.decode(String.self, forKey: .level)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient.User {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encodeIfPresent(strategy, forKey: .strategy)
 
-            try? container.encodeIfPresent(platform, forKey: .platform)
+            try? container.encodeIfPresent(level, forKey: .level)
         }
     }
 }

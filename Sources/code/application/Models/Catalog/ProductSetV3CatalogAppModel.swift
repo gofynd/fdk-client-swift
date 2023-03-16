@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient.Catalog {
     /*
-         Model: ProductSetDistributionSizeV2
+         Model: ProductSetV3
          Used By: Catalog
      */
-    class ProductSetDistributionSizeV2: Codable {
-        public var size: String?
+    class ProductSetV3: Codable {
+        public var quantity: Int?
 
-        public var pieces: Int?
+        public var sizeDistribution: ProductSetDistributionV3?
 
         public enum CodingKeys: String, CodingKey {
-            case size
+            case quantity
 
-            case pieces
+            case sizeDistribution = "size_distribution"
         }
 
-        public init(pieces: Int? = nil, size: String? = nil) {
-            self.size = size
+        public init(quantity: Int? = nil, sizeDistribution: ProductSetDistributionV3? = nil) {
+            self.quantity = quantity
 
-            self.pieces = pieces
+            self.sizeDistribution = sizeDistribution
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                size = try container.decode(String.self, forKey: .size)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                pieces = try container.decode(Int.self, forKey: .pieces)
+                sizeDistribution = try container.decode(ProductSetDistributionV3.self, forKey: .sizeDistribution)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(pieces, forKey: .pieces)
+            try? container.encodeIfPresent(sizeDistribution, forKey: .sizeDistribution)
         }
     }
 }

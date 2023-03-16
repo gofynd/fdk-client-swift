@@ -1,35 +1,33 @@
 
 
 import Foundation
-
-public extension PlatformClient.CompanyProfile {
+public extension ApplicationClient.Catalog {
     /*
-         Model: _ArticleAssignment
-         Used By: CompanyProfile
+         Model: ProductSetDistributionSizeV3
+         Used By: Catalog
      */
+    class ProductSetDistributionSizeV3: Codable {
+        public var size: String?
 
-    class _ArticleAssignment: Codable {
-        public var level: String?
-
-        public var strategy: String?
+        public var pieces: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case level
+            case size
 
-            case strategy
+            case pieces
         }
 
-        public init(level: String? = nil, strategy: String? = nil) {
-            self.level = level
+        public init(pieces: Int? = nil, size: String? = nil) {
+            self.size = size
 
-            self.strategy = strategy
+            self.pieces = pieces
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                level = try container.decode(String.self, forKey: .level)
+                size = try container.decode(String.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +35,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                strategy = try container.decode(String.self, forKey: .strategy)
+                pieces = try container.decode(Int.self, forKey: .pieces)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +46,9 @@ public extension PlatformClient.CompanyProfile {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(level, forKey: .level)
+            try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(strategy, forKey: .strategy)
+            try? container.encodeIfPresent(pieces, forKey: .pieces)
         }
     }
 }

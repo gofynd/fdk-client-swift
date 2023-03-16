@@ -4202,8 +4202,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | profilePicUrl | String? |  yes  |  |
  | username | String? |  yes  |  |
  | accountType | String? |  yes  |  |
- | debug | [Debug](#Debug)? |  yes  |  |
- | hasOldPasswordHash | Bool? |  yes  |  |
  | id | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
@@ -4236,18 +4234,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | verified | Bool? |  yes  |  |
  | email | String? |  yes  |  |
  | active | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [Debug](#Debug)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | source | String? |  yes  |  |
- | platform | String? |  yes  |  |
 
 ---
 

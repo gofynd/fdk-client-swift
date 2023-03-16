@@ -7,38 +7,30 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class Products: Codable {
-        public var quantity: Int?
-
         public var lineNumber: Int?
 
         public var identifier: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case quantity
+        public var quantity: Int?
 
+        public enum CodingKeys: String, CodingKey {
             case lineNumber = "line_number"
 
             case identifier
+
+            case quantity
         }
 
         public init(identifier: String? = nil, lineNumber: Int? = nil, quantity: Int? = nil) {
-            self.quantity = quantity
-
             self.lineNumber = lineNumber
 
             self.identifier = identifier
+
+            self.quantity = quantity
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 lineNumber = try container.decode(Int.self, forKey: .lineNumber)
@@ -55,16 +47,24 @@ public extension ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
             try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 }

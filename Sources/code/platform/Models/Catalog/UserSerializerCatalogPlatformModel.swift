@@ -9,36 +9,36 @@ public extension PlatformClient.Catalog {
      */
 
     class UserSerializer: Codable {
-        public var uid: String?
-
         public var id: String?
+
+        public var contact: String?
 
         public var username: String?
 
-        public var contact: String?
+        public var uid: String?
 
         public var userId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case uid
-
             case id = "_id"
+
+            case contact
 
             case username
 
-            case contact
+            case uid
 
             case userId = "user_id"
         }
 
         public init(contact: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
-            self.uid = uid
-
             self.id = id
+
+            self.contact = contact
 
             self.username = username
 
-            self.contact = contact
+            self.uid = uid
 
             self.userId = userId
         }
@@ -47,7 +47,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                contact = try container.decode(String.self, forKey: .contact)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                contact = try container.decode(String.self, forKey: .contact)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(contact, forKey: .contact)
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(contact, forKey: .contact)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
         }
@@ -110,36 +110,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class UserSerializer: Codable {
-        public var uid: String?
-
         public var id: String?
+
+        public var contact: String?
 
         public var username: String?
 
-        public var contact: String?
+        public var uid: String?
 
         public var userId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case uid
-
             case id = "_id"
+
+            case contact
 
             case username
 
-            case contact
+            case uid
 
             case userId = "user_id"
         }
 
         public init(contact: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
-            self.uid = uid
-
             self.id = id
+
+            self.contact = contact
 
             self.username = username
 
-            self.contact = contact
+            self.uid = uid
 
             self.userId = userId
         }
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                contact = try container.decode(String.self, forKey: .contact)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                contact = try container.decode(String.self, forKey: .contact)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,13 +191,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(contact, forKey: .contact)
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(contact, forKey: .contact)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
         }
