@@ -8367,7 +8367,7 @@ public class PlatformClient {
              * Summary: map new edc device to the terminal
              * Description: Use this API to map new edc device to the terminal
              **/
-            public func edcDevice(
+            public func updateEdcDevice(
                 terminalUniqueIdentifier _: String,
                 body: EdcAddRequest,
                 onResponse: @escaping (_ response: EdcDeviceAddResponse?, _ error: FDKError?) -> Void
@@ -8406,7 +8406,7 @@ public class PlatformClient {
              * Summary: get details of a single edc device
              * Description: Use this API to get details of a single edc device
              **/
-            public func edcDevice(
+            public func getEdcDevice(
                 terminalUniqueIdentifier: String,
 
                 onResponse: @escaping (_ response: EdcDeviceDetailsResponse?, _ error: FDKError?) -> Void
@@ -8445,7 +8445,7 @@ public class PlatformClient {
              * Summary: Update store id and device tag of edc device
              * Description: Use this API to Update store id and device tag of edc device
              **/
-            public func edcDevice(
+            public func addEdcDevice(
                 terminalUniqueIdentifier: String,
                 body: EdcUpdateRequest,
                 onResponse: @escaping (_ response: EdcDeviceUpdateResponse?, _ error: FDKError?) -> Void
@@ -14548,7 +14548,7 @@ public class PlatformClient {
              * Summary: Add items to cart
              * Description: Use this API to add items to the cart.
              **/
-            public func addItems(
+            public func platformAddItems(
                 i: Bool?,
                 b: Bool?,
                 buyNow: Bool?,
@@ -14608,7 +14608,7 @@ public class PlatformClient {
              * Summary: Update items in the customer 's cart using cart id
              * Description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
              **/
-            public func updateCart(
+            public func platformUpdateCart(
                 id: String?,
                 i: Bool?,
                 b: Bool?,
@@ -14763,7 +14763,7 @@ public class PlatformClient {
              * Summary: Fetch Coupon
              * Description: Use this API to get a list of available coupons along with their details.
              **/
-            public func getPlatformPOSCoupons(
+            public func getAppCoupons(
                 id: String?,
                 buyNow: Bool?,
 
@@ -15452,7 +15452,7 @@ public class PlatformClient {
              * Summary: Checkout all items in the cart
              * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
              **/
-            public func checkoutCart(
+            public func platformCheckoutCart(
                 id: String?,
                 body: PlatformCartCheckoutDetailRequest,
                 onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void

@@ -11,9 +11,9 @@ public extension ApplicationClient.PosCart {
 
         public var isValid: Bool?
 
-        public var otherStoreQuantity: Int?
-
         public var deliverable: Bool?
+
+        public var otherStoreQuantity: Int?
 
         public var sizes: [String]?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.PosCart {
 
             case isValid = "is_valid"
 
-            case otherStoreQuantity = "other_store_quantity"
-
             case deliverable
+
+            case otherStoreQuantity = "other_store_quantity"
 
             case sizes
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.PosCart {
 
             self.isValid = isValid
 
-            self.otherStoreQuantity = otherStoreQuantity
-
             self.deliverable = deliverable
+
+            self.otherStoreQuantity = otherStoreQuantity
 
             self.sizes = sizes
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
+                deliverable = try container.decode(Bool.self, forKey: .deliverable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                deliverable = try container.decode(Bool.self, forKey: .deliverable)
+                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(isValid, forKey: .isValid)
 
-            try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
-
             try? container.encodeIfPresent(deliverable, forKey: .deliverable)
+
+            try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
         }

@@ -9,26 +9,26 @@ public extension PlatformClient.Order {
      */
 
     class OrderBrandName: Codable {
-        public var createdOn: String
+        public var company: String
 
         public var brandName: String
 
-        public var company: String
-
         public var modifiedOn: String?
+
+        public var createdOn: String
 
         public var id: Int
 
         public var logo: String
 
         public enum CodingKeys: String, CodingKey {
-            case createdOn = "created_on"
+            case company
 
             case brandName = "brand_name"
 
-            case company
-
             case modifiedOn = "modified_on"
+
+            case createdOn = "created_on"
 
             case id
 
@@ -36,13 +36,13 @@ public extension PlatformClient.Order {
         }
 
         public init(brandName: String, company: String, createdOn: String, id: Int, logo: String, modifiedOn: String? = nil) {
-            self.createdOn = createdOn
+            self.company = company
 
             self.brandName = brandName
 
-            self.company = company
-
             self.modifiedOn = modifiedOn
+
+            self.createdOn = createdOn
 
             self.id = id
 
@@ -52,11 +52,9 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            createdOn = try container.decode(String.self, forKey: .createdOn)
+            company = try container.decode(String.self, forKey: .company)
 
             brandName = try container.decode(String.self, forKey: .brandName)
-
-            company = try container.decode(String.self, forKey: .company)
 
             do {
                 modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
@@ -66,6 +64,8 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            createdOn = try container.decode(String.self, forKey: .createdOn)
+
             id = try container.decode(Int.self, forKey: .id)
 
             logo = try container.decode(String.self, forKey: .logo)
@@ -74,13 +74,13 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encode(company, forKey: .company)
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
 
-            try? container.encode(company, forKey: .company)
-
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
@@ -96,26 +96,26 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class OrderBrandName: Codable {
-        public var createdOn: String
+        public var company: String
 
         public var brandName: String
 
-        public var company: String
-
         public var modifiedOn: String?
+
+        public var createdOn: String
 
         public var id: Int
 
         public var logo: String
 
         public enum CodingKeys: String, CodingKey {
-            case createdOn = "created_on"
+            case company
 
             case brandName = "brand_name"
 
-            case company
-
             case modifiedOn = "modified_on"
+
+            case createdOn = "created_on"
 
             case id
 
@@ -123,13 +123,13 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(brandName: String, company: String, createdOn: String, id: Int, logo: String, modifiedOn: String? = nil) {
-            self.createdOn = createdOn
+            self.company = company
 
             self.brandName = brandName
 
-            self.company = company
-
             self.modifiedOn = modifiedOn
+
+            self.createdOn = createdOn
 
             self.id = id
 
@@ -139,11 +139,9 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            createdOn = try container.decode(String.self, forKey: .createdOn)
+            company = try container.decode(String.self, forKey: .company)
 
             brandName = try container.decode(String.self, forKey: .brandName)
-
-            company = try container.decode(String.self, forKey: .company)
 
             do {
                 modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
@@ -153,6 +151,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            createdOn = try container.decode(String.self, forKey: .createdOn)
+
             id = try container.decode(Int.self, forKey: .id)
 
             logo = try container.decode(String.self, forKey: .logo)
@@ -161,13 +161,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encode(company, forKey: .company)
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
 
-            try? container.encode(company, forKey: .company)
-
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
