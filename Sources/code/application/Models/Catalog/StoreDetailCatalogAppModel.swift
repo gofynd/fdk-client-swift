@@ -7,18 +7,18 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class StoreDetail: Codable {
-        public var name: String?
-
         public var code: String?
+
+        public var name: String?
 
         public var city: String?
 
         public var id: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
             case code
+
+            case name
 
             case city
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Catalog {
         }
 
         public init(city: String? = nil, code: String? = nil, id: Int? = nil, name: String? = nil) {
-            self.name = name
-
             self.code = code
+
+            self.name = name
 
             self.city = city
 
@@ -39,7 +39,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(city, forKey: .city)
 
