@@ -9,42 +9,46 @@ public extension ApplicationClient.Logistic {
     class PincodeApiResponse: Codable {
         public var stormbreakerUuid: String
 
+        public var success: Bool
+
+        public var requestUuid: String
+
         public var data: [PincodeDataResponse]?
 
         public var error: PincodeErrorSchemaResponse
 
-        public var requestUuid: String
-
-        public var success: Bool
-
         public enum CodingKeys: String, CodingKey {
             case stormbreakerUuid = "stormbreaker_uuid"
+
+            case success
+
+            case requestUuid = "request_uuid"
 
             case data
 
             case error
-
-            case requestUuid = "request_uuid"
-
-            case success
         }
 
         public init(data: [PincodeDataResponse]? = nil, error: PincodeErrorSchemaResponse, requestUuid: String, stormbreakerUuid: String, success: Bool) {
             self.stormbreakerUuid = stormbreakerUuid
 
-            self.data = data
-
-            self.error = error
+            self.success = success
 
             self.requestUuid = requestUuid
 
-            self.success = success
+            self.data = data
+
+            self.error = error
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             stormbreakerUuid = try container.decode(String.self, forKey: .stormbreakerUuid)
+
+            success = try container.decode(Bool.self, forKey: .success)
+
+            requestUuid = try container.decode(String.self, forKey: .requestUuid)
 
             do {
                 data = try container.decode([PincodeDataResponse].self, forKey: .data)
@@ -55,10 +59,6 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             error = try container.decode(PincodeErrorSchemaResponse.self, forKey: .error)
-
-            requestUuid = try container.decode(String.self, forKey: .requestUuid)
-
-            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,13 +66,13 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(stormbreakerUuid, forKey: .stormbreakerUuid)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(requestUuid, forKey: .requestUuid)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(error, forKey: .error)
         }
     }
 }

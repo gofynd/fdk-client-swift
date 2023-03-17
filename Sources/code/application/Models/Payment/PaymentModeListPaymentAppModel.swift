@@ -7,204 +7,220 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class PaymentModeList: Codable {
+        public var cardType: String?
+
+        public var cardToken: String?
+
         public var codLimit: Double?
 
-        public var timeout: Int?
-
-        public var cardType: String?
+        public var expMonth: Int?
 
         public var displayPriority: Int?
 
         public var nickname: String?
 
-        public var aggregatorName: String
+        public var intentAppErrorList: [String]?
 
-        public var cardFingerprint: String?
-
-        public var remainingLimit: Double?
-
-        public var cardName: String?
-
-        public var intentFlow: Bool?
+        public var merchantCode: String?
 
         public var cardIsin: String?
 
-        public var code: String?
+        public var expired: Bool?
 
-        public var merchantCode: String?
+        public var cardBrandImage: String?
+
+        public var cardBrand: String?
 
         public var intentApp: [IntentApp]?
 
         public var codLimitPerOrder: Double?
 
+        public var cardFingerprint: String?
+
         public var name: String?
-
-        public var retryCount: Int?
-
-        public var cardToken: String?
-
-        public var fyndVpa: String?
-
-        public var cardIssuer: String?
-
-        public var intentAppErrorDictList: [IntentAppErrorList]?
-
-        public var cardReference: String?
 
         public var displayName: String?
 
-        public var expired: Bool?
+        public var cardName: String?
 
-        public var cardBrand: String?
+        public var cardIssuer: String?
 
-        public var expMonth: Int?
+        public var code: String?
+
+        public var timeout: Int?
 
         public var cardNumber: String?
 
+        public var fyndVpa: String?
+
+        public var retryCount: Int?
+
+        public var intentAppErrorDictList: [IntentAppErrorList]?
+
         public var logoUrl: PaymentModeLogo?
 
-        public var cardId: String?
+        public var cardReference: String?
 
-        public var intentAppErrorList: [String]?
+        public var intentFlow: Bool?
 
         public var expYear: Int?
 
-        public var cardBrandImage: String?
+        public var aggregatorName: String
+
+        public var cardId: String?
+
+        public var remainingLimit: Double?
 
         public enum CodingKeys: String, CodingKey {
+            case cardType = "card_type"
+
+            case cardToken = "card_token"
+
             case codLimit = "cod_limit"
 
-            case timeout
-
-            case cardType = "card_type"
+            case expMonth = "exp_month"
 
             case displayPriority = "display_priority"
 
             case nickname
 
-            case aggregatorName = "aggregator_name"
+            case intentAppErrorList = "intent_app_error_list"
 
-            case cardFingerprint = "card_fingerprint"
-
-            case remainingLimit = "remaining_limit"
-
-            case cardName = "card_name"
-
-            case intentFlow = "intent_flow"
+            case merchantCode = "merchant_code"
 
             case cardIsin = "card_isin"
 
-            case code
+            case expired
 
-            case merchantCode = "merchant_code"
+            case cardBrandImage = "card_brand_image"
+
+            case cardBrand = "card_brand"
 
             case intentApp = "intent_app"
 
             case codLimitPerOrder = "cod_limit_per_order"
 
+            case cardFingerprint = "card_fingerprint"
+
             case name
-
-            case retryCount = "retry_count"
-
-            case cardToken = "card_token"
-
-            case fyndVpa = "fynd_vpa"
-
-            case cardIssuer = "card_issuer"
-
-            case intentAppErrorDictList = "intent_app_error_dict_list"
-
-            case cardReference = "card_reference"
 
             case displayName = "display_name"
 
-            case expired
+            case cardName = "card_name"
 
-            case cardBrand = "card_brand"
+            case cardIssuer = "card_issuer"
 
-            case expMonth = "exp_month"
+            case code
+
+            case timeout
 
             case cardNumber = "card_number"
 
+            case fyndVpa = "fynd_vpa"
+
+            case retryCount = "retry_count"
+
+            case intentAppErrorDictList = "intent_app_error_dict_list"
+
             case logoUrl = "logo_url"
 
-            case cardId = "card_id"
+            case cardReference = "card_reference"
 
-            case intentAppErrorList = "intent_app_error_list"
+            case intentFlow = "intent_flow"
 
             case expYear = "exp_year"
 
-            case cardBrandImage = "card_brand_image"
+            case aggregatorName = "aggregator_name"
+
+            case cardId = "card_id"
+
+            case remainingLimit = "remaining_limit"
         }
 
         public init(aggregatorName: String, cardBrand: String? = nil, cardBrandImage: String? = nil, cardFingerprint: String? = nil, cardId: String? = nil, cardIsin: String? = nil, cardIssuer: String? = nil, cardName: String? = nil, cardNumber: String? = nil, cardReference: String? = nil, cardToken: String? = nil, cardType: String? = nil, code: String? = nil, codLimit: Double? = nil, codLimitPerOrder: Double? = nil, displayName: String? = nil, displayPriority: Int? = nil, expired: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, fyndVpa: String? = nil, intentApp: [IntentApp]? = nil, intentAppErrorDictList: [IntentAppErrorList]? = nil, intentAppErrorList: [String]? = nil, intentFlow: Bool? = nil, logoUrl: PaymentModeLogo? = nil, merchantCode: String? = nil, name: String? = nil, nickname: String? = nil, remainingLimit: Double? = nil, retryCount: Int? = nil, timeout: Int? = nil) {
+            self.cardType = cardType
+
+            self.cardToken = cardToken
+
             self.codLimit = codLimit
 
-            self.timeout = timeout
-
-            self.cardType = cardType
+            self.expMonth = expMonth
 
             self.displayPriority = displayPriority
 
             self.nickname = nickname
 
-            self.aggregatorName = aggregatorName
+            self.intentAppErrorList = intentAppErrorList
 
-            self.cardFingerprint = cardFingerprint
-
-            self.remainingLimit = remainingLimit
-
-            self.cardName = cardName
-
-            self.intentFlow = intentFlow
+            self.merchantCode = merchantCode
 
             self.cardIsin = cardIsin
 
-            self.code = code
+            self.expired = expired
 
-            self.merchantCode = merchantCode
+            self.cardBrandImage = cardBrandImage
+
+            self.cardBrand = cardBrand
 
             self.intentApp = intentApp
 
             self.codLimitPerOrder = codLimitPerOrder
 
+            self.cardFingerprint = cardFingerprint
+
             self.name = name
-
-            self.retryCount = retryCount
-
-            self.cardToken = cardToken
-
-            self.fyndVpa = fyndVpa
-
-            self.cardIssuer = cardIssuer
-
-            self.intentAppErrorDictList = intentAppErrorDictList
-
-            self.cardReference = cardReference
 
             self.displayName = displayName
 
-            self.expired = expired
+            self.cardName = cardName
 
-            self.cardBrand = cardBrand
+            self.cardIssuer = cardIssuer
 
-            self.expMonth = expMonth
+            self.code = code
+
+            self.timeout = timeout
 
             self.cardNumber = cardNumber
 
+            self.fyndVpa = fyndVpa
+
+            self.retryCount = retryCount
+
+            self.intentAppErrorDictList = intentAppErrorDictList
+
             self.logoUrl = logoUrl
 
-            self.cardId = cardId
+            self.cardReference = cardReference
 
-            self.intentAppErrorList = intentAppErrorList
+            self.intentFlow = intentFlow
 
             self.expYear = expYear
 
-            self.cardBrandImage = cardBrandImage
+            self.aggregatorName = aggregatorName
+
+            self.cardId = cardId
+
+            self.remainingLimit = remainingLimit
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                cardType = try container.decode(String.self, forKey: .cardType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                cardToken = try container.decode(String.self, forKey: .cardToken)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 codLimit = try container.decode(Double.self, forKey: .codLimit)
@@ -215,15 +231,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                timeout = try container.decode(Int.self, forKey: .timeout)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cardType = try container.decode(String.self, forKey: .cardType)
+                expMonth = try container.decode(Int.self, forKey: .expMonth)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -246,10 +254,8 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
-
             do {
-                cardFingerprint = try container.decode(String.self, forKey: .cardFingerprint)
+                intentAppErrorList = try container.decode([String].self, forKey: .intentAppErrorList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -257,23 +263,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                remainingLimit = try container.decode(Double.self, forKey: .remainingLimit)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cardName = try container.decode(String.self, forKey: .cardName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                intentFlow = try container.decode(Bool.self, forKey: .intentFlow)
+                merchantCode = try container.decode(String.self, forKey: .merchantCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -289,7 +279,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                expired = try container.decode(Bool.self, forKey: .expired)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -297,7 +287,15 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                merchantCode = try container.decode(String.self, forKey: .merchantCode)
+                cardBrandImage = try container.decode(String.self, forKey: .cardBrandImage)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                cardBrand = try container.decode(String.self, forKey: .cardBrand)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -321,55 +319,15 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
+                cardFingerprint = try container.decode(String.self, forKey: .cardFingerprint)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                retryCount = try container.decode(Int.self, forKey: .retryCount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cardToken = try container.decode(String.self, forKey: .cardToken)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                fyndVpa = try container.decode(String.self, forKey: .fyndVpa)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cardIssuer = try container.decode(String.self, forKey: .cardIssuer)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                intentAppErrorDictList = try container.decode([IntentAppErrorList].self, forKey: .intentAppErrorDictList)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cardReference = try container.decode(String.self, forKey: .cardReference)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -385,7 +343,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                expired = try container.decode(Bool.self, forKey: .expired)
+                cardName = try container.decode(String.self, forKey: .cardName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -393,7 +351,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                cardBrand = try container.decode(String.self, forKey: .cardBrand)
+                cardIssuer = try container.decode(String.self, forKey: .cardIssuer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -401,7 +359,15 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                expMonth = try container.decode(Int.self, forKey: .expMonth)
+                code = try container.decode(String.self, forKey: .code)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                timeout = try container.decode(Int.self, forKey: .timeout)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -417,6 +383,30 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
+                fyndVpa = try container.decode(String.self, forKey: .fyndVpa)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                retryCount = try container.decode(Int.self, forKey: .retryCount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                intentAppErrorDictList = try container.decode([IntentAppErrorList].self, forKey: .intentAppErrorDictList)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 logoUrl = try container.decode(PaymentModeLogo.self, forKey: .logoUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -425,7 +415,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                cardId = try container.decode(String.self, forKey: .cardId)
+                cardReference = try container.decode(String.self, forKey: .cardReference)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -433,7 +423,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                intentAppErrorList = try container.decode([String].self, forKey: .intentAppErrorList)
+                intentFlow = try container.decode(Bool.self, forKey: .intentFlow)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -448,8 +438,18 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
+
             do {
-                cardBrandImage = try container.decode(String.self, forKey: .cardBrandImage)
+                cardId = try container.decode(String.self, forKey: .cardId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                remainingLimit = try container.decode(Double.self, forKey: .remainingLimit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -460,69 +460,69 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encode(cardType, forKey: .cardType)
+
+            try? container.encode(cardToken, forKey: .cardToken)
+
             try? container.encode(codLimit, forKey: .codLimit)
 
-            try? container.encode(timeout, forKey: .timeout)
-
-            try? container.encode(cardType, forKey: .cardType)
+            try? container.encode(expMonth, forKey: .expMonth)
 
             try? container.encode(displayPriority, forKey: .displayPriority)
 
             try? container.encode(nickname, forKey: .nickname)
 
-            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+            try? container.encode(intentAppErrorList, forKey: .intentAppErrorList)
 
-            try? container.encode(cardFingerprint, forKey: .cardFingerprint)
-
-            try? container.encode(remainingLimit, forKey: .remainingLimit)
-
-            try? container.encode(cardName, forKey: .cardName)
-
-            try? container.encode(intentFlow, forKey: .intentFlow)
+            try? container.encode(merchantCode, forKey: .merchantCode)
 
             try? container.encode(cardIsin, forKey: .cardIsin)
 
-            try? container.encode(code, forKey: .code)
+            try? container.encode(expired, forKey: .expired)
 
-            try? container.encode(merchantCode, forKey: .merchantCode)
+            try? container.encode(cardBrandImage, forKey: .cardBrandImage)
+
+            try? container.encode(cardBrand, forKey: .cardBrand)
 
             try? container.encode(intentApp, forKey: .intentApp)
 
             try? container.encode(codLimitPerOrder, forKey: .codLimitPerOrder)
 
+            try? container.encode(cardFingerprint, forKey: .cardFingerprint)
+
             try? container.encode(name, forKey: .name)
-
-            try? container.encode(retryCount, forKey: .retryCount)
-
-            try? container.encode(cardToken, forKey: .cardToken)
-
-            try? container.encode(fyndVpa, forKey: .fyndVpa)
-
-            try? container.encode(cardIssuer, forKey: .cardIssuer)
-
-            try? container.encode(intentAppErrorDictList, forKey: .intentAppErrorDictList)
-
-            try? container.encode(cardReference, forKey: .cardReference)
 
             try? container.encode(displayName, forKey: .displayName)
 
-            try? container.encode(expired, forKey: .expired)
+            try? container.encode(cardName, forKey: .cardName)
 
-            try? container.encode(cardBrand, forKey: .cardBrand)
+            try? container.encode(cardIssuer, forKey: .cardIssuer)
 
-            try? container.encode(expMonth, forKey: .expMonth)
+            try? container.encode(code, forKey: .code)
+
+            try? container.encode(timeout, forKey: .timeout)
 
             try? container.encode(cardNumber, forKey: .cardNumber)
 
+            try? container.encode(fyndVpa, forKey: .fyndVpa)
+
+            try? container.encode(retryCount, forKey: .retryCount)
+
+            try? container.encode(intentAppErrorDictList, forKey: .intentAppErrorDictList)
+
             try? container.encode(logoUrl, forKey: .logoUrl)
 
-            try? container.encode(cardId, forKey: .cardId)
+            try? container.encode(cardReference, forKey: .cardReference)
 
-            try? container.encode(intentAppErrorList, forKey: .intentAppErrorList)
+            try? container.encode(intentFlow, forKey: .intentFlow)
 
             try? container.encode(expYear, forKey: .expYear)
 
-            try? container.encode(cardBrandImage, forKey: .cardBrandImage)
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+
+            try? container.encode(cardId, forKey: .cardId)
+
+            try? container.encode(remainingLimit, forKey: .remainingLimit)
         }
     }
 }

@@ -11,24 +11,24 @@ public extension PlatformClient.ApplicationClient.Cart {
     class Validation: Codable {
         public var userRegisteredAfter: String?
 
-        public var appId: [String]?
-
         public var anonymous: Bool?
+
+        public var appId: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case userRegisteredAfter = "user_registered_after"
 
-            case appId = "app_id"
-
             case anonymous
+
+            case appId = "app_id"
         }
 
         public init(anonymous: Bool? = nil, appId: [String]? = nil, userRegisteredAfter: String? = nil) {
             self.userRegisteredAfter = userRegisteredAfter
 
-            self.appId = appId
-
             self.anonymous = anonymous
+
+            self.appId = appId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                appId = try container.decode([String].self, forKey: .appId)
+                anonymous = try container.decode(Bool.self, forKey: .anonymous)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                anonymous = try container.decode(Bool.self, forKey: .anonymous)
+                appId = try container.decode([String].self, forKey: .appId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encode(userRegisteredAfter, forKey: .userRegisteredAfter)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
             try? container.encodeIfPresent(anonymous, forKey: .anonymous)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
         }
     }
 }

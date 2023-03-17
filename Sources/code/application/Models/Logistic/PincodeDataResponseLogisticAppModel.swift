@@ -7,48 +7,48 @@ public extension ApplicationClient.Logistic {
          Used By: Logistic
      */
     class PincodeDataResponse: Codable {
-        public var uid: String?
+        public var displayName: String?
 
-        public var parents: [PincodeParentsResponse]?
+        public var uid: String?
 
         public var meta: PincodeMetaResponse?
 
+        public var subType: String?
+
         public var error: PincodeErrorSchemaResponse
 
-        public var displayName: String?
-
-        public var subType: String?
+        public var parents: [PincodeParentsResponse]?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case uid
+            case displayName = "display_name"
 
-            case parents
+            case uid
 
             case meta
 
+            case subType = "sub_type"
+
             case error
 
-            case displayName = "display_name"
-
-            case subType = "sub_type"
+            case parents
 
             case name
         }
 
         public init(displayName: String? = nil, error: PincodeErrorSchemaResponse, meta: PincodeMetaResponse? = nil, name: String? = nil, parents: [PincodeParentsResponse]? = nil, subType: String? = nil, uid: String? = nil) {
-            self.uid = uid
+            self.displayName = displayName
 
-            self.parents = parents
+            self.uid = uid
 
             self.meta = meta
 
+            self.subType = subType
+
             self.error = error
 
-            self.displayName = displayName
-
-            self.subType = subType
+            self.parents = parents
 
             self.name = name
         }
@@ -57,7 +57,7 @@ public extension ApplicationClient.Logistic {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                parents = try container.decode([PincodeParentsResponse].self, forKey: .parents)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,18 +80,18 @@ public extension ApplicationClient.Logistic {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            error = try container.decode(PincodeErrorSchemaResponse.self, forKey: .error)
-
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                subType = try container.decode(String.self, forKey: .subType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            error = try container.decode(PincodeErrorSchemaResponse.self, forKey: .error)
+
             do {
-                subType = try container.decode(String.self, forKey: .subType)
+                parents = try container.decode([PincodeParentsResponse].self, forKey: .parents)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,17 +110,17 @@ public extension ApplicationClient.Logistic {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(parents, forKey: .parents)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
+            try? container.encodeIfPresent(subType, forKey: .subType)
+
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-
-            try? container.encodeIfPresent(subType, forKey: .subType)
+            try? container.encodeIfPresent(parents, forKey: .parents)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
