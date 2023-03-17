@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient.Catalog {
     /*
-         Model: SellerV2
+         Model: SellerV3
          Used By: Catalog
      */
-    class SellerV2: Codable {
+    class SellerV3: Codable {
         public var uid: Int?
 
         public var count: Int?

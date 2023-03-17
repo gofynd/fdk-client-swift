@@ -11,13 +11,13 @@ public extension ApplicationClient.PosCart {
 
         public var total: Double?
 
-        public var quantity: Int?
+        public var autoApplied: Bool?
 
         public var best: Bool?
 
-        public var margin: Int?
+        public var quantity: Int?
 
-        public var autoApplied: Bool?
+        public var margin: Int?
 
         public var type: String?
 
@@ -26,13 +26,13 @@ public extension ApplicationClient.PosCart {
 
             case total
 
-            case quantity
+            case autoApplied = "auto_applied"
 
             case best
 
-            case margin
+            case quantity
 
-            case autoApplied = "auto_applied"
+            case margin
 
             case type
         }
@@ -42,13 +42,13 @@ public extension ApplicationClient.PosCart {
 
             self.total = total
 
-            self.quantity = quantity
+            self.autoApplied = autoApplied
 
             self.best = best
 
-            self.margin = margin
+            self.quantity = quantity
 
-            self.autoApplied = autoApplied
+            self.margin = margin
 
             self.type = type
         }
@@ -73,7 +73,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                autoApplied = try container.decode(Bool.self, forKey: .autoApplied)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                margin = try container.decode(Int.self, forKey: .margin)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                autoApplied = try container.decode(Bool.self, forKey: .autoApplied)
+                margin = try container.decode(Int.self, forKey: .margin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,13 +120,13 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(total, forKey: .total)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(autoApplied, forKey: .autoApplied)
 
             try? container.encodeIfPresent(best, forKey: .best)
 
-            try? container.encodeIfPresent(margin, forKey: .margin)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(autoApplied, forKey: .autoApplied)
+            try? container.encodeIfPresent(margin, forKey: .margin)
 
             try? container.encodeIfPresent(type, forKey: .type)
         }

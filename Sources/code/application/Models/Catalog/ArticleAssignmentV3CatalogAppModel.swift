@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient.Catalog {
     /*
-         Model: MarketPlaceSttributesSchemaV2
+         Model: ArticleAssignmentV3
          Used By: Catalog
      */
-    class MarketPlaceSttributesSchemaV2: Codable {
-        public var details: [DetailsSchemaV2]?
+    class ArticleAssignmentV3: Codable {
+        public var strategy: String?
 
-        public var title: String?
+        public var level: String?
 
         public enum CodingKeys: String, CodingKey {
-            case details
+            case strategy
 
-            case title
+            case level
         }
 
-        public init(details: [DetailsSchemaV2]? = nil, title: String? = nil) {
-            self.details = details
+        public init(level: String? = nil, strategy: String? = nil) {
+            self.strategy = strategy
 
-            self.title = title
+            self.level = level
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                details = try container.decode([DetailsSchemaV2].self, forKey: .details)
+                strategy = try container.decode(String.self, forKey: .strategy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                level = try container.decode(String.self, forKey: .level)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(details, forKey: .details)
+            try? container.encodeIfPresent(strategy, forKey: .strategy)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(level, forKey: .level)
         }
     }
 }

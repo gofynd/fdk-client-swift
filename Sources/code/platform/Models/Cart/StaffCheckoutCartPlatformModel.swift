@@ -13,9 +13,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var employeeCode: String?
 
-        public var firstName: String
-
         public var user: String
+
+        public var firstName: String
 
         public var id: String
 
@@ -24,9 +24,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case employeeCode = "employee_code"
 
-            case firstName = "first_name"
-
             case user
+
+            case firstName = "first_name"
 
             case id = "_id"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.employeeCode = employeeCode
 
-            self.firstName = firstName
-
             self.user = user
+
+            self.firstName = firstName
 
             self.id = id
         }
@@ -56,9 +56,9 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            firstName = try container.decode(String.self, forKey: .firstName)
-
             user = try container.decode(String.self, forKey: .user)
+
+            firstName = try container.decode(String.self, forKey: .firstName)
 
             id = try container.decode(String.self, forKey: .id)
         }
@@ -70,9 +70,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
 
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
-
             try? container.encodeIfPresent(user, forKey: .user)
+
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
 
             try? container.encodeIfPresent(id, forKey: .id)
         }

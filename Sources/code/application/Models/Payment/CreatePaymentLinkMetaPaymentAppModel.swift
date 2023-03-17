@@ -11,22 +11,22 @@ public extension ApplicationClient.Payment {
 
         public var amount: String
 
-        public var assignCardId: String?
+        public var cartId: String
 
         public var pincode: String
 
-        public var cartId: String
+        public var assignCardId: String?
 
         public enum CodingKeys: String, CodingKey {
             case checkoutMode = "checkout_mode"
 
             case amount
 
-            case assignCardId = "assign_card_id"
+            case cartId = "cart_id"
 
             case pincode
 
-            case cartId = "cart_id"
+            case assignCardId = "assign_card_id"
         }
 
         public init(amount: String, assignCardId: String? = nil, cartId: String, checkoutMode: String, pincode: String) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Payment {
 
             self.amount = amount
 
-            self.assignCardId = assignCardId
+            self.cartId = cartId
 
             self.pincode = pincode
 
-            self.cartId = cartId
+            self.assignCardId = assignCardId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,6 +48,10 @@ public extension ApplicationClient.Payment {
 
             amount = try container.decode(String.self, forKey: .amount)
 
+            cartId = try container.decode(String.self, forKey: .cartId)
+
+            pincode = try container.decode(String.self, forKey: .pincode)
+
             do {
                 assignCardId = try container.decode(String.self, forKey: .assignCardId)
 
@@ -55,10 +59,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            pincode = try container.decode(String.self, forKey: .pincode)
-
-            cartId = try container.decode(String.self, forKey: .cartId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -68,11 +68,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encode(assignCardId, forKey: .assignCardId)
+            try? container.encodeIfPresent(cartId, forKey: .cartId)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(cartId, forKey: .cartId)
+            try? container.encode(assignCardId, forKey: .assignCardId)
         }
     }
 }

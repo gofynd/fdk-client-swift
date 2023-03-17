@@ -1,33 +1,35 @@
 
 
 import Foundation
-public extension ApplicationClient.Catalog {
-    /*
-         Model: ArticleAssignmentV2
-         Used By: Catalog
-     */
-    class ArticleAssignmentV2: Codable {
-        public var strategy: String?
 
-        public var level: String?
+public extension PlatformClient.ApplicationClient.Content {
+    /*
+         Model: GeneratedSEOContent
+         Used By: Content
+     */
+
+    class GeneratedSEOContent: Codable {
+        public var title: String?
+
+        public var description: String?
 
         public enum CodingKeys: String, CodingKey {
-            case strategy
+            case title
 
-            case level
+            case description
         }
 
-        public init(level: String? = nil, strategy: String? = nil) {
-            self.strategy = strategy
+        public init(description: String? = nil, title: String? = nil) {
+            self.title = title
 
-            self.level = level
+            self.description = description
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                strategy = try container.decode(String.self, forKey: .strategy)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +37,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                level = try container.decode(String.self, forKey: .level)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +48,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(strategy, forKey: .strategy)
+            try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(level, forKey: .level)
+            try? container.encodeIfPresent(description, forKey: .description)
         }
     }
 }

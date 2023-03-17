@@ -4195,7 +4195,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | externalId | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
  | phoneNumbers | [[UserPhoneNumbers](#UserPhoneNumbers)]? |  yes  |  |
- | emails | [String: Any]? |  yes  |  |
+ | emails | [[UserEmails](#UserEmails)]? |  yes  |  |
 
 ---
 

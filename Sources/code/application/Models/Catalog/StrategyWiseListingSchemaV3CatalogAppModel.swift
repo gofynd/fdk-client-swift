@@ -3,43 +3,43 @@
 import Foundation
 public extension ApplicationClient.Catalog {
     /*
-         Model: ProductStockUnitPriceV2
+         Model: StrategyWiseListingSchemaV3
          Used By: Catalog
      */
-    class ProductStockUnitPriceV2: Codable {
-        public var currencySymbol: String?
+    class StrategyWiseListingSchemaV3: Codable {
+        public var quantity: Int?
 
-        public var price: Double?
+        public var tat: Int?
 
-        public var currencyCode: String?
+        public var pincode: Int?
 
-        public var unit: String?
+        public var distance: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case currencySymbol = "currency_symbol"
+            case quantity
 
-            case price
+            case tat
 
-            case currencyCode = "currency_code"
+            case pincode
 
-            case unit
+            case distance
         }
 
-        public init(currencyCode: String? = nil, currencySymbol: String? = nil, price: Double? = nil, unit: String? = nil) {
-            self.currencySymbol = currencySymbol
+        public init(distance: Int? = nil, pincode: Int? = nil, quantity: Int? = nil, tat: Int? = nil) {
+            self.quantity = quantity
 
-            self.price = price
+            self.tat = tat
 
-            self.currencyCode = currencyCode
+            self.pincode = pincode
 
-            self.unit = unit
+            self.distance = distance
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                price = try container.decode(Double.self, forKey: .price)
+                tat = try container.decode(Int.self, forKey: .tat)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                pincode = try container.decode(Int.self, forKey: .pincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                distance = try container.decode(Int.self, forKey: .distance)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,13 +74,13 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(price, forKey: .price)
+            try? container.encodeIfPresent(tat, forKey: .tat)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encodeIfPresent(distance, forKey: .distance)
         }
     }
 }

@@ -21,7 +21,7 @@ public extension PlatformClient.ApplicationClient.User {
 
         public var phoneNumbers: [UserPhoneNumbers]?
 
-        public var emails: [String: Any]?
+        public var emails: [UserEmails]?
 
         public enum CodingKeys: String, CodingKey {
             case firstName = "first_name"
@@ -39,7 +39,7 @@ public extension PlatformClient.ApplicationClient.User {
             case emails
         }
 
-        public init(emails: [String: Any]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [UserPhoneNumbers]? = nil) {
+        public init(emails: [UserEmails]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [UserPhoneNumbers]? = nil) {
             self.firstName = firstName
 
             self.lastName = lastName
@@ -107,7 +107,7 @@ public extension PlatformClient.ApplicationClient.User {
             } catch {}
 
             do {
-                emails = try container.decode([String: Any].self, forKey: .emails)
+                emails = try container.decode([UserEmails].self, forKey: .emails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
