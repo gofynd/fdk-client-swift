@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class Meta: Codable {
         public var headers: [String: Any]?
 
-        public var unit: String?
-
         public var values: [[String: Any]]?
+
+        public var unit: String?
 
         public enum CodingKeys: String, CodingKey {
             case headers
 
-            case unit
-
             case values
+
+            case unit
         }
 
         public init(headers: [String: Any]? = nil, unit: String? = nil, values: [[String: Any]]? = nil) {
             self.headers = headers
 
-            self.unit = unit
-
             self.values = values
+
+            self.unit = unit
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                values = try container.decode([[String: Any]].self, forKey: .values)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                values = try container.decode([[String: Any]].self, forKey: .values)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(headers, forKey: .headers)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
-
             try? container.encodeIfPresent(values, forKey: .values)
+
+            try? container.encodeIfPresent(unit, forKey: .unit)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class Meta: Codable {
         public var headers: [String: Any]?
 
-        public var unit: String?
-
         public var values: [[String: Any]]?
+
+        public var unit: String?
 
         public enum CodingKeys: String, CodingKey {
             case headers
 
-            case unit
-
             case values
+
+            case unit
         }
 
         public init(headers: [String: Any]? = nil, unit: String? = nil, values: [[String: Any]]? = nil) {
             self.headers = headers
 
-            self.unit = unit
-
             self.values = values
+
+            self.unit = unit
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                values = try container.decode([[String: Any]].self, forKey: .values)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                values = try container.decode([[String: Any]].self, forKey: .values)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(headers, forKey: .headers)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
-
             try? container.encodeIfPresent(values, forKey: .values)
+
+            try? container.encodeIfPresent(unit, forKey: .unit)
         }
     }
 }

@@ -9,19 +9,13 @@ public extension PlatformClient.Catalog {
      */
 
     class ProdcutTemplateCategoriesResponse: Codable {
-        public var page: Page?
-
-        public var items: [CategoriesResponse]?
+        public var items: [ProductTemplateCategory]?
 
         public enum CodingKeys: String, CodingKey {
-            case page
-
             case items
         }
 
-        public init(items: [CategoriesResponse]? = nil, page: Page? = nil) {
-            self.page = page
-
+        public init(items: [ProductTemplateCategory]? = nil) {
             self.items = items
         }
 
@@ -29,15 +23,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                page = try container.decode(Page.self, forKey: .page)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                items = try container.decode([CategoriesResponse].self, forKey: .items)
+                items = try container.decode([ProductTemplateCategory].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,8 +33,6 @@ public extension PlatformClient.Catalog {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(items, forKey: .items)
         }
@@ -62,19 +46,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ProdcutTemplateCategoriesResponse: Codable {
-        public var page: Page?
-
-        public var items: [CategoriesResponse]?
+        public var items: [ProductTemplateCategory]?
 
         public enum CodingKeys: String, CodingKey {
-            case page
-
             case items
         }
 
-        public init(items: [CategoriesResponse]? = nil, page: Page? = nil) {
-            self.page = page
-
+        public init(items: [ProductTemplateCategory]? = nil) {
             self.items = items
         }
 
@@ -82,15 +60,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                page = try container.decode(Page.self, forKey: .page)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                items = try container.decode([CategoriesResponse].self, forKey: .items)
+                items = try container.decode([ProductTemplateCategory].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -100,8 +70,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(items, forKey: .items)
         }

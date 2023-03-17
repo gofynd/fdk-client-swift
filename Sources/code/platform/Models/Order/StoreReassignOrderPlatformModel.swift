@@ -13,42 +13,42 @@ public extension PlatformClient.Order {
 
         public var affiliateId: String?
 
-        public var itemId: String?
-
-        public var affiliateBagId: String?
-
-        public var affiliateOrderId: String?
-
         public var fyndOrderId: String?
 
-        public var storeId: Int
+        public var reasonIds: [Int]?
+
+        public var itemId: String?
 
         public var mongoArticleId: String?
 
+        public var affiliateOrderId: String?
+
+        public var storeId: Int
+
         public var bagId: Int?
 
-        public var reasonIds: [Int]?
+        public var affiliateBagId: String?
 
         public enum CodingKeys: String, CodingKey {
             case setId = "set_id"
 
             case affiliateId = "affiliate_id"
 
-            case itemId = "item_id"
-
-            case affiliateBagId = "affiliate_bag_id"
-
-            case affiliateOrderId = "affiliate_order_id"
-
             case fyndOrderId = "fynd_order_id"
 
-            case storeId = "store_id"
+            case reasonIds = "reason_ids"
+
+            case itemId = "item_id"
 
             case mongoArticleId = "mongo_article_id"
 
+            case affiliateOrderId = "affiliate_order_id"
+
+            case storeId = "store_id"
+
             case bagId = "bag_id"
 
-            case reasonIds = "reason_ids"
+            case affiliateBagId = "affiliate_bag_id"
         }
 
         public init(affiliateBagId: String? = nil, affiliateId: String? = nil, affiliateOrderId: String? = nil, bagId: Int? = nil, fyndOrderId: String? = nil, itemId: String? = nil, mongoArticleId: String? = nil, reasonIds: [Int]? = nil, setId: String? = nil, storeId: Int) {
@@ -56,21 +56,21 @@ public extension PlatformClient.Order {
 
             self.affiliateId = affiliateId
 
-            self.itemId = itemId
-
-            self.affiliateBagId = affiliateBagId
-
-            self.affiliateOrderId = affiliateOrderId
-
             self.fyndOrderId = fyndOrderId
 
-            self.storeId = storeId
+            self.reasonIds = reasonIds
+
+            self.itemId = itemId
 
             self.mongoArticleId = mongoArticleId
 
+            self.affiliateOrderId = affiliateOrderId
+
+            self.storeId = storeId
+
             self.bagId = bagId
 
-            self.reasonIds = reasonIds
+            self.affiliateBagId = affiliateBagId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -93,6 +93,22 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                reasonIds = try container.decode([Int].self, forKey: .reasonIds)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 itemId = try container.decode(String.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -101,7 +117,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
+                mongoArticleId = try container.decode(String.self, forKey: .mongoArticleId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,23 +132,7 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             storeId = try container.decode(Int.self, forKey: .storeId)
-
-            do {
-                mongoArticleId = try container.decode(String.self, forKey: .mongoArticleId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 bagId = try container.decode(Int.self, forKey: .bagId)
@@ -143,7 +143,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                reasonIds = try container.decode([Int].self, forKey: .reasonIds)
+                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,21 +158,21 @@ public extension PlatformClient.Order {
 
             try? container.encode(affiliateId, forKey: .affiliateId)
 
-            try? container.encode(itemId, forKey: .itemId)
-
-            try? container.encode(affiliateBagId, forKey: .affiliateBagId)
-
-            try? container.encode(affiliateOrderId, forKey: .affiliateOrderId)
-
             try? container.encode(fyndOrderId, forKey: .fyndOrderId)
 
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
+            try? container.encode(reasonIds, forKey: .reasonIds)
+
+            try? container.encode(itemId, forKey: .itemId)
 
             try? container.encode(mongoArticleId, forKey: .mongoArticleId)
 
+            try? container.encode(affiliateOrderId, forKey: .affiliateOrderId)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
+
             try? container.encode(bagId, forKey: .bagId)
 
-            try? container.encode(reasonIds, forKey: .reasonIds)
+            try? container.encode(affiliateBagId, forKey: .affiliateBagId)
         }
     }
 }
@@ -188,42 +188,42 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var affiliateId: String?
 
-        public var itemId: String?
-
-        public var affiliateBagId: String?
-
-        public var affiliateOrderId: String?
-
         public var fyndOrderId: String?
 
-        public var storeId: Int
+        public var reasonIds: [Int]?
+
+        public var itemId: String?
 
         public var mongoArticleId: String?
 
+        public var affiliateOrderId: String?
+
+        public var storeId: Int
+
         public var bagId: Int?
 
-        public var reasonIds: [Int]?
+        public var affiliateBagId: String?
 
         public enum CodingKeys: String, CodingKey {
             case setId = "set_id"
 
             case affiliateId = "affiliate_id"
 
-            case itemId = "item_id"
-
-            case affiliateBagId = "affiliate_bag_id"
-
-            case affiliateOrderId = "affiliate_order_id"
-
             case fyndOrderId = "fynd_order_id"
 
-            case storeId = "store_id"
+            case reasonIds = "reason_ids"
+
+            case itemId = "item_id"
 
             case mongoArticleId = "mongo_article_id"
 
+            case affiliateOrderId = "affiliate_order_id"
+
+            case storeId = "store_id"
+
             case bagId = "bag_id"
 
-            case reasonIds = "reason_ids"
+            case affiliateBagId = "affiliate_bag_id"
         }
 
         public init(affiliateBagId: String? = nil, affiliateId: String? = nil, affiliateOrderId: String? = nil, bagId: Int? = nil, fyndOrderId: String? = nil, itemId: String? = nil, mongoArticleId: String? = nil, reasonIds: [Int]? = nil, setId: String? = nil, storeId: Int) {
@@ -231,21 +231,21 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.affiliateId = affiliateId
 
-            self.itemId = itemId
-
-            self.affiliateBagId = affiliateBagId
-
-            self.affiliateOrderId = affiliateOrderId
-
             self.fyndOrderId = fyndOrderId
 
-            self.storeId = storeId
+            self.reasonIds = reasonIds
+
+            self.itemId = itemId
 
             self.mongoArticleId = mongoArticleId
 
+            self.affiliateOrderId = affiliateOrderId
+
+            self.storeId = storeId
+
             self.bagId = bagId
 
-            self.reasonIds = reasonIds
+            self.affiliateBagId = affiliateBagId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -268,6 +268,22 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                reasonIds = try container.decode([Int].self, forKey: .reasonIds)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 itemId = try container.decode(String.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -276,7 +292,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
+                mongoArticleId = try container.decode(String.self, forKey: .mongoArticleId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -291,23 +307,7 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             storeId = try container.decode(Int.self, forKey: .storeId)
-
-            do {
-                mongoArticleId = try container.decode(String.self, forKey: .mongoArticleId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 bagId = try container.decode(Int.self, forKey: .bagId)
@@ -318,7 +318,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                reasonIds = try container.decode([Int].self, forKey: .reasonIds)
+                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -333,21 +333,21 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encode(affiliateId, forKey: .affiliateId)
 
-            try? container.encode(itemId, forKey: .itemId)
-
-            try? container.encode(affiliateBagId, forKey: .affiliateBagId)
-
-            try? container.encode(affiliateOrderId, forKey: .affiliateOrderId)
-
             try? container.encode(fyndOrderId, forKey: .fyndOrderId)
 
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
+            try? container.encode(reasonIds, forKey: .reasonIds)
+
+            try? container.encode(itemId, forKey: .itemId)
 
             try? container.encode(mongoArticleId, forKey: .mongoArticleId)
 
+            try? container.encode(affiliateOrderId, forKey: .affiliateOrderId)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
+
             try? container.encode(bagId, forKey: .bagId)
 
-            try? container.encode(reasonIds, forKey: .reasonIds)
+            try? container.encode(affiliateBagId, forKey: .affiliateBagId)
         }
     }
 }

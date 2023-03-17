@@ -13,9 +13,9 @@ public extension ApplicationClient.Catalog {
 
         public var dimension: Dimension?
 
-        public var sellerIdentifiers: [String]?
-
         public var weight: Weight?
+
+        public var sellerIdentifiers: [String]?
 
         public var isAvailable: Bool?
 
@@ -28,9 +28,9 @@ public extension ApplicationClient.Catalog {
 
             case dimension
 
-            case sellerIdentifiers = "seller_identifiers"
-
             case weight
+
+            case sellerIdentifiers = "seller_identifiers"
 
             case isAvailable = "is_available"
 
@@ -44,9 +44,9 @@ public extension ApplicationClient.Catalog {
 
             self.dimension = dimension
 
-            self.sellerIdentifiers = sellerIdentifiers
-
             self.weight = weight
+
+            self.sellerIdentifiers = sellerIdentifiers
 
             self.isAvailable = isAvailable
 
@@ -81,7 +81,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                sellerIdentifiers = try container.decode([String].self, forKey: .sellerIdentifiers)
+                weight = try container.decode(Weight.self, forKey: .weight)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                weight = try container.decode(Weight.self, forKey: .weight)
+                sellerIdentifiers = try container.decode([String].self, forKey: .sellerIdentifiers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,9 +122,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(dimension, forKey: .dimension)
 
-            try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
-
             try? container.encodeIfPresent(weight, forKey: .weight)
+
+            try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
 
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 

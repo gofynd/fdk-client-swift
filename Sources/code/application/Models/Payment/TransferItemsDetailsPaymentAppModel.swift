@@ -11,9 +11,9 @@ public extension ApplicationClient.Payment {
 
         public var logoSmall: String
 
-        public var displayName: String?
-
         public var logoLarge: String
+
+        public var displayName: String?
 
         public var name: String
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Payment {
 
             case logoSmall = "logo_small"
 
-            case displayName = "display_name"
-
             case logoLarge = "logo_large"
+
+            case displayName = "display_name"
 
             case name
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Payment {
 
             self.logoSmall = logoSmall
 
-            self.displayName = displayName
-
             self.logoLarge = logoLarge
+
+            self.displayName = displayName
 
             self.name = name
         }
@@ -48,6 +48,8 @@ public extension ApplicationClient.Payment {
 
             logoSmall = try container.decode(String.self, forKey: .logoSmall)
 
+            logoLarge = try container.decode(String.self, forKey: .logoLarge)
+
             do {
                 displayName = try container.decode(String.self, forKey: .displayName)
 
@@ -55,8 +57,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            logoLarge = try container.decode(String.self, forKey: .logoLarge)
 
             name = try container.decode(String.self, forKey: .name)
         }
@@ -68,9 +68,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-
             try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
+
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
