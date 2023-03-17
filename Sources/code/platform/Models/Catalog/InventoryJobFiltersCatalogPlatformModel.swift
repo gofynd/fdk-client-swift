@@ -9,9 +9,9 @@ public extension PlatformClient.Catalog {
      */
 
     class InventoryJobFilters: Codable {
-        public var stores: [String]?
-
         public var quantity: InventoryExportQuantityFilter?
+
+        public var stores: [String]?
 
         public var fromDate: String?
 
@@ -20,9 +20,9 @@ public extension PlatformClient.Catalog {
         public var brands: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case stores
-
             case quantity
+
+            case stores
 
             case fromDate = "from_date"
 
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
         }
 
         public init(brands: [String]? = nil, fromDate: String? = nil, quantity: InventoryExportQuantityFilter? = nil, stores: [String]? = nil, toDate: String? = nil) {
-            self.stores = stores
-
             self.quantity = quantity
+
+            self.stores = stores
 
             self.fromDate = fromDate
 
@@ -47,7 +47,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                stores = try container.decode([String].self, forKey: .stores)
+                quantity = try container.decode(InventoryExportQuantityFilter.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                quantity = try container.decode(InventoryExportQuantityFilter.self, forKey: .quantity)
+                stores = try container.decode([String].self, forKey: .stores)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(stores, forKey: .stores)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(stores, forKey: .stores)
 
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
 
@@ -110,9 +110,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class InventoryJobFilters: Codable {
-        public var stores: [String]?
-
         public var quantity: InventoryExportQuantityFilter?
+
+        public var stores: [String]?
 
         public var fromDate: String?
 
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var brands: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case stores
-
             case quantity
+
+            case stores
 
             case fromDate = "from_date"
 
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(brands: [String]? = nil, fromDate: String? = nil, quantity: InventoryExportQuantityFilter? = nil, stores: [String]? = nil, toDate: String? = nil) {
-            self.stores = stores
-
             self.quantity = quantity
+
+            self.stores = stores
 
             self.fromDate = fromDate
 
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                stores = try container.decode([String].self, forKey: .stores)
+                quantity = try container.decode(InventoryExportQuantityFilter.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                quantity = try container.decode(InventoryExportQuantityFilter.self, forKey: .quantity)
+                stores = try container.decode([String].self, forKey: .stores)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,9 +191,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(stores, forKey: .stores)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(stores, forKey: .stores)
 
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
 

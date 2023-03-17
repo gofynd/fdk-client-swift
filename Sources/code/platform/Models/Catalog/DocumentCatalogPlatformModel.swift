@@ -9,42 +9,44 @@ public extension PlatformClient.Catalog {
      */
 
     class Document: Codable {
-        public var url: String?
-
-        public var legalName: String?
-
-        public var value: String
-
         public var type: String
+
+        public var url: String?
 
         public var verified: Bool?
 
+        public var value: String
+
+        public var legalName: String?
+
         public enum CodingKeys: String, CodingKey {
+            case type
+
             case url
 
-            case legalName = "legal_name"
+            case verified
 
             case value
 
-            case type
-
-            case verified
+            case legalName = "legal_name"
         }
 
         public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
+            self.type = type
+
             self.url = url
 
-            self.legalName = legalName
+            self.verified = verified
 
             self.value = value
 
-            self.type = type
-
-            self.verified = verified
+            self.legalName = legalName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            type = try container.decode(String.self, forKey: .type)
 
             do {
                 url = try container.decode(String.self, forKey: .url)
@@ -55,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                legalName = try container.decode(String.self, forKey: .legalName)
+                verified = try container.decode(Bool.self, forKey: .verified)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,10 +66,8 @@ public extension PlatformClient.Catalog {
 
             value = try container.decode(String.self, forKey: .value)
 
-            type = try container.decode(String.self, forKey: .type)
-
             do {
-                verified = try container.decode(Bool.self, forKey: .verified)
+                legalName = try container.decode(String.self, forKey: .legalName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,15 +78,15 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(type, forKey: .type)
+
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(legalName, forKey: .legalName)
+            try? container.encodeIfPresent(verified, forKey: .verified)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
-            try? container.encodeIfPresent(verified, forKey: .verified)
+            try? container.encodeIfPresent(legalName, forKey: .legalName)
         }
     }
 }
@@ -98,42 +98,44 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class Document: Codable {
-        public var url: String?
-
-        public var legalName: String?
-
-        public var value: String
-
         public var type: String
+
+        public var url: String?
 
         public var verified: Bool?
 
+        public var value: String
+
+        public var legalName: String?
+
         public enum CodingKeys: String, CodingKey {
+            case type
+
             case url
 
-            case legalName = "legal_name"
+            case verified
 
             case value
 
-            case type
-
-            case verified
+            case legalName = "legal_name"
         }
 
         public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
+            self.type = type
+
             self.url = url
 
-            self.legalName = legalName
+            self.verified = verified
 
             self.value = value
 
-            self.type = type
-
-            self.verified = verified
+            self.legalName = legalName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            type = try container.decode(String.self, forKey: .type)
 
             do {
                 url = try container.decode(String.self, forKey: .url)
@@ -144,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                legalName = try container.decode(String.self, forKey: .legalName)
+                verified = try container.decode(Bool.self, forKey: .verified)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,10 +155,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             value = try container.decode(String.self, forKey: .value)
 
-            type = try container.decode(String.self, forKey: .type)
-
             do {
-                verified = try container.decode(Bool.self, forKey: .verified)
+                legalName = try container.decode(String.self, forKey: .legalName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -167,15 +167,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(type, forKey: .type)
+
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(legalName, forKey: .legalName)
+            try? container.encodeIfPresent(verified, forKey: .verified)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
-            try? container.encodeIfPresent(verified, forKey: .verified)
+            try? container.encodeIfPresent(legalName, forKey: .legalName)
         }
     }
 }

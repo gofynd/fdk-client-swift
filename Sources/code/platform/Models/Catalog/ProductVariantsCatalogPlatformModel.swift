@@ -9,51 +9,51 @@ public extension PlatformClient.Catalog {
      */
 
     class ProductVariants: Codable {
-        public var media: [Media1]?
+        public var itemCode: String?
 
         public var uid: Int?
 
-        public var itemCode: String?
+        public var categoryUid: Int?
 
-        public var brandUid: Int?
+        public var media: [Media1]?
 
         public var name: String?
 
-        public var categoryUid: Int?
+        public var brandUid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case media
+            case itemCode = "item_code"
 
             case uid
 
-            case itemCode = "item_code"
+            case categoryUid = "category_uid"
 
-            case brandUid = "brand_uid"
+            case media
 
             case name
 
-            case categoryUid = "category_uid"
+            case brandUid = "brand_uid"
         }
 
         public init(brandUid: Int? = nil, categoryUid: Int? = nil, itemCode: String? = nil, media: [Media1]? = nil, name: String? = nil, uid: Int? = nil) {
-            self.media = media
+            self.itemCode = itemCode
 
             self.uid = uid
 
-            self.itemCode = itemCode
+            self.categoryUid = categoryUid
 
-            self.brandUid = brandUid
+            self.media = media
 
             self.name = name
 
-            self.categoryUid = categoryUid
+            self.brandUid = brandUid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                media = try container.decode([Media1].self, forKey: .media)
+                itemCode = try container.decode(String.self, forKey: .itemCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                itemCode = try container.decode(String.self, forKey: .itemCode)
+                categoryUid = try container.decode(Int.self, forKey: .categoryUid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                brandUid = try container.decode(Int.self, forKey: .brandUid)
+                media = try container.decode([Media1].self, forKey: .media)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                categoryUid = try container.decode(Int.self, forKey: .categoryUid)
+                brandUid = try container.decode(Int.self, forKey: .brandUid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,17 +104,17 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(media, forKey: .media)
+            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
+            try? container.encodeIfPresent(categoryUid, forKey: .categoryUid)
 
-            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
+            try? container.encodeIfPresent(media, forKey: .media)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(categoryUid, forKey: .categoryUid)
+            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
         }
     }
 }
@@ -126,51 +126,51 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ProductVariants: Codable {
-        public var media: [Media1]?
+        public var itemCode: String?
 
         public var uid: Int?
 
-        public var itemCode: String?
+        public var categoryUid: Int?
 
-        public var brandUid: Int?
+        public var media: [Media1]?
 
         public var name: String?
 
-        public var categoryUid: Int?
+        public var brandUid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case media
+            case itemCode = "item_code"
 
             case uid
 
-            case itemCode = "item_code"
+            case categoryUid = "category_uid"
 
-            case brandUid = "brand_uid"
+            case media
 
             case name
 
-            case categoryUid = "category_uid"
+            case brandUid = "brand_uid"
         }
 
         public init(brandUid: Int? = nil, categoryUid: Int? = nil, itemCode: String? = nil, media: [Media1]? = nil, name: String? = nil, uid: Int? = nil) {
-            self.media = media
+            self.itemCode = itemCode
 
             self.uid = uid
 
-            self.itemCode = itemCode
+            self.categoryUid = categoryUid
 
-            self.brandUid = brandUid
+            self.media = media
 
             self.name = name
 
-            self.categoryUid = categoryUid
+            self.brandUid = brandUid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                media = try container.decode([Media1].self, forKey: .media)
+                itemCode = try container.decode(String.self, forKey: .itemCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -186,7 +186,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                itemCode = try container.decode(String.self, forKey: .itemCode)
+                categoryUid = try container.decode(Int.self, forKey: .categoryUid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,7 +194,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                brandUid = try container.decode(Int.self, forKey: .brandUid)
+                media = try container.decode([Media1].self, forKey: .media)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                categoryUid = try container.decode(Int.self, forKey: .categoryUid)
+                brandUid = try container.decode(Int.self, forKey: .brandUid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -221,17 +221,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(media, forKey: .media)
+            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
+            try? container.encodeIfPresent(categoryUid, forKey: .categoryUid)
 
-            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
+            try? container.encodeIfPresent(media, forKey: .media)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(categoryUid, forKey: .categoryUid)
+            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
         }
     }
 }

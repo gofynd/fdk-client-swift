@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class ProductDownloadItemsData: Codable {
         public var type: String?
 
-        public var brand: [String]?
-
         public var templates: [String]?
+
+        public var brand: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case brand
-
             case templates
+
+            case brand
         }
 
         public init(brand: [String]? = nil, templates: [String]? = nil, type: String? = nil) {
             self.type = type
 
-            self.brand = brand
-
             self.templates = templates
+
+            self.brand = brand
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                brand = try container.decode([String].self, forKey: .brand)
+                templates = try container.decode([String].self, forKey: .templates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                templates = try container.decode([String].self, forKey: .templates)
+                brand = try container.decode([String].self, forKey: .brand)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
-
             try? container.encodeIfPresent(templates, forKey: .templates)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductDownloadItemsData: Codable {
         public var type: String?
 
-        public var brand: [String]?
-
         public var templates: [String]?
+
+        public var brand: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case brand
-
             case templates
+
+            case brand
         }
 
         public init(brand: [String]? = nil, templates: [String]? = nil, type: String? = nil) {
             self.type = type
 
-            self.brand = brand
-
             self.templates = templates
+
+            self.brand = brand
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                brand = try container.decode([String].self, forKey: .brand)
+                templates = try container.decode([String].self, forKey: .templates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                templates = try container.decode([String].self, forKey: .templates)
+                brand = try container.decode([String].self, forKey: .brand)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
-
             try? container.encodeIfPresent(templates, forKey: .templates)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
         }
     }
 }
