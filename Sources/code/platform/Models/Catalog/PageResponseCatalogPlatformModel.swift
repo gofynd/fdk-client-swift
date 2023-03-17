@@ -11,22 +11,22 @@ public extension PlatformClient.Catalog {
     class PageResponse: Codable {
         public var itemTotal: Int?
 
+        public var hasPrevious: Bool?
+
         public var size: Int?
 
         public var current: String?
-
-        public var hasPrevious: Bool?
 
         public var hasNext: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case itemTotal = "item_total"
 
+            case hasPrevious = "has_previous"
+
             case size
 
             case current
-
-            case hasPrevious = "has_previous"
 
             case hasNext = "has_next"
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.Catalog {
         public init(current: String? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil) {
             self.itemTotal = itemTotal
 
+            self.hasPrevious = hasPrevious
+
             self.size = size
 
             self.current = current
-
-            self.hasPrevious = hasPrevious
 
             self.hasNext = hasNext
         }
@@ -48,6 +48,14 @@ public extension PlatformClient.Catalog {
 
             do {
                 itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,14 +79,6 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -92,11 +92,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(current, forKey: .current)
-
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
         }
@@ -112,22 +112,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class PageResponse: Codable {
         public var itemTotal: Int?
 
+        public var hasPrevious: Bool?
+
         public var size: Int?
 
         public var current: String?
-
-        public var hasPrevious: Bool?
 
         public var hasNext: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case itemTotal = "item_total"
 
+            case hasPrevious = "has_previous"
+
             case size
 
             case current
-
-            case hasPrevious = "has_previous"
 
             case hasNext = "has_next"
         }
@@ -135,11 +135,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(current: String? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil) {
             self.itemTotal = itemTotal
 
+            self.hasPrevious = hasPrevious
+
             self.size = size
 
             self.current = current
-
-            self.hasPrevious = hasPrevious
 
             self.hasNext = hasNext
         }
@@ -149,6 +149,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,14 +180,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -193,11 +193,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(current, forKey: .current)
-
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
         }

@@ -9,19 +9,25 @@ public extension PlatformClient.Catalog {
      */
 
     class Properties: Codable {
-        public var command: [String: Any]?
+        public var currency: [String: Any]?
 
-        public var isDependent: [String: Any]?
-
-        public var brandUid: [String: Any]?
-
-        public var variants: [String: Any]?
+        public var media: [String: Any]?
 
         public var customOrder: [String: Any]?
 
-        public var countryOfOrigin: [String: Any]?
+        public var isActive: [String: Any]?
 
-        public var itemCode: [String: Any]?
+        public var command: [String: Any]?
+
+        public var highlights: [String: Any]?
+
+        public var slug: [String: Any]?
+
+        public var description: [String: Any]?
+
+        public var tags: [String: Any]?
+
+        public var returnConfig: [String: Any]?
 
         public var sizeGuide: [String: Any]?
 
@@ -29,58 +35,58 @@ public extension PlatformClient.Catalog {
 
         public var shortDescription: [String: Any]?
 
-        public var media: [String: Any]?
-
-        public var itemType: [String: Any]?
-
-        public var sizes: [String: Any]?
-
-        public var description: [String: Any]?
+        public var traderType: [String: Any]?
 
         public var trader: [String: Any]?
 
+        public var name: [String: Any]?
+
+        public var variants: [String: Any]?
+
         public var hsnCode: [String: Any]?
 
-        public var highlights: [String: Any]?
+        public var categorySlug: [String: Any]?
 
-        public var tags: [String: Any]?
-
-        public var productGroupTag: [String: Any]?
-
-        public var isActive: [String: Any]?
+        public var itemCode: [String: Any]?
 
         public var teaserTag: [String: Any]?
 
         public var productPublish: [String: Any]?
 
-        public var name: [String: Any]?
+        public var brandUid: [String: Any]?
+
+        public var productGroupTag: [String: Any]?
+
+        public var countryOfOrigin: [String: Any]?
 
         public var noOfBoxes: [String: Any]?
 
-        public var currency: [String: Any]?
+        public var itemType: [String: Any]?
 
-        public var traderType: [String: Any]?
+        public var sizes: [String: Any]?
 
-        public var slug: [String: Any]?
-
-        public var returnConfig: [String: Any]?
-
-        public var categorySlug: [String: Any]?
+        public var isDependent: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case command
+            case currency
 
-            case isDependent = "is_dependent"
-
-            case brandUid = "brand_uid"
-
-            case variants
+            case media
 
             case customOrder = "custom_order"
 
-            case countryOfOrigin = "country_of_origin"
+            case isActive = "is_active"
 
-            case itemCode = "item_code"
+            case command
+
+            case highlights
+
+            case slug
+
+            case description
+
+            case tags
+
+            case returnConfig = "return_config"
 
             case sizeGuide = "size_guide"
 
@@ -88,59 +94,59 @@ public extension PlatformClient.Catalog {
 
             case shortDescription = "short_description"
 
-            case media
-
-            case itemType = "item_type"
-
-            case sizes
-
-            case description
+            case traderType = "trader_type"
 
             case trader
 
+            case name
+
+            case variants
+
             case hsnCode = "hsn_code"
 
-            case highlights
+            case categorySlug = "category_slug"
 
-            case tags
-
-            case productGroupTag = "product_group_tag"
-
-            case isActive = "is_active"
+            case itemCode = "item_code"
 
             case teaserTag = "teaser_tag"
 
             case productPublish = "product_publish"
 
-            case name
+            case brandUid = "brand_uid"
+
+            case productGroupTag = "product_group_tag"
+
+            case countryOfOrigin = "country_of_origin"
 
             case noOfBoxes = "no_of_boxes"
 
-            case currency
+            case itemType = "item_type"
 
-            case traderType = "trader_type"
+            case sizes
 
-            case slug
-
-            case returnConfig = "return_config"
-
-            case categorySlug = "category_slug"
+            case isDependent = "is_dependent"
         }
 
         public init(brandUid: [String: Any]? = nil, categorySlug: [String: Any]? = nil, command: [String: Any]? = nil, countryOfOrigin: [String: Any]? = nil, currency: [String: Any]? = nil, customOrder: [String: Any]? = nil, description: [String: Any]? = nil, highlights: [String: Any]? = nil, hsnCode: [String: Any]? = nil, isActive: [String: Any]? = nil, isDependent: [String: Any]? = nil, itemCode: [String: Any]? = nil, itemType: [String: Any]? = nil, media: [String: Any]? = nil, multiSize: [String: Any]? = nil, name: [String: Any]? = nil, noOfBoxes: [String: Any]? = nil, productGroupTag: [String: Any]? = nil, productPublish: [String: Any]? = nil, returnConfig: [String: Any]? = nil, shortDescription: [String: Any]? = nil, sizes: [String: Any]? = nil, sizeGuide: [String: Any]? = nil, slug: [String: Any]? = nil, tags: [String: Any]? = nil, teaserTag: [String: Any]? = nil, trader: [String: Any]? = nil, traderType: [String: Any]? = nil, variants: [String: Any]? = nil) {
-            self.command = command
+            self.currency = currency
 
-            self.isDependent = isDependent
-
-            self.brandUid = brandUid
-
-            self.variants = variants
+            self.media = media
 
             self.customOrder = customOrder
 
-            self.countryOfOrigin = countryOfOrigin
+            self.isActive = isActive
 
-            self.itemCode = itemCode
+            self.command = command
+
+            self.highlights = highlights
+
+            self.slug = slug
+
+            self.description = description
+
+            self.tags = tags
+
+            self.returnConfig = returnConfig
 
             self.sizeGuide = sizeGuide
 
@@ -148,50 +154,44 @@ public extension PlatformClient.Catalog {
 
             self.shortDescription = shortDescription
 
-            self.media = media
-
-            self.itemType = itemType
-
-            self.sizes = sizes
-
-            self.description = description
+            self.traderType = traderType
 
             self.trader = trader
 
+            self.name = name
+
+            self.variants = variants
+
             self.hsnCode = hsnCode
 
-            self.highlights = highlights
+            self.categorySlug = categorySlug
 
-            self.tags = tags
-
-            self.productGroupTag = productGroupTag
-
-            self.isActive = isActive
+            self.itemCode = itemCode
 
             self.teaserTag = teaserTag
 
             self.productPublish = productPublish
 
-            self.name = name
+            self.brandUid = brandUid
+
+            self.productGroupTag = productGroupTag
+
+            self.countryOfOrigin = countryOfOrigin
 
             self.noOfBoxes = noOfBoxes
 
-            self.currency = currency
+            self.itemType = itemType
 
-            self.traderType = traderType
+            self.sizes = sizes
 
-            self.slug = slug
-
-            self.returnConfig = returnConfig
-
-            self.categorySlug = categorySlug
+            self.isDependent = isDependent
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                command = try container.decode([String: Any].self, forKey: .command)
+                currency = try container.decode([String: Any].self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -199,23 +199,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                isDependent = try container.decode([String: Any].self, forKey: .isDependent)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brandUid = try container.decode([String: Any].self, forKey: .brandUid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                variants = try container.decode([String: Any].self, forKey: .variants)
+                media = try container.decode([String: Any].self, forKey: .media)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -231,7 +215,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                countryOfOrigin = try container.decode([String: Any].self, forKey: .countryOfOrigin)
+                isActive = try container.decode([String: Any].self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -239,7 +223,47 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                itemCode = try container.decode([String: Any].self, forKey: .itemCode)
+                command = try container.decode([String: Any].self, forKey: .command)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                highlights = try container.decode([String: Any].self, forKey: .highlights)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode([String: Any].self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode([String: Any].self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                tags = try container.decode([String: Any].self, forKey: .tags)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                returnConfig = try container.decode([String: Any].self, forKey: .returnConfig)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -271,31 +295,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                media = try container.decode([String: Any].self, forKey: .media)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemType = try container.decode([String: Any].self, forKey: .itemType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                sizes = try container.decode([String: Any].self, forKey: .sizes)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                description = try container.decode([String: Any].self, forKey: .description)
+                traderType = try container.decode([String: Any].self, forKey: .traderType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -311,6 +311,22 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
+                name = try container.decode([String: Any].self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                variants = try container.decode([String: Any].self, forKey: .variants)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 hsnCode = try container.decode([String: Any].self, forKey: .hsnCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -319,7 +335,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                highlights = try container.decode([String: Any].self, forKey: .highlights)
+                categorySlug = try container.decode([String: Any].self, forKey: .categorySlug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -327,23 +343,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                tags = try container.decode([String: Any].self, forKey: .tags)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                productGroupTag = try container.decode([String: Any].self, forKey: .productGroupTag)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isActive = try container.decode([String: Any].self, forKey: .isActive)
+                itemCode = try container.decode([String: Any].self, forKey: .itemCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -367,7 +367,23 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode([String: Any].self, forKey: .name)
+                brandUid = try container.decode([String: Any].self, forKey: .brandUid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                productGroupTag = try container.decode([String: Any].self, forKey: .productGroupTag)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                countryOfOrigin = try container.decode([String: Any].self, forKey: .countryOfOrigin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -383,7 +399,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                currency = try container.decode([String: Any].self, forKey: .currency)
+                itemType = try container.decode([String: Any].self, forKey: .itemType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -391,7 +407,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                traderType = try container.decode([String: Any].self, forKey: .traderType)
+                sizes = try container.decode([String: Any].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -399,23 +415,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                slug = try container.decode([String: Any].self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                returnConfig = try container.decode([String: Any].self, forKey: .returnConfig)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                categorySlug = try container.decode([String: Any].self, forKey: .categorySlug)
+                isDependent = try container.decode([String: Any].self, forKey: .isDependent)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -426,19 +426,25 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(command, forKey: .command)
+            try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(isDependent, forKey: .isDependent)
-
-            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
-
-            try? container.encodeIfPresent(variants, forKey: .variants)
+            try? container.encodeIfPresent(media, forKey: .media)
 
             try? container.encodeIfPresent(customOrder, forKey: .customOrder)
 
-            try? container.encodeIfPresent(countryOfOrigin, forKey: .countryOfOrigin)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
+            try? container.encodeIfPresent(command, forKey: .command)
+
+            try? container.encodeIfPresent(highlights, forKey: .highlights)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(tags, forKey: .tags)
+
+            try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
 
             try? container.encodeIfPresent(sizeGuide, forKey: .sizeGuide)
 
@@ -446,43 +452,37 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(shortDescription, forKey: .shortDescription)
 
-            try? container.encodeIfPresent(media, forKey: .media)
-
-            try? container.encodeIfPresent(itemType, forKey: .itemType)
-
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
-
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(traderType, forKey: .traderType)
 
             try? container.encodeIfPresent(trader, forKey: .trader)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(variants, forKey: .variants)
+
             try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
 
-            try? container.encodeIfPresent(highlights, forKey: .highlights)
+            try? container.encodeIfPresent(categorySlug, forKey: .categorySlug)
 
-            try? container.encodeIfPresent(tags, forKey: .tags)
-
-            try? container.encodeIfPresent(productGroupTag, forKey: .productGroupTag)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
 
             try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
 
             try? container.encodeIfPresent(productPublish, forKey: .productPublish)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
+
+            try? container.encodeIfPresent(productGroupTag, forKey: .productGroupTag)
+
+            try? container.encodeIfPresent(countryOfOrigin, forKey: .countryOfOrigin)
 
             try? container.encodeIfPresent(noOfBoxes, forKey: .noOfBoxes)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(itemType, forKey: .itemType)
 
-            try? container.encodeIfPresent(traderType, forKey: .traderType)
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
-
-            try? container.encodeIfPresent(categorySlug, forKey: .categorySlug)
+            try? container.encodeIfPresent(isDependent, forKey: .isDependent)
         }
     }
 }
@@ -494,19 +494,25 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class Properties: Codable {
-        public var command: [String: Any]?
+        public var currency: [String: Any]?
 
-        public var isDependent: [String: Any]?
-
-        public var brandUid: [String: Any]?
-
-        public var variants: [String: Any]?
+        public var media: [String: Any]?
 
         public var customOrder: [String: Any]?
 
-        public var countryOfOrigin: [String: Any]?
+        public var isActive: [String: Any]?
 
-        public var itemCode: [String: Any]?
+        public var command: [String: Any]?
+
+        public var highlights: [String: Any]?
+
+        public var slug: [String: Any]?
+
+        public var description: [String: Any]?
+
+        public var tags: [String: Any]?
+
+        public var returnConfig: [String: Any]?
 
         public var sizeGuide: [String: Any]?
 
@@ -514,58 +520,58 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var shortDescription: [String: Any]?
 
-        public var media: [String: Any]?
-
-        public var itemType: [String: Any]?
-
-        public var sizes: [String: Any]?
-
-        public var description: [String: Any]?
+        public var traderType: [String: Any]?
 
         public var trader: [String: Any]?
 
+        public var name: [String: Any]?
+
+        public var variants: [String: Any]?
+
         public var hsnCode: [String: Any]?
 
-        public var highlights: [String: Any]?
+        public var categorySlug: [String: Any]?
 
-        public var tags: [String: Any]?
-
-        public var productGroupTag: [String: Any]?
-
-        public var isActive: [String: Any]?
+        public var itemCode: [String: Any]?
 
         public var teaserTag: [String: Any]?
 
         public var productPublish: [String: Any]?
 
-        public var name: [String: Any]?
+        public var brandUid: [String: Any]?
+
+        public var productGroupTag: [String: Any]?
+
+        public var countryOfOrigin: [String: Any]?
 
         public var noOfBoxes: [String: Any]?
 
-        public var currency: [String: Any]?
+        public var itemType: [String: Any]?
 
-        public var traderType: [String: Any]?
+        public var sizes: [String: Any]?
 
-        public var slug: [String: Any]?
-
-        public var returnConfig: [String: Any]?
-
-        public var categorySlug: [String: Any]?
+        public var isDependent: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case command
+            case currency
 
-            case isDependent = "is_dependent"
-
-            case brandUid = "brand_uid"
-
-            case variants
+            case media
 
             case customOrder = "custom_order"
 
-            case countryOfOrigin = "country_of_origin"
+            case isActive = "is_active"
 
-            case itemCode = "item_code"
+            case command
+
+            case highlights
+
+            case slug
+
+            case description
+
+            case tags
+
+            case returnConfig = "return_config"
 
             case sizeGuide = "size_guide"
 
@@ -573,59 +579,59 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case shortDescription = "short_description"
 
-            case media
-
-            case itemType = "item_type"
-
-            case sizes
-
-            case description
+            case traderType = "trader_type"
 
             case trader
 
+            case name
+
+            case variants
+
             case hsnCode = "hsn_code"
 
-            case highlights
+            case categorySlug = "category_slug"
 
-            case tags
-
-            case productGroupTag = "product_group_tag"
-
-            case isActive = "is_active"
+            case itemCode = "item_code"
 
             case teaserTag = "teaser_tag"
 
             case productPublish = "product_publish"
 
-            case name
+            case brandUid = "brand_uid"
+
+            case productGroupTag = "product_group_tag"
+
+            case countryOfOrigin = "country_of_origin"
 
             case noOfBoxes = "no_of_boxes"
 
-            case currency
+            case itemType = "item_type"
 
-            case traderType = "trader_type"
+            case sizes
 
-            case slug
-
-            case returnConfig = "return_config"
-
-            case categorySlug = "category_slug"
+            case isDependent = "is_dependent"
         }
 
         public init(brandUid: [String: Any]? = nil, categorySlug: [String: Any]? = nil, command: [String: Any]? = nil, countryOfOrigin: [String: Any]? = nil, currency: [String: Any]? = nil, customOrder: [String: Any]? = nil, description: [String: Any]? = nil, highlights: [String: Any]? = nil, hsnCode: [String: Any]? = nil, isActive: [String: Any]? = nil, isDependent: [String: Any]? = nil, itemCode: [String: Any]? = nil, itemType: [String: Any]? = nil, media: [String: Any]? = nil, multiSize: [String: Any]? = nil, name: [String: Any]? = nil, noOfBoxes: [String: Any]? = nil, productGroupTag: [String: Any]? = nil, productPublish: [String: Any]? = nil, returnConfig: [String: Any]? = nil, shortDescription: [String: Any]? = nil, sizes: [String: Any]? = nil, sizeGuide: [String: Any]? = nil, slug: [String: Any]? = nil, tags: [String: Any]? = nil, teaserTag: [String: Any]? = nil, trader: [String: Any]? = nil, traderType: [String: Any]? = nil, variants: [String: Any]? = nil) {
-            self.command = command
+            self.currency = currency
 
-            self.isDependent = isDependent
-
-            self.brandUid = brandUid
-
-            self.variants = variants
+            self.media = media
 
             self.customOrder = customOrder
 
-            self.countryOfOrigin = countryOfOrigin
+            self.isActive = isActive
 
-            self.itemCode = itemCode
+            self.command = command
+
+            self.highlights = highlights
+
+            self.slug = slug
+
+            self.description = description
+
+            self.tags = tags
+
+            self.returnConfig = returnConfig
 
             self.sizeGuide = sizeGuide
 
@@ -633,50 +639,44 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.shortDescription = shortDescription
 
-            self.media = media
-
-            self.itemType = itemType
-
-            self.sizes = sizes
-
-            self.description = description
+            self.traderType = traderType
 
             self.trader = trader
 
+            self.name = name
+
+            self.variants = variants
+
             self.hsnCode = hsnCode
 
-            self.highlights = highlights
+            self.categorySlug = categorySlug
 
-            self.tags = tags
-
-            self.productGroupTag = productGroupTag
-
-            self.isActive = isActive
+            self.itemCode = itemCode
 
             self.teaserTag = teaserTag
 
             self.productPublish = productPublish
 
-            self.name = name
+            self.brandUid = brandUid
+
+            self.productGroupTag = productGroupTag
+
+            self.countryOfOrigin = countryOfOrigin
 
             self.noOfBoxes = noOfBoxes
 
-            self.currency = currency
+            self.itemType = itemType
 
-            self.traderType = traderType
+            self.sizes = sizes
 
-            self.slug = slug
-
-            self.returnConfig = returnConfig
-
-            self.categorySlug = categorySlug
+            self.isDependent = isDependent
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                command = try container.decode([String: Any].self, forKey: .command)
+                currency = try container.decode([String: Any].self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -684,23 +684,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                isDependent = try container.decode([String: Any].self, forKey: .isDependent)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brandUid = try container.decode([String: Any].self, forKey: .brandUid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                variants = try container.decode([String: Any].self, forKey: .variants)
+                media = try container.decode([String: Any].self, forKey: .media)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -716,7 +700,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                countryOfOrigin = try container.decode([String: Any].self, forKey: .countryOfOrigin)
+                isActive = try container.decode([String: Any].self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -724,7 +708,47 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                itemCode = try container.decode([String: Any].self, forKey: .itemCode)
+                command = try container.decode([String: Any].self, forKey: .command)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                highlights = try container.decode([String: Any].self, forKey: .highlights)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode([String: Any].self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode([String: Any].self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                tags = try container.decode([String: Any].self, forKey: .tags)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                returnConfig = try container.decode([String: Any].self, forKey: .returnConfig)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -756,31 +780,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                media = try container.decode([String: Any].self, forKey: .media)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemType = try container.decode([String: Any].self, forKey: .itemType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                sizes = try container.decode([String: Any].self, forKey: .sizes)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                description = try container.decode([String: Any].self, forKey: .description)
+                traderType = try container.decode([String: Any].self, forKey: .traderType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -796,6 +796,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
+                name = try container.decode([String: Any].self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                variants = try container.decode([String: Any].self, forKey: .variants)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 hsnCode = try container.decode([String: Any].self, forKey: .hsnCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -804,7 +820,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                highlights = try container.decode([String: Any].self, forKey: .highlights)
+                categorySlug = try container.decode([String: Any].self, forKey: .categorySlug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -812,23 +828,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                tags = try container.decode([String: Any].self, forKey: .tags)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                productGroupTag = try container.decode([String: Any].self, forKey: .productGroupTag)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isActive = try container.decode([String: Any].self, forKey: .isActive)
+                itemCode = try container.decode([String: Any].self, forKey: .itemCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -852,7 +852,23 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode([String: Any].self, forKey: .name)
+                brandUid = try container.decode([String: Any].self, forKey: .brandUid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                productGroupTag = try container.decode([String: Any].self, forKey: .productGroupTag)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                countryOfOrigin = try container.decode([String: Any].self, forKey: .countryOfOrigin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -868,7 +884,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                currency = try container.decode([String: Any].self, forKey: .currency)
+                itemType = try container.decode([String: Any].self, forKey: .itemType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -876,7 +892,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                traderType = try container.decode([String: Any].self, forKey: .traderType)
+                sizes = try container.decode([String: Any].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -884,23 +900,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                slug = try container.decode([String: Any].self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                returnConfig = try container.decode([String: Any].self, forKey: .returnConfig)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                categorySlug = try container.decode([String: Any].self, forKey: .categorySlug)
+                isDependent = try container.decode([String: Any].self, forKey: .isDependent)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -911,19 +911,25 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(command, forKey: .command)
+            try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(isDependent, forKey: .isDependent)
-
-            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
-
-            try? container.encodeIfPresent(variants, forKey: .variants)
+            try? container.encodeIfPresent(media, forKey: .media)
 
             try? container.encodeIfPresent(customOrder, forKey: .customOrder)
 
-            try? container.encodeIfPresent(countryOfOrigin, forKey: .countryOfOrigin)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
+            try? container.encodeIfPresent(command, forKey: .command)
+
+            try? container.encodeIfPresent(highlights, forKey: .highlights)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(tags, forKey: .tags)
+
+            try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
 
             try? container.encodeIfPresent(sizeGuide, forKey: .sizeGuide)
 
@@ -931,43 +937,37 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(shortDescription, forKey: .shortDescription)
 
-            try? container.encodeIfPresent(media, forKey: .media)
-
-            try? container.encodeIfPresent(itemType, forKey: .itemType)
-
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
-
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(traderType, forKey: .traderType)
 
             try? container.encodeIfPresent(trader, forKey: .trader)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(variants, forKey: .variants)
+
             try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
 
-            try? container.encodeIfPresent(highlights, forKey: .highlights)
+            try? container.encodeIfPresent(categorySlug, forKey: .categorySlug)
 
-            try? container.encodeIfPresent(tags, forKey: .tags)
-
-            try? container.encodeIfPresent(productGroupTag, forKey: .productGroupTag)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
 
             try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
 
             try? container.encodeIfPresent(productPublish, forKey: .productPublish)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
+
+            try? container.encodeIfPresent(productGroupTag, forKey: .productGroupTag)
+
+            try? container.encodeIfPresent(countryOfOrigin, forKey: .countryOfOrigin)
 
             try? container.encodeIfPresent(noOfBoxes, forKey: .noOfBoxes)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(itemType, forKey: .itemType)
 
-            try? container.encodeIfPresent(traderType, forKey: .traderType)
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
-
-            try? container.encodeIfPresent(categorySlug, forKey: .categorySlug)
+            try? container.encodeIfPresent(isDependent, forKey: .isDependent)
         }
     }
 }
