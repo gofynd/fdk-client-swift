@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var meta: [String: Any]?
 
-        public var articleAssignment: ArticleAssignment?
-
         public var query: ArticleQuery?
+
+        public var articleAssignment: ArticleAssignment?
 
         public var groupId: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case meta
 
-            case articleAssignment = "article_assignment"
-
             case query
+
+            case articleAssignment = "article_assignment"
 
             case groupId = "group_id"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.meta = meta
 
-            self.articleAssignment = articleAssignment
-
             self.query = query
+
+            self.articleAssignment = articleAssignment
 
             self.groupId = groupId
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                articleAssignment = try container.decode(ArticleAssignment.self, forKey: .articleAssignment)
+                query = try container.decode(ArticleQuery.self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                query = try container.decode(ArticleQuery.self, forKey: .query)
+                articleAssignment = try container.decode(ArticleAssignment.self, forKey: .articleAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
-
             try? container.encodeIfPresent(query, forKey: .query)
+
+            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
             try? container.encodeIfPresent(groupId, forKey: .groupId)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var meta: [String: Any]?
 
-        public var articleAssignment: ArticleAssignment?
-
         public var query: ArticleQuery?
+
+        public var articleAssignment: ArticleAssignment?
 
         public var groupId: String?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case meta
 
-            case articleAssignment = "article_assignment"
-
             case query
+
+            case articleAssignment = "article_assignment"
 
             case groupId = "group_id"
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.meta = meta
 
-            self.articleAssignment = articleAssignment
-
             self.query = query
+
+            self.articleAssignment = articleAssignment
 
             self.groupId = groupId
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                articleAssignment = try container.decode(ArticleAssignment.self, forKey: .articleAssignment)
+                query = try container.decode(ArticleQuery.self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                query = try container.decode(ArticleQuery.self, forKey: .query)
+                articleAssignment = try container.decode(ArticleAssignment.self, forKey: .articleAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
-
             try? container.encodeIfPresent(query, forKey: .query)
+
+            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
             try? container.encodeIfPresent(groupId, forKey: .groupId)
         }

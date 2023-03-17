@@ -7,24 +7,26 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class SetDefaultBeneficiaryResponse: Codable {
-        public var success: Bool?
-
         public var isBeneficiarySet: Bool
 
-        public enum CodingKeys: String, CodingKey {
-            case success
+        public var success: Bool?
 
+        public enum CodingKeys: String, CodingKey {
             case isBeneficiarySet = "is_beneficiary_set"
+
+            case success
         }
 
         public init(isBeneficiarySet: Bool, success: Bool? = nil) {
-            self.success = success
-
             self.isBeneficiarySet = isBeneficiarySet
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            isBeneficiarySet = try container.decode(Bool.self, forKey: .isBeneficiarySet)
 
             do {
                 success = try container.decode(Bool.self, forKey: .success)
@@ -33,16 +35,14 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            isBeneficiarySet = try container.decode(Bool.self, forKey: .isBeneficiarySet)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(isBeneficiarySet, forKey: .isBeneficiarySet)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

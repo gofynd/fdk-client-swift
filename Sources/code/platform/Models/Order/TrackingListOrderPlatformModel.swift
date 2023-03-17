@@ -13,22 +13,22 @@ public extension PlatformClient.Order {
 
         public var isPassed: Bool?
 
+        public var time: String?
+
         public var text: String
 
         public var status: String
-
-        public var time: String?
 
         public enum CodingKeys: String, CodingKey {
             case isCurrent = "is_current"
 
             case isPassed = "is_passed"
 
+            case time
+
             case text
 
             case status
-
-            case time
         }
 
         public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Order {
 
             self.isPassed = isPassed
 
+            self.time = time
+
             self.text = text
 
             self.status = status
-
-            self.time = time
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,10 +62,6 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            text = try container.decode(String.self, forKey: .text)
-
-            status = try container.decode(String.self, forKey: .status)
-
             do {
                 time = try container.decode(String.self, forKey: .time)
 
@@ -73,6 +69,10 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            text = try container.decode(String.self, forKey: .text)
+
+            status = try container.decode(String.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -82,11 +82,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(isPassed, forKey: .isPassed)
 
+            try? container.encodeIfPresent(time, forKey: .time)
+
             try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(time, forKey: .time)
         }
     }
 }
@@ -102,22 +102,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var isPassed: Bool?
 
+        public var time: String?
+
         public var text: String
 
         public var status: String
-
-        public var time: String?
 
         public enum CodingKeys: String, CodingKey {
             case isCurrent = "is_current"
 
             case isPassed = "is_passed"
 
+            case time
+
             case text
 
             case status
-
-            case time
         }
 
         public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
@@ -125,11 +125,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.isPassed = isPassed
 
+            self.time = time
+
             self.text = text
 
             self.status = status
-
-            self.time = time
         }
 
         required public init(from decoder: Decoder) throws {
@@ -151,10 +151,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            text = try container.decode(String.self, forKey: .text)
-
-            status = try container.decode(String.self, forKey: .status)
-
             do {
                 time = try container.decode(String.self, forKey: .time)
 
@@ -162,6 +158,10 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            text = try container.decode(String.self, forKey: .text)
+
+            status = try container.decode(String.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -171,11 +171,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(isPassed, forKey: .isPassed)
 
+            try? container.encodeIfPresent(time, forKey: .time)
+
             try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(time, forKey: .time)
         }
     }
 }

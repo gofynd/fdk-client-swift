@@ -9,20 +9,18 @@ public extension ApplicationClient.Payment {
     class CreateOrderUserRequest: Codable {
         public var paymentLinkId: String
 
-        public var successCallbackUrl: String
-
         public var failureCallbackUrl: String
 
         public var currency: String
 
         public var meta: [String: Any]?
 
+        public var successCallbackUrl: String
+
         public var paymentMethods: CreateOrderUserPaymentMethods
 
         public enum CodingKeys: String, CodingKey {
             case paymentLinkId = "payment_link_id"
-
-            case successCallbackUrl = "success_callback_url"
 
             case failureCallbackUrl = "failure_callback_url"
 
@@ -30,19 +28,21 @@ public extension ApplicationClient.Payment {
 
             case meta
 
+            case successCallbackUrl = "success_callback_url"
+
             case paymentMethods = "payment_methods"
         }
 
         public init(currency: String, failureCallbackUrl: String, meta: [String: Any]? = nil, paymentLinkId: String, paymentMethods: CreateOrderUserPaymentMethods, successCallbackUrl: String) {
             self.paymentLinkId = paymentLinkId
 
-            self.successCallbackUrl = successCallbackUrl
-
             self.failureCallbackUrl = failureCallbackUrl
 
             self.currency = currency
 
             self.meta = meta
+
+            self.successCallbackUrl = successCallbackUrl
 
             self.paymentMethods = paymentMethods
         }
@@ -51,8 +51,6 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             paymentLinkId = try container.decode(String.self, forKey: .paymentLinkId)
-
-            successCallbackUrl = try container.decode(String.self, forKey: .successCallbackUrl)
 
             failureCallbackUrl = try container.decode(String.self, forKey: .failureCallbackUrl)
 
@@ -66,6 +64,8 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            successCallbackUrl = try container.decode(String.self, forKey: .successCallbackUrl)
+
             paymentMethods = try container.decode(CreateOrderUserPaymentMethods.self, forKey: .paymentMethods)
         }
 
@@ -74,13 +74,13 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(paymentLinkId, forKey: .paymentLinkId)
 
-            try? container.encodeIfPresent(successCallbackUrl, forKey: .successCallbackUrl)
-
             try? container.encodeIfPresent(failureCallbackUrl, forKey: .failureCallbackUrl)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
             try? container.encode(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(successCallbackUrl, forKey: .successCallbackUrl)
 
             try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
         }

@@ -9,8 +9,6 @@ public extension PlatformClient.Catalog {
      */
 
     class Document: Codable {
-        public var type: String
-
         public var url: String?
 
         public var verified: Bool?
@@ -19,9 +17,9 @@ public extension PlatformClient.Catalog {
 
         public var legalName: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case type
+        public var type: String
 
+        public enum CodingKeys: String, CodingKey {
             case url
 
             case verified
@@ -29,11 +27,11 @@ public extension PlatformClient.Catalog {
             case value
 
             case legalName = "legal_name"
+
+            case type
         }
 
         public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
-            self.type = type
-
             self.url = url
 
             self.verified = verified
@@ -41,12 +39,12 @@ public extension PlatformClient.Catalog {
             self.value = value
 
             self.legalName = legalName
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            type = try container.decode(String.self, forKey: .type)
 
             do {
                 url = try container.decode(String.self, forKey: .url)
@@ -73,12 +71,12 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(url, forKey: .url)
 
@@ -87,6 +85,8 @@ public extension PlatformClient.Catalog {
             try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
@@ -98,8 +98,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class Document: Codable {
-        public var type: String
-
         public var url: String?
 
         public var verified: Bool?
@@ -108,9 +106,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var legalName: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case type
+        public var type: String
 
+        public enum CodingKeys: String, CodingKey {
             case url
 
             case verified
@@ -118,11 +116,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case value
 
             case legalName = "legal_name"
+
+            case type
         }
 
         public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
-            self.type = type
-
             self.url = url
 
             self.verified = verified
@@ -130,12 +128,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.value = value
 
             self.legalName = legalName
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            type = try container.decode(String.self, forKey: .type)
 
             do {
                 url = try container.decode(String.self, forKey: .url)
@@ -162,12 +160,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(url, forKey: .url)
 
@@ -176,6 +174,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
