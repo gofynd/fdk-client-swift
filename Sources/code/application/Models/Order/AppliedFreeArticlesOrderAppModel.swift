@@ -9,18 +9,18 @@ public extension ApplicationClient.Order {
     class AppliedFreeArticles: Codable {
         public var articleId: String?
 
-        public var parentItemIdentifier: String?
-
         public var quantity: Double?
+
+        public var parentItemIdentifier: String?
 
         public var freeGiftItemDetails: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case articleId = "article_id"
 
-            case parentItemIdentifier = "parent_item_identifier"
-
             case quantity
+
+            case parentItemIdentifier = "parent_item_identifier"
 
             case freeGiftItemDetails = "free_gift_item_details"
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Order {
         public init(articleId: String? = nil, freeGiftItemDetails: [String: Any]? = nil, parentItemIdentifier: String? = nil, quantity: Double? = nil) {
             self.articleId = articleId
 
-            self.parentItemIdentifier = parentItemIdentifier
-
             self.quantity = quantity
+
+            self.parentItemIdentifier = parentItemIdentifier
 
             self.freeGiftItemDetails = freeGiftItemDetails
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                parentItemIdentifier = try container.decode(String.self, forKey: .parentItemIdentifier)
+                quantity = try container.decode(Double.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                quantity = try container.decode(Double.self, forKey: .quantity)
+                parentItemIdentifier = try container.decode(String.self, forKey: .parentItemIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(articleId, forKey: .articleId)
 
-            try? container.encodeIfPresent(parentItemIdentifier, forKey: .parentItemIdentifier)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(parentItemIdentifier, forKey: .parentItemIdentifier)
 
             try? container.encodeIfPresent(freeGiftItemDetails, forKey: .freeGiftItemDetails)
         }

@@ -7,36 +7,36 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class ProductBrand: Codable {
-        public var logo: Media?
+        public var name: String?
 
         public var description: String?
 
         public var uid: Int?
 
-        public var name: String?
+        public var logo: Media?
 
         public var action: ProductListingAction?
 
         public enum CodingKeys: String, CodingKey {
-            case logo
+            case name
 
             case description
 
             case uid
 
-            case name
+            case logo
 
             case action
         }
 
         public init(action: ProductListingAction? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
-            self.logo = logo
+            self.name = name
 
             self.description = description
 
             self.uid = uid
 
-            self.name = name
+            self.logo = logo
 
             self.action = action
         }
@@ -45,7 +45,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,13 +88,13 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(action, forKey: .action)
         }

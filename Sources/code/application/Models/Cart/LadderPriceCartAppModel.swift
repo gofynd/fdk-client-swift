@@ -9,36 +9,36 @@ public extension ApplicationClient.Cart {
     class LadderPrice: Codable {
         public var offerPrice: Double?
 
-        public var currencySymbol: String?
+        public var currencyCode: String?
 
         public var marked: Int?
 
         public var effective: Int?
 
-        public var currencyCode: String?
+        public var currencySymbol: String?
 
         public enum CodingKeys: String, CodingKey {
             case offerPrice = "offer_price"
 
-            case currencySymbol = "currency_symbol"
+            case currencyCode = "currency_code"
 
             case marked
 
             case effective
 
-            case currencyCode = "currency_code"
+            case currencySymbol = "currency_symbol"
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, effective: Int? = nil, marked: Int? = nil, offerPrice: Double? = nil) {
             self.offerPrice = offerPrice
 
-            self.currencySymbol = currencySymbol
+            self.currencyCode = currencyCode
 
             self.marked = marked
 
             self.effective = effective
 
-            self.currencyCode = currencyCode
+            self.currencySymbol = currencySymbol
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(offerPrice, forKey: .offerPrice)
 
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
         }
     }
 }
