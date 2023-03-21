@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class StoreEinvoice: Codable {
         public var password: String?
 
-        public var user: String?
-
         public var username: String?
+
+        public var user: String?
 
         public var enabled: Bool
 
         public enum CodingKeys: String, CodingKey {
             case password
 
-            case user
-
             case username
+
+            case user
 
             case enabled
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(enabled: Bool, password: String? = nil, user: String? = nil, username: String? = nil) {
             self.password = password
 
-            self.user = user
-
             self.username = username
+
+            self.user = user
 
             self.enabled = enabled
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                user = try container.decode(String.self, forKey: .user)
+                username = try container.decode(String.self, forKey: .username)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                username = try container.decode(String.self, forKey: .username)
+                user = try container.decode(String.self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,9 +72,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(password, forKey: .password)
 
-            try? container.encodeIfPresent(user, forKey: .user)
-
             try? container.encodeIfPresent(username, forKey: .username)
+
+            try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(enabled, forKey: .enabled)
         }
@@ -90,18 +90,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class StoreEinvoice: Codable {
         public var password: String?
 
-        public var user: String?
-
         public var username: String?
+
+        public var user: String?
 
         public var enabled: Bool
 
         public enum CodingKeys: String, CodingKey {
             case password
 
-            case user
-
             case username
+
+            case user
 
             case enabled
         }
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(enabled: Bool, password: String? = nil, user: String? = nil, username: String? = nil) {
             self.password = password
 
-            self.user = user
-
             self.username = username
+
+            self.user = user
 
             self.enabled = enabled
         }
@@ -128,7 +128,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                user = try container.decode(String.self, forKey: .user)
+                username = try container.decode(String.self, forKey: .username)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -136,7 +136,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                username = try container.decode(String.self, forKey: .username)
+                user = try container.decode(String.self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -151,9 +151,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(password, forKey: .password)
 
-            try? container.encodeIfPresent(user, forKey: .user)
-
             try? container.encodeIfPresent(username, forKey: .username)
+
+            try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(enabled, forKey: .enabled)
         }

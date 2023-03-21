@@ -9,66 +9,66 @@ public extension ApplicationClient.PosCart {
     class ShipmentResponse: Codable {
         public var fulfillmentType: String?
 
-        public var items: [CartProductInfo]?
-
-        public var promise: ShipmentPromise?
-
         public var dpOptions: [String: Any]?
-
-        public var shipmentType: String?
 
         public var dpId: String?
 
-        public var orderType: String?
+        public var shipmentType: String?
 
         public var shipments: Int?
 
         public var boxType: String?
 
+        public var promise: ShipmentPromise?
+
         public var fulfillmentId: Int?
+
+        public var orderType: String?
+
+        public var items: [CartProductInfo]?
 
         public enum CodingKeys: String, CodingKey {
             case fulfillmentType = "fulfillment_type"
 
-            case items
-
-            case promise
-
             case dpOptions = "dp_options"
-
-            case shipmentType = "shipment_type"
 
             case dpId = "dp_id"
 
-            case orderType = "order_type"
+            case shipmentType = "shipment_type"
 
             case shipments
 
             case boxType = "box_type"
 
+            case promise
+
             case fulfillmentId = "fulfillment_id"
+
+            case orderType = "order_type"
+
+            case items
         }
 
         public init(boxType: String? = nil, dpId: String? = nil, dpOptions: [String: Any]? = nil, fulfillmentId: Int? = nil, fulfillmentType: String? = nil, items: [CartProductInfo]? = nil, orderType: String? = nil, promise: ShipmentPromise? = nil, shipments: Int? = nil, shipmentType: String? = nil) {
             self.fulfillmentType = fulfillmentType
 
-            self.items = items
-
-            self.promise = promise
-
             self.dpOptions = dpOptions
-
-            self.shipmentType = shipmentType
 
             self.dpId = dpId
 
-            self.orderType = orderType
+            self.shipmentType = shipmentType
 
             self.shipments = shipments
 
             self.boxType = boxType
 
+            self.promise = promise
+
             self.fulfillmentId = fulfillmentId
+
+            self.orderType = orderType
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -76,22 +76,6 @@ public extension ApplicationClient.PosCart {
 
             do {
                 fulfillmentType = try container.decode(String.self, forKey: .fulfillmentType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                items = try container.decode([CartProductInfo].self, forKey: .items)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                promise = try container.decode(ShipmentPromise.self, forKey: .promise)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,14 +91,6 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                shipmentType = try container.decode(String.self, forKey: .shipmentType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 dpId = try container.decode(String.self, forKey: .dpId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -123,7 +99,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                orderType = try container.decode(String.self, forKey: .orderType)
+                shipmentType = try container.decode(String.self, forKey: .shipmentType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,7 +123,31 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
+                promise = try container.decode(ShipmentPromise.self, forKey: .promise)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                orderType = try container.decode(String.self, forKey: .orderType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                items = try container.decode([CartProductInfo].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,23 +160,23 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(fulfillmentType, forKey: .fulfillmentType)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encodeIfPresent(promise, forKey: .promise)
-
             try? container.encode(dpOptions, forKey: .dpOptions)
-
-            try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
 
             try? container.encode(dpId, forKey: .dpId)
 
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
+            try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
 
             try? container.encode(boxType, forKey: .boxType)
 
+            try? container.encodeIfPresent(promise, forKey: .promise)
+
             try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
+
+            try? container.encodeIfPresent(orderType, forKey: .orderType)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

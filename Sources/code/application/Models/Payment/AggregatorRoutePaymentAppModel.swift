@@ -9,30 +9,30 @@ public extension ApplicationClient.Payment {
     class AggregatorRoute: Codable {
         public var paymentFlowData: String?
 
-        public var paymentFlow: String?
-
         public var data: [String: Any]?
 
         public var apiLink: String?
 
+        public var paymentFlow: String?
+
         public enum CodingKeys: String, CodingKey {
             case paymentFlowData = "payment_flow_data"
-
-            case paymentFlow = "payment_flow"
 
             case data
 
             case apiLink = "api_link"
+
+            case paymentFlow = "payment_flow"
         }
 
         public init(apiLink: String? = nil, data: [String: Any]? = nil, paymentFlow: String? = nil, paymentFlowData: String? = nil) {
             self.paymentFlowData = paymentFlowData
 
-            self.paymentFlow = paymentFlow
-
             self.data = data
 
             self.apiLink = apiLink
+
+            self.paymentFlow = paymentFlow
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,14 +40,6 @@ public extension ApplicationClient.Payment {
 
             do {
                 paymentFlowData = try container.decode(String.self, forKey: .paymentFlowData)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                paymentFlow = try container.decode(String.self, forKey: .paymentFlow)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,6 +61,14 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                paymentFlow = try container.decode(String.self, forKey: .paymentFlow)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(paymentFlowData, forKey: .paymentFlowData)
 
-            try? container.encode(paymentFlow, forKey: .paymentFlow)
-
             try? container.encode(data, forKey: .data)
 
             try? container.encode(apiLink, forKey: .apiLink)
+
+            try? container.encode(paymentFlow, forKey: .paymentFlow)
         }
     }
 }

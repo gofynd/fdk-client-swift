@@ -9,27 +9,27 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class UsesRestriction1: Codable {
-        public var maximum: UsesRemaining1?
-
         public var remaining: UsesRemaining1?
 
-        public enum CodingKeys: String, CodingKey {
-            case maximum
+        public var maximum: UsesRemaining1?
 
+        public enum CodingKeys: String, CodingKey {
             case remaining
+
+            case maximum
         }
 
         public init(maximum: UsesRemaining1? = nil, remaining: UsesRemaining1? = nil) {
-            self.maximum = maximum
-
             self.remaining = remaining
+
+            self.maximum = maximum
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                maximum = try container.decode(UsesRemaining1.self, forKey: .maximum)
+                remaining = try container.decode(UsesRemaining1.self, forKey: .remaining)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                remaining = try container.decode(UsesRemaining1.self, forKey: .remaining)
+                maximum = try container.decode(UsesRemaining1.self, forKey: .maximum)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(maximum, forKey: .maximum)
-
             try? container.encodeIfPresent(remaining, forKey: .remaining)
+
+            try? container.encodeIfPresent(maximum, forKey: .maximum)
         }
     }
 }

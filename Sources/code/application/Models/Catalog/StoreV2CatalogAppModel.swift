@@ -9,24 +9,24 @@ public extension ApplicationClient.Catalog {
     class StoreV2: Codable {
         public var uid: Int?
 
-        public var count: Int?
-
         public var name: String?
+
+        public var count: Int?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
-            case count
-
             case name
+
+            case count
         }
 
         public init(count: Int? = nil, name: String? = nil, uid: Int? = nil) {
             self.uid = uid
 
-            self.count = count
-
             self.name = name
+
+            self.count = count
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                count = try container.decode(Int.self, forKey: .count)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                count = try container.decode(Int.self, forKey: .count)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(count, forKey: .count)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(count, forKey: .count)
         }
     }
 }

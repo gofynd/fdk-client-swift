@@ -7,53 +7,45 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class SharedCartDetails: Codable {
-        public var createdOn: String?
-
-        public var user: [String: Any]?
+        public var meta: [String: Any]?
 
         public var token: String?
 
-        public var meta: [String: Any]?
-
         public var source: [String: Any]?
 
-        public enum CodingKeys: String, CodingKey {
-            case createdOn = "created_on"
+        public var user: [String: Any]?
 
-            case user
+        public var createdOn: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case meta
 
             case token
 
-            case meta
-
             case source
+
+            case user
+
+            case createdOn = "created_on"
         }
 
         public init(createdOn: String? = nil, meta: [String: Any]? = nil, source: [String: Any]? = nil, token: String? = nil, user: [String: Any]? = nil) {
-            self.createdOn = createdOn
-
-            self.user = user
+            self.meta = meta
 
             self.token = token
 
-            self.meta = meta
-
             self.source = source
+
+            self.user = user
+
+            self.createdOn = createdOn
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                user = try container.decode([String: Any].self, forKey: .user)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +61,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                source = try container.decode([String: Any].self, forKey: .source)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +69,15 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                source = try container.decode([String: Any].self, forKey: .source)
+                user = try container.decode([String: Any].self, forKey: .user)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,15 +88,15 @@ public extension ApplicationClient.PosCart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
-            try? container.encodeIfPresent(user, forKey: .user)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(token, forKey: .token)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(source, forKey: .source)
+
+            try? container.encodeIfPresent(user, forKey: .user)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
         }
     }
 }

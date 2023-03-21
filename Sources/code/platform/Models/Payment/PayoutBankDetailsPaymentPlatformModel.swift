@@ -9,75 +9,85 @@ public extension PlatformClient.Payment {
      */
 
     class PayoutBankDetails: Codable {
-        public var city: String?
-
-        public var bankName: String?
-
-        public var pincode: Int?
-
-        public var country: String?
-
-        public var accountHolder: String?
-
-        public var state: String?
-
-        public var accountType: String
-
-        public var accountNo: String?
+        public var branchName: String?
 
         public var ifscCode: String
 
-        public var branchName: String?
+        public var accountNo: String?
+
+        public var bankName: String?
+
+        public var accountType: String
+
+        public var pincode: Int?
+
+        public var city: String?
+
+        public var accountHolder: String?
+
+        public var country: String?
+
+        public var state: String?
 
         public enum CodingKeys: String, CodingKey {
-            case city
-
-            case bankName = "bank_name"
-
-            case pincode
-
-            case country
-
-            case accountHolder = "account_holder"
-
-            case state
-
-            case accountType = "account_type"
-
-            case accountNo = "account_no"
+            case branchName = "branch_name"
 
             case ifscCode = "ifsc_code"
 
-            case branchName = "branch_name"
+            case accountNo = "account_no"
+
+            case bankName = "bank_name"
+
+            case accountType = "account_type"
+
+            case pincode
+
+            case city
+
+            case accountHolder = "account_holder"
+
+            case country
+
+            case state
         }
 
         public init(accountHolder: String? = nil, accountNo: String? = nil, accountType: String, bankName: String? = nil, branchName: String? = nil, city: String? = nil, country: String? = nil, ifscCode: String, pincode: Int? = nil, state: String? = nil) {
-            self.city = city
-
-            self.bankName = bankName
-
-            self.pincode = pincode
-
-            self.country = country
-
-            self.accountHolder = accountHolder
-
-            self.state = state
-
-            self.accountType = accountType
-
-            self.accountNo = accountNo
+            self.branchName = branchName
 
             self.ifscCode = ifscCode
 
-            self.branchName = branchName
+            self.accountNo = accountNo
+
+            self.bankName = bankName
+
+            self.accountType = accountType
+
+            self.pincode = pincode
+
+            self.city = city
+
+            self.accountHolder = accountHolder
+
+            self.country = country
+
+            self.state = state
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                city = try container.decode(String.self, forKey: .city)
+                branchName = try container.decode(String.self, forKey: .branchName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            ifscCode = try container.decode(String.self, forKey: .ifscCode)
+
+            do {
+                accountNo = try container.decode(String.self, forKey: .accountNo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,6 +102,8 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            accountType = try container.decode(String.self, forKey: .accountType)
+
             do {
                 pincode = try container.decode(Int.self, forKey: .pincode)
 
@@ -101,7 +113,7 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                country = try container.decode(String.self, forKey: .country)
+                city = try container.decode(String.self, forKey: .city)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,27 +129,15 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
+                country = try container.decode(String.self, forKey: .country)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 state = try container.decode(String.self, forKey: .state)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            accountType = try container.decode(String.self, forKey: .accountType)
-
-            do {
-                accountNo = try container.decode(String.self, forKey: .accountNo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            ifscCode = try container.decode(String.self, forKey: .ifscCode)
-
-            do {
-                branchName = try container.decode(String.self, forKey: .branchName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,25 +148,25 @@ public extension PlatformClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(city, forKey: .city)
-
-            try? container.encodeIfPresent(bankName, forKey: .bankName)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
-
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(accountType, forKey: .accountType)
-
-            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+            try? container.encodeIfPresent(branchName, forKey: .branchName)
 
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
 
-            try? container.encodeIfPresent(branchName, forKey: .branchName)
+            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+
+            try? container.encodeIfPresent(bankName, forKey: .bankName)
+
+            try? container.encodeIfPresent(accountType, forKey: .accountType)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+
+            try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(state, forKey: .state)
         }
     }
 }
@@ -178,75 +178,85 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class PayoutBankDetails: Codable {
-        public var city: String?
-
-        public var bankName: String?
-
-        public var pincode: Int?
-
-        public var country: String?
-
-        public var accountHolder: String?
-
-        public var state: String?
-
-        public var accountType: String
-
-        public var accountNo: String?
+        public var branchName: String?
 
         public var ifscCode: String
 
-        public var branchName: String?
+        public var accountNo: String?
+
+        public var bankName: String?
+
+        public var accountType: String
+
+        public var pincode: Int?
+
+        public var city: String?
+
+        public var accountHolder: String?
+
+        public var country: String?
+
+        public var state: String?
 
         public enum CodingKeys: String, CodingKey {
-            case city
-
-            case bankName = "bank_name"
-
-            case pincode
-
-            case country
-
-            case accountHolder = "account_holder"
-
-            case state
-
-            case accountType = "account_type"
-
-            case accountNo = "account_no"
+            case branchName = "branch_name"
 
             case ifscCode = "ifsc_code"
 
-            case branchName = "branch_name"
+            case accountNo = "account_no"
+
+            case bankName = "bank_name"
+
+            case accountType = "account_type"
+
+            case pincode
+
+            case city
+
+            case accountHolder = "account_holder"
+
+            case country
+
+            case state
         }
 
         public init(accountHolder: String? = nil, accountNo: String? = nil, accountType: String, bankName: String? = nil, branchName: String? = nil, city: String? = nil, country: String? = nil, ifscCode: String, pincode: Int? = nil, state: String? = nil) {
-            self.city = city
-
-            self.bankName = bankName
-
-            self.pincode = pincode
-
-            self.country = country
-
-            self.accountHolder = accountHolder
-
-            self.state = state
-
-            self.accountType = accountType
-
-            self.accountNo = accountNo
+            self.branchName = branchName
 
             self.ifscCode = ifscCode
 
-            self.branchName = branchName
+            self.accountNo = accountNo
+
+            self.bankName = bankName
+
+            self.accountType = accountType
+
+            self.pincode = pincode
+
+            self.city = city
+
+            self.accountHolder = accountHolder
+
+            self.country = country
+
+            self.state = state
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                city = try container.decode(String.self, forKey: .city)
+                branchName = try container.decode(String.self, forKey: .branchName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            ifscCode = try container.decode(String.self, forKey: .ifscCode)
+
+            do {
+                accountNo = try container.decode(String.self, forKey: .accountNo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -261,6 +271,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            accountType = try container.decode(String.self, forKey: .accountType)
+
             do {
                 pincode = try container.decode(Int.self, forKey: .pincode)
 
@@ -270,7 +282,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                country = try container.decode(String.self, forKey: .country)
+                city = try container.decode(String.self, forKey: .city)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -286,27 +298,15 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
+                country = try container.decode(String.self, forKey: .country)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 state = try container.decode(String.self, forKey: .state)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            accountType = try container.decode(String.self, forKey: .accountType)
-
-            do {
-                accountNo = try container.decode(String.self, forKey: .accountNo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            ifscCode = try container.decode(String.self, forKey: .ifscCode)
-
-            do {
-                branchName = try container.decode(String.self, forKey: .branchName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -317,25 +317,25 @@ public extension PlatformClient.ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(city, forKey: .city)
-
-            try? container.encodeIfPresent(bankName, forKey: .bankName)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
-
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(accountType, forKey: .accountType)
-
-            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+            try? container.encodeIfPresent(branchName, forKey: .branchName)
 
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
 
-            try? container.encodeIfPresent(branchName, forKey: .branchName)
+            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+
+            try? container.encodeIfPresent(bankName, forKey: .bankName)
+
+            try? container.encodeIfPresent(accountType, forKey: .accountType)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+
+            try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(state, forKey: .state)
         }
     }
 }
