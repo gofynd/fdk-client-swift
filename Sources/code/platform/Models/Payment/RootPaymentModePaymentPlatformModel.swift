@@ -23,9 +23,9 @@ public extension PlatformClient.Payment {
 
         public var displayName: String
 
-        public var name: String
-
         public var anonymousEnable: Bool?
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case isPayByCardPl = "is_pay_by_card_pl"
@@ -42,9 +42,9 @@ public extension PlatformClient.Payment {
 
             case displayName = "display_name"
 
-            case name
-
             case anonymousEnable = "anonymous_enable"
+
+            case name
         }
 
         public init(addCardEnabled: Bool? = nil, aggregatorName: String? = nil, anonymousEnable: Bool? = nil, displayName: String, displayPriority: Int, isPayByCardPl: Bool? = nil, list: [PaymentModeList]? = nil, name: String, saveCard: Bool? = nil) {
@@ -62,9 +62,9 @@ public extension PlatformClient.Payment {
 
             self.displayName = displayName
 
-            self.name = name
-
             self.anonymousEnable = anonymousEnable
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -114,8 +114,6 @@ public extension PlatformClient.Payment {
 
             displayName = try container.decode(String.self, forKey: .displayName)
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
                 anonymousEnable = try container.decode(Bool.self, forKey: .anonymousEnable)
 
@@ -123,6 +121,8 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -142,9 +142,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encode(anonymousEnable, forKey: .anonymousEnable)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -170,9 +170,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var displayName: String
 
-        public var name: String
-
         public var anonymousEnable: Bool?
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case isPayByCardPl = "is_pay_by_card_pl"
@@ -189,9 +189,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case displayName = "display_name"
 
-            case name
-
             case anonymousEnable = "anonymous_enable"
+
+            case name
         }
 
         public init(addCardEnabled: Bool? = nil, aggregatorName: String? = nil, anonymousEnable: Bool? = nil, displayName: String, displayPriority: Int, isPayByCardPl: Bool? = nil, list: [PaymentModeList]? = nil, name: String, saveCard: Bool? = nil) {
@@ -209,9 +209,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.displayName = displayName
 
-            self.name = name
-
             self.anonymousEnable = anonymousEnable
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -261,8 +261,6 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             displayName = try container.decode(String.self, forKey: .displayName)
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
                 anonymousEnable = try container.decode(Bool.self, forKey: .anonymousEnable)
 
@@ -270,6 +268,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -289,9 +289,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encode(anonymousEnable, forKey: .anonymousEnable)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

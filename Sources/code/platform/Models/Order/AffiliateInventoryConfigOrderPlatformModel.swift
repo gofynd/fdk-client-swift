@@ -9,45 +9,53 @@ public extension PlatformClient.Order {
      */
 
     class AffiliateInventoryConfig: Codable {
-        public var inventory: AffiliateInventoryStoreConfig?
-
-        public var order: AffiliateInventoryOrderConfig?
-
         public var logistics: AffiliateInventoryLogisticsConfig?
-
-        public var payment: AffiliateInventoryPaymentConfig?
 
         public var articleAssignment: AffiliateInventoryArticleAssignmentConfig?
 
+        public var order: AffiliateInventoryOrderConfig?
+
+        public var inventory: AffiliateInventoryStoreConfig?
+
+        public var payment: AffiliateInventoryPaymentConfig?
+
         public enum CodingKeys: String, CodingKey {
-            case inventory
+            case logistics
+
+            case articleAssignment = "article_assignment"
 
             case order
 
-            case logistics
+            case inventory
 
             case payment
-
-            case articleAssignment = "article_assignment"
         }
 
         public init(articleAssignment: AffiliateInventoryArticleAssignmentConfig? = nil, inventory: AffiliateInventoryStoreConfig? = nil, logistics: AffiliateInventoryLogisticsConfig? = nil, order: AffiliateInventoryOrderConfig? = nil, payment: AffiliateInventoryPaymentConfig? = nil) {
-            self.inventory = inventory
+            self.logistics = logistics
+
+            self.articleAssignment = articleAssignment
 
             self.order = order
 
-            self.logistics = logistics
+            self.inventory = inventory
 
             self.payment = payment
-
-            self.articleAssignment = articleAssignment
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                inventory = try container.decode(AffiliateInventoryStoreConfig.self, forKey: .inventory)
+                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                articleAssignment = try container.decode(AffiliateInventoryArticleAssignmentConfig.self, forKey: .articleAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
+                inventory = try container.decode(AffiliateInventoryStoreConfig.self, forKey: .inventory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,28 +85,20 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                articleAssignment = try container.decode(AffiliateInventoryArticleAssignmentConfig.self, forKey: .articleAssignment)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(inventory, forKey: .inventory)
+            try? container.encodeIfPresent(logistics, forKey: .logistics)
+
+            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
             try? container.encodeIfPresent(order, forKey: .order)
 
-            try? container.encodeIfPresent(logistics, forKey: .logistics)
+            try? container.encodeIfPresent(inventory, forKey: .inventory)
 
             try? container.encodeIfPresent(payment, forKey: .payment)
-
-            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
         }
     }
 }
@@ -110,45 +110,53 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class AffiliateInventoryConfig: Codable {
-        public var inventory: AffiliateInventoryStoreConfig?
-
-        public var order: AffiliateInventoryOrderConfig?
-
         public var logistics: AffiliateInventoryLogisticsConfig?
-
-        public var payment: AffiliateInventoryPaymentConfig?
 
         public var articleAssignment: AffiliateInventoryArticleAssignmentConfig?
 
+        public var order: AffiliateInventoryOrderConfig?
+
+        public var inventory: AffiliateInventoryStoreConfig?
+
+        public var payment: AffiliateInventoryPaymentConfig?
+
         public enum CodingKeys: String, CodingKey {
-            case inventory
+            case logistics
+
+            case articleAssignment = "article_assignment"
 
             case order
 
-            case logistics
+            case inventory
 
             case payment
-
-            case articleAssignment = "article_assignment"
         }
 
         public init(articleAssignment: AffiliateInventoryArticleAssignmentConfig? = nil, inventory: AffiliateInventoryStoreConfig? = nil, logistics: AffiliateInventoryLogisticsConfig? = nil, order: AffiliateInventoryOrderConfig? = nil, payment: AffiliateInventoryPaymentConfig? = nil) {
-            self.inventory = inventory
+            self.logistics = logistics
+
+            self.articleAssignment = articleAssignment
 
             self.order = order
 
-            self.logistics = logistics
+            self.inventory = inventory
 
             self.payment = payment
-
-            self.articleAssignment = articleAssignment
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                inventory = try container.decode(AffiliateInventoryStoreConfig.self, forKey: .inventory)
+                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                articleAssignment = try container.decode(AffiliateInventoryArticleAssignmentConfig.self, forKey: .articleAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
+                inventory = try container.decode(AffiliateInventoryStoreConfig.self, forKey: .inventory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -178,28 +186,20 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                articleAssignment = try container.decode(AffiliateInventoryArticleAssignmentConfig.self, forKey: .articleAssignment)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(inventory, forKey: .inventory)
+            try? container.encodeIfPresent(logistics, forKey: .logistics)
+
+            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
             try? container.encodeIfPresent(order, forKey: .order)
 
-            try? container.encodeIfPresent(logistics, forKey: .logistics)
+            try? container.encodeIfPresent(inventory, forKey: .inventory)
 
             try? container.encodeIfPresent(payment, forKey: .payment)
-
-            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
         }
     }
 }
