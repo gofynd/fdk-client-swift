@@ -9,9 +9,9 @@ public extension PlatformClient.Catalog {
      */
 
     class MetaFields: Codable {
-        public var key: String
+        public var key: [String: Any]
 
-        public var value: String
+        public var value: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case key
@@ -19,7 +19,7 @@ public extension PlatformClient.Catalog {
             case value
         }
 
-        public init(key: String, value: String) {
+        public init(key: [String: Any], value: [String: Any]) {
             self.key = key
 
             self.value = value
@@ -28,9 +28,9 @@ public extension PlatformClient.Catalog {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            key = try container.decode(String.self, forKey: .key)
+            key = try container.decode([String: Any].self, forKey: .key)
 
-            value = try container.decode(String.self, forKey: .value)
+            value = try container.decode([String: Any].self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -50,9 +50,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class MetaFields: Codable {
-        public var key: String
+        public var key: [String: Any]
 
-        public var value: String
+        public var value: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case key
@@ -60,7 +60,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case value
         }
 
-        public init(key: String, value: String) {
+        public init(key: [String: Any], value: [String: Any]) {
             self.key = key
 
             self.value = value
@@ -69,9 +69,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            key = try container.decode(String.self, forKey: .key)
+            key = try container.decode([String: Any].self, forKey: .key)
 
-            value = try container.decode(String.self, forKey: .value)
+            value = try container.decode([String: Any].self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {

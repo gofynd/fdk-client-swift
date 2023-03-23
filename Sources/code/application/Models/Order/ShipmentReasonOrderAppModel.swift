@@ -13,9 +13,9 @@ public extension ApplicationClient.Order {
 
         public var priority: Int?
 
-        public var reasonText: String?
-
         public var reasonId: Int?
+
+        public var reasonText: String?
 
         public var showTextArea: Bool?
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Order {
 
             case priority
 
-            case reasonText = "reason_text"
-
             case reasonId = "reason_id"
+
+            case reasonText = "reason_text"
 
             case showTextArea = "show_text_area"
         }
@@ -40,9 +40,9 @@ public extension ApplicationClient.Order {
 
             self.priority = priority
 
-            self.reasonText = reasonText
-
             self.reasonId = reasonId
+
+            self.reasonText = reasonText
 
             self.showTextArea = showTextArea
         }
@@ -75,7 +75,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                reasonText = try container.decode(String.self, forKey: .reasonText)
+                reasonId = try container.decode(Int.self, forKey: .reasonId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                reasonId = try container.decode(Int.self, forKey: .reasonId)
+                reasonText = try container.decode(String.self, forKey: .reasonText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(reasonText, forKey: .reasonText)
-
             try? container.encodeIfPresent(reasonId, forKey: .reasonId)
+
+            try? container.encodeIfPresent(reasonText, forKey: .reasonText)
 
             try? container.encodeIfPresent(showTextArea, forKey: .showTextArea)
         }

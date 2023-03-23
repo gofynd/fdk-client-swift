@@ -11,8 +11,6 @@ public extension PlatformClient.ApplicationClient.Cart {
     class CartProduct: Codable {
         public var categories: [CategoryInfo]?
 
-        public var slug: String?
-
         public var images: [ProductImage]?
 
         public var brand: BaseInfo?
@@ -21,18 +19,18 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var name: String?
 
-        public var netQuantity: NetQuantity?
-
-        public var type: String?
+        public var itemCode: String?
 
         public var uid: Int?
 
-        public var itemCode: String?
+        public var type: String?
+
+        public var netQuantity: NetQuantity?
+
+        public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
             case categories
-
-            case slug
 
             case images
 
@@ -42,19 +40,19 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case name
 
-            case netQuantity = "net_quantity"
-
-            case type
+            case itemCode = "item_code"
 
             case uid
 
-            case itemCode = "item_code"
+            case type
+
+            case netQuantity = "net_quantity"
+
+            case slug
         }
 
         public init(action: ProductAction? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, images: [ProductImage]? = nil, itemCode: String? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, slug: String? = nil, type: String? = nil, uid: Int? = nil) {
             self.categories = categories
-
-            self.slug = slug
 
             self.images = images
 
@@ -64,13 +62,15 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.name = name
 
-            self.netQuantity = netQuantity
-
-            self.type = type
+            self.itemCode = itemCode
 
             self.uid = uid
 
-            self.itemCode = itemCode
+            self.type = type
+
+            self.netQuantity = netQuantity
+
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -78,14 +78,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 categories = try container.decode([CategoryInfo].self, forKey: .categories)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,15 +117,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                netQuantity = try container.decode(NetQuantity.self, forKey: .netQuantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
+                itemCode = try container.decode(String.self, forKey: .itemCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -149,7 +133,23 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                itemCode = try container.decode(String.self, forKey: .itemCode)
+                type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                netQuantity = try container.decode(NetQuantity.self, forKey: .netQuantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -162,8 +162,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(categories, forKey: .categories)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
             try? container.encodeIfPresent(images, forKey: .images)
 
             try? container.encodeIfPresent(brand, forKey: .brand)
@@ -172,13 +170,15 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(netQuantity, forKey: .netQuantity)
-
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encode(itemCode, forKey: .itemCode)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encode(itemCode, forKey: .itemCode)
+            try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(netQuantity, forKey: .netQuantity)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }

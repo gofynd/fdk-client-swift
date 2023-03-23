@@ -9,24 +9,24 @@ public extension ApplicationClient.Payment {
     class ActiveCardPaymentGatewayResponse: Codable {
         public var success: Bool
 
-        public var message: String
-
         public var cards: CardPaymentGateway
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case message
-
             case cards
+
+            case message
         }
 
         public init(cards: CardPaymentGateway, message: String, success: Bool) {
             self.success = success
 
-            self.message = message
-
             self.cards = cards
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -34,9 +34,9 @@ public extension ApplicationClient.Payment {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            message = try container.decode(String.self, forKey: .message)
-
             cards = try container.decode(CardPaymentGateway.self, forKey: .cards)
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -44,9 +44,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(cards, forKey: .cards)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

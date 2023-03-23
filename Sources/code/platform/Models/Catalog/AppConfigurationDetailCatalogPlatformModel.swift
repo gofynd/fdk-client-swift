@@ -9,15 +9,15 @@ public extension PlatformClient.Catalog {
      */
 
     class AppConfigurationDetail: Codable {
-        public var templateSlugs: [String]?
-
-        public var attributes: [AttributeDetailsGroup]?
-
         public var name: String?
 
         public var isDefault: Bool
 
         public var isActive: Bool
+
+        public var attributes: [AttributeDetailsGroup]?
+
+        public var templateSlugs: [String]?
 
         public var priority: Int
 
@@ -28,15 +28,15 @@ public extension PlatformClient.Catalog {
         public var slug: String
 
         public enum CodingKeys: String, CodingKey {
-            case templateSlugs = "template_slugs"
-
-            case attributes
-
             case name
 
             case isDefault = "is_default"
 
             case isActive = "is_active"
+
+            case attributes
+
+            case templateSlugs = "template_slugs"
 
             case priority
 
@@ -48,15 +48,15 @@ public extension PlatformClient.Catalog {
         }
 
         public init(appId: String, attributes: [AttributeDetailsGroup]? = nil, isActive: Bool, isDefault: Bool, logo: String? = nil, name: String? = nil, priority: Int, slug: String, templateSlugs: [String]? = nil) {
-            self.templateSlugs = templateSlugs
-
-            self.attributes = attributes
-
             self.name = name
 
             self.isDefault = isDefault
 
             self.isActive = isActive
+
+            self.attributes = attributes
+
+            self.templateSlugs = templateSlugs
 
             self.priority = priority
 
@@ -71,22 +71,6 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                templateSlugs = try container.decode([String].self, forKey: .templateSlugs)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                attributes = try container.decode([AttributeDetailsGroup].self, forKey: .attributes)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -97,6 +81,22 @@ public extension PlatformClient.Catalog {
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            do {
+                attributes = try container.decode([AttributeDetailsGroup].self, forKey: .attributes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                templateSlugs = try container.decode([String].self, forKey: .templateSlugs)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             priority = try container.decode(Int.self, forKey: .priority)
 
@@ -116,15 +116,15 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(templateSlugs, forKey: .templateSlugs)
-
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
+
+            try? container.encodeIfPresent(templateSlugs, forKey: .templateSlugs)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
@@ -144,15 +144,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class AppConfigurationDetail: Codable {
-        public var templateSlugs: [String]?
-
-        public var attributes: [AttributeDetailsGroup]?
-
         public var name: String?
 
         public var isDefault: Bool
 
         public var isActive: Bool
+
+        public var attributes: [AttributeDetailsGroup]?
+
+        public var templateSlugs: [String]?
 
         public var priority: Int
 
@@ -163,15 +163,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var slug: String
 
         public enum CodingKeys: String, CodingKey {
-            case templateSlugs = "template_slugs"
-
-            case attributes
-
             case name
 
             case isDefault = "is_default"
 
             case isActive = "is_active"
+
+            case attributes
+
+            case templateSlugs = "template_slugs"
 
             case priority
 
@@ -183,15 +183,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(appId: String, attributes: [AttributeDetailsGroup]? = nil, isActive: Bool, isDefault: Bool, logo: String? = nil, name: String? = nil, priority: Int, slug: String, templateSlugs: [String]? = nil) {
-            self.templateSlugs = templateSlugs
-
-            self.attributes = attributes
-
             self.name = name
 
             self.isDefault = isDefault
 
             self.isActive = isActive
+
+            self.attributes = attributes
+
+            self.templateSlugs = templateSlugs
 
             self.priority = priority
 
@@ -206,22 +206,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                templateSlugs = try container.decode([String].self, forKey: .templateSlugs)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                attributes = try container.decode([AttributeDetailsGroup].self, forKey: .attributes)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -232,6 +216,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            do {
+                attributes = try container.decode([AttributeDetailsGroup].self, forKey: .attributes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                templateSlugs = try container.decode([String].self, forKey: .templateSlugs)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             priority = try container.decode(Int.self, forKey: .priority)
 
@@ -251,15 +251,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(templateSlugs, forKey: .templateSlugs)
-
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
+
+            try? container.encodeIfPresent(templateSlugs, forKey: .templateSlugs)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 

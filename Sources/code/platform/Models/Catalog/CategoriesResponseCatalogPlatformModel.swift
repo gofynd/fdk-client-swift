@@ -4,50 +4,50 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-         Model: InventoryExportAdvanceOption
+         Model: CategoriesResponse
          Used By: Catalog
      */
 
-    class InventoryExportAdvanceOption: Codable {
-        public var storeIds: [Int]?
+    class CategoriesResponse: Codable {
+        public var templateSlug: String?
 
-        public var brandIds: [Int]?
+        public var name: String?
 
-        public var toDate: String?
+        public var slugKey: String?
 
-        public var fromDate: String?
+        public var slug: String?
 
-        public var quantity: InventoryExportQuantityFilter?
+        public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case storeIds = "store_ids"
+            case templateSlug = "template_slug"
 
-            case brandIds = "brand_ids"
+            case name
 
-            case toDate = "to_date"
+            case slugKey = "slug_key"
 
-            case fromDate = "from_date"
+            case slug
 
-            case quantity
+            case uid
         }
 
-        public init(brandIds: [Int]? = nil, fromDate: String? = nil, quantity: InventoryExportQuantityFilter? = nil, storeIds: [Int]? = nil, toDate: String? = nil) {
-            self.storeIds = storeIds
+        public init(name: String? = nil, slug: String? = nil, slugKey: String? = nil, templateSlug: String? = nil, uid: Int? = nil) {
+            self.templateSlug = templateSlug
 
-            self.brandIds = brandIds
+            self.name = name
 
-            self.toDate = toDate
+            self.slugKey = slugKey
 
-            self.fromDate = fromDate
+            self.slug = slug
 
-            self.quantity = quantity
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                storeIds = try container.decode([Int].self, forKey: .storeIds)
+                templateSlug = try container.decode(String.self, forKey: .templateSlug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                brandIds = try container.decode([Int].self, forKey: .brandIds)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                toDate = try container.decode(String.self, forKey: .toDate)
+                slugKey = try container.decode(String.self, forKey: .slugKey)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                fromDate = try container.decode(String.self, forKey: .fromDate)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                quantity = try container.decode(InventoryExportQuantityFilter.self, forKey: .quantity)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,65 +90,65 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            try? container.encodeIfPresent(templateSlug, forKey: .templateSlug)
 
-            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encode(toDate, forKey: .toDate)
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
 
-            try? container.encode(fromDate, forKey: .fromDate)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-         Model: InventoryExportAdvanceOption
+         Model: CategoriesResponse
          Used By: Catalog
      */
 
-    class InventoryExportAdvanceOption: Codable {
-        public var storeIds: [Int]?
+    class CategoriesResponse: Codable {
+        public var templateSlug: String?
 
-        public var brandIds: [Int]?
+        public var name: String?
 
-        public var toDate: String?
+        public var slugKey: String?
 
-        public var fromDate: String?
+        public var slug: String?
 
-        public var quantity: InventoryExportQuantityFilter?
+        public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case storeIds = "store_ids"
+            case templateSlug = "template_slug"
 
-            case brandIds = "brand_ids"
+            case name
 
-            case toDate = "to_date"
+            case slugKey = "slug_key"
 
-            case fromDate = "from_date"
+            case slug
 
-            case quantity
+            case uid
         }
 
-        public init(brandIds: [Int]? = nil, fromDate: String? = nil, quantity: InventoryExportQuantityFilter? = nil, storeIds: [Int]? = nil, toDate: String? = nil) {
-            self.storeIds = storeIds
+        public init(name: String? = nil, slug: String? = nil, slugKey: String? = nil, templateSlug: String? = nil, uid: Int? = nil) {
+            self.templateSlug = templateSlug
 
-            self.brandIds = brandIds
+            self.name = name
 
-            self.toDate = toDate
+            self.slugKey = slugKey
 
-            self.fromDate = fromDate
+            self.slug = slug
 
-            self.quantity = quantity
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                storeIds = try container.decode([Int].self, forKey: .storeIds)
+                templateSlug = try container.decode(String.self, forKey: .templateSlug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                brandIds = try container.decode([Int].self, forKey: .brandIds)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                toDate = try container.decode(String.self, forKey: .toDate)
+                slugKey = try container.decode(String.self, forKey: .slugKey)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                fromDate = try container.decode(String.self, forKey: .fromDate)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                quantity = try container.decode(InventoryExportQuantityFilter.self, forKey: .quantity)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,15 +191,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            try? container.encodeIfPresent(templateSlug, forKey: .templateSlug)
 
-            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encode(toDate, forKey: .toDate)
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
 
-            try? container.encode(fromDate, forKey: .fromDate)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }
