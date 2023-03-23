@@ -13,94 +13,94 @@ public extension PlatformClient.Order {
 
         public var hsnCodeId: String
 
-        public var sku: String
-
-        public var affiliateMeta: [String: Any]
-
-        public var deliveryCharge: Double
-
-        public var unitPrice: Double
-
-        public var fyndStoreId: String
-
-        public var priceMarked: Double
-
-        public var sellerIdentifier: String
-
-        public var itemSize: String
-
-        public var itemId: Int
-
-        public var id: String
-
-        public var priceEffective: Double
-
-        public var pdfLinks: MarketPlacePdf?
-
-        public var affiliateStoreId: String
-
         public var transferPrice: Int
-
-        public var storeId: Int
-
-        public var identifier: [String: Any]
-
-        public var avlQty: Int
 
         public var amountPaid: Double
 
-        public var modifiedOn: String
+        public var itemId: Int
+
+        public var priceEffective: Double
+
+        public var deliveryCharge: Double
+
+        public var fyndStoreId: String
+
+        public var storeId: Int
+
+        public var sku: String
+
+        public var id: String
+
+        public var itemSize: String
+
+        public var affiliateStoreId: String
+
+        public var unitPrice: Double
 
         public var discount: Double
 
+        public var sellerIdentifier: String
+
+        public var pdfLinks: MarketPlacePdf?
+
+        public var affiliateMeta: [String: Any]
+
         public var quantity: Int
+
+        public var avlQty: Int
+
+        public var priceMarked: Double
+
+        public var modifiedOn: String
+
+        public var identifier: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case companyId = "company_id"
 
             case hsnCodeId = "hsn_code_id"
 
-            case sku
-
-            case affiliateMeta = "affiliate_meta"
-
-            case deliveryCharge = "delivery_charge"
-
-            case unitPrice = "unit_price"
-
-            case fyndStoreId = "fynd_store_id"
-
-            case priceMarked = "price_marked"
-
-            case sellerIdentifier = "seller_identifier"
-
-            case itemSize = "item_size"
-
-            case itemId = "item_id"
-
-            case id = "_id"
-
-            case priceEffective = "price_effective"
-
-            case pdfLinks = "pdf_links"
-
-            case affiliateStoreId = "affiliate_store_id"
-
             case transferPrice = "transfer_price"
-
-            case storeId = "store_id"
-
-            case identifier
-
-            case avlQty = "avl_qty"
 
             case amountPaid = "amount_paid"
 
-            case modifiedOn = "modified_on"
+            case itemId = "item_id"
+
+            case priceEffective = "price_effective"
+
+            case deliveryCharge = "delivery_charge"
+
+            case fyndStoreId = "fynd_store_id"
+
+            case storeId = "store_id"
+
+            case sku
+
+            case id = "_id"
+
+            case itemSize = "item_size"
+
+            case affiliateStoreId = "affiliate_store_id"
+
+            case unitPrice = "unit_price"
 
             case discount
 
+            case sellerIdentifier = "seller_identifier"
+
+            case pdfLinks = "pdf_links"
+
+            case affiliateMeta = "affiliate_meta"
+
             case quantity
+
+            case avlQty = "avl_qty"
+
+            case priceMarked = "price_marked"
+
+            case modifiedOn = "modified_on"
+
+            case identifier
         }
 
         public init(affiliateMeta: [String: Any], affiliateStoreId: String, amountPaid: Double, avlQty: Int, companyId: Int, deliveryCharge: Double, discount: Double, fyndStoreId: String, hsnCodeId: String, identifier: [String: Any], itemId: Int, itemSize: String, modifiedOn: String, pdfLinks: MarketPlacePdf? = nil, priceEffective: Double, priceMarked: Double, quantity: Int, sellerIdentifier: String, sku: String, storeId: Int, transferPrice: Int, unitPrice: Double, id: String) {
@@ -108,47 +108,47 @@ public extension PlatformClient.Order {
 
             self.hsnCodeId = hsnCodeId
 
-            self.sku = sku
-
-            self.affiliateMeta = affiliateMeta
-
-            self.deliveryCharge = deliveryCharge
-
-            self.unitPrice = unitPrice
-
-            self.fyndStoreId = fyndStoreId
-
-            self.priceMarked = priceMarked
-
-            self.sellerIdentifier = sellerIdentifier
-
-            self.itemSize = itemSize
-
-            self.itemId = itemId
-
-            self.id = id
-
-            self.priceEffective = priceEffective
-
-            self.pdfLinks = pdfLinks
-
-            self.affiliateStoreId = affiliateStoreId
-
             self.transferPrice = transferPrice
-
-            self.storeId = storeId
-
-            self.identifier = identifier
-
-            self.avlQty = avlQty
 
             self.amountPaid = amountPaid
 
-            self.modifiedOn = modifiedOn
+            self.itemId = itemId
+
+            self.priceEffective = priceEffective
+
+            self.deliveryCharge = deliveryCharge
+
+            self.fyndStoreId = fyndStoreId
+
+            self.storeId = storeId
+
+            self.sku = sku
+
+            self.id = id
+
+            self.itemSize = itemSize
+
+            self.affiliateStoreId = affiliateStoreId
+
+            self.unitPrice = unitPrice
 
             self.discount = discount
 
+            self.sellerIdentifier = sellerIdentifier
+
+            self.pdfLinks = pdfLinks
+
+            self.affiliateMeta = affiliateMeta
+
             self.quantity = quantity
+
+            self.avlQty = avlQty
+
+            self.priceMarked = priceMarked
+
+            self.modifiedOn = modifiedOn
+
+            self.identifier = identifier
         }
 
         required public init(from decoder: Decoder) throws {
@@ -158,27 +158,33 @@ public extension PlatformClient.Order {
 
             hsnCodeId = try container.decode(String.self, forKey: .hsnCodeId)
 
-            sku = try container.decode(String.self, forKey: .sku)
+            transferPrice = try container.decode(Int.self, forKey: .transferPrice)
 
-            affiliateMeta = try container.decode([String: Any].self, forKey: .affiliateMeta)
-
-            deliveryCharge = try container.decode(Double.self, forKey: .deliveryCharge)
-
-            unitPrice = try container.decode(Double.self, forKey: .unitPrice)
-
-            fyndStoreId = try container.decode(String.self, forKey: .fyndStoreId)
-
-            priceMarked = try container.decode(Double.self, forKey: .priceMarked)
-
-            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
-
-            itemSize = try container.decode(String.self, forKey: .itemSize)
+            amountPaid = try container.decode(Double.self, forKey: .amountPaid)
 
             itemId = try container.decode(Int.self, forKey: .itemId)
 
+            priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+
+            deliveryCharge = try container.decode(Double.self, forKey: .deliveryCharge)
+
+            fyndStoreId = try container.decode(String.self, forKey: .fyndStoreId)
+
+            storeId = try container.decode(Int.self, forKey: .storeId)
+
+            sku = try container.decode(String.self, forKey: .sku)
+
             id = try container.decode(String.self, forKey: .id)
 
-            priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+            itemSize = try container.decode(String.self, forKey: .itemSize)
+
+            affiliateStoreId = try container.decode(String.self, forKey: .affiliateStoreId)
+
+            unitPrice = try container.decode(Double.self, forKey: .unitPrice)
+
+            discount = try container.decode(Double.self, forKey: .discount)
+
+            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
 
             do {
                 pdfLinks = try container.decode(MarketPlacePdf.self, forKey: .pdfLinks)
@@ -188,23 +194,17 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            affiliateStoreId = try container.decode(String.self, forKey: .affiliateStoreId)
+            affiliateMeta = try container.decode([String: Any].self, forKey: .affiliateMeta)
 
-            transferPrice = try container.decode(Int.self, forKey: .transferPrice)
-
-            storeId = try container.decode(Int.self, forKey: .storeId)
-
-            identifier = try container.decode([String: Any].self, forKey: .identifier)
+            quantity = try container.decode(Int.self, forKey: .quantity)
 
             avlQty = try container.decode(Int.self, forKey: .avlQty)
 
-            amountPaid = try container.decode(Double.self, forKey: .amountPaid)
+            priceMarked = try container.decode(Double.self, forKey: .priceMarked)
 
             modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
-            discount = try container.decode(Double.self, forKey: .discount)
-
-            quantity = try container.decode(Int.self, forKey: .quantity)
+            identifier = try container.decode([String: Any].self, forKey: .identifier)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -214,47 +214,47 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(hsnCodeId, forKey: .hsnCodeId)
 
-            try? container.encodeIfPresent(sku, forKey: .sku)
-
-            try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
-
-            try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
-
-            try? container.encodeIfPresent(unitPrice, forKey: .unitPrice)
-
-            try? container.encodeIfPresent(fyndStoreId, forKey: .fyndStoreId)
-
-            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
-
-            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
-
-            try? container.encodeIfPresent(itemSize, forKey: .itemSize)
-
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
-
-            try? container.encodeIfPresent(pdfLinks, forKey: .pdfLinks)
-
-            try? container.encodeIfPresent(affiliateStoreId, forKey: .affiliateStoreId)
-
             try? container.encodeIfPresent(transferPrice, forKey: .transferPrice)
-
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
-
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
-
-            try? container.encodeIfPresent(avlQty, forKey: .avlQty)
 
             try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
+
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+
+            try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
+
+            try? container.encodeIfPresent(fyndStoreId, forKey: .fyndStoreId)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
+
+            try? container.encodeIfPresent(sku, forKey: .sku)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(itemSize, forKey: .itemSize)
+
+            try? container.encodeIfPresent(affiliateStoreId, forKey: .affiliateStoreId)
+
+            try? container.encodeIfPresent(unitPrice, forKey: .unitPrice)
 
             try? container.encodeIfPresent(discount, forKey: .discount)
 
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+
+            try? container.encodeIfPresent(pdfLinks, forKey: .pdfLinks)
+
+            try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
+
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(avlQty, forKey: .avlQty)
+
+            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
         }
     }
 }
@@ -270,94 +270,94 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var hsnCodeId: String
 
-        public var sku: String
-
-        public var affiliateMeta: [String: Any]
-
-        public var deliveryCharge: Double
-
-        public var unitPrice: Double
-
-        public var fyndStoreId: String
-
-        public var priceMarked: Double
-
-        public var sellerIdentifier: String
-
-        public var itemSize: String
-
-        public var itemId: Int
-
-        public var id: String
-
-        public var priceEffective: Double
-
-        public var pdfLinks: MarketPlacePdf?
-
-        public var affiliateStoreId: String
-
         public var transferPrice: Int
-
-        public var storeId: Int
-
-        public var identifier: [String: Any]
-
-        public var avlQty: Int
 
         public var amountPaid: Double
 
-        public var modifiedOn: String
+        public var itemId: Int
+
+        public var priceEffective: Double
+
+        public var deliveryCharge: Double
+
+        public var fyndStoreId: String
+
+        public var storeId: Int
+
+        public var sku: String
+
+        public var id: String
+
+        public var itemSize: String
+
+        public var affiliateStoreId: String
+
+        public var unitPrice: Double
 
         public var discount: Double
 
+        public var sellerIdentifier: String
+
+        public var pdfLinks: MarketPlacePdf?
+
+        public var affiliateMeta: [String: Any]
+
         public var quantity: Int
+
+        public var avlQty: Int
+
+        public var priceMarked: Double
+
+        public var modifiedOn: String
+
+        public var identifier: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case companyId = "company_id"
 
             case hsnCodeId = "hsn_code_id"
 
-            case sku
-
-            case affiliateMeta = "affiliate_meta"
-
-            case deliveryCharge = "delivery_charge"
-
-            case unitPrice = "unit_price"
-
-            case fyndStoreId = "fynd_store_id"
-
-            case priceMarked = "price_marked"
-
-            case sellerIdentifier = "seller_identifier"
-
-            case itemSize = "item_size"
-
-            case itemId = "item_id"
-
-            case id = "_id"
-
-            case priceEffective = "price_effective"
-
-            case pdfLinks = "pdf_links"
-
-            case affiliateStoreId = "affiliate_store_id"
-
             case transferPrice = "transfer_price"
-
-            case storeId = "store_id"
-
-            case identifier
-
-            case avlQty = "avl_qty"
 
             case amountPaid = "amount_paid"
 
-            case modifiedOn = "modified_on"
+            case itemId = "item_id"
+
+            case priceEffective = "price_effective"
+
+            case deliveryCharge = "delivery_charge"
+
+            case fyndStoreId = "fynd_store_id"
+
+            case storeId = "store_id"
+
+            case sku
+
+            case id = "_id"
+
+            case itemSize = "item_size"
+
+            case affiliateStoreId = "affiliate_store_id"
+
+            case unitPrice = "unit_price"
 
             case discount
 
+            case sellerIdentifier = "seller_identifier"
+
+            case pdfLinks = "pdf_links"
+
+            case affiliateMeta = "affiliate_meta"
+
             case quantity
+
+            case avlQty = "avl_qty"
+
+            case priceMarked = "price_marked"
+
+            case modifiedOn = "modified_on"
+
+            case identifier
         }
 
         public init(affiliateMeta: [String: Any], affiliateStoreId: String, amountPaid: Double, avlQty: Int, companyId: Int, deliveryCharge: Double, discount: Double, fyndStoreId: String, hsnCodeId: String, identifier: [String: Any], itemId: Int, itemSize: String, modifiedOn: String, pdfLinks: MarketPlacePdf? = nil, priceEffective: Double, priceMarked: Double, quantity: Int, sellerIdentifier: String, sku: String, storeId: Int, transferPrice: Int, unitPrice: Double, id: String) {
@@ -365,47 +365,47 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.hsnCodeId = hsnCodeId
 
-            self.sku = sku
-
-            self.affiliateMeta = affiliateMeta
-
-            self.deliveryCharge = deliveryCharge
-
-            self.unitPrice = unitPrice
-
-            self.fyndStoreId = fyndStoreId
-
-            self.priceMarked = priceMarked
-
-            self.sellerIdentifier = sellerIdentifier
-
-            self.itemSize = itemSize
-
-            self.itemId = itemId
-
-            self.id = id
-
-            self.priceEffective = priceEffective
-
-            self.pdfLinks = pdfLinks
-
-            self.affiliateStoreId = affiliateStoreId
-
             self.transferPrice = transferPrice
-
-            self.storeId = storeId
-
-            self.identifier = identifier
-
-            self.avlQty = avlQty
 
             self.amountPaid = amountPaid
 
-            self.modifiedOn = modifiedOn
+            self.itemId = itemId
+
+            self.priceEffective = priceEffective
+
+            self.deliveryCharge = deliveryCharge
+
+            self.fyndStoreId = fyndStoreId
+
+            self.storeId = storeId
+
+            self.sku = sku
+
+            self.id = id
+
+            self.itemSize = itemSize
+
+            self.affiliateStoreId = affiliateStoreId
+
+            self.unitPrice = unitPrice
 
             self.discount = discount
 
+            self.sellerIdentifier = sellerIdentifier
+
+            self.pdfLinks = pdfLinks
+
+            self.affiliateMeta = affiliateMeta
+
             self.quantity = quantity
+
+            self.avlQty = avlQty
+
+            self.priceMarked = priceMarked
+
+            self.modifiedOn = modifiedOn
+
+            self.identifier = identifier
         }
 
         required public init(from decoder: Decoder) throws {
@@ -415,27 +415,33 @@ public extension PlatformClient.ApplicationClient.Order {
 
             hsnCodeId = try container.decode(String.self, forKey: .hsnCodeId)
 
-            sku = try container.decode(String.self, forKey: .sku)
+            transferPrice = try container.decode(Int.self, forKey: .transferPrice)
 
-            affiliateMeta = try container.decode([String: Any].self, forKey: .affiliateMeta)
-
-            deliveryCharge = try container.decode(Double.self, forKey: .deliveryCharge)
-
-            unitPrice = try container.decode(Double.self, forKey: .unitPrice)
-
-            fyndStoreId = try container.decode(String.self, forKey: .fyndStoreId)
-
-            priceMarked = try container.decode(Double.self, forKey: .priceMarked)
-
-            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
-
-            itemSize = try container.decode(String.self, forKey: .itemSize)
+            amountPaid = try container.decode(Double.self, forKey: .amountPaid)
 
             itemId = try container.decode(Int.self, forKey: .itemId)
 
+            priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+
+            deliveryCharge = try container.decode(Double.self, forKey: .deliveryCharge)
+
+            fyndStoreId = try container.decode(String.self, forKey: .fyndStoreId)
+
+            storeId = try container.decode(Int.self, forKey: .storeId)
+
+            sku = try container.decode(String.self, forKey: .sku)
+
             id = try container.decode(String.self, forKey: .id)
 
-            priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+            itemSize = try container.decode(String.self, forKey: .itemSize)
+
+            affiliateStoreId = try container.decode(String.self, forKey: .affiliateStoreId)
+
+            unitPrice = try container.decode(Double.self, forKey: .unitPrice)
+
+            discount = try container.decode(Double.self, forKey: .discount)
+
+            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
 
             do {
                 pdfLinks = try container.decode(MarketPlacePdf.self, forKey: .pdfLinks)
@@ -445,23 +451,17 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            affiliateStoreId = try container.decode(String.self, forKey: .affiliateStoreId)
+            affiliateMeta = try container.decode([String: Any].self, forKey: .affiliateMeta)
 
-            transferPrice = try container.decode(Int.self, forKey: .transferPrice)
-
-            storeId = try container.decode(Int.self, forKey: .storeId)
-
-            identifier = try container.decode([String: Any].self, forKey: .identifier)
+            quantity = try container.decode(Int.self, forKey: .quantity)
 
             avlQty = try container.decode(Int.self, forKey: .avlQty)
 
-            amountPaid = try container.decode(Double.self, forKey: .amountPaid)
+            priceMarked = try container.decode(Double.self, forKey: .priceMarked)
 
             modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
-            discount = try container.decode(Double.self, forKey: .discount)
-
-            quantity = try container.decode(Int.self, forKey: .quantity)
+            identifier = try container.decode([String: Any].self, forKey: .identifier)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -471,47 +471,47 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(hsnCodeId, forKey: .hsnCodeId)
 
-            try? container.encodeIfPresent(sku, forKey: .sku)
-
-            try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
-
-            try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
-
-            try? container.encodeIfPresent(unitPrice, forKey: .unitPrice)
-
-            try? container.encodeIfPresent(fyndStoreId, forKey: .fyndStoreId)
-
-            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
-
-            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
-
-            try? container.encodeIfPresent(itemSize, forKey: .itemSize)
-
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
-
-            try? container.encodeIfPresent(pdfLinks, forKey: .pdfLinks)
-
-            try? container.encodeIfPresent(affiliateStoreId, forKey: .affiliateStoreId)
-
             try? container.encodeIfPresent(transferPrice, forKey: .transferPrice)
-
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
-
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
-
-            try? container.encodeIfPresent(avlQty, forKey: .avlQty)
 
             try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
+
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+
+            try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
+
+            try? container.encodeIfPresent(fyndStoreId, forKey: .fyndStoreId)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
+
+            try? container.encodeIfPresent(sku, forKey: .sku)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(itemSize, forKey: .itemSize)
+
+            try? container.encodeIfPresent(affiliateStoreId, forKey: .affiliateStoreId)
+
+            try? container.encodeIfPresent(unitPrice, forKey: .unitPrice)
 
             try? container.encodeIfPresent(discount, forKey: .discount)
 
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+
+            try? container.encodeIfPresent(pdfLinks, forKey: .pdfLinks)
+
+            try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
+
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(avlQty, forKey: .avlQty)
+
+            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
         }
     }
 }

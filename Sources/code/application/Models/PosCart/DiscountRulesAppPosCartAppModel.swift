@@ -9,18 +9,18 @@ public extension ApplicationClient.PosCart {
     class DiscountRulesApp: Codable {
         public var matchedBuyRules: [String]?
 
-        public var itemCriteria: [String: Any]?
-
         public var rawOffer: [String: Any]?
+
+        public var itemCriteria: [String: Any]?
 
         public var offer: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case matchedBuyRules = "matched_buy_rules"
 
-            case itemCriteria = "item_criteria"
-
             case rawOffer = "raw_offer"
+
+            case itemCriteria = "item_criteria"
 
             case offer
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.PosCart {
         public init(itemCriteria: [String: Any]? = nil, matchedBuyRules: [String]? = nil, offer: [String: Any]? = nil, rawOffer: [String: Any]? = nil) {
             self.matchedBuyRules = matchedBuyRules
 
-            self.itemCriteria = itemCriteria
-
             self.rawOffer = rawOffer
+
+            self.itemCriteria = itemCriteria
 
             self.offer = offer
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                itemCriteria = try container.decode([String: Any].self, forKey: .itemCriteria)
+                rawOffer = try container.decode([String: Any].self, forKey: .rawOffer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                rawOffer = try container.decode([String: Any].self, forKey: .rawOffer)
+                itemCriteria = try container.decode([String: Any].self, forKey: .itemCriteria)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(matchedBuyRules, forKey: .matchedBuyRules)
 
-            try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
-
             try? container.encodeIfPresent(rawOffer, forKey: .rawOffer)
+
+            try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
 
             try? container.encodeIfPresent(offer, forKey: .offer)
         }
