@@ -9,33 +9,33 @@ public extension PlatformClient.Payment {
      */
 
     class PayoutAggregator: Codable {
-        public var aggregatorFundId: Int?
+        public var aggregatorId: Int?
 
         public var payoutDetailsId: Int?
 
-        public var aggregatorId: Int?
+        public var aggregatorFundId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case aggregatorFundId = "aggregator_fund_id"
+            case aggregatorId = "aggregator_id"
 
             case payoutDetailsId = "payout_details_id"
 
-            case aggregatorId = "aggregator_id"
+            case aggregatorFundId = "aggregator_fund_id"
         }
 
         public init(aggregatorFundId: Int? = nil, aggregatorId: Int? = nil, payoutDetailsId: Int? = nil) {
-            self.aggregatorFundId = aggregatorFundId
+            self.aggregatorId = aggregatorId
 
             self.payoutDetailsId = payoutDetailsId
 
-            self.aggregatorId = aggregatorId
+            self.aggregatorFundId = aggregatorFundId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                aggregatorFundId = try container.decode(Int.self, forKey: .aggregatorFundId)
+                aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
+                aggregatorFundId = try container.decode(Int.self, forKey: .aggregatorFundId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +62,11 @@ public extension PlatformClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(aggregatorFundId, forKey: .aggregatorFundId)
+            try? container.encode(aggregatorId, forKey: .aggregatorId)
 
             try? container.encode(payoutDetailsId, forKey: .payoutDetailsId)
 
-            try? container.encode(aggregatorId, forKey: .aggregatorId)
+            try? container.encode(aggregatorFundId, forKey: .aggregatorFundId)
         }
     }
 }
@@ -78,33 +78,33 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class PayoutAggregator: Codable {
-        public var aggregatorFundId: Int?
+        public var aggregatorId: Int?
 
         public var payoutDetailsId: Int?
 
-        public var aggregatorId: Int?
+        public var aggregatorFundId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case aggregatorFundId = "aggregator_fund_id"
+            case aggregatorId = "aggregator_id"
 
             case payoutDetailsId = "payout_details_id"
 
-            case aggregatorId = "aggregator_id"
+            case aggregatorFundId = "aggregator_fund_id"
         }
 
         public init(aggregatorFundId: Int? = nil, aggregatorId: Int? = nil, payoutDetailsId: Int? = nil) {
-            self.aggregatorFundId = aggregatorFundId
+            self.aggregatorId = aggregatorId
 
             self.payoutDetailsId = payoutDetailsId
 
-            self.aggregatorId = aggregatorId
+            self.aggregatorFundId = aggregatorFundId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                aggregatorFundId = try container.decode(Int.self, forKey: .aggregatorFundId)
+                aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
+                aggregatorFundId = try container.decode(Int.self, forKey: .aggregatorFundId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(aggregatorFundId, forKey: .aggregatorFundId)
+            try? container.encode(aggregatorId, forKey: .aggregatorId)
 
             try? container.encode(payoutDetailsId, forKey: .payoutDetailsId)
 
-            try? container.encode(aggregatorId, forKey: .aggregatorId)
+            try? container.encode(aggregatorFundId, forKey: .aggregatorFundId)
         }
     }
 }

@@ -9,22 +9,22 @@ public extension ApplicationClient.Order {
     class ErrorResponse: Codable {
         public var stackTrace: String?
 
-        public var status: Int?
+        public var message: String?
 
         public var code: String?
 
-        public var message: String?
+        public var status: Int?
 
         public var exception: String?
 
         public enum CodingKeys: String, CodingKey {
             case stackTrace = "stack_trace"
 
-            case status
+            case message
 
             case code
 
-            case message
+            case status
 
             case exception
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Order {
         public init(code: String? = nil, exception: String? = nil, message: String? = nil, stackTrace: String? = nil, status: Int? = nil) {
             self.stackTrace = stackTrace
 
-            self.status = status
+            self.message = message
 
             self.code = code
 
-            self.message = message
+            self.status = status
 
             self.exception = exception
         }
@@ -53,7 +53,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension ApplicationClient.Order {
 
             try? container.encode(stackTrace, forKey: .stackTrace)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(message, forKey: .message)
 
             try? container.encode(code, forKey: .code)
 
-            try? container.encode(message, forKey: .message)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encode(exception, forKey: .exception)
         }

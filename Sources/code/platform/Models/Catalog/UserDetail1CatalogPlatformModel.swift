@@ -9,38 +9,30 @@ public extension PlatformClient.Catalog {
      */
 
     class UserDetail1: Codable {
-        public var username: String?
-
         public var fullName: String?
 
         public var userId: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case username
+        public var username: String?
 
+        public enum CodingKeys: String, CodingKey {
             case fullName = "full_name"
 
             case userId = "user_id"
+
+            case username
         }
 
         public init(fullName: String? = nil, username: String? = nil, userId: String? = nil) {
-            self.username = username
-
             self.fullName = fullName
 
             self.userId = userId
+
+            self.username = username
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                username = try container.decode(String.self, forKey: .username)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 fullName = try container.decode(String.self, forKey: .fullName)
@@ -57,16 +49,24 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                username = try container.decode(String.self, forKey: .username)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(username, forKey: .username)
-
             try? container.encodeIfPresent(fullName, forKey: .fullName)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
+
+            try? container.encodeIfPresent(username, forKey: .username)
         }
     }
 }
@@ -78,38 +78,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class UserDetail1: Codable {
-        public var username: String?
-
         public var fullName: String?
 
         public var userId: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case username
+        public var username: String?
 
+        public enum CodingKeys: String, CodingKey {
             case fullName = "full_name"
 
             case userId = "user_id"
+
+            case username
         }
 
         public init(fullName: String? = nil, username: String? = nil, userId: String? = nil) {
-            self.username = username
-
             self.fullName = fullName
 
             self.userId = userId
+
+            self.username = username
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                username = try container.decode(String.self, forKey: .username)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 fullName = try container.decode(String.self, forKey: .fullName)
@@ -126,16 +118,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                username = try container.decode(String.self, forKey: .username)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(username, forKey: .username)
-
             try? container.encodeIfPresent(fullName, forKey: .fullName)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
+
+            try? container.encodeIfPresent(username, forKey: .username)
         }
     }
 }

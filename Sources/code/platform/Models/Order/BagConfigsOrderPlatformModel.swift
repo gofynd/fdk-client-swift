@@ -13,26 +13,26 @@ public extension PlatformClient.Order {
 
         public var enableTracking: Bool
 
-        public var canBeCancelled: Bool
-
         public var allowForceReturn: Bool
+
+        public var isCustomerReturnAllowed: Bool
 
         public var isActive: Bool
 
-        public var isCustomerReturnAllowed: Bool
+        public var canBeCancelled: Bool
 
         public enum CodingKeys: String, CodingKey {
             case isReturnable = "is_returnable"
 
             case enableTracking = "enable_tracking"
 
-            case canBeCancelled = "can_be_cancelled"
-
             case allowForceReturn = "allow_force_return"
+
+            case isCustomerReturnAllowed = "is_customer_return_allowed"
 
             case isActive = "is_active"
 
-            case isCustomerReturnAllowed = "is_customer_return_allowed"
+            case canBeCancelled = "can_be_cancelled"
         }
 
         public init(allowForceReturn: Bool, canBeCancelled: Bool, enableTracking: Bool, isActive: Bool, isCustomerReturnAllowed: Bool, isReturnable: Bool) {
@@ -40,13 +40,13 @@ public extension PlatformClient.Order {
 
             self.enableTracking = enableTracking
 
-            self.canBeCancelled = canBeCancelled
-
             self.allowForceReturn = allowForceReturn
+
+            self.isCustomerReturnAllowed = isCustomerReturnAllowed
 
             self.isActive = isActive
 
-            self.isCustomerReturnAllowed = isCustomerReturnAllowed
+            self.canBeCancelled = canBeCancelled
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,13 +56,13 @@ public extension PlatformClient.Order {
 
             enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
 
-            canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
-
             allowForceReturn = try container.decode(Bool.self, forKey: .allowForceReturn)
+
+            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
+            canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -72,13 +72,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
 
-            try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
-
             try? container.encodeIfPresent(allowForceReturn, forKey: .allowForceReturn)
+
+            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
+            try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
         }
     }
 }
@@ -94,26 +94,26 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var enableTracking: Bool
 
-        public var canBeCancelled: Bool
-
         public var allowForceReturn: Bool
+
+        public var isCustomerReturnAllowed: Bool
 
         public var isActive: Bool
 
-        public var isCustomerReturnAllowed: Bool
+        public var canBeCancelled: Bool
 
         public enum CodingKeys: String, CodingKey {
             case isReturnable = "is_returnable"
 
             case enableTracking = "enable_tracking"
 
-            case canBeCancelled = "can_be_cancelled"
-
             case allowForceReturn = "allow_force_return"
+
+            case isCustomerReturnAllowed = "is_customer_return_allowed"
 
             case isActive = "is_active"
 
-            case isCustomerReturnAllowed = "is_customer_return_allowed"
+            case canBeCancelled = "can_be_cancelled"
         }
 
         public init(allowForceReturn: Bool, canBeCancelled: Bool, enableTracking: Bool, isActive: Bool, isCustomerReturnAllowed: Bool, isReturnable: Bool) {
@@ -121,13 +121,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.enableTracking = enableTracking
 
-            self.canBeCancelled = canBeCancelled
-
             self.allowForceReturn = allowForceReturn
+
+            self.isCustomerReturnAllowed = isCustomerReturnAllowed
 
             self.isActive = isActive
 
-            self.isCustomerReturnAllowed = isCustomerReturnAllowed
+            self.canBeCancelled = canBeCancelled
         }
 
         required public init(from decoder: Decoder) throws {
@@ -137,13 +137,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
 
-            canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
-
             allowForceReturn = try container.decode(Bool.self, forKey: .allowForceReturn)
+
+            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
+            canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -153,13 +153,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
 
-            try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
-
             try? container.encodeIfPresent(allowForceReturn, forKey: .allowForceReturn)
+
+            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
+            try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
         }
     }
 }

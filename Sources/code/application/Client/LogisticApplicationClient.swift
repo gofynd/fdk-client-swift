@@ -33,16 +33,9 @@ public extension ApplicationClient {
          **/
         public func getPincodeCity(
             pincode: String,
-            countryCode: String?,
 
             onResponse: @escaping (_ response: PincodeApiResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = countryCode {
-                xQuery["country_code"] = value
-            }
-
             var fullUrl = relativeUrls["getPincodeCity"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "pincode" + "}", with: "\(pincode)")
@@ -51,7 +44,7 @@ public extension ApplicationClient {
                 config: config,
                 method: "get",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders: [],
                 body: nil,
                 responseType: "application/json",

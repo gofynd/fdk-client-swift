@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var shipmentId: String?
 
-        public var error: String?
-
         public var status: Int?
+
+        public var error: String?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
             case shipmentId = "shipment_id"
 
-            case error
-
             case status
+
+            case error
         }
 
         public init(error: String? = nil, message: String? = nil, shipmentId: String? = nil, status: Int? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.shipmentId = shipmentId
 
-            self.error = error
-
             self.status = status
+
+            self.error = error
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                error = try container.decode(String.self, forKey: .error)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                error = try container.decode(String.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(error, forKey: .error)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var shipmentId: String?
 
-        public var error: String?
-
         public var status: Int?
+
+        public var error: String?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
             case shipmentId = "shipment_id"
 
-            case error
-
             case status
+
+            case error
         }
 
         public init(error: String? = nil, message: String? = nil, shipmentId: String? = nil, status: Int? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.shipmentId = shipmentId
 
-            self.error = error
-
             self.status = status
+
+            self.error = error
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                error = try container.decode(String.self, forKey: .error)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                error = try container.decode(String.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(error, forKey: .error)
         }
     }
 }

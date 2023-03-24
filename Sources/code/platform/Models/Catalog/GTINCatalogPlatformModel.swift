@@ -13,7 +13,7 @@ public extension PlatformClient.Catalog {
 
         public var primary: Bool?
 
-        public var gtinValue: [String: Any]
+        public var gtinValue: String
 
         public enum CodingKeys: String, CodingKey {
             case gtinType = "gtin_type"
@@ -23,7 +23,7 @@ public extension PlatformClient.Catalog {
             case gtinValue = "gtin_value"
         }
 
-        public init(gtinType: String, gtinValue: [String: Any], primary: Bool? = nil) {
+        public init(gtinType: String, gtinValue: String, primary: Bool? = nil) {
             self.gtinType = gtinType
 
             self.primary = primary
@@ -44,7 +44,7 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            gtinValue = try container.decode([String: Any].self, forKey: .gtinValue)
+            gtinValue = try container.decode(String.self, forKey: .gtinValue)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -70,7 +70,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var primary: Bool?
 
-        public var gtinValue: [String: Any]
+        public var gtinValue: String
 
         public enum CodingKeys: String, CodingKey {
             case gtinType = "gtin_type"
@@ -80,7 +80,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case gtinValue = "gtin_value"
         }
 
-        public init(gtinType: String, gtinValue: [String: Any], primary: Bool? = nil) {
+        public init(gtinType: String, gtinValue: String, primary: Bool? = nil) {
             self.gtinType = gtinType
 
             self.primary = primary
@@ -101,7 +101,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            gtinValue = try container.decode([String: Any].self, forKey: .gtinValue)
+            gtinValue = try container.decode(String.self, forKey: .gtinValue)
         }
 
         public func encode(to encoder: Encoder) throws {
