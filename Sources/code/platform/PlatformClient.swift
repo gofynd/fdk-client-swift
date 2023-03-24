@@ -1926,7 +1926,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Update user
-             * Description: Update user
+             * Description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
              **/
             public func updateUser(
                 userId: String,
@@ -3945,26 +3945,13 @@ public class PlatformClient {
              * Description: Use this API to get the meta of custom pages (blog, page) and default system pages (e.g. home/brand/category/collection).
              **/
             public func getPageMeta(
-                pageType: String?,
-                cartPages: Bool?,
-
                 onResponse: @escaping (_ response: PageMetaSchema?, _ error: FDKError?) -> Void
             ) {
-                var xQuery: [String: Any] = [:]
-
-                if let value = pageType {
-                    xQuery["page_type"] = value
-                }
-
-                if let value = cartPages {
-                    xQuery["cart_pages"] = value
-                }
-
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/meta",
-                    query: xQuery,
+                    query: nil,
                     body: nil,
                     headers: [],
                     responseType: "application/json",
@@ -4014,6 +4001,44 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(PageSpec.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Create a page preview
+             * Description: Use this API to create a page preview to check the appearance of a custom page.
+             **/
+            public func createPagePreview(
+                body: PageRequest,
+                onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/preview/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(PageSchema.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -10855,8 +10880,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get configuration of latest mobile build
-             * Description: Fetch latest build configuration, such as app name, landing page image, splash image used in a mobile build.
+             * Summary: Get latest build config
+             * Description: Get latest build config
              **/
             public func getBuildConfig(
                 platformType: String,
@@ -10894,8 +10919,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Update the configuration for next mobile build
-             * Description: Modify the existing build configuration, such as app name, landing page image, splash image used in a mobile build.
+             * Summary: Update build config for next build
+             * Description: Update build config for next build
              **/
             public func updateBuildConfig(
                 platformType: String,
@@ -10933,8 +10958,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get details of previous mobile builds
-             * Description: Fetch version details of the app, this includes the build status, build date, version name, latest version, and a lot more.
+             * Summary: Get previous build versions
+             * Description: Get previous build versions
              **/
             public func getPreviousVersions(
                 platformType: String,
@@ -10972,8 +10997,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get the sales channel configuration and features
-             * Description: Shows feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
+             * Summary: Get features of application
+             * Description: Get features of application
              **/
             public func getAppFeatures(
                 onResponse: @escaping (_ response: AppFeatureResponse?, _ error: FDKError?) -> Void
@@ -11009,8 +11034,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Update the sales channel configuration and features
-             * Description: Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
+             * Summary: Update features of application
+             * Description: Update features of application
              **/
             public func updateAppFeatures(
                 body: AppFeatureRequest,
@@ -11047,8 +11072,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get sales channel details
-             * Description: Shows basic sales channel details like name, description, logo, domain, company ID, and other related information.
+             * Summary: Get basic application details
+             * Description: Get basic application details like name
              **/
             public func getAppBasicDetails(
                 onResponse: @escaping (_ response: ApplicationDetail?, _ error: FDKError?) -> Void
@@ -11084,8 +11109,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Update sales channel details
-             * Description: Modify sales channel details like name, description, logo, domain, company ID, and other related information.
+             * Summary: Add or update application's basic details
+             * Description: Add or update application's basic details
              **/
             public func updateAppBasicDetails(
                 body: ApplicationDetail,
@@ -11122,8 +11147,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get current information of the sales channel
-             * Description: Fetch data such as social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application.
+             * Summary: Get application information
+             * Description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
              **/
             public func getAppContactInfo(
                 onResponse: @escaping (_ response: ApplicationInformation?, _ error: FDKError?) -> Void
@@ -11159,8 +11184,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Save or update current information of the sales channel
-             * Description: Modify the social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application.
+             * Summary: Get application information
+             * Description: Save Application Current Information. This includes information about social links, address and contact information of an application.
              **/
             public func updateAppContactInfo(
                 body: ApplicationInformation,
@@ -11197,8 +11222,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get social tokens for the sales channel
-             * Description: Use this API to retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. **Note** - Token values are encrypted with AES encryption using a secret key.
+             * Summary: Get social tokens
+             * Description: Get social tokens.
              **/
             public func getAppApiTokens(
                 onResponse: @escaping (_ response: TokenResponse?, _ error: FDKError?) -> Void
@@ -11234,8 +11259,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Add or update social tokens for the sales channel
-             * Description: Use this API to add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth.
+             * Summary: Add social tokens
+             * Description: Add social tokens.
              **/
             public func updateAppApiTokens(
                 body: TokenResponse,
@@ -11272,8 +11297,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get companies enabled in the sales channel inventory
-             * Description: Fetch info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
+             * Summary: Application inventory enabled companies
+             * Description: Application inventory enabled companies.
              **/
             public func getAppCompanies(
                 uid: Int?,
@@ -11357,8 +11382,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get stores enabled in the sales channel inventory
-             * Description: Fetch info of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
+             * Summary: Application inventory enabled stores
+             * Description: Application inventory enabled stores.
              **/
             public func getAppStores(
                 pageNo: Int?,
@@ -11435,8 +11460,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get sales channel configuration
-             * Description: Use this API to fetch configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
+             * Summary: Get application configuration
+             * Description: Get application configuration for various features and data
              **/
             public func getInventoryConfig(
                 onResponse: @escaping (_ response: ApplicationInventory?, _ error: FDKError?) -> Void
@@ -11472,8 +11497,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Update sales channel configuration
-             * Description: Modify the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
+             * Summary: Update application configuration
+             * Description: Update application configuration for various features and data
              **/
             public func updateInventoryConfig(
                 body: ApplicationInventory,
@@ -11510,8 +11535,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Partially update sales channel configuration
-             * Description: Partially update the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
+             * Summary: Partially update application configuration
+             * Description: Partially update application configuration for various features and data
              **/
             public func partiallyUpdateInventoryConfig(
                 body: AppInventoryPartialUpdate,
@@ -11548,8 +11573,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get currencies supported in the application
-             * Description: Get a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the application.
+             * Summary: Get application enabled currency list
+             * Description: Get application enabled currency list
              **/
             public func getAppCurrencyConfig(
                 onResponse: @escaping (_ response: AppSupportedCurrency?, _ error: FDKError?) -> Void
@@ -11585,8 +11610,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Update initial sales channel supported currency
-             * Description: Use this API to add and edit the currencies supported in the application. Initially, INR will be enabled by default.
+             * Summary: Add initial application supported currency
+             * Description: Add initial application supported currency for various features and data. Default INR will be enabled.
              **/
             public func updateAppCurrencyConfig(
                 body: AppSupportedCurrency,
@@ -11661,7 +11686,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Get ordering store by filter
-             * Description: Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
+             * Description: Get ordering store by filter
              **/
             public func getOrderingStoresByFilter(
                 pageNo: Int?,
@@ -11740,7 +11765,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Add/Update ordering store config
-             * Description: Use this API to edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders)
+             * Description: Add/Update ordering store config.
              **/
             public func updateOrderingStoreConfig(
                 body: OrderingStoreConfig,
@@ -11862,8 +11887,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Fetch all the domains added to an  application (sales channel website), including pre-defined domain (free domain) or custom domain (owned by the brand). Know the verification status of each domain name, and find out which one is the primary domain, short link domain, or both.
-             * Description: Get list of domains
+             * Summary: Get attached domain list
+             * Description: Get attached domain list.
              **/
             public func getDomains(
                 onResponse: @escaping (_ response: DomainsResponse?, _ error: FDKError?) -> Void
@@ -11899,8 +11924,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Add new domain to current sales channel
-             * Description: Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand)
+             * Summary: Add new domain to application
+             * Description: Add new domain to application.
              **/
             public func addDomain(
                 body: DomainAddRequest,
@@ -11937,8 +11962,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Remove attached domain from current sales channel
-             * Description: Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain.
+             * Summary: Remove attached domain
+             * Description: Remove attached domain.
              **/
             public func removeDomainById(
                 id: String,
@@ -11976,8 +12001,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Change the type of domain in the current sales channel
-             * Description: Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links. Use this API to change a domain to either Primary or a Shortlink domain.
+             * Summary: Change domain type
+             * Description: Change a domain to Primary or Shortlink domain
              **/
             public func changeDomainType(
                 body: UpdateDomainTypeRequest,
@@ -12014,8 +12039,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get the status of connected domain
-             * Description: Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers.
+             * Summary: Get domain connected status.
+             * Description: Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
              **/
             public func getDomainStatus(
                 body: DomainStatusRequest,
@@ -12052,8 +12077,8 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get sales channel data by ID
-             * Description: Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc.
+             * Summary: Get application data from id
+             * Description: Get application data from id
              **/
             public func getApplicationById(
                 onResponse: @escaping (_ response: Application?, _ error: FDKError?) -> Void

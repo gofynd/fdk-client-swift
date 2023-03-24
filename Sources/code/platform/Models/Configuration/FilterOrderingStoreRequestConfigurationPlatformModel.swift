@@ -15,26 +15,20 @@ public extension PlatformClient.Configuration {
 
         public var q: String?
 
-        public var onlyDeployed: Bool?
-
         public enum CodingKeys: String, CodingKey {
             case allStores = "all_stores"
 
             case deployedStores = "deployed_stores"
 
             case q
-
-            case onlyDeployed = "only_deployed"
         }
 
-        public init(allStores: Bool? = nil, deployedStores: [Int]? = nil, onlyDeployed: Bool? = nil, q: String? = nil) {
+        public init(allStores: Bool? = nil, deployedStores: [Int]? = nil, q: String? = nil) {
             self.allStores = allStores
 
             self.deployedStores = deployedStores
 
             self.q = q
-
-            self.onlyDeployed = onlyDeployed
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,14 +57,6 @@ public extension PlatformClient.Configuration {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                onlyDeployed = try container.decode(Bool.self, forKey: .onlyDeployed)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -81,8 +67,6 @@ public extension PlatformClient.Configuration {
             try? container.encodeIfPresent(deployedStores, forKey: .deployedStores)
 
             try? container.encodeIfPresent(q, forKey: .q)
-
-            try? container.encodeIfPresent(onlyDeployed, forKey: .onlyDeployed)
         }
     }
 }
@@ -100,26 +84,20 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
         public var q: String?
 
-        public var onlyDeployed: Bool?
-
         public enum CodingKeys: String, CodingKey {
             case allStores = "all_stores"
 
             case deployedStores = "deployed_stores"
 
             case q
-
-            case onlyDeployed = "only_deployed"
         }
 
-        public init(allStores: Bool? = nil, deployedStores: [Int]? = nil, onlyDeployed: Bool? = nil, q: String? = nil) {
+        public init(allStores: Bool? = nil, deployedStores: [Int]? = nil, q: String? = nil) {
             self.allStores = allStores
 
             self.deployedStores = deployedStores
 
             self.q = q
-
-            self.onlyDeployed = onlyDeployed
         }
 
         required public init(from decoder: Decoder) throws {
@@ -148,14 +126,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                onlyDeployed = try container.decode(Bool.self, forKey: .onlyDeployed)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -166,8 +136,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             try? container.encodeIfPresent(deployedStores, forKey: .deployedStores)
 
             try? container.encodeIfPresent(q, forKey: .q)
-
-            try? container.encodeIfPresent(onlyDeployed, forKey: .onlyDeployed)
         }
     }
 }

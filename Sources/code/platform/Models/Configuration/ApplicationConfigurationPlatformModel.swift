@@ -59,8 +59,6 @@ public extension PlatformClient.Configuration {
 
         public var domain: Domain?
 
-        public var slug: String?
-
         public enum CodingKeys: String, CodingKey {
             case website
 
@@ -111,11 +109,9 @@ public extension PlatformClient.Configuration {
             case mobileLogo = "mobile_logo"
 
             case domain
-
-            case slug
         }
 
-        public init(appType: String? = nil, auth: ApplicationAuth? = nil, banner: SecureUrl? = nil, cacheTtl: Int? = nil, channelType: String? = nil, companyId: Int? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, isActive: Bool? = nil, isInternal: Bool? = nil, logo: SecureUrl? = nil, meta: [ApplicationMeta]? = nil, mobileLogo: SecureUrl? = nil, name: String? = nil, owner: String? = nil, redirections: [ApplicationRedirections]? = nil, slug: String? = nil, token: String? = nil, updatedAt: String? = nil, website: ApplicationWebsite? = nil, id: String? = nil, v: Int? = nil) {
+        public init(appType: String? = nil, auth: ApplicationAuth? = nil, banner: SecureUrl? = nil, cacheTtl: Int? = nil, channelType: String? = nil, companyId: Int? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, isActive: Bool? = nil, isInternal: Bool? = nil, logo: SecureUrl? = nil, meta: [ApplicationMeta]? = nil, mobileLogo: SecureUrl? = nil, name: String? = nil, owner: String? = nil, redirections: [ApplicationRedirections]? = nil, token: String? = nil, updatedAt: String? = nil, website: ApplicationWebsite? = nil, id: String? = nil, v: Int? = nil) {
             self.website = website
 
             self.cors = cors
@@ -165,8 +161,6 @@ public extension PlatformClient.Configuration {
             self.mobileLogo = mobileLogo
 
             self.domain = domain
-
-            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -371,14 +365,6 @@ public extension PlatformClient.Configuration {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -433,8 +419,6 @@ public extension PlatformClient.Configuration {
             try? container.encodeIfPresent(mobileLogo, forKey: .mobileLogo)
 
             try? container.encodeIfPresent(domain, forKey: .domain)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }
@@ -496,8 +480,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
         public var domain: Domain?
 
-        public var slug: String?
-
         public enum CodingKeys: String, CodingKey {
             case website
 
@@ -548,11 +530,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
             case mobileLogo = "mobile_logo"
 
             case domain
-
-            case slug
         }
 
-        public init(appType: String? = nil, auth: ApplicationAuth? = nil, banner: SecureUrl? = nil, cacheTtl: Int? = nil, channelType: String? = nil, companyId: Int? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, isActive: Bool? = nil, isInternal: Bool? = nil, logo: SecureUrl? = nil, meta: [ApplicationMeta]? = nil, mobileLogo: SecureUrl? = nil, name: String? = nil, owner: String? = nil, redirections: [ApplicationRedirections]? = nil, slug: String? = nil, token: String? = nil, updatedAt: String? = nil, website: ApplicationWebsite? = nil, id: String? = nil, v: Int? = nil) {
+        public init(appType: String? = nil, auth: ApplicationAuth? = nil, banner: SecureUrl? = nil, cacheTtl: Int? = nil, channelType: String? = nil, companyId: Int? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, isActive: Bool? = nil, isInternal: Bool? = nil, logo: SecureUrl? = nil, meta: [ApplicationMeta]? = nil, mobileLogo: SecureUrl? = nil, name: String? = nil, owner: String? = nil, redirections: [ApplicationRedirections]? = nil, token: String? = nil, updatedAt: String? = nil, website: ApplicationWebsite? = nil, id: String? = nil, v: Int? = nil) {
             self.website = website
 
             self.cors = cors
@@ -602,8 +582,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.mobileLogo = mobileLogo
 
             self.domain = domain
-
-            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -808,14 +786,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -870,8 +840,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             try? container.encodeIfPresent(mobileLogo, forKey: .mobileLogo)
 
             try? container.encodeIfPresent(domain, forKey: .domain)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }

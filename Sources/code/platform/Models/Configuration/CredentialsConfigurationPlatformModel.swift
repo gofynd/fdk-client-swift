@@ -71,12 +71,6 @@ public extension PlatformClient.Configuration {
             do {
                 projectId = try container.decode(String.self, forKey: .projectId)
 
-                if let strong_projectId = projectId,
-                   let projectIdData = Data(base64Encoded: strong_projectId)
-                {
-                    projectId = String(data: projectIdData, encoding: .utf8) ?? projectId
-                }
-
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
@@ -84,12 +78,6 @@ public extension PlatformClient.Configuration {
 
             do {
                 gcmSenderId = try container.decode(String.self, forKey: .gcmSenderId)
-
-                if let strong_gcmSenderId = gcmSenderId,
-                   let gcmSenderIdData = Data(base64Encoded: strong_gcmSenderId)
-                {
-                    gcmSenderId = String(data: gcmSenderIdData, encoding: .utf8) ?? gcmSenderId
-                }
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,12 +87,6 @@ public extension PlatformClient.Configuration {
             do {
                 applicationId = try container.decode(String.self, forKey: .applicationId)
 
-                if let strong_applicationId = applicationId,
-                   let applicationIdData = Data(base64Encoded: strong_applicationId)
-                {
-                    applicationId = String(data: applicationIdData, encoding: .utf8) ?? applicationId
-                }
-
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
@@ -112,12 +94,6 @@ public extension PlatformClient.Configuration {
 
             do {
                 apiKey = try container.decode(String.self, forKey: .apiKey)
-
-                if let strong_apiKey = apiKey,
-                   let apiKeyData = Data(base64Encoded: strong_apiKey)
-                {
-                    apiKey = String(data: apiKeyData, encoding: .utf8) ?? apiKey
-                }
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,13 +108,13 @@ public extension PlatformClient.Configuration {
 
             try? container.encodeIfPresent(android, forKey: .android)
 
-            try? container.encodeIfPresent(projectId?.asBase64, forKey: .projectId)
+            try? container.encodeIfPresent(projectId, forKey: .projectId)
 
-            try? container.encodeIfPresent(gcmSenderId?.asBase64, forKey: .gcmSenderId)
+            try? container.encodeIfPresent(gcmSenderId, forKey: .gcmSenderId)
 
-            try? container.encodeIfPresent(applicationId?.asBase64, forKey: .applicationId)
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
 
-            try? container.encodeIfPresent(apiKey?.asBase64, forKey: .apiKey)
+            try? container.encodeIfPresent(apiKey, forKey: .apiKey)
         }
     }
 }
@@ -212,12 +188,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             do {
                 projectId = try container.decode(String.self, forKey: .projectId)
 
-                if let strong_projectId = projectId,
-                   let projectIdData = Data(base64Encoded: strong_projectId)
-                {
-                    projectId = String(data: projectIdData, encoding: .utf8) ?? projectId
-                }
-
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
@@ -225,12 +195,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
             do {
                 gcmSenderId = try container.decode(String.self, forKey: .gcmSenderId)
-
-                if let strong_gcmSenderId = gcmSenderId,
-                   let gcmSenderIdData = Data(base64Encoded: strong_gcmSenderId)
-                {
-                    gcmSenderId = String(data: gcmSenderIdData, encoding: .utf8) ?? gcmSenderId
-                }
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -240,12 +204,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             do {
                 applicationId = try container.decode(String.self, forKey: .applicationId)
 
-                if let strong_applicationId = applicationId,
-                   let applicationIdData = Data(base64Encoded: strong_applicationId)
-                {
-                    applicationId = String(data: applicationIdData, encoding: .utf8) ?? applicationId
-                }
-
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
@@ -253,12 +211,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
             do {
                 apiKey = try container.decode(String.self, forKey: .apiKey)
-
-                if let strong_apiKey = apiKey,
-                   let apiKeyData = Data(base64Encoded: strong_apiKey)
-                {
-                    apiKey = String(data: apiKeyData, encoding: .utf8) ?? apiKey
-                }
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -273,13 +225,13 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
             try? container.encodeIfPresent(android, forKey: .android)
 
-            try? container.encodeIfPresent(projectId?.asBase64, forKey: .projectId)
+            try? container.encodeIfPresent(projectId, forKey: .projectId)
 
-            try? container.encodeIfPresent(gcmSenderId?.asBase64, forKey: .gcmSenderId)
+            try? container.encodeIfPresent(gcmSenderId, forKey: .gcmSenderId)
 
-            try? container.encodeIfPresent(applicationId?.asBase64, forKey: .applicationId)
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
 
-            try? container.encodeIfPresent(apiKey?.asBase64, forKey: .apiKey)
+            try? container.encodeIfPresent(apiKey, forKey: .apiKey)
         }
     }
 }

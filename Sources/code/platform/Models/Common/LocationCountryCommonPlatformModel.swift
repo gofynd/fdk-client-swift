@@ -1,12 +1,14 @@
 
 
 import Foundation
-public extension ApplicationClient.Common {
+
+public extension PlatformClient.Common {
     /*
-         Model: LocationDetails
+         Model: LocationCountry
          Used By: Common
      */
-    class LocationDetails: Codable {
+
+    class LocationCountry: Codable {
         public var capital: String?
 
         public var currency: String?
@@ -32,14 +34,6 @@ public extension ApplicationClient.Common {
         public var defaultCurrency: LocationDefaultCurrency?
 
         public var defaultLanguage: LocationDefaultLanguage?
-
-        public var stateCode: String?
-
-        public var countryCode: String?
-
-        public var latitude: String?
-
-        public var longitude: String?
 
         public enum CodingKeys: String, CodingKey {
             case capital
@@ -67,17 +61,9 @@ public extension ApplicationClient.Common {
             case defaultCurrency = "default_currency"
 
             case defaultLanguage = "default_language"
-
-            case stateCode = "state_code"
-
-            case countryCode = "country_code"
-
-            case latitude
-
-            case longitude
         }
 
-        public init(capital: String? = nil, countryCode: String? = nil, currency: String? = nil, defaultCurrency: LocationDefaultCurrency? = nil, defaultLanguage: LocationDefaultLanguage? = nil, iso2: String? = nil, iso3: String? = nil, latitude: String? = nil, longitude: String? = nil, name: String? = nil, parent: String? = nil, phoneCode: String? = nil, stateCode: String? = nil, type: String? = nil, uid: Int? = nil, id: String? = nil, v: Int? = nil) {
+        public init(capital: String? = nil, currency: String? = nil, defaultCurrency: LocationDefaultCurrency? = nil, defaultLanguage: LocationDefaultLanguage? = nil, iso2: String? = nil, iso3: String? = nil, name: String? = nil, parent: String? = nil, phoneCode: String? = nil, type: String? = nil, uid: Int? = nil, id: String? = nil, v: Int? = nil) {
             self.capital = capital
 
             self.currency = currency
@@ -103,14 +89,6 @@ public extension ApplicationClient.Common {
             self.defaultCurrency = defaultCurrency
 
             self.defaultLanguage = defaultLanguage
-
-            self.stateCode = stateCode
-
-            self.countryCode = countryCode
-
-            self.latitude = latitude
-
-            self.longitude = longitude
         }
 
         required public init(from decoder: Decoder) throws {
@@ -219,38 +197,6 @@ public extension ApplicationClient.Common {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                stateCode = try container.decode(String.self, forKey: .stateCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                countryCode = try container.decode(String.self, forKey: .countryCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                latitude = try container.decode(String.self, forKey: .latitude)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                longitude = try container.decode(String.self, forKey: .longitude)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -281,14 +227,6 @@ public extension ApplicationClient.Common {
             try? container.encodeIfPresent(defaultCurrency, forKey: .defaultCurrency)
 
             try? container.encodeIfPresent(defaultLanguage, forKey: .defaultLanguage)
-
-            try? container.encodeIfPresent(stateCode, forKey: .stateCode)
-
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-
-            try? container.encodeIfPresent(latitude, forKey: .latitude)
-
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
         }
     }
 }

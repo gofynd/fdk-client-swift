@@ -11,9 +11,9 @@ public extension PlatformClient.Order {
     class Shipment: Codable {
         public var meta: [String: Any]?
 
-        public var externalShipmentId: String?
-
         public var priority: Int?
+
+        public var externalShipmentId: String?
 
         public var lineItems: [LineItem]
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
         public enum CodingKeys: String, CodingKey {
             case meta
 
-            case externalShipmentId = "external_shipment_id"
-
             case priority
+
+            case externalShipmentId = "external_shipment_id"
 
             case lineItems = "line_items"
 
@@ -38,9 +38,9 @@ public extension PlatformClient.Order {
         public init(externalShipmentId: String? = nil, lineItems: [LineItem], locationId: Int, meta: [String: Any]? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil) {
             self.meta = meta
 
-            self.externalShipmentId = externalShipmentId
-
             self.priority = priority
+
+            self.externalShipmentId = externalShipmentId
 
             self.lineItems = lineItems
 
@@ -61,7 +61,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
+                priority = try container.decode(Int.self, forKey: .priority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                priority = try container.decode(Int.self, forKey: .priority)
+                externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
-
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
 
             try? container.encodeIfPresent(lineItems, forKey: .lineItems)
 
@@ -116,9 +116,9 @@ public extension PlatformClient.ApplicationClient.Order {
     class Shipment: Codable {
         public var meta: [String: Any]?
 
-        public var externalShipmentId: String?
-
         public var priority: Int?
+
+        public var externalShipmentId: String?
 
         public var lineItems: [LineItem]
 
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             case meta
 
-            case externalShipmentId = "external_shipment_id"
-
             case priority
+
+            case externalShipmentId = "external_shipment_id"
 
             case lineItems = "line_items"
 
@@ -143,9 +143,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(externalShipmentId: String? = nil, lineItems: [LineItem], locationId: Int, meta: [String: Any]? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil) {
             self.meta = meta
 
-            self.externalShipmentId = externalShipmentId
-
             self.priority = priority
+
+            self.externalShipmentId = externalShipmentId
 
             self.lineItems = lineItems
 
@@ -166,7 +166,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
+                priority = try container.decode(Int.self, forKey: .priority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -174,7 +174,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                priority = try container.decode(Int.self, forKey: .priority)
+                externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -199,9 +199,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
-
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
 
             try? container.encodeIfPresent(lineItems, forKey: .lineItems)
 

@@ -25,12 +25,6 @@ public extension PlatformClient.Configuration {
             do {
                 writeKey = try container.decode(String.self, forKey: .writeKey)
 
-                if let strong_writeKey = writeKey,
-                   let writeKeyData = Data(base64Encoded: strong_writeKey)
-                {
-                    writeKey = String(data: writeKeyData, encoding: .utf8) ?? writeKey
-                }
-
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
@@ -40,7 +34,7 @@ public extension PlatformClient.Configuration {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(writeKey?.asBase64, forKey: .writeKey)
+            try? container.encodeIfPresent(writeKey, forKey: .writeKey)
         }
     }
 }
@@ -68,12 +62,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             do {
                 writeKey = try container.decode(String.self, forKey: .writeKey)
 
-                if let strong_writeKey = writeKey,
-                   let writeKeyData = Data(base64Encoded: strong_writeKey)
-                {
-                    writeKey = String(data: writeKeyData, encoding: .utf8) ?? writeKey
-                }
-
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
@@ -83,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(writeKey?.asBase64, forKey: .writeKey)
+            try? container.encodeIfPresent(writeKey, forKey: .writeKey)
         }
     }
 }

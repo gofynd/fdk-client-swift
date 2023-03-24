@@ -12,8 +12,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Create a new sales channel
-         * Description: Applications are sales channel websites which can be configured, personalized and customized. Use this API to create a new application in the current company.
+         * Summary: Create application
+         * Description: Create new application
          **/
         public func createApplication(
             body: CreateApplicationRequest,
@@ -50,8 +50,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get list of registered sales channels under company
-         * Description: Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
+         * Summary: Get list of application under company
+         * Description: Get list of application under company
          **/
         public func getApplications(
             pageNo: Int?,
@@ -136,7 +136,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get all currencies
-         * Description: Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+         * Description: Get all currencies
          **/
         public func getCurrencies(
             onResponse: @escaping (_ response: CurrenciesResponse?, _ error: FDKError?) -> Void
@@ -172,8 +172,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Check domain availability before linking to application
-         * Description: Use this API to check the domain availability before linking it to application. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider.
+         * Summary: Check domain availibility before linking to application
+         * Description: Check domain availibility before linking to application. Also sends domain suggestions with similar to queried domain. \ Custom domain search is currently powered by GoDaddy provider.
          **/
         public func getDomainAvailibility(
             body: DomainSuggestionsRequest,
@@ -210,8 +210,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get integration data by its ID
-         * Description: Use this API to fetch the details of an integration (such as Ginesys, SAP, etc.) using its ID
+         * Summary: Get integration data
+         * Description: Get integration data
          **/
         public func getIntegrationById(
             id: Int,
@@ -250,7 +250,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get all available integration opt-ins
-         * Description: Use this API to get a list of all available integrations in a company
+         * Description: Get all available integration opt-ins
          **/
         public func getAvailableOptIns(
             pageNo: Int?,
@@ -328,7 +328,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get company/store level integration opt-ins
-         * Description: Use this API to get the store-level/company-level integrations configured in a company
+         * Description: Get company/store level integration opt-ins
          **/
         public func getSelectedOptIns(
             level: String,
@@ -435,7 +435,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/configuration/new/\(id)/\(level)",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/configuration/\(id)/\(level)",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -463,8 +463,48 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get integration config at a particular level (store/company)
-         * Description: Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
+         * Summary: Update a store level opt-in for integration
+         * Description: Update a store level opt-in for integration
+         **/
+        public func updateLevelIntegration(
+            id: String,
+            level: String,
+            body: UpdateIntegrationLevelRequest,
+            onResponse: @escaping (_ response: IntegrationLevel?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/configuration/\(id)/\(level)",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(IntegrationLevel.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Get level data for integration
+         * Description: Get level data for integration
          **/
         public func getIntegrationByLevelId(
             id: String,
@@ -504,8 +544,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Update integration level by store UID
-         * Description: Update the level of integration by store UID
+         * Summary: Update a store level opt-in for integration
+         * Description: Update a store level opt-in for integration
          **/
         public func updateLevelUidIntegration(
             id: String,
@@ -545,28 +585,21 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Check active integration at store
-         * Description: Use this API to check if a store is already opted-in for any integration
+         * Summary: Check store has active integration
+         * Description: API checks if a store is already opted in any other integrations
          **/
         public func getLevelActiveIntegrations(
             id: String,
             level: String,
             uid: Int,
-            permission: String?,
 
             onResponse: @escaping (_ response: OptedStoreIntegration?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = permission {
-                xQuery["permission"] = value
-            }
-
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/check/configuration/\(id)/\(level)/\(uid)",
-                query: xQuery,
+                query: nil,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
@@ -593,48 +626,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Update a store level integration you opted
-         * Description: Use this API to update the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
-         **/
-        public func updateLevelIntegration(
-            id: String,
-            level: String,
-            body: UpdateIntegrationLevelRequest,
-            onResponse: @escaping (_ response: IntegrationLevel?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/configuration/\(id)/\(level)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(IntegrationLevel.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Get brands by company.
-         * Description: Use this API to get all the brands added in a company. Get all the brand names, along with URLs of their logo, banner, and portrait image.
+         * Summary: Get brands by company
+         * Description: Get brands by company
          **/
         public func getBrandsByCompany(
             q: String?,
@@ -679,7 +672,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get company by brand uids
-         * Description: Use this API to get a list of companies by the brands they deal
+         * Description: Get company by brand uids
          **/
         public func getCompanyByBrands(
             pageNo: Int?,
@@ -757,8 +750,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get stores by brand uids for the current company
-         * Description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
+         * Summary: Get stores by brand uids
+         * Description: Get stores by brand uids
          **/
         public func getStoreByBrands(
             pageNo: Int?,
@@ -836,8 +829,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get other seller sales channels
-         * Description: Use this API to fetch all other seller applications that were not created within the current company. but have opted for the current company's inventory
+         * Summary: Get other seller applications
+         * Description: Get other seller applications who has opted current company as inventory
          **/
         public func getOtherSellerApplications(
             pageNo: Int?,
@@ -914,8 +907,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get other seller's sales channel by ID
-         * Description: Use application ID to fetch details of a seller application that was not created within the current company. but has opted for the current company's inventory
+         * Summary: Get other seller applications
+         * Description: Get other seller application
          **/
         public func getOtherSellerApplicationById(
             id: String,
@@ -953,8 +946,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Opt-out company or store from other seller application
-         * Description: Use this API to opt-out your company or store from other seller application. The specific seller application will no longer fetch inventory from your company or store.
+         * Summary: Opt out company or store from other seller application
+         * Description: Opt out company or store from other seller application
          **/
         public func optOutFromApplication(
             id: String,
