@@ -9,24 +9,24 @@ public extension ApplicationClient.Payment {
     class EpaylaterBannerData: Codable {
         public var display: Bool
 
-        public var status: String?
-
         public var message: String?
+
+        public var status: String?
 
         public enum CodingKeys: String, CodingKey {
             case display
 
-            case status
-
             case message
+
+            case status
         }
 
         public init(display: Bool, message: String? = nil, status: String? = nil) {
             self.display = display
 
-            self.status = status
-
             self.message = message
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,7 +35,7 @@ public extension ApplicationClient.Payment {
             display = try container.decode(Bool.self, forKey: .display)
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,9 +56,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

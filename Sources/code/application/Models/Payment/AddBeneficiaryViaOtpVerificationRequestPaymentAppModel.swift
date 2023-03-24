@@ -7,46 +7,46 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class AddBeneficiaryViaOtpVerificationRequest: Codable {
-        public var otp: String
+        public var hashKey: String
 
         public var requestId: String
 
-        public var hashKey: String
+        public var otp: String
 
         public enum CodingKeys: String, CodingKey {
-            case otp
+            case hashKey = "hash_key"
 
             case requestId = "request_id"
 
-            case hashKey = "hash_key"
+            case otp
         }
 
         public init(hashKey: String, otp: String, requestId: String) {
-            self.otp = otp
+            self.hashKey = hashKey
 
             self.requestId = requestId
 
-            self.hashKey = hashKey
+            self.otp = otp
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            otp = try container.decode(String.self, forKey: .otp)
+            hashKey = try container.decode(String.self, forKey: .hashKey)
 
             requestId = try container.decode(String.self, forKey: .requestId)
 
-            hashKey = try container.decode(String.self, forKey: .hashKey)
+            otp = try container.decode(String.self, forKey: .otp)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(otp, forKey: .otp)
+            try? container.encodeIfPresent(hashKey, forKey: .hashKey)
 
             try? container.encodeIfPresent(requestId, forKey: .requestId)
 
-            try? container.encodeIfPresent(hashKey, forKey: .hashKey)
+            try? container.encodeIfPresent(otp, forKey: .otp)
         }
     }
 }
