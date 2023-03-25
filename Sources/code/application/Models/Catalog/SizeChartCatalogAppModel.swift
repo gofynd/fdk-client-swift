@@ -15,9 +15,9 @@ public extension ApplicationClient.Catalog {
 
         public var title: String?
 
-        public var image: String?
-
         public var description: String?
+
+        public var image: String?
 
         public var sizes: [SizeChartValues]?
 
@@ -30,9 +30,9 @@ public extension ApplicationClient.Catalog {
 
             case title
 
-            case image
-
             case description
+
+            case image
 
             case sizes
         }
@@ -46,9 +46,9 @@ public extension ApplicationClient.Catalog {
 
             self.title = title
 
-            self.image = image
-
             self.description = description
+
+            self.image = image
 
             self.sizes = sizes
         }
@@ -89,7 +89,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                image = try container.decode(String.self, forKey: .image)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                image = try container.decode(String.self, forKey: .image)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,9 +124,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(image, forKey: .image)
-
             try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(image, forKey: .image)
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
         }
