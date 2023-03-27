@@ -9,72 +9,72 @@ public extension PlatformClient.Order {
      */
 
     class ManifestDetail: Codable {
-        public var companyId: Int?
+        public var manifestId: String?
 
         public var createdBy: String?
 
         public var createdAt: String?
 
+        public var id: Int?
+
+        public var companyId: Int?
+
+        public var status: String?
+
         public var isActive: Bool?
 
         public var userId: Int?
 
-        public var id: Int?
+        public var meta: ManifestDetailMeta?
 
         public var filters: ManifestFilter?
-
-        public var status: String?
-
-        public var manifestId: String?
-
-        public var meta: ManifestDetailMeta?
 
         public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case companyId = "company_id"
+            case manifestId = "manifest_id"
 
             case createdBy = "created_by"
 
             case createdAt = "created_at"
 
+            case id
+
+            case companyId = "company_id"
+
+            case status
+
             case isActive = "is_active"
 
             case userId = "user_id"
 
-            case id
+            case meta
 
             case filters
-
-            case status
-
-            case manifestId = "manifest_id"
-
-            case meta
 
             case uid
         }
 
         public init(companyId: Int? = nil, createdAt: String? = nil, createdBy: String? = nil, filters: ManifestFilter? = nil, id: Int? = nil, isActive: Bool? = nil, manifestId: String? = nil, meta: ManifestDetailMeta? = nil, status: String? = nil, uid: Int? = nil, userId: Int? = nil) {
-            self.companyId = companyId
+            self.manifestId = manifestId
 
             self.createdBy = createdBy
 
             self.createdAt = createdAt
 
+            self.id = id
+
+            self.companyId = companyId
+
+            self.status = status
+
             self.isActive = isActive
 
             self.userId = userId
 
-            self.id = id
+            self.meta = meta
 
             self.filters = filters
-
-            self.status = status
-
-            self.manifestId = manifestId
-
-            self.meta = meta
 
             self.uid = uid
         }
@@ -83,7 +83,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                manifestId = try container.decode(String.self, forKey: .manifestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,6 +107,30 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                id = try container.decode(Int.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyId = try container.decode(Int.self, forKey: .companyId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                status = try container.decode(String.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -123,7 +147,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                meta = try container.decode(ManifestDetailMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,30 +156,6 @@ public extension PlatformClient.Order {
 
             do {
                 filters = try container.decode(ManifestFilter.self, forKey: .filters)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                status = try container.decode(String.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                manifestId = try container.decode(String.self, forKey: .manifestId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode(ManifestDetailMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -174,25 +174,25 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(status, forKey: .status)
+
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
-
-            try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }
@@ -206,72 +206,72 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ManifestDetail: Codable {
-        public var companyId: Int?
+        public var manifestId: String?
 
         public var createdBy: String?
 
         public var createdAt: String?
 
+        public var id: Int?
+
+        public var companyId: Int?
+
+        public var status: String?
+
         public var isActive: Bool?
 
         public var userId: Int?
 
-        public var id: Int?
+        public var meta: ManifestDetailMeta?
 
         public var filters: ManifestFilter?
-
-        public var status: String?
-
-        public var manifestId: String?
-
-        public var meta: ManifestDetailMeta?
 
         public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case companyId = "company_id"
+            case manifestId = "manifest_id"
 
             case createdBy = "created_by"
 
             case createdAt = "created_at"
 
+            case id
+
+            case companyId = "company_id"
+
+            case status
+
             case isActive = "is_active"
 
             case userId = "user_id"
 
-            case id
+            case meta
 
             case filters
-
-            case status
-
-            case manifestId = "manifest_id"
-
-            case meta
 
             case uid
         }
 
         public init(companyId: Int? = nil, createdAt: String? = nil, createdBy: String? = nil, filters: ManifestFilter? = nil, id: Int? = nil, isActive: Bool? = nil, manifestId: String? = nil, meta: ManifestDetailMeta? = nil, status: String? = nil, uid: Int? = nil, userId: Int? = nil) {
-            self.companyId = companyId
+            self.manifestId = manifestId
 
             self.createdBy = createdBy
 
             self.createdAt = createdAt
 
+            self.id = id
+
+            self.companyId = companyId
+
+            self.status = status
+
             self.isActive = isActive
 
             self.userId = userId
 
-            self.id = id
+            self.meta = meta
 
             self.filters = filters
-
-            self.status = status
-
-            self.manifestId = manifestId
-
-            self.meta = meta
 
             self.uid = uid
         }
@@ -280,7 +280,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                manifestId = try container.decode(String.self, forKey: .manifestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -304,6 +304,30 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                id = try container.decode(Int.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyId = try container.decode(Int.self, forKey: .companyId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                status = try container.decode(String.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -320,7 +344,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                meta = try container.decode(ManifestDetailMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -329,30 +353,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 filters = try container.decode(ManifestFilter.self, forKey: .filters)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                status = try container.decode(String.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                manifestId = try container.decode(String.self, forKey: .manifestId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode(ManifestDetailMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -371,25 +371,25 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(status, forKey: .status)
+
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
-
-            try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }

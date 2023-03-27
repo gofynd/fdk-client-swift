@@ -9,36 +9,38 @@ public extension PlatformClient.Order {
      */
 
     class FiltersInfo: Codable {
+        public var text: String
+
         public var type: String
 
         public var options: [FilterInfoOption]?
 
-        public var text: String
-
         public var value: String
 
         public enum CodingKeys: String, CodingKey {
+            case text
+
             case type
 
             case options
-
-            case text
 
             case value
         }
 
         public init(options: [FilterInfoOption]? = nil, text: String, type: String, value: String) {
+            self.text = text
+
             self.type = type
 
             self.options = options
-
-            self.text = text
 
             self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            text = try container.decode(String.self, forKey: .text)
 
             type = try container.decode(String.self, forKey: .type)
 
@@ -50,19 +52,17 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            text = try container.decode(String.self, forKey: .text)
-
             value = try container.decode(String.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(text, forKey: .text)
+
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(options, forKey: .options)
-
-            try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(value, forKey: .value)
         }
@@ -76,36 +76,38 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class FiltersInfo: Codable {
+        public var text: String
+
         public var type: String
 
         public var options: [FilterInfoOption]?
 
-        public var text: String
-
         public var value: String
 
         public enum CodingKeys: String, CodingKey {
+            case text
+
             case type
 
             case options
-
-            case text
 
             case value
         }
 
         public init(options: [FilterInfoOption]? = nil, text: String, type: String, value: String) {
+            self.text = text
+
             self.type = type
 
             self.options = options
-
-            self.text = text
 
             self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            text = try container.decode(String.self, forKey: .text)
 
             type = try container.decode(String.self, forKey: .type)
 
@@ -117,19 +119,17 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            text = try container.decode(String.self, forKey: .text)
-
             value = try container.decode(String.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(text, forKey: .text)
+
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(options, forKey: .options)
-
-            try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(value, forKey: .value)
         }

@@ -9,18 +9,18 @@ public extension PlatformClient.Order {
      */
 
     class Tax: Codable {
-        public var amount: [String: Any]
-
         public var name: String
+
+        public var amount: [String: Any]
 
         public var breakup: [[String: Any]]
 
         public var taxExempt: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case amount
-
             case name
+
+            case amount
 
             case breakup
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Order {
         }
 
         public init(amount: [String: Any], breakup: [[String: Any]], name: String, taxExempt: Bool) {
-            self.amount = amount
-
             self.name = name
+
+            self.amount = amount
 
             self.breakup = breakup
 
@@ -40,9 +40,9 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            amount = try container.decode([String: Any].self, forKey: .amount)
-
             name = try container.decode(String.self, forKey: .name)
+
+            amount = try container.decode([String: Any].self, forKey: .amount)
 
             breakup = try container.decode([[String: Any]].self, forKey: .breakup)
 
@@ -52,9 +52,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(breakup, forKey: .breakup)
 
@@ -70,18 +70,18 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Tax: Codable {
-        public var amount: [String: Any]
-
         public var name: String
+
+        public var amount: [String: Any]
 
         public var breakup: [[String: Any]]
 
         public var taxExempt: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case amount
-
             case name
+
+            case amount
 
             case breakup
 
@@ -89,9 +89,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(amount: [String: Any], breakup: [[String: Any]], name: String, taxExempt: Bool) {
-            self.amount = amount
-
             self.name = name
+
+            self.amount = amount
 
             self.breakup = breakup
 
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            amount = try container.decode([String: Any].self, forKey: .amount)
-
             name = try container.decode(String.self, forKey: .name)
+
+            amount = try container.decode([String: Any].self, forKey: .amount)
 
             breakup = try container.decode([[String: Any]].self, forKey: .breakup)
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(breakup, forKey: .breakup)
 

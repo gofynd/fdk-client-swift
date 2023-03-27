@@ -13,22 +13,22 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var uses: PaymentAllowValue?
 
-        public var networks: [String]?
-
         public var iins: [String]?
 
         public var types: [String]?
+
+        public var networks: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case codes
 
             case uses
 
-            case networks
-
             case iins
 
             case types
+
+            case networks
         }
 
         public init(codes: [String]? = nil, iins: [String]? = nil, networks: [String]? = nil, types: [String]? = nil, uses: PaymentAllowValue? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.uses = uses
 
-            self.networks = networks
-
             self.iins = iins
 
             self.types = types
+
+            self.networks = networks
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,14 +63,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                networks = try container.decode([String].self, forKey: .networks)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 iins = try container.decode([String].self, forKey: .iins)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -85,6 +77,14 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                networks = try container.decode([String].self, forKey: .networks)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -94,11 +94,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(uses, forKey: .uses)
 
-            try? container.encodeIfPresent(networks, forKey: .networks)
-
             try? container.encodeIfPresent(iins, forKey: .iins)
 
             try? container.encodeIfPresent(types, forKey: .types)
+
+            try? container.encodeIfPresent(networks, forKey: .networks)
         }
     }
 }
