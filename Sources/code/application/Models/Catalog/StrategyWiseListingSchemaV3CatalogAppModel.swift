@@ -11,18 +11,18 @@ public extension ApplicationClient.Catalog {
 
         public var tat: Int?
 
-        public var quantity: Int?
-
         public var distance: Int?
+
+        public var quantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case pincode
 
             case tat
 
-            case quantity
-
             case distance
+
+            case quantity
         }
 
         public init(distance: Int? = nil, pincode: Int? = nil, quantity: Int? = nil, tat: Int? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Catalog {
 
             self.tat = tat
 
-            self.quantity = quantity
-
             self.distance = distance
+
+            self.quantity = quantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                distance = try container.decode(Int.self, forKey: .distance)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                distance = try container.decode(Int.self, forKey: .distance)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(tat, forKey: .tat)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
             try? container.encodeIfPresent(distance, forKey: .distance)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 }

@@ -9,9 +9,9 @@ public extension PlatformClient.Order {
      */
 
     class EinvoiceInfo: Codable {
-        public var creditNote: EInvoice?
+        public var creditNote: [String: Any]?
 
-        public var invoice: EInvoice?
+        public var invoice: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case creditNote = "credit_note"
@@ -19,7 +19,7 @@ public extension PlatformClient.Order {
             case invoice
         }
 
-        public init(creditNote: EInvoice? = nil, invoice: EInvoice? = nil) {
+        public init(creditNote: [String: Any]? = nil, invoice: [String: Any]? = nil) {
             self.creditNote = creditNote
 
             self.invoice = invoice
@@ -29,7 +29,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                creditNote = try container.decode(EInvoice.self, forKey: .creditNote)
+                creditNote = try container.decode([String: Any].self, forKey: .creditNote)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                invoice = try container.decode(EInvoice.self, forKey: .invoice)
+                invoice = try container.decode([String: Any].self, forKey: .invoice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class EinvoiceInfo: Codable {
-        public var creditNote: EInvoice?
+        public var creditNote: [String: Any]?
 
-        public var invoice: EInvoice?
+        public var invoice: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case creditNote = "credit_note"
@@ -72,7 +72,7 @@ public extension PlatformClient.ApplicationClient.Order {
             case invoice
         }
 
-        public init(creditNote: EInvoice? = nil, invoice: EInvoice? = nil) {
+        public init(creditNote: [String: Any]? = nil, invoice: [String: Any]? = nil) {
             self.creditNote = creditNote
 
             self.invoice = invoice
@@ -82,7 +82,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                creditNote = try container.decode(EInvoice.self, forKey: .creditNote)
+                creditNote = try container.decode([String: Any].self, forKey: .creditNote)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                invoice = try container.decode(EInvoice.self, forKey: .invoice)
+                invoice = try container.decode([String: Any].self, forKey: .invoice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

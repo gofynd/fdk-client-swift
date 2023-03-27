@@ -11,30 +11,30 @@ public extension ApplicationClient.Order {
 
         public var promoId: String?
 
-        public var appliedFreeArticles: [AppliedFreeArticles]?
+        public var articleQuantity: Double?
 
-        public var promotionType: String?
+        public var appliedFreeArticles: [AppliedFreeArticles]?
 
         public var promotionName: String?
 
         public var mrpPromotion: Bool?
 
-        public var articleQuantity: Double?
+        public var promotionType: String?
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
             case promoId = "promo_id"
 
-            case appliedFreeArticles = "applied_free_articles"
+            case articleQuantity = "article_quantity"
 
-            case promotionType = "promotion_type"
+            case appliedFreeArticles = "applied_free_articles"
 
             case promotionName = "promotion_name"
 
             case mrpPromotion = "mrp_promotion"
 
-            case articleQuantity = "article_quantity"
+            case promotionType = "promotion_type"
         }
 
         public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Double? = nil, mrpPromotion: Bool? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
@@ -42,15 +42,15 @@ public extension ApplicationClient.Order {
 
             self.promoId = promoId
 
-            self.appliedFreeArticles = appliedFreeArticles
+            self.articleQuantity = articleQuantity
 
-            self.promotionType = promotionType
+            self.appliedFreeArticles = appliedFreeArticles
 
             self.promotionName = promotionName
 
             self.mrpPromotion = mrpPromotion
 
-            self.articleQuantity = articleQuantity
+            self.promotionType = promotionType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                appliedFreeArticles = try container.decode([AppliedFreeArticles].self, forKey: .appliedFreeArticles)
+                articleQuantity = try container.decode(Double.self, forKey: .articleQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                promotionType = try container.decode(String.self, forKey: .promotionType)
+                appliedFreeArticles = try container.decode([AppliedFreeArticles].self, forKey: .appliedFreeArticles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                articleQuantity = try container.decode(Double.self, forKey: .articleQuantity)
+                promotionType = try container.decode(String.self, forKey: .promotionType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,15 +120,15 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(promoId, forKey: .promoId)
 
-            try? container.encodeIfPresent(appliedFreeArticles, forKey: .appliedFreeArticles)
+            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
 
-            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
+            try? container.encodeIfPresent(appliedFreeArticles, forKey: .appliedFreeArticles)
 
             try? container.encodeIfPresent(promotionName, forKey: .promotionName)
 
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
 
-            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
+            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
         }
     }
 }
