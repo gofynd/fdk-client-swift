@@ -13,30 +13,30 @@ public extension PlatformClient.Order {
 
         public var city: String
 
-        public var state: String
+        public var address: String
 
         public var pincode: Int
 
-        public var address: String
-
-        public var ajioSiteId: String?
+        public var state: String
 
         public var gstin: String
+
+        public var ajioSiteId: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
             case city
 
-            case state
+            case address
 
             case pincode
 
-            case address
-
-            case ajioSiteId = "ajio_site_id"
+            case state
 
             case gstin
+
+            case ajioSiteId = "ajio_site_id"
         }
 
         public init(address: String, ajioSiteId: String? = nil, city: String, gstin: String, name: String, pincode: Int, state: String) {
@@ -44,15 +44,15 @@ public extension PlatformClient.Order {
 
             self.city = city
 
-            self.state = state
+            self.address = address
 
             self.pincode = pincode
 
-            self.address = address
-
-            self.ajioSiteId = ajioSiteId
+            self.state = state
 
             self.gstin = gstin
+
+            self.ajioSiteId = ajioSiteId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,11 +62,13 @@ public extension PlatformClient.Order {
 
             city = try container.decode(String.self, forKey: .city)
 
-            state = try container.decode(String.self, forKey: .state)
+            address = try container.decode(String.self, forKey: .address)
 
             pincode = try container.decode(Int.self, forKey: .pincode)
 
-            address = try container.decode(String.self, forKey: .address)
+            state = try container.decode(String.self, forKey: .state)
+
+            gstin = try container.decode(String.self, forKey: .gstin)
 
             do {
                 ajioSiteId = try container.decode(String.self, forKey: .ajioSiteId)
@@ -75,8 +77,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            gstin = try container.decode(String.self, forKey: .gstin)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -86,15 +86,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(city, forKey: .city)
 
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encode(address, forKey: .address)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encode(address, forKey: .address)
-
-            try? container.encodeIfPresent(ajioSiteId, forKey: .ajioSiteId)
+            try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(gstin, forKey: .gstin)
+
+            try? container.encodeIfPresent(ajioSiteId, forKey: .ajioSiteId)
         }
     }
 }
@@ -110,30 +110,30 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var city: String
 
-        public var state: String
+        public var address: String
 
         public var pincode: Int
 
-        public var address: String
-
-        public var ajioSiteId: String?
+        public var state: String
 
         public var gstin: String
+
+        public var ajioSiteId: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
             case city
 
-            case state
+            case address
 
             case pincode
 
-            case address
-
-            case ajioSiteId = "ajio_site_id"
+            case state
 
             case gstin
+
+            case ajioSiteId = "ajio_site_id"
         }
 
         public init(address: String, ajioSiteId: String? = nil, city: String, gstin: String, name: String, pincode: Int, state: String) {
@@ -141,15 +141,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.city = city
 
-            self.state = state
+            self.address = address
 
             self.pincode = pincode
 
-            self.address = address
-
-            self.ajioSiteId = ajioSiteId
+            self.state = state
 
             self.gstin = gstin
+
+            self.ajioSiteId = ajioSiteId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -159,11 +159,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             city = try container.decode(String.self, forKey: .city)
 
-            state = try container.decode(String.self, forKey: .state)
+            address = try container.decode(String.self, forKey: .address)
 
             pincode = try container.decode(Int.self, forKey: .pincode)
 
-            address = try container.decode(String.self, forKey: .address)
+            state = try container.decode(String.self, forKey: .state)
+
+            gstin = try container.decode(String.self, forKey: .gstin)
 
             do {
                 ajioSiteId = try container.decode(String.self, forKey: .ajioSiteId)
@@ -172,8 +174,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            gstin = try container.decode(String.self, forKey: .gstin)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -183,15 +183,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(city, forKey: .city)
 
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encode(address, forKey: .address)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encode(address, forKey: .address)
-
-            try? container.encodeIfPresent(ajioSiteId, forKey: .ajioSiteId)
+            try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(gstin, forKey: .gstin)
+
+            try? container.encodeIfPresent(ajioSiteId, forKey: .ajioSiteId)
         }
     }
 }

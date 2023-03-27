@@ -9,15 +9,15 @@ public extension PlatformClient.Catalog {
      */
 
     class ConfigurationListingFilterConfig: Codable {
-        public var logo: String?
+        public var type: String
 
         public var priority: Int
+
+        public var logo: String?
 
         public var valueConfig: ConfigurationListingFilterValue?
 
         public var displayName: String?
-
-        public var type: String
 
         public var key: String
 
@@ -26,15 +26,15 @@ public extension PlatformClient.Catalog {
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case logo
+            case type
 
             case priority
+
+            case logo
 
             case valueConfig = "value_config"
 
             case displayName = "display_name"
-
-            case type
 
             case key
 
@@ -44,15 +44,15 @@ public extension PlatformClient.Catalog {
         }
 
         public init(displayName: String? = nil, isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int, type: String, valueConfig: ConfigurationListingFilterValue? = nil) {
-            self.logo = logo
+            self.type = type
 
             self.priority = priority
+
+            self.logo = logo
 
             self.valueConfig = valueConfig
 
             self.displayName = displayName
-
-            self.type = type
 
             self.key = key
 
@@ -64,6 +64,10 @@ public extension PlatformClient.Catalog {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            type = try container.decode(String.self, forKey: .type)
+
+            priority = try container.decode(Int.self, forKey: .priority)
+
             do {
                 logo = try container.decode(String.self, forKey: .logo)
 
@@ -71,8 +75,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            priority = try container.decode(Int.self, forKey: .priority)
 
             do {
                 valueConfig = try container.decode(ConfigurationListingFilterValue.self, forKey: .valueConfig)
@@ -90,8 +92,6 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            type = try container.decode(String.self, forKey: .type)
-
             key = try container.decode(String.self, forKey: .key)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -108,15 +108,15 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(valueConfig, forKey: .valueConfig)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
-
-            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
@@ -134,15 +134,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ConfigurationListingFilterConfig: Codable {
-        public var logo: String?
+        public var type: String
 
         public var priority: Int
+
+        public var logo: String?
 
         public var valueConfig: ConfigurationListingFilterValue?
 
         public var displayName: String?
-
-        public var type: String
 
         public var key: String
 
@@ -151,15 +151,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case logo
+            case type
 
             case priority
+
+            case logo
 
             case valueConfig = "value_config"
 
             case displayName = "display_name"
-
-            case type
 
             case key
 
@@ -169,15 +169,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(displayName: String? = nil, isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int, type: String, valueConfig: ConfigurationListingFilterValue? = nil) {
-            self.logo = logo
+            self.type = type
 
             self.priority = priority
+
+            self.logo = logo
 
             self.valueConfig = valueConfig
 
             self.displayName = displayName
-
-            self.type = type
 
             self.key = key
 
@@ -189,6 +189,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            type = try container.decode(String.self, forKey: .type)
+
+            priority = try container.decode(Int.self, forKey: .priority)
+
             do {
                 logo = try container.decode(String.self, forKey: .logo)
 
@@ -196,8 +200,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            priority = try container.decode(Int.self, forKey: .priority)
 
             do {
                 valueConfig = try container.decode(ConfigurationListingFilterValue.self, forKey: .valueConfig)
@@ -215,8 +217,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            type = try container.decode(String.self, forKey: .type)
-
             key = try container.decode(String.self, forKey: .key)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -233,15 +233,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(valueConfig, forKey: .valueConfig)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
-
-            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
