@@ -11,11 +11,11 @@ public extension ApplicationClient.PosCart {
 
         public var type: String?
 
-        public var message: String?
-
         public var uid: String?
 
         public var value: Double?
+
+        public var message: String?
 
         public var isApplied: Bool?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient.PosCart {
 
             case type
 
-            case message
-
             case uid
 
             case value
+
+            case message
 
             case isApplied = "is_applied"
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient.PosCart {
 
             self.type = type
 
-            self.message = message
-
             self.uid = uid
 
             self.value = value
+
+            self.message = message
 
             self.isApplied = isApplied
         }
@@ -67,14 +67,6 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -84,6 +76,14 @@ public extension ApplicationClient.PosCart {
 
             do {
                 value = try container.decode(Double.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(isApplied, forKey: .isApplied)
         }
