@@ -11,7 +11,7 @@ public extension PlatformClient.Catalog {
     class Trader: Codable {
         public var type: String?
 
-        public var name: [String: Any]
+        public var name: String?
 
         public var address: [String]?
 
@@ -23,7 +23,7 @@ public extension PlatformClient.Catalog {
             case address
         }
 
-        public init(address: [String]? = nil, name: [String: Any], type: String? = nil) {
+        public init(address: [String]? = nil, name: String? = nil, type: String? = nil) {
             self.type = type
 
             self.name = name
@@ -42,7 +42,13 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode([String: Any].self, forKey: .name)
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 address = try container.decode([String].self, forKey: .address)
@@ -74,7 +80,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class Trader: Codable {
         public var type: String?
 
-        public var name: [String: Any]
+        public var name: String?
 
         public var address: [String]?
 
@@ -86,7 +92,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case address
         }
 
-        public init(address: [String]? = nil, name: [String: Any], type: String? = nil) {
+        public init(address: [String]? = nil, name: String? = nil, type: String? = nil) {
             self.type = type
 
             self.name = name
@@ -105,7 +111,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode([String: Any].self, forKey: .name)
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 address = try container.decode([String].self, forKey: .address)

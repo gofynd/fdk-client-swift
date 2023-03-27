@@ -9,7 +9,7 @@ public extension ApplicationClient.Lead {
     class SubmitCustomFormResponse: Codable {
         public var message: String
 
-        public var ticket: Ticket?
+        public var ticket: Ticket
 
         public enum CodingKeys: String, CodingKey {
             case message
@@ -17,7 +17,7 @@ public extension ApplicationClient.Lead {
             case ticket
         }
 
-        public init(message: String, ticket: Ticket? = nil) {
+        public init(message: String, ticket: Ticket) {
             self.message = message
 
             self.ticket = ticket
@@ -28,13 +28,7 @@ public extension ApplicationClient.Lead {
 
             message = try container.decode(String.self, forKey: .message)
 
-            do {
-                ticket = try container.decode(Ticket.self, forKey: .ticket)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            ticket = try container.decode(Ticket.self, forKey: .ticket)
         }
 
         public func encode(to encoder: Encoder) throws {

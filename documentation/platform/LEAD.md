@@ -221,25 +221,25 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "email": "niktest@xyz.com"
+              "email": "nikhilmshchs@gmail.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "xyz@xyz.com"
+              "email": "nikhilmanapure@gofynd.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "xyz@xyz.com"
+              "email": "nikhilmanapure@fynd.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "xyz@xyz.com"
+              "email": "nikhilmanapure@uniket.store"
             }
           ],
           "phoneNumbers": [
@@ -248,12 +248,12 @@ Success
               "primary": true,
               "verified": true,
               "countryCode": 91,
-              "phone": "9999999999"
+              "phone": "9890425946"
             }
           ],
           "firstName": "Nikhil",
           "lastName": "Manapure",
-          "username": "xyz_xyz_com",
+          "username": "nikhilmanapure_gofynd_com_29298",
           "createdAt": "2020-03-24T10:55:29.298Z",
           "updatedAt": "2020-05-12T07:46:41.816Z",
           "uid": "5567",
@@ -549,7 +549,7 @@ Success
           "primary": true,
           "verified": true,
           "countryCode": 91,
-          "phone": "9999999999"
+          "phone": "9890425946"
         }
       ],
       "firstName": "Nikhil",
@@ -559,10 +559,10 @@ Success
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "niktest@xyz.com"
+          "email": "nikhilmshchs@gmail.com"
         }
       ],
-      "username": "niktest_xyz_com_38425_20500281",
+      "username": "nikhilmshchs_gmail_com_38425_20500281",
       "createdAt": "2019-01-01T17:22:38.528Z",
       "updatedAt": "2021-01-22T10:02:42.258Z",
       "uid": "20500281",
@@ -610,7 +610,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9999999999"
+            "phone": "9890425946"
           }
         ],
         "firstName": "Nikhil",
@@ -620,10 +620,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "niktest@xyz.com"
+            "email": "nikhilmshchs@gmail.com"
           }
         ],
-        "username": "niktest_xyz_com_38425_20500281",
+        "username": "nikhilmshchs_gmail_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -907,25 +907,25 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "email": "niktest@xyz.com"
+              "email": "nikhilmshchs@gmail.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "xyz@xyz.com"
+              "email": "nikhilmanapure@gofynd.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "xyz@xyz.com"
+              "email": "nikhilmanapure@fynd.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "xyz@xyz.com"
+              "email": "nikhilmanapure@uniket.store"
             }
           ],
           "phoneNumbers": [
@@ -934,12 +934,12 @@ Success
               "primary": true,
               "verified": true,
               "countryCode": 91,
-              "phone": "9999999999"
+              "phone": "9890425946"
             }
           ],
           "firstName": "Nikhil",
           "lastName": "Manapure",
-          "username": "xyz_xyz_com",
+          "username": "nikhilmanapure_gofynd_com_29298",
           "createdAt": "2020-03-24T10:55:29.298Z",
           "updatedAt": "2020-05-12T07:46:41.816Z",
           "uid": "5567",
@@ -1236,7 +1236,7 @@ Success
           "primary": true,
           "verified": true,
           "countryCode": 91,
-          "phone": "9999999999"
+          "phone": "9890425946"
         }
       ],
       "firstName": "Nikhil",
@@ -1246,10 +1246,10 @@ Success
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "niktest@xyz.com"
+          "email": "nikhilmshchs@gmail.com"
         }
       ],
-      "username": "niktest_xyz_com_38425_20500281",
+      "username": "nikhilmshchs_gmail_com_38425_20500281",
       "createdAt": "2019-01-01T17:22:38.528Z",
       "updatedAt": "2021-01-22T10:02:42.258Z",
       "uid": "20500281",
@@ -1297,7 +1297,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9999999999"
+            "phone": "9890425946"
           }
         ],
         "firstName": "Nikhil",
@@ -1307,10 +1307,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "niktest@xyz.com"
+            "email": "nikhilmshchs@gmail.com"
           }
         ],
-        "username": "niktest_xyz_com_38425_20500281",
+        "username": "nikhilmshchs_gmail_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -1489,7 +1489,7 @@ Success
           "primary": true,
           "verified": true,
           "countryCode": 91,
-          "phone": "9999999999"
+          "phone": "9890425946"
         }
       ],
       "firstName": "Nikhil",
@@ -1499,10 +1499,10 @@ Success
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "niktest@xyz.com"
+          "email": "nikhilmshchs@gmail.com"
         }
       ],
-      "username": "niktest_xyz_com_38425_20500281",
+      "username": "nikhilmshchs_gmail_com_38425_20500281",
       "createdAt": "2019-01-01T17:22:38.528Z",
       "updatedAt": "2021-01-22T10:02:42.258Z",
       "uid": "20500281",
@@ -1550,7 +1550,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9999999999"
+            "phone": "9890425946"
           }
         ],
         "firstName": "Nikhil",
@@ -1560,10 +1560,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "niktest@xyz.com"
+            "email": "nikhilmshchs@gmail.com"
           }
         ],
-        "username": "niktest_xyz_com_38425_20500281",
+        "username": "nikhilmshchs_gmail_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -1743,7 +1743,7 @@ Success
           "primary": true,
           "verified": true,
           "countryCode": 91,
-          "phone": "9999999999"
+          "phone": "9890425946"
         }
       ],
       "firstName": "Nikhil",
@@ -1753,10 +1753,10 @@ Success
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "niktest@xyz.com"
+          "email": "nikhilmshchs@gmail.com"
         }
       ],
-      "username": "niktest_xyz_com_38425_20500281",
+      "username": "nikhilmshchs_gmail_com_38425_20500281",
       "createdAt": "2019-01-01T17:22:38.528Z",
       "updatedAt": "2021-01-22T10:02:42.258Z",
       "uid": "20500281",
@@ -1804,7 +1804,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9999999999"
+            "phone": "9890425946"
           }
         ],
         "firstName": "Nikhil",
@@ -1814,10 +1814,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "niktest@xyz.com"
+            "email": "nikhilmshchs@gmail.com"
           }
         ],
-        "username": "niktest_xyz_com_38425_20500281",
+        "username": "nikhilmshchs_gmail_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -1997,7 +1997,7 @@ Success
           "primary": true,
           "verified": true,
           "countryCode": 91,
-          "phone": "9999999999"
+          "phone": "9890425946"
         }
       ],
       "firstName": "Nikhil",
@@ -2007,10 +2007,10 @@ Success
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "niktest@xyz.com"
+          "email": "nikhilmshchs@gmail.com"
         }
       ],
-      "username": "niktest_xyz_com_38425_20500281",
+      "username": "nikhilmshchs_gmail_com_38425_20500281",
       "createdAt": "2019-01-01T17:22:38.528Z",
       "updatedAt": "2021-01-22T10:02:42.258Z",
       "uid": "20500281",
@@ -2058,7 +2058,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9999999999"
+            "phone": "9890425946"
           }
         ],
         "firstName": "Nikhil",
@@ -2068,10 +2068,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "niktest@xyz.com"
+            "email": "nikhilmshchs@gmail.com"
           }
         ],
-        "username": "niktest_xyz_com_38425_20500281",
+        "username": "nikhilmshchs_gmail_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -2357,7 +2357,7 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "phone": "9999999999",
+              "phone": "8412805281",
               "countryCode": 91
             }
           ],
@@ -2368,10 +2368,10 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "email": "sattest@xyz.com"
+              "email": "satyenmaurya95@gmail.com"
             }
           ],
-          "username": "sat5_xyz_com_11118",
+          "username": "satyenmaurya95_gmail_com_11118",
           "createdAt": "2020-10-10T05:33:31.119Z",
           "updatedAt": "2020-10-10T05:33:31.119Z",
           "uid": "5678",
@@ -2404,25 +2404,25 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "email": "niktest@xyz.com"
+              "email": "nikhilmshchs@gmail.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "xyz@xyz.com"
+              "email": "nikhilmanapure@gofynd.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "xyz@xyz.com"
+              "email": "nikhilmanapure@fynd.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "xyz@xyz.com"
+              "email": "nikhilmanapure@uniket.store"
             }
           ],
           "phoneNumbers": [
@@ -2431,12 +2431,12 @@ Success
               "primary": true,
               "verified": true,
               "countryCode": 91,
-              "phone": "9999999999"
+              "phone": "9890425946"
             }
           ],
           "firstName": "Nikhil",
           "lastName": "Manapure",
-          "username": "xyz_xyz_com",
+          "username": "nikhilmanapure_gofynd_com_29298",
           "createdAt": "2020-03-24T10:55:29.298Z",
           "updatedAt": "2020-05-12T07:46:41.816Z",
           "uid": "5567",
@@ -2819,7 +2819,7 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "phone": "9999999999",
+              "phone": "8412805281",
               "countryCode": 91
             }
           ],
@@ -2830,10 +2830,10 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "email": "sattest@xyz.com"
+              "email": "satyenmaurya95@gmail.com"
             }
           ],
-          "username": "sat5_xyz_com_11118",
+          "username": "satyenmaurya95_gmail_com_11118",
           "createdAt": "2020-10-10T05:33:31.119Z",
           "updatedAt": "2020-10-10T05:33:31.119Z",
           "uid": "5678",
@@ -2866,25 +2866,25 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "email": "niktest@xyz.com"
+              "email": "nikhilmshchs@gmail.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "xyz@xyz.com"
+              "email": "nikhilmanapure@gofynd.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "xyz@xyz.com"
+              "email": "nikhilmanapure@fynd.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "xyz@xyz.com"
+              "email": "nikhilmanapure@uniket.store"
             }
           ],
           "phoneNumbers": [
@@ -2893,12 +2893,12 @@ Success
               "primary": true,
               "verified": true,
               "countryCode": 91,
-              "phone": "9999999999"
+              "phone": "9890425946"
             }
           ],
           "firstName": "Nikhil",
           "lastName": "Manapure",
-          "username": "xyz_xyz_com",
+          "username": "nikhilmanapure_gofynd_com_29298",
           "createdAt": "2020-03-24T10:55:29.298Z",
           "updatedAt": "2020-05-12T07:46:41.816Z",
           "uid": "5567",
@@ -4228,7 +4228,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | String |  no  | Success message for form submission |
- | ticket | [Ticket](#Ticket)? |  yes  | Ticket created on form submission |
+ | ticket | [Ticket](#Ticket) |  no  | Ticket created on form submission |
 
 ---
 
@@ -4326,6 +4326,33 @@ Success
 
  
  
+ #### [TicketCategory](#TicketCategory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | String |  no  | Key for category |
+ | display | String |  no  | Display text for category |
+ | form | [CustomForm](#CustomForm)? |  yes  | Form related to the category |
+ | subCategories | [[TicketSubCategory](#TicketSubCategory)]? |  yes  | Sub-category related to the category |
+ | feedbackForm | [TicketFeedbackForm](#TicketFeedbackForm)? |  yes  | Feedback form of category used to submit ticket feedback |
+
+---
+
+
+ 
+ 
+ #### [TicketSubCategory](#TicketSubCategory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | String |  no  | Key for sub-category |
+ | display | String |  no  | Display text for sub-category |
+
+---
+
+
+ 
+ 
  #### [TicketFeedbackForm](#TicketFeedbackForm)
 
  | Properties | Type | Nullable | Description |
@@ -4415,8 +4442,6 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  | Enum type for the communication method |
- | title | String? |  yes  | Title for the communication method |
  | value | String? |  yes  | Value for the communication method |
  | description | String? |  yes  | Short description for the communication method |
  | enabled | Bool? |  yes  | Denotes if this communication method has to be shown |
@@ -4435,82 +4460,8 @@ Success
  | supportPhone | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support Phone number details |
  | supportFaq | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support FAQ details |
  | showCommunicationInfo | Bool? |  yes  | Denotes if support communication info should be shown |
- | supportCommunication | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support communication array list details |
  | showSupportDris | Bool? |  yes  | Denotes if support DRIS info should be shown |
  | integration | [String: Any]? |  yes  | Contains integrations basic information |
-
----
-
-
- 
- 
- #### [FeedbackForm](#FeedbackForm)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | inputs | [String: Any]? |  yes  | Input details for the feed back form |
- | title | String? |  yes  | Title for the feed back form |
- | timestamps | [String: Any]? |  yes  | Gives details of category releted data |
-
----
-
-
- 
- 
- #### [TicketSubCategory](#TicketSubCategory)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | String |  no  | Key for sub-category |
- | display | String |  no  | Display text for sub-category |
- | subCategories | [TicketSubCategory](#TicketSubCategory)? |  yes  |  |
-
----
-
-
- 
- 
- #### [TicketCategory](#TicketCategory)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | String |  no  | Category display value identifier |
- | key | String |  no  | Category key value identifier |
- | subCategories | [TicketCategory](#TicketCategory)? |  yes  | Support category array list details |
- | groupId | Double? |  yes  | Group id of category releted data |
- | feedbackForm | [FeedbackForm](#FeedbackForm)? |  yes  | Support category array list details |
-
----
-
-
- 
- 
- #### [CategoryData](#CategoryData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | list | [TicketCategory](#TicketCategory)? |  yes  |  |
-
----
-
-
- 
- 
- #### [IntegrationConfig](#IntegrationConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  | Unique id |
- | integrationType | String |  no  | Enum string values for integration |
- | baseUrl | String? |  yes  | Integration base url for validate and create ticket |
- | createTicketApikey | String? |  yes  | Integration apikey to validate and create ticket |
- | updateTicketApikey | String? |  yes  | Integration apikey to update ticket |
- | categorySyncApikey | String? |  yes  | Integration apikey to sync category of selected type |
- | categoryData | [CategoryData](#CategoryData)? |  yes  | Support category array list details |
- | webhookApikey | String? |  yes  | Integration webhook apikey to got callbacks from integration type dashboard like freshdesk, etc |
- | configCompleted | Bool? |  yes  | Denotes the current intergration is completed or partially done |
- | allowTicketCreation | Bool |  no  | Denotes ticket creation enable or disable on platform |
- | showListing | Bool |  no  | Denotes ticket listing enable or disable on platform |
 
 ---
 
@@ -4574,8 +4525,9 @@ Success
  | createdOn | [CreatedOn](#CreatedOn)? |  yes  | Details of company and application realated to the ticket |
  | responseId | String? |  yes  | Details of company and application realated to the ticket |
  | content | [TicketContent](#TicketContent)? |  yes  | Ticket conetent details |
+ | ticketId | String |  no  | Readable ticket number |
  | category | [TicketCategory](#TicketCategory) |  no  | Category assigned to the ticket |
- | subCategory | String? |  yes  | Sub-category assigned to the ticket |
+ | subCategory | [TicketSubCategory](#TicketSubCategory)? |  yes  | Sub-category assigned to the ticket |
  | source | [TicketSourceEnum](#TicketSourceEnum) |  no  | Denotes if the ticket was created at company or application level |
  | status | [Status](#Status) |  no  | Denotes in what state is the ticket |
  | priority | [Priority](#Priority) |  no  | Denotes the priority of ticket |
@@ -4584,7 +4536,6 @@ Success
  | tags | [String]? |  yes  | Tags relevant to ticket |
  | customJson | [String: Any]? |  yes  | custom json relevant to the ticket |
  | isFeedbackPending | Bool? |  yes  | Denotes if feedback submission is pending for the ticket |
- | integration | [String: Any]? |  yes  | Integration type and its details of the ticket |
  | id | String |  no  | Unique identifier for the ticket |
  | updatedAt | String? |  yes  | Time when the ticket was last updated |
  | createdAt | String? |  yes  | Time when the ticket was created |
@@ -4653,19 +4604,6 @@ Success
  | ---- | ----- | ----------- |
  | platformPanel | platform_panel | This means it is company level ticket |
  | salesChannel | sales_channel | This means it is a application/sales channel level ticket |
-
----
-
-
-
- #### [TicketIntegrationDetails](#TicketIntegrationDetails)
- Type : string
-
- | Name | Value | Description |
- | ---- | ----- | ----------- |
- | defaultCase | default | This means it is default level ticket integration |
- | freshdesk | freshdesk | This means it is default level freshdesk integration |
- | kapture | kapture | This means it is default level kapture integration |
 
 ---
 

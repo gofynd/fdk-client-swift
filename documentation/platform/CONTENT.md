@@ -1328,7 +1328,7 @@ Use this to get all data loaders of an application
 
 [DataLoadersSchema](#DataLoadersSchema)
 
-Success. Refer `DataLoadersSchema` for more details.
+Success. Refer `DataLoaderResponseSchema` for more details.
 
 
 
@@ -4744,13 +4744,19 @@ Get page meta
 
 
 ```swift
-client.application("<APPLICATION_ID>").content.getPageMeta() { (response, error) in
+client.application("<APPLICATION_ID>").content.getPageMeta(pageType: pageType, cartPages: cartPages) { (response, error) in
     // Use response
 }
 ```
 
 
 
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pageType | String? | no | Fetch meta by page type. Acceptable values are: system, custom and all |   
+| cartPages | Bool? | no | Pass this param value as `true` to fetch meta with cart pages |  
 
 
 
@@ -5327,7 +5333,7 @@ Success. Refer `PathMappingSchema` for more details.
 
 ```json
 {
-  "value": {
+  "data": {
     "_id": "615188e9db1e444cb0f40837",
     "application": "000000000000000000000002",
     "redirect_from": "/from",
@@ -5398,7 +5404,7 @@ Success. Refer `PathMappingSchema` for more details.
 
 ```json
 {
-  "value": {
+  "data": {
     "_id": "615188e9db1e444cb0f40837",
     "application": "000000000000000000000002",
     "redirect_from": "/from",
@@ -5468,7 +5474,7 @@ Success. Refer `PathMappingSchema` for more details.
 
 ```json
 {
-  "value": {
+  "data": {
     "_id": "615188e9db1e444cb0f40837",
     "application": "000000000000000000000002",
     "redirect_from": "/from",
@@ -5538,7 +5544,7 @@ Success. Refer `PathMappingSchema` for more details.
 
 ```json
 {
-  "value": {
+  "data": {
     "_id": "615188e9db1e444cb0f40837",
     "application": "000000000000000000000002",
     "redirect_from": "/from",
@@ -7827,6 +7833,26 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  
  
  #### [NavigationReference](#NavigationReference)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | acl | [String]? |  yes  |  |
+ | tags | [String]? |  yes  |  |
+ | localeLanguage | [LocaleLanguage](#LocaleLanguage)? |  yes  |  |
+ | image | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | action | [Action](#Action)? |  yes  |  |
+ | active | Bool? |  yes  |  |
+ | display | String? |  yes  |  |
+ | sortOrder | Int? |  yes  |  |
+ | subNavigation | [[SubNavigationReference](#SubNavigationReference)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SubNavigationReference](#SubNavigationReference)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

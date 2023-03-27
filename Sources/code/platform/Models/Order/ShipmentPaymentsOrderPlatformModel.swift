@@ -11,7 +11,7 @@ public extension PlatformClient.Order {
     class ShipmentPayments: Codable {
         public var logo: String?
 
-        public var mode: String?
+        public var mode: String
 
         public var source: String?
 
@@ -23,7 +23,7 @@ public extension PlatformClient.Order {
             case source
         }
 
-        public init(logo: String? = nil, mode: String? = nil, source: String? = nil) {
+        public init(logo: String? = nil, mode: String, source: String? = nil) {
             self.logo = logo
 
             self.mode = mode
@@ -42,13 +42,7 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                mode = try container.decode(String.self, forKey: .mode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            mode = try container.decode(String.self, forKey: .mode)
 
             do {
                 source = try container.decode(String.self, forKey: .source)
@@ -80,7 +74,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class ShipmentPayments: Codable {
         public var logo: String?
 
-        public var mode: String?
+        public var mode: String
 
         public var source: String?
 
@@ -92,7 +86,7 @@ public extension PlatformClient.ApplicationClient.Order {
             case source
         }
 
-        public init(logo: String? = nil, mode: String? = nil, source: String? = nil) {
+        public init(logo: String? = nil, mode: String, source: String? = nil) {
             self.logo = logo
 
             self.mode = mode
@@ -111,13 +105,7 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                mode = try container.decode(String.self, forKey: .mode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            mode = try container.decode(String.self, forKey: .mode)
 
             do {
                 source = try container.decode(String.self, forKey: .source)

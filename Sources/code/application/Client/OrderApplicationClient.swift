@@ -9,29 +9,29 @@ public extension ApplicationClient {
             self.config = config
             var ulrs = [String: String]()
 
-            ulrs["getOrders"] = config.domain.appendAsPath("/service/application/order/v1.0/orders")
+            ulrs["getOrders"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders")
 
-            ulrs["getOrderById"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/{order_id}")
+            ulrs["getOrderById"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/{order_id}")
 
-            ulrs["getPosOrderById"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/pos-order/{order_id}")
+            ulrs["getPosOrderById"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/pos-order/{order_id}")
 
-            ulrs["getShipmentById"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}")
+            ulrs["getShipmentById"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}")
 
-            ulrs["getInvoiceByShipmentId"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/invoice")
+            ulrs["getInvoiceByShipmentId"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice")
 
-            ulrs["trackShipment"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/track")
+            ulrs["trackShipment"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/track")
 
-            ulrs["getCustomerDetailsByShipmentId"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/customer-details")
+            ulrs["getCustomerDetailsByShipmentId"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/customer-details")
 
-            ulrs["sendOtpToShipmentCustomer"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/")
+            ulrs["sendOtpToShipmentCustomer"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/")
 
-            ulrs["verifyOtpShipmentCustomer"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/")
+            ulrs["verifyOtpShipmentCustomer"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/")
 
-            ulrs["getShipmentBagReasons"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons")
+            ulrs["getShipmentBagReasons"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons")
 
-            ulrs["getShipmentReasons"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/reasons")
+            ulrs["getShipmentReasons"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons")
 
-            ulrs["updateShipmentStatus"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/status")
+            ulrs["updateShipmentStatus"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status")
 
             self.relativeUrls = ulrs
         }
@@ -558,8 +558,8 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Update the shipment status
-         * Description: Use this API to update the status of a shipment using its shipment ID.
+         * Summary:
+         * Description: updateShipmentStatus
          **/
         public func updateShipmentStatus(
             shipmentId: String,

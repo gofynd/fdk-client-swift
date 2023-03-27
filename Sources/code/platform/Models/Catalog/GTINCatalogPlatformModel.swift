@@ -9,7 +9,7 @@ public extension PlatformClient.Catalog {
      */
 
     class GTIN: Codable {
-        public var gtinValue: [String: Any]
+        public var gtinValue: String
 
         public var primary: Bool?
 
@@ -23,7 +23,7 @@ public extension PlatformClient.Catalog {
             case gtinType = "gtin_type"
         }
 
-        public init(gtinType: String, gtinValue: [String: Any], primary: Bool? = nil) {
+        public init(gtinType: String, gtinValue: String, primary: Bool? = nil) {
             self.gtinValue = gtinValue
 
             self.primary = primary
@@ -34,7 +34,7 @@ public extension PlatformClient.Catalog {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            gtinValue = try container.decode([String: Any].self, forKey: .gtinValue)
+            gtinValue = try container.decode(String.self, forKey: .gtinValue)
 
             do {
                 primary = try container.decode(Bool.self, forKey: .primary)
@@ -66,7 +66,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class GTIN: Codable {
-        public var gtinValue: [String: Any]
+        public var gtinValue: String
 
         public var primary: Bool?
 
@@ -80,7 +80,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case gtinType = "gtin_type"
         }
 
-        public init(gtinType: String, gtinValue: [String: Any], primary: Bool? = nil) {
+        public init(gtinType: String, gtinValue: String, primary: Bool? = nil) {
             self.gtinValue = gtinValue
 
             self.primary = primary
@@ -91,7 +91,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            gtinValue = try container.decode([String: Any].self, forKey: .gtinValue)
+            gtinValue = try container.decode(String.self, forKey: .gtinValue)
 
             do {
                 primary = try container.decode(Bool.self, forKey: .primary)

@@ -9,13 +9,7 @@ public extension ApplicationClient.Payment {
     class BeneficiaryModeDetails: Codable {
         public var vpa: String?
 
-        public var address: String?
-
-        public var bankName: String
-
         public var email: String
-
-        public var accountHolder: String
 
         public var mobile: String
 
@@ -23,22 +17,22 @@ public extension ApplicationClient.Payment {
 
         public var wallet: String?
 
-        public var comment: String?
+        public var accountNo: String
+
+        public var address: String?
+
+        public var bankName: String
 
         public var branchName: String
 
-        public var accountNo: String
+        public var comment: String?
+
+        public var accountHolder: String
 
         public enum CodingKeys: String, CodingKey {
             case vpa
 
-            case address
-
-            case bankName = "bank_name"
-
             case email
-
-            case accountHolder = "account_holder"
 
             case mobile
 
@@ -46,23 +40,23 @@ public extension ApplicationClient.Payment {
 
             case wallet
 
-            case comment
+            case accountNo = "account_no"
+
+            case address
+
+            case bankName = "bank_name"
 
             case branchName = "branch_name"
 
-            case accountNo = "account_no"
+            case comment
+
+            case accountHolder = "account_holder"
         }
 
         public init(accountHolder: String, accountNo: String, address: String? = nil, bankName: String, branchName: String, comment: String? = nil, email: String, ifscCode: String, mobile: String, vpa: String? = nil, wallet: String? = nil) {
             self.vpa = vpa
 
-            self.address = address
-
-            self.bankName = bankName
-
             self.email = email
-
-            self.accountHolder = accountHolder
 
             self.mobile = mobile
 
@@ -70,11 +64,17 @@ public extension ApplicationClient.Payment {
 
             self.wallet = wallet
 
-            self.comment = comment
+            self.accountNo = accountNo
+
+            self.address = address
+
+            self.bankName = bankName
 
             self.branchName = branchName
 
-            self.accountNo = accountNo
+            self.comment = comment
+
+            self.accountHolder = accountHolder
         }
 
         required public init(from decoder: Decoder) throws {
@@ -88,19 +88,7 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                address = try container.decode(String.self, forKey: .address)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            bankName = try container.decode(String.self, forKey: .bankName)
-
             email = try container.decode(String.self, forKey: .email)
-
-            accountHolder = try container.decode(String.self, forKey: .accountHolder)
 
             mobile = try container.decode(String.self, forKey: .mobile)
 
@@ -114,6 +102,20 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            accountNo = try container.decode(String.self, forKey: .accountNo)
+
+            do {
+                address = try container.decode(String.self, forKey: .address)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            bankName = try container.decode(String.self, forKey: .bankName)
+
+            branchName = try container.decode(String.self, forKey: .branchName)
+
             do {
                 comment = try container.decode(String.self, forKey: .comment)
 
@@ -122,9 +124,7 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            branchName = try container.decode(String.self, forKey: .branchName)
-
-            accountNo = try container.decode(String.self, forKey: .accountNo)
+            accountHolder = try container.decode(String.self, forKey: .accountHolder)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -132,13 +132,7 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(vpa, forKey: .vpa)
 
-            try? container.encodeIfPresent(address, forKey: .address)
-
-            try? container.encodeIfPresent(bankName, forKey: .bankName)
-
             try? container.encodeIfPresent(email, forKey: .email)
-
-            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
@@ -146,11 +140,17 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(wallet, forKey: .wallet)
 
-            try? container.encodeIfPresent(comment, forKey: .comment)
+            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(bankName, forKey: .bankName)
 
             try? container.encodeIfPresent(branchName, forKey: .branchName)
 
-            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+            try? container.encodeIfPresent(comment, forKey: .comment)
+
+            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
         }
     }
 }

@@ -15,8 +15,6 @@ public extension ApplicationClient.Rewards {
 
         public var referrerInfo: String?
 
-        public var termsConditionsLink: String?
-
         public enum CodingKeys: String, CodingKey {
             case referral
 
@@ -25,11 +23,9 @@ public extension ApplicationClient.Rewards {
             case user
 
             case referrerInfo = "referrer_info"
-
-            case termsConditionsLink = "terms_conditions_link"
         }
 
-        public init(referral: Offer? = nil, referrerInfo: String? = nil, share: ShareMessages? = nil, termsConditionsLink: String? = nil, user: ReferralDetailsUser? = nil) {
+        public init(referral: Offer? = nil, referrerInfo: String? = nil, share: ShareMessages? = nil, user: ReferralDetailsUser? = nil) {
             self.referral = referral
 
             self.share = share
@@ -37,8 +33,6 @@ public extension ApplicationClient.Rewards {
             self.user = user
 
             self.referrerInfo = referrerInfo
-
-            self.termsConditionsLink = termsConditionsLink
         }
 
         required public init(from decoder: Decoder) throws {
@@ -75,14 +69,6 @@ public extension ApplicationClient.Rewards {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                termsConditionsLink = try container.decode(String.self, forKey: .termsConditionsLink)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -95,8 +81,6 @@ public extension ApplicationClient.Rewards {
             try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(referrerInfo, forKey: .referrerInfo)
-
-            try? container.encodeIfPresent(termsConditionsLink, forKey: .termsConditionsLink)
         }
     }
 }

@@ -11,30 +11,30 @@ public extension PlatformClient.Catalog {
     class CompanyBrandDetail: Codable {
         public var brandName: String?
 
-        public var companyId: Int?
+        public var totalArticle: Int?
 
         public var brandId: Int?
 
-        public var totalArticle: Int?
+        public var companyId: Int?
 
         public enum CodingKeys: String, CodingKey {
             case brandName = "brand_name"
 
-            case companyId = "company_id"
+            case totalArticle = "total_article"
 
             case brandId = "brand_id"
 
-            case totalArticle = "total_article"
+            case companyId = "company_id"
         }
 
         public init(brandId: Int? = nil, brandName: String? = nil, companyId: Int? = nil, totalArticle: Int? = nil) {
             self.brandName = brandName
 
-            self.companyId = companyId
+            self.totalArticle = totalArticle
 
             self.brandId = brandId
 
-            self.totalArticle = totalArticle
+            self.companyId = companyId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                totalArticle = try container.decode(Int.self, forKey: .totalArticle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                totalArticle = try container.decode(Int.self, forKey: .totalArticle)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,11 +78,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(totalArticle, forKey: .totalArticle)
 
             try? container.encodeIfPresent(brandId, forKey: .brandId)
 
-            try? container.encodeIfPresent(totalArticle, forKey: .totalArticle)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
     }
 }
@@ -96,30 +96,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CompanyBrandDetail: Codable {
         public var brandName: String?
 
-        public var companyId: Int?
+        public var totalArticle: Int?
 
         public var brandId: Int?
 
-        public var totalArticle: Int?
+        public var companyId: Int?
 
         public enum CodingKeys: String, CodingKey {
             case brandName = "brand_name"
 
-            case companyId = "company_id"
+            case totalArticle = "total_article"
 
             case brandId = "brand_id"
 
-            case totalArticle = "total_article"
+            case companyId = "company_id"
         }
 
         public init(brandId: Int? = nil, brandName: String? = nil, companyId: Int? = nil, totalArticle: Int? = nil) {
             self.brandName = brandName
 
-            self.companyId = companyId
+            self.totalArticle = totalArticle
 
             self.brandId = brandId
 
-            self.totalArticle = totalArticle
+            self.companyId = companyId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                totalArticle = try container.decode(Int.self, forKey: .totalArticle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                totalArticle = try container.decode(Int.self, forKey: .totalArticle)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,11 +163,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(totalArticle, forKey: .totalArticle)
 
             try? container.encodeIfPresent(brandId, forKey: .brandId)
 
-            try? container.encodeIfPresent(totalArticle, forKey: .totalArticle)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
     }
 }
