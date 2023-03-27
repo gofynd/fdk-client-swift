@@ -9,27 +9,27 @@ public extension PlatformClient.Order {
      */
 
     class AffiliateConfig: Codable {
-        public var inventory: AffiliateInventoryConfig?
-
         public var app: AffiliateAppConfig?
 
-        public enum CodingKeys: String, CodingKey {
-            case inventory
+        public var inventory: AffiliateInventoryConfig?
 
+        public enum CodingKeys: String, CodingKey {
             case app
+
+            case inventory
         }
 
         public init(app: AffiliateAppConfig? = nil, inventory: AffiliateInventoryConfig? = nil) {
-            self.inventory = inventory
-
             self.app = app
+
+            self.inventory = inventory
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                inventory = try container.decode(AffiliateInventoryConfig.self, forKey: .inventory)
+                app = try container.decode(AffiliateAppConfig.self, forKey: .app)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                app = try container.decode(AffiliateAppConfig.self, forKey: .app)
+                inventory = try container.decode(AffiliateInventoryConfig.self, forKey: .inventory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(inventory, forKey: .inventory)
-
             try? container.encodeIfPresent(app, forKey: .app)
+
+            try? container.encodeIfPresent(inventory, forKey: .inventory)
         }
     }
 }
@@ -62,27 +62,27 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class AffiliateConfig: Codable {
-        public var inventory: AffiliateInventoryConfig?
-
         public var app: AffiliateAppConfig?
 
-        public enum CodingKeys: String, CodingKey {
-            case inventory
+        public var inventory: AffiliateInventoryConfig?
 
+        public enum CodingKeys: String, CodingKey {
             case app
+
+            case inventory
         }
 
         public init(app: AffiliateAppConfig? = nil, inventory: AffiliateInventoryConfig? = nil) {
-            self.inventory = inventory
-
             self.app = app
+
+            self.inventory = inventory
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                inventory = try container.decode(AffiliateInventoryConfig.self, forKey: .inventory)
+                app = try container.decode(AffiliateAppConfig.self, forKey: .app)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                app = try container.decode(AffiliateAppConfig.self, forKey: .app)
+                inventory = try container.decode(AffiliateInventoryConfig.self, forKey: .inventory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(inventory, forKey: .inventory)
-
             try? container.encodeIfPresent(app, forKey: .app)
+
+            try? container.encodeIfPresent(inventory, forKey: .inventory)
         }
     }
 }
