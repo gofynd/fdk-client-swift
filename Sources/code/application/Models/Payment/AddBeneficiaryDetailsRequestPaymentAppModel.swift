@@ -9,48 +9,48 @@ public extension ApplicationClient.Payment {
     class AddBeneficiaryDetailsRequest: Codable {
         public var transferMode: String
 
-        public var delights: Bool
+        public var details: BeneficiaryModeDetails
 
         public var orderId: String
 
         public var otp: String?
 
-        public var details: BeneficiaryModeDetails
-
         public var shipmentId: String
 
         public var requestId: String?
 
+        public var delights: Bool
+
         public enum CodingKeys: String, CodingKey {
             case transferMode = "transfer_mode"
 
-            case delights
+            case details
 
             case orderId = "order_id"
 
             case otp
 
-            case details
-
             case shipmentId = "shipment_id"
 
             case requestId = "request_id"
+
+            case delights
         }
 
         public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String? = nil, requestId: String? = nil, shipmentId: String, transferMode: String) {
             self.transferMode = transferMode
 
-            self.delights = delights
+            self.details = details
 
             self.orderId = orderId
 
             self.otp = otp
 
-            self.details = details
-
             self.shipmentId = shipmentId
 
             self.requestId = requestId
+
+            self.delights = delights
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ public extension ApplicationClient.Payment {
 
             transferMode = try container.decode(String.self, forKey: .transferMode)
 
-            delights = try container.decode(Bool.self, forKey: .delights)
+            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
@@ -70,8 +70,6 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
-
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             do {
@@ -81,6 +79,8 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            delights = try container.decode(Bool.self, forKey: .delights)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -88,17 +88,17 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(transferMode, forKey: .transferMode)
 
-            try? container.encodeIfPresent(delights, forKey: .delights)
+            try? container.encodeIfPresent(details, forKey: .details)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(otp, forKey: .otp)
 
-            try? container.encodeIfPresent(details, forKey: .details)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(requestId, forKey: .requestId)
+
+            try? container.encodeIfPresent(delights, forKey: .delights)
         }
     }
 }
