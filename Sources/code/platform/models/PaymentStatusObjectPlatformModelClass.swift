@@ -8,26 +8,24 @@ public extension PlatformClient {
      */
 
     class PaymentStatusObject: Codable {
-        public var merchantOrderId: String
-
         public var paymentObjectList: [PaymentObjectListSerializer]?
 
-        public enum CodingKeys: String, CodingKey {
-            case merchantOrderId = "merchant_order_id"
+        public var merchantOrderId: String
 
+        public enum CodingKeys: String, CodingKey {
             case paymentObjectList = "payment_object_list"
+
+            case merchantOrderId = "merchant_order_id"
         }
 
         public init(merchantOrderId: String, paymentObjectList: [PaymentObjectListSerializer]? = nil) {
-            self.merchantOrderId = merchantOrderId
-
             self.paymentObjectList = paymentObjectList
+
+            self.merchantOrderId = merchantOrderId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
 
             do {
                 paymentObjectList = try container.decode([PaymentObjectListSerializer].self, forKey: .paymentObjectList)
@@ -36,14 +34,16 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
-
             try? container.encodeIfPresent(paymentObjectList, forKey: .paymentObjectList)
+
+            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
         }
     }
 }

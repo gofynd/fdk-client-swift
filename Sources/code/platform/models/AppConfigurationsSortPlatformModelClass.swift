@@ -8,13 +8,13 @@ public extension PlatformClient {
      */
 
     class AppConfigurationsSort: Codable {
-        public var defaultKey: String
-
         public var name: String?
 
         public var key: String
 
         public var isActive: Bool
+
+        public var defaultKey: String
 
         public var appId: String
 
@@ -25,13 +25,13 @@ public extension PlatformClient {
         public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
-            case defaultKey = "default_key"
-
             case name
 
             case key
 
             case isActive = "is_active"
+
+            case defaultKey = "default_key"
 
             case appId = "app_id"
 
@@ -43,13 +43,13 @@ public extension PlatformClient {
         }
 
         public init(appId: String, defaultKey: String, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
-            self.defaultKey = defaultKey
-
             self.name = name
 
             self.key = key
 
             self.isActive = isActive
+
+            self.defaultKey = defaultKey
 
             self.appId = appId
 
@@ -63,8 +63,6 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            defaultKey = try container.decode(String.self, forKey: .defaultKey)
-
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -76,6 +74,8 @@ public extension PlatformClient {
             key = try container.decode(String.self, forKey: .key)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            defaultKey = try container.decode(String.self, forKey: .defaultKey)
 
             appId = try container.decode(String.self, forKey: .appId)
 
@@ -95,13 +95,13 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(defaultKey, forKey: .defaultKey)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(defaultKey, forKey: .defaultKey)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 

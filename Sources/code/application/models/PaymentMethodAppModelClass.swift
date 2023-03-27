@@ -11,9 +11,9 @@ public extension ApplicationClient {
 
         public var paymentMeta: PaymentMeta
 
-        public var mode: String
-
         public var amount: Double?
+
+        public var mode: String
 
         public var payment: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient {
 
             case paymentMeta = "payment_meta"
 
-            case mode
-
             case amount
+
+            case mode
 
             case payment
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient {
 
             self.paymentMeta = paymentMeta
 
-            self.mode = mode
-
             self.amount = amount
+
+            self.mode = mode
 
             self.payment = payment
         }
@@ -54,8 +54,6 @@ public extension ApplicationClient {
 
             paymentMeta = try container.decode(PaymentMeta.self, forKey: .paymentMeta)
 
-            mode = try container.decode(String.self, forKey: .mode)
-
             do {
                 amount = try container.decode(Double.self, forKey: .amount)
 
@@ -63,6 +61,8 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            mode = try container.decode(String.self, forKey: .mode)
 
             do {
                 payment = try container.decode(String.self, forKey: .payment)
@@ -80,9 +80,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(paymentMeta, forKey: .paymentMeta)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
-
             try? container.encode(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(mode, forKey: .mode)
 
             try? container.encodeIfPresent(payment, forKey: .payment)
         }

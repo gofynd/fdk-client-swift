@@ -14,20 +14,26 @@ public extension PlatformClient {
 
         public var template: SendOtpEmailCommsTemplate?
 
+        public var provider: SendOtpEmailCommsProvider?
+
         public enum CodingKeys: String, CodingKey {
             case otpLength = "otp_length"
 
             case expiry
 
             case template
+
+            case provider
         }
 
-        public init(expiry: Int? = nil, otpLength: Int? = nil, template: SendOtpEmailCommsTemplate? = nil) {
+        public init(expiry: Int? = nil, otpLength: Int? = nil, provider: SendOtpEmailCommsProvider? = nil, template: SendOtpEmailCommsTemplate? = nil) {
             self.otpLength = otpLength
 
             self.expiry = expiry
 
             self.template = template
+
+            self.provider = provider
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,6 +62,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                provider = try container.decode(SendOtpEmailCommsProvider.self, forKey: .provider)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,6 +80,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(expiry, forKey: .expiry)
 
             try? container.encodeIfPresent(template, forKey: .template)
+
+            try? container.encodeIfPresent(provider, forKey: .provider)
         }
     }
 }

@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class RefundAccountResponse: Codable {
         public var message: String
 
-        public var data: [String: Any]?
-
         public var success: Bool
+
+        public var data: [String: Any]?
 
         public var isVerifiedFlag: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
-            case data
-
             case success
+
+            case data
 
             case isVerifiedFlag = "is_verified_flag"
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
             self.message = message
 
-            self.data = data
-
             self.success = success
+
+            self.data = data
 
             self.isVerifiedFlag = isVerifiedFlag
         }
@@ -40,6 +40,8 @@ public extension ApplicationClient {
 
             message = try container.decode(String.self, forKey: .message)
 
+            success = try container.decode(Bool.self, forKey: .success)
+
             do {
                 data = try container.decode([String: Any].self, forKey: .data)
 
@@ -47,8 +49,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            success = try container.decode(Bool.self, forKey: .success)
 
             do {
                 isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
@@ -64,9 +64,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(data, forKey: .data)
 
             try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
         }
