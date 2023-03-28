@@ -9,36 +9,36 @@ public extension PlatformClient.Payment {
      */
 
     class StatisticsData: Codable {
-        public var inactiveDeviceCount: Int
-
         public var activeDeviceCount: Int
 
-        public enum CodingKeys: String, CodingKey {
-            case inactiveDeviceCount = "inactive_device_count"
+        public var inactiveDeviceCount: Int
 
+        public enum CodingKeys: String, CodingKey {
             case activeDeviceCount = "active_device_count"
+
+            case inactiveDeviceCount = "inactive_device_count"
         }
 
         public init(activeDeviceCount: Int, inactiveDeviceCount: Int) {
-            self.inactiveDeviceCount = inactiveDeviceCount
-
             self.activeDeviceCount = activeDeviceCount
+
+            self.inactiveDeviceCount = inactiveDeviceCount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            inactiveDeviceCount = try container.decode(Int.self, forKey: .inactiveDeviceCount)
-
             activeDeviceCount = try container.decode(Int.self, forKey: .activeDeviceCount)
+
+            inactiveDeviceCount = try container.decode(Int.self, forKey: .inactiveDeviceCount)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(inactiveDeviceCount, forKey: .inactiveDeviceCount)
-
             try? container.encodeIfPresent(activeDeviceCount, forKey: .activeDeviceCount)
+
+            try? container.encodeIfPresent(inactiveDeviceCount, forKey: .inactiveDeviceCount)
         }
     }
 }
@@ -50,36 +50,36 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class StatisticsData: Codable {
-        public var inactiveDeviceCount: Int
-
         public var activeDeviceCount: Int
 
-        public enum CodingKeys: String, CodingKey {
-            case inactiveDeviceCount = "inactive_device_count"
+        public var inactiveDeviceCount: Int
 
+        public enum CodingKeys: String, CodingKey {
             case activeDeviceCount = "active_device_count"
+
+            case inactiveDeviceCount = "inactive_device_count"
         }
 
         public init(activeDeviceCount: Int, inactiveDeviceCount: Int) {
-            self.inactiveDeviceCount = inactiveDeviceCount
-
             self.activeDeviceCount = activeDeviceCount
+
+            self.inactiveDeviceCount = inactiveDeviceCount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            inactiveDeviceCount = try container.decode(Int.self, forKey: .inactiveDeviceCount)
-
             activeDeviceCount = try container.decode(Int.self, forKey: .activeDeviceCount)
+
+            inactiveDeviceCount = try container.decode(Int.self, forKey: .inactiveDeviceCount)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(inactiveDeviceCount, forKey: .inactiveDeviceCount)
-
             try? container.encodeIfPresent(activeDeviceCount, forKey: .activeDeviceCount)
+
+            try? container.encodeIfPresent(inactiveDeviceCount, forKey: .inactiveDeviceCount)
         }
     }
 }

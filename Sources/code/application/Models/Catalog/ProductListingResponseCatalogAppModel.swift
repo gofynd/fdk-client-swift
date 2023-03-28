@@ -11,18 +11,18 @@ public extension ApplicationClient.Catalog {
 
         public var items: [ProductListingDetail]?
 
-        public var sortOn: [ProductSortOn]?
-
         public var filters: [ProductFilters]?
+
+        public var sortOn: [ProductSortOn]?
 
         public enum CodingKeys: String, CodingKey {
             case page
 
             case items
 
-            case sortOn = "sort_on"
-
             case filters
+
+            case sortOn = "sort_on"
         }
 
         public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Catalog {
 
             self.items = items
 
-            self.sortOn = sortOn
-
             self.filters = filters
+
+            self.sortOn = sortOn
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
+                filters = try container.decode([ProductFilters].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                filters = try container.decode([ProductFilters].self, forKey: .filters)
+                sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,9 +72,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
-
             try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
         }
     }
 }

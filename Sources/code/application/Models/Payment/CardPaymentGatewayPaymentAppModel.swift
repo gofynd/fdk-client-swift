@@ -7,30 +7,32 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class CardPaymentGateway: Codable {
-        public var customerId: String?
-
         public var aggregator: String
+
+        public var customerId: String?
 
         public var api: String?
 
         public enum CodingKeys: String, CodingKey {
-            case customerId = "customer_id"
-
             case aggregator
+
+            case customerId = "customer_id"
 
             case api
         }
 
         public init(aggregator: String, api: String? = nil, customerId: String? = nil) {
-            self.customerId = customerId
-
             self.aggregator = aggregator
+
+            self.customerId = customerId
 
             self.api = api
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             do {
                 customerId = try container.decode(String.self, forKey: .customerId)
@@ -39,8 +41,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             do {
                 api = try container.decode(String.self, forKey: .api)
@@ -54,9 +54,9 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(customerId, forKey: .customerId)
-
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encode(customerId, forKey: .customerId)
 
             try? container.encode(api, forKey: .api)
         }
