@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient.Catalog {
     /*
-         Model: BuyBoxSchemaV3
+         Model: BuyBox
          Used By: Catalog
      */
-    class BuyBoxSchemaV3: Codable {
+    class BuyBox: Codable {
         public var enabled: Bool?
 
         public enum CodingKeys: String, CodingKey {

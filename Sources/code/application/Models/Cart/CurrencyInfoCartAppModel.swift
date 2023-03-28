@@ -7,27 +7,27 @@ public extension ApplicationClient.Cart {
          Used By: Cart
      */
     class CurrencyInfo: Codable {
-        public var symbol: String?
-
         public var code: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case symbol
+        public var symbol: String?
 
+        public enum CodingKeys: String, CodingKey {
             case code
+
+            case symbol
         }
 
         public init(code: String? = nil, symbol: String? = nil) {
-            self.symbol = symbol
-
             self.code = code
+
+            self.symbol = symbol
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                symbol = try container.decode(String.self, forKey: .symbol)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                symbol = try container.decode(String.self, forKey: .symbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(symbol, forKey: .symbol)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(symbol, forKey: .symbol)
         }
     }
 }

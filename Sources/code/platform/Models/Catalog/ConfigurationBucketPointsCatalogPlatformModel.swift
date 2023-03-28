@@ -9,33 +9,33 @@ public extension PlatformClient.Catalog {
      */
 
     class ConfigurationBucketPoints: Codable {
-        public var end: Double?
+        public var start: Double?
 
         public var display: String?
 
-        public var start: Double?
+        public var end: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case end
+            case start
 
             case display
 
-            case start
+            case end
         }
 
         public init(display: String? = nil, end: Double? = nil, start: Double? = nil) {
-            self.end = end
+            self.start = start
 
             self.display = display
 
-            self.start = start
+            self.end = end
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                end = try container.decode(Double.self, forKey: .end)
+                start = try container.decode(Double.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                start = try container.decode(Double.self, forKey: .start)
+                end = try container.decode(Double.self, forKey: .end)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +62,11 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(end, forKey: .end)
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(start, forKey: .start)
+            try? container.encodeIfPresent(end, forKey: .end)
         }
     }
 }
@@ -78,33 +78,33 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ConfigurationBucketPoints: Codable {
-        public var end: Double?
+        public var start: Double?
 
         public var display: String?
 
-        public var start: Double?
+        public var end: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case end
+            case start
 
             case display
 
-            case start
+            case end
         }
 
         public init(display: String? = nil, end: Double? = nil, start: Double? = nil) {
-            self.end = end
+            self.start = start
 
             self.display = display
 
-            self.start = start
+            self.end = end
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                end = try container.decode(Double.self, forKey: .end)
+                start = try container.decode(Double.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                start = try container.decode(Double.self, forKey: .start)
+                end = try container.decode(Double.self, forKey: .end)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(end, forKey: .end)
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(start, forKey: .start)
+            try? container.encodeIfPresent(end, forKey: .end)
         }
     }
 }

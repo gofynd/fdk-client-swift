@@ -13,15 +13,15 @@ public extension PlatformClient.Order {
 
         public var journey: String
 
-        public var locationDetails: LocationDetails?
+        public var action: String
 
         public var source: String
 
-        public var action: String
+        public var paymentMode: String
 
         public var shipment: [ShipmentDetails]
 
-        public var paymentMode: String
+        public var locationDetails: LocationDetails?
 
         public var toPincode: String
 
@@ -30,15 +30,15 @@ public extension PlatformClient.Order {
 
             case journey
 
-            case locationDetails = "location_details"
+            case action
 
             case source
 
-            case action
+            case paymentMode = "payment_mode"
 
             case shipment
 
-            case paymentMode = "payment_mode"
+            case locationDetails = "location_details"
 
             case toPincode = "to_pincode"
         }
@@ -48,15 +48,15 @@ public extension PlatformClient.Order {
 
             self.journey = journey
 
-            self.locationDetails = locationDetails
+            self.action = action
 
             self.source = source
 
-            self.action = action
+            self.paymentMode = paymentMode
 
             self.shipment = shipment
 
-            self.paymentMode = paymentMode
+            self.locationDetails = locationDetails
 
             self.toPincode = toPincode
         }
@@ -68,6 +68,14 @@ public extension PlatformClient.Order {
 
             journey = try container.decode(String.self, forKey: .journey)
 
+            action = try container.decode(String.self, forKey: .action)
+
+            source = try container.decode(String.self, forKey: .source)
+
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            shipment = try container.decode([ShipmentDetails].self, forKey: .shipment)
+
             do {
                 locationDetails = try container.decode(LocationDetails.self, forKey: .locationDetails)
 
@@ -75,14 +83,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            source = try container.decode(String.self, forKey: .source)
-
-            action = try container.decode(String.self, forKey: .action)
-
-            shipment = try container.decode([ShipmentDetails].self, forKey: .shipment)
-
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             toPincode = try container.decode(String.self, forKey: .toPincode)
         }
@@ -94,15 +94,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(journey, forKey: .journey)
 
-            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(source, forKey: .source)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
             try? container.encodeIfPresent(shipment, forKey: .shipment)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
         }
@@ -120,15 +120,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var journey: String
 
-        public var locationDetails: LocationDetails?
+        public var action: String
 
         public var source: String
 
-        public var action: String
+        public var paymentMode: String
 
         public var shipment: [ShipmentDetails]
 
-        public var paymentMode: String
+        public var locationDetails: LocationDetails?
 
         public var toPincode: String
 
@@ -137,15 +137,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case journey
 
-            case locationDetails = "location_details"
+            case action
 
             case source
 
-            case action
+            case paymentMode = "payment_mode"
 
             case shipment
 
-            case paymentMode = "payment_mode"
+            case locationDetails = "location_details"
 
             case toPincode = "to_pincode"
         }
@@ -155,15 +155,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.journey = journey
 
-            self.locationDetails = locationDetails
+            self.action = action
 
             self.source = source
 
-            self.action = action
+            self.paymentMode = paymentMode
 
             self.shipment = shipment
 
-            self.paymentMode = paymentMode
+            self.locationDetails = locationDetails
 
             self.toPincode = toPincode
         }
@@ -175,6 +175,14 @@ public extension PlatformClient.ApplicationClient.Order {
 
             journey = try container.decode(String.self, forKey: .journey)
 
+            action = try container.decode(String.self, forKey: .action)
+
+            source = try container.decode(String.self, forKey: .source)
+
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            shipment = try container.decode([ShipmentDetails].self, forKey: .shipment)
+
             do {
                 locationDetails = try container.decode(LocationDetails.self, forKey: .locationDetails)
 
@@ -182,14 +190,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            source = try container.decode(String.self, forKey: .source)
-
-            action = try container.decode(String.self, forKey: .action)
-
-            shipment = try container.decode([ShipmentDetails].self, forKey: .shipment)
-
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             toPincode = try container.decode(String.self, forKey: .toPincode)
         }
@@ -201,15 +201,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(journey, forKey: .journey)
 
-            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(source, forKey: .source)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
             try? container.encodeIfPresent(shipment, forKey: .shipment)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
         }

@@ -11,42 +11,42 @@ public extension PlatformClient.ApplicationClient.Cart {
     class DisplayMeta: Codable {
         public var auto: DisplayMetaDict?
 
-        public var apply: DisplayMetaDict?
-
-        public var title: String?
+        public var subtitle: String?
 
         public var description: String?
 
         public var remove: DisplayMetaDict?
 
-        public var subtitle: String?
+        public var apply: DisplayMetaDict?
+
+        public var title: String?
 
         public enum CodingKeys: String, CodingKey {
             case auto
 
-            case apply
-
-            case title
+            case subtitle
 
             case description
 
             case remove
 
-            case subtitle
+            case apply
+
+            case title
         }
 
         public init(apply: DisplayMetaDict? = nil, auto: DisplayMetaDict? = nil, description: String? = nil, remove: DisplayMetaDict? = nil, subtitle: String? = nil, title: String? = nil) {
             self.auto = auto
 
-            self.apply = apply
-
-            self.title = title
+            self.subtitle = subtitle
 
             self.description = description
 
             self.remove = remove
 
-            self.subtitle = subtitle
+            self.apply = apply
+
+            self.title = title
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,15 +61,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                apply = try container.decode(DisplayMetaDict.self, forKey: .apply)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                title = try container.decode(String.self, forKey: .title)
+                subtitle = try container.decode(String.self, forKey: .subtitle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +85,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                subtitle = try container.decode(String.self, forKey: .subtitle)
+                apply = try container.decode(DisplayMetaDict.self, forKey: .apply)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,15 +106,15 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(auto, forKey: .auto)
 
-            try? container.encodeIfPresent(apply, forKey: .apply)
-
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(remove, forKey: .remove)
 
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+            try? container.encodeIfPresent(apply, forKey: .apply)
+
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 }

@@ -7,12 +7,6 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class KYCAddress: Codable {
-        public var state: String
-
-        public var city: String
-
-        public var pincode: String
-
         public var landMark: String?
 
         public var ownershipType: String?
@@ -21,13 +15,13 @@ public extension ApplicationClient.Payment {
 
         public var addressline2: String?
 
+        public var city: String
+
+        public var state: String
+
+        public var pincode: String
+
         public enum CodingKeys: String, CodingKey {
-            case state
-
-            case city
-
-            case pincode
-
             case landMark = "land_mark"
 
             case ownershipType = "ownership_type"
@@ -35,15 +29,15 @@ public extension ApplicationClient.Payment {
             case addressline1
 
             case addressline2
+
+            case city
+
+            case state
+
+            case pincode
         }
 
         public init(addressline1: String, addressline2: String? = nil, city: String, landMark: String? = nil, ownershipType: String? = nil, pincode: String, state: String) {
-            self.state = state
-
-            self.city = city
-
-            self.pincode = pincode
-
             self.landMark = landMark
 
             self.ownershipType = ownershipType
@@ -51,16 +45,16 @@ public extension ApplicationClient.Payment {
             self.addressline1 = addressline1
 
             self.addressline2 = addressline2
+
+            self.city = city
+
+            self.state = state
+
+            self.pincode = pincode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            state = try container.decode(String.self, forKey: .state)
-
-            city = try container.decode(String.self, forKey: .city)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
 
             do {
                 landMark = try container.decode(String.self, forKey: .landMark)
@@ -87,16 +81,16 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            city = try container.decode(String.self, forKey: .city)
+
+            state = try container.decode(String.self, forKey: .state)
+
+            pincode = try container.decode(String.self, forKey: .pincode)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(city, forKey: .city)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encode(landMark, forKey: .landMark)
 
@@ -105,6 +99,12 @@ public extension ApplicationClient.Payment {
             try? container.encodeIfPresent(addressline1, forKey: .addressline1)
 
             try? container.encode(addressline2, forKey: .addressline2)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(state, forKey: .state)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
         }
     }
 }
