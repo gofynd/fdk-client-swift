@@ -7,20 +7,26 @@ public extension ApplicationClient {
          Used By: Order
      */
     class ShipmentReasons: Codable {
-        public var reasons: [Reasons]
+        public var reasons: [ShipmentReason]?
 
         public enum CodingKeys: String, CodingKey {
             case reasons
         }
 
-        public init(reasons: [Reasons]) {
+        public init(reasons: [ShipmentReason]? = nil) {
             self.reasons = reasons
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            reasons = try container.decode([Reasons].self, forKey: .reasons)
+            do {
+                reasons = try container.decode([ShipmentReason].self, forKey: .reasons)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {

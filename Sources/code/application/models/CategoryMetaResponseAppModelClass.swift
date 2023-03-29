@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var name: String?
 
-        public var uid: Int?
-
         public var logo: Media?
+
+        public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
             case customJson = "_custom_json"
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case name
 
-            case uid
-
             case logo
+
+            case uid
         }
 
         public init(banners: ImageUrls? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient {
 
             self.name = name
 
-            self.uid = uid
-
             self.logo = logo
+
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

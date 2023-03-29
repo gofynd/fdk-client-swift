@@ -59,6 +59,7 @@ public extension PlatformClient {
             name: String?,
             isActive: Bool?,
             channelIds: String?,
+            q: String?,
 
             onResponse: @escaping (_ response: ListViewResponse?, _ error: FDKError?) -> Void
         ) {
@@ -82,6 +83,10 @@ public extension PlatformClient {
 
             if let value = channelIds {
                 xQuery["channel_ids"] = value
+            }
+
+            if let value = q {
+                xQuery["q"] = value
             }
 
             PlatformAPIClient.execute(

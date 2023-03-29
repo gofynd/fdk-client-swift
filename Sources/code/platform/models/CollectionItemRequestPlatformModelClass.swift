@@ -8,24 +8,24 @@ public extension PlatformClient {
      */
 
     class CollectionItemRequest: Codable {
-        public var query: [CollectionQuery]?
-
         public var type: String?
+
+        public var query: [CollectionQuery]?
 
         public var item: [ItemQueryForUserCollection]?
 
         public enum CodingKeys: String, CodingKey {
-            case query
-
             case type
+
+            case query
 
             case item
         }
 
         public init(item: [ItemQueryForUserCollection]? = nil, query: [CollectionQuery]? = nil, type: String? = nil) {
-            self.query = query
-
             self.type = type
+
+            self.query = query
 
             self.item = item
         }
@@ -34,7 +34,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                query = try container.decode([CollectionQuery].self, forKey: .query)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -42,7 +42,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                query = try container.decode([CollectionQuery].self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,9 +61,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(query, forKey: .query)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(query, forKey: .query)
 
             try? container.encodeIfPresent(item, forKey: .item)
         }
