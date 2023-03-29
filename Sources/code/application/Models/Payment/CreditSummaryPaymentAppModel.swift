@@ -13,9 +13,9 @@ public extension ApplicationClient.Payment {
 
         public var balance: BalanceDetails?
 
-        public var amountAvailable: BalanceDetails?
-
         public var merchantCustomerRefId: String?
+
+        public var amountAvailable: BalanceDetails?
 
         public var creditLineId: String?
 
@@ -28,9 +28,9 @@ public extension ApplicationClient.Payment {
 
             case balance
 
-            case amountAvailable = "amount_available"
-
             case merchantCustomerRefId = "merchant_customer_ref_id"
+
+            case amountAvailable = "amount_available"
 
             case creditLineId = "credit_line_id"
 
@@ -44,9 +44,9 @@ public extension ApplicationClient.Payment {
 
             self.balance = balance
 
-            self.amountAvailable = amountAvailable
-
             self.merchantCustomerRefId = merchantCustomerRefId
+
+            self.amountAvailable = amountAvailable
 
             self.creditLineId = creditLineId
 
@@ -81,7 +81,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                amountAvailable = try container.decode(BalanceDetails.self, forKey: .amountAvailable)
+                merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
+                amountAvailable = try container.decode(BalanceDetails.self, forKey: .amountAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,9 +122,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(balance, forKey: .balance)
 
-            try? container.encodeIfPresent(amountAvailable, forKey: .amountAvailable)
-
             try? container.encode(merchantCustomerRefId, forKey: .merchantCustomerRefId)
+
+            try? container.encodeIfPresent(amountAvailable, forKey: .amountAvailable)
 
             try? container.encode(creditLineId, forKey: .creditLineId)
 

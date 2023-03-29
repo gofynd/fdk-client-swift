@@ -11,22 +11,22 @@ public extension ApplicationClient.PosCart {
 
         public var createdOn: String?
 
+        public var token: String?
+
         public var meta: [String: Any]?
 
         public var source: [String: Any]?
-
-        public var token: String?
 
         public enum CodingKeys: String, CodingKey {
             case user
 
             case createdOn = "created_on"
 
+            case token
+
             case meta
 
             case source
-
-            case token
         }
 
         public init(createdOn: String? = nil, meta: [String: Any]? = nil, source: [String: Any]? = nil, token: String? = nil, user: [String: Any]? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.PosCart {
 
             self.createdOn = createdOn
 
+            self.token = token
+
             self.meta = meta
 
             self.source = source
-
-            self.token = token
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,6 +61,14 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
+                token = try container.decode(String.self, forKey: .token)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -75,14 +83,6 @@ public extension ApplicationClient.PosCart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                token = try container.decode(String.self, forKey: .token)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -92,11 +92,11 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
+            try? container.encodeIfPresent(token, forKey: .token)
+
             try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(source, forKey: .source)
-
-            try? container.encodeIfPresent(token, forKey: .token)
         }
     }
 }

@@ -11,36 +11,36 @@ public extension PlatformClient.ApplicationClient.Cart {
     class OpenApiCartServiceabilityResponse: Codable {
         public var deliveryPromise: ShipmentPromise?
 
-        public var items: [CartProductInfo]?
-
-        public var isValid: Bool?
-
         public var message: String?
 
         public var breakupValues: CartBreakup?
 
+        public var items: [CartProductInfo]?
+
+        public var isValid: Bool?
+
         public enum CodingKeys: String, CodingKey {
             case deliveryPromise = "delivery_promise"
-
-            case items
-
-            case isValid = "is_valid"
 
             case message
 
             case breakupValues = "breakup_values"
+
+            case items
+
+            case isValid = "is_valid"
         }
 
         public init(breakupValues: CartBreakup? = nil, deliveryPromise: ShipmentPromise? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, message: String? = nil) {
             self.deliveryPromise = deliveryPromise
 
-            self.items = items
-
-            self.isValid = isValid
-
             self.message = message
 
             self.breakupValues = breakupValues
+
+            self.items = items
+
+            self.isValid = isValid
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,22 +48,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 deliveryPromise = try container.decode(ShipmentPromise.self, forKey: .deliveryPromise)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                items = try container.decode([CartProductInfo].self, forKey: .items)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isValid = try container.decode(Bool.self, forKey: .isValid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,6 +69,22 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                items = try container.decode([CartProductInfo].self, forKey: .items)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isValid = try container.decode(Bool.self, forKey: .isValid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -92,13 +92,13 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encodeIfPresent(isValid, forKey: .isValid)
-
             try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
+
+            try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(isValid, forKey: .isValid)
         }
     }
 }

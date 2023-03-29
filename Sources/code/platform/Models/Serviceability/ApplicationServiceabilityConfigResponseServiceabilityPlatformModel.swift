@@ -11,24 +11,24 @@ public extension PlatformClient.Serviceability {
     class ApplicationServiceabilityConfigResponse: Codable {
         public var success: Bool
 
-        public var data: ApplicationServiceabilityConfig?
-
         public var error: ServiceabilityrErrorResponse?
+
+        public var data: ApplicationServiceabilityConfig?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case data
-
             case error
+
+            case data
         }
 
         public init(data: ApplicationServiceabilityConfig? = nil, error: ServiceabilityrErrorResponse? = nil, success: Bool) {
             self.success = success
 
-            self.data = data
-
             self.error = error
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -37,7 +37,7 @@ public extension PlatformClient.Serviceability {
             success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                data = try container.decode(ApplicationServiceabilityConfig.self, forKey: .data)
+                error = try container.decode(ServiceabilityrErrorResponse.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -45,7 +45,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                error = try container.decode(ServiceabilityrErrorResponse.self, forKey: .error)
+                data = try container.decode(ApplicationServiceabilityConfig.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,9 +58,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
@@ -74,24 +74,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ApplicationServiceabilityConfigResponse: Codable {
         public var success: Bool
 
-        public var data: ApplicationServiceabilityConfig?
-
         public var error: ServiceabilityrErrorResponse?
+
+        public var data: ApplicationServiceabilityConfig?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case data
-
             case error
+
+            case data
         }
 
         public init(data: ApplicationServiceabilityConfig? = nil, error: ServiceabilityrErrorResponse? = nil, success: Bool) {
             self.success = success
 
-            self.data = data
-
             self.error = error
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -100,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                data = try container.decode(ApplicationServiceabilityConfig.self, forKey: .data)
+                error = try container.decode(ServiceabilityrErrorResponse.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,7 +108,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                error = try container.decode(ServiceabilityrErrorResponse.self, forKey: .error)
+                data = try container.decode(ApplicationServiceabilityConfig.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
