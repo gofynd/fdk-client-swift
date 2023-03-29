@@ -2,8 +2,8 @@ import Alamofire
 import Foundation
 
 public extension ApplicationClient.FileStorage {
-    func upload(data: Data, withFileName fileName: String, as contentType: String, toNameSpace namespace: String, onResponse: @escaping (_ response: ApplicationClient.FileStorage.CompleteResponse?, _ error: FDKError?) -> Void) {
-        startUpload(namespace: namespace, body: ApplicationClient.FileStorage.StartRequest(contentType: contentType, fileName: fileName, params: nil, size: data.count, tags: nil)) { startResponse, error in
+    func upload(data: Data, withFileName fileName: String, as contentType: String, toNameSpace namespace: String, onResponse: @escaping (_ response: ApplicationClient.CompleteResponse?, _ error: FDKError?) -> Void) {
+        startUpload(namespace: namespace, body: ApplicationClient.StartRequest(contentType: contentType, fileName: fileName, params: nil, size: data.count, tags: nil)) { startResponse, error in
             guard let startResponse = startResponse else {
                 return onResponse(nil, error)
             }

@@ -1,6 +1,5 @@
 import Foundation
-
-public extension ApplicationClient.Content {
+public extension ApplicationClient {
     enum PageType: String, Codable, CaseIterable {
         case aboutUs = "about-us"
         case addresses
@@ -28,7 +27,6 @@ public extension ApplicationClient.Content {
         case productRequest = "product-request"
         case products
         case profile
-        case profileOrderShipment = "profile-order-shipment"
         case profileBasic = "profile-basic"
         case profileCompany = "profile-company"
         case profileEmails = "profile-emails"
@@ -122,7 +120,7 @@ public extension ApplicationClient.Content {
             case .external:
                 return "/external/"
             case .faq:
-                return "/faq"
+                return "/faq/:category"
             case .freshchat:
                 return "/freshchat"
             case .home:
@@ -147,8 +145,6 @@ public extension ApplicationClient.Content {
                 return "/products/"
             case .profile:
                 return "/profile"
-            case .profileOrderShipment:
-                return "/profile/orders/shipment/:shipmentid"
             case .profileBasic:
                 return "/profile/details"
             case .profileCompany:
@@ -246,8 +242,6 @@ public extension ApplicationClient.Content {
                 return "Products"
             case .profile:
                 return "Profile"
-            case .profileOrderShipment:
-                return "profile orders shipment"
             case .profileBasic:
                 return "Basic Profile"
             case .profileCompany:
@@ -320,7 +314,7 @@ public extension ApplicationClient.Content {
             case .external:
                 return []
             case .faq:
-                return []
+                return [(name: "category", required: false)]
             case .freshchat:
                 return []
             case .home:
@@ -345,8 +339,6 @@ public extension ApplicationClient.Content {
                 return []
             case .profile:
                 return []
-            case .profileOrderShipment:
-                return [(name: "shipmentid", required: true)]
             case .profileBasic:
                 return []
             case .profileCompany:
@@ -443,8 +435,6 @@ public extension ApplicationClient.Content {
             case .products:
                 return []
             case .profile:
-                return []
-            case .profileOrderShipment:
                 return []
             case .profileBasic:
                 return []
