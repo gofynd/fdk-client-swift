@@ -4,32 +4,32 @@ import Foundation
 
 public extension PlatformClient.ApplicationClient.Content {
     /*
-         Model: RedirectionSchema
+         Model: PathSourceSchema
          Used By: Content
      */
 
-    class RedirectionSchema: Codable {
-        public var redirectFrom: String?
+    class PathSourceSchema: Codable {
+        public var type: String?
 
-        public var redirectTo: String?
+        public var id: String?
 
         public enum CodingKeys: String, CodingKey {
-            case redirectFrom = "redirect_from"
+            case type
 
-            case redirectTo = "redirect_to"
+            case id
         }
 
-        public init(redirectFrom: String? = nil, redirectTo: String? = nil) {
-            self.redirectFrom = redirectFrom
+        public init(id: String? = nil, type: String? = nil) {
+            self.type = type
 
-            self.redirectTo = redirectTo
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                redirectFrom = try container.decode(String.self, forKey: .redirectFrom)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.ApplicationClient.Content {
             } catch {}
 
             do {
-                redirectTo = try container.decode(String.self, forKey: .redirectTo)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.ApplicationClient.Content {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(redirectFrom, forKey: .redirectFrom)
+            try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(redirectTo, forKey: .redirectTo)
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

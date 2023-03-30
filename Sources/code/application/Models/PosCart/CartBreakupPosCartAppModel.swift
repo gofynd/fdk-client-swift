@@ -11,18 +11,18 @@ public extension ApplicationClient.PosCart {
 
         public var display: [DisplayBreakup]?
 
-        public var coupon: CouponBreakup?
-
         public var raw: RawBreakup?
+
+        public var coupon: CouponBreakup?
 
         public enum CodingKeys: String, CodingKey {
             case loyaltyPoints = "loyalty_points"
 
             case display
 
-            case coupon
-
             case raw
+
+            case coupon
         }
 
         public init(coupon: CouponBreakup? = nil, display: [DisplayBreakup]? = nil, loyaltyPoints: LoyaltyPoints? = nil, raw: RawBreakup? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.PosCart {
 
             self.display = display
 
-            self.coupon = coupon
-
             self.raw = raw
+
+            self.coupon = coupon
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                coupon = try container.decode(CouponBreakup.self, forKey: .coupon)
+                raw = try container.decode(RawBreakup.self, forKey: .raw)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                raw = try container.decode(RawBreakup.self, forKey: .raw)
+                coupon = try container.decode(CouponBreakup.self, forKey: .coupon)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
-
             try? container.encodeIfPresent(raw, forKey: .raw)
+
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
         }
     }
 }

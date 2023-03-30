@@ -11,30 +11,30 @@ public extension PlatformClient.Catalog {
     class UserInfo: Codable {
         public var userId: String?
 
-        public var username: String?
+        public var email: String?
 
         public var uid: String?
 
-        public var email: String?
+        public var username: String?
 
         public enum CodingKeys: String, CodingKey {
             case userId = "user_id"
 
-            case username
+            case email
 
             case uid
 
-            case email
+            case username
         }
 
         public init(email: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil) {
             self.userId = userId
 
-            self.username = username
+            self.email = email
 
             self.uid = uid
 
-            self.email = email
+            self.username = username
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                username = try container.decode(String.self, forKey: .username)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                username = try container.decode(String.self, forKey: .username)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,11 +78,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(username, forKey: .username)
+            try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encodeIfPresent(username, forKey: .username)
         }
     }
 }
@@ -96,30 +96,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class UserInfo: Codable {
         public var userId: String?
 
-        public var username: String?
+        public var email: String?
 
         public var uid: String?
 
-        public var email: String?
+        public var username: String?
 
         public enum CodingKeys: String, CodingKey {
             case userId = "user_id"
 
-            case username
+            case email
 
             case uid
 
-            case email
+            case username
         }
 
         public init(email: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil) {
             self.userId = userId
 
-            self.username = username
+            self.email = email
 
             self.uid = uid
 
-            self.email = email
+            self.username = username
         }
 
         required public init(from decoder: Decoder) throws {
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                username = try container.decode(String.self, forKey: .username)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                username = try container.decode(String.self, forKey: .username)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,11 +163,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(username, forKey: .username)
+            try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encodeIfPresent(username, forKey: .username)
         }
     }
 }
