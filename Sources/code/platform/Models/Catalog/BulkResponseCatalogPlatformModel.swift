@@ -9,48 +9,50 @@ public extension PlatformClient.Catalog {
      */
 
     class BulkResponse: Codable {
+        public var batchId: String
+
         public var modifiedBy: UserInfo1?
 
         public var createdBy: UserInfo1?
 
         public var isActive: Bool?
 
-        public var createdOn: String
-
-        public var batchId: String
-
         public var modifiedOn: String?
 
+        public var createdOn: String
+
         public enum CodingKeys: String, CodingKey {
+            case batchId = "batch_id"
+
             case modifiedBy = "modified_by"
 
             case createdBy = "created_by"
 
             case isActive = "is_active"
 
-            case createdOn = "created_on"
-
-            case batchId = "batch_id"
-
             case modifiedOn = "modified_on"
+
+            case createdOn = "created_on"
         }
 
         public init(batchId: String, createdBy: UserInfo1? = nil, createdOn: String, isActive: Bool? = nil, modifiedBy: UserInfo1? = nil, modifiedOn: String? = nil) {
+            self.batchId = batchId
+
             self.modifiedBy = modifiedBy
 
             self.createdBy = createdBy
 
             self.isActive = isActive
 
-            self.createdOn = createdOn
-
-            self.batchId = batchId
-
             self.modifiedOn = modifiedOn
+
+            self.createdOn = createdOn
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            batchId = try container.decode(String.self, forKey: .batchId)
 
             do {
                 modifiedBy = try container.decode(UserInfo1.self, forKey: .modifiedBy)
@@ -76,10 +78,6 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            createdOn = try container.decode(String.self, forKey: .createdOn)
-
-            batchId = try container.decode(String.self, forKey: .batchId)
-
             do {
                 modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
@@ -87,10 +85,14 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            createdOn = try container.decode(String.self, forKey: .createdOn)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(batchId, forKey: .batchId)
 
             try? container.encode(modifiedBy, forKey: .modifiedBy)
 
@@ -98,11 +100,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
-            try? container.encodeIfPresent(batchId, forKey: .batchId)
-
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
         }
     }
 }
@@ -114,48 +114,50 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class BulkResponse: Codable {
+        public var batchId: String
+
         public var modifiedBy: UserInfo1?
 
         public var createdBy: UserInfo1?
 
         public var isActive: Bool?
 
-        public var createdOn: String
-
-        public var batchId: String
-
         public var modifiedOn: String?
 
+        public var createdOn: String
+
         public enum CodingKeys: String, CodingKey {
+            case batchId = "batch_id"
+
             case modifiedBy = "modified_by"
 
             case createdBy = "created_by"
 
             case isActive = "is_active"
 
-            case createdOn = "created_on"
-
-            case batchId = "batch_id"
-
             case modifiedOn = "modified_on"
+
+            case createdOn = "created_on"
         }
 
         public init(batchId: String, createdBy: UserInfo1? = nil, createdOn: String, isActive: Bool? = nil, modifiedBy: UserInfo1? = nil, modifiedOn: String? = nil) {
+            self.batchId = batchId
+
             self.modifiedBy = modifiedBy
 
             self.createdBy = createdBy
 
             self.isActive = isActive
 
-            self.createdOn = createdOn
-
-            self.batchId = batchId
-
             self.modifiedOn = modifiedOn
+
+            self.createdOn = createdOn
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            batchId = try container.decode(String.self, forKey: .batchId)
 
             do {
                 modifiedBy = try container.decode(UserInfo1.self, forKey: .modifiedBy)
@@ -181,10 +183,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            createdOn = try container.decode(String.self, forKey: .createdOn)
-
-            batchId = try container.decode(String.self, forKey: .batchId)
-
             do {
                 modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
@@ -192,10 +190,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            createdOn = try container.decode(String.self, forKey: .createdOn)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(batchId, forKey: .batchId)
 
             try? container.encode(modifiedBy, forKey: .modifiedBy)
 
@@ -203,11 +205,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
-            try? container.encodeIfPresent(batchId, forKey: .batchId)
-
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
         }
     }
 }
