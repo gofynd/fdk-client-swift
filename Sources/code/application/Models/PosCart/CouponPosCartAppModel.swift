@@ -9,66 +9,66 @@ public extension ApplicationClient.PosCart {
     class Coupon: Codable {
         public var message: String?
 
-        public var subTitle: String?
-
-        public var minimumCartValue: Double?
-
         public var couponCode: String?
-
-        public var maxDiscountValue: Double?
-
-        public var expiresOn: String?
-
-        public var title: String?
-
-        public var isApplied: Bool?
 
         public var couponValue: Double?
 
+        public var maxDiscountValue: Double?
+
+        public var minimumCartValue: Double?
+
+        public var title: String?
+
+        public var subTitle: String?
+
         public var isApplicable: Bool?
+
+        public var isApplied: Bool?
+
+        public var expiresOn: String?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
-            case subTitle = "sub_title"
-
-            case minimumCartValue = "minimum_cart_value"
-
             case couponCode = "coupon_code"
-
-            case maxDiscountValue = "max_discount_value"
-
-            case expiresOn = "expires_on"
-
-            case title
-
-            case isApplied = "is_applied"
 
             case couponValue = "coupon_value"
 
+            case maxDiscountValue = "max_discount_value"
+
+            case minimumCartValue = "minimum_cart_value"
+
+            case title
+
+            case subTitle = "sub_title"
+
             case isApplicable = "is_applicable"
+
+            case isApplied = "is_applied"
+
+            case expiresOn = "expires_on"
         }
 
         public init(couponCode: String? = nil, couponValue: Double? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, maxDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil, subTitle: String? = nil, title: String? = nil) {
             self.message = message
 
-            self.subTitle = subTitle
-
-            self.minimumCartValue = minimumCartValue
-
             self.couponCode = couponCode
-
-            self.maxDiscountValue = maxDiscountValue
-
-            self.expiresOn = expiresOn
-
-            self.title = title
-
-            self.isApplied = isApplied
 
             self.couponValue = couponValue
 
+            self.maxDiscountValue = maxDiscountValue
+
+            self.minimumCartValue = minimumCartValue
+
+            self.title = title
+
+            self.subTitle = subTitle
+
             self.isApplicable = isApplicable
+
+            self.isApplied = isApplied
+
+            self.expiresOn = expiresOn
         }
 
         required public init(from decoder: Decoder) throws {
@@ -76,22 +76,6 @@ public extension ApplicationClient.PosCart {
 
             do {
                 message = try container.decode(String.self, forKey: .message)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                subTitle = try container.decode(String.self, forKey: .subTitle)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                minimumCartValue = try container.decode(Double.self, forKey: .minimumCartValue)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,6 +91,14 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
+                couponValue = try container.decode(Double.self, forKey: .couponValue)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 maxDiscountValue = try container.decode(Double.self, forKey: .maxDiscountValue)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -115,7 +107,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                expiresOn = try container.decode(String.self, forKey: .expiresOn)
+                minimumCartValue = try container.decode(Double.self, forKey: .minimumCartValue)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,15 +123,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                isApplied = try container.decode(Bool.self, forKey: .isApplied)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                couponValue = try container.decode(Double.self, forKey: .couponValue)
+                subTitle = try container.decode(String.self, forKey: .subTitle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,6 +137,22 @@ public extension ApplicationClient.PosCart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                isApplied = try container.decode(Bool.self, forKey: .isApplied)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                expiresOn = try container.decode(String.self, forKey: .expiresOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -160,23 +160,23 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(subTitle, forKey: .subTitle)
-
-            try? container.encodeIfPresent(minimumCartValue, forKey: .minimumCartValue)
-
             try? container.encodeIfPresent(couponCode, forKey: .couponCode)
-
-            try? container.encodeIfPresent(maxDiscountValue, forKey: .maxDiscountValue)
-
-            try? container.encodeIfPresent(expiresOn, forKey: .expiresOn)
-
-            try? container.encodeIfPresent(title, forKey: .title)
-
-            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
 
             try? container.encodeIfPresent(couponValue, forKey: .couponValue)
 
+            try? container.encodeIfPresent(maxDiscountValue, forKey: .maxDiscountValue)
+
+            try? container.encodeIfPresent(minimumCartValue, forKey: .minimumCartValue)
+
+            try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encodeIfPresent(subTitle, forKey: .subTitle)
+
             try? container.encodeIfPresent(isApplicable, forKey: .isApplicable)
+
+            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
+
+            try? container.encodeIfPresent(expiresOn, forKey: .expiresOn)
         }
     }
 }
