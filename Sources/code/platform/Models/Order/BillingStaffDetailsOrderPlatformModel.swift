@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class BillingStaffDetails: Codable {
         public var firstName: String?
 
-        public var user: String?
-
         public var lastName: String?
+
+        public var user: String?
 
         public var staffId: Int?
 
         public enum CodingKeys: String, CodingKey {
             case firstName = "first_name"
 
-            case user
-
             case lastName = "last_name"
+
+            case user
 
             case staffId = "staff_id"
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(firstName: String? = nil, lastName: String? = nil, staffId: Int? = nil, user: String? = nil) {
             self.firstName = firstName
 
-            self.user = user
-
             self.lastName = lastName
+
+            self.user = user
 
             self.staffId = staffId
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                user = try container.decode(String.self, forKey: .user)
+                lastName = try container.decode(String.self, forKey: .lastName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                lastName = try container.decode(String.self, forKey: .lastName)
+                user = try container.decode(String.self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(firstName, forKey: .firstName)
 
-            try? container.encodeIfPresent(user, forKey: .user)
-
             try? container.encodeIfPresent(lastName, forKey: .lastName)
+
+            try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(staffId, forKey: .staffId)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class BillingStaffDetails: Codable {
         public var firstName: String?
 
-        public var user: String?
-
         public var lastName: String?
+
+        public var user: String?
 
         public var staffId: Int?
 
         public enum CodingKeys: String, CodingKey {
             case firstName = "first_name"
 
-            case user
-
             case lastName = "last_name"
+
+            case user
 
             case staffId = "staff_id"
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(firstName: String? = nil, lastName: String? = nil, staffId: Int? = nil, user: String? = nil) {
             self.firstName = firstName
 
-            self.user = user
-
             self.lastName = lastName
+
+            self.user = user
 
             self.staffId = staffId
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                user = try container.decode(String.self, forKey: .user)
+                lastName = try container.decode(String.self, forKey: .lastName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                lastName = try container.decode(String.self, forKey: .lastName)
+                user = try container.decode(String.self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(firstName, forKey: .firstName)
 
-            try? container.encodeIfPresent(user, forKey: .user)
-
             try? container.encodeIfPresent(lastName, forKey: .lastName)
+
+            try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(staffId, forKey: .staffId)
         }

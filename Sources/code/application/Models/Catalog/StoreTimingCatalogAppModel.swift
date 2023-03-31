@@ -7,18 +7,18 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class StoreTiming: Codable {
-        public var weekday: String?
-
         public var open: Bool?
+
+        public var weekday: String?
 
         public var opening: Time?
 
         public var closing: Time?
 
         public enum CodingKeys: String, CodingKey {
-            case weekday
-
             case open
+
+            case weekday
 
             case opening
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Catalog {
         }
 
         public init(closing: Time? = nil, open: Bool? = nil, opening: Time? = nil, weekday: String? = nil) {
-            self.weekday = weekday
-
             self.open = open
+
+            self.weekday = weekday
 
             self.opening = opening
 
@@ -39,7 +39,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                weekday = try container.decode(String.self, forKey: .weekday)
+                open = try container.decode(Bool.self, forKey: .open)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                open = try container.decode(Bool.self, forKey: .open)
+                weekday = try container.decode(String.self, forKey: .weekday)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(weekday, forKey: .weekday)
-
             try? container.encodeIfPresent(open, forKey: .open)
+
+            try? container.encodeIfPresent(weekday, forKey: .weekday)
 
             try? container.encodeIfPresent(opening, forKey: .opening)
 

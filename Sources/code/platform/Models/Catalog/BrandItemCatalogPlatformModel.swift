@@ -11,9 +11,9 @@ public extension PlatformClient.Catalog {
     class BrandItem: Codable {
         public var discount: String?
 
-        public var uid: Int?
+        public var slug: String?
 
-        public var departments: [String]?
+        public var uid: Int?
 
         public var name: String?
 
@@ -21,16 +21,16 @@ public extension PlatformClient.Catalog {
 
         public var banners: ImageUrls?
 
-        public var slug: String?
-
         public var action: Action?
+
+        public var departments: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case discount
 
-            case uid
+            case slug
 
-            case departments
+            case uid
 
             case name
 
@@ -38,17 +38,17 @@ public extension PlatformClient.Catalog {
 
             case banners
 
-            case slug
-
             case action
+
+            case departments
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, departments: [String]? = nil, discount: String? = nil, logo: Media? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
             self.discount = discount
 
-            self.uid = uid
+            self.slug = slug
 
-            self.departments = departments
+            self.uid = uid
 
             self.name = name
 
@@ -56,9 +56,9 @@ public extension PlatformClient.Catalog {
 
             self.banners = banners
 
-            self.slug = slug
-
             self.action = action
+
+            self.departments = departments
         }
 
         required public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                departments = try container.decode([String].self, forKey: .departments)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -113,7 +113,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,7 +121,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
+                departments = try container.decode([String].self, forKey: .departments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,9 +134,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(discount, forKey: .discount)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(departments, forKey: .departments)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
@@ -144,9 +144,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(departments, forKey: .departments)
         }
     }
 }
@@ -160,9 +160,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class BrandItem: Codable {
         public var discount: String?
 
-        public var uid: Int?
+        public var slug: String?
 
-        public var departments: [String]?
+        public var uid: Int?
 
         public var name: String?
 
@@ -170,16 +170,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var banners: ImageUrls?
 
-        public var slug: String?
-
         public var action: Action?
+
+        public var departments: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case discount
 
-            case uid
+            case slug
 
-            case departments
+            case uid
 
             case name
 
@@ -187,17 +187,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case banners
 
-            case slug
-
             case action
+
+            case departments
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, departments: [String]? = nil, discount: String? = nil, logo: Media? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
             self.discount = discount
 
-            self.uid = uid
+            self.slug = slug
 
-            self.departments = departments
+            self.uid = uid
 
             self.name = name
 
@@ -205,9 +205,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.banners = banners
 
-            self.slug = slug
-
             self.action = action
+
+            self.departments = departments
         }
 
         required public init(from decoder: Decoder) throws {
@@ -222,7 +222,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -230,7 +230,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                departments = try container.decode([String].self, forKey: .departments)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -262,7 +262,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -270,7 +270,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
+                departments = try container.decode([String].self, forKey: .departments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -283,9 +283,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(discount, forKey: .discount)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(departments, forKey: .departments)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
@@ -293,9 +293,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(departments, forKey: .departments)
         }
     }
 }

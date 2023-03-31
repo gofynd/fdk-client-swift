@@ -7,9 +7,9 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class ErrorResponse: Codable {
-        public var exception: String?
-
         public var status: Int?
+
+        public var exception: String?
 
         public var code: String?
 
@@ -18,9 +18,9 @@ public extension ApplicationClient.Order {
         public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case exception
-
             case status
+
+            case exception
 
             case code
 
@@ -30,9 +30,9 @@ public extension ApplicationClient.Order {
         }
 
         public init(code: String? = nil, exception: String? = nil, message: String? = nil, stackTrace: String? = nil, status: Int? = nil) {
-            self.exception = exception
-
             self.status = status
+
+            self.exception = exception
 
             self.code = code
 
@@ -45,7 +45,7 @@ public extension ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                exception = try container.decode(String.self, forKey: .exception)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +53,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                exception = try container.decode(String.self, forKey: .exception)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,9 +88,9 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(exception, forKey: .exception)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encode(exception, forKey: .exception)
 
             try? container.encode(code, forKey: .code)
 

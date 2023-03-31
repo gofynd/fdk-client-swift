@@ -7,8 +7,6 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class StoreDepartments: Codable {
-        public var slug: String?
-
         public var priorityOrder: Int?
 
         public var name: String?
@@ -17,9 +15,9 @@ public extension ApplicationClient.Catalog {
 
         public var logo: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case slug
+        public var slug: String?
 
+        public enum CodingKeys: String, CodingKey {
             case priorityOrder = "priority_order"
 
             case name
@@ -27,11 +25,11 @@ public extension ApplicationClient.Catalog {
             case uid
 
             case logo
+
+            case slug
         }
 
         public init(logo: String? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, uid: Int? = nil) {
-            self.slug = slug
-
             self.priorityOrder = priorityOrder
 
             self.name = name
@@ -39,18 +37,12 @@ public extension ApplicationClient.Catalog {
             self.uid = uid
 
             self.logo = logo
+
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
@@ -83,12 +75,18 @@ public extension ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
 
@@ -97,6 +95,8 @@ public extension ApplicationClient.Catalog {
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }

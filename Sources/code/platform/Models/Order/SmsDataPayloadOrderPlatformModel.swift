@@ -13,17 +13,17 @@ public extension PlatformClient.Order {
 
         public var phoneNumber: Int
 
-        public var orderId: String
+        public var paymentMode: String
 
-        public var message: String
+        public var orderId: String
 
         public var shipmentId: Int
 
-        public var paymentMode: String
+        public var brandName: String
+
+        public var message: String
 
         public var customerName: String
-
-        public var brandName: String
 
         public var amountPaid: Int
 
@@ -32,17 +32,17 @@ public extension PlatformClient.Order {
 
             case phoneNumber = "phone_number"
 
-            case orderId = "order_id"
+            case paymentMode = "payment_mode"
 
-            case message
+            case orderId = "order_id"
 
             case shipmentId = "shipment_id"
 
-            case paymentMode = "payment_mode"
+            case brandName = "brand_name"
+
+            case message
 
             case customerName = "customer_name"
-
-            case brandName = "brand_name"
 
             case amountPaid = "amount_paid"
         }
@@ -52,17 +52,17 @@ public extension PlatformClient.Order {
 
             self.phoneNumber = phoneNumber
 
-            self.orderId = orderId
+            self.paymentMode = paymentMode
 
-            self.message = message
+            self.orderId = orderId
 
             self.shipmentId = shipmentId
 
-            self.paymentMode = paymentMode
+            self.brandName = brandName
+
+            self.message = message
 
             self.customerName = customerName
-
-            self.brandName = brandName
 
             self.amountPaid = amountPaid
         }
@@ -74,17 +74,17 @@ public extension PlatformClient.Order {
 
             phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
 
-            orderId = try container.decode(String.self, forKey: .orderId)
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
-            message = try container.decode(String.self, forKey: .message)
+            orderId = try container.decode(String.self, forKey: .orderId)
 
             shipmentId = try container.decode(Int.self, forKey: .shipmentId)
 
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+            brandName = try container.decode(String.self, forKey: .brandName)
+
+            message = try container.decode(String.self, forKey: .message)
 
             customerName = try container.decode(String.self, forKey: .customerName)
-
-            brandName = try container.decode(String.self, forKey: .brandName)
 
             amountPaid = try container.decode(Int.self, forKey: .amountPaid)
         }
@@ -96,17 +96,17 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(customerName, forKey: .customerName)
-
-            try? container.encodeIfPresent(brandName, forKey: .brandName)
 
             try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
         }
@@ -124,17 +124,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var phoneNumber: Int
 
-        public var orderId: String
+        public var paymentMode: String
 
-        public var message: String
+        public var orderId: String
 
         public var shipmentId: Int
 
-        public var paymentMode: String
+        public var brandName: String
+
+        public var message: String
 
         public var customerName: String
-
-        public var brandName: String
 
         public var amountPaid: Int
 
@@ -143,17 +143,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case phoneNumber = "phone_number"
 
-            case orderId = "order_id"
+            case paymentMode = "payment_mode"
 
-            case message
+            case orderId = "order_id"
 
             case shipmentId = "shipment_id"
 
-            case paymentMode = "payment_mode"
+            case brandName = "brand_name"
+
+            case message
 
             case customerName = "customer_name"
-
-            case brandName = "brand_name"
 
             case amountPaid = "amount_paid"
         }
@@ -163,17 +163,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.phoneNumber = phoneNumber
 
-            self.orderId = orderId
+            self.paymentMode = paymentMode
 
-            self.message = message
+            self.orderId = orderId
 
             self.shipmentId = shipmentId
 
-            self.paymentMode = paymentMode
+            self.brandName = brandName
+
+            self.message = message
 
             self.customerName = customerName
-
-            self.brandName = brandName
 
             self.amountPaid = amountPaid
         }
@@ -185,17 +185,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
             phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
 
-            orderId = try container.decode(String.self, forKey: .orderId)
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
-            message = try container.decode(String.self, forKey: .message)
+            orderId = try container.decode(String.self, forKey: .orderId)
 
             shipmentId = try container.decode(Int.self, forKey: .shipmentId)
 
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+            brandName = try container.decode(String.self, forKey: .brandName)
+
+            message = try container.decode(String.self, forKey: .message)
 
             customerName = try container.decode(String.self, forKey: .customerName)
-
-            brandName = try container.decode(String.self, forKey: .brandName)
 
             amountPaid = try container.decode(Int.self, forKey: .amountPaid)
         }
@@ -207,17 +207,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(customerName, forKey: .customerName)
-
-            try? container.encodeIfPresent(brandName, forKey: .brandName)
 
             try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
         }

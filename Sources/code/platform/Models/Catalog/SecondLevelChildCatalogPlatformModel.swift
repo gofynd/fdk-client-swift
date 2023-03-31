@@ -15,13 +15,13 @@ public extension PlatformClient.Catalog {
 
         public var banners: ImageUrls?
 
-        public var slug: String?
+        public var customJson: [String: Any]?
 
         public var action: Action?
 
         public var childs: [ThirdLevelChild]?
 
-        public var customJson: [String: Any]?
+        public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
             case uid
@@ -30,13 +30,13 @@ public extension PlatformClient.Catalog {
 
             case banners
 
-            case slug
+            case customJson = "_custom_json"
 
             case action
 
             case childs
 
-            case customJson = "_custom_json"
+            case slug
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [ThirdLevelChild]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
@@ -46,13 +46,13 @@ public extension PlatformClient.Catalog {
 
             self.banners = banners
 
-            self.slug = slug
+            self.customJson = customJson
 
             self.action = action
 
             self.childs = childs
 
-            self.customJson = customJson
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,7 +107,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,13 +124,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }
@@ -148,13 +148,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var banners: ImageUrls?
 
-        public var slug: String?
+        public var customJson: [String: Any]?
 
         public var action: Action?
 
         public var childs: [ThirdLevelChild]?
 
-        public var customJson: [String: Any]?
+        public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
             case uid
@@ -163,13 +163,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case banners
 
-            case slug
+            case customJson = "_custom_json"
 
             case action
 
             case childs
 
-            case customJson = "_custom_json"
+            case slug
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [ThirdLevelChild]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
@@ -179,13 +179,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.banners = banners
 
-            self.slug = slug
+            self.customJson = customJson
 
             self.action = action
 
             self.childs = childs
 
-            self.customJson = customJson
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -216,7 +216,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -240,7 +240,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -257,13 +257,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }

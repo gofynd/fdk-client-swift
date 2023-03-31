@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class ManufacturerResponse1: Codable {
         public var name: String?
 
-        public var isDefault: Bool?
-
         public var address: String?
+
+        public var isDefault: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case isDefault = "is_default"
-
             case address
+
+            case isDefault = "is_default"
         }
 
         public init(address: String? = nil, isDefault: Bool? = nil, name: String? = nil) {
             self.name = name
 
-            self.isDefault = isDefault
-
             self.address = address
+
+            self.isDefault = isDefault
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                address = try container.decode(String.self, forKey: .address)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                address = try container.decode(String.self, forKey: .address)
+                isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-
             try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ManufacturerResponse1: Codable {
         public var name: String?
 
-        public var isDefault: Bool?
-
         public var address: String?
+
+        public var isDefault: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case isDefault = "is_default"
-
             case address
+
+            case isDefault = "is_default"
         }
 
         public init(address: String? = nil, isDefault: Bool? = nil, name: String? = nil) {
             self.name = name
 
-            self.isDefault = isDefault
-
             self.address = address
+
+            self.isDefault = isDefault
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                address = try container.decode(String.self, forKey: .address)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                address = try container.decode(String.self, forKey: .address)
+                isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-
             try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
         }
     }
 }
