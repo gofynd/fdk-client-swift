@@ -15,9 +15,9 @@ public extension PlatformClient.Order {
 
         public var gstinCode: String
 
-        public var taxCollectedAtSource: Double
-
         public var valueOfGood: Double
+
+        public var taxCollectedAtSource: Double
 
         public enum CodingKeys: String, CodingKey {
             case brandCalculatedAmount = "brand_calculated_amount"
@@ -26,9 +26,9 @@ public extension PlatformClient.Order {
 
             case gstinCode = "gstin_code"
 
-            case taxCollectedAtSource = "tax_collected_at_source"
-
             case valueOfGood = "value_of_good"
+
+            case taxCollectedAtSource = "tax_collected_at_source"
         }
 
         public init(brandCalculatedAmount: Double, gstinCode: String, gstFee: Double, taxCollectedAtSource: Double, valueOfGood: Double) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Order {
 
             self.gstinCode = gstinCode
 
-            self.taxCollectedAtSource = taxCollectedAtSource
-
             self.valueOfGood = valueOfGood
+
+            self.taxCollectedAtSource = taxCollectedAtSource
         }
 
         required public init(from decoder: Decoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Order {
 
             gstinCode = try container.decode(String.self, forKey: .gstinCode)
 
-            taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
-
             valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
+
+            taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,9 +66,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
 
-            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
-
             try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
+
+            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
         }
     }
 }
@@ -86,9 +86,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var gstinCode: String
 
-        public var taxCollectedAtSource: Double
-
         public var valueOfGood: Double
+
+        public var taxCollectedAtSource: Double
 
         public enum CodingKeys: String, CodingKey {
             case brandCalculatedAmount = "brand_calculated_amount"
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case gstinCode = "gstin_code"
 
-            case taxCollectedAtSource = "tax_collected_at_source"
-
             case valueOfGood = "value_of_good"
+
+            case taxCollectedAtSource = "tax_collected_at_source"
         }
 
         public init(brandCalculatedAmount: Double, gstinCode: String, gstFee: Double, taxCollectedAtSource: Double, valueOfGood: Double) {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.gstinCode = gstinCode
 
-            self.taxCollectedAtSource = taxCollectedAtSource
-
             self.valueOfGood = valueOfGood
+
+            self.taxCollectedAtSource = taxCollectedAtSource
         }
 
         required public init(from decoder: Decoder) throws {
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             gstinCode = try container.decode(String.self, forKey: .gstinCode)
 
-            taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
-
             valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
+
+            taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
 
-            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
-
             try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
+
+            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
         }
     }
 }

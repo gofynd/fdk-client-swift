@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class JioCodeUpsertDataSet: Codable {
         public var companyId: String?
 
-        public var articleId: String?
-
         public var itemId: String?
+
+        public var articleId: String?
 
         public var jioCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case companyId = "company_id"
 
-            case articleId = "article_id"
-
             case itemId = "item_id"
+
+            case articleId = "article_id"
 
             case jioCode = "jio_code"
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(articleId: String? = nil, companyId: String? = nil, itemId: String? = nil, jioCode: String? = nil) {
             self.companyId = companyId
 
-            self.articleId = articleId
-
             self.itemId = itemId
+
+            self.articleId = articleId
 
             self.jioCode = jioCode
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                articleId = try container.decode(String.self, forKey: .articleId)
+                itemId = try container.decode(String.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                itemId = try container.decode(String.self, forKey: .itemId)
+                articleId = try container.decode(String.self, forKey: .articleId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(articleId, forKey: .articleId)
-
             try? container.encodeIfPresent(itemId, forKey: .itemId)
+
+            try? container.encodeIfPresent(articleId, forKey: .articleId)
 
             try? container.encodeIfPresent(jioCode, forKey: .jioCode)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class JioCodeUpsertDataSet: Codable {
         public var companyId: String?
 
-        public var articleId: String?
-
         public var itemId: String?
+
+        public var articleId: String?
 
         public var jioCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case companyId = "company_id"
 
-            case articleId = "article_id"
-
             case itemId = "item_id"
+
+            case articleId = "article_id"
 
             case jioCode = "jio_code"
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(articleId: String? = nil, companyId: String? = nil, itemId: String? = nil, jioCode: String? = nil) {
             self.companyId = companyId
 
-            self.articleId = articleId
-
             self.itemId = itemId
+
+            self.articleId = articleId
 
             self.jioCode = jioCode
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                articleId = try container.decode(String.self, forKey: .articleId)
+                itemId = try container.decode(String.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                itemId = try container.decode(String.self, forKey: .itemId)
+                articleId = try container.decode(String.self, forKey: .articleId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(articleId, forKey: .articleId)
-
             try? container.encodeIfPresent(itemId, forKey: .itemId)
+
+            try? container.encodeIfPresent(articleId, forKey: .articleId)
 
             try? container.encodeIfPresent(jioCode, forKey: .jioCode)
         }

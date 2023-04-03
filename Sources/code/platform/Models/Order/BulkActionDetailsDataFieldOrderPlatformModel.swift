@@ -13,13 +13,13 @@ public extension PlatformClient.Order {
 
         public var totalShipmentsCount: Int?
 
-        public var batchId: String?
-
-        public var failedShipmentsCount: Int?
+        public var successfulShipmentIds: [String]?
 
         public var processingShipmentsCount: Int?
 
-        public var successfulShipmentIds: [String]?
+        public var batchId: String?
+
+        public var failedShipmentsCount: Int?
 
         public var successfulShipmentsCount: Int?
 
@@ -28,13 +28,13 @@ public extension PlatformClient.Order {
 
             case totalShipmentsCount = "total_shipments_count"
 
-            case batchId = "batch_id"
-
-            case failedShipmentsCount = "failed_shipments_count"
+            case successfulShipmentIds = "successful_shipment_ids"
 
             case processingShipmentsCount = "processing_shipments_count"
 
-            case successfulShipmentIds = "successful_shipment_ids"
+            case batchId = "batch_id"
+
+            case failedShipmentsCount = "failed_shipments_count"
 
             case successfulShipmentsCount = "successful_shipments_count"
         }
@@ -44,13 +44,13 @@ public extension PlatformClient.Order {
 
             self.totalShipmentsCount = totalShipmentsCount
 
-            self.batchId = batchId
-
-            self.failedShipmentsCount = failedShipmentsCount
+            self.successfulShipmentIds = successfulShipmentIds
 
             self.processingShipmentsCount = processingShipmentsCount
 
-            self.successfulShipmentIds = successfulShipmentIds
+            self.batchId = batchId
+
+            self.failedShipmentsCount = failedShipmentsCount
 
             self.successfulShipmentsCount = successfulShipmentsCount
         }
@@ -75,15 +75,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                batchId = try container.decode(String.self, forKey: .batchId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                failedShipmentsCount = try container.decode(Int.self, forKey: .failedShipmentsCount)
+                successfulShipmentIds = try container.decode([String].self, forKey: .successfulShipmentIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,7 +91,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                successfulShipmentIds = try container.decode([String].self, forKey: .successfulShipmentIds)
+                batchId = try container.decode(String.self, forKey: .batchId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                failedShipmentsCount = try container.decode(Int.self, forKey: .failedShipmentsCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,13 +122,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(totalShipmentsCount, forKey: .totalShipmentsCount)
 
-            try? container.encodeIfPresent(batchId, forKey: .batchId)
-
-            try? container.encodeIfPresent(failedShipmentsCount, forKey: .failedShipmentsCount)
+            try? container.encodeIfPresent(successfulShipmentIds, forKey: .successfulShipmentIds)
 
             try? container.encodeIfPresent(processingShipmentsCount, forKey: .processingShipmentsCount)
 
-            try? container.encodeIfPresent(successfulShipmentIds, forKey: .successfulShipmentIds)
+            try? container.encodeIfPresent(batchId, forKey: .batchId)
+
+            try? container.encodeIfPresent(failedShipmentsCount, forKey: .failedShipmentsCount)
 
             try? container.encodeIfPresent(successfulShipmentsCount, forKey: .successfulShipmentsCount)
         }
@@ -146,13 +146,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var totalShipmentsCount: Int?
 
-        public var batchId: String?
-
-        public var failedShipmentsCount: Int?
+        public var successfulShipmentIds: [String]?
 
         public var processingShipmentsCount: Int?
 
-        public var successfulShipmentIds: [String]?
+        public var batchId: String?
+
+        public var failedShipmentsCount: Int?
 
         public var successfulShipmentsCount: Int?
 
@@ -161,13 +161,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case totalShipmentsCount = "total_shipments_count"
 
-            case batchId = "batch_id"
-
-            case failedShipmentsCount = "failed_shipments_count"
+            case successfulShipmentIds = "successful_shipment_ids"
 
             case processingShipmentsCount = "processing_shipments_count"
 
-            case successfulShipmentIds = "successful_shipment_ids"
+            case batchId = "batch_id"
+
+            case failedShipmentsCount = "failed_shipments_count"
 
             case successfulShipmentsCount = "successful_shipments_count"
         }
@@ -177,13 +177,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.totalShipmentsCount = totalShipmentsCount
 
-            self.batchId = batchId
-
-            self.failedShipmentsCount = failedShipmentsCount
+            self.successfulShipmentIds = successfulShipmentIds
 
             self.processingShipmentsCount = processingShipmentsCount
 
-            self.successfulShipmentIds = successfulShipmentIds
+            self.batchId = batchId
+
+            self.failedShipmentsCount = failedShipmentsCount
 
             self.successfulShipmentsCount = successfulShipmentsCount
         }
@@ -208,15 +208,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                batchId = try container.decode(String.self, forKey: .batchId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                failedShipmentsCount = try container.decode(Int.self, forKey: .failedShipmentsCount)
+                successfulShipmentIds = try container.decode([String].self, forKey: .successfulShipmentIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -232,7 +224,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                successfulShipmentIds = try container.decode([String].self, forKey: .successfulShipmentIds)
+                batchId = try container.decode(String.self, forKey: .batchId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                failedShipmentsCount = try container.decode(Int.self, forKey: .failedShipmentsCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -255,13 +255,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(totalShipmentsCount, forKey: .totalShipmentsCount)
 
-            try? container.encodeIfPresent(batchId, forKey: .batchId)
-
-            try? container.encodeIfPresent(failedShipmentsCount, forKey: .failedShipmentsCount)
+            try? container.encodeIfPresent(successfulShipmentIds, forKey: .successfulShipmentIds)
 
             try? container.encodeIfPresent(processingShipmentsCount, forKey: .processingShipmentsCount)
 
-            try? container.encodeIfPresent(successfulShipmentIds, forKey: .successfulShipmentIds)
+            try? container.encodeIfPresent(batchId, forKey: .batchId)
+
+            try? container.encodeIfPresent(failedShipmentsCount, forKey: .failedShipmentsCount)
 
             try? container.encodeIfPresent(successfulShipmentsCount, forKey: .successfulShipmentsCount)
         }
