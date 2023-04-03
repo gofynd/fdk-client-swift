@@ -7,11 +7,15 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class PaymentStatusUpdateRequest: Codable {
+        public var orderId: String
+
+        public var vpa: String
+
+        public var method: String
+
         public var status: String
 
-        public var aggregator: String
-
-        public var currency: String
+        public var email: String
 
         public var customerId: String
 
@@ -19,22 +23,22 @@ public extension ApplicationClient.Payment {
 
         public var amount: Int
 
-        public var orderId: String
+        public var currency: String
 
-        public var vpa: String
-
-        public var email: String
+        public var aggregator: String
 
         public var merchantOrderId: String
 
-        public var method: String
-
         public enum CodingKeys: String, CodingKey {
+            case orderId = "order_id"
+
+            case vpa
+
+            case method
+
             case status
 
-            case aggregator
-
-            case currency
+            case email
 
             case customerId = "customer_id"
 
@@ -42,23 +46,23 @@ public extension ApplicationClient.Payment {
 
             case amount
 
-            case orderId = "order_id"
+            case currency
 
-            case vpa
-
-            case email
+            case aggregator
 
             case merchantOrderId = "merchant_order_id"
-
-            case method
         }
 
         public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, email: String, merchantOrderId: String, method: String, orderId: String, status: String, vpa: String) {
+            self.orderId = orderId
+
+            self.vpa = vpa
+
+            self.method = method
+
             self.status = status
 
-            self.aggregator = aggregator
-
-            self.currency = currency
+            self.email = email
 
             self.customerId = customerId
 
@@ -66,25 +70,25 @@ public extension ApplicationClient.Payment {
 
             self.amount = amount
 
-            self.orderId = orderId
+            self.currency = currency
 
-            self.vpa = vpa
-
-            self.email = email
+            self.aggregator = aggregator
 
             self.merchantOrderId = merchantOrderId
-
-            self.method = method
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            orderId = try container.decode(String.self, forKey: .orderId)
+
+            vpa = try container.decode(String.self, forKey: .vpa)
+
+            method = try container.decode(String.self, forKey: .method)
+
             status = try container.decode(String.self, forKey: .status)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
-            currency = try container.decode(String.self, forKey: .currency)
+            email = try container.decode(String.self, forKey: .email)
 
             customerId = try container.decode(String.self, forKey: .customerId)
 
@@ -92,25 +96,25 @@ public extension ApplicationClient.Payment {
 
             amount = try container.decode(Int.self, forKey: .amount)
 
-            orderId = try container.decode(String.self, forKey: .orderId)
+            currency = try container.decode(String.self, forKey: .currency)
 
-            vpa = try container.decode(String.self, forKey: .vpa)
-
-            email = try container.decode(String.self, forKey: .email)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
-
-            method = try container.decode(String.self, forKey: .method)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(vpa, forKey: .vpa)
+
+            try? container.encodeIfPresent(method, forKey: .method)
+
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(customerId, forKey: .customerId)
 
@@ -118,15 +122,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(vpa, forKey: .vpa)
-
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
-
-            try? container.encodeIfPresent(method, forKey: .method)
         }
     }
 }

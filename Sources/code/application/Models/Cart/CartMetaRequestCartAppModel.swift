@@ -11,9 +11,9 @@ public extension ApplicationClient.Cart {
 
         public var pickUpCustomerDetails: [String: Any]?
 
-        public var gstin: String?
-
         public var deliverySlots: [String: Any]?
+
+        public var gstin: String?
 
         public var comment: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Cart {
 
             case pickUpCustomerDetails = "pick_up_customer_details"
 
-            case gstin
-
             case deliverySlots = "delivery_slots"
+
+            case gstin
 
             case comment
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Cart {
 
             self.pickUpCustomerDetails = pickUpCustomerDetails
 
-            self.gstin = gstin
-
             self.deliverySlots = deliverySlots
+
+            self.gstin = gstin
 
             self.comment = comment
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                gstin = try container.decode(String.self, forKey: .gstin)
+                deliverySlots = try container.decode([String: Any].self, forKey: .deliverySlots)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                deliverySlots = try container.decode([String: Any].self, forKey: .deliverySlots)
+                gstin = try container.decode(String.self, forKey: .gstin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
 
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
-
             try? container.encodeIfPresent(deliverySlots, forKey: .deliverySlots)
+
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
 
             try? container.encodeIfPresent(comment, forKey: .comment)
         }

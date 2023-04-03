@@ -9,30 +9,30 @@ public extension ApplicationClient.Payment {
     class AttachCardRequest: Codable {
         public var refresh: Bool?
 
-        public var nickname: String?
+        public var nameOnCard: String?
 
         public var cardId: String
 
-        public var nameOnCard: String?
+        public var nickname: String?
 
         public enum CodingKeys: String, CodingKey {
             case refresh
 
-            case nickname
+            case nameOnCard = "name_on_card"
 
             case cardId = "card_id"
 
-            case nameOnCard = "name_on_card"
+            case nickname
         }
 
         public init(cardId: String, nameOnCard: String? = nil, nickname: String? = nil, refresh: Bool? = nil) {
             self.refresh = refresh
 
-            self.nickname = nickname
+            self.nameOnCard = nameOnCard
 
             self.cardId = cardId
 
-            self.nameOnCard = nameOnCard
+            self.nickname = nickname
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +47,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                nickname = try container.decode(String.self, forKey: .nickname)
+                nameOnCard = try container.decode(String.self, forKey: .nameOnCard)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension ApplicationClient.Payment {
             cardId = try container.decode(String.self, forKey: .cardId)
 
             do {
-                nameOnCard = try container.decode(String.self, forKey: .nameOnCard)
+                nickname = try container.decode(String.self, forKey: .nickname)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,11 +70,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(refresh, forKey: .refresh)
 
-            try? container.encodeIfPresent(nickname, forKey: .nickname)
+            try? container.encodeIfPresent(nameOnCard, forKey: .nameOnCard)
 
             try? container.encode(cardId, forKey: .cardId)
 
-            try? container.encodeIfPresent(nameOnCard, forKey: .nameOnCard)
+            try? container.encodeIfPresent(nickname, forKey: .nickname)
         }
     }
 }
