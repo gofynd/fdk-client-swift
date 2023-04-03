@@ -9,24 +9,24 @@ public extension PlatformClient.Catalog {
      */
 
     class CollectionItemRequest: Codable {
-        public var type: String?
-
         public var query: [CollectionQuery]?
+
+        public var type: String?
 
         public var item: [ItemQueryForUserCollection]?
 
         public enum CodingKeys: String, CodingKey {
-            case type
-
             case query
+
+            case type
 
             case item
         }
 
         public init(item: [ItemQueryForUserCollection]? = nil, query: [CollectionQuery]? = nil, type: String? = nil) {
-            self.type = type
-
             self.query = query
+
+            self.type = type
 
             self.item = item
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                query = try container.decode([CollectionQuery].self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                query = try container.decode([CollectionQuery].self, forKey: .query)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(query, forKey: .query)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(item, forKey: .item)
         }
@@ -78,24 +78,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class CollectionItemRequest: Codable {
-        public var type: String?
-
         public var query: [CollectionQuery]?
+
+        public var type: String?
 
         public var item: [ItemQueryForUserCollection]?
 
         public enum CodingKeys: String, CodingKey {
-            case type
-
             case query
+
+            case type
 
             case item
         }
 
         public init(item: [ItemQueryForUserCollection]? = nil, query: [CollectionQuery]? = nil, type: String? = nil) {
-            self.type = type
-
             self.query = query
+
+            self.type = type
 
             self.item = item
         }
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                query = try container.decode([CollectionQuery].self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                query = try container.decode([CollectionQuery].self, forKey: .query)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(query, forKey: .query)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(item, forKey: .item)
         }

@@ -11,30 +11,30 @@ public extension PlatformClient.Catalog {
     class DimensionResponse1: Codable {
         public var unit: String?
 
-        public var height: Double?
-
         public var width: Double?
 
         public var length: Double?
 
+        public var height: Double?
+
         public enum CodingKeys: String, CodingKey {
             case unit
-
-            case height
 
             case width
 
             case length
+
+            case height
         }
 
         public init(height: Double? = nil, length: Double? = nil, unit: String? = nil, width: Double? = nil) {
             self.unit = unit
 
-            self.height = height
-
             self.width = width
 
             self.length = length
+
+            self.height = height
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,14 +42,6 @@ public extension PlatformClient.Catalog {
 
             do {
                 unit = try container.decode(String.self, forKey: .unit)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                height = try container.decode(Double.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,6 +63,14 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                height = try container.decode(Double.self, forKey: .height)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -78,11 +78,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(height, forKey: .height)
-
             try? container.encodeIfPresent(width, forKey: .width)
 
             try? container.encodeIfPresent(length, forKey: .length)
+
+            try? container.encodeIfPresent(height, forKey: .height)
         }
     }
 }
@@ -96,30 +96,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class DimensionResponse1: Codable {
         public var unit: String?
 
-        public var height: Double?
-
         public var width: Double?
 
         public var length: Double?
 
+        public var height: Double?
+
         public enum CodingKeys: String, CodingKey {
             case unit
-
-            case height
 
             case width
 
             case length
+
+            case height
         }
 
         public init(height: Double? = nil, length: Double? = nil, unit: String? = nil, width: Double? = nil) {
             self.unit = unit
 
-            self.height = height
-
             self.width = width
 
             self.length = length
+
+            self.height = height
         }
 
         required public init(from decoder: Decoder) throws {
@@ -127,14 +127,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 unit = try container.decode(String.self, forKey: .unit)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                height = try container.decode(Double.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -156,6 +148,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                height = try container.decode(Double.self, forKey: .height)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -163,11 +163,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(height, forKey: .height)
-
             try? container.encodeIfPresent(width, forKey: .width)
 
             try? container.encodeIfPresent(length, forKey: .length)
+
+            try? container.encodeIfPresent(height, forKey: .height)
         }
     }
 }

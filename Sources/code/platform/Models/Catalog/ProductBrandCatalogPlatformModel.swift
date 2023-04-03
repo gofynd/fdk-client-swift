@@ -11,18 +11,18 @@ public extension PlatformClient.Catalog {
     class ProductBrand: Codable {
         public var name: String?
 
-        public var action: Action?
-
         public var uid: Int?
+
+        public var action: Action?
 
         public var logo: Media1?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case action
-
             case uid
+
+            case action
 
             case logo
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
         public init(action: Action? = nil, logo: Media1? = nil, name: String? = nil, uid: Int? = nil) {
             self.name = name
 
-            self.action = action
-
             self.uid = uid
+
+            self.action = action
 
             self.logo = logo
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductBrand: Codable {
         public var name: String?
 
-        public var action: Action?
-
         public var uid: Int?
+
+        public var action: Action?
 
         public var logo: Media1?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case action
-
             case uid
+
+            case action
 
             case logo
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(action: Action? = nil, logo: Media1? = nil, name: String? = nil, uid: Int? = nil) {
             self.name = name
 
-            self.action = action
-
             self.uid = uid
+
+            self.action = action
 
             self.logo = logo
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }
