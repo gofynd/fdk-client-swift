@@ -9,30 +9,30 @@ public extension PlatformClient.Order {
      */
 
     class ManualAssignDPToShipment: Codable {
-        public var orderType: String
+        public var qcRequired: String
 
         public var dpId: Int
 
-        public var qcRequired: String
+        public var orderType: String
 
         public var shipmentIds: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case orderType = "order_type"
+            case qcRequired = "qc_required"
 
             case dpId = "dp_id"
 
-            case qcRequired = "qc_required"
+            case orderType = "order_type"
 
             case shipmentIds = "shipment_ids"
         }
 
         public init(dpId: Int, orderType: String, qcRequired: String, shipmentIds: [String]? = nil) {
-            self.orderType = orderType
+            self.qcRequired = qcRequired
 
             self.dpId = dpId
 
-            self.qcRequired = qcRequired
+            self.orderType = orderType
 
             self.shipmentIds = shipmentIds
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            orderType = try container.decode(String.self, forKey: .orderType)
+            qcRequired = try container.decode(String.self, forKey: .qcRequired)
 
             dpId = try container.decode(Int.self, forKey: .dpId)
 
-            qcRequired = try container.decode(String.self, forKey: .qcRequired)
+            orderType = try container.decode(String.self, forKey: .orderType)
 
             do {
                 shipmentIds = try container.decode([String].self, forKey: .shipmentIds)
@@ -58,11 +58,11 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
+            try? container.encodeIfPresent(qcRequired, forKey: .qcRequired)
 
             try? container.encodeIfPresent(dpId, forKey: .dpId)
 
-            try? container.encodeIfPresent(qcRequired, forKey: .qcRequired)
+            try? container.encodeIfPresent(orderType, forKey: .orderType)
 
             try? container.encodeIfPresent(shipmentIds, forKey: .shipmentIds)
         }
@@ -76,30 +76,30 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ManualAssignDPToShipment: Codable {
-        public var orderType: String
+        public var qcRequired: String
 
         public var dpId: Int
 
-        public var qcRequired: String
+        public var orderType: String
 
         public var shipmentIds: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case orderType = "order_type"
+            case qcRequired = "qc_required"
 
             case dpId = "dp_id"
 
-            case qcRequired = "qc_required"
+            case orderType = "order_type"
 
             case shipmentIds = "shipment_ids"
         }
 
         public init(dpId: Int, orderType: String, qcRequired: String, shipmentIds: [String]? = nil) {
-            self.orderType = orderType
+            self.qcRequired = qcRequired
 
             self.dpId = dpId
 
-            self.qcRequired = qcRequired
+            self.orderType = orderType
 
             self.shipmentIds = shipmentIds
         }
@@ -107,11 +107,11 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            orderType = try container.decode(String.self, forKey: .orderType)
+            qcRequired = try container.decode(String.self, forKey: .qcRequired)
 
             dpId = try container.decode(Int.self, forKey: .dpId)
 
-            qcRequired = try container.decode(String.self, forKey: .qcRequired)
+            orderType = try container.decode(String.self, forKey: .orderType)
 
             do {
                 shipmentIds = try container.decode([String].self, forKey: .shipmentIds)
@@ -125,11 +125,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
+            try? container.encodeIfPresent(qcRequired, forKey: .qcRequired)
 
             try? container.encodeIfPresent(dpId, forKey: .dpId)
 
-            try? container.encodeIfPresent(qcRequired, forKey: .qcRequired)
+            try? container.encodeIfPresent(orderType, forKey: .orderType)
 
             try? container.encodeIfPresent(shipmentIds, forKey: .shipmentIds)
         }

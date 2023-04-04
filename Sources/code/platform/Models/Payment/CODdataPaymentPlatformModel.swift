@@ -9,22 +9,22 @@ public extension PlatformClient.Payment {
      */
 
     class CODdata: Codable {
-        public var usages: Int
+        public var userId: String
 
         public var limit: Int
 
-        public var userId: String
+        public var usages: Int
 
         public var remainingLimit: Int
 
         public var isActive: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case usages
+            case userId = "user_id"
 
             case limit
 
-            case userId = "user_id"
+            case usages
 
             case remainingLimit = "remaining_limit"
 
@@ -32,11 +32,11 @@ public extension PlatformClient.Payment {
         }
 
         public init(isActive: Bool, limit: Int, remainingLimit: Int, usages: Int, userId: String) {
-            self.usages = usages
+            self.userId = userId
 
             self.limit = limit
 
-            self.userId = userId
+            self.usages = usages
 
             self.remainingLimit = remainingLimit
 
@@ -46,11 +46,11 @@ public extension PlatformClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            usages = try container.decode(Int.self, forKey: .usages)
+            userId = try container.decode(String.self, forKey: .userId)
 
             limit = try container.decode(Int.self, forKey: .limit)
 
-            userId = try container.decode(String.self, forKey: .userId)
+            usages = try container.decode(Int.self, forKey: .usages)
 
             remainingLimit = try container.decode(Int.self, forKey: .remainingLimit)
 
@@ -60,11 +60,11 @@ public extension PlatformClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(usages, forKey: .usages)
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(limit, forKey: .limit)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
+            try? container.encodeIfPresent(usages, forKey: .usages)
 
             try? container.encodeIfPresent(remainingLimit, forKey: .remainingLimit)
 
@@ -80,22 +80,22 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class CODdata: Codable {
-        public var usages: Int
+        public var userId: String
 
         public var limit: Int
 
-        public var userId: String
+        public var usages: Int
 
         public var remainingLimit: Int
 
         public var isActive: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case usages
+            case userId = "user_id"
 
             case limit
 
-            case userId = "user_id"
+            case usages
 
             case remainingLimit = "remaining_limit"
 
@@ -103,11 +103,11 @@ public extension PlatformClient.ApplicationClient.Payment {
         }
 
         public init(isActive: Bool, limit: Int, remainingLimit: Int, usages: Int, userId: String) {
-            self.usages = usages
+            self.userId = userId
 
             self.limit = limit
 
-            self.userId = userId
+            self.usages = usages
 
             self.remainingLimit = remainingLimit
 
@@ -117,11 +117,11 @@ public extension PlatformClient.ApplicationClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            usages = try container.decode(Int.self, forKey: .usages)
+            userId = try container.decode(String.self, forKey: .userId)
 
             limit = try container.decode(Int.self, forKey: .limit)
 
-            userId = try container.decode(String.self, forKey: .userId)
+            usages = try container.decode(Int.self, forKey: .usages)
 
             remainingLimit = try container.decode(Int.self, forKey: .remainingLimit)
 
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(usages, forKey: .usages)
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(limit, forKey: .limit)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
+            try? container.encodeIfPresent(usages, forKey: .usages)
 
             try? container.encodeIfPresent(remainingLimit, forKey: .remainingLimit)
 

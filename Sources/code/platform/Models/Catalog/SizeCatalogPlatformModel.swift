@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var quantity: Int?
 
-        public var value: String?
-
         public var isAvailable: Bool?
+
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
             case display
 
             case quantity
 
-            case value
-
             case isAvailable = "is_available"
+
+            case value
         }
 
         public init(display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, value: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.quantity = quantity
 
-            self.value = value
-
             self.isAvailable = isAvailable
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var quantity: Int?
 
-        public var value: String?
-
         public var isAvailable: Bool?
+
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
             case display
 
             case quantity
 
-            case value
-
             case isAvailable = "is_available"
+
+            case value
         }
 
         public init(display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, value: String? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.quantity = quantity
 
-            self.value = value
-
             self.isAvailable = isAvailable
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }

@@ -9,18 +9,18 @@ public extension ApplicationClient.Order {
     class ResponseGetInvoiceShipment: Codable {
         public var success: Bool
 
-        public var presignedType: String
-
         public var shipmentId: String
+
+        public var presignedType: String
 
         public var presignedUrl: String
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case presignedType = "presigned_type"
-
             case shipmentId = "shipment_id"
+
+            case presignedType = "presigned_type"
 
             case presignedUrl = "presigned_url"
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Order {
         public init(presignedType: String, presignedUrl: String, shipmentId: String, success: Bool) {
             self.success = success
 
-            self.presignedType = presignedType
-
             self.shipmentId = shipmentId
+
+            self.presignedType = presignedType
 
             self.presignedUrl = presignedUrl
         }
@@ -40,9 +40,9 @@ public extension ApplicationClient.Order {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            presignedType = try container.decode(String.self, forKey: .presignedType)
-
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            presignedType = try container.decode(String.self, forKey: .presignedType)
 
             presignedUrl = try container.decode(String.self, forKey: .presignedUrl)
         }
@@ -52,9 +52,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(presignedType, forKey: .presignedType)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(presignedType, forKey: .presignedType)
 
             try? container.encodeIfPresent(presignedUrl, forKey: .presignedUrl)
         }

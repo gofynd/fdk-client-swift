@@ -1710,6 +1710,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -1949,6 +1960,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -2188,6 +2210,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -4749,6 +4782,7 @@ Success
  | logistics | [AppLogisticsConfig](#AppLogisticsConfig)? |  yes  |  |
  | business | String? |  yes  |  |
  | commsEnabled | Bool? |  yes  |  |
+ | communication | [CommunicationConfig](#CommunicationConfig)? |  yes  |  |
  | platforms | [String]? |  yes  |  |
  | id | String? |  yes  |  |
  | loyaltyPoints | [LoyaltyPointsConfig](#LoyaltyPointsConfig)? |  yes  |  |
@@ -5076,6 +5110,7 @@ Success
  | payment | [AppPaymentConfig](#AppPaymentConfig)? |  yes  |  |
  | loyaltyPoints | [LoyaltyPointsConfig](#LoyaltyPointsConfig)? |  yes  |  |
  | commsEnabled | Bool? |  yes  |  |
+ | communication | [CommunicationConfig](#CommunicationConfig)? |  yes  |  |
 
 ---
 
@@ -5191,6 +5226,30 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | enabled | Bool? |  yes  | If pan card accepting is enabled on cart |
  | thresholdAmount | Double? |  yes  | On which amount pan card number is expected from customer for order |
+
+---
+
+
+ 
+ 
+ #### [CommunicationConfig](#CommunicationConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [CommsConfig](#CommsConfig)? |  yes  |  |
+ | sms | [CommsConfig](#CommsConfig)? |  yes  |  |
+ | voice | [CommsConfig](#CommsConfig)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CommsConfig](#CommsConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  | Check current communication channel is enabled |
 
 ---
 
