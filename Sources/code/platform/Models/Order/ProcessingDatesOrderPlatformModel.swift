@@ -11,42 +11,42 @@ public extension PlatformClient.Order {
     class ProcessingDates: Codable {
         public var confirmByDate: String?
 
-        public var packByDate: String?
-
         public var dpPickupSlot: [String: Any]?
+
+        public var packByDate: String?
 
         public var customerPickupSlot: [String: Any]?
 
-        public var dispatchAfterDate: String?
-
         public var dispatchByDate: String?
+
+        public var dispatchAfterDate: String?
 
         public enum CodingKeys: String, CodingKey {
             case confirmByDate = "confirm_by_date"
 
-            case packByDate = "pack_by_date"
-
             case dpPickupSlot = "dp_pickup_slot"
+
+            case packByDate = "pack_by_date"
 
             case customerPickupSlot = "customer_pickup_slot"
 
-            case dispatchAfterDate = "dispatch_after_date"
-
             case dispatchByDate = "dispatch_by_date"
+
+            case dispatchAfterDate = "dispatch_after_date"
         }
 
         public init(confirmByDate: String? = nil, customerPickupSlot: [String: Any]? = nil, dispatchAfterDate: String? = nil, dispatchByDate: String? = nil, dpPickupSlot: [String: Any]? = nil, packByDate: String? = nil) {
             self.confirmByDate = confirmByDate
 
-            self.packByDate = packByDate
-
             self.dpPickupSlot = dpPickupSlot
+
+            self.packByDate = packByDate
 
             self.customerPickupSlot = customerPickupSlot
 
-            self.dispatchAfterDate = dispatchAfterDate
-
             self.dispatchByDate = dispatchByDate
+
+            self.dispatchAfterDate = dispatchAfterDate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,14 +54,6 @@ public extension PlatformClient.Order {
 
             do {
                 confirmByDate = try container.decode(String.self, forKey: .confirmByDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                packByDate = try container.decode(String.self, forKey: .packByDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +69,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                customerPickupSlot = try container.decode([String: Any].self, forKey: .customerPickupSlot)
+                packByDate = try container.decode(String.self, forKey: .packByDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +77,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                dispatchAfterDate = try container.decode(String.self, forKey: .dispatchAfterDate)
+                customerPickupSlot = try container.decode([String: Any].self, forKey: .customerPickupSlot)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,6 +91,14 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                dispatchAfterDate = try container.decode(String.self, forKey: .dispatchAfterDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -106,15 +106,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(confirmByDate, forKey: .confirmByDate)
 
-            try? container.encodeIfPresent(packByDate, forKey: .packByDate)
-
             try? container.encodeIfPresent(dpPickupSlot, forKey: .dpPickupSlot)
+
+            try? container.encodeIfPresent(packByDate, forKey: .packByDate)
 
             try? container.encodeIfPresent(customerPickupSlot, forKey: .customerPickupSlot)
 
-            try? container.encodeIfPresent(dispatchAfterDate, forKey: .dispatchAfterDate)
-
             try? container.encodeIfPresent(dispatchByDate, forKey: .dispatchByDate)
+
+            try? container.encodeIfPresent(dispatchAfterDate, forKey: .dispatchAfterDate)
         }
     }
 }
@@ -128,42 +128,42 @@ public extension PlatformClient.ApplicationClient.Order {
     class ProcessingDates: Codable {
         public var confirmByDate: String?
 
-        public var packByDate: String?
-
         public var dpPickupSlot: [String: Any]?
+
+        public var packByDate: String?
 
         public var customerPickupSlot: [String: Any]?
 
-        public var dispatchAfterDate: String?
-
         public var dispatchByDate: String?
+
+        public var dispatchAfterDate: String?
 
         public enum CodingKeys: String, CodingKey {
             case confirmByDate = "confirm_by_date"
 
-            case packByDate = "pack_by_date"
-
             case dpPickupSlot = "dp_pickup_slot"
+
+            case packByDate = "pack_by_date"
 
             case customerPickupSlot = "customer_pickup_slot"
 
-            case dispatchAfterDate = "dispatch_after_date"
-
             case dispatchByDate = "dispatch_by_date"
+
+            case dispatchAfterDate = "dispatch_after_date"
         }
 
         public init(confirmByDate: String? = nil, customerPickupSlot: [String: Any]? = nil, dispatchAfterDate: String? = nil, dispatchByDate: String? = nil, dpPickupSlot: [String: Any]? = nil, packByDate: String? = nil) {
             self.confirmByDate = confirmByDate
 
-            self.packByDate = packByDate
-
             self.dpPickupSlot = dpPickupSlot
+
+            self.packByDate = packByDate
 
             self.customerPickupSlot = customerPickupSlot
 
-            self.dispatchAfterDate = dispatchAfterDate
-
             self.dispatchByDate = dispatchByDate
+
+            self.dispatchAfterDate = dispatchAfterDate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -171,14 +171,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 confirmByDate = try container.decode(String.self, forKey: .confirmByDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                packByDate = try container.decode(String.self, forKey: .packByDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,7 +186,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                customerPickupSlot = try container.decode([String: Any].self, forKey: .customerPickupSlot)
+                packByDate = try container.decode(String.self, forKey: .packByDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,7 +194,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                dispatchAfterDate = try container.decode(String.self, forKey: .dispatchAfterDate)
+                customerPickupSlot = try container.decode([String: Any].self, forKey: .customerPickupSlot)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -216,6 +208,14 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                dispatchAfterDate = try container.decode(String.self, forKey: .dispatchAfterDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -223,15 +223,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(confirmByDate, forKey: .confirmByDate)
 
-            try? container.encodeIfPresent(packByDate, forKey: .packByDate)
-
             try? container.encodeIfPresent(dpPickupSlot, forKey: .dpPickupSlot)
+
+            try? container.encodeIfPresent(packByDate, forKey: .packByDate)
 
             try? container.encodeIfPresent(customerPickupSlot, forKey: .customerPickupSlot)
 
-            try? container.encodeIfPresent(dispatchAfterDate, forKey: .dispatchAfterDate)
-
             try? container.encodeIfPresent(dispatchByDate, forKey: .dispatchByDate)
+
+            try? container.encodeIfPresent(dispatchAfterDate, forKey: .dispatchAfterDate)
         }
     }
 }

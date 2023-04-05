@@ -9,15 +9,11 @@ public extension PlatformClient.Order {
      */
 
     class FulfillingStore: Codable {
-        public var id: Int
-
-        public var phone: String
-
-        public var storeName: String
-
         public var contactPerson: String
 
-        public var fulfillmentChannel: String
+        public var code: String
+
+        public var storeName: String
 
         public var city: String
 
@@ -25,24 +21,24 @@ public extension PlatformClient.Order {
 
         public var pincode: String
 
-        public var meta: [String: Any]
+        public var id: Int
 
-        public var state: String
-
-        public var code: String
+        public var fulfillmentChannel: String
 
         public var country: String
 
+        public var state: String
+
+        public var meta: [String: Any]
+
+        public var phone: String
+
         public enum CodingKeys: String, CodingKey {
-            case id
-
-            case phone
-
-            case storeName = "store_name"
-
             case contactPerson = "contact_person"
 
-            case fulfillmentChannel = "fulfillment_channel"
+            case code
+
+            case storeName = "store_name"
 
             case city
 
@@ -50,25 +46,25 @@ public extension PlatformClient.Order {
 
             case pincode
 
-            case meta
+            case id
+
+            case fulfillmentChannel = "fulfillment_channel"
+
+            case country
 
             case state
 
-            case code
+            case meta
 
-            case country
+            case phone
         }
 
         public init(address: String, city: String, code: String, contactPerson: String, country: String, fulfillmentChannel: String, id: Int, meta: [String: Any], phone: String, pincode: String, state: String, storeName: String) {
-            self.id = id
-
-            self.phone = phone
-
-            self.storeName = storeName
-
             self.contactPerson = contactPerson
 
-            self.fulfillmentChannel = fulfillmentChannel
+            self.code = code
+
+            self.storeName = storeName
 
             self.city = city
 
@@ -76,27 +72,27 @@ public extension PlatformClient.Order {
 
             self.pincode = pincode
 
-            self.meta = meta
+            self.id = id
+
+            self.fulfillmentChannel = fulfillmentChannel
+
+            self.country = country
 
             self.state = state
 
-            self.code = code
+            self.meta = meta
 
-            self.country = country
+            self.phone = phone
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            id = try container.decode(Int.self, forKey: .id)
-
-            phone = try container.decode(String.self, forKey: .phone)
-
-            storeName = try container.decode(String.self, forKey: .storeName)
-
             contactPerson = try container.decode(String.self, forKey: .contactPerson)
 
-            fulfillmentChannel = try container.decode(String.self, forKey: .fulfillmentChannel)
+            code = try container.decode(String.self, forKey: .code)
+
+            storeName = try container.decode(String.self, forKey: .storeName)
 
             city = try container.decode(String.self, forKey: .city)
 
@@ -104,27 +100,27 @@ public extension PlatformClient.Order {
 
             pincode = try container.decode(String.self, forKey: .pincode)
 
-            meta = try container.decode([String: Any].self, forKey: .meta)
+            id = try container.decode(Int.self, forKey: .id)
+
+            fulfillmentChannel = try container.decode(String.self, forKey: .fulfillmentChannel)
+
+            country = try container.decode(String.self, forKey: .country)
 
             state = try container.decode(String.self, forKey: .state)
 
-            code = try container.decode(String.self, forKey: .code)
+            meta = try container.decode([String: Any].self, forKey: .meta)
 
-            country = try container.decode(String.self, forKey: .country)
+            phone = try container.decode(String.self, forKey: .phone)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(phone, forKey: .phone)
-
-            try? container.encodeIfPresent(storeName, forKey: .storeName)
-
             try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
 
-            try? container.encodeIfPresent(fulfillmentChannel, forKey: .fulfillmentChannel)
+            try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(storeName, forKey: .storeName)
 
             try? container.encodeIfPresent(city, forKey: .city)
 
@@ -132,13 +128,17 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(fulfillmentChannel, forKey: .fulfillmentChannel)
+
+            try? container.encodeIfPresent(country, forKey: .country)
 
             try? container.encodeIfPresent(state, forKey: .state)
 
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(phone, forKey: .phone)
         }
     }
 }
@@ -150,15 +150,11 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class FulfillingStore: Codable {
-        public var id: Int
-
-        public var phone: String
-
-        public var storeName: String
-
         public var contactPerson: String
 
-        public var fulfillmentChannel: String
+        public var code: String
+
+        public var storeName: String
 
         public var city: String
 
@@ -166,24 +162,24 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var pincode: String
 
-        public var meta: [String: Any]
+        public var id: Int
 
-        public var state: String
-
-        public var code: String
+        public var fulfillmentChannel: String
 
         public var country: String
 
+        public var state: String
+
+        public var meta: [String: Any]
+
+        public var phone: String
+
         public enum CodingKeys: String, CodingKey {
-            case id
-
-            case phone
-
-            case storeName = "store_name"
-
             case contactPerson = "contact_person"
 
-            case fulfillmentChannel = "fulfillment_channel"
+            case code
+
+            case storeName = "store_name"
 
             case city
 
@@ -191,25 +187,25 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case pincode
 
-            case meta
+            case id
+
+            case fulfillmentChannel = "fulfillment_channel"
+
+            case country
 
             case state
 
-            case code
+            case meta
 
-            case country
+            case phone
         }
 
         public init(address: String, city: String, code: String, contactPerson: String, country: String, fulfillmentChannel: String, id: Int, meta: [String: Any], phone: String, pincode: String, state: String, storeName: String) {
-            self.id = id
-
-            self.phone = phone
-
-            self.storeName = storeName
-
             self.contactPerson = contactPerson
 
-            self.fulfillmentChannel = fulfillmentChannel
+            self.code = code
+
+            self.storeName = storeName
 
             self.city = city
 
@@ -217,27 +213,27 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.pincode = pincode
 
-            self.meta = meta
+            self.id = id
+
+            self.fulfillmentChannel = fulfillmentChannel
+
+            self.country = country
 
             self.state = state
 
-            self.code = code
+            self.meta = meta
 
-            self.country = country
+            self.phone = phone
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            id = try container.decode(Int.self, forKey: .id)
-
-            phone = try container.decode(String.self, forKey: .phone)
-
-            storeName = try container.decode(String.self, forKey: .storeName)
-
             contactPerson = try container.decode(String.self, forKey: .contactPerson)
 
-            fulfillmentChannel = try container.decode(String.self, forKey: .fulfillmentChannel)
+            code = try container.decode(String.self, forKey: .code)
+
+            storeName = try container.decode(String.self, forKey: .storeName)
 
             city = try container.decode(String.self, forKey: .city)
 
@@ -245,27 +241,27 @@ public extension PlatformClient.ApplicationClient.Order {
 
             pincode = try container.decode(String.self, forKey: .pincode)
 
-            meta = try container.decode([String: Any].self, forKey: .meta)
+            id = try container.decode(Int.self, forKey: .id)
+
+            fulfillmentChannel = try container.decode(String.self, forKey: .fulfillmentChannel)
+
+            country = try container.decode(String.self, forKey: .country)
 
             state = try container.decode(String.self, forKey: .state)
 
-            code = try container.decode(String.self, forKey: .code)
+            meta = try container.decode([String: Any].self, forKey: .meta)
 
-            country = try container.decode(String.self, forKey: .country)
+            phone = try container.decode(String.self, forKey: .phone)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(phone, forKey: .phone)
-
-            try? container.encodeIfPresent(storeName, forKey: .storeName)
-
             try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
 
-            try? container.encodeIfPresent(fulfillmentChannel, forKey: .fulfillmentChannel)
+            try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(storeName, forKey: .storeName)
 
             try? container.encodeIfPresent(city, forKey: .city)
 
@@ -273,13 +269,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(fulfillmentChannel, forKey: .fulfillmentChannel)
+
+            try? container.encodeIfPresent(country, forKey: .country)
 
             try? container.encodeIfPresent(state, forKey: .state)
 
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(phone, forKey: .phone)
         }
     }
 }

@@ -33,6 +33,7 @@ Content System
 * [updateFaq](#updatefaq)
 * [deleteFaq](#deletefaq)
 * [getFaqByIdOrSlug](#getfaqbyidorslug)
+* [generateSEOTitle](#generateseotitle)
 * [getLandingPages](#getlandingpages)
 * [createLandingPage](#createlandingpage)
 * [updateLandingPage](#updatelandingpage)
@@ -2265,6 +2266,72 @@ Success. Refer `CreateFaqResponseSchema` for more details.
   }
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### generateSEOTitle
+Get SEO meta tag title for content
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").content.generateSEOTitle(type: type, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| type | GenerationEntityType | yes | String representing the type of SEO content to be generated. Possible values are: title, description |  
+| body | GenerateSEOContent | yes | Request body |
+
+
+Use this API to get GPT3 generated SEO meta tag title for content
+
+*Returned Response:*
+
+
+
+
+[GeneratedSEOContent](#GeneratedSEOContent)
+
+Returns the generated SEO title
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "title": "SEO Title example",
+    "description": "SEO Description example"
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -7355,6 +7422,32 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
 
  
  
+ #### [GenerateSEOContent](#GenerateSEOContent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text | String? |  yes  |  |
+ | existingText | String? |  yes  |  |
+ | keywords | [String]? |  yes  |  |
+ | type | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GeneratedSEOContent](#GeneratedSEOContent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | String? |  yes  |  |
+ | description | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [ApplicationLegal](#ApplicationLegal)
 
  | Properties | Type | Nullable | Description |
@@ -7396,7 +7489,19 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | redirectTo | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
- | source | [TagSourceSchema](#TagSourceSchema)? |  yes  |  |
+ | source | [PathSourceSchema](#PathSourceSchema)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PathSourceSchema](#PathSourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -8783,6 +8888,18 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
 ### Enums
 
 
+
+
+
+ #### [GenerationEntityType](#GenerationEntityType)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | title | title | Denotes title will be generated |
+ | description | description | Denotes description will be generated |
+
+---
 
 
 

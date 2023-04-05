@@ -11,30 +11,30 @@ public extension ApplicationClient.Cart {
 
         public var mrpPromotion: Bool?
 
-        public var ownership: Ownership?
+        public var promoId: String?
 
         public var offerText: String?
 
         public var promotionType: String?
 
-        public var articleQuantity: Int?
+        public var ownership: Ownership?
 
-        public var promoId: String?
+        public var articleQuantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
             case mrpPromotion = "mrp_promotion"
 
-            case ownership
+            case promoId = "promo_id"
 
             case offerText = "offer_text"
 
             case promotionType = "promotion_type"
 
-            case articleQuantity = "article_quantity"
+            case ownership
 
-            case promoId = "promo_id"
+            case articleQuantity = "article_quantity"
         }
 
         public init(amount: Double? = nil, articleQuantity: Int? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership? = nil, promotionType: String? = nil, promoId: String? = nil) {
@@ -42,15 +42,15 @@ public extension ApplicationClient.Cart {
 
             self.mrpPromotion = mrpPromotion
 
-            self.ownership = ownership
+            self.promoId = promoId
 
             self.offerText = offerText
 
             self.promotionType = promotionType
 
-            self.articleQuantity = articleQuantity
+            self.ownership = ownership
 
-            self.promoId = promoId
+            self.articleQuantity = articleQuantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                ownership = try container.decode(Ownership.self, forKey: .ownership)
+                promoId = try container.decode(String.self, forKey: .promoId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
+                ownership = try container.decode(Ownership.self, forKey: .ownership)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                promoId = try container.decode(String.self, forKey: .promoId)
+                articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,15 +120,15 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
 
-            try? container.encodeIfPresent(ownership, forKey: .ownership)
+            try? container.encodeIfPresent(promoId, forKey: .promoId)
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 
             try? container.encodeIfPresent(promotionType, forKey: .promotionType)
 
-            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
+            try? container.encodeIfPresent(ownership, forKey: .ownership)
 
-            try? container.encodeIfPresent(promoId, forKey: .promoId)
+            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
         }
     }
 }
