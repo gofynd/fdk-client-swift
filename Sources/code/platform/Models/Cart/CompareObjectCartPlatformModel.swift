@@ -15,9 +15,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var greaterThanEquals: Double?
 
-        public var lessThanEquals: Double?
-
         public var greaterThan: Double?
+
+        public var lessThanEquals: Double?
 
         public enum CodingKeys: String, CodingKey {
             case lessThan = "less_than"
@@ -26,9 +26,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case greaterThanEquals = "greater_than_equals"
 
-            case lessThanEquals = "less_than_equals"
-
             case greaterThan = "greater_than"
+
+            case lessThanEquals = "less_than_equals"
         }
 
         public init(equals: Double? = nil, greaterThan: Double? = nil, greaterThanEquals: Double? = nil, lessThan: Double? = nil, lessThanEquals: Double? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.greaterThanEquals = greaterThanEquals
 
-            self.lessThanEquals = lessThanEquals
-
             self.greaterThan = greaterThan
+
+            self.lessThanEquals = lessThanEquals
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                lessThanEquals = try container.decode(Double.self, forKey: .lessThanEquals)
+                greaterThan = try container.decode(Double.self, forKey: .greaterThan)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                greaterThan = try container.decode(Double.self, forKey: .greaterThan)
+                lessThanEquals = try container.decode(Double.self, forKey: .lessThanEquals)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,9 +96,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(greaterThanEquals, forKey: .greaterThanEquals)
 
-            try? container.encodeIfPresent(lessThanEquals, forKey: .lessThanEquals)
-
             try? container.encodeIfPresent(greaterThan, forKey: .greaterThan)
+
+            try? container.encodeIfPresent(lessThanEquals, forKey: .lessThanEquals)
         }
     }
 }

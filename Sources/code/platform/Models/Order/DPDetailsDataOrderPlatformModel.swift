@@ -13,50 +13,50 @@ public extension PlatformClient.Order {
 
         public var ewayBillNumber: Int?
 
-        public var gstTag: String?
-
-        public var pincode: String?
-
-        public var awbNo: String?
-
-        public var dpReturnCharges: Int?
-
         public var name: String?
 
         public var trackUrl: String?
 
+        public var dpCharges: Int?
+
+        public var ewayBillId: String?
+
         public var country: String?
 
-        public var dpCharges: Int?
+        public var dpReturnCharges: Int?
 
         public var amountHandlingCharges: Int?
 
-        public var ewayBillId: String?
+        public var awbNo: String?
+
+        public var pincode: String?
+
+        public var gstTag: String?
 
         public enum CodingKeys: String, CodingKey {
             case id
 
             case ewayBillNumber = "eway_bill_number"
 
-            case gstTag = "gst_tag"
-
-            case pincode
-
-            case awbNo = "awb_no"
-
-            case dpReturnCharges = "dp_return_charges"
-
             case name
 
             case trackUrl = "track_url"
 
+            case dpCharges = "dp_charges"
+
+            case ewayBillId = "eway_bill_id"
+
             case country
 
-            case dpCharges = "dp_charges"
+            case dpReturnCharges = "dp_return_charges"
 
             case amountHandlingCharges = "amount_handling_charges"
 
-            case ewayBillId = "eway_bill_id"
+            case awbNo = "awb_no"
+
+            case pincode
+
+            case gstTag = "gst_tag"
         }
 
         public init(amountHandlingCharges: Int? = nil, awbNo: String? = nil, country: String? = nil, dpCharges: Int? = nil, dpReturnCharges: Int? = nil, ewayBillId: String? = nil, ewayBillNumber: Int? = nil, gstTag: String? = nil, id: Int? = nil, name: String? = nil, pincode: String? = nil, trackUrl: String? = nil) {
@@ -64,25 +64,25 @@ public extension PlatformClient.Order {
 
             self.ewayBillNumber = ewayBillNumber
 
-            self.gstTag = gstTag
-
-            self.pincode = pincode
-
-            self.awbNo = awbNo
-
-            self.dpReturnCharges = dpReturnCharges
-
             self.name = name
 
             self.trackUrl = trackUrl
 
+            self.dpCharges = dpCharges
+
+            self.ewayBillId = ewayBillId
+
             self.country = country
 
-            self.dpCharges = dpCharges
+            self.dpReturnCharges = dpReturnCharges
 
             self.amountHandlingCharges = amountHandlingCharges
 
-            self.ewayBillId = ewayBillId
+            self.awbNo = awbNo
+
+            self.pincode = pincode
+
+            self.gstTag = gstTag
         }
 
         required public init(from decoder: Decoder) throws {
@@ -98,38 +98,6 @@ public extension PlatformClient.Order {
 
             do {
                 ewayBillNumber = try container.decode(Int.self, forKey: .ewayBillNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                gstTag = try container.decode(String.self, forKey: .gstTag)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pincode = try container.decode(String.self, forKey: .pincode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                awbNo = try container.decode(String.self, forKey: .awbNo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dpReturnCharges = try container.decode(Int.self, forKey: .dpReturnCharges)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,6 +121,22 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                dpCharges = try container.decode(Int.self, forKey: .dpCharges)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                ewayBillId = try container.decode(String.self, forKey: .ewayBillId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 country = try container.decode(String.self, forKey: .country)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -161,7 +145,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                dpCharges = try container.decode(Int.self, forKey: .dpCharges)
+                dpReturnCharges = try container.decode(Int.self, forKey: .dpReturnCharges)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -177,7 +161,23 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                ewayBillId = try container.decode(String.self, forKey: .ewayBillId)
+                awbNo = try container.decode(String.self, forKey: .awbNo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                pincode = try container.decode(String.self, forKey: .pincode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                gstTag = try container.decode(String.self, forKey: .gstTag)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -192,25 +192,25 @@ public extension PlatformClient.Order {
 
             try? container.encode(ewayBillNumber, forKey: .ewayBillNumber)
 
-            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
-            try? container.encodeIfPresent(awbNo, forKey: .awbNo)
-
-            try? container.encodeIfPresent(dpReturnCharges, forKey: .dpReturnCharges)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encode(trackUrl, forKey: .trackUrl)
 
+            try? container.encodeIfPresent(dpCharges, forKey: .dpCharges)
+
+            try? container.encode(ewayBillId, forKey: .ewayBillId)
+
             try? container.encodeIfPresent(country, forKey: .country)
 
-            try? container.encodeIfPresent(dpCharges, forKey: .dpCharges)
+            try? container.encodeIfPresent(dpReturnCharges, forKey: .dpReturnCharges)
 
             try? container.encodeIfPresent(amountHandlingCharges, forKey: .amountHandlingCharges)
 
-            try? container.encode(ewayBillId, forKey: .ewayBillId)
+            try? container.encodeIfPresent(awbNo, forKey: .awbNo)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
         }
     }
 }
@@ -226,50 +226,50 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var ewayBillNumber: Int?
 
-        public var gstTag: String?
-
-        public var pincode: String?
-
-        public var awbNo: String?
-
-        public var dpReturnCharges: Int?
-
         public var name: String?
 
         public var trackUrl: String?
 
+        public var dpCharges: Int?
+
+        public var ewayBillId: String?
+
         public var country: String?
 
-        public var dpCharges: Int?
+        public var dpReturnCharges: Int?
 
         public var amountHandlingCharges: Int?
 
-        public var ewayBillId: String?
+        public var awbNo: String?
+
+        public var pincode: String?
+
+        public var gstTag: String?
 
         public enum CodingKeys: String, CodingKey {
             case id
 
             case ewayBillNumber = "eway_bill_number"
 
-            case gstTag = "gst_tag"
-
-            case pincode
-
-            case awbNo = "awb_no"
-
-            case dpReturnCharges = "dp_return_charges"
-
             case name
 
             case trackUrl = "track_url"
 
+            case dpCharges = "dp_charges"
+
+            case ewayBillId = "eway_bill_id"
+
             case country
 
-            case dpCharges = "dp_charges"
+            case dpReturnCharges = "dp_return_charges"
 
             case amountHandlingCharges = "amount_handling_charges"
 
-            case ewayBillId = "eway_bill_id"
+            case awbNo = "awb_no"
+
+            case pincode
+
+            case gstTag = "gst_tag"
         }
 
         public init(amountHandlingCharges: Int? = nil, awbNo: String? = nil, country: String? = nil, dpCharges: Int? = nil, dpReturnCharges: Int? = nil, ewayBillId: String? = nil, ewayBillNumber: Int? = nil, gstTag: String? = nil, id: Int? = nil, name: String? = nil, pincode: String? = nil, trackUrl: String? = nil) {
@@ -277,25 +277,25 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.ewayBillNumber = ewayBillNumber
 
-            self.gstTag = gstTag
-
-            self.pincode = pincode
-
-            self.awbNo = awbNo
-
-            self.dpReturnCharges = dpReturnCharges
-
             self.name = name
 
             self.trackUrl = trackUrl
 
+            self.dpCharges = dpCharges
+
+            self.ewayBillId = ewayBillId
+
             self.country = country
 
-            self.dpCharges = dpCharges
+            self.dpReturnCharges = dpReturnCharges
 
             self.amountHandlingCharges = amountHandlingCharges
 
-            self.ewayBillId = ewayBillId
+            self.awbNo = awbNo
+
+            self.pincode = pincode
+
+            self.gstTag = gstTag
         }
 
         required public init(from decoder: Decoder) throws {
@@ -311,38 +311,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 ewayBillNumber = try container.decode(Int.self, forKey: .ewayBillNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                gstTag = try container.decode(String.self, forKey: .gstTag)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pincode = try container.decode(String.self, forKey: .pincode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                awbNo = try container.decode(String.self, forKey: .awbNo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dpReturnCharges = try container.decode(Int.self, forKey: .dpReturnCharges)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -366,6 +334,22 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                dpCharges = try container.decode(Int.self, forKey: .dpCharges)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                ewayBillId = try container.decode(String.self, forKey: .ewayBillId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 country = try container.decode(String.self, forKey: .country)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -374,7 +358,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                dpCharges = try container.decode(Int.self, forKey: .dpCharges)
+                dpReturnCharges = try container.decode(Int.self, forKey: .dpReturnCharges)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -390,7 +374,23 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                ewayBillId = try container.decode(String.self, forKey: .ewayBillId)
+                awbNo = try container.decode(String.self, forKey: .awbNo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                pincode = try container.decode(String.self, forKey: .pincode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                gstTag = try container.decode(String.self, forKey: .gstTag)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -405,25 +405,25 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encode(ewayBillNumber, forKey: .ewayBillNumber)
 
-            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
-            try? container.encodeIfPresent(awbNo, forKey: .awbNo)
-
-            try? container.encodeIfPresent(dpReturnCharges, forKey: .dpReturnCharges)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encode(trackUrl, forKey: .trackUrl)
 
+            try? container.encodeIfPresent(dpCharges, forKey: .dpCharges)
+
+            try? container.encode(ewayBillId, forKey: .ewayBillId)
+
             try? container.encodeIfPresent(country, forKey: .country)
 
-            try? container.encodeIfPresent(dpCharges, forKey: .dpCharges)
+            try? container.encodeIfPresent(dpReturnCharges, forKey: .dpReturnCharges)
 
             try? container.encodeIfPresent(amountHandlingCharges, forKey: .amountHandlingCharges)
 
-            try? container.encode(ewayBillId, forKey: .ewayBillId)
+            try? container.encodeIfPresent(awbNo, forKey: .awbNo)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
         }
     }
 }

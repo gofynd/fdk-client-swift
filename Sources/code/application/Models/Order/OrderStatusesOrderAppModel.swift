@@ -7,33 +7,33 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class OrderStatuses: Codable {
-        public var isSelected: Bool?
+        public var value: Int?
 
         public var display: String?
 
-        public var value: Int?
+        public var isSelected: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case isSelected = "is_selected"
+            case value
 
             case display
 
-            case value
+            case isSelected = "is_selected"
         }
 
         public init(display: String? = nil, isSelected: Bool? = nil, value: Int? = nil) {
-            self.isSelected = isSelected
+            self.value = value
 
             self.display = display
 
-            self.value = value
+            self.isSelected = isSelected
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
+                value = try container.decode(Int.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                value = try container.decode(Int.self, forKey: .value)
+                isSelected = try container.decode(Bool.self, forKey: .isSelected)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
         }
     }
 }

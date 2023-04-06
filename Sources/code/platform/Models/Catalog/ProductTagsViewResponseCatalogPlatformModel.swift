@@ -9,13 +9,13 @@ public extension PlatformClient.Catalog {
      */
 
     class ProductTagsViewResponse: Codable {
-        public var items: NestedTags?
+        public var items: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case items
         }
 
-        public init(items: NestedTags? = nil) {
+        public init(items: [String]? = nil) {
             self.items = items
         }
 
@@ -23,7 +23,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode(NestedTags.self, forKey: .items)
+                items = try container.decode([String].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,13 +46,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ProductTagsViewResponse: Codable {
-        public var items: NestedTags?
+        public var items: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case items
         }
 
-        public init(items: NestedTags? = nil) {
+        public init(items: [String]? = nil) {
             self.items = items
         }
 
@@ -60,7 +60,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode(NestedTags.self, forKey: .items)
+                items = try container.decode([String].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

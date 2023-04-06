@@ -2,34 +2,34 @@
 
 import Foundation
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Order {
     /*
-         Model: HsnCodesListingResponse
-         Used By: Catalog
+         Model: ContactDetails
+         Used By: Order
      */
 
-    class HsnCodesListingResponse: Codable {
-        public var items: [HsnCodesObject]?
+    class ContactDetails: Codable {
+        public var phone: [PhoneDetails]?
 
-        public var page: PageResponse?
+        public var emails: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case items
+            case phone
 
-            case page
+            case emails
         }
 
-        public init(items: [HsnCodesObject]? = nil, page: PageResponse? = nil) {
-            self.items = items
+        public init(emails: [String]? = nil, phone: [PhoneDetails]? = nil) {
+            self.phone = phone
 
-            self.page = page
+            self.emails = emails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([HsnCodesObject].self, forKey: .items)
+                phone = try container.decode([PhoneDetails].self, forKey: .phone)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                page = try container.decode(PageResponse.self, forKey: .page)
+                emails = try container.decode([String].self, forKey: .emails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(phone, forKey: .phone)
 
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(emails, forKey: .emails)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: HsnCodesListingResponse
-         Used By: Catalog
+         Model: ContactDetails
+         Used By: Order
      */
 
-    class HsnCodesListingResponse: Codable {
-        public var items: [HsnCodesObject]?
+    class ContactDetails: Codable {
+        public var phone: [PhoneDetails]?
 
-        public var page: PageResponse?
+        public var emails: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case items
+            case phone
 
-            case page
+            case emails
         }
 
-        public init(items: [HsnCodesObject]? = nil, page: PageResponse? = nil) {
-            self.items = items
+        public init(emails: [String]? = nil, phone: [PhoneDetails]? = nil) {
+            self.phone = phone
 
-            self.page = page
+            self.emails = emails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([HsnCodesObject].self, forKey: .items)
+                phone = try container.decode([PhoneDetails].self, forKey: .phone)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                page = try container.decode(PageResponse.self, forKey: .page)
+                emails = try container.decode([String].self, forKey: .emails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(phone, forKey: .phone)
 
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(emails, forKey: .emails)
         }
     }
 }

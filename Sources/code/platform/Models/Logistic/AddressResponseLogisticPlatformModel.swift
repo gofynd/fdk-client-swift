@@ -13,38 +13,38 @@ public extension PlatformClient.Logistic {
 
         public var latitude: Double?
 
-        public var longitude: Double?
-
-        public var city: String?
-
-        public var country: String?
+        public var state: String?
 
         public var pincode: Int?
 
-        public var address2: String?
-
-        public var state: String?
+        public var city: String?
 
         public var landmark: String?
+
+        public var country: String?
+
+        public var address2: String?
+
+        public var longitude: Double?
 
         public enum CodingKeys: String, CodingKey {
             case address1
 
             case latitude
 
-            case longitude
-
-            case city
-
-            case country
+            case state
 
             case pincode
 
-            case address2
-
-            case state
+            case city
 
             case landmark
+
+            case country
+
+            case address2
+
+            case longitude
         }
 
         public init(address1: String? = nil, address2: String? = nil, city: String? = nil, country: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, pincode: Int? = nil, state: String? = nil) {
@@ -52,19 +52,19 @@ public extension PlatformClient.Logistic {
 
             self.latitude = latitude
 
-            self.longitude = longitude
-
-            self.city = city
-
-            self.country = country
+            self.state = state
 
             self.pincode = pincode
 
-            self.address2 = address2
-
-            self.state = state
+            self.city = city
 
             self.landmark = landmark
+
+            self.country = country
+
+            self.address2 = address2
+
+            self.longitude = longitude
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,23 +87,7 @@ public extension PlatformClient.Logistic {
             } catch {}
 
             do {
-                longitude = try container.decode(Double.self, forKey: .longitude)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                city = try container.decode(String.self, forKey: .city)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                country = try container.decode(String.self, forKey: .country)
+                state = try container.decode(String.self, forKey: .state)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,15 +103,7 @@ public extension PlatformClient.Logistic {
             } catch {}
 
             do {
-                address2 = try container.decode(String.self, forKey: .address2)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                state = try container.decode(String.self, forKey: .state)
+                city = try container.decode(String.self, forKey: .city)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -136,6 +112,30 @@ public extension PlatformClient.Logistic {
 
             do {
                 landmark = try container.decode(String.self, forKey: .landmark)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                country = try container.decode(String.self, forKey: .country)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                address2 = try container.decode(String.self, forKey: .address2)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                longitude = try container.decode(Double.self, forKey: .longitude)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,19 +150,19 @@ public extension PlatformClient.Logistic {
 
             try? container.encodeIfPresent(latitude, forKey: .latitude)
 
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
-
-            try? container.encodeIfPresent(city, forKey: .city)
-
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(address2, forKey: .address2)
-
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encodeIfPresent(city, forKey: .city)
 
             try? container.encodeIfPresent(landmark, forKey: .landmark)
+
+            try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(address2, forKey: .address2)
+
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
         }
     }
 }
@@ -178,38 +178,38 @@ public extension PlatformClient.ApplicationClient.Logistic {
 
         public var latitude: Double?
 
-        public var longitude: Double?
-
-        public var city: String?
-
-        public var country: String?
+        public var state: String?
 
         public var pincode: Int?
 
-        public var address2: String?
-
-        public var state: String?
+        public var city: String?
 
         public var landmark: String?
+
+        public var country: String?
+
+        public var address2: String?
+
+        public var longitude: Double?
 
         public enum CodingKeys: String, CodingKey {
             case address1
 
             case latitude
 
-            case longitude
-
-            case city
-
-            case country
+            case state
 
             case pincode
 
-            case address2
-
-            case state
+            case city
 
             case landmark
+
+            case country
+
+            case address2
+
+            case longitude
         }
 
         public init(address1: String? = nil, address2: String? = nil, city: String? = nil, country: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, pincode: Int? = nil, state: String? = nil) {
@@ -217,19 +217,19 @@ public extension PlatformClient.ApplicationClient.Logistic {
 
             self.latitude = latitude
 
-            self.longitude = longitude
-
-            self.city = city
-
-            self.country = country
+            self.state = state
 
             self.pincode = pincode
 
-            self.address2 = address2
-
-            self.state = state
+            self.city = city
 
             self.landmark = landmark
+
+            self.country = country
+
+            self.address2 = address2
+
+            self.longitude = longitude
         }
 
         required public init(from decoder: Decoder) throws {
@@ -252,23 +252,7 @@ public extension PlatformClient.ApplicationClient.Logistic {
             } catch {}
 
             do {
-                longitude = try container.decode(Double.self, forKey: .longitude)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                city = try container.decode(String.self, forKey: .city)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                country = try container.decode(String.self, forKey: .country)
+                state = try container.decode(String.self, forKey: .state)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -284,15 +268,7 @@ public extension PlatformClient.ApplicationClient.Logistic {
             } catch {}
 
             do {
-                address2 = try container.decode(String.self, forKey: .address2)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                state = try container.decode(String.self, forKey: .state)
+                city = try container.decode(String.self, forKey: .city)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -301,6 +277,30 @@ public extension PlatformClient.ApplicationClient.Logistic {
 
             do {
                 landmark = try container.decode(String.self, forKey: .landmark)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                country = try container.decode(String.self, forKey: .country)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                address2 = try container.decode(String.self, forKey: .address2)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                longitude = try container.decode(Double.self, forKey: .longitude)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -315,19 +315,19 @@ public extension PlatformClient.ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(latitude, forKey: .latitude)
 
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
-
-            try? container.encodeIfPresent(city, forKey: .city)
-
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(address2, forKey: .address2)
-
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encodeIfPresent(city, forKey: .city)
 
             try? container.encodeIfPresent(landmark, forKey: .landmark)
+
+            try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(address2, forKey: .address2)
+
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
         }
     }
 }
