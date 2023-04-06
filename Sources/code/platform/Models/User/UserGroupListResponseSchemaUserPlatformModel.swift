@@ -4,32 +4,32 @@ import Foundation
 
 public extension PlatformClient.ApplicationClient.User {
     /*
-         Model: Debug
+         Model: UserGroupListResponseSchema
          Used By: User
      */
 
-    class Debug: Codable {
-        public var source: String?
+    class UserGroupListResponseSchema: Codable {
+        public var items: [UserGroupResponseSchema]?
 
-        public var platform: String?
+        public var page: PaginationSchema?
 
         public enum CodingKeys: String, CodingKey {
-            case source
+            case items
 
-            case platform
+            case page
         }
 
-        public init(platform: String? = nil, source: String? = nil) {
-            self.source = source
+        public init(items: [UserGroupResponseSchema]? = nil, page: PaginationSchema? = nil) {
+            self.items = items
 
-            self.platform = platform
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                source = try container.decode(String.self, forKey: .source)
+                items = try container.decode([UserGroupResponseSchema].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.ApplicationClient.User {
             } catch {}
 
             do {
-                platform = try container.decode(String.self, forKey: .platform)
+                page = try container.decode(PaginationSchema.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.ApplicationClient.User {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(platform, forKey: .platform)
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }

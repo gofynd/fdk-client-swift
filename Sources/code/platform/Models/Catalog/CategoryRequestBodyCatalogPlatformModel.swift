@@ -13,19 +13,19 @@ public extension PlatformClient.Catalog {
 
         public var departments: [Int]
 
-        public var isActive: Bool
+        public var synonyms: [String]?
 
-        public var level: Int
+        public var marketplaces: CategoryMapping?
 
         public var priority: Int?
 
-        public var synonyms: [String]?
+        public var level: Int
 
         public var tryouts: [String]?
 
-        public var hierarchy: [Hierarchy]?
+        public var isActive: Bool
 
-        public var marketplaces: CategoryMapping?
+        public var hierarchy: [Hierarchy]?
 
         public var slug: String?
 
@@ -36,19 +36,19 @@ public extension PlatformClient.Catalog {
 
             case departments
 
-            case isActive = "is_active"
+            case synonyms
 
-            case level
+            case marketplaces
 
             case priority
 
-            case synonyms
+            case level
 
             case tryouts
 
-            case hierarchy
+            case isActive = "is_active"
 
-            case marketplaces
+            case hierarchy
 
             case slug
 
@@ -60,19 +60,19 @@ public extension PlatformClient.Catalog {
 
             self.departments = departments
 
-            self.isActive = isActive
+            self.synonyms = synonyms
 
-            self.level = level
+            self.marketplaces = marketplaces
 
             self.priority = priority
 
-            self.synonyms = synonyms
+            self.level = level
 
             self.tryouts = tryouts
 
-            self.hierarchy = hierarchy
+            self.isActive = isActive
 
-            self.marketplaces = marketplaces
+            self.hierarchy = hierarchy
 
             self.slug = slug
 
@@ -86,18 +86,6 @@ public extension PlatformClient.Catalog {
 
             departments = try container.decode([Int].self, forKey: .departments)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            level = try container.decode(Int.self, forKey: .level)
-
-            do {
-                priority = try container.decode(Int.self, forKey: .priority)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             do {
                 synonyms = try container.decode([String].self, forKey: .synonyms)
 
@@ -107,6 +95,24 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
+                marketplaces = try container.decode(CategoryMapping.self, forKey: .marketplaces)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                priority = try container.decode(Int.self, forKey: .priority)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            level = try container.decode(Int.self, forKey: .level)
+
+            do {
                 tryouts = try container.decode([String].self, forKey: .tryouts)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -114,16 +120,10 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
             do {
                 hierarchy = try container.decode([Hierarchy].self, forKey: .hierarchy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                marketplaces = try container.decode(CategoryMapping.self, forKey: .marketplaces)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -154,19 +154,19 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(departments, forKey: .departments)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
 
-            try? container.encodeIfPresent(level, forKey: .level)
+            try? container.encodeIfPresent(marketplaces, forKey: .marketplaces)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
+            try? container.encodeIfPresent(level, forKey: .level)
 
             try? container.encodeIfPresent(tryouts, forKey: .tryouts)
 
-            try? container.encodeIfPresent(hierarchy, forKey: .hierarchy)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(marketplaces, forKey: .marketplaces)
+            try? container.encodeIfPresent(hierarchy, forKey: .hierarchy)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
@@ -186,19 +186,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var departments: [Int]
 
-        public var isActive: Bool
+        public var synonyms: [String]?
 
-        public var level: Int
+        public var marketplaces: CategoryMapping?
 
         public var priority: Int?
 
-        public var synonyms: [String]?
+        public var level: Int
 
         public var tryouts: [String]?
 
-        public var hierarchy: [Hierarchy]?
+        public var isActive: Bool
 
-        public var marketplaces: CategoryMapping?
+        public var hierarchy: [Hierarchy]?
 
         public var slug: String?
 
@@ -209,19 +209,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case departments
 
-            case isActive = "is_active"
+            case synonyms
 
-            case level
+            case marketplaces
 
             case priority
 
-            case synonyms
+            case level
 
             case tryouts
 
-            case hierarchy
+            case isActive = "is_active"
 
-            case marketplaces
+            case hierarchy
 
             case slug
 
@@ -233,19 +233,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.departments = departments
 
-            self.isActive = isActive
+            self.synonyms = synonyms
 
-            self.level = level
+            self.marketplaces = marketplaces
 
             self.priority = priority
 
-            self.synonyms = synonyms
+            self.level = level
 
             self.tryouts = tryouts
 
-            self.hierarchy = hierarchy
+            self.isActive = isActive
 
-            self.marketplaces = marketplaces
+            self.hierarchy = hierarchy
 
             self.slug = slug
 
@@ -259,18 +259,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             departments = try container.decode([Int].self, forKey: .departments)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            level = try container.decode(Int.self, forKey: .level)
-
-            do {
-                priority = try container.decode(Int.self, forKey: .priority)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             do {
                 synonyms = try container.decode([String].self, forKey: .synonyms)
 
@@ -280,6 +268,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
+                marketplaces = try container.decode(CategoryMapping.self, forKey: .marketplaces)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                priority = try container.decode(Int.self, forKey: .priority)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            level = try container.decode(Int.self, forKey: .level)
+
+            do {
                 tryouts = try container.decode([String].self, forKey: .tryouts)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -287,16 +293,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
             do {
                 hierarchy = try container.decode([Hierarchy].self, forKey: .hierarchy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                marketplaces = try container.decode(CategoryMapping.self, forKey: .marketplaces)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -327,19 +327,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(departments, forKey: .departments)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
 
-            try? container.encodeIfPresent(level, forKey: .level)
+            try? container.encodeIfPresent(marketplaces, forKey: .marketplaces)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
+            try? container.encodeIfPresent(level, forKey: .level)
 
             try? container.encodeIfPresent(tryouts, forKey: .tryouts)
 
-            try? container.encodeIfPresent(hierarchy, forKey: .hierarchy)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(marketplaces, forKey: .marketplaces)
+            try? container.encodeIfPresent(hierarchy, forKey: .hierarchy)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 

@@ -18,6 +18,10 @@ Authentication Service
 * [deleteActiveSessions](#deleteactivesessions)
 * [getPlatformConfig](#getplatformconfig)
 * [updatePlatformConfig](#updateplatformconfig)
+* [createUserGroup](#createusergroup)
+* [getUserGroups](#getusergroups)
+* [updateUserGroup](#updateusergroup)
+* [getUserGroupById](#getusergroupbyid)
 
 
 
@@ -888,6 +892,11 @@ Success. Returns a JSON object containing the all the platform configurations. R
       "appId": "token_123"
     }
   },
+  "session_config": {
+    "duration": 30,
+    "type": "Days",
+    "is_rolling": false
+  },
   "delete_account_reasons": [
     {
       "reason_text": "test",
@@ -1018,6 +1027,11 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
       "appId": "token_123"
     }
   },
+  "session_config": {
+    "duration": 30,
+    "type": "Days",
+    "is_rolling": false
+  },
   "delete_account_reasons": [
     {
       "reason_text": "test",
@@ -1032,6 +1046,301 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
   "_id": "5e04a5e5220bc15839ad9bc0",
   "created_at": "2019-12-26T12:21:57.878Z",
   "updated_at": "2020-08-13T14:31:09.878Z",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createUserGroup
+Create an User Group
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").user.createUserGroup(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | CreateUserGroupSchema | yes | Request body |
+
+
+Use this API to create new user Group
+
+*Returned Response:*
+
+
+
+
+[UserGroupResponseSchema](#UserGroupResponseSchema)
+
+Success. returns created User Group. `UserGroupResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_active": true,
+  "_id": "6345677535474fbb6944b7ce",
+  "name": "Group 1",
+  "description": "description",
+  "file_url": "url",
+  "status": "pending",
+  "uid": 1,
+  "application_id": "000000000000000000000001",
+  "created_at": "2022-10-11T12:54:13.539Z",
+  "modified_at": "2022-10-11T12:54:13.539Z",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getUserGroups
+Get User Groups mathcing criteria
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").user.getUserGroups(pageNo: pageNo, pageSize: pageSize, name: name, status: status, groupUid: groupUid) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pageNo | String? | no | page number for pagination result |   
+| pageSize | String? | no | page size for pagination result |   
+| name | String? | no | to seartch for User Groups which contains given string in their name |   
+| status | String? | no | to get User Groups with given status |   
+| groupUid | Int? | no | to get User Groups with given uid |  
+
+
+
+Use this API to get User Groups mathing criteria passed in query
+
+*Returned Response:*
+
+
+
+
+[UserGroupListResponseSchema](#UserGroupListResponseSchema)
+
+Success. User Group details. `UserGroupListResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "is_active": true,
+      "_id": "6345677535474fbb6944b7ce",
+      "name": "Group 1",
+      "description": "description",
+      "file_url": "url",
+      "status": "pending",
+      "uid": 1,
+      "application_id": "000000000000000000000001",
+      "created_at": "2022-10-11T12:54:13.539Z",
+      "modified_at": "2022-10-11T12:54:13.539Z",
+      "__v": 0
+    },
+    {
+      "is_active": true,
+      "_id": "6345677535474fbb6944b7ced",
+      "name": "Group 2",
+      "description": "description",
+      "file_url": "url2",
+      "status": "pending",
+      "uid": 1,
+      "application_id": "000000000000000000000001",
+      "created_at": "2022-10-11T12:54:13.539Z",
+      "modified_at": "2022-10-11T12:54:13.539Z",
+      "__v": 0
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 10,
+    "item_total": 0,
+    "has_next": false
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateUserGroup
+Update an User Group
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").user.updateUserGroup(groupId: groupId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| groupId | String | yes | Numeric ID allotted to a User Group |  
+| body | UpdateUserGroupSchema | yes | Request body |
+
+
+Use this API to update an existing user Group
+
+*Returned Response:*
+
+
+
+
+[UserGroupResponseSchema](#UserGroupResponseSchema)
+
+Success. returns updated User Group. `UserGroupResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_active": true,
+  "_id": "6345677535474fbb6944b7ce",
+  "name": "Group 1",
+  "description": "description",
+  "file_url": "url",
+  "status": "pending",
+  "uid": 1,
+  "application_id": "000000000000000000000001",
+  "created_at": "2022-10-11T12:54:13.539Z",
+  "modified_at": "2022-10-11T12:54:13.539Z",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getUserGroupById
+Get an User Group by Id
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").user.getUserGroupById(groupId: groupId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| groupId | String | yes | Numeric ID allotted to a User Group |  
+
+
+
+Use this API to get details of an existing user Group
+
+*Returned Response:*
+
+
+
+
+[UserGroupResponseSchema](#UserGroupResponseSchema)
+
+Success. User Group details. `UserGroupResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_active": true,
+  "_id": "6345677535474fbb6944b7ce",
+  "name": "Group 1",
+  "description": "description",
+  "file_url": "url",
+  "status": "pending",
+  "uid": 1,
+  "application_id": "000000000000000000000001",
+  "created_at": "2022-10-11T12:54:13.539Z",
+  "modified_at": "2022-10-11T12:54:13.539Z",
   "__v": 0
 }
 ```
@@ -1342,6 +1651,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | countryCode | String? |  yes  |  |
  | captchaCode | String? |  yes  |  |
  | mobile | String? |  yes  |  |
+ | androidHash | String? |  yes  |  |
 
 ---
 
@@ -1906,6 +2216,51 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
  
  
+ #### [UserGroupResponseSchema](#UserGroupResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | fileUrl | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | status | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | applicationId | String? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+ | modifiedAt | String? |  yes  |  |
+ | v | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserGroupListResponseSchema](#UserGroupListResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[UserGroupResponseSchema](#UserGroupResponseSchema)]? |  yes  |  |
+ | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUserGroupSchema](#CreateUserGroupSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String |  no  |  |
+ | description | String |  no  |  |
+ | fileUrl | String |  no  |  |
+
+---
+
+
+ 
+ 
  #### [CreateUserRequestSchema](#CreateUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -1990,6 +2345,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | deleteAccountDay | Int? |  yes  |  |
  | deleteAccountReasons | [[DeleteAccountReasons](#DeleteAccountReasons)]? |  yes  |  |
  | deleteAccountConsent | [String: Any]? |  yes  |  |
+ | sessionConfig | [String: Any]? |  yes  |  |
 
 ---
 
@@ -2200,6 +2556,32 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
  
  
+ #### [SessionExpiry](#SessionExpiry)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | duration | Int? |  yes  |  |
+ | type | String? |  yes  |  |
+ | isRolling | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateUserGroupSchema](#UpdateUserGroupSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | fileUrl | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [UpdateUserRequestSchema](#UpdateUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -2232,8 +2614,6 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | profilePicUrl | String? |  yes  |  |
  | username | String? |  yes  |  |
  | accountType | String? |  yes  |  |
- | debug | [Debug](#Debug)? |  yes  |  |
- | hasOldPasswordHash | Bool? |  yes  |  |
  | id | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
@@ -2266,18 +2646,6 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | verified | Bool? |  yes  |  |
  | email | String? |  yes  |  |
  | active | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [Debug](#Debug)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | source | String? |  yes  |  |
- | platform | String? |  yes  |  |
 
 ---
 
