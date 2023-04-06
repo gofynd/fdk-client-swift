@@ -10,13 +10,13 @@ public extension PlatformClient {
     class BulkActionDetailsDataField: Codable {
         public var batchId: String?
 
-        public var successfulShipmentIds: [String]?
+        public var companyId: String?
 
         public var processingShipmentsCount: Int?
 
         public var totalShipmentsCount: Int?
 
-        public var companyId: String?
+        public var successfulShipmentIds: [String]?
 
         public var successfulShipmentsCount: Int?
 
@@ -25,13 +25,13 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case batchId = "batch_id"
 
-            case successfulShipmentIds = "successful_shipment_ids"
+            case companyId = "company_id"
 
             case processingShipmentsCount = "processing_shipments_count"
 
             case totalShipmentsCount = "total_shipments_count"
 
-            case companyId = "company_id"
+            case successfulShipmentIds = "successful_shipment_ids"
 
             case successfulShipmentsCount = "successful_shipments_count"
 
@@ -41,13 +41,13 @@ public extension PlatformClient {
         public init(batchId: String? = nil, companyId: String? = nil, failedShipmentsCount: Int? = nil, processingShipmentsCount: Int? = nil, successfulShipmentsCount: Int? = nil, successfulShipmentIds: [String]? = nil, totalShipmentsCount: Int? = nil) {
             self.batchId = batchId
 
-            self.successfulShipmentIds = successfulShipmentIds
+            self.companyId = companyId
 
             self.processingShipmentsCount = processingShipmentsCount
 
             self.totalShipmentsCount = totalShipmentsCount
 
-            self.companyId = companyId
+            self.successfulShipmentIds = successfulShipmentIds
 
             self.successfulShipmentsCount = successfulShipmentsCount
 
@@ -66,7 +66,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                successfulShipmentIds = try container.decode([String].self, forKey: .successfulShipmentIds)
+                companyId = try container.decode(String.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                companyId = try container.decode(String.self, forKey: .companyId)
+                successfulShipmentIds = try container.decode([String].self, forKey: .successfulShipmentIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,13 +119,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 
-            try? container.encodeIfPresent(successfulShipmentIds, forKey: .successfulShipmentIds)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(processingShipmentsCount, forKey: .processingShipmentsCount)
 
             try? container.encodeIfPresent(totalShipmentsCount, forKey: .totalShipmentsCount)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(successfulShipmentIds, forKey: .successfulShipmentIds)
 
             try? container.encodeIfPresent(successfulShipmentsCount, forKey: .successfulShipmentsCount)
 

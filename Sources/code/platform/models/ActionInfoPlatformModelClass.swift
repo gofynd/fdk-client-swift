@@ -12,18 +12,18 @@ public extension PlatformClient {
 
         public var displayText: String
 
-        public var description: String
-
         public var slug: String
+
+        public var description: String
 
         public enum CodingKeys: String, CodingKey {
             case id
 
             case displayText = "display_text"
 
-            case description
-
             case slug
+
+            case description
         }
 
         public init(description: String, displayText: String, id: Int, slug: String) {
@@ -31,9 +31,9 @@ public extension PlatformClient {
 
             self.displayText = displayText
 
-            self.description = description
-
             self.slug = slug
+
+            self.description = description
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,9 +43,9 @@ public extension PlatformClient {
 
             displayText = try container.decode(String.self, forKey: .displayText)
 
-            description = try container.decode(String.self, forKey: .description)
-
             slug = try container.decode(String.self, forKey: .slug)
+
+            description = try container.decode(String.self, forKey: .description)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -55,9 +55,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(displayText, forKey: .displayText)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(description, forKey: .description)
         }
     }
 }

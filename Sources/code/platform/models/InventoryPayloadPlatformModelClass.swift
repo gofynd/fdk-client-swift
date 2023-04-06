@@ -12,34 +12,34 @@ public extension PlatformClient {
 
         public var expirationDate: String?
 
-        public var priceEffective: Double?
+        public var priceMarked: Double?
+
+        public var storeId: Int
 
         public var tags: [String]?
 
-        public var totalQuantity: Int?
-
-        public var priceMarked: Double?
+        public var priceEffective: Double?
 
         public var traceId: String?
 
-        public var storeId: Int
+        public var totalQuantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case sellerIdentifier = "seller_identifier"
 
             case expirationDate = "expiration_date"
 
-            case priceEffective = "price_effective"
+            case priceMarked = "price_marked"
+
+            case storeId = "store_id"
 
             case tags
 
-            case totalQuantity = "total_quantity"
-
-            case priceMarked = "price_marked"
+            case priceEffective = "price_effective"
 
             case traceId = "trace_id"
 
-            case storeId = "store_id"
+            case totalQuantity = "total_quantity"
         }
 
         public init(expirationDate: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeId: Int, tags: [String]? = nil, totalQuantity: Int? = nil, traceId: String? = nil) {
@@ -47,17 +47,17 @@ public extension PlatformClient {
 
             self.expirationDate = expirationDate
 
-            self.priceEffective = priceEffective
+            self.priceMarked = priceMarked
+
+            self.storeId = storeId
 
             self.tags = tags
 
-            self.totalQuantity = totalQuantity
-
-            self.priceMarked = priceMarked
+            self.priceEffective = priceEffective
 
             self.traceId = traceId
 
-            self.storeId = storeId
+            self.totalQuantity = totalQuantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -74,12 +74,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+                priceMarked = try container.decode(Double.self, forKey: .priceMarked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            storeId = try container.decode(Int.self, forKey: .storeId)
 
             do {
                 tags = try container.decode([String].self, forKey: .tags)
@@ -90,15 +92,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                priceMarked = try container.decode(Double.self, forKey: .priceMarked)
+                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -113,7 +107,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            storeId = try container.decode(Int.self, forKey: .storeId)
+            do {
+                totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -123,17 +123,17 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
 
-            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
 
             try? container.encode(tags, forKey: .tags)
 
-            try? container.encode(totalQuantity, forKey: .totalQuantity)
-
-            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
 
             try? container.encodeIfPresent(traceId, forKey: .traceId)
 
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
+            try? container.encode(totalQuantity, forKey: .totalQuantity)
         }
     }
 }

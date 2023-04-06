@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class Rule: Codable {
-        public var min: Double?
+        public var discountQty: Double?
 
         public var value: Double?
 
@@ -16,10 +16,10 @@ public extension PlatformClient {
 
         public var max: Double?
 
-        public var discountQty: Double?
+        public var min: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case min
+            case discountQty = "discount_qty"
 
             case value
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case max
 
-            case discountQty = "discount_qty"
+            case min
         }
 
         public init(discountQty: Double? = nil, key: Double? = nil, max: Double? = nil, min: Double? = nil, value: Double? = nil) {
-            self.min = min
+            self.discountQty = discountQty
 
             self.value = value
 
@@ -39,14 +39,14 @@ public extension PlatformClient {
 
             self.max = max
 
-            self.discountQty = discountQty
+            self.min = min
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
+                discountQty = try container.decode(Double.self, forKey: .discountQty)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                discountQty = try container.decode(Double.self, forKey: .discountQty)
+                min = try container.decode(Double.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(min, forKey: .min)
+            try? container.encodeIfPresent(discountQty, forKey: .discountQty)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
@@ -97,7 +97,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(max, forKey: .max)
 
-            try? container.encodeIfPresent(discountQty, forKey: .discountQty)
+            try? container.encodeIfPresent(min, forKey: .min)
         }
     }
 }
