@@ -13,22 +13,22 @@ public extension PlatformClient.Order {
 
         public var isActive: Bool
 
-        public var isCustomerReturnAllowed: Bool
+        public var enableTracking: Bool
 
         public var isReturnable: Bool
 
-        public var enableTracking: Bool
+        public var isCustomerReturnAllowed: Bool
 
         public enum CodingKeys: String, CodingKey {
             case canBeCancelled = "can_be_cancelled"
 
             case isActive = "is_active"
 
-            case isCustomerReturnAllowed = "is_customer_return_allowed"
+            case enableTracking = "enable_tracking"
 
             case isReturnable = "is_returnable"
 
-            case enableTracking = "enable_tracking"
+            case isCustomerReturnAllowed = "is_customer_return_allowed"
         }
 
         public init(canBeCancelled: Bool, enableTracking: Bool, isActive: Bool, isCustomerReturnAllowed: Bool, isReturnable: Bool) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Order {
 
             self.isActive = isActive
 
-            self.isCustomerReturnAllowed = isCustomerReturnAllowed
+            self.enableTracking = enableTracking
 
             self.isReturnable = isReturnable
 
-            self.enableTracking = enableTracking
+            self.isCustomerReturnAllowed = isCustomerReturnAllowed
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,11 +50,11 @@ public extension PlatformClient.Order {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
+            enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
 
             isReturnable = try container.decode(Bool.self, forKey: .isReturnable)
 
-            enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
+            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -64,11 +64,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
+            try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
 
             try? container.encodeIfPresent(isReturnable, forKey: .isReturnable)
 
-            try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
+            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
         }
     }
 }
@@ -84,22 +84,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var isActive: Bool
 
-        public var isCustomerReturnAllowed: Bool
+        public var enableTracking: Bool
 
         public var isReturnable: Bool
 
-        public var enableTracking: Bool
+        public var isCustomerReturnAllowed: Bool
 
         public enum CodingKeys: String, CodingKey {
             case canBeCancelled = "can_be_cancelled"
 
             case isActive = "is_active"
 
-            case isCustomerReturnAllowed = "is_customer_return_allowed"
+            case enableTracking = "enable_tracking"
 
             case isReturnable = "is_returnable"
 
-            case enableTracking = "enable_tracking"
+            case isCustomerReturnAllowed = "is_customer_return_allowed"
         }
 
         public init(canBeCancelled: Bool, enableTracking: Bool, isActive: Bool, isCustomerReturnAllowed: Bool, isReturnable: Bool) {
@@ -107,11 +107,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.isActive = isActive
 
-            self.isCustomerReturnAllowed = isCustomerReturnAllowed
+            self.enableTracking = enableTracking
 
             self.isReturnable = isReturnable
 
-            self.enableTracking = enableTracking
+            self.isCustomerReturnAllowed = isCustomerReturnAllowed
         }
 
         required public init(from decoder: Decoder) throws {
@@ -121,11 +121,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
+            enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
 
             isReturnable = try container.decode(Bool.self, forKey: .isReturnable)
 
-            enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
+            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -135,11 +135,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
+            try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
 
             try? container.encodeIfPresent(isReturnable, forKey: .isReturnable)
 
-            try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
+            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
         }
     }
 }

@@ -11,20 +11,18 @@ public extension PlatformClient.ApplicationClient.Cart {
     class CartList: Codable {
         public var pickUpCustomerDetails: [String: Any]?
 
-        public var itemCounts: Int?
-
         public var cartId: String?
 
         public var userId: String?
 
         public var createdOn: String?
 
+        public var itemCounts: Int?
+
         public var cartValue: Double?
 
         public enum CodingKeys: String, CodingKey {
             case pickUpCustomerDetails = "pick_up_customer_details"
-
-            case itemCounts = "item_counts"
 
             case cartId = "cart_id"
 
@@ -32,19 +30,21 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case createdOn = "created_on"
 
+            case itemCounts = "item_counts"
+
             case cartValue = "cart_value"
         }
 
         public init(cartId: String? = nil, cartValue: Double? = nil, createdOn: String? = nil, itemCounts: Int? = nil, pickUpCustomerDetails: [String: Any]? = nil, userId: String? = nil) {
             self.pickUpCustomerDetails = pickUpCustomerDetails
 
-            self.itemCounts = itemCounts
-
             self.cartId = cartId
 
             self.userId = userId
 
             self.createdOn = createdOn
+
+            self.itemCounts = itemCounts
 
             self.cartValue = cartValue
         }
@@ -54,14 +54,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemCounts = try container.decode(Int.self, forKey: .itemCounts)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,6 +85,14 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
+                itemCounts = try container.decode(Int.self, forKey: .itemCounts)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 cartValue = try container.decode(Double.self, forKey: .cartValue)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -106,13 +106,13 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
 
-            try? container.encodeIfPresent(itemCounts, forKey: .itemCounts)
-
             try? container.encodeIfPresent(cartId, forKey: .cartId)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
+            try? container.encodeIfPresent(itemCounts, forKey: .itemCounts)
 
             try? container.encodeIfPresent(cartValue, forKey: .cartValue)
         }

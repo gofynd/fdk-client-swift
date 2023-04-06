@@ -9,22 +9,22 @@ public extension ApplicationClient.Catalog {
     class AutocompleteItem: Codable {
         public var logo: Media?
 
+        public var display: String?
+
         public var customJson: [String: Any]?
 
         public var type: String?
-
-        public var display: String?
 
         public var action: ProductListingAction?
 
         public enum CodingKeys: String, CodingKey {
             case logo
 
+            case display
+
             case customJson = "_custom_json"
 
             case type
-
-            case display
 
             case action
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Catalog {
         public init(action: ProductListingAction? = nil, display: String? = nil, logo: Media? = nil, type: String? = nil, customJson: [String: Any]? = nil) {
             self.logo = logo
 
+            self.display = display
+
             self.customJson = customJson
 
             self.type = type
-
-            self.display = display
 
             self.action = action
         }
@@ -46,6 +46,14 @@ public extension ApplicationClient.Catalog {
 
             do {
                 logo = try container.decode(Media.self, forKey: .logo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,14 +77,6 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -90,11 +90,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
+            try? container.encodeIfPresent(display, forKey: .display)
+
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(type, forKey: .type)
-
-            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(action, forKey: .action)
         }

@@ -7,33 +7,33 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class ApplicationItemMOQ: Codable {
-        public var minimum: Int?
+        public var incrementUnit: Int?
 
         public var maximum: Int?
 
-        public var incrementUnit: Int?
+        public var minimum: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case minimum
+            case incrementUnit = "increment_unit"
 
             case maximum
 
-            case incrementUnit = "increment_unit"
+            case minimum
         }
 
         public init(incrementUnit: Int? = nil, maximum: Int? = nil, minimum: Int? = nil) {
-            self.minimum = minimum
+            self.incrementUnit = incrementUnit
 
             self.maximum = maximum
 
-            self.incrementUnit = incrementUnit
+            self.minimum = minimum
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                minimum = try container.decode(Int.self, forKey: .minimum)
+                incrementUnit = try container.decode(Int.self, forKey: .incrementUnit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                incrementUnit = try container.decode(Int.self, forKey: .incrementUnit)
+                minimum = try container.decode(Int.self, forKey: .minimum)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(minimum, forKey: .minimum)
+            try? container.encodeIfPresent(incrementUnit, forKey: .incrementUnit)
 
             try? container.encodeIfPresent(maximum, forKey: .maximum)
 
-            try? container.encodeIfPresent(incrementUnit, forKey: .incrementUnit)
+            try? container.encodeIfPresent(minimum, forKey: .minimum)
         }
     }
 }
