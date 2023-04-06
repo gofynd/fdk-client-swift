@@ -11,9 +11,9 @@ public extension ApplicationClient.Order {
 
         public var size: Int?
 
-        public var itemTotal: Int?
-
         public var type: String?
+
+        public var itemTotal: Int?
 
         public var current: Int?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Order {
 
             case size
 
-            case itemTotal = "item_total"
-
             case type
+
+            case itemTotal = "item_total"
 
             case current
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Order {
 
             self.size = size
 
-            self.itemTotal = itemTotal
-
             self.type = type
+
+            self.itemTotal = itemTotal
 
             self.current = current
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
             try? container.encodeIfPresent(current, forKey: .current)
         }

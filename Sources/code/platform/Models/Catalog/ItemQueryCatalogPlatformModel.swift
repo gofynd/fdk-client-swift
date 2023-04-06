@@ -9,24 +9,24 @@ public extension PlatformClient.Catalog {
      */
 
     class ItemQuery: Codable {
-        public var brandUid: Int?
-
         public var uid: Int?
+
+        public var brandUid: Int?
 
         public var itemCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case brandUid = "brand_uid"
-
             case uid
+
+            case brandUid = "brand_uid"
 
             case itemCode = "item_code"
         }
 
         public init(brandUid: Int? = nil, itemCode: String? = nil, uid: Int? = nil) {
-            self.brandUid = brandUid
-
             self.uid = uid
+
+            self.brandUid = brandUid
 
             self.itemCode = itemCode
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                brandUid = try container.decode(Int.self, forKey: .brandUid)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                brandUid = try container.decode(Int.self, forKey: .brandUid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
 
             try? container.encodeIfPresent(itemCode, forKey: .itemCode)
         }
@@ -78,24 +78,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ItemQuery: Codable {
-        public var brandUid: Int?
-
         public var uid: Int?
+
+        public var brandUid: Int?
 
         public var itemCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case brandUid = "brand_uid"
-
             case uid
+
+            case brandUid = "brand_uid"
 
             case itemCode = "item_code"
         }
 
         public init(brandUid: Int? = nil, itemCode: String? = nil, uid: Int? = nil) {
-            self.brandUid = brandUid
-
             self.uid = uid
+
+            self.brandUid = brandUid
 
             self.itemCode = itemCode
         }
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                brandUid = try container.decode(Int.self, forKey: .brandUid)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                brandUid = try container.decode(Int.self, forKey: .brandUid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
 
             try? container.encodeIfPresent(itemCode, forKey: .itemCode)
         }

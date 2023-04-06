@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var name: String?
 
-        public var logo: Media1?
-
         public var action: Action?
+
+        public var logo: Media1?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
             case name
 
-            case logo
-
             case action
+
+            case logo
         }
 
         public init(action: Action? = nil, logo: Media1? = nil, name: String? = nil, uid: Int? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.name = name
 
-            self.logo = logo
-
             self.action = action
+
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                logo = try container.decode(Media1.self, forKey: .logo)
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
+                logo = try container.decode(Media1.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var name: String?
 
-        public var logo: Media1?
-
         public var action: Action?
+
+        public var logo: Media1?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
             case name
 
-            case logo
-
             case action
+
+            case logo
         }
 
         public init(action: Action? = nil, logo: Media1? = nil, name: String? = nil, uid: Int? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.name = name
 
-            self.logo = logo
-
             self.action = action
+
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                logo = try container.decode(Media1.self, forKey: .logo)
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
+                logo = try container.decode(Media1.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }

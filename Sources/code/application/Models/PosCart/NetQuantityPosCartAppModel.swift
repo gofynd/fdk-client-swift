@@ -7,27 +7,27 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class NetQuantity: Codable {
-        public var unit: String?
-
         public var value: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case unit
+        public var unit: String?
 
+        public enum CodingKeys: String, CodingKey {
             case value
+
+            case unit
         }
 
         public init(unit: String? = nil, value: String? = nil) {
-            self.unit = unit
-
             self.value = value
+
+            self.unit = unit
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient.PosCart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(unit, forKey: .unit)
         }
     }
 }
