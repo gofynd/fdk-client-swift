@@ -13,26 +13,26 @@ public extension PlatformClient.Catalog {
 
         public var product: GetCatalogConfigurationDetailsProduct?
 
-        public var appId: String
-
         public var configType: String
 
         public var configId: String?
 
         public var listing: GetCatalogConfigurationDetailsSchemaListing?
 
+        public var appId: String
+
         public enum CodingKeys: String, CodingKey {
             case id
 
             case product
-
-            case appId = "app_id"
 
             case configType = "config_type"
 
             case configId = "config_id"
 
             case listing
+
+            case appId = "app_id"
         }
 
         public init(appId: String, configId: String? = nil, configType: String, id: String? = nil, listing: GetCatalogConfigurationDetailsSchemaListing? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
@@ -40,13 +40,13 @@ public extension PlatformClient.Catalog {
 
             self.product = product
 
-            self.appId = appId
-
             self.configType = configType
 
             self.configId = configId
 
             self.listing = listing
+
+            self.appId = appId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -68,8 +68,6 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            appId = try container.decode(String.self, forKey: .appId)
-
             configType = try container.decode(String.self, forKey: .configType)
 
             do {
@@ -87,6 +85,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            appId = try container.decode(String.self, forKey: .appId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -96,13 +96,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(product, forKey: .product)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
             try? container.encodeIfPresent(configType, forKey: .configType)
 
             try? container.encodeIfPresent(configId, forKey: .configId)
 
             try? container.encodeIfPresent(listing, forKey: .listing)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
         }
     }
 }
@@ -118,26 +118,26 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var product: GetCatalogConfigurationDetailsProduct?
 
-        public var appId: String
-
         public var configType: String
 
         public var configId: String?
 
         public var listing: GetCatalogConfigurationDetailsSchemaListing?
 
+        public var appId: String
+
         public enum CodingKeys: String, CodingKey {
             case id
 
             case product
-
-            case appId = "app_id"
 
             case configType = "config_type"
 
             case configId = "config_id"
 
             case listing
+
+            case appId = "app_id"
         }
 
         public init(appId: String, configId: String? = nil, configType: String, id: String? = nil, listing: GetCatalogConfigurationDetailsSchemaListing? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
@@ -145,13 +145,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.product = product
 
-            self.appId = appId
-
             self.configType = configType
 
             self.configId = configId
 
             self.listing = listing
+
+            self.appId = appId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -173,8 +173,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            appId = try container.decode(String.self, forKey: .appId)
-
             configType = try container.decode(String.self, forKey: .configType)
 
             do {
@@ -192,6 +190,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            appId = try container.decode(String.self, forKey: .appId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -201,13 +201,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(product, forKey: .product)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
             try? container.encodeIfPresent(configType, forKey: .configType)
 
             try? container.encodeIfPresent(configId, forKey: .configId)
 
             try? container.encodeIfPresent(listing, forKey: .listing)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
         }
     }
 }

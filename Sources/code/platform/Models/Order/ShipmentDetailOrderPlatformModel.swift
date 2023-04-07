@@ -13,11 +13,11 @@ public extension PlatformClient.Order {
 
         public var shipmentId: String?
 
+        public var id: Int
+
         public var status: String?
 
         public var meta: Meta1
-
-        public var id: Int
 
         public var bagList: [Int]?
 
@@ -26,11 +26,11 @@ public extension PlatformClient.Order {
 
             case shipmentId = "shipment_id"
 
+            case id
+
             case status
 
             case meta
-
-            case id
 
             case bagList = "bag_list"
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.Order {
 
             self.shipmentId = shipmentId
 
+            self.id = id
+
             self.status = status
 
             self.meta = meta
-
-            self.id = id
 
             self.bagList = bagList
         }
@@ -68,6 +68,8 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            id = try container.decode(Int.self, forKey: .id)
+
             do {
                 status = try container.decode(String.self, forKey: .status)
 
@@ -77,8 +79,6 @@ public extension PlatformClient.Order {
             } catch {}
 
             meta = try container.decode(Meta1.self, forKey: .meta)
-
-            id = try container.decode(Int.self, forKey: .id)
 
             do {
                 bagList = try container.decode([Int].self, forKey: .bagList)
@@ -96,11 +96,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
+            try? container.encodeIfPresent(id, forKey: .id)
+
             try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(bagList, forKey: .bagList)
         }
@@ -118,11 +118,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var shipmentId: String?
 
+        public var id: Int
+
         public var status: String?
 
         public var meta: Meta1
-
-        public var id: Int
 
         public var bagList: [Int]?
 
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case shipmentId = "shipment_id"
 
+            case id
+
             case status
 
             case meta
-
-            case id
 
             case bagList = "bag_list"
         }
@@ -145,11 +145,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.shipmentId = shipmentId
 
+            self.id = id
+
             self.status = status
 
             self.meta = meta
-
-            self.id = id
 
             self.bagList = bagList
         }
@@ -173,6 +173,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            id = try container.decode(Int.self, forKey: .id)
+
             do {
                 status = try container.decode(String.self, forKey: .status)
 
@@ -182,8 +184,6 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             meta = try container.decode(Meta1.self, forKey: .meta)
-
-            id = try container.decode(Int.self, forKey: .id)
 
             do {
                 bagList = try container.decode([Int].self, forKey: .bagList)
@@ -201,11 +201,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
+            try? container.encodeIfPresent(id, forKey: .id)
+
             try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(bagList, forKey: .bagList)
         }

@@ -11,20 +11,18 @@ public extension PlatformClient.Payment {
     class PayoutRequest: Codable {
         public var bankDetails: PayoutBankDetails
 
-        public var uniqueExternalId: String
-
         public var transferType: String
 
         public var aggregator: String
 
         public var users: [String: Any]
 
+        public var uniqueExternalId: String
+
         public var isActive: Bool
 
         public enum CodingKeys: String, CodingKey {
             case bankDetails = "bank_details"
-
-            case uniqueExternalId = "unique_external_id"
 
             case transferType = "transfer_type"
 
@@ -32,19 +30,21 @@ public extension PlatformClient.Payment {
 
             case users
 
+            case uniqueExternalId = "unique_external_id"
+
             case isActive = "is_active"
         }
 
         public init(aggregator: String, bankDetails: PayoutBankDetails, isActive: Bool, transferType: String, uniqueExternalId: String, users: [String: Any]) {
             self.bankDetails = bankDetails
 
-            self.uniqueExternalId = uniqueExternalId
-
             self.transferType = transferType
 
             self.aggregator = aggregator
 
             self.users = users
+
+            self.uniqueExternalId = uniqueExternalId
 
             self.isActive = isActive
         }
@@ -54,13 +54,13 @@ public extension PlatformClient.Payment {
 
             bankDetails = try container.decode(PayoutBankDetails.self, forKey: .bankDetails)
 
-            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
-
             transferType = try container.decode(String.self, forKey: .transferType)
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
             users = try container.decode([String: Any].self, forKey: .users)
+
+            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
         }
@@ -70,13 +70,13 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
 
-            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
-
             try? container.encodeIfPresent(transferType, forKey: .transferType)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(users, forKey: .users)
+
+            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
@@ -92,20 +92,18 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PayoutRequest: Codable {
         public var bankDetails: PayoutBankDetails
 
-        public var uniqueExternalId: String
-
         public var transferType: String
 
         public var aggregator: String
 
         public var users: [String: Any]
 
+        public var uniqueExternalId: String
+
         public var isActive: Bool
 
         public enum CodingKeys: String, CodingKey {
             case bankDetails = "bank_details"
-
-            case uniqueExternalId = "unique_external_id"
 
             case transferType = "transfer_type"
 
@@ -113,19 +111,21 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case users
 
+            case uniqueExternalId = "unique_external_id"
+
             case isActive = "is_active"
         }
 
         public init(aggregator: String, bankDetails: PayoutBankDetails, isActive: Bool, transferType: String, uniqueExternalId: String, users: [String: Any]) {
             self.bankDetails = bankDetails
 
-            self.uniqueExternalId = uniqueExternalId
-
             self.transferType = transferType
 
             self.aggregator = aggregator
 
             self.users = users
+
+            self.uniqueExternalId = uniqueExternalId
 
             self.isActive = isActive
         }
@@ -135,13 +135,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             bankDetails = try container.decode(PayoutBankDetails.self, forKey: .bankDetails)
 
-            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
-
             transferType = try container.decode(String.self, forKey: .transferType)
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
             users = try container.decode([String: Any].self, forKey: .users)
+
+            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
         }
@@ -151,13 +151,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
 
-            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
-
             try? container.encodeIfPresent(transferType, forKey: .transferType)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(users, forKey: .users)
+
+            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
         }

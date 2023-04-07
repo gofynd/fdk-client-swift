@@ -149,17 +149,7 @@ public extension PlatformClient.ApplicationClient.Lead {
     }
 }
 
-public extension PlatformClient.ApplicationClient.Content {
-    /*
-         Enum: GenerationEntityType
-         Used By: Content
-     */
-    enum GenerationEntityType: String, Codable {
-        case title
-
-        case description
-    }
-}
+public extension PlatformClient.ApplicationClient.Content {}
 
 public extension PlatformClient.Catalog {}
 

@@ -4912,6 +4912,7 @@ Success
  | minCartValue | Double? |  yes  |  |
  | bulkCoupons | Bool? |  yes  |  |
  | revenueEngineCoupon | Bool? |  yes  |  |
+ | emptyCart | Bool? |  yes  | Enable/disable to allow adding cart items added before login to user's cart once user is logged in |
 
 ---
 

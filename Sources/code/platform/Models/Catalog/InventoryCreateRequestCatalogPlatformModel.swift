@@ -4,31 +4,37 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-         Model: ProductDownloadItemsData
+         Model: InventoryCreateRequest
          Used By: Catalog
      */
 
-    class ProductDownloadItemsData: Codable {
+    class InventoryCreateRequest: Codable {
         public var type: String?
 
-        public var brand: [String]?
+        public var filters: InventoryExportFilter
 
-        public var templates: [String]?
+        public var data: [String]?
+
+        public var notificationEmails: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case brand
+            case filters
 
-            case templates
+            case data
+
+            case notificationEmails = "notification_emails"
         }
 
-        public init(brand: [String]? = nil, templates: [String]? = nil, type: String? = nil) {
+        public init(data: [String]? = nil, filters: InventoryExportFilter, notificationEmails: [String]? = nil, type: String? = nil) {
             self.type = type
 
-            self.brand = brand
+            self.filters = filters
 
-            self.templates = templates
+            self.data = data
+
+            self.notificationEmails = notificationEmails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,8 +48,10 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            filters = try container.decode(InventoryExportFilter.self, forKey: .filters)
+
             do {
-                brand = try container.decode([String].self, forKey: .brand)
+                data = try container.decode([String].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +59,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                templates = try container.decode([String].self, forKey: .templates)
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,42 +70,50 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encode(type, forKey: .type)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(templates, forKey: .templates)
+            try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-         Model: ProductDownloadItemsData
+         Model: InventoryCreateRequest
          Used By: Catalog
      */
 
-    class ProductDownloadItemsData: Codable {
+    class InventoryCreateRequest: Codable {
         public var type: String?
 
-        public var brand: [String]?
+        public var filters: InventoryExportFilter
 
-        public var templates: [String]?
+        public var data: [String]?
+
+        public var notificationEmails: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case brand
+            case filters
 
-            case templates
+            case data
+
+            case notificationEmails = "notification_emails"
         }
 
-        public init(brand: [String]? = nil, templates: [String]? = nil, type: String? = nil) {
+        public init(data: [String]? = nil, filters: InventoryExportFilter, notificationEmails: [String]? = nil, type: String? = nil) {
             self.type = type
 
-            self.brand = brand
+            self.filters = filters
 
-            self.templates = templates
+            self.data = data
+
+            self.notificationEmails = notificationEmails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -111,8 +127,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            filters = try container.decode(InventoryExportFilter.self, forKey: .filters)
+
             do {
-                brand = try container.decode([String].self, forKey: .brand)
+                data = try container.decode([String].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +138,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                templates = try container.decode([String].self, forKey: .templates)
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +149,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encode(type, forKey: .type)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(templates, forKey: .templates)
+            try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
         }
     }
 }

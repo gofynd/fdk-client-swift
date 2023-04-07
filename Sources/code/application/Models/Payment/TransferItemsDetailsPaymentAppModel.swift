@@ -11,9 +11,9 @@ public extension ApplicationClient.Payment {
 
         public var name: String
 
-        public var logoLarge: String
-
         public var logoSmall: String
+
+        public var logoLarge: String
 
         public var id: Int
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Payment {
 
             case name
 
-            case logoLarge = "logo_large"
-
             case logoSmall = "logo_small"
+
+            case logoLarge = "logo_large"
 
             case id
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Payment {
 
             self.name = name
 
-            self.logoLarge = logoLarge
-
             self.logoSmall = logoSmall
+
+            self.logoLarge = logoLarge
 
             self.id = id
         }
@@ -54,9 +54,9 @@ public extension ApplicationClient.Payment {
 
             name = try container.decode(String.self, forKey: .name)
 
-            logoLarge = try container.decode(String.self, forKey: .logoLarge)
-
             logoSmall = try container.decode(String.self, forKey: .logoSmall)
+
+            logoLarge = try container.decode(String.self, forKey: .logoLarge)
 
             id = try container.decode(Int.self, forKey: .id)
         }
@@ -68,9 +68,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
-
             try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
+
+            try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
 
             try? container.encodeIfPresent(id, forKey: .id)
         }

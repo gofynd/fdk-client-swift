@@ -1850,19 +1850,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | redirectTo | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
- | source | [PathSourceSchema](#PathSourceSchema)? |  yes  |  |
-
----
-
-
- 
- 
- #### [PathSourceSchema](#PathSourceSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
- | id | String? |  yes  |  |
+ | source | [TagSourceSchema](#TagSourceSchema)? |  yes  |  |
 
 ---
 

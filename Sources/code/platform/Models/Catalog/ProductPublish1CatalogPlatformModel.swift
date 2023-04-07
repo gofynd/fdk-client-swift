@@ -2,34 +2,34 @@
 
 import Foundation
 
-public extension PlatformClient.Order {
+public extension PlatformClient.Catalog {
     /*
-         Model: TaxDetails
-         Used By: Order
+         Model: ProductPublish1
+         Used By: Catalog
      */
 
-    class TaxDetails: Codable {
-        public var panNo: String?
+    class ProductPublish1: Codable {
+        public var isSet: Bool?
 
-        public var gstin: String?
+        public var productOnlineDate: String?
 
         public enum CodingKeys: String, CodingKey {
-            case panNo = "pan_no"
+            case isSet = "is_set"
 
-            case gstin
+            case productOnlineDate = "product_online_date"
         }
 
-        public init(gstin: String? = nil, panNo: String? = nil) {
-            self.panNo = panNo
+        public init(isSet: Bool? = nil, productOnlineDate: String? = nil) {
+            self.isSet = isSet
 
-            self.gstin = gstin
+            self.productOnlineDate = productOnlineDate
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                panNo = try container.decode(String.self, forKey: .panNo)
+                isSet = try container.decode(Bool.self, forKey: .isSet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                gstin = try container.decode(String.self, forKey: .gstin)
+                productOnlineDate = try container.decode(String.self, forKey: .productOnlineDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(panNo, forKey: .panNo)
+            try? container.encodeIfPresent(isSet, forKey: .isSet)
 
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
+            try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Order {
+public extension PlatformClient.ApplicationClient.Catalog {
     /*
-         Model: TaxDetails
-         Used By: Order
+         Model: ProductPublish1
+         Used By: Catalog
      */
 
-    class TaxDetails: Codable {
-        public var panNo: String?
+    class ProductPublish1: Codable {
+        public var isSet: Bool?
 
-        public var gstin: String?
+        public var productOnlineDate: String?
 
         public enum CodingKeys: String, CodingKey {
-            case panNo = "pan_no"
+            case isSet = "is_set"
 
-            case gstin
+            case productOnlineDate = "product_online_date"
         }
 
-        public init(gstin: String? = nil, panNo: String? = nil) {
-            self.panNo = panNo
+        public init(isSet: Bool? = nil, productOnlineDate: String? = nil) {
+            self.isSet = isSet
 
-            self.gstin = gstin
+            self.productOnlineDate = productOnlineDate
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                panNo = try container.decode(String.self, forKey: .panNo)
+                isSet = try container.decode(Bool.self, forKey: .isSet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                gstin = try container.decode(String.self, forKey: .gstin)
+                productOnlineDate = try container.decode(String.self, forKey: .productOnlineDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(panNo, forKey: .panNo)
+            try? container.encodeIfPresent(isSet, forKey: .isSet)
 
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
+            try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
         }
     }
 }

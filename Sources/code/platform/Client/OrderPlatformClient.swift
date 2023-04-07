@@ -17,8 +17,6 @@ public extension PlatformClient {
          **/
         public func getShipments(
             lane: String?,
-            bagStatus: String?,
-            statusOverrideLane: Bool?,
             searchType: String?,
             searchValue: String?,
             searchId: String?,
@@ -32,14 +30,11 @@ public extension PlatformClient {
             pageNo: Int?,
             pageSize: Int?,
             isPrioritySort: Bool?,
-            fetchActiveShipment: Bool?,
             excludeLockedShipments: Bool?,
             paymentMethods: String?,
             channelShipmentId: String?,
             channelOrderId: String?,
             customMeta: String?,
-            orderingChannel: String?,
-            companyAffiliateTag: String?,
 
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
         ) {
@@ -47,14 +42,6 @@ public extension PlatformClient {
 
             if let value = lane {
                 xQuery["lane"] = value
-            }
-
-            if let value = bagStatus {
-                xQuery["bag_status"] = value
-            }
-
-            if let value = statusOverrideLane {
-                xQuery["status_override_lane"] = value
             }
 
             if let value = searchType {
@@ -109,10 +96,6 @@ public extension PlatformClient {
                 xQuery["is_priority_sort"] = value
             }
 
-            if let value = fetchActiveShipment {
-                xQuery["fetch_active_shipment"] = value
-            }
-
             if let value = excludeLockedShipments {
                 xQuery["exclude_locked_shipments"] = value
             }
@@ -131,14 +114,6 @@ public extension PlatformClient {
 
             if let value = customMeta {
                 xQuery["custom_meta"] = value
-            }
-
-            if let value = orderingChannel {
-                xQuery["ordering_channel"] = value
-            }
-
-            if let value = companyAffiliateTag {
-                xQuery["company_affiliate_tag"] = value
             }
 
             PlatformAPIClient.execute(

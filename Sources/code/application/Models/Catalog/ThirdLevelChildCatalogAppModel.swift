@@ -9,48 +9,48 @@ public extension ApplicationClient.Catalog {
     class ThirdLevelChild: Codable {
         public var customJson: [String: Any]?
 
-        public var name: String?
+        public var slug: String?
 
-        public var banners: ImageUrls?
+        public var action: ProductListingAction?
 
         public var childs: [[String: Any]]?
 
         public var uid: Int?
 
-        public var action: ProductListingAction?
+        public var name: String?
 
-        public var slug: String?
+        public var banners: ImageUrls?
 
         public enum CodingKeys: String, CodingKey {
             case customJson = "_custom_json"
 
-            case name
+            case slug
 
-            case banners
+            case action
 
             case childs
 
             case uid
 
-            case action
+            case name
 
-            case slug
+            case banners
         }
 
         public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [[String: Any]]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             self.customJson = customJson
 
-            self.name = name
+            self.slug = slug
 
-            self.banners = banners
+            self.action = action
 
             self.childs = childs
 
             self.uid = uid
 
-            self.action = action
+            self.name = name
 
-            self.slug = slug
+            self.banners = banners
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,7 +65,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,7 +73,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                banners = try container.decode(ImageUrls.self, forKey: .banners)
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                banners = try container.decode(ImageUrls.self, forKey: .banners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,17 +118,17 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(banners, forKey: .banners)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(banners, forKey: .banners)
         }
     }
 }
