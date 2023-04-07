@@ -11,6 +11,10 @@ public extension PlatformClient.Catalog {
     class AssignStore: Codable {
         public var pincode: String
 
+        public var storeIds: [Int]?
+
+        public var channelIdentifier: String?
+
         public var companyId: Int?
 
         public var articles: [AssignStoreArticle]
@@ -19,12 +23,12 @@ public extension PlatformClient.Catalog {
 
         public var channelType: String?
 
-        public var storeIds: [Int]?
-
-        public var channelIdentifier: String?
-
         public enum CodingKeys: String, CodingKey {
             case pincode
+
+            case storeIds = "store_ids"
+
+            case channelIdentifier = "channel_identifier"
 
             case companyId = "company_id"
 
@@ -33,14 +37,14 @@ public extension PlatformClient.Catalog {
             case appId = "app_id"
 
             case channelType = "channel_type"
-
-            case storeIds = "store_ids"
-
-            case channelIdentifier = "channel_identifier"
         }
 
         public init(appId: String, articles: [AssignStoreArticle], channelIdentifier: String? = nil, channelType: String? = nil, companyId: Int? = nil, pincode: String, storeIds: [Int]? = nil) {
             self.pincode = pincode
+
+            self.storeIds = storeIds
+
+            self.channelIdentifier = channelIdentifier
 
             self.companyId = companyId
 
@@ -49,16 +53,28 @@ public extension PlatformClient.Catalog {
             self.appId = appId
 
             self.channelType = channelType
-
-            self.storeIds = storeIds
-
-            self.channelIdentifier = channelIdentifier
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             pincode = try container.decode(String.self, forKey: .pincode)
+
+            do {
+                storeIds = try container.decode([Int].self, forKey: .storeIds)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                channelIdentifier = try container.decode(String.self, forKey: .channelIdentifier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 companyId = try container.decode(Int.self, forKey: .companyId)
@@ -79,28 +95,16 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                storeIds = try container.decode([Int].self, forKey: .storeIds)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                channelIdentifier = try container.decode(String.self, forKey: .channelIdentifier)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+
+            try? container.encodeIfPresent(channelIdentifier, forKey: .channelIdentifier)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
@@ -109,10 +113,6 @@ public extension PlatformClient.Catalog {
             try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(channelType, forKey: .channelType)
-
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
-
-            try? container.encodeIfPresent(channelIdentifier, forKey: .channelIdentifier)
         }
     }
 }
@@ -126,6 +126,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class AssignStore: Codable {
         public var pincode: String
 
+        public var storeIds: [Int]?
+
+        public var channelIdentifier: String?
+
         public var companyId: Int?
 
         public var articles: [AssignStoreArticle]
@@ -134,12 +138,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var channelType: String?
 
-        public var storeIds: [Int]?
-
-        public var channelIdentifier: String?
-
         public enum CodingKeys: String, CodingKey {
             case pincode
+
+            case storeIds = "store_ids"
+
+            case channelIdentifier = "channel_identifier"
 
             case companyId = "company_id"
 
@@ -148,14 +152,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case appId = "app_id"
 
             case channelType = "channel_type"
-
-            case storeIds = "store_ids"
-
-            case channelIdentifier = "channel_identifier"
         }
 
         public init(appId: String, articles: [AssignStoreArticle], channelIdentifier: String? = nil, channelType: String? = nil, companyId: Int? = nil, pincode: String, storeIds: [Int]? = nil) {
             self.pincode = pincode
+
+            self.storeIds = storeIds
+
+            self.channelIdentifier = channelIdentifier
 
             self.companyId = companyId
 
@@ -164,16 +168,28 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.appId = appId
 
             self.channelType = channelType
-
-            self.storeIds = storeIds
-
-            self.channelIdentifier = channelIdentifier
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             pincode = try container.decode(String.self, forKey: .pincode)
+
+            do {
+                storeIds = try container.decode([Int].self, forKey: .storeIds)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                channelIdentifier = try container.decode(String.self, forKey: .channelIdentifier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 companyId = try container.decode(Int.self, forKey: .companyId)
@@ -194,28 +210,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                storeIds = try container.decode([Int].self, forKey: .storeIds)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                channelIdentifier = try container.decode(String.self, forKey: .channelIdentifier)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+
+            try? container.encodeIfPresent(channelIdentifier, forKey: .channelIdentifier)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
@@ -224,10 +228,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(channelType, forKey: .channelType)
-
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
-
-            try? container.encodeIfPresent(channelIdentifier, forKey: .channelIdentifier)
         }
     }
 }

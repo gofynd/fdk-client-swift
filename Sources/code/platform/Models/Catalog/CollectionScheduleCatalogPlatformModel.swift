@@ -9,6 +9,8 @@ public extension PlatformClient.Catalog {
      */
 
     class CollectionSchedule: Codable {
+        public var duration: Int?
+
         public var start: String?
 
         public var nextSchedule: [NextSchedule]?
@@ -17,9 +19,9 @@ public extension PlatformClient.Catalog {
 
         public var cron: String?
 
-        public var duration: Int?
-
         public enum CodingKeys: String, CodingKey {
+            case duration
+
             case start
 
             case nextSchedule = "next_schedule"
@@ -27,11 +29,11 @@ public extension PlatformClient.Catalog {
             case end
 
             case cron
-
-            case duration
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
+            self.duration = duration
+
             self.start = start
 
             self.nextSchedule = nextSchedule
@@ -39,12 +41,18 @@ public extension PlatformClient.Catalog {
             self.end = end
 
             self.cron = cron
-
-            self.duration = duration
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                duration = try container.decode(Int.self, forKey: .duration)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 start = try container.decode(String.self, forKey: .start)
@@ -77,18 +85,12 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                duration = try container.decode(Int.self, forKey: .duration)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encode(duration, forKey: .duration)
 
             try? container.encodeIfPresent(start, forKey: .start)
 
@@ -97,8 +99,6 @@ public extension PlatformClient.Catalog {
             try? container.encode(end, forKey: .end)
 
             try? container.encode(cron, forKey: .cron)
-
-            try? container.encode(duration, forKey: .duration)
         }
     }
 }
@@ -110,6 +110,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class CollectionSchedule: Codable {
+        public var duration: Int?
+
         public var start: String?
 
         public var nextSchedule: [NextSchedule]?
@@ -118,9 +120,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var cron: String?
 
-        public var duration: Int?
-
         public enum CodingKeys: String, CodingKey {
+            case duration
+
             case start
 
             case nextSchedule = "next_schedule"
@@ -128,11 +130,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case end
 
             case cron
-
-            case duration
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
+            self.duration = duration
+
             self.start = start
 
             self.nextSchedule = nextSchedule
@@ -140,12 +142,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.end = end
 
             self.cron = cron
-
-            self.duration = duration
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                duration = try container.decode(Int.self, forKey: .duration)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 start = try container.decode(String.self, forKey: .start)
@@ -178,18 +186,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                duration = try container.decode(Int.self, forKey: .duration)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encode(duration, forKey: .duration)
 
             try? container.encodeIfPresent(start, forKey: .start)
 
@@ -198,8 +200,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             try? container.encode(end, forKey: .end)
 
             try? container.encode(cron, forKey: .cron)
-
-            try? container.encode(duration, forKey: .duration)
         }
     }
 }
