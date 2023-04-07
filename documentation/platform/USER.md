@@ -1266,6 +1266,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | action | String? |  yes  |  |
  | token | String? |  yes  |  |
  | registerToken | String? |  yes  |  |
+ | captchaCode | String? |  yes  |  |
 
 ---
 

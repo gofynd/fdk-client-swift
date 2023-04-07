@@ -11,30 +11,30 @@ public extension PlatformClient.Order {
     class PlatformUserDetails: Codable {
         public var platformUserEmployeeCode: String?
 
-        public var platformUserFirstName: String?
+        public var platformUserId: String?
 
         public var platformUserLastName: String?
 
-        public var platformUserId: String?
+        public var platformUserFirstName: String?
 
         public enum CodingKeys: String, CodingKey {
             case platformUserEmployeeCode = "platform_user_employee_code"
 
-            case platformUserFirstName = "platform_user_first_name"
+            case platformUserId = "platform_user_id"
 
             case platformUserLastName = "platform_user_last_name"
 
-            case platformUserId = "platform_user_id"
+            case platformUserFirstName = "platform_user_first_name"
         }
 
         public init(platformUserEmployeeCode: String? = nil, platformUserFirstName: String? = nil, platformUserId: String? = nil, platformUserLastName: String? = nil) {
             self.platformUserEmployeeCode = platformUserEmployeeCode
 
-            self.platformUserFirstName = platformUserFirstName
+            self.platformUserId = platformUserId
 
             self.platformUserLastName = platformUserLastName
 
-            self.platformUserId = platformUserId
+            self.platformUserFirstName = platformUserFirstName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                platformUserFirstName = try container.decode(String.self, forKey: .platformUserFirstName)
+                platformUserId = try container.decode(String.self, forKey: .platformUserId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                platformUserId = try container.decode(String.self, forKey: .platformUserId)
+                platformUserFirstName = try container.decode(String.self, forKey: .platformUserFirstName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,11 +78,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(platformUserEmployeeCode, forKey: .platformUserEmployeeCode)
 
-            try? container.encodeIfPresent(platformUserFirstName, forKey: .platformUserFirstName)
+            try? container.encodeIfPresent(platformUserId, forKey: .platformUserId)
 
             try? container.encodeIfPresent(platformUserLastName, forKey: .platformUserLastName)
 
-            try? container.encodeIfPresent(platformUserId, forKey: .platformUserId)
+            try? container.encodeIfPresent(platformUserFirstName, forKey: .platformUserFirstName)
         }
     }
 }
@@ -96,30 +96,30 @@ public extension PlatformClient.ApplicationClient.Order {
     class PlatformUserDetails: Codable {
         public var platformUserEmployeeCode: String?
 
-        public var platformUserFirstName: String?
+        public var platformUserId: String?
 
         public var platformUserLastName: String?
 
-        public var platformUserId: String?
+        public var platformUserFirstName: String?
 
         public enum CodingKeys: String, CodingKey {
             case platformUserEmployeeCode = "platform_user_employee_code"
 
-            case platformUserFirstName = "platform_user_first_name"
+            case platformUserId = "platform_user_id"
 
             case platformUserLastName = "platform_user_last_name"
 
-            case platformUserId = "platform_user_id"
+            case platformUserFirstName = "platform_user_first_name"
         }
 
         public init(platformUserEmployeeCode: String? = nil, platformUserFirstName: String? = nil, platformUserId: String? = nil, platformUserLastName: String? = nil) {
             self.platformUserEmployeeCode = platformUserEmployeeCode
 
-            self.platformUserFirstName = platformUserFirstName
+            self.platformUserId = platformUserId
 
             self.platformUserLastName = platformUserLastName
 
-            self.platformUserId = platformUserId
+            self.platformUserFirstName = platformUserFirstName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                platformUserFirstName = try container.decode(String.self, forKey: .platformUserFirstName)
+                platformUserId = try container.decode(String.self, forKey: .platformUserId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                platformUserId = try container.decode(String.self, forKey: .platformUserId)
+                platformUserFirstName = try container.decode(String.self, forKey: .platformUserFirstName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,11 +163,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(platformUserEmployeeCode, forKey: .platformUserEmployeeCode)
 
-            try? container.encodeIfPresent(platformUserFirstName, forKey: .platformUserFirstName)
+            try? container.encodeIfPresent(platformUserId, forKey: .platformUserId)
 
             try? container.encodeIfPresent(platformUserLastName, forKey: .platformUserLastName)
 
-            try? container.encodeIfPresent(platformUserId, forKey: .platformUserId)
+            try? container.encodeIfPresent(platformUserFirstName, forKey: .platformUserFirstName)
         }
     }
 }

@@ -17,6 +17,8 @@ public extension PlatformClient.ApplicationClient.User {
 
         public var registerToken: String?
 
+        public var captchaCode: String?
+
         public enum CodingKeys: String, CodingKey {
             case email
 
@@ -25,9 +27,11 @@ public extension PlatformClient.ApplicationClient.User {
             case token
 
             case registerToken = "register_token"
+
+            case captchaCode = "captcha_code"
         }
 
-        public init(action: String? = nil, email: String? = nil, registerToken: String? = nil, token: String? = nil) {
+        public init(action: String? = nil, captchaCode: String? = nil, email: String? = nil, registerToken: String? = nil, token: String? = nil) {
             self.email = email
 
             self.action = action
@@ -35,6 +39,8 @@ public extension PlatformClient.ApplicationClient.User {
             self.token = token
 
             self.registerToken = registerToken
+
+            self.captchaCode = captchaCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,6 +77,14 @@ public extension PlatformClient.ApplicationClient.User {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                captchaCode = try container.decode(String.self, forKey: .captchaCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -83,6 +97,8 @@ public extension PlatformClient.ApplicationClient.User {
             try? container.encodeIfPresent(token, forKey: .token)
 
             try? container.encodeIfPresent(registerToken, forKey: .registerToken)
+
+            try? container.encodeIfPresent(captchaCode, forKey: .captchaCode)
         }
     }
 }

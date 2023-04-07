@@ -15,9 +15,9 @@ public extension PlatformClient.Catalog {
 
         public var type: String
 
-        public var itemTotal: Int
-
         public var hasNext: Bool?
+
+        public var itemTotal: Int
 
         public enum CodingKeys: String, CodingKey {
             case hasPrevious = "has_previous"
@@ -26,9 +26,9 @@ public extension PlatformClient.Catalog {
 
             case type
 
-            case itemTotal = "item_total"
-
             case hasNext = "has_next"
+
+            case itemTotal = "item_total"
         }
 
         public init(hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int, nextId: String? = nil, type: String) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Catalog {
 
             self.type = type
 
-            self.itemTotal = itemTotal
-
             self.hasNext = hasNext
+
+            self.itemTotal = itemTotal
         }
 
         required public init(from decoder: Decoder) throws {
@@ -64,8 +64,6 @@ public extension PlatformClient.Catalog {
 
             type = try container.decode(String.self, forKey: .type)
 
-            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-
             do {
                 hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
@@ -73,6 +71,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -84,9 +84,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
         }
     }
 }
@@ -104,9 +104,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var type: String
 
-        public var itemTotal: Int
-
         public var hasNext: Bool?
+
+        public var itemTotal: Int
 
         public enum CodingKeys: String, CodingKey {
             case hasPrevious = "has_previous"
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case type
 
-            case itemTotal = "item_total"
-
             case hasNext = "has_next"
+
+            case itemTotal = "item_total"
         }
 
         public init(hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int, nextId: String? = nil, type: String) {
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.type = type
 
-            self.itemTotal = itemTotal
-
             self.hasNext = hasNext
+
+            self.itemTotal = itemTotal
         }
 
         required public init(from decoder: Decoder) throws {
@@ -153,8 +153,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             type = try container.decode(String.self, forKey: .type)
 
-            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-
             do {
                 hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
@@ -162,6 +160,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -173,9 +173,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
         }
     }
 }
