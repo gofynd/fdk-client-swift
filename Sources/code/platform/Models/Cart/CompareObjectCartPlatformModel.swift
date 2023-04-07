@@ -15,9 +15,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var lessThan: Double?
 
-        public var lessThanEquals: Double?
-
         public var equals: Double?
+
+        public var lessThanEquals: Double?
 
         public enum CodingKeys: String, CodingKey {
             case greaterThan = "greater_than"
@@ -26,9 +26,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case lessThan = "less_than"
 
-            case lessThanEquals = "less_than_equals"
-
             case equals
+
+            case lessThanEquals = "less_than_equals"
         }
 
         public init(equals: Double? = nil, greaterThan: Double? = nil, greaterThanEquals: Double? = nil, lessThan: Double? = nil, lessThanEquals: Double? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.lessThan = lessThan
 
-            self.lessThanEquals = lessThanEquals
-
             self.equals = equals
+
+            self.lessThanEquals = lessThanEquals
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                lessThanEquals = try container.decode(Double.self, forKey: .lessThanEquals)
+                equals = try container.decode(Double.self, forKey: .equals)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                equals = try container.decode(Double.self, forKey: .equals)
+                lessThanEquals = try container.decode(Double.self, forKey: .lessThanEquals)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,9 +96,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(lessThan, forKey: .lessThan)
 
-            try? container.encodeIfPresent(lessThanEquals, forKey: .lessThanEquals)
-
             try? container.encodeIfPresent(equals, forKey: .equals)
+
+            try? container.encodeIfPresent(lessThanEquals, forKey: .lessThanEquals)
         }
     }
 }

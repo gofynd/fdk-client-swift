@@ -13,18 +13,18 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var checkoutMode: String?
 
-        public var cartId: String?
-
         public var id: String?
+
+        public var cartId: String?
 
         public enum CodingKeys: String, CodingKey {
             case billingAddressId = "billing_address_id"
 
             case checkoutMode = "checkout_mode"
 
-            case cartId = "cart_id"
-
             case id
+
+            case cartId = "cart_id"
         }
 
         public init(billingAddressId: String? = nil, cartId: String? = nil, checkoutMode: String? = nil, id: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.checkoutMode = checkoutMode
 
-            self.cartId = cartId
-
             self.id = id
+
+            self.cartId = cartId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                cartId = try container.decode(String.self, forKey: .cartId)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                cartId = try container.decode(String.self, forKey: .cartId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
-            try? container.encodeIfPresent(cartId, forKey: .cartId)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(cartId, forKey: .cartId)
         }
     }
 }

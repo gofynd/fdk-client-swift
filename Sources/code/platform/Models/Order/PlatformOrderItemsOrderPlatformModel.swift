@@ -9,75 +9,75 @@ public extension PlatformClient.Order {
      */
 
     class PlatformOrderItems: Codable {
-        public var userInfo: UserDataInfo?
+        public var orderId: String?
 
         public var totalOrderValue: Double?
 
-        public var orderId: String?
-
-        public var shipments: [PlatformShipment]?
-
-        public var orderCreatedTime: String?
+        public var orderValue: Double?
 
         public var meta: [String: Any]?
 
+        public var orderCreatedTime: String?
+
         public var paymentMode: String?
-
-        public var orderValue: Double?
-
-        public var breakupValues: [PlatformBreakupValues]?
 
         public var channel: PlatformChannel?
 
+        public var breakupValues: [PlatformBreakupValues]?
+
+        public var userInfo: UserDataInfo?
+
+        public var shipments: [PlatformShipment]?
+
         public enum CodingKeys: String, CodingKey {
-            case userInfo = "user_info"
+            case orderId = "order_id"
 
             case totalOrderValue = "total_order_value"
 
-            case orderId = "order_id"
-
-            case shipments
-
-            case orderCreatedTime = "order_created_time"
+            case orderValue = "order_value"
 
             case meta
 
+            case orderCreatedTime = "order_created_time"
+
             case paymentMode = "payment_mode"
 
-            case orderValue = "order_value"
+            case channel
 
             case breakupValues = "breakup_values"
 
-            case channel
+            case userInfo = "user_info"
+
+            case shipments
         }
 
         public init(breakupValues: [PlatformBreakupValues]? = nil, channel: PlatformChannel? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderId: String? = nil, orderValue: Double? = nil, paymentMode: String? = nil, shipments: [PlatformShipment]? = nil, totalOrderValue: Double? = nil, userInfo: UserDataInfo? = nil) {
-            self.userInfo = userInfo
+            self.orderId = orderId
 
             self.totalOrderValue = totalOrderValue
 
-            self.orderId = orderId
-
-            self.shipments = shipments
-
-            self.orderCreatedTime = orderCreatedTime
+            self.orderValue = orderValue
 
             self.meta = meta
 
+            self.orderCreatedTime = orderCreatedTime
+
             self.paymentMode = paymentMode
 
-            self.orderValue = orderValue
+            self.channel = channel
 
             self.breakupValues = breakupValues
 
-            self.channel = channel
+            self.userInfo = userInfo
+
+            self.shipments = shipments
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                userInfo = try container.decode(UserDataInfo.self, forKey: .userInfo)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,23 +93,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                shipments = try container.decode([PlatformShipment].self, forKey: .shipments)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderCreatedTime = try container.decode(String.self, forKey: .orderCreatedTime)
+                orderValue = try container.decode(Double.self, forKey: .orderValue)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,6 +109,14 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                orderCreatedTime = try container.decode(String.self, forKey: .orderCreatedTime)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -133,7 +125,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                orderValue = try container.decode(Double.self, forKey: .orderValue)
+                channel = try container.decode(PlatformChannel.self, forKey: .channel)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -149,7 +141,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                channel = try container.decode(PlatformChannel.self, forKey: .channel)
+                userInfo = try container.decode(UserDataInfo.self, forKey: .userInfo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shipments = try container.decode([PlatformShipment].self, forKey: .shipments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,25 +160,25 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(userInfo, forKey: .userInfo)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(totalOrderValue, forKey: .totalOrderValue)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
-
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
-
-            try? container.encodeIfPresent(orderCreatedTime, forKey: .orderCreatedTime)
+            try? container.encodeIfPresent(orderValue, forKey: .orderValue)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
+            try? container.encodeIfPresent(orderCreatedTime, forKey: .orderCreatedTime)
+
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
-            try? container.encodeIfPresent(orderValue, forKey: .orderValue)
+            try? container.encodeIfPresent(channel, forKey: .channel)
 
             try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
 
-            try? container.encodeIfPresent(channel, forKey: .channel)
+            try? container.encodeIfPresent(userInfo, forKey: .userInfo)
+
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
         }
     }
 }
@@ -190,75 +190,75 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class PlatformOrderItems: Codable {
-        public var userInfo: UserDataInfo?
+        public var orderId: String?
 
         public var totalOrderValue: Double?
 
-        public var orderId: String?
-
-        public var shipments: [PlatformShipment]?
-
-        public var orderCreatedTime: String?
+        public var orderValue: Double?
 
         public var meta: [String: Any]?
 
+        public var orderCreatedTime: String?
+
         public var paymentMode: String?
-
-        public var orderValue: Double?
-
-        public var breakupValues: [PlatformBreakupValues]?
 
         public var channel: PlatformChannel?
 
+        public var breakupValues: [PlatformBreakupValues]?
+
+        public var userInfo: UserDataInfo?
+
+        public var shipments: [PlatformShipment]?
+
         public enum CodingKeys: String, CodingKey {
-            case userInfo = "user_info"
+            case orderId = "order_id"
 
             case totalOrderValue = "total_order_value"
 
-            case orderId = "order_id"
-
-            case shipments
-
-            case orderCreatedTime = "order_created_time"
+            case orderValue = "order_value"
 
             case meta
 
+            case orderCreatedTime = "order_created_time"
+
             case paymentMode = "payment_mode"
 
-            case orderValue = "order_value"
+            case channel
 
             case breakupValues = "breakup_values"
 
-            case channel
+            case userInfo = "user_info"
+
+            case shipments
         }
 
         public init(breakupValues: [PlatformBreakupValues]? = nil, channel: PlatformChannel? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderId: String? = nil, orderValue: Double? = nil, paymentMode: String? = nil, shipments: [PlatformShipment]? = nil, totalOrderValue: Double? = nil, userInfo: UserDataInfo? = nil) {
-            self.userInfo = userInfo
+            self.orderId = orderId
 
             self.totalOrderValue = totalOrderValue
 
-            self.orderId = orderId
-
-            self.shipments = shipments
-
-            self.orderCreatedTime = orderCreatedTime
+            self.orderValue = orderValue
 
             self.meta = meta
 
+            self.orderCreatedTime = orderCreatedTime
+
             self.paymentMode = paymentMode
 
-            self.orderValue = orderValue
+            self.channel = channel
 
             self.breakupValues = breakupValues
 
-            self.channel = channel
+            self.userInfo = userInfo
+
+            self.shipments = shipments
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                userInfo = try container.decode(UserDataInfo.self, forKey: .userInfo)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -274,23 +274,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                shipments = try container.decode([PlatformShipment].self, forKey: .shipments)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderCreatedTime = try container.decode(String.self, forKey: .orderCreatedTime)
+                orderValue = try container.decode(Double.self, forKey: .orderValue)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -306,6 +290,14 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                orderCreatedTime = try container.decode(String.self, forKey: .orderCreatedTime)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -314,7 +306,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                orderValue = try container.decode(Double.self, forKey: .orderValue)
+                channel = try container.decode(PlatformChannel.self, forKey: .channel)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -330,7 +322,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                channel = try container.decode(PlatformChannel.self, forKey: .channel)
+                userInfo = try container.decode(UserDataInfo.self, forKey: .userInfo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shipments = try container.decode([PlatformShipment].self, forKey: .shipments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -341,25 +341,25 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(userInfo, forKey: .userInfo)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(totalOrderValue, forKey: .totalOrderValue)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
-
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
-
-            try? container.encodeIfPresent(orderCreatedTime, forKey: .orderCreatedTime)
+            try? container.encodeIfPresent(orderValue, forKey: .orderValue)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
+            try? container.encodeIfPresent(orderCreatedTime, forKey: .orderCreatedTime)
+
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
-            try? container.encodeIfPresent(orderValue, forKey: .orderValue)
+            try? container.encodeIfPresent(channel, forKey: .channel)
 
             try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
 
-            try? container.encodeIfPresent(channel, forKey: .channel)
+            try? container.encodeIfPresent(userInfo, forKey: .userInfo)
+
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
         }
     }
 }
