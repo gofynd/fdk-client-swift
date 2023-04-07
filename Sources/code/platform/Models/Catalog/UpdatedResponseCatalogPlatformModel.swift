@@ -9,27 +9,27 @@ public extension PlatformClient.Catalog {
      */
 
     class UpdatedResponse: Codable {
-        public var itemsNotUpdated: [Int]?
-
         public var message: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case itemsNotUpdated = "items_not_updated"
+        public var itemsNotUpdated: [Int]?
 
+        public enum CodingKeys: String, CodingKey {
             case message
+
+            case itemsNotUpdated = "items_not_updated"
         }
 
         public init(itemsNotUpdated: [Int]? = nil, message: String? = nil) {
-            self.itemsNotUpdated = itemsNotUpdated
-
             self.message = message
+
+            self.itemsNotUpdated = itemsNotUpdated
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemsNotUpdated = try container.decode([Int].self, forKey: .itemsNotUpdated)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                itemsNotUpdated = try container.decode([Int].self, forKey: .itemsNotUpdated)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemsNotUpdated, forKey: .itemsNotUpdated)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(itemsNotUpdated, forKey: .itemsNotUpdated)
         }
     }
 }
@@ -62,27 +62,27 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class UpdatedResponse: Codable {
-        public var itemsNotUpdated: [Int]?
-
         public var message: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case itemsNotUpdated = "items_not_updated"
+        public var itemsNotUpdated: [Int]?
 
+        public enum CodingKeys: String, CodingKey {
             case message
+
+            case itemsNotUpdated = "items_not_updated"
         }
 
         public init(itemsNotUpdated: [Int]? = nil, message: String? = nil) {
-            self.itemsNotUpdated = itemsNotUpdated
-
             self.message = message
+
+            self.itemsNotUpdated = itemsNotUpdated
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemsNotUpdated = try container.decode([Int].self, forKey: .itemsNotUpdated)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                itemsNotUpdated = try container.decode([Int].self, forKey: .itemsNotUpdated)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemsNotUpdated, forKey: .itemsNotUpdated)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(itemsNotUpdated, forKey: .itemsNotUpdated)
         }
     }
 }

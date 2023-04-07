@@ -11,24 +11,24 @@ public extension PlatformClient.CompanyProfile {
     class LocationManagerSerializer: Codable {
         public var name: String?
 
-        public var mobileNo: SellerPhoneNumber
-
         public var email: String?
+
+        public var mobileNo: SellerPhoneNumber
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case mobileNo = "mobile_no"
-
             case email
+
+            case mobileNo = "mobile_no"
         }
 
         public init(email: String? = nil, mobileNo: SellerPhoneNumber, name: String? = nil) {
             self.name = name
 
-            self.mobileNo = mobileNo
-
             self.email = email
+
+            self.mobileNo = mobileNo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,8 +42,6 @@ public extension PlatformClient.CompanyProfile {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            mobileNo = try container.decode(SellerPhoneNumber.self, forKey: .mobileNo)
-
             do {
                 email = try container.decode(String.self, forKey: .email)
 
@@ -51,6 +49,8 @@ public extension PlatformClient.CompanyProfile {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            mobileNo = try container.decode(SellerPhoneNumber.self, forKey: .mobileNo)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -58,9 +58,9 @@ public extension PlatformClient.CompanyProfile {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(mobileNo, forKey: .mobileNo)
-
             try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encodeIfPresent(mobileNo, forKey: .mobileNo)
         }
     }
 }

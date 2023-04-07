@@ -7,72 +7,80 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class CartProduct: Codable {
+        public var name: String?
+
         public var action: ProductAction?
 
         public var images: [ProductImage]?
 
-        public var name: String?
-
-        public var netQuantity: NetQuantity?
-
-        public var type: String?
+        public var slug: String?
 
         public var uid: Int?
 
         public var itemCode: String?
 
-        public var slug: String?
+        public var netQuantity: NetQuantity?
 
         public var brand: BaseInfo?
 
         public var categories: [CategoryInfo]?
 
+        public var type: String?
+
         public enum CodingKeys: String, CodingKey {
+            case name
+
             case action
 
             case images
 
-            case name
-
-            case netQuantity = "net_quantity"
-
-            case type
+            case slug
 
             case uid
 
             case itemCode = "item_code"
 
-            case slug
+            case netQuantity = "net_quantity"
 
             case brand
 
             case categories
+
+            case type
         }
 
         public init(action: ProductAction? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, images: [ProductImage]? = nil, itemCode: String? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, slug: String? = nil, type: String? = nil, uid: Int? = nil) {
+            self.name = name
+
             self.action = action
 
             self.images = images
 
-            self.name = name
-
-            self.netQuantity = netQuantity
-
-            self.type = type
+            self.slug = slug
 
             self.uid = uid
 
             self.itemCode = itemCode
 
-            self.slug = slug
+            self.netQuantity = netQuantity
 
             self.brand = brand
 
             self.categories = categories
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 action = try container.decode(ProductAction.self, forKey: .action)
@@ -91,23 +99,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                netQuantity = try container.decode(NetQuantity.self, forKey: .netQuantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,7 +123,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                netQuantity = try container.decode(NetQuantity.self, forKey: .netQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,30 +145,38 @@ public extension ApplicationClient.PosCart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(images, forKey: .images)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(netQuantity, forKey: .netQuantity)
-
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encode(itemCode, forKey: .itemCode)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(netQuantity, forKey: .netQuantity)
 
             try? container.encodeIfPresent(brand, forKey: .brand)
 
             try? container.encodeIfPresent(categories, forKey: .categories)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

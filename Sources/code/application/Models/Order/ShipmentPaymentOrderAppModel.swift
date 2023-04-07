@@ -11,11 +11,11 @@ public extension ApplicationClient.Order {
 
         public var mop: String?
 
-        public var logo: String?
-
         public var mode: String?
 
         public var status: String?
+
+        public var logo: String?
 
         public var paymentMode: String?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient.Order {
 
             case mop
 
-            case logo
-
             case mode
 
             case status
+
+            case logo
 
             case paymentMode = "payment_mode"
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient.Order {
 
             self.mop = mop
 
-            self.logo = logo
-
             self.mode = mode
 
             self.status = status
+
+            self.logo = logo
 
             self.paymentMode = paymentMode
         }
@@ -67,14 +67,6 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 mode = try container.decode(String.self, forKey: .mode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -84,6 +76,14 @@ public extension ApplicationClient.Order {
 
             do {
                 status = try container.decode(String.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(mop, forKey: .mop)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(mode, forKey: .mode)
 
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
         }

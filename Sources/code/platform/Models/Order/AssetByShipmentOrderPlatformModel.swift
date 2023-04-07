@@ -9,26 +9,24 @@ public extension PlatformClient.Order {
      */
 
     class AssetByShipment: Codable {
-        public var shipmentId: String
-
         public var assets: [String: String]?
 
-        public enum CodingKeys: String, CodingKey {
-            case shipmentId = "shipment_id"
+        public var shipmentId: String
 
+        public enum CodingKeys: String, CodingKey {
             case assets
+
+            case shipmentId = "shipment_id"
         }
 
         public init(assets: [String: String]? = nil, shipmentId: String) {
-            self.shipmentId = shipmentId
-
             self.assets = assets
+
+            self.shipmentId = shipmentId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             do {
                 assets = try container.decode([String: String].self, forKey: .assets)
@@ -37,14 +35,16 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
             try? container.encodeIfPresent(assets, forKey: .assets)
+
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
         }
     }
 }
@@ -56,26 +56,24 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class AssetByShipment: Codable {
-        public var shipmentId: String
-
         public var assets: [String: String]?
 
-        public enum CodingKeys: String, CodingKey {
-            case shipmentId = "shipment_id"
+        public var shipmentId: String
 
+        public enum CodingKeys: String, CodingKey {
             case assets
+
+            case shipmentId = "shipment_id"
         }
 
         public init(assets: [String: String]? = nil, shipmentId: String) {
-            self.shipmentId = shipmentId
-
             self.assets = assets
+
+            self.shipmentId = shipmentId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             do {
                 assets = try container.decode([String: String].self, forKey: .assets)
@@ -84,14 +82,16 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
             try? container.encodeIfPresent(assets, forKey: .assets)
+
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
         }
     }
 }

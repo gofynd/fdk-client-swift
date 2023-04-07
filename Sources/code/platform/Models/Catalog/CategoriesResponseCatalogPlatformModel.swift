@@ -15,9 +15,9 @@ public extension PlatformClient.Catalog {
 
         public var slugKey: String?
 
-        public var templateSlug: String?
-
         public var slug: String?
+
+        public var templateSlug: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
@@ -26,9 +26,9 @@ public extension PlatformClient.Catalog {
 
             case slugKey = "slug_key"
 
-            case templateSlug = "template_slug"
-
             case slug
+
+            case templateSlug = "template_slug"
         }
 
         public init(name: String? = nil, slug: String? = nil, slugKey: String? = nil, templateSlug: String? = nil, uid: Int? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Catalog {
 
             self.slugKey = slugKey
 
-            self.templateSlug = templateSlug
-
             self.slug = slug
+
+            self.templateSlug = templateSlug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                templateSlug = try container.decode(String.self, forKey: .templateSlug)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                templateSlug = try container.decode(String.self, forKey: .templateSlug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,9 +96,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(slugKey, forKey: .slugKey)
 
-            try? container.encodeIfPresent(templateSlug, forKey: .templateSlug)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(templateSlug, forKey: .templateSlug)
         }
     }
 }
@@ -116,9 +116,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var slugKey: String?
 
-        public var templateSlug: String?
-
         public var slug: String?
+
+        public var templateSlug: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case slugKey = "slug_key"
 
-            case templateSlug = "template_slug"
-
             case slug
+
+            case templateSlug = "template_slug"
         }
 
         public init(name: String? = nil, slug: String? = nil, slugKey: String? = nil, templateSlug: String? = nil, uid: Int? = nil) {
@@ -139,9 +139,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.slugKey = slugKey
 
-            self.templateSlug = templateSlug
-
             self.slug = slug
+
+            self.templateSlug = templateSlug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                templateSlug = try container.decode(String.self, forKey: .templateSlug)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                templateSlug = try container.decode(String.self, forKey: .templateSlug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -197,9 +197,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(slugKey, forKey: .slugKey)
 
-            try? container.encodeIfPresent(templateSlug, forKey: .templateSlug)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(templateSlug, forKey: .templateSlug)
         }
     }
 }

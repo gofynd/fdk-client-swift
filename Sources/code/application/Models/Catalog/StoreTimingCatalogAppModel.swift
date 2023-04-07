@@ -11,18 +11,18 @@ public extension ApplicationClient.Catalog {
 
         public var weekday: String?
 
-        public var open: Bool?
-
         public var closing: Time?
+
+        public var open: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case opening
 
             case weekday
 
-            case open
-
             case closing
+
+            case open
         }
 
         public init(closing: Time? = nil, open: Bool? = nil, opening: Time? = nil, weekday: String? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Catalog {
 
             self.weekday = weekday
 
-            self.open = open
-
             self.closing = closing
+
+            self.open = open
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                open = try container.decode(Bool.self, forKey: .open)
+                closing = try container.decode(Time.self, forKey: .closing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                closing = try container.decode(Time.self, forKey: .closing)
+                open = try container.decode(Bool.self, forKey: .open)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(weekday, forKey: .weekday)
 
-            try? container.encodeIfPresent(open, forKey: .open)
-
             try? container.encodeIfPresent(closing, forKey: .closing)
+
+            try? container.encodeIfPresent(open, forKey: .open)
         }
     }
 }

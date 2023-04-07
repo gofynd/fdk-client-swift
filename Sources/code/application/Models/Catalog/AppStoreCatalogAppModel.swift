@@ -9,11 +9,9 @@ public extension ApplicationClient.Catalog {
     class AppStore: Codable {
         public var name: String?
 
-        public var address: StoreAddressSerializer?
-
         public var departments: [StoreDepartments]?
 
-        public var company: CompanyStore?
+        public var address: StoreAddressSerializer?
 
         public var contactNumbers: [SellerPhoneNumber]?
 
@@ -21,36 +19,38 @@ public extension ApplicationClient.Catalog {
 
         public var manager: StoreManagerSerializer?
 
+        public var company: CompanyStore?
+
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case address
-
             case departments
 
-            case company
+            case address
 
             case contactNumbers = "contact_numbers"
 
             case uid
 
             case manager
+
+            case company
         }
 
         public init(address: StoreAddressSerializer? = nil, company: CompanyStore? = nil, contactNumbers: [SellerPhoneNumber]? = nil, departments: [StoreDepartments]? = nil, manager: StoreManagerSerializer? = nil, name: String? = nil, uid: Int? = nil) {
             self.name = name
 
-            self.address = address
-
             self.departments = departments
 
-            self.company = company
+            self.address = address
 
             self.contactNumbers = contactNumbers
 
             self.uid = uid
 
             self.manager = manager
+
+            self.company = company
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,14 +58,6 @@ public extension ApplicationClient.Catalog {
 
             do {
                 name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +73,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                company = try container.decode(CompanyStore.self, forKey: .company)
+                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,6 +103,14 @@ public extension ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                company = try container.decode(CompanyStore.self, forKey: .company)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -118,17 +118,17 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(address, forKey: .address)
-
             try? container.encodeIfPresent(departments, forKey: .departments)
 
-            try? container.encodeIfPresent(company, forKey: .company)
+            try? container.encodeIfPresent(address, forKey: .address)
 
             try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(manager, forKey: .manager)
+
+            try? container.encodeIfPresent(company, forKey: .company)
         }
     }
 }

@@ -7,36 +7,36 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class UpdateShipmentStatusRequest: Codable {
-        public var statuses: [StatuesRequest]?
+        public var task: Bool?
 
         public var unlockBeforeTransition: Bool?
 
         public var lockAfterTransition: Bool?
 
-        public var task: Bool?
+        public var statuses: [StatuesRequest]?
 
         public var forceTransition: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case statuses
+            case task
 
             case unlockBeforeTransition = "unlock_before_transition"
 
             case lockAfterTransition = "lock_after_transition"
 
-            case task
+            case statuses
 
             case forceTransition = "force_transition"
         }
 
         public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
-            self.statuses = statuses
+            self.task = task
 
             self.unlockBeforeTransition = unlockBeforeTransition
 
             self.lockAfterTransition = lockAfterTransition
 
-            self.task = task
+            self.statuses = statuses
 
             self.forceTransition = forceTransition
         }
@@ -45,7 +45,7 @@ public extension ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
+                task = try container.decode(Bool.self, forKey: .task)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                task = try container.decode(Bool.self, forKey: .task)
+                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,13 +88,13 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(statuses, forKey: .statuses)
+            try? container.encodeIfPresent(task, forKey: .task)
 
             try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
 
             try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
 
-            try? container.encodeIfPresent(task, forKey: .task)
+            try? container.encodeIfPresent(statuses, forKey: .statuses)
 
             try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
         }

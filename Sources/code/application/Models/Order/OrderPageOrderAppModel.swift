@@ -11,22 +11,22 @@ public extension ApplicationClient.Order {
 
         public var current: Int?
 
-        public var itemTotal: Int?
+        public var size: Int?
 
         public var hasNext: Bool?
 
-        public var size: Int?
+        public var itemTotal: Int?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
             case current
 
-            case itemTotal = "item_total"
+            case size
 
             case hasNext = "has_next"
 
-            case size
+            case itemTotal = "item_total"
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Order {
 
             self.current = current
 
-            self.itemTotal = itemTotal
+            self.size = size
 
             self.hasNext = hasNext
 
-            self.size = size
+            self.itemTotal = itemTotal
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                size = try container.decode(Int.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                size = try container.decode(Int.self, forKey: .size)
+                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(current, forKey: .current)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
         }
     }
 }
