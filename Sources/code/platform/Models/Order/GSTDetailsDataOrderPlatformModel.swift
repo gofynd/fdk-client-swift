@@ -11,9 +11,9 @@ public extension PlatformClient.Order {
     class GSTDetailsData: Codable {
         public var brandCalculatedAmount: Double
 
-        public var taxCollectedAtSource: Double
-
         public var gstFee: Double
+
+        public var taxCollectedAtSource: Double
 
         public var gstinCode: String
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Order {
         public enum CodingKeys: String, CodingKey {
             case brandCalculatedAmount = "brand_calculated_amount"
 
-            case taxCollectedAtSource = "tax_collected_at_source"
-
             case gstFee = "gst_fee"
+
+            case taxCollectedAtSource = "tax_collected_at_source"
 
             case gstinCode = "gstin_code"
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Order {
         public init(brandCalculatedAmount: Double, gstinCode: String, gstFee: Double, taxCollectedAtSource: Double, valueOfGood: Double) {
             self.brandCalculatedAmount = brandCalculatedAmount
 
-            self.taxCollectedAtSource = taxCollectedAtSource
-
             self.gstFee = gstFee
+
+            self.taxCollectedAtSource = taxCollectedAtSource
 
             self.gstinCode = gstinCode
 
@@ -48,9 +48,9 @@ public extension PlatformClient.Order {
 
             brandCalculatedAmount = try container.decode(Double.self, forKey: .brandCalculatedAmount)
 
-            taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
-
             gstFee = try container.decode(Double.self, forKey: .gstFee)
+
+            taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
 
             gstinCode = try container.decode(String.self, forKey: .gstinCode)
 
@@ -62,9 +62,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
 
-            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
-
             try? container.encodeIfPresent(gstFee, forKey: .gstFee)
+
+            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
 
             try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
 
@@ -82,9 +82,9 @@ public extension PlatformClient.ApplicationClient.Order {
     class GSTDetailsData: Codable {
         public var brandCalculatedAmount: Double
 
-        public var taxCollectedAtSource: Double
-
         public var gstFee: Double
+
+        public var taxCollectedAtSource: Double
 
         public var gstinCode: String
 
@@ -93,9 +93,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             case brandCalculatedAmount = "brand_calculated_amount"
 
-            case taxCollectedAtSource = "tax_collected_at_source"
-
             case gstFee = "gst_fee"
+
+            case taxCollectedAtSource = "tax_collected_at_source"
 
             case gstinCode = "gstin_code"
 
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(brandCalculatedAmount: Double, gstinCode: String, gstFee: Double, taxCollectedAtSource: Double, valueOfGood: Double) {
             self.brandCalculatedAmount = brandCalculatedAmount
 
-            self.taxCollectedAtSource = taxCollectedAtSource
-
             self.gstFee = gstFee
+
+            self.taxCollectedAtSource = taxCollectedAtSource
 
             self.gstinCode = gstinCode
 
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             brandCalculatedAmount = try container.decode(Double.self, forKey: .brandCalculatedAmount)
 
-            taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
-
             gstFee = try container.decode(Double.self, forKey: .gstFee)
+
+            taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
 
             gstinCode = try container.decode(String.self, forKey: .gstinCode)
 
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
 
-            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
-
             try? container.encodeIfPresent(gstFee, forKey: .gstFee)
+
+            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
 
             try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
 

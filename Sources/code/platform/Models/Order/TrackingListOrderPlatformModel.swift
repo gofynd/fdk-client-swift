@@ -9,6 +9,8 @@ public extension PlatformClient.Order {
      */
 
     class TrackingList: Codable {
+        public var text: String
+
         public var isPassed: Bool?
 
         public var isCurrent: Bool?
@@ -17,9 +19,9 @@ public extension PlatformClient.Order {
 
         public var status: String
 
-        public var text: String
-
         public enum CodingKeys: String, CodingKey {
+            case text
+
             case isPassed = "is_passed"
 
             case isCurrent = "is_current"
@@ -27,11 +29,11 @@ public extension PlatformClient.Order {
             case time
 
             case status
-
-            case text
         }
 
         public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
+            self.text = text
+
             self.isPassed = isPassed
 
             self.isCurrent = isCurrent
@@ -39,12 +41,12 @@ public extension PlatformClient.Order {
             self.time = time
 
             self.status = status
-
-            self.text = text
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            text = try container.decode(String.self, forKey: .text)
 
             do {
                 isPassed = try container.decode(Bool.self, forKey: .isPassed)
@@ -71,12 +73,12 @@ public extension PlatformClient.Order {
             } catch {}
 
             status = try container.decode(String.self, forKey: .status)
-
-            text = try container.decode(String.self, forKey: .text)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(isPassed, forKey: .isPassed)
 
@@ -85,8 +87,6 @@ public extension PlatformClient.Order {
             try? container.encodeIfPresent(time, forKey: .time)
 
             try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(text, forKey: .text)
         }
     }
 }
@@ -98,6 +98,8 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class TrackingList: Codable {
+        public var text: String
+
         public var isPassed: Bool?
 
         public var isCurrent: Bool?
@@ -106,9 +108,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var status: String
 
-        public var text: String
-
         public enum CodingKeys: String, CodingKey {
+            case text
+
             case isPassed = "is_passed"
 
             case isCurrent = "is_current"
@@ -116,11 +118,11 @@ public extension PlatformClient.ApplicationClient.Order {
             case time
 
             case status
-
-            case text
         }
 
         public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
+            self.text = text
+
             self.isPassed = isPassed
 
             self.isCurrent = isCurrent
@@ -128,12 +130,12 @@ public extension PlatformClient.ApplicationClient.Order {
             self.time = time
 
             self.status = status
-
-            self.text = text
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            text = try container.decode(String.self, forKey: .text)
 
             do {
                 isPassed = try container.decode(Bool.self, forKey: .isPassed)
@@ -160,12 +162,12 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             status = try container.decode(String.self, forKey: .status)
-
-            text = try container.decode(String.self, forKey: .text)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(isPassed, forKey: .isPassed)
 
@@ -174,8 +176,6 @@ public extension PlatformClient.ApplicationClient.Order {
             try? container.encodeIfPresent(time, forKey: .time)
 
             try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(text, forKey: .text)
         }
     }
 }

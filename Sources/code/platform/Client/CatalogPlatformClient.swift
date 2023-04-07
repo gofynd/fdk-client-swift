@@ -1458,7 +1458,7 @@ public extension PlatformClient {
             pageNo: Int?,
             pageSize: Int?,
 
-            onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductListingResponseV2?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -1514,7 +1514,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(ProductListingResponse.self, from: data)
+                        let response = Utility.decode(ProductListingResponseV2.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -2314,7 +2314,7 @@ public extension PlatformClient {
          * Description: This API allows get Inventory data for particular company grouped by size and store.
          **/
         public func getInventoryBySize(
-            itemId: String,
+            itemId: Int,
             size: String,
             pageNo: Int?,
             pageSize: Int?,
@@ -2376,7 +2376,7 @@ public extension PlatformClient {
          * Description: This API allows add Inventory for particular size and store.
          **/
         public func addInventory(
-            itemId: Double,
+            itemId: Int,
             size: String,
             body: InventoryRequest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
@@ -2416,7 +2416,7 @@ public extension PlatformClient {
          * Description: This API allows get Inventory data for particular company grouped by size and store.
          **/
         public func getInventoryBySizeIdentifier(
-            itemId: String,
+            itemId: Int,
             sizeIdentifier: String,
             pageNo: Int?,
             pageSize: Int?,
@@ -2885,7 +2885,7 @@ public extension PlatformClient {
          * Description: This API allows add Inventory for particular size and store.
          **/
         public func updateRealtimeInventory(
-            itemId: Double,
+            itemId: Int,
             sellerIdentifier: String,
             body: InventoryRequestSchemaV2,
             onResponse: @escaping (_ response: InventoryUpdateResponse?, _ error: FDKError?) -> Void
@@ -2925,7 +2925,7 @@ public extension PlatformClient {
          * Description: This API allows add Inventory for particular size and store.
          **/
         public func deleteRealtimeInventory(
-            itemId: Double,
+            itemId: Int,
             sellerIdentifier: String,
             body: InventoryRequestSchemaV2,
             onResponse: @escaping (_ response: InventoryUpdateResponse?, _ error: FDKError?) -> Void

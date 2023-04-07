@@ -9,24 +9,24 @@ public extension PlatformClient.Catalog {
      */
 
     class ProductDownloadItemsData: Codable {
-        public var type: String?
-
         public var brand: [String]?
+
+        public var type: String?
 
         public var templates: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case type
-
             case brand
+
+            case type
 
             case templates
         }
 
         public init(brand: [String]? = nil, templates: [String]? = nil, type: String? = nil) {
-            self.type = type
-
             self.brand = brand
+
+            self.type = type
 
             self.templates = templates
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                brand = try container.decode([String].self, forKey: .brand)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                brand = try container.decode([String].self, forKey: .brand)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(brand, forKey: .brand)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(templates, forKey: .templates)
         }
@@ -78,24 +78,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ProductDownloadItemsData: Codable {
-        public var type: String?
-
         public var brand: [String]?
+
+        public var type: String?
 
         public var templates: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case type
-
             case brand
+
+            case type
 
             case templates
         }
 
         public init(brand: [String]? = nil, templates: [String]? = nil, type: String? = nil) {
-            self.type = type
-
             self.brand = brand
+
+            self.type = type
 
             self.templates = templates
         }
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                brand = try container.decode([String].self, forKey: .brand)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                brand = try container.decode([String].self, forKey: .brand)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(brand, forKey: .brand)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(templates, forKey: .templates)
         }
