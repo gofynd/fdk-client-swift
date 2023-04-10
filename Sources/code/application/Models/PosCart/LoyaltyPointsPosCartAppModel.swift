@@ -11,18 +11,18 @@ public extension ApplicationClient.PosCart {
 
         public var total: Double?
 
-        public var description: String?
-
         public var isApplied: Bool?
+
+        public var description: String?
 
         public enum CodingKeys: String, CodingKey {
             case applicable
 
             case total
 
-            case description
-
             case isApplied = "is_applied"
+
+            case description
         }
 
         public init(applicable: Double? = nil, description: String? = nil, isApplied: Bool? = nil, total: Double? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.PosCart {
 
             self.total = total
 
-            self.description = description
-
             self.isApplied = isApplied
+
+            self.description = description
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                isApplied = try container.decode(Bool.self, forKey: .isApplied)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                isApplied = try container.decode(Bool.self, forKey: .isApplied)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(total, forKey: .total)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
             try? container.encodeIfPresent(isApplied, forKey: .isApplied)
+
+            try? container.encodeIfPresent(description, forKey: .description)
         }
     }
 }

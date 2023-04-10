@@ -11,9 +11,9 @@ public extension ApplicationClient.Order {
 
         public var exception: String?
 
-        public var message: String?
-
         public var code: String?
+
+        public var message: String?
 
         public var stackTrace: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Order {
 
             case exception
 
-            case message
-
             case code
+
+            case message
 
             case stackTrace = "stack_trace"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Order {
 
             self.exception = exception
 
-            self.message = message
-
             self.code = code
+
+            self.message = message
 
             self.stackTrace = stackTrace
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Order {
 
             try? container.encode(exception, forKey: .exception)
 
-            try? container.encode(message, forKey: .message)
-
             try? container.encode(code, forKey: .code)
+
+            try? container.encode(message, forKey: .message)
 
             try? container.encode(stackTrace, forKey: .stackTrace)
         }

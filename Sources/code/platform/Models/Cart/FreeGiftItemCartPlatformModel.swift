@@ -13,26 +13,26 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var itemName: String?
 
-        public var itemPriceDetails: [String: Any]?
+        public var itemId: Int?
 
         public var itemBrandName: String?
 
         public var itemSlug: String?
 
-        public var itemId: Int?
+        public var itemPriceDetails: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case itemImagesUrl = "item_images_url"
 
             case itemName = "item_name"
 
-            case itemPriceDetails = "item_price_details"
+            case itemId = "item_id"
 
             case itemBrandName = "item_brand_name"
 
             case itemSlug = "item_slug"
 
-            case itemId = "item_id"
+            case itemPriceDetails = "item_price_details"
         }
 
         public init(itemBrandName: String? = nil, itemId: Int? = nil, itemImagesUrl: [String]? = nil, itemName: String? = nil, itemPriceDetails: [String: Any]? = nil, itemSlug: String? = nil) {
@@ -40,13 +40,13 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.itemName = itemName
 
-            self.itemPriceDetails = itemPriceDetails
+            self.itemId = itemId
 
             self.itemBrandName = itemBrandName
 
             self.itemSlug = itemSlug
 
-            self.itemId = itemId
+            self.itemPriceDetails = itemPriceDetails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                itemPriceDetails = try container.decode([String: Any].self, forKey: .itemPriceDetails)
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
+                itemPriceDetails = try container.decode([String: Any].self, forKey: .itemPriceDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,13 +108,13 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(itemName, forKey: .itemName)
 
-            try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
             try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
 
             try? container.encodeIfPresent(itemSlug, forKey: .itemSlug)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
         }
     }
 }
