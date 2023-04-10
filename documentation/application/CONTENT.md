@@ -1850,7 +1850,19 @@ Success. Returns a list of pages along with their details. Check the example sho
  | redirectTo | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
- | source | [TagSourceSchema](#TagSourceSchema)? |  yes  |  |
+ | source | [PathSourceSchema](#PathSourceSchema)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PathSourceSchema](#PathSourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -2281,26 +2293,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  
  
  #### [NavigationReference](#NavigationReference)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | acl | [String]? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | localeLanguage | [LocaleLanguage](#LocaleLanguage)? |  yes  |  |
- | image | String? |  yes  |  |
- | type | String? |  yes  |  |
- | action | [Action](#Action)? |  yes  |  |
- | active | Bool? |  yes  |  |
- | display | String? |  yes  |  |
- | sortOrder | Int? |  yes  |  |
- | subNavigation | [[SubNavigationReference](#SubNavigationReference)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [SubNavigationReference](#SubNavigationReference)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -3278,7 +3270,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | collections | collections | Symbolic link for Collections: /collections/ |
  | contactUs | contact-us | Symbolic link for Contact Us: /contact-us/ |
  | externalLink | external | Symbolic link for External Link: /external/ |
- | faq | faq | Symbolic link for FAQ: /faq/:category |
+ | faq | faq | Symbolic link for FAQ: /faq |
  | freshchat | freshchat | Symbolic link for Chat by Freshchat: /freshchat |
  | home | home | Symbolic link for Home: / |
  | notificationSettings | notification-settings | Symbolic link for Notification Settings: /notification-settings |
@@ -3291,6 +3283,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | productRequest | product-request | Symbolic link for Product Request: /product-request/ |
  | products | products | Symbolic link for Products: /products/ |
  | profile | profile | Symbolic link for Profile: /profile |
+ | profileOrderShipment | profile-order-shipment | Symbolic link for profile orders shipment: /profile/orders/shipment/:shipmentid |
  | profileBasic | profile-basic | Symbolic link for Basic Profile: /profile/details |
  | profileCompany | profile-company | Symbolic link for Profile Company: /profile/company |
  | profileEmails | profile-emails | Symbolic link for Profile Emails: /profile/email |
