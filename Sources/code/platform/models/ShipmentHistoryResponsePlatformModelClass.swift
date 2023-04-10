@@ -8,26 +8,20 @@ public extension PlatformClient {
      */
 
     class ShipmentHistoryResponse: Codable {
-        public var activityHistory: [HistoryDict]?
+        public var activityHistory: [HistoryDict]
 
         public enum CodingKeys: String, CodingKey {
             case activityHistory = "activity_history"
         }
 
-        public init(activityHistory: [HistoryDict]? = nil) {
+        public init(activityHistory: [HistoryDict]) {
             self.activityHistory = activityHistory
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                activityHistory = try container.decode([HistoryDict].self, forKey: .activityHistory)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            activityHistory = try container.decode([HistoryDict].self, forKey: .activityHistory)
         }
 
         public func encode(to encoder: Encoder) throws {

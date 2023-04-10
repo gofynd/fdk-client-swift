@@ -13,9 +13,9 @@ public extension ApplicationClient {
 
         public var companyId: Int?
 
-        public var id: Int?
-
         public var code: String?
+
+        public var id: Int?
 
         public enum CodingKeys: String, CodingKey {
             case companyName = "company_name"
@@ -24,9 +24,9 @@ public extension ApplicationClient {
 
             case companyId = "company_id"
 
-            case id
-
             case code
+
+            case id
         }
 
         public init(code: String? = nil, companyId: Int? = nil, companyName: String? = nil, id: Int? = nil, name: String? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient {
 
             self.companyId = companyId
 
-            self.id = id
-
             self.code = code
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

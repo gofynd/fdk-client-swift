@@ -10,54 +10,54 @@ public extension PlatformClient {
     class AllSizes: Codable {
         public var itemLength: Double
 
-        public var itemWidth: Double
-
-        public var itemWeightUnitOfMeasure: [String: Any]
-
-        public var itemHeight: Double
-
-        public var identifiers: [ValidateIdentifier]?
-
-        public var itemDimensionsUnitOfMeasure: String
+        public var itemWeight: Double
 
         public var size: [String: Any]
 
-        public var itemWeight: Double
+        public var identifiers: [ValidateIdentifier]?
+
+        public var itemHeight: Double
+
+        public var itemDimensionsUnitOfMeasure: String
+
+        public var itemWeightUnitOfMeasure: [String: Any]
+
+        public var itemWidth: Double
 
         public enum CodingKeys: String, CodingKey {
             case itemLength = "item_length"
 
-            case itemWidth = "item_width"
-
-            case itemWeightUnitOfMeasure = "item_weight_unit_of_measure"
-
-            case itemHeight = "item_height"
-
-            case identifiers
-
-            case itemDimensionsUnitOfMeasure = "item_dimensions_unit_of_measure"
+            case itemWeight = "item_weight"
 
             case size
 
-            case itemWeight = "item_weight"
+            case identifiers
+
+            case itemHeight = "item_height"
+
+            case itemDimensionsUnitOfMeasure = "item_dimensions_unit_of_measure"
+
+            case itemWeightUnitOfMeasure = "item_weight_unit_of_measure"
+
+            case itemWidth = "item_width"
         }
 
         public init(identifiers: [ValidateIdentifier]? = nil, itemDimensionsUnitOfMeasure: String, itemHeight: Double, itemLength: Double, itemWeight: Double, itemWeightUnitOfMeasure: [String: Any], itemWidth: Double, size: [String: Any]) {
             self.itemLength = itemLength
 
-            self.itemWidth = itemWidth
-
-            self.itemWeightUnitOfMeasure = itemWeightUnitOfMeasure
-
-            self.itemHeight = itemHeight
-
-            self.identifiers = identifiers
-
-            self.itemDimensionsUnitOfMeasure = itemDimensionsUnitOfMeasure
+            self.itemWeight = itemWeight
 
             self.size = size
 
-            self.itemWeight = itemWeight
+            self.identifiers = identifiers
+
+            self.itemHeight = itemHeight
+
+            self.itemDimensionsUnitOfMeasure = itemDimensionsUnitOfMeasure
+
+            self.itemWeightUnitOfMeasure = itemWeightUnitOfMeasure
+
+            self.itemWidth = itemWidth
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,11 +65,9 @@ public extension PlatformClient {
 
             itemLength = try container.decode(Double.self, forKey: .itemLength)
 
-            itemWidth = try container.decode(Double.self, forKey: .itemWidth)
+            itemWeight = try container.decode(Double.self, forKey: .itemWeight)
 
-            itemWeightUnitOfMeasure = try container.decode([String: Any].self, forKey: .itemWeightUnitOfMeasure)
-
-            itemHeight = try container.decode(Double.self, forKey: .itemHeight)
+            size = try container.decode([String: Any].self, forKey: .size)
 
             do {
                 identifiers = try container.decode([ValidateIdentifier].self, forKey: .identifiers)
@@ -79,11 +77,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            itemHeight = try container.decode(Double.self, forKey: .itemHeight)
+
             itemDimensionsUnitOfMeasure = try container.decode(String.self, forKey: .itemDimensionsUnitOfMeasure)
 
-            size = try container.decode([String: Any].self, forKey: .size)
+            itemWeightUnitOfMeasure = try container.decode([String: Any].self, forKey: .itemWeightUnitOfMeasure)
 
-            itemWeight = try container.decode(Double.self, forKey: .itemWeight)
+            itemWidth = try container.decode(Double.self, forKey: .itemWidth)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -91,19 +91,19 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(itemLength, forKey: .itemLength)
 
-            try? container.encodeIfPresent(itemWidth, forKey: .itemWidth)
-
-            try? container.encodeIfPresent(itemWeightUnitOfMeasure, forKey: .itemWeightUnitOfMeasure)
-
-            try? container.encodeIfPresent(itemHeight, forKey: .itemHeight)
-
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
-
-            try? container.encodeIfPresent(itemDimensionsUnitOfMeasure, forKey: .itemDimensionsUnitOfMeasure)
+            try? container.encodeIfPresent(itemWeight, forKey: .itemWeight)
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(itemWeight, forKey: .itemWeight)
+            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+
+            try? container.encodeIfPresent(itemHeight, forKey: .itemHeight)
+
+            try? container.encodeIfPresent(itemDimensionsUnitOfMeasure, forKey: .itemDimensionsUnitOfMeasure)
+
+            try? container.encodeIfPresent(itemWeightUnitOfMeasure, forKey: .itemWeightUnitOfMeasure)
+
+            try? container.encodeIfPresent(itemWidth, forKey: .itemWidth)
         }
     }
 }

@@ -10,9 +10,9 @@ public extension PlatformClient {
     class AssignStoreArticle: Codable {
         public var articleAssignment: ArticleAssignment?
 
-        public var quantity: Int?
-
         public var meta: [String: Any]?
+
+        public var quantity: Int?
 
         public var query: ArticleQuery?
 
@@ -21,9 +21,9 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case articleAssignment = "article_assignment"
 
-            case quantity
-
             case meta
+
+            case quantity
 
             case query
 
@@ -33,9 +33,9 @@ public extension PlatformClient {
         public init(articleAssignment: ArticleAssignment? = nil, groupId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, query: ArticleQuery? = nil) {
             self.articleAssignment = articleAssignment
 
-            self.quantity = quantity
-
             self.meta = meta
+
+            self.quantity = quantity
 
             self.query = query
 
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,9 +91,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(query, forKey: .query)
 

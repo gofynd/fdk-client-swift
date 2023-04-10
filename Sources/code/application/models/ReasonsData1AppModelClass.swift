@@ -7,27 +7,27 @@ public extension ApplicationClient {
          Used By: Order
      */
     class ReasonsData1: Codable {
-        public var entities: [EntitiesReasons1]?
-
         public var products: [ProductsReasons1]?
 
-        public enum CodingKeys: String, CodingKey {
-            case entities
+        public var entities: [EntitiesReasons1]?
 
+        public enum CodingKeys: String, CodingKey {
             case products
+
+            case entities
         }
 
         public init(entities: [EntitiesReasons1]? = nil, products: [ProductsReasons1]? = nil) {
-            self.entities = entities
-
             self.products = products
+
+            self.entities = entities
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                entities = try container.decode([EntitiesReasons1].self, forKey: .entities)
+                products = try container.decode([ProductsReasons1].self, forKey: .products)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                products = try container.decode([ProductsReasons1].self, forKey: .products)
+                entities = try container.decode([EntitiesReasons1].self, forKey: .entities)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(entities, forKey: .entities)
-
             try? container.encodeIfPresent(products, forKey: .products)
+
+            try? container.encodeIfPresent(entities, forKey: .entities)
         }
     }
 }

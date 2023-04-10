@@ -4,31 +4,55 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: CompanyDetails
-         Used By: CompanyProfile
+         Used By: Order
      */
 
     class CompanyDetails: Codable {
-        public var websiteUrl: String?
+        public var companyGst: String?
 
-        public var socials: [CompanySocialAccounts]?
+        public var address: [String: Any]?
+
+        public var companyId: Int?
+
+        public var companyCin: String?
+
+        public var companyName: String?
+
+        public var companyContact: ContactDetails?
 
         public enum CodingKeys: String, CodingKey {
-            case websiteUrl = "website_url"
+            case companyGst = "company_gst"
 
-            case socials
+            case address
+
+            case companyId = "company_id"
+
+            case companyCin = "company_cin"
+
+            case companyName = "company_name"
+
+            case companyContact = "company_contact"
         }
 
-        public init(socials: [CompanySocialAccounts]? = nil, websiteUrl: String? = nil) {
-            self.websiteUrl = websiteUrl
+        public init(address: [String: Any]? = nil, companyCin: String? = nil, companyContact: ContactDetails? = nil, companyGst: String? = nil, companyId: Int? = nil, companyName: String? = nil) {
+            self.companyGst = companyGst
 
-            self.socials = socials
+            self.address = address
+
+            self.companyId = companyId
+
+            self.companyCin = companyCin
+
+            self.companyName = companyName
+
+            self.companyContact = companyContact
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                websiteUrl = try container.decode(String.self, forKey: .websiteUrl)
+                companyGst = try container.decode(String.self, forKey: .companyGst)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +60,39 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                socials = try container.decode([CompanySocialAccounts].self, forKey: .socials)
+                address = try container.decode([String: Any].self, forKey: .address)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyId = try container.decode(Int.self, forKey: .companyId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyCin = try container.decode(String.self, forKey: .companyCin)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyName = try container.decode(String.self, forKey: .companyName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyContact = try container.decode(ContactDetails.self, forKey: .companyContact)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +103,17 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(websiteUrl, forKey: .websiteUrl)
+            try? container.encodeIfPresent(companyGst, forKey: .companyGst)
 
-            try? container.encodeIfPresent(socials, forKey: .socials)
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(companyCin, forKey: .companyCin)
+
+            try? container.encodeIfPresent(companyName, forKey: .companyName)
+
+            try? container.encodeIfPresent(companyContact, forKey: .companyContact)
         }
     }
 }
