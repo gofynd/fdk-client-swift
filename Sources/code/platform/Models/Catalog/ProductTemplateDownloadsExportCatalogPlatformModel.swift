@@ -4,31 +4,31 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-         Model: CollectionItemRequest
+         Model: ProductTemplateDownloadsExport
          Used By: Catalog
      */
 
-    class CollectionItemRequest: Codable {
+    class ProductTemplateDownloadsExport: Codable {
         public var type: String?
 
-        public var item: [ItemQueryForUserCollection]?
+        public var notificationEmails: [String]?
 
-        public var query: [CollectionQuery]?
+        public var filters: ProductTemplateExportFilterRequest?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case item
+            case notificationEmails = "notification_emails"
 
-            case query
+            case filters
         }
 
-        public init(item: [ItemQueryForUserCollection]? = nil, query: [CollectionQuery]? = nil, type: String? = nil) {
+        public init(filters: ProductTemplateExportFilterRequest? = nil, notificationEmails: [String]? = nil, type: String? = nil) {
             self.type = type
 
-            self.item = item
+            self.notificationEmails = notificationEmails
 
-            self.query = query
+            self.filters = filters
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                item = try container.decode([ItemQueryForUserCollection].self, forKey: .item)
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                query = try container.decode([CollectionQuery].self, forKey: .query)
+                filters = try container.decode(ProductTemplateExportFilterRequest.self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,42 +62,42 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encode(type, forKey: .type)
 
-            try? container.encodeIfPresent(item, forKey: .item)
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
-            try? container.encodeIfPresent(query, forKey: .query)
+            try? container.encodeIfPresent(filters, forKey: .filters)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-         Model: CollectionItemRequest
+         Model: ProductTemplateDownloadsExport
          Used By: Catalog
      */
 
-    class CollectionItemRequest: Codable {
+    class ProductTemplateDownloadsExport: Codable {
         public var type: String?
 
-        public var item: [ItemQueryForUserCollection]?
+        public var notificationEmails: [String]?
 
-        public var query: [CollectionQuery]?
+        public var filters: ProductTemplateExportFilterRequest?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case item
+            case notificationEmails = "notification_emails"
 
-            case query
+            case filters
         }
 
-        public init(item: [ItemQueryForUserCollection]? = nil, query: [CollectionQuery]? = nil, type: String? = nil) {
+        public init(filters: ProductTemplateExportFilterRequest? = nil, notificationEmails: [String]? = nil, type: String? = nil) {
             self.type = type
 
-            self.item = item
+            self.notificationEmails = notificationEmails
 
-            self.query = query
+            self.filters = filters
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                item = try container.decode([ItemQueryForUserCollection].self, forKey: .item)
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                query = try container.decode([CollectionQuery].self, forKey: .query)
+                filters = try container.decode(ProductTemplateExportFilterRequest.self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encode(type, forKey: .type)
 
-            try? container.encodeIfPresent(item, forKey: .item)
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
-            try? container.encodeIfPresent(query, forKey: .query)
+            try? container.encodeIfPresent(filters, forKey: .filters)
         }
     }
 }

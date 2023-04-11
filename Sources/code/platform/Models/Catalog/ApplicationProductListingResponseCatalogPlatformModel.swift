@@ -11,36 +11,36 @@ public extension PlatformClient.Catalog {
     class ApplicationProductListingResponse: Codable {
         public var sortOn: [ProductSortOn]?
 
-        public var operators: [String: Any]?
-
         public var page: Page
 
-        public var filters: [ProductFilters]?
-
         public var items: [ProductListingDetail]?
+
+        public var operators: [String: Any]?
+
+        public var filters: [ProductFilters]?
 
         public enum CodingKeys: String, CodingKey {
             case sortOn = "sort_on"
 
-            case operators
-
             case page
 
-            case filters
-
             case items
+
+            case operators
+
+            case filters
         }
 
         public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, operators: [String: Any]? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
             self.sortOn = sortOn
 
-            self.operators = operators
-
             self.page = page
 
-            self.filters = filters
-
             self.items = items
+
+            self.operators = operators
+
+            self.filters = filters
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,6 +48,16 @@ public extension PlatformClient.Catalog {
 
             do {
                 sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            page = try container.decode(Page.self, forKey: .page)
+
+            do {
+                items = try container.decode([ProductListingDetail].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,18 +72,8 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            page = try container.decode(Page.self, forKey: .page)
-
             do {
                 filters = try container.decode([ProductFilters].self, forKey: .filters)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                items = try container.decode([ProductListingDetail].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,13 +86,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
 
-            try? container.encodeIfPresent(operators, forKey: .operators)
-
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(operators, forKey: .operators)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
         }
     }
 }
@@ -106,36 +106,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ApplicationProductListingResponse: Codable {
         public var sortOn: [ProductSortOn]?
 
-        public var operators: [String: Any]?
-
         public var page: Page
 
-        public var filters: [ProductFilters]?
-
         public var items: [ProductListingDetail]?
+
+        public var operators: [String: Any]?
+
+        public var filters: [ProductFilters]?
 
         public enum CodingKeys: String, CodingKey {
             case sortOn = "sort_on"
 
-            case operators
-
             case page
 
-            case filters
-
             case items
+
+            case operators
+
+            case filters
         }
 
         public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, operators: [String: Any]? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
             self.sortOn = sortOn
 
-            self.operators = operators
-
             self.page = page
 
-            self.filters = filters
-
             self.items = items
+
+            self.operators = operators
+
+            self.filters = filters
         }
 
         required public init(from decoder: Decoder) throws {
@@ -143,6 +143,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            page = try container.decode(Page.self, forKey: .page)
+
+            do {
+                items = try container.decode([ProductListingDetail].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -157,18 +167,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            page = try container.decode(Page.self, forKey: .page)
-
             do {
                 filters = try container.decode([ProductFilters].self, forKey: .filters)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                items = try container.decode([ProductListingDetail].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -181,13 +181,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
 
-            try? container.encodeIfPresent(operators, forKey: .operators)
-
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(operators, forKey: .operators)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
         }
     }
 }
