@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class GetConfigMetadataResponse: Codable {
         public var data: [[String: Any]]
 
-        public var condition: [[String: Any]]?
-
         public var values: [[String: Any]]?
+
+        public var condition: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case data
 
-            case condition
-
             case values
+
+            case condition
         }
 
         public init(condition: [[String: Any]]? = nil, data: [[String: Any]], values: [[String: Any]]? = nil) {
             self.data = data
 
-            self.condition = condition
-
             self.values = values
+
+            self.condition = condition
         }
 
         required public init(from decoder: Decoder) throws {
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             data = try container.decode([[String: Any]].self, forKey: .data)
 
             do {
-                condition = try container.decode([[String: Any]].self, forKey: .condition)
+                values = try container.decode([[String: Any]].self, forKey: .values)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -45,7 +45,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                values = try container.decode([[String: Any]].self, forKey: .values)
+                condition = try container.decode([[String: Any]].self, forKey: .condition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,9 +58,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(condition, forKey: .condition)
-
             try? container.encodeIfPresent(values, forKey: .values)
+
+            try? container.encodeIfPresent(condition, forKey: .condition)
         }
     }
 }
@@ -74,24 +74,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetConfigMetadataResponse: Codable {
         public var data: [[String: Any]]
 
-        public var condition: [[String: Any]]?
-
         public var values: [[String: Any]]?
+
+        public var condition: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case data
 
-            case condition
-
             case values
+
+            case condition
         }
 
         public init(condition: [[String: Any]]? = nil, data: [[String: Any]], values: [[String: Any]]? = nil) {
             self.data = data
 
-            self.condition = condition
-
             self.values = values
+
+            self.condition = condition
         }
 
         required public init(from decoder: Decoder) throws {
@@ -100,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             data = try container.decode([[String: Any]].self, forKey: .data)
 
             do {
-                condition = try container.decode([[String: Any]].self, forKey: .condition)
+                values = try container.decode([[String: Any]].self, forKey: .values)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,7 +108,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                values = try container.decode([[String: Any]].self, forKey: .values)
+                condition = try container.decode([[String: Any]].self, forKey: .condition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(condition, forKey: .condition)
-
             try? container.encodeIfPresent(values, forKey: .values)
+
+            try? container.encodeIfPresent(condition, forKey: .condition)
         }
     }
 }

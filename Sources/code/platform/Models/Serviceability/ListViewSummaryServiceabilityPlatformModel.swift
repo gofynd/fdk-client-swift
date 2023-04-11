@@ -11,24 +11,24 @@ public extension PlatformClient.Serviceability {
     class ListViewSummary: Codable {
         public var totalActiveZones: Int
 
-        public var totalZones: Int
-
         public var totalPincodesServed: Int
+
+        public var totalZones: Int
 
         public enum CodingKeys: String, CodingKey {
             case totalActiveZones = "total_active_zones"
 
-            case totalZones = "total_zones"
-
             case totalPincodesServed = "total_pincodes_served"
+
+            case totalZones = "total_zones"
         }
 
         public init(totalActiveZones: Int, totalPincodesServed: Int, totalZones: Int) {
             self.totalActiveZones = totalActiveZones
 
-            self.totalZones = totalZones
-
             self.totalPincodesServed = totalPincodesServed
+
+            self.totalZones = totalZones
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Serviceability {
 
             totalActiveZones = try container.decode(Int.self, forKey: .totalActiveZones)
 
-            totalZones = try container.decode(Int.self, forKey: .totalZones)
-
             totalPincodesServed = try container.decode(Int.self, forKey: .totalPincodesServed)
+
+            totalZones = try container.decode(Int.self, forKey: .totalZones)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(totalActiveZones, forKey: .totalActiveZones)
 
-            try? container.encodeIfPresent(totalZones, forKey: .totalZones)
-
             try? container.encodeIfPresent(totalPincodesServed, forKey: .totalPincodesServed)
+
+            try? container.encodeIfPresent(totalZones, forKey: .totalZones)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ListViewSummary: Codable {
         public var totalActiveZones: Int
 
-        public var totalZones: Int
-
         public var totalPincodesServed: Int
+
+        public var totalZones: Int
 
         public enum CodingKeys: String, CodingKey {
             case totalActiveZones = "total_active_zones"
 
-            case totalZones = "total_zones"
-
             case totalPincodesServed = "total_pincodes_served"
+
+            case totalZones = "total_zones"
         }
 
         public init(totalActiveZones: Int, totalPincodesServed: Int, totalZones: Int) {
             self.totalActiveZones = totalActiveZones
 
-            self.totalZones = totalZones
-
             self.totalPincodesServed = totalPincodesServed
+
+            self.totalZones = totalZones
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             totalActiveZones = try container.decode(Int.self, forKey: .totalActiveZones)
 
-            totalZones = try container.decode(Int.self, forKey: .totalZones)
-
             totalPincodesServed = try container.decode(Int.self, forKey: .totalPincodesServed)
+
+            totalZones = try container.decode(Int.self, forKey: .totalZones)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(totalActiveZones, forKey: .totalActiveZones)
 
-            try? container.encodeIfPresent(totalZones, forKey: .totalZones)
-
             try? container.encodeIfPresent(totalPincodesServed, forKey: .totalPincodesServed)
+
+            try? container.encodeIfPresent(totalZones, forKey: .totalZones)
         }
     }
 }
