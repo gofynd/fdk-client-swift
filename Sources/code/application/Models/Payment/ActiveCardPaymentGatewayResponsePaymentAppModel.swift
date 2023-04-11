@@ -7,46 +7,46 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class ActiveCardPaymentGatewayResponse: Codable {
-        public var success: Bool
+        public var cards: CardPaymentGateway
 
         public var message: String
 
-        public var cards: CardPaymentGateway
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case success
+            case cards
 
             case message
 
-            case cards
+            case success
         }
 
         public init(cards: CardPaymentGateway, message: String, success: Bool) {
-            self.success = success
+            self.cards = cards
 
             self.message = message
 
-            self.cards = cards
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            success = try container.decode(Bool.self, forKey: .success)
+            cards = try container.decode(CardPaymentGateway.self, forKey: .cards)
 
             message = try container.decode(String.self, forKey: .message)
 
-            cards = try container.decode(CardPaymentGateway.self, forKey: .cards)
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(cards, forKey: .cards)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(cards, forKey: .cards)
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

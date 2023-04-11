@@ -664,6 +664,7 @@ public extension ApplicationClient {
             orderIncent: Bool?,
             orderingStore: Int?,
             user: String?,
+            userName: String?,
 
             onResponse: @escaping (_ response: AppStaffListResponse?, _ error: FDKError?) -> Void
         ) {
@@ -687,6 +688,10 @@ public extension ApplicationClient {
 
             if let value = user {
                 xQuery["user"] = value
+            }
+
+            if let value = userName {
+                xQuery["user_name"] = value
             }
 
             let fullUrl = relativeUrls["getAppStaffList"] ?? ""
@@ -729,7 +734,8 @@ public extension ApplicationClient {
             pageSize: Int?,
             orderIncent: Bool?,
             orderingStore: Int?,
-            user: String?
+            user: String?,
+            userName: String?
 
         ) -> Paginator<AppStaffListResponse> {
             let pageSize = pageSize ?? 20
@@ -742,7 +748,8 @@ public extension ApplicationClient {
 
                     orderIncent: orderIncent,
                     orderingStore: orderingStore,
-                    user: user
+                    user: user,
+                    userName: userName
                 ) { response, error in
                     if let response = response {
                         paginator.hasNext = response.page?.hasNext ?? false
