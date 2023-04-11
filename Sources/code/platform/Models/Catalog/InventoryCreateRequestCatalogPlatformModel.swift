@@ -9,38 +9,44 @@ public extension PlatformClient.Catalog {
      */
 
     class InventoryCreateRequest: Codable {
-        public var filters: InventoryExportFilter
+        public var data: [String]?
 
         public var type: String?
 
+        public var filters: InventoryExportFilter
+
         public var notificationEmails: [String]?
 
-        public var data: [String]?
-
         public enum CodingKeys: String, CodingKey {
-            case filters
+            case data
 
             case type
 
-            case notificationEmails = "notification_emails"
+            case filters
 
-            case data
+            case notificationEmails = "notification_emails"
         }
 
         public init(data: [String]? = nil, filters: InventoryExportFilter, notificationEmails: [String]? = nil, type: String? = nil) {
-            self.filters = filters
+            self.data = data
 
             self.type = type
 
-            self.notificationEmails = notificationEmails
+            self.filters = filters
 
-            self.data = data
+            self.notificationEmails = notificationEmails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            filters = try container.decode(InventoryExportFilter.self, forKey: .filters)
+            do {
+                data = try container.decode([String].self, forKey: .data)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 type = try container.decode(String.self, forKey: .type)
@@ -50,16 +56,10 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            filters = try container.decode(InventoryExportFilter.self, forKey: .filters)
+
             do {
                 notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                data = try container.decode([String].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,13 +70,13 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(data, forKey: .data)
 
             try? container.encode(type, forKey: .type)
 
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
         }
     }
 }
@@ -88,38 +88,44 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class InventoryCreateRequest: Codable {
-        public var filters: InventoryExportFilter
+        public var data: [String]?
 
         public var type: String?
 
+        public var filters: InventoryExportFilter
+
         public var notificationEmails: [String]?
 
-        public var data: [String]?
-
         public enum CodingKeys: String, CodingKey {
-            case filters
+            case data
 
             case type
 
-            case notificationEmails = "notification_emails"
+            case filters
 
-            case data
+            case notificationEmails = "notification_emails"
         }
 
         public init(data: [String]? = nil, filters: InventoryExportFilter, notificationEmails: [String]? = nil, type: String? = nil) {
-            self.filters = filters
+            self.data = data
 
             self.type = type
 
-            self.notificationEmails = notificationEmails
+            self.filters = filters
 
-            self.data = data
+            self.notificationEmails = notificationEmails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            filters = try container.decode(InventoryExportFilter.self, forKey: .filters)
+            do {
+                data = try container.decode([String].self, forKey: .data)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 type = try container.decode(String.self, forKey: .type)
@@ -129,16 +135,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            filters = try container.decode(InventoryExportFilter.self, forKey: .filters)
+
             do {
                 notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                data = try container.decode([String].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -149,13 +149,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(data, forKey: .data)
 
             try? container.encode(type, forKey: .type)
 
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
         }
     }
 }

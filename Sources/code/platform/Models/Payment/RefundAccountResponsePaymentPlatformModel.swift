@@ -11,38 +11,36 @@ public extension PlatformClient.Payment {
     class RefundAccountResponse: Codable {
         public var success: Bool
 
-        public var message: String
-
         public var isVerifiedFlag: Bool?
 
         public var data: [String: Any]?
 
+        public var message: String
+
         public enum CodingKeys: String, CodingKey {
             case success
-
-            case message
 
             case isVerifiedFlag = "is_verified_flag"
 
             case data
+
+            case message
         }
 
         public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
             self.success = success
 
-            self.message = message
-
             self.isVerifiedFlag = isVerifiedFlag
 
             self.data = data
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             success = try container.decode(Bool.self, forKey: .success)
-
-            message = try container.decode(String.self, forKey: .message)
 
             do {
                 isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
@@ -59,6 +57,8 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,11 +66,11 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
 
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
@@ -84,38 +84,36 @@ public extension PlatformClient.ApplicationClient.Payment {
     class RefundAccountResponse: Codable {
         public var success: Bool
 
-        public var message: String
-
         public var isVerifiedFlag: Bool?
 
         public var data: [String: Any]?
 
+        public var message: String
+
         public enum CodingKeys: String, CodingKey {
             case success
-
-            case message
 
             case isVerifiedFlag = "is_verified_flag"
 
             case data
+
+            case message
         }
 
         public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
             self.success = success
 
-            self.message = message
-
             self.isVerifiedFlag = isVerifiedFlag
 
             self.data = data
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             success = try container.decode(Bool.self, forKey: .success)
-
-            message = try container.decode(String.self, forKey: .message)
 
             do {
                 isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
@@ -132,6 +130,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -139,11 +139,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
 
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

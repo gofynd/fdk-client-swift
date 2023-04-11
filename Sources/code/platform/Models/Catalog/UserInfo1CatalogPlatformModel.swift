@@ -9,30 +9,30 @@ public extension PlatformClient.Catalog {
      */
 
     class UserInfo1: Codable {
-        public var email: String?
+        public var userId: String?
 
         public var username: String?
 
-        public var userId: String?
+        public var email: String?
 
         public var uid: String?
 
         public enum CodingKeys: String, CodingKey {
-            case email
+            case userId = "user_id"
 
             case username
 
-            case userId = "user_id"
+            case email
 
             case uid
         }
 
         public init(email: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil) {
-            self.email = email
+            self.userId = userId
 
             self.username = username
 
-            self.userId = userId
+            self.email = email
 
             self.uid = uid
         }
@@ -41,7 +41,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
+            try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }
@@ -94,30 +94,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class UserInfo1: Codable {
-        public var email: String?
+        public var userId: String?
 
         public var username: String?
 
-        public var userId: String?
+        public var email: String?
 
         public var uid: String?
 
         public enum CodingKeys: String, CodingKey {
-            case email
+            case userId = "user_id"
 
             case username
 
-            case userId = "user_id"
+            case email
 
             case uid
         }
 
         public init(email: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil) {
-            self.email = email
+            self.userId = userId
 
             self.username = username
 
-            self.userId = userId
+            self.email = email
 
             self.uid = uid
         }
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,11 +161,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
+            try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }

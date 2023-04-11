@@ -7,9 +7,9 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class PollingPaymentLinkResponse: Codable {
-        public var success: Bool?
+        public var orderId: String?
 
-        public var status: String?
+        public var success: Bool?
 
         public var redirectUrl: String?
 
@@ -23,14 +23,14 @@ public extension ApplicationClient.Payment {
 
         public var paymentLinkId: String?
 
-        public var orderId: String?
+        public var status: String?
 
         public var httpStatus: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case success
+            case orderId = "order_id"
 
-            case status
+            case success
 
             case redirectUrl = "redirect_url"
 
@@ -44,15 +44,15 @@ public extension ApplicationClient.Payment {
 
             case paymentLinkId = "payment_link_id"
 
-            case orderId = "order_id"
+            case status
 
             case httpStatus = "http_status"
         }
 
         public init(aggregatorName: String? = nil, amount: Double? = nil, httpStatus: Int? = nil, message: String? = nil, orderId: String? = nil, paymentLinkId: String? = nil, redirectUrl: String? = nil, status: String? = nil, statusCode: Int? = nil, success: Bool? = nil) {
-            self.success = success
+            self.orderId = orderId
 
-            self.status = status
+            self.success = success
 
             self.redirectUrl = redirectUrl
 
@@ -66,7 +66,7 @@ public extension ApplicationClient.Payment {
 
             self.paymentLinkId = paymentLinkId
 
-            self.orderId = orderId
+            self.status = status
 
             self.httpStatus = httpStatus
         }
@@ -75,7 +75,7 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,7 +139,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,9 +158,9 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(success, forKey: .success)
+            try? container.encode(orderId, forKey: .orderId)
 
-            try? container.encode(status, forKey: .status)
+            try? container.encode(success, forKey: .success)
 
             try? container.encode(redirectUrl, forKey: .redirectUrl)
 
@@ -174,7 +174,7 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(paymentLinkId, forKey: .paymentLinkId)
 
-            try? container.encode(orderId, forKey: .orderId)
+            try? container.encode(status, forKey: .status)
 
             try? container.encode(httpStatus, forKey: .httpStatus)
         }
