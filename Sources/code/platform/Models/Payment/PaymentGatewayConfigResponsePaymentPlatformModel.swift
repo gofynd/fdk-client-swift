@@ -15,11 +15,11 @@ public extension PlatformClient.Payment {
 
         public var created: Bool
 
-        public var excludedFields: [String]
-
         public var aggregators: [[String: Any]]?
 
         public var displayFields: [String]
+
+        public var excludedFields: [String]
 
         public enum CodingKeys: String, CodingKey {
             case success
@@ -28,11 +28,11 @@ public extension PlatformClient.Payment {
 
             case created
 
-            case excludedFields = "excluded_fields"
-
             case aggregators
 
             case displayFields = "display_fields"
+
+            case excludedFields = "excluded_fields"
         }
 
         public init(aggregators: [[String: Any]]? = nil, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
@@ -42,11 +42,11 @@ public extension PlatformClient.Payment {
 
             self.created = created
 
-            self.excludedFields = excludedFields
-
             self.aggregators = aggregators
 
             self.displayFields = displayFields
+
+            self.excludedFields = excludedFields
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,8 +58,6 @@ public extension PlatformClient.Payment {
 
             created = try container.decode(Bool.self, forKey: .created)
 
-            excludedFields = try container.decode([String].self, forKey: .excludedFields)
-
             do {
                 aggregators = try container.decode([[String: Any]].self, forKey: .aggregators)
 
@@ -69,6 +67,8 @@ public extension PlatformClient.Payment {
             } catch {}
 
             displayFields = try container.decode([String].self, forKey: .displayFields)
+
+            excludedFields = try container.decode([String].self, forKey: .excludedFields)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -80,11 +80,11 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(created, forKey: .created)
 
-            try? container.encodeIfPresent(excludedFields, forKey: .excludedFields)
-
             try? container.encodeIfPresent(aggregators, forKey: .aggregators)
 
             try? container.encodeIfPresent(displayFields, forKey: .displayFields)
+
+            try? container.encodeIfPresent(excludedFields, forKey: .excludedFields)
         }
     }
 }
@@ -102,11 +102,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var created: Bool
 
-        public var excludedFields: [String]
-
         public var aggregators: [[String: Any]]?
 
         public var displayFields: [String]
+
+        public var excludedFields: [String]
 
         public enum CodingKeys: String, CodingKey {
             case success
@@ -115,11 +115,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case created
 
-            case excludedFields = "excluded_fields"
-
             case aggregators
 
             case displayFields = "display_fields"
+
+            case excludedFields = "excluded_fields"
         }
 
         public init(aggregators: [[String: Any]]? = nil, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
@@ -129,11 +129,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.created = created
 
-            self.excludedFields = excludedFields
-
             self.aggregators = aggregators
 
             self.displayFields = displayFields
+
+            self.excludedFields = excludedFields
         }
 
         required public init(from decoder: Decoder) throws {
@@ -145,8 +145,6 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             created = try container.decode(Bool.self, forKey: .created)
 
-            excludedFields = try container.decode([String].self, forKey: .excludedFields)
-
             do {
                 aggregators = try container.decode([[String: Any]].self, forKey: .aggregators)
 
@@ -156,6 +154,8 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             displayFields = try container.decode([String].self, forKey: .displayFields)
+
+            excludedFields = try container.decode([String].self, forKey: .excludedFields)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -167,11 +167,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(created, forKey: .created)
 
-            try? container.encodeIfPresent(excludedFields, forKey: .excludedFields)
-
             try? container.encodeIfPresent(aggregators, forKey: .aggregators)
 
             try? container.encodeIfPresent(displayFields, forKey: .displayFields)
+
+            try? container.encodeIfPresent(excludedFields, forKey: .excludedFields)
         }
     }
 }

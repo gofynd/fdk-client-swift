@@ -11,18 +11,18 @@ public extension ApplicationClient.Cart {
 
         public var partial: Bool?
 
-        public var cart: CartDetailResponse?
-
         public var success: Bool?
+
+        public var cart: CartDetailResponse?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
             case partial
 
-            case cart
-
             case success
+
+            case cart
         }
 
         public init(cart: CartDetailResponse? = nil, message: String? = nil, partial: Bool? = nil, success: Bool? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Cart {
 
             self.partial = partial
 
-            self.cart = cart
-
             self.success = success
+
+            self.cart = cart
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                cart = try container.decode(CartDetailResponse.self, forKey: .cart)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                cart = try container.decode(CartDetailResponse.self, forKey: .cart)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(partial, forKey: .partial)
 
-            try? container.encodeIfPresent(cart, forKey: .cart)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(cart, forKey: .cart)
         }
     }
 }

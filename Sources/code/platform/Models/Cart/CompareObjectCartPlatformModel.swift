@@ -11,22 +11,22 @@ public extension PlatformClient.ApplicationClient.Cart {
     class CompareObject: Codable {
         public var equals: Double?
 
-        public var lessThanEquals: Double?
+        public var greaterThanEquals: Double?
 
         public var lessThan: Double?
 
-        public var greaterThanEquals: Double?
+        public var lessThanEquals: Double?
 
         public var greaterThan: Double?
 
         public enum CodingKeys: String, CodingKey {
             case equals
 
-            case lessThanEquals = "less_than_equals"
+            case greaterThanEquals = "greater_than_equals"
 
             case lessThan = "less_than"
 
-            case greaterThanEquals = "greater_than_equals"
+            case lessThanEquals = "less_than_equals"
 
             case greaterThan = "greater_than"
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(equals: Double? = nil, greaterThan: Double? = nil, greaterThanEquals: Double? = nil, lessThan: Double? = nil, lessThanEquals: Double? = nil) {
             self.equals = equals
 
-            self.lessThanEquals = lessThanEquals
+            self.greaterThanEquals = greaterThanEquals
 
             self.lessThan = lessThan
 
-            self.greaterThanEquals = greaterThanEquals
+            self.lessThanEquals = lessThanEquals
 
             self.greaterThan = greaterThan
         }
@@ -55,7 +55,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                lessThanEquals = try container.decode(Double.self, forKey: .lessThanEquals)
+                greaterThanEquals = try container.decode(Double.self, forKey: .greaterThanEquals)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                greaterThanEquals = try container.decode(Double.self, forKey: .greaterThanEquals)
+                lessThanEquals = try container.decode(Double.self, forKey: .lessThanEquals)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(equals, forKey: .equals)
 
-            try? container.encodeIfPresent(lessThanEquals, forKey: .lessThanEquals)
+            try? container.encodeIfPresent(greaterThanEquals, forKey: .greaterThanEquals)
 
             try? container.encodeIfPresent(lessThan, forKey: .lessThan)
 
-            try? container.encodeIfPresent(greaterThanEquals, forKey: .greaterThanEquals)
+            try? container.encodeIfPresent(lessThanEquals, forKey: .lessThanEquals)
 
             try? container.encodeIfPresent(greaterThan, forKey: .greaterThan)
         }

@@ -11,30 +11,30 @@ public extension PlatformClient.ApplicationClient.Cart {
     class DiscountRulesApp: Codable {
         public var rawOffer: [String: Any]?
 
-        public var offer: [String: Any]?
+        public var itemCriteria: [String: Any]?
 
         public var matchedBuyRules: [String]?
 
-        public var itemCriteria: [String: Any]?
+        public var offer: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case rawOffer = "raw_offer"
 
-            case offer
+            case itemCriteria = "item_criteria"
 
             case matchedBuyRules = "matched_buy_rules"
 
-            case itemCriteria = "item_criteria"
+            case offer
         }
 
         public init(itemCriteria: [String: Any]? = nil, matchedBuyRules: [String]? = nil, offer: [String: Any]? = nil, rawOffer: [String: Any]? = nil) {
             self.rawOffer = rawOffer
 
-            self.offer = offer
+            self.itemCriteria = itemCriteria
 
             self.matchedBuyRules = matchedBuyRules
 
-            self.itemCriteria = itemCriteria
+            self.offer = offer
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                offer = try container.decode([String: Any].self, forKey: .offer)
+                itemCriteria = try container.decode([String: Any].self, forKey: .itemCriteria)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                itemCriteria = try container.decode([String: Any].self, forKey: .itemCriteria)
+                offer = try container.decode([String: Any].self, forKey: .offer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,11 +78,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(rawOffer, forKey: .rawOffer)
 
-            try? container.encodeIfPresent(offer, forKey: .offer)
+            try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
 
             try? container.encodeIfPresent(matchedBuyRules, forKey: .matchedBuyRules)
 
-            try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
+            try? container.encodeIfPresent(offer, forKey: .offer)
         }
     }
 }

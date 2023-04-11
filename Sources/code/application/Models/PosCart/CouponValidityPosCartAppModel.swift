@@ -11,9 +11,9 @@ public extension ApplicationClient.PosCart {
 
         public var displayMessageEn: String?
 
-        public var code: String?
-
         public var title: String?
+
+        public var code: String?
 
         public var discount: Double?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.PosCart {
 
             case displayMessageEn = "display_message_en"
 
-            case code
-
             case title
+
+            case code
 
             case discount
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.PosCart {
 
             self.displayMessageEn = displayMessageEn
 
-            self.code = code
-
             self.title = title
+
+            self.code = code
 
             self.discount = discount
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encode(displayMessageEn, forKey: .displayMessageEn)
 
-            try? container.encode(code, forKey: .code)
-
             try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encode(code, forKey: .code)
 
             try? container.encodeIfPresent(discount, forKey: .discount)
         }

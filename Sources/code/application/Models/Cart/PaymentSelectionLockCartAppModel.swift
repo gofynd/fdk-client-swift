@@ -7,24 +7,24 @@ public extension ApplicationClient.Cart {
          Used By: Cart
      */
     class PaymentSelectionLock: Codable {
-        public var enabled: Bool?
-
         public var paymentIdentifier: String?
+
+        public var enabled: Bool?
 
         public var defaultOptions: String?
 
         public enum CodingKeys: String, CodingKey {
-            case enabled
-
             case paymentIdentifier = "payment_identifier"
+
+            case enabled
 
             case defaultOptions = "default_options"
         }
 
         public init(defaultOptions: String? = nil, enabled: Bool? = nil, paymentIdentifier: String? = nil) {
-            self.enabled = enabled
-
             self.paymentIdentifier = paymentIdentifier
+
+            self.enabled = enabled
 
             self.defaultOptions = defaultOptions
         }
@@ -33,7 +33,7 @@ public extension ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                enabled = try container.decode(Bool.self, forKey: .enabled)
+                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
+                enabled = try container.decode(Bool.self, forKey: .enabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,9 +60,9 @@ public extension ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
-
             try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
+
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(defaultOptions, forKey: .defaultOptions)
         }
