@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient.Catalog {
     /*
-         Model: ArticleAssignmentV2
+         Model: ArticleAssignmentV3
          Used By: Catalog
      */
-    class ArticleAssignmentV2: Codable {
+    class ArticleAssignmentV3: Codable {
         public var level: String?
 
         public var strategy: String?

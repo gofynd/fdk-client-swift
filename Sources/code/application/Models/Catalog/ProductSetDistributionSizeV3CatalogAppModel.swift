@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient.Catalog {
     /*
-         Model: ProductSetDistributionSizeV2
+         Model: ProductSetDistributionSizeV3
          Used By: Catalog
      */
-    class ProductSetDistributionSizeV2: Codable {
+    class ProductSetDistributionSizeV3: Codable {
         public var size: String?
 
         public var pieces: Int?

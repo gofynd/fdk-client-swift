@@ -3,17 +3,17 @@
 import Foundation
 public extension ApplicationClient.Catalog {
     /*
-         Model: ProductSetDistributionV2
+         Model: ProductSetDistributionV3
          Used By: Catalog
      */
-    class ProductSetDistributionV2: Codable {
-        public var sizes: [ProductSetDistributionSizeV2]?
+    class ProductSetDistributionV3: Codable {
+        public var sizes: [ProductSetDistributionSizeV3]?
 
         public enum CodingKeys: String, CodingKey {
             case sizes
         }
 
-        public init(sizes: [ProductSetDistributionSizeV2]? = nil) {
+        public init(sizes: [ProductSetDistributionSizeV3]? = nil) {
             self.sizes = sizes
         }
 
@@ -21,7 +21,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                sizes = try container.decode([ProductSetDistributionSizeV2].self, forKey: .sizes)
+                sizes = try container.decode([ProductSetDistributionSizeV3].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
