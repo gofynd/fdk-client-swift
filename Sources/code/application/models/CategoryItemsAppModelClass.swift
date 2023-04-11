@@ -11,26 +11,26 @@ public extension ApplicationClient {
 
         public var banners: CategoryBanner
 
-        public var name: String
-
-        public var slug: String
-
         public var uid: Int
 
         public var action: ProductListingAction
+
+        public var name: String
+
+        public var slug: String
 
         public enum CodingKeys: String, CodingKey {
             case childs
 
             case banners
 
-            case name
-
-            case slug
-
             case uid
 
             case action
+
+            case name
+
+            case slug
         }
 
         public init(action: ProductListingAction, banners: CategoryBanner, childs: [Child]? = nil, name: String, slug: String, uid: Int) {
@@ -38,13 +38,13 @@ public extension ApplicationClient {
 
             self.banners = banners
 
-            self.name = name
-
-            self.slug = slug
-
             self.uid = uid
 
             self.action = action
+
+            self.name = name
+
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -60,13 +60,13 @@ public extension ApplicationClient {
 
             banners = try container.decode(CategoryBanner.self, forKey: .banners)
 
-            name = try container.decode(String.self, forKey: .name)
-
-            slug = try container.decode(String.self, forKey: .slug)
-
             uid = try container.decode(Int.self, forKey: .uid)
 
             action = try container.decode(ProductListingAction.self, forKey: .action)
+
+            name = try container.decode(String.self, forKey: .name)
+
+            slug = try container.decode(String.self, forKey: .slug)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,13 +76,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }

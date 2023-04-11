@@ -11,42 +11,42 @@ public extension ApplicationClient {
 
         public var contact: String?
 
-        public var currency: String?
-
-        public var merchantOrderId: String?
-
-        public var orderId: String?
-
         public var method: String?
+
+        public var customerId: String?
 
         public var amount: Double?
 
-        public var customerId: String?
+        public var merchantOrderId: String?
 
         public var callbackUrl: String?
 
         public var aggregator: String?
+
+        public var currency: String?
+
+        public var orderId: String?
 
         public enum CodingKeys: String, CodingKey {
             case email
 
             case contact
 
-            case currency
-
-            case merchantOrderId = "merchant_order_id"
-
-            case orderId = "order_id"
-
             case method
+
+            case customerId = "customer_id"
 
             case amount
 
-            case customerId = "customer_id"
+            case merchantOrderId = "merchant_order_id"
 
             case callbackUrl = "callback_url"
 
             case aggregator
+
+            case currency
+
+            case orderId = "order_id"
         }
 
         public init(aggregator: String? = nil, amount: Double? = nil, callbackUrl: String? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, email: String? = nil, merchantOrderId: String? = nil, method: String? = nil, orderId: String? = nil) {
@@ -54,21 +54,21 @@ public extension ApplicationClient {
 
             self.contact = contact
 
-            self.currency = currency
-
-            self.merchantOrderId = merchantOrderId
-
-            self.orderId = orderId
-
             self.method = method
+
+            self.customerId = customerId
 
             self.amount = amount
 
-            self.customerId = customerId
+            self.merchantOrderId = merchantOrderId
 
             self.callbackUrl = callbackUrl
 
             self.aggregator = aggregator
+
+            self.currency = currency
+
+            self.orderId = orderId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -91,31 +91,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderId = try container.decode(String.self, forKey: .orderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 method = try container.decode(String.self, forKey: .method)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customerId = try container.decode(String.self, forKey: .customerId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,7 +115,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                customerId = try container.decode(String.self, forKey: .customerId)
+                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,6 +137,22 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                currency = try container.decode(String.self, forKey: .currency)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                orderId = try container.decode(String.self, forKey: .orderId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -162,21 +162,21 @@ public extension ApplicationClient {
 
             try? container.encode(contact, forKey: .contact)
 
-            try? container.encode(currency, forKey: .currency)
-
-            try? container.encode(merchantOrderId, forKey: .merchantOrderId)
-
-            try? container.encode(orderId, forKey: .orderId)
-
             try? container.encode(method, forKey: .method)
+
+            try? container.encode(customerId, forKey: .customerId)
 
             try? container.encode(amount, forKey: .amount)
 
-            try? container.encode(customerId, forKey: .customerId)
+            try? container.encode(merchantOrderId, forKey: .merchantOrderId)
 
             try? container.encode(callbackUrl, forKey: .callbackUrl)
 
             try? container.encode(aggregator, forKey: .aggregator)
+
+            try? container.encode(currency, forKey: .currency)
+
+            try? container.encode(orderId, forKey: .orderId)
         }
     }
 }

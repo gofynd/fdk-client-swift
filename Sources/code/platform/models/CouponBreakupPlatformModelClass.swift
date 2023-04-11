@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var uid: String?
 
-        public var isApplied: Bool?
-
         public var value: Double?
+
+        public var isApplied: Bool?
 
         public var message: String?
 
@@ -25,9 +25,9 @@ public extension PlatformClient {
 
             case uid
 
-            case isApplied = "is_applied"
-
             case value
+
+            case isApplied = "is_applied"
 
             case message
 
@@ -39,9 +39,9 @@ public extension PlatformClient {
 
             self.uid = uid
 
-            self.isApplied = isApplied
-
             self.value = value
+
+            self.isApplied = isApplied
 
             self.message = message
 
@@ -68,7 +68,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                isApplied = try container.decode(Bool.self, forKey: .isApplied)
+                value = try container.decode(Double.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +76,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                isApplied = try container.decode(Bool.self, forKey: .isApplied)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,9 +107,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
