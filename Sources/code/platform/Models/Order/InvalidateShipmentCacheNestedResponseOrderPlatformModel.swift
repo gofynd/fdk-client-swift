@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class InvalidateShipmentCacheNestedResponse: Codable {
         public var error: String?
 
-        public var message: String?
-
         public var status: Int?
+
+        public var message: String?
 
         public var shipmentId: String?
 
         public enum CodingKeys: String, CodingKey {
             case error
 
-            case message
-
             case status
+
+            case message
 
             case shipmentId = "shipment_id"
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(error: String? = nil, message: String? = nil, shipmentId: String? = nil, status: Int? = nil) {
             self.error = error
 
-            self.message = message
-
             self.status = status
+
+            self.message = message
 
             self.shipmentId = shipmentId
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class InvalidateShipmentCacheNestedResponse: Codable {
         public var error: String?
 
-        public var message: String?
-
         public var status: Int?
+
+        public var message: String?
 
         public var shipmentId: String?
 
         public enum CodingKeys: String, CodingKey {
             case error
 
-            case message
-
             case status
+
+            case message
 
             case shipmentId = "shipment_id"
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(error: String? = nil, message: String? = nil, shipmentId: String? = nil, status: Int? = nil) {
             self.error = error
 
-            self.message = message
-
             self.status = status
+
+            self.message = message
 
             self.shipmentId = shipmentId
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
         }

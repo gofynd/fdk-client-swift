@@ -9,22 +9,22 @@ public extension PlatformClient.Order {
      */
 
     class Dimensions: Codable {
+        public var isDefault: Bool?
+
         public var length: Int?
 
         public var width: Int?
-
-        public var isDefault: Bool?
 
         public var height: Int?
 
         public var unit: String?
 
         public enum CodingKeys: String, CodingKey {
+            case isDefault = "is_default"
+
             case length
 
             case width
-
-            case isDefault = "is_default"
 
             case height
 
@@ -32,11 +32,11 @@ public extension PlatformClient.Order {
         }
 
         public init(height: Int? = nil, isDefault: Bool? = nil, length: Int? = nil, unit: String? = nil, width: Int? = nil) {
+            self.isDefault = isDefault
+
             self.length = length
 
             self.width = width
-
-            self.isDefault = isDefault
 
             self.height = height
 
@@ -45,6 +45,14 @@ public extension PlatformClient.Order {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 length = try container.decode(Int.self, forKey: .length)
@@ -56,14 +64,6 @@ public extension PlatformClient.Order {
 
             do {
                 width = try container.decode(Int.self, forKey: .width)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
             try? container.encodeIfPresent(length, forKey: .length)
 
             try? container.encodeIfPresent(width, forKey: .width)
-
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
             try? container.encodeIfPresent(height, forKey: .height)
 
@@ -110,22 +110,22 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Dimensions: Codable {
+        public var isDefault: Bool?
+
         public var length: Int?
 
         public var width: Int?
-
-        public var isDefault: Bool?
 
         public var height: Int?
 
         public var unit: String?
 
         public enum CodingKeys: String, CodingKey {
+            case isDefault = "is_default"
+
             case length
 
             case width
-
-            case isDefault = "is_default"
 
             case height
 
@@ -133,11 +133,11 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(height: Int? = nil, isDefault: Bool? = nil, length: Int? = nil, unit: String? = nil, width: Int? = nil) {
+            self.isDefault = isDefault
+
             self.length = length
 
             self.width = width
-
-            self.isDefault = isDefault
 
             self.height = height
 
@@ -146,6 +146,14 @@ public extension PlatformClient.ApplicationClient.Order {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 length = try container.decode(Int.self, forKey: .length)
@@ -157,14 +165,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 width = try container.decode(Int.self, forKey: .width)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,11 +191,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
             try? container.encodeIfPresent(length, forKey: .length)
 
             try? container.encodeIfPresent(width, forKey: .width)
-
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
             try? container.encodeIfPresent(height, forKey: .height)
 

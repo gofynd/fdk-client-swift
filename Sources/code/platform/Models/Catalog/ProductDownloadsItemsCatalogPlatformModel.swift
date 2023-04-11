@@ -9,7 +9,9 @@ public extension PlatformClient.Catalog {
      */
 
     class ProductDownloadsItems: Codable {
-        public var data: ProductDownloadItemsData?
+        public var url: String?
+
+        public var sellerId: Double?
 
         public var templateTags: [String: Any]?
 
@@ -19,18 +21,18 @@ public extension PlatformClient.Catalog {
 
         public var createdBy: VerifiedBy?
 
-        public var id: String?
+        public var triggerOn: String?
 
         public var taskId: String?
 
-        public var url: String?
+        public var data: ProductDownloadItemsData?
 
-        public var sellerId: Double?
-
-        public var triggerOn: String?
+        public var id: String?
 
         public enum CodingKeys: String, CodingKey {
-            case data
+            case url
+
+            case sellerId = "seller_id"
 
             case templateTags = "template_tags"
 
@@ -40,19 +42,19 @@ public extension PlatformClient.Catalog {
 
             case createdBy = "created_by"
 
-            case id
+            case triggerOn = "trigger_on"
 
             case taskId = "task_id"
 
-            case url
+            case data
 
-            case sellerId = "seller_id"
-
-            case triggerOn = "trigger_on"
+            case id
         }
 
         public init(completedOn: String? = nil, createdBy: VerifiedBy? = nil, data: ProductDownloadItemsData? = nil, id: String? = nil, sellerId: Double? = nil, status: String? = nil, taskId: String? = nil, templateTags: [String: Any]? = nil, triggerOn: String? = nil, url: String? = nil) {
-            self.data = data
+            self.url = url
+
+            self.sellerId = sellerId
 
             self.templateTags = templateTags
 
@@ -62,22 +64,28 @@ public extension PlatformClient.Catalog {
 
             self.createdBy = createdBy
 
-            self.id = id
+            self.triggerOn = triggerOn
 
             self.taskId = taskId
 
-            self.url = url
+            self.data = data
 
-            self.sellerId = sellerId
-
-            self.triggerOn = triggerOn
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode(ProductDownloadItemsData.self, forKey: .data)
+                url = try container.decode(String.self, forKey: .url)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sellerId = try container.decode(Double.self, forKey: .sellerId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,7 +125,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                triggerOn = try container.decode(String.self, forKey: .triggerOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,7 +141,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                data = try container.decode(ProductDownloadItemsData.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,15 +149,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                sellerId = try container.decode(Double.self, forKey: .sellerId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                triggerOn = try container.decode(String.self, forKey: .triggerOn)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,7 +160,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(url, forKey: .url)
+
+            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
             try? container.encodeIfPresent(templateTags, forKey: .templateTags)
 
@@ -170,15 +172,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
 
             try? container.encodeIfPresent(taskId, forKey: .taskId)
 
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
-
-            try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }
@@ -190,7 +190,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ProductDownloadsItems: Codable {
-        public var data: ProductDownloadItemsData?
+        public var url: String?
+
+        public var sellerId: Double?
 
         public var templateTags: [String: Any]?
 
@@ -200,18 +202,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var createdBy: VerifiedBy?
 
-        public var id: String?
+        public var triggerOn: String?
 
         public var taskId: String?
 
-        public var url: String?
+        public var data: ProductDownloadItemsData?
 
-        public var sellerId: Double?
-
-        public var triggerOn: String?
+        public var id: String?
 
         public enum CodingKeys: String, CodingKey {
-            case data
+            case url
+
+            case sellerId = "seller_id"
 
             case templateTags = "template_tags"
 
@@ -221,19 +223,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case createdBy = "created_by"
 
-            case id
+            case triggerOn = "trigger_on"
 
             case taskId = "task_id"
 
-            case url
+            case data
 
-            case sellerId = "seller_id"
-
-            case triggerOn = "trigger_on"
+            case id
         }
 
         public init(completedOn: String? = nil, createdBy: VerifiedBy? = nil, data: ProductDownloadItemsData? = nil, id: String? = nil, sellerId: Double? = nil, status: String? = nil, taskId: String? = nil, templateTags: [String: Any]? = nil, triggerOn: String? = nil, url: String? = nil) {
-            self.data = data
+            self.url = url
+
+            self.sellerId = sellerId
 
             self.templateTags = templateTags
 
@@ -243,22 +245,28 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.createdBy = createdBy
 
-            self.id = id
+            self.triggerOn = triggerOn
 
             self.taskId = taskId
 
-            self.url = url
+            self.data = data
 
-            self.sellerId = sellerId
-
-            self.triggerOn = triggerOn
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode(ProductDownloadItemsData.self, forKey: .data)
+                url = try container.decode(String.self, forKey: .url)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sellerId = try container.decode(Double.self, forKey: .sellerId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -298,7 +306,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                triggerOn = try container.decode(String.self, forKey: .triggerOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -314,7 +322,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                data = try container.decode(ProductDownloadItemsData.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -322,15 +330,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                sellerId = try container.decode(Double.self, forKey: .sellerId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                triggerOn = try container.decode(String.self, forKey: .triggerOn)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -341,7 +341,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(url, forKey: .url)
+
+            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
             try? container.encodeIfPresent(templateTags, forKey: .templateTags)
 
@@ -351,15 +353,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
 
             try? container.encodeIfPresent(taskId, forKey: .taskId)
 
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
-
-            try? container.encodeIfPresent(triggerOn, forKey: .triggerOn)
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }
