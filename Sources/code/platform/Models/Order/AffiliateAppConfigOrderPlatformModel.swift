@@ -13,15 +13,15 @@ public extension PlatformClient.Order {
 
         public var secret: String
 
-        public var token: String
-
         public var name: String
-
-        public var updatedAt: String
 
         public var meta: [AffiliateAppConfigMeta]?
 
         public var id: String
+
+        public var token: String
+
+        public var updatedAt: String
 
         public var description: String?
 
@@ -32,15 +32,15 @@ public extension PlatformClient.Order {
 
             case secret
 
-            case token
-
             case name
-
-            case updatedAt = "updated_at"
 
             case meta
 
             case id
+
+            case token
+
+            case updatedAt = "updated_at"
 
             case description
 
@@ -52,15 +52,15 @@ public extension PlatformClient.Order {
 
             self.secret = secret
 
-            self.token = token
-
             self.name = name
-
-            self.updatedAt = updatedAt
 
             self.meta = meta
 
             self.id = id
+
+            self.token = token
+
+            self.updatedAt = updatedAt
 
             self.description = description
 
@@ -74,11 +74,7 @@ public extension PlatformClient.Order {
 
             secret = try container.decode(String.self, forKey: .secret)
 
-            token = try container.decode(String.self, forKey: .token)
-
             name = try container.decode(String.self, forKey: .name)
-
-            updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
             do {
                 meta = try container.decode([AffiliateAppConfigMeta].self, forKey: .meta)
@@ -89,6 +85,10 @@ public extension PlatformClient.Order {
             } catch {}
 
             id = try container.decode(String.self, forKey: .id)
+
+            token = try container.decode(String.self, forKey: .token)
+
+            updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
             do {
                 description = try container.decode(String.self, forKey: .description)
@@ -108,15 +108,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(secret, forKey: .secret)
 
-            try? container.encodeIfPresent(token, forKey: .token)
-
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(token, forKey: .token)
+
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
@@ -136,15 +136,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var secret: String
 
-        public var token: String
-
         public var name: String
-
-        public var updatedAt: String
 
         public var meta: [AffiliateAppConfigMeta]?
 
         public var id: String
+
+        public var token: String
+
+        public var updatedAt: String
 
         public var description: String?
 
@@ -155,15 +155,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case secret
 
-            case token
-
             case name
-
-            case updatedAt = "updated_at"
 
             case meta
 
             case id
+
+            case token
+
+            case updatedAt = "updated_at"
 
             case description
 
@@ -175,15 +175,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.secret = secret
 
-            self.token = token
-
             self.name = name
-
-            self.updatedAt = updatedAt
 
             self.meta = meta
 
             self.id = id
+
+            self.token = token
+
+            self.updatedAt = updatedAt
 
             self.description = description
 
@@ -197,11 +197,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             secret = try container.decode(String.self, forKey: .secret)
 
-            token = try container.decode(String.self, forKey: .token)
-
             name = try container.decode(String.self, forKey: .name)
-
-            updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
             do {
                 meta = try container.decode([AffiliateAppConfigMeta].self, forKey: .meta)
@@ -212,6 +208,10 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             id = try container.decode(String.self, forKey: .id)
+
+            token = try container.decode(String.self, forKey: .token)
+
+            updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
             do {
                 description = try container.decode(String.self, forKey: .description)
@@ -231,15 +231,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(secret, forKey: .secret)
 
-            try? container.encodeIfPresent(token, forKey: .token)
-
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(token, forKey: .token)
+
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
             try? container.encodeIfPresent(description, forKey: .description)
 

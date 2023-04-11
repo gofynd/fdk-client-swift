@@ -11,24 +11,24 @@ public extension PlatformClient.CompanyProfile {
     class LocationManagerSerializer: Codable {
         public var mobileNo: SellerPhoneNumber
 
-        public var name: String?
-
         public var email: String?
+
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case mobileNo = "mobile_no"
 
-            case name
-
             case email
+
+            case name
         }
 
         public init(email: String? = nil, mobileNo: SellerPhoneNumber, name: String? = nil) {
             self.mobileNo = mobileNo
 
-            self.name = name
-
             self.email = email
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -37,7 +37,7 @@ public extension PlatformClient.CompanyProfile {
             mobileNo = try container.decode(SellerPhoneNumber.self, forKey: .mobileNo)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -45,7 +45,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,9 +58,9 @@ public extension PlatformClient.CompanyProfile {
 
             try? container.encodeIfPresent(mobileNo, forKey: .mobileNo)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
