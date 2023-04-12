@@ -4137,7 +4137,7 @@ Check store has active integration
 
 
 ```swift
-client.configuration.getLevelActiveIntegrations(id: id, level: level, uid: uid) { (response, error) in
+client.configuration.getLevelActiveIntegrations(id: id, level: level, uid: uid, permission: permission) { (response, error) in
     // Use response
 }
 ```
@@ -4150,7 +4150,8 @@ client.configuration.getLevelActiveIntegrations(id: id, level: level, uid: uid) 
 | -------- | ---- | -------- | ----------- | 
 | id | String | yes | Integration id |   
 | level | String | yes | Integration level |   
-| uid | Int | yes | Integration level uid |  
+| uid | Int | yes | Integration level uid |   
+| permission | String? | no | Check opt-in for specific integration permissions |  
 
 
 

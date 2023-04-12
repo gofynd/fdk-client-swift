@@ -33,6 +33,10 @@ public extension ApplicationClient.User {
 
         public var accountType: String?
 
+        public var debug: Debug?
+
+        public var hasOldPasswordHash: Bool?
+
         public var id: String?
 
         public var createdAt: String?
@@ -66,6 +70,10 @@ public extension ApplicationClient.User {
 
             case accountType = "account_type"
 
+            case debug
+
+            case hasOldPasswordHash = "has_old_password_hash"
+
             case id = "_id"
 
             case createdAt = "created_at"
@@ -73,7 +81,7 @@ public extension ApplicationClient.User {
             case updatedAt = "updated_at"
         }
 
-        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, dob: String? = nil, emails: [Email]? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
+        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, debug: Debug? = nil, dob: String? = nil, emails: [Email]? = nil, firstName: String? = nil, gender: String? = nil, hasOldPasswordHash: Bool? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
             self.applicationId = applicationId
 
             self.userId = userId
@@ -99,6 +107,10 @@ public extension ApplicationClient.User {
             self.username = username
 
             self.accountType = accountType
+
+            self.debug = debug
+
+            self.hasOldPasswordHash = hasOldPasswordHash
 
             self.id = id
 
@@ -215,6 +227,22 @@ public extension ApplicationClient.User {
             } catch {}
 
             do {
+                debug = try container.decode(Debug.self, forKey: .debug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                hasOldPasswordHash = try container.decode(Bool.self, forKey: .hasOldPasswordHash)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -267,6 +295,10 @@ public extension ApplicationClient.User {
             try? container.encodeIfPresent(username, forKey: .username)
 
             try? container.encodeIfPresent(accountType, forKey: .accountType)
+
+            try? container.encodeIfPresent(debug, forKey: .debug)
+
+            try? container.encodeIfPresent(hasOldPasswordHash, forKey: .hasOldPasswordHash)
 
             try? container.encodeIfPresent(id, forKey: .id)
 

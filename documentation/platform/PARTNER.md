@@ -15,7 +15,7 @@ Partner configuration apis
 
 
 #### addProxyPath
-Create proxy URL for the external URL
+Add proxy path for external url
 
 
 
@@ -32,11 +32,11 @@ client.application("<APPLICATION_ID>").partner.addProxyPath(extensionId: extensi
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| extensionId | String | yes | Extension id for which proxy URL will be generated |  
+| extensionId | String | yes | Extension id |  
 | body | AddProxyReq | yes | Request body |
 
 
-Use this API to generate proxy URL for the external URL
+Add proxy path for external url
 
 *Returned Response:*
 
@@ -45,7 +45,7 @@ Use this API to generate proxy URL for the external URL
 
 [AddProxyResponse](#AddProxyResponse)
 
-Proxy created successfully
+Success
 
 
 
@@ -79,7 +79,7 @@ Proxy created successfully
 
 
 #### removeProxyPath
-Remove proxy URL for the external URL
+Remove proxy path for external url
 
 
 
@@ -96,12 +96,12 @@ client.application("<APPLICATION_ID>").partner.removeProxyPath(extensionId: exte
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| extensionId | String | yes | Extension id for which proxy URL needs to be removed |   
+| extensionId | String | yes | Extension id |   
 | attachedPath | String | yes | Attachaed path slug |  
 
 
 
-Use this API to remove the proxy URL which is already generated for the external URL
+Remove proxy path for external url
 
 *Returned Response:*
 
@@ -156,7 +156,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | attachedPath | String? |  yes  | Proxy path slug |
- | proxyUrl | String? |  yes  | The external URL for which the proxy URL will be generated |
+ | proxyUrl | String? |  yes  | Proxied url |
 
 ---
 
@@ -181,18 +181,6 @@ Success
 
  
  
- #### [RemoveProxyResponse](#RemoveProxyResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | data | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
  #### [APIError](#APIError)
 
  | Properties | Type | Nullable | Description |
@@ -202,6 +190,18 @@ Success
  | info | String? |  yes  | Error code description link |
  | requestId | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [RemoveProxyResponse](#RemoveProxyResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | data | [String: Any]? |  yes  |  |
 
 ---
 

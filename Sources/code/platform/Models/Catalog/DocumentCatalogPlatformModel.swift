@@ -15,9 +15,9 @@ public extension PlatformClient.Catalog {
 
         public var verified: Bool?
 
-        public var url: String?
-
         public var value: String
+
+        public var url: String?
 
         public enum CodingKeys: String, CodingKey {
             case type
@@ -26,9 +26,9 @@ public extension PlatformClient.Catalog {
 
             case verified
 
-            case url
-
             case value
+
+            case url
         }
 
         public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Catalog {
 
             self.verified = verified
 
-            self.url = url
-
             self.value = value
+
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
@@ -64,6 +64,8 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            value = try container.decode(String.self, forKey: .value)
+
             do {
                 url = try container.decode(String.self, forKey: .url)
 
@@ -71,8 +73,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            value = try container.decode(String.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -84,9 +84,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(verified, forKey: .verified)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }
@@ -104,9 +104,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var verified: Bool?
 
-        public var url: String?
-
         public var value: String
+
+        public var url: String?
 
         public enum CodingKeys: String, CodingKey {
             case type
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case verified
 
-            case url
-
             case value
+
+            case url
         }
 
         public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.verified = verified
 
-            self.url = url
-
             self.value = value
+
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
@@ -153,6 +153,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            value = try container.decode(String.self, forKey: .value)
+
             do {
                 url = try container.decode(String.self, forKey: .url)
 
@@ -160,8 +162,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            value = try container.decode(String.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -173,9 +173,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(verified, forKey: .verified)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }

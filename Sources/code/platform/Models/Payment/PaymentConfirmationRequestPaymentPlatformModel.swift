@@ -11,7 +11,7 @@ public extension PlatformClient.Payment {
     class PaymentConfirmationRequest: Codable {
         public var orderId: String
 
-        public var paymentMethods: [MultiTenderPaymentMethod]
+        public var paymentMethods: [PaymentConfirmationMode]
 
         public enum CodingKeys: String, CodingKey {
             case orderId = "order_id"
@@ -19,7 +19,7 @@ public extension PlatformClient.Payment {
             case paymentMethods = "payment_methods"
         }
 
-        public init(orderId: String, paymentMethods: [MultiTenderPaymentMethod]) {
+        public init(orderId: String, paymentMethods: [PaymentConfirmationMode]) {
             self.orderId = orderId
 
             self.paymentMethods = paymentMethods
@@ -30,7 +30,7 @@ public extension PlatformClient.Payment {
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
-            paymentMethods = try container.decode([MultiTenderPaymentMethod].self, forKey: .paymentMethods)
+            paymentMethods = try container.decode([PaymentConfirmationMode].self, forKey: .paymentMethods)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,7 +52,7 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentConfirmationRequest: Codable {
         public var orderId: String
 
-        public var paymentMethods: [MultiTenderPaymentMethod]
+        public var paymentMethods: [PaymentConfirmationMode]
 
         public enum CodingKeys: String, CodingKey {
             case orderId = "order_id"
@@ -60,7 +60,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             case paymentMethods = "payment_methods"
         }
 
-        public init(orderId: String, paymentMethods: [MultiTenderPaymentMethod]) {
+        public init(orderId: String, paymentMethods: [PaymentConfirmationMode]) {
             self.orderId = orderId
 
             self.paymentMethods = paymentMethods
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
-            paymentMethods = try container.decode([MultiTenderPaymentMethod].self, forKey: .paymentMethods)
+            paymentMethods = try container.decode([PaymentConfirmationMode].self, forKey: .paymentMethods)
         }
 
         public func encode(to encoder: Encoder) throws {

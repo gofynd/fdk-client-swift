@@ -13,7 +13,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get paginated audit logs
-         * Description: Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs
+         * Description: Get audit logs
          **/
         public func getAuditLogs(
             qs: String,
@@ -56,7 +56,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Create logs for auditing later on
-         * Description: Create a log instance that stores all the relevant info to be logged
+         * Description: Create a Audit log
          **/
         public func createAuditLog(
             body: RequestBodyAuditLog,
@@ -94,7 +94,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get audit log
-         * Description: Get detailed log information by their id
+         * Description: Get audit logs by logs uuid
          **/
         public func getAuditLog(
             id: String,
@@ -133,7 +133,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get entity types
-         * Description: Get a consolidated list of entity types from all the logs stored on the db, which further helps to filter the logs better
+         * Description: Get entity types
          **/
         public func getEntityTypes(
             onResponse: @escaping (_ response: EntityTypesResponse?, _ error: FDKError?) -> Void
