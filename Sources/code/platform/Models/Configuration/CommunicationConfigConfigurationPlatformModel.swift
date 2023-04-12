@@ -2,40 +2,40 @@
 
 import Foundation
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Configuration {
     /*
-         Model: CollectionItemRequest
-         Used By: Catalog
+         Model: CommunicationConfig
+         Used By: Configuration
      */
 
-    class CollectionItemRequest: Codable {
-        public var query: [CollectionQuery]?
+    class CommunicationConfig: Codable {
+        public var email: CommsConfig?
 
-        public var type: String?
+        public var sms: CommsConfig?
 
-        public var item: [ItemQueryForUserCollection]?
+        public var voice: CommsConfig?
 
         public enum CodingKeys: String, CodingKey {
-            case query
+            case email
 
-            case type
+            case sms
 
-            case item
+            case voice
         }
 
-        public init(item: [ItemQueryForUserCollection]? = nil, query: [CollectionQuery]? = nil, type: String? = nil) {
-            self.query = query
+        public init(email: CommsConfig? = nil, sms: CommsConfig? = nil, voice: CommsConfig? = nil) {
+            self.email = email
 
-            self.type = type
+            self.sms = sms
 
-            self.item = item
+            self.voice = voice
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                query = try container.decode([CollectionQuery].self, forKey: .query)
+                email = try container.decode(CommsConfig.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                sms = try container.decode(CommsConfig.self, forKey: .sms)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                item = try container.decode([ItemQueryForUserCollection].self, forKey: .item)
+                voice = try container.decode(CommsConfig.self, forKey: .voice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,49 +62,49 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(query, forKey: .query)
+            try? container.encodeIfPresent(email, forKey: .email)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(sms, forKey: .sms)
 
-            try? container.encodeIfPresent(item, forKey: .item)
+            try? container.encodeIfPresent(voice, forKey: .voice)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Configuration {
     /*
-         Model: CollectionItemRequest
-         Used By: Catalog
+         Model: CommunicationConfig
+         Used By: Configuration
      */
 
-    class CollectionItemRequest: Codable {
-        public var query: [CollectionQuery]?
+    class CommunicationConfig: Codable {
+        public var email: CommsConfig?
 
-        public var type: String?
+        public var sms: CommsConfig?
 
-        public var item: [ItemQueryForUserCollection]?
+        public var voice: CommsConfig?
 
         public enum CodingKeys: String, CodingKey {
-            case query
+            case email
 
-            case type
+            case sms
 
-            case item
+            case voice
         }
 
-        public init(item: [ItemQueryForUserCollection]? = nil, query: [CollectionQuery]? = nil, type: String? = nil) {
-            self.query = query
+        public init(email: CommsConfig? = nil, sms: CommsConfig? = nil, voice: CommsConfig? = nil) {
+            self.email = email
 
-            self.type = type
+            self.sms = sms
 
-            self.item = item
+            self.voice = voice
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                query = try container.decode([CollectionQuery].self, forKey: .query)
+                email = try container.decode(CommsConfig.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                sms = try container.decode(CommsConfig.self, forKey: .sms)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                item = try container.decode([ItemQueryForUserCollection].self, forKey: .item)
+                voice = try container.decode(CommsConfig.self, forKey: .voice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(query, forKey: .query)
+            try? container.encodeIfPresent(email, forKey: .email)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(sms, forKey: .sms)
 
-            try? container.encodeIfPresent(item, forKey: .item)
+            try? container.encodeIfPresent(voice, forKey: .voice)
         }
     }
 }

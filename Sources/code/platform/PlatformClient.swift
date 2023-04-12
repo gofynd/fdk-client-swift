@@ -9227,7 +9227,7 @@ public class PlatformClient {
              **/
             public func addCollectionItems(
                 id: String,
-                body: CollectionItemRequest,
+                body: CollectionItemUpdate,
                 onResponse: @escaping (_ response: UpdatedResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
@@ -9730,6 +9730,7 @@ public class PlatformClient {
                 categoryIds: [Int]?,
                 departmentIds: [Int]?,
                 tags: [String]?,
+                itemIds: [Int]?,
                 pageNo: Int?,
                 pageSize: Int?,
                 q: String?,
@@ -9752,6 +9753,10 @@ public class PlatformClient {
 
                 if let value = tags {
                     xQuery["tags"] = value
+                }
+
+                if let value = itemIds {
+                    xQuery["item_ids"] = value
                 }
 
                 if let value = pageNo {

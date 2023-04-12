@@ -9,24 +9,24 @@ public extension PlatformClient.Catalog {
      */
 
     class Trader2: Codable {
-        public var name: String?
-
         public var address: [String]?
+
+        public var name: String?
 
         public var type: String?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
             case address
+
+            case name
 
             case type
         }
 
         public init(address: [String]? = nil, name: String? = nil, type: String? = nil) {
-            self.name = name
-
             self.address = address
+
+            self.name = name
 
             self.type = type
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                address = try container.decode([String].self, forKey: .address)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                address = try container.decode([String].self, forKey: .address)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(type, forKey: .type)
         }
@@ -78,24 +78,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class Trader2: Codable {
-        public var name: String?
-
         public var address: [String]?
+
+        public var name: String?
 
         public var type: String?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
             case address
+
+            case name
 
             case type
         }
 
         public init(address: [String]? = nil, name: String? = nil, type: String? = nil) {
-            self.name = name
-
             self.address = address
+
+            self.name = name
 
             self.type = type
         }
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                address = try container.decode([String].self, forKey: .address)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                address = try container.decode([String].self, forKey: .address)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(type, forKey: .type)
         }

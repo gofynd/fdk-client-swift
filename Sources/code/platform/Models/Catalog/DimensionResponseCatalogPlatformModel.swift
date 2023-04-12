@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var width: Double
 
-        public var length: Double
-
         public var isDefault: Bool
+
+        public var length: Double
 
         public var height: Double
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case width
 
-            case length
-
             case isDefault = "is_default"
+
+            case length
 
             case height
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.width = width
 
-            self.length = length
-
             self.isDefault = isDefault
+
+            self.length = length
 
             self.height = height
         }
@@ -50,9 +50,9 @@ public extension PlatformClient.Catalog {
 
             width = try container.decode(Double.self, forKey: .width)
 
-            length = try container.decode(Double.self, forKey: .length)
-
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
+            length = try container.decode(Double.self, forKey: .length)
 
             height = try container.decode(Double.self, forKey: .height)
         }
@@ -64,9 +64,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(width, forKey: .width)
 
-            try? container.encodeIfPresent(length, forKey: .length)
-
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(length, forKey: .length)
 
             try? container.encodeIfPresent(height, forKey: .height)
         }
@@ -84,9 +84,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var width: Double
 
-        public var length: Double
-
         public var isDefault: Bool
+
+        public var length: Double
 
         public var height: Double
 
@@ -95,9 +95,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case width
 
-            case length
-
             case isDefault = "is_default"
+
+            case length
 
             case height
         }
@@ -107,9 +107,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.width = width
 
-            self.length = length
-
             self.isDefault = isDefault
+
+            self.length = length
 
             self.height = height
         }
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             width = try container.decode(Double.self, forKey: .width)
 
-            length = try container.decode(Double.self, forKey: .length)
-
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
+            length = try container.decode(Double.self, forKey: .length)
 
             height = try container.decode(Double.self, forKey: .height)
         }
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(width, forKey: .width)
 
-            try? container.encodeIfPresent(length, forKey: .length)
-
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(length, forKey: .length)
 
             try? container.encodeIfPresent(height, forKey: .height)
         }

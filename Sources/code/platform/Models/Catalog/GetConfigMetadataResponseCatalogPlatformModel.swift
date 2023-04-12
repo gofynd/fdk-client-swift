@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class GetConfigMetadataResponse: Codable {
         public var condition: [[String: Any]]?
 
-        public var data: [[String: Any]]
-
         public var values: [[String: Any]]?
+
+        public var data: [[String: Any]]
 
         public enum CodingKeys: String, CodingKey {
             case condition
 
-            case data
-
             case values
+
+            case data
         }
 
         public init(condition: [[String: Any]]? = nil, data: [[String: Any]], values: [[String: Any]]? = nil) {
             self.condition = condition
 
-            self.data = data
-
             self.values = values
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,8 +42,6 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            data = try container.decode([[String: Any]].self, forKey: .data)
-
             do {
                 values = try container.decode([[String: Any]].self, forKey: .values)
 
@@ -51,6 +49,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            data = try container.decode([[String: Any]].self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -58,9 +58,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(condition, forKey: .condition)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(values, forKey: .values)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
@@ -74,24 +74,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetConfigMetadataResponse: Codable {
         public var condition: [[String: Any]]?
 
-        public var data: [[String: Any]]
-
         public var values: [[String: Any]]?
+
+        public var data: [[String: Any]]
 
         public enum CodingKeys: String, CodingKey {
             case condition
 
-            case data
-
             case values
+
+            case data
         }
 
         public init(condition: [[String: Any]]? = nil, data: [[String: Any]], values: [[String: Any]]? = nil) {
             self.condition = condition
 
-            self.data = data
-
             self.values = values
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -105,8 +105,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            data = try container.decode([[String: Any]].self, forKey: .data)
-
             do {
                 values = try container.decode([[String: Any]].self, forKey: .values)
 
@@ -114,6 +112,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            data = try container.decode([[String: Any]].self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(condition, forKey: .condition)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(values, forKey: .values)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

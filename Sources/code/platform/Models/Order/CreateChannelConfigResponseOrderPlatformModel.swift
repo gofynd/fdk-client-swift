@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class CreateChannelConfigResponse: Codable {
         public var isInserted: Bool?
 
-        public var acknowledged: Bool?
-
         public var isUpserted: Bool?
+
+        public var acknowledged: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case isInserted = "is_inserted"
 
-            case acknowledged
-
             case isUpserted = "is_upserted"
+
+            case acknowledged
         }
 
         public init(acknowledged: Bool? = nil, isInserted: Bool? = nil, isUpserted: Bool? = nil) {
             self.isInserted = isInserted
 
-            self.acknowledged = acknowledged
-
             self.isUpserted = isUpserted
+
+            self.acknowledged = acknowledged
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                acknowledged = try container.decode(Bool.self, forKey: .acknowledged)
+                isUpserted = try container.decode(Bool.self, forKey: .isUpserted)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                isUpserted = try container.decode(Bool.self, forKey: .isUpserted)
+                acknowledged = try container.decode(Bool.self, forKey: .acknowledged)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(isInserted, forKey: .isInserted)
 
-            try? container.encodeIfPresent(acknowledged, forKey: .acknowledged)
-
             try? container.encodeIfPresent(isUpserted, forKey: .isUpserted)
+
+            try? container.encodeIfPresent(acknowledged, forKey: .acknowledged)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class CreateChannelConfigResponse: Codable {
         public var isInserted: Bool?
 
-        public var acknowledged: Bool?
-
         public var isUpserted: Bool?
+
+        public var acknowledged: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case isInserted = "is_inserted"
 
-            case acknowledged
-
             case isUpserted = "is_upserted"
+
+            case acknowledged
         }
 
         public init(acknowledged: Bool? = nil, isInserted: Bool? = nil, isUpserted: Bool? = nil) {
             self.isInserted = isInserted
 
-            self.acknowledged = acknowledged
-
             self.isUpserted = isUpserted
+
+            self.acknowledged = acknowledged
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                acknowledged = try container.decode(Bool.self, forKey: .acknowledged)
+                isUpserted = try container.decode(Bool.self, forKey: .isUpserted)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                isUpserted = try container.decode(Bool.self, forKey: .isUpserted)
+                acknowledged = try container.decode(Bool.self, forKey: .acknowledged)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(isInserted, forKey: .isInserted)
 
-            try? container.encodeIfPresent(acknowledged, forKey: .acknowledged)
-
             try? container.encodeIfPresent(isUpserted, forKey: .isUpserted)
+
+            try? container.encodeIfPresent(acknowledged, forKey: .acknowledged)
         }
     }
 }
