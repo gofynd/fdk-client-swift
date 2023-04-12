@@ -11,60 +11,60 @@ public extension PlatformClient.ApplicationClient.Cart {
     class Restrictions: Codable {
         public var payments: [String: PaymentModes]?
 
-        public var bulkBundle: BulkBundleRestriction?
+        public var couponAllowed: Bool?
+
+        public var priceRange: PriceRange?
 
         public var uses: UsesRestriction?
 
         public var platforms: [String]?
 
-        public var postOrder: PostOrder?
-
-        public var couponAllowed: Bool?
-
-        public var orderingStores: [Int]?
+        public var bulkBundle: BulkBundleRestriction?
 
         public var userGroups: [Int]?
 
-        public var priceRange: PriceRange?
+        public var postOrder: PostOrder?
+
+        public var orderingStores: [Int]?
 
         public enum CodingKeys: String, CodingKey {
             case payments
 
-            case bulkBundle = "bulk_bundle"
+            case couponAllowed = "coupon_allowed"
+
+            case priceRange = "price_range"
 
             case uses
 
             case platforms
 
-            case postOrder = "post_order"
-
-            case couponAllowed = "coupon_allowed"
-
-            case orderingStores = "ordering_stores"
+            case bulkBundle = "bulk_bundle"
 
             case userGroups = "user_groups"
 
-            case priceRange = "price_range"
+            case postOrder = "post_order"
+
+            case orderingStores = "ordering_stores"
         }
 
         public init(bulkBundle: BulkBundleRestriction? = nil, couponAllowed: Bool? = nil, orderingStores: [Int]? = nil, payments: [String: PaymentModes]? = nil, platforms: [String]? = nil, postOrder: PostOrder? = nil, priceRange: PriceRange? = nil, userGroups: [Int]? = nil, uses: UsesRestriction? = nil) {
             self.payments = payments
 
-            self.bulkBundle = bulkBundle
+            self.couponAllowed = couponAllowed
+
+            self.priceRange = priceRange
 
             self.uses = uses
 
             self.platforms = platforms
 
-            self.postOrder = postOrder
-
-            self.couponAllowed = couponAllowed
-
-            self.orderingStores = orderingStores
+            self.bulkBundle = bulkBundle
 
             self.userGroups = userGroups
 
-            self.priceRange = priceRange
+            self.postOrder = postOrder
+
+            self.orderingStores = orderingStores
         }
 
         required public init(from decoder: Decoder) throws {
@@ -79,7 +79,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                bulkBundle = try container.decode(BulkBundleRestriction.self, forKey: .bulkBundle)
+                couponAllowed = try container.decode(Bool.self, forKey: .couponAllowed)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                priceRange = try container.decode(PriceRange.self, forKey: .priceRange)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,23 +111,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                postOrder = try container.decode(PostOrder.self, forKey: .postOrder)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                couponAllowed = try container.decode(Bool.self, forKey: .couponAllowed)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderingStores = try container.decode([Int].self, forKey: .orderingStores)
+                bulkBundle = try container.decode(BulkBundleRestriction.self, forKey: .bulkBundle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -135,7 +127,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                priceRange = try container.decode(PriceRange.self, forKey: .priceRange)
+                postOrder = try container.decode(PostOrder.self, forKey: .postOrder)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                orderingStores = try container.decode([Int].self, forKey: .orderingStores)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,21 +148,21 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(payments, forKey: .payments)
 
-            try? container.encodeIfPresent(bulkBundle, forKey: .bulkBundle)
+            try? container.encodeIfPresent(couponAllowed, forKey: .couponAllowed)
+
+            try? container.encodeIfPresent(priceRange, forKey: .priceRange)
 
             try? container.encodeIfPresent(uses, forKey: .uses)
 
             try? container.encodeIfPresent(platforms, forKey: .platforms)
 
-            try? container.encodeIfPresent(postOrder, forKey: .postOrder)
-
-            try? container.encodeIfPresent(couponAllowed, forKey: .couponAllowed)
-
-            try? container.encodeIfPresent(orderingStores, forKey: .orderingStores)
+            try? container.encodeIfPresent(bulkBundle, forKey: .bulkBundle)
 
             try? container.encodeIfPresent(userGroups, forKey: .userGroups)
 
-            try? container.encodeIfPresent(priceRange, forKey: .priceRange)
+            try? container.encodeIfPresent(postOrder, forKey: .postOrder)
+
+            try? container.encodeIfPresent(orderingStores, forKey: .orderingStores)
         }
     }
 }

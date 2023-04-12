@@ -11,18 +11,18 @@ public extension ApplicationClient.Payment {
 
         public var error: ErrorDescription?
 
-        public var success: Bool
-
         public var message: String
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case statusCode = "status_code"
 
             case error
 
-            case success
-
             case message
+
+            case success
         }
 
         public init(error: ErrorDescription? = nil, message: String, statusCode: Int, success: Bool) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Payment {
 
             self.error = error
 
-            self.success = success
-
             self.message = message
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,9 +48,9 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             message = try container.decode(String.self, forKey: .message)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -60,9 +60,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(error, forKey: .error)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
