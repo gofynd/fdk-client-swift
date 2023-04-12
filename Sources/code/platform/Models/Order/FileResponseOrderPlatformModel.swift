@@ -9,91 +9,75 @@ public extension PlatformClient.Order {
      */
 
     class FileResponse: Codable {
-        public var cdn: URL?
-
-        public var namespace: String?
-
-        public var filePath: String?
+        public var upload: FileUploadResponse?
 
         public var method: String?
 
-        public var size: Int?
+        public var fileName: String?
 
-        public var contentType: String?
-
-        public var upload: FileUploadResponse?
+        public var filePath: String?
 
         public var tags: [String]?
 
+        public var size: Int?
+
+        public var cdn: URL?
+
+        public var contentType: String?
+
+        public var namespace: String?
+
         public var operation: String?
 
-        public var fileName: String?
-
         public enum CodingKeys: String, CodingKey {
-            case cdn
-
-            case namespace
-
-            case filePath = "file_path"
+            case upload
 
             case method
 
-            case size
+            case fileName = "file_name"
 
-            case contentType = "content_type"
-
-            case upload
+            case filePath = "file_path"
 
             case tags
 
-            case operation
+            case size
 
-            case fileName = "file_name"
+            case cdn
+
+            case contentType = "content_type"
+
+            case namespace
+
+            case operation
         }
 
         public init(cdn: URL? = nil, contentType: String? = nil, fileName: String? = nil, filePath: String? = nil, method: String? = nil, namespace: String? = nil, operation: String? = nil, size: Int? = nil, tags: [String]? = nil, upload: FileUploadResponse? = nil) {
-            self.cdn = cdn
-
-            self.namespace = namespace
-
-            self.filePath = filePath
+            self.upload = upload
 
             self.method = method
 
-            self.size = size
+            self.fileName = fileName
 
-            self.contentType = contentType
-
-            self.upload = upload
+            self.filePath = filePath
 
             self.tags = tags
 
-            self.operation = operation
+            self.size = size
 
-            self.fileName = fileName
+            self.cdn = cdn
+
+            self.contentType = contentType
+
+            self.namespace = namespace
+
+            self.operation = operation
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                cdn = try container.decode(URL.self, forKey: .cdn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                namespace = try container.decode(String.self, forKey: .namespace)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                filePath = try container.decode(String.self, forKey: .filePath)
+                upload = try container.decode(FileUploadResponse.self, forKey: .upload)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,7 +93,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                size = try container.decode(Int.self, forKey: .size)
+                fileName = try container.decode(String.self, forKey: .fileName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,15 +101,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                contentType = try container.decode(String.self, forKey: .contentType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                upload = try container.decode(FileUploadResponse.self, forKey: .upload)
+                filePath = try container.decode(String.self, forKey: .filePath)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,7 +117,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                operation = try container.decode(String.self, forKey: .operation)
+                size = try container.decode(Int.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -149,7 +125,31 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                fileName = try container.decode(String.self, forKey: .fileName)
+                cdn = try container.decode(URL.self, forKey: .cdn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                contentType = try container.decode(String.self, forKey: .contentType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                namespace = try container.decode(String.self, forKey: .namespace)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                operation = try container.decode(String.self, forKey: .operation)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,25 +160,25 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(cdn, forKey: .cdn)
-
-            try? container.encodeIfPresent(namespace, forKey: .namespace)
-
-            try? container.encodeIfPresent(filePath, forKey: .filePath)
+            try? container.encodeIfPresent(upload, forKey: .upload)
 
             try? container.encodeIfPresent(method, forKey: .method)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(fileName, forKey: .fileName)
 
-            try? container.encodeIfPresent(contentType, forKey: .contentType)
-
-            try? container.encodeIfPresent(upload, forKey: .upload)
+            try? container.encodeIfPresent(filePath, forKey: .filePath)
 
             try? container.encodeIfPresent(tags, forKey: .tags)
 
-            try? container.encodeIfPresent(operation, forKey: .operation)
+            try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(fileName, forKey: .fileName)
+            try? container.encodeIfPresent(cdn, forKey: .cdn)
+
+            try? container.encodeIfPresent(contentType, forKey: .contentType)
+
+            try? container.encodeIfPresent(namespace, forKey: .namespace)
+
+            try? container.encodeIfPresent(operation, forKey: .operation)
         }
     }
 }
@@ -190,91 +190,75 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class FileResponse: Codable {
-        public var cdn: URL?
-
-        public var namespace: String?
-
-        public var filePath: String?
+        public var upload: FileUploadResponse?
 
         public var method: String?
 
-        public var size: Int?
+        public var fileName: String?
 
-        public var contentType: String?
-
-        public var upload: FileUploadResponse?
+        public var filePath: String?
 
         public var tags: [String]?
 
+        public var size: Int?
+
+        public var cdn: URL?
+
+        public var contentType: String?
+
+        public var namespace: String?
+
         public var operation: String?
 
-        public var fileName: String?
-
         public enum CodingKeys: String, CodingKey {
-            case cdn
-
-            case namespace
-
-            case filePath = "file_path"
+            case upload
 
             case method
 
-            case size
+            case fileName = "file_name"
 
-            case contentType = "content_type"
-
-            case upload
+            case filePath = "file_path"
 
             case tags
 
-            case operation
+            case size
 
-            case fileName = "file_name"
+            case cdn
+
+            case contentType = "content_type"
+
+            case namespace
+
+            case operation
         }
 
         public init(cdn: URL? = nil, contentType: String? = nil, fileName: String? = nil, filePath: String? = nil, method: String? = nil, namespace: String? = nil, operation: String? = nil, size: Int? = nil, tags: [String]? = nil, upload: FileUploadResponse? = nil) {
-            self.cdn = cdn
-
-            self.namespace = namespace
-
-            self.filePath = filePath
+            self.upload = upload
 
             self.method = method
 
-            self.size = size
+            self.fileName = fileName
 
-            self.contentType = contentType
-
-            self.upload = upload
+            self.filePath = filePath
 
             self.tags = tags
 
-            self.operation = operation
+            self.size = size
 
-            self.fileName = fileName
+            self.cdn = cdn
+
+            self.contentType = contentType
+
+            self.namespace = namespace
+
+            self.operation = operation
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                cdn = try container.decode(URL.self, forKey: .cdn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                namespace = try container.decode(String.self, forKey: .namespace)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                filePath = try container.decode(String.self, forKey: .filePath)
+                upload = try container.decode(FileUploadResponse.self, forKey: .upload)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -290,7 +274,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                size = try container.decode(Int.self, forKey: .size)
+                fileName = try container.decode(String.self, forKey: .fileName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -298,15 +282,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                contentType = try container.decode(String.self, forKey: .contentType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                upload = try container.decode(FileUploadResponse.self, forKey: .upload)
+                filePath = try container.decode(String.self, forKey: .filePath)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -322,7 +298,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                operation = try container.decode(String.self, forKey: .operation)
+                size = try container.decode(Int.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -330,7 +306,31 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                fileName = try container.decode(String.self, forKey: .fileName)
+                cdn = try container.decode(URL.self, forKey: .cdn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                contentType = try container.decode(String.self, forKey: .contentType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                namespace = try container.decode(String.self, forKey: .namespace)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                operation = try container.decode(String.self, forKey: .operation)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -341,25 +341,25 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(cdn, forKey: .cdn)
-
-            try? container.encodeIfPresent(namespace, forKey: .namespace)
-
-            try? container.encodeIfPresent(filePath, forKey: .filePath)
+            try? container.encodeIfPresent(upload, forKey: .upload)
 
             try? container.encodeIfPresent(method, forKey: .method)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(fileName, forKey: .fileName)
 
-            try? container.encodeIfPresent(contentType, forKey: .contentType)
-
-            try? container.encodeIfPresent(upload, forKey: .upload)
+            try? container.encodeIfPresent(filePath, forKey: .filePath)
 
             try? container.encodeIfPresent(tags, forKey: .tags)
 
-            try? container.encodeIfPresent(operation, forKey: .operation)
+            try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(fileName, forKey: .fileName)
+            try? container.encodeIfPresent(cdn, forKey: .cdn)
+
+            try? container.encodeIfPresent(contentType, forKey: .contentType)
+
+            try? container.encodeIfPresent(namespace, forKey: .namespace)
+
+            try? container.encodeIfPresent(operation, forKey: .operation)
         }
     }
 }

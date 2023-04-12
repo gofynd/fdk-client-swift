@@ -7,9 +7,9 @@ public extension ApplicationClient.Logistic {
          Used By: Logistic
      */
     class CountryEntityResponse: Codable {
-        public var parentId: String?
+        public var name: String?
 
-        public var subType: String?
+        public var parentId: String?
 
         public var displayName: String?
 
@@ -17,18 +17,18 @@ public extension ApplicationClient.Logistic {
 
         public var logistics: LogisticsResponse?
 
-        public var type: String?
+        public var subType: String?
 
-        public var meta: CountryMetaResponse?
+        public var type: String?
 
         public var isActive: Bool?
 
-        public var name: String?
+        public var meta: CountryMetaResponse?
 
         public enum CodingKeys: String, CodingKey {
-            case parentId = "parent_id"
+            case name
 
-            case subType = "sub_type"
+            case parentId = "parent_id"
 
             case displayName = "display_name"
 
@@ -36,19 +36,19 @@ public extension ApplicationClient.Logistic {
 
             case logistics
 
-            case type
+            case subType = "sub_type"
 
-            case meta
+            case type
 
             case isActive = "is_active"
 
-            case name
+            case meta
         }
 
         public init(displayName: String? = nil, isActive: Bool? = nil, logistics: LogisticsResponse? = nil, meta: CountryMetaResponse? = nil, name: String? = nil, parentId: String? = nil, subType: String? = nil, type: String? = nil, uid: String? = nil) {
-            self.parentId = parentId
+            self.name = name
 
-            self.subType = subType
+            self.parentId = parentId
 
             self.displayName = displayName
 
@@ -56,20 +56,20 @@ public extension ApplicationClient.Logistic {
 
             self.logistics = logistics
 
-            self.type = type
+            self.subType = subType
 
-            self.meta = meta
+            self.type = type
 
             self.isActive = isActive
 
-            self.name = name
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                parentId = try container.decode(String.self, forKey: .parentId)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                subType = try container.decode(String.self, forKey: .subType)
+                parentId = try container.decode(String.self, forKey: .parentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,7 +109,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                subType = try container.decode(String.self, forKey: .subType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,7 +117,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                meta = try container.decode(CountryMetaResponse.self, forKey: .meta)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,7 +133,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                meta = try container.decode(CountryMetaResponse.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -144,9 +144,9 @@ public extension ApplicationClient.Logistic {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(parentId, forKey: .parentId)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(subType, forKey: .subType)
+            try? container.encodeIfPresent(parentId, forKey: .parentId)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
@@ -154,13 +154,13 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(logistics, forKey: .logistics)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(subType, forKey: .subType)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }
