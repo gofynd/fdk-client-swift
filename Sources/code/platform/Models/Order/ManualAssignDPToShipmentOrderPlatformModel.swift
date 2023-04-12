@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class ManualAssignDPToShipment: Codable {
         public var shipmentIds: [String]?
 
-        public var dpId: Int
-
         public var orderType: String
+
+        public var dpId: Int
 
         public var qcRequired: String
 
         public enum CodingKeys: String, CodingKey {
             case shipmentIds = "shipment_ids"
 
-            case dpId = "dp_id"
-
             case orderType = "order_type"
+
+            case dpId = "dp_id"
 
             case qcRequired = "qc_required"
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(dpId: Int, orderType: String, qcRequired: String, shipmentIds: [String]? = nil) {
             self.shipmentIds = shipmentIds
 
-            self.dpId = dpId
-
             self.orderType = orderType
+
+            self.dpId = dpId
 
             self.qcRequired = qcRequired
         }
@@ -48,9 +48,9 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            dpId = try container.decode(Int.self, forKey: .dpId)
-
             orderType = try container.decode(String.self, forKey: .orderType)
+
+            dpId = try container.decode(Int.self, forKey: .dpId)
 
             qcRequired = try container.decode(String.self, forKey: .qcRequired)
         }
@@ -60,9 +60,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(shipmentIds, forKey: .shipmentIds)
 
-            try? container.encodeIfPresent(dpId, forKey: .dpId)
-
             try? container.encodeIfPresent(orderType, forKey: .orderType)
+
+            try? container.encodeIfPresent(dpId, forKey: .dpId)
 
             try? container.encodeIfPresent(qcRequired, forKey: .qcRequired)
         }
@@ -78,18 +78,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class ManualAssignDPToShipment: Codable {
         public var shipmentIds: [String]?
 
-        public var dpId: Int
-
         public var orderType: String
+
+        public var dpId: Int
 
         public var qcRequired: String
 
         public enum CodingKeys: String, CodingKey {
             case shipmentIds = "shipment_ids"
 
-            case dpId = "dp_id"
-
             case orderType = "order_type"
+
+            case dpId = "dp_id"
 
             case qcRequired = "qc_required"
         }
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(dpId: Int, orderType: String, qcRequired: String, shipmentIds: [String]? = nil) {
             self.shipmentIds = shipmentIds
 
-            self.dpId = dpId
-
             self.orderType = orderType
+
+            self.dpId = dpId
 
             self.qcRequired = qcRequired
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            dpId = try container.decode(Int.self, forKey: .dpId)
-
             orderType = try container.decode(String.self, forKey: .orderType)
+
+            dpId = try container.decode(Int.self, forKey: .dpId)
 
             qcRequired = try container.decode(String.self, forKey: .qcRequired)
         }
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(shipmentIds, forKey: .shipmentIds)
 
-            try? container.encodeIfPresent(dpId, forKey: .dpId)
-
             try? container.encodeIfPresent(orderType, forKey: .orderType)
+
+            try? container.encodeIfPresent(dpId, forKey: .dpId)
 
             try? container.encodeIfPresent(qcRequired, forKey: .qcRequired)
         }

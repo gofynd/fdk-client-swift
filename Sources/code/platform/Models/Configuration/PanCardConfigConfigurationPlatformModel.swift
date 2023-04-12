@@ -2,56 +2,40 @@
 
 import Foundation
 
-public extension PlatformClient.Order {
+public extension PlatformClient.Configuration {
     /*
-         Model: StoreEinvoice
-         Used By: Order
+         Model: PanCardConfig
+         Used By: Configuration
      */
 
-    class StoreEinvoice: Codable {
-        public var username: String?
+    class PanCardConfig: Codable {
+        public var enabled: Bool?
 
-        public var enabled: Bool
+        public var codThresholdAmount: Double?
 
-        public var password: String?
-
-        public var user: String?
+        public var onlineThresholdAmount: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case username
-
             case enabled
 
-            case password
+            case codThresholdAmount = "cod_threshold_amount"
 
-            case user
+            case onlineThresholdAmount = "online_threshold_amount"
         }
 
-        public init(enabled: Bool, password: String? = nil, user: String? = nil, username: String? = nil) {
-            self.username = username
-
+        public init(codThresholdAmount: Double? = nil, enabled: Bool? = nil, onlineThresholdAmount: Double? = nil) {
             self.enabled = enabled
 
-            self.password = password
+            self.codThresholdAmount = codThresholdAmount
 
-            self.user = user
+            self.onlineThresholdAmount = onlineThresholdAmount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                username = try container.decode(String.self, forKey: .username)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            enabled = try container.decode(Bool.self, forKey: .enabled)
-
-            do {
-                password = try container.decode(String.self, forKey: .password)
+                enabled = try container.decode(Bool.self, forKey: .enabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -59,7 +43,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                user = try container.decode(String.self, forKey: .user)
+                codThresholdAmount = try container.decode(Double.self, forKey: .codThresholdAmount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                onlineThresholdAmount = try container.decode(Double.self, forKey: .onlineThresholdAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,67 +62,49 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(username, forKey: .username)
-
             try? container.encodeIfPresent(enabled, forKey: .enabled)
 
-            try? container.encodeIfPresent(password, forKey: .password)
+            try? container.encodeIfPresent(codThresholdAmount, forKey: .codThresholdAmount)
 
-            try? container.encodeIfPresent(user, forKey: .user)
+            try? container.encodeIfPresent(onlineThresholdAmount, forKey: .onlineThresholdAmount)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Order {
+public extension PlatformClient.ApplicationClient.Configuration {
     /*
-         Model: StoreEinvoice
-         Used By: Order
+         Model: PanCardConfig
+         Used By: Configuration
      */
 
-    class StoreEinvoice: Codable {
-        public var username: String?
+    class PanCardConfig: Codable {
+        public var enabled: Bool?
 
-        public var enabled: Bool
+        public var codThresholdAmount: Double?
 
-        public var password: String?
-
-        public var user: String?
+        public var onlineThresholdAmount: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case username
-
             case enabled
 
-            case password
+            case codThresholdAmount = "cod_threshold_amount"
 
-            case user
+            case onlineThresholdAmount = "online_threshold_amount"
         }
 
-        public init(enabled: Bool, password: String? = nil, user: String? = nil, username: String? = nil) {
-            self.username = username
-
+        public init(codThresholdAmount: Double? = nil, enabled: Bool? = nil, onlineThresholdAmount: Double? = nil) {
             self.enabled = enabled
 
-            self.password = password
+            self.codThresholdAmount = codThresholdAmount
 
-            self.user = user
+            self.onlineThresholdAmount = onlineThresholdAmount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                username = try container.decode(String.self, forKey: .username)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            enabled = try container.decode(Bool.self, forKey: .enabled)
-
-            do {
-                password = try container.decode(String.self, forKey: .password)
+                enabled = try container.decode(Bool.self, forKey: .enabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -138,7 +112,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                user = try container.decode(String.self, forKey: .user)
+                codThresholdAmount = try container.decode(Double.self, forKey: .codThresholdAmount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                onlineThresholdAmount = try container.decode(Double.self, forKey: .onlineThresholdAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -149,13 +131,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(username, forKey: .username)
-
             try? container.encodeIfPresent(enabled, forKey: .enabled)
 
-            try? container.encodeIfPresent(password, forKey: .password)
+            try? container.encodeIfPresent(codThresholdAmount, forKey: .codThresholdAmount)
 
-            try? container.encodeIfPresent(user, forKey: .user)
+            try? container.encodeIfPresent(onlineThresholdAmount, forKey: .onlineThresholdAmount)
         }
     }
 }
