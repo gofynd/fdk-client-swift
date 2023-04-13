@@ -15,21 +15,21 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var deliveryCharge: Double?
 
-        public var discount: Double?
-
-        public var youSaved: Double?
+        public var convenienceFee: Double?
 
         public var mrpTotal: Double?
 
-        public var convenienceFee: Double?
+        public var discount: Double?
 
         public var gstCharges: Double?
 
         public var subtotal: Double?
 
+        public var coupon: Double?
+
         public var vog: Double?
 
-        public var coupon: Double?
+        public var youSaved: Double?
 
         public var total: Double?
 
@@ -40,21 +40,21 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case deliveryCharge = "delivery_charge"
 
-            case discount
-
-            case youSaved = "you_saved"
+            case convenienceFee = "convenience_fee"
 
             case mrpTotal = "mrp_total"
 
-            case convenienceFee = "convenience_fee"
+            case discount
 
             case gstCharges = "gst_charges"
 
             case subtotal
 
+            case coupon
+
             case vog
 
-            case coupon
+            case youSaved = "you_saved"
 
             case total
         }
@@ -66,21 +66,21 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.deliveryCharge = deliveryCharge
 
-            self.discount = discount
-
-            self.youSaved = youSaved
+            self.convenienceFee = convenienceFee
 
             self.mrpTotal = mrpTotal
 
-            self.convenienceFee = convenienceFee
+            self.discount = discount
 
             self.gstCharges = gstCharges
 
             self.subtotal = subtotal
 
+            self.coupon = coupon
+
             self.vog = vog
 
-            self.coupon = coupon
+            self.youSaved = youSaved
 
             self.total = total
         }
@@ -113,15 +113,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                discount = try container.decode(Double.self, forKey: .discount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                youSaved = try container.decode(Double.self, forKey: .youSaved)
+                convenienceFee = try container.decode(Double.self, forKey: .convenienceFee)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -137,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                convenienceFee = try container.decode(Double.self, forKey: .convenienceFee)
+                discount = try container.decode(Double.self, forKey: .discount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,6 +153,14 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
+                coupon = try container.decode(Double.self, forKey: .coupon)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 vog = try container.decode(Double.self, forKey: .vog)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -169,7 +169,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                coupon = try container.decode(Double.self, forKey: .coupon)
+                youSaved = try container.decode(Double.self, forKey: .youSaved)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,21 +194,21 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
 
-            try? container.encodeIfPresent(discount, forKey: .discount)
-
-            try? container.encodeIfPresent(youSaved, forKey: .youSaved)
+            try? container.encodeIfPresent(convenienceFee, forKey: .convenienceFee)
 
             try? container.encodeIfPresent(mrpTotal, forKey: .mrpTotal)
 
-            try? container.encodeIfPresent(convenienceFee, forKey: .convenienceFee)
+            try? container.encodeIfPresent(discount, forKey: .discount)
 
             try? container.encodeIfPresent(gstCharges, forKey: .gstCharges)
 
             try? container.encodeIfPresent(subtotal, forKey: .subtotal)
 
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
+
             try? container.encodeIfPresent(vog, forKey: .vog)
 
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
+            try? container.encodeIfPresent(youSaved, forKey: .youSaved)
 
             try? container.encodeIfPresent(total, forKey: .total)
         }

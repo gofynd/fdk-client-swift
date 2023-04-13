@@ -5088,6 +5088,7 @@ Success
  | minCartValue | Double? |  yes  |  |
  | bulkCoupons | Bool? |  yes  |  |
  | revenueEngineCoupon | Bool? |  yes  |  |
+ | panCard | [PanCardConfig](#PanCardConfig)? |  yes  |  |
 
 ---
 
@@ -5377,6 +5378,19 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | enabled | Bool? |  yes  | Check current communication channel is enabled |
+
+---
+
+
+ 
+ 
+ #### [PanCardConfig](#PanCardConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  | If pan card accepting is enabled on cart |
+ | codThresholdAmount | Double? |  yes  | On which COD order amount pan card number is expected from customer for order |
+ | onlineThresholdAmount | Double? |  yes  | On which online payment order amount pan card number is expected from customer for order |
 
 ---
 

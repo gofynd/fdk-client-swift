@@ -11,18 +11,18 @@ public extension PlatformClient.CompanyProfile {
     class ErrorResponse: Codable {
         public var message: String?
 
-        public var meta: [String: Any]?
-
         public var code: String?
+
+        public var meta: [String: Any]?
 
         public var status: Int?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
-            case meta
-
             case code
+
+            case meta
 
             case status
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.CompanyProfile {
         public init(code: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
             self.message = message
 
-            self.meta = meta
-
             self.code = code
+
+            self.meta = meta
 
             self.status = status
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.CompanyProfile {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(status, forKey: .status)
         }

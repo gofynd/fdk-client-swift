@@ -15,9 +15,9 @@ public extension ApplicationClient.Payment {
 
         public var paymentMethods: CreateOrderUserPaymentMethods
 
-        public var successCallbackUrl: String
-
         public var failureCallbackUrl: String
+
+        public var successCallbackUrl: String
 
         public enum CodingKeys: String, CodingKey {
             case paymentLinkId = "payment_link_id"
@@ -28,9 +28,9 @@ public extension ApplicationClient.Payment {
 
             case paymentMethods = "payment_methods"
 
-            case successCallbackUrl = "success_callback_url"
-
             case failureCallbackUrl = "failure_callback_url"
+
+            case successCallbackUrl = "success_callback_url"
         }
 
         public init(currency: String, failureCallbackUrl: String, meta: [String: Any]? = nil, paymentLinkId: String, paymentMethods: CreateOrderUserPaymentMethods, successCallbackUrl: String) {
@@ -42,9 +42,9 @@ public extension ApplicationClient.Payment {
 
             self.paymentMethods = paymentMethods
 
-            self.successCallbackUrl = successCallbackUrl
-
             self.failureCallbackUrl = failureCallbackUrl
+
+            self.successCallbackUrl = successCallbackUrl
         }
 
         required public init(from decoder: Decoder) throws {
@@ -64,9 +64,9 @@ public extension ApplicationClient.Payment {
 
             paymentMethods = try container.decode(CreateOrderUserPaymentMethods.self, forKey: .paymentMethods)
 
-            successCallbackUrl = try container.decode(String.self, forKey: .successCallbackUrl)
-
             failureCallbackUrl = try container.decode(String.self, forKey: .failureCallbackUrl)
+
+            successCallbackUrl = try container.decode(String.self, forKey: .successCallbackUrl)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -80,9 +80,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
 
-            try? container.encodeIfPresent(successCallbackUrl, forKey: .successCallbackUrl)
-
             try? container.encodeIfPresent(failureCallbackUrl, forKey: .failureCallbackUrl)
+
+            try? container.encodeIfPresent(successCallbackUrl, forKey: .successCallbackUrl)
         }
     }
 }

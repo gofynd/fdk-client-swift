@@ -13,18 +13,18 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var offer: DiscountOffer
 
-        public var itemCriteria: ItemCriteria
-
         public var buyCondition: String
+
+        public var itemCriteria: ItemCriteria
 
         public enum CodingKeys: String, CodingKey {
             case discountType = "discount_type"
 
             case offer
 
-            case itemCriteria = "item_criteria"
-
             case buyCondition = "buy_condition"
+
+            case itemCriteria = "item_criteria"
         }
 
         public init(buyCondition: String, discountType: String, itemCriteria: ItemCriteria, offer: DiscountOffer) {
@@ -32,9 +32,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.offer = offer
 
-            self.itemCriteria = itemCriteria
-
             self.buyCondition = buyCondition
+
+            self.itemCriteria = itemCriteria
         }
 
         required public init(from decoder: Decoder) throws {
@@ -44,9 +44,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             offer = try container.decode(DiscountOffer.self, forKey: .offer)
 
-            itemCriteria = try container.decode(ItemCriteria.self, forKey: .itemCriteria)
-
             buyCondition = try container.decode(String.self, forKey: .buyCondition)
+
+            itemCriteria = try container.decode(ItemCriteria.self, forKey: .itemCriteria)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -56,9 +56,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(offer, forKey: .offer)
 
-            try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
-
             try? container.encodeIfPresent(buyCondition, forKey: .buyCondition)
+
+            try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
         }
     }
 }
