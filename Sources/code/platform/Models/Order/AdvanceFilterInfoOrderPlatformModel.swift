@@ -13,22 +13,22 @@ public extension PlatformClient.Order {
 
         public var unfulfilled: [FiltersInfo]?
 
-        public var actionCentre: [FiltersInfo]?
-
         public var processed: [FiltersInfo]?
 
         public var filters: [FiltersInfo]?
+
+        public var actionCentre: [FiltersInfo]?
 
         public enum CodingKeys: String, CodingKey {
             case returned
 
             case unfulfilled
 
-            case actionCentre = "action_centre"
-
             case processed
 
             case filters
+
+            case actionCentre = "action_centre"
         }
 
         public init(actionCentre: [FiltersInfo]? = nil, filters: [FiltersInfo]? = nil, processed: [FiltersInfo]? = nil, returned: [FiltersInfo]? = nil, unfulfilled: [FiltersInfo]? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Order {
 
             self.unfulfilled = unfulfilled
 
-            self.actionCentre = actionCentre
-
             self.processed = processed
 
             self.filters = filters
+
+            self.actionCentre = actionCentre
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,14 +63,6 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                actionCentre = try container.decode([FiltersInfo].self, forKey: .actionCentre)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 processed = try container.decode([FiltersInfo].self, forKey: .processed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -85,6 +77,14 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                actionCentre = try container.decode([FiltersInfo].self, forKey: .actionCentre)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -94,11 +94,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(unfulfilled, forKey: .unfulfilled)
 
-            try? container.encodeIfPresent(actionCentre, forKey: .actionCentre)
-
             try? container.encodeIfPresent(processed, forKey: .processed)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(actionCentre, forKey: .actionCentre)
         }
     }
 }
@@ -114,22 +114,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var unfulfilled: [FiltersInfo]?
 
-        public var actionCentre: [FiltersInfo]?
-
         public var processed: [FiltersInfo]?
 
         public var filters: [FiltersInfo]?
+
+        public var actionCentre: [FiltersInfo]?
 
         public enum CodingKeys: String, CodingKey {
             case returned
 
             case unfulfilled
 
-            case actionCentre = "action_centre"
-
             case processed
 
             case filters
+
+            case actionCentre = "action_centre"
         }
 
         public init(actionCentre: [FiltersInfo]? = nil, filters: [FiltersInfo]? = nil, processed: [FiltersInfo]? = nil, returned: [FiltersInfo]? = nil, unfulfilled: [FiltersInfo]? = nil) {
@@ -137,11 +137,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.unfulfilled = unfulfilled
 
-            self.actionCentre = actionCentre
-
             self.processed = processed
 
             self.filters = filters
+
+            self.actionCentre = actionCentre
         }
 
         required public init(from decoder: Decoder) throws {
@@ -164,14 +164,6 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                actionCentre = try container.decode([FiltersInfo].self, forKey: .actionCentre)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 processed = try container.decode([FiltersInfo].self, forKey: .processed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -186,6 +178,14 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                actionCentre = try container.decode([FiltersInfo].self, forKey: .actionCentre)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -195,11 +195,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(unfulfilled, forKey: .unfulfilled)
 
-            try? container.encodeIfPresent(actionCentre, forKey: .actionCentre)
-
             try? container.encodeIfPresent(processed, forKey: .processed)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(actionCentre, forKey: .actionCentre)
         }
     }
 }
