@@ -11,9 +11,9 @@ public extension PlatformClient.Payment {
     class PaymentGatewayConfig: Codable {
         public var merchantSalt: String
 
-        public var key: String
-
         public var isActive: Bool?
+
+        public var key: String
 
         public var configType: String
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case merchantSalt = "merchant_salt"
 
-            case key
-
             case isActive = "is_active"
+
+            case key
 
             case configType = "config_type"
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Payment {
         public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
             self.merchantSalt = merchantSalt
 
-            self.key = key
-
             self.isActive = isActive
+
+            self.key = key
 
             self.configType = configType
 
@@ -48,8 +48,6 @@ public extension PlatformClient.Payment {
 
             merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
 
-            key = try container.decode(String.self, forKey: .key)
-
             do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
 
@@ -57,6 +55,8 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            key = try container.decode(String.self, forKey: .key)
 
             configType = try container.decode(String.self, forKey: .configType)
 
@@ -68,9 +68,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encode(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(configType, forKey: .configType)
 
@@ -88,9 +88,9 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentGatewayConfig: Codable {
         public var merchantSalt: String
 
-        public var key: String
-
         public var isActive: Bool?
+
+        public var key: String
 
         public var configType: String
 
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case merchantSalt = "merchant_salt"
 
-            case key
-
             case isActive = "is_active"
+
+            case key
 
             case configType = "config_type"
 
@@ -111,9 +111,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
             self.merchantSalt = merchantSalt
 
-            self.key = key
-
             self.isActive = isActive
+
+            self.key = key
 
             self.configType = configType
 
@@ -125,8 +125,6 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
 
-            key = try container.decode(String.self, forKey: .key)
-
             do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
 
@@ -134,6 +132,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            key = try container.decode(String.self, forKey: .key)
 
             configType = try container.decode(String.self, forKey: .configType)
 
@@ -145,9 +145,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encode(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(configType, forKey: .configType)
 

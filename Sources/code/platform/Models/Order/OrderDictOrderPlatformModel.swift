@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class OrderDict: Codable {
         public var shipmentCount: Int
 
-        public var orderDate: String
-
         public var fyndOrderId: String
+
+        public var orderDate: String
 
         public enum CodingKeys: String, CodingKey {
             case shipmentCount = "shipment_count"
 
-            case orderDate = "order_date"
-
             case fyndOrderId = "fynd_order_id"
+
+            case orderDate = "order_date"
         }
 
         public init(fyndOrderId: String, orderDate: String, shipmentCount: Int) {
             self.shipmentCount = shipmentCount
 
-            self.orderDate = orderDate
-
             self.fyndOrderId = fyndOrderId
+
+            self.orderDate = orderDate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
 
-            orderDate = try container.decode(String.self, forKey: .orderDate)
-
             fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
+            orderDate = try container.decode(String.self, forKey: .orderDate)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(shipmentCount, forKey: .shipmentCount)
 
-            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
-
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+
+            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class OrderDict: Codable {
         public var shipmentCount: Int
 
-        public var orderDate: String
-
         public var fyndOrderId: String
+
+        public var orderDate: String
 
         public enum CodingKeys: String, CodingKey {
             case shipmentCount = "shipment_count"
 
-            case orderDate = "order_date"
-
             case fyndOrderId = "fynd_order_id"
+
+            case orderDate = "order_date"
         }
 
         public init(fyndOrderId: String, orderDate: String, shipmentCount: Int) {
             self.shipmentCount = shipmentCount
 
-            self.orderDate = orderDate
-
             self.fyndOrderId = fyndOrderId
+
+            self.orderDate = orderDate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
 
-            orderDate = try container.decode(String.self, forKey: .orderDate)
-
             fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
+            orderDate = try container.decode(String.self, forKey: .orderDate)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(shipmentCount, forKey: .shipmentCount)
 
-            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
-
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+
+            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
         }
     }
 }

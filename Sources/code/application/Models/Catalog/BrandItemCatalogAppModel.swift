@@ -7,13 +7,11 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class BrandItem: Codable {
-        public var discount: String?
+        public var slug: String?
 
-        public var action: ProductListingAction?
+        public var name: String?
 
         public var banners: ImageUrls?
-
-        public var slug: String?
 
         public var logo: Media?
 
@@ -21,18 +19,18 @@ public extension ApplicationClient.Catalog {
 
         public var departments: [String]?
 
-        public var name: String?
-
         public var description: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case discount
+        public var discount: String?
 
-            case action
+        public var action: ProductListingAction?
+
+        public enum CodingKeys: String, CodingKey {
+            case slug
+
+            case name
 
             case banners
-
-            case slug
 
             case logo
 
@@ -40,19 +38,19 @@ public extension ApplicationClient.Catalog {
 
             case departments
 
-            case name
-
             case description
+
+            case discount
+
+            case action
         }
 
         public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, departments: [String]? = nil, description: String? = nil, discount: String? = nil, logo: Media? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
-            self.discount = discount
+            self.slug = slug
 
-            self.action = action
+            self.name = name
 
             self.banners = banners
-
-            self.slug = slug
 
             self.logo = logo
 
@@ -60,16 +58,18 @@ public extension ApplicationClient.Catalog {
 
             self.departments = departments
 
-            self.name = name
-
             self.description = description
+
+            self.discount = discount
+
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                discount = try container.decode(String.self, forKey: .discount)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,14 +86,6 @@ public extension ApplicationClient.Catalog {
 
             do {
                 banners = try container.decode(ImageUrls.self, forKey: .banners)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,7 +117,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,7 +125,15 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                discount = try container.decode(String.self, forKey: .discount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                action = try container.decode(ProductListingAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -144,13 +144,11 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(discount, forKey: .discount)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
@@ -158,9 +156,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(departments, forKey: .departments)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(description, forKey: .description)
+
+            try? container.encodeIfPresent(discount, forKey: .discount)
+
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }

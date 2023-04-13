@@ -11,7 +11,7 @@ public extension PlatformClient.Catalog {
     class GTIN: Codable {
         public var gtinType: String
 
-        public var gtinValue: String
+        public var gtinValue: [String: Any]
 
         public var primary: Bool?
 
@@ -23,7 +23,7 @@ public extension PlatformClient.Catalog {
             case primary
         }
 
-        public init(gtinType: String, gtinValue: String, primary: Bool? = nil) {
+        public init(gtinType: String, gtinValue: [String: Any], primary: Bool? = nil) {
             self.gtinType = gtinType
 
             self.gtinValue = gtinValue
@@ -36,7 +36,7 @@ public extension PlatformClient.Catalog {
 
             gtinType = try container.decode(String.self, forKey: .gtinType)
 
-            gtinValue = try container.decode(String.self, forKey: .gtinValue)
+            gtinValue = try container.decode([String: Any].self, forKey: .gtinValue)
 
             do {
                 primary = try container.decode(Bool.self, forKey: .primary)
@@ -68,7 +68,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GTIN: Codable {
         public var gtinType: String
 
-        public var gtinValue: String
+        public var gtinValue: [String: Any]
 
         public var primary: Bool?
 
@@ -80,7 +80,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case primary
         }
 
-        public init(gtinType: String, gtinValue: String, primary: Bool? = nil) {
+        public init(gtinType: String, gtinValue: [String: Any], primary: Bool? = nil) {
             self.gtinType = gtinType
 
             self.gtinValue = gtinValue
@@ -93,7 +93,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             gtinType = try container.decode(String.self, forKey: .gtinType)
 
-            gtinValue = try container.decode(String.self, forKey: .gtinValue)
+            gtinValue = try container.decode([String: Any].self, forKey: .gtinValue)
 
             do {
                 primary = try container.decode(Bool.self, forKey: .primary)

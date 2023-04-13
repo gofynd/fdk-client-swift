@@ -9,44 +9,36 @@ public extension PlatformClient.Order {
      */
 
     class ManifestDetailResponse: Codable {
-        public var page: ManifestPage?
-
         public var items: [ManifestDetailItem]?
 
-        public var manifestDetails: [ManifestDetail]?
+        public var page: ManifestPage?
 
         public var additionalShipmentCount: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case page
+        public var manifestDetails: [ManifestDetail]?
 
+        public enum CodingKeys: String, CodingKey {
             case items
 
-            case manifestDetails = "manifest_details"
+            case page
 
             case additionalShipmentCount = "additional_shipment_count"
+
+            case manifestDetails = "manifest_details"
         }
 
         public init(additionalShipmentCount: Int? = nil, items: [ManifestDetailItem]? = nil, manifestDetails: [ManifestDetail]? = nil, page: ManifestPage? = nil) {
-            self.page = page
-
             self.items = items
 
-            self.manifestDetails = manifestDetails
+            self.page = page
 
             self.additionalShipmentCount = additionalShipmentCount
+
+            self.manifestDetails = manifestDetails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                page = try container.decode(ManifestPage.self, forKey: .page)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 items = try container.decode([ManifestDetailItem].self, forKey: .items)
@@ -57,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                manifestDetails = try container.decode([ManifestDetail].self, forKey: .manifestDetails)
+                page = try container.decode(ManifestPage.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,18 +63,26 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                manifestDetails = try container.decode([ManifestDetail].self, forKey: .manifestDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(manifestDetails, forKey: .manifestDetails)
+            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(additionalShipmentCount, forKey: .additionalShipmentCount)
+
+            try? container.encodeIfPresent(manifestDetails, forKey: .manifestDetails)
         }
     }
 }
@@ -94,44 +94,36 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ManifestDetailResponse: Codable {
-        public var page: ManifestPage?
-
         public var items: [ManifestDetailItem]?
 
-        public var manifestDetails: [ManifestDetail]?
+        public var page: ManifestPage?
 
         public var additionalShipmentCount: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case page
+        public var manifestDetails: [ManifestDetail]?
 
+        public enum CodingKeys: String, CodingKey {
             case items
 
-            case manifestDetails = "manifest_details"
+            case page
 
             case additionalShipmentCount = "additional_shipment_count"
+
+            case manifestDetails = "manifest_details"
         }
 
         public init(additionalShipmentCount: Int? = nil, items: [ManifestDetailItem]? = nil, manifestDetails: [ManifestDetail]? = nil, page: ManifestPage? = nil) {
-            self.page = page
-
             self.items = items
 
-            self.manifestDetails = manifestDetails
+            self.page = page
 
             self.additionalShipmentCount = additionalShipmentCount
+
+            self.manifestDetails = manifestDetails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                page = try container.decode(ManifestPage.self, forKey: .page)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 items = try container.decode([ManifestDetailItem].self, forKey: .items)
@@ -142,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                manifestDetails = try container.decode([ManifestDetail].self, forKey: .manifestDetails)
+                page = try container.decode(ManifestPage.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -156,18 +148,26 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                manifestDetails = try container.decode([ManifestDetail].self, forKey: .manifestDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(manifestDetails, forKey: .manifestDetails)
+            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(additionalShipmentCount, forKey: .additionalShipmentCount)
+
+            try? container.encodeIfPresent(manifestDetails, forKey: .manifestDetails)
         }
     }
 }

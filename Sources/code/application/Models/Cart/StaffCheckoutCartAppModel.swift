@@ -9,18 +9,18 @@ public extension ApplicationClient.Cart {
     class StaffCheckout: Codable {
         public var lastName: String
 
-        public var firstName: String
-
         public var id: String
+
+        public var firstName: String
 
         public var user: String
 
         public enum CodingKeys: String, CodingKey {
             case lastName = "last_name"
 
-            case firstName = "first_name"
-
             case id = "_id"
+
+            case firstName = "first_name"
 
             case user
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Cart {
         public init(firstName: String, lastName: String, user: String, id: String) {
             self.lastName = lastName
 
-            self.firstName = firstName
-
             self.id = id
+
+            self.firstName = firstName
 
             self.user = user
         }
@@ -40,9 +40,9 @@ public extension ApplicationClient.Cart {
 
             lastName = try container.decode(String.self, forKey: .lastName)
 
-            firstName = try container.decode(String.self, forKey: .firstName)
-
             id = try container.decode(String.self, forKey: .id)
+
+            firstName = try container.decode(String.self, forKey: .firstName)
 
             user = try container.decode(String.self, forKey: .user)
         }
@@ -52,9 +52,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
 
             try? container.encodeIfPresent(user, forKey: .user)
         }

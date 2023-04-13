@@ -4,32 +4,32 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-         Model: ItemQueryForUserCollection
+         Model: ProductPublish1
          Used By: Catalog
      */
 
-    class ItemQueryForUserCollection: Codable {
-        public var itemId: Int?
+    class ProductPublish1: Codable {
+        public var productOnlineDate: String?
 
-        public var action: String?
+        public var isSet: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case itemId = "item_id"
+            case productOnlineDate = "product_online_date"
 
-            case action
+            case isSet = "is_set"
         }
 
-        public init(action: String? = nil, itemId: Int? = nil) {
-            self.itemId = itemId
+        public init(isSet: Bool? = nil, productOnlineDate: String? = nil) {
+            self.productOnlineDate = productOnlineDate
 
-            self.action = action
+            self.isSet = isSet
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
+                productOnlineDate = try container.decode(String.self, forKey: .productOnlineDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(String.self, forKey: .action)
+                isSet = try container.decode(Bool.self, forKey: .isSet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(isSet, forKey: .isSet)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-         Model: ItemQueryForUserCollection
+         Model: ProductPublish1
          Used By: Catalog
      */
 
-    class ItemQueryForUserCollection: Codable {
-        public var itemId: Int?
+    class ProductPublish1: Codable {
+        public var productOnlineDate: String?
 
-        public var action: String?
+        public var isSet: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case itemId = "item_id"
+            case productOnlineDate = "product_online_date"
 
-            case action
+            case isSet = "is_set"
         }
 
-        public init(action: String? = nil, itemId: Int? = nil) {
-            self.itemId = itemId
+        public init(isSet: Bool? = nil, productOnlineDate: String? = nil) {
+            self.productOnlineDate = productOnlineDate
 
-            self.action = action
+            self.isSet = isSet
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
+                productOnlineDate = try container.decode(String.self, forKey: .productOnlineDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(String.self, forKey: .action)
+                isSet = try container.decode(Bool.self, forKey: .isSet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(productOnlineDate, forKey: .productOnlineDate)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(isSet, forKey: .isSet)
         }
     }
 }

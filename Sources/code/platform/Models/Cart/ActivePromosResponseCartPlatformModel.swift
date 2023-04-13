@@ -11,42 +11,42 @@ public extension PlatformClient.ApplicationClient.Cart {
     class ActivePromosResponse: Codable {
         public var modifiedOn: String?
 
-        public var createdOn: String?
+        public var example: String?
+
+        public var entityType: String?
 
         public var subtitle: String?
+
+        public var isHidden: Bool?
 
         public var type: String?
 
         public var entitySlug: String?
 
-        public var entityType: String?
-
-        public var isHidden: Bool?
-
         public var title: String?
 
-        public var example: String?
+        public var createdOn: String?
 
         public var description: String?
 
         public enum CodingKeys: String, CodingKey {
             case modifiedOn = "modified_on"
 
-            case createdOn = "created_on"
+            case example
+
+            case entityType = "entity_type"
 
             case subtitle
+
+            case isHidden = "is_hidden"
 
             case type
 
             case entitySlug = "entity_slug"
 
-            case entityType = "entity_type"
-
-            case isHidden = "is_hidden"
-
             case title
 
-            case example
+            case createdOn = "created_on"
 
             case description
         }
@@ -54,21 +54,21 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(createdOn: String? = nil, description: String? = nil, entitySlug: String? = nil, entityType: String? = nil, example: String? = nil, isHidden: Bool? = nil, modifiedOn: String? = nil, subtitle: String? = nil, title: String? = nil, type: String? = nil) {
             self.modifiedOn = modifiedOn
 
-            self.createdOn = createdOn
+            self.example = example
+
+            self.entityType = entityType
 
             self.subtitle = subtitle
+
+            self.isHidden = isHidden
 
             self.type = type
 
             self.entitySlug = entitySlug
 
-            self.entityType = entityType
-
-            self.isHidden = isHidden
-
             self.title = title
 
-            self.example = example
+            self.createdOn = createdOn
 
             self.description = description
         }
@@ -85,7 +85,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
+                example = try container.decode(String.self, forKey: .example)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                entityType = try container.decode(String.self, forKey: .entityType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,6 +102,14 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 subtitle = try container.decode(String.self, forKey: .subtitle)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isHidden = try container.decode(Bool.self, forKey: .isHidden)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,22 +133,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                entityType = try container.decode(String.self, forKey: .entityType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isHidden = try container.decode(Bool.self, forKey: .isHidden)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -141,7 +141,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                example = try container.decode(String.self, forKey: .example)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -162,21 +162,21 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(example, forKey: .example)
+
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
 
             try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+
+            try? container.encodeIfPresent(isHidden, forKey: .isHidden)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(entitySlug, forKey: .entitySlug)
 
-            try? container.encodeIfPresent(entityType, forKey: .entityType)
-
-            try? container.encodeIfPresent(isHidden, forKey: .isHidden)
-
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(example, forKey: .example)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(description, forKey: .description)
         }

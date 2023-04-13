@@ -4,38 +4,38 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-         Model: CollectionItemRequest
+         Model: ReturnConfigResponse
          Used By: Catalog
      */
 
-    class CollectionItemRequest: Codable {
-        public var item: [ItemQueryForUserCollection]?
+    class ReturnConfigResponse: Codable {
+        public var unit: String?
 
-        public var query: [CollectionQuery]?
+        public var returnable: Bool?
 
-        public var type: String?
+        public var time: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case item
+            case unit
 
-            case query
+            case returnable
 
-            case type
+            case time
         }
 
-        public init(item: [ItemQueryForUserCollection]? = nil, query: [CollectionQuery]? = nil, type: String? = nil) {
-            self.item = item
+        public init(returnable: Bool? = nil, time: Int? = nil, unit: String? = nil) {
+            self.unit = unit
 
-            self.query = query
+            self.returnable = returnable
 
-            self.type = type
+            self.time = time
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                item = try container.decode([ItemQueryForUserCollection].self, forKey: .item)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                query = try container.decode([CollectionQuery].self, forKey: .query)
+                returnable = try container.decode(Bool.self, forKey: .returnable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                time = try container.decode(Int.self, forKey: .time)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,49 +62,49 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(item, forKey: .item)
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(query, forKey: .query)
+            try? container.encodeIfPresent(returnable, forKey: .returnable)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(time, forKey: .time)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-         Model: CollectionItemRequest
+         Model: ReturnConfigResponse
          Used By: Catalog
      */
 
-    class CollectionItemRequest: Codable {
-        public var item: [ItemQueryForUserCollection]?
+    class ReturnConfigResponse: Codable {
+        public var unit: String?
 
-        public var query: [CollectionQuery]?
+        public var returnable: Bool?
 
-        public var type: String?
+        public var time: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case item
+            case unit
 
-            case query
+            case returnable
 
-            case type
+            case time
         }
 
-        public init(item: [ItemQueryForUserCollection]? = nil, query: [CollectionQuery]? = nil, type: String? = nil) {
-            self.item = item
+        public init(returnable: Bool? = nil, time: Int? = nil, unit: String? = nil) {
+            self.unit = unit
 
-            self.query = query
+            self.returnable = returnable
 
-            self.type = type
+            self.time = time
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                item = try container.decode([ItemQueryForUserCollection].self, forKey: .item)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                query = try container.decode([CollectionQuery].self, forKey: .query)
+                returnable = try container.decode(Bool.self, forKey: .returnable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                time = try container.decode(Int.self, forKey: .time)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(item, forKey: .item)
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(query, forKey: .query)
+            try? container.encodeIfPresent(returnable, forKey: .returnable)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(time, forKey: .time)
         }
     }
 }

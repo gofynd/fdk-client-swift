@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var error: [NestedErrorSchemaDataSet]?
 
-        public var success: Bool?
-
         public var traceId: String?
+
+        public var success: Bool?
 
         public var identifier: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case error
 
-            case success
-
             case traceId = "trace_id"
+
+            case success
 
             case identifier
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.error = error
 
-            self.success = success
-
             self.traceId = traceId
+
+            self.success = success
 
             self.identifier = identifier
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                traceId = try container.decode(String.self, forKey: .traceId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                traceId = try container.decode(String.self, forKey: .traceId)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(traceId, forKey: .traceId)
+
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var error: [NestedErrorSchemaDataSet]?
 
-        public var success: Bool?
-
         public var traceId: String?
+
+        public var success: Bool?
 
         public var identifier: String?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case error
 
-            case success
-
             case traceId = "trace_id"
+
+            case success
 
             case identifier
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.error = error
 
-            self.success = success
-
             self.traceId = traceId
+
+            self.success = success
 
             self.identifier = identifier
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                traceId = try container.decode(String.self, forKey: .traceId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                traceId = try container.decode(String.self, forKey: .traceId)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(traceId, forKey: .traceId)
+
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
         }
