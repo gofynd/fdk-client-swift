@@ -3,32 +3,32 @@
 import Foundation
 public extension PlatformClient {
     /*
-         Model: GetAppCatalogConfiguration
-         Used By: Catalog
+         Model: SendOtpEmailCommsProvider
+         Used By: Communication
      */
 
-    class GetAppCatalogConfiguration: Codable {
-        public var isDefault: Bool?
+    class SendOtpEmailCommsProvider: Codable {
+        public var slug: String?
 
-        public var data: AppCatalogConfiguration?
+        public var id: String?
 
         public enum CodingKeys: String, CodingKey {
-            case isDefault = "is_default"
+            case slug
 
-            case data
+            case id = "_id"
         }
 
-        public init(data: AppCatalogConfiguration? = nil, isDefault: Bool? = nil) {
-            self.isDefault = isDefault
+        public init(slug: String? = nil, id: String? = nil) {
+            self.slug = slug
 
-            self.data = data
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -36,7 +36,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                data = try container.decode(AppCatalogConfiguration.self, forKey: .data)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,9 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }
