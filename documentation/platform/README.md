@@ -15,7 +15,6 @@
 * [Catalog](CATALOG.md) - Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [CompanyProfile](COMPANYPROFILE.md) -  
 * [FileStorage](FILESTORAGE.md) - File Storage 
-* [Share](SHARE.md) - Short link and QR Code 
 * [Inventory](INVENTORY.md) -  
 * [Configuration](CONFIGURATION.md) - Application configuration apis 
 * [Cart](CART.md) - Cart APIs 

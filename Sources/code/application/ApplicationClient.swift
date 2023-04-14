@@ -20,8 +20,6 @@ public class ApplicationClient {
 
     public let communication: Communication
 
-    public let share: Share
-
     public let fileStorage: FileStorage
 
     public let configuration: Configuration
@@ -54,8 +52,6 @@ public class ApplicationClient {
         content = Content(config: config)
 
         communication = Communication(config: config)
-
-        share = Share(config: config)
 
         fileStorage = FileStorage(config: config)
 

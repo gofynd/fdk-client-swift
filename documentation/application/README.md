@@ -11,7 +11,6 @@
 * [User](USER.md) - Authentication Service 
 * [Content](CONTENT.md) - Content System 
 * [Communication](COMMUNICATION.md) - Manages email, sms, push notifications sent to users 
-* [Share](SHARE.md) - Short link and QR Code 
 * [FileStorage](FILESTORAGE.md) - File Storage 
 * [Configuration](CONFIGURATION.md) - Application configuration apis 
 * [Payment](PAYMENT.md) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 

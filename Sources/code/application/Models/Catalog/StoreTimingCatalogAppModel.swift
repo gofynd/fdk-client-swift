@@ -7,18 +7,18 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class StoreTiming: Codable {
-        public var open: Bool?
-
         public var closing: Time?
+
+        public var open: Bool?
 
         public var opening: Time?
 
         public var weekday: String?
 
         public enum CodingKeys: String, CodingKey {
-            case open
-
             case closing
+
+            case open
 
             case opening
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Catalog {
         }
 
         public init(closing: Time? = nil, open: Bool? = nil, opening: Time? = nil, weekday: String? = nil) {
-            self.open = open
-
             self.closing = closing
+
+            self.open = open
 
             self.opening = opening
 
@@ -39,7 +39,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                open = try container.decode(Bool.self, forKey: .open)
+                closing = try container.decode(Time.self, forKey: .closing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                closing = try container.decode(Time.self, forKey: .closing)
+                open = try container.decode(Bool.self, forKey: .open)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(open, forKey: .open)
-
             try? container.encodeIfPresent(closing, forKey: .closing)
+
+            try? container.encodeIfPresent(open, forKey: .open)
 
             try? container.encodeIfPresent(opening, forKey: .opening)
 
