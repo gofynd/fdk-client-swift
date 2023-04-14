@@ -11,22 +11,22 @@ public extension ApplicationClient.Order {
 
         public var message: String?
 
-        public var status: Int?
+        public var stackTrace: String?
 
         public var exception: String?
 
-        public var stackTrace: String?
+        public var status: Int?
 
         public enum CodingKeys: String, CodingKey {
             case code
 
             case message
 
-            case status
+            case stackTrace = "stack_trace"
 
             case exception
 
-            case stackTrace = "stack_trace"
+            case status
         }
 
         public init(code: String? = nil, exception: String? = nil, message: String? = nil, stackTrace: String? = nil, status: Int? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Order {
 
             self.message = message
 
-            self.status = status
+            self.stackTrace = stackTrace
 
             self.exception = exception
 
-            self.stackTrace = stackTrace
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                stackTrace = try container.decode(String.self, forKey: .stackTrace)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                stackTrace = try container.decode(String.self, forKey: .stackTrace)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension ApplicationClient.Order {
 
             try? container.encode(message, forKey: .message)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(stackTrace, forKey: .stackTrace)
 
             try? container.encode(exception, forKey: .exception)
 
-            try? container.encode(stackTrace, forKey: .stackTrace)
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

@@ -11,66 +11,66 @@ public extension PlatformClient.ApplicationClient.Cart {
     class Restrictions: Codable {
         public var platforms: [String]?
 
-        public var userType: String?
+        public var priceRange: PriceRange?
+
+        public var bulkBundle: BulkBundleRestriction?
+
+        public var userGroups: [Int]?
+
+        public var orderingStores: [Int]?
 
         public var couponAllowed: Bool?
 
-        public var userGroups: [Int]?
+        public var userType: String?
+
+        public var postOrder: PostOrder?
 
         public var uses: UsesRestriction?
 
         public var payments: [String: PaymentModes]?
 
-        public var priceRange: PriceRange?
-
-        public var bulkBundle: BulkBundleRestriction?
-
-        public var orderingStores: [Int]?
-
-        public var postOrder: PostOrder?
-
         public enum CodingKeys: String, CodingKey {
             case platforms
-
-            case userType = "user_type"
-
-            case couponAllowed = "coupon_allowed"
-
-            case userGroups = "user_groups"
-
-            case uses
-
-            case payments
 
             case priceRange = "price_range"
 
             case bulkBundle = "bulk_bundle"
 
+            case userGroups = "user_groups"
+
             case orderingStores = "ordering_stores"
 
+            case couponAllowed = "coupon_allowed"
+
+            case userType = "user_type"
+
             case postOrder = "post_order"
+
+            case uses
+
+            case payments
         }
 
         public init(bulkBundle: BulkBundleRestriction? = nil, couponAllowed: Bool? = nil, orderingStores: [Int]? = nil, payments: [String: PaymentModes]? = nil, platforms: [String]? = nil, postOrder: PostOrder? = nil, priceRange: PriceRange? = nil, userGroups: [Int]? = nil, userType: String? = nil, uses: UsesRestriction? = nil) {
             self.platforms = platforms
 
-            self.userType = userType
-
-            self.couponAllowed = couponAllowed
-
-            self.userGroups = userGroups
-
-            self.uses = uses
-
-            self.payments = payments
-
             self.priceRange = priceRange
 
             self.bulkBundle = bulkBundle
 
+            self.userGroups = userGroups
+
             self.orderingStores = orderingStores
 
+            self.couponAllowed = couponAllowed
+
+            self.userType = userType
+
             self.postOrder = postOrder
+
+            self.uses = uses
+
+            self.payments = payments
         }
 
         required public init(from decoder: Decoder) throws {
@@ -78,46 +78,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 platforms = try container.decode([String].self, forKey: .platforms)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                userType = try container.decode(String.self, forKey: .userType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                couponAllowed = try container.decode(Bool.self, forKey: .couponAllowed)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                userGroups = try container.decode([Int].self, forKey: .userGroups)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uses = try container.decode(UsesRestriction.self, forKey: .uses)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                payments = try container.decode([String: PaymentModes].self, forKey: .payments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,7 +101,31 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
+                userGroups = try container.decode([Int].self, forKey: .userGroups)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 orderingStores = try container.decode([Int].self, forKey: .orderingStores)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                couponAllowed = try container.decode(Bool.self, forKey: .couponAllowed)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                userType = try container.decode(String.self, forKey: .userType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -155,6 +139,22 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                uses = try container.decode(UsesRestriction.self, forKey: .uses)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                payments = try container.decode([String: PaymentModes].self, forKey: .payments)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -162,23 +162,23 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(platforms, forKey: .platforms)
 
-            try? container.encodeIfPresent(userType, forKey: .userType)
-
-            try? container.encodeIfPresent(couponAllowed, forKey: .couponAllowed)
-
-            try? container.encodeIfPresent(userGroups, forKey: .userGroups)
-
-            try? container.encodeIfPresent(uses, forKey: .uses)
-
-            try? container.encodeIfPresent(payments, forKey: .payments)
-
             try? container.encodeIfPresent(priceRange, forKey: .priceRange)
 
             try? container.encodeIfPresent(bulkBundle, forKey: .bulkBundle)
 
+            try? container.encodeIfPresent(userGroups, forKey: .userGroups)
+
             try? container.encodeIfPresent(orderingStores, forKey: .orderingStores)
 
+            try? container.encodeIfPresent(couponAllowed, forKey: .couponAllowed)
+
+            try? container.encodeIfPresent(userType, forKey: .userType)
+
             try? container.encodeIfPresent(postOrder, forKey: .postOrder)
+
+            try? container.encodeIfPresent(uses, forKey: .uses)
+
+            try? container.encodeIfPresent(payments, forKey: .payments)
         }
     }
 }

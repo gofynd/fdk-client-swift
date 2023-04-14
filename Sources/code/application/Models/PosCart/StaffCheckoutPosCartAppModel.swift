@@ -13,9 +13,9 @@ public extension ApplicationClient.PosCart {
 
         public var lastName: String
 
-        public var firstName: String
-
         public var employeeCode: String?
+
+        public var firstName: String
 
         public enum CodingKeys: String, CodingKey {
             case id = "_id"
@@ -24,9 +24,9 @@ public extension ApplicationClient.PosCart {
 
             case lastName = "last_name"
 
-            case firstName = "first_name"
-
             case employeeCode = "employee_code"
+
+            case firstName = "first_name"
         }
 
         public init(employeeCode: String? = nil, firstName: String, lastName: String, user: String, id: String) {
@@ -36,9 +36,9 @@ public extension ApplicationClient.PosCart {
 
             self.lastName = lastName
 
-            self.firstName = firstName
-
             self.employeeCode = employeeCode
+
+            self.firstName = firstName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,8 +50,6 @@ public extension ApplicationClient.PosCart {
 
             lastName = try container.decode(String.self, forKey: .lastName)
 
-            firstName = try container.decode(String.self, forKey: .firstName)
-
             do {
                 employeeCode = try container.decode(String.self, forKey: .employeeCode)
 
@@ -59,6 +57,8 @@ public extension ApplicationClient.PosCart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            firstName = try container.decode(String.self, forKey: .firstName)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -70,9 +70,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
-
             try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
+
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
         }
     }
 }

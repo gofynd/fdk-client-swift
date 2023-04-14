@@ -9,9 +9,9 @@ public extension ApplicationClient.PosCart {
     class FreeGiftItem: Codable {
         public var itemId: Int?
 
-        public var itemBrandName: String?
-
         public var itemImagesUrl: [String]?
+
+        public var itemBrandName: String?
 
         public var itemPriceDetails: [String: Any]?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.PosCart {
         public enum CodingKeys: String, CodingKey {
             case itemId = "item_id"
 
-            case itemBrandName = "item_brand_name"
-
             case itemImagesUrl = "item_images_url"
+
+            case itemBrandName = "item_brand_name"
 
             case itemPriceDetails = "item_price_details"
 
@@ -36,9 +36,9 @@ public extension ApplicationClient.PosCart {
         public init(itemBrandName: String? = nil, itemId: Int? = nil, itemImagesUrl: [String]? = nil, itemName: String? = nil, itemPriceDetails: [String: Any]? = nil, itemSlug: String? = nil) {
             self.itemId = itemId
 
-            self.itemBrandName = itemBrandName
-
             self.itemImagesUrl = itemImagesUrl
+
+            self.itemBrandName = itemBrandName
 
             self.itemPriceDetails = itemPriceDetails
 
@@ -59,7 +59,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                itemBrandName = try container.decode(String.self, forKey: .itemBrandName)
+                itemImagesUrl = try container.decode([String].self, forKey: .itemImagesUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +67,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                itemImagesUrl = try container.decode([String].self, forKey: .itemImagesUrl)
+                itemBrandName = try container.decode(String.self, forKey: .itemBrandName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,9 +104,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
-
             try? container.encodeIfPresent(itemImagesUrl, forKey: .itemImagesUrl)
+
+            try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
 
             try? container.encodeIfPresent(itemPriceDetails, forKey: .itemPriceDetails)
 
