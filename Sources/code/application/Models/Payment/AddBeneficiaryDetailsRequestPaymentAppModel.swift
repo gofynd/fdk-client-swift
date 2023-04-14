@@ -13,11 +13,11 @@ public extension ApplicationClient.Payment {
 
         public var requestId: String?
 
+        public var details: BeneficiaryModeDetails
+
         public var shipmentId: String
 
         public var transferMode: String
-
-        public var details: BeneficiaryModeDetails
 
         public var delights: Bool
 
@@ -28,11 +28,11 @@ public extension ApplicationClient.Payment {
 
             case requestId = "request_id"
 
+            case details
+
             case shipmentId = "shipment_id"
 
             case transferMode = "transfer_mode"
-
-            case details
 
             case delights
         }
@@ -44,11 +44,11 @@ public extension ApplicationClient.Payment {
 
             self.requestId = requestId
 
+            self.details = details
+
             self.shipmentId = shipmentId
 
             self.transferMode = transferMode
-
-            self.details = details
 
             self.delights = delights
         }
@@ -74,11 +74,11 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
+
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             transferMode = try container.decode(String.self, forKey: .transferMode)
-
-            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
 
             delights = try container.decode(Bool.self, forKey: .delights)
         }
@@ -92,11 +92,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(requestId, forKey: .requestId)
 
+            try? container.encodeIfPresent(details, forKey: .details)
+
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(transferMode, forKey: .transferMode)
-
-            try? container.encodeIfPresent(details, forKey: .details)
 
             try? container.encodeIfPresent(delights, forKey: .delights)
         }

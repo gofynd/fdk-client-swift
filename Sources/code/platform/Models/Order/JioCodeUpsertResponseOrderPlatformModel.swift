@@ -11,22 +11,22 @@ public extension PlatformClient.Order {
     class JioCodeUpsertResponse: Codable {
         public var data: [[String: Any]]?
 
-        public var identifier: String?
+        public var success: Bool?
 
         public var error: [NestedErrorSchemaDataSet]?
 
-        public var success: Bool?
+        public var identifier: String?
 
         public var traceId: String?
 
         public enum CodingKeys: String, CodingKey {
             case data
 
-            case identifier
+            case success
 
             case error
 
-            case success
+            case identifier
 
             case traceId = "trace_id"
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.Order {
         public init(data: [[String: Any]]? = nil, error: [NestedErrorSchemaDataSet]? = nil, identifier: String? = nil, success: Bool? = nil, traceId: String? = nil) {
             self.data = data
 
-            self.identifier = identifier
+            self.success = success
 
             self.error = error
 
-            self.success = success
+            self.identifier = identifier
 
             self.traceId = traceId
         }
@@ -55,7 +55,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(traceId, forKey: .traceId)
         }
@@ -112,22 +112,22 @@ public extension PlatformClient.ApplicationClient.Order {
     class JioCodeUpsertResponse: Codable {
         public var data: [[String: Any]]?
 
-        public var identifier: String?
+        public var success: Bool?
 
         public var error: [NestedErrorSchemaDataSet]?
 
-        public var success: Bool?
+        public var identifier: String?
 
         public var traceId: String?
 
         public enum CodingKeys: String, CodingKey {
             case data
 
-            case identifier
+            case success
 
             case error
 
-            case success
+            case identifier
 
             case traceId = "trace_id"
         }
@@ -135,11 +135,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(data: [[String: Any]]? = nil, error: [NestedErrorSchemaDataSet]? = nil, identifier: String? = nil, success: Bool? = nil, traceId: String? = nil) {
             self.data = data
 
-            self.identifier = identifier
+            self.success = success
 
             self.error = error
 
-            self.success = success
+            self.identifier = identifier
 
             self.traceId = traceId
         }
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,11 +193,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(traceId, forKey: .traceId)
         }

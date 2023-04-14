@@ -9,8 +9,6 @@ public extension PlatformClient.Order {
      */
 
     class AffiliateBagDetails: Codable {
-        public var employeeDiscount: Double?
-
         public var affiliateBagId: String
 
         public var affiliateOrderId: String
@@ -19,9 +17,9 @@ public extension PlatformClient.Order {
 
         public var loyaltyDiscount: Double?
 
-        public enum CodingKeys: String, CodingKey {
-            case employeeDiscount = "employee_discount"
+        public var employeeDiscount: Double?
 
+        public enum CodingKeys: String, CodingKey {
             case affiliateBagId = "affiliate_bag_id"
 
             case affiliateOrderId = "affiliate_order_id"
@@ -29,11 +27,11 @@ public extension PlatformClient.Order {
             case affiliateMeta = "affiliate_meta"
 
             case loyaltyDiscount = "loyalty_discount"
+
+            case employeeDiscount = "employee_discount"
         }
 
         public init(affiliateBagId: String, affiliateMeta: AffiliateMeta, affiliateOrderId: String, employeeDiscount: Double? = nil, loyaltyDiscount: Double? = nil) {
-            self.employeeDiscount = employeeDiscount
-
             self.affiliateBagId = affiliateBagId
 
             self.affiliateOrderId = affiliateOrderId
@@ -41,18 +39,12 @@ public extension PlatformClient.Order {
             self.affiliateMeta = affiliateMeta
 
             self.loyaltyDiscount = loyaltyDiscount
+
+            self.employeeDiscount = employeeDiscount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                employeeDiscount = try container.decode(Double.self, forKey: .employeeDiscount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
 
@@ -67,12 +59,18 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                employeeDiscount = try container.decode(Double.self, forKey: .employeeDiscount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
 
             try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
@@ -81,6 +79,8 @@ public extension PlatformClient.Order {
             try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
 
             try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
+
+            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
         }
     }
 }
@@ -92,8 +92,6 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class AffiliateBagDetails: Codable {
-        public var employeeDiscount: Double?
-
         public var affiliateBagId: String
 
         public var affiliateOrderId: String
@@ -102,9 +100,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var loyaltyDiscount: Double?
 
-        public enum CodingKeys: String, CodingKey {
-            case employeeDiscount = "employee_discount"
+        public var employeeDiscount: Double?
 
+        public enum CodingKeys: String, CodingKey {
             case affiliateBagId = "affiliate_bag_id"
 
             case affiliateOrderId = "affiliate_order_id"
@@ -112,11 +110,11 @@ public extension PlatformClient.ApplicationClient.Order {
             case affiliateMeta = "affiliate_meta"
 
             case loyaltyDiscount = "loyalty_discount"
+
+            case employeeDiscount = "employee_discount"
         }
 
         public init(affiliateBagId: String, affiliateMeta: AffiliateMeta, affiliateOrderId: String, employeeDiscount: Double? = nil, loyaltyDiscount: Double? = nil) {
-            self.employeeDiscount = employeeDiscount
-
             self.affiliateBagId = affiliateBagId
 
             self.affiliateOrderId = affiliateOrderId
@@ -124,18 +122,12 @@ public extension PlatformClient.ApplicationClient.Order {
             self.affiliateMeta = affiliateMeta
 
             self.loyaltyDiscount = loyaltyDiscount
+
+            self.employeeDiscount = employeeDiscount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                employeeDiscount = try container.decode(Double.self, forKey: .employeeDiscount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
 
@@ -150,12 +142,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                employeeDiscount = try container.decode(Double.self, forKey: .employeeDiscount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
 
             try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
@@ -164,6 +162,8 @@ public extension PlatformClient.ApplicationClient.Order {
             try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
 
             try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
+
+            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
         }
     }
 }

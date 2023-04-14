@@ -15,9 +15,9 @@ public extension PlatformClient.Order {
 
         public var opsStatus: String
 
-        public var hexCode: String
-
         public var actualStatus: String
+
+        public var hexCode: String
 
         public enum CodingKeys: String, CodingKey {
             case title
@@ -26,9 +26,9 @@ public extension PlatformClient.Order {
 
             case opsStatus = "ops_status"
 
-            case hexCode = "hex_code"
-
             case actualStatus = "actual_status"
+
+            case hexCode = "hex_code"
         }
 
         public init(actualStatus: String, hexCode: String, opsStatus: String, status: String, title: String) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Order {
 
             self.opsStatus = opsStatus
 
-            self.hexCode = hexCode
-
             self.actualStatus = actualStatus
+
+            self.hexCode = hexCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Order {
 
             opsStatus = try container.decode(String.self, forKey: .opsStatus)
 
-            hexCode = try container.decode(String.self, forKey: .hexCode)
-
             actualStatus = try container.decode(String.self, forKey: .actualStatus)
+
+            hexCode = try container.decode(String.self, forKey: .hexCode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,9 +66,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(opsStatus, forKey: .opsStatus)
 
-            try? container.encodeIfPresent(hexCode, forKey: .hexCode)
-
             try? container.encodeIfPresent(actualStatus, forKey: .actualStatus)
+
+            try? container.encodeIfPresent(hexCode, forKey: .hexCode)
         }
     }
 }
@@ -86,9 +86,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var opsStatus: String
 
-        public var hexCode: String
-
         public var actualStatus: String
+
+        public var hexCode: String
 
         public enum CodingKeys: String, CodingKey {
             case title
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case opsStatus = "ops_status"
 
-            case hexCode = "hex_code"
-
             case actualStatus = "actual_status"
+
+            case hexCode = "hex_code"
         }
 
         public init(actualStatus: String, hexCode: String, opsStatus: String, status: String, title: String) {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.opsStatus = opsStatus
 
-            self.hexCode = hexCode
-
             self.actualStatus = actualStatus
+
+            self.hexCode = hexCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             opsStatus = try container.decode(String.self, forKey: .opsStatus)
 
-            hexCode = try container.decode(String.self, forKey: .hexCode)
-
             actualStatus = try container.decode(String.self, forKey: .actualStatus)
+
+            hexCode = try container.decode(String.self, forKey: .hexCode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(opsStatus, forKey: .opsStatus)
 
-            try? container.encodeIfPresent(hexCode, forKey: .hexCode)
-
             try? container.encodeIfPresent(actualStatus, forKey: .actualStatus)
+
+            try? container.encodeIfPresent(hexCode, forKey: .hexCode)
         }
     }
 }
