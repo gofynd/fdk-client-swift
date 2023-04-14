@@ -9,30 +9,30 @@ public extension ApplicationClient.Catalog {
     class ProductCompareResponse: Codable {
         public var items: [ProductDetail]?
 
+        public var attributesMetadata: [AttributeMetadata]?
+
         public var title: String?
 
         public var subtitle: String?
 
-        public var attributesMetadata: [AttributeMetadata]?
-
         public enum CodingKeys: String, CodingKey {
             case items
+
+            case attributesMetadata = "attributes_metadata"
 
             case title
 
             case subtitle
-
-            case attributesMetadata = "attributes_metadata"
         }
 
         public init(attributesMetadata: [AttributeMetadata]? = nil, items: [ProductDetail]? = nil, subtitle: String? = nil, title: String? = nil) {
             self.items = items
 
+            self.attributesMetadata = attributesMetadata
+
             self.title = title
 
             self.subtitle = subtitle
-
-            self.attributesMetadata = attributesMetadata
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,6 +40,14 @@ public extension ApplicationClient.Catalog {
 
             do {
                 items = try container.decode([ProductDetail].self, forKey: .items)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                attributesMetadata = try container.decode([AttributeMetadata].self, forKey: .attributesMetadata)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,14 +69,6 @@ public extension ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                attributesMetadata = try container.decode([AttributeMetadata].self, forKey: .attributesMetadata)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
+            try? container.encodeIfPresent(attributesMetadata, forKey: .attributesMetadata)
+
             try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(subtitle, forKey: .subtitle)
-
-            try? container.encodeIfPresent(attributesMetadata, forKey: .attributesMetadata)
         }
     }
 }

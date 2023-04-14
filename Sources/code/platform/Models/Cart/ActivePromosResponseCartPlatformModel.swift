@@ -13,42 +13,42 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var title: String?
 
-        public var example: String?
-
-        public var isHidden: Bool?
-
-        public var createdOn: String?
-
-        public var modifiedOn: String?
+        public var type: String?
 
         public var subtitle: String?
 
-        public var type: String?
+        public var entityType: String?
+
+        public var createdOn: String?
 
         public var description: String?
 
-        public var entityType: String?
+        public var modifiedOn: String?
+
+        public var isHidden: Bool?
+
+        public var example: String?
 
         public enum CodingKeys: String, CodingKey {
             case entitySlug = "entity_slug"
 
             case title
 
-            case example
-
-            case isHidden = "is_hidden"
-
-            case createdOn = "created_on"
-
-            case modifiedOn = "modified_on"
+            case type
 
             case subtitle
 
-            case type
+            case entityType = "entity_type"
+
+            case createdOn = "created_on"
 
             case description
 
-            case entityType = "entity_type"
+            case modifiedOn = "modified_on"
+
+            case isHidden = "is_hidden"
+
+            case example
         }
 
         public init(createdOn: String? = nil, description: String? = nil, entitySlug: String? = nil, entityType: String? = nil, example: String? = nil, isHidden: Bool? = nil, modifiedOn: String? = nil, subtitle: String? = nil, title: String? = nil, type: String? = nil) {
@@ -56,21 +56,21 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.title = title
 
-            self.example = example
-
-            self.isHidden = isHidden
-
-            self.createdOn = createdOn
-
-            self.modifiedOn = modifiedOn
+            self.type = type
 
             self.subtitle = subtitle
 
-            self.type = type
+            self.entityType = entityType
+
+            self.createdOn = createdOn
 
             self.description = description
 
-            self.entityType = entityType
+            self.modifiedOn = modifiedOn
+
+            self.isHidden = isHidden
+
+            self.example = example
         }
 
         required public init(from decoder: Decoder) throws {
@@ -93,31 +93,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                example = try container.decode(String.self, forKey: .example)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isHidden = try container.decode(Bool.self, forKey: .isHidden)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,7 +109,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                entityType = try container.decode(String.self, forKey: .entityType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -149,7 +133,23 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                entityType = try container.decode(String.self, forKey: .entityType)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isHidden = try container.decode(Bool.self, forKey: .isHidden)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                example = try container.decode(String.self, forKey: .example)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,21 +164,21 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(example, forKey: .example)
-
-            try? container.encodeIfPresent(isHidden, forKey: .isHidden)
-
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(entityType, forKey: .entityType)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(isHidden, forKey: .isHidden)
+
+            try? container.encodeIfPresent(example, forKey: .example)
         }
     }
 }

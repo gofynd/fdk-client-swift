@@ -13,9 +13,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var cartId: String?
 
-        public var billingAddressId: String?
-
         public var userId: String?
+
+        public var billingAddressId: String?
 
         public var checkoutMode: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case cartId = "cart_id"
 
-            case billingAddressId = "billing_address_id"
-
             case userId = "user_id"
+
+            case billingAddressId = "billing_address_id"
 
             case checkoutMode = "checkout_mode"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.cartId = cartId
 
-            self.billingAddressId = billingAddressId
-
             self.userId = userId
+
+            self.billingAddressId = billingAddressId
 
             self.checkoutMode = checkoutMode
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(cartId, forKey: .cartId)
 
-            try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
-
             try? container.encodeIfPresent(userId, forKey: .userId)
+
+            try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
         }

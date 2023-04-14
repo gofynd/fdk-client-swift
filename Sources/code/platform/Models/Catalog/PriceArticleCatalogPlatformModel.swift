@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var transfer: Double?
 
-        public var effective: Double?
-
         public var marked: Double?
+
+        public var effective: Double?
 
         public var tpNotes: [String: Any]?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case transfer
 
-            case effective
-
             case marked
+
+            case effective
 
             case tpNotes = "tp_notes"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.transfer = transfer
 
-            self.effective = effective
-
             self.marked = marked
+
+            self.effective = effective
 
             self.tpNotes = tpNotes
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                effective = try container.decode(Double.self, forKey: .effective)
+                marked = try container.decode(Double.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                marked = try container.decode(Double.self, forKey: .marked)
+                effective = try container.decode(Double.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(transfer, forKey: .transfer)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
-
             try? container.encodeIfPresent(marked, forKey: .marked)
+
+            try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var transfer: Double?
 
-        public var effective: Double?
-
         public var marked: Double?
+
+        public var effective: Double?
 
         public var tpNotes: [String: Any]?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case transfer
 
-            case effective
-
             case marked
+
+            case effective
 
             case tpNotes = "tp_notes"
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.transfer = transfer
 
-            self.effective = effective
-
             self.marked = marked
+
+            self.effective = effective
 
             self.tpNotes = tpNotes
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                effective = try container.decode(Double.self, forKey: .effective)
+                marked = try container.decode(Double.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                marked = try container.decode(Double.self, forKey: .marked)
+                effective = try container.decode(Double.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(transfer, forKey: .transfer)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
-
             try? container.encodeIfPresent(marked, forKey: .marked)
+
+            try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
         }

@@ -11,20 +11,24 @@ public extension PlatformClient.Catalog {
     class ThirdLevelChild: Codable {
         public var banners: ImageUrls?
 
+        public var childs: [[String: Any]]?
+
+        public var action: Action?
+
         public var name: String?
 
         public var uid: Int?
 
         public var slug: String?
 
-        public var childs: [[String: Any]]?
-
         public var customJson: [String: Any]?
-
-        public var action: Action?
 
         public enum CodingKeys: String, CodingKey {
             case banners
+
+            case childs
+
+            case action
 
             case name
 
@@ -32,15 +36,15 @@ public extension PlatformClient.Catalog {
 
             case slug
 
-            case childs
-
             case customJson = "_custom_json"
-
-            case action
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [[String: Any]]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             self.banners = banners
+
+            self.childs = childs
+
+            self.action = action
 
             self.name = name
 
@@ -48,11 +52,7 @@ public extension PlatformClient.Catalog {
 
             self.slug = slug
 
-            self.childs = childs
-
             self.customJson = customJson
-
-            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
@@ -60,6 +60,22 @@ public extension PlatformClient.Catalog {
 
             do {
                 banners = try container.decode(ImageUrls.self, forKey: .banners)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                childs = try container.decode([[String: Any]].self, forKey: .childs)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,23 +107,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                childs = try container.decode([[String: Any]].self, forKey: .childs)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,17 +120,17 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
+            try? container.encodeIfPresent(childs, forKey: .childs)
+
+            try? container.encodeIfPresent(action, forKey: .action)
+
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(childs, forKey: .childs)
-
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }
@@ -144,20 +144,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ThirdLevelChild: Codable {
         public var banners: ImageUrls?
 
+        public var childs: [[String: Any]]?
+
+        public var action: Action?
+
         public var name: String?
 
         public var uid: Int?
 
         public var slug: String?
 
-        public var childs: [[String: Any]]?
-
         public var customJson: [String: Any]?
-
-        public var action: Action?
 
         public enum CodingKeys: String, CodingKey {
             case banners
+
+            case childs
+
+            case action
 
             case name
 
@@ -165,15 +169,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case slug
 
-            case childs
-
             case customJson = "_custom_json"
-
-            case action
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [[String: Any]]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             self.banners = banners
+
+            self.childs = childs
+
+            self.action = action
 
             self.name = name
 
@@ -181,11 +185,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.slug = slug
 
-            self.childs = childs
-
             self.customJson = customJson
-
-            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
@@ -193,6 +193,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 banners = try container.decode(ImageUrls.self, forKey: .banners)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                childs = try container.decode([[String: Any]].self, forKey: .childs)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -224,23 +240,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                childs = try container.decode([[String: Any]].self, forKey: .childs)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -253,17 +253,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
+            try? container.encodeIfPresent(childs, forKey: .childs)
+
+            try? container.encodeIfPresent(action, forKey: .action)
+
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(childs, forKey: .childs)
-
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }

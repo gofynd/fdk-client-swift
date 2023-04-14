@@ -9,36 +9,36 @@ public extension ApplicationClient.Cart {
     class LadderOfferItem: Codable {
         public var type: String?
 
-        public var price: LadderPrice?
+        public var maxQuantity: Int?
 
         public var minQuantity: Int?
 
-        public var margin: Int?
+        public var price: LadderPrice?
 
-        public var maxQuantity: Int?
+        public var margin: Int?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case price
+            case maxQuantity = "max_quantity"
 
             case minQuantity = "min_quantity"
 
-            case margin
+            case price
 
-            case maxQuantity = "max_quantity"
+            case margin
         }
 
         public init(margin: Int? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: LadderPrice? = nil, type: String? = nil) {
             self.type = type
 
-            self.price = price
+            self.maxQuantity = maxQuantity
 
             self.minQuantity = minQuantity
 
-            self.margin = margin
+            self.price = price
 
-            self.maxQuantity = maxQuantity
+            self.margin = margin
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                price = try container.decode(LadderPrice.self, forKey: .price)
+                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                margin = try container.decode(Int.self, forKey: .margin)
+                price = try container.decode(LadderPrice.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
+                margin = try container.decode(Int.self, forKey: .margin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(price, forKey: .price)
+            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
 
             try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
 
-            try? container.encodeIfPresent(margin, forKey: .margin)
+            try? container.encodeIfPresent(price, forKey: .price)
 
-            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
+            try? container.encodeIfPresent(margin, forKey: .margin)
         }
     }
 }

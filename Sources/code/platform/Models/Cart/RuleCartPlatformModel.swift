@@ -11,9 +11,9 @@ public extension PlatformClient.ApplicationClient.Cart {
     class Rule: Codable {
         public var value: Double?
 
-        public var min: Double?
-
         public var max: Double?
+
+        public var min: Double?
 
         public var discountQty: Double?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case min
-
             case max
+
+            case min
 
             case discountQty = "discount_qty"
 
@@ -34,9 +34,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(discountQty: Double? = nil, key: Double? = nil, max: Double? = nil, min: Double? = nil, value: Double? = nil) {
             self.value = value
 
-            self.min = min
-
             self.max = max
+
+            self.min = min
 
             self.discountQty = discountQty
 
@@ -55,7 +55,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
+                max = try container.decode(Double.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                max = try container.decode(Double.self, forKey: .max)
+                min = try container.decode(Double.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(min, forKey: .min)
-
             try? container.encodeIfPresent(max, forKey: .max)
+
+            try? container.encodeIfPresent(min, forKey: .min)
 
             try? container.encodeIfPresent(discountQty, forKey: .discountQty)
 
