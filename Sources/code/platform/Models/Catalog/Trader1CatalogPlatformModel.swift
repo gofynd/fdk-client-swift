@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class Trader1: Codable {
         public var type: String
 
-        public var address: [String]
-
         public var name: String
+
+        public var address: [String]
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case address
-
             case name
+
+            case address
         }
 
         public init(address: [String], name: String, type: String) {
             self.type = type
 
-            self.address = address
-
             self.name = name
+
+            self.address = address
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             type = try container.decode(String.self, forKey: .type)
 
-            address = try container.decode([String].self, forKey: .address)
-
             name = try container.decode(String.self, forKey: .name)
+
+            address = try container.decode([String].self, forKey: .address)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(address, forKey: .address)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(address, forKey: .address)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class Trader1: Codable {
         public var type: String
 
-        public var address: [String]
-
         public var name: String
+
+        public var address: [String]
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case address
-
             case name
+
+            case address
         }
 
         public init(address: [String], name: String, type: String) {
             self.type = type
 
-            self.address = address
-
             self.name = name
+
+            self.address = address
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             type = try container.decode(String.self, forKey: .type)
 
-            address = try container.decode([String].self, forKey: .address)
-
             name = try container.decode(String.self, forKey: .name)
+
+            address = try container.decode([String].self, forKey: .address)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(address, forKey: .address)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(address, forKey: .address)
         }
     }
 }

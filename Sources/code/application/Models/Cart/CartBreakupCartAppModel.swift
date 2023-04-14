@@ -9,30 +9,30 @@ public extension ApplicationClient.Cart {
     class CartBreakup: Codable {
         public var raw: RawBreakup?
 
-        public var coupon: CouponBreakup?
-
         public var display: [DisplayBreakup]?
 
         public var loyaltyPoints: LoyaltyPoints?
 
+        public var coupon: CouponBreakup?
+
         public enum CodingKeys: String, CodingKey {
             case raw
-
-            case coupon
 
             case display
 
             case loyaltyPoints = "loyalty_points"
+
+            case coupon
         }
 
         public init(coupon: CouponBreakup? = nil, display: [DisplayBreakup]? = nil, loyaltyPoints: LoyaltyPoints? = nil, raw: RawBreakup? = nil) {
             self.raw = raw
 
-            self.coupon = coupon
-
             self.display = display
 
             self.loyaltyPoints = loyaltyPoints
+
+            self.coupon = coupon
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,14 +40,6 @@ public extension ApplicationClient.Cart {
 
             do {
                 raw = try container.decode(RawBreakup.self, forKey: .raw)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                coupon = try container.decode(CouponBreakup.self, forKey: .coupon)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,6 +61,14 @@ public extension ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                coupon = try container.decode(CouponBreakup.self, forKey: .coupon)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(raw, forKey: .raw)
 
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
-
             try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(loyaltyPoints, forKey: .loyaltyPoints)
+
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
         }
     }
 }

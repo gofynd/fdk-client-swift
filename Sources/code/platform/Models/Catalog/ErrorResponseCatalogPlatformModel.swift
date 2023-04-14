@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var error: String?
 
-        public var meta: [String: Any]?
-
         public var code: String?
+
+        public var meta: [String: Any]?
 
         public var status: Int?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case error
 
-            case meta
-
             case code
+
+            case meta
 
             case status
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.error = error
 
-            self.meta = meta
-
             self.code = code
+
+            self.meta = meta
 
             self.status = status
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(status, forKey: .status)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var error: String?
 
-        public var meta: [String: Any]?
-
         public var code: String?
+
+        public var meta: [String: Any]?
 
         public var status: Int?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case error
 
-            case meta
-
             case code
+
+            case meta
 
             case status
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.error = error
 
-            self.meta = meta
-
             self.code = code
+
+            self.meta = meta
 
             self.status = status
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(status, forKey: .status)
         }
