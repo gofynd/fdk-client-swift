@@ -11,30 +11,30 @@ public extension ApplicationClient.Payment {
 
         public var orderId: String
 
-        public var message: String
+        public var aggregator: String
 
         public var deliveryAddressId: String?
 
-        public var status: String
-
         public var cartId: String?
 
-        public var aggregator: String
+        public var status: String
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case success
 
             case orderId = "order_id"
 
-            case message
+            case aggregator
 
             case deliveryAddressId = "delivery_address_id"
 
-            case status
-
             case cartId = "cart_id"
 
-            case aggregator
+            case status
+
+            case message
         }
 
         public init(aggregator: String, cartId: String? = nil, deliveryAddressId: String? = nil, message: String, orderId: String, status: String, success: Bool) {
@@ -42,15 +42,15 @@ public extension ApplicationClient.Payment {
 
             self.orderId = orderId
 
-            self.message = message
+            self.aggregator = aggregator
 
             self.deliveryAddressId = deliveryAddressId
 
-            self.status = status
-
             self.cartId = cartId
 
-            self.aggregator = aggregator
+            self.status = status
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -60,7 +60,7 @@ public extension ApplicationClient.Payment {
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
-            message = try container.decode(String.self, forKey: .message)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             do {
                 deliveryAddressId = try container.decode(String.self, forKey: .deliveryAddressId)
@@ -70,8 +70,6 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            status = try container.decode(String.self, forKey: .status)
-
             do {
                 cartId = try container.decode(String.self, forKey: .cartId)
 
@@ -80,7 +78,9 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
+            status = try container.decode(String.self, forKey: .status)
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -90,15 +90,15 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encode(deliveryAddressId, forKey: .deliveryAddressId)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encode(cartId, forKey: .cartId)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
