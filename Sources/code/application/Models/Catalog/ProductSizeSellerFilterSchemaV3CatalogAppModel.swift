@@ -7,24 +7,24 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class ProductSizeSellerFilterSchemaV3: Codable {
-        public var isSelected: Bool?
-
         public var value: String?
+
+        public var isSelected: Bool?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case isSelected = "is_selected"
-
             case value
+
+            case isSelected = "is_selected"
 
             case name
         }
 
         public init(isSelected: Bool? = nil, name: String? = nil, value: String? = nil) {
-            self.isSelected = isSelected
-
             self.value = value
+
+            self.isSelected = isSelected
 
             self.name = name
         }
@@ -33,7 +33,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                isSelected = try container.decode(Bool.self, forKey: .isSelected)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,9 +60,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
