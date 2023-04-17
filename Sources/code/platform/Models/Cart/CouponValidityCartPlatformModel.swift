@@ -15,9 +15,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var valid: Bool?
 
-        public var title: String?
-
         public var code: String?
+
+        public var title: String?
 
         public enum CodingKeys: String, CodingKey {
             case displayMessageEn = "display_message_en"
@@ -26,9 +26,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case valid
 
-            case title
-
             case code
+
+            case title
         }
 
         public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, title: String? = nil, valid: Bool? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.valid = valid
 
-            self.title = title
-
             self.code = code
+
+            self.title = title
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,9 +96,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(valid, forKey: .valid)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encode(code, forKey: .code)
+
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 }

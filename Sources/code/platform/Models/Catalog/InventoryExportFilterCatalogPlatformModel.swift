@@ -11,22 +11,22 @@ public extension PlatformClient.Catalog {
     class InventoryExportFilter: Codable {
         public var toDate: String?
 
+        public var brandIds: [Int]?
+
         public var quantity: InventoryExportQuantityFilter?
 
         public var storeIds: [Int]
-
-        public var brandIds: [Int]?
 
         public var fromDate: String?
 
         public enum CodingKeys: String, CodingKey {
             case toDate = "to_date"
 
+            case brandIds = "brand_ids"
+
             case quantity
 
             case storeIds = "store_ids"
-
-            case brandIds = "brand_ids"
 
             case fromDate = "from_date"
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.Catalog {
         public init(brandIds: [Int]? = nil, fromDate: String? = nil, quantity: InventoryExportQuantityFilter? = nil, storeIds: [Int], toDate: String? = nil) {
             self.toDate = toDate
 
+            self.brandIds = brandIds
+
             self.quantity = quantity
 
             self.storeIds = storeIds
-
-            self.brandIds = brandIds
 
             self.fromDate = fromDate
         }
@@ -48,6 +48,14 @@ public extension PlatformClient.Catalog {
 
             do {
                 toDate = try container.decode(String.self, forKey: .toDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brandIds = try container.decode([Int].self, forKey: .brandIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,14 +73,6 @@ public extension PlatformClient.Catalog {
             storeIds = try container.decode([Int].self, forKey: .storeIds)
 
             do {
-                brandIds = try container.decode([Int].self, forKey: .brandIds)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 fromDate = try container.decode(String.self, forKey: .fromDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -86,11 +86,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(toDate, forKey: .toDate)
 
+            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
+
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
-
-            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
 
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
         }
@@ -106,22 +106,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class InventoryExportFilter: Codable {
         public var toDate: String?
 
+        public var brandIds: [Int]?
+
         public var quantity: InventoryExportQuantityFilter?
 
         public var storeIds: [Int]
-
-        public var brandIds: [Int]?
 
         public var fromDate: String?
 
         public enum CodingKeys: String, CodingKey {
             case toDate = "to_date"
 
+            case brandIds = "brand_ids"
+
             case quantity
 
             case storeIds = "store_ids"
-
-            case brandIds = "brand_ids"
 
             case fromDate = "from_date"
         }
@@ -129,11 +129,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(brandIds: [Int]? = nil, fromDate: String? = nil, quantity: InventoryExportQuantityFilter? = nil, storeIds: [Int], toDate: String? = nil) {
             self.toDate = toDate
 
+            self.brandIds = brandIds
+
             self.quantity = quantity
 
             self.storeIds = storeIds
-
-            self.brandIds = brandIds
 
             self.fromDate = fromDate
         }
@@ -143,6 +143,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 toDate = try container.decode(String.self, forKey: .toDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brandIds = try container.decode([Int].self, forKey: .brandIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,14 +168,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             storeIds = try container.decode([Int].self, forKey: .storeIds)
 
             do {
-                brandIds = try container.decode([Int].self, forKey: .brandIds)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 fromDate = try container.decode(String.self, forKey: .fromDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -181,11 +181,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(toDate, forKey: .toDate)
 
+            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
+
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
-
-            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
 
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
         }

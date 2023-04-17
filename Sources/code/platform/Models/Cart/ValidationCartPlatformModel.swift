@@ -11,24 +11,24 @@ public extension PlatformClient.ApplicationClient.Cart {
     class Validation: Codable {
         public var appId: [String]?
 
-        public var userRegisteredAfter: String?
-
         public var anonymous: Bool?
+
+        public var userRegisteredAfter: String?
 
         public enum CodingKeys: String, CodingKey {
             case appId = "app_id"
 
-            case userRegisteredAfter = "user_registered_after"
-
             case anonymous
+
+            case userRegisteredAfter = "user_registered_after"
         }
 
         public init(anonymous: Bool? = nil, appId: [String]? = nil, userRegisteredAfter: String? = nil) {
             self.appId = appId
 
-            self.userRegisteredAfter = userRegisteredAfter
-
             self.anonymous = anonymous
+
+            self.userRegisteredAfter = userRegisteredAfter
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                userRegisteredAfter = try container.decode(String.self, forKey: .userRegisteredAfter)
+                anonymous = try container.decode(Bool.self, forKey: .anonymous)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                anonymous = try container.decode(Bool.self, forKey: .anonymous)
+                userRegisteredAfter = try container.decode(String.self, forKey: .userRegisteredAfter)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encode(userRegisteredAfter, forKey: .userRegisteredAfter)
-
             try? container.encodeIfPresent(anonymous, forKey: .anonymous)
+
+            try? container.encode(userRegisteredAfter, forKey: .userRegisteredAfter)
         }
     }
 }
