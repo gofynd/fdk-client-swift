@@ -9,26 +9,26 @@ public extension ApplicationClient.Cart {
     class UpdateCartPaymentRequest: Codable {
         public var paymentIdentifier: String?
 
-        public var paymentMode: String?
-
-        public var addressId: String?
-
         public var aggregatorName: String?
 
+        public var paymentMode: String?
+
         public var id: String?
+
+        public var addressId: String?
 
         public var merchantCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case paymentIdentifier = "payment_identifier"
 
-            case paymentMode = "payment_mode"
-
-            case addressId = "address_id"
-
             case aggregatorName = "aggregator_name"
 
+            case paymentMode = "payment_mode"
+
             case id
+
+            case addressId = "address_id"
 
             case merchantCode = "merchant_code"
         }
@@ -36,13 +36,13 @@ public extension ApplicationClient.Cart {
         public init(addressId: String? = nil, aggregatorName: String? = nil, id: String? = nil, merchantCode: String? = nil, paymentIdentifier: String? = nil, paymentMode: String? = nil) {
             self.paymentIdentifier = paymentIdentifier
 
-            self.paymentMode = paymentMode
-
-            self.addressId = addressId
-
             self.aggregatorName = aggregatorName
 
+            self.paymentMode = paymentMode
+
             self.id = id
+
+            self.addressId = addressId
 
             self.merchantCode = merchantCode
         }
@@ -59,22 +59,6 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                addressId = try container.decode(String.self, forKey: .addressId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -83,7 +67,23 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
+                paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 id = try container.decode(String.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                addressId = try container.decode(String.self, forKey: .addressId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,13 +104,13 @@ public extension ApplicationClient.Cart {
 
             try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-
-            try? container.encodeIfPresent(addressId, forKey: .addressId)
-
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
 
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(addressId, forKey: .addressId)
 
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
         }

@@ -9,9 +9,9 @@ public extension PlatformClient.Order {
      */
 
     class Document: Codable {
-        public var dsType: String
-
         public var value: String
+
+        public var dsType: String
 
         public var url: String?
 
@@ -20,9 +20,9 @@ public extension PlatformClient.Order {
         public var legalName: String
 
         public enum CodingKeys: String, CodingKey {
-            case dsType = "ds_type"
-
             case value
+
+            case dsType = "ds_type"
 
             case url
 
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
         }
 
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
-            self.dsType = dsType
-
             self.value = value
+
+            self.dsType = dsType
 
             self.url = url
 
@@ -46,9 +46,9 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            dsType = try container.decode(String.self, forKey: .dsType)
-
             value = try container.decode(String.self, forKey: .value)
+
+            dsType = try container.decode(String.self, forKey: .dsType)
 
             do {
                 url = try container.decode(String.self, forKey: .url)
@@ -66,9 +66,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(dsType, forKey: .dsType)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(dsType, forKey: .dsType)
 
             try? container.encodeIfPresent(url, forKey: .url)
 
@@ -86,9 +86,9 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Document: Codable {
-        public var dsType: String
-
         public var value: String
+
+        public var dsType: String
 
         public var url: String?
 
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public var legalName: String
 
         public enum CodingKeys: String, CodingKey {
-            case dsType = "ds_type"
-
             case value
+
+            case dsType = "ds_type"
 
             case url
 
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
-            self.dsType = dsType
-
             self.value = value
+
+            self.dsType = dsType
 
             self.url = url
 
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            dsType = try container.decode(String.self, forKey: .dsType)
-
             value = try container.decode(String.self, forKey: .value)
+
+            dsType = try container.decode(String.self, forKey: .dsType)
 
             do {
                 url = try container.decode(String.self, forKey: .url)
@@ -143,9 +143,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(dsType, forKey: .dsType)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(dsType, forKey: .dsType)
 
             try? container.encodeIfPresent(url, forKey: .url)
 

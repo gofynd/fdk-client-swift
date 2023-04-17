@@ -9,13 +9,13 @@ public extension PlatformClient.Order {
      */
 
     class BulkActionDetailsDataField: Codable {
-        public var successfulShipmentsCount: Int?
+        public var batchId: String?
 
         public var companyId: String?
 
-        public var failedShipmentsCount: Int?
+        public var successfulShipmentsCount: Int?
 
-        public var batchId: String?
+        public var failedShipmentsCount: Int?
 
         public var processingShipmentsCount: Int?
 
@@ -24,13 +24,13 @@ public extension PlatformClient.Order {
         public var successfulShipmentIds: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case successfulShipmentsCount = "successful_shipments_count"
+            case batchId = "batch_id"
 
             case companyId = "company_id"
 
-            case failedShipmentsCount = "failed_shipments_count"
+            case successfulShipmentsCount = "successful_shipments_count"
 
-            case batchId = "batch_id"
+            case failedShipmentsCount = "failed_shipments_count"
 
             case processingShipmentsCount = "processing_shipments_count"
 
@@ -40,13 +40,13 @@ public extension PlatformClient.Order {
         }
 
         public init(batchId: String? = nil, companyId: String? = nil, failedShipmentsCount: Int? = nil, processingShipmentsCount: Int? = nil, successfulShipmentsCount: Int? = nil, successfulShipmentIds: [String]? = nil, totalShipmentsCount: Int? = nil) {
-            self.successfulShipmentsCount = successfulShipmentsCount
+            self.batchId = batchId
 
             self.companyId = companyId
 
-            self.failedShipmentsCount = failedShipmentsCount
+            self.successfulShipmentsCount = successfulShipmentsCount
 
-            self.batchId = batchId
+            self.failedShipmentsCount = failedShipmentsCount
 
             self.processingShipmentsCount = processingShipmentsCount
 
@@ -59,7 +59,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                successfulShipmentsCount = try container.decode(Int.self, forKey: .successfulShipmentsCount)
+                batchId = try container.decode(String.self, forKey: .batchId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                failedShipmentsCount = try container.decode(Int.self, forKey: .failedShipmentsCount)
+                successfulShipmentsCount = try container.decode(Int.self, forKey: .successfulShipmentsCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                batchId = try container.decode(String.self, forKey: .batchId)
+                failedShipmentsCount = try container.decode(Int.self, forKey: .failedShipmentsCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,13 +118,13 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(successfulShipmentsCount, forKey: .successfulShipmentsCount)
+            try? container.encodeIfPresent(batchId, forKey: .batchId)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(failedShipmentsCount, forKey: .failedShipmentsCount)
+            try? container.encodeIfPresent(successfulShipmentsCount, forKey: .successfulShipmentsCount)
 
-            try? container.encodeIfPresent(batchId, forKey: .batchId)
+            try? container.encodeIfPresent(failedShipmentsCount, forKey: .failedShipmentsCount)
 
             try? container.encodeIfPresent(processingShipmentsCount, forKey: .processingShipmentsCount)
 
@@ -142,13 +142,13 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class BulkActionDetailsDataField: Codable {
-        public var successfulShipmentsCount: Int?
+        public var batchId: String?
 
         public var companyId: String?
 
-        public var failedShipmentsCount: Int?
+        public var successfulShipmentsCount: Int?
 
-        public var batchId: String?
+        public var failedShipmentsCount: Int?
 
         public var processingShipmentsCount: Int?
 
@@ -157,13 +157,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public var successfulShipmentIds: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case successfulShipmentsCount = "successful_shipments_count"
+            case batchId = "batch_id"
 
             case companyId = "company_id"
 
-            case failedShipmentsCount = "failed_shipments_count"
+            case successfulShipmentsCount = "successful_shipments_count"
 
-            case batchId = "batch_id"
+            case failedShipmentsCount = "failed_shipments_count"
 
             case processingShipmentsCount = "processing_shipments_count"
 
@@ -173,13 +173,13 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(batchId: String? = nil, companyId: String? = nil, failedShipmentsCount: Int? = nil, processingShipmentsCount: Int? = nil, successfulShipmentsCount: Int? = nil, successfulShipmentIds: [String]? = nil, totalShipmentsCount: Int? = nil) {
-            self.successfulShipmentsCount = successfulShipmentsCount
+            self.batchId = batchId
 
             self.companyId = companyId
 
-            self.failedShipmentsCount = failedShipmentsCount
+            self.successfulShipmentsCount = successfulShipmentsCount
 
-            self.batchId = batchId
+            self.failedShipmentsCount = failedShipmentsCount
 
             self.processingShipmentsCount = processingShipmentsCount
 
@@ -192,7 +192,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                successfulShipmentsCount = try container.decode(Int.self, forKey: .successfulShipmentsCount)
+                batchId = try container.decode(String.self, forKey: .batchId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -208,7 +208,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                failedShipmentsCount = try container.decode(Int.self, forKey: .failedShipmentsCount)
+                successfulShipmentsCount = try container.decode(Int.self, forKey: .successfulShipmentsCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -216,7 +216,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                batchId = try container.decode(String.self, forKey: .batchId)
+                failedShipmentsCount = try container.decode(Int.self, forKey: .failedShipmentsCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -251,13 +251,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(successfulShipmentsCount, forKey: .successfulShipmentsCount)
+            try? container.encodeIfPresent(batchId, forKey: .batchId)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(failedShipmentsCount, forKey: .failedShipmentsCount)
+            try? container.encodeIfPresent(successfulShipmentsCount, forKey: .successfulShipmentsCount)
 
-            try? container.encodeIfPresent(batchId, forKey: .batchId)
+            try? container.encodeIfPresent(failedShipmentsCount, forKey: .failedShipmentsCount)
 
             try? container.encodeIfPresent(processingShipmentsCount, forKey: .processingShipmentsCount)
 

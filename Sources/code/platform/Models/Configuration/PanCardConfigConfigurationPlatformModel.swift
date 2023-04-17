@@ -11,18 +11,24 @@ public extension PlatformClient.Configuration {
     class PanCardConfig: Codable {
         public var enabled: Bool?
 
-        public var thresholdAmount: Double?
+        public var codThresholdAmount: Double?
+
+        public var onlineThresholdAmount: Double?
 
         public enum CodingKeys: String, CodingKey {
             case enabled
 
-            case thresholdAmount = "threshold_amount"
+            case codThresholdAmount = "cod_threshold_amount"
+
+            case onlineThresholdAmount = "online_threshold_amount"
         }
 
-        public init(enabled: Bool? = nil, thresholdAmount: Double? = nil) {
+        public init(codThresholdAmount: Double? = nil, enabled: Bool? = nil, onlineThresholdAmount: Double? = nil) {
             self.enabled = enabled
 
-            self.thresholdAmount = thresholdAmount
+            self.codThresholdAmount = codThresholdAmount
+
+            self.onlineThresholdAmount = onlineThresholdAmount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -37,7 +43,15 @@ public extension PlatformClient.Configuration {
             } catch {}
 
             do {
-                thresholdAmount = try container.decode(Double.self, forKey: .thresholdAmount)
+                codThresholdAmount = try container.decode(Double.self, forKey: .codThresholdAmount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                onlineThresholdAmount = try container.decode(Double.self, forKey: .onlineThresholdAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +64,9 @@ public extension PlatformClient.Configuration {
 
             try? container.encodeIfPresent(enabled, forKey: .enabled)
 
-            try? container.encodeIfPresent(thresholdAmount, forKey: .thresholdAmount)
+            try? container.encodeIfPresent(codThresholdAmount, forKey: .codThresholdAmount)
+
+            try? container.encodeIfPresent(onlineThresholdAmount, forKey: .onlineThresholdAmount)
         }
     }
 }
@@ -64,18 +80,24 @@ public extension PlatformClient.ApplicationClient.Configuration {
     class PanCardConfig: Codable {
         public var enabled: Bool?
 
-        public var thresholdAmount: Double?
+        public var codThresholdAmount: Double?
+
+        public var onlineThresholdAmount: Double?
 
         public enum CodingKeys: String, CodingKey {
             case enabled
 
-            case thresholdAmount = "threshold_amount"
+            case codThresholdAmount = "cod_threshold_amount"
+
+            case onlineThresholdAmount = "online_threshold_amount"
         }
 
-        public init(enabled: Bool? = nil, thresholdAmount: Double? = nil) {
+        public init(codThresholdAmount: Double? = nil, enabled: Bool? = nil, onlineThresholdAmount: Double? = nil) {
             self.enabled = enabled
 
-            self.thresholdAmount = thresholdAmount
+            self.codThresholdAmount = codThresholdAmount
+
+            self.onlineThresholdAmount = onlineThresholdAmount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -90,7 +112,15 @@ public extension PlatformClient.ApplicationClient.Configuration {
             } catch {}
 
             do {
-                thresholdAmount = try container.decode(Double.self, forKey: .thresholdAmount)
+                codThresholdAmount = try container.decode(Double.self, forKey: .codThresholdAmount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                onlineThresholdAmount = try container.decode(Double.self, forKey: .onlineThresholdAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,7 +133,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
             try? container.encodeIfPresent(enabled, forKey: .enabled)
 
-            try? container.encodeIfPresent(thresholdAmount, forKey: .thresholdAmount)
+            try? container.encodeIfPresent(codThresholdAmount, forKey: .codThresholdAmount)
+
+            try? container.encodeIfPresent(onlineThresholdAmount, forKey: .onlineThresholdAmount)
         }
     }
 }

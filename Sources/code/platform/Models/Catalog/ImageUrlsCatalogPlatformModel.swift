@@ -9,27 +9,27 @@ public extension PlatformClient.Catalog {
      */
 
     class ImageUrls: Codable {
-        public var portrait: BannerImage?
-
         public var landscape: BannerImage?
 
-        public enum CodingKeys: String, CodingKey {
-            case portrait
+        public var portrait: BannerImage?
 
+        public enum CodingKeys: String, CodingKey {
             case landscape
+
+            case portrait
         }
 
         public init(landscape: BannerImage? = nil, portrait: BannerImage? = nil) {
-            self.portrait = portrait
-
             self.landscape = landscape
+
+            self.portrait = portrait
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                portrait = try container.decode(BannerImage.self, forKey: .portrait)
+                landscape = try container.decode(BannerImage.self, forKey: .landscape)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                landscape = try container.decode(BannerImage.self, forKey: .landscape)
+                portrait = try container.decode(BannerImage.self, forKey: .portrait)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(portrait, forKey: .portrait)
-
             try? container.encodeIfPresent(landscape, forKey: .landscape)
+
+            try? container.encodeIfPresent(portrait, forKey: .portrait)
         }
     }
 }
@@ -62,27 +62,27 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ImageUrls: Codable {
-        public var portrait: BannerImage?
-
         public var landscape: BannerImage?
 
-        public enum CodingKeys: String, CodingKey {
-            case portrait
+        public var portrait: BannerImage?
 
+        public enum CodingKeys: String, CodingKey {
             case landscape
+
+            case portrait
         }
 
         public init(landscape: BannerImage? = nil, portrait: BannerImage? = nil) {
-            self.portrait = portrait
-
             self.landscape = landscape
+
+            self.portrait = portrait
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                portrait = try container.decode(BannerImage.self, forKey: .portrait)
+                landscape = try container.decode(BannerImage.self, forKey: .landscape)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                landscape = try container.decode(BannerImage.self, forKey: .landscape)
+                portrait = try container.decode(BannerImage.self, forKey: .portrait)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(portrait, forKey: .portrait)
-
             try? container.encodeIfPresent(landscape, forKey: .landscape)
+
+            try? container.encodeIfPresent(portrait, forKey: .portrait)
         }
     }
 }

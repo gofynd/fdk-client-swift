@@ -9,48 +9,48 @@ public extension ApplicationClient.Catalog {
     class Child: Codable {
         public var slug: String?
 
-        public var banners: ImageUrls?
+        public var childs: [SecondLevelChild]?
 
         public var uid: Int?
 
         public var customJson: [String: Any]?
 
-        public var action: ProductListingAction?
-
-        public var childs: [SecondLevelChild]?
+        public var banners: ImageUrls?
 
         public var name: String?
+
+        public var action: ProductListingAction?
 
         public enum CodingKeys: String, CodingKey {
             case slug
 
-            case banners
+            case childs
 
             case uid
 
             case customJson = "_custom_json"
 
-            case action
-
-            case childs
+            case banners
 
             case name
+
+            case action
         }
 
         public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, childs: [SecondLevelChild]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             self.slug = slug
 
-            self.banners = banners
+            self.childs = childs
 
             self.uid = uid
 
             self.customJson = customJson
 
-            self.action = action
-
-            self.childs = childs
+            self.banners = banners
 
             self.name = name
+
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,7 +65,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                banners = try container.decode(ImageUrls.self, forKey: .banners)
+                childs = try container.decode([SecondLevelChild].self, forKey: .childs)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,15 +89,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(ProductListingAction.self, forKey: .action)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                childs = try container.decode([SecondLevelChild].self, forKey: .childs)
+                banners = try container.decode(ImageUrls.self, forKey: .banners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,6 +103,14 @@ public extension ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                action = try container.decode(ProductListingAction.self, forKey: .action)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -118,17 +118,17 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(banners, forKey: .banners)
+            try? container.encodeIfPresent(childs, forKey: .childs)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(childs, forKey: .childs)
+            try? container.encodeIfPresent(banners, forKey: .banners)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }

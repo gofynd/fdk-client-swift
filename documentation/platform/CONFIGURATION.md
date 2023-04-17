@@ -5367,7 +5367,8 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | enabled | Bool? |  yes  | If pan card accepting is enabled on cart |
- | thresholdAmount | Double? |  yes  | On which amount pan card number is expected from customer for order |
+ | codThresholdAmount | Double? |  yes  | On which COD order amount pan card number is expected from customer for order |
+ | onlineThresholdAmount | Double? |  yes  | On which online payment order amount pan card number is expected from customer for order |
 
 ---
 

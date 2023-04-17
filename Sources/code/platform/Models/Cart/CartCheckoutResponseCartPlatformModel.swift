@@ -9,9 +9,15 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class CartCheckoutResponse: Codable {
+        public var cart: CheckCart?
+
         public var message: String?
 
         public var orderId: String?
+
+        public var data: [String: Any]?
+
+        public var success: Bool?
 
         public var callbackUrl: String?
 
@@ -19,50 +25,52 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var appInterceptUrl: String?
 
-        public var data: [String: Any]?
-
-        public var success: Bool?
-
-        public var cart: CheckCart?
-
         public enum CodingKeys: String, CodingKey {
+            case cart
+
             case message
 
             case orderId = "order_id"
+
+            case data
+
+            case success
 
             case callbackUrl = "callback_url"
 
             case paymentConfirmUrl = "payment_confirm_url"
 
             case appInterceptUrl = "app_intercept_url"
-
-            case data
-
-            case success
-
-            case cart
         }
 
         public init(appInterceptUrl: String? = nil, callbackUrl: String? = nil, cart: CheckCart? = nil, data: [String: Any]? = nil, message: String? = nil, orderId: String? = nil, paymentConfirmUrl: String? = nil, success: Bool? = nil) {
+            self.cart = cart
+
             self.message = message
 
             self.orderId = orderId
+
+            self.data = data
+
+            self.success = success
 
             self.callbackUrl = callbackUrl
 
             self.paymentConfirmUrl = paymentConfirmUrl
 
             self.appInterceptUrl = appInterceptUrl
-
-            self.data = data
-
-            self.success = success
-
-            self.cart = cart
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                cart = try container.decode(CheckCart.self, forKey: .cart)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 message = try container.decode(String.self, forKey: .message)
@@ -74,6 +82,22 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 orderId = try container.decode(String.self, forKey: .orderId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                data = try container.decode([String: Any].self, forKey: .data)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,50 +127,26 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                data = try container.decode([String: Any].self, forKey: .data)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                success = try container.decode(Bool.self, forKey: .success)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cart = try container.decode(CheckCart.self, forKey: .cart)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(cart, forKey: .cart)
+
             try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
 
             try? container.encodeIfPresent(paymentConfirmUrl, forKey: .paymentConfirmUrl)
 
             try? container.encodeIfPresent(appInterceptUrl, forKey: .appInterceptUrl)
-
-            try? container.encodeIfPresent(data, forKey: .data)
-
-            try? container.encodeIfPresent(success, forKey: .success)
-
-            try? container.encodeIfPresent(cart, forKey: .cart)
         }
     }
 }

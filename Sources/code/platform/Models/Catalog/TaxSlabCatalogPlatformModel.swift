@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var effectiveDate: String
 
-        public var cess: Double?
-
         public var rate: Double
+
+        public var cess: Double?
 
         public enum CodingKeys: String, CodingKey {
             case threshold
 
             case effectiveDate = "effective_date"
 
-            case cess
-
             case rate
+
+            case cess
         }
 
         public init(cess: Double? = nil, effectiveDate: String, rate: Double, threshold: Double) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.effectiveDate = effectiveDate
 
-            self.cess = cess
-
             self.rate = rate
+
+            self.cess = cess
         }
 
         required public init(from decoder: Decoder) throws {
@@ -44,6 +44,8 @@ public extension PlatformClient.Catalog {
 
             effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
 
+            rate = try container.decode(Double.self, forKey: .rate)
+
             do {
                 cess = try container.decode(Double.self, forKey: .cess)
 
@@ -51,8 +53,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            rate = try container.decode(Double.self, forKey: .rate)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,9 +62,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
 
-            try? container.encodeIfPresent(cess, forKey: .cess)
-
             try? container.encodeIfPresent(rate, forKey: .rate)
+
+            try? container.encodeIfPresent(cess, forKey: .cess)
         }
     }
 }
@@ -80,18 +80,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var effectiveDate: String
 
-        public var cess: Double?
-
         public var rate: Double
+
+        public var cess: Double?
 
         public enum CodingKeys: String, CodingKey {
             case threshold
 
             case effectiveDate = "effective_date"
 
-            case cess
-
             case rate
+
+            case cess
         }
 
         public init(cess: Double? = nil, effectiveDate: String, rate: Double, threshold: Double) {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.effectiveDate = effectiveDate
 
-            self.cess = cess
-
             self.rate = rate
+
+            self.cess = cess
         }
 
         required public init(from decoder: Decoder) throws {
@@ -111,6 +111,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
 
+            rate = try container.decode(Double.self, forKey: .rate)
+
             do {
                 cess = try container.decode(Double.self, forKey: .cess)
 
@@ -118,8 +120,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            rate = try container.decode(Double.self, forKey: .rate)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
 
-            try? container.encodeIfPresent(cess, forKey: .cess)
-
             try? container.encodeIfPresent(rate, forKey: .rate)
+
+            try? container.encodeIfPresent(cess, forKey: .cess)
         }
     }
 }

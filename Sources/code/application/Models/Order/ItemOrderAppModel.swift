@@ -7,13 +7,13 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class Item: Codable {
+        public var id: Double?
+
+        public var name: String?
+
         public var image: [String]?
 
         public var brand: ItemBrand?
-
-        public var id: Double?
-
-        public var size: String?
 
         public var sellerIdentifier: String?
 
@@ -21,16 +21,16 @@ public extension ApplicationClient.Order {
 
         public var slugKey: String?
 
-        public var name: String?
+        public var size: String?
 
         public enum CodingKeys: String, CodingKey {
+            case id
+
+            case name
+
             case image
 
             case brand
-
-            case id
-
-            case size
 
             case sellerIdentifier = "seller_identifier"
 
@@ -38,17 +38,17 @@ public extension ApplicationClient.Order {
 
             case slugKey = "slug_key"
 
-            case name
+            case size
         }
 
         public init(brand: ItemBrand? = nil, code: String? = nil, id: Double? = nil, image: [String]? = nil, name: String? = nil, sellerIdentifier: String? = nil, size: String? = nil, slugKey: String? = nil) {
+            self.id = id
+
+            self.name = name
+
             self.image = image
 
             self.brand = brand
-
-            self.id = id
-
-            self.size = size
 
             self.sellerIdentifier = sellerIdentifier
 
@@ -56,11 +56,27 @@ public extension ApplicationClient.Order {
 
             self.slugKey = slugKey
 
-            self.name = name
+            self.size = size
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                id = try container.decode(Double.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 image = try container.decode([String].self, forKey: .image)
@@ -72,22 +88,6 @@ public extension ApplicationClient.Order {
 
             do {
                 brand = try container.decode(ItemBrand.self, forKey: .brand)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                id = try container.decode(Double.self, forKey: .id)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                size = try container.decode(String.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,7 +119,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                size = try container.decode(String.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,13 +130,13 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(image, forKey: .image)
 
             try? container.encodeIfPresent(brand, forKey: .brand)
-
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
@@ -144,7 +144,7 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(slugKey, forKey: .slugKey)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(size, forKey: .size)
         }
     }
 }
