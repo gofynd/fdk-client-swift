@@ -16,6 +16,8 @@ public extension PlatformClient {
 
         public var sitemapEnabled: Bool?
 
+        public var cannonicalEnabled: Bool?
+
         public var customMetaTags: [CustomMetaTag]?
 
         public var details: Detail?
@@ -33,6 +35,8 @@ public extension PlatformClient {
 
             case sitemapEnabled = "sitemap_enabled"
 
+            case cannonicalEnabled = "cannonical_enabled"
+
             case customMetaTags = "custom_meta_tags"
 
             case details
@@ -42,7 +46,7 @@ public extension PlatformClient {
             case updatedAt = "updated_at"
         }
 
-        public init(app: String? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(app: String? = nil, cannonicalEnabled: Bool? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.app = app
 
             self.id = id
@@ -50,6 +54,8 @@ public extension PlatformClient {
             self.robotsTxt = robotsTxt
 
             self.sitemapEnabled = sitemapEnabled
+
+            self.cannonicalEnabled = cannonicalEnabled
 
             self.customMetaTags = customMetaTags
 
@@ -89,6 +95,14 @@ public extension PlatformClient {
 
             do {
                 sitemapEnabled = try container.decode(Bool.self, forKey: .sitemapEnabled)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                cannonicalEnabled = try container.decode(Bool.self, forKey: .cannonicalEnabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -138,6 +152,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(robotsTxt, forKey: .robotsTxt)
 
             try? container.encodeIfPresent(sitemapEnabled, forKey: .sitemapEnabled)
+
+            try? container.encodeIfPresent(cannonicalEnabled, forKey: .cannonicalEnabled)
 
             try? container.encodeIfPresent(customMetaTags, forKey: .customMetaTags)
 

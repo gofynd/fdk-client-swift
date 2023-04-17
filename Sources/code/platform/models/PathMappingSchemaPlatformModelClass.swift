@@ -20,7 +20,7 @@ public extension PlatformClient {
 
         public var createdAt: String?
 
-        public var source: TagSourceSchema?
+        public var source: PathSourceSchema?
 
         public enum CodingKeys: String, CodingKey {
             case application
@@ -38,7 +38,7 @@ public extension PlatformClient {
             case source = "__source"
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, redirectFrom: String? = nil, redirectTo: String? = nil, updatedAt: String? = nil, id: String? = nil, source: TagSourceSchema? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, redirectFrom: String? = nil, redirectTo: String? = nil, updatedAt: String? = nil, id: String? = nil, source: PathSourceSchema? = nil) {
             self.application = application
 
             self.id = id
@@ -106,7 +106,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                source = try container.decode(TagSourceSchema.self, forKey: .source)
+                source = try container.decode(PathSourceSchema.self, forKey: .source)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

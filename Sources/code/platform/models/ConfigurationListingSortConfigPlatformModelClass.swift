@@ -12,9 +12,9 @@ public extension PlatformClient {
 
         public var logo: String?
 
-        public var isActive: Bool
-
         public var key: String
+
+        public var isActive: Bool
 
         public var name: String?
 
@@ -23,9 +23,9 @@ public extension PlatformClient {
 
             case logo
 
-            case isActive = "is_active"
-
             case key
+
+            case isActive = "is_active"
 
             case name
         }
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             self.logo = logo
 
-            self.isActive = isActive
-
             self.key = key
+
+            self.isActive = isActive
 
             self.name = name
         }
@@ -55,9 +55,9 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
             key = try container.decode(String.self, forKey: .key)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             do {
                 name = try container.decode(String.self, forKey: .name)
@@ -75,9 +75,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

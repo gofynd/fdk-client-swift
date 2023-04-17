@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var logo: String?
 
-        public var isActive: Bool
-
         public var key: String
 
-        public var displayType: String
+        public var isActive: Bool
 
         public var name: String
+
+        public var displayType: String
 
         public var size: ProductSize
 
@@ -27,13 +27,13 @@ public extension PlatformClient {
 
             case logo
 
-            case isActive = "is_active"
-
             case key
 
-            case displayType = "display_type"
+            case isActive = "is_active"
 
             case name
+
+            case displayType = "display_type"
 
             case size
         }
@@ -43,13 +43,13 @@ public extension PlatformClient {
 
             self.logo = logo
 
-            self.isActive = isActive
-
             self.key = key
 
-            self.displayType = displayType
+            self.isActive = isActive
 
             self.name = name
+
+            self.displayType = displayType
 
             self.size = size
         }
@@ -67,13 +67,13 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
             key = try container.decode(String.self, forKey: .key)
 
-            displayType = try container.decode(String.self, forKey: .displayType)
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             name = try container.decode(String.self, forKey: .name)
+
+            displayType = try container.decode(String.self, forKey: .displayType)
 
             size = try container.decode(ProductSize.self, forKey: .size)
         }
@@ -85,13 +85,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(displayType, forKey: .displayType)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(displayType, forKey: .displayType)
 
             try? container.encodeIfPresent(size, forKey: .size)
         }

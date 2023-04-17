@@ -8,18 +8,18 @@ public extension PlatformClient {
      */
 
     class PaymentModes: Codable {
-        public var codes: [String]?
-
         public var networks: [String]?
+
+        public var codes: [String]?
 
         public var uses: PaymentAllowValue?
 
         public var types: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case codes
-
             case networks
+
+            case codes
 
             case uses
 
@@ -27,9 +27,9 @@ public extension PlatformClient {
         }
 
         public init(codes: [String]? = nil, networks: [String]? = nil, types: [String]? = nil, uses: PaymentAllowValue? = nil) {
-            self.codes = codes
-
             self.networks = networks
+
+            self.codes = codes
 
             self.uses = uses
 
@@ -40,7 +40,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                codes = try container.decode([String].self, forKey: .codes)
+                networks = try container.decode([String].self, forKey: .networks)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                networks = try container.decode([String].self, forKey: .networks)
+                codes = try container.decode([String].self, forKey: .codes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,9 +75,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(codes, forKey: .codes)
-
             try? container.encodeIfPresent(networks, forKey: .networks)
+
+            try? container.encodeIfPresent(codes, forKey: .codes)
 
             try? container.encodeIfPresent(uses, forKey: .uses)
 

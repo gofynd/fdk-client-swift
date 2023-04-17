@@ -10,26 +10,26 @@ public extension PlatformClient {
     class ApplicationDepartment: Codable {
         public var logo: String?
 
-        public var uid: Int
-
         public var isActive: Bool?
 
-        public var appId: String
-
         public var name: String?
+
+        public var uid: Int
+
+        public var appId: String
 
         public var customJson: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case logo
 
-            case uid
-
             case isActive = "is_active"
 
-            case appId = "app_id"
-
             case name
+
+            case uid
+
+            case appId = "app_id"
 
             case customJson = "_custom_json"
         }
@@ -37,13 +37,13 @@ public extension PlatformClient {
         public init(appId: String, isActive: Bool? = nil, logo: String? = nil, name: String? = nil, uid: Int, customJson: [String: Any]? = nil) {
             self.logo = logo
 
-            self.uid = uid
-
             self.isActive = isActive
 
-            self.appId = appId
-
             self.name = name
+
+            self.uid = uid
+
+            self.appId = appId
 
             self.customJson = customJson
         }
@@ -59,8 +59,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            uid = try container.decode(Int.self, forKey: .uid)
-
             do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
 
@@ -69,8 +67,6 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            appId = try container.decode(String.self, forKey: .appId)
-
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -78,6 +74,10 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            uid = try container.decode(Int.self, forKey: .uid)
+
+            appId = try container.decode(String.self, forKey: .appId)
 
             do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
@@ -93,13 +93,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
         }

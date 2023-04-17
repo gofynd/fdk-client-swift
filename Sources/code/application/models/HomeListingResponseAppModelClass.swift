@@ -9,24 +9,24 @@ public extension ApplicationClient {
     class HomeListingResponse: Codable {
         public var page: Page
 
-        public var items: [ProductListingDetail]?
-
         public var message: String?
+
+        public var items: [ProductListingDetail]?
 
         public enum CodingKeys: String, CodingKey {
             case page
 
-            case items
-
             case message
+
+            case items
         }
 
         public init(items: [ProductListingDetail]? = nil, message: String? = nil, page: Page) {
             self.page = page
 
-            self.items = items
-
             self.message = message
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,7 +35,7 @@ public extension ApplicationClient {
             page = try container.decode(Page.self, forKey: .page)
 
             do {
-                items = try container.decode([ProductListingDetail].self, forKey: .items)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                items = try container.decode([ProductListingDetail].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,9 +56,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

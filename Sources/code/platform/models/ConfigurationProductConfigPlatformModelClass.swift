@@ -12,13 +12,13 @@ public extension PlatformClient {
 
         public var logo: String?
 
-        public var isActive: Bool
-
         public var key: String
 
-        public var title: String?
+        public var isActive: Bool
 
         public var subtitle: String?
+
+        public var title: String?
 
         public var size: ProductSize?
 
@@ -27,13 +27,13 @@ public extension PlatformClient {
 
             case logo
 
-            case isActive = "is_active"
-
             case key
 
-            case title
+            case isActive = "is_active"
 
             case subtitle
+
+            case title
 
             case size
         }
@@ -43,13 +43,13 @@ public extension PlatformClient {
 
             self.logo = logo
 
-            self.isActive = isActive
-
             self.key = key
 
-            self.title = title
+            self.isActive = isActive
 
             self.subtitle = subtitle
+
+            self.title = title
 
             self.size = size
         }
@@ -67,12 +67,12 @@ public extension PlatformClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
             key = try container.decode(String.self, forKey: .key)
 
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
             do {
-                title = try container.decode(String.self, forKey: .title)
+                subtitle = try container.decode(String.self, forKey: .subtitle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,7 +80,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                subtitle = try container.decode(String.self, forKey: .subtitle)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,13 +103,13 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+
+            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(size, forKey: .size)
         }
