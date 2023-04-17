@@ -1,6 +1,7 @@
 
 import Foundation
-public extension PlatformClient {
+
+public extension PlatformClient.Lead {
     /*
          Enum: PriorityEnum
          Used By: Lead
@@ -61,6 +62,100 @@ public extension PlatformClient {
         case salesChannel = "sales_channel"
     }
 
+    /*
+         Enum: TicketIntegrationDetails
+         Used By: Lead
+     */
+    enum TicketIntegrationDetails: String, Codable {
+        case defaultCase = "default"
+
+        case freshdesk
+
+        case kapture
+    }
+}
+
+public extension PlatformClient.ApplicationClient.Lead {
+    /*
+         Enum: PriorityEnum
+         Used By: Lead
+     */
+    enum PriorityEnum: String, Codable {
+        case low
+
+        case medium
+
+        case high
+
+        case urgent
+    }
+
+    /*
+         Enum: HistoryTypeEnum
+         Used By: Lead
+     */
+    enum HistoryTypeEnum: String, Codable {
+        case rating
+
+        case log
+
+        case comment
+    }
+
+    /*
+         Enum: TicketAssetTypeEnum
+         Used By: Lead
+     */
+    enum TicketAssetTypeEnum: String, Codable {
+        case image
+
+        case video
+
+        case file
+
+        case youtube
+
+        case product
+
+        case collection
+
+        case brand
+
+        case shipment
+
+        case order
+    }
+
+    /*
+         Enum: TicketSourceEnum
+         Used By: Lead
+     */
+    enum TicketSourceEnum: String, Codable {
+        case platformPanel = "platform_panel"
+
+        case salesChannel = "sales_channel"
+    }
+
+    /*
+         Enum: TicketIntegrationDetails
+         Used By: Lead
+     */
+    enum TicketIntegrationDetails: String, Codable {
+        case defaultCase = "default"
+
+        case freshdesk
+
+        case kapture
+    }
+}
+
+public extension PlatformClient.ApplicationClient.Content {}
+
+public extension PlatformClient.Catalog {}
+
+public extension PlatformClient.ApplicationClient.Catalog {}
+
+public extension PlatformClient.Webhook {
     /*
          Enum: SubscriberStatus
          Used By: Webhook
