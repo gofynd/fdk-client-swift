@@ -7,9 +7,9 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class ProductBrand: Codable {
-        public var description: String?
-
         public var uid: Int?
+
+        public var description: String?
 
         public var action: ProductListingAction?
 
@@ -18,9 +18,9 @@ public extension ApplicationClient.Catalog {
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case description
-
             case uid
+
+            case description
 
             case action
 
@@ -30,9 +30,9 @@ public extension ApplicationClient.Catalog {
         }
 
         public init(action: ProductListingAction? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
-            self.description = description
-
             self.uid = uid
+
+            self.description = description
 
             self.action = action
 
@@ -45,7 +45,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +53,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,9 +88,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(action, forKey: .action)
 

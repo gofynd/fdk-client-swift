@@ -11,9 +11,9 @@ public extension ApplicationClient.Cart {
 
         public var discount: Double?
 
-        public var valid: Bool?
-
         public var code: String?
+
+        public var valid: Bool?
 
         public var title: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Cart {
 
             case discount
 
-            case valid
-
             case code
+
+            case valid
 
             case title
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Cart {
 
             self.discount = discount
 
-            self.valid = valid
-
             self.code = code
+
+            self.valid = valid
 
             self.title = title
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                valid = try container.decode(Bool.self, forKey: .valid)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                valid = try container.decode(Bool.self, forKey: .valid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(discount, forKey: .discount)
 
-            try? container.encodeIfPresent(valid, forKey: .valid)
-
             try? container.encode(code, forKey: .code)
+
+            try? container.encodeIfPresent(valid, forKey: .valid)
 
             try? container.encodeIfPresent(title, forKey: .title)
         }

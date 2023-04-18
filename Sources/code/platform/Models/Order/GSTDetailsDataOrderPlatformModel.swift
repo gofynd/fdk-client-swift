@@ -13,22 +13,22 @@ public extension PlatformClient.Order {
 
         public var brandCalculatedAmount: Double
 
-        public var gstinCode: String
+        public var valueOfGood: Double
 
         public var gstFee: Double
 
-        public var valueOfGood: Double
+        public var gstinCode: String
 
         public enum CodingKeys: String, CodingKey {
             case taxCollectedAtSource = "tax_collected_at_source"
 
             case brandCalculatedAmount = "brand_calculated_amount"
 
-            case gstinCode = "gstin_code"
+            case valueOfGood = "value_of_good"
 
             case gstFee = "gst_fee"
 
-            case valueOfGood = "value_of_good"
+            case gstinCode = "gstin_code"
         }
 
         public init(brandCalculatedAmount: Double, gstinCode: String, gstFee: Double, taxCollectedAtSource: Double, valueOfGood: Double) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Order {
 
             self.brandCalculatedAmount = brandCalculatedAmount
 
-            self.gstinCode = gstinCode
+            self.valueOfGood = valueOfGood
 
             self.gstFee = gstFee
 
-            self.valueOfGood = valueOfGood
+            self.gstinCode = gstinCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,11 +50,11 @@ public extension PlatformClient.Order {
 
             brandCalculatedAmount = try container.decode(Double.self, forKey: .brandCalculatedAmount)
 
-            gstinCode = try container.decode(String.self, forKey: .gstinCode)
+            valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
 
             gstFee = try container.decode(Double.self, forKey: .gstFee)
 
-            valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
+            gstinCode = try container.decode(String.self, forKey: .gstinCode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -64,11 +64,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
 
-            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
+            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
 
             try? container.encodeIfPresent(gstFee, forKey: .gstFee)
 
-            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
+            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
         }
     }
 }
@@ -84,22 +84,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var brandCalculatedAmount: Double
 
-        public var gstinCode: String
+        public var valueOfGood: Double
 
         public var gstFee: Double
 
-        public var valueOfGood: Double
+        public var gstinCode: String
 
         public enum CodingKeys: String, CodingKey {
             case taxCollectedAtSource = "tax_collected_at_source"
 
             case brandCalculatedAmount = "brand_calculated_amount"
 
-            case gstinCode = "gstin_code"
+            case valueOfGood = "value_of_good"
 
             case gstFee = "gst_fee"
 
-            case valueOfGood = "value_of_good"
+            case gstinCode = "gstin_code"
         }
 
         public init(brandCalculatedAmount: Double, gstinCode: String, gstFee: Double, taxCollectedAtSource: Double, valueOfGood: Double) {
@@ -107,11 +107,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.brandCalculatedAmount = brandCalculatedAmount
 
-            self.gstinCode = gstinCode
+            self.valueOfGood = valueOfGood
 
             self.gstFee = gstFee
 
-            self.valueOfGood = valueOfGood
+            self.gstinCode = gstinCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -121,11 +121,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             brandCalculatedAmount = try container.decode(Double.self, forKey: .brandCalculatedAmount)
 
-            gstinCode = try container.decode(String.self, forKey: .gstinCode)
+            valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
 
             gstFee = try container.decode(Double.self, forKey: .gstFee)
 
-            valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
+            gstinCode = try container.decode(String.self, forKey: .gstinCode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -135,11 +135,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
 
-            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
+            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
 
             try? container.encodeIfPresent(gstFee, forKey: .gstFee)
 
-            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
+            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
         }
     }
 }

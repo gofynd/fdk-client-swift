@@ -11,24 +11,24 @@ public extension PlatformClient.ApplicationClient.Cart {
     class UpdateCartShipmentItem: Codable {
         public var quantity: Int?
 
-        public var shipmentType: String
-
         public var articleUid: String
+
+        public var shipmentType: String
 
         public enum CodingKeys: String, CodingKey {
             case quantity
 
-            case shipmentType = "shipment_type"
-
             case articleUid = "article_uid"
+
+            case shipmentType = "shipment_type"
         }
 
         public init(articleUid: String, quantity: Int? = nil, shipmentType: String) {
             self.quantity = quantity
 
-            self.shipmentType = shipmentType
-
             self.articleUid = articleUid
+
+            self.shipmentType = shipmentType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,9 +42,9 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            shipmentType = try container.decode(String.self, forKey: .shipmentType)
-
             articleUid = try container.decode(String.self, forKey: .articleUid)
+
+            shipmentType = try container.decode(String.self, forKey: .shipmentType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
-
             try? container.encodeIfPresent(articleUid, forKey: .articleUid)
+
+            try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
         }
     }
 }
