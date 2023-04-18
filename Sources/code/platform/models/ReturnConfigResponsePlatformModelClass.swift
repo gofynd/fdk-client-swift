@@ -8,33 +8,33 @@ public extension PlatformClient {
      */
 
     class ReturnConfigResponse: Codable {
-        public var time: Int?
+        public var returnable: Bool?
 
         public var unit: String?
 
-        public var returnable: Bool?
+        public var time: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case time
+            case returnable
 
             case unit
 
-            case returnable
+            case time
         }
 
         public init(returnable: Bool? = nil, time: Int? = nil, unit: String? = nil) {
-            self.time = time
+            self.returnable = returnable
 
             self.unit = unit
 
-            self.returnable = returnable
+            self.time = time
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                time = try container.decode(Int.self, forKey: .time)
+                returnable = try container.decode(Bool.self, forKey: .returnable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                returnable = try container.decode(Bool.self, forKey: .returnable)
+                time = try container.decode(Int.self, forKey: .time)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,11 +61,11 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(time, forKey: .time)
+            try? container.encodeIfPresent(returnable, forKey: .returnable)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(returnable, forKey: .returnable)
+            try? container.encodeIfPresent(time, forKey: .time)
         }
     }
 }

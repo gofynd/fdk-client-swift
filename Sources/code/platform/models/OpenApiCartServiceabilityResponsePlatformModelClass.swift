@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class OpenApiCartServiceabilityResponse: Codable {
-        public var breakupValues: CartBreakup?
+        public var items: [CartProductInfo]?
 
         public var deliveryPromise: ShipmentPromise?
 
@@ -16,10 +16,10 @@ public extension PlatformClient {
 
         public var isValid: Bool?
 
-        public var items: [CartProductInfo]?
+        public var breakupValues: CartBreakup?
 
         public enum CodingKeys: String, CodingKey {
-            case breakupValues = "breakup_values"
+            case items
 
             case deliveryPromise = "delivery_promise"
 
@@ -27,11 +27,11 @@ public extension PlatformClient {
 
             case isValid = "is_valid"
 
-            case items
+            case breakupValues = "breakup_values"
         }
 
         public init(breakupValues: CartBreakup? = nil, deliveryPromise: ShipmentPromise? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, message: String? = nil) {
-            self.breakupValues = breakupValues
+            self.items = items
 
             self.deliveryPromise = deliveryPromise
 
@@ -39,14 +39,14 @@ public extension PlatformClient {
 
             self.isValid = isValid
 
-            self.items = items
+            self.breakupValues = breakupValues
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                breakupValues = try container.decode(CartBreakup.self, forKey: .breakupValues)
+                items = try container.decode([CartProductInfo].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                items = try container.decode([CartProductInfo].self, forKey: .items)
+                breakupValues = try container.decode(CartBreakup.self, forKey: .breakupValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
 
@@ -97,7 +97,7 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(isValid, forKey: .isValid)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
         }
     }
 }
