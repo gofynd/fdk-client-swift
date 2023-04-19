@@ -13,13 +13,13 @@ public extension ApplicationClient.Payment {
 
         public var addressline2: String?
 
-        public var landMark: String?
+        public var addressline1: String
 
-        public var pincode: String
+        public var landMark: String?
 
         public var state: String
 
-        public var addressline1: String
+        public var pincode: String
 
         public enum CodingKeys: String, CodingKey {
             case ownershipType = "ownership_type"
@@ -28,13 +28,13 @@ public extension ApplicationClient.Payment {
 
             case addressline2
 
-            case landMark = "land_mark"
+            case addressline1
 
-            case pincode
+            case landMark = "land_mark"
 
             case state
 
-            case addressline1
+            case pincode
         }
 
         public init(addressline1: String, addressline2: String? = nil, city: String, landMark: String? = nil, ownershipType: String? = nil, pincode: String, state: String) {
@@ -44,13 +44,13 @@ public extension ApplicationClient.Payment {
 
             self.addressline2 = addressline2
 
-            self.landMark = landMark
+            self.addressline1 = addressline1
 
-            self.pincode = pincode
+            self.landMark = landMark
 
             self.state = state
 
-            self.addressline1 = addressline1
+            self.pincode = pincode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -74,6 +74,8 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            addressline1 = try container.decode(String.self, forKey: .addressline1)
+
             do {
                 landMark = try container.decode(String.self, forKey: .landMark)
 
@@ -82,11 +84,9 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            pincode = try container.decode(String.self, forKey: .pincode)
-
             state = try container.decode(String.self, forKey: .state)
 
-            addressline1 = try container.decode(String.self, forKey: .addressline1)
+            pincode = try container.decode(String.self, forKey: .pincode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -98,13 +98,13 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(addressline2, forKey: .addressline2)
 
-            try? container.encode(landMark, forKey: .landMark)
+            try? container.encodeIfPresent(addressline1, forKey: .addressline1)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encode(landMark, forKey: .landMark)
 
             try? container.encodeIfPresent(state, forKey: .state)
 
-            try? container.encodeIfPresent(addressline1, forKey: .addressline1)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
         }
     }
 }

@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class LocationDetails: Codable {
         public var fulfillmentId: Int
 
-        public var fulfillmentType: String
-
         public var articles: [ArticleDetails1]
+
+        public var fulfillmentType: String
 
         public enum CodingKeys: String, CodingKey {
             case fulfillmentId = "fulfillment_id"
 
-            case fulfillmentType = "fulfillment_type"
-
             case articles
+
+            case fulfillmentType = "fulfillment_type"
         }
 
         public init(articles: [ArticleDetails1], fulfillmentId: Int, fulfillmentType: String) {
             self.fulfillmentId = fulfillmentId
 
-            self.fulfillmentType = fulfillmentType
-
             self.articles = articles
+
+            self.fulfillmentType = fulfillmentType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
 
-            fulfillmentType = try container.decode(String.self, forKey: .fulfillmentType)
-
             articles = try container.decode([ArticleDetails1].self, forKey: .articles)
+
+            fulfillmentType = try container.decode(String.self, forKey: .fulfillmentType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
 
-            try? container.encodeIfPresent(fulfillmentType, forKey: .fulfillmentType)
-
             try? container.encodeIfPresent(articles, forKey: .articles)
+
+            try? container.encodeIfPresent(fulfillmentType, forKey: .fulfillmentType)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class LocationDetails: Codable {
         public var fulfillmentId: Int
 
-        public var fulfillmentType: String
-
         public var articles: [ArticleDetails1]
+
+        public var fulfillmentType: String
 
         public enum CodingKeys: String, CodingKey {
             case fulfillmentId = "fulfillment_id"
 
-            case fulfillmentType = "fulfillment_type"
-
             case articles
+
+            case fulfillmentType = "fulfillment_type"
         }
 
         public init(articles: [ArticleDetails1], fulfillmentId: Int, fulfillmentType: String) {
             self.fulfillmentId = fulfillmentId
 
-            self.fulfillmentType = fulfillmentType
-
             self.articles = articles
+
+            self.fulfillmentType = fulfillmentType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
 
-            fulfillmentType = try container.decode(String.self, forKey: .fulfillmentType)
-
             articles = try container.decode([ArticleDetails1].self, forKey: .articles)
+
+            fulfillmentType = try container.decode(String.self, forKey: .fulfillmentType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
 
-            try? container.encodeIfPresent(fulfillmentType, forKey: .fulfillmentType)
-
             try? container.encodeIfPresent(articles, forKey: .articles)
+
+            try? container.encodeIfPresent(fulfillmentType, forKey: .fulfillmentType)
         }
     }
 }

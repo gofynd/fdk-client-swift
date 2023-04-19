@@ -9,30 +9,30 @@ public extension ApplicationClient.Payment {
     class CustomerOnboardingRequest: Codable {
         public var mcc: String?
 
+        public var businessInfo: BusinessDetails?
+
         public var source: String
 
         public var device: DeviceDetails?
 
-        public var aggregator: String
-
         public var marketplaceInfo: MarketplaceInfo?
 
-        public var businessInfo: BusinessDetails?
+        public var aggregator: String
 
         public var personalInfo: UserPersonalInfoInDetails
 
         public enum CodingKeys: String, CodingKey {
             case mcc
 
+            case businessInfo = "business_info"
+
             case source
 
             case device
 
-            case aggregator
-
             case marketplaceInfo = "marketplace_info"
 
-            case businessInfo = "business_info"
+            case aggregator
 
             case personalInfo = "personal_info"
         }
@@ -40,15 +40,15 @@ public extension ApplicationClient.Payment {
         public init(aggregator: String, businessInfo: BusinessDetails? = nil, device: DeviceDetails? = nil, marketplaceInfo: MarketplaceInfo? = nil, mcc: String? = nil, personalInfo: UserPersonalInfoInDetails, source: String) {
             self.mcc = mcc
 
+            self.businessInfo = businessInfo
+
             self.source = source
 
             self.device = device
 
-            self.aggregator = aggregator
-
             self.marketplaceInfo = marketplaceInfo
 
-            self.businessInfo = businessInfo
+            self.aggregator = aggregator
 
             self.personalInfo = personalInfo
         }
@@ -58,6 +58,14 @@ public extension ApplicationClient.Payment {
 
             do {
                 mcc = try container.decode(String.self, forKey: .mcc)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                businessInfo = try container.decode(BusinessDetails.self, forKey: .businessInfo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,8 +82,6 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
             do {
                 marketplaceInfo = try container.decode(MarketplaceInfo.self, forKey: .marketplaceInfo)
 
@@ -84,13 +90,7 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                businessInfo = try container.decode(BusinessDetails.self, forKey: .businessInfo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             personalInfo = try container.decode(UserPersonalInfoInDetails.self, forKey: .personalInfo)
         }
@@ -100,15 +100,15 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(mcc, forKey: .mcc)
 
+            try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
+
             try? container.encodeIfPresent(source, forKey: .source)
 
             try? container.encodeIfPresent(device, forKey: .device)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
             try? container.encodeIfPresent(marketplaceInfo, forKey: .marketplaceInfo)
 
-            try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(personalInfo, forKey: .personalInfo)
         }

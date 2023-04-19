@@ -9,11 +9,11 @@ public extension PlatformClient.Catalog {
      */
 
     class ConfigurationListingFilterValue: Codable {
-        public var mapValues: [[String: Any]]?
-
         public var condition: String?
 
         public var value: String?
+
+        public var mapValues: [[String: Any]]?
 
         public var bucketPoints: [ConfigurationBucketPoints]?
 
@@ -22,11 +22,11 @@ public extension PlatformClient.Catalog {
         public var sort: String?
 
         public enum CodingKeys: String, CodingKey {
-            case mapValues = "map_values"
-
             case condition
 
             case value
+
+            case mapValues = "map_values"
 
             case bucketPoints = "bucket_points"
 
@@ -36,11 +36,11 @@ public extension PlatformClient.Catalog {
         }
 
         public init(bucketPoints: [ConfigurationBucketPoints]? = nil, condition: String? = nil, map: [String: Any]? = nil, mapValues: [[String: Any]]? = nil, sort: String? = nil, value: String? = nil) {
-            self.mapValues = mapValues
-
             self.condition = condition
 
             self.value = value
+
+            self.mapValues = mapValues
 
             self.bucketPoints = bucketPoints
 
@@ -53,14 +53,6 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                mapValues = try container.decode([[String: Any]].self, forKey: .mapValues)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 condition = try container.decode(String.self, forKey: .condition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -70,6 +62,14 @@ public extension PlatformClient.Catalog {
 
             do {
                 value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                mapValues = try container.decode([[String: Any]].self, forKey: .mapValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,11 +104,11 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(mapValues, forKey: .mapValues)
-
             try? container.encodeIfPresent(condition, forKey: .condition)
 
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(mapValues, forKey: .mapValues)
 
             try? container.encodeIfPresent(bucketPoints, forKey: .bucketPoints)
 
@@ -126,11 +126,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ConfigurationListingFilterValue: Codable {
-        public var mapValues: [[String: Any]]?
-
         public var condition: String?
 
         public var value: String?
+
+        public var mapValues: [[String: Any]]?
 
         public var bucketPoints: [ConfigurationBucketPoints]?
 
@@ -139,11 +139,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var sort: String?
 
         public enum CodingKeys: String, CodingKey {
-            case mapValues = "map_values"
-
             case condition
 
             case value
+
+            case mapValues = "map_values"
 
             case bucketPoints = "bucket_points"
 
@@ -153,11 +153,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(bucketPoints: [ConfigurationBucketPoints]? = nil, condition: String? = nil, map: [String: Any]? = nil, mapValues: [[String: Any]]? = nil, sort: String? = nil, value: String? = nil) {
-            self.mapValues = mapValues
-
             self.condition = condition
 
             self.value = value
+
+            self.mapValues = mapValues
 
             self.bucketPoints = bucketPoints
 
@@ -170,14 +170,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                mapValues = try container.decode([[String: Any]].self, forKey: .mapValues)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 condition = try container.decode(String.self, forKey: .condition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -187,6 +179,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                mapValues = try container.decode([[String: Any]].self, forKey: .mapValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -221,11 +221,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(mapValues, forKey: .mapValues)
-
             try? container.encodeIfPresent(condition, forKey: .condition)
 
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(mapValues, forKey: .mapValues)
 
             try? container.encodeIfPresent(bucketPoints, forKey: .bucketPoints)
 

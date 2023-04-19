@@ -15,9 +15,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var currencySymbol: String?
 
-        public var display: String?
-
         public var message: [String]?
+
+        public var display: String?
 
         public var key: String?
 
@@ -28,9 +28,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case currencySymbol = "currency_symbol"
 
-            case display
-
             case message
+
+            case display
 
             case key
         }
@@ -42,9 +42,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.currencySymbol = currencySymbol
 
-            self.display = display
-
             self.message = message
+
+            self.display = display
 
             self.key = key
         }
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                message = try container.decode([String].self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                message = try container.decode([String].self, forKey: .message)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,9 +110,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(key, forKey: .key)
         }
