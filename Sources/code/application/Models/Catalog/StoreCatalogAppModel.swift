@@ -11,26 +11,30 @@ public extension ApplicationClient.Catalog {
 
         public var name: String?
 
+        public var latLong: LatLong?
+
+        public var storeCode: String?
+
         public var state: String?
 
         public var country: String?
 
         public var city: String?
 
-        public var latLong: LatLong?
+        public var pincode: Int?
 
         public var uid: Int?
 
-        public var pincode: Int?
-
         public var address: String?
-
-        public var storeCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case storeEmail = "store_email"
 
             case name
+
+            case latLong = "lat_long"
+
+            case storeCode = "store_code"
 
             case state
 
@@ -38,15 +42,11 @@ public extension ApplicationClient.Catalog {
 
             case city
 
-            case latLong = "lat_long"
+            case pincode
 
             case uid
 
-            case pincode
-
             case address
-
-            case storeCode = "store_code"
         }
 
         public init(address: String? = nil, city: String? = nil, country: String? = nil, latLong: LatLong? = nil, name: String? = nil, pincode: Int? = nil, state: String? = nil, storeCode: String? = nil, storeEmail: String? = nil, uid: Int? = nil) {
@@ -54,21 +54,21 @@ public extension ApplicationClient.Catalog {
 
             self.name = name
 
+            self.latLong = latLong
+
+            self.storeCode = storeCode
+
             self.state = state
 
             self.country = country
 
             self.city = city
 
-            self.latLong = latLong
+            self.pincode = pincode
 
             self.uid = uid
 
-            self.pincode = pincode
-
             self.address = address
-
-            self.storeCode = storeCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -84,6 +84,22 @@ public extension ApplicationClient.Catalog {
 
             do {
                 name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                latLong = try container.decode(LatLong.self, forKey: .latLong)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                storeCode = try container.decode(String.self, forKey: .storeCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -115,7 +131,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                latLong = try container.decode(LatLong.self, forKey: .latLong)
+                pincode = try container.decode(Int.self, forKey: .pincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,23 +147,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                pincode = try container.decode(Int.self, forKey: .pincode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 address = try container.decode(String.self, forKey: .address)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                storeCode = try container.decode(String.self, forKey: .storeCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -162,21 +162,21 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
+            try? container.encodeIfPresent(latLong, forKey: .latLong)
+
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+
             try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(country, forKey: .country)
 
             try? container.encodeIfPresent(city, forKey: .city)
 
-            try? container.encodeIfPresent(latLong, forKey: .latLong)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
             try? container.encodeIfPresent(address, forKey: .address)
-
-            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
         }
     }
 }

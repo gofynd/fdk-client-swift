@@ -11,30 +11,30 @@ public extension PlatformClient.Order {
     class BulkListingResponse: Codable {
         public var error: String?
 
+        public var data: [bulkListingData]?
+
         public var success: Bool?
 
         public var page: BulkListingPage?
 
-        public var data: [bulkListingData]?
-
         public enum CodingKeys: String, CodingKey {
             case error
+
+            case data
 
             case success
 
             case page
-
-            case data
         }
 
         public init(data: [bulkListingData]? = nil, error: String? = nil, page: BulkListingPage? = nil, success: Bool? = nil) {
             self.error = error
 
+            self.data = data
+
             self.success = success
 
             self.page = page
-
-            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,6 +42,14 @@ public extension PlatformClient.Order {
 
             do {
                 error = try container.decode(String.self, forKey: .error)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                data = try container.decode([bulkListingData].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,14 +71,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                data = try container.decode([bulkListingData].self, forKey: .data)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -78,11 +78,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
+            try? container.encodeIfPresent(data, forKey: .data)
+
             try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(page, forKey: .page)
-
-            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
@@ -96,30 +96,30 @@ public extension PlatformClient.ApplicationClient.Order {
     class BulkListingResponse: Codable {
         public var error: String?
 
+        public var data: [bulkListingData]?
+
         public var success: Bool?
 
         public var page: BulkListingPage?
 
-        public var data: [bulkListingData]?
-
         public enum CodingKeys: String, CodingKey {
             case error
+
+            case data
 
             case success
 
             case page
-
-            case data
         }
 
         public init(data: [bulkListingData]? = nil, error: String? = nil, page: BulkListingPage? = nil, success: Bool? = nil) {
             self.error = error
 
+            self.data = data
+
             self.success = success
 
             self.page = page
-
-            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -127,6 +127,14 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 error = try container.decode(String.self, forKey: .error)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                data = try container.decode([bulkListingData].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,14 +156,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                data = try container.decode([bulkListingData].self, forKey: .data)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -163,11 +163,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
+            try? container.encodeIfPresent(data, forKey: .data)
+
             try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(page, forKey: .page)
-
-            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
