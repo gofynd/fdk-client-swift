@@ -9,18 +9,18 @@ public extension ApplicationClient.Catalog {
     class Price: Codable {
         public var currencyCode: String?
 
-        public var min: Double?
-
         public var currencySymbol: String?
+
+        public var min: Double?
 
         public var max: Double?
 
         public enum CodingKeys: String, CodingKey {
             case currencyCode = "currency_code"
 
-            case min
-
             case currencySymbol = "currency_symbol"
+
+            case min
 
             case max
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Catalog {
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
             self.currencyCode = currencyCode
 
-            self.min = min
-
             self.currencySymbol = currencySymbol
+
+            self.min = min
 
             self.max = max
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+                min = try container.decode(Double.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
-            try? container.encodeIfPresent(min, forKey: .min)
-
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+
+            try? container.encodeIfPresent(min, forKey: .min)
 
             try? container.encodeIfPresent(max, forKey: .max)
         }

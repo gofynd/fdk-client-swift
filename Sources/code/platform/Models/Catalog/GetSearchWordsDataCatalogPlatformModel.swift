@@ -15,11 +15,11 @@ public extension PlatformClient.Catalog {
 
         public var isActive: Bool?
 
-        public var result: [String: Any]?
+        public var customJson: [String: Any]?
 
         public var uid: String?
 
-        public var customJson: [String: Any]?
+        public var result: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case appId = "app_id"
@@ -28,11 +28,11 @@ public extension PlatformClient.Catalog {
 
             case isActive = "is_active"
 
-            case result
+            case customJson = "_custom_json"
 
             case uid
 
-            case customJson = "_custom_json"
+            case result
         }
 
         public init(appId: String? = nil, isActive: Bool? = nil, result: [String: Any]? = nil, uid: String? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
@@ -42,11 +42,11 @@ public extension PlatformClient.Catalog {
 
             self.isActive = isActive
 
-            self.result = result
+            self.customJson = customJson
 
             self.uid = uid
 
-            self.customJson = customJson
+            self.result = result
         }
 
         required public init(from decoder: Decoder) throws {
@@ -77,7 +77,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                result = try container.decode([String: Any].self, forKey: .result)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                result = try container.decode([String: Any].self, forKey: .result)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,11 +110,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(result, forKey: .result)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(result, forKey: .result)
         }
     }
 }
@@ -132,11 +132,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var isActive: Bool?
 
-        public var result: [String: Any]?
+        public var customJson: [String: Any]?
 
         public var uid: String?
 
-        public var customJson: [String: Any]?
+        public var result: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case appId = "app_id"
@@ -145,11 +145,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case isActive = "is_active"
 
-            case result
+            case customJson = "_custom_json"
 
             case uid
 
-            case customJson = "_custom_json"
+            case result
         }
 
         public init(appId: String? = nil, isActive: Bool? = nil, result: [String: Any]? = nil, uid: String? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
@@ -159,11 +159,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.isActive = isActive
 
-            self.result = result
+            self.customJson = customJson
 
             self.uid = uid
 
-            self.customJson = customJson
+            self.result = result
         }
 
         required public init(from decoder: Decoder) throws {
@@ -194,7 +194,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                result = try container.decode([String: Any].self, forKey: .result)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                result = try container.decode([String: Any].self, forKey: .result)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -227,11 +227,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(result, forKey: .result)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(result, forKey: .result)
         }
     }
 }

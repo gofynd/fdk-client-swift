@@ -13,38 +13,38 @@ public extension PlatformClient.Order {
 
         public var mobile: String?
 
-        public var avisUserId: String?
-
-        public var gender: String?
-
-        public var lastName: String?
-
-        public var email: String?
-
-        public var isAnonymousUser: Bool?
+        public var name: String?
 
         public var uid: Int?
 
-        public var name: String?
+        public var isAnonymousUser: Bool?
+
+        public var email: String?
+
+        public var lastName: String?
+
+        public var avisUserId: String?
+
+        public var gender: String?
 
         public enum CodingKeys: String, CodingKey {
             case firstName = "first_name"
 
             case mobile
 
-            case avisUserId = "avis_user_id"
-
-            case gender
-
-            case lastName = "last_name"
-
-            case email
-
-            case isAnonymousUser = "is_anonymous_user"
+            case name
 
             case uid
 
-            case name
+            case isAnonymousUser = "is_anonymous_user"
+
+            case email
+
+            case lastName = "last_name"
+
+            case avisUserId = "avis_user_id"
+
+            case gender
         }
 
         public init(avisUserId: String? = nil, email: String? = nil, firstName: String? = nil, gender: String? = nil, isAnonymousUser: Bool? = nil, lastName: String? = nil, mobile: String? = nil, name: String? = nil, uid: Int? = nil) {
@@ -52,19 +52,19 @@ public extension PlatformClient.Order {
 
             self.mobile = mobile
 
-            self.avisUserId = avisUserId
-
-            self.gender = gender
-
-            self.lastName = lastName
-
-            self.email = email
-
-            self.isAnonymousUser = isAnonymousUser
+            self.name = name
 
             self.uid = uid
 
-            self.name = name
+            self.isAnonymousUser = isAnonymousUser
+
+            self.email = email
+
+            self.lastName = lastName
+
+            self.avisUserId = avisUserId
+
+            self.gender = gender
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,39 +87,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                avisUserId = try container.decode(String.self, forKey: .avisUserId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                gender = try container.decode(String.self, forKey: .gender)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                lastName = try container.decode(String.self, forKey: .lastName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                email = try container.decode(String.self, forKey: .email)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isAnonymousUser = try container.decode(Bool.self, forKey: .isAnonymousUser)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -135,7 +103,39 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                isAnonymousUser = try container.decode(Bool.self, forKey: .isAnonymousUser)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                email = try container.decode(String.self, forKey: .email)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                lastName = try container.decode(String.self, forKey: .lastName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                avisUserId = try container.decode(String.self, forKey: .avisUserId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                gender = try container.decode(String.self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,19 +150,19 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encodeIfPresent(avisUserId, forKey: .avisUserId)
-
-            try? container.encodeIfPresent(gender, forKey: .gender)
-
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
-
-            try? container.encodeIfPresent(email, forKey: .email)
-
-            try? container.encodeIfPresent(isAnonymousUser, forKey: .isAnonymousUser)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(isAnonymousUser, forKey: .isAnonymousUser)
+
+            try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
+
+            try? container.encodeIfPresent(avisUserId, forKey: .avisUserId)
+
+            try? container.encodeIfPresent(gender, forKey: .gender)
         }
     }
 }
@@ -178,38 +178,38 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var mobile: String?
 
-        public var avisUserId: String?
-
-        public var gender: String?
-
-        public var lastName: String?
-
-        public var email: String?
-
-        public var isAnonymousUser: Bool?
+        public var name: String?
 
         public var uid: Int?
 
-        public var name: String?
+        public var isAnonymousUser: Bool?
+
+        public var email: String?
+
+        public var lastName: String?
+
+        public var avisUserId: String?
+
+        public var gender: String?
 
         public enum CodingKeys: String, CodingKey {
             case firstName = "first_name"
 
             case mobile
 
-            case avisUserId = "avis_user_id"
-
-            case gender
-
-            case lastName = "last_name"
-
-            case email
-
-            case isAnonymousUser = "is_anonymous_user"
+            case name
 
             case uid
 
-            case name
+            case isAnonymousUser = "is_anonymous_user"
+
+            case email
+
+            case lastName = "last_name"
+
+            case avisUserId = "avis_user_id"
+
+            case gender
         }
 
         public init(avisUserId: String? = nil, email: String? = nil, firstName: String? = nil, gender: String? = nil, isAnonymousUser: Bool? = nil, lastName: String? = nil, mobile: String? = nil, name: String? = nil, uid: Int? = nil) {
@@ -217,19 +217,19 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.mobile = mobile
 
-            self.avisUserId = avisUserId
-
-            self.gender = gender
-
-            self.lastName = lastName
-
-            self.email = email
-
-            self.isAnonymousUser = isAnonymousUser
+            self.name = name
 
             self.uid = uid
 
-            self.name = name
+            self.isAnonymousUser = isAnonymousUser
+
+            self.email = email
+
+            self.lastName = lastName
+
+            self.avisUserId = avisUserId
+
+            self.gender = gender
         }
 
         required public init(from decoder: Decoder) throws {
@@ -252,39 +252,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                avisUserId = try container.decode(String.self, forKey: .avisUserId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                gender = try container.decode(String.self, forKey: .gender)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                lastName = try container.decode(String.self, forKey: .lastName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                email = try container.decode(String.self, forKey: .email)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isAnonymousUser = try container.decode(Bool.self, forKey: .isAnonymousUser)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -300,7 +268,39 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                isAnonymousUser = try container.decode(Bool.self, forKey: .isAnonymousUser)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                email = try container.decode(String.self, forKey: .email)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                lastName = try container.decode(String.self, forKey: .lastName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                avisUserId = try container.decode(String.self, forKey: .avisUserId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                gender = try container.decode(String.self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -315,19 +315,19 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encodeIfPresent(avisUserId, forKey: .avisUserId)
-
-            try? container.encodeIfPresent(gender, forKey: .gender)
-
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
-
-            try? container.encodeIfPresent(email, forKey: .email)
-
-            try? container.encodeIfPresent(isAnonymousUser, forKey: .isAnonymousUser)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(isAnonymousUser, forKey: .isAnonymousUser)
+
+            try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
+
+            try? container.encodeIfPresent(avisUserId, forKey: .avisUserId)
+
+            try? container.encodeIfPresent(gender, forKey: .gender)
         }
     }
 }
