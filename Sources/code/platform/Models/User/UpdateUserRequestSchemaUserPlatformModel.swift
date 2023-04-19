@@ -19,6 +19,10 @@ public extension PlatformClient.ApplicationClient.User {
 
         public var meta: [String: Any]?
 
+        public var phoneNumbers: [UserPhoneNumbers]?
+
+        public var emails: [UserEmails]?
+
         public enum CodingKeys: String, CodingKey {
             case firstName = "first_name"
 
@@ -29,9 +33,13 @@ public extension PlatformClient.ApplicationClient.User {
             case externalId = "external_id"
 
             case meta
+
+            case phoneNumbers = "phone_numbers"
+
+            case emails
         }
 
-        public init(externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil) {
+        public init(emails: [UserEmails]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [UserPhoneNumbers]? = nil) {
             self.firstName = firstName
 
             self.lastName = lastName
@@ -41,6 +49,10 @@ public extension PlatformClient.ApplicationClient.User {
             self.externalId = externalId
 
             self.meta = meta
+
+            self.phoneNumbers = phoneNumbers
+
+            self.emails = emails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -85,6 +97,22 @@ public extension PlatformClient.ApplicationClient.User {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                phoneNumbers = try container.decode([UserPhoneNumbers].self, forKey: .phoneNumbers)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                emails = try container.decode([UserEmails].self, forKey: .emails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -99,6 +127,10 @@ public extension PlatformClient.ApplicationClient.User {
             try? container.encodeIfPresent(externalId, forKey: .externalId)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(phoneNumbers, forKey: .phoneNumbers)
+
+            try? container.encodeIfPresent(emails, forKey: .emails)
         }
     }
 }

@@ -9,6 +9,8 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class PromotionSchedule: Codable {
+        public var start: String
+
         public var duration: Int?
 
         public var end: String?
@@ -17,11 +19,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var cron: String?
 
-        public var start: String
-
         public var published: Bool
 
         public enum CodingKeys: String, CodingKey {
+            case start
+
             case duration
 
             case end
@@ -30,12 +32,12 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case cron
 
-            case start
-
             case published
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, published: Bool, start: String) {
+            self.start = start
+
             self.duration = duration
 
             self.end = end
@@ -44,13 +46,13 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.cron = cron
 
-            self.start = start
-
             self.published = published
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            start = try container.decode(String.self, forKey: .start)
 
             do {
                 duration = try container.decode(Int.self, forKey: .duration)
@@ -84,13 +86,13 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            start = try container.decode(String.self, forKey: .start)
-
             published = try container.decode(Bool.self, forKey: .published)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encode(duration, forKey: .duration)
 
@@ -99,8 +101,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
 
             try? container.encode(cron, forKey: .cron)
-
-            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encodeIfPresent(published, forKey: .published)
         }
