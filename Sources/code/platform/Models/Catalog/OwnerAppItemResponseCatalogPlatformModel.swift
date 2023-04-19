@@ -9,7 +9,7 @@ public extension PlatformClient.Catalog {
      */
 
     class OwnerAppItemResponse: Codable {
-        public var isGift: Bool?
+        public var seo: SEOData?
 
         public var moq: MOQData?
 
@@ -17,10 +17,10 @@ public extension PlatformClient.Catalog {
 
         public var altText: [String: Any]?
 
-        public var seo: SEOData?
+        public var isGift: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case isGift = "is_gift"
+            case seo
 
             case moq
 
@@ -28,11 +28,11 @@ public extension PlatformClient.Catalog {
 
             case altText = "alt_text"
 
-            case seo
+            case isGift = "is_gift"
         }
 
         public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: MOQData? = nil, seo: SEOData? = nil) {
-            self.isGift = isGift
+            self.seo = seo
 
             self.moq = moq
 
@@ -40,14 +40,14 @@ public extension PlatformClient.Catalog {
 
             self.altText = altText
 
-            self.seo = seo
+            self.isGift = isGift
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isGift = try container.decode(Bool.self, forKey: .isGift)
+                seo = try container.decode(SEOData.self, forKey: .seo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                seo = try container.decode(SEOData.self, forKey: .seo)
+                isGift = try container.decode(Bool.self, forKey: .isGift)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isGift, forKey: .isGift)
+            try? container.encodeIfPresent(seo, forKey: .seo)
 
             try? container.encodeIfPresent(moq, forKey: .moq)
 
@@ -98,7 +98,7 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(altText, forKey: .altText)
 
-            try? container.encodeIfPresent(seo, forKey: .seo)
+            try? container.encodeIfPresent(isGift, forKey: .isGift)
         }
     }
 }
@@ -110,7 +110,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class OwnerAppItemResponse: Codable {
-        public var isGift: Bool?
+        public var seo: SEOData?
 
         public var moq: MOQData?
 
@@ -118,10 +118,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var altText: [String: Any]?
 
-        public var seo: SEOData?
+        public var isGift: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case isGift = "is_gift"
+            case seo
 
             case moq
 
@@ -129,11 +129,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case altText = "alt_text"
 
-            case seo
+            case isGift = "is_gift"
         }
 
         public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: MOQData? = nil, seo: SEOData? = nil) {
-            self.isGift = isGift
+            self.seo = seo
 
             self.moq = moq
 
@@ -141,14 +141,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.altText = altText
 
-            self.seo = seo
+            self.isGift = isGift
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isGift = try container.decode(Bool.self, forKey: .isGift)
+                seo = try container.decode(SEOData.self, forKey: .seo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                seo = try container.decode(SEOData.self, forKey: .seo)
+                isGift = try container.decode(Bool.self, forKey: .isGift)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,7 +191,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isGift, forKey: .isGift)
+            try? container.encodeIfPresent(seo, forKey: .seo)
 
             try? container.encodeIfPresent(moq, forKey: .moq)
 
@@ -199,7 +199,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(altText, forKey: .altText)
 
-            try? container.encodeIfPresent(seo, forKey: .seo)
+            try? container.encodeIfPresent(isGift, forKey: .isGift)
         }
     }
 }

@@ -11,24 +11,24 @@ public extension PlatformClient.Serviceability {
     class ServiceabilityrErrorResponse: Codable {
         public var value: String
 
-        public var message: String
-
         public var type: String
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case message
-
             case type
+
+            case message
         }
 
         public init(message: String, type: String, value: String) {
             self.value = value
 
-            self.message = message
-
             self.type = type
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Serviceability {
 
             value = try container.decode(String.self, forKey: .value)
 
-            message = try container.decode(String.self, forKey: .message)
-
             type = try container.decode(String.self, forKey: .type)
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ServiceabilityrErrorResponse: Codable {
         public var value: String
 
-        public var message: String
-
         public var type: String
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case message
-
             case type
+
+            case message
         }
 
         public init(message: String, type: String, value: String) {
             self.value = value
 
-            self.message = message
-
             self.type = type
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             value = try container.decode(String.self, forKey: .value)
 
-            message = try container.decode(String.self, forKey: .message)
-
             type = try container.decode(String.self, forKey: .type)
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

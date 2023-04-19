@@ -11,18 +11,18 @@ public extension PlatformClient.Catalog {
     class UserDetail: Codable {
         public var userId: String
 
-        public var contact: String?
-
         public var superUser: Bool?
+
+        public var contact: String?
 
         public var username: String
 
         public enum CodingKeys: String, CodingKey {
             case userId = "user_id"
 
-            case contact
-
             case superUser = "super_user"
+
+            case contact
 
             case username
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
         public init(contact: String? = nil, superUser: Bool? = nil, username: String, userId: String) {
             self.userId = userId
 
-            self.contact = contact
-
             self.superUser = superUser
+
+            self.contact = contact
 
             self.username = username
         }
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             userId = try container.decode(String.self, forKey: .userId)
 
             do {
-                contact = try container.decode(String.self, forKey: .contact)
+                superUser = try container.decode(Bool.self, forKey: .superUser)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                superUser = try container.decode(Bool.self, forKey: .superUser)
+                contact = try container.decode(String.self, forKey: .contact)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -66,9 +66,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(contact, forKey: .contact)
-
             try? container.encodeIfPresent(superUser, forKey: .superUser)
+
+            try? container.encodeIfPresent(contact, forKey: .contact)
 
             try? container.encodeIfPresent(username, forKey: .username)
         }
@@ -84,18 +84,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class UserDetail: Codable {
         public var userId: String
 
-        public var contact: String?
-
         public var superUser: Bool?
+
+        public var contact: String?
 
         public var username: String
 
         public enum CodingKeys: String, CodingKey {
             case userId = "user_id"
 
-            case contact
-
             case superUser = "super_user"
+
+            case contact
 
             case username
         }
@@ -103,9 +103,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(contact: String? = nil, superUser: Bool? = nil, username: String, userId: String) {
             self.userId = userId
 
-            self.contact = contact
-
             self.superUser = superUser
+
+            self.contact = contact
 
             self.username = username
         }
@@ -116,7 +116,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             userId = try container.decode(String.self, forKey: .userId)
 
             do {
-                contact = try container.decode(String.self, forKey: .contact)
+                superUser = try container.decode(Bool.self, forKey: .superUser)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,7 +124,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                superUser = try container.decode(Bool.self, forKey: .superUser)
+                contact = try container.decode(String.self, forKey: .contact)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,9 +139,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(contact, forKey: .contact)
-
             try? container.encodeIfPresent(superUser, forKey: .superUser)
+
+            try? container.encodeIfPresent(contact, forKey: .contact)
 
             try? container.encodeIfPresent(username, forKey: .username)
         }
