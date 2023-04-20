@@ -15,11 +15,11 @@ public extension PlatformClient.Payment {
 
         public var aggregator: String
 
-        public var users: [String: Any]
+        public var uniqueExternalId: String
 
         public var transferType: String
 
-        public var uniqueExternalId: String
+        public var users: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
@@ -28,11 +28,11 @@ public extension PlatformClient.Payment {
 
             case aggregator
 
-            case users
+            case uniqueExternalId = "unique_external_id"
 
             case transferType = "transfer_type"
 
-            case uniqueExternalId = "unique_external_id"
+            case users
         }
 
         public init(aggregator: String, bankDetails: PayoutBankDetails, isActive: Bool, transferType: String, uniqueExternalId: String, users: [String: Any]) {
@@ -42,11 +42,11 @@ public extension PlatformClient.Payment {
 
             self.aggregator = aggregator
 
-            self.users = users
+            self.uniqueExternalId = uniqueExternalId
 
             self.transferType = transferType
 
-            self.uniqueExternalId = uniqueExternalId
+            self.users = users
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,11 +58,11 @@ public extension PlatformClient.Payment {
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
-            users = try container.decode([String: Any].self, forKey: .users)
+            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
 
             transferType = try container.decode(String.self, forKey: .transferType)
 
-            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
+            users = try container.decode([String: Any].self, forKey: .users)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -74,11 +74,11 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encodeIfPresent(users, forKey: .users)
+            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
 
             try? container.encodeIfPresent(transferType, forKey: .transferType)
 
-            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
+            try? container.encodeIfPresent(users, forKey: .users)
         }
     }
 }
@@ -96,11 +96,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var aggregator: String
 
-        public var users: [String: Any]
+        public var uniqueExternalId: String
 
         public var transferType: String
 
-        public var uniqueExternalId: String
+        public var users: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
@@ -109,11 +109,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case aggregator
 
-            case users
+            case uniqueExternalId = "unique_external_id"
 
             case transferType = "transfer_type"
 
-            case uniqueExternalId = "unique_external_id"
+            case users
         }
 
         public init(aggregator: String, bankDetails: PayoutBankDetails, isActive: Bool, transferType: String, uniqueExternalId: String, users: [String: Any]) {
@@ -123,11 +123,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.aggregator = aggregator
 
-            self.users = users
+            self.uniqueExternalId = uniqueExternalId
 
             self.transferType = transferType
 
-            self.uniqueExternalId = uniqueExternalId
+            self.users = users
         }
 
         required public init(from decoder: Decoder) throws {
@@ -139,11 +139,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
-            users = try container.decode([String: Any].self, forKey: .users)
+            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
 
             transferType = try container.decode(String.self, forKey: .transferType)
 
-            uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
+            users = try container.decode([String: Any].self, forKey: .users)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -155,11 +155,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encodeIfPresent(users, forKey: .users)
+            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
 
             try? container.encodeIfPresent(transferType, forKey: .transferType)
 
-            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
+            try? container.encodeIfPresent(users, forKey: .users)
         }
     }
 }
