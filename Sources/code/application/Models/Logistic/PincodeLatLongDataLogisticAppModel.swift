@@ -1,26 +1,24 @@
 
 
 import Foundation
-
-public extension PlatformClient.DocumentEngine {
+public extension ApplicationClient.Logistic {
     /*
-         Model: BadRequestResponseGenerateBulkItemParameters
-         Used By: DocumentEngine
+         Model: PincodeLatLongData
+         Used By: Logistic
      */
-
-    class BadRequestResponseGenerateBulkItemParameters: Codable {
-        public var missingProperty: String?
+    class PincodeLatLongData: Codable {
+        public var coordinates: [String]?
 
         public var type: String?
 
         public enum CodingKeys: String, CodingKey {
-            case missingProperty = "missing_property"
+            case coordinates
 
             case type
         }
 
-        public init(missingProperty: String? = nil, type: String? = nil) {
-            self.missingProperty = missingProperty
+        public init(coordinates: [String]? = nil, type: String? = nil) {
+            self.coordinates = coordinates
 
             self.type = type
         }
@@ -29,7 +27,7 @@ public extension PlatformClient.DocumentEngine {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                missingProperty = try container.decode(String.self, forKey: .missingProperty)
+                coordinates = try container.decode([String].self, forKey: .coordinates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +46,7 @@ public extension PlatformClient.DocumentEngine {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(missingProperty, forKey: .missingProperty)
+            try? container.encodeIfPresent(coordinates, forKey: .coordinates)
 
             try? container.encodeIfPresent(type, forKey: .type)
         }

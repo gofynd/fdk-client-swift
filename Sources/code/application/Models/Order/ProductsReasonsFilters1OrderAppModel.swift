@@ -1,41 +1,39 @@
 
 
 import Foundation
-
-public extension PlatformClient.DocumentEngine {
+public extension ApplicationClient.Order {
     /*
-         Model: SignedSuccessResponse
-         Used By: DocumentEngine
+         Model: ProductsReasonsFilters1
+         Used By: Order
      */
+    class ProductsReasonsFilters1: Codable {
+        public var quantity: Int?
 
-    class SignedSuccessResponse: Codable {
-        public var uid: String?
+        public var identifier: String?
 
-        public var url: String?
-
-        public var expiresIn: Double?
+        public var lineNumber: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case uid
+            case quantity
 
-            case url
+            case identifier
 
-            case expiresIn = "expires_in"
+            case lineNumber = "line_number"
         }
 
-        public init(expiresIn: Double? = nil, uid: String? = nil, url: String? = nil) {
-            self.uid = uid
+        public init(identifier: String? = nil, lineNumber: Int? = nil, quantity: Int? = nil) {
+            self.quantity = quantity
 
-            self.url = url
+            self.identifier = identifier
 
-            self.expiresIn = expiresIn
+            self.lineNumber = lineNumber
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +41,7 @@ public extension PlatformClient.DocumentEngine {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +49,7 @@ public extension PlatformClient.DocumentEngine {
             } catch {}
 
             do {
-                expiresIn = try container.decode(Double.self, forKey: .expiresIn)
+                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +60,11 @@ public extension PlatformClient.DocumentEngine {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
         }
     }
 }

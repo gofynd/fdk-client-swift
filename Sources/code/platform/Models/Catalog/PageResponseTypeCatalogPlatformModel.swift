@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var current: Int
 
-        public var totalCount: Int
-
         public var next: Int
+
+        public var totalCount: Int
 
         public enum CodingKeys: String, CodingKey {
             case hasNext = "has_next"
 
             case current
 
-            case totalCount = "total_count"
-
             case next
+
+            case totalCount = "total_count"
         }
 
         public init(current: Int, hasNext: Bool, next: Int, totalCount: Int) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.current = current
 
-            self.totalCount = totalCount
-
             self.next = next
+
+            self.totalCount = totalCount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -44,9 +44,9 @@ public extension PlatformClient.Catalog {
 
             current = try container.decode(Int.self, forKey: .current)
 
-            totalCount = try container.decode(Int.self, forKey: .totalCount)
-
             next = try container.decode(Int.self, forKey: .next)
+
+            totalCount = try container.decode(Int.self, forKey: .totalCount)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -56,9 +56,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(current, forKey: .current)
 
-            try? container.encodeIfPresent(totalCount, forKey: .totalCount)
-
             try? container.encodeIfPresent(next, forKey: .next)
+
+            try? container.encodeIfPresent(totalCount, forKey: .totalCount)
         }
     }
 }
@@ -74,18 +74,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var current: Int
 
-        public var totalCount: Int
-
         public var next: Int
+
+        public var totalCount: Int
 
         public enum CodingKeys: String, CodingKey {
             case hasNext = "has_next"
 
             case current
 
-            case totalCount = "total_count"
-
             case next
+
+            case totalCount = "total_count"
         }
 
         public init(current: Int, hasNext: Bool, next: Int, totalCount: Int) {
@@ -93,9 +93,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.current = current
 
-            self.totalCount = totalCount
-
             self.next = next
+
+            self.totalCount = totalCount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             current = try container.decode(Int.self, forKey: .current)
 
-            totalCount = try container.decode(Int.self, forKey: .totalCount)
-
             next = try container.decode(Int.self, forKey: .next)
+
+            totalCount = try container.decode(Int.self, forKey: .totalCount)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(current, forKey: .current)
 
-            try? container.encodeIfPresent(totalCount, forKey: .totalCount)
-
             try? container.encodeIfPresent(next, forKey: .next)
+
+            try? container.encodeIfPresent(totalCount, forKey: .totalCount)
         }
     }
 }

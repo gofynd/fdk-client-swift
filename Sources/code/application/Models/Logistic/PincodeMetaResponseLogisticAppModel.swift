@@ -7,38 +7,24 @@ public extension ApplicationClient.Logistic {
          Used By: Logistic
      */
     class PincodeMetaResponse: Codable {
-        public var internalZoneId: Int?
-
         public var zone: String?
 
-        public var deliverables: [String]?
+        public var internalZoneId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case internalZoneId = "internal_zone_id"
-
             case zone
 
-            case deliverables
+            case internalZoneId = "internal_zone_id"
         }
 
-        public init(deliverables: [String]? = nil, internalZoneId: Int? = nil, zone: String? = nil) {
-            self.internalZoneId = internalZoneId
-
+        public init(internalZoneId: Int? = nil, zone: String? = nil) {
             self.zone = zone
 
-            self.deliverables = deliverables
+            self.internalZoneId = internalZoneId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                internalZoneId = try container.decode(Int.self, forKey: .internalZoneId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 zone = try container.decode(String.self, forKey: .zone)
@@ -49,7 +35,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                deliverables = try container.decode([String].self, forKey: .deliverables)
+                internalZoneId = try container.decode(Int.self, forKey: .internalZoneId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +46,9 @@ public extension ApplicationClient.Logistic {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(internalZoneId, forKey: .internalZoneId)
-
             try? container.encodeIfPresent(zone, forKey: .zone)
 
-            try? container.encodeIfPresent(deliverables, forKey: .deliverables)
+            try? container.encodeIfPresent(internalZoneId, forKey: .internalZoneId)
         }
     }
 }

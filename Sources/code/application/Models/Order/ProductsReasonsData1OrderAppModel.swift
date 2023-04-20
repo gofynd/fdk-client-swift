@@ -1,35 +1,33 @@
 
 
 import Foundation
-
-public extension PlatformClient.DocumentEngine {
+public extension ApplicationClient.Order {
     /*
-         Model: SignedFailedResponse
-         Used By: DocumentEngine
+         Model: ProductsReasonsData1
+         Used By: Order
      */
+    class ProductsReasonsData1: Codable {
+        public var reasonText: String?
 
-    class SignedFailedResponse: Codable {
-        public var success: Bool?
-
-        public var errorMessage: String?
+        public var reasonId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case success
+            case reasonText = "reason_text"
 
-            case errorMessage = "error_message"
+            case reasonId = "reason_id"
         }
 
-        public init(errorMessage: String? = nil, success: Bool? = nil) {
-            self.success = success
+        public init(reasonId: Int? = nil, reasonText: String? = nil) {
+            self.reasonText = reasonText
 
-            self.errorMessage = errorMessage
+            self.reasonId = reasonId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                reasonText = try container.decode(String.self, forKey: .reasonText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +35,7 @@ public extension PlatformClient.DocumentEngine {
             } catch {}
 
             do {
-                errorMessage = try container.decode(String.self, forKey: .errorMessage)
+                reasonId = try container.decode(Int.self, forKey: .reasonId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +46,9 @@ public extension PlatformClient.DocumentEngine {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(reasonText, forKey: .reasonText)
 
-            try? container.encodeIfPresent(errorMessage, forKey: .errorMessage)
+            try? container.encodeIfPresent(reasonId, forKey: .reasonId)
         }
     }
 }

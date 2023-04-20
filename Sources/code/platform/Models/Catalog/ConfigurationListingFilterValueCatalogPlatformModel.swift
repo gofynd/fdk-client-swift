@@ -17,9 +17,9 @@ public extension PlatformClient.Catalog {
 
         public var condition: String?
 
-        public var value: String?
-
         public var mapValues: [[String: Any]]?
+
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
             case bucketPoints = "bucket_points"
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
 
             case condition
 
-            case value
-
             case mapValues = "map_values"
+
+            case value
         }
 
         public init(bucketPoints: [ConfigurationBucketPoints]? = nil, condition: String? = nil, map: [String: Any]? = nil, mapValues: [[String: Any]]? = nil, sort: String? = nil, value: String? = nil) {
@@ -44,9 +44,9 @@ public extension PlatformClient.Catalog {
 
             self.condition = condition
 
-            self.value = value
-
             self.mapValues = mapValues
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -85,7 +85,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                mapValues = try container.decode([[String: Any]].self, forKey: .mapValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                mapValues = try container.decode([[String: Any]].self, forKey: .mapValues)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,9 +112,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(condition, forKey: .condition)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(mapValues, forKey: .mapValues)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
@@ -134,9 +134,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var condition: String?
 
-        public var value: String?
-
         public var mapValues: [[String: Any]]?
+
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
             case bucketPoints = "bucket_points"
@@ -147,9 +147,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case condition
 
-            case value
-
             case mapValues = "map_values"
+
+            case value
         }
 
         public init(bucketPoints: [ConfigurationBucketPoints]? = nil, condition: String? = nil, map: [String: Any]? = nil, mapValues: [[String: Any]]? = nil, sort: String? = nil, value: String? = nil) {
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.condition = condition
 
-            self.value = value
-
             self.mapValues = mapValues
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                mapValues = try container.decode([[String: Any]].self, forKey: .mapValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                mapValues = try container.decode([[String: Any]].self, forKey: .mapValues)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -229,9 +229,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(condition, forKey: .condition)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(mapValues, forKey: .mapValues)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }

@@ -1,35 +1,33 @@
 
 
 import Foundation
-
-public extension PlatformClient.DocumentEngine {
+public extension ApplicationClient.Order {
     /*
-         Model: StatusFailedResponse
-         Used By: DocumentEngine
+         Model: ProductsDataUpdatesFilters1
+         Used By: Order
      */
+    class ProductsDataUpdatesFilters1: Codable {
+        public var identifier: String?
 
-    class StatusFailedResponse: Codable {
-        public var success: Bool?
-
-        public var errorMessage: String?
+        public var lineNumber: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case success
+            case identifier
 
-            case errorMessage = "error_message"
+            case lineNumber = "line_number"
         }
 
-        public init(errorMessage: String? = nil, success: Bool? = nil) {
-            self.success = success
+        public init(identifier: String? = nil, lineNumber: Int? = nil) {
+            self.identifier = identifier
 
-            self.errorMessage = errorMessage
+            self.lineNumber = lineNumber
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +35,7 @@ public extension PlatformClient.DocumentEngine {
             } catch {}
 
             do {
-                errorMessage = try container.decode(String.self, forKey: .errorMessage)
+                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +46,9 @@ public extension PlatformClient.DocumentEngine {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(errorMessage, forKey: .errorMessage)
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
         }
     }
 }

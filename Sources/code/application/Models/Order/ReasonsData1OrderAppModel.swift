@@ -1,35 +1,33 @@
 
 
 import Foundation
-
-public extension PlatformClient.DocumentEngine {
+public extension ApplicationClient.Order {
     /*
-         Model: SignedBadRequestResponse
-         Used By: DocumentEngine
+         Model: ReasonsData1
+         Used By: Order
      */
+    class ReasonsData1: Codable {
+        public var products: [ProductsReasons1]?
 
-    class SignedBadRequestResponse: Codable {
-        public var success: Bool?
-
-        public var errorMessage: String?
+        public var entities: [EntitiesReasons1]?
 
         public enum CodingKeys: String, CodingKey {
-            case success
+            case products
 
-            case errorMessage = "error_message"
+            case entities
         }
 
-        public init(errorMessage: String? = nil, success: Bool? = nil) {
-            self.success = success
+        public init(entities: [EntitiesReasons1]? = nil, products: [ProductsReasons1]? = nil) {
+            self.products = products
 
-            self.errorMessage = errorMessage
+            self.entities = entities
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                products = try container.decode([ProductsReasons1].self, forKey: .products)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +35,7 @@ public extension PlatformClient.DocumentEngine {
             } catch {}
 
             do {
-                errorMessage = try container.decode(String.self, forKey: .errorMessage)
+                entities = try container.decode([EntitiesReasons1].self, forKey: .entities)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +46,9 @@ public extension PlatformClient.DocumentEngine {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(products, forKey: .products)
 
-            try? container.encodeIfPresent(errorMessage, forKey: .errorMessage)
+            try? container.encodeIfPresent(entities, forKey: .entities)
         }
     }
 }
