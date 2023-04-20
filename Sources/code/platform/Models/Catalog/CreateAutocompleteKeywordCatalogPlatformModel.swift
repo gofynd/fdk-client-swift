@@ -11,9 +11,9 @@ public extension PlatformClient.Catalog {
     class CreateAutocompleteKeyword: Codable {
         public var appId: String?
 
-        public var customJson: [String: Any]?
-
         public var results: [AutocompleteResult]?
+
+        public var customJson: [String: Any]?
 
         public var isActive: Bool?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case appId = "app_id"
 
-            case customJson = "_custom_json"
-
             case results
+
+            case customJson = "_custom_json"
 
             case isActive = "is_active"
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Catalog {
         public init(appId: String? = nil, isActive: Bool? = nil, results: [AutocompleteResult]? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
             self.appId = appId
 
-            self.customJson = customJson
-
             self.results = results
+
+            self.customJson = customJson
 
             self.isActive = isActive
 
@@ -55,7 +55,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                results = try container.decode([AutocompleteResult].self, forKey: .results)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                results = try container.decode([AutocompleteResult].self, forKey: .results)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
             try? container.encodeIfPresent(results, forKey: .results)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
@@ -112,9 +112,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CreateAutocompleteKeyword: Codable {
         public var appId: String?
 
-        public var customJson: [String: Any]?
-
         public var results: [AutocompleteResult]?
+
+        public var customJson: [String: Any]?
 
         public var isActive: Bool?
 
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case appId = "app_id"
 
-            case customJson = "_custom_json"
-
             case results
+
+            case customJson = "_custom_json"
 
             case isActive = "is_active"
 
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(appId: String? = nil, isActive: Bool? = nil, results: [AutocompleteResult]? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
             self.appId = appId
 
-            self.customJson = customJson
-
             self.results = results
+
+            self.customJson = customJson
 
             self.isActive = isActive
 
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                results = try container.decode([AutocompleteResult].self, forKey: .results)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                results = try container.decode([AutocompleteResult].self, forKey: .results)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,9 +193,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
             try? container.encodeIfPresent(results, forKey: .results)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 

@@ -9,30 +9,30 @@ public extension PlatformClient.Order {
      */
 
     class CompanyDetails: Codable {
-        public var manufacturerAddress: [String: Any]?
+        public var companyName: String?
 
         public var companyCin: String?
 
-        public var companyName: String?
+        public var manufacturerAddress: [String: Any]?
 
         public var companyId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case manufacturerAddress = "manufacturer_address"
+            case companyName = "company_name"
 
             case companyCin = "company_cin"
 
-            case companyName = "company_name"
+            case manufacturerAddress = "manufacturer_address"
 
             case companyId = "company_id"
         }
 
         public init(companyCin: String? = nil, companyId: Int? = nil, companyName: String? = nil, manufacturerAddress: [String: Any]? = nil) {
-            self.manufacturerAddress = manufacturerAddress
+            self.companyName = companyName
 
             self.companyCin = companyCin
 
-            self.companyName = companyName
+            self.manufacturerAddress = manufacturerAddress
 
             self.companyId = companyId
         }
@@ -41,7 +41,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                manufacturerAddress = try container.decode([String: Any].self, forKey: .manufacturerAddress)
+                companyName = try container.decode(String.self, forKey: .companyName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                companyName = try container.decode(String.self, forKey: .companyName)
+                manufacturerAddress = try container.decode([String: Any].self, forKey: .manufacturerAddress)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(manufacturerAddress, forKey: .manufacturerAddress)
+            try? container.encodeIfPresent(companyName, forKey: .companyName)
 
             try? container.encodeIfPresent(companyCin, forKey: .companyCin)
 
-            try? container.encodeIfPresent(companyName, forKey: .companyName)
+            try? container.encodeIfPresent(manufacturerAddress, forKey: .manufacturerAddress)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
@@ -94,30 +94,30 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class CompanyDetails: Codable {
-        public var manufacturerAddress: [String: Any]?
+        public var companyName: String?
 
         public var companyCin: String?
 
-        public var companyName: String?
+        public var manufacturerAddress: [String: Any]?
 
         public var companyId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case manufacturerAddress = "manufacturer_address"
+            case companyName = "company_name"
 
             case companyCin = "company_cin"
 
-            case companyName = "company_name"
+            case manufacturerAddress = "manufacturer_address"
 
             case companyId = "company_id"
         }
 
         public init(companyCin: String? = nil, companyId: Int? = nil, companyName: String? = nil, manufacturerAddress: [String: Any]? = nil) {
-            self.manufacturerAddress = manufacturerAddress
+            self.companyName = companyName
 
             self.companyCin = companyCin
 
-            self.companyName = companyName
+            self.manufacturerAddress = manufacturerAddress
 
             self.companyId = companyId
         }
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                manufacturerAddress = try container.decode([String: Any].self, forKey: .manufacturerAddress)
+                companyName = try container.decode(String.self, forKey: .companyName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                companyName = try container.decode(String.self, forKey: .companyName)
+                manufacturerAddress = try container.decode([String: Any].self, forKey: .manufacturerAddress)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,11 +161,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(manufacturerAddress, forKey: .manufacturerAddress)
+            try? container.encodeIfPresent(companyName, forKey: .companyName)
 
             try? container.encodeIfPresent(companyCin, forKey: .companyCin)
 
-            try? container.encodeIfPresent(companyName, forKey: .companyName)
+            try? container.encodeIfPresent(manufacturerAddress, forKey: .manufacturerAddress)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
         }

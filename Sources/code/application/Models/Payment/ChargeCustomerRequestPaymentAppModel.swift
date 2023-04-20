@@ -9,9 +9,9 @@ public extension ApplicationClient.Payment {
     class ChargeCustomerRequest: Codable {
         public var verified: Bool?
 
-        public var aggregator: String
-
         public var orderId: String
+
+        public var aggregator: String
 
         public var amount: Int
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case verified
 
-            case aggregator
-
             case orderId = "order_id"
+
+            case aggregator
 
             case amount
 
@@ -32,9 +32,9 @@ public extension ApplicationClient.Payment {
         public init(aggregator: String, amount: Int, orderId: String, transactionToken: String? = nil, verified: Bool? = nil) {
             self.verified = verified
 
-            self.aggregator = aggregator
-
             self.orderId = orderId
+
+            self.aggregator = aggregator
 
             self.amount = amount
 
@@ -52,9 +52,9 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
             orderId = try container.decode(String.self, forKey: .orderId)
+
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             amount = try container.decode(Int.self, forKey: .amount)
 
@@ -72,9 +72,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(verified, forKey: .verified)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encode(amount, forKey: .amount)
 

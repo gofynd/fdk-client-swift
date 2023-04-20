@@ -7,50 +7,42 @@ public extension ApplicationClient.Cart {
          Used By: Cart
      */
     class CartMetaRequest: Codable {
-        public var checkoutMode: String?
-
         public var gstin: String?
 
         public var pickUpCustomerDetails: [String: Any]?
 
-        public var revenueTax: RevenueTaxDetail?
-
         public var comment: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case checkoutMode = "checkout_mode"
+        public var revenueTax: RevenueTaxDetail?
 
+        public var checkoutMode: String?
+
+        public enum CodingKeys: String, CodingKey {
             case gstin
 
             case pickUpCustomerDetails = "pick_up_customer_details"
 
+            case comment
+
             case revenueTax = "revenue_tax"
 
-            case comment
+            case checkoutMode = "checkout_mode"
         }
 
         public init(checkoutMode: String? = nil, comment: String? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil, revenueTax: RevenueTaxDetail? = nil) {
-            self.checkoutMode = checkoutMode
-
             self.gstin = gstin
 
             self.pickUpCustomerDetails = pickUpCustomerDetails
 
+            self.comment = comment
+
             self.revenueTax = revenueTax
 
-            self.comment = comment
+            self.checkoutMode = checkoutMode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 gstin = try container.decode(String.self, forKey: .gstin)
@@ -69,6 +61,14 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
+                comment = try container.decode(String.self, forKey: .comment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 revenueTax = try container.decode(RevenueTaxDetail.self, forKey: .revenueTax)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -77,7 +77,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                comment = try container.decode(String.self, forKey: .comment)
+                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,15 +88,15 @@ public extension ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
-
             try? container.encodeIfPresent(gstin, forKey: .gstin)
 
             try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
 
+            try? container.encodeIfPresent(comment, forKey: .comment)
+
             try? container.encodeIfPresent(revenueTax, forKey: .revenueTax)
 
-            try? container.encodeIfPresent(comment, forKey: .comment)
+            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
         }
     }
 }

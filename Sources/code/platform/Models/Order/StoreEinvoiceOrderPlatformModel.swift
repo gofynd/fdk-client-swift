@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var username: String?
 
-        public var user: String?
-
         public var enabled: Bool
+
+        public var user: String?
 
         public enum CodingKeys: String, CodingKey {
             case password
 
             case username
 
-            case user
-
             case enabled
+
+            case user
         }
 
         public init(enabled: Bool, password: String? = nil, user: String? = nil, username: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.username = username
 
-            self.user = user
-
             self.enabled = enabled
+
+            self.user = user
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,6 +56,8 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            enabled = try container.decode(Bool.self, forKey: .enabled)
+
             do {
                 user = try container.decode(String.self, forKey: .user)
 
@@ -63,8 +65,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            enabled = try container.decode(Bool.self, forKey: .enabled)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -74,9 +74,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(user, forKey: .user)
-
             try? container.encodeIfPresent(enabled, forKey: .enabled)
+
+            try? container.encodeIfPresent(user, forKey: .user)
         }
     }
 }
@@ -92,18 +92,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var username: String?
 
-        public var user: String?
-
         public var enabled: Bool
+
+        public var user: String?
 
         public enum CodingKeys: String, CodingKey {
             case password
 
             case username
 
-            case user
-
             case enabled
+
+            case user
         }
 
         public init(enabled: Bool, password: String? = nil, user: String? = nil, username: String? = nil) {
@@ -111,9 +111,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.username = username
 
-            self.user = user
-
             self.enabled = enabled
+
+            self.user = user
         }
 
         required public init(from decoder: Decoder) throws {
@@ -135,6 +135,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            enabled = try container.decode(Bool.self, forKey: .enabled)
+
             do {
                 user = try container.decode(String.self, forKey: .user)
 
@@ -142,8 +144,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            enabled = try container.decode(Bool.self, forKey: .enabled)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -153,9 +153,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(user, forKey: .user)
-
             try? container.encodeIfPresent(enabled, forKey: .enabled)
+
+            try? container.encodeIfPresent(user, forKey: .user)
         }
     }
 }
