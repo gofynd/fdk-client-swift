@@ -9,82 +9,86 @@ public extension PlatformClient.Order {
      */
 
     class BagStateMapper: Codable {
-        public var displayName: String
-
-        public var appFacing: Bool?
-
-        public var appStateName: String?
-
         public var notifyCustomer: Bool?
-
-        public var bsId: Int
-
-        public var stateType: String
 
         public var journeyType: String
 
-        public var name: String
+        public var displayName: String
 
-        public var appDisplayName: String?
+        public var stateType: String
+
+        public var appStateName: String?
+
+        public var appFacing: Bool?
 
         public var isActive: Bool?
 
+        public var bsId: Int
+
+        public var appDisplayName: String?
+
+        public var name: String
+
         public enum CodingKeys: String, CodingKey {
-            case displayName = "display_name"
-
-            case appFacing = "app_facing"
-
-            case appStateName = "app_state_name"
-
             case notifyCustomer = "notify_customer"
-
-            case bsId = "bs_id"
-
-            case stateType = "state_type"
 
             case journeyType = "journey_type"
 
-            case name
+            case displayName = "display_name"
+
+            case stateType = "state_type"
+
+            case appStateName = "app_state_name"
+
+            case appFacing = "app_facing"
+
+            case isActive = "is_active"
+
+            case bsId = "bs_id"
 
             case appDisplayName = "app_display_name"
 
-            case isActive = "is_active"
+            case name
         }
 
         public init(appDisplayName: String? = nil, appFacing: Bool? = nil, appStateName: String? = nil, bsId: Int, displayName: String, isActive: Bool? = nil, journeyType: String, name: String, notifyCustomer: Bool? = nil, stateType: String) {
-            self.displayName = displayName
-
-            self.appFacing = appFacing
-
-            self.appStateName = appStateName
-
             self.notifyCustomer = notifyCustomer
-
-            self.bsId = bsId
-
-            self.stateType = stateType
 
             self.journeyType = journeyType
 
-            self.name = name
+            self.displayName = displayName
+
+            self.stateType = stateType
+
+            self.appStateName = appStateName
+
+            self.appFacing = appFacing
+
+            self.isActive = isActive
+
+            self.bsId = bsId
 
             self.appDisplayName = appDisplayName
 
-            self.isActive = isActive
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            displayName = try container.decode(String.self, forKey: .displayName)
-
             do {
-                appFacing = try container.decode(Bool.self, forKey: .appFacing)
+                notifyCustomer = try container.decode(Bool.self, forKey: .notifyCustomer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            journeyType = try container.decode(String.self, forKey: .journeyType)
+
+            displayName = try container.decode(String.self, forKey: .displayName)
+
+            stateType = try container.decode(String.self, forKey: .stateType)
 
             do {
                 appStateName = try container.decode(String.self, forKey: .appStateName)
@@ -95,23 +99,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                notifyCustomer = try container.decode(Bool.self, forKey: .notifyCustomer)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            bsId = try container.decode(Int.self, forKey: .bsId)
-
-            stateType = try container.decode(String.self, forKey: .stateType)
-
-            journeyType = try container.decode(String.self, forKey: .journeyType)
-
-            name = try container.decode(String.self, forKey: .name)
-
-            do {
-                appDisplayName = try container.decode(String.self, forKey: .appDisplayName)
+                appFacing = try container.decode(Bool.self, forKey: .appFacing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,30 +113,42 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            bsId = try container.decode(Int.self, forKey: .bsId)
+
+            do {
+                appDisplayName = try container.decode(String.self, forKey: .appDisplayName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-
-            try? container.encodeIfPresent(appFacing, forKey: .appFacing)
-
-            try? container.encodeIfPresent(appStateName, forKey: .appStateName)
-
             try? container.encodeIfPresent(notifyCustomer, forKey: .notifyCustomer)
-
-            try? container.encodeIfPresent(bsId, forKey: .bsId)
-
-            try? container.encodeIfPresent(stateType, forKey: .stateType)
 
             try? container.encodeIfPresent(journeyType, forKey: .journeyType)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(stateType, forKey: .stateType)
+
+            try? container.encodeIfPresent(appStateName, forKey: .appStateName)
+
+            try? container.encodeIfPresent(appFacing, forKey: .appFacing)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(bsId, forKey: .bsId)
 
             try? container.encodeIfPresent(appDisplayName, forKey: .appDisplayName)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -160,82 +160,86 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class BagStateMapper: Codable {
-        public var displayName: String
-
-        public var appFacing: Bool?
-
-        public var appStateName: String?
-
         public var notifyCustomer: Bool?
-
-        public var bsId: Int
-
-        public var stateType: String
 
         public var journeyType: String
 
-        public var name: String
+        public var displayName: String
 
-        public var appDisplayName: String?
+        public var stateType: String
+
+        public var appStateName: String?
+
+        public var appFacing: Bool?
 
         public var isActive: Bool?
 
+        public var bsId: Int
+
+        public var appDisplayName: String?
+
+        public var name: String
+
         public enum CodingKeys: String, CodingKey {
-            case displayName = "display_name"
-
-            case appFacing = "app_facing"
-
-            case appStateName = "app_state_name"
-
             case notifyCustomer = "notify_customer"
-
-            case bsId = "bs_id"
-
-            case stateType = "state_type"
 
             case journeyType = "journey_type"
 
-            case name
+            case displayName = "display_name"
+
+            case stateType = "state_type"
+
+            case appStateName = "app_state_name"
+
+            case appFacing = "app_facing"
+
+            case isActive = "is_active"
+
+            case bsId = "bs_id"
 
             case appDisplayName = "app_display_name"
 
-            case isActive = "is_active"
+            case name
         }
 
         public init(appDisplayName: String? = nil, appFacing: Bool? = nil, appStateName: String? = nil, bsId: Int, displayName: String, isActive: Bool? = nil, journeyType: String, name: String, notifyCustomer: Bool? = nil, stateType: String) {
-            self.displayName = displayName
-
-            self.appFacing = appFacing
-
-            self.appStateName = appStateName
-
             self.notifyCustomer = notifyCustomer
-
-            self.bsId = bsId
-
-            self.stateType = stateType
 
             self.journeyType = journeyType
 
-            self.name = name
+            self.displayName = displayName
+
+            self.stateType = stateType
+
+            self.appStateName = appStateName
+
+            self.appFacing = appFacing
+
+            self.isActive = isActive
+
+            self.bsId = bsId
 
             self.appDisplayName = appDisplayName
 
-            self.isActive = isActive
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            displayName = try container.decode(String.self, forKey: .displayName)
-
             do {
-                appFacing = try container.decode(Bool.self, forKey: .appFacing)
+                notifyCustomer = try container.decode(Bool.self, forKey: .notifyCustomer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            journeyType = try container.decode(String.self, forKey: .journeyType)
+
+            displayName = try container.decode(String.self, forKey: .displayName)
+
+            stateType = try container.decode(String.self, forKey: .stateType)
 
             do {
                 appStateName = try container.decode(String.self, forKey: .appStateName)
@@ -246,23 +250,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                notifyCustomer = try container.decode(Bool.self, forKey: .notifyCustomer)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            bsId = try container.decode(Int.self, forKey: .bsId)
-
-            stateType = try container.decode(String.self, forKey: .stateType)
-
-            journeyType = try container.decode(String.self, forKey: .journeyType)
-
-            name = try container.decode(String.self, forKey: .name)
-
-            do {
-                appDisplayName = try container.decode(String.self, forKey: .appDisplayName)
+                appFacing = try container.decode(Bool.self, forKey: .appFacing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -276,30 +264,42 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            bsId = try container.decode(Int.self, forKey: .bsId)
+
+            do {
+                appDisplayName = try container.decode(String.self, forKey: .appDisplayName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-
-            try? container.encodeIfPresent(appFacing, forKey: .appFacing)
-
-            try? container.encodeIfPresent(appStateName, forKey: .appStateName)
-
             try? container.encodeIfPresent(notifyCustomer, forKey: .notifyCustomer)
-
-            try? container.encodeIfPresent(bsId, forKey: .bsId)
-
-            try? container.encodeIfPresent(stateType, forKey: .stateType)
 
             try? container.encodeIfPresent(journeyType, forKey: .journeyType)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(stateType, forKey: .stateType)
+
+            try? container.encodeIfPresent(appStateName, forKey: .appStateName)
+
+            try? container.encodeIfPresent(appFacing, forKey: .appFacing)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(bsId, forKey: .bsId)
 
             try? container.encodeIfPresent(appDisplayName, forKey: .appDisplayName)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

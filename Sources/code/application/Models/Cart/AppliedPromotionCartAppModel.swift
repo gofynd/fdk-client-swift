@@ -11,13 +11,13 @@ public extension ApplicationClient.Cart {
 
         public var promotionType: String?
 
-        public var offerText: String?
-
         public var ownership: Ownership?
+
+        public var mrpPromotion: Bool?
 
         public var promoId: String?
 
-        public var mrpPromotion: Bool?
+        public var offerText: String?
 
         public var amount: Double?
 
@@ -26,13 +26,13 @@ public extension ApplicationClient.Cart {
 
             case promotionType = "promotion_type"
 
-            case offerText = "offer_text"
-
             case ownership
+
+            case mrpPromotion = "mrp_promotion"
 
             case promoId = "promo_id"
 
-            case mrpPromotion = "mrp_promotion"
+            case offerText = "offer_text"
 
             case amount
         }
@@ -42,13 +42,13 @@ public extension ApplicationClient.Cart {
 
             self.promotionType = promotionType
 
-            self.offerText = offerText
-
             self.ownership = ownership
+
+            self.mrpPromotion = mrpPromotion
 
             self.promoId = promoId
 
-            self.mrpPromotion = mrpPromotion
+            self.offerText = offerText
 
             self.amount = amount
         }
@@ -73,7 +73,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                offerText = try container.decode(String.self, forKey: .offerText)
+                ownership = try container.decode(Ownership.self, forKey: .ownership)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                ownership = try container.decode(Ownership.self, forKey: .ownership)
+                mrpPromotion = try container.decode(Bool.self, forKey: .mrpPromotion)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                mrpPromotion = try container.decode(Bool.self, forKey: .mrpPromotion)
+                offerText = try container.decode(String.self, forKey: .offerText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,13 +120,13 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(promotionType, forKey: .promotionType)
 
-            try? container.encodeIfPresent(offerText, forKey: .offerText)
-
             try? container.encodeIfPresent(ownership, forKey: .ownership)
+
+            try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
 
             try? container.encodeIfPresent(promoId, forKey: .promoId)
 
-            try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
+            try? container.encodeIfPresent(offerText, forKey: .offerText)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
         }

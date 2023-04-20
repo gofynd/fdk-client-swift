@@ -9,24 +9,24 @@ public extension ApplicationClient.Payment {
     class CreateOrderUserPaymentMethods: Codable {
         public var mode: String
 
-        public var meta: PaymentMethodsMeta
-
         public var name: String
+
+        public var meta: PaymentMethodsMeta
 
         public enum CodingKeys: String, CodingKey {
             case mode
 
-            case meta
-
             case name
+
+            case meta
         }
 
         public init(meta: PaymentMethodsMeta, mode: String, name: String) {
             self.mode = mode
 
-            self.meta = meta
-
             self.name = name
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -34,9 +34,9 @@ public extension ApplicationClient.Payment {
 
             mode = try container.decode(String.self, forKey: .mode)
 
-            meta = try container.decode(PaymentMethodsMeta.self, forKey: .meta)
-
             name = try container.decode(String.self, forKey: .name)
+
+            meta = try container.decode(PaymentMethodsMeta.self, forKey: .meta)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -44,9 +44,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(mode, forKey: .mode)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }
