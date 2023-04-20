@@ -11,18 +11,18 @@ public extension PlatformClient.Catalog {
     class AutocompleteResult: Codable {
         public var action: AutocompleteAction?
 
-        public var customJson: [String: Any]?
-
         public var display: String?
+
+        public var customJson: [String: Any]?
 
         public var logo: Media?
 
         public enum CodingKeys: String, CodingKey {
             case action
 
-            case customJson = "_custom_json"
-
             case display
+
+            case customJson = "_custom_json"
 
             case logo
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
         public init(action: AutocompleteAction? = nil, display: String? = nil, logo: Media? = nil, customJson: [String: Any]? = nil) {
             self.action = action
 
-            self.customJson = customJson
-
             self.display = display
+
+            self.customJson = customJson
 
             self.logo = logo
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class AutocompleteResult: Codable {
         public var action: AutocompleteAction?
 
-        public var customJson: [String: Any]?
-
         public var display: String?
+
+        public var customJson: [String: Any]?
 
         public var logo: Media?
 
         public enum CodingKeys: String, CodingKey {
             case action
 
-            case customJson = "_custom_json"
-
             case display
+
+            case customJson = "_custom_json"
 
             case logo
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(action: AutocompleteAction? = nil, display: String? = nil, logo: Media? = nil, customJson: [String: Any]? = nil) {
             self.action = action
 
-            self.customJson = customJson
-
             self.display = display
+
+            self.customJson = customJson
 
             self.logo = logo
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }

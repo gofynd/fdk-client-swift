@@ -13,18 +13,18 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var loyaltyPoints: LoyaltyPoints?
 
-        public var display: [DisplayBreakup]?
-
         public var raw: RawBreakup?
+
+        public var display: [DisplayBreakup]?
 
         public enum CodingKeys: String, CodingKey {
             case coupon
 
             case loyaltyPoints = "loyalty_points"
 
-            case display
-
             case raw
+
+            case display
         }
 
         public init(coupon: CouponBreakup? = nil, display: [DisplayBreakup]? = nil, loyaltyPoints: LoyaltyPoints? = nil, raw: RawBreakup? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.loyaltyPoints = loyaltyPoints
 
-            self.display = display
-
             self.raw = raw
+
+            self.display = display
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                display = try container.decode([DisplayBreakup].self, forKey: .display)
+                raw = try container.decode(RawBreakup.self, forKey: .raw)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                raw = try container.decode(RawBreakup.self, forKey: .raw)
+                display = try container.decode([DisplayBreakup].self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(loyaltyPoints, forKey: .loyaltyPoints)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(raw, forKey: .raw)
+
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 }

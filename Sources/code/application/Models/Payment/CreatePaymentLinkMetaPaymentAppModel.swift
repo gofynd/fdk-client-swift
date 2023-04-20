@@ -11,22 +11,22 @@ public extension ApplicationClient.Payment {
 
         public var amount: String
 
-        public var checkoutMode: String
-
         public var pincode: String
 
         public var cartId: String
+
+        public var checkoutMode: String
 
         public enum CodingKeys: String, CodingKey {
             case assignCardId = "assign_card_id"
 
             case amount
 
-            case checkoutMode = "checkout_mode"
-
             case pincode
 
             case cartId = "cart_id"
+
+            case checkoutMode = "checkout_mode"
         }
 
         public init(amount: String, assignCardId: String? = nil, cartId: String, checkoutMode: String, pincode: String) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Payment {
 
             self.amount = amount
 
-            self.checkoutMode = checkoutMode
-
             self.pincode = pincode
 
             self.cartId = cartId
+
+            self.checkoutMode = checkoutMode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,11 +54,11 @@ public extension ApplicationClient.Payment {
 
             amount = try container.decode(String.self, forKey: .amount)
 
-            checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
-
             pincode = try container.decode(String.self, forKey: .pincode)
 
             cartId = try container.decode(String.self, forKey: .cartId)
+
+            checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -68,11 +68,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
-
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(cartId, forKey: .cartId)
+
+            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
         }
     }
 }

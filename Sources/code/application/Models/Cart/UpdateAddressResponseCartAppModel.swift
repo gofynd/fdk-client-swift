@@ -9,30 +9,30 @@ public extension ApplicationClient.Cart {
     class UpdateAddressResponse: Codable {
         public var isDefaultAddress: Bool?
 
-        public var id: String?
+        public var success: Bool?
 
         public var isUpdated: Bool?
 
-        public var success: Bool?
+        public var id: String?
 
         public enum CodingKeys: String, CodingKey {
             case isDefaultAddress = "is_default_address"
 
-            case id
+            case success
 
             case isUpdated = "is_updated"
 
-            case success
+            case id
         }
 
         public init(id: String? = nil, isDefaultAddress: Bool? = nil, isUpdated: Bool? = nil, success: Bool? = nil) {
             self.isDefaultAddress = isDefaultAddress
 
-            self.id = id
+            self.success = success
 
             self.isUpdated = isUpdated
 
-            self.success = success
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +47,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(isDefaultAddress, forKey: .isDefaultAddress)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(isUpdated, forKey: .isUpdated)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

@@ -7,24 +7,24 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class CreditDetail: Codable {
-        public var status: Bool
-
         public var isRegistered: Bool
+
+        public var status: Bool
 
         public var signupUrl: String
 
         public enum CodingKeys: String, CodingKey {
-            case status
-
             case isRegistered = "is_registered"
+
+            case status
 
             case signupUrl = "signup_url"
         }
 
         public init(isRegistered: Bool, signupUrl: String, status: Bool) {
-            self.status = status
-
             self.isRegistered = isRegistered
+
+            self.status = status
 
             self.signupUrl = signupUrl
         }
@@ -32,9 +32,9 @@ public extension ApplicationClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            status = try container.decode(Bool.self, forKey: .status)
-
             isRegistered = try container.decode(Bool.self, forKey: .isRegistered)
+
+            status = try container.decode(Bool.self, forKey: .status)
 
             signupUrl = try container.decode(String.self, forKey: .signupUrl)
         }
@@ -42,9 +42,9 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(isRegistered, forKey: .isRegistered)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(signupUrl, forKey: .signupUrl)
         }

@@ -11,11 +11,11 @@ public extension ApplicationClient.Payment {
 
         public var paymentMethods: CreateOrderUserPaymentMethods
 
+        public var meta: [String: Any]?
+
         public var paymentLinkId: String
 
         public var successCallbackUrl: String
-
-        public var meta: [String: Any]?
 
         public var failureCallbackUrl: String
 
@@ -24,11 +24,11 @@ public extension ApplicationClient.Payment {
 
             case paymentMethods = "payment_methods"
 
+            case meta
+
             case paymentLinkId = "payment_link_id"
 
             case successCallbackUrl = "success_callback_url"
-
-            case meta
 
             case failureCallbackUrl = "failure_callback_url"
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient.Payment {
 
             self.paymentMethods = paymentMethods
 
+            self.meta = meta
+
             self.paymentLinkId = paymentLinkId
 
             self.successCallbackUrl = successCallbackUrl
-
-            self.meta = meta
 
             self.failureCallbackUrl = failureCallbackUrl
         }
@@ -54,10 +54,6 @@ public extension ApplicationClient.Payment {
 
             paymentMethods = try container.decode(CreateOrderUserPaymentMethods.self, forKey: .paymentMethods)
 
-            paymentLinkId = try container.decode(String.self, forKey: .paymentLinkId)
-
-            successCallbackUrl = try container.decode(String.self, forKey: .successCallbackUrl)
-
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
 
@@ -65,6 +61,10 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            paymentLinkId = try container.decode(String.self, forKey: .paymentLinkId)
+
+            successCallbackUrl = try container.decode(String.self, forKey: .successCallbackUrl)
 
             failureCallbackUrl = try container.decode(String.self, forKey: .failureCallbackUrl)
         }
@@ -76,11 +76,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
 
+            try? container.encode(meta, forKey: .meta)
+
             try? container.encodeIfPresent(paymentLinkId, forKey: .paymentLinkId)
 
             try? container.encodeIfPresent(successCallbackUrl, forKey: .successCallbackUrl)
-
-            try? container.encode(meta, forKey: .meta)
 
             try? container.encodeIfPresent(failureCallbackUrl, forKey: .failureCallbackUrl)
         }

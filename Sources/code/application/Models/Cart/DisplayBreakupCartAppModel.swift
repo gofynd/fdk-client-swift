@@ -11,11 +11,11 @@ public extension ApplicationClient.Cart {
 
         public var value: Double?
 
-        public var currencySymbol: String?
+        public var key: String?
 
         public var display: String?
 
-        public var key: String?
+        public var currencySymbol: String?
 
         public var currencyCode: String?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient.Cart {
 
             case value
 
-            case currencySymbol = "currency_symbol"
+            case key
 
             case display
 
-            case key
+            case currencySymbol = "currency_symbol"
 
             case currencyCode = "currency_code"
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient.Cart {
 
             self.value = value
 
-            self.currencySymbol = currencySymbol
+            self.key = key
 
             self.display = display
 
-            self.key = key
+            self.currencySymbol = currencySymbol
 
             self.currencyCode = currencyCode
         }
@@ -67,7 +67,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
         }

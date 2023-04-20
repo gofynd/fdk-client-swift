@@ -9,24 +9,24 @@ public extension ApplicationClient.Payment {
     class PaymentMethodsMeta: Codable {
         public var merchantCode: String
 
-        public var paymentIdentifier: String
-
         public var paymentGateway: String
+
+        public var paymentIdentifier: String
 
         public enum CodingKeys: String, CodingKey {
             case merchantCode = "merchant_code"
 
-            case paymentIdentifier = "payment_identifier"
-
             case paymentGateway = "payment_gateway"
+
+            case paymentIdentifier = "payment_identifier"
         }
 
         public init(merchantCode: String, paymentGateway: String, paymentIdentifier: String) {
             self.merchantCode = merchantCode
 
-            self.paymentIdentifier = paymentIdentifier
-
             self.paymentGateway = paymentGateway
+
+            self.paymentIdentifier = paymentIdentifier
         }
 
         required public init(from decoder: Decoder) throws {
@@ -34,9 +34,9 @@ public extension ApplicationClient.Payment {
 
             merchantCode = try container.decode(String.self, forKey: .merchantCode)
 
-            paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
-
             paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
+
+            paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -44,9 +44,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
 
-            try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
-
             try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
+
+            try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
         }
     }
 }

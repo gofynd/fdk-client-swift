@@ -13,22 +13,22 @@ public extension PlatformClient.Payment {
 
         public var aggregatorName: String
 
-        public var success: Bool?
+        public var redirectUrl: String?
 
         public var retry: Bool
 
-        public var redirectUrl: String?
+        public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
             case aggregatorName = "aggregator_name"
 
-            case success
+            case redirectUrl = "redirect_url"
 
             case retry
 
-            case redirectUrl = "redirect_url"
+            case success
         }
 
         public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool, status: String, success: Bool? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Payment {
 
             self.aggregatorName = aggregatorName
 
-            self.success = success
+            self.redirectUrl = redirectUrl
 
             self.retry = retry
 
-            self.redirectUrl = redirectUrl
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -51,7 +51,7 @@ public extension PlatformClient.Payment {
             aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension PlatformClient.Payment {
             retry = try container.decode(Bool.self, forKey: .retry)
 
             do {
-                redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
 
-            try? container.encode(success, forKey: .success)
+            try? container.encode(redirectUrl, forKey: .redirectUrl)
 
             try? container.encodeIfPresent(retry, forKey: .retry)
 
-            try? container.encode(redirectUrl, forKey: .redirectUrl)
+            try? container.encode(success, forKey: .success)
         }
     }
 }
@@ -96,22 +96,22 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var aggregatorName: String
 
-        public var success: Bool?
+        public var redirectUrl: String?
 
         public var retry: Bool
 
-        public var redirectUrl: String?
+        public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
             case aggregatorName = "aggregator_name"
 
-            case success
+            case redirectUrl = "redirect_url"
 
             case retry
 
-            case redirectUrl = "redirect_url"
+            case success
         }
 
         public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool, status: String, success: Bool? = nil) {
@@ -119,11 +119,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.aggregatorName = aggregatorName
 
-            self.success = success
+            self.redirectUrl = redirectUrl
 
             self.retry = retry
 
-            self.redirectUrl = redirectUrl
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -144,7 +144,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             retry = try container.decode(Bool.self, forKey: .retry)
 
             do {
-                redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,11 +159,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
 
-            try? container.encode(success, forKey: .success)
+            try? container.encode(redirectUrl, forKey: .redirectUrl)
 
             try? container.encodeIfPresent(retry, forKey: .retry)
 
-            try? container.encode(redirectUrl, forKey: .redirectUrl)
+            try? container.encode(success, forKey: .success)
         }
     }
 }
