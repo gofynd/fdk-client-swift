@@ -13,9 +13,9 @@ public extension ApplicationClient.PosCart {
 
         public var display: String?
 
-        public var currencyCode: String?
-
         public var value: Double?
+
+        public var currencyCode: String?
 
         public var message: [String]?
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.PosCart {
 
             case display
 
-            case currencyCode = "currency_code"
-
             case value
+
+            case currencyCode = "currency_code"
 
             case message
         }
@@ -40,9 +40,9 @@ public extension ApplicationClient.PosCart {
 
             self.display = display
 
-            self.currencyCode = currencyCode
-
             self.value = value
+
+            self.currencyCode = currencyCode
 
             self.message = message
         }
@@ -75,7 +75,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                value = try container.decode(Double.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(message, forKey: .message)
         }

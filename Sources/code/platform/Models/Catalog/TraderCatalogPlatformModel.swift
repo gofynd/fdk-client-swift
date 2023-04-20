@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class Trader: Codable {
         public var address: [String]?
 
-        public var type: String?
-
         public var name: [String: Any]
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case address
 
-            case type
-
             case name
+
+            case type
         }
 
         public init(address: [String]? = nil, name: [String: Any], type: String? = nil) {
             self.address = address
 
-            self.type = type
-
             self.name = name
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,6 +42,8 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            name = try container.decode([String: Any].self, forKey: .name)
+
             do {
                 type = try container.decode(String.self, forKey: .type)
 
@@ -49,8 +51,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            name = try container.decode([String: Any].self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -58,9 +58,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(address, forKey: .address)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
@@ -74,24 +74,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class Trader: Codable {
         public var address: [String]?
 
-        public var type: String?
-
         public var name: [String: Any]
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case address
 
-            case type
-
             case name
+
+            case type
         }
 
         public init(address: [String]? = nil, name: [String: Any], type: String? = nil) {
             self.address = address
 
-            self.type = type
-
             self.name = name
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -105,6 +105,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            name = try container.decode([String: Any].self, forKey: .name)
+
             do {
                 type = try container.decode(String.self, forKey: .type)
 
@@ -112,8 +114,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            name = try container.decode([String: Any].self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(address, forKey: .address)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

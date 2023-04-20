@@ -13,22 +13,22 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var nextSchedule: [[String: Any]]?
 
+        public var duration: Int?
+
         public var end: String?
 
         public var cron: String?
-
-        public var duration: Int?
 
         public enum CodingKeys: String, CodingKey {
             case start
 
             case nextSchedule = "next_schedule"
 
+            case duration
+
             case end
 
             case cron
-
-            case duration
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, start: String? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.nextSchedule = nextSchedule
 
+            self.duration = duration
+
             self.end = end
 
             self.cron = cron
-
-            self.duration = duration
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,6 +63,14 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
+                duration = try container.decode(Int.self, forKey: .duration)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 end = try container.decode(String.self, forKey: .end)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -77,14 +85,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                duration = try container.decode(Int.self, forKey: .duration)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -94,11 +94,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
 
+            try? container.encode(duration, forKey: .duration)
+
             try? container.encode(end, forKey: .end)
 
             try? container.encode(cron, forKey: .cron)
-
-            try? container.encode(duration, forKey: .duration)
         }
     }
 }

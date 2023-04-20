@@ -9,18 +9,18 @@ public extension PlatformClient.Catalog {
      */
 
     class InventoryBulkRequest: Codable {
-        public var sizes: [InventoryJobPayload]
-
         public var companyId: Int
+
+        public var sizes: [InventoryJobPayload]
 
         public var batchId: String
 
         public var user: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case sizes
-
             case companyId = "company_id"
+
+            case sizes
 
             case batchId = "batch_id"
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Catalog {
         }
 
         public init(batchId: String, companyId: Int, sizes: [InventoryJobPayload], user: [String: Any]? = nil) {
-            self.sizes = sizes
-
             self.companyId = companyId
+
+            self.sizes = sizes
 
             self.batchId = batchId
 
@@ -40,9 +40,9 @@ public extension PlatformClient.Catalog {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            sizes = try container.decode([InventoryJobPayload].self, forKey: .sizes)
-
             companyId = try container.decode(Int.self, forKey: .companyId)
+
+            sizes = try container.decode([InventoryJobPayload].self, forKey: .sizes)
 
             batchId = try container.decode(String.self, forKey: .batchId)
 
@@ -58,9 +58,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
 
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 
@@ -76,18 +76,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class InventoryBulkRequest: Codable {
-        public var sizes: [InventoryJobPayload]
-
         public var companyId: Int
+
+        public var sizes: [InventoryJobPayload]
 
         public var batchId: String
 
         public var user: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case sizes
-
             case companyId = "company_id"
+
+            case sizes
 
             case batchId = "batch_id"
 
@@ -95,9 +95,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(batchId: String, companyId: Int, sizes: [InventoryJobPayload], user: [String: Any]? = nil) {
-            self.sizes = sizes
-
             self.companyId = companyId
+
+            self.sizes = sizes
 
             self.batchId = batchId
 
@@ -107,9 +107,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            sizes = try container.decode([InventoryJobPayload].self, forKey: .sizes)
-
             companyId = try container.decode(Int.self, forKey: .companyId)
+
+            sizes = try container.decode([InventoryJobPayload].self, forKey: .sizes)
 
             batchId = try container.decode(String.self, forKey: .batchId)
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
 
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 
