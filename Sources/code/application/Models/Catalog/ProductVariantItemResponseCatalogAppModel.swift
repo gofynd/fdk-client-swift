@@ -7,66 +7,66 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class ProductVariantItemResponse: Codable {
-        public var medias: [Media]?
+        public var isAvailable: Bool?
 
-        public var colorName: String?
+        public var color: String?
 
         public var value: String?
 
-        public var uid: Int?
+        public var colorName: String?
 
         public var name: String?
 
+        public var uid: Int?
+
+        public var medias: [Media]?
+
         public var customMeta: [CustomMetaFields]?
 
-        public var isAvailable: Bool?
-
         public var action: ProductListingAction?
-
-        public var color: String?
 
         public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
-            case medias
+            case isAvailable = "is_available"
 
-            case colorName = "color_name"
+            case color
 
             case value
 
-            case uid
+            case colorName = "color_name"
 
             case name
 
+            case uid
+
+            case medias
+
             case customMeta = "_custom_meta"
 
-            case isAvailable = "is_available"
-
             case action
-
-            case color
 
             case slug
         }
 
         public init(action: ProductListingAction? = nil, color: String? = nil, colorName: String? = nil, isAvailable: Bool? = nil, medias: [Media]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, value: String? = nil, customMeta: [CustomMetaFields]? = nil) {
-            self.medias = medias
+            self.isAvailable = isAvailable
 
-            self.colorName = colorName
+            self.color = color
 
             self.value = value
 
-            self.uid = uid
+            self.colorName = colorName
 
             self.name = name
 
+            self.uid = uid
+
+            self.medias = medias
+
             self.customMeta = customMeta
 
-            self.isAvailable = isAvailable
-
             self.action = action
-
-            self.color = color
 
             self.slug = slug
         }
@@ -75,7 +75,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                medias = try container.decode([Media].self, forKey: .medias)
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                colorName = try container.decode(String.self, forKey: .colorName)
+                color = try container.decode(String.self, forKey: .color)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,7 +99,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                colorName = try container.decode(String.self, forKey: .colorName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -115,6 +115,22 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                medias = try container.decode([Media].self, forKey: .medias)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 customMeta = try container.decode([CustomMetaFields].self, forKey: .customMeta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -123,23 +139,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 action = try container.decode(ProductListingAction.self, forKey: .action)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                color = try container.decode(String.self, forKey: .color)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,23 +158,23 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(medias, forKey: .medias)
+            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
-            try? container.encodeIfPresent(colorName, forKey: .colorName)
+            try? container.encodeIfPresent(color, forKey: .color)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(colorName, forKey: .colorName)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(medias, forKey: .medias)
+
             try? container.encodeIfPresent(customMeta, forKey: .customMeta)
 
-            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
-
             try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(color, forKey: .color)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
         }
