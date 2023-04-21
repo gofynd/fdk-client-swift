@@ -13,9 +13,9 @@ public extension ApplicationClient.PosCart {
 
         public var hasNext: Bool?
 
-        public var hasPrevious: Bool?
-
         public var current: Int?
+
+        public var hasPrevious: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case totalItemCount = "total_item_count"
@@ -24,9 +24,9 @@ public extension ApplicationClient.PosCart {
 
             case hasNext = "has_next"
 
-            case hasPrevious = "has_previous"
-
             case current
+
+            case hasPrevious = "has_previous"
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, total: Int? = nil, totalItemCount: Int? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient.PosCart {
 
             self.hasNext = hasNext
 
-            self.hasPrevious = hasPrevious
-
             self.current = current
+
+            self.hasPrevious = hasPrevious
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+                current = try container.decode(Int.self, forKey: .current)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                current = try container.decode(Int.self, forKey: .current)
+                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
-
             try? container.encodeIfPresent(current, forKey: .current)
+
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
         }
     }
 }

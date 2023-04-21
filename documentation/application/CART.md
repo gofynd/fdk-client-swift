@@ -6132,90 +6132,12 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  
  
- #### [LoyaltyPoints](#LoyaltyPoints)
+ #### [PromiseFormatted](#PromiseFormatted)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | total | Double? |  yes  |  |
- | applicable | Double? |  yes  |  |
- | isApplied | Bool? |  yes  |  |
- | description | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [RawBreakup](#RawBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | giftCard | Double? |  yes  |  |
- | vog | Double? |  yes  |  |
- | subtotal | Double? |  yes  |  |
- | fyndCash | Double? |  yes  |  |
- | coupon | Double? |  yes  |  |
- | convenienceFee | Double? |  yes  |  |
- | codCharge | Double? |  yes  |  |
- | mrpTotal | Double? |  yes  |  |
- | gstCharges | Double? |  yes  |  |
- | deliveryCharge | Double? |  yes  |  |
- | discount | Double? |  yes  |  |
- | total | Double? |  yes  |  |
- | youSaved | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [CouponBreakup](#CouponBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | couponType | String? |  yes  |  |
- | code | String? |  yes  |  |
- | message | String? |  yes  |  |
- | title | String? |  yes  |  |
- | value | Double? |  yes  |  |
- | subTitle | String? |  yes  |  |
- | minimumCartValue | Double? |  yes  |  |
- | couponValue | Double? |  yes  |  |
- | uid | String? |  yes  |  |
- | type | String? |  yes  |  |
- | maxDiscountValue | Double? |  yes  |  |
- | isApplied | Bool? |  yes  |  |
- | description | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [DisplayBreakup](#DisplayBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | [String]? |  yes  |  |
- | currencyCode | String? |  yes  |  |
- | currencySymbol | String? |  yes  |  |
- | value | Double? |  yes  |  |
- | display | String? |  yes  |  |
- | key | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartBreakup](#CartBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | loyaltyPoints | [LoyaltyPoints](#LoyaltyPoints)? |  yes  |  |
- | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
- | coupon | [CouponBreakup](#CouponBreakup)? |  yes  |  |
- | display | [[DisplayBreakup](#DisplayBreakup)]? |  yes  |  |
+ | max | String? |  yes  |  |
+ | min | String? |  yes  |  |
 
 ---
 
@@ -6226,20 +6148,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min | Double? |  yes  |  |
  | max | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [PromiseFormatted](#PromiseFormatted)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | min | String? |  yes  |  |
- | max | String? |  yes  |  |
+ | min | Double? |  yes  |  |
 
 ---
 
@@ -6250,8 +6160,20 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | timestamp | [PromiseTimestamp](#PromiseTimestamp)? |  yes  |  |
  | formatted | [PromiseFormatted](#PromiseFormatted)? |  yes  |  |
+ | timestamp | [PromiseTimestamp](#PromiseTimestamp)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartCurrency](#CartCurrency)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | symbol | String? |  yes  |  |
+ | code | String? |  yes  | Currency code defined by ISO 4217:2015 |
 
 ---
 
@@ -6262,21 +6184,177 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  |  |
  | paymentIdentifier | String? |  yes  |  |
  | defaultOptions | String? |  yes  |  |
- | enabled | Bool? |  yes  |  |
 
 ---
 
 
  
  
- #### [CategoryInfo](#CategoryInfo)
+ #### [DisplayBreakup](#DisplayBreakup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  | Product Category Id |
- | name | String? |  yes  |  |
+ | key | String? |  yes  |  |
+ | display | String? |  yes  |  |
+ | value | Double? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | message | [String]? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponBreakup](#CouponBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | String? |  yes  |  |
+ | maxDiscountValue | Double? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | title | String? |  yes  |  |
+ | couponType | String? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+ | value | Double? |  yes  |  |
+ | subTitle | String? |  yes  |  |
+ | couponValue | Double? |  yes  |  |
+ | message | String? |  yes  |  |
+ | code | String? |  yes  |  |
+ | minimumCartValue | Double? |  yes  |  |
+ | type | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [RawBreakup](#RawBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | codCharge | Double? |  yes  |  |
+ | coupon | Double? |  yes  |  |
+ | deliveryCharge | Double? |  yes  |  |
+ | total | Double? |  yes  |  |
+ | youSaved | Double? |  yes  |  |
+ | gstCharges | Double? |  yes  |  |
+ | mrpTotal | Double? |  yes  |  |
+ | discount | Double? |  yes  |  |
+ | vog | Double? |  yes  |  |
+ | giftCard | Double? |  yes  |  |
+ | subtotal | Double? |  yes  |  |
+ | convenienceFee | Double? |  yes  |  |
+ | fyndCash | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LoyaltyPoints](#LoyaltyPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | String? |  yes  |  |
+ | total | Double? |  yes  |  |
+ | applicable | Double? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartBreakup](#CartBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | [[DisplayBreakup](#DisplayBreakup)]? |  yes  |  |
+ | coupon | [CouponBreakup](#CouponBreakup)? |  yes  |  |
+ | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
+ | loyaltyPoints | [LoyaltyPoints](#LoyaltyPoints)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPrice](#ProductPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | effective | Double? |  yes  |  |
+ | marked | Double? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+ | selling | Double? |  yes  |  |
+ | addOn | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPriceInfo](#ProductPriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | converted | [ProductPrice](#ProductPrice)? |  yes  |  |
+ | base | [ProductPrice](#ProductPrice)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponDetails](#CouponDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | discountSingleQuantity | Double? |  yes  |  |
+ | discountTotalQuantity | Double? |  yes  |  |
+ | code | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PromoMeta](#PromoMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductAvailability](#ProductAvailability)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | otherStoreQuantity | Int? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | deliverable | Bool? |  yes  |  |
+ | sizes | [String]? |  yes  |  |
+ | outOfStock | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProductIdentifer](#CartProductIdentifer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | String? |  yes  | Article idenfier generated by cart |
 
 ---
 
@@ -6298,21 +6376,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
  | name | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductImage](#ProductImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | String? |  yes  |  |
- | secureUrl | String? |  yes  |  |
- | aspectRatio | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
 
 ---
 
@@ -6334,9 +6399,34 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | url | String? |  yes  |  |
- | type | String? |  yes  |  |
  | query | [ActionQuery](#ActionQuery)? |  yes  |  |
+ | type | String? |  yes  |  |
+ | url | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductImage](#ProductImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aspectRatio | String? |  yes  |  |
+ | secureUrl | String? |  yes  |  |
+ | url | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryInfo](#CategoryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | uid | Int? |  yes  | Product Category Id |
 
 ---
 
@@ -6347,121 +6437,48 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | name | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | slug | String? |  yes  | Unique product url name generated via product name and other meta data |
  | itemCode | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | slug | String? |  yes  | Unique product url name generated via product name and other meta data |
+ | tags | [String]? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
  | teaserTag | [Tags](#Tags)? |  yes  |  |
  | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
- | uid | Int? |  yes  |  |
- | type | String? |  yes  |  |
- | images | [[ProductImage](#ProductImage)]? |  yes  |  |
  | action | [ProductAction](#ProductAction)? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartProductIdentifer](#CartProductIdentifer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifier | String? |  yes  | Article idenfier generated by cart |
-
----
-
-
- 
- 
- #### [CouponDetails](#CouponDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | discountSingleQuantity | Double? |  yes  |  |
- | discountTotalQuantity | Double? |  yes  |  |
- | code | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductPrice](#ProductPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | effective | Double? |  yes  |  |
- | selling | Double? |  yes  |  |
- | addOn | Double? |  yes  |  |
- | currencySymbol | String? |  yes  |  |
- | currencyCode | String? |  yes  |  |
- | marked | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductPriceInfo](#ProductPriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | base | [ProductPrice](#ProductPrice)? |  yes  |  |
- | converted | [ProductPrice](#ProductPrice)? |  yes  |  |
-
----
-
-
- 
- 
- #### [BasePrice](#BasePrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currencySymbol | String? |  yes  |  |
- | effective | Double? |  yes  |  |
- | marked | Double? |  yes  |  |
- | currencyCode | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ArticlePriceInfo](#ArticlePriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | base | [BasePrice](#BasePrice)? |  yes  |  |
- | converted | [BasePrice](#BasePrice)? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductArticle](#ProductArticle)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
- | giftCard | [String: Any]? |  yes  |  |
- | parentItemIdentifiers | [String: Any]? |  yes  |  |
- | size | String? |  yes  |  |
- | store | [BaseInfo](#BaseInfo)? |  yes  |  |
- | productGroupTags | [String]? |  yes  |  |
- | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
- | cartItemMeta | [String: Any]? |  yes  |  |
- | quantity | Int? |  yes  |  |
- | uid | String? |  yes  |  |
+ | images | [[ProductImage](#ProductImage)]? |  yes  |  |
+ | name | String? |  yes  |  |
+ | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
  | type | String? |  yes  |  |
- | identifier | [String: Any]? |  yes  |  |
- | sellerIdentifier | String? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | isGiftVisible | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FreeGiftItem](#FreeGiftItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | itemPriceDetails | [String: Any]? |  yes  | item price details |
+ | itemId | Int? |  yes  | Item id |
+ | itemImagesUrl | [String]? |  yes  | item images URL |
+ | itemSlug | String? |  yes  | item slug |
+ | itemName | String? |  yes  | Item name |
+ | itemBrandName | String? |  yes  | item brand name |
+
+---
+
+
+ 
+ 
+ #### [AppliedFreeArticles](#AppliedFreeArticles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articleId | String? |  yes  | free article id |
+ | quantity | Int? |  yes  | Free article quantity |
+ | parentItemIdentifier | String? |  yes  | Parent item identifier for free article |
+ | freeGiftItemDetails | [FreeGiftItem](#FreeGiftItem)? |  yes  | Free gift items details |
 
 ---
 
@@ -6484,40 +6501,10 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | itemCriteria | [String: Any]? |  yes  | Item criteria of promotion |
  | matchedBuyRules | [String]? |  yes  | Matched buy rules for promotion |
  | rawOffer | [String: Any]? |  yes  | raw offer details for promotion |
  | offer | [String: Any]? |  yes  | offer for promotion |
-
----
-
-
- 
- 
- #### [FreeGiftItem](#FreeGiftItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | itemId | Int? |  yes  | Item id |
- | itemSlug | String? |  yes  | item slug |
- | itemName | String? |  yes  | Item name |
- | itemPriceDetails | [String: Any]? |  yes  | item price details |
- | itemImagesUrl | [String]? |  yes  | item images URL |
- | itemBrandName | String? |  yes  | item brand name |
-
----
-
-
- 
- 
- #### [AppliedFreeArticles](#AppliedFreeArticles)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | quantity | Int? |  yes  | Free article quantity |
- | freeGiftItemDetails | [FreeGiftItem](#FreeGiftItem)? |  yes  | Free gift items details |
- | parentItemIdentifier | String? |  yes  | Parent item identifier for free article |
- | articleId | String? |  yes  | free article id |
+ | itemCriteria | [String: Any]? |  yes  | Item criteria of promotion |
 
 ---
 
@@ -6528,43 +6515,68 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | appliedFreeArticles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  | Applied free article for free gift item promotions |
+ | mrpPromotion | Bool? |  yes  | If applied promotion is applied on product MRP or ESP |
+ | amount | Double? |  yes  | Per unit discount amount applied with current promotion |
+ | articleQuantity | Int? |  yes  | Quantity of article on which promotion is applicable |
+ | offerText | String? |  yes  | Offer text of current promotion |
+ | promotionGroup | String? |  yes  | Promotion group for the promotion |
+ | promotionType | String? |  yes  | Promotion type of current promotion |
  | promoId | String? |  yes  | Promotion id |
  | buyRules | [[BuyRules](#BuyRules)]? |  yes  | Buy rules for promotions |
- | articleQuantity | Int? |  yes  | Quantity of article on which promotion is applicable |
- | promotionGroup | String? |  yes  | Promotion group for the promotion |
- | discountRules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
- | mrpPromotion | Bool? |  yes  | If applied promotion is applied on product MRP or ESP |
- | appliedFreeArticles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  | Applied free article for free gift item promotions |
- | offerText | String? |  yes  | Offer text of current promotion |
- | promotionType | String? |  yes  | Promotion type of current promotion |
- | amount | Double? |  yes  | Per unit discount amount applied with current promotion |
  | promotionName | String? |  yes  | Promotion name of current promotion |
+ | discountRules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
 
 ---
 
 
  
  
- #### [ProductAvailability](#ProductAvailability)
+ #### [BasePrice](#BasePrice)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isValid | Bool? |  yes  |  |
- | otherStoreQuantity | Int? |  yes  |  |
- | outOfStock | Bool? |  yes  |  |
- | deliverable | Bool? |  yes  |  |
- | sizes | [String]? |  yes  |  |
+ | marked | Double? |  yes  |  |
+ | effective | Double? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [PromoMeta](#PromoMeta)
+ #### [ArticlePriceInfo](#ArticlePriceInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
+ | converted | [BasePrice](#BasePrice)? |  yes  |  |
+ | base | [BasePrice](#BasePrice)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductArticle](#ProductArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | String? |  yes  |  |
+ | parentItemIdentifiers | [String: Any]? |  yes  |  |
+ | size | String? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
+ | identifier | [String: Any]? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | sellerIdentifier | String? |  yes  |  |
+ | store | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | cartItemMeta | [String: Any]? |  yes  |  |
+ | productGroupTags | [String]? |  yes  |  |
+ | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | giftCard | [String: Any]? |  yes  |  |
+ | isGiftVisible | Bool? |  yes  |  |
+ | type | String? |  yes  |  |
 
 ---
 
@@ -6575,35 +6587,24 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | parentItemIdentifiers | [String: Any]? |  yes  |  |
- | couponMessage | String? |  yes  |  |
- | message | String? |  yes  |  |
- | product | [CartProduct](#CartProduct)? |  yes  |  |
- | isSet | Bool? |  yes  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
- | coupon | [CouponDetails](#CouponDetails)? |  yes  |  |
- | pricePerUnit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
- | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
- | bulkOffer | [String: Any]? |  yes  |  |
- | quantity | Int? |  yes  |  |
- | article | [ProductArticle](#ProductArticle)? |  yes  |  |
- | promotionsApplied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
- | discount | String? |  yes  |  |
- | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
  | key | String? |  yes  |  |
+ | pricePerUnit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | coupon | [CouponDetails](#CouponDetails)? |  yes  |  |
+ | parentItemIdentifiers | [String: Any]? |  yes  |  |
+ | bulkOffer | [String: Any]? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
+ | customOrder | [String: Any]? |  yes  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | couponMessage | String? |  yes  |  |
  | promoMeta | [PromoMeta](#PromoMeta)? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartCurrency](#CartCurrency)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | symbol | String? |  yes  |  |
- | code | String? |  yes  | Currency code defined by ISO 4217:2015 |
+ | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
+ | product | [CartProduct](#CartProduct)? |  yes  |  |
+ | message | String? |  yes  |  |
+ | discount | String? |  yes  |  |
+ | promotionsApplied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
+ | article | [ProductArticle](#ProductArticle)? |  yes  |  |
 
 ---
 
@@ -6614,24 +6615,24 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | panConfig | [String: Any]? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | message | String? |  yes  |  |
- | panNo | String? |  yes  |  |
- | lastModified | String? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | couponText | String? |  yes  |  |
- | id | String? |  yes  |  |
- | restrictCheckout | Bool? |  yes  |  |
- | buyNow | Bool? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | comment | String? |  yes  |  |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | panNo | String? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | deliveryChargeInfo | String? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
  | gstin | String? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | restrictCheckout | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
+ | panConfig | [String: Any]? |  yes  |  |
+ | deliveryChargeInfo | String? |  yes  |  |
+ | lastModified | String? |  yes  |  |
+ | buyNow | Bool? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -6642,18 +6643,18 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pos | Bool? |  yes  |  |
+ | articleId | String? |  yes  |  |
  | itemId | Int? |  yes  |  |
  | parentItemIdentifiers | [String: Any]? |  yes  |  |
  | sellerId | Int? |  yes  |  |
- | articleId | String? |  yes  |  |
- | articleAssignment | [String: Any]? |  yes  |  |
- | productGroupTags | [String]? |  yes  |  |
- | itemSize | String? |  yes  |  |
- | storeId | Int? |  yes  |  |
- | quantity | Int? |  yes  |  |
  | display | String? |  yes  |  |
+ | storeId | Int? |  yes  |  |
  | extraMeta | [String: Any]? |  yes  |  |
+ | itemSize | String? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | productGroupTags | [String]? |  yes  |  |
+ | articleAssignment | [String: Any]? |  yes  |  |
+ | pos | Bool? |  yes  |  |
 
 ---
 
@@ -6664,8 +6665,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | newCart | Bool? |  yes  |  |
  | items | [[AddProductCart](#AddProductCart)]? |  yes  |  |
+ | newCart | Bool? |  yes  |  |
 
 ---
 
@@ -6676,10 +6677,10 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
  | partial | Bool? |  yes  | When adding multiple items check if all added. True if only few are added. |
  | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
  | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
- | message | String? |  yes  |  |
 
 ---
 
@@ -6692,12 +6693,12 @@ Success. Returns a object containing the applicable ladder price offers (if exis
  | ---------- | ---- | -------- | ----------- |
  | itemId | Int? |  yes  |  |
  | parentItemIdentifiers | [String: Any]? |  yes  |  |
- | articleId | String? |  yes  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
- | itemIndex | Int? |  yes  |  |
- | itemSize | String? |  yes  |  |
- | quantity | Int? |  yes  |  |
  | extraMeta | [String: Any]? |  yes  |  |
+ | itemSize | String? |  yes  |  |
+ | itemIndex | Int? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
+ | articleId | String? |  yes  |  |
 
 ---
 
@@ -6708,8 +6709,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | operation | String |  no  |  |
  | items | [[UpdateProductCart](#UpdateProductCart)]? |  yes  |  |
+ | operation | String |  no  |  |
 
 ---
 
@@ -6720,9 +6721,9 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
  | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
  | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
- | message | String? |  yes  |  |
 
 ---
 
@@ -6733,8 +6734,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  | True if cart is archived successfully. False if not archived. |
  | message | String? |  yes  |  |
+ | success | Bool? |  yes  | True if cart is archived successfully. False if not archived. |
 
 ---
 
@@ -6756,11 +6757,11 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | total | Int? |  yes  |  |
+ | totalItemCount | Int? |  yes  |  |
  | current | Int? |  yes  |  |
  | hasPrevious | Bool? |  yes  |  |
- | totalItemCount | Int? |  yes  |  |
  | hasNext | Bool? |  yes  |  |
- | total | Int? |  yes  |  |
 
 ---
 
@@ -6771,18 +6772,18 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | couponType | String? |  yes  |  |
- | message | String? |  yes  |  |
- | title | String? |  yes  |  |
- | expiresOn | String? |  yes  |  |
- | isApplicable | Bool? |  yes  |  |
- | subTitle | String? |  yes  |  |
- | minimumCartValue | Double? |  yes  |  |
- | couponValue | Double? |  yes  |  |
- | maxDiscountValue | Double? |  yes  |  |
- | isApplied | Bool? |  yes  |  |
  | description | String? |  yes  |  |
+ | maxDiscountValue | Double? |  yes  |  |
+ | title | String? |  yes  |  |
+ | couponType | String? |  yes  |  |
+ | isApplicable | Bool? |  yes  |  |
+ | expiresOn | String? |  yes  |  |
+ | couponValue | Double? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+ | subTitle | String? |  yes  |  |
  | couponCode | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | minimumCartValue | Double? |  yes  |  |
 
 ---
 
@@ -6816,8 +6817,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  | Seller id |
  | name | String? |  yes  |  |
+ | uid | Int? |  yes  | Seller id |
 
 ---
 
@@ -6830,9 +6831,9 @@ Success. Returns a object containing the applicable ladder price offers (if exis
  | ---------- | ---- | -------- | ----------- |
  | effective | Int? |  yes  | Current per unit price of product after existing deductions |
  | bulkEffective | Double? |  yes  | Discounted per unit price for current offer object |
+ | marked | Int? |  yes  | Original price of product |
  | currencyCode | String? |  yes  | Currency code for all amounts |
  | currencySymbol | String? |  yes  | Currency symbol for currency |
- | marked | Int? |  yes  | Original price of product |
 
 ---
 
@@ -6843,13 +6844,13 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | autoApplied | Bool? |  yes  | Whether offer discount is auto applied in cart |
+ | total | Double? |  yes  | Total price of offer quantity with discount |
  | price | [OfferPrice](#OfferPrice)? |  yes  |  |
  | quantity | Int? |  yes  | Quantity on which offer is applicable |
- | type | String? |  yes  | Offer type |
- | total | Double? |  yes  | Total price of offer quantity with discount |
  | best | Bool? |  yes  | Is true for best offer from all offers present for all sellers |
+ | autoApplied | Bool? |  yes  | Whether offer discount is auto applied in cart |
  | margin | Int? |  yes  | Percentage value of discount |
+ | type | String? |  yes  | Offer type |
 
 ---
 
@@ -6894,8 +6895,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | longitude | Double? |  yes  |  |
  | latitude | Double? |  yes  |  |
+ | longitude | Double? |  yes  |  |
 
 ---
 
@@ -6906,29 +6907,29 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | city | String? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | isDefaultAddress | Bool? |  yes  |  |
- | name | String? |  yes  |  |
- | country | String? |  yes  |  |
- | areaCode | String? |  yes  |  |
- | landmark | String? |  yes  |  |
- | addressType | String? |  yes  |  |
- | address | String? |  yes  |  |
- | email | String? |  yes  |  |
- | state | String? |  yes  |  |
- | countryCode | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | phone | String? |  yes  |  |
- | id | String? |  yes  |  |
- | createdByUserId | String? |  yes  |  |
  | area | String? |  yes  |  |
- | googleMapPoint | [String: Any]? |  yes  |  |
- | areaCodeSlug | String? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
  | geoLocation | [GeoLocation](#GeoLocation)? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | isDefaultAddress | Bool? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | landmark | String? |  yes  |  |
+ | state | String? |  yes  |  |
+ | areaCode | String? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
  | userId | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | city | String? |  yes  |  |
+ | country | String? |  yes  |  |
+ | tags | [String]? |  yes  |  |
+ | createdByUserId | String? |  yes  |  |
+ | phone | String? |  yes  |  |
+ | addressType | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | address | String? |  yes  |  |
+ | areaCodeSlug | String? |  yes  |  |
+ | googleMapPoint | [String: Any]? |  yes  |  |
+ | email | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
 
 ---
 
@@ -6950,9 +6951,9 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | success | Bool? |  yes  |  |
  | isDefaultAddress | Bool? |  yes  |  |
+ | success | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -6963,10 +6964,10 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
+ | isDefaultAddress | Bool? |  yes  |  |
  | isUpdated | Bool? |  yes  |  |
  | success | Bool? |  yes  |  |
- | isDefaultAddress | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -6977,8 +6978,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
  | isDeleted | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -6989,9 +6990,9 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
  | billingAddressId | String? |  yes  |  |
  | cartId | String? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -7002,12 +7003,12 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentIdentifier | String? |  yes  |  |
  | merchantCode | String? |  yes  |  |
  | paymentMode | String? |  yes  |  |
- | id | String? |  yes  |  |
+ | paymentIdentifier | String? |  yes  |  |
  | addressId | String? |  yes  |  |
  | aggregatorName | String? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -7018,11 +7019,11 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | valid | Bool? |  yes  |  |
- | code | String? |  yes  |  |
  | title | String? |  yes  |  |
- | displayMessageEn | String? |  yes  |  |
+ | valid | Bool? |  yes  |  |
  | discount | Double? |  yes  |  |
+ | code | String? |  yes  |  |
+ | displayMessageEn | String? |  yes  |  |
 
 ---
 
@@ -7033,9 +7034,9 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  |  |
- | message | String? |  yes  |  |
  | couponValidity | [CouponValidity](#CouponValidity)? |  yes  |  |
+ | message | String? |  yes  |  |
+ | success | Bool |  no  |  |
 
 ---
 
@@ -7046,16 +7047,16 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | dpId | String? |  yes  |  |
+ | shipments | Int? |  yes  |  |
+ | shipmentType | String? |  yes  |  |
+ | orderType | String? |  yes  |  |
  | fulfillmentId | Int? |  yes  |  |
  | boxType | String? |  yes  |  |
- | shipmentType | String? |  yes  |  |
- | shipments | Int? |  yes  |  |
- | orderType | String? |  yes  |  |
+ | dpOptions | [String: Any]? |  yes  |  |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
  | fulfillmentType | String? |  yes  |  |
- | dpId | String? |  yes  |  |
- | dpOptions | [String: Any]? |  yes  |  |
+ | promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
 
 ---
 
@@ -7066,25 +7067,25 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | message | String? |  yes  |  |
- | error | Bool? |  yes  |  |
- | id | String? |  yes  |  |
- | comment | String? |  yes  |  |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | shipments | [[ShipmentResponse](#ShipmentResponse)]? |  yes  |  |
- | lastModified | String? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | couponText | String? |  yes  |  |
- | restrictCheckout | Bool? |  yes  |  |
- | cartId | Int? |  yes  |  |
- | buyNow | Bool? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | uid | String? |  yes  |  |
- | deliveryChargeInfo | String? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
  | gstin | String? |  yes  |  |
+ | restrictCheckout | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
+ | lastModified | String? |  yes  |  |
+ | buyNow | Bool? |  yes  |  |
+ | error | Bool? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | cartId | Int? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | deliveryChargeInfo | String? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
 
 ---
 
@@ -7095,11 +7096,11 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | employeeCode | String? |  yes  |  |
+ | id | String |  no  |  |
+ | lastName | String |  no  |  |
  | firstName | String |  no  |  |
  | user | String |  no  |  |
- | id | String |  no  |  |
- | employeeCode | String? |  yes  |  |
- | lastName | String |  no  |  |
 
 ---
 
@@ -7110,21 +7111,21 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | deliveryAddress | [String: Any]? |  yes  |  |
- | orderingStore | Int? |  yes  |  |
- | paymentIdentifier | String? |  yes  |  |
- | billingAddressId | String? |  yes  |  |
- | merchantCode | String? |  yes  |  |
- | paymentMode | String |  no  |  |
- | aggregator | String? |  yes  |  |
- | callbackUrl | String? |  yes  |  |
  | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
- | addressId | String? |  yes  |  |
+ | paymentMode | String |  no  |  |
+ | deliveryAddress | [String: Any]? |  yes  |  |
+ | merchantCode | String? |  yes  |  |
  | paymentParams | [String: Any]? |  yes  |  |
- | paymentAutoConfirm | Bool? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | billingAddress | [String: Any]? |  yes  |  |
  | extraMeta | [String: Any]? |  yes  |  |
+ | paymentIdentifier | String? |  yes  |  |
+ | addressId | String? |  yes  |  |
+ | paymentAutoConfirm | Bool? |  yes  |  |
+ | aggregator | String? |  yes  |  |
+ | billingAddress | [String: Any]? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | callbackUrl | String? |  yes  |  |
+ | billingAddressId | String? |  yes  |  |
+ | orderingStore | Int? |  yes  |  |
 
 ---
 
@@ -7135,35 +7136,35 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | deliveryChargeOrderValue | Int? |  yes  |  |
- | comment | String? |  yes  |  |
- | userType | String? |  yes  |  |
- | lastModified | String? |  yes  |  |
- | orderId | String? |  yes  |  |
- | buyNow | Bool? |  yes  |  |
- | storeEmps | [[String: Any]]? |  yes  |  |
- | deliveryChargeInfo | String? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | success | Bool? |  yes  |  |
- | message | String? |  yes  |  |
- | deliveryCharges | Int? |  yes  |  |
- | codCharges | Int? |  yes  |  |
  | errorMessage | String? |  yes  |  |
- | id | String? |  yes  |  |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | deliveryCharges | Int? |  yes  |  |
  | storeCode | String? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | couponText | String? |  yes  |  |
- | codMessage | String? |  yes  |  |
- | restrictCheckout | Bool? |  yes  |  |
- | cartId | Int? |  yes  |  |
- | codAvailable | Bool? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | message | String? |  yes  |  |
+ | deliveryChargeOrderValue | Int? |  yes  |  |
+ | buyNow | Bool? |  yes  |  |
  | uid | String? |  yes  |  |
+ | orderId | String? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | codAvailable | Bool? |  yes  |  |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | userType | String? |  yes  |  |
+ | deliveryChargeInfo | String? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | restrictCheckout | Bool? |  yes  |  |
+ | codCharges | Int? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
  | gstin | String? |  yes  |  |
+ | lastModified | String? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | codMessage | String? |  yes  |  |
+ | cartId | Int? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | storeEmps | [[String: Any]]? |  yes  |  |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -7175,13 +7176,13 @@ Success. Returns a object containing the applicable ladder price offers (if exis
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [String: Any]? |  yes  |  |
- | success | Bool? |  yes  |  |
- | cart | [CheckCart](#CheckCart)? |  yes  |  |
- | message | String? |  yes  |  |
- | paymentConfirmUrl | String? |  yes  |  |
- | callbackUrl | String? |  yes  |  |
  | orderId | String? |  yes  |  |
  | appInterceptUrl | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | callbackUrl | String? |  yes  |  |
+ | paymentConfirmUrl | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
+ | cart | [CheckCart](#CheckCart)? |  yes  |  |
 
 ---
 
@@ -7192,8 +7193,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isGiftApplied | Bool? |  yes  |  |
  | giftMessage | String? |  yes  |  |
+ | isGiftApplied | Bool? |  yes  |  |
 
 ---
 
@@ -7215,11 +7216,11 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | pickUpCustomerDetails | [String: Any]? |  yes  | Customer contact details for customer pickup at store |
  | checkoutMode | String? |  yes  |  |
  | giftDetails | [ArticleGiftDetail](#ArticleGiftDetail)? |  yes  |  |
- | comment | String? |  yes  |  |
  | gstin | String? |  yes  |  |
- | pickUpCustomerDetails | [String: Any]? |  yes  | Customer contact details for customer pickup at store |
+ | comment | String? |  yes  |  |
 
 ---
 
@@ -7252,8 +7253,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  | Cart uid for generating sharing |
  | meta | [String: Any]? |  yes  | Staff, Ordering store or any other data. This data will be used to generate link as well as sent as shared details. |
+ | id | String? |  yes  | Cart uid for generating sharing |
 
 ---
 
@@ -7264,8 +7265,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | token | String? |  yes  | Short url unique id |
  | shareUrl | String? |  yes  | Short shareable final url |
+ | token | String? |  yes  | Short url unique id |
 
 ---
 
@@ -7276,10 +7277,10 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [String: Any]? |  yes  | User details of who generated share link |
- | createdOn | String? |  yes  |  |
  | token | String? |  yes  | Short link id |
+ | user | [String: Any]? |  yes  | User details of who generated share link |
  | meta | [String: Any]? |  yes  | Meta data sent while generating share cart link |
+ | createdOn | String? |  yes  |  |
  | source | [String: Any]? |  yes  | Share link device and other source information |
 
 ---
@@ -7291,25 +7292,25 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | comment | String? |  yes  |  |
- | lastModified | String? |  yes  |  |
- | buyNow | Bool? |  yes  |  |
- | sharedCartDetails | [SharedCartDetails](#SharedCartDetails)? |  yes  |  |
- | deliveryChargeInfo | String? |  yes  |  |
- | isValid | Bool? |  yes  |  |
  | message | String? |  yes  |  |
- | id | String? |  yes  |  |
+ | buyNow | Bool? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | deliveryChargeInfo | String? |  yes  |  |
+ | sharedCartDetails | [SharedCartDetails](#SharedCartDetails)? |  yes  |  |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | couponText | String? |  yes  |  |
  | restrictCheckout | Bool? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | gstin | String? |  yes  |  |
+ | lastModified | String? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | cartId | Int? |  yes  |  |
  | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | uid | String? |  yes  |  |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | gstin | String? |  yes  |  |
 
 ---
 
@@ -7332,11 +7333,11 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | itemPriceDetails | [String: Any]? |  yes  | item price details |
  | itemId | Int? |  yes  | Item id |
+ | itemImagesUrl | [String]? |  yes  | item images URL |
  | itemSlug | String? |  yes  | item slug |
  | itemName | String? |  yes  | Item name |
- | itemPriceDetails | [String: Any]? |  yes  | item price details |
- | itemImagesUrl | [String]? |  yes  | item images URL |
  | itemBrandName | String? |  yes  | item brand name |
 
 ---
@@ -7348,14 +7349,14 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | promotionGroup | String? |  yes  | Group of promotion belongs to |
- | buyRules | [String: Any]? |  yes  | Buy rules of promotions |
- | discountRules | [[String: Any]]? |  yes  | Discount rules of promotions |
- | validTill | String? |  yes  | Datetime ISOString for promotion end date |
- | offerText | String? |  yes  | Offer title |
- | id | String? |  yes  | Promotion id |
  | description | String? |  yes  | Offer details including T&C |
  | freeGiftItems | [[FreeGiftItems](#FreeGiftItems)]? |  yes  | Details of free gift items |
+ | validTill | String? |  yes  | Datetime ISOString for promotion end date |
+ | discountRules | [[String: Any]]? |  yes  | Discount rules of promotions |
+ | offerText | String? |  yes  | Offer title |
+ | promotionGroup | String? |  yes  | Group of promotion belongs to |
+ | buyRules | [String: Any]? |  yes  | Buy rules of promotions |
+ | id | String? |  yes  | Promotion id |
 
 ---
 
@@ -7377,8 +7378,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
  | message | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -7402,10 +7403,10 @@ Success. Returns a object containing the applicable ladder price offers (if exis
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | effective | Int? |  yes  | Current per unit price of product after existing deductions |
- | offerPrice | Double? |  yes  | Discounted per unit price for current offer object |
- | currencySymbol | String? |  yes  | Currency symbol for currency |
- | currencyCode | String? |  yes  | Currency code for all amounts |
  | marked | Int? |  yes  | Original price of product |
+ | offerPrice | Double? |  yes  | Discounted per unit price for current offer object |
+ | currencyCode | String? |  yes  | Currency code for all amounts |
+ | currencySymbol | String? |  yes  | Currency symbol for currency |
 
 ---
 
@@ -7416,11 +7417,11 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | maxQuantity | Int? |  yes  | Minimum quantity upto which offer is applicable. If not present that offer is applicable on all quantities |
- | minQuantity | Int? |  yes  | Minimum quantity from which offer is applicable |
  | price | [LadderPrice](#LadderPrice)? |  yes  |  |
- | type | String? |  yes  | Offer type |
  | margin | Int? |  yes  | Percentage value of discount |
+ | maxQuantity | Int? |  yes  | Minimum quantity upto which offer is applicable. If not present that offer is applicable on all quantities |
+ | type | String? |  yes  | Offer type |
+ | minQuantity | Int? |  yes  | Minimum quantity from which offer is applicable |
 
 ---
 
@@ -7431,16 +7432,16 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | promotionGroup | String? |  yes  | Group of promotion belongs to |
- | buyRules | [String: Any]? |  yes  | Buy rules of promotions |
- | discountRules | [[String: Any]]? |  yes  | Discount rules of promotions |
- | offerPrices | [[LadderOfferItem](#LadderOfferItem)]? |  yes  |  |
- | validTill | String? |  yes  | Datetime ISOString for promotion end date |
- | offerText | String? |  yes  | Offer title |
- | calculateOn | String? |  yes  | If this ladder offer is to be calculated on MRP or ESP price |
- | id | String? |  yes  | Promotion id |
  | description | String? |  yes  | Offer details including T&C |
  | freeGiftItems | [[FreeGiftItems](#FreeGiftItems)]? |  yes  | Details of free gift items |
+ | validTill | String? |  yes  | Datetime ISOString for promotion end date |
+ | discountRules | [[String: Any]]? |  yes  | Discount rules of promotions |
+ | offerPrices | [[LadderOfferItem](#LadderOfferItem)]? |  yes  |  |
+ | offerText | String? |  yes  | Offer title |
+ | promotionGroup | String? |  yes  | Group of promotion belongs to |
+ | buyRules | [String: Any]? |  yes  | Buy rules of promotions |
+ | id | String? |  yes  | Promotion id |
+ | calculateOn | String? |  yes  | If this ladder offer is to be calculated on MRP or ESP price |
 
 ---
 

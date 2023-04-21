@@ -11,7 +11,7 @@ public extension PlatformClient.Catalog {
     class CategoryItems: Codable {
         public var childs: [Child]?
 
-        public var name: String?
+        public var action: Action?
 
         public var uid: Int?
 
@@ -19,12 +19,12 @@ public extension PlatformClient.Catalog {
 
         public var slug: String?
 
-        public var action: Action?
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case childs
 
-            case name
+            case action
 
             case uid
 
@@ -32,13 +32,13 @@ public extension PlatformClient.Catalog {
 
             case slug
 
-            case action
+            case name
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [Child]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
             self.childs = childs
 
-            self.name = name
+            self.action = action
 
             self.uid = uid
 
@@ -46,7 +46,7 @@ public extension PlatformClient.Catalog {
 
             self.slug = slug
 
-            self.action = action
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,7 +106,7 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
@@ -114,7 +114,7 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -128,7 +128,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CategoryItems: Codable {
         public var childs: [Child]?
 
-        public var name: String?
+        public var action: Action?
 
         public var uid: Int?
 
@@ -136,12 +136,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var slug: String?
 
-        public var action: Action?
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case childs
 
-            case name
+            case action
 
             case uid
 
@@ -149,13 +149,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case slug
 
-            case action
+            case name
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [Child]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
             self.childs = childs
 
-            self.name = name
+            self.action = action
 
             self.uid = uid
 
@@ -163,7 +163,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.slug = slug
 
-            self.action = action
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -178,7 +178,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -223,7 +223,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
@@ -231,7 +231,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

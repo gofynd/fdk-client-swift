@@ -11,30 +11,32 @@ public extension PlatformClient.Catalog {
     class ArticleQuery: Codable {
         public var itemId: Int
 
-        public var ignoredStores: [Int]?
-
         public var size: String
+
+        public var ignoredStores: [Int]?
 
         public enum CodingKeys: String, CodingKey {
             case itemId = "item_id"
 
-            case ignoredStores = "ignored_stores"
-
             case size
+
+            case ignoredStores = "ignored_stores"
         }
 
         public init(ignoredStores: [Int]? = nil, itemId: Int, size: String) {
             self.itemId = itemId
 
-            self.ignoredStores = ignoredStores
-
             self.size = size
+
+            self.ignoredStores = ignoredStores
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             itemId = try container.decode(Int.self, forKey: .itemId)
+
+            size = try container.decode(String.self, forKey: .size)
 
             do {
                 ignoredStores = try container.decode([Int].self, forKey: .ignoredStores)
@@ -43,8 +45,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            size = try container.decode(String.self, forKey: .size)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(ignoredStores, forKey: .ignoredStores)
-
             try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(ignoredStores, forKey: .ignoredStores)
         }
     }
 }
@@ -68,30 +68,32 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ArticleQuery: Codable {
         public var itemId: Int
 
-        public var ignoredStores: [Int]?
-
         public var size: String
+
+        public var ignoredStores: [Int]?
 
         public enum CodingKeys: String, CodingKey {
             case itemId = "item_id"
 
-            case ignoredStores = "ignored_stores"
-
             case size
+
+            case ignoredStores = "ignored_stores"
         }
 
         public init(ignoredStores: [Int]? = nil, itemId: Int, size: String) {
             self.itemId = itemId
 
-            self.ignoredStores = ignoredStores
-
             self.size = size
+
+            self.ignoredStores = ignoredStores
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             itemId = try container.decode(Int.self, forKey: .itemId)
+
+            size = try container.decode(String.self, forKey: .size)
 
             do {
                 ignoredStores = try container.decode([Int].self, forKey: .ignoredStores)
@@ -100,8 +102,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            size = try container.decode(String.self, forKey: .size)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(ignoredStores, forKey: .ignoredStores)
-
             try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(ignoredStores, forKey: .ignoredStores)
         }
     }
 }

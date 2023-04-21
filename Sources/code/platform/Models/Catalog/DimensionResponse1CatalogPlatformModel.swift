@@ -11,18 +11,18 @@ public extension PlatformClient.Catalog {
     class DimensionResponse1: Codable {
         public var width: Double?
 
-        public var height: Double?
-
         public var unit: String?
+
+        public var height: Double?
 
         public var length: Double?
 
         public enum CodingKeys: String, CodingKey {
             case width
 
-            case height
-
             case unit
+
+            case height
 
             case length
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
         public init(height: Double? = nil, length: Double? = nil, unit: String? = nil, width: Double? = nil) {
             self.width = width
 
-            self.height = height
-
             self.unit = unit
+
+            self.height = height
 
             self.length = length
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                height = try container.decode(Double.self, forKey: .height)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                height = try container.decode(Double.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(width, forKey: .width)
 
-            try? container.encodeIfPresent(height, forKey: .height)
-
             try? container.encodeIfPresent(unit, forKey: .unit)
+
+            try? container.encodeIfPresent(height, forKey: .height)
 
             try? container.encodeIfPresent(length, forKey: .length)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class DimensionResponse1: Codable {
         public var width: Double?
 
-        public var height: Double?
-
         public var unit: String?
+
+        public var height: Double?
 
         public var length: Double?
 
         public enum CodingKeys: String, CodingKey {
             case width
 
-            case height
-
             case unit
+
+            case height
 
             case length
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(height: Double? = nil, length: Double? = nil, unit: String? = nil, width: Double? = nil) {
             self.width = width
 
-            self.height = height
-
             self.unit = unit
+
+            self.height = height
 
             self.length = length
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                height = try container.decode(Double.self, forKey: .height)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                height = try container.decode(Double.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(width, forKey: .width)
 
-            try? container.encodeIfPresent(height, forKey: .height)
-
             try? container.encodeIfPresent(unit, forKey: .unit)
+
+            try? container.encodeIfPresent(height, forKey: .height)
 
             try? container.encodeIfPresent(length, forKey: .length)
         }

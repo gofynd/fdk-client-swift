@@ -9,22 +9,22 @@ public extension ApplicationClient.Catalog {
     class Dimension: Codable {
         public var isDefault: Bool
 
+        public var unit: String
+
         public var height: Double
 
         public var width: Double
-
-        public var unit: String
 
         public var length: Double
 
         public enum CodingKeys: String, CodingKey {
             case isDefault = "is_default"
 
+            case unit
+
             case height
 
             case width
-
-            case unit
 
             case length
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Catalog {
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
             self.isDefault = isDefault
 
+            self.unit = unit
+
             self.height = height
 
             self.width = width
-
-            self.unit = unit
 
             self.length = length
         }
@@ -46,11 +46,11 @@ public extension ApplicationClient.Catalog {
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
+            unit = try container.decode(String.self, forKey: .unit)
+
             height = try container.decode(Double.self, forKey: .height)
 
             width = try container.decode(Double.self, forKey: .width)
-
-            unit = try container.decode(String.self, forKey: .unit)
 
             length = try container.decode(Double.self, forKey: .length)
         }
@@ -60,11 +60,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
+            try? container.encodeIfPresent(unit, forKey: .unit)
+
             try? container.encodeIfPresent(height, forKey: .height)
 
             try? container.encodeIfPresent(width, forKey: .width)
-
-            try? container.encodeIfPresent(unit, forKey: .unit)
 
             try? container.encodeIfPresent(length, forKey: .length)
         }
