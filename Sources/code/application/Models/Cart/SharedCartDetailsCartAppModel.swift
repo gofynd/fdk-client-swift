@@ -9,9 +9,9 @@ public extension ApplicationClient.Cart {
     class SharedCartDetails: Codable {
         public var token: String?
 
-        public var user: [String: Any]?
-
         public var meta: [String: Any]?
+
+        public var user: [String: Any]?
 
         public var createdOn: String?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.Cart {
         public enum CodingKeys: String, CodingKey {
             case token
 
-            case user
-
             case meta
+
+            case user
 
             case createdOn = "created_on"
 
@@ -32,9 +32,9 @@ public extension ApplicationClient.Cart {
         public init(createdOn: String? = nil, meta: [String: Any]? = nil, source: [String: Any]? = nil, token: String? = nil, user: [String: Any]? = nil) {
             self.token = token
 
-            self.user = user
-
             self.meta = meta
+
+            self.user = user
 
             self.createdOn = createdOn
 
@@ -53,7 +53,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                user = try container.decode([String: Any].self, forKey: .user)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                user = try container.decode([String: Any].self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(token, forKey: .token)
 
-            try? container.encodeIfPresent(user, forKey: .user)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
