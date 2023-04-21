@@ -45,7 +45,7 @@ Fetch all items added to the cart
 
 
 ```swift
-cart.getCart(id: id, i: i, b: b, assignCardId: assignCardId, areaCode: areaCode, buyNow: buyNow) { (response, error) in
+applicationClient.cart.getCart(id: id, i: i, b: b, assignCardId: assignCardId, areaCode: areaCode, buyNow: buyNow) { (response, error) in
     // Use response
 }
 ```
@@ -272,7 +272,7 @@ Fetch last-modified timestamp
 
 
 ```swift
-cart.getCartLastModified(id: id) { (response, error) in
+applicationClient.cart.getCartLastModified(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -308,7 +308,7 @@ Add items to cart
 
 
 ```swift
-cart.addItems(i: i, b: b, areaCode: areaCode, buyNow: buyNow, body: body) { (response, error) in
+applicationClient.cart.addItems(i: i, b: b, areaCode: areaCode, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1011,7 +1011,7 @@ Update items in the cart
 
 
 ```swift
-cart.updateCart(id: id, i: i, b: b, areaCode: areaCode, buyNow: buyNow, body: body) { (response, error) in
+applicationClient.cart.updateCart(id: id, i: i, b: b, areaCode: areaCode, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1444,7 +1444,7 @@ Count items in the cart
 
 
 ```swift
-cart.getItemCount(id: id, buyNow: buyNow) { (response, error) in
+applicationClient.cart.getItemCount(id: id, buyNow: buyNow) { (response, error) in
     // Use response
 }
 ```
@@ -1502,7 +1502,7 @@ Fetch Coupon
 
 
 ```swift
-cart.getCoupons(id: id, buyNow: buyNow) { (response, error) in
+applicationClient.cart.getCoupons(id: id, buyNow: buyNow) { (response, error) in
     // Use response
 }
 ```
@@ -1594,7 +1594,7 @@ Apply Coupon
 
 
 ```swift
-cart.applyCoupon(i: i, b: b, p: p, id: id, buyNow: buyNow, body: body) { (response, error) in
+applicationClient.cart.applyCoupon(i: i, b: b, p: p, id: id, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2190,7 +2190,7 @@ Remove Coupon Applied
 
 
 ```swift
-cart.removeCoupon(id: id, buyNow: buyNow) { (response, error) in
+applicationClient.cart.removeCoupon(id: id, buyNow: buyNow) { (response, error) in
     // Use response
 }
 ```
@@ -2404,7 +2404,7 @@ Get discount offers based on quantity
 
 
 ```swift
-cart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug: slug) { (response, error) in
+applicationClient.cart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -2533,7 +2533,7 @@ Apply reward points at cart
 
 
 ```swift
-cart.applyRewardPoints(id: id, i: i, b: b, buyNow: buyNow, body: body) { (response, error) in
+applicationClient.cart.applyRewardPoints(id: id, i: i, b: b, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2758,7 +2758,7 @@ Fetch address
 
 
 ```swift
-cart.getAddresses(cartId: cartId, buyNow: buyNow, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault) { (response, error) in
+applicationClient.cart.getAddresses(cartId: cartId, buyNow: buyNow, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault) { (response, error) in
     // Use response
 }
 ```
@@ -2850,7 +2850,7 @@ Add address to an account
 
 
 ```swift
-cart.addAddress(body: body) { (response, error) in
+applicationClient.cart.addAddress(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2908,7 +2908,7 @@ Fetch a single address by its ID
 
 
 ```swift
-cart.getAddressById(id: id, cartId: cartId, buyNow: buyNow, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault) { (response, error) in
+applicationClient.cart.getAddressById(id: id, cartId: cartId, buyNow: buyNow, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault) { (response, error) in
     // Use response
 }
 ```
@@ -2998,7 +2998,7 @@ Update address added to an account
 
 
 ```swift
-cart.updateAddress(id: id, body: body) { (response, error) in
+applicationClient.cart.updateAddress(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3058,7 +3058,7 @@ Remove address associated with an account
 
 
 ```swift
-cart.removeAddress(id: id) { (response, error) in
+applicationClient.cart.removeAddress(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -3116,7 +3116,7 @@ Select an address from available addresses
 
 
 ```swift
-cart.selectAddress(cartId: cartId, buyNow: buyNow, i: i, b: b, body: body) { (response, error) in
+applicationClient.cart.selectAddress(cartId: cartId, buyNow: buyNow, i: i, b: b, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3430,7 +3430,7 @@ Update cart payment
 
 
 ```swift
-cart.selectPaymentMode(id: id, buyNow: buyNow, body: body) { (response, error) in
+applicationClient.cart.selectPaymentMode(id: id, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3754,7 +3754,7 @@ Verify the coupon eligibility against the payment mode
 
 
 ```swift
-cart.validateCouponForPayment(id: id, buyNow: buyNow, addressId: addressId, paymentMode: paymentMode, paymentIdentifier: paymentIdentifier, aggregatorName: aggregatorName, merchantCode: merchantCode) { (response, error) in
+applicationClient.cart.validateCouponForPayment(id: id, buyNow: buyNow, addressId: addressId, paymentMode: paymentMode, paymentIdentifier: paymentIdentifier, aggregatorName: aggregatorName, merchantCode: merchantCode) { (response, error) in
     // Use response
 }
 ```
@@ -3825,7 +3825,7 @@ Get delivery date and options before checkout
 
 
 ```swift
-cart.getShipments(p: p, id: id, buyNow: buyNow, addressId: addressId, areaCode: areaCode) { (response, error) in
+applicationClient.cart.getShipments(p: p, id: id, buyNow: buyNow, addressId: addressId, areaCode: areaCode) { (response, error) in
     // Use response
 }
 ```
@@ -4526,7 +4526,7 @@ Checkout all items in the cart
 
 
 ```swift
-cart.checkoutCart(buyNow: buyNow, body: body) { (response, error) in
+applicationClient.cart.checkoutCart(buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -4961,7 +4961,7 @@ Update the cart meta
 
 
 ```swift
-cart.updateCartMeta(id: id, buyNow: buyNow, body: body) { (response, error) in
+applicationClient.cart.updateCartMeta(id: id, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5019,7 +5019,7 @@ Generate token for sharing the cart
 
 
 ```swift
-cart.getCartShareLink(body: body) { (response, error) in
+applicationClient.cart.getCartShareLink(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5084,7 +5084,7 @@ Get details of a shared cart
 
 
 ```swift
-cart.getCartSharedItems(token: token) { (response, error) in
+applicationClient.cart.getCartSharedItems(token: token) { (response, error) in
     // Use response
 }
 ```
@@ -5415,7 +5415,7 @@ Merge or replace existing cart
 
 
 ```swift
-cart.updateCartWithSharedItems(token: token, action: action) { (response, error) in
+applicationClient.cart.updateCartWithSharedItems(token: token, action: action) { (response, error) in
     // Use response
 }
 ```
@@ -5754,7 +5754,7 @@ Fetch available promotions
 
 
 ```swift
-cart.getPromotionOffers(slug: slug, pageSize: pageSize, promotionGroup: promotionGroup) { (response, error) in
+applicationClient.cart.getPromotionOffers(slug: slug, pageSize: pageSize, promotionGroup: promotionGroup) { (response, error) in
     // Use response
 }
 ```
@@ -5842,7 +5842,7 @@ Fetch ladder price promotion
 
 
 ```swift
-cart.getLadderOffers(slug: slug, storeId: storeId, promotionId: promotionId, pageSize: pageSize) { (response, error) in
+applicationClient.cart.getLadderOffers(slug: slug, storeId: storeId, promotionId: promotionId, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```

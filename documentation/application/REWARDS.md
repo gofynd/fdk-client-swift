@@ -26,7 +26,7 @@ Get offer by name
 
 
 ```swift
-rewards.getOfferByName(name: name) { (response, error) in
+applicationClient.rewards.getOfferByName(name: name) { (response, error) in
     // Use response
 }
 ```
@@ -81,7 +81,7 @@ Get all transactions of reward points
 
 
 ```swift
-rewards.catalogueOrder(body: body) { (response, error) in
+applicationClient.rewards.catalogueOrder(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -135,7 +135,7 @@ Get all transactions of reward points
 
 
 ```swift
-rewards.getUserPointsHistory(pageId: pageId, pageSize: pageSize) { (response, error) in
+applicationClient.rewards.getUserPointsHistory(pageId: pageId, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -191,7 +191,7 @@ Get referral details of a user
 
 
 ```swift
-rewards.getUserPoints() { (response, error) in
+applicationClient.rewards.getUserPoints() { (response, error) in
     // Use response
 }
 ```
@@ -241,7 +241,7 @@ Get referral details of a user
 
 
 ```swift
-rewards.getUserReferralDetails() { (response, error) in
+applicationClient.rewards.getUserReferralDetails() { (response, error) in
     // Use response
 }
 ```
@@ -291,7 +291,7 @@ Calculates the discount on order-amount
 
 
 ```swift
-rewards.getOrderDiscount(body: body) { (response, error) in
+applicationClient.rewards.getOrderDiscount(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -345,7 +345,7 @@ Redeems a referral code and credits reward points to users
 
 
 ```swift
-rewards.redeemReferralCode(body: body) { (response, error) in
+applicationClient.rewards.redeemReferralCode(body: body) { (response, error) in
     // Use response
 }
 ```

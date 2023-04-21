@@ -9,90 +9,82 @@ public extension PlatformClient.Order {
      */
 
     class BagUnit: Codable {
-        public var gst: GSTDetailsData?
+        public var bagId: Int
 
-        public var shipmentId: String
-
-        public var itemQuantity: Int
+        public var orderingChannel: String
 
         public var prices: Prices?
 
-        public var status: [String: Any]
+        public var canCancel: Bool?
 
         public var canReturn: Bool?
 
-        public var bagId: Int
+        public var itemQuantity: Int
 
-        public var canCancel: Bool?
-
-        public var orderingChannel: String
+        public var shipmentId: String
 
         public var totalShipmentBags: Int
 
         public var item: PlatformItem?
 
+        public var gst: GSTDetailsData?
+
+        public var status: [String: Any]
+
         public enum CodingKeys: String, CodingKey {
-            case gst
+            case bagId = "bag_id"
 
-            case shipmentId = "shipment_id"
-
-            case itemQuantity = "item_quantity"
+            case orderingChannel = "ordering_channel"
 
             case prices
 
-            case status
+            case canCancel = "can_cancel"
 
             case canReturn = "can_return"
 
-            case bagId = "bag_id"
+            case itemQuantity = "item_quantity"
 
-            case canCancel = "can_cancel"
-
-            case orderingChannel = "ordering_channel"
+            case shipmentId = "shipment_id"
 
             case totalShipmentBags = "total_shipment_bags"
 
             case item
+
+            case gst
+
+            case status
         }
 
         public init(bagId: Int, canCancel: Bool? = nil, canReturn: Bool? = nil, gst: GSTDetailsData? = nil, item: PlatformItem? = nil, itemQuantity: Int, orderingChannel: String, prices: Prices? = nil, shipmentId: String, status: [String: Any], totalShipmentBags: Int) {
-            self.gst = gst
+            self.bagId = bagId
 
-            self.shipmentId = shipmentId
-
-            self.itemQuantity = itemQuantity
+            self.orderingChannel = orderingChannel
 
             self.prices = prices
 
-            self.status = status
+            self.canCancel = canCancel
 
             self.canReturn = canReturn
 
-            self.bagId = bagId
+            self.itemQuantity = itemQuantity
 
-            self.canCancel = canCancel
-
-            self.orderingChannel = orderingChannel
+            self.shipmentId = shipmentId
 
             self.totalShipmentBags = totalShipmentBags
 
             self.item = item
+
+            self.gst = gst
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                gst = try container.decode(GSTDetailsData.self, forKey: .gst)
+            bagId = try container.decode(Int.self, forKey: .bagId)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
-            itemQuantity = try container.decode(Int.self, forKey: .itemQuantity)
+            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
 
             do {
                 prices = try container.decode(Prices.self, forKey: .prices)
@@ -102,7 +94,13 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            status = try container.decode([String: Any].self, forKey: .status)
+            do {
+                canCancel = try container.decode(Bool.self, forKey: .canCancel)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 canReturn = try container.decode(Bool.self, forKey: .canReturn)
@@ -112,17 +110,9 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            bagId = try container.decode(Int.self, forKey: .bagId)
+            itemQuantity = try container.decode(Int.self, forKey: .itemQuantity)
 
-            do {
-                canCancel = try container.decode(Bool.self, forKey: .canCancel)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             totalShipmentBags = try container.decode(Int.self, forKey: .totalShipmentBags)
 
@@ -133,32 +123,42 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                gst = try container.decode(GSTDetailsData.self, forKey: .gst)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            status = try container.decode([String: Any].self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(gst, forKey: .gst)
+            try? container.encodeIfPresent(bagId, forKey: .bagId)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
-            try? container.encodeIfPresent(itemQuantity, forKey: .itemQuantity)
+            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
 
             try? container.encodeIfPresent(prices, forKey: .prices)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
 
             try? container.encodeIfPresent(canReturn, forKey: .canReturn)
 
-            try? container.encodeIfPresent(bagId, forKey: .bagId)
+            try? container.encodeIfPresent(itemQuantity, forKey: .itemQuantity)
 
-            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
-
-            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(totalShipmentBags, forKey: .totalShipmentBags)
 
             try? container.encodeIfPresent(item, forKey: .item)
+
+            try? container.encodeIfPresent(gst, forKey: .gst)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }
@@ -170,90 +170,82 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class BagUnit: Codable {
-        public var gst: GSTDetailsData?
+        public var bagId: Int
 
-        public var shipmentId: String
-
-        public var itemQuantity: Int
+        public var orderingChannel: String
 
         public var prices: Prices?
 
-        public var status: [String: Any]
+        public var canCancel: Bool?
 
         public var canReturn: Bool?
 
-        public var bagId: Int
+        public var itemQuantity: Int
 
-        public var canCancel: Bool?
-
-        public var orderingChannel: String
+        public var shipmentId: String
 
         public var totalShipmentBags: Int
 
         public var item: PlatformItem?
 
+        public var gst: GSTDetailsData?
+
+        public var status: [String: Any]
+
         public enum CodingKeys: String, CodingKey {
-            case gst
+            case bagId = "bag_id"
 
-            case shipmentId = "shipment_id"
-
-            case itemQuantity = "item_quantity"
+            case orderingChannel = "ordering_channel"
 
             case prices
 
-            case status
+            case canCancel = "can_cancel"
 
             case canReturn = "can_return"
 
-            case bagId = "bag_id"
+            case itemQuantity = "item_quantity"
 
-            case canCancel = "can_cancel"
-
-            case orderingChannel = "ordering_channel"
+            case shipmentId = "shipment_id"
 
             case totalShipmentBags = "total_shipment_bags"
 
             case item
+
+            case gst
+
+            case status
         }
 
         public init(bagId: Int, canCancel: Bool? = nil, canReturn: Bool? = nil, gst: GSTDetailsData? = nil, item: PlatformItem? = nil, itemQuantity: Int, orderingChannel: String, prices: Prices? = nil, shipmentId: String, status: [String: Any], totalShipmentBags: Int) {
-            self.gst = gst
+            self.bagId = bagId
 
-            self.shipmentId = shipmentId
-
-            self.itemQuantity = itemQuantity
+            self.orderingChannel = orderingChannel
 
             self.prices = prices
 
-            self.status = status
+            self.canCancel = canCancel
 
             self.canReturn = canReturn
 
-            self.bagId = bagId
+            self.itemQuantity = itemQuantity
 
-            self.canCancel = canCancel
-
-            self.orderingChannel = orderingChannel
+            self.shipmentId = shipmentId
 
             self.totalShipmentBags = totalShipmentBags
 
             self.item = item
+
+            self.gst = gst
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                gst = try container.decode(GSTDetailsData.self, forKey: .gst)
+            bagId = try container.decode(Int.self, forKey: .bagId)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
-            itemQuantity = try container.decode(Int.self, forKey: .itemQuantity)
+            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
 
             do {
                 prices = try container.decode(Prices.self, forKey: .prices)
@@ -263,7 +255,13 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            status = try container.decode([String: Any].self, forKey: .status)
+            do {
+                canCancel = try container.decode(Bool.self, forKey: .canCancel)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 canReturn = try container.decode(Bool.self, forKey: .canReturn)
@@ -273,17 +271,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            bagId = try container.decode(Int.self, forKey: .bagId)
+            itemQuantity = try container.decode(Int.self, forKey: .itemQuantity)
 
-            do {
-                canCancel = try container.decode(Bool.self, forKey: .canCancel)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             totalShipmentBags = try container.decode(Int.self, forKey: .totalShipmentBags)
 
@@ -294,32 +284,42 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                gst = try container.decode(GSTDetailsData.self, forKey: .gst)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            status = try container.decode([String: Any].self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(gst, forKey: .gst)
+            try? container.encodeIfPresent(bagId, forKey: .bagId)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
-            try? container.encodeIfPresent(itemQuantity, forKey: .itemQuantity)
+            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
 
             try? container.encodeIfPresent(prices, forKey: .prices)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
 
             try? container.encodeIfPresent(canReturn, forKey: .canReturn)
 
-            try? container.encodeIfPresent(bagId, forKey: .bagId)
+            try? container.encodeIfPresent(itemQuantity, forKey: .itemQuantity)
 
-            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
-
-            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(totalShipmentBags, forKey: .totalShipmentBags)
 
             try? container.encodeIfPresent(item, forKey: .item)
+
+            try? container.encodeIfPresent(gst, forKey: .gst)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

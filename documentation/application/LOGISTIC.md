@@ -24,7 +24,7 @@ Get Pincode API
 
 
 ```swift
-logistic.getPincodeCity(pincode: pincode) { (response, error) in
+applicationClient.logistic.getPincodeCity(pincode: pincode) { (response, error) in
     // Use response
 }
 ```
@@ -174,7 +174,7 @@ Get TAT API
 
 
 ```swift
-logistic.getTatProduct(body: body) { (response, error) in
+applicationClient.logistic.getTatProduct(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -335,7 +335,7 @@ Get Country List
 
 
 ```swift
-logistic.getAllCountries() { (response, error) in
+applicationClient.logistic.getAllCountries() { (response, error) in
     // Use response
 }
 ```
@@ -385,7 +385,7 @@ GET zone from the Pincode.
 
 
 ```swift
-logistic.getPincodeZones(body: body) { (response, error) in
+applicationClient.logistic.getPincodeZones(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -439,7 +439,7 @@ GET zone from the Pincode.
 
 
 ```swift
-logistic.getOptimalLocations(body: body) { (response, error) in
+applicationClient.logistic.getOptimalLocations(body: body) { (response, error) in
     // Use response
 }
 ```
