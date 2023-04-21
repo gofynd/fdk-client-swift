@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var itemTotal: Int?
 
-        public var hasNext: Bool?
-
         public var size: Int?
+
+        public var hasNext: Bool?
 
         public var hasPrevious: Bool?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case itemTotal = "item_total"
 
-            case hasNext = "has_next"
-
             case size
+
+            case hasNext = "has_next"
 
             case hasPrevious = "has_previous"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.itemTotal = itemTotal
 
-            self.hasNext = hasNext
-
             self.size = size
+
+            self.hasNext = hasNext
 
             self.hasPrevious = hasPrevious
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                size = try container.decode(Int.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                size = try container.decode(Int.self, forKey: .size)
+                hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
-
             try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var itemTotal: Int?
 
-        public var hasNext: Bool?
-
         public var size: Int?
+
+        public var hasNext: Bool?
 
         public var hasPrevious: Bool?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case itemTotal = "item_total"
 
-            case hasNext = "has_next"
-
             case size
+
+            case hasNext = "has_next"
 
             case hasPrevious = "has_previous"
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.itemTotal = itemTotal
 
-            self.hasNext = hasNext
-
             self.size = size
+
+            self.hasNext = hasNext
 
             self.hasPrevious = hasPrevious
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                size = try container.decode(Int.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                size = try container.decode(Int.self, forKey: .size)
+                hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
-
             try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
         }

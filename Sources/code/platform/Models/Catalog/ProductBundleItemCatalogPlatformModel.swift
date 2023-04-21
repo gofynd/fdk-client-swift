@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var allowRemove: Bool?
 
-        public var maxQuantity: Int
-
         public var productUid: Int
+
+        public var maxQuantity: Int
 
         public var autoAddToCart: Bool?
 
@@ -26,9 +26,9 @@ public extension PlatformClient.Catalog {
 
             case allowRemove = "allow_remove"
 
-            case maxQuantity = "max_quantity"
-
             case productUid = "product_uid"
+
+            case maxQuantity = "max_quantity"
 
             case autoAddToCart = "auto_add_to_cart"
 
@@ -40,9 +40,9 @@ public extension PlatformClient.Catalog {
 
             self.allowRemove = allowRemove
 
-            self.maxQuantity = maxQuantity
-
             self.productUid = productUid
+
+            self.maxQuantity = maxQuantity
 
             self.autoAddToCart = autoAddToCart
 
@@ -62,9 +62,9 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
-
             productUid = try container.decode(Int.self, forKey: .productUid)
+
+            maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
 
             do {
                 autoAddToCart = try container.decode(Bool.self, forKey: .autoAddToCart)
@@ -90,9 +90,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
 
-            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
-
             try? container.encodeIfPresent(productUid, forKey: .productUid)
+
+            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
 
             try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
 
@@ -112,9 +112,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var allowRemove: Bool?
 
-        public var maxQuantity: Int
-
         public var productUid: Int
+
+        public var maxQuantity: Int
 
         public var autoAddToCart: Bool?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case allowRemove = "allow_remove"
 
-            case maxQuantity = "max_quantity"
-
             case productUid = "product_uid"
+
+            case maxQuantity = "max_quantity"
 
             case autoAddToCart = "auto_add_to_cart"
 
@@ -139,9 +139,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.allowRemove = allowRemove
 
-            self.maxQuantity = maxQuantity
-
             self.productUid = productUid
+
+            self.maxQuantity = maxQuantity
 
             self.autoAddToCart = autoAddToCart
 
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
-
             productUid = try container.decode(Int.self, forKey: .productUid)
+
+            maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
 
             do {
                 autoAddToCart = try container.decode(Bool.self, forKey: .autoAddToCart)
@@ -189,9 +189,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
 
-            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
-
             try? container.encodeIfPresent(productUid, forKey: .productUid)
+
+            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
 
             try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
 

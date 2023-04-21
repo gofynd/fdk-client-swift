@@ -11,38 +11,36 @@ public extension PlatformClient.Catalog {
     class InventoryBulkRequest: Codable {
         public var companyId: Int
 
-        public var batchId: String
-
         public var sizes: [InventoryJobPayload]
 
         public var user: [String: Any]?
 
+        public var batchId: String
+
         public enum CodingKeys: String, CodingKey {
             case companyId = "company_id"
-
-            case batchId = "batch_id"
 
             case sizes
 
             case user
+
+            case batchId = "batch_id"
         }
 
         public init(batchId: String, companyId: Int, sizes: [InventoryJobPayload], user: [String: Any]? = nil) {
             self.companyId = companyId
 
-            self.batchId = batchId
-
             self.sizes = sizes
 
             self.user = user
+
+            self.batchId = batchId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             companyId = try container.decode(Int.self, forKey: .companyId)
-
-            batchId = try container.decode(String.self, forKey: .batchId)
 
             sizes = try container.decode([InventoryJobPayload].self, forKey: .sizes)
 
@@ -53,6 +51,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            batchId = try container.decode(String.self, forKey: .batchId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -60,11 +60,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(batchId, forKey: .batchId)
-
             try? container.encodeIfPresent(sizes, forKey: .sizes)
 
             try? container.encodeIfPresent(user, forKey: .user)
+
+            try? container.encodeIfPresent(batchId, forKey: .batchId)
         }
     }
 }
@@ -78,38 +78,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class InventoryBulkRequest: Codable {
         public var companyId: Int
 
-        public var batchId: String
-
         public var sizes: [InventoryJobPayload]
 
         public var user: [String: Any]?
 
+        public var batchId: String
+
         public enum CodingKeys: String, CodingKey {
             case companyId = "company_id"
-
-            case batchId = "batch_id"
 
             case sizes
 
             case user
+
+            case batchId = "batch_id"
         }
 
         public init(batchId: String, companyId: Int, sizes: [InventoryJobPayload], user: [String: Any]? = nil) {
             self.companyId = companyId
 
-            self.batchId = batchId
-
             self.sizes = sizes
 
             self.user = user
+
+            self.batchId = batchId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             companyId = try container.decode(Int.self, forKey: .companyId)
-
-            batchId = try container.decode(String.self, forKey: .batchId)
 
             sizes = try container.decode([InventoryJobPayload].self, forKey: .sizes)
 
@@ -120,6 +118,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            batchId = try container.decode(String.self, forKey: .batchId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -127,11 +127,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(batchId, forKey: .batchId)
-
             try? container.encodeIfPresent(sizes, forKey: .sizes)
 
             try? container.encodeIfPresent(user, forKey: .user)
+
+            try? container.encodeIfPresent(batchId, forKey: .batchId)
         }
     }
 }

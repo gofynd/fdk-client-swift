@@ -13,13 +13,13 @@ public extension PlatformClient.Order {
 
         public var dimension: [String: Any]
 
+        public var attributes: [String: Any]
+
         public var id: String
 
         public var weight: [String: Any]
 
         public var category: [String: Any]
-
-        public var attributes: [String: Any]
 
         public var brandId: Int
 
@@ -28,13 +28,13 @@ public extension PlatformClient.Order {
 
             case dimension
 
+            case attributes
+
             case id = "_id"
 
             case weight
 
             case category
-
-            case attributes
 
             case brandId = "brand_id"
         }
@@ -44,13 +44,13 @@ public extension PlatformClient.Order {
 
             self.dimension = dimension
 
+            self.attributes = attributes
+
             self.id = id
 
             self.weight = weight
 
             self.category = category
-
-            self.attributes = attributes
 
             self.brandId = brandId
         }
@@ -62,13 +62,13 @@ public extension PlatformClient.Order {
 
             dimension = try container.decode([String: Any].self, forKey: .dimension)
 
+            attributes = try container.decode([String: Any].self, forKey: .attributes)
+
             id = try container.decode(String.self, forKey: .id)
 
             weight = try container.decode([String: Any].self, forKey: .weight)
 
             category = try container.decode([String: Any].self, forKey: .category)
-
-            attributes = try container.decode([String: Any].self, forKey: .attributes)
 
             brandId = try container.decode(Int.self, forKey: .brandId)
         }
@@ -80,13 +80,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(dimension, forKey: .dimension)
 
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
+
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(weight, forKey: .weight)
 
             try? container.encodeIfPresent(category, forKey: .category)
-
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
 
             try? container.encodeIfPresent(brandId, forKey: .brandId)
         }
@@ -104,13 +104,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var dimension: [String: Any]
 
+        public var attributes: [String: Any]
+
         public var id: String
 
         public var weight: [String: Any]
 
         public var category: [String: Any]
-
-        public var attributes: [String: Any]
 
         public var brandId: Int
 
@@ -119,13 +119,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case dimension
 
+            case attributes
+
             case id = "_id"
 
             case weight
 
             case category
-
-            case attributes
 
             case brandId = "brand_id"
         }
@@ -135,13 +135,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.dimension = dimension
 
+            self.attributes = attributes
+
             self.id = id
 
             self.weight = weight
 
             self.category = category
-
-            self.attributes = attributes
 
             self.brandId = brandId
         }
@@ -153,13 +153,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             dimension = try container.decode([String: Any].self, forKey: .dimension)
 
+            attributes = try container.decode([String: Any].self, forKey: .attributes)
+
             id = try container.decode(String.self, forKey: .id)
 
             weight = try container.decode([String: Any].self, forKey: .weight)
 
             category = try container.decode([String: Any].self, forKey: .category)
-
-            attributes = try container.decode([String: Any].self, forKey: .attributes)
 
             brandId = try container.decode(Int.self, forKey: .brandId)
         }
@@ -171,13 +171,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(dimension, forKey: .dimension)
 
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
+
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(weight, forKey: .weight)
 
             try? container.encodeIfPresent(category, forKey: .category)
-
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
 
             try? container.encodeIfPresent(brandId, forKey: .brandId)
         }
