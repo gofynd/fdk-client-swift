@@ -9,108 +9,98 @@ public extension PlatformClient.Order {
      */
 
     class PDFLinks: Codable {
-        public var invoiceA4: String?
-
         public var invoiceType: String
-
-        public var labelType: String
 
         public var labelA6: String?
 
-        public var creditNoteUrl: String?
-
-        public var deliveryChallanA4: String?
-
-        public var invoiceA6: String?
-
-        public var labelA4: String?
-
-        public var invoicePos: String?
+        public var labelType: String
 
         public var invoice: String?
+
+        public var poInvoice: String?
 
         public var b2B: String?
 
         public var label: String?
 
-        public var poInvoice: String?
+        public var invoiceA4: String?
 
         public var labelPos: String?
 
+        public var creditNoteUrl: String?
+
+        public var invoicePos: String?
+
+        public var invoiceA6: String?
+
+        public var deliveryChallanA4: String?
+
+        public var labelA4: String?
+
         public enum CodingKeys: String, CodingKey {
-            case invoiceA4 = "invoice_a4"
-
             case invoiceType = "invoice_type"
-
-            case labelType = "label_type"
 
             case labelA6 = "label_a6"
 
-            case creditNoteUrl = "credit_note_url"
-
-            case deliveryChallanA4 = "delivery_challan_a4"
-
-            case invoiceA6 = "invoice_a6"
-
-            case labelA4 = "label_a4"
-
-            case invoicePos = "invoice_pos"
+            case labelType = "label_type"
 
             case invoice
+
+            case poInvoice = "po_invoice"
 
             case b2B = "b2b"
 
             case label
 
-            case poInvoice = "po_invoice"
+            case invoiceA4 = "invoice_a4"
 
             case labelPos = "label_pos"
+
+            case creditNoteUrl = "credit_note_url"
+
+            case invoicePos = "invoice_pos"
+
+            case invoiceA6 = "invoice_a6"
+
+            case deliveryChallanA4 = "delivery_challan_a4"
+
+            case labelA4 = "label_a4"
         }
 
         public init(b2B: String? = nil, creditNoteUrl: String? = nil, deliveryChallanA4: String? = nil, invoice: String? = nil, invoiceA4: String? = nil, invoiceA6: String? = nil, invoicePos: String? = nil, invoiceType: String, label: String? = nil, labelA4: String? = nil, labelA6: String? = nil, labelPos: String? = nil, labelType: String, poInvoice: String? = nil) {
-            self.invoiceA4 = invoiceA4
-
             self.invoiceType = invoiceType
-
-            self.labelType = labelType
 
             self.labelA6 = labelA6
 
-            self.creditNoteUrl = creditNoteUrl
-
-            self.deliveryChallanA4 = deliveryChallanA4
-
-            self.invoiceA6 = invoiceA6
-
-            self.labelA4 = labelA4
-
-            self.invoicePos = invoicePos
+            self.labelType = labelType
 
             self.invoice = invoice
+
+            self.poInvoice = poInvoice
 
             self.b2B = b2B
 
             self.label = label
 
-            self.poInvoice = poInvoice
+            self.invoiceA4 = invoiceA4
 
             self.labelPos = labelPos
+
+            self.creditNoteUrl = creditNoteUrl
+
+            self.invoicePos = invoicePos
+
+            self.invoiceA6 = invoiceA6
+
+            self.deliveryChallanA4 = deliveryChallanA4
+
+            self.labelA4 = labelA4
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                invoiceA4 = try container.decode(String.self, forKey: .invoiceA4)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             invoiceType = try container.decode(String.self, forKey: .invoiceType)
-
-            labelType = try container.decode(String.self, forKey: .labelType)
 
             do {
                 labelA6 = try container.decode(String.self, forKey: .labelA6)
@@ -120,48 +110,18 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                creditNoteUrl = try container.decode(String.self, forKey: .creditNoteUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                deliveryChallanA4 = try container.decode(String.self, forKey: .deliveryChallanA4)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                invoiceA6 = try container.decode(String.self, forKey: .invoiceA6)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                labelA4 = try container.decode(String.self, forKey: .labelA4)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                invoicePos = try container.decode(String.self, forKey: .invoicePos)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            labelType = try container.decode(String.self, forKey: .labelType)
 
             do {
                 invoice = try container.decode(String.self, forKey: .invoice)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                poInvoice = try container.decode(String.self, forKey: .poInvoice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -185,7 +145,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                poInvoice = try container.decode(String.self, forKey: .poInvoice)
+                invoiceA4 = try container.decode(String.self, forKey: .invoiceA4)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -199,38 +159,78 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                creditNoteUrl = try container.decode(String.self, forKey: .creditNoteUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                invoicePos = try container.decode(String.self, forKey: .invoicePos)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                invoiceA6 = try container.decode(String.self, forKey: .invoiceA6)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                deliveryChallanA4 = try container.decode(String.self, forKey: .deliveryChallanA4)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                labelA4 = try container.decode(String.self, forKey: .labelA4)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(invoiceA4, forKey: .invoiceA4)
-
             try? container.encodeIfPresent(invoiceType, forKey: .invoiceType)
-
-            try? container.encodeIfPresent(labelType, forKey: .labelType)
 
             try? container.encodeIfPresent(labelA6, forKey: .labelA6)
 
-            try? container.encodeIfPresent(creditNoteUrl, forKey: .creditNoteUrl)
-
-            try? container.encodeIfPresent(deliveryChallanA4, forKey: .deliveryChallanA4)
-
-            try? container.encodeIfPresent(invoiceA6, forKey: .invoiceA6)
-
-            try? container.encodeIfPresent(labelA4, forKey: .labelA4)
-
-            try? container.encodeIfPresent(invoicePos, forKey: .invoicePos)
+            try? container.encodeIfPresent(labelType, forKey: .labelType)
 
             try? container.encodeIfPresent(invoice, forKey: .invoice)
+
+            try? container.encodeIfPresent(poInvoice, forKey: .poInvoice)
 
             try? container.encodeIfPresent(b2B, forKey: .b2B)
 
             try? container.encodeIfPresent(label, forKey: .label)
 
-            try? container.encodeIfPresent(poInvoice, forKey: .poInvoice)
+            try? container.encodeIfPresent(invoiceA4, forKey: .invoiceA4)
 
             try? container.encodeIfPresent(labelPos, forKey: .labelPos)
+
+            try? container.encodeIfPresent(creditNoteUrl, forKey: .creditNoteUrl)
+
+            try? container.encodeIfPresent(invoicePos, forKey: .invoicePos)
+
+            try? container.encodeIfPresent(invoiceA6, forKey: .invoiceA6)
+
+            try? container.encodeIfPresent(deliveryChallanA4, forKey: .deliveryChallanA4)
+
+            try? container.encodeIfPresent(labelA4, forKey: .labelA4)
         }
     }
 }
@@ -242,108 +242,98 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class PDFLinks: Codable {
-        public var invoiceA4: String?
-
         public var invoiceType: String
-
-        public var labelType: String
 
         public var labelA6: String?
 
-        public var creditNoteUrl: String?
-
-        public var deliveryChallanA4: String?
-
-        public var invoiceA6: String?
-
-        public var labelA4: String?
-
-        public var invoicePos: String?
+        public var labelType: String
 
         public var invoice: String?
+
+        public var poInvoice: String?
 
         public var b2B: String?
 
         public var label: String?
 
-        public var poInvoice: String?
+        public var invoiceA4: String?
 
         public var labelPos: String?
 
+        public var creditNoteUrl: String?
+
+        public var invoicePos: String?
+
+        public var invoiceA6: String?
+
+        public var deliveryChallanA4: String?
+
+        public var labelA4: String?
+
         public enum CodingKeys: String, CodingKey {
-            case invoiceA4 = "invoice_a4"
-
             case invoiceType = "invoice_type"
-
-            case labelType = "label_type"
 
             case labelA6 = "label_a6"
 
-            case creditNoteUrl = "credit_note_url"
-
-            case deliveryChallanA4 = "delivery_challan_a4"
-
-            case invoiceA6 = "invoice_a6"
-
-            case labelA4 = "label_a4"
-
-            case invoicePos = "invoice_pos"
+            case labelType = "label_type"
 
             case invoice
+
+            case poInvoice = "po_invoice"
 
             case b2B = "b2b"
 
             case label
 
-            case poInvoice = "po_invoice"
+            case invoiceA4 = "invoice_a4"
 
             case labelPos = "label_pos"
+
+            case creditNoteUrl = "credit_note_url"
+
+            case invoicePos = "invoice_pos"
+
+            case invoiceA6 = "invoice_a6"
+
+            case deliveryChallanA4 = "delivery_challan_a4"
+
+            case labelA4 = "label_a4"
         }
 
         public init(b2B: String? = nil, creditNoteUrl: String? = nil, deliveryChallanA4: String? = nil, invoice: String? = nil, invoiceA4: String? = nil, invoiceA6: String? = nil, invoicePos: String? = nil, invoiceType: String, label: String? = nil, labelA4: String? = nil, labelA6: String? = nil, labelPos: String? = nil, labelType: String, poInvoice: String? = nil) {
-            self.invoiceA4 = invoiceA4
-
             self.invoiceType = invoiceType
-
-            self.labelType = labelType
 
             self.labelA6 = labelA6
 
-            self.creditNoteUrl = creditNoteUrl
-
-            self.deliveryChallanA4 = deliveryChallanA4
-
-            self.invoiceA6 = invoiceA6
-
-            self.labelA4 = labelA4
-
-            self.invoicePos = invoicePos
+            self.labelType = labelType
 
             self.invoice = invoice
+
+            self.poInvoice = poInvoice
 
             self.b2B = b2B
 
             self.label = label
 
-            self.poInvoice = poInvoice
+            self.invoiceA4 = invoiceA4
 
             self.labelPos = labelPos
+
+            self.creditNoteUrl = creditNoteUrl
+
+            self.invoicePos = invoicePos
+
+            self.invoiceA6 = invoiceA6
+
+            self.deliveryChallanA4 = deliveryChallanA4
+
+            self.labelA4 = labelA4
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                invoiceA4 = try container.decode(String.self, forKey: .invoiceA4)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             invoiceType = try container.decode(String.self, forKey: .invoiceType)
-
-            labelType = try container.decode(String.self, forKey: .labelType)
 
             do {
                 labelA6 = try container.decode(String.self, forKey: .labelA6)
@@ -353,48 +343,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                creditNoteUrl = try container.decode(String.self, forKey: .creditNoteUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                deliveryChallanA4 = try container.decode(String.self, forKey: .deliveryChallanA4)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                invoiceA6 = try container.decode(String.self, forKey: .invoiceA6)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                labelA4 = try container.decode(String.self, forKey: .labelA4)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                invoicePos = try container.decode(String.self, forKey: .invoicePos)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            labelType = try container.decode(String.self, forKey: .labelType)
 
             do {
                 invoice = try container.decode(String.self, forKey: .invoice)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                poInvoice = try container.decode(String.self, forKey: .poInvoice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -418,7 +378,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                poInvoice = try container.decode(String.self, forKey: .poInvoice)
+                invoiceA4 = try container.decode(String.self, forKey: .invoiceA4)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -432,38 +392,78 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                creditNoteUrl = try container.decode(String.self, forKey: .creditNoteUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                invoicePos = try container.decode(String.self, forKey: .invoicePos)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                invoiceA6 = try container.decode(String.self, forKey: .invoiceA6)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                deliveryChallanA4 = try container.decode(String.self, forKey: .deliveryChallanA4)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                labelA4 = try container.decode(String.self, forKey: .labelA4)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(invoiceA4, forKey: .invoiceA4)
-
             try? container.encodeIfPresent(invoiceType, forKey: .invoiceType)
-
-            try? container.encodeIfPresent(labelType, forKey: .labelType)
 
             try? container.encodeIfPresent(labelA6, forKey: .labelA6)
 
-            try? container.encodeIfPresent(creditNoteUrl, forKey: .creditNoteUrl)
-
-            try? container.encodeIfPresent(deliveryChallanA4, forKey: .deliveryChallanA4)
-
-            try? container.encodeIfPresent(invoiceA6, forKey: .invoiceA6)
-
-            try? container.encodeIfPresent(labelA4, forKey: .labelA4)
-
-            try? container.encodeIfPresent(invoicePos, forKey: .invoicePos)
+            try? container.encodeIfPresent(labelType, forKey: .labelType)
 
             try? container.encodeIfPresent(invoice, forKey: .invoice)
+
+            try? container.encodeIfPresent(poInvoice, forKey: .poInvoice)
 
             try? container.encodeIfPresent(b2B, forKey: .b2B)
 
             try? container.encodeIfPresent(label, forKey: .label)
 
-            try? container.encodeIfPresent(poInvoice, forKey: .poInvoice)
+            try? container.encodeIfPresent(invoiceA4, forKey: .invoiceA4)
 
             try? container.encodeIfPresent(labelPos, forKey: .labelPos)
+
+            try? container.encodeIfPresent(creditNoteUrl, forKey: .creditNoteUrl)
+
+            try? container.encodeIfPresent(invoicePos, forKey: .invoicePos)
+
+            try? container.encodeIfPresent(invoiceA6, forKey: .invoiceA6)
+
+            try? container.encodeIfPresent(deliveryChallanA4, forKey: .deliveryChallanA4)
+
+            try? container.encodeIfPresent(labelA4, forKey: .labelA4)
         }
     }
 }

@@ -9,42 +9,42 @@ public extension ApplicationClient.PosCart {
     class UpdateCartPaymentRequest: Codable {
         public var id: String?
 
-        public var paymentMode: String?
-
-        public var merchantCode: String?
+        public var aggregatorName: String?
 
         public var paymentIdentifier: String?
 
-        public var addressId: String?
+        public var merchantCode: String?
 
-        public var aggregatorName: String?
+        public var paymentMode: String?
+
+        public var addressId: String?
 
         public enum CodingKeys: String, CodingKey {
             case id
 
-            case paymentMode = "payment_mode"
-
-            case merchantCode = "merchant_code"
+            case aggregatorName = "aggregator_name"
 
             case paymentIdentifier = "payment_identifier"
 
-            case addressId = "address_id"
+            case merchantCode = "merchant_code"
 
-            case aggregatorName = "aggregator_name"
+            case paymentMode = "payment_mode"
+
+            case addressId = "address_id"
         }
 
         public init(addressId: String? = nil, aggregatorName: String? = nil, id: String? = nil, merchantCode: String? = nil, paymentIdentifier: String? = nil, paymentMode: String? = nil) {
             self.id = id
 
-            self.paymentMode = paymentMode
-
-            self.merchantCode = merchantCode
+            self.aggregatorName = aggregatorName
 
             self.paymentIdentifier = paymentIdentifier
 
-            self.addressId = addressId
+            self.merchantCode = merchantCode
 
-            self.aggregatorName = aggregatorName
+            self.paymentMode = paymentMode
+
+            self.addressId = addressId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,15 +59,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                merchantCode = try container.decode(String.self, forKey: .merchantCode)
+                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +75,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                addressId = try container.decode(String.self, forKey: .addressId)
+                merchantCode = try container.decode(String.self, forKey: .merchantCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +83,15 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
+                paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                addressId = try container.decode(String.self, forKey: .addressId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,15 +104,15 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-
-            try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
 
             try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
 
-            try? container.encodeIfPresent(addressId, forKey: .addressId)
+            try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
 
-            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
+            try? container.encodeIfPresent(addressId, forKey: .addressId)
         }
     }
 }

@@ -11,7 +11,7 @@ public extension PlatformClient.Order {
     class GetBagsPlatformResponse: Codable {
         public var items: [BagDetailsPlatformResponse]
 
-        public var page: Page1
+        public var page: BagsPage
 
         public enum CodingKeys: String, CodingKey {
             case items
@@ -19,7 +19,7 @@ public extension PlatformClient.Order {
             case page
         }
 
-        public init(items: [BagDetailsPlatformResponse], page: Page1) {
+        public init(items: [BagDetailsPlatformResponse], page: BagsPage) {
             self.items = items
 
             self.page = page
@@ -30,7 +30,7 @@ public extension PlatformClient.Order {
 
             items = try container.decode([BagDetailsPlatformResponse].self, forKey: .items)
 
-            page = try container.decode(Page1.self, forKey: .page)
+            page = try container.decode(BagsPage.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,7 +52,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class GetBagsPlatformResponse: Codable {
         public var items: [BagDetailsPlatformResponse]
 
-        public var page: Page1
+        public var page: BagsPage
 
         public enum CodingKeys: String, CodingKey {
             case items
@@ -60,7 +60,7 @@ public extension PlatformClient.ApplicationClient.Order {
             case page
         }
 
-        public init(items: [BagDetailsPlatformResponse], page: Page1) {
+        public init(items: [BagDetailsPlatformResponse], page: BagsPage) {
             self.items = items
 
             self.page = page
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             items = try container.decode([BagDetailsPlatformResponse].self, forKey: .items)
 
-            page = try container.decode(Page1.self, forKey: .page)
+            page = try container.decode(BagsPage.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {

@@ -27,7 +27,7 @@ public extension PlatformClient {
             dpIds: String?,
             orderingCompanyId: String?,
             stores: String?,
-            salesChannel: String?,
+            salesChannels: String?,
             requestByExt: String?,
             pageNo: Int?,
             pageSize: Int?,
@@ -89,8 +89,8 @@ public extension PlatformClient {
                 xQuery["stores"] = value
             }
 
-            if let value = salesChannel {
-                xQuery["sales_channel"] = value
+            if let value = salesChannels {
+                xQuery["sales_channels"] = value
             }
 
             if let value = requestByExt {
@@ -375,7 +375,7 @@ public extension PlatformClient {
             toDate: String?,
             dpIds: String?,
             stores: String?,
-            salesChannel: String?,
+            salesChannels: String?,
             pageNo: Int?,
             pageSize: Int?,
             isPrioritySort: Bool?,
@@ -429,8 +429,8 @@ public extension PlatformClient {
                 xQuery["stores"] = value
             }
 
-            if let value = salesChannel {
-                xQuery["sales_channel"] = value
+            if let value = salesChannels {
+                xQuery["sales_channels"] = value
             }
 
             if let value = pageNo {

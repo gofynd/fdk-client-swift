@@ -13,11 +13,11 @@ public extension PlatformClient.Payment {
 
         public var edcModel: String
 
+        public var deviceTag: String?
+
         public var aggregatorId: Int
 
         public var storeId: Int
-
-        public var deviceTag: String?
 
         public var terminalSerialNo: String
 
@@ -26,11 +26,11 @@ public extension PlatformClient.Payment {
 
             case edcModel = "edc_model"
 
+            case deviceTag = "device_tag"
+
             case aggregatorId = "aggregator_id"
 
             case storeId = "store_id"
-
-            case deviceTag = "device_tag"
 
             case terminalSerialNo = "terminal_serial_no"
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.Payment {
 
             self.edcModel = edcModel
 
+            self.deviceTag = deviceTag
+
             self.aggregatorId = aggregatorId
 
             self.storeId = storeId
-
-            self.deviceTag = deviceTag
 
             self.terminalSerialNo = terminalSerialNo
         }
@@ -56,10 +56,6 @@ public extension PlatformClient.Payment {
 
             edcModel = try container.decode(String.self, forKey: .edcModel)
 
-            aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
-
-            storeId = try container.decode(Int.self, forKey: .storeId)
-
             do {
                 deviceTag = try container.decode(String.self, forKey: .deviceTag)
 
@@ -67,6 +63,10 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
+
+            storeId = try container.decode(Int.self, forKey: .storeId)
 
             terminalSerialNo = try container.decode(String.self, forKey: .terminalSerialNo)
         }
@@ -78,11 +78,11 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(edcModel, forKey: .edcModel)
 
+            try? container.encode(deviceTag, forKey: .deviceTag)
+
             try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
-
-            try? container.encode(deviceTag, forKey: .deviceTag)
 
             try? container.encodeIfPresent(terminalSerialNo, forKey: .terminalSerialNo)
         }
@@ -100,11 +100,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var edcModel: String
 
+        public var deviceTag: String?
+
         public var aggregatorId: Int
 
         public var storeId: Int
-
-        public var deviceTag: String?
 
         public var terminalSerialNo: String
 
@@ -113,11 +113,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case edcModel = "edc_model"
 
+            case deviceTag = "device_tag"
+
             case aggregatorId = "aggregator_id"
 
             case storeId = "store_id"
-
-            case deviceTag = "device_tag"
 
             case terminalSerialNo = "terminal_serial_no"
         }
@@ -127,11 +127,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.edcModel = edcModel
 
+            self.deviceTag = deviceTag
+
             self.aggregatorId = aggregatorId
 
             self.storeId = storeId
-
-            self.deviceTag = deviceTag
 
             self.terminalSerialNo = terminalSerialNo
         }
@@ -143,10 +143,6 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             edcModel = try container.decode(String.self, forKey: .edcModel)
 
-            aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
-
-            storeId = try container.decode(Int.self, forKey: .storeId)
-
             do {
                 deviceTag = try container.decode(String.self, forKey: .deviceTag)
 
@@ -154,6 +150,10 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
+
+            storeId = try container.decode(Int.self, forKey: .storeId)
 
             terminalSerialNo = try container.decode(String.self, forKey: .terminalSerialNo)
         }
@@ -165,11 +165,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(edcModel, forKey: .edcModel)
 
+            try? container.encode(deviceTag, forKey: .deviceTag)
+
             try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
-
-            try? container.encode(deviceTag, forKey: .deviceTag)
 
             try? container.encodeIfPresent(terminalSerialNo, forKey: .terminalSerialNo)
         }

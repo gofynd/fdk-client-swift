@@ -11,60 +11,60 @@ public extension PlatformClient.Order {
     class AffiliateAppConfig: Codable {
         public var description: String?
 
-        public var updatedAt: String
-
-        public var secret: String
-
-        public var token: String
-
-        public var meta: [AffiliateAppConfigMeta]?
-
-        public var createdAt: String
+        public var id: String
 
         public var owner: String
 
-        public var id: String
+        public var createdAt: String
+
+        public var secret: String
+
+        public var updatedAt: String
+
+        public var token: String
 
         public var name: String
+
+        public var meta: [AffiliateAppConfigMeta]?
 
         public enum CodingKeys: String, CodingKey {
             case description
 
-            case updatedAt = "updated_at"
-
-            case secret
-
-            case token
-
-            case meta
-
-            case createdAt = "created_at"
+            case id
 
             case owner
 
-            case id
+            case createdAt = "created_at"
+
+            case secret
+
+            case updatedAt = "updated_at"
+
+            case token
 
             case name
+
+            case meta
         }
 
         public init(createdAt: String, description: String? = nil, id: String, meta: [AffiliateAppConfigMeta]? = nil, name: String, owner: String, secret: String, token: String, updatedAt: String) {
             self.description = description
 
-            self.updatedAt = updatedAt
-
-            self.secret = secret
-
-            self.token = token
-
-            self.meta = meta
-
-            self.createdAt = createdAt
+            self.id = id
 
             self.owner = owner
 
-            self.id = id
+            self.createdAt = createdAt
+
+            self.secret = secret
+
+            self.updatedAt = updatedAt
+
+            self.token = token
 
             self.name = name
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -78,11 +78,19 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            updatedAt = try container.decode(String.self, forKey: .updatedAt)
+            id = try container.decode(String.self, forKey: .id)
+
+            owner = try container.decode(String.self, forKey: .owner)
+
+            createdAt = try container.decode(String.self, forKey: .createdAt)
 
             secret = try container.decode(String.self, forKey: .secret)
 
+            updatedAt = try container.decode(String.self, forKey: .updatedAt)
+
             token = try container.decode(String.self, forKey: .token)
+
+            name = try container.decode(String.self, forKey: .name)
 
             do {
                 meta = try container.decode([AffiliateAppConfigMeta].self, forKey: .meta)
@@ -91,14 +99,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            createdAt = try container.decode(String.self, forKey: .createdAt)
-
-            owner = try container.decode(String.self, forKey: .owner)
-
-            id = try container.decode(String.self, forKey: .id)
-
-            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -106,21 +106,21 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-
-            try? container.encodeIfPresent(secret, forKey: .secret)
-
-            try? container.encodeIfPresent(token, forKey: .token)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(owner, forKey: .owner)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+
+            try? container.encodeIfPresent(secret, forKey: .secret)
+
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(token, forKey: .token)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }
@@ -134,60 +134,60 @@ public extension PlatformClient.ApplicationClient.Order {
     class AffiliateAppConfig: Codable {
         public var description: String?
 
-        public var updatedAt: String
-
-        public var secret: String
-
-        public var token: String
-
-        public var meta: [AffiliateAppConfigMeta]?
-
-        public var createdAt: String
+        public var id: String
 
         public var owner: String
 
-        public var id: String
+        public var createdAt: String
+
+        public var secret: String
+
+        public var updatedAt: String
+
+        public var token: String
 
         public var name: String
+
+        public var meta: [AffiliateAppConfigMeta]?
 
         public enum CodingKeys: String, CodingKey {
             case description
 
-            case updatedAt = "updated_at"
-
-            case secret
-
-            case token
-
-            case meta
-
-            case createdAt = "created_at"
+            case id
 
             case owner
 
-            case id
+            case createdAt = "created_at"
+
+            case secret
+
+            case updatedAt = "updated_at"
+
+            case token
 
             case name
+
+            case meta
         }
 
         public init(createdAt: String, description: String? = nil, id: String, meta: [AffiliateAppConfigMeta]? = nil, name: String, owner: String, secret: String, token: String, updatedAt: String) {
             self.description = description
 
-            self.updatedAt = updatedAt
-
-            self.secret = secret
-
-            self.token = token
-
-            self.meta = meta
-
-            self.createdAt = createdAt
+            self.id = id
 
             self.owner = owner
 
-            self.id = id
+            self.createdAt = createdAt
+
+            self.secret = secret
+
+            self.updatedAt = updatedAt
+
+            self.token = token
 
             self.name = name
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -201,11 +201,19 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            updatedAt = try container.decode(String.self, forKey: .updatedAt)
+            id = try container.decode(String.self, forKey: .id)
+
+            owner = try container.decode(String.self, forKey: .owner)
+
+            createdAt = try container.decode(String.self, forKey: .createdAt)
 
             secret = try container.decode(String.self, forKey: .secret)
 
+            updatedAt = try container.decode(String.self, forKey: .updatedAt)
+
             token = try container.decode(String.self, forKey: .token)
+
+            name = try container.decode(String.self, forKey: .name)
 
             do {
                 meta = try container.decode([AffiliateAppConfigMeta].self, forKey: .meta)
@@ -214,14 +222,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            createdAt = try container.decode(String.self, forKey: .createdAt)
-
-            owner = try container.decode(String.self, forKey: .owner)
-
-            id = try container.decode(String.self, forKey: .id)
-
-            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -229,21 +229,21 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-
-            try? container.encodeIfPresent(secret, forKey: .secret)
-
-            try? container.encodeIfPresent(token, forKey: .token)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(owner, forKey: .owner)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+
+            try? container.encodeIfPresent(secret, forKey: .secret)
+
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(token, forKey: .token)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

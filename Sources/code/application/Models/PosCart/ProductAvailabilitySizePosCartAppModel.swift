@@ -9,24 +9,24 @@ public extension ApplicationClient.PosCart {
     class ProductAvailabilitySize: Codable {
         public var display: String?
 
-        public var isAvailable: Bool?
-
         public var value: String?
+
+        public var isAvailable: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case display
 
-            case isAvailable = "is_available"
-
             case value
+
+            case isAvailable = "is_available"
         }
 
         public init(display: String? = nil, isAvailable: Bool? = nil, value: String? = nil) {
             self.display = display
 
-            self.isAvailable = isAvailable
-
             self.value = value
+
+            self.isAvailable = isAvailable
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
         }
     }
 }

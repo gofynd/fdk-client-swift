@@ -43,7 +43,7 @@ Get all pages of a theme
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.getAllPages(themeId: themeId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.getAllPages(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -364,7 +364,7 @@ Create a page
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.createPage(themeId: themeId, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.createPage(themeId: themeId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -787,7 +787,7 @@ Update multiple pages of a theme
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.updateMultiplePages(themeId: themeId, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.updateMultiplePages(themeId: themeId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1108,7 +1108,7 @@ Get page of a theme
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.getPage(themeId: themeId, pageValue: pageValue) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.getPage(themeId: themeId, pageValue: pageValue) { (response, error) in
     // Use response
 }
 ```
@@ -1532,7 +1532,7 @@ Updates a page
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.updatePage(themeId: themeId, pageValue: pageValue, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.updatePage(themeId: themeId, pageValue: pageValue, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1956,7 +1956,7 @@ Deletes a page
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.deletePage(themeId: themeId, pageValue: pageValue) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.deletePage(themeId: themeId, pageValue: pageValue) { (response, error) in
     // Use response
 }
 ```
@@ -2380,7 +2380,7 @@ Get a list of themes from the theme library
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.getThemeLibrary(pageSize: pageSize, pageNo: pageNo) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.getThemeLibrary(pageSize: pageSize, pageNo: pageNo) { (response, error) in
     // Use response
 }
 ```
@@ -4343,7 +4343,7 @@ Add a theme to the theme library
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.addToThemeLibrary(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.addToThemeLibrary(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -6527,7 +6527,7 @@ Apply a theme
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.applyTheme(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.applyTheme(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -8711,7 +8711,7 @@ Checks if theme is upgradable
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.isUpgradable(themeId: themeId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.isUpgradable(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -8778,7 +8778,7 @@ Upgrade a theme
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.upgradeTheme(themeId: themeId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.upgradeTheme(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -10963,7 +10963,7 @@ Get all public themes
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.getPublicThemes(pageSize: pageSize, pageNo: pageNo) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.getPublicThemes(pageSize: pageSize, pageNo: pageNo) { (response, error) in
     // Use response
 }
 ```
@@ -12926,7 +12926,7 @@ Create a new theme
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.createTheme(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.createTheme(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -15110,7 +15110,7 @@ Get the applied theme
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.getAppliedTheme() { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.getAppliedTheme() { (response, error) in
     // Use response
 }
 ```
@@ -17290,7 +17290,7 @@ Get all the supported fonts in a theme
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.getFonts() { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.getFonts() { (response, error) in
     // Use response
 }
 ```
@@ -17370,7 +17370,7 @@ Gets theme by id
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.getThemeById(themeId: themeId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.getThemeById(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -19555,7 +19555,7 @@ Update a theme
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.updateTheme(themeId: themeId, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.updateTheme(themeId: themeId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -21740,7 +21740,7 @@ Delete a theme
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.deleteTheme(themeId: themeId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.deleteTheme(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -23925,7 +23925,7 @@ Get a theme preview
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.getThemeForPreview(themeId: themeId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.getThemeForPreview(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -26110,7 +26110,7 @@ Publish a theme
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.publishTheme(themeId: themeId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.publishTheme(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -28295,7 +28295,7 @@ Unpublish a theme
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.unpublishTheme(themeId: themeId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.unpublishTheme(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -30480,7 +30480,7 @@ Archive a theme
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.archiveTheme(themeId: themeId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.archiveTheme(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -32665,7 +32665,7 @@ Unarchive a theme
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.unarchiveTheme(themeId: themeId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.unarchiveTheme(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -34850,7 +34850,7 @@ Fetch last modified timestamp
 
 
 ```swift
-client.application("<APPLICATION_ID>").theme.getThemeLastModified(themeId: themeId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").theme.getThemeLastModified(themeId: themeId) { (response, error) in
     // Use response
 }
 ```

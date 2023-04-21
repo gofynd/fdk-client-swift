@@ -9,22 +9,22 @@ public extension ApplicationClient.Order {
     class OrderPage: Codable {
         public var size: Int?
 
-        public var itemTotal: Int?
+        public var current: Int?
 
         public var hasNext: Bool?
 
-        public var current: Int?
+        public var itemTotal: Int?
 
         public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case size
 
-            case itemTotal = "item_total"
+            case current
 
             case hasNext = "has_next"
 
-            case current
+            case itemTotal = "item_total"
 
             case type
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Order {
         public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
             self.size = size
 
-            self.itemTotal = itemTotal
+            self.current = current
 
             self.hasNext = hasNext
 
-            self.current = current
+            self.itemTotal = itemTotal
 
             self.type = type
         }
@@ -53,7 +53,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                current = try container.decode(Int.self, forKey: .current)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                current = try container.decode(Int.self, forKey: .current)
+                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+            try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
-            try? container.encodeIfPresent(current, forKey: .current)
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
             try? container.encodeIfPresent(type, forKey: .type)
         }

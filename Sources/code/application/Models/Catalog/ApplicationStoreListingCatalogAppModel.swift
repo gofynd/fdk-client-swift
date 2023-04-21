@@ -9,24 +9,24 @@ public extension ApplicationClient.Catalog {
     class ApplicationStoreListing: Codable {
         public var page: Page?
 
-        public var filters: [StoreDepartments]?
-
         public var items: [AppStore]?
+
+        public var filters: [StoreDepartments]?
 
         public enum CodingKeys: String, CodingKey {
             case page
 
-            case filters
-
             case items
+
+            case filters
         }
 
         public init(filters: [StoreDepartments]? = nil, items: [AppStore]? = nil, page: Page? = nil) {
             self.page = page
 
-            self.filters = filters
-
             self.items = items
+
+            self.filters = filters
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                filters = try container.decode([StoreDepartments].self, forKey: .filters)
+                items = try container.decode([AppStore].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                items = try container.decode([AppStore].self, forKey: .items)
+                filters = try container.decode([StoreDepartments].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
         }
     }
 }
