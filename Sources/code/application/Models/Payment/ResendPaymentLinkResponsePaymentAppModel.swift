@@ -7,40 +7,36 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class ResendPaymentLinkResponse: Codable {
-        public var message: String
-
-        public var success: Bool
-
         public var statusCode: Int
 
         public var pollingTimeout: Int?
 
+        public var message: String
+
+        public var success: Bool
+
         public enum CodingKeys: String, CodingKey {
-            case message
-
-            case success
-
             case statusCode = "status_code"
 
             case pollingTimeout = "polling_timeout"
+
+            case message
+
+            case success
         }
 
         public init(message: String, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
-            self.message = message
-
-            self.success = success
-
             self.statusCode = statusCode
 
             self.pollingTimeout = pollingTimeout
+
+            self.message = message
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            message = try container.decode(String.self, forKey: .message)
-
-            success = try container.decode(Bool.self, forKey: .success)
 
             statusCode = try container.decode(Int.self, forKey: .statusCode)
 
@@ -51,18 +47,22 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            message = try container.decode(String.self, forKey: .message)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
             try? container.encode(pollingTimeout, forKey: .pollingTimeout)
+
+            try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

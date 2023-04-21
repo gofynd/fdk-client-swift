@@ -11,36 +11,36 @@ public extension PlatformClient.Order {
     class TrackingList: Codable {
         public var isCurrent: Bool?
 
-        public var status: String
-
-        public var isPassed: Bool?
-
         public var text: String
 
         public var time: String?
 
+        public var status: String
+
+        public var isPassed: Bool?
+
         public enum CodingKeys: String, CodingKey {
             case isCurrent = "is_current"
-
-            case status
-
-            case isPassed = "is_passed"
 
             case text
 
             case time
+
+            case status
+
+            case isPassed = "is_passed"
         }
 
         public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
             self.isCurrent = isCurrent
 
-            self.status = status
-
-            self.isPassed = isPassed
-
             self.text = text
 
             self.time = time
+
+            self.status = status
+
+            self.isPassed = isPassed
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,16 +48,6 @@ public extension PlatformClient.Order {
 
             do {
                 isCurrent = try container.decode(Bool.self, forKey: .isCurrent)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            status = try container.decode(String.self, forKey: .status)
-
-            do {
-                isPassed = try container.decode(Bool.self, forKey: .isPassed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,6 +63,16 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            status = try container.decode(String.self, forKey: .status)
+
+            do {
+                isPassed = try container.decode(Bool.self, forKey: .isPassed)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -80,13 +80,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(isPassed, forKey: .isPassed)
-
             try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(time, forKey: .time)
+
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(isPassed, forKey: .isPassed)
         }
     }
 }
@@ -100,36 +100,36 @@ public extension PlatformClient.ApplicationClient.Order {
     class TrackingList: Codable {
         public var isCurrent: Bool?
 
-        public var status: String
-
-        public var isPassed: Bool?
-
         public var text: String
 
         public var time: String?
 
+        public var status: String
+
+        public var isPassed: Bool?
+
         public enum CodingKeys: String, CodingKey {
             case isCurrent = "is_current"
-
-            case status
-
-            case isPassed = "is_passed"
 
             case text
 
             case time
+
+            case status
+
+            case isPassed = "is_passed"
         }
 
         public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
             self.isCurrent = isCurrent
 
-            self.status = status
-
-            self.isPassed = isPassed
-
             self.text = text
 
             self.time = time
+
+            self.status = status
+
+            self.isPassed = isPassed
         }
 
         required public init(from decoder: Decoder) throws {
@@ -137,16 +137,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 isCurrent = try container.decode(Bool.self, forKey: .isCurrent)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            status = try container.decode(String.self, forKey: .status)
-
-            do {
-                isPassed = try container.decode(Bool.self, forKey: .isPassed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -162,6 +152,16 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            status = try container.decode(String.self, forKey: .status)
+
+            do {
+                isPassed = try container.decode(Bool.self, forKey: .isPassed)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -169,13 +169,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(isPassed, forKey: .isPassed)
-
             try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(time, forKey: .time)
+
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(isPassed, forKey: .isPassed)
         }
     }
 }

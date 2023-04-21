@@ -29,7 +29,7 @@ Zone configuration of application.
 
 
 ```swift
-client.application("<APPLICATION_ID>").serviceability.getApplicationServiceability() { (response, error) in
+platformClient.application("<APPLICATION_ID>").serviceability.getApplicationServiceability() { (response, error) in
     // Use response
 }
 ```
@@ -91,7 +91,7 @@ Get country and state list
 
 
 ```swift
-client.serviceability.getEntityRegionView(body: body) { (response, error) in
+platformClient.serviceability.getEntityRegionView(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -145,7 +145,7 @@ Zone List of application.
 
 
 ```swift
-client.serviceability.getListView(pageNumber: pageNumber, pageSize: pageSize, name: name, isActive: isActive, channelIds: channelIds) { (response, error) in
+platformClient.serviceability.getListView(pageNumber: pageNumber, pageSize: pageSize, name: name, isActive: isActive, channelIds: channelIds) { (response, error) in
     // Use response
 }
 ```
@@ -204,7 +204,7 @@ Company Store View of application.
 
 
 ```swift
-client.serviceability.getCompanyStoreView(pageNumber: pageNumber, pageSize: pageSize) { (response, error) in
+platformClient.serviceability.getCompanyStoreView(pageNumber: pageNumber, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -260,7 +260,7 @@ Updation of zone collections in database.
 
 
 ```swift
-client.serviceability.updateZoneControllerView(zoneId: zoneId, body: body) { (response, error) in
+platformClient.serviceability.updateZoneControllerView(zoneId: zoneId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -315,7 +315,7 @@ Zone Data View of application.
 
 
 ```swift
-client.serviceability.getZoneDataView(zoneId: zoneId) { (response, error) in
+platformClient.serviceability.getZoneDataView(zoneId: zoneId) { (response, error) in
     // Use response
 }
 ```
@@ -370,7 +370,7 @@ Insertion of zone in database.
 
 
 ```swift
-client.serviceability.insertZoneControllerView(body: body) { (response, error) in
+platformClient.serviceability.insertZoneControllerView(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -424,7 +424,7 @@ GET zone from the Pincode.
 
 
 ```swift
-client.application("<APPLICATION_ID>").serviceability.upsertZoneControllerView(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").serviceability.upsertZoneControllerView(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -478,7 +478,7 @@ GET stores data
 
 
 ```swift
-client.serviceability.getStore(storeUid: storeUid) { (response, error) in
+platformClient.serviceability.getStore(storeUid: storeUid) { (response, error) in
     // Use response
 }
 ```
@@ -753,7 +753,7 @@ GET stores data
 
 
 ```swift
-client.serviceability.getAllStores() { (response, error) in
+platformClient.serviceability.getAllStores() { (response, error) in
     // Use response
 }
 ```

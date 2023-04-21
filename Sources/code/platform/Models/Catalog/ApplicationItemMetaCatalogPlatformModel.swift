@@ -9,65 +9,57 @@ public extension PlatformClient.Catalog {
      */
 
     class ApplicationItemMeta: Codable {
-        public var customJson: [String: Any]?
-
-        public var isGift: Bool?
+        public var isCod: Bool?
 
         public var moq: ApplicationItemMOQ?
 
-        public var altText: [String: Any]?
+        public var customJson: [String: Any]?
 
         public var seo: ApplicationItemSEO?
 
         public var customMeta: [MetaFields]?
 
-        public var isCod: Bool?
+        public var isGift: Bool?
+
+        public var altText: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case customJson = "_custom_json"
-
-            case isGift = "is_gift"
+            case isCod = "is_cod"
 
             case moq
 
-            case altText = "alt_text"
+            case customJson = "_custom_json"
 
             case seo
 
             case customMeta = "_custom_meta"
 
-            case isCod = "is_cod"
+            case isGift = "is_gift"
+
+            case altText = "alt_text"
         }
 
         public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: ApplicationItemMOQ? = nil, seo: ApplicationItemSEO? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
-            self.customJson = customJson
-
-            self.isGift = isGift
+            self.isCod = isCod
 
             self.moq = moq
 
-            self.altText = altText
+            self.customJson = customJson
 
             self.seo = seo
 
             self.customMeta = customMeta
 
-            self.isCod = isCod
+            self.isGift = isGift
+
+            self.altText = altText
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isGift = try container.decode(Bool.self, forKey: .isGift)
+                isCod = try container.decode(Bool.self, forKey: .isCod)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +75,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                altText = try container.decode([String: Any].self, forKey: .altText)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,7 +99,15 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                isCod = try container.decode(Bool.self, forKey: .isCod)
+                isGift = try container.decode(Bool.self, forKey: .isGift)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                altText = try container.decode([String: Any].self, forKey: .altText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,19 +118,19 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(isGift, forKey: .isGift)
+            try? container.encodeIfPresent(isCod, forKey: .isCod)
 
             try? container.encodeIfPresent(moq, forKey: .moq)
 
-            try? container.encodeIfPresent(altText, forKey: .altText)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(seo, forKey: .seo)
 
             try? container.encodeIfPresent(customMeta, forKey: .customMeta)
 
-            try? container.encodeIfPresent(isCod, forKey: .isCod)
+            try? container.encodeIfPresent(isGift, forKey: .isGift)
+
+            try? container.encodeIfPresent(altText, forKey: .altText)
         }
     }
 }
@@ -142,65 +142,57 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ApplicationItemMeta: Codable {
-        public var customJson: [String: Any]?
-
-        public var isGift: Bool?
+        public var isCod: Bool?
 
         public var moq: ApplicationItemMOQ?
 
-        public var altText: [String: Any]?
+        public var customJson: [String: Any]?
 
         public var seo: ApplicationItemSEO?
 
         public var customMeta: [MetaFields]?
 
-        public var isCod: Bool?
+        public var isGift: Bool?
+
+        public var altText: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case customJson = "_custom_json"
-
-            case isGift = "is_gift"
+            case isCod = "is_cod"
 
             case moq
 
-            case altText = "alt_text"
+            case customJson = "_custom_json"
 
             case seo
 
             case customMeta = "_custom_meta"
 
-            case isCod = "is_cod"
+            case isGift = "is_gift"
+
+            case altText = "alt_text"
         }
 
         public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: ApplicationItemMOQ? = nil, seo: ApplicationItemSEO? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
-            self.customJson = customJson
-
-            self.isGift = isGift
+            self.isCod = isCod
 
             self.moq = moq
 
-            self.altText = altText
+            self.customJson = customJson
 
             self.seo = seo
 
             self.customMeta = customMeta
 
-            self.isCod = isCod
+            self.isGift = isGift
+
+            self.altText = altText
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isGift = try container.decode(Bool.self, forKey: .isGift)
+                isCod = try container.decode(Bool.self, forKey: .isCod)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -216,7 +208,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                altText = try container.decode([String: Any].self, forKey: .altText)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -240,7 +232,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                isCod = try container.decode(Bool.self, forKey: .isCod)
+                isGift = try container.decode(Bool.self, forKey: .isGift)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                altText = try container.decode([String: Any].self, forKey: .altText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -251,19 +251,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(isGift, forKey: .isGift)
+            try? container.encodeIfPresent(isCod, forKey: .isCod)
 
             try? container.encodeIfPresent(moq, forKey: .moq)
 
-            try? container.encodeIfPresent(altText, forKey: .altText)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(seo, forKey: .seo)
 
             try? container.encodeIfPresent(customMeta, forKey: .customMeta)
 
-            try? container.encodeIfPresent(isCod, forKey: .isCod)
+            try? container.encodeIfPresent(isGift, forKey: .isGift)
+
+            try? container.encodeIfPresent(altText, forKey: .altText)
         }
     }
 }

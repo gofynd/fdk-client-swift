@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var toDate: String?
 
-        public var catalogueTypes: [String]
-
         public var templates: [String]
+
+        public var catalogueTypes: [String]
 
         public var fromDate: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case toDate = "to_date"
 
-            case catalogueTypes = "catalogue_types"
-
             case templates
+
+            case catalogueTypes = "catalogue_types"
 
             case fromDate = "from_date"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.toDate = toDate
 
-            self.catalogueTypes = catalogueTypes
-
             self.templates = templates
+
+            self.catalogueTypes = catalogueTypes
 
             self.fromDate = fromDate
         }
@@ -62,9 +62,9 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
-
             templates = try container.decode([String].self, forKey: .templates)
+
+            catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
 
             do {
                 fromDate = try container.decode(String.self, forKey: .fromDate)
@@ -82,9 +82,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(toDate, forKey: .toDate)
 
-            try? container.encodeIfPresent(catalogueTypes, forKey: .catalogueTypes)
-
             try? container.encodeIfPresent(templates, forKey: .templates)
+
+            try? container.encodeIfPresent(catalogueTypes, forKey: .catalogueTypes)
 
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
         }
@@ -102,9 +102,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var toDate: String?
 
-        public var catalogueTypes: [String]
-
         public var templates: [String]
+
+        public var catalogueTypes: [String]
 
         public var fromDate: String?
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case toDate = "to_date"
 
-            case catalogueTypes = "catalogue_types"
-
             case templates
+
+            case catalogueTypes = "catalogue_types"
 
             case fromDate = "from_date"
         }
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.toDate = toDate
 
-            self.catalogueTypes = catalogueTypes
-
             self.templates = templates
+
+            self.catalogueTypes = catalogueTypes
 
             self.fromDate = fromDate
         }
@@ -151,9 +151,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
-
             templates = try container.decode([String].self, forKey: .templates)
+
+            catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
 
             do {
                 fromDate = try container.decode(String.self, forKey: .fromDate)
@@ -171,9 +171,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(toDate, forKey: .toDate)
 
-            try? container.encodeIfPresent(catalogueTypes, forKey: .catalogueTypes)
-
             try? container.encodeIfPresent(templates, forKey: .templates)
+
+            try? container.encodeIfPresent(catalogueTypes, forKey: .catalogueTypes)
 
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
         }
