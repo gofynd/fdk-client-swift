@@ -13,11 +13,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var cartValue: Double?
 
-        public var cartId: String?
+        public var createdOn: String?
 
         public var itemCounts: Int?
 
-        public var createdOn: String?
+        public var cartId: String?
 
         public var pickUpCustomerDetails: [String: Any]?
 
@@ -26,11 +26,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case cartValue = "cart_value"
 
-            case cartId = "cart_id"
+            case createdOn = "created_on"
 
             case itemCounts = "item_counts"
 
-            case createdOn = "created_on"
+            case cartId = "cart_id"
 
             case pickUpCustomerDetails = "pick_up_customer_details"
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.cartValue = cartValue
 
-            self.cartId = cartId
+            self.createdOn = createdOn
 
             self.itemCounts = itemCounts
 
-            self.createdOn = createdOn
+            self.cartId = cartId
 
             self.pickUpCustomerDetails = pickUpCustomerDetails
         }
@@ -69,7 +69,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                cartId = try container.decode(String.self, forKey: .cartId)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
+                cartId = try container.decode(String.self, forKey: .cartId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,11 +108,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(cartValue, forKey: .cartValue)
 
-            try? container.encodeIfPresent(cartId, forKey: .cartId)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(itemCounts, forKey: .itemCounts)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(cartId, forKey: .cartId)
 
             try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
         }

@@ -9,30 +9,30 @@ public extension ApplicationClient.Catalog {
     class CompanyStore: Codable {
         public var companyType: String?
 
-        public var businessType: String?
+        public var name: String?
 
         public var uid: Int?
 
-        public var name: String?
+        public var businessType: String?
 
         public enum CodingKeys: String, CodingKey {
             case companyType = "company_type"
 
-            case businessType = "business_type"
+            case name
 
             case uid
 
-            case name
+            case businessType = "business_type"
         }
 
         public init(businessType: String? = nil, companyType: String? = nil, name: String? = nil, uid: Int? = nil) {
             self.companyType = companyType
 
-            self.businessType = businessType
+            self.name = name
 
             self.uid = uid
 
-            self.name = name
+            self.businessType = businessType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +47,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                businessType = try container.decode(String.self, forKey: .businessType)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                businessType = try container.decode(String.self, forKey: .businessType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(companyType, forKey: .companyType)
 
-            try? container.encodeIfPresent(businessType, forKey: .businessType)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(businessType, forKey: .businessType)
         }
     }
 }

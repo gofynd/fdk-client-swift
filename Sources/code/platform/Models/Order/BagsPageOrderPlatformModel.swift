@@ -11,22 +11,22 @@ public extension PlatformClient.Order {
     class BagsPage: Codable {
         public var size: Int
 
+        public var current: Int
+
         public var pageType: String
 
         public var itemTotal: Int
-
-        public var current: Int
 
         public var hasNext: Bool
 
         public enum CodingKeys: String, CodingKey {
             case size
 
+            case current
+
             case pageType = "page_type"
 
             case itemTotal = "item_total"
-
-            case current
 
             case hasNext = "has_next"
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.Order {
         public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
             self.size = size
 
+            self.current = current
+
             self.pageType = pageType
 
             self.itemTotal = itemTotal
-
-            self.current = current
 
             self.hasNext = hasNext
         }
@@ -48,11 +48,11 @@ public extension PlatformClient.Order {
 
             size = try container.decode(Int.self, forKey: .size)
 
+            current = try container.decode(Int.self, forKey: .current)
+
             pageType = try container.decode(String.self, forKey: .pageType)
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-
-            current = try container.decode(Int.self, forKey: .current)
 
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
         }
@@ -62,11 +62,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
+            try? container.encodeIfPresent(current, forKey: .current)
+
             try? container.encodeIfPresent(pageType, forKey: .pageType)
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-
-            try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
         }
@@ -82,22 +82,22 @@ public extension PlatformClient.ApplicationClient.Order {
     class BagsPage: Codable {
         public var size: Int
 
+        public var current: Int
+
         public var pageType: String
 
         public var itemTotal: Int
-
-        public var current: Int
 
         public var hasNext: Bool
 
         public enum CodingKeys: String, CodingKey {
             case size
 
+            case current
+
             case pageType = "page_type"
 
             case itemTotal = "item_total"
-
-            case current
 
             case hasNext = "has_next"
         }
@@ -105,11 +105,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
             self.size = size
 
+            self.current = current
+
             self.pageType = pageType
 
             self.itemTotal = itemTotal
-
-            self.current = current
 
             self.hasNext = hasNext
         }
@@ -119,11 +119,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             size = try container.decode(Int.self, forKey: .size)
 
+            current = try container.decode(Int.self, forKey: .current)
+
             pageType = try container.decode(String.self, forKey: .pageType)
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-
-            current = try container.decode(Int.self, forKey: .current)
 
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
         }
@@ -133,11 +133,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
+            try? container.encodeIfPresent(current, forKey: .current)
+
             try? container.encodeIfPresent(pageType, forKey: .pageType)
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-
-            try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
         }
