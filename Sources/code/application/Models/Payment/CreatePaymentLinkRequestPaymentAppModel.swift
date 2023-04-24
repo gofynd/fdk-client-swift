@@ -11,9 +11,9 @@ public extension ApplicationClient.Payment {
 
         public var externalOrderId: String
 
-        public var amount: Double
-
         public var email: String
+
+        public var amount: Double
 
         public var mobileNumber: String
 
@@ -24,9 +24,9 @@ public extension ApplicationClient.Payment {
 
             case externalOrderId = "external_order_id"
 
-            case amount
-
             case email
+
+            case amount
 
             case mobileNumber = "mobile_number"
 
@@ -38,9 +38,9 @@ public extension ApplicationClient.Payment {
 
             self.externalOrderId = externalOrderId
 
-            self.amount = amount
-
             self.email = email
+
+            self.amount = amount
 
             self.mobileNumber = mobileNumber
 
@@ -60,9 +60,9 @@ public extension ApplicationClient.Payment {
 
             externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
 
-            amount = try container.decode(Double.self, forKey: .amount)
-
             email = try container.decode(String.self, forKey: .email)
+
+            amount = try container.decode(Double.self, forKey: .amount)
 
             mobileNumber = try container.decode(String.self, forKey: .mobileNumber)
 
@@ -76,9 +76,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(mobileNumber, forKey: .mobileNumber)
 

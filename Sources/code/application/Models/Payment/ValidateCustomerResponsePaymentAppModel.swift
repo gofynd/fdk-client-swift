@@ -9,30 +9,30 @@ public extension ApplicationClient.Payment {
     class ValidateCustomerResponse: Codable {
         public var data: [String: Any]?
 
-        public var success: Bool
-
         public var message: String
 
         public var error: [String: Any]?
 
+        public var success: Bool
+
         public enum CodingKeys: String, CodingKey {
             case data
-
-            case success
 
             case message
 
             case error
+
+            case success
         }
 
         public init(data: [String: Any]? = nil, error: [String: Any]? = nil, message: String, success: Bool) {
             self.data = data
 
-            self.success = success
-
             self.message = message
 
             self.error = error
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -46,8 +46,6 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             message = try container.decode(String.self, forKey: .message)
 
             do {
@@ -57,6 +55,8 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -64,11 +64,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(data, forKey: .data)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encode(error, forKey: .error)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

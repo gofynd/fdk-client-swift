@@ -11,9 +11,9 @@ public extension ApplicationClient.Payment {
 
         public var verified: Bool?
 
-        public var amount: Int
-
         public var transactionToken: String?
+
+        public var amount: Int
 
         public var orderId: String
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Payment {
 
             case verified
 
-            case amount
-
             case transactionToken = "transaction_token"
+
+            case amount
 
             case orderId = "order_id"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Payment {
 
             self.verified = verified
 
-            self.amount = amount
-
             self.transactionToken = transactionToken
+
+            self.amount = amount
 
             self.orderId = orderId
         }
@@ -54,8 +54,6 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            amount = try container.decode(Int.self, forKey: .amount)
-
             do {
                 transactionToken = try container.decode(String.self, forKey: .transactionToken)
 
@@ -63,6 +61,8 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            amount = try container.decode(Int.self, forKey: .amount)
 
             orderId = try container.decode(String.self, forKey: .orderId)
         }
@@ -74,9 +74,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(verified, forKey: .verified)
 
-            try? container.encode(amount, forKey: .amount)
-
             try? container.encode(transactionToken, forKey: .transactionToken)
+
+            try? container.encode(amount, forKey: .amount)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
         }
