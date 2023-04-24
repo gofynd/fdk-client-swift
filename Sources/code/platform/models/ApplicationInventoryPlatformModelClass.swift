@@ -28,6 +28,8 @@ public extension PlatformClient {
 
         public var commsEnabled: Bool?
 
+        public var communication: CommunicationConfig?
+
         public var platforms: [String]?
 
         public var id: String?
@@ -63,6 +65,8 @@ public extension PlatformClient {
 
             case commsEnabled = "comms_enabled"
 
+            case communication
+
             case platforms
 
             case id = "_id"
@@ -78,7 +82,7 @@ public extension PlatformClient {
             case modifiedBy = "modified_by"
         }
 
-        public init(app: String? = nil, articleAssignment: ArticleAssignmentConfig? = nil, authentication: AuthenticationConfig? = nil, business: String? = nil, cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, createdAt: String? = nil, inventory: AppInventoryConfig? = nil, logistics: AppLogisticsConfig? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, modifiedBy: String? = nil, order: AppOrderConfig? = nil, payment: AppPaymentConfig? = nil, platforms: [String]? = nil, rewardPoints: RewardPointsConfig? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(app: String? = nil, articleAssignment: ArticleAssignmentConfig? = nil, authentication: AuthenticationConfig? = nil, business: String? = nil, cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, communication: CommunicationConfig? = nil, createdAt: String? = nil, inventory: AppInventoryConfig? = nil, logistics: AppLogisticsConfig? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, modifiedBy: String? = nil, order: AppOrderConfig? = nil, payment: AppPaymentConfig? = nil, platforms: [String]? = nil, rewardPoints: RewardPointsConfig? = nil, updatedAt: String? = nil, id: String? = nil) {
             self.inventory = inventory
 
             self.authentication = authentication
@@ -98,6 +102,8 @@ public extension PlatformClient {
             self.business = business
 
             self.commsEnabled = commsEnabled
+
+            self.communication = communication
 
             self.platforms = platforms
 
@@ -198,6 +204,14 @@ public extension PlatformClient {
             } catch {}
 
             do {
+                communication = try container.decode(CommunicationConfig.self, forKey: .communication)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 platforms = try container.decode([String].self, forKey: .platforms)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -276,6 +290,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(business, forKey: .business)
 
             try? container.encodeIfPresent(commsEnabled, forKey: .commsEnabled)
+
+            try? container.encodeIfPresent(communication, forKey: .communication)
 
             try? container.encodeIfPresent(platforms, forKey: .platforms)
 

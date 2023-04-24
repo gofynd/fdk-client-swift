@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class ProdcutTemplateCategoriesResponse: Codable {
-        public var items: [[String: Any]]?
+        public var items: [CategoriesResponse]?
 
         public var page: Page?
 
@@ -18,7 +18,7 @@ public extension PlatformClient {
             case page
         }
 
-        public init(items: [[String: Any]]? = nil, page: Page? = nil) {
+        public init(items: [CategoriesResponse]? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page
@@ -28,7 +28,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([[String: Any]].self, forKey: .items)
+                items = try container.decode([CategoriesResponse].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class CollectionSchedule: Codable {
-        public var start: String?
-
         public var nextSchedule: [NextSchedule]?
+
+        public var start: String?
 
         public var end: String?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var cron: String?
 
         public enum CodingKeys: String, CodingKey {
-            case start
-
             case nextSchedule = "next_schedule"
+
+            case start
 
             case end
 
@@ -31,9 +31,9 @@ public extension PlatformClient {
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
-            self.start = start
-
             self.nextSchedule = nextSchedule
+
+            self.start = start
 
             self.end = end
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                start = try container.decode(String.self, forKey: .start)
+                nextSchedule = try container.decode([NextSchedule].self, forKey: .nextSchedule)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                nextSchedule = try container.decode([NextSchedule].self, forKey: .nextSchedule)
+                start = try container.decode(String.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(start, forKey: .start)
-
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
+
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encode(end, forKey: .end)
 

@@ -9,42 +9,42 @@ public extension ApplicationClient {
     class CouponValidity: Codable {
         public var discount: Double?
 
-        public var title: String?
-
         public var valid: Bool?
 
-        public var nextValidationRequired: String?
+        public var displayMessageEn: String?
+
+        public var title: String?
 
         public var code: String?
 
-        public var displayMessageEn: String?
+        public var nextValidationRequired: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case discount
 
-            case title
-
             case valid
 
-            case nextValidationRequired = "next_validation_required"
+            case displayMessageEn = "display_message_en"
+
+            case title
 
             case code
 
-            case displayMessageEn = "display_message_en"
+            case nextValidationRequired = "next_validation_required"
         }
 
-        public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, nextValidationRequired: String? = nil, title: String? = nil, valid: Bool? = nil) {
+        public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, nextValidationRequired: Bool? = nil, title: String? = nil, valid: Bool? = nil) {
             self.discount = discount
-
-            self.title = title
 
             self.valid = valid
 
-            self.nextValidationRequired = nextValidationRequired
+            self.displayMessageEn = displayMessageEn
+
+            self.title = title
 
             self.code = code
 
-            self.displayMessageEn = displayMessageEn
+            self.nextValidationRequired = nextValidationRequired
         }
 
         required public init(from decoder: Decoder) throws {
@@ -52,14 +52,6 @@ public extension ApplicationClient {
 
             do {
                 discount = try container.decode(Double.self, forKey: .discount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +67,15 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                nextValidationRequired = try container.decode(String.self, forKey: .nextValidationRequired)
+                displayMessageEn = try container.decode(String.self, forKey: .displayMessageEn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                displayMessageEn = try container.decode(String.self, forKey: .displayMessageEn)
+                nextValidationRequired = try container.decode(Bool.self, forKey: .nextValidationRequired)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,15 +104,15 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(discount, forKey: .discount)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encodeIfPresent(valid, forKey: .valid)
 
-            try? container.encode(nextValidationRequired, forKey: .nextValidationRequired)
+            try? container.encode(displayMessageEn, forKey: .displayMessageEn)
+
+            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encode(code, forKey: .code)
 
-            try? container.encode(displayMessageEn, forKey: .displayMessageEn)
+            try? container.encode(nextValidationRequired, forKey: .nextValidationRequired)
         }
     }
 }

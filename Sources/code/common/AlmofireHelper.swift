@@ -11,7 +11,6 @@ public enum AlmofireHelper {
                                headers: [(key: String, value: String)] = [],
                                isJsonEncoding: Bool = true,
                                responseType: String = "application/json",
-                               session: Alamofire.Session = AF,
                                onResponse: @escaping OnResponse)
     {
         var queryString = ""
@@ -57,7 +56,7 @@ public enum AlmofireHelper {
         //     }
         // }
         if responseType == "application/octet-stream" || responseType == "application/csv" || responseType == "text/csv" || responseType == "application/pdf" {
-            session.request(urlString, method: HTTPMethod(rawValue: rawType), parameters: parameters, encoding: encoding, headers: finalHeaders).validate()
+            AF.request(urlString, method: HTTPMethod(rawValue: rawType), parameters: parameters, encoding: encoding, headers: finalHeaders).validate()
                 .responseString { response in
                     print(response.request?.curlString ?? "No Request !!!")
                     switch response.result {
@@ -76,7 +75,7 @@ public enum AlmofireHelper {
                     }
                 }
         } else {
-            session.request(urlString, method: HTTPMethod(rawValue: rawType), parameters: parameters, encoding: encoding, headers: finalHeaders).validate().responseJSON { response in
+            AF.request(urlString, method: HTTPMethod(rawValue: rawType), parameters: parameters, encoding: encoding, headers: finalHeaders).validate().responseJSON { response in
                 print(response.request?.curlString ?? "No Request !!!")
                 switch response.result {
                 case .success:

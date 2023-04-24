@@ -8,28 +8,28 @@ public extension PlatformClient {
      */
 
     class Tax: Codable {
-        public var taxExempt: Bool
-
         public var name: String
 
-        public var breakup: [[String: Any]]
+        public var rate: Double
+
+        public var breakup: [[String: Any]]?
 
         public var amount: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
-            case taxExempt = "tax_exempt"
-
             case name
+
+            case rate
 
             case breakup
 
             case amount
         }
 
-        public init(amount: [String: Any], breakup: [[String: Any]], name: String, taxExempt: Bool) {
-            self.taxExempt = taxExempt
-
+        public init(amount: [String: Any], breakup: [[String: Any]]? = nil, name: String, rate: Double) {
             self.name = name
+
+            self.rate = rate
 
             self.breakup = breakup
 
@@ -39,11 +39,17 @@ public extension PlatformClient {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            taxExempt = try container.decode(Bool.self, forKey: .taxExempt)
-
             name = try container.decode(String.self, forKey: .name)
 
-            breakup = try container.decode([[String: Any]].self, forKey: .breakup)
+            rate = try container.decode(Double.self, forKey: .rate)
+
+            do {
+                breakup = try container.decode([[String: Any]].self, forKey: .breakup)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             amount = try container.decode([String: Any].self, forKey: .amount)
         }
@@ -51,9 +57,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(taxExempt, forKey: .taxExempt)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(rate, forKey: .rate)
 
             try? container.encodeIfPresent(breakup, forKey: .breakup)
 

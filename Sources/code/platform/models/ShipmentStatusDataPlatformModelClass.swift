@@ -8,9 +8,9 @@ public extension PlatformClient {
      */
 
     class ShipmentStatusData: Codable {
-        public var bagList: [Int]?
-
         public var status: String?
+
+        public var bagList: [String]?
 
         public var id: Int?
 
@@ -19,9 +19,9 @@ public extension PlatformClient {
         public var createdAt: String?
 
         public enum CodingKeys: String, CodingKey {
-            case bagList = "bag_list"
-
             case status
+
+            case bagList = "bag_list"
 
             case id
 
@@ -30,10 +30,10 @@ public extension PlatformClient {
             case createdAt = "created_at"
         }
 
-        public init(bagList: [Int]? = nil, createdAt: String? = nil, id: Int? = nil, shipmentId: String? = nil, status: String? = nil) {
-            self.bagList = bagList
-
+        public init(bagList: [String]? = nil, createdAt: String? = nil, id: Int? = nil, shipmentId: String? = nil, status: String? = nil) {
             self.status = status
+
+            self.bagList = bagList
 
             self.id = id
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                bagList = try container.decode([Int].self, forKey: .bagList)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,7 +54,7 @@ public extension PlatformClient {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                bagList = try container.decode([String].self, forKey: .bagList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,9 +89,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(bagList, forKey: .bagList)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(bagList, forKey: .bagList)
 
             try? container.encodeIfPresent(id, forKey: .id)
 

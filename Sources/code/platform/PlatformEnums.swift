@@ -74,6 +74,16 @@ public extension PlatformClient {
     }
 
     /*
+         Enum: GenerationEntityType
+         Used By: Content
+     */
+    enum GenerationEntityType: String, Codable {
+        case title
+
+        case description
+    }
+
+    /*
          Enum: SubscriberStatus
          Used By: Webhook
      */

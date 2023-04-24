@@ -10,8 +10,6 @@ public extension PlatformClient {
     class ShipmentDetailsResponse: Codable {
         public var success: Bool
 
-        public var customMeta: [[String: Any]]?
-
         public var order: OrderDict?
 
         public var shipments: [PlatformShipment]?
@@ -19,17 +17,13 @@ public extension PlatformClient {
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case customMeta = "custom_meta"
-
             case order
 
             case shipments
         }
 
-        public init(customMeta: [[String: Any]]? = nil, order: OrderDict? = nil, shipments: [PlatformShipment]? = nil, success: Bool) {
+        public init(order: OrderDict? = nil, shipments: [PlatformShipment]? = nil, success: Bool) {
             self.success = success
-
-            self.customMeta = customMeta
 
             self.order = order
 
@@ -40,14 +34,6 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             success = try container.decode(Bool.self, forKey: .success)
-
-            do {
-                customMeta = try container.decode([[String: Any]].self, forKey: .customMeta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 order = try container.decode(OrderDict.self, forKey: .order)
@@ -70,8 +56,6 @@ public extension PlatformClient {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(success, forKey: .success)
-
-            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
 
             try? container.encodeIfPresent(order, forKey: .order)
 

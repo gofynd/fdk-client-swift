@@ -11,26 +11,26 @@ public extension ApplicationClient {
 
         public var displayName: String?
 
-        public var reasons: [BagReasons]?
-
         public var meta: BagReasonMeta?
 
-        public var id: Int?
+        public var reasons: [BagReasons]?
 
         public var qcType: [String]?
+
+        public var id: Int?
 
         public enum CodingKeys: String, CodingKey {
             case questionSet = "question_set"
 
             case displayName = "display_name"
 
-            case reasons
-
             case meta
 
-            case id
+            case reasons
 
             case qcType = "qc_type"
+
+            case id
         }
 
         public init(displayName: String? = nil, id: Int? = nil, meta: BagReasonMeta? = nil, qcType: [String]? = nil, questionSet: [QuestionSet]? = nil, reasons: [BagReasons]? = nil) {
@@ -38,13 +38,13 @@ public extension ApplicationClient {
 
             self.displayName = displayName
 
-            self.reasons = reasons
-
             self.meta = meta
 
-            self.id = id
+            self.reasons = reasons
 
             self.qcType = qcType
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,14 +67,6 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                reasons = try container.decode([BagReasons].self, forKey: .reasons)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 meta = try container.decode(BagReasonMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -83,7 +75,7 @@ public extension ApplicationClient {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                reasons = try container.decode([BagReasons].self, forKey: .reasons)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,6 +84,14 @@ public extension ApplicationClient {
 
             do {
                 qcType = try container.decode([String].self, forKey: .qcType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,13 +106,13 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(reasons, forKey: .reasons)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(reasons, forKey: .reasons)
 
             try? container.encodeIfPresent(qcType, forKey: .qcType)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

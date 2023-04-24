@@ -18,6 +18,8 @@ public extension PlatformClient {
 
         public var commsEnabled: Bool?
 
+        public var communication: CommunicationConfig?
+
         public enum CodingKeys: String, CodingKey {
             case rewardPoints = "reward_points"
 
@@ -28,9 +30,11 @@ public extension PlatformClient {
             case loyaltyPoints = "loyalty_points"
 
             case commsEnabled = "comms_enabled"
+
+            case communication
         }
 
-        public init(cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, payment: AppPaymentConfig? = nil, rewardPoints: RewardPointsConfig? = nil) {
+        public init(cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, communication: CommunicationConfig? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, payment: AppPaymentConfig? = nil, rewardPoints: RewardPointsConfig? = nil) {
             self.rewardPoints = rewardPoints
 
             self.cart = cart
@@ -40,6 +44,8 @@ public extension PlatformClient {
             self.loyaltyPoints = loyaltyPoints
 
             self.commsEnabled = commsEnabled
+
+            self.communication = communication
         }
 
         required public init(from decoder: Decoder) throws {
@@ -84,6 +90,14 @@ public extension PlatformClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                communication = try container.decode(CommunicationConfig.self, forKey: .communication)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -98,6 +112,8 @@ public extension PlatformClient {
             try? container.encodeIfPresent(loyaltyPoints, forKey: .loyaltyPoints)
 
             try? container.encodeIfPresent(commsEnabled, forKey: .commsEnabled)
+
+            try? container.encodeIfPresent(communication, forKey: .communication)
         }
     }
 }
