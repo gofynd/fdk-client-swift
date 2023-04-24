@@ -36,7 +36,7 @@ Get a list of customers
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.getCustomers(q: q, pageSize: pageSize, pageNo: pageNo) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.getCustomers(q: q, pageSize: pageSize, pageNo: pageNo) { (response, error) in
     // Use response
 }
 ```
@@ -148,7 +148,7 @@ Search an existing user.
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.searchUsers(q: q) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.searchUsers(q: q) { (response, error) in
     // Use response
 }
 ```
@@ -245,7 +245,7 @@ Create user
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.createUser(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.createUser(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -341,7 +341,7 @@ Block/Unblock user
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.blockOrUnblockUsers(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.blockOrUnblockUsers(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -397,7 +397,7 @@ archive user
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.archiveUser(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.archiveUser(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -453,7 +453,7 @@ undelete user who deleted from application and have not elapsed the platform con
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.unDeleteUser(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.unDeleteUser(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -509,7 +509,7 @@ Update user
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.updateUser(userId: userId, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.updateUser(userId: userId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -606,7 +606,7 @@ Create user session
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.createUserSession(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.createUserSession(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -668,7 +668,7 @@ Delete a session for a user
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.deleteSession(id: id, sessionId: sessionId, reason: reason) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.deleteSession(id: id, sessionId: sessionId, reason: reason) { (response, error) in
     // Use response
 }
 ```
@@ -738,7 +738,7 @@ Get a list of all session with info for a user
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.getActiveSessions(id: id) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.getActiveSessions(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -806,7 +806,7 @@ Delete a list of all session for a user
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.deleteActiveSessions(id: id, reason: reason) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions(id: id, reason: reason) { (response, error) in
     // Use response
 }
 ```
@@ -875,7 +875,7 @@ Get platform configurations
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.getPlatformConfig() { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.getPlatformConfig() { (response, error) in
     // Use response
 }
 ```
@@ -1006,7 +1006,7 @@ Update platform configurations
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.updatePlatformConfig(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.updatePlatformConfig(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1141,7 +1141,7 @@ Create an User Group
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.createUserGroup(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.createUserGroup(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1207,7 +1207,7 @@ Get User Groups mathcing criteria
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.getUserGroups(pageNo: pageNo, pageSize: pageSize, name: name, status: status, groupUid: groupUid) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.getUserGroups(pageNo: pageNo, pageSize: pageSize, name: name, status: status, groupUid: groupUid) { (response, error) in
     // Use response
 }
 ```
@@ -1302,7 +1302,7 @@ Update an User Group
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.updateUserGroup(groupId: groupId, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.updateUserGroup(groupId: groupId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1369,7 +1369,7 @@ Get an User Group by Id
 
 
 ```swift
-client.application("<APPLICATION_ID>").user.getUserGroupById(groupId: groupId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.getUserGroupById(groupId: groupId) { (response, error) in
     // Use response
 }
 ```

@@ -21,7 +21,7 @@ Get All Webhook Events
 
 
 ```swift
-webhook.fetchAllWebhookEvents() { (response, error) in
+publicClient.webhook.fetchAllWebhookEvents() { (response, error) in
     // Use response
 }
 ```
@@ -71,7 +71,7 @@ Send webhook event name, type, version, category in request body to get complete
 
 
 ```swift
-webhook.queryWebhookEventDetails(body: body) { (response, error) in
+publicClient.webhook.queryWebhookEventDetails(body: body) { (response, error) in
     // Use response
 }
 ```

@@ -9,19 +9,23 @@ public extension PlatformClient.Order {
      */
 
     class FulfillingStore: Codable {
-        public var state: String
-
-        public var address: String
-
-        public var pincode: String
+        public var fulfillmentChannel: String
 
         public var phone: String
 
-        public var meta: [String: Any]
+        public var contactPerson: String
 
         public var country: String
 
-        public var contactPerson: String
+        public var pincode: String
+
+        public var address: String
+
+        public var meta: [String: Any]
+
+        public var city: String
+
+        public var state: String
 
         public var id: Int
 
@@ -29,116 +33,112 @@ public extension PlatformClient.Order {
 
         public var code: String
 
-        public var city: String
-
-        public var fulfillmentChannel: String
-
         public enum CodingKeys: String, CodingKey {
-            case state
-
-            case address
-
-            case pincode
+            case fulfillmentChannel = "fulfillment_channel"
 
             case phone
 
-            case meta
+            case contactPerson = "contact_person"
 
             case country
 
-            case contactPerson = "contact_person"
+            case pincode
+
+            case address
+
+            case meta
+
+            case city
+
+            case state
 
             case id
 
             case storeName = "store_name"
 
             case code
-
-            case city
-
-            case fulfillmentChannel = "fulfillment_channel"
         }
 
         public init(address: String, city: String, code: String, contactPerson: String, country: String, fulfillmentChannel: String, id: Int, meta: [String: Any], phone: String, pincode: String, state: String, storeName: String) {
-            self.state = state
-
-            self.address = address
-
-            self.pincode = pincode
+            self.fulfillmentChannel = fulfillmentChannel
 
             self.phone = phone
 
-            self.meta = meta
+            self.contactPerson = contactPerson
 
             self.country = country
 
-            self.contactPerson = contactPerson
+            self.pincode = pincode
+
+            self.address = address
+
+            self.meta = meta
+
+            self.city = city
+
+            self.state = state
 
             self.id = id
 
             self.storeName = storeName
 
             self.code = code
-
-            self.city = city
-
-            self.fulfillmentChannel = fulfillmentChannel
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            state = try container.decode(String.self, forKey: .state)
-
-            address = try container.decode(String.self, forKey: .address)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
+            fulfillmentChannel = try container.decode(String.self, forKey: .fulfillmentChannel)
 
             phone = try container.decode(String.self, forKey: .phone)
 
-            meta = try container.decode([String: Any].self, forKey: .meta)
+            contactPerson = try container.decode(String.self, forKey: .contactPerson)
 
             country = try container.decode(String.self, forKey: .country)
 
-            contactPerson = try container.decode(String.self, forKey: .contactPerson)
+            pincode = try container.decode(String.self, forKey: .pincode)
+
+            address = try container.decode(String.self, forKey: .address)
+
+            meta = try container.decode([String: Any].self, forKey: .meta)
+
+            city = try container.decode(String.self, forKey: .city)
+
+            state = try container.decode(String.self, forKey: .state)
 
             id = try container.decode(Int.self, forKey: .id)
 
             storeName = try container.decode(String.self, forKey: .storeName)
 
             code = try container.decode(String.self, forKey: .code)
-
-            city = try container.decode(String.self, forKey: .city)
-
-            fulfillmentChannel = try container.decode(String.self, forKey: .fulfillmentChannel)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(address, forKey: .address)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(fulfillmentChannel, forKey: .fulfillmentChannel)
 
             try? container.encodeIfPresent(phone, forKey: .phone)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
 
             try? container.encodeIfPresent(country, forKey: .country)
 
-            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(storeName, forKey: .storeName)
 
             try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(city, forKey: .city)
-
-            try? container.encodeIfPresent(fulfillmentChannel, forKey: .fulfillmentChannel)
         }
     }
 }
@@ -150,19 +150,23 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class FulfillingStore: Codable {
-        public var state: String
-
-        public var address: String
-
-        public var pincode: String
+        public var fulfillmentChannel: String
 
         public var phone: String
 
-        public var meta: [String: Any]
+        public var contactPerson: String
 
         public var country: String
 
-        public var contactPerson: String
+        public var pincode: String
+
+        public var address: String
+
+        public var meta: [String: Any]
+
+        public var city: String
+
+        public var state: String
 
         public var id: Int
 
@@ -170,116 +174,112 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var code: String
 
-        public var city: String
-
-        public var fulfillmentChannel: String
-
         public enum CodingKeys: String, CodingKey {
-            case state
-
-            case address
-
-            case pincode
+            case fulfillmentChannel = "fulfillment_channel"
 
             case phone
 
-            case meta
+            case contactPerson = "contact_person"
 
             case country
 
-            case contactPerson = "contact_person"
+            case pincode
+
+            case address
+
+            case meta
+
+            case city
+
+            case state
 
             case id
 
             case storeName = "store_name"
 
             case code
-
-            case city
-
-            case fulfillmentChannel = "fulfillment_channel"
         }
 
         public init(address: String, city: String, code: String, contactPerson: String, country: String, fulfillmentChannel: String, id: Int, meta: [String: Any], phone: String, pincode: String, state: String, storeName: String) {
-            self.state = state
-
-            self.address = address
-
-            self.pincode = pincode
+            self.fulfillmentChannel = fulfillmentChannel
 
             self.phone = phone
 
-            self.meta = meta
+            self.contactPerson = contactPerson
 
             self.country = country
 
-            self.contactPerson = contactPerson
+            self.pincode = pincode
+
+            self.address = address
+
+            self.meta = meta
+
+            self.city = city
+
+            self.state = state
 
             self.id = id
 
             self.storeName = storeName
 
             self.code = code
-
-            self.city = city
-
-            self.fulfillmentChannel = fulfillmentChannel
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            state = try container.decode(String.self, forKey: .state)
-
-            address = try container.decode(String.self, forKey: .address)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
+            fulfillmentChannel = try container.decode(String.self, forKey: .fulfillmentChannel)
 
             phone = try container.decode(String.self, forKey: .phone)
 
-            meta = try container.decode([String: Any].self, forKey: .meta)
+            contactPerson = try container.decode(String.self, forKey: .contactPerson)
 
             country = try container.decode(String.self, forKey: .country)
 
-            contactPerson = try container.decode(String.self, forKey: .contactPerson)
+            pincode = try container.decode(String.self, forKey: .pincode)
+
+            address = try container.decode(String.self, forKey: .address)
+
+            meta = try container.decode([String: Any].self, forKey: .meta)
+
+            city = try container.decode(String.self, forKey: .city)
+
+            state = try container.decode(String.self, forKey: .state)
 
             id = try container.decode(Int.self, forKey: .id)
 
             storeName = try container.decode(String.self, forKey: .storeName)
 
             code = try container.decode(String.self, forKey: .code)
-
-            city = try container.decode(String.self, forKey: .city)
-
-            fulfillmentChannel = try container.decode(String.self, forKey: .fulfillmentChannel)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(address, forKey: .address)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(fulfillmentChannel, forKey: .fulfillmentChannel)
 
             try? container.encodeIfPresent(phone, forKey: .phone)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
 
             try? container.encodeIfPresent(country, forKey: .country)
 
-            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(storeName, forKey: .storeName)
 
             try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(city, forKey: .city)
-
-            try? container.encodeIfPresent(fulfillmentChannel, forKey: .fulfillmentChannel)
         }
     }
 }

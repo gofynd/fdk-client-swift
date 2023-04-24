@@ -11,30 +11,32 @@ public extension PlatformClient.Order {
     class SendSmsPayload: Codable {
         public var bagId: Int
 
-        public var data: SmsDataPayload?
-
         public var slug: String
+
+        public var data: SmsDataPayload?
 
         public enum CodingKeys: String, CodingKey {
             case bagId = "bag_id"
 
-            case data
-
             case slug
+
+            case data
         }
 
         public init(bagId: Int, data: SmsDataPayload? = nil, slug: String) {
             self.bagId = bagId
 
-            self.data = data
-
             self.slug = slug
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             bagId = try container.decode(Int.self, forKey: .bagId)
+
+            slug = try container.decode(String.self, forKey: .slug)
 
             do {
                 data = try container.decode(SmsDataPayload.self, forKey: .data)
@@ -43,8 +45,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            slug = try container.decode(String.self, forKey: .slug)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(bagId, forKey: .bagId)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
@@ -68,30 +68,32 @@ public extension PlatformClient.ApplicationClient.Order {
     class SendSmsPayload: Codable {
         public var bagId: Int
 
-        public var data: SmsDataPayload?
-
         public var slug: String
+
+        public var data: SmsDataPayload?
 
         public enum CodingKeys: String, CodingKey {
             case bagId = "bag_id"
 
-            case data
-
             case slug
+
+            case data
         }
 
         public init(bagId: Int, data: SmsDataPayload? = nil, slug: String) {
             self.bagId = bagId
 
-            self.data = data
-
             self.slug = slug
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             bagId = try container.decode(Int.self, forKey: .bagId)
+
+            slug = try container.decode(String.self, forKey: .slug)
 
             do {
                 data = try container.decode(SmsDataPayload.self, forKey: .data)
@@ -100,8 +102,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            slug = try container.decode(String.self, forKey: .slug)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(bagId, forKey: .bagId)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

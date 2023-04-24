@@ -7,54 +7,54 @@ public extension ApplicationClient.Cart {
          Used By: Cart
      */
     class CartCheckoutResponse: Codable {
-        public var success: Bool?
-
-        public var appInterceptUrl: String?
-
         public var callbackUrl: String?
 
         public var orderId: String?
+
+        public var appInterceptUrl: String?
+
+        public var data: [String: Any]?
+
+        public var success: Bool?
 
         public var cart: CheckCart?
 
         public var paymentConfirmUrl: String?
 
-        public var data: [String: Any]?
-
         public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case success
-
-            case appInterceptUrl = "app_intercept_url"
-
             case callbackUrl = "callback_url"
 
             case orderId = "order_id"
+
+            case appInterceptUrl = "app_intercept_url"
+
+            case data
+
+            case success
 
             case cart
 
             case paymentConfirmUrl = "payment_confirm_url"
 
-            case data
-
             case message
         }
 
         public init(appInterceptUrl: String? = nil, callbackUrl: String? = nil, cart: CheckCart? = nil, data: [String: Any]? = nil, message: String? = nil, orderId: String? = nil, paymentConfirmUrl: String? = nil, success: Bool? = nil) {
-            self.success = success
-
-            self.appInterceptUrl = appInterceptUrl
-
             self.callbackUrl = callbackUrl
 
             self.orderId = orderId
 
+            self.appInterceptUrl = appInterceptUrl
+
+            self.data = data
+
+            self.success = success
+
             self.cart = cart
 
             self.paymentConfirmUrl = paymentConfirmUrl
-
-            self.data = data
 
             self.message = message
         }
@@ -63,7 +63,15 @@ public extension ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +87,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+                data = try container.decode([String: Any].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -87,7 +95,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,14 +119,6 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                data = try container.decode([String: Any].self, forKey: .data)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -130,19 +130,19 @@ public extension ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
-            try? container.encodeIfPresent(appInterceptUrl, forKey: .appInterceptUrl)
-
             try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
+            try? container.encodeIfPresent(appInterceptUrl, forKey: .appInterceptUrl)
+
+            try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(success, forKey: .success)
+
             try? container.encodeIfPresent(cart, forKey: .cart)
 
             try? container.encodeIfPresent(paymentConfirmUrl, forKey: .paymentConfirmUrl)
-
-            try? container.encodeIfPresent(data, forKey: .data)
 
             try? container.encodeIfPresent(message, forKey: .message)
         }

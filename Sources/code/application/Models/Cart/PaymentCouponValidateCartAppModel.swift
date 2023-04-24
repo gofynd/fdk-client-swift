@@ -9,24 +9,24 @@ public extension ApplicationClient.Cart {
     class PaymentCouponValidate: Codable {
         public var success: Bool
 
-        public var couponValidity: CouponValidity?
-
         public var message: String?
+
+        public var couponValidity: CouponValidity?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case couponValidity = "coupon_validity"
-
             case message
+
+            case couponValidity = "coupon_validity"
         }
 
         public init(couponValidity: CouponValidity? = nil, message: String? = nil, success: Bool) {
             self.success = success
 
-            self.couponValidity = couponValidity
-
             self.message = message
+
+            self.couponValidity = couponValidity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,7 +35,7 @@ public extension ApplicationClient.Cart {
             success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                couponValidity = try container.decode(CouponValidity.self, forKey: .couponValidity)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                couponValidity = try container.decode(CouponValidity.self, forKey: .couponValidity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,9 +56,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(couponValidity, forKey: .couponValidity)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(couponValidity, forKey: .couponValidity)
         }
     }
 }
